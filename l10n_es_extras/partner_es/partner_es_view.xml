@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<terp>
+  <data>
+    <record model="ir.ui.view" id="view_partner_form_dc">
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <field name="acc_number" position="replace">
+          <field name="acc_number" on_change="onchange_banco(acc_number, acc_country_id)"/>
+          <field name="acc_country_id" on_change="onchange_banco(acc_number, acc_country_id)"/>
+        </field>
+      </field>
+    </record>
+<!-- Borra el campo "name" del formulario de partners -->
+    <record model="ir.ui.view" id="partners_form_del_name">
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <field name="name" position="replace"/>
+      </field>
+    </record>
+<!-- Borra el campo "vat" del formulario de partners -->
+    <record model="ir.ui.view" id="partners_form_del_vat">
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base_vat.view_partner_form"/>
+      <field name="arch" type="xml">
+        <field name="vat" position="replace"/>
+      </field>
+    </record>
+<!-- Añadimos los campos name y vat encima del notebook -->
+    <record model="ir.ui.view" id="view_partner_new_form1">
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <notebook position="before">
+          <group colspan="3" col="4">
+            <field name="name"/>
+            <field name="vat" on_change="vat_check(vat, country_id)" select="1"/>
+          </group>
+        </notebook>
+      </field>
+    </record>
+<!-- Añadimos los campos comercial y country_id-->
+    <record model="ir.ui.view" id="view_partner_new_form2">
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <field name="title" position="before">
+            <field name="comercial"/>
+        </field>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="view_partner_new_form3">
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <field name="lang" position="after">
+            <field name="country_id" on_change="vat_check(vat, country_id)"/>
+        </field>
+      </field>
+    </record>
+  </data>
+</terp>
