@@ -29,8 +29,7 @@
 #Este módulo añade la condición 'Días de Pago' para las formas de pago. Los días
 #de pago se especifican en una cadena separada por guiones. Ejemplo, una empresa 
 #paga los días 5, 15 y 25 de cada mes, tendrá unos días de pago indicados por
-#5-15-25. (El campo correspondiente en la ficha de empresa está añadido en el fiche-
-#ro magaerp.py)
+#5-15-25
 ##############################################################################
 
 import time
