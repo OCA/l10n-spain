@@ -1,0 +1,239 @@
+﻿<?xml version="1.0"?>
+<document filename="test.pdf">
+  <template pageSize="(595.0,842.0)" title="Albaran " author="" allowSplitting="20">
+    <pageTemplate id="first">
+      <frame id="first" x1="27.0" y1="31.0" width="538" height="783"/>
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tabla1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tabla2">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tabla3">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tabla4">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tabla6">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tabla7">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tabla5">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="P1" fontName="Times-Roman" fontSize="10.0" leading="13" alignment="CENTER"/>
+    <paraStyle name="P2" fontName="Times-Roman" fontSize="18.0" leading="22" alignment="CENTER"/>
+    <paraStyle name="P3" fontName="Times-Roman" fontSize="12.0" leading="15" alignment="LEFT"/>
+    <paraStyle name="P4" fontName="Times-Roman" fontSize="14.0" leading="17" alignment="LEFT"/>
+    <paraStyle name="P5" fontName="Times-Roman" fontSize="12.0" leading="15" alignment="LEFT"/>
+    <paraStyle name="P6" fontName="Times-Roman" fontSize="12.0" leading="15" alignment="LEFT"/>
+    <paraStyle name="P7" fontName="Times-Roman" fontSize="12.0" leading="15" alignment="LEFT"/>
+    <paraStyle name="P8" fontName="Times-Roman" fontSize="12.0" leading="15" alignment="CENTER"/>
+    <paraStyle name="P9" fontName="Times-Roman" fontSize="9.0" leading="11" alignment="LEFT"/>
+    <paraStyle name="P10" fontName="Times-Roman" fontSize="10.0" leading="13" alignment="RIGHT"/>
+    <paraStyle name="P11" fontName="Times-Roman" fontSize="10.0" leading="13" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P12" fontName="Times-Roman" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P13" fontName="Times-Roman" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P14" fontName="Times-Roman" fontSize="11.0" leading="14" alignment="RIGHT"/>
+    <paraStyle name="P15" fontName="Times-Roman" fontSize="9.0" leading="11" alignment="LEFT"/>
+    <paraStyle name="P16" fontName="Times-Roman" alignment="CENTER"/>
+    <paraStyle name="P17" fontName="Times-Roman" fontSize="9.0" leading="11" alignment="LEFT"/>
+    <paraStyle name="Standard" fontName="Times-Roman"/>
+    <paraStyle name="Text body" fontName="Times-Roman" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Times-Roman" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Table Contents" fontName="Times-Roman"/>
+    <paraStyle name="Caption" fontName="Times-Roman" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Index" fontName="Times-Roman"/>
+  </stylesheet>
+  <story>
+    <illustration height="38.0" width="72.0">
+      <image x="0" y="0" file="tinyerp_logo.png" height="38.0" width="72.0"/>
+    </illustration>
+    <para style="P2"><font face="Times-Roman" size="10.0">[[ repeatIn(objects,'o') ]]</font>ALBARÁN DE VENTA</para>
+    <blockTable colWidths="538.0" style="Tabla1">
+      <tr>
+        <td>
+          <para style="P4">Nombre empresa</para>
+          <para style="P5">Calle</para>
+          <para style="P5">Localidad</para>
+          <para style="P5">Provincia</para>
+          <para style="P5">CIF/NIF</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="269.0,269.0" style="Tabla2">
+      <tr>
+        <td>
+          <para style="P5">
+            <font color="white"> </font>
+          </para>
+          <para style="P5">Nº Picking: <font face="Times-Roman">[[o.name]]</font></para>
+          <para style="P5">Fecha: <font face="Times-Roman">[[o.date[8:10]+'/'+o.date[5:7]+'/'+o.date[0:4] ]]</font></para>
+          <para style="P5">Nº Pedido: <font face="Times-Roman">[[(o.sale_id and o.sale_id.name) or '' ]]</font></para>
+          <para style="P5">Cod. Cliente: <font face="Times-Roman">[[o.partner_id.id or '/']]</font></para>
+          <para style="P5">Forma de Pago: </para>
+          <para style="P5">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P5">
+            <font color="white"> </font>
+          </para>
+         <para style="P6">[[ (o.partner_id and o.partner_id.name)]]</para>
+          <para style="P6">[[ (o.address_id and o.address_id.name)]]</para>
+          <para style="P6">[[ (o.address_id and o.address_id.street) ]]</para>
+          <para style="P6">[[ (o.address_id and o.address_id.zip) ]][[(o.address_id and ' ,')]] [[ (o.address_id and o.address_id.city) ]]</para>
+          <para style="P6">[[ (o.address_id and o.address_id.state_id and o.address_id.state_id.name) ]]</para>
+          <para style="P6">[[ (o.partner_id and o.partner_id.vat)]]</para>
+          <para style="P5">
+            <font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P7">
+      <font color="white"> </font>
+    </para>
+    <blockTable colWidths="71.0,216.0,76.0,50.0,36.0,51.0,38.0" style="Tabla3">
+      <tr>
+        <td>
+          <para style="P8">Referencia</para>
+        </td>
+        <td>
+          <para style="P8">Descripción</para>
+        </td>
+        <td>
+          <para style="P8">Cantidad</para>
+        </td>
+        <td>
+          <para style="P8">Precio</para>
+        </td>
+        <td>
+          <para style="P8">
+            <font face="Times-Roman" size="9.0">DTO%</font>
+          </para>
+        </td>
+        <td>
+          <para style="P8">Importe</para>
+        </td>
+        <td>
+          <para style="P8">I.V.A.</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="71.0,216.0,76.0,50.0,36.0,51.0,38.0" style="Tabla4">
+      <tr>
+        <td>
+          <para style="P3">
+            <font face="Times-Roman" size="8.0">[[ repeatIn(o.move_lines, 'line') ]]</font>
+            <font face="Times-Roman" size="10.0">[[line.product_id.default_code]] </font>
+          </para>
+        </td>
+        <td>
+          <para style="P9">[[(line.sale_line_id and line.sale_line_id.name) or (line.product_id and line.product_id.name) or '' ]] [[(line.prodlot_id and line.prodlot_id.name) or '' ]][[(line.prodlot_id and '/' )]] [[(line.prodlot_id and line.prodlot_id.ref) or '' ]]</para>
+        </td>
+        <td>
+          <para style="P10">[[line.product_qty]]</para>
+        </td>
+        <td>
+          <para style="P11">[[(o.partner_id and o.partner_id.alb_val and line.price_unit) or '' ]]</para>
+        </td>
+        <td>
+          <para style="P11">[[(o.partner_id and o.partner_id.alb_val and line.discount) or '']]</para>
+        </td>
+        <td>
+          <para style="P12"><font face="Times-Roman">[[(o.partner_id and o.partner_id.alb_val and line.price_subtotal) or '']]</font> </para>
+        </td>
+        <td>
+          <para style="P13">[[ line.sale_line_id and ', '.join(map(lambda x: x.name , line.sale_line_id.tax_id)) ]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P7">
+      <font color="white"> </font>
+    </para>
+    <blockTable colWidths="179.0,179.0,179.0" style="Tabla6">
+      <tr>
+        <td>
+          <para style="P8">Base Imponible</para>
+        </td>
+        <td>
+          <para style="P8">Importe Impuestos</para>
+        </td>
+        <td>
+          <para style="P8">TOTAL</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="179.0,179.0,179.0" style="Tabla7">
+      <tr>
+        <td>
+          <para style="P14"> [[(o.partner_id and o.partner_id.alb_val and o.amount_untaxed) or '']] [[o.partner_id and o.partner_id.alb_val and '€' or '']]</para>
+        </td>
+        <td>
+          <para style="P14"> [[ (o.partner_id and o.partner_id.alb_val and o.amount_tax) or '']] [[o.partner_id and o.partner_id.alb_val and '€' or '']]</para>
+        </td>
+        <td>
+          <para style="P14"> [[(o.partner_id and o.partner_id.alb_val and o.amount_total) or '']] [[o.partner_id and o.partner_id.alb_val and '€' or '']]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P7">
+      <font color="white"> </font>
+    </para>
+    <blockTable colWidths="403.0,136.0" style="Tabla5">
+      <tr>
+        <td>
+          <para style="P15">Observaciones:</para>
+          <para style="P15">[[ o.note or '' ]] [[ setTag('para','xpre') ]]</para>
+          <para style="P16">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P15">Conforme Cliente</para>
+          <para style="P15">
+            <font color="white"> </font>
+          </para>
+          <para style="P15">
+            <font color="white"> </font>
+          </para>
+          <para style="P15">
+            <font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P17">No se aceptaran reclamaciones por daños en el transporte pasadas 24h. de la recepcion de la mercancia</para>
+  </story>
+</document>
+
