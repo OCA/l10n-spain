@@ -2,7 +2,7 @@
 ##############################################################################
 #
 # Copyright (c) 2006 ACYSOS S.L. (http://acysos.com) All Rights Reserved.
-#                    Pedro Tarrafeta <pedro@acysos.com>
+#					Pedro Tarrafeta <pedro@acysos.com>
 #
 # WARNING: This program as such is intended to be used by professional
 # programmers who take the whole responsability of assessing all potential
@@ -351,5 +351,45 @@ class account_invoice(osv.osv):
 			res= {'value':{'date_due': pterm_list[-1]}}
 
 		return res
+
+
+	def onchange_partner_id(self, cr, uid, ids, type, partner_id, date_invoice=False, payment_term=False):
+		invoice_addr_id = False
+		contact_addr_id = False
+		partner_payment_term = False
+		acc_id = False
+
+		opt = [('uid', str(uid))]
+		if partner_id:
+			opt.insert(0, ('id', partner_id))
+			res = self.pool.get('res.partner').address_get(cr, uid, [partner_id], ['contact', 'invoice'])
+			contact_addr_id = res['contact']
+			invoice_addr_id = res['invoice']
+			p = self.pool.get('res.partner').browse(cr, uid, partner_id)
+			if type in ('out_invoice', 'out_refund'):
+				acc_id = p.property_account_receivable.id
+			else:
+				acc_id = p.property_account_payable.id
+
+			partner_payment_term = p.property_payment_term and p.property_payment_term.id or False
+
+		result = {'value': {
+			'address_contact_id': contact_addr_id,
+			'address_invoice_id': invoice_addr_id,
+			'account_id': acc_id,
+			'payment_term': partner_payment_term}
+		}
+		print "payment_term", str(payment_term)
+		print "partner_payment_term", str(partner_payment_term)
+		if payment_term != partner_payment_term:
+			if partner_payment_term:
+				to_update = self.onchange_payment_term_date_invoice(
+					cr,uid,ids,partner_payment_term,date_invoice, partner_id)
+				print to_update
+				result['value'].update(to_update['value'])
+			else:
+				result['value']['date_due'] = False
+		return result
+
 account_invoice()
 
