@@ -1,0 +1,141 @@
+===== Traducción servidor TinyERP al español =====
+
+==== Guía de estilo ====
+
+  * Cualquier sugerencia en la guía de estilo y en la lista de traducciones comunes será bienvenida (jesteve arroba zikzakmedia punto com)
+
+  * Se ha utilizado accentos, tanto en mayúsculas como en minúsculas. Esto no acarrea ningún tipo de problema codificando en UTF-8 el fichero de la traducción. Además de ser normativa ortográfica, permite automatizar la traducción a otros idiomas latinos como catalán y gallego.
+
+  * Sólo se utilizan mayúsculas al incio de la frase/texto o cuando es nombre propio. El uso de mayúsculas en la primera letra de cada palabra está acceptado en inglés pero no en castellano. Además los textos quedan ligeramente más cortos y se facilita la lectura. Se hace una excepción con la abreviaciones (p.e. LdM).
+
+  * Las acciones son verbos en infinitivo (p.e. Cancelar). Los estados son verbos en participio (p.e. Cancelado).
+
+  * Se ha intentado mantener la longitud de los textos originales, aunque es imposible pués en la mayoría de casos las traducciones al castellano son más largas. Se ha testeado la mayoría de menús, vistas, formularios e informes para comprobar que no aparezcan textos demasiado largos.
+
+  * Aunque la traducción 4.2.0 versión estable está totalmente realizada algunos textos no aparecen traducidos. Creo que se debe a que en el código fuente de tinyERP no se han indicado que son traducibles (podrían catalogarse de bugs del programa).
+
+  * Lista alfabéticamente ordenada de las traducciones utilizadas. Se ha intentado utilizar un registro de castellano de España estándar con vocablos de gestión empresarial. Cuando una expresión se ha traducido de dos o más formas diferentes se han separado con coma. Las listas de acciones (verbos infinitivos) y vocabulario método scrum se han separado al final.
+
+INGLÉS -> ESPAÑOL
+account -> cuenta, contabilidad
+account chart -> plan de cuentas
+account move -> asiento
+account move line -> apunte
+amount -> importe
+assignation -> asignación
+attendances -> servicios
+balance -> balance o saldo
+balance -> saldo pendiente (en formas de pago)
+balance sheet -> balance
+bank statement -> extractos bancarios
+BOM -> LdM (Bill of Material -> Lista de Materiales, hay que mantenerlo abreviado)
+case -> caso
+chart -> gráfico, resumen (chart muestra muchas veces tablas de resumen)
+chart of accounts -> plan contable
+company -> compañía (es la propia empresa)
+credit -> haber
+credit balance -> saldo acreedor
+custom -> a medida
+dashboard -> tablero
+deadline -> fecha límite
+debit -> deber
+debit balance -> saldo deudor
+default -> por defecto
+deferral -> cierre
+done -> realizado
+email -> email, correo electrónico
+event -> evento
+file -> archivo
+fiscal year -> ejercicio fiscal
+follow-up -> seguimiento
+goods -> material
+helpdesk -> helpdesk (¿Mejor traducirlo como centro de soporte?)
+history -> historial
+HR -> RRHH
+item -> detalle, elemento
+location -> ubicación
+lot -> lote
+meeting -> reunión
+Ok -> Ok
+opened -> abierto
+order -> orden (¿Es mejor pedido o comanda? Una orden puede estar en estado borrador (presupuesto), confirmada (comanda), enviada (albaran), facturada (factura))
+order point -> punto de pedidos?
+packing -> paquete
+partner -> empresa
+partner code, customer ref -> CIF/NIF
+payable -> deber
+payable -> a pagar (en tipos de cuenta)
+procurement -> abastecimiento
+purchase -> compra
+quotation -> presupuesto
+receivable -> haber
+receivable -> a cobrar (en tipos de cuenta)
+refund -> factura de abono
+report -> informe
+role -> rol
+routing -> hoja de ruta
+routing -> proceso productivo
+salesman -> vendedor (¿Es mejor comercial?)
+sale -> venta
+scheduling -> planificación
+sequence -> secuencia
+setup -> configuración
+spread -> margen, extensión
+stock -> stock
+structure -> estructura, despiece
+tax -> impuesto
+term -> forma de pago
+timesheet -> hoja de servicios, hoja de asistencia
+total -> total
+tracking -> tracking (¿Es mejor rastreo?)
+track -> track (¿Es mejor rastreo?)
+tree -> árbol
+UOM -> UdM (Unit of Manufacturing -> Unidad de Manufacturación, hay que mantenerlo abreviado)
+UOS -> UdV (Unit of Sell -> Unidad de Venta, hay que mantenerlo abreviado)
+VAT -> IVA
+wage -> salario
+wizard -> asistente
+workcenter -> centro de producción
+workflow -> flujo de trabajo
+write-off -> desajuste
+zip -> C.P. (Código Postal abreviado)
+
+ACCIONES (verbos en infinitivo)
+asigne -> asignar
+cancel -> cancelar
+close -> cerrar
+compute -> calcular
+confirm -> confirmar
+create -> crear
+open -> abrir
+pack -> empaquetar
+pay -> pagar
+print -> imprimir
+run -> ejecutar
+select -> seleccionar
+send -> enviar
+sign in -> registrar entrada
+sign out -> registrar salida
+
+MÉTODO SCRUM
+Es difícil encontrar traducciones comprensibles del vocabulario utilizado por el método scrum. Se ha preferido mantener el equivalente inglés:
+
+scrum -> scrum
+backlog -> backlog
+sprint -> sprint
+
+Puede encontrarse la deficiones de los conceptos del método scrum en: http://www.controlchaos.com/resources
+
+Backlog: All work to be performed in the forseeable future, both well defined and requiring further definition.
+Sprint: A period of 30 days of less where a set of work will be performed to create a deliverable.
+Sprint Backlog: That work that is well-enough defined that it can be worked on with relatively little change over a period of 30 days or less and will result in a tangible, incremental deliverable.
+Scrum: A daily meeting at which progress and impediments to progress are reviewed.
+Scrum Meeting Rules: Protocol for effective Scrum daily meetings.
+Scrum Team: The cross-functional team working on the sprint's backlog.
+
+Equipo traducción tinyERP 4.2.0
+
+Zikzakmedia SL (www.zikzakmedia.com)
+Jordi Esteve: jesteve arroba zikzakmedia punto com
+
+y todos los miembros del proyecto http://tinyforge.org/projects/es-es/
