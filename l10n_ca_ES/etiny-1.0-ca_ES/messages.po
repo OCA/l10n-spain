@@ -1,0 +1,1379 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: etiny 1.0\n"
+"POT-Creation-Date: 2007-10-24 15:21\n"
+"PO-Revision-Date: 2008-03-16 20:02+0100\n"
+"Last-Translator: Jordi Esteve <jesteve@zikzakmedia.com>\n"
+"Language-Team: http://tinyforge.org/projects/tinyerp-ca <jesteve@zikzakmedia.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Poedit-Language: Catalan\n"
+
+#: tinyerp/commands.py:45
+msgid "Could not find default configuration."
+msgstr "No es pot trobar la configuració predeterminada."
+
+#: tinyerp/common.py:46
+#: tinyerp/common.py:60
+#: tinyerp/subcontrollers/actions.py:92
+#: tinyerp/subcontrollers/actions.py:157
+#: tinyerp/subcontrollers/actions.py:247
+#: tinyerp/subcontrollers/form.py:722
+msgid "Error"
+msgstr "Error"
+
+#: tinyerp/common.py:51
+#: tinyerp/common.py:63
+msgid "Warning"
+msgstr "Avís"
+
+#: tinyerp/common.py:56
+msgid "Information"
+msgstr "Informació"
+
+#: tinyerp/controllers.py:80
+msgid "Access Denied !"
+msgstr "Accés refusat!"
+
+#: tinyerp/controllers.py:80
+msgid ""
+"You can not log into the system !\n"
+"Ask the administrator to verify\n"
+"you have an action defined for your user."
+msgstr ""
+"﻿No pot entrar en el sistema !\n"
+"Pregunta a l'administrador que verifiqui\n"
+"que tens una acció definida pel teu usuari."
+
+#: tinyerp/controllers.py:138
+#: tinyerp/tinyres.py:116
+msgid "Could not connect to server !"
+msgstr "No es pot connectar al servidor!"
+
+#: tinyerp/rpc.py:160
+#: tinyerp/rpc.py:208
+#: tinyerp/rpc.py:254
+#: tinyerp/rpc.py:392
+msgid "Connection refused !"
+msgstr "Connexió refusada!"
+
+#: tinyerp/rpc.py:352
+msgid ""
+"You select a timezone but Tiny ERP could not find pytz library !\n"
+"The timezone functionality will be disable."
+msgstr ""
+"﻿Has seleccionat una zona horària però tinyERP no pot trobar la biblioteca pytz!\n"
+"La funcionalitat de zona horària serà inhabilitada."
+
+#: tinyerp/rpc.py:382
+msgid "Authorization Error !"
+msgstr "Error d'autorització!"
+
+#: tinyerp/rpc.py:382
+msgid "Not logged..."
+msgstr "No autentificat..."
+
+#: tinyerp/rpc.py:399
+#: tinyerp/rpc.py:402
+msgid "Application Error !"
+msgstr "Error aplicació!"
+
+#: tinyerp/subcontrollers/actions.py:92
+msgid "Invalid View!"
+msgstr "Vista no vàlida!"
+
+#: tinyerp/subcontrollers/actions.py:117
+msgid "Error no report"
+msgstr "Error, no hi ha informe"
+
+#: tinyerp/subcontrollers/actions.py:142
+msgid "Nothing to print!"
+msgstr "Res a imprimir!"
+
+#: tinyerp/subcontrollers/actions.py:157
+msgid "Printing aborted, too long delay !"
+msgstr "Impressió cancel·lada, temps d'espera massa llarg!"
+
+#: tinyerp/subcontrollers/actions.py:247
+msgid "Action not found!!!"
+msgstr "Acció no trobada!!!"
+
+#: tinyerp/subcontrollers/actions.py:293
+msgid "No action defined!"
+msgstr "No s'ha definit una acció!"
+
+#: tinyerp/subcontrollers/confeditor.py:78
+msgid "Invalid Password !"
+msgstr "Contrasenya incorrecta!"
+
+#: tinyerp/subcontrollers/dbadmin.py:80
+msgid "Bad database name !"
+msgstr "Nom de base de dades incorrecte!"
+
+#: tinyerp/subcontrollers/dbadmin.py:80
+msgid ""
+"The database name must contain only normal characters or \"_\".\n"
+"You must avoid all accents, space or special characters."
+msgstr ""
+"﻿El nom de la base de dades ha de contenir només caràcters normals o \"_\".\n"
+"Has d'evitar tots els accents, espais o els caràcters especials."
+
+#: tinyerp/subcontrollers/dbadmin.py:87
+#: tinyerp/subcontrollers/dbadmin.py:89
+msgid "Could not create database."
+msgstr "No es pot crear la base de dades."
+
+#: tinyerp/subcontrollers/dbadmin.py:87
+#: tinyerp/subcontrollers/dbadmin.py:119
+#: tinyerp/subcontrollers/dbadmin.py:175
+msgid "Bad database administrator password !"
+msgstr "Contrasenya de l'administrador de la base de dades incorrecta!"
+
+#: tinyerp/subcontrollers/dbadmin.py:89
+msgid "Error during database creation !"
+msgstr "Error durant la creació de la base de dades!"
+
+#: tinyerp/subcontrollers/dbadmin.py:119
+msgid "Could not drop database."
+msgstr "No es pot eliminar la base de dades."
+
+#: tinyerp/subcontrollers/dbadmin.py:121
+msgid "Couldn't drop database"
+msgstr "No es pot eliminar la base de dades"
+
+#: tinyerp/subcontrollers/dbadmin.py:150
+msgid "Could not create backup."
+msgstr "No es pot crear còpia de seguretat."
+
+#: tinyerp/subcontrollers/dbadmin.py:175
+msgid "Could not restore database."
+msgstr "No es pot restaurar la base de dades."
+
+#: tinyerp/subcontrollers/dbadmin.py:177
+msgid "Couldn't restore database"
+msgstr "No es pot restaurar la base de dades"
+
+#: tinyerp/subcontrollers/dbadmin.py:197
+msgid "Confirmation password do not match new password, operation cancelled!"
+msgstr "La contrasenya de confirmació no coincideix amb la contrasenya nova, operació cancel·lada!"
+
+#: tinyerp/subcontrollers/dbadmin.py:197
+msgid "Validation Error."
+msgstr "Error de validació."
+
+#: tinyerp/subcontrollers/dbadmin.py:203
+msgid "Bas password provided !"
+msgstr "Ha proporcionat una contrasenya incorrecta!"
+
+#: tinyerp/subcontrollers/dbadmin.py:203
+msgid "Could not change password database."
+msgstr "No es pot canviar la contrasenya de la base de dades."
+
+#: tinyerp/subcontrollers/dbadmin.py:205
+msgid "Error, password not changed."
+msgstr "Error, contrasenya no canviada."
+
+#: tinyerp/subcontrollers/form.py:318
+msgid "Invalid button type"
+msgstr "Tipus de botó invàlid"
+
+#: tinyerp/subcontrollers/form.py:643
+#: tinyerp/subcontrollers/tree.py:216
+msgid "No record selected !"
+msgstr "No ha seleccionat cap registre!"
+
+#: tinyerp/subcontrollers/form.py:648
+msgid "Print Screen"
+msgstr "Imprimeix pantalla"
+
+#: tinyerp/subcontrollers/form.py:665
+msgid "You must save this record to use the sidebar button!"
+msgstr "Has de desar aquest registre per utilitzar el botó lateral!"
+
+#: tinyerp/subcontrollers/form.py:722
+msgid "Wrong on_change trigger: %s"
+msgstr "Disparador on_change erroni: %s"
+
+#: tinyerp/subcontrollers/impex.py:77
+msgid ""
+"Operation failed !\n"
+"I/O error"
+msgstr ""
+"L'operació ha fallat!\n"
+"Error I/O"
+
+#: tinyerp/subcontrollers/impex.py:240
+msgid "Error opening .CSV file"
+msgstr "Error a l'obrir el fitxer .CSV"
+
+#: tinyerp/subcontrollers/impex.py:240
+msgid "Input Error."
+msgstr "Error d'entrada."
+
+#: tinyerp/subcontrollers/impex.py:251
+msgid ""
+"Error processing your first line of the file.\n"
+"Field %s is unknown !"
+msgstr ""
+"Error processant la teva primera fila del fitxer.\n"
+"El camp %s és desconegut!"
+
+#: tinyerp/subcontrollers/impex.py:251
+msgid "Import Error."
+msgstr "Error en la importació."
+
+#: tinyerp/subcontrollers/impex.py:271
+msgid "XML-RPC error !"
+msgstr "Error XML-RPC!"
+
+#: tinyerp/subcontrollers/impex.py:273
+msgid "Imported %d objects !"
+msgstr "S'han importat %d objectes!"
+
+#: tinyerp/subcontrollers/impex.py:278
+msgid ""
+"Unable to import this record:\n"
+"%s\n"
+"Error Message:\n"
+"%s\n"
+"\n"
+"%s"
+msgstr ""
+"No es pot importar aquest registre:\n"
+"%s\n"
+"Missatge d'error:\n"
+"%s\n"
+"\n"
+"%s"
+
+#: tinyerp/subcontrollers/impex.py:279
+msgid "Importation Error !"
+msgstr "Error en la importació!"
+
+#: tinyerp/subcontrollers/listgrid.py:62
+msgid "Parent record doesn't exists..."
+msgstr "Registre pare no existeix..."
+
+#: tinyerp/subcontrollers/requests.py:55
+msgid "No request"
+msgstr "No hi ha peticions"
+
+#: tinyerp/subcontrollers/requests.py:57
+msgid "%s request(s)"
+msgstr "%s petició(ns)"
+
+#: tinyerp/subcontrollers/requests.py:60
+msgid "- %s pending request(s)"
+msgstr "- %s petició(ns) pendent(s)"
+
+#: tinyerp/subcontrollers/translator.py:145
+msgid "You need to save the resource before adding translations."
+msgstr "Has de desar el registre abans d'afegir traduccions."
+
+#: tinyerp/subcontrollers/tree.py:239
+msgid "No resource selected !"
+msgstr "No has seleccionat cap registre!"
+
+#: tinyerp/subcontrollers/view_log.py:60
+msgid "You have to select one resource!"
+msgstr "Ha de seleccionar un registre!"
+
+#: tinyerp/subcontrollers/view_log.py:68
+msgid "ID"
+msgstr "ID"
+
+#: tinyerp/subcontrollers/view_log.py:69
+msgid "Creation User"
+msgstr "Creat per l'usuari "
+
+#: tinyerp/subcontrollers/view_log.py:70
+msgid "Creation Date"
+msgstr "Data creació"
+
+#: tinyerp/subcontrollers/view_log.py:71
+msgid "Latest Modification by"
+msgstr "Última modificació per"
+
+#: tinyerp/subcontrollers/view_log.py:72
+msgid "Latest Modification Date"
+msgstr "Data última modificació"
+
+#: tinyerp/subcontrollers/view_log.py:73
+msgid "Owner"
+msgstr "Propietari"
+
+#: tinyerp/subcontrollers/view_log.py:74
+msgid "Group Owner"
+msgstr "Grup del propietari"
+
+#: tinyerp/subcontrollers/view_log.py:75
+msgid "Access Level"
+msgstr "Nivell d'accés"
+
+#: tinyerp/tinyres.py:119
+msgid "Bad username or password !"
+msgstr "Nom d'usuari o contrasenya incorrecta!"
+
+#: tinyerp/widgets/action.py:75
+msgid "Action not found !"
+msgstr "No s'ha trobat l'acció!"
+
+#: tinyerp/widgets/listgrid.py:438
+msgid "Yes"
+msgstr "Si"
+
+#: tinyerp/widgets/listgrid.py:440
+msgid "No"
+msgstr "No"
+
+#: tinyerp/widgets/many2one.py:52
+msgid "== Access Denied =="
+msgstr "== Accés refusat =="
+
+#: tinyerp/widgets/one2many.py:57
+msgid "Create new record."
+msgstr "Crea un registre nou."
+
+#: tinyerp/widgets/one2many.py:57
+msgid "New"
+msgstr "Nou"
+
+#: tinyerp/widgets/one2many.py:72
+msgid "Save parent and create new record."
+msgstr "Desa pare i crea nou registre"
+
+#: tinyerp/widgets/one2many.py:72
+msgid "Save/New"
+msgstr "Desa/Nou"
+
+#: tinyerp/widgets/pager.py:70
+msgid "[%s/%s]"
+msgstr "[%s/%s]"
+
+#: tinyerp/widgets/pager.py:81
+msgid "[%s - %s of %s]"
+msgstr "[%s - %s de %s]"
+
+#: tinyerp/widgets/tinycalendar/utils.py:35
+msgid "Monday"
+msgstr "Dilluns"
+
+#: tinyerp/widgets/tinycalendar/utils.py:36
+msgid "Tuesday"
+msgstr "Dimarts"
+
+#: tinyerp/widgets/tinycalendar/utils.py:37
+msgid "Wednesday"
+msgstr "Dimecres"
+
+#: tinyerp/widgets/tinycalendar/utils.py:38
+msgid "Thursday"
+msgstr "Dijous"
+
+#: tinyerp/widgets/tinycalendar/utils.py:39
+msgid "Friday"
+msgstr "Divendres"
+
+#: tinyerp/widgets/tinycalendar/utils.py:40
+msgid "Saturday"
+msgstr "Dissabte"
+
+#: tinyerp/widgets/tinycalendar/utils.py:41
+msgid "Sunday"
+msgstr "Diumenge"
+
+#: tinyerp/widgets/tinycalendar/utils.py:44
+msgid "January"
+msgstr "Gener"
+
+#: tinyerp/widgets/tinycalendar/utils.py:45
+msgid "February"
+msgstr "Febrer"
+
+#: tinyerp/widgets/tinycalendar/utils.py:46
+msgid "March"
+msgstr "Març"
+
+#: tinyerp/widgets/tinycalendar/utils.py:47
+msgid "April"
+msgstr "Abril"
+
+#: tinyerp/widgets/tinycalendar/utils.py:48
+msgid "May"
+msgstr "Maig"
+
+#: tinyerp/widgets/tinycalendar/utils.py:49
+msgid "June"
+msgstr "Juny"
+
+#: tinyerp/widgets/tinycalendar/utils.py:50
+msgid "July"
+msgstr "Juliol"
+
+#: tinyerp/widgets/tinycalendar/utils.py:51
+msgid "August"
+msgstr "Agost"
+
+#: tinyerp/widgets/tinycalendar/utils.py:52
+msgid "September"
+msgstr "Setembre"
+
+#: tinyerp/widgets/tinycalendar/utils.py:53
+msgid "October"
+msgstr "Octubre"
+
+#: tinyerp/widgets/tinycalendar/utils.py:54
+msgid "November"
+msgstr "Novembre"
+
+#: tinyerp/widgets/tinycalendar/utils.py:55
+msgid "December"
+msgstr "Desembre"
+
+#: tinyerp/widgets/validators.py:157
+msgid "Please select a file."
+msgstr "Si us plau, selecciona un fitxer."
+
+#: tinyerp/widgets/tinycalendar/templates/week.kid:div
+msgid "Loading..."
+msgstr "Carregant..."
+
+#: tinyerp/widgets/tinycalendar/templates/week.kid:button
+msgid "Today"
+msgstr "Avui"
+
+#: tinyerp/widgets/tinycalendar/templates/week.kid:button
+msgid "Day"
+msgstr "Dia"
+
+#: tinyerp/widgets/tinycalendar/templates/week.kid:button
+msgid "Week"
+msgstr "Setmana"
+
+#: tinyerp/widgets/tinycalendar/templates/week.kid:button
+msgid "Month"
+msgstr "Mes"
+
+#: tinyerp/widgets/tinycalendar/templates/week.kid:td
+msgid "Apply search filter"
+msgstr "Aplica filtre de cerca"
+
+#: tinyerp/widgets/tinycalendar/templates/mini.kid:td
+msgid "M"
+msgstr "Dl"
+
+#: tinyerp/widgets/tinycalendar/templates/mini.kid:td
+msgid "T"
+msgstr "D"
+
+#: tinyerp/widgets/tinycalendar/templates/mini.kid:td
+msgid "W"
+msgstr "Dc"
+
+#: tinyerp/widgets/tinycalendar/templates/mini.kid:td
+msgid "F"
+msgstr "Dv"
+
+#: tinyerp/widgets/tinycalendar/templates/mini.kid:td
+msgid "S"
+msgstr "D"
+
+#: tinyerp/widgets/templates/selection.kid:option
+msgid "Selected"
+msgstr "Seleccionat"
+
+#: tinyerp/widgets/templates/selection.kid:option
+msgid "Not Selected"
+msgstr "No seleccionat"
+
+#: tinyerp/widgets/templates/viewform.kid:button
+msgid "Filter"
+msgstr "Filtre"
+
+#: tinyerp/widgets/templates/pager.kid:span
+msgid "<< First"
+msgstr "<< Primer"
+
+#: tinyerp/widgets/templates/pager.kid:span
+msgid "< Previous"
+msgstr "< Ant."
+
+#: tinyerp/widgets/templates/pager.kid:span
+msgid "Next >"
+msgstr "Seg. >"
+
+#: tinyerp/widgets/templates/pager.kid:span
+msgid "Last >>"
+msgstr "Últim >>"
+
+#: tinyerp/widgets/templates/pager.kid:a
+msgid "Change Limit:"
+msgstr "Canvia límit:"
+
+#: tinyerp/widgets/templates/pager.kid:option
+msgid "20"
+msgstr "20"
+
+#: tinyerp/widgets/templates/pager.kid:option
+msgid "40"
+msgstr "40"
+
+#: tinyerp/widgets/templates/pager.kid:option
+msgid "60"
+msgstr "60"
+
+#: tinyerp/widgets/templates/pager.kid:option
+msgid "80"
+msgstr "80"
+
+#: tinyerp/widgets/templates/pager.kid:option
+msgid "100"
+msgstr "100"
+
+#: tinyerp/widgets/templates/email.kid:img
+msgid "Go!"
+msgstr "Anar!"
+
+#: tinyerp/widgets/templates/listgrid.kid:th
+msgid "Title"
+msgstr "Títol"
+
+#: tinyerp/widgets/templates/listgrid.kid:img
+msgid "Update"
+msgstr "Actualitza"
+
+#: tinyerp/widgets/templates/listgrid.kid:img
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: tinyerp/widgets/templates/listgrid.kid:img
+msgid "Edit"
+msgstr "Edita"
+
+#: tinyerp/widgets/templates/listgrid.kid:img
+msgid "Delete"
+msgstr "Elimina"
+
+#: tinyerp/widgets/templates/listgrid.kid:a
+msgid "Import"
+msgstr "Importa"
+
+#: tinyerp/widgets/templates/listgrid.kid:a
+msgid "|"
+msgstr "|"
+
+#: tinyerp/widgets/templates/listgrid.kid:a
+msgid "Export"
+msgstr "Exporta"
+
+#: tinyerp/widgets/templates/button.kid:td
+msgid "Button Label"
+msgstr "Etiqueta del botó"
+
+#: tinyerp/widgets/templates/datetime.kid:img
+msgid "Select"
+msgstr "Selecciona"
+
+#: tinyerp/widgets/templates/one2many.kid:button
+msgid "Delete current record..."
+msgstr "Elimina registre actual..."
+
+#: tinyerp/widgets/templates/one2many.kid:button
+msgid "Previous record..."
+msgstr "Registre anterior..."
+
+#: tinyerp/widgets/templates/one2many.kid:button
+msgid "Next record..."
+msgstr "Registre següent..."
+
+#: tinyerp/widgets/templates/one2many.kid:button
+msgid "Switch view..."
+msgstr "Canvia vista..."
+
+#: tinyerp/widgets/templates/one2many.kid:img
+msgid "Translate me."
+msgstr "Tradueix-me"
+
+#: tinyerp/widgets/templates/binary.kid:button
+msgid "Save As"
+msgstr "Desa com"
+
+#: tinyerp/widgets/templates/binary.kid:button
+msgid "Clear"
+msgstr "Neteja"
+
+#: tinyerp/widgets/templates/many2one.kid:img
+msgid "Search / Open a resource"
+msgstr "Cerca / Obre un registre"
+
+#: tinyerp/widgets/templates/many2one.kid:img
+msgid "Search"
+msgstr "Cerca"
+
+#: tinyerp/widgets_search/templates/search.kid:h3
+msgid "Basic Search"
+msgstr "Cerca bàsica"
+
+#: tinyerp/widgets_search/templates/search.kid:h3
+msgid "Advanced Search"
+msgstr "Cerca avançada"
+
+#: tinyerp/widgets_search/templates/rangewid.kid:b
+msgid "-"
+msgstr "-"
+
+#: tinyerp/templates/about.kid:title
+msgid "About eTiny - The Tiny ERP Web Client"
+msgstr "Sobre eTiny - El client web de Tiny ERP"
+
+#: tinyerp/templates/about.kid:td
+msgid "About eTiny"
+msgstr "Sobre eTiny"
+
+#: tinyerp/templates/about.kid:p
+msgid "Copyright © 2006-TODAY Tiny ERP Pvt. Ltd. All Rights Reserved."
+msgstr "Copyright © 2006-Avui, Tiny ERP Pvt Ltd. Tots els drets reservats."
+
+#: tinyerp/templates/about.kid:br
+msgid ""
+"Tiny ERP is a trademark of the Tiny Company.\n"
+"Licenced under the"
+msgstr ""
+"Tiny ERP és una marca registrada de la companyia Tiny.\n"
+"Llicenciada sota la"
+
+#: tinyerp/templates/about.kid:a
+msgid "GPL V2"
+msgstr "GPL V2"
+
+#: tinyerp/templates/about.kid:a
+msgid "."
+msgstr "."
+
+#: tinyerp/templates/about.kid:i
+msgid "eTiny"
+msgstr "eTiny"
+
+#: tinyerp/templates/about.kid:i
+msgid "is the official web client of"
+msgstr "és el client web oficial de"
+
+#: tinyerp/templates/about.kid:a
+msgid "Tiny ERP"
+msgstr "Tiny ERP"
+
+#: tinyerp/templates/about.kid:a
+msgid "developed by"
+msgstr "desenvolupat per"
+
+#: tinyerp/templates/about.kid:a
+msgid "Tiny"
+msgstr "Tiny"
+
+#: tinyerp/templates/about.kid:a
+msgid "and"
+msgstr "i"
+
+#: tinyerp/templates/about.kid:a
+msgid "Axelor"
+msgstr "Axelor"
+
+#: tinyerp/templates/about.kid:i
+msgid "is known to work with all major web browsers available today including"
+msgstr "funciona amb la majoria dels navegadors web disponibles actualment, incloent"
+
+#: tinyerp/templates/about.kid:i
+msgid "Firefox"
+msgstr "Firefox"
+
+#: tinyerp/templates/about.kid:i
+msgid ","
+msgstr ","
+
+#: tinyerp/templates/about.kid:i
+msgid "IE6"
+msgstr "IE6"
+
+#: tinyerp/templates/about.kid:i
+msgid "IE7"
+msgstr "IE7"
+
+#: tinyerp/templates/about.kid:i
+msgid "Safari3"
+msgstr "Safari3"
+
+#: tinyerp/templates/about.kid:i
+msgid "Opera9"
+msgstr "Opera9"
+
+#: tinyerp/templates/about.kid:i
+msgid ". It's built on the"
+msgstr ". Està desenvolupat damunt de l'entorn"
+
+#: tinyerp/templates/about.kid:a
+msgid "TurboGears"
+msgstr "TurboGears"
+
+#: tinyerp/templates/about.kid:a
+msgid "framework."
+msgstr "."
+
+#: tinyerp/templates/about.kid:td
+msgid "About Tiny ERP"
+msgstr "Sobre Tiny ERP"
+
+#: tinyerp/templates/about.kid:a
+msgid ""
+"is a free enterprise-scale software system that is designed to boost\n"
+"productivity and profit through data integration. It connects, improves and\n"
+"manages business processes in areas such as sales, finance, supply chain,\n"
+"project management, production, services, CRM, etc.."
+msgstr ""
+"és programari lliure que implementa un sistema escalable per empreses dissenyat per\n"
+"augmentar la productivitat i el benefici mitjançant la integració de dades.\n"
+"Interconnecta, millora i gestiona processos de negocis en àrees com\n"
+"vendes, comptabilitat, subministraments, gestió de projectes, producció,\n"
+"serveis, CRM, etc."
+
+#: tinyerp/templates/about.kid:p
+msgid ""
+"The system is platform-independent, and can be installed on Windows, Mac OS X,\n"
+"and various Linux and other Unix-based distributions. Its architecture enables\n"
+"new functionality to be rapidly created, modifications to be made to a\n"
+"production system and migration to a new version to be straightforward."
+msgstr ""
+"﻿El sistema és independent de la plataforma: es pot instal·lar en Windows, Mac OS X\n"
+"i en diversos Linux i altres distribucions basades en Unix. La seva arquitectura permet\n"
+"crear ràpidament noves funcionalitats i realitzar de forma fàcil modificacions\n"
+"en un sistema en producció i migracions a noves versions."
+
+#: tinyerp/templates/about.kid:p
+msgid ""
+"Depending on your needs, Tiny ERP is available through a web or application\n"
+"client."
+msgstr ""
+"Depenent de les seves necessitats, Tiny ERP està disponible mitjançant un\n"
+"client web i/o una aplicació client d'escriptori."
+
+#: tinyerp/templates/about.kid:td
+msgid "Links"
+msgstr "Enllaços"
+
+#: tinyerp/templates/about.kid:a
+msgid "The Axelor Company"
+msgstr "La companyia Axelor"
+
+#: tinyerp/templates/about.kid:a
+msgid "The Tiny Company"
+msgstr "La companyia Tiny"
+
+#: tinyerp/templates/about.kid:td
+msgid "RESOURCES"
+msgstr "RECURSOS"
+
+#: tinyerp/templates/about.kid:a
+msgid "Homepage"
+msgstr "Inici"
+
+#: tinyerp/templates/about.kid:a
+msgid "Documentation"
+msgstr "Documentació"
+
+#: tinyerp/templates/about.kid:a
+msgid "Forum"
+msgstr "Fòrum"
+
+#: tinyerp/templates/about.kid:a
+msgid "Modules"
+msgstr "Mòduls"
+
+#: tinyerp/templates/about.kid:a
+msgid "Download"
+msgstr "Descàrrega"
+
+#: tinyerp/templates/about.kid:a
+msgid "Planet"
+msgstr "Planeta"
+
+#: tinyerp/templates/about.kid:a
+msgid "SaaS Offers"
+msgstr "Ofertes SaaS"
+
+#: tinyerp/templates/about.kid:a
+msgid "Trainings"
+msgstr "Formació"
+
+#: tinyerp/templates/about.kid:a
+msgid "Services"
+msgstr "Serveis"
+
+#: tinyerp/templates/master.kid:title
+msgid "Your title goes here"
+msgstr "El teu títol va aquí"
+
+#: tinyerp/templates/master.kid:img
+msgid "Tiny ERP Logo"
+msgstr "Logotip de Tiny ERP"
+
+#: tinyerp/templates/master.kid:td
+msgid "Welcome"
+msgstr "Benvingut"
+
+#: tinyerp/templates/master.kid:a
+msgid "Home"
+msgstr "Inici"
+
+#: tinyerp/templates/master.kid:a
+msgid "Preferences"
+msgstr "Preferències"
+
+#: tinyerp/templates/master.kid:a
+msgid "About"
+msgstr "Sobre"
+
+#: tinyerp/templates/master.kid:a
+msgid "Logout"
+msgstr "Surt"
+
+#: tinyerp/templates/master.kid:td
+msgid "Requests:"
+msgstr "Peticions:"
+
+#: tinyerp/templates/master.kid:a
+msgid "MAIN MENU"
+msgstr "MENÚ"
+
+#: tinyerp/templates/master.kid:a
+msgid "SHORTCUTS"
+msgstr "DRECERES"
+
+#: tinyerp/templates/master.kid:a
+msgid ">>"
+msgstr ">>"
+
+#: tinyerp/templates/master.kid:a
+msgid "[ADD]"
+msgstr "[Afegir]"
+
+#: tinyerp/templates/master.kid:hr
+msgid "Copyright © 2007-TODAY Tiny ERP Pvt. Ltd. All Rights Reserved. More Information on"
+msgstr "Copyright © 2007-Avui, Tiny ERP Pvt Ltd. Tots els drets reservats. Més Informació a"
+
+#: tinyerp/templates/master.kid:a
+msgid "http://tinyerp.com"
+msgstr "http://tinyerp.com"
+
+#: tinyerp/templates/master.kid:br
+msgid "The web client is developed by Axelor ("
+msgstr "El client web ha sigut desenvolupat per Axelor ("
+
+#: tinyerp/templates/master.kid:a
+msgid "http://axelor.com"
+msgstr "http://axelor.com"
+
+#: tinyerp/templates/master.kid:a
+msgid ") and Tiny ("
+msgstr ") i Tiny ("
+
+#: tinyerp/templates/master.kid:a
+msgid "http://tiny.be"
+msgstr "http://tiny.be"
+
+#: tinyerp/templates/master.kid:a
+msgid ")"
+msgstr ")"
+
+#: tinyerp/templates/master.kid:br
+msgid "Running Server:"
+msgstr "Servidor en execució:"
+
+#: tinyerp/templates/error.kid:button
+msgid "OK"
+msgstr "Ok"
+
+#: tinyerp/templates/login.kid:title
+msgid "Login"
+msgstr "Entra"
+
+#: tinyerp/templates/login.kid:div
+msgid "Welcome to Tiny ERP"
+msgstr "Benvingut a Tiny ERP"
+
+#: tinyerp/templates/login.kid:td
+msgid "Server :"
+msgstr "Servidor :"
+
+#: tinyerp/templates/login.kid:td
+msgid "Database :"
+msgstr "Base de dades :"
+
+#: tinyerp/templates/login.kid:option
+msgid "dbname"
+msgstr "nom b.d."
+
+#: tinyerp/templates/login.kid:td
+msgid "User :"
+msgstr "Usuari :"
+
+#: tinyerp/templates/login.kid:td
+msgid "Password :"
+msgstr "Contrasenya :"
+
+#: tinyerp/templates/login.kid:button
+msgid "Manage"
+msgstr "Canvia"
+
+#: tinyerp/templates/login.kid:img
+msgid "Developped by Axelor and Tiny"
+msgstr "Desenvolupat per Axelor i Tiny"
+
+#: tinyerp/subcontrollers/templates/translator.kid:title
+msgid "Add Translations"
+msgstr "Afegir traduccions"
+
+#: tinyerp/subcontrollers/templates/translator.kid:td
+msgid "Add Translation"
+msgstr "Afegir traducció"
+
+#: tinyerp/subcontrollers/templates/translator.kid:td
+msgid "Add Translation for:"
+msgstr "Afegir traducció per:"
+
+#: tinyerp/subcontrollers/templates/translator.kid:option
+msgid "Fields"
+msgstr "Camps"
+
+#: tinyerp/subcontrollers/templates/translator.kid:option
+msgid "Labels"
+msgstr "Etiquetes"
+
+#: tinyerp/subcontrollers/templates/translator.kid:option
+msgid "Relates"
+msgstr "Referències"
+
+#: tinyerp/subcontrollers/templates/translator.kid:option
+msgid "View"
+msgstr "Vista"
+
+#: tinyerp/subcontrollers/templates/translator.kid:button
+msgid "Save"
+msgstr "Desa"
+
+#: tinyerp/subcontrollers/templates/translator.kid:button
+msgid "Close"
+msgstr "Tanca"
+
+#: tinyerp/subcontrollers/templates/translator.kid:td
+msgid "Field"
+msgstr "Camp"
+
+#: tinyerp/subcontrollers/templates/translator.kid:td
+msgid "Language"
+msgstr "Idioma"
+
+#: tinyerp/subcontrollers/templates/search.kid:td
+msgid "Search View"
+msgstr "Vista de recerca"
+
+#: tinyerp/subcontrollers/templates/search.kid:td
+msgid "Screen View"
+msgstr "Vista de pantalla"
+
+#: tinyerp/subcontrollers/templates/selection.kid:title
+msgid "Select action"
+msgstr "Selecciona acció"
+
+#: tinyerp/subcontrollers/templates/selection.kid:div
+msgid "Select your action"
+msgstr "Selecciona la teva acció"
+
+#: tinyerp/subcontrollers/templates/dbadmin_create.kid:title
+msgid "Create Database"
+msgstr "Crea base de dades"
+
+#: tinyerp/subcontrollers/templates/dbadmin_create.kid:td
+msgid "Super admin password :"
+msgstr "Contrasenya de super admin. :"
+
+#: tinyerp/subcontrollers/templates/dbadmin_create.kid:td
+msgid "(use 'admin', if you did not changed it)"
+msgstr "(utilitza 'admin', si encara no ho ha canviat)"
+
+#: tinyerp/subcontrollers/templates/dbadmin_create.kid:td
+msgid "New database name :"
+msgstr "Nou nom de base de dades :"
+
+#: tinyerp/subcontrollers/templates/dbadmin_create.kid:td
+msgid "Load Demonstration data :"
+msgstr "Carrega dades de demostració :"
+
+#: tinyerp/subcontrollers/templates/dbadmin_create.kid:td
+msgid "Default Language :"
+msgstr "Idioma predeterminat :"
+
+#: tinyerp/subcontrollers/templates/form.kid:title
+msgid "Form Title"
+msgstr "Títol formulari"
+
+#: tinyerp/subcontrollers/templates/form.kid:button
+msgid "Form"
+msgstr "Formulari"
+
+#: tinyerp/subcontrollers/templates/form.kid:button
+msgid "Calendar"
+msgstr "Calendari"
+
+#: tinyerp/subcontrollers/templates/form.kid:button
+msgid "Graph"
+msgstr "Gràfica"
+
+#: tinyerp/subcontrollers/templates/form.kid:img
+msgid "Add an attachment to this resource."
+msgstr "Afegeix un fitxer adjunt a aquest registre."
+
+#: tinyerp/subcontrollers/templates/form.kid:img
+msgid "Translate this resource."
+msgstr "Tradueix aquest registre."
+
+#: tinyerp/subcontrollers/templates/form.kid:img
+msgid "View Log."
+msgstr "Vista de log."
+
+#: tinyerp/subcontrollers/templates/form.kid:button
+msgid "Create a new resource"
+msgstr "Crea un registre nou"
+
+#: tinyerp/subcontrollers/templates/form.kid:button
+msgid "Edit this resource"
+msgstr "Edita aquest registre"
+
+#: tinyerp/subcontrollers/templates/form.kid:button
+msgid "Save this resource"
+msgstr "Desa aquest registre"
+
+#: tinyerp/subcontrollers/templates/form.kid:button
+msgid "Save & Edit this resource"
+msgstr "Desa & Edita aquest registre"
+
+#: tinyerp/subcontrollers/templates/form.kid:button
+msgid "Save & Edit"
+msgstr "Desa & Edita"
+
+#: tinyerp/subcontrollers/templates/form.kid:button
+msgid "Duplicate this resource"
+msgstr "Duplica aquest registre"
+
+#: tinyerp/subcontrollers/templates/form.kid:button
+msgid "Duplicate"
+msgstr "Duplica"
+
+#: tinyerp/subcontrollers/templates/form.kid:button
+msgid "Delete this resource"
+msgstr "Elimina aquest registre"
+
+#: tinyerp/subcontrollers/templates/form.kid:button
+msgid "Cancel editing the current resource"
+msgstr "Cancel·la l'edició del registre actual"
+
+#: tinyerp/subcontrollers/templates/form.kid:td
+msgid "REPORTS"
+msgstr "INFORMES"
+
+#: tinyerp/subcontrollers/templates/form.kid:td
+msgid "ACTIONS"
+msgstr "ACCIONS"
+
+#: tinyerp/subcontrollers/templates/form.kid:td
+msgid "LINKS"
+msgstr "ENLLAÇOS"
+
+#: tinyerp/subcontrollers/templates/dbadmin.kid:title
+msgid "Database Admin"
+msgstr "Admin. base de dades"
+
+#: tinyerp/subcontrollers/templates/dbadmin.kid:div
+msgid "Database Administration"
+msgstr "Administració base de dades"
+
+#: tinyerp/subcontrollers/templates/dbadmin.kid:button
+msgid "Create"
+msgstr "Crea"
+
+#: tinyerp/subcontrollers/templates/dbadmin.kid:button
+msgid "Drop"
+msgstr "Elimina"
+
+#: tinyerp/subcontrollers/templates/dbadmin.kid:button
+msgid "Backup"
+msgstr "Còpia de seguretat"
+
+#: tinyerp/subcontrollers/templates/dbadmin.kid:button
+msgid "Restore"
+msgstr "Restaura"
+
+#: tinyerp/subcontrollers/templates/dbadmin.kid:button
+msgid "Password"
+msgstr "Contrasenya"
+
+#: tinyerp/subcontrollers/templates/image.kid:title
+msgid "Image"
+msgstr "Imatge"
+
+#: tinyerp/subcontrollers/templates/image.kid:td
+msgid "Add Resource:"
+msgstr "Afegeix fitxer:"
+
+#: tinyerp/subcontrollers/templates/tree.kid:button
+msgid "Switch current view: form/list"
+msgstr "Canvia vista actual: formulari/llista"
+
+#: tinyerp/subcontrollers/templates/tree.kid:button
+msgid "Switch"
+msgstr "Canvia"
+
+#: tinyerp/subcontrollers/templates/tree.kid:button
+msgid "Launch action about this resource"
+msgstr "Executa l'acció sobre aquest registre"
+
+#: tinyerp/subcontrollers/templates/tree.kid:button
+msgid "Action"
+msgstr "Acció"
+
+#: tinyerp/subcontrollers/templates/tree.kid:button
+msgid "Print documents"
+msgstr "Imprimeix documents"
+
+#: tinyerp/subcontrollers/templates/tree.kid:button
+msgid "Print"
+msgstr "Imprimeix"
+
+#: tinyerp/subcontrollers/templates/tree.kid:th
+msgid "Toolbar"
+msgstr "Barra d'eines"
+
+#: tinyerp/subcontrollers/templates/tree.kid:td
+msgid "Tree View"
+msgstr "Vista d'arbre"
+
+#: tinyerp/subcontrollers/templates/openo2m.kid:td
+msgid "Form View"
+msgstr "Vista formulari"
+
+#: tinyerp/subcontrollers/templates/confeditor.kid:title
+msgid "Config Editor"
+msgstr "Editor config."
+
+#: tinyerp/subcontrollers/templates/confeditor.kid:td
+msgid "Host :"
+msgstr "Host :"
+
+#: tinyerp/subcontrollers/templates/confeditor.kid:td
+msgid "Port :"
+msgstr "Port :"
+
+#: tinyerp/subcontrollers/templates/confeditor.kid:td
+msgid "Protocol :"
+msgstr "Protocol:"
+
+#: tinyerp/subcontrollers/templates/confeditor.kid:td
+msgid "Old Password :"
+msgstr "Contrasenya antiga :"
+
+#: tinyerp/subcontrollers/templates/confeditor.kid:span
+msgid "Password is Incorrect"
+msgstr "La contrasenya és incorrecta"
+
+#: tinyerp/subcontrollers/templates/confeditor.kid:td
+msgid "New Password :"
+msgstr "Contrasenya nova :"
+
+#: tinyerp/subcontrollers/templates/confeditor.kid:span
+msgid "Please Enter New Password"
+msgstr "Si us plau, introdueix la nova contrasenya"
+
+#: tinyerp/subcontrollers/templates/confeditor.kid:td
+msgid "Retype Password :"
+msgstr "Confirma la contrasenya :"
+
+#: tinyerp/subcontrollers/templates/confeditor.kid:span
+msgid "Passwords do not Match"
+msgstr "Les contrasenyes no coincideixen"
+
+#: tinyerp/subcontrollers/templates/confeditor.kid:button
+msgid "Change Password"
+msgstr "Canvia contrasenya"
+
+#: tinyerp/subcontrollers/templates/fieldpref.kid:title
+msgid "Field Preferences"
+msgstr "Preferències de camps"
+
+#: tinyerp/subcontrollers/templates/fieldpref.kid:td
+msgid "Field Name:"
+msgstr "Nom del camp:"
+
+#: tinyerp/subcontrollers/templates/fieldpref.kid:td
+msgid "Domain:"
+msgstr "Domini:"
+
+#: tinyerp/subcontrollers/templates/fieldpref.kid:td
+msgid "Default Value:"
+msgstr "Valor predeterminat:"
+
+#: tinyerp/subcontrollers/templates/fieldpref.kid:strong
+msgid "Value applicable for:"
+msgstr "Valor aplicable per:"
+
+#: tinyerp/subcontrollers/templates/fieldpref.kid:td
+msgid "Only for you"
+msgstr "Només per vostè"
+
+#: tinyerp/subcontrollers/templates/fieldpref.kid:td
+msgid "For all"
+msgstr "Per tots"
+
+#: tinyerp/subcontrollers/templates/fieldpref.kid:strong
+msgid "Value applicable if:"
+msgstr "Valor aplicable si:"
+
+#: tinyerp/subcontrollers/templates/fieldpref.kid:td
+msgid "Always applicable !"
+msgstr "Sempre aplicable!"
+
+#: tinyerp/subcontrollers/templates/attachment.kid:title
+msgid "Attachments"
+msgstr "Fitxers adjunts"
+
+#: tinyerp/subcontrollers/templates/attachment.kid:td
+msgid "List View"
+msgstr "Vista de llista"
+
+#: tinyerp/subcontrollers/templates/imp.kid:title
+msgid "Import Data"
+msgstr "Importa dades"
+
+#: tinyerp/subcontrollers/templates/imp.kid:th
+msgid "All fields"
+msgstr "Tots els camps"
+
+#: tinyerp/subcontrollers/templates/imp.kid:th
+msgid "Fields to import"
+msgstr "Camps a importar"
+
+#: tinyerp/subcontrollers/templates/imp.kid:button
+msgid "Add"
+msgstr "Afegeix"
+
+#: tinyerp/subcontrollers/templates/imp.kid:button
+msgid "Remove"
+msgstr "Elimina"
+
+#: tinyerp/subcontrollers/templates/imp.kid:button
+msgid "Nothing"
+msgstr "Res"
+
+#: tinyerp/subcontrollers/templates/imp.kid:button
+msgid "Auto Detect"
+msgstr "Auto detecta"
+
+#: tinyerp/subcontrollers/templates/imp.kid:legend
+msgid "File to import"
+msgstr "Fitxer a importar"
+
+#: tinyerp/subcontrollers/templates/imp.kid:legend
+msgid "Options"
+msgstr "Opcions"
+
+#: tinyerp/subcontrollers/templates/imp.kid:td
+msgid "Separator:"
+msgstr "Separador:"
+
+#: tinyerp/subcontrollers/templates/imp.kid:td
+msgid "Delimiter:"
+msgstr "Delimitador:"
+
+#: tinyerp/subcontrollers/templates/imp.kid:td
+msgid "Encoding:"
+msgstr "Codificació:"
+
+#: tinyerp/subcontrollers/templates/imp.kid:option
+msgid "UTF-8"
+msgstr "UTF-8"
+
+#: tinyerp/subcontrollers/templates/imp.kid:option
+msgid "Latin 1"
+msgstr "Latin 1"
+
+#: tinyerp/subcontrollers/templates/imp.kid:td
+msgid "Lines to skip:"
+msgstr "Línies omeses:"
+
+#: tinyerp/subcontrollers/templates/dbadmin_restore.kid:title
+msgid "Restore Database"
+msgstr "Restaura base de dades"
+
+#: tinyerp/subcontrollers/templates/dbadmin_restore.kid:td
+msgid "File :"
+msgstr "Fitxer :"
+
+#: tinyerp/subcontrollers/templates/dbadmin_restore.kid:td
+msgid "New Database name :"
+msgstr "Nou nom de la base de dades:"
+
+#: tinyerp/subcontrollers/templates/exp.kid:title
+msgid "Export Data"
+msgstr "Exporta dades"
+
+#: tinyerp/subcontrollers/templates/exp.kid:th
+msgid "Fields to export"
+msgstr "Camps a exportar"
+
+#: tinyerp/subcontrollers/templates/exp.kid:option
+msgid "Export as CSV"
+msgstr "Exporta com CSV"
+
+#: tinyerp/subcontrollers/templates/exp.kid:option
+msgid "Export as Excel"
+msgstr "Exporta com Excel"
+
+#: tinyerp/subcontrollers/templates/exp.kid:td
+msgid "Add field names"
+msgstr "Afegeix noms de camp"
+
+#: tinyerp/subcontrollers/templates/dbadmin_password.kid:title
+msgid "Admin Password"
+msgstr "Contrasenya admin."
+
+#: tinyerp/subcontrollers/templates/dbadmin_password.kid:td
+msgid "Confirm Password :"
+msgstr "Confirma contrasenya :"
+
+#: tinyerp/subcontrollers/templates/view_log.kid:button
+msgid "Ok"
+msgstr "Ok"
+
+#: tinyerp/subcontrollers/templates/dbadmin_drop.kid:title
+msgid "Drop Database"
+msgstr "Elimina base de dades"
+
+#: tinyerp/subcontrollers/templates/dbadmin_backup.kid:title
+msgid "Database Backup"
+msgstr "Còpia de seguretat de la base de dades"
+
+#: tinyerp/subcontrollers/templates/dbadmin_backup.kid:div
+msgid "Backup Database"
+msgstr "Còpia de seguretat de la base de dades"
+
+#: tinyerp/subcontrollers/templates/dbadmin_backup.kid:td
+msgid "Databases :"
+msgstr "Bases de dades :"
+
+#: tinyerp/subcontrollers/templates/dbadmin_backup.kid:option
+msgid "Database"
+msgstr "Base de dades"
+
