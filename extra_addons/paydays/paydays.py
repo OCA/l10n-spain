@@ -179,7 +179,7 @@ class account_invoice(osv.osv):
 	_name="account.invoice"
 	_inherit="account.invoice"
 	_columns = {
-				'move_id': fields.many2one('account.move', 'Invoice Movement', readonly= True, relate=True),
+		'move_id': fields.many2one('account.move', 'Invoice Movement', readonly= True),
 	}
 	
 	def action_move_create(self, cr, uid, ids, *args):

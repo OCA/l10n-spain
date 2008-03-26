@@ -1,56 +1,56 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <terp>
 <data>
 
-    <record model="ir.ui.view" id="view_partner_new_form1">
+	<record model="ir.ui.view" id="view_partner_new_form1">
 		<field name="model">res.partner</field>
 		<field name="inherit_id" ref="base.view_partner_form"/>
 		<field name="arch" type="xml">
-	    	<field name="active" position="after">
-	    		<field name="payment_days" on_change="on_change_paydays(payment_days)" select="1"/>
-	    	</field>
+			<field name="active" position="after">
+				<field name="payment_days" on_change="on_change_paydays(payment_days)" select="1"/>
+			</field>
 		</field>
-		</record>
+	</record>
 
-    <record model="ir.ui.view" id="invoice_supplier_form_payday1">
-			<field name="model">account.invoice</field>
-      <field name="inherit_id" ref="account.invoice_supplier_form"/>
-      <field name="arch" type="xml">
-        <field name="payment_term" position="replace">
-          <field name="payment_term" on_change="onchange_payment_term_date_invoice(payment_term, date_invoice, partner_id)" />
-        </field>
-      </field>
-    </record>
-    
-    <record model="ir.ui.view" id="invoice_supplier_form_payday2">
-			<field name="model">account.invoice</field>
-      <field name="inherit_id" ref="account.invoice_supplier_form"/>
-      <field name="arch" type="xml">
-        <field name="date_invoice" position="replace">
-						<field name="date_invoice" on_change="onchange_payment_term_date_invoice(payment_term, date_invoice, partner_id)" select="1"/>
-        </field>
-      </field>
-    </record>
-		
-    <record model="ir.ui.view" id="invoice_form_payday1">
-			<field name="model">account.invoice</field>
-      <field name="inherit_id" ref="account.invoice_form"/>
-      <field name="arch" type="xml">
-        <field name="payment_term" position="replace">
-          <field name="payment_term" on_change="onchange_payment_term_date_invoice(payment_term, date_invoice, partner_id)" />
-        </field>
-      </field>
-    </record>
+	<record model="ir.ui.view" id="invoice_supplier_form_payday1">
+		<field name="model">account.invoice</field>
+		<field name="inherit_id" ref="account.invoice_supplier_form"/>
+		<field name="arch" type="xml">
+			<field name="payment_term" position="replace">
+				<field name="payment_term" on_change="onchange_payment_term_date_invoice(payment_term, date_invoice, partner_id)" />
+			</field>
+		</field>
+	</record>
 
-    <record model="ir.ui.view" id="invoice_form_payday2">
-			<field name="model">account.invoice</field>
-      <field name="inherit_id" ref="account.invoice_form"/>
-      <field name="arch" type="xml">
-        <field name="date_invoice" position="replace">
-						<field name="date_invoice" on_change="onchange_payment_term_date_invoice(payment_term, date_invoice, partner_id)" select="1"/>
-        </field>
-      </field>
-    </record>
+	<record model="ir.ui.view" id="invoice_supplier_form_payday2">
+		<field name="model">account.invoice</field>
+		<field name="inherit_id" ref="account.invoice_supplier_form"/>
+		<field name="arch" type="xml">
+			<field name="date_invoice" position="replace">
+				<field name="date_invoice" on_change="onchange_payment_term_date_invoice(payment_term, date_invoice, partner_id)" select="1"/>
+			</field>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="invoice_form_payday1">
+		<field name="model">account.invoice</field>
+		<field name="inherit_id" ref="account.invoice_form"/>
+		<field name="arch" type="xml">
+			<field name="payment_term" position="replace">
+				<field name="payment_term" on_change="onchange_payment_term_date_invoice(payment_term, date_invoice, partner_id)" />
+			</field>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="invoice_form_payday2">
+		<field name="model">account.invoice</field>
+		<field name="inherit_id" ref="account.invoice_form"/>
+		<field name="arch" type="xml">
+			<field name="date_invoice" position="replace">
+				<field name="date_invoice" on_change="onchange_payment_term_date_invoice(payment_term, date_invoice, partner_id)" select="1"/>
+			</field>
+		</field>
+	</record>
 
 </data>
 </terp>
