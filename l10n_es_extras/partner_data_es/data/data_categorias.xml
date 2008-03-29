@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<terp>
+  <data noupdate='1'>
+    <!--proveedor cliente banco fabricante-->
+    <record model="res.partner.category" id="pro">
+      <field name="name">Proveedor</field>
+      <!--<field name="parent_id"></field>-->
+      <field name="active">True</field>
+    </record>
+    <record model="res.partner.category" id="cli">
+      <field name="name">Cliente</field>
+      <field name="active">True</field>
+    </record>
+    <record model="res.partner.category" id="ban">
+      <field name="name">Banco</field>
+      <field name="active">True</field>
+    </record>
+    <record model="res.partner.category" id="fab">
+      <field name="name">Fabricante</field>
+      <field name="active">True</field>
+    </record>
+  </data>
+</terp>
+
