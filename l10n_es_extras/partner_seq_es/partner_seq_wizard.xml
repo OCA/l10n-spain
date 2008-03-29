@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" ?>
+<terp>
+	<data>
+	<wizard
+			string="Create accounts"
+			model="res.partner"
+			name="partner_seq.create_accounts"
+			menu="True"
+			id="id_create_accounts"/>
+	</data>
+</terp>
