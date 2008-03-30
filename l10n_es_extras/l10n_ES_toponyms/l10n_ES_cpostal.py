@@ -15874,7 +15874,7 @@ municipios = [
 cpostal_end_form = '''<?xml version="1.0"?>
 <form string="Códigos postales">
 	<separator string="Resultado:" colspan="4"/>
-	<label string="Se han creado los municipios y provincias de España asociados a códigos postales." colspan="4" align="0.0"/>
+	<label string="Se han creado los municipios y provincias del Estado español asociados a códigos postales." colspan="4" align="0.0"/>
 	<label string="Permite rellenar automáticamente los campos ciudad y provincia del formulario de empresa y contacto a partir del código postal." colspan="4" align="0.0"/>
 </form>'''
 
