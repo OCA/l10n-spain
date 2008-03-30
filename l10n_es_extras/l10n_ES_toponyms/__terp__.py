@@ -1,5 +1,5 @@
 {
-		"name" : "Topónimos de España",
+		"name" : "Topónimos del Estado español",
 		"version" : "1.0",
 		"author" : "Zikzakmedia SL",
 		"website" : "http://zikzakmedia.com",
