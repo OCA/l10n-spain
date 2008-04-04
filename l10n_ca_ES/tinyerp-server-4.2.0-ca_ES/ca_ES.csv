@@ -192,7 +192,7 @@ field,"account.invoice,comment",0,Additionnal Information,Informació addicional
 field,"account.invoice,company_id",0,Company,Companyia
 field,"account.invoice,currency_id",0,Currency,Moneda
 field,"account.invoice,date_due",0,Due Date,Data venciment
-field,"account.invoice,date_invoice",0,Date Invoiced,Data facturació
+field,"account.invoice,date_invoice",0,Date Invoiced,Data factura
 field,"account.invoice,invoice_line",0,Invoice Lines,Línies de factura
 field,"account.invoice,journal_id",0,Journal,Diari
 field,"account.invoice.line,account_analytic_id",0,Analytic Account,Compte analític
@@ -202,19 +202,19 @@ field,"account.invoice.line,invoice_id",0,Invoice Ref,Ref. factura
 field,"account.invoice.line,invoice_line_tax_id",0,Taxes,Impostos
 field,"account.invoice.line,name",0,Description,Descripció
 field,"account.invoice.line,note",0,Notes,Notes
-field,"account.invoice.line,price_subtotal",0,Subtotal w/o tax,Subtotal sense impostos
+field,"account.invoice.line,price_subtotal",0,Subtotal w/o tax,Subtotal sense imp.
 field,"account.invoice.line,price_subtotal_incl",0,Subtotal,Subtotal
 field,"account.invoice.line,price_unit",0,Unit Price,Preu per unitat
 field,"account.invoice.line,product_id",0,Product,Producte
 field,"account.invoice.line,quantity",0,Quantity,Quantitat
 field,"account.invoice.line,sequence",0,Sequence,Seqüència
 field,"account.invoice.line,uos_id",0,Unit,Unitat de venda
-field,"account.invoice,move_id",0,Invoice Movement,Moviment factura
+field,"account.invoice,move_id",0,Invoice Movement,Assent. factura
 field,"account.invoice,name",0,Description,Descripció factura
 field,"account.invoice,number",0,Invoice Number,Número factura
 field,"account.invoice,origin",0,Origin,Origen
 field,"account.invoice,partner_id",0,Partner,Empresa
-field,"account.invoice,payment_term",0,Payment Term,Termini de pagament
+field,"account.invoice,payment_term",0,Payment Term,Termini pagament
 field,"account.invoice,period_id",0,Force Period,Forçar període
 field,"account.invoice,price_type",0,Price method,Mètode preu
 field,"account.invoice,reconciled",0,Reconciled,Conciliat
@@ -298,9 +298,9 @@ field,"account.move.line,date_maturity",0,Maturity date,Data venciment
 field,"account.move.line,debit",0,Debit,Deure
 field,"account.move.line,followup_date",0,Latest Follow-up,Últim seguiment
 field,"account.move.line,followup_line_id",0,Follow-up Level,Nivell seguiment
-field,"account.move,line_id",0,Entries,Assentaments
+field,"account.move,line_id",0,Entries,Moviments
 field,"account.move.line,journal_id",0,Journal,Diari
-field,"account.move.line,move_id",0,Move,Mov.
+field,"account.move.line,move_id",0,Move,Assent.
 field,"account.move.line,name",0,Name,Nom
 field,"account.move.line,partner_id",0,Partner Ref.,Ref. empresa
 field,"account.move.line,period_id",0,Period,Període
@@ -311,7 +311,7 @@ field,"account.move.line,state",0,State,Estat
 field,"account.move.line,statement_id",0,Statement,Extracte bancari
 field,"account.move.line,tax_amount",0,Tax/Base Amount,Import impostos/base
 field,"account.move.line,tax_code_id",0,Tax Account,Compte impostos
-field,"account.move,name",0,Entry Name,Nom d'assentament
+field,"account.move,name",0,Entry Name,Núm. assentament
 field,"account.move,period_id",0,Period,Període
 field,"account.move.reconcile,create_date",0,Creation date,Data creació
 field,"account.move.reconcile,line_id",0,Entry lines,Línies de moviment
@@ -324,7 +324,7 @@ field,"account.payment.term.line,condition",0,Condition,Condició
 field,"account.payment.term.line,days",0,Number of Days,Número de dies
 field,"account.payment.term,line_ids",0,Terms,Terminis de pagament
 field,"account.payment.term.line,name",0,Line Name,Nom línia
-field,"account.payment.term.line,payment_id",0,Payment Term,Termini de pagament
+field,"account.payment.term.line,payment_id",0,Payment Term,Termini pagament
 field,"account.payment.term.line,sequence",0,Sequence,Seqüència
 field,"account.payment.term.line,value",0,Value,Valor
 field,"account.payment.term.line,value_amount",0,Value Amount,Valor import
@@ -355,13 +355,13 @@ field,"account.report.report,type",0,Type,Tipus
 field,"account.subscription,date_start",0,Starting date,Data d'inici
 field,"account.subscription.line,date",0,Date,Data
 field,"account.subscription.line,move_id",0,Entry,Assentament
-field,"account.subscription,lines_id",0,Subscription Lines,Línies de subscripció
-field,"account.subscription.line,subscription_id",0,Subscription,Subscripció
+field,"account.subscription,lines_id",0,Subscription Lines,Línies d'assentaments periòdics
+field,"account.subscription.line,subscription_id",0,Subscription,Assentament periòdic
 field,"account.subscription,model_id",0,Model,Model
 field,"account.subscription,name",0,Name,Nom
-field,"account.subscription,period_nbr",0,Period,Període
-field,"account.subscription,period_total",0,Number of period,Número de períodes
-field,"account.subscription,period_type",0,Period Type,Tipus de període
+field,"account.subscription,period_nbr",0,Period,Període: Qtat de temps
+field,"account.subscription,period_total",0,Number of period,Número d'assentaments
+field,"account.subscription,period_type",0,Period Type,Període: Unitat de temps
 field,"account.subscription,ref",0,Ref.,Ref.
 field,"account.subscription,state",0,State,Estat
 field,"account.tax,account_collected_id",0,Invoice Tax Account,Compte impostos de factura
@@ -730,7 +730,7 @@ field,"ir.cron,active",0,Active,Actiu
 field,"ir.cron,args",0,Arguments,Arguments
 field,"ir.cron,doall",0,Repeat missed,Repetir perduts
 field,"ir.cron,function",0,Function,Funció
-field,"ir.cron,interval_number",0,Interval Number,Número d'interval
+field,"ir.cron,interval_number",0,Interval Number,Número d'intervals
 field,"ir.cron,interval_type",0,Interval Unit,Unitat d'interval
 field,"ir.cron,model",0,Model,Model
 field,"ir.cron,name",0,Name,Nom
@@ -1565,7 +1565,7 @@ field,"res.partner,property_account_payable",0,Account Payable,Compte a pagar
 field,"res.partner,property_account_receivable",0,Account Receivable,Compte a cobrar
 field,"res.partner,property_account_tax",0,Default Tax,Impost predefinit
 field,"res.partner,property_delivery_carrier",0,Delivery Method,Mètode lliurament
-field,"res.partner,property_payment_term",0,Payment Term,Termini de pagament
+field,"res.partner,property_payment_term",0,Payment Term,Termini pagament
 field,"res.partner,property_product_pricelist",0,Sale Pricelist,Llista de preus de venda
 field,"res.partner,property_product_pricelist_purchase",0,Purchase Pricelist,Llista de preus de compra
 field,"res.partner,property_stock_customer",0,Customer Location,Ubicació del client
@@ -1582,7 +1582,7 @@ field,"res.partner.title,shortcut",0,Shortcut,Abreviació
 field,"res.partner,user_id",0,Salesman,Venedor
 field,"res.partner,vat",0,VAT,CIF/NIF
 field,"res.partner,website",0,Website,Lloc web
-field,"res.payterm,name",0,Payment term (short name),Termini de pagament (nom curt)
+field,"res.payterm,name",0,Payment term (short name),Termini pagament (nom curt)
 field,"res.request,act_from",0,From,Des de
 field,"res.request,active",0,Active,Actiu
 field,"res.request,act_to",0,To,Fins
@@ -1676,7 +1676,7 @@ field,"sale.order,state",0,Order State,Estat de l'ordre
 field,"sale.order,user_id",0,Salesman,Venedor
 field,"sale.shop,name",0,Shop name,Nom de tenda
 field,"sale.shop,payment_account_id",0,Payment accounts,Comptes de pagament
-field,"sale.shop,payment_default_id",0,Default Payment Term,Termini de pagament per defecte
+field,"sale.shop,payment_default_id",0,Default Payment Term,Termini pagament per defecte
 field,"sale.shop,pricelist_id",0,Pricelist,Llista de preus
 field,"sale.shop,project_id",0,Analytic Account,Compte analític
 field,"sale.shop,warehouse_id",0,Warehouse,Magatzem disponible
@@ -1891,7 +1891,7 @@ field,"stock.warehouse.orderpoint,warehouse_id",0,Warehouse,Magatzem
 field,"stock.warehouse,partner_address_id",0,Owner Address,Adreça propietari
 field,"subscription.document,active",0,Active,Actiu
 field,"subscription.document,field_ids",0,Fields,Camps
-field,"subscription.document.fields,document_id",0,Subscription Document,Document de subscripció
+field,"subscription.document.fields,document_id",0,Subscription Document,Document periòdic
 field,"subscription.document.fields,field",0,Field,Camp
 field,"subscription.document.fields,value",0,Default Value,Valor per defecte
 field,"subscription.document,model",0,Model,Model
@@ -1905,8 +1905,8 @@ field,"subscription.subscription,exec_init",0,Number of documents,Número de doc
 field,"subscription.subscription.history,date",0,Date,Data
 field,"subscription.subscription.history,document_id",0,Source Document,Document origen
 field,"subscription.subscription.history,subscription_id",0,Subscription,Subscripció
-field,"subscription.subscription,interval_number",0,Interval Qty,Qtat interval
-field,"subscription.subscription,interval_type",0,Interval Unit,Unitat d'interval
+field,"subscription.subscription,interval_number",0,Interval Qty,Període: Qtat de temps
+field,"subscription.subscription,interval_type",0,Interval Unit,Període: Unitat de temps
 field,"subscription.subscription,name",0,Name,Nom
 field,"subscription.subscription,notes",0,Notes,Notes
 field,"subscription.subscription,partner_id",0,Partner,Empresa
@@ -2121,7 +2121,7 @@ model,"account.journal,name",account.bank_journal,Bank Journal,Diari bancari
 model,"account.journal,name",account.expenses_journal,Expenses Journal,Diari de despeses
 model,"account.journal,name",account.sales_journal,Sales Journal,Diari de vendes
 model,"account.journal,name",account.stock_journal,Stock Journal,Diari d'estocs
-model,"account.payment.term,name",account.account_payment_term,Default Payment Term,Termini de pagament per defecte
+model,"account.payment.term,name",account.account_payment_term,Default Payment Term,Termini pagament per defecte
 model,"account.payment.term,note",account.account_payment_term,False,Fals
 model,"hr.holidays.status,name",hr.ca,Annual holidays,Vacances anuals
 model,"hr.holidays.status,name",hr.jf,Public holidays,Festes oficials
@@ -2199,8 +2199,8 @@ model,"ir.actions.act_window,name",account.action_move_line_search,Entry lines, 
 model,"ir.actions.act_window,name",account.action_move_line_select,,
 model,"ir.actions.act_window,name",account.action_move_line_tree1,,
 model,"ir.actions.act_window,name",account.action_payment_term_form,,
-model,"ir.actions.act_window,name",account.action_subscription_form_running,Running Subscriptions,Subscripcions en procés
-model,"ir.actions.act_window,name",account.action_subscription_form,Subscription Entries,Assentaments de subscripció
+model,"ir.actions.act_window,name",account.action_subscription_form_running,Running Subscriptions,Assent. periòdics en procés
+model,"ir.actions.act_window,name",account.action_subscription_form,Subscription Entries,Assentaments periòdics
 model,"ir.actions.act_window,name",account.action_subscription_line_form_running,Next Entries,Propers assentaments
 model,"ir.actions.act_window,name",account.action_tax_code_line_open,,
 model,"ir.actions.act_window,name",account.action_tax_code_list,Tax codes,Codis impostos
@@ -2670,7 +2670,7 @@ model,"ir.actions.wizard,name",account.wizard_budget_report,Budget,Pressupost
 model,"ir.actions.wizard,name",account.wizard_budget_spread,Spread amount,Import de marge
 model,"ir.actions.wizard,name",account.wizard_fiscalyear_close,Close a fiscal year,Tanca un exercici fiscal
 model,"ir.actions.wizard,name",account.wizard_general_ledger_report,General ledger,Llibre de comptabilitat general
-model,"ir.actions.wizard,name",account.wizard_generate_subscription,Create subscription entries,Crea assentaments de subscripció
+model,"ir.actions.wizard,name",account.wizard_generate_subscription,Create subscription entries,Crea assentaments periòdics
 model,"ir.actions.wizard,name",account.wizard_invoice_pay,Pay invoice,Paga factura
 model,"ir.actions.wizard,name",account.wizard_invoice_refund,Refund invoice,Reintegra factura
 model,"ir.actions.wizard,name",account.wizard_invoice_state_cancel,Cancel selected invoices,Cancel·la factures seleccionades
@@ -2934,10 +2934,10 @@ model,"ir.model,name",0,Stock Move,Moviment estoc
 model,"ir.model,name",0,Stock report by production lots,Informe d'estoc per lots de producció
 model,"ir.model,name",0,Stock Tracking Lots,Estoc dels lots de seguiment
 model,"ir.model,name",0,Stock value variation,Variació del valor d'estoc
-model,"ir.model,name",0,Subscription document,Document de subscripció
-model,"ir.model,name",0,Subscription document fields,Camps del document de subscripció
-model,"ir.model,name",0,Subscription history,Historial de subscripció
-model,"ir.model,name",0,Subscription,Subscripció
+model,"ir.model,name",0,Subscription document,Document periòdic
+model,"ir.model,name",0,Subscription document fields,Camps del document periòdic
+model,"ir.model,name",0,Subscription history,Historial de documents periòdics
+model,"ir.model,name",0,Subscription,Documents periòdics
 model,"ir.model,name",0,Tasks by project,Tasques per projecte
 model,"ir.model,name",0,Tasks by user and project,Tasques per usuari i projecte
 model,"ir.model,name",0,Task,Tasca
@@ -3034,7 +3034,7 @@ model,"ir.ui.menu,name",0,Scrum,Scrum
 model,"ir.ui.menu,name",0,Search Entries,Cerca assentaments
 model,"ir.ui.menu,name",0,Segmentations,Segmentacions
 model,"ir.ui.menu,name",0,Sequences,Seqüències
-model,"ir.ui.menu,name",0,Subscriptions,Subscripcions
+model,"ir.ui.menu,name",0,Subscriptions,Documents periòdics
 model,"ir.ui.menu,name",0,Taxes,Impostos
 model,"ir.ui.menu,name",0,This Month,Aquest mes
 model,"ir.ui.menu,name",0,Timesheet,Full d'assistència
@@ -3099,10 +3099,10 @@ model,"ir.ui.menu,name",account.menu_action_model_form,Models Definition,Definic
 model,"ir.ui.menu,name",account.menu_action_move_journal_line_form,Entries by Journal,Assentaments per diari
 model,"ir.ui.menu,name",account.menu_action_move_journal_period_line_form,Open Journals,Diaris oberts
 model,"ir.ui.menu,name",account.menu_action_move_line_form,Entries,Assentaments
-model,"ir.ui.menu,name",account.menu_action_move_line_search,Entry lines,Línies d'assentaments (partides)
+model,"ir.ui.menu,name",account.menu_action_move_line_search,Entry lines,Línies d'assentaments (moviments)
 model,"ir.ui.menu,name",account.menu_action_payment_term_form,Payment Terms,Terminis de pagament
-model,"ir.ui.menu,name",account.menu_action_subscription_form_running,Running Subscriptions,Subscripcions en procés
-model,"ir.ui.menu,name",account.menu_action_subscription_form,Subscription Entries,Assentaments de subscripció
+model,"ir.ui.menu,name",account.menu_action_subscription_form_running,Running Subscriptions,Assentaments periòdics en procés
+model,"ir.ui.menu,name",account.menu_action_subscription_form,Subscription Entries,Assentaments periòdics
 model,"ir.ui.menu,name",account.menu_action_subscription_line_form_running,Next Entries,Propers assentaments
 model,"ir.ui.menu,name",account.menu_action_tax_code_list,Tax codes,Codis impostos
 model,"ir.ui.menu,name",account.menu_action_tax_code_tree,Tax Report,Informe d'impostos
@@ -3114,7 +3114,7 @@ model,"ir.ui.menu,name",account.menu_bank_statement_draft_tree,Draft Statements,
 model,"ir.ui.menu,name",account.menu_bank_statement_tree,Statements,Extractes bancaris
 model,"ir.ui.menu,name",account.menu_budget_post_form,General Budgets,Pressuposts generals
 model,"ir.ui.menu,name",account.menu_fiscal_def,Set Fiscal Year,Fixa exercici fiscal
-model,"ir.ui.menu,name",account.menu_generate_subscription,Create Subscription Entries,Crea assentaments de subscripció
+model,"ir.ui.menu,name",account.menu_generate_subscription,Create Subscription Entries,Crea assentaments periòdics
 model,"ir.ui.menu,name",account.menu_install_module,Set Chart of Accounts and Tax Mode,Fixa pla comptable i mode d'impostos
 model,"ir.ui.menu,name",account.menu_invoice_draft,Draft Customer Invoices,Factures esborrany de client
 model,"ir.ui.menu,name",account.menu_journal_def,Add Account Journal,Afegeix diari de comptes
@@ -3473,7 +3473,7 @@ model,"ir.ui.menu,name",stock.menu_move_draft,Delivery Orders to Process,Ordres 
 model,"ir.ui.menu,name",stock.menu_picking_waiting,Assigned Packings,Paquets assignats
 model,"ir.ui.menu,name",stock.menu_stock_root,Inventory Control,Control inventari
 model,"ir.ui.menu,name",subscription.menu_action_document_form,Document Types,Tipus de document
-model,"ir.ui.menu,name",subscription.menu_action_subscription_form,All Subscriptions,Totes les subscripcions
+model,"ir.ui.menu,name",subscription.menu_action_subscription_form,All Subscriptions,Tots els documents periòdics
 model,"ir.ui.menu,name",subscription.menu_subscription_config,Configuration,Configuració
 model,"ir.ui.menu,name",subscription.menu_tools,Tools,Eines
 model,"product.price.type,name",product.list_price,List Price,Preu llista
@@ -4826,13 +4826,13 @@ view,account.report.report,0,Return value for status,Valor retorn de l'estat
 view,account.report.report,0,Very bad,Molt dolent
 view,account.report.report,0,Very Good,Molt Bo
 view,account.subscription,0,Compute,Calcula
-view,account.subscription,0,Entry Subscription,Assentament de subscripció
+view,account.subscription,0,Entry Subscription,Assentament periòdic
 view,account.subscription,0,Remove Lines,Elimina línies
 view,account.subscription,0,Set to Draft,Canvia a esborrany
 view,account.subscription,0,State,Estat
-view,account.subscription,0,Subscription Lines,Línies de subscripció
-view,account.subscription,0,Subscription Periods,Períodes de subscripció
-view,account.subscription.line,0,Subscription lines,Línies de subscripció
+view,account.subscription,0,Subscription Lines,Línies dels assentaments periòdics
+view,account.subscription,0,Subscription Periods,Repetició dels assentaments periòdics
+view,account.subscription.line,0,Subscription lines,Línies dels assentaments periòdics
 view,account.tax,0,Account Tax,Compte d'impostos
 view,account.tax,0,Applicable Code (if type=code),Codi aplicable (si tipus=codi)
 view,account.tax,0,Compute Code for Taxes included prices,Codi per calcular preus amb impostos inclosos
@@ -5471,15 +5471,15 @@ view,stock.tracking,0,Tracking Number,Número seguiment
 view,stock.tracking,0,Tracking/Serial,Seguiment/Sèrie
 view,stock.warehouse,0,Warehouse,Magatzem
 view,stock.warehouse.orderpoint,0,Minimum Stock Rules,Regles d'estoc mínim
-view,subscription.document,0,Subscription Document,Document de subscripció
-view,subscription.document.fields,0,Subscription Document Fields,Camps document de subscripció
+view,subscription.document,0,Subscription Document,Document periòdic
+view,subscription.document.fields,0,Subscription Document Fields,Camps del document periòdic
 view,subscription.subscription,0,Documents created,Documents creats
 view,subscription.subscription,0,Process,Procés
 view,subscription.subscription,0,Set to Draft,Canvia a esborrany
 view,subscription.subscription,0,Stop,Parar
-view,subscription.subscription,0,Subscriptions,Subscripcions
-view,subscription.subscription,0,Subsription Data,Dades de subscripció
-view,subscription.subscription.history,0,Subscription History,Historial de subscripció
+view,subscription.subscription,0,Subscriptions,Documents periòdics
+view,subscription.subscription,0,Subsription Data,Dades del document periòdic
+view,subscription.subscription.history,0,Subscription History,Historial de documents periòdics
 view,workflow,0,Activities,Activitats
 view,workflow,0,Workflow,Fluxes de treball
 view,workflow.activity,0,Activity,Activitat
@@ -6061,7 +6061,7 @@ wizard_view,"account.reconcile.unreconcile,init",0,"If you unreconciliate transa
 wizard_view,"account.reconcile.unreconcile,init",0,Unreconciliation,No conciliació
 wizard_view,"account.reconcile.unreconcile,init",0,Unreconciliation transactions,Transaccions de no conciliació
 wizard_view,"account.subscription.generate,init",0,Generate entries before:,Genera assentaments abans:
-wizard_view,"account.subscription.generate,init",0,Subscription Compute,Calcula subscripció
+wizard_view,"account.subscription.generate,init",0,Subscription Compute,Calcula assentaments periòdics
 wizard_view,"account.third_party_ledger.report,init",0,Select period,Selecciona període
 wizard_view,"account.vat.declaration,init",0,Select period,Selecciona període
 wizard_view,"account.wizard.account.duplicate,init",0,Duplicate account charts,Duplica resums de compte

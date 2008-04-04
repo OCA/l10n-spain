@@ -192,7 +192,7 @@ field,"account.invoice,comment",0,Additionnal Information,Información adicional
 field,"account.invoice,company_id",0,Company,Compañía
 field,"account.invoice,currency_id",0,Currency,Moneda
 field,"account.invoice,date_due",0,Due Date,Fecha vencimiento
-field,"account.invoice,date_invoice",0,Date Invoiced,Fecha facturación
+field,"account.invoice,date_invoice",0,Date Invoiced,Fecha factura
 field,"account.invoice,invoice_line",0,Invoice Lines,Líneas de factura
 field,"account.invoice,journal_id",0,Journal,Diario
 field,"account.invoice.line,account_analytic_id",0,Analytic Account,Cuenta analítica
@@ -202,14 +202,14 @@ field,"account.invoice.line,invoice_id",0,Invoice Ref,Ref. factura
 field,"account.invoice.line,invoice_line_tax_id",0,Taxes,Impuestos
 field,"account.invoice.line,name",0,Description,Descripción
 field,"account.invoice.line,note",0,Notes,Notas
-field,"account.invoice.line,price_subtotal",0,Subtotal w/o tax,Subtotal sin impuestos
+field,"account.invoice.line,price_subtotal",0,Subtotal w/o tax,Subtotal sin imp.
 field,"account.invoice.line,price_subtotal_incl",0,Subtotal,Subtotal
 field,"account.invoice.line,price_unit",0,Unit Price,Precio por unidad
 field,"account.invoice.line,product_id",0,Product,Producto
 field,"account.invoice.line,quantity",0,Quantity,Cantidad
 field,"account.invoice.line,sequence",0,Sequence,Secuencia
 field,"account.invoice.line,uos_id",0,Unit,Unidad de venta
-field,"account.invoice,move_id",0,Invoice Movement,Movimiento factura
+field,"account.invoice,move_id",0,Invoice Movement,Asiento factura
 field,"account.invoice,name",0,Description,Descripción factura
 field,"account.invoice,number",0,Invoice Number,Número factura
 field,"account.invoice,origin",0,Origin,Origen
@@ -298,9 +298,9 @@ field,"account.move.line,date_maturity",0,Maturity date,Fecha vencimiento
 field,"account.move.line,debit",0,Debit,Debe
 field,"account.move.line,followup_date",0,Latest Follow-up,Último seguimiento
 field,"account.move.line,followup_line_id",0,Follow-up Level,Nivel seguimiento
-field,"account.move,line_id",0,Entries,Asientos
+field,"account.move,line_id",0,Entries,Movimientos
 field,"account.move.line,journal_id",0,Journal,Diario
-field,"account.move.line,move_id",0,Move,Mov.
+field,"account.move.line,move_id",0,Move,Asiento
 field,"account.move.line,name",0,Name,Nombre
 field,"account.move.line,partner_id",0,Partner Ref.,Ref. empresa
 field,"account.move.line,period_id",0,Period,Período
@@ -311,7 +311,7 @@ field,"account.move.line,state",0,State,Estado
 field,"account.move.line,statement_id",0,Statement,Extracto bancario
 field,"account.move.line,tax_amount",0,Tax/Base Amount,Importe impuestos/base
 field,"account.move.line,tax_code_id",0,Tax Account,Cuenta impuestos
-field,"account.move,name",0,Entry Name,Nombre de asiento
+field,"account.move,name",0,Entry Name,Núm. asiento
 field,"account.move,period_id",0,Period,Período
 field,"account.move.reconcile,create_date",0,Creation date,Fecha creación
 field,"account.move.reconcile,line_id",0,Entry lines,Líneas de movimiento
@@ -355,13 +355,13 @@ field,"account.report.report,type",0,Type,Tipo
 field,"account.subscription,date_start",0,Starting date,Fecha de inicio
 field,"account.subscription.line,date",0,Date,Fecha
 field,"account.subscription.line,move_id",0,Entry,Asiento
-field,"account.subscription,lines_id",0,Subscription Lines,Líneas de subscripción
-field,"account.subscription.line,subscription_id",0,Subscription,Subscripción
+field,"account.subscription,lines_id",0,Subscription Lines,Líneas de asientos periódicos
+field,"account.subscription.line,subscription_id",0,Subscription,Asientos periódicos
 field,"account.subscription,model_id",0,Model,Modelo
 field,"account.subscription,name",0,Name,Nombre
-field,"account.subscription,period_nbr",0,Period,Período
-field,"account.subscription,period_total",0,Number of period,Número de períodos
-field,"account.subscription,period_type",0,Period Type,Tipo de período
+field,"account.subscription,period_nbr",0,Period,Período: Ctdad de tiempo
+field,"account.subscription,period_total",0,Number of period,Número de asientos
+field,"account.subscription,period_type",0,Period Type,Período: Unidad de tiempo
 field,"account.subscription,ref",0,Ref.,Ref.
 field,"account.subscription,state",0,State,Estado
 field,"account.tax,account_collected_id",0,Invoice Tax Account,Cuenta impuestos de factura
@@ -730,7 +730,7 @@ field,"ir.cron,active",0,Active,Activo
 field,"ir.cron,args",0,Arguments,Argumentos
 field,"ir.cron,doall",0,Repeat missed,Repetir perdidos
 field,"ir.cron,function",0,Function,Función
-field,"ir.cron,interval_number",0,Interval Number,Número de intervalo
+field,"ir.cron,interval_number",0,Interval Number,Número de intervalos
 field,"ir.cron,interval_type",0,Interval Unit,Unidad de intervalo
 field,"ir.cron,model",0,Model,Modelo
 field,"ir.cron,name",0,Name,Nombre
@@ -1891,7 +1891,7 @@ field,"stock.warehouse.orderpoint,warehouse_id",0,Warehouse,Almacén
 field,"stock.warehouse,partner_address_id",0,Owner Address,Dirección dueño
 field,"subscription.document,active",0,Active,Activo
 field,"subscription.document,field_ids",0,Fields,Campos
-field,"subscription.document.fields,document_id",0,Subscription Document,Documento de subscripción
+field,"subscription.document.fields,document_id",0,Subscription Document,Documento periódico
 field,"subscription.document.fields,field",0,Field,Campo
 field,"subscription.document.fields,value",0,Default Value,Valor por defecto
 field,"subscription.document,model",0,Model,Modelo
@@ -1905,8 +1905,8 @@ field,"subscription.subscription,exec_init",0,Number of documents,Número de doc
 field,"subscription.subscription.history,date",0,Date,Fecha
 field,"subscription.subscription.history,document_id",0,Source Document,Documento origen
 field,"subscription.subscription.history,subscription_id",0,Subscription,Subscripción
-field,"subscription.subscription,interval_number",0,Interval Qty,Ctdad intervalo
-field,"subscription.subscription,interval_type",0,Interval Unit,Unidad de intervalo
+field,"subscription.subscription,interval_number",0,Interval Qty,Período: Ctdad de tiempo
+field,"subscription.subscription,interval_type",0,Interval Unit,Período: Unidad de tiempo
 field,"subscription.subscription,name",0,Name,Nombre
 field,"subscription.subscription,notes",0,Notes,Notas
 field,"subscription.subscription,partner_id",0,Partner,Empresa
@@ -2199,8 +2199,8 @@ model,"ir.actions.act_window,name",account.action_move_line_search,Entry lines, 
 model,"ir.actions.act_window,name",account.action_move_line_select,,
 model,"ir.actions.act_window,name",account.action_move_line_tree1,,
 model,"ir.actions.act_window,name",account.action_payment_term_form,,
-model,"ir.actions.act_window,name",account.action_subscription_form_running,Running Subscriptions,Subscripciones en proceso
-model,"ir.actions.act_window,name",account.action_subscription_form,Subscription Entries,Asientos de subscripción
+model,"ir.actions.act_window,name",account.action_subscription_form_running,Running Subscriptions,Asientos periódicos en proceso
+model,"ir.actions.act_window,name",account.action_subscription_form,Subscription Entries,Asientos periódicos
 model,"ir.actions.act_window,name",account.action_subscription_line_form_running,Next Entries,Próximos asientos
 model,"ir.actions.act_window,name",account.action_tax_code_line_open,,
 model,"ir.actions.act_window,name",account.action_tax_code_list,Tax codes,Códigos impuestos
@@ -2670,7 +2670,7 @@ model,"ir.actions.wizard,name",account.wizard_budget_report,Budget,Presupuesto
 model,"ir.actions.wizard,name",account.wizard_budget_spread,Spread amount,Importe de margen
 model,"ir.actions.wizard,name",account.wizard_fiscalyear_close,Close a fiscal year,Cerrar un ejercicio fiscal
 model,"ir.actions.wizard,name",account.wizard_general_ledger_report,General ledger,Libro de contabilidad general
-model,"ir.actions.wizard,name",account.wizard_generate_subscription,Create subscription entries,Crear asientos de subscripción
+model,"ir.actions.wizard,name",account.wizard_generate_subscription,Create subscription entries,Crear asientos periódicos
 model,"ir.actions.wizard,name",account.wizard_invoice_pay,Pay invoice,Pagar factura
 model,"ir.actions.wizard,name",account.wizard_invoice_refund,Refund invoice,Reintegrar factura
 model,"ir.actions.wizard,name",account.wizard_invoice_state_cancel,Cancel selected invoices,Cancelar facturas seleccionadas
@@ -2934,10 +2934,10 @@ model,"ir.model,name",0,Stock Move,Movimiento stock
 model,"ir.model,name",0,Stock report by production lots,Informe de stock por lotes de producción
 model,"ir.model,name",0,Stock Tracking Lots,Stock de los lotes de seguimiento
 model,"ir.model,name",0,Stock value variation,Variación del valor de stock
-model,"ir.model,name",0,Subscription document,Documento de subscripción
-model,"ir.model,name",0,Subscription document fields,Campos del documento de subscripción
-model,"ir.model,name",0,Subscription history,Historial de subscripción
-model,"ir.model,name",0,Subscription,Subscripción
+model,"ir.model,name",0,Subscription document,Documento periódico
+model,"ir.model,name",0,Subscription document fields,Campos del documento periódico
+model,"ir.model,name",0,Subscription history,Historial de documentos periódicos
+model,"ir.model,name",0,Subscription,Documentos periódicos
 model,"ir.model,name",0,Tasks by project,Tareas por proyecto
 model,"ir.model,name",0,Tasks by user and project,Tareas por usuario y proyecto
 model,"ir.model,name",0,Task,Tarea
@@ -3034,7 +3034,7 @@ model,"ir.ui.menu,name",0,Scrum,Scrum
 model,"ir.ui.menu,name",0,Search Entries,Buscar asientos
 model,"ir.ui.menu,name",0,Segmentations,Segmentaciones
 model,"ir.ui.menu,name",0,Sequences,Secuencias
-model,"ir.ui.menu,name",0,Subscriptions,Subscripciones
+model,"ir.ui.menu,name",0,Subscriptions,Documentos periódicos
 model,"ir.ui.menu,name",0,Taxes,Impuestos
 model,"ir.ui.menu,name",0,This Month,Este mes
 model,"ir.ui.menu,name",0,Timesheet,Hoja de asistencia
@@ -3099,10 +3099,10 @@ model,"ir.ui.menu,name",account.menu_action_model_form,Models Definition,Definic
 model,"ir.ui.menu,name",account.menu_action_move_journal_line_form,Entries by Journal,Asientos por diario
 model,"ir.ui.menu,name",account.menu_action_move_journal_period_line_form,Open Journals,Diarios abiertos
 model,"ir.ui.menu,name",account.menu_action_move_line_form,Entries,Asientos
-model,"ir.ui.menu,name",account.menu_action_move_line_search,Entry lines,Líneas de asientos (partidas)
+model,"ir.ui.menu,name",account.menu_action_move_line_search,Entry lines,Líneas de asientos (movimientos)
 model,"ir.ui.menu,name",account.menu_action_payment_term_form,Payment Terms,Plazos de pago
-model,"ir.ui.menu,name",account.menu_action_subscription_form_running,Running Subscriptions,Subscripciones en proceso
-model,"ir.ui.menu,name",account.menu_action_subscription_form,Subscription Entries,Asientos de subscripción
+model,"ir.ui.menu,name",account.menu_action_subscription_form_running,Running Subscriptions,Asientos periódicos en proceso
+model,"ir.ui.menu,name",account.menu_action_subscription_form,Subscription Entries,Asientos periódicos
 model,"ir.ui.menu,name",account.menu_action_subscription_line_form_running,Next Entries,Próximos asientos
 model,"ir.ui.menu,name",account.menu_action_tax_code_list,Tax codes,Códigos impuestos
 model,"ir.ui.menu,name",account.menu_action_tax_code_tree,Tax Report,Informe de impuestos
@@ -3114,7 +3114,7 @@ model,"ir.ui.menu,name",account.menu_bank_statement_draft_tree,Draft Statements,
 model,"ir.ui.menu,name",account.menu_bank_statement_tree,Statements,Extractos bancarios
 model,"ir.ui.menu,name",account.menu_budget_post_form,General Budgets,Presupuestos generales
 model,"ir.ui.menu,name",account.menu_fiscal_def,Set Fiscal Year,Establecer ejercicio fiscal
-model,"ir.ui.menu,name",account.menu_generate_subscription,Create Subscription Entries,Crear asientos de subscripción
+model,"ir.ui.menu,name",account.menu_generate_subscription,Create Subscription Entries,Crear asientos periódicos
 model,"ir.ui.menu,name",account.menu_install_module,Set Chart of Accounts and Tax Mode,Establecer plan contable y modo de impuestos
 model,"ir.ui.menu,name",account.menu_invoice_draft,Draft Customer Invoices,Facturas borrador de cliente
 model,"ir.ui.menu,name",account.menu_journal_def,Add Account Journal,Añadir diario de cuentas
@@ -3473,7 +3473,7 @@ model,"ir.ui.menu,name",stock.menu_move_draft,Delivery Orders to Process,Órdene
 model,"ir.ui.menu,name",stock.menu_picking_waiting,Assigned Packings,Paquetes asignados
 model,"ir.ui.menu,name",stock.menu_stock_root,Inventory Control,Control inventario
 model,"ir.ui.menu,name",subscription.menu_action_document_form,Document Types,Tipos de documento
-model,"ir.ui.menu,name",subscription.menu_action_subscription_form,All Subscriptions,Todas las subscripciones
+model,"ir.ui.menu,name",subscription.menu_action_subscription_form,All Subscriptions,Todos los documentos periódicos
 model,"ir.ui.menu,name",subscription.menu_subscription_config,Configuration,Configuración
 model,"ir.ui.menu,name",subscription.menu_tools,Tools,Herramientas
 model,"product.price.type,name",product.list_price,List Price,Precio lista
@@ -4826,13 +4826,13 @@ view,account.report.report,0,Return value for status,Valor devuelto del estado
 view,account.report.report,0,Very bad,Muy malo
 view,account.report.report,0,Very Good,Muy Bueno
 view,account.subscription,0,Compute,Calcular
-view,account.subscription,0,Entry Subscription,Asiento de subscripción
+view,account.subscription,0,Entry Subscription,Asiento periódico
 view,account.subscription,0,Remove Lines,Eliminar líneas
 view,account.subscription,0,Set to Draft,Cambiar a borrador
 view,account.subscription,0,State,Estado
-view,account.subscription,0,Subscription Lines,Líneas de subscripción
-view,account.subscription,0,Subscription Periods,Períodos de subscripción
-view,account.subscription.line,0,Subscription lines,Líneas de subscripción
+view,account.subscription,0,Subscription Lines,Líneas de los asientos periódicos
+view,account.subscription,0,Subscription Periods,Repetición de los asientos periódicos
+view,account.subscription.line,0,Subscription lines,Líneas de los asientos periódicos
 view,account.tax,0,Account Tax,Cuenta de impuestos
 view,account.tax,0,Applicable Code (if type=code),Código aplicable (si tipo=código)
 view,account.tax,0,Compute Code for Taxes included prices,Código para calcular precios con impuestos incluidos
@@ -5471,15 +5471,15 @@ view,stock.tracking,0,Tracking Number,Número seguimiento
 view,stock.tracking,0,Tracking/Serial,Seguimiento/Serie
 view,stock.warehouse,0,Warehouse,Almacén
 view,stock.warehouse.orderpoint,0,Minimum Stock Rules,Reglas de stock mínimo
-view,subscription.document,0,Subscription Document,Documento de subscripción
-view,subscription.document.fields,0,Subscription Document Fields,Campos documento de subscripción
+view,subscription.document,0,Subscription Document,Documento periódico
+view,subscription.document.fields,0,Subscription Document Fields,Campos del documento periódico
 view,subscription.subscription,0,Documents created,Documentos creados
 view,subscription.subscription,0,Process,Proceso
 view,subscription.subscription,0,Set to Draft,Cambiar a borrador
 view,subscription.subscription,0,Stop,Parar
-view,subscription.subscription,0,Subscriptions,Subscripciones
-view,subscription.subscription,0,Subsription Data,Datos de subscripción
-view,subscription.subscription.history,0,Subscription History,Historial de subscripción
+view,subscription.subscription,0,Subscriptions,Documentos periódicos
+view,subscription.subscription,0,Subsription Data,Datos del documento periódico
+view,subscription.subscription.history,0,Subscription History,Historial de documentos periódicos
 view,workflow,0,Activities,Actividades
 view,workflow,0,Workflow,Flujo de trabajo
 view,workflow.activity,0,Activity,Actividad
@@ -6061,7 +6061,7 @@ wizard_view,"account.reconcile.unreconcile,init",0,"If you unreconciliate transa
 wizard_view,"account.reconcile.unreconcile,init",0,Unreconciliation,No conciliación
 wizard_view,"account.reconcile.unreconcile,init",0,Unreconciliation transactions,Transacciones de no conciliación
 wizard_view,"account.subscription.generate,init",0,Generate entries before:,Generar asientos antes:
-wizard_view,"account.subscription.generate,init",0,Subscription Compute,Calcular subscripción
+wizard_view,"account.subscription.generate,init",0,Subscription Compute,Calcular asientos periódicos
 wizard_view,"account.third_party_ledger.report,init",0,Select period,Seleccionar período
 wizard_view,"account.vat.declaration,init",0,Select period,Seleccionar período
 wizard_view,"account.wizard.account.duplicate,init",0,Duplicate account charts,Duplicar resúmenes de cuenta
