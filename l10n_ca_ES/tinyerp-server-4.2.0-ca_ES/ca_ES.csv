@@ -182,17 +182,17 @@ field,"account_followup.stat,debit",0,Debit,Deure
 field,"account_followup.stat,followup_id",0,Follow Ups,Seguiments
 field,"account_followup.stat,name",0,Partner,Empresa
 field,"account.invoice,account_id",0,Dest Account,Compte destí
-field,"account.invoice,address_contact_id",0,Contact Address,Adreça contacte
-field,"account.invoice,address_invoice_id",0,Invoice Address,Adreça factura
+field,"account.invoice,address_contact_id",0,Contact Address,Direcció contacte
+field,"account.invoice,address_invoice_id",0,Invoice Address,Direcció factura
 field,"account.invoice,amount_tax",0,Tax,Impostos
 field,"account.invoice,amount_total",0,Total,Total
-field,"account.invoice,amount_untaxed",0,Untaxed Amount,Base imposable
+field,"account.invoice,amount_untaxed",0,Untaxed Amount,Import sense impostos
 field,"account.invoice,check_total",0,Total,Total
 field,"account.invoice,comment",0,Additionnal Information,Informació addicional
 field,"account.invoice,company_id",0,Company,Companyia
 field,"account.invoice,currency_id",0,Currency,Moneda
 field,"account.invoice,date_due",0,Due Date,Data venciment
-field,"account.invoice,date_invoice",0,Date Invoiced,Data factura
+field,"account.invoice,date_invoice",0,Date Invoiced,Data facturació
 field,"account.invoice,invoice_line",0,Invoice Lines,Línies de factura
 field,"account.invoice,journal_id",0,Journal,Diari
 field,"account.invoice.line,account_analytic_id",0,Analytic Account,Compte analític
@@ -202,19 +202,19 @@ field,"account.invoice.line,invoice_id",0,Invoice Ref,Ref. factura
 field,"account.invoice.line,invoice_line_tax_id",0,Taxes,Impostos
 field,"account.invoice.line,name",0,Description,Descripció
 field,"account.invoice.line,note",0,Notes,Notes
-field,"account.invoice.line,price_subtotal",0,Subtotal w/o tax,Subtotal sense imp.
+field,"account.invoice.line,price_subtotal",0,Subtotal w/o tax,Subtotal sense impostos
 field,"account.invoice.line,price_subtotal_incl",0,Subtotal,Subtotal
 field,"account.invoice.line,price_unit",0,Unit Price,Preu per unitat
 field,"account.invoice.line,product_id",0,Product,Producte
 field,"account.invoice.line,quantity",0,Quantity,Quantitat
 field,"account.invoice.line,sequence",0,Sequence,Seqüència
 field,"account.invoice.line,uos_id",0,Unit,Unitat de venda
-field,"account.invoice,move_id",0,Invoice Movement,Assent. factura
+field,"account.invoice,move_id",0,Invoice Movement,Moviment factura
 field,"account.invoice,name",0,Description,Descripció factura
 field,"account.invoice,number",0,Invoice Number,Número factura
 field,"account.invoice,origin",0,Origin,Origen
 field,"account.invoice,partner_id",0,Partner,Empresa
-field,"account.invoice,payment_term",0,Payment Term,Termini pagament
+field,"account.invoice,payment_term",0,Payment Term,Termini de pagament
 field,"account.invoice,period_id",0,Force Period,Forçar període
 field,"account.invoice,price_type",0,Price method,Mètode preu
 field,"account.invoice,reconciled",0,Reconciled,Conciliat
@@ -298,9 +298,9 @@ field,"account.move.line,date_maturity",0,Maturity date,Data venciment
 field,"account.move.line,debit",0,Debit,Deure
 field,"account.move.line,followup_date",0,Latest Follow-up,Últim seguiment
 field,"account.move.line,followup_line_id",0,Follow-up Level,Nivell seguiment
-field,"account.move,line_id",0,Entries,Moviments
+field,"account.move,line_id",0,Entries,Assentaments
 field,"account.move.line,journal_id",0,Journal,Diari
-field,"account.move.line,move_id",0,Move,Assent.
+field,"account.move.line,move_id",0,Move,Mov.
 field,"account.move.line,name",0,Name,Nom
 field,"account.move.line,partner_id",0,Partner Ref.,Ref. empresa
 field,"account.move.line,period_id",0,Period,Període
@@ -311,7 +311,7 @@ field,"account.move.line,state",0,State,Estat
 field,"account.move.line,statement_id",0,Statement,Extracte bancari
 field,"account.move.line,tax_amount",0,Tax/Base Amount,Import impostos/base
 field,"account.move.line,tax_code_id",0,Tax Account,Compte impostos
-field,"account.move,name",0,Entry Name,Núm. assentament
+field,"account.move,name",0,Entry Name,Nom d'assentament
 field,"account.move,period_id",0,Period,Període
 field,"account.move.reconcile,create_date",0,Creation date,Data creació
 field,"account.move.reconcile,line_id",0,Entry lines,Línies de moviment
@@ -324,7 +324,7 @@ field,"account.payment.term.line,condition",0,Condition,Condició
 field,"account.payment.term.line,days",0,Number of Days,Número de dies
 field,"account.payment.term,line_ids",0,Terms,Terminis de pagament
 field,"account.payment.term.line,name",0,Line Name,Nom línia
-field,"account.payment.term.line,payment_id",0,Payment Term,Termini pagament
+field,"account.payment.term.line,payment_id",0,Payment Term,Termini de pagament
 field,"account.payment.term.line,sequence",0,Sequence,Seqüència
 field,"account.payment.term.line,value",0,Value,Valor
 field,"account.payment.term.line,value_amount",0,Value Amount,Valor import
@@ -355,13 +355,13 @@ field,"account.report.report,type",0,Type,Tipus
 field,"account.subscription,date_start",0,Starting date,Data d'inici
 field,"account.subscription.line,date",0,Date,Data
 field,"account.subscription.line,move_id",0,Entry,Assentament
-field,"account.subscription,lines_id",0,Subscription Lines,Línies d'assentaments periòdics
-field,"account.subscription.line,subscription_id",0,Subscription,Assentament periòdic
+field,"account.subscription,lines_id",0,Subscription Lines,Línies de subscripció
+field,"account.subscription.line,subscription_id",0,Subscription,Subscripció
 field,"account.subscription,model_id",0,Model,Model
 field,"account.subscription,name",0,Name,Nom
-field,"account.subscription,period_nbr",0,Period,Període: Qtat de temps
-field,"account.subscription,period_total",0,Number of period,Número d'assentaments
-field,"account.subscription,period_type",0,Period Type,Període: Unitat de temps
+field,"account.subscription,period_nbr",0,Period,Període
+field,"account.subscription,period_total",0,Number of period,Número de períodes
+field,"account.subscription,period_type",0,Period Type,Tipus de període
 field,"account.subscription,ref",0,Ref.,Ref.
 field,"account.subscription,state",0,State,Estat
 field,"account.tax,account_collected_id",0,Invoice Tax Account,Compte impostos de factura
@@ -433,7 +433,7 @@ field,"crm.case.log,case_id",0,Case,Cas
 field,"crm.case.log,date",0,Date,Data
 field,"crm.case,log_ids",0,Logs History,Historial del registre
 field,"crm.case.log,name",0,Action,Acció
-field,"crm.case.log,som",0,State of Mind,Grau de satisfacció
+field,"crm.case.log,som",0,State of Mind,Estat de satisfacció
 field,"crm.case.log,user_id",0,User Responsible,Usuari responsable
 field,"crm.case,name",0,Description,Descripció
 field,"crm.case,partner_address_id",0,Partner Contact,Contacte empresa
@@ -482,7 +482,7 @@ field,"crm.case.section,parent_id",0,Parent Section,Secció pare
 field,"crm.case.section,reply_to",0,Reply-To,Respondre-a
 field,"crm.case.section,sequence",0,Sequence,Seqüència
 field,"crm.case.section,user_id",0,Responsible,Responsable
-field,"crm.case,som",0,State of Mind,Grau de satisfacció
+field,"crm.case,som",0,State of Mind,Estat de satisfacció
 field,"crm.case,state",0,State,Estat
 field,"crm.case,user_id",0,User Responsible,Usuari responsable
 field,"crm.segmentation,categ_id",0,Partner Category,Categoria d'empresa
@@ -557,7 +557,7 @@ field,"hr.department,name",0,Department Name,Nom de departament
 field,"hr.department,note",0,Note,Nota
 field,"hr.department,parent_id",0,Parent Department,Departament pare
 field,"hr.employee,active",0,Active,Actiu
-field,"hr.employee,address_id",0,Contact address,Adreça contacte
+field,"hr.employee,address_id",0,Contact address,Direcció contacte
 field,"hr.employee,attendances",0,Employee's attendances,Serveis de l'empleat
 field,"hr.employee,audiens_num",0,AUDIENS Number,Número d'aUDIENS
 field,"hr.employee,birth_date",0,Birth Date,Data naixement
@@ -574,7 +574,7 @@ field,"hr.employee,holidays",0,Employee's holidays,Vacances de l'empleat
 field,"hr.employee,journal_id",0,Analytic Journal,Diari analític
 field,"hr.employee,manager",0,Manager,Director
 field,"hr.employee,marital_status",0,Marital Status,Estat civil
-field,"hr.employee.marital.status,description",0,Status Description,Descripció de l'estat civil
+field,"hr.employee.marital.status,description",0,Status Description,Descripció de l'estat
 field,"hr.employee.marital.status,name",0,Marital Status,Estat civil
 field,"hr.employee,medic_exam",0,Medical examination date,Data reconeixement mèdic
 field,"hr.employee,name",0,Employee,Nom complert empleat
@@ -721,7 +721,7 @@ field,"ir.actions.wizard,type",0,Action type,Tipus d'acció
 field,"ir.actions.wizard,wiz_name",0,Wizard name,Nom assistent
 field,"ir.attachment,datas",0,Data,Dades
 field,"ir.attachment,datas_fname",0,Data Filename,Nom fitxer de dades
-field,"ir.attachment,description",0,Description,Descripció
+field,"ir.attachment,description",0,Description,Descripció projecte
 field,"ir.attachment,link",0,Link,Enllaç
 field,"ir.attachment,name",0,Attachment Name,Nom del document adjunt
 field,"ir.attachment,res_id",0,Resource ID,ID recurs
@@ -730,7 +730,7 @@ field,"ir.cron,active",0,Active,Actiu
 field,"ir.cron,args",0,Arguments,Arguments
 field,"ir.cron,doall",0,Repeat missed,Repetir perduts
 field,"ir.cron,function",0,Function,Funció
-field,"ir.cron,interval_number",0,Interval Number,Número d'intervals
+field,"ir.cron,interval_number",0,Interval Number,Número d'interval
 field,"ir.cron,interval_type",0,Interval Unit,Unitat d'interval
 field,"ir.cron,model",0,Model,Model
 field,"ir.cron,name",0,Name,Nom
@@ -919,7 +919,7 @@ field,"mrp.bom,name",0,Name,Nom
 field,"mrp.bom,position",0,Internal Ref.,Ref. interna
 field,"mrp.bom,product_efficiency",0,Product Efficiency,Eficiència del producte
 field,"mrp.bom,product_id",0,Product,Producte
-field,"mrp.bom,product_qty",0,Product Qty,Qtat producte
+field,"mrp.bom,product_qty",0,Product Qty,Ctdad producte
 field,"mrp.bom,product_rounding",0,Product Rounding,Arrodoniment del producte
 field,"mrp.bom,product_uom",0,Product UOM,UdM producte
 field,"mrp.bom,property_ids",0,Properties,Propietats
@@ -969,10 +969,10 @@ field,"mrp.production,product_id",0,Product,Producte
 field,"mrp.production.product.line,name",0,Name,Nom
 field,"mrp.production.product.line,product_id",0,Product,Producte
 field,"mrp.production.product.line,production_id",0,Production Order,Ordre de producció
-field,"mrp.production.product.line,product_qty",0,Product Qty,Qtat producte
+field,"mrp.production.product.line,product_qty",0,Product Qty,Ctdad producte
 field,"mrp.production.product.line,product_uom",0,Product UOM,UdM producte
 field,"mrp.production,product_lines",0,Scheduled goods,Béns planificats
-field,"mrp.production,product_qty",0,Product Qty,Qtat producte
+field,"mrp.production,product_qty",0,Product Qty,Ctdad producte
 field,"mrp.production,product_uom",0,Product UOM,UdM producte
 field,"mrp.production,state",0,State,Estat
 field,"mrp.production.workcenter.line,cycle",0,Nbr of cycle,Núm. de cicle
@@ -1240,10 +1240,10 @@ field,"project.task.work,task_id",0,Task,Tasca
 field,"project.task.work,user_id",0,Done by,Realitzat per
 field,"purchase.order,amount_tax",0,Taxes,Impostos
 field,"purchase.order,amount_total",0,Total,Total
-field,"purchase.order,amount_untaxed",0,Untaxed Amount,Base imposable
+field,"purchase.order,amount_untaxed",0,Untaxed Amount,Import lliure d'impost
 field,"purchase.order,date_approve",0,Date Approved,Data aprovació
 field,"purchase.order,date_order",0,Date Ordered,Data ordenada
-field,"purchase.order,dest_address_id",0,Destination Address,Adreça del destí
+field,"purchase.order,dest_address_id",0,Destination Address,Direcció del destí
 field,"purchase.order,invoiced",0,Invoiced & Paid,Facturada & Pagada (conciliada)
 field,"purchase.order,invoice_id",0,Invoice,Factura
 field,"purchase.order,invoice_method",0,Invoicing Control,Mètode facturació
@@ -1261,11 +1261,11 @@ field,"purchase.order.line,product_qty",0,Quantity,Quantitat
 field,"purchase.order.line,product_uom",0,Product UOM,UdM del producte
 field,"purchase.order.line,taxes_id",0,Taxes,Impostos
 field,"purchase.order,location_id",0,Delivery destination,Destí de lliurament
-field,"purchase.order,name",0,Order Description,Ref. ordre
+field,"purchase.order,name",0,Order Description,Descripció de l'ordre
 field,"purchase.order,notes",0,Notes,Notes
 field,"purchase.order,order_line",0,Order State,Estat de l'ordre
 field,"purchase.order,origin",0,Origin,Origen
-field,"purchase.order,partner_address_id",0,Address,Adreça
+field,"purchase.order,partner_address_id",0,Address,Direcció
 field,"purchase.order,partner_id",0,Partner,Empresa
 field,"purchase.order,partner_ref",0,Partner Reference,Referència empresa
 field,"purchase.order,picking_ids",0,Picking List,Llista d'empaquetament
@@ -1286,7 +1286,7 @@ field,"report_account_analytic.planning,date_from",0,Start date,Data inici
 field,"report_account_analytic.planning,date_to",0,End date,Data fi
 field,"report_account_analytic.planning.line,account_id",0,Analytic account,Compte analític
 field,"report_account_analytic.planning.line,amount",0,Quantity,Quantitat
-field,"report_account_analytic.planning.line,amount_unit",0,Qty UoM,Qtat UdM
+field,"report_account_analytic.planning.line,amount_unit",0,Qty UoM,Ctdad UdM
 field,"report_account_analytic.planning,line_ids",0,Planning lines,Línies planificació
 field,"report_account_analytic.planning.line,note",0,Note,Nota
 field,"report_account_analytic.planning.line,planning_id",0,Planning,Planificació
@@ -1498,7 +1498,7 @@ field,"res.partner.address,state_id",0,State,Província
 field,"res.partner.address,street",0,Street,Carrer
 field,"res.partner.address,street2",0,Street2,Carrer2
 field,"res.partner.address,title",0,Title,Títol
-field,"res.partner.address,type",0,Address Type,Tipus d'adreça
+field,"res.partner.address,type",0,Address Type,Tipus de direcció
 field,"res.partner.address,zip",0,Zip,C.P.
 field,"res.partner.bank,acc_number",0,Account number,Número de compte
 field,"res.partner.bank,bank",0,Bank,Banc
@@ -1507,7 +1507,7 @@ field,"res.partner.bank,country_id",0,Country,País
 field,"res.partner.bank,iban",0,IBAN,IBAN
 field,"res.partner,bank_ids",0,Banks,Bancs
 field,"res.partner.bank,name",0,Description,Descripció
-field,"res.partner.bank,owner_name",0,Account owner,Titular del compte
+field,"res.partner.bank,owner_name",0,Account owner,Propietari del compte
 field,"res.partner.bank,partner_id",0,Partner,Empresa
 field,"res.partner.bank,sequence",0,Sequence,Seqüència
 field,"res.partner.bank,state",0,Bank type,Tipus de banc
@@ -1533,7 +1533,7 @@ field,"res.partner.category,parent_id",0,Parent Category,Categoria pare
 field,"res.partner,child_ids",0,Partner Ref.,Ref. empresa
 field,"res.partner,comment",0,Notes,Notes
 field,"res.partner,credit",0,Receivable,Haver
-field,"res.partner,credit_limit",0,Credit Limit,Crèdit concedit
+field,"res.partner,credit_limit",0,Credit Limit,Límit haver
 field,"res.partner,date",0,Date,Data
 field,"res.partner,debit",0,Payable,Deure
 field,"res.partner,debit_limit",0,Debit Limit,Límit deure
@@ -1550,7 +1550,7 @@ field,"res.partner.event,planned_cost",0,Planned Cost,Cost previst
 field,"res.partner.event,planned_revenue",0,Planned Revenue,Retorn previst
 field,"res.partner.event,probability",0,Probability (0.50),Probabilitat (0.50)
 field,"res.partner,events",0,events,esdeveniments
-field,"res.partner.event,som",0,State of Mind,Grau de satisfacció
+field,"res.partner.event,som",0,State of Mind,Estat satisfacció
 field,"res.partner.event,type",0,Type of Event,Tipus d'esdeveniment
 field,"res.partner.event.type,active",0,Active,Actiu
 field,"res.partner.event.type,key",0,Key,Clau
@@ -1565,7 +1565,7 @@ field,"res.partner,property_account_payable",0,Account Payable,Compte a pagar
 field,"res.partner,property_account_receivable",0,Account Receivable,Compte a cobrar
 field,"res.partner,property_account_tax",0,Default Tax,Impost predefinit
 field,"res.partner,property_delivery_carrier",0,Delivery Method,Mètode lliurament
-field,"res.partner,property_payment_term",0,Payment Term,Termini pagament
+field,"res.partner,property_payment_term",0,Payment Term,Termini de pagament
 field,"res.partner,property_product_pricelist",0,Sale Pricelist,Llista de preus de venda
 field,"res.partner,property_product_pricelist_purchase",0,Purchase Pricelist,Llista de preus de compra
 field,"res.partner,property_stock_customer",0,Customer Location,Ubicació del client
@@ -1574,7 +1574,7 @@ field,"res.partner,ref",0,Code,Codi
 field,"res.partner,responsible",0,Users,Usuaris
 field,"res.partner,sales",0,Sales,Vendes
 field,"res.partner.som,factor",0,Factor,Factor
-field,"res.partner.som,name",0,State of Mind,Grau de satisfacció
+field,"res.partner.som,name",0,State of Mind,Estat de satisfacció
 field,"res.partner,title",0,Title,Títol
 field,"res.partner.title,domain",0,Domain,Domini
 field,"res.partner.title,name",0,Title,Títol
@@ -1582,7 +1582,7 @@ field,"res.partner.title,shortcut",0,Shortcut,Abreviació
 field,"res.partner,user_id",0,Salesman,Venedor
 field,"res.partner,vat",0,VAT,CIF/NIF
 field,"res.partner,website",0,Website,Lloc web
-field,"res.payterm,name",0,Payment term (short name),Termini pagament (nom curt)
+field,"res.payterm,name",0,Payment term (short name),Termini de pagament (nom curt)
 field,"res.request,act_from",0,From,Des de
 field,"res.request,active",0,Active,Actiu
 field,"res.request,act_to",0,To,Fins
@@ -1611,7 +1611,7 @@ field,"res.roles,name",0,Role Name,Nom de rol
 field,"res.roles,parent_id",0,Parent,Pare
 field,"res.users,action_id",0,Home Action,Acció inicial
 field,"res.users,active",0,Active,Actiu
-field,"res.users,address_id",0,Address,Adreça
+field,"res.users,address_id",0,Address,Direcció
 field,"res.users,company_id",0,Company,Companyia
 field,"res.users,groups_id",0,Groups,Grups
 field,"res.users,login",0,Login,Usuari
@@ -1623,7 +1623,7 @@ field,"res.users,rule_groups",0,Rules,Regles
 field,"res.users,signature",0,Signature,Signatura
 field,"sale.order,amount_tax",0,Taxes,Impostos
 field,"sale.order,amount_total",0,Total,Total
-field,"sale.order,amount_untaxed",0,Untaxed Amount,Base imposable
+field,"sale.order,amount_untaxed",0,Untaxed Amount,Import sense Impostos
 field,"sale.order,carrier_id",0,Delivery method,Mètode lliurament
 field,"sale.order,client_order_ref",0,Partner Ref.,Ref. empresa
 field,"sale.order,date_order",0,Date Ordered,Data ordre
@@ -1657,15 +1657,15 @@ field,"sale.order.line,state",0,State,Estat
 field,"sale.order.line,tax_id",0,Taxes,Impostos
 field,"sale.order.line,th_weight",0,Weight,Pes
 field,"sale.order.line,type",0,Procure Method,Mètode proveïment
-field,"sale.order,name",0,Order Description,Ref. ordre
+field,"sale.order,name",0,Order Description,Descripció de l'ordre
 field,"sale.order,note",0,Notes,Notes
 field,"sale.order,order_line",0,Order Lines,Línies d'ordre
 field,"sale.order,order_policy",0,Shipping Policy,Política d'enviament
 field,"sale.order,origin",0,Origin,Origen
 field,"sale.order,partner_id",0,Partner,Empresa
-field,"sale.order,partner_invoice_id",0,Invoice Address,Adreça de factura
+field,"sale.order,partner_invoice_id",0,Invoice Address,Direcció de factura
 field,"sale.order,partner_order_id",0,Ordering Contact,Contacte que ordena
-field,"sale.order,partner_shipping_id",0,Shipping Address,Adreça d'enviament
+field,"sale.order,partner_shipping_id",0,Shipping Address,Direcció d'enviament
 field,"sale.order,picking_ids",0,Packing List,Llista d'empaquetament
 field,"sale.order,picking_policy",0,Packing Policy,Política d'empaquetament
 field,"sale.order,pricelist_id",0,Pricelist,Llista de preus
@@ -1676,7 +1676,7 @@ field,"sale.order,state",0,Order State,Estat de l'ordre
 field,"sale.order,user_id",0,Salesman,Venedor
 field,"sale.shop,name",0,Shop name,Nom de tenda
 field,"sale.shop,payment_account_id",0,Payment accounts,Comptes de pagament
-field,"sale.shop,payment_default_id",0,Default Payment Term,Termini pagament per defecte
+field,"sale.shop,payment_default_id",0,Default Payment Term,Termini de pagament per defecte
 field,"sale.shop,pricelist_id",0,Pricelist,Llista de preus
 field,"sale.shop,project_id",0,Analytic Account,Compte analític
 field,"sale.shop,warehouse_id",0,Warehouse,Magatzem disponible
@@ -1717,7 +1717,7 @@ field,"scrum.project,partner_id",0,Customer,Client
 field,"scrum.project,planned_hours",0,Planned hours,Hores planejades
 field,"scrum.project,pricelist_id",0,Pricelist,Llista de preus
 field,"scrum.project,priority",0,Priority,Prioritat
-field,"scrum.project,product_owner_id",0,Product Owner,Responsable del producte
+field,"scrum.project,product_owner_id",0,Product Owner,Propietari del producte
 field,"scrum.project,scrum",0,Is Scrum,És scrum
 field,"scrum.project,sprint_size",0,Sprint Days,Dies del sprint
 field,"scrum.project,state",0,State,Estat
@@ -1736,7 +1736,7 @@ field,"scrum.sprint,effective_hours",0,Effective hours,Hores reals
 field,"scrum.sprint,meetings_id",0,Daily Scrum,Scrum diari
 field,"scrum.sprint,name",0,Sprint Name,Nom del sprint
 field,"scrum.sprint,planned_hours",0,Planned Hours,Hores planejades
-field,"scrum.sprint,product_owner_id",0,Product Owner,Responsable del producte
+field,"scrum.sprint,product_owner_id",0,Product Owner,Propietari del producte
 field,"scrum.sprint,progress",0,Progress (0-100),Progrés (0-100)
 field,"scrum.sprint,project_id",0,Project,Projecte
 field,"scrum.sprint,retrospective",0,Sprint Retrospective,Sprint retrospectiu
@@ -1799,13 +1799,13 @@ field,"stock.lot,active",0,Active,Actiu
 field,"stock.lot,move_ids",0,Move lines,Línies de moviment
 field,"stock.lot,name",0,Lot Name,Nom de lot
 field,"stock.lot,tracking",0,Tracking,Seguiment
-field,"stock.move,address_id",0,Dest. Address,Adreça destinatari
+field,"stock.move,address_id",0,Dest. Address,Direcció de destí
 field,"stock.move,date",0,Date Created,Data creació
 field,"stock.move,date_planned",0,Scheduled date,Data planificada
 field,"stock.move,location_dest_id",0,Dest. Location,Ubicació destí
 field,"stock.move,location_id",0,Source Location,Ubicació origen
 field,"stock.move.lot,active",0,Active,Actiu
-field,"stock.move.lot,address_id",0,Destination Address,Adreça destinatari
+field,"stock.move.lot,address_id",0,Destination Address,Direcció de destí
 field,"stock.move.lot,date_moved",0,Actual date,Data actual
 field,"stock.move.lot,date_planned",0,Scheduled date,Data planificada
 field,"stock.move,lot_id",0,Consumer lot,Lot de consum
@@ -1849,7 +1849,7 @@ field,"stock.picking,lot_id",0,Consumer lot created,Lot de consum creat
 field,"stock.picking,move_lines",0,Move lines,Línies de moviments
 field,"stock.picking,move_lot_id",0,Moves created,Moviment creat
 field,"stock.picking,move_type",0,Delivery Method,Mètode enviament
-field,"stock.picking,name",0,Packing name,Ref. albarà
+field,"stock.picking,name",0,Packing name,Nom del paquet
 field,"stock.picking,note",0,Notes,Notes
 field,"stock.picking,origin",0,Origin,Origen
 field,"stock.picking,purchase_id",0,Purchase Order,Ordre de compra
@@ -1886,12 +1886,12 @@ field,"stock.warehouse.orderpoint,product_id",0,Product,Producte
 field,"stock.warehouse.orderpoint,product_max_qty",0,Max Quantity,Quantitat màx
 field,"stock.warehouse.orderpoint,product_min_qty",0,Min Quantity,Quantitat mín
 field,"stock.warehouse.orderpoint,product_uom",0,Product UOM,UdM del producte
-field,"stock.warehouse.orderpoint,qty_multiple",0,Qty Multiple,Qtat múltiple
+field,"stock.warehouse.orderpoint,qty_multiple",0,Qty Multiple,Ctdad múltiple
 field,"stock.warehouse.orderpoint,warehouse_id",0,Warehouse,Magatzem
-field,"stock.warehouse,partner_address_id",0,Owner Address,Adreça propietari
+field,"stock.warehouse,partner_address_id",0,Owner Address,Direcció propietari
 field,"subscription.document,active",0,Active,Actiu
 field,"subscription.document,field_ids",0,Fields,Camps
-field,"subscription.document.fields,document_id",0,Subscription Document,Document periòdic
+field,"subscription.document.fields,document_id",0,Subscription Document,Document de subscripció
 field,"subscription.document.fields,field",0,Field,Camp
 field,"subscription.document.fields,value",0,Default Value,Valor per defecte
 field,"subscription.document,model",0,Model,Model
@@ -1905,8 +1905,8 @@ field,"subscription.subscription,exec_init",0,Number of documents,Número de doc
 field,"subscription.subscription.history,date",0,Date,Data
 field,"subscription.subscription.history,document_id",0,Source Document,Document origen
 field,"subscription.subscription.history,subscription_id",0,Subscription,Subscripció
-field,"subscription.subscription,interval_number",0,Interval Qty,Període: Qtat de temps
-field,"subscription.subscription,interval_type",0,Interval Unit,Període: Unitat de temps
+field,"subscription.subscription,interval_number",0,Interval Qty,Ctdad interval
+field,"subscription.subscription,interval_type",0,Interval Unit,Unitat d'interval
 field,"subscription.subscription,name",0,Name,Nom
 field,"subscription.subscription,notes",0,Notes,Notes
 field,"subscription.subscription,partner_id",0,Partner,Empresa
@@ -1993,13 +1993,13 @@ help,"account.tax,sequence",0,"The sequence field is used to order the taxes lin
 help,"account.tax,tax_code_id",0,Use this code for the VAT declaration.,Utilitzi aquest codi per la declaració de l'IVA.
 help,"account.tax,tax_group",0,If a default tax if given in the partner it only override taxes from account (or product) of the same group.,Si un impost per defecte se li ha assignat a una empresa només anula els impostos del compte (o producte) del mateix grup.
 help,"account.tax,tax_sign",0,Usualy 1 or -1.,Normalment 1 o -1.
-help,"crm.case.section,reply_to",0,The email address wich is the 'Reply-To' of all email sent by Tiny ERP for cases in this section,L'adreça de correu electrònic que apareixerà en 'Respondre a' de tot el correu electrònic enviat per Tiny ERP pels casos d'aquesta secció
+help,"crm.case.section,reply_to",0,The email address wich is the 'Reply-To' of all email sent by Tiny ERP for cases in this section,La direcció de correu electrònic que apareixerà en 'Respondre a' de tot el correu electrònic enviat per Tiny ERP pels casos d'aquesta secció
 help,"crm.segmentation,categ_id",0,The partner category that will be added to partners that match the segmentation criterions after computation.,La categoria d'empresa que s'afegirà a les empreses que concordin amb els criteris de segmentació després del càlcul.
 help,"crm.segmentation,exclusif",0,"Check if the category is limited to partners that match the segmentation criterions. If checked, remove the category from partners that doesn't match segmentation criterions","Comprova si la categoria està limitada a empreses que concordin amb els criteris de segmentació. Si es marca, eliminarà de la categoria les empreses que no coincideixin amb els criteris de la segmentació"
 help,"crm.segmentation,name",0,The name of the segmentation.,El nom de la segmentació.
-help,"crm.segmentation,som_interval",0,"A period is the average number of days between two cycle of sale or purchase for this segmentation. It's mainly used to detect if a partner has not purchased or buy for a too long time, so we suppose that his state of mind has decreased because he probably bought goods to another supplier. Use this functionnality for recurring businesses.","Un període és el mitjana de dies entre dos cicles de vendes o compres per aquesta segmentació. S'utilitza principalment per detectar si una empresa no ha comprat durant molt temps, així suposarem que el seu grau de satisfacció ha disminuit perquè probablement compra a un altre proveïdor. Utilitzi aquesta funcionalitat per compra-vendes que es repiteixen en el temps."
-help,"crm.segmentation,som_interval_decrease",0,"If the partner has not purchased (or buied) during a period, decrease the state of mind by this factor. It's a multiplication","Si el soci no ha comprat (o adquirit) durant un període, reduir el grau de satisfacció per aquest factor. És una multiplicació"
-help,"crm.segmentation,som_interval_default",0,Default state of mind for period preceeding the 'Max Interval' computation. This is the starting state of mind by default if the partner has no event.,Grau de satisfacció per defecte per períodes procedents del càlcul de 'Interval Màx'. Aquest és el grau de satisfacció de partida per defecte si l'empresa no té cap esdeveniment.
+help,"crm.segmentation,som_interval",0,"A period is the average number of days between two cycle of sale or purchase for this segmentation. It's mainly used to detect if a partner has not purchased or buy for a too long time, so we suppose that his state of mind has decreased because he probably bought goods to another supplier. Use this functionnality for recurring businesses.","Un període és el mitjana de dies entre dos cicles de vendes o compres per aquesta segmentació. S'utilitza principalment per detectar si una empresa no ha comprat durant molt temps, així suposarem que el seu estat de satisfacció ha disminuit perquè probablement compra a un altre proveïdor. Utilitzi aquesta funcionalitat per compra-vendes que es repiteixen en el temps."
+help,"crm.segmentation,som_interval_decrease",0,"If the partner has not purchased (or buied) during a period, decrease the state of mind by this factor. It's a multiplication","Si el soci no ha comprat (o adquirit) durant un període, reduir l'estat de satisfacció per aquest factor. És una multiplicació"
+help,"crm.segmentation,som_interval_default",0,Default state of mind for period preceeding the 'Max Interval' computation. This is the starting state of mind by default if the partner has no event.,Estat de satisfacció per defecte per períodes procedents del càlcul de 'Interval Màx'. Aquest és l'estat de satisfacció de partida per defecte si l'empresa no té cap esdeveniment.
 help,"crm.segmentation,som_interval_max",0,"The computation is made on all events that occured during this interval, the past X periods.","El càlcul és realitzat en tots els esdeveniments que succeeixin durant aquest interval, els X períodes passats."
 help,"hr.contract.wage.type,factor_type",0,This field is used by the timesheet system to compute the price of an hour of work wased on the contract of the employee,Aquest camp és utilitzat pel sistema de fulls d'assistència per calcular el preu d'una hora de treball basat en el contracte de l'empleat
 help,"hr.contract.wage.type.period,factor_days",0,This field is used by the timesheet system to compute the price of an hour of work wased on the contract of the employee,Aquest camp és utilitzat pel sistema de fulls d'assistència per calcular el preu d'una hora de treball basat en el contracte de l'empleat
@@ -2020,7 +2020,7 @@ help,"ir.cron,priority",0,"0=Very Urgent
 help,"ir.module.repository,filter",0,"Regexp to search module on the repository webpage:
 - The first parenthesis must match the name of the module.
 - The second parenthesis must match all the version number.
-- The last parenthesis must match the extension of the module.","Regexp per cercar el mòdul en el repositori de la pàgina web:
+- The last parenthesis must match the extension of the module.","Expressió regular per cercar el mòdul en la biblioteca del web:
  - El primer paréntesi haurà de coincidir amb el nom del mòdul.
  - El segon paréntesi haurà de coincidir amb tot el número de versió.
  - L'últim paréntesi haurà de coincidir amb l'extensió del mòdul."
@@ -2096,7 +2096,7 @@ help,"sale.order,order_policy",0,"The Shipping Policy is used to synchronise inv
   - L'opció 'Enviar & Factura manual' crearà l'ordre d'empaquetament directament i esperarà que l'usuari hagi manualment clicac sobre el botó de 'Factura' per generar la factura esborrany.
   - L'opció 'Factura automàtica després del lliurament' generarà la factura esborrany després de que la llista d'empaquetament hagi estat acabada.
   - L'opció 'Factura a partir dels paquets' s'utilitza per crear una factura durant el procés d'empaquetament."
-help,"sale.order,partner_order_id",0,The name and address of the contact that requested the order or quotation.,El nom i adreça del contacte que demana l'ordre o pressupost.
+help,"sale.order,partner_order_id",0,The name and address of the contact that requested the order or quotation.,El nom i direcció del contacte que demana l'ordre o pressupost.
 help,"sale.order,picking_ids",0,This is the list of picking list that have been generated for this invoice,Aquesta és la llista de llistes d'empaquetament que han estat generades a partir d'aquesta factura
 help,"sale.order,state",0,Gives the state of the quotation or sale order. The exception state is automatically set when a cancel operation occurs in the invoice validation (Invoice Exception) or in the packing list process (Shipping Exception). The 'Waiting Schedule' state is set when the invoice is confirmed but waiting for the scheduler to be on the date 'Date Ordered'.,Proporciona l'estat del pressupost o ordre de venda. L'estat d'excepció s'estableix automàticament quan té lloc una cancel·lació en la validació de la factura (Excepció de factura) o en el procés de llistes d'empaquetaments (Excepció d'enviament). El estat 'Esperant planificació' s'estableix quan la factura està confirmada però esperant que el planificador la posi en la data 'Data Ordenada'.
 help,"stock.move,prodlot_id",0,Production lot is used to put a serial number on the production,Lot de producció s'utilitza per posar un número de sèrie a la producció
@@ -2121,7 +2121,7 @@ model,"account.journal,name",account.bank_journal,Bank Journal,Diari bancari
 model,"account.journal,name",account.expenses_journal,Expenses Journal,Diari de despeses
 model,"account.journal,name",account.sales_journal,Sales Journal,Diari de vendes
 model,"account.journal,name",account.stock_journal,Stock Journal,Diari d'estocs
-model,"account.payment.term,name",account.account_payment_term,Default Payment Term,Termini pagament per defecte
+model,"account.payment.term,name",account.account_payment_term,Default Payment Term,Termini de pagament per defecte
 model,"account.payment.term,note",account.account_payment_term,False,Fals
 model,"hr.holidays.status,name",hr.ca,Annual holidays,Vacances anuals
 model,"hr.holidays.status,name",hr.jf,Public holidays,Festes oficials
@@ -2199,8 +2199,8 @@ model,"ir.actions.act_window,name",account.action_move_line_search,Entry lines, 
 model,"ir.actions.act_window,name",account.action_move_line_select,,
 model,"ir.actions.act_window,name",account.action_move_line_tree1,,
 model,"ir.actions.act_window,name",account.action_payment_term_form,,
-model,"ir.actions.act_window,name",account.action_subscription_form_running,Running Subscriptions,Assent. periòdics en procés
-model,"ir.actions.act_window,name",account.action_subscription_form,Subscription Entries,Assentaments periòdics
+model,"ir.actions.act_window,name",account.action_subscription_form_running,Running Subscriptions,Subscripcions en progrés
+model,"ir.actions.act_window,name",account.action_subscription_form,Subscription Entries,Assentaments de subscripció
 model,"ir.actions.act_window,name",account.action_subscription_line_form_running,Next Entries,Propers assentaments
 model,"ir.actions.act_window,name",account.action_tax_code_line_open,,
 model,"ir.actions.act_window,name",account.action_tax_code_list,Tax codes,Codis impostos
@@ -2410,7 +2410,7 @@ model,"ir.actions.act_window,name",mrp.mrp_procurement_action4,Exceptions procur
 model,"ir.actions.act_window,name",mrp.mrp_procurement_action5,Exceptions procurements,Excepcions de proveïments
 model,"ir.actions.act_window,name",mrp.mrp_production_action,,
 model,"ir.actions.act_window,name",mrp.mrp_production_action2,Production orders to start,Ordres de producció a iniciar
-model,"ir.actions.act_window,name",mrp.mrp_production_action3,Production orders in progress,Ordres de producció en procés
+model,"ir.actions.act_window,name",mrp.mrp_production_action3,Production orders in progress,Ordres de producció en progrés
 model,"ir.actions.act_window,name",mrp.mrp_production_action4,Production orders waiting goods,Ordres de producció esperant material
 model,"ir.actions.act_window,name",mrp.mrp_property_action,,
 model,"ir.actions.act_window,name",mrp.mrp_property_group_action,,
@@ -2434,9 +2434,9 @@ model,"ir.actions.act_window,name",project.action_view_task3,Unbilled open tasks
 model,"ir.actions.act_window,name",project.action_view_task4,My Tasks,Les meves tasques
 model,"ir.actions.act_window,name",project.action_view_task5,My Open Tasks,Les meves tasques obertes
 model,"ir.actions.act_window,name",project.action_view_task5_pending,My Pending Tasks,Les meves tasques pendents
-model,"ir.actions.act_window,name",project.action_view_task5_prog,My Tasks in Progress,Les meves tasques en procés
+model,"ir.actions.act_window,name",project.action_view_task5_prog,My Tasks in Progress,Les meves tasques en progrés
 model,"ir.actions.act_window,name",project.action_view_task6,Open Tasks,Tasques obertes
-model,"ir.actions.act_window,name",project.action_view_task6_prog,Tasks in Progress,Tasques en procés
+model,"ir.actions.act_window,name",project.action_view_task6_prog,Tasks in Progress,Tasques en progrés
 model,"ir.actions.act_window,name",project.action_view_task7,Unassigned Tasks,Tasques no assignades
 model,"ir.actions.act_window,name",project.act_project_project_2_project_task_opened,Opened tasks,Tasques obertes
 model,"ir.actions.act_window,name",project.act_res_users_2_project_project,User's projects,Projectes d'usuari
@@ -2457,7 +2457,7 @@ model,"ir.actions.act_window,name",purchase.act_res_partner_2_purchase_order,Pur
 model,"ir.actions.act_window,name",purchase.purchase_form_action,,
 model,"ir.actions.act_window,name",purchase.purchase_form_action2,Request for quotation,Sol·licitud de pressupost
 model,"ir.actions.act_window,name",purchase.purchase_form_action3,Purchase order waiting Approval,Ordre de compra esperant aprovació
-model,"ir.actions.act_window,name",purchase.purchase_form_action4,Purchase Orders in Progress,Ordres de compra en procés
+model,"ir.actions.act_window,name",purchase.purchase_form_action4,Purchase Orders in Progress,Ordres de compra en progrés
 model,"ir.actions.act_window,name",report_account.action_account_receivable_graph,,
 model,"ir.actions.act_window,name",report_analytic.action_analytic_account_tree,Expired analytic accounts,Comptes analítics expirats
 model,"ir.actions.act_window,name",report_analytic_line.act_acc_analytic_acc_2_report_acc_analytic_line_to_invoice,Costs to invoice,Costos a facturar
@@ -2531,12 +2531,12 @@ model,"ir.actions.act_window,name",sale.action_order_line_tree3,Uninvoiced and D
 model,"ir.actions.act_window,name",sale.action_order_tree10,My Quotations,Els meus pressuposts
 model,"ir.actions.act_window,name",sale.action_order_tree2,Sales in shipping exception,Vendes en excepció d'enviament
 model,"ir.actions.act_window,name",sale.action_order_tree3,Sales order to be invoiced,Ordres de vendes pendents factura 
-model,"ir.actions.act_window,name",sale.action_order_tree4,Sales order in progress,Ordres de vendes en procés
+model,"ir.actions.act_window,name",sale.action_order_tree4,Sales order in progress,Ordres de vendes en progrés
 model,"ir.actions.act_window,name",sale.action_order_tree5,All quotations,Tots els pressuposts
 model,"ir.actions.act_window,name",sale.action_order_tree6,Sales order in invoice exception,Ordres de vendes en excepció de factura
 model,"ir.actions.act_window,name",sale.action_order_tree7,My sales in shipping exception,Les meves vendes en excepció d'enviament
 model,"ir.actions.act_window,name",sale.action_order_tree8,My sales order waiting Invoice,Les meves ordres de vendes esperarant facturació
-model,"ir.actions.act_window,name",sale.action_order_tree9,My sales order in progress,Les meves ordres de vendes en procés
+model,"ir.actions.act_window,name",sale.action_order_tree9,My sales order in progress,Les meves ordres de vendes en progrés
 model,"ir.actions.act_window,name",sale.action_order_tree_all,All Sales Order,Totes les ordres de vendes
 model,"ir.actions.act_window,name",sale.action_order_tree,My Sales Order,Les meves ordres de vendes
 model,"ir.actions.act_window,name",sale.action_shop_form,,
@@ -2551,9 +2551,9 @@ model,"ir.actions.act_window,name",scrum.action_sprint_backlog_open,View sprint 
 model,"ir.actions.act_window,name",scrum.action_sprint_form,,
 model,"ir.actions.act_window,name",scrum.action_sprint_open_tree2,Draft Sprints,Sprints esborranyes
 model,"ir.actions.act_window,name",scrum.action_sprint_open_tree3,Sprints Done,Sprints realitzats
-model,"ir.actions.act_window,name",scrum.action_sprint_open_tree4,My Sprints (Product Owner),Els meus sprints (responsable de producte)
+model,"ir.actions.act_window,name",scrum.action_sprint_open_tree4,My Sprints (Product Owner),Els meus sprints (propietari de producte)
 model,"ir.actions.act_window,name",scrum.action_sprint_open_tree5,My Sprints (Scrum Master),Els meus sprints (scrum master)
-model,"ir.actions.act_window,name",scrum.action_sprint_open_tree6,My opened sprints (Product Owner),Els meus sprints oberts (responsable de producte)
+model,"ir.actions.act_window,name",scrum.action_sprint_open_tree6,My opened sprints (Product Owner),Els meus sprints oberts (propietari de producte)
 model,"ir.actions.act_window,name",scrum.action_sprint_open_tree7,My opened sprints (Scrum Master),Els meus sprints oberts (scrum master)
 model,"ir.actions.act_window,name",scrum.action_sprint_open_tree,Opened Sprints,Sprints oberts
 model,"ir.actions.act_window,name",scrum.action_sprint_task_open,View sprint Tasks,Vista tasques del sprint
@@ -2670,7 +2670,7 @@ model,"ir.actions.wizard,name",account.wizard_budget_report,Budget,Pressupost
 model,"ir.actions.wizard,name",account.wizard_budget_spread,Spread amount,Import de marge
 model,"ir.actions.wizard,name",account.wizard_fiscalyear_close,Close a fiscal year,Tanca un exercici fiscal
 model,"ir.actions.wizard,name",account.wizard_general_ledger_report,General ledger,Llibre de comptabilitat general
-model,"ir.actions.wizard,name",account.wizard_generate_subscription,Create subscription entries,Crea assentaments periòdics
+model,"ir.actions.wizard,name",account.wizard_generate_subscription,Create subscription entries,Crea assentaments de subscripció
 model,"ir.actions.wizard,name",account.wizard_invoice_pay,Pay invoice,Paga factura
 model,"ir.actions.wizard,name",account.wizard_invoice_refund,Refund invoice,Reintegra factura
 model,"ir.actions.wizard,name",account.wizard_invoice_state_cancel,Cancel selected invoices,Cancel·la factures seleccionades
@@ -2855,7 +2855,7 @@ model,"ir.model,name",0,Lot,Lot
 model,"ir.model,name",0,Module Category,Categoria del mòdul
 model,"ir.model,name",0,Module dependency,Dependència del mòdul
 model,"ir.model,name",0,Module,Mòdul
-model,"ir.model,name",0,Module Repository,Repositori de mòduls
+model,"ir.model,name",0,Module Repository,Biblioteca del mòdul
 model,"ir.model,name",0,Move Lot,Moure lot
 model,"ir.model,name",0,Orderpoint minimum rule,Regla mínima generació ordre
 model,"ir.model,name",0,Packing list,Llista d'empaquetament
@@ -2934,10 +2934,10 @@ model,"ir.model,name",0,Stock Move,Moviment estoc
 model,"ir.model,name",0,Stock report by production lots,Informe d'estoc per lots de producció
 model,"ir.model,name",0,Stock Tracking Lots,Estoc dels lots de seguiment
 model,"ir.model,name",0,Stock value variation,Variació del valor d'estoc
-model,"ir.model,name",0,Subscription document,Document periòdic
-model,"ir.model,name",0,Subscription document fields,Camps del document periòdic
-model,"ir.model,name",0,Subscription history,Historial de documents periòdics
-model,"ir.model,name",0,Subscription,Documents periòdics
+model,"ir.model,name",0,Subscription document,Document de subscripció
+model,"ir.model,name",0,Subscription document fields,Camps del document de subscripció
+model,"ir.model,name",0,Subscription history,Historial de subscripció
+model,"ir.model,name",0,Subscription,Subscripció
 model,"ir.model,name",0,Tasks by project,Tasques per projecte
 model,"ir.model,name",0,Tasks by user and project,Tasques per usuari i projecte
 model,"ir.model,name",0,Task,Tasca
@@ -3034,7 +3034,7 @@ model,"ir.ui.menu,name",0,Scrum,Scrum
 model,"ir.ui.menu,name",0,Search Entries,Cerca assentaments
 model,"ir.ui.menu,name",0,Segmentations,Segmentacions
 model,"ir.ui.menu,name",0,Sequences,Seqüències
-model,"ir.ui.menu,name",0,Subscriptions,Documents periòdics
+model,"ir.ui.menu,name",0,Subscriptions,Subscripcions
 model,"ir.ui.menu,name",0,Taxes,Impostos
 model,"ir.ui.menu,name",0,This Month,Aquest mes
 model,"ir.ui.menu,name",0,Timesheet,Full d'assistència
@@ -3099,10 +3099,10 @@ model,"ir.ui.menu,name",account.menu_action_model_form,Models Definition,Definic
 model,"ir.ui.menu,name",account.menu_action_move_journal_line_form,Entries by Journal,Assentaments per diari
 model,"ir.ui.menu,name",account.menu_action_move_journal_period_line_form,Open Journals,Diaris oberts
 model,"ir.ui.menu,name",account.menu_action_move_line_form,Entries,Assentaments
-model,"ir.ui.menu,name",account.menu_action_move_line_search,Entry lines,Línies d'assentaments (moviments)
+model,"ir.ui.menu,name",account.menu_action_move_line_search,Entry lines,Línies d'assentaments (partides)
 model,"ir.ui.menu,name",account.menu_action_payment_term_form,Payment Terms,Terminis de pagament
-model,"ir.ui.menu,name",account.menu_action_subscription_form_running,Running Subscriptions,Assentaments periòdics en procés
-model,"ir.ui.menu,name",account.menu_action_subscription_form,Subscription Entries,Assentaments periòdics
+model,"ir.ui.menu,name",account.menu_action_subscription_form_running,Running Subscriptions,Subscripcions en progrés
+model,"ir.ui.menu,name",account.menu_action_subscription_form,Subscription Entries,Assentaments de subscripció
 model,"ir.ui.menu,name",account.menu_action_subscription_line_form_running,Next Entries,Propers assentaments
 model,"ir.ui.menu,name",account.menu_action_tax_code_list,Tax codes,Codis impostos
 model,"ir.ui.menu,name",account.menu_action_tax_code_tree,Tax Report,Informe d'impostos
@@ -3114,7 +3114,7 @@ model,"ir.ui.menu,name",account.menu_bank_statement_draft_tree,Draft Statements,
 model,"ir.ui.menu,name",account.menu_bank_statement_tree,Statements,Extractes bancaris
 model,"ir.ui.menu,name",account.menu_budget_post_form,General Budgets,Pressuposts generals
 model,"ir.ui.menu,name",account.menu_fiscal_def,Set Fiscal Year,Fixa exercici fiscal
-model,"ir.ui.menu,name",account.menu_generate_subscription,Create Subscription Entries,Crea assentaments periòdics
+model,"ir.ui.menu,name",account.menu_generate_subscription,Create Subscription Entries,Crea assentaments de subscripció
 model,"ir.ui.menu,name",account.menu_install_module,Set Chart of Accounts and Tax Mode,Fixa pla comptable i mode d'impostos
 model,"ir.ui.menu,name",account.menu_invoice_draft,Draft Customer Invoices,Factures esborrany de client
 model,"ir.ui.menu,name",account.menu_journal_def,Add Account Journal,Afegeix diari de comptes
@@ -3180,7 +3180,7 @@ model,"ir.ui.menu,name",base.menu_ir_sequence_actions,Actions,Accions
 model,"ir.ui.menu,name",base.menu_ir_sequence_form,Sequences,Seqüències
 model,"ir.ui.menu,name",base.menu_ir_sequence_type,Sequence Types,Tipus de seqüència
 model,"ir.ui.menu,name",base.menu_management,Modules Management,Administració de mòduls
-model,"ir.ui.menu,name",base.menu_module_repository_tree,Repositories,Reposadors
+model,"ir.ui.menu,name",base.menu_module_repository_tree,Repositories,Biblioteques de mòduls
 model,"ir.ui.menu,name",base.menu_module_tree_install,Installed Modules,Mòduls instal·lats
 model,"ir.ui.menu,name",base.menu_module_tree,Modules,Mòduls
 model,"ir.ui.menu,name",base.menu_module_tree_uninstall,Uninstalled Modules,Mòduls no instal·lats
@@ -3308,7 +3308,7 @@ model,"ir.ui.menu,name",mrp.menu_mrp_procurement_action3,Unscheduled Procurement
 model,"ir.ui.menu,name",mrp.menu_mrp_procurement_action4,Exceptions to Fix,Excepcions a corregir
 model,"ir.ui.menu,name",mrp.menu_mrp_procurement_action5,All Exceptions,Totes les excepcions
 model,"ir.ui.menu,name",mrp.menu_mrp_procurement_action,Procurement Orders,Ordres de proveïment
-model,"ir.ui.menu,name",mrp.menu_mrp_production_action3,Production Orders in Progress,Ordres de producció en procés
+model,"ir.ui.menu,name",mrp.menu_mrp_production_action3,Production Orders in Progress,Ordres de producció en progrés
 model,"ir.ui.menu,name",mrp.menu_mrp_production_action,Production Orders,Ordres de producció
 model,"ir.ui.menu,name",mrp.menu_mrp_property_action,Properties,Propietats
 model,"ir.ui.menu,name",mrp.menu_mrp_property_group_action,Property Categories,Categories de propietats
@@ -3337,7 +3337,7 @@ model,"ir.ui.menu,name",project.menu_action_view_task2,Unbilled Closed Tasks,Tas
 model,"ir.ui.menu,name",project.menu_action_view_task3,Unbilled Open Tasks,Tasques obertes no facturades
 model,"ir.ui.menu,name",project.menu_action_view_task4,My Tasks,Les meves tasques
 model,"ir.ui.menu,name",project.menu_action_view_task6,Open Tasks,Tasques obertes
-model,"ir.ui.menu,name",project.menu_action_view_task6_prog,Tasks in Progress,Tasques en procés
+model,"ir.ui.menu,name",project.menu_action_view_task6_prog,Tasks in Progress,Tasques en progrés
 model,"ir.ui.menu,name",project.menu_action_view_task7,Unassigned Tasks,Tasques no assignades
 model,"ir.ui.menu,name",project.menu_action_view_task,All Tasks,Totes les tasques
 model,"ir.ui.menu,name",project.menu_all_project,All Projects,Tots els projectes
@@ -3352,10 +3352,10 @@ model,"ir.ui.menu,name",project.menu_open_view_project_open,Open Projects,Projec
 model,"ir.ui.menu,name",project.menu_open_view_project,Projects,Projectes
 model,"ir.ui.menu,name",project.menu_tasks_yours,My Open Tasks,Les meves tasques obertes
 model,"ir.ui.menu,name",project.menu_tasks_yours_pending,My Pending Tasks,Les meves tasques pendents
-model,"ir.ui.menu,name",project.menu_tasks_yours_prog,My Tasks in Progress,Les meves tasques en procés
+model,"ir.ui.menu,name",project.menu_tasks_yours_prog,My Tasks in Progress,Les meves tasques en progrés
 model,"ir.ui.menu,name",project.menu_task_types,Task Types,Tipus de tasca
 model,"ir.ui.menu,name",purchase.menu_purchase_form_action3,Purchase Orders Waiting Approval,Ordres de compra esperant aprovació
-model,"ir.ui.menu,name",purchase.menu_purchase_form_action4,Purchase Orders in Progress,Ordres de compra en procés
+model,"ir.ui.menu,name",purchase.menu_purchase_form_action4,Purchase Orders in Progress,Ordres de compra en progrés
 model,"ir.ui.menu,name",purchase.menu_purchase_form_action,Purchase Order,Ordre de compra
 model,"ir.ui.menu,name",purchase.menu_purchase_order_draft,Requests For Quotation,Sol·licituds de pressupost
 model,"ir.ui.menu,name",purchase.menu_purchase_root,Purchase Management,Gestió de compres
@@ -3418,12 +3418,12 @@ model,"ir.ui.menu,name",sale.menu_action_order_line_tree3,Uninvoiced & Delivered
 model,"ir.ui.menu,name",sale.menu_action_order_tree10,My Quotations,Els meus pressuposts
 model,"ir.ui.menu,name",sale.menu_action_order_tree2,Sales in shipping exception,Vendes en excepció d'enviament
 model,"ir.ui.menu,name",sale.menu_action_order_tree3,Sales order to be invoiced,Ordres de venda pendents factura
-model,"ir.ui.menu,name",sale.menu_action_order_tree4,Sales in Progress,Vendes en procés
+model,"ir.ui.menu,name",sale.menu_action_order_tree4,Sales in Progress,Vendes en progrés
 model,"ir.ui.menu,name",sale.menu_action_order_tree5,All Quotations,Tots els pressupostos
 model,"ir.ui.menu,name",sale.menu_action_order_tree6,Sales order in invoice exception,Ordres de venda en excepció de factura
 model,"ir.ui.menu,name",sale.menu_action_order_tree7,My Sales in Shipping Exception,Les meves vendes en excepció d'enviament
 model,"ir.ui.menu,name",sale.menu_action_order_tree8,My Sales to be Invoiced,Les meves vendes pendents factura
-model,"ir.ui.menu,name",sale.menu_action_order_tree9,My Sales in Progress,Les meves vendes en procés
+model,"ir.ui.menu,name",sale.menu_action_order_tree9,My Sales in Progress,Les meves vendes en progrés
 model,"ir.ui.menu,name",sale.menu_action_order_tree_all,All Sales Order,Totes les ordres de venda
 model,"ir.ui.menu,name",sale.menu_action_order_tree,My Sales Order,Les meves ordres de venda
 model,"ir.ui.menu,name",sale.menu_action_shop_form,Shop,Tenda
@@ -3438,7 +3438,7 @@ model,"ir.ui.menu,name",scrum.menu_action_scrum_project_tree,Projects,Projectes
 model,"ir.ui.menu,name",scrum.menu_action_sprint_form,Sprint,Sprint
 model,"ir.ui.menu,name",scrum.menu_action_sprint_open_tree2,Draft Sprints,Sprints esborranys
 model,"ir.ui.menu,name",scrum.menu_action_sprint_open_tree3,Sprints Done,Sprints realitzats
-model,"ir.ui.menu,name",scrum.menu_action_sprint_open_tree4,My Sprints (Product Owner),Els meus sprints (responsable de producte)
+model,"ir.ui.menu,name",scrum.menu_action_sprint_open_tree4,My Sprints (Product Owner),Els meus sprints (propietari de producte)
 model,"ir.ui.menu,name",scrum.menu_action_sprint_open_tree5,My Sprints (Scrum Master),Els meus sprints (scrum master)
 model,"ir.ui.menu,name",scrum.menu_action_sprint_open_tree6,Opened,Obert
 model,"ir.ui.menu,name",scrum.menu_action_sprint_open_tree7,Opened,Obert
@@ -3473,7 +3473,7 @@ model,"ir.ui.menu,name",stock.menu_move_draft,Delivery Orders to Process,Ordres 
 model,"ir.ui.menu,name",stock.menu_picking_waiting,Assigned Packings,Paquets assignats
 model,"ir.ui.menu,name",stock.menu_stock_root,Inventory Control,Control inventari
 model,"ir.ui.menu,name",subscription.menu_action_document_form,Document Types,Tipus de document
-model,"ir.ui.menu,name",subscription.menu_action_subscription_form,All Subscriptions,Tots els documents periòdics
+model,"ir.ui.menu,name",subscription.menu_action_subscription_form,All Subscriptions,Totes les subscripcions
 model,"ir.ui.menu,name",subscription.menu_subscription_config,Configuration,Configuració
 model,"ir.ui.menu,name",subscription.menu_tools,Tools,Eines
 model,"product.price.type,name",product.list_price,List Price,Preu llista
@@ -3895,7 +3895,7 @@ rml,hr.timesheet.invoice.account.analytic.account.cost_ledger,0,Total (,Total (
 rml,hr.timesheet.invoice.account.analytic.account.cost_ledger,0,Total,Total
 rml,ir.module.reference,0,",",","
 rml,ir.module.reference,0,Directory:,Directori:
-rml,ir.module.reference,0,Introspection report on objects,Informe introspectiu d'objectes
+rml,ir.module.reference,0,Introspection report on objects,Informe detallat d'objectes
 rml,ir.module.reference,0,Module:,Mòdul:
 rml,ir.module.reference,0,Name:,Nom:
 rml,ir.module.reference,0,Object:,Objecte:
@@ -3916,9 +3916,9 @@ rml,purchase.order,0,N° :,N° :
 rml,purchase.order,0,Order,Comanda
 rml,purchase.order,0,Our order reference :,Nostra referència :
 rml,purchase.order,0,Product Description,Descripció de producte
-rml,purchase.order,0,Qty,Qtat
+rml,purchase.order,0,Qty,Ctdad
 rml,purchase.order,0,Request for Quotation,Comanda de compra
-rml,purchase.order,0,Shipping address :,Adreça d'enviament :
+rml,purchase.order,0,Shipping address :,Direcció d'enviament :
 rml,purchase.order,0,Taxes :,Impostos:
 rml,purchase.order,0,Tél. :,Tel.:
 rml,purchase.order,0,TOTAL :,TOTAL:
@@ -3933,7 +3933,7 @@ rml,purchase.quotation,0,Other reference :,Nostra referència :
 rml,purchase.quotation,0,Please find hereby a request for quotation.,"Si us plau, agrairíem que ens facilitessin un pressupost dels següents productes i quantitats:"
 rml,purchase.quotation,0,Printed:,Data impressió:
 rml,purchase.quotation,0,Product,Producte
-rml,purchase.quotation,0,Qty,Qtat
+rml,purchase.quotation,0,Qty,Ctdad
 rml,purchase.quotation,0,Request for Quotation,Sol·licitud de pressupost
 rml,purchase.quotation,0,Tel. :,Tel.:
 rml,purchase.quotation,0,"Thanks,","Atentament,"
@@ -3957,14 +3957,14 @@ rml,sale.order,0,Date ordered :,Data comanda :
 rml,sale.order,0,Description,Descripció
 rml,sale.order,0,Disc. (%),Desc. %
 rml,sale.order,0,Fax :,Fax :
-rml,sale.order,0,Invoice address :,Adreça de factura :
+rml,sale.order,0,Invoice address :,Direcció de factura :
 rml,sale.order,0,Net Total :,Total net :
 rml,sale.order,0,Order N° :,N° comanda :
 rml,sale.order,0,Our salesman :,Comercial :
 rml,sale.order,0,Price,Preu
 rml,sale.order,0,Quantity,Quantitat
 rml,sale.order,0,Quotation N° :,Comanda N° :
-rml,sale.order,0,Shipping address :,Adreça d'enviament :
+rml,sale.order,0,Shipping address :,Direcció d'enviament :
 rml,sale.order,0,Taxes,Impostos
 rml,sale.order,0,Taxes :,Impostos :
 rml,sale.order,0,Tel. :,Tel. :
@@ -4093,7 +4093,7 @@ selection,"account.subscription,period_type",0,month,mes
 selection,"account.subscription,period_type",0,year,any
 selection,"account.subscription,state",0,Done,Realitzat
 selection,"account.subscription,state",0,Draft,Esborrany
-selection,"account.subscription,state",0,Running,En procés
+selection,"account.subscription,state",0,Running,En progrés
 selection,"account.tax,applicable_type",0,Python Code,Codi de Python
 selection,"account.tax,applicable_type",0,True,Cert
 selection,"account.tax,tax_group",0,Other,Altre
@@ -4160,7 +4160,7 @@ selection,"crm.case,state",0,Open,Obert
 selection,"crm.case,state",0,Pending,Pendent
 selection,"crm.segmentation.line,expr_name",0,Purchase Amount,Import de compra
 selection,"crm.segmentation.line,expr_name",0,Sale Amount,Import de venda
-selection,"crm.segmentation.line,expr_name",0,State of Mind,Grau de satisfacció
+selection,"crm.segmentation.line,expr_name",0,State of Mind,Estat de satisfacció
 selection,"crm.segmentation.line,expr_operator",0,<,<
 selection,"crm.segmentation.line,expr_operator",0,=,=
 selection,"crm.segmentation.line,expr_operator",0,>,>
@@ -4421,7 +4421,7 @@ selection,"mrp.procurement,state",0,Confirmed,Confirmat
 selection,"mrp.procurement,state",0,Done,Realitzat
 selection,"mrp.procurement,state",0,Draft,Esborrany
 selection,"mrp.procurement,state",0,Exception,Excepció
-selection,"mrp.procurement,state",0,Running,En procés
+selection,"mrp.procurement,state",0,Running,En progrés
 selection,"mrp.production,priority",0,Normal,Normal
 selection,"mrp.production,priority",0,Not urgent,No urgent
 selection,"mrp.production,priority",0,Urgent,Urgent
@@ -4508,33 +4508,33 @@ selection,"report.intrastat,type",0,Export,Exportació
 selection,"report.intrastat,type",0,Import,Importació
 selection,"report.purchase.order.category,state",0,Cancel,Cancel·lat
 selection,"report.purchase.order.category,state",0,Done,Realitzat
-selection,"report.purchase.order.category,state",0,In progress,En procés
+selection,"report.purchase.order.category,state",0,In progress,En progrés
 selection,"report.purchase.order.category,state",0,Invoice Exception,Excepció de factura
-selection,"report.purchase.order.category,state",0,Manual in progress,Manual en procés
+selection,"report.purchase.order.category,state",0,Manual in progress,Manual en progrés
 selection,"report.purchase.order.category,state",0,Quotation,Pressupost
 selection,"report.purchase.order.category,state",0,Shipping Exception,Excepció d'enviament
 selection,"report.purchase.order.category,state",0,Waiting Schedule,Esperant data planificada
 selection,"report.purchase.order.product,state",0,Cancel,Cancel·lat
 selection,"report.purchase.order.product,state",0,Done,Realitzat
-selection,"report.purchase.order.product,state",0,In progress,En procés
+selection,"report.purchase.order.product,state",0,In progress,En progrés
 selection,"report.purchase.order.product,state",0,Invoice Exception,Excepció de factura
-selection,"report.purchase.order.product,state",0,Manual in progress,Manual en procés
+selection,"report.purchase.order.product,state",0,Manual in progress,Manual en progrés
 selection,"report.purchase.order.product,state",0,Quotation,Pressupost
 selection,"report.purchase.order.product,state",0,Shipping Exception,Excepció d'enviament
 selection,"report.purchase.order.product,state",0,Waiting Schedule,Esperant data planificada
 selection,"report.sale.order.category,state",0,Cancel,Cancel·lat
 selection,"report.sale.order.category,state",0,Done,Realitzat
-selection,"report.sale.order.category,state",0,In progress,En procés
+selection,"report.sale.order.category,state",0,In progress,En progrés
 selection,"report.sale.order.category,state",0,Invoice Exception,Excepció de factura
-selection,"report.sale.order.category,state",0,Manual in progress,Manual en procés
+selection,"report.sale.order.category,state",0,Manual in progress,Manual en progrés
 selection,"report.sale.order.category,state",0,Quotation,Pressupost
 selection,"report.sale.order.category,state",0,Shipping Exception,Excepció d'enviament
 selection,"report.sale.order.category,state",0,Waiting Schedule,Esperant data planificada
 selection,"report.sale.order.product,state",0,Cancel,Cancel·lat
 selection,"report.sale.order.product,state",0,Done,Realitzat
-selection,"report.sale.order.product,state",0,In progress,En procés
+selection,"report.sale.order.product,state",0,In progress,En progrés
 selection,"report.sale.order.product,state",0,Invoice Exception,Excepció de factura
-selection,"report.sale.order.product,state",0,Manual in progress,Manual en procés
+selection,"report.sale.order.product,state",0,Manual in progress,Manual en progrés
 selection,"report.sale.order.product,state",0,Quotation,Pressupost
 selection,"report.sale.order.product,state",0,Shipping Exception,Excepció d'enviament
 selection,"report.sale.order.product,state",0,Waiting Schedule,Esperant data planificada
@@ -4585,9 +4585,9 @@ selection,"sale.order,picking_policy",0,All at once,Tot junt
 selection,"sale.order,picking_policy",0,Direct Delivery,Enviament directe
 selection,"sale.order,state",0,Cancel,Cancel·lat
 selection,"sale.order,state",0,Done,Realitzat
-selection,"sale.order,state",0,In progress,En procés
+selection,"sale.order,state",0,In progress,En progrés
 selection,"sale.order,state",0,Invoice Exception,Excepció de factura
-selection,"sale.order,state",0,Manual in progress,Manual en procés
+selection,"sale.order,state",0,Manual in progress,Manual en progrés
 selection,"sale.order,state",0,Quotation,Pressupost
 selection,"sale.order,state",0,Shipping Exception,Excepció d'enviament
 selection,"sale.order,state",0,Waiting Schedule,Esperant data planificada
@@ -4666,7 +4666,7 @@ selection,"subscription.subscription,interval_type",0,Months,Mesos
 selection,"subscription.subscription,interval_type",0,Weeks,Setmanes
 selection,"subscription.subscription,state",0,Done,Realitzat
 selection,"subscription.subscription,state",0,Draft,Esborrany
-selection,"subscription.subscription,state",0,Running,En procés
+selection,"subscription.subscription,state",0,Running,En progrés
 selection,"workflow.activity,join_mode",0,And,And
 selection,"workflow.activity,join_mode",0,Xor,Xor
 selection,"workflow.activity,kind",0,Dummy,Fictici
@@ -4754,7 +4754,7 @@ view,account.invoice,0,Set to Draft,Canvia a esborrany
 view,account.invoice,0,Supplier invoice,Factura de proveïdor
 view,account.invoice,0,Taxes,Impostos
 view,account.invoice,0,Total amount,Import total
-view,account.invoice,0,Untaxed amount,Base imposable
+view,account.invoice,0,Untaxed amount,Import sense impostos
 view,account.invoice,0,Validate,Validar
 view,account.invoice.line,0,Invoice Line,Línia de la factura
 view,account.invoice.line,0,Line,Línia
@@ -4826,13 +4826,13 @@ view,account.report.report,0,Return value for status,Valor retorn de l'estat
 view,account.report.report,0,Very bad,Molt dolent
 view,account.report.report,0,Very Good,Molt Bo
 view,account.subscription,0,Compute,Calcula
-view,account.subscription,0,Entry Subscription,Assentament periòdic
+view,account.subscription,0,Entry Subscription,Assentament de subscripció
 view,account.subscription,0,Remove Lines,Elimina línies
 view,account.subscription,0,Set to Draft,Canvia a esborrany
 view,account.subscription,0,State,Estat
-view,account.subscription,0,Subscription Lines,Línies dels assentaments periòdics
-view,account.subscription,0,Subscription Periods,Repetició dels assentaments periòdics
-view,account.subscription.line,0,Subscription lines,Línies dels assentaments periòdics
+view,account.subscription,0,Subscription Lines,Línies de subscripció
+view,account.subscription,0,Subscription Periods,Períodes de subscripció
+view,account.subscription.line,0,Subscription lines,Línies de subscripció
 view,account.tax,0,Account Tax,Compte d'impostos
 view,account.tax,0,Applicable Code (if type=code),Codi aplicable (si tipus=codi)
 view,account.tax,0,Compute Code for Taxes included prices,Codi per calcular preus amb impostos inclosos
@@ -4936,7 +4936,7 @@ view,crm.segmentation,0,Partner Segmentations,Segmentacions d'empresa
 view,crm.segmentation,0,Segmentation Description,Descripció de segmentació
 view,crm.segmentation,0,Segmentation Parameters,Paràmetres de segmentació
 view,crm.segmentation,0,Segmentation Test,Prova de segmentació
-view,crm.segmentation,0,State of Mind Computation,Càlcul grau de satisfacció
+view,crm.segmentation,0,State of Mind Computation,Càlcul estat de satisfacció
 view,crm.segmentation,0,Stop Process,Pel procés
 view,crm.segmentation.line,0,Partner Segmentation Lines,Línies de segmentació d'empresa
 view,delivery.carrier,0,Carrier,Transportista
@@ -5057,8 +5057,8 @@ view,ir.module.module,0,Module,Mòdul
 view,ir.module.module,0,Modules,Mòduls
 view,ir.module.module,0,Uninstall (beta),Desinstal·la (beta)
 view,ir.module.module,0,Upgrade,Actualitzar
-view,ir.module.repository,0,Repository list,Llista de reposadors
-view,ir.module.repository,0,Repository,Reposador
+view,ir.module.repository,0,Repository list,Biblioteques de mòduls
+view,ir.module.repository,0,Repository,Biblioteca
 view,ir.property,0,Properties,Propietats
 view,ir.property,0,Property,Propietat
 view,ir.report.custom,0,Custom Report,Informe a mida
@@ -5245,7 +5245,7 @@ view,purchase.order,0,Purchase Order,Ordre de compra
 view,purchase.order,0,Purchase Shippings,Enviaments de la compra
 view,purchase.order,0,Shipping Done,Enviament realitzat
 view,purchase.order,0,Total amount,Import total
-view,purchase.order,0,Untaxed amount,Base imposable
+view,purchase.order,0,Untaxed amount,Import sense impostos
 view,purchase.order.line,0,Notes,Notes
 view,purchase.order.line,0,Order Line,Línia de l'ordre
 view,purchase.order.line,0,Purchase Order Line,Línia de l'ordre de compra
@@ -5316,7 +5316,7 @@ view,res.partner,0,Pricelists Properties,Propietats llistes de preus
 view,res.partner.address,0,Contacts,Contactes
 view,res.partner.address,0,Partner contacts,Contactes d'empresa
 view,res.partner.bank,0,Bank account,compte bancari
-view,res.partner.bank,0,Bank account owner,Titular del compte bancari
+view,res.partner.bank,0,Bank account owner,Propietari del compte bancari
 view,res.partner.bank,0,Bank accounts,Comptes bancaris
 view,res.partner.bank.type,0,Bank Account Type,Tipus de compte bancari
 view,res.partner.canal,0,Channel,Canal
@@ -5330,7 +5330,7 @@ view,res.partner.events,0,General Description,Descripció general
 view,res.partner.events,0,Partner Events,Esdeveniments d'empresa
 view,res.partner.event.type,0,Event Type,Tipus d'esdeveniment
 view,res.partner.function,0,Partner Functions,Funcions d'empresa
-view,res.partner.som,0,Partner State of Mind,Grau de satisfacció d'empresa
+view,res.partner.som,0,Partner State of Mind,Estat de satisfacció d'empresa
 view,res.partner.title,0,Partners Titles,Títols d'empreses
 view,res.payterm,0,Payment term,Termini de pagament
 view,res.request,0,Description,Descripció
@@ -5366,7 +5366,7 @@ view,sale.order,0,Order Line,Línia de l'ordre
 view,sale.order,0,Other data,Altres dades
 view,sale.order,0,Procurement Corrected,Proveïment corregit
 view,sale.order,0,Properties,Propietats
-view,sale.order,0,Qty,Qtat
+view,sale.order,0,Qty,Ctdad
 view,sale.order,0,Recreate Invoice,Recrea factura
 view,sale.order,0,Recreate Procurement,Recrea proveïment
 view,sale.order,0,Related invoices,Factures relacionades
@@ -5379,7 +5379,7 @@ view,sale.order,0,Sales orders,Ordres de vendes
 view,sale.order,0,Set to Draft,Canvia a esborrany
 view,sale.order,0,States,Estats
 view,sale.order,0,Total amount,Import total
-view,sale.order,0,Untaxed amount,Base imposable
+view,sale.order,0,Untaxed amount,Import sense impostos
 view,sale.order,0,UoM,UdM
 view,sale.order.line,0,Automatic Declaration,Declaració automàtica
 view,sale.order.line,0,Done,Realitzat
@@ -5388,7 +5388,7 @@ view,sale.order.line,0,Manual Designation,Designació manual
 view,sale.order.line,0,Notes,Notes
 view,sale.order.line,0,Order Lines,Línies d'ordre
 view,sale.order.line,0,Properties,Propietats
-view,sale.order.line,0,Qty,Qtat
+view,sale.order.line,0,Qty,Ctdad
 view,sale.order.line,0,Sales order lines,Línies d'ordre de vendes
 view,sale.order.line,0,States,Estats
 view,sale.order.line,0,UoM,UdM
@@ -5471,15 +5471,15 @@ view,stock.tracking,0,Tracking Number,Número seguiment
 view,stock.tracking,0,Tracking/Serial,Seguiment/Sèrie
 view,stock.warehouse,0,Warehouse,Magatzem
 view,stock.warehouse.orderpoint,0,Minimum Stock Rules,Regles d'estoc mínim
-view,subscription.document,0,Subscription Document,Document periòdic
-view,subscription.document.fields,0,Subscription Document Fields,Camps del document periòdic
+view,subscription.document,0,Subscription Document,Document de subscripció
+view,subscription.document.fields,0,Subscription Document Fields,Camps document de subscripció
 view,subscription.subscription,0,Documents created,Documents creats
 view,subscription.subscription,0,Process,Procés
 view,subscription.subscription,0,Set to Draft,Canvia a esborrany
 view,subscription.subscription,0,Stop,Parar
-view,subscription.subscription,0,Subscriptions,Documents periòdics
-view,subscription.subscription,0,Subsription Data,Dades del document periòdic
-view,subscription.subscription.history,0,Subscription History,Historial de documents periòdics
+view,subscription.subscription,0,Subscriptions,Subscripcions
+view,subscription.subscription,0,Subsription Data,Dades de subscripció
+view,subscription.subscription.history,0,Subscription History,Historial de subscripció
 view,workflow,0,Activities,Activitats
 view,workflow,0,Workflow,Fluxes de treball
 view,workflow.activity,0,Activity,Activitat
@@ -5952,7 +5952,7 @@ wizard_field,"module.lang.import,init,code",0,Code (eg:en__US),Codi (ex:es__ES)
 wizard_field,"module.lang.import,init,data",0,File,Fitxer
 wizard_field,"module.lang.import,init,name",0,Language name,Nom d'idioma
 wizard_field,"module.lang.install,init,lang",0,Language,Idioma
-wizard_field,"module.module.update,init,repositories",0,Repositories,Reposadors
+wizard_field,"module.module.update,init,repositories",0,Repositories,Biblioteques
 wizard_field,"module.module.update,update,add",0,Number of modules added,Número de mòduls afegits
 wizard_field,"module.module.update,update,update",0,Number of modules updated,Número de mòduls actualitzats
 wizard_field,"module.upgrade,init,module_download",0,Modules to download,Mòduls a descarregar
@@ -6061,7 +6061,7 @@ wizard_view,"account.reconcile.unreconcile,init",0,"If you unreconciliate transa
 wizard_view,"account.reconcile.unreconcile,init",0,Unreconciliation,No conciliació
 wizard_view,"account.reconcile.unreconcile,init",0,Unreconciliation transactions,Transaccions de no conciliació
 wizard_view,"account.subscription.generate,init",0,Generate entries before:,Genera assentaments abans:
-wizard_view,"account.subscription.generate,init",0,Subscription Compute,Calcula assentaments periòdics
+wizard_view,"account.subscription.generate,init",0,Subscription Compute,Calcula subscripció
 wizard_view,"account.third_party_ledger.report,init",0,Select period,Selecciona període
 wizard_view,"account.vat.declaration,init",0,Select period,Selecciona període
 wizard_view,"account.wizard.account.duplicate,init",0,Duplicate account charts,Duplica resums de compte
@@ -6176,7 +6176,7 @@ wizard_view,"module.lang.install,start",0,The selected language has been success
 wizard_view,"module.module.scan,init",0,Scan for new modules,Cerca nous mòduls
 wizard_view,"module.module.scan,init",0,This function will check if you installed new modules in the 'addons' path of your server installation.,Aquesta funció comprovarà si ha instal·lat nous mòduls en la ruta 'addons' del seu servidor.
 wizard_view,"module.module.update,init",0,Scan for new modules,Cerca nous mòduls
-wizard_view,"module.module.update,init",0,This function will check for new modules in the 'addons' path and on module repositories:,Aquesta funció comprovarà si existen nous mòduls en la ruta 'addons' i en els reposadors de mòduls:
+wizard_view,"module.module.update,init",0,This function will check for new modules in the 'addons' path and on module repositories:,Aquesta funció comprovarà si existeixen nous mòduls en la carpeta 'addons' i en les biblioteques de mòduls:
 wizard_view,"module.module.update,update",0,New modules,Nous mòduls
 wizard_view,"module.upgrade,init",0,Modules to download,Mòduls a descarregar
 wizard_view,"module.upgrade,init",0,Modules to update,Mòduls a actualitzar
@@ -6249,17 +6249,17 @@ xsl,stock.location.overview.all,0,Unit Price,Preu ut.
 xsl,stock.location.overview.all,0,UoM,UdM
 xsl,stock.location.overview.all,0,Value,Valor
 xsl,stock.location.overview.all,0,Variants,Variants
-xsl,stock.picking.list,0,Concerns:,Informació de l'albarà:
+xsl,stock.picking.list,0,Concerns:,Informació del paquet:
 xsl,stock.picking.list,0,Customer ref.,Ref. de client
 xsl,stock.picking.list,0,Description,Descripció
 xsl,stock.picking.list,0,Location,Ubicació
-xsl,stock.picking.list,0,Packing Date,Data d'albarà
-xsl,stock.picking.list,0,PACKINGLIST,ALBARÀ
+xsl,stock.picking.list,0,Packing Date,Data d'empaquetament
+xsl,stock.picking.list,0,PACKINGLIST,LLISTA EMPAQUETAMENT
 xsl,stock.picking.list,0,Product,Producte
-xsl,stock.picking.list,0,Qty,Qtat
+xsl,stock.picking.list,0,Qty,Ctdad
 xsl,stock.picking.list,0,Recipient,Receptor
 xsl,stock.picking.list,0,Serial,Número sèrie
-xsl,stock.picking.list,0,Shipping Address:,Adreça d'enviament:
+xsl,stock.picking.list,0,Shipping Address:,Direcció d'enviament:
 xsl,stock.picking.list,0,Shipping Date,Data d'enviament
 xsl,stock.picking.list,0,Shipping ref.,Ref. d'enviament
 xsl,stock.picking.list,0,State,Estat
