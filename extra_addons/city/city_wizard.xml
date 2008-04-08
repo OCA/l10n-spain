@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" ?>
+<terp>
+	<data>
+
+<record model="ir.actions.wizard" id="wizard_crear_cpostal">
+	<field name="name">Crear códigos postales</field>
+	<field name="wiz_name">city.crear_cpostal</field>
+</record>
+
+<menuitem
+	name="Partners/Configuration/Localisation/Crear municipios y códigos postales del Estado español"
+	action="wizard_crear_cpostal"
+	type="wizard"
+	id="city_crear_cpostal"/>
+
+</data>
+</terp>
