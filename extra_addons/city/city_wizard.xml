@@ -13,5 +13,16 @@
 	type="wizard"
 	id="city_crear_cpostal"/>
 
+<record model="ir.actions.wizard" id="wizard_recuperar_cpostal">
+	<field name="name">Recuperar códigos postales</field>
+	<field name="wiz_name">city.recuperar_cpostal</field>
+</record>
+	
+	<menuitem
+	name="Partners/Configuration/Localisation/Recuperar municipios y códigos postales"
+	action="wizard_recuperar_cpostal"
+	type="wizard"
+	id="city_recuperar_cpostal"/>
+
 </data>
 </terp>
