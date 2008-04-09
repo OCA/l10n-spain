@@ -186,13 +186,13 @@ field,"account.invoice,address_contact_id",0,Contact Address,Dirección contacto
 field,"account.invoice,address_invoice_id",0,Invoice Address,Dirección factura
 field,"account.invoice,amount_tax",0,Tax,Impuestos
 field,"account.invoice,amount_total",0,Total,Total
-field,"account.invoice,amount_untaxed",0,Untaxed Amount,Importe sin impuestos
+field,"account.invoice,amount_untaxed",0,Untaxed Amount,Base imponible
 field,"account.invoice,check_total",0,Total,Total
 field,"account.invoice,comment",0,Additionnal Information,Información adicional
 field,"account.invoice,company_id",0,Company,Compañía
 field,"account.invoice,currency_id",0,Currency,Moneda
 field,"account.invoice,date_due",0,Due Date,Fecha vencimiento
-field,"account.invoice,date_invoice",0,Date Invoiced,Fecha facturación
+field,"account.invoice,date_invoice",0,Date Invoiced,Fecha factura
 field,"account.invoice,invoice_line",0,Invoice Lines,Líneas de factura
 field,"account.invoice,journal_id",0,Journal,Diario
 field,"account.invoice.line,account_analytic_id",0,Analytic Account,Cuenta analítica
@@ -202,14 +202,14 @@ field,"account.invoice.line,invoice_id",0,Invoice Ref,Ref. factura
 field,"account.invoice.line,invoice_line_tax_id",0,Taxes,Impuestos
 field,"account.invoice.line,name",0,Description,Descripción
 field,"account.invoice.line,note",0,Notes,Notas
-field,"account.invoice.line,price_subtotal",0,Subtotal w/o tax,Subtotal sin impuestos
+field,"account.invoice.line,price_subtotal",0,Subtotal w/o tax,Subtotal sin imp.
 field,"account.invoice.line,price_subtotal_incl",0,Subtotal,Subtotal
 field,"account.invoice.line,price_unit",0,Unit Price,Precio por unidad
 field,"account.invoice.line,product_id",0,Product,Producto
 field,"account.invoice.line,quantity",0,Quantity,Cantidad
 field,"account.invoice.line,sequence",0,Sequence,Secuencia
 field,"account.invoice.line,uos_id",0,Unit,Unidad de venta
-field,"account.invoice,move_id",0,Invoice Movement,Movimiento factura
+field,"account.invoice,move_id",0,Invoice Movement,Asiento factura
 field,"account.invoice,name",0,Description,Descripción factura
 field,"account.invoice,number",0,Invoice Number,Número factura
 field,"account.invoice,origin",0,Origin,Origen
@@ -298,9 +298,9 @@ field,"account.move.line,date_maturity",0,Maturity date,Fecha vencimiento
 field,"account.move.line,debit",0,Debit,Debe
 field,"account.move.line,followup_date",0,Latest Follow-up,Último seguimiento
 field,"account.move.line,followup_line_id",0,Follow-up Level,Nivel seguimiento
-field,"account.move,line_id",0,Entries,Asientos
+field,"account.move,line_id",0,Entries,Movimientos
 field,"account.move.line,journal_id",0,Journal,Diario
-field,"account.move.line,move_id",0,Move,Mov.
+field,"account.move.line,move_id",0,Move,Asiento
 field,"account.move.line,name",0,Name,Nombre
 field,"account.move.line,partner_id",0,Partner Ref.,Ref. empresa
 field,"account.move.line,period_id",0,Period,Período
@@ -311,7 +311,7 @@ field,"account.move.line,state",0,State,Estado
 field,"account.move.line,statement_id",0,Statement,Extracto bancario
 field,"account.move.line,tax_amount",0,Tax/Base Amount,Importe impuestos/base
 field,"account.move.line,tax_code_id",0,Tax Account,Cuenta impuestos
-field,"account.move,name",0,Entry Name,Nombre de asiento
+field,"account.move,name",0,Entry Name,Núm. asiento
 field,"account.move,period_id",0,Period,Período
 field,"account.move.reconcile,create_date",0,Creation date,Fecha creación
 field,"account.move.reconcile,line_id",0,Entry lines,Líneas de movimiento
@@ -355,13 +355,13 @@ field,"account.report.report,type",0,Type,Tipo
 field,"account.subscription,date_start",0,Starting date,Fecha de inicio
 field,"account.subscription.line,date",0,Date,Fecha
 field,"account.subscription.line,move_id",0,Entry,Asiento
-field,"account.subscription,lines_id",0,Subscription Lines,Líneas de subscripción
-field,"account.subscription.line,subscription_id",0,Subscription,Subscripción
+field,"account.subscription,lines_id",0,Subscription Lines,Líneas de asientos periódicos
+field,"account.subscription.line,subscription_id",0,Subscription,Asientos periódicos
 field,"account.subscription,model_id",0,Model,Modelo
 field,"account.subscription,name",0,Name,Nombre
-field,"account.subscription,period_nbr",0,Period,Período
-field,"account.subscription,period_total",0,Number of period,Número de períodos
-field,"account.subscription,period_type",0,Period Type,Tipo de período
+field,"account.subscription,period_nbr",0,Period,Período: Ctdad de tiempo
+field,"account.subscription,period_total",0,Number of period,Número de asientos
+field,"account.subscription,period_type",0,Period Type,Período: Unidad de tiempo
 field,"account.subscription,ref",0,Ref.,Ref.
 field,"account.subscription,state",0,State,Estado
 field,"account.tax,account_collected_id",0,Invoice Tax Account,Cuenta impuestos de factura
@@ -433,7 +433,7 @@ field,"crm.case.log,case_id",0,Case,Caso
 field,"crm.case.log,date",0,Date,Fecha
 field,"crm.case,log_ids",0,Logs History,Historial del registro
 field,"crm.case.log,name",0,Action,Acción
-field,"crm.case.log,som",0,State of Mind,Estado de satisfacción
+field,"crm.case.log,som",0,State of Mind,Grado de satisfacción
 field,"crm.case.log,user_id",0,User Responsible,Usuario responsable
 field,"crm.case,name",0,Description,Descripción
 field,"crm.case,partner_address_id",0,Partner Contact,Contacto empresa
@@ -482,7 +482,7 @@ field,"crm.case.section,parent_id",0,Parent Section,Sección padre
 field,"crm.case.section,reply_to",0,Reply-To,Responder-a
 field,"crm.case.section,sequence",0,Sequence,Secuencia
 field,"crm.case.section,user_id",0,Responsible,Responsable
-field,"crm.case,som",0,State of Mind,Estado de satisfacción
+field,"crm.case,som",0,State of Mind,Grado de satisfacción
 field,"crm.case,state",0,State,Estado
 field,"crm.case,user_id",0,User Responsible,Usuario responsable
 field,"crm.segmentation,categ_id",0,Partner Category,Categoría de empresa
@@ -574,7 +574,7 @@ field,"hr.employee,holidays",0,Employee's holidays,Vacaciones del empleado
 field,"hr.employee,journal_id",0,Analytic Journal,Diario analítico
 field,"hr.employee,manager",0,Manager,Director
 field,"hr.employee,marital_status",0,Marital Status,Estado civil
-field,"hr.employee.marital.status,description",0,Status Description,Descripción del status
+field,"hr.employee.marital.status,description",0,Status Description,Descripción del estado civil
 field,"hr.employee.marital.status,name",0,Marital Status,Estado civil
 field,"hr.employee,medic_exam",0,Medical examination date,Fecha reconocimiento médico
 field,"hr.employee,name",0,Employee,Nombre completo empleado
@@ -721,7 +721,7 @@ field,"ir.actions.wizard,type",0,Action type,Tipo de acción
 field,"ir.actions.wizard,wiz_name",0,Wizard name,Nombre asistente
 field,"ir.attachment,datas",0,Data,Datos
 field,"ir.attachment,datas_fname",0,Data Filename,Nombre archivo de datos
-field,"ir.attachment,description",0,Description,Descripción proyecto
+field,"ir.attachment,description",0,Description,Descripción
 field,"ir.attachment,link",0,Link,Enlace
 field,"ir.attachment,name",0,Attachment Name,Nombre del documento adjunto
 field,"ir.attachment,res_id",0,Resource ID,ID recurso
@@ -730,7 +730,7 @@ field,"ir.cron,active",0,Active,Activo
 field,"ir.cron,args",0,Arguments,Argumentos
 field,"ir.cron,doall",0,Repeat missed,Repetir perdidos
 field,"ir.cron,function",0,Function,Función
-field,"ir.cron,interval_number",0,Interval Number,Número de intervalo
+field,"ir.cron,interval_number",0,Interval Number,Número de intervalos
 field,"ir.cron,interval_type",0,Interval Unit,Unidad de intervalo
 field,"ir.cron,model",0,Model,Modelo
 field,"ir.cron,name",0,Name,Nombre
@@ -1240,10 +1240,10 @@ field,"project.task.work,task_id",0,Task,Tarea
 field,"project.task.work,user_id",0,Done by,Realizado por
 field,"purchase.order,amount_tax",0,Taxes,Impuestos
 field,"purchase.order,amount_total",0,Total,Total
-field,"purchase.order,amount_untaxed",0,Untaxed Amount,Importe libre de impuestos
+field,"purchase.order,amount_untaxed",0,Untaxed Amount,Base imponible
 field,"purchase.order,date_approve",0,Date Approved,Fecha aprobación
 field,"purchase.order,date_order",0,Date Ordered,Fecha ordenada
-field,"purchase.order,dest_address_id",0,Destination Address,Dirección de destino
+field,"purchase.order,dest_address_id",0,Destination Address,Dirección destinatario
 field,"purchase.order,invoiced",0,Invoiced & Paid,Facturada & Pagada (conciliada)
 field,"purchase.order,invoice_id",0,Invoice,Factura
 field,"purchase.order,invoice_method",0,Invoicing Control,Método facturación
@@ -1261,7 +1261,7 @@ field,"purchase.order.line,product_qty",0,Quantity,Cantidad
 field,"purchase.order.line,product_uom",0,Product UOM,UdM del producto
 field,"purchase.order.line,taxes_id",0,Taxes,Impuestos
 field,"purchase.order,location_id",0,Delivery destination,Destino de entrega
-field,"purchase.order,name",0,Order Description,Descripción de la orden
+field,"purchase.order,name",0,Order Description,Ref. orden
 field,"purchase.order,notes",0,Notes,Notas
 field,"purchase.order,order_line",0,Order State,Estado de la orden
 field,"purchase.order,origin",0,Origin,Origen
@@ -1507,7 +1507,7 @@ field,"res.partner.bank,country_id",0,Country,País
 field,"res.partner.bank,iban",0,IBAN,IBAN
 field,"res.partner,bank_ids",0,Banks,Bancos
 field,"res.partner.bank,name",0,Description,Descripción
-field,"res.partner.bank,owner_name",0,Account owner,Dueño de la cuenta
+field,"res.partner.bank,owner_name",0,Account owner,Titular de la cuenta
 field,"res.partner.bank,partner_id",0,Partner,Empresa
 field,"res.partner.bank,sequence",0,Sequence,Secuencia
 field,"res.partner.bank,state",0,Bank type,Tipo de banco
@@ -1533,7 +1533,7 @@ field,"res.partner.category,parent_id",0,Parent Category,Categoría padre
 field,"res.partner,child_ids",0,Partner Ref.,Ref. empresa
 field,"res.partner,comment",0,Notes,Notas
 field,"res.partner,credit",0,Receivable,Haber
-field,"res.partner,credit_limit",0,Credit Limit,Límite haber
+field,"res.partner,credit_limit",0,Credit Limit,Crédito concedido
 field,"res.partner,date",0,Date,Fecha
 field,"res.partner,debit",0,Payable,Debe
 field,"res.partner,debit_limit",0,Debit Limit,Límite debe
@@ -1550,7 +1550,7 @@ field,"res.partner.event,planned_cost",0,Planned Cost,Costo planeado
 field,"res.partner.event,planned_revenue",0,Planned Revenue,Retorno planeado
 field,"res.partner.event,probability",0,Probability (0.50),Probabilidad (0.50)
 field,"res.partner,events",0,events,eventos
-field,"res.partner.event,som",0,State of Mind,Estado satisfacción
+field,"res.partner.event,som",0,State of Mind,Grado de satisfacción
 field,"res.partner.event,type",0,Type of Event,Tipo de evento
 field,"res.partner.event.type,active",0,Active,Activo
 field,"res.partner.event.type,key",0,Key,Clave
@@ -1574,7 +1574,7 @@ field,"res.partner,ref",0,Code,Código
 field,"res.partner,responsible",0,Users,Usuarios
 field,"res.partner,sales",0,Sales,Ventas
 field,"res.partner.som,factor",0,Factor,Factor
-field,"res.partner.som,name",0,State of Mind,Estado de satisfacción
+field,"res.partner.som,name",0,State of Mind,Grado de satisfacción
 field,"res.partner,title",0,Title,Título
 field,"res.partner.title,domain",0,Domain,Dominio
 field,"res.partner.title,name",0,Title,Título
@@ -1623,7 +1623,7 @@ field,"res.users,rule_groups",0,Rules,Reglas
 field,"res.users,signature",0,Signature,Firma
 field,"sale.order,amount_tax",0,Taxes,Impuestos
 field,"sale.order,amount_total",0,Total,Total
-field,"sale.order,amount_untaxed",0,Untaxed Amount,Importe sin Impuestos
+field,"sale.order,amount_untaxed",0,Untaxed Amount,Base imponible
 field,"sale.order,carrier_id",0,Delivery method,Método entrega
 field,"sale.order,client_order_ref",0,Partner Ref.,Ref. empresa
 field,"sale.order,date_order",0,Date Ordered,Fecha orden
@@ -1657,7 +1657,7 @@ field,"sale.order.line,state",0,State,Estado
 field,"sale.order.line,tax_id",0,Taxes,Impuestos
 field,"sale.order.line,th_weight",0,Weight,Peso
 field,"sale.order.line,type",0,Procure Method,Método abastecimiento
-field,"sale.order,name",0,Order Description,Descripción de la orden
+field,"sale.order,name",0,Order Description,Ref. orden
 field,"sale.order,note",0,Notes,Notas
 field,"sale.order,order_line",0,Order Lines,Líneas de orden
 field,"sale.order,order_policy",0,Shipping Policy,Política de envío
@@ -1717,7 +1717,7 @@ field,"scrum.project,partner_id",0,Customer,Cliente
 field,"scrum.project,planned_hours",0,Planned hours,Horas planeadas
 field,"scrum.project,pricelist_id",0,Pricelist,Lista de precios
 field,"scrum.project,priority",0,Priority,Prioridad
-field,"scrum.project,product_owner_id",0,Product Owner,Dueño del producto
+field,"scrum.project,product_owner_id",0,Product Owner,Responsable del producto
 field,"scrum.project,scrum",0,Is Scrum,Es scrum
 field,"scrum.project,sprint_size",0,Sprint Days,Días del sprint
 field,"scrum.project,state",0,State,Estado
@@ -1736,7 +1736,7 @@ field,"scrum.sprint,effective_hours",0,Effective hours,Horas reales
 field,"scrum.sprint,meetings_id",0,Daily Scrum,Scrum diario
 field,"scrum.sprint,name",0,Sprint Name,Nombre del sprint
 field,"scrum.sprint,planned_hours",0,Planned Hours,Horas planeadas
-field,"scrum.sprint,product_owner_id",0,Product Owner,Dueño del producto
+field,"scrum.sprint,product_owner_id",0,Product Owner,Responsable del producto
 field,"scrum.sprint,progress",0,Progress (0-100),Progreso (0-100)
 field,"scrum.sprint,project_id",0,Project,Proyecto
 field,"scrum.sprint,retrospective",0,Sprint Retrospective,Sprint retrospectivo
@@ -1799,13 +1799,13 @@ field,"stock.lot,active",0,Active,Activo
 field,"stock.lot,move_ids",0,Move lines,Líneas de movimiento
 field,"stock.lot,name",0,Lot Name,Nombre de lote
 field,"stock.lot,tracking",0,Tracking,Seguimiento
-field,"stock.move,address_id",0,Dest. Address,Dirección de destino
+field,"stock.move,address_id",0,Dest. Address,Dirección destinatario
 field,"stock.move,date",0,Date Created,Fecha creación
 field,"stock.move,date_planned",0,Scheduled date,Fecha planificada
 field,"stock.move,location_dest_id",0,Dest. Location,Ubicación destino
 field,"stock.move,location_id",0,Source Location,Ubicación origen
 field,"stock.move.lot,active",0,Active,Activo
-field,"stock.move.lot,address_id",0,Destination Address,Dirección de destino
+field,"stock.move.lot,address_id",0,Destination Address,Dirección destinatario
 field,"stock.move.lot,date_moved",0,Actual date,Fecha actual
 field,"stock.move.lot,date_planned",0,Scheduled date,Fecha planificada
 field,"stock.move,lot_id",0,Consumer lot,Lote de consumo
@@ -1849,7 +1849,7 @@ field,"stock.picking,lot_id",0,Consumer lot created,Lote de consumo creado
 field,"stock.picking,move_lines",0,Move lines,Líneas de movimientos
 field,"stock.picking,move_lot_id",0,Moves created,Movimiento creado
 field,"stock.picking,move_type",0,Delivery Method,Método envío
-field,"stock.picking,name",0,Packing name,Nombre del paquete
+field,"stock.picking,name",0,Packing name,Ref. albarán
 field,"stock.picking,note",0,Notes,Notas
 field,"stock.picking,origin",0,Origin,Origen
 field,"stock.picking,purchase_id",0,Purchase Order,Orden de compra
@@ -1891,7 +1891,7 @@ field,"stock.warehouse.orderpoint,warehouse_id",0,Warehouse,Almacén
 field,"stock.warehouse,partner_address_id",0,Owner Address,Dirección dueño
 field,"subscription.document,active",0,Active,Activo
 field,"subscription.document,field_ids",0,Fields,Campos
-field,"subscription.document.fields,document_id",0,Subscription Document,Documento de subscripción
+field,"subscription.document.fields,document_id",0,Subscription Document,Documento periódico
 field,"subscription.document.fields,field",0,Field,Campo
 field,"subscription.document.fields,value",0,Default Value,Valor por defecto
 field,"subscription.document,model",0,Model,Modelo
@@ -1905,8 +1905,8 @@ field,"subscription.subscription,exec_init",0,Number of documents,Número de doc
 field,"subscription.subscription.history,date",0,Date,Fecha
 field,"subscription.subscription.history,document_id",0,Source Document,Documento origen
 field,"subscription.subscription.history,subscription_id",0,Subscription,Subscripción
-field,"subscription.subscription,interval_number",0,Interval Qty,Ctdad intervalo
-field,"subscription.subscription,interval_type",0,Interval Unit,Unidad de intervalo
+field,"subscription.subscription,interval_number",0,Interval Qty,Período: Ctdad de tiempo
+field,"subscription.subscription,interval_type",0,Interval Unit,Período: Unidad de tiempo
 field,"subscription.subscription,name",0,Name,Nombre
 field,"subscription.subscription,notes",0,Notes,Notas
 field,"subscription.subscription,partner_id",0,Partner,Empresa
@@ -1997,9 +1997,9 @@ help,"crm.case.section,reply_to",0,The email address wich is the 'Reply-To' of a
 help,"crm.segmentation,categ_id",0,The partner category that will be added to partners that match the segmentation criterions after computation.,La categoría de empresa que se añadirá a las empresas que concuerdan con los criterios de segmentación después del cálculo.
 help,"crm.segmentation,exclusif",0,"Check if the category is limited to partners that match the segmentation criterions. If checked, remove the category from partners that doesn't match segmentation criterions","Comprueba si la categoría está limitada a empresas que concuerdan con los criterios de segmentación. Si se marca, eliminará de la categoría las empresas que no coincidan con los criterios de la segmentación"
 help,"crm.segmentation,name",0,The name of the segmentation.,El nombre de la segmentación.
-help,"crm.segmentation,som_interval",0,"A period is the average number of days between two cycle of sale or purchase for this segmentation. It's mainly used to detect if a partner has not purchased or buy for a too long time, so we suppose that his state of mind has decreased because he probably bought goods to another supplier. Use this functionnality for recurring businesses.","Un periodo es el promedio de días entre dos ciclos de ventas o compras para esta segmentación. Se utiliza principalmente para detectar si una empresa no ha comprado durante mucho tiempo, así supondremos que su estado de satisfacción ha disminuido porque probablemente compraba a otro proveedor. Utilice esta funcionalidad para compra-ventas que se repiten en el tiempo."
-help,"crm.segmentation,som_interval_decrease",0,"If the partner has not purchased (or buied) during a period, decrease the state of mind by this factor. It's a multiplication","Si el socio no ha comprado (o adquirido) durante un periodo, reducir el estado de satisfacción por este factor. Es una multiplicación"
-help,"crm.segmentation,som_interval_default",0,Default state of mind for period preceeding the 'Max Interval' computation. This is the starting state of mind by default if the partner has no event.,Estado de satisfacción por defecto para periodos procedentes del cálculo de 'Intervalo Máx'. Éste es el estado de satisfacción de partida por defecto si la empresa no tiene ningún evento.
+help,"crm.segmentation,som_interval",0,"A period is the average number of days between two cycle of sale or purchase for this segmentation. It's mainly used to detect if a partner has not purchased or buy for a too long time, so we suppose that his state of mind has decreased because he probably bought goods to another supplier. Use this functionnality for recurring businesses.","Un periodo es el promedio de días entre dos ciclos de ventas o compras para esta segmentación. Se utiliza principalmente para detectar si una empresa no ha comprado durante mucho tiempo, así supondremos que su grado de satisfacción ha disminuido porque probablemente compraba a otro proveedor. Utilice esta funcionalidad para compra-ventas que se repiten en el tiempo."
+help,"crm.segmentation,som_interval_decrease",0,"If the partner has not purchased (or buied) during a period, decrease the state of mind by this factor. It's a multiplication","Si el socio no ha comprado (o adquirido) durante un periodo, reducir el grado de satisfacción por este factor. Es una multiplicación"
+help,"crm.segmentation,som_interval_default",0,Default state of mind for period preceeding the 'Max Interval' computation. This is the starting state of mind by default if the partner has no event.,Grado de satisfacción por defecto para periodos procedentes del cálculo de 'Intervalo Máx'. Éste es el grado de satisfacción de partida por defecto si la empresa no tiene ningún evento.
 help,"crm.segmentation,som_interval_max",0,"The computation is made on all events that occured during this interval, the past X periods.","El cálculo es realizado sobre todos los eventos que ocurran durante este intervalo, los X periodos pasados."
 help,"hr.contract.wage.type,factor_type",0,This field is used by the timesheet system to compute the price of an hour of work wased on the contract of the employee,Este campo es utilizado por el sistema de hojas de asistencia para calcular el precio de una hora de de trabajo basado en el contrato del empleado
 help,"hr.contract.wage.type.period,factor_days",0,This field is used by the timesheet system to compute the price of an hour of work wased on the contract of the employee,Este campo es utilizado por el sistema de hojas de asistencia para calcular el precio de una hora de de trabajo basado en el contrato del empleado
@@ -2199,8 +2199,8 @@ model,"ir.actions.act_window,name",account.action_move_line_search,Entry lines, 
 model,"ir.actions.act_window,name",account.action_move_line_select,,
 model,"ir.actions.act_window,name",account.action_move_line_tree1,,
 model,"ir.actions.act_window,name",account.action_payment_term_form,,
-model,"ir.actions.act_window,name",account.action_subscription_form_running,Running Subscriptions,Subscripciones en progreso
-model,"ir.actions.act_window,name",account.action_subscription_form,Subscription Entries,Asientos de subscripción
+model,"ir.actions.act_window,name",account.action_subscription_form_running,Running Subscriptions,Asientos periódicos en proceso
+model,"ir.actions.act_window,name",account.action_subscription_form,Subscription Entries,Asientos periódicos
 model,"ir.actions.act_window,name",account.action_subscription_line_form_running,Next Entries,Próximos asientos
 model,"ir.actions.act_window,name",account.action_tax_code_line_open,,
 model,"ir.actions.act_window,name",account.action_tax_code_list,Tax codes,Códigos impuestos
@@ -2410,7 +2410,7 @@ model,"ir.actions.act_window,name",mrp.mrp_procurement_action4,Exceptions procur
 model,"ir.actions.act_window,name",mrp.mrp_procurement_action5,Exceptions procurements,Excepciones de abastecimientos
 model,"ir.actions.act_window,name",mrp.mrp_production_action,,
 model,"ir.actions.act_window,name",mrp.mrp_production_action2,Production orders to start,Órdenes de producción a iniciar
-model,"ir.actions.act_window,name",mrp.mrp_production_action3,Production orders in progress,Órdenes de producción en progreso
+model,"ir.actions.act_window,name",mrp.mrp_production_action3,Production orders in progress,Órdenes de producción en proceso
 model,"ir.actions.act_window,name",mrp.mrp_production_action4,Production orders waiting goods,Órdenes de producción esperando material
 model,"ir.actions.act_window,name",mrp.mrp_property_action,,
 model,"ir.actions.act_window,name",mrp.mrp_property_group_action,,
@@ -2434,9 +2434,9 @@ model,"ir.actions.act_window,name",project.action_view_task3,Unbilled open tasks
 model,"ir.actions.act_window,name",project.action_view_task4,My Tasks,Mis tareas
 model,"ir.actions.act_window,name",project.action_view_task5,My Open Tasks,Mis tareas abiertas
 model,"ir.actions.act_window,name",project.action_view_task5_pending,My Pending Tasks,Mis tareas pendientes
-model,"ir.actions.act_window,name",project.action_view_task5_prog,My Tasks in Progress,Mis tareas en progreso
+model,"ir.actions.act_window,name",project.action_view_task5_prog,My Tasks in Progress,Mis tareas en proceso
 model,"ir.actions.act_window,name",project.action_view_task6,Open Tasks,Tareas abiertas
-model,"ir.actions.act_window,name",project.action_view_task6_prog,Tasks in Progress,Tareas en progreso
+model,"ir.actions.act_window,name",project.action_view_task6_prog,Tasks in Progress,Tareas en proceso
 model,"ir.actions.act_window,name",project.action_view_task7,Unassigned Tasks,Tareas no asignadas
 model,"ir.actions.act_window,name",project.act_project_project_2_project_task_opened,Opened tasks,Tareas abiertas
 model,"ir.actions.act_window,name",project.act_res_users_2_project_project,User's projects,Proyectos de usuario
@@ -2457,7 +2457,7 @@ model,"ir.actions.act_window,name",purchase.act_res_partner_2_purchase_order,Pur
 model,"ir.actions.act_window,name",purchase.purchase_form_action,,
 model,"ir.actions.act_window,name",purchase.purchase_form_action2,Request for quotation,Solicitud de presupuesto
 model,"ir.actions.act_window,name",purchase.purchase_form_action3,Purchase order waiting Approval,Orden de compra esperando aprobación
-model,"ir.actions.act_window,name",purchase.purchase_form_action4,Purchase Orders in Progress,Ordenes de compra en progreso
+model,"ir.actions.act_window,name",purchase.purchase_form_action4,Purchase Orders in Progress,Ordenes de compra en proceso
 model,"ir.actions.act_window,name",report_account.action_account_receivable_graph,,
 model,"ir.actions.act_window,name",report_analytic.action_analytic_account_tree,Expired analytic accounts,Cuentas analíticas expiradas
 model,"ir.actions.act_window,name",report_analytic_line.act_acc_analytic_acc_2_report_acc_analytic_line_to_invoice,Costs to invoice,Costes a facturar
@@ -2531,12 +2531,12 @@ model,"ir.actions.act_window,name",sale.action_order_line_tree3,Uninvoiced and D
 model,"ir.actions.act_window,name",sale.action_order_tree10,My Quotations,Mis presupuestos
 model,"ir.actions.act_window,name",sale.action_order_tree2,Sales in shipping exception,Ventas en excepción de envío
 model,"ir.actions.act_window,name",sale.action_order_tree3,Sales order to be invoiced,Órdenes de ventas pendientes factura 
-model,"ir.actions.act_window,name",sale.action_order_tree4,Sales order in progress,Órdenes de ventas en progreso
+model,"ir.actions.act_window,name",sale.action_order_tree4,Sales order in progress,Órdenes de ventas en proceso
 model,"ir.actions.act_window,name",sale.action_order_tree5,All quotations,Todos los presupuestos
 model,"ir.actions.act_window,name",sale.action_order_tree6,Sales order in invoice exception,Órdenes de ventas en excepción de factura
 model,"ir.actions.act_window,name",sale.action_order_tree7,My sales in shipping exception,Mis ventas en excepción de envío
 model,"ir.actions.act_window,name",sale.action_order_tree8,My sales order waiting Invoice,Mis órdenes de ventas esperarando facturación
-model,"ir.actions.act_window,name",sale.action_order_tree9,My sales order in progress,Mis órdenes de ventas en progreso
+model,"ir.actions.act_window,name",sale.action_order_tree9,My sales order in progress,Mis órdenes de ventas en proceso
 model,"ir.actions.act_window,name",sale.action_order_tree_all,All Sales Order,Todas las órdenes de ventas
 model,"ir.actions.act_window,name",sale.action_order_tree,My Sales Order,Mis órdenes de ventas
 model,"ir.actions.act_window,name",sale.action_shop_form,,
@@ -2551,9 +2551,9 @@ model,"ir.actions.act_window,name",scrum.action_sprint_backlog_open,View sprint 
 model,"ir.actions.act_window,name",scrum.action_sprint_form,,
 model,"ir.actions.act_window,name",scrum.action_sprint_open_tree2,Draft Sprints,Sprints borradores
 model,"ir.actions.act_window,name",scrum.action_sprint_open_tree3,Sprints Done,Sprints realizados
-model,"ir.actions.act_window,name",scrum.action_sprint_open_tree4,My Sprints (Product Owner),Mis sprints (dueño de producto)
+model,"ir.actions.act_window,name",scrum.action_sprint_open_tree4,My Sprints (Product Owner),Mis sprints (responsable de producto)
 model,"ir.actions.act_window,name",scrum.action_sprint_open_tree5,My Sprints (Scrum Master),Mis sprints (scrum master)
-model,"ir.actions.act_window,name",scrum.action_sprint_open_tree6,My opened sprints (Product Owner),Mis sprints abiertos (dueño de producto)
+model,"ir.actions.act_window,name",scrum.action_sprint_open_tree6,My opened sprints (Product Owner),Mis sprints abiertos (responsable de producto)
 model,"ir.actions.act_window,name",scrum.action_sprint_open_tree7,My opened sprints (Scrum Master),Mis sprints abiertos (scrum master)
 model,"ir.actions.act_window,name",scrum.action_sprint_open_tree,Opened Sprints,Sprints abiertos
 model,"ir.actions.act_window,name",scrum.action_sprint_task_open,View sprint Tasks,Vista tareas del sprint
@@ -2670,7 +2670,7 @@ model,"ir.actions.wizard,name",account.wizard_budget_report,Budget,Presupuesto
 model,"ir.actions.wizard,name",account.wizard_budget_spread,Spread amount,Importe de margen
 model,"ir.actions.wizard,name",account.wizard_fiscalyear_close,Close a fiscal year,Cerrar un ejercicio fiscal
 model,"ir.actions.wizard,name",account.wizard_general_ledger_report,General ledger,Libro de contabilidad general
-model,"ir.actions.wizard,name",account.wizard_generate_subscription,Create subscription entries,Crear asientos de subscripción
+model,"ir.actions.wizard,name",account.wizard_generate_subscription,Create subscription entries,Crear asientos periódicos
 model,"ir.actions.wizard,name",account.wizard_invoice_pay,Pay invoice,Pagar factura
 model,"ir.actions.wizard,name",account.wizard_invoice_refund,Refund invoice,Reintegrar factura
 model,"ir.actions.wizard,name",account.wizard_invoice_state_cancel,Cancel selected invoices,Cancelar facturas seleccionadas
@@ -2934,10 +2934,10 @@ model,"ir.model,name",0,Stock Move,Movimiento stock
 model,"ir.model,name",0,Stock report by production lots,Informe de stock por lotes de producción
 model,"ir.model,name",0,Stock Tracking Lots,Stock de los lotes de seguimiento
 model,"ir.model,name",0,Stock value variation,Variación del valor de stock
-model,"ir.model,name",0,Subscription document,Documento de subscripción
-model,"ir.model,name",0,Subscription document fields,Campos del documento de subscripción
-model,"ir.model,name",0,Subscription history,Historial de subscripción
-model,"ir.model,name",0,Subscription,Subscripción
+model,"ir.model,name",0,Subscription document,Documento periódico
+model,"ir.model,name",0,Subscription document fields,Campos del documento periódico
+model,"ir.model,name",0,Subscription history,Historial de documentos periódicos
+model,"ir.model,name",0,Subscription,Documentos periódicos
 model,"ir.model,name",0,Tasks by project,Tareas por proyecto
 model,"ir.model,name",0,Tasks by user and project,Tareas por usuario y proyecto
 model,"ir.model,name",0,Task,Tarea
@@ -3034,7 +3034,7 @@ model,"ir.ui.menu,name",0,Scrum,Scrum
 model,"ir.ui.menu,name",0,Search Entries,Buscar asientos
 model,"ir.ui.menu,name",0,Segmentations,Segmentaciones
 model,"ir.ui.menu,name",0,Sequences,Secuencias
-model,"ir.ui.menu,name",0,Subscriptions,Subscripciones
+model,"ir.ui.menu,name",0,Subscriptions,Documentos periódicos
 model,"ir.ui.menu,name",0,Taxes,Impuestos
 model,"ir.ui.menu,name",0,This Month,Este mes
 model,"ir.ui.menu,name",0,Timesheet,Hoja de asistencia
@@ -3099,10 +3099,10 @@ model,"ir.ui.menu,name",account.menu_action_model_form,Models Definition,Definic
 model,"ir.ui.menu,name",account.menu_action_move_journal_line_form,Entries by Journal,Asientos por diario
 model,"ir.ui.menu,name",account.menu_action_move_journal_period_line_form,Open Journals,Diarios abiertos
 model,"ir.ui.menu,name",account.menu_action_move_line_form,Entries,Asientos
-model,"ir.ui.menu,name",account.menu_action_move_line_search,Entry lines,Líneas de asientos (partidas)
+model,"ir.ui.menu,name",account.menu_action_move_line_search,Entry lines,Líneas de asientos (movimientos)
 model,"ir.ui.menu,name",account.menu_action_payment_term_form,Payment Terms,Plazos de pago
-model,"ir.ui.menu,name",account.menu_action_subscription_form_running,Running Subscriptions,Subscripciones en progreso
-model,"ir.ui.menu,name",account.menu_action_subscription_form,Subscription Entries,Asientos de subscripción
+model,"ir.ui.menu,name",account.menu_action_subscription_form_running,Running Subscriptions,Asientos periódicos en proceso
+model,"ir.ui.menu,name",account.menu_action_subscription_form,Subscription Entries,Asientos periódicos
 model,"ir.ui.menu,name",account.menu_action_subscription_line_form_running,Next Entries,Próximos asientos
 model,"ir.ui.menu,name",account.menu_action_tax_code_list,Tax codes,Códigos impuestos
 model,"ir.ui.menu,name",account.menu_action_tax_code_tree,Tax Report,Informe de impuestos
@@ -3114,7 +3114,7 @@ model,"ir.ui.menu,name",account.menu_bank_statement_draft_tree,Draft Statements,
 model,"ir.ui.menu,name",account.menu_bank_statement_tree,Statements,Extractos bancarios
 model,"ir.ui.menu,name",account.menu_budget_post_form,General Budgets,Presupuestos generales
 model,"ir.ui.menu,name",account.menu_fiscal_def,Set Fiscal Year,Establecer ejercicio fiscal
-model,"ir.ui.menu,name",account.menu_generate_subscription,Create Subscription Entries,Crear asientos de subscripción
+model,"ir.ui.menu,name",account.menu_generate_subscription,Create Subscription Entries,Crear asientos periódicos
 model,"ir.ui.menu,name",account.menu_install_module,Set Chart of Accounts and Tax Mode,Establecer plan contable y modo de impuestos
 model,"ir.ui.menu,name",account.menu_invoice_draft,Draft Customer Invoices,Facturas borrador de cliente
 model,"ir.ui.menu,name",account.menu_journal_def,Add Account Journal,Añadir diario de cuentas
@@ -3308,7 +3308,7 @@ model,"ir.ui.menu,name",mrp.menu_mrp_procurement_action3,Unscheduled Procurement
 model,"ir.ui.menu,name",mrp.menu_mrp_procurement_action4,Exceptions to Fix,Excepciones a corregir
 model,"ir.ui.menu,name",mrp.menu_mrp_procurement_action5,All Exceptions,Todas las excepciones
 model,"ir.ui.menu,name",mrp.menu_mrp_procurement_action,Procurement Orders,Órdenes de abastecimiento
-model,"ir.ui.menu,name",mrp.menu_mrp_production_action3,Production Orders in Progress,Órdenes de producción en progreso
+model,"ir.ui.menu,name",mrp.menu_mrp_production_action3,Production Orders in Progress,Órdenes de producción en proceso
 model,"ir.ui.menu,name",mrp.menu_mrp_production_action,Production Orders,Órdenes de producción
 model,"ir.ui.menu,name",mrp.menu_mrp_property_action,Properties,Propiedades
 model,"ir.ui.menu,name",mrp.menu_mrp_property_group_action,Property Categories,Categorías de propiedades
@@ -3337,7 +3337,7 @@ model,"ir.ui.menu,name",project.menu_action_view_task2,Unbilled Closed Tasks,Tar
 model,"ir.ui.menu,name",project.menu_action_view_task3,Unbilled Open Tasks,Tareas abiertas no facturadas
 model,"ir.ui.menu,name",project.menu_action_view_task4,My Tasks,Mis tareas
 model,"ir.ui.menu,name",project.menu_action_view_task6,Open Tasks,Tareas abiertas
-model,"ir.ui.menu,name",project.menu_action_view_task6_prog,Tasks in Progress,Tareas en progreso
+model,"ir.ui.menu,name",project.menu_action_view_task6_prog,Tasks in Progress,Tareas en proceso
 model,"ir.ui.menu,name",project.menu_action_view_task7,Unassigned Tasks,Tareas no asignadas
 model,"ir.ui.menu,name",project.menu_action_view_task,All Tasks,Todas las tareas
 model,"ir.ui.menu,name",project.menu_all_project,All Projects,Todos los proyectos
@@ -3352,10 +3352,10 @@ model,"ir.ui.menu,name",project.menu_open_view_project_open,Open Projects,Proyec
 model,"ir.ui.menu,name",project.menu_open_view_project,Projects,Proyectos
 model,"ir.ui.menu,name",project.menu_tasks_yours,My Open Tasks,Mis tareas abiertas
 model,"ir.ui.menu,name",project.menu_tasks_yours_pending,My Pending Tasks,Mis tareas pendientes
-model,"ir.ui.menu,name",project.menu_tasks_yours_prog,My Tasks in Progress,Mis tareas en progreso
+model,"ir.ui.menu,name",project.menu_tasks_yours_prog,My Tasks in Progress,Mis tareas en proceso
 model,"ir.ui.menu,name",project.menu_task_types,Task Types,Tipos de tarea
 model,"ir.ui.menu,name",purchase.menu_purchase_form_action3,Purchase Orders Waiting Approval,Órdenes de compra esperando aprobación
-model,"ir.ui.menu,name",purchase.menu_purchase_form_action4,Purchase Orders in Progress,Órdenes de compra en progreso
+model,"ir.ui.menu,name",purchase.menu_purchase_form_action4,Purchase Orders in Progress,Órdenes de compra en proceso
 model,"ir.ui.menu,name",purchase.menu_purchase_form_action,Purchase Order,Orden de compra
 model,"ir.ui.menu,name",purchase.menu_purchase_order_draft,Requests For Quotation,Solicitudes de presupuesto
 model,"ir.ui.menu,name",purchase.menu_purchase_root,Purchase Management,Gestión de compras
@@ -3418,12 +3418,12 @@ model,"ir.ui.menu,name",sale.menu_action_order_line_tree3,Uninvoiced & Delivered
 model,"ir.ui.menu,name",sale.menu_action_order_tree10,My Quotations,Mis presupuestos
 model,"ir.ui.menu,name",sale.menu_action_order_tree2,Sales in shipping exception,Ventas en excepción de envío
 model,"ir.ui.menu,name",sale.menu_action_order_tree3,Sales order to be invoiced,Órdenes de venta pendientes factura
-model,"ir.ui.menu,name",sale.menu_action_order_tree4,Sales in Progress,Ventas en progreso
+model,"ir.ui.menu,name",sale.menu_action_order_tree4,Sales in Progress,Ventas en proceso
 model,"ir.ui.menu,name",sale.menu_action_order_tree5,All Quotations,Todos los presupuestos
 model,"ir.ui.menu,name",sale.menu_action_order_tree6,Sales order in invoice exception,Órdenes de venta en excepción de factura
 model,"ir.ui.menu,name",sale.menu_action_order_tree7,My Sales in Shipping Exception,Mis ventas en excepción de envío
 model,"ir.ui.menu,name",sale.menu_action_order_tree8,My Sales to be Invoiced,Mis ventas pendientes factura
-model,"ir.ui.menu,name",sale.menu_action_order_tree9,My Sales in Progress,Mis ventas en progreso
+model,"ir.ui.menu,name",sale.menu_action_order_tree9,My Sales in Progress,Mis ventas en proceso
 model,"ir.ui.menu,name",sale.menu_action_order_tree_all,All Sales Order,Todas las órdenes de venta
 model,"ir.ui.menu,name",sale.menu_action_order_tree,My Sales Order,Mis órdenes de venta
 model,"ir.ui.menu,name",sale.menu_action_shop_form,Shop,Tienda
@@ -3438,7 +3438,7 @@ model,"ir.ui.menu,name",scrum.menu_action_scrum_project_tree,Projects,Proyectos
 model,"ir.ui.menu,name",scrum.menu_action_sprint_form,Sprint,Sprint
 model,"ir.ui.menu,name",scrum.menu_action_sprint_open_tree2,Draft Sprints,Sprints borradores
 model,"ir.ui.menu,name",scrum.menu_action_sprint_open_tree3,Sprints Done,Sprints realizados
-model,"ir.ui.menu,name",scrum.menu_action_sprint_open_tree4,My Sprints (Product Owner),Mis sprints (dueño de producto)
+model,"ir.ui.menu,name",scrum.menu_action_sprint_open_tree4,My Sprints (Product Owner),Mis sprints (responsable de producto)
 model,"ir.ui.menu,name",scrum.menu_action_sprint_open_tree5,My Sprints (Scrum Master),Mis sprints (scrum master)
 model,"ir.ui.menu,name",scrum.menu_action_sprint_open_tree6,Opened,Abierto
 model,"ir.ui.menu,name",scrum.menu_action_sprint_open_tree7,Opened,Abierto
@@ -3473,7 +3473,7 @@ model,"ir.ui.menu,name",stock.menu_move_draft,Delivery Orders to Process,Órdene
 model,"ir.ui.menu,name",stock.menu_picking_waiting,Assigned Packings,Paquetes asignados
 model,"ir.ui.menu,name",stock.menu_stock_root,Inventory Control,Control inventario
 model,"ir.ui.menu,name",subscription.menu_action_document_form,Document Types,Tipos de documento
-model,"ir.ui.menu,name",subscription.menu_action_subscription_form,All Subscriptions,Todas las subscripciones
+model,"ir.ui.menu,name",subscription.menu_action_subscription_form,All Subscriptions,Todos los documentos periódicos
 model,"ir.ui.menu,name",subscription.menu_subscription_config,Configuration,Configuración
 model,"ir.ui.menu,name",subscription.menu_tools,Tools,Herramientas
 model,"product.price.type,name",product.list_price,List Price,Precio lista
@@ -4093,7 +4093,7 @@ selection,"account.subscription,period_type",0,month,mes
 selection,"account.subscription,period_type",0,year,año
 selection,"account.subscription,state",0,Done,Realizado
 selection,"account.subscription,state",0,Draft,Borrador
-selection,"account.subscription,state",0,Running,En progreso
+selection,"account.subscription,state",0,Running,En proceso
 selection,"account.tax,applicable_type",0,Python Code,Código de Python
 selection,"account.tax,applicable_type",0,True,Verdadero
 selection,"account.tax,tax_group",0,Other,Otro
@@ -4160,7 +4160,7 @@ selection,"crm.case,state",0,Open,Abierto
 selection,"crm.case,state",0,Pending,Pendiente
 selection,"crm.segmentation.line,expr_name",0,Purchase Amount,Importe de compra
 selection,"crm.segmentation.line,expr_name",0,Sale Amount,Importe de venta
-selection,"crm.segmentation.line,expr_name",0,State of Mind,Estado de satisfacción
+selection,"crm.segmentation.line,expr_name",0,State of Mind,Grado de satisfacción
 selection,"crm.segmentation.line,expr_operator",0,<,<
 selection,"crm.segmentation.line,expr_operator",0,=,=
 selection,"crm.segmentation.line,expr_operator",0,>,>
@@ -4421,7 +4421,7 @@ selection,"mrp.procurement,state",0,Confirmed,Confirmado
 selection,"mrp.procurement,state",0,Done,Realizado
 selection,"mrp.procurement,state",0,Draft,Borrador
 selection,"mrp.procurement,state",0,Exception,Excepción
-selection,"mrp.procurement,state",0,Running,En progreso
+selection,"mrp.procurement,state",0,Running,En proceso
 selection,"mrp.production,priority",0,Normal,Normal
 selection,"mrp.production,priority",0,Not urgent,No urgente
 selection,"mrp.production,priority",0,Urgent,Urgente
@@ -4508,33 +4508,33 @@ selection,"report.intrastat,type",0,Export,Exportación
 selection,"report.intrastat,type",0,Import,Importación
 selection,"report.purchase.order.category,state",0,Cancel,Cancelado
 selection,"report.purchase.order.category,state",0,Done,Realizado
-selection,"report.purchase.order.category,state",0,In progress,En progreso
+selection,"report.purchase.order.category,state",0,In progress,En proceso
 selection,"report.purchase.order.category,state",0,Invoice Exception,Excepción de factura
-selection,"report.purchase.order.category,state",0,Manual in progress,Manual en progreso
+selection,"report.purchase.order.category,state",0,Manual in progress,Manual en proceso
 selection,"report.purchase.order.category,state",0,Quotation,Presupuesto
 selection,"report.purchase.order.category,state",0,Shipping Exception,Excepción de envío
 selection,"report.purchase.order.category,state",0,Waiting Schedule,Esperando fecha planificada
 selection,"report.purchase.order.product,state",0,Cancel,Cancelado
 selection,"report.purchase.order.product,state",0,Done,Realizado
-selection,"report.purchase.order.product,state",0,In progress,En progreso
+selection,"report.purchase.order.product,state",0,In progress,En proceso
 selection,"report.purchase.order.product,state",0,Invoice Exception,Excepción de factura
-selection,"report.purchase.order.product,state",0,Manual in progress,Manual en progreso
+selection,"report.purchase.order.product,state",0,Manual in progress,Manual en proceso
 selection,"report.purchase.order.product,state",0,Quotation,Presupuesto
 selection,"report.purchase.order.product,state",0,Shipping Exception,Excepción de envío
 selection,"report.purchase.order.product,state",0,Waiting Schedule,Esperando fecha planificada
 selection,"report.sale.order.category,state",0,Cancel,Cancelado
 selection,"report.sale.order.category,state",0,Done,Realizado
-selection,"report.sale.order.category,state",0,In progress,En progreso
+selection,"report.sale.order.category,state",0,In progress,En proceso
 selection,"report.sale.order.category,state",0,Invoice Exception,Excepción de factura
-selection,"report.sale.order.category,state",0,Manual in progress,Manual en progreso
+selection,"report.sale.order.category,state",0,Manual in progress,Manual en proceso
 selection,"report.sale.order.category,state",0,Quotation,Presupuesto
 selection,"report.sale.order.category,state",0,Shipping Exception,Excepción de envío
 selection,"report.sale.order.category,state",0,Waiting Schedule,Esperando fecha planificada
 selection,"report.sale.order.product,state",0,Cancel,Cancelado
 selection,"report.sale.order.product,state",0,Done,Realizado
-selection,"report.sale.order.product,state",0,In progress,En progreso
+selection,"report.sale.order.product,state",0,In progress,En proceso
 selection,"report.sale.order.product,state",0,Invoice Exception,Excepción de factura
-selection,"report.sale.order.product,state",0,Manual in progress,Manual en progreso
+selection,"report.sale.order.product,state",0,Manual in progress,Manual en proceso
 selection,"report.sale.order.product,state",0,Quotation,Presupuesto
 selection,"report.sale.order.product,state",0,Shipping Exception,Excepción de envío
 selection,"report.sale.order.product,state",0,Waiting Schedule,Esperando fecha planificada
@@ -4585,9 +4585,9 @@ selection,"sale.order,picking_policy",0,All at once,Todo junto
 selection,"sale.order,picking_policy",0,Direct Delivery,Envío directo
 selection,"sale.order,state",0,Cancel,Cancelado
 selection,"sale.order,state",0,Done,Realizado
-selection,"sale.order,state",0,In progress,En progreso
+selection,"sale.order,state",0,In progress,En proceso
 selection,"sale.order,state",0,Invoice Exception,Excepción de factura
-selection,"sale.order,state",0,Manual in progress,Manual en progreso
+selection,"sale.order,state",0,Manual in progress,Manual en proceso
 selection,"sale.order,state",0,Quotation,Presupuesto
 selection,"sale.order,state",0,Shipping Exception,Excepción de envío
 selection,"sale.order,state",0,Waiting Schedule,Esperando fecha planificada
@@ -4666,7 +4666,7 @@ selection,"subscription.subscription,interval_type",0,Months,Meses
 selection,"subscription.subscription,interval_type",0,Weeks,Semanas
 selection,"subscription.subscription,state",0,Done,Realizado
 selection,"subscription.subscription,state",0,Draft,Borrador
-selection,"subscription.subscription,state",0,Running,En progreso
+selection,"subscription.subscription,state",0,Running,En proceso
 selection,"workflow.activity,join_mode",0,And,And
 selection,"workflow.activity,join_mode",0,Xor,Xor
 selection,"workflow.activity,kind",0,Dummy,Ficticio
@@ -4754,7 +4754,7 @@ view,account.invoice,0,Set to Draft,Cambiar a borrador
 view,account.invoice,0,Supplier invoice,Factura de proveedor
 view,account.invoice,0,Taxes,Impuestos
 view,account.invoice,0,Total amount,Importe total
-view,account.invoice,0,Untaxed amount,Importe sin impuestos
+view,account.invoice,0,Untaxed amount,Base imponible
 view,account.invoice,0,Validate,Validar
 view,account.invoice.line,0,Invoice Line,Línea de la factura
 view,account.invoice.line,0,Line,Línea
@@ -4826,13 +4826,13 @@ view,account.report.report,0,Return value for status,Valor devuelto del estado
 view,account.report.report,0,Very bad,Muy malo
 view,account.report.report,0,Very Good,Muy Bueno
 view,account.subscription,0,Compute,Calcular
-view,account.subscription,0,Entry Subscription,Asiento de subscripción
+view,account.subscription,0,Entry Subscription,Asiento periódico
 view,account.subscription,0,Remove Lines,Eliminar líneas
 view,account.subscription,0,Set to Draft,Cambiar a borrador
 view,account.subscription,0,State,Estado
-view,account.subscription,0,Subscription Lines,Líneas de subscripción
-view,account.subscription,0,Subscription Periods,Períodos de subscripción
-view,account.subscription.line,0,Subscription lines,Líneas de subscripción
+view,account.subscription,0,Subscription Lines,Líneas de los asientos periódicos
+view,account.subscription,0,Subscription Periods,Repetición de los asientos periódicos
+view,account.subscription.line,0,Subscription lines,Líneas de los asientos periódicos
 view,account.tax,0,Account Tax,Cuenta de impuestos
 view,account.tax,0,Applicable Code (if type=code),Código aplicable (si tipo=código)
 view,account.tax,0,Compute Code for Taxes included prices,Código para calcular precios con impuestos incluidos
@@ -4936,7 +4936,7 @@ view,crm.segmentation,0,Partner Segmentations,Segmentaciones de empresa
 view,crm.segmentation,0,Segmentation Description,Descripción de segmentación
 view,crm.segmentation,0,Segmentation Parameters,Parámetros de segmentación
 view,crm.segmentation,0,Segmentation Test,Prueba de segmentación
-view,crm.segmentation,0,State of Mind Computation,Cálculo estado de satisfacción
+view,crm.segmentation,0,State of Mind Computation,Cálculo grado de satisfacción
 view,crm.segmentation,0,Stop Process,Parar el proceso
 view,crm.segmentation.line,0,Partner Segmentation Lines,Líneas de segmentación de empresa
 view,delivery.carrier,0,Carrier,Transportista
@@ -5245,7 +5245,7 @@ view,purchase.order,0,Purchase Order,Orden de compra
 view,purchase.order,0,Purchase Shippings,Envíos de la compra
 view,purchase.order,0,Shipping Done,Envío realizado
 view,purchase.order,0,Total amount,Importe total
-view,purchase.order,0,Untaxed amount,Importe sin impuestos
+view,purchase.order,0,Untaxed amount,Base imponible
 view,purchase.order.line,0,Notes,Notas
 view,purchase.order.line,0,Order Line,Línea de la orden
 view,purchase.order.line,0,Purchase Order Line,Línea de la orden de compra
@@ -5316,7 +5316,7 @@ view,res.partner,0,Pricelists Properties,Propiedades listas de precios
 view,res.partner.address,0,Contacts,Contactos
 view,res.partner.address,0,Partner contacts,Contactos de empresa
 view,res.partner.bank,0,Bank account,Cuenta bancaria
-view,res.partner.bank,0,Bank account owner,Dueño de la cuenta bancaria
+view,res.partner.bank,0,Bank account owner,Titular de la cuenta bancaria
 view,res.partner.bank,0,Bank accounts,Cuentas bancarias
 view,res.partner.bank.type,0,Bank Account Type,Tipo de cuenta bancaria
 view,res.partner.canal,0,Channel,Canal
@@ -5330,7 +5330,7 @@ view,res.partner.events,0,General Description,Descripción general
 view,res.partner.events,0,Partner Events,Eventos de empresa
 view,res.partner.event.type,0,Event Type,Tipo de evento
 view,res.partner.function,0,Partner Functions,Funciones de empresa
-view,res.partner.som,0,Partner State of Mind,Estado de satisfacción de empresa
+view,res.partner.som,0,Partner State of Mind,Grado de satisfacción de empresa
 view,res.partner.title,0,Partners Titles,Títulos de empresas
 view,res.payterm,0,Payment term,Plazo de pago
 view,res.request,0,Description,Descripción
@@ -5379,7 +5379,7 @@ view,sale.order,0,Sales orders,Órdenes de ventas
 view,sale.order,0,Set to Draft,Cambiar a borrador
 view,sale.order,0,States,Estados
 view,sale.order,0,Total amount,Importe total
-view,sale.order,0,Untaxed amount,Importe sin impuestos
+view,sale.order,0,Untaxed amount,Base imponible
 view,sale.order,0,UoM,UdM
 view,sale.order.line,0,Automatic Declaration,Declaración automática
 view,sale.order.line,0,Done,Realizado
@@ -5471,15 +5471,15 @@ view,stock.tracking,0,Tracking Number,Número seguimiento
 view,stock.tracking,0,Tracking/Serial,Seguimiento/Serie
 view,stock.warehouse,0,Warehouse,Almacén
 view,stock.warehouse.orderpoint,0,Minimum Stock Rules,Reglas de stock mínimo
-view,subscription.document,0,Subscription Document,Documento de subscripción
-view,subscription.document.fields,0,Subscription Document Fields,Campos documento de subscripción
+view,subscription.document,0,Subscription Document,Documento periódico
+view,subscription.document.fields,0,Subscription Document Fields,Campos del documento periódico
 view,subscription.subscription,0,Documents created,Documentos creados
 view,subscription.subscription,0,Process,Proceso
 view,subscription.subscription,0,Set to Draft,Cambiar a borrador
 view,subscription.subscription,0,Stop,Parar
-view,subscription.subscription,0,Subscriptions,Subscripciones
-view,subscription.subscription,0,Subsription Data,Datos de subscripción
-view,subscription.subscription.history,0,Subscription History,Historial de subscripción
+view,subscription.subscription,0,Subscriptions,Documentos periódicos
+view,subscription.subscription,0,Subsription Data,Datos del documento periódico
+view,subscription.subscription.history,0,Subscription History,Historial de documentos periódicos
 view,workflow,0,Activities,Actividades
 view,workflow,0,Workflow,Flujo de trabajo
 view,workflow.activity,0,Activity,Actividad
@@ -6061,7 +6061,7 @@ wizard_view,"account.reconcile.unreconcile,init",0,"If you unreconciliate transa
 wizard_view,"account.reconcile.unreconcile,init",0,Unreconciliation,No conciliación
 wizard_view,"account.reconcile.unreconcile,init",0,Unreconciliation transactions,Transacciones de no conciliación
 wizard_view,"account.subscription.generate,init",0,Generate entries before:,Generar asientos antes:
-wizard_view,"account.subscription.generate,init",0,Subscription Compute,Calcular subscripción
+wizard_view,"account.subscription.generate,init",0,Subscription Compute,Calcular asientos periódicos
 wizard_view,"account.third_party_ledger.report,init",0,Select period,Seleccionar período
 wizard_view,"account.vat.declaration,init",0,Select period,Seleccionar período
 wizard_view,"account.wizard.account.duplicate,init",0,Duplicate account charts,Duplicar resúmenes de cuenta
@@ -6249,12 +6249,12 @@ xsl,stock.location.overview.all,0,Unit Price,Precio ud.
 xsl,stock.location.overview.all,0,UoM,UdM
 xsl,stock.location.overview.all,0,Value,Valor
 xsl,stock.location.overview.all,0,Variants,Variantes
-xsl,stock.picking.list,0,Concerns:,Información del paquete:
-xsl,stock.picking.list,0,Customer ref.,Ref. de cliente
+xsl,stock.picking.list,0,Concerns:,Información del albarán:
+xsl,stock.picking.list,0,Customer ref.,Ref. del cliente
 xsl,stock.picking.list,0,Description,Descripción
 xsl,stock.picking.list,0,Location,Ubicación
-xsl,stock.picking.list,0,Packing Date,Fecha de empaquetado
-xsl,stock.picking.list,0,PACKINGLIST,LISTA EMPAQUETADO
+xsl,stock.picking.list,0,Packing Date,Fecha del albarán
+xsl,stock.picking.list,0,PACKINGLIST,ALBARÁN
 xsl,stock.picking.list,0,Product,Producto
 xsl,stock.picking.list,0,Qty,Ctdad
 xsl,stock.picking.list,0,Recipient,Receptor
