@@ -7,60 +7,36 @@
 	<field name="model">res.partner</field>
 		<field name="inherit_id" ref="base.view_partner_form"/>
 		<field name="arch" type="xml">
-			<field name="state_id" position="after">
-			  <!--<field name="location" on_change="onchange_location(location, zip, city, state_id, country_id)" colspan="4" />-->
+			<field name="country_id" select="2" completion="1" position="replace">
 			  <field name="location" colspan="4" />
 			</field>
 		</field>
 	</record>
 
-  <!--<record model="ir.ui.view" id="partners_form_hide_city">-->
   <record model="ir.ui.view" id="partners_form_del_city">
 	<field name="model">res.partner</field>
 		<field name="inherit_id" ref="base.view_partner_form"/>
 		<field name="arch" type="xml">
-			<field name="city" position="replace">
-			  <!--<field name="city" invisible="True"/>-->
-			  <!--<field name="city" readonly="True"/>-->
-			</field>
+			<field name="city" position="replace"/>
 		</field>
 	</record>
 
-  <!--<record model="ir.ui.view" id="partners_form_hide_zip">-->
   <record model="ir.ui.view" id="partners_form_del_zip">
 	<field name="model">res.partner</field>
 		<field name="inherit_id" ref="base.view_partner_form"/>
 		<field name="arch" type="xml">
-			<field name="zip" position="replace">
-			  <!--<field name="zip" invisible="True"/>-->
-			  <!--<field name="zip" readonly="True"/>-->
-			</field>
+			<field name="zip" position="replace"/>
 		</field>
 	</record>
 
-  <!--<record model="ir.ui.view" id="partners_form_hide_state">-->
   <record model="ir.ui.view" id="partners_form_del_state">
 	<field name="model">res.partner</field>
 		<field name="inherit_id" ref="base.view_partner_form"/>
 		<field name="arch" type="xml">
-			<field name="state_id" position="replace">
-			  <!--<field name="state_id" invisible="True"/>-->
-			  <!--<field name="state_id" readonly="True"/>-->
-			</field>
+			<field name="state_id" position="replace"/>
 		</field>
 	</record>
 
-  <!--<record model="ir.ui.view" id="partners_form_hide_country">-->
-  <record model="ir.ui.view" id="partners_form_del_country">
-	<field name="model">res.partner</field>
-		<field name="inherit_id" ref="base.view_partner_form"/>
-		<field name="arch" type="xml">
-			<field name="country_id" position="replace">
-			  <!--<field name="country_id" invisible="True"/>-->
-			  <!--<field name="country_id" readonly="True"/>-->
-			</field>
-		</field>
-	</record>
 
 <!-- Partner Address 1 -->
   <record model="ir.ui.view" id="partners_form_add_location1">
