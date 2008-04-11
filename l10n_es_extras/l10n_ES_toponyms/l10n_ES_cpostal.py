@@ -30,11 +30,12 @@ import ir
 import wizard
 import pooler
 import codecs
+import tools
 
 cpostal_end_form = '''<?xml version="1.0"?>
 <form string="Códigos postales">
 	<separator string="Resultado:" colspan="4"/>
-	<label string="Se han creado los municipios y provincias del Estado español asociados a códigos postales." colspan="4" align="0.0"/>
+	<label string="Se han asociado los municipios y provincias a los códigos postales del Estado Español." colspan="4" align="0.0"/>
 	<label string="Permite rellenar automáticamente los campos ciudad y provincia del formulario de empresa y contacto a partir del código postal." colspan="4" align="0.0"/>
 </form>'''
 
@@ -45,7 +46,7 @@ class l10n_ES_crear_cpostal(wizard.interface):
 		if not idc:
 			return
 		idc = idc[0]
-		con = codecs.open('./addons/l10n_ES_toponyms/municipios_cpostal.csv','r','utf-8')
+		con = codecs.open(tools.config['addons_path']+'/l10n_ES_toponyms/municipios_cpostal.csv','r','utf-8')
 		for linea in con:
 			linea = linea[:-1]
 			m = linea.split(";")

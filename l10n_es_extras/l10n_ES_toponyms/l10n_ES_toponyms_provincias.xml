@@ -167,7 +167,7 @@
 			<field search="[('code','=','ES')]" model='res.country' name='country_id'/>
 		</record>
 		<record model='res.country.state' id='ES31'>
-			<field name='name'>Nafarroa</field>
+			<field name='name'>Navarra</field>
 			<field name='code'>31</field>
 			<field search="[('code','=','ES')]" model='res.country' name='country_id'/>
 		</record>
