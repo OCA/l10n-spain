@@ -16,6 +16,7 @@
 	],
 	"update_xml" : [
 		"stock_wizard.xml",
+		"stock_view.xml",
 	],
 	"active": False,
 	"installable": True
