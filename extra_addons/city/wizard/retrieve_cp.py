@@ -19,17 +19,15 @@ retrieve_done = '''<?xml version="1.0"?>
 
 class city_recuperar_cpostal(wizard.interface):
 	def _recuperar_cpostal(self, cr, uid, data, context):
-		cr.execute("select zip, id from res_partner_address where location IS NULL")
-		zipcodes = dict(cr.fetchall())
+		cr.execute("select id, zip from res_partner_address where location IS NULL")
+		zipcodes = cr.dictfetchall()
 		for zipcode in zipcodes:
-			cr.execute("select id from city_city where zipcode = %s" %zipcode)
-			city_id = cr.fetchall()
-			if len(city_id) == 1:
-				cr.execute("update res_partner_address SET location = %i WHERE id = %i" %(city_id[0][0], zipcodes[zipcode]))
-		#print res
-		#cr.execute("select zip from res_partner_address where location=NULL")
-		#res=dict(cr.fetchall())
-		#print res
+			if zipcode['zip']:
+				cr.execute("select id from city_city where zipcode = %s" %zipcode['zip'])
+				city_id = cr.fetchall()
+				if len(city_id) > 0:
+					print "city_id y zip", str(city_id[0][0]), str(zipcode['id'])
+					cr.execute("update res_partner_address SET location = %i WHERE id = %i" %(city_id[0][0], zipcode['id']))
 		return {}
 
 	states = {
