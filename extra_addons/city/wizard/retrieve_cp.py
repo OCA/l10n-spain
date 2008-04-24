@@ -26,7 +26,6 @@ class city_recuperar_cpostal(wizard.interface):
 				cr.execute("select id from city_city where zipcode = %s" %zipcode['zip'])
 				city_id = cr.fetchall()
 				if len(city_id) > 0:
-					print "city_id y zip", str(city_id[0][0]), str(zipcode['id'])
 					cr.execute("update res_partner_address SET location = %i WHERE id = %i" %(city_id[0][0], zipcode['id']))
 		return {}
 
