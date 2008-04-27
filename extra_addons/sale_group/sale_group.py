@@ -55,7 +55,7 @@ class sale_order(osv.osv):
         for order in self.browse(cr, uid, ids, context={}):
             output_id = order.shop_id.warehouse_id.lot_output_id.id
             if args and (args[0] == 0): # Agrupa o no los albaranes
-                picking_id = False
+                picking_id = False		# 0: No agrupar		1: Agrupar
             if argv and (len(argv['lines_ids'])>0): # Picking from sale order lines
                 lines_ids = argv['lines_ids'][order.id]
                 browse_lines = self.pool.get('sale.order.line').browse(cr, uid, lines_ids, context={})    
