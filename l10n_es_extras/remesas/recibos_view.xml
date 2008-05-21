@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <terp>
 	<data>
 
@@ -30,7 +30,7 @@
 				<field name="invoice_id" select="1" readonly="1"/>
 				<field name="partner_id" select="1" readonly="1"/>
 				<field name="account_id" select="2" readonly="1"/>
-				<field name="date_maturity" select="1" readonly="1"/>
+				<field name="date_maturity" select="1"/>
 				<field name="debit" select="2" readonly="1"/>
 				<field name="credit" select="2" readonly="1"/>
 				<field name="move_id" select="2" readonly="1"/>
@@ -56,6 +56,7 @@
 				<field name="credit" select="2"/>
 				<field name="move_id" select="2" readonly="1"/>
 				<field name="reconcile_id" />
+				<field name="acc_number" select="1"/>
 				<newline/>
 				<field name="tipopago_id" readonly="1"/>
 				<field name="remesa_id" readonly="1"/>

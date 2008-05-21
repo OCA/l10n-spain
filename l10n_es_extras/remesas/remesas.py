@@ -4,8 +4,11 @@
 # Copyright (c) 2006 ACYSOS S.L.. (http://acysos.com) All Rights Reserved.
 #	Pedro Tarrafeta <pedro@acysos.com>
 #
-# Corregido para instalación TinyERP estàndard 4.2.0: Zikzakmedia S.L. 2008
+# Corregido para instalación TinyERP estándar 4.2.0: Zikzakmedia S.L. 2008
 #   Jordi Esteve <jesteve@zikzakmedia.com>
+#
+# Añadidas cuentas de remesas y tipos de pago. 2008
+#	Pablo Rocandio <salbet@gmail.com>
 #
 # WARNING: This program as such is intended to be used by professional
 # programmers who take the whole responsability of assessing all potential
@@ -76,73 +79,6 @@ class remesas_cuenta(osv.osv):
 		'cif': fields.function(_get_cif, method=True, string='CIF', type="char", select=True),
 		}
 remesas_cuenta()
-
-
-class res_partner_bank(osv.osv):
-	_name='res.partner.bank'
-	_inherit='res.partner.bank'
-	
-	def name_get(self, cr, uid, ids, context=None):
-		if not ids:
-			return []
-		bank_type_obj = self.pool.get('res.partner.bank.type')
-
-		type_ids = bank_type_obj.search(cr, uid, [])
-		bank_type_names = {}
-		for bank_type in bank_type_obj.browse(cr, uid, type_ids,
-				context=context):
-			bank_type_names[bank_type.code] = bank_type.name
-
-		return [(r['id'],  r['acc_number']) \
-					for r in self.read(cr, uid, ids,
-					[self._rec_name, 'acc_number'], context,
-					load='_classic_write')]
-res_partner_bank()
-
-
-class remesas_tipopago(osv.osv):
-	_name='remesas.tipopago'
-	_description='Tipos de pago'
-	_columns = {
-		'name': fields.char('Tipo de Pago', size=32, translate=True),
-		'active': fields.boolean('Activo'),
-		'note': fields.text('Descripción', translate=True, help="Descripción del tipo de pago que aparacerá en la facturas"),
-	}
-	_defaults = {
-		'active': lambda *a: 1,
-	}
-	_order = "name"
-remesas_tipopago()
-
-
-class res_partner(osv.osv):
-	_name='res.partner'
-	_inherit='res.partner'
-	_table = 'res_partner'
-	_columns={
-		'tipopago_id': fields.many2one('remesas.tipopago', 'Tipo de pago')
-	}
-res_partner()
-
-
-class account_invoice(osv.osv):
-	_name='account.invoice'
-	_inherit='account.invoice'
-	_table='account_invoice'
-	_columns={
-		'tipopago_id': fields.many2one('remesas.tipopago', 'Tipo de Pago'),
-	}
-
-	def onchange_partner_id2(self, cr, uid, ids, type, partner_id, date_invoice=False, payment_term=False):
-		"Copia los datos del partner en la factura, incluyendo el nuevo campo tipopago_id"
-		result = self.onchange_partner_id(cr, uid, ids, type, partner_id, date_invoice, payment_term)
-		tipopago_id = False
-		if partner_id:
-			p = self.pool.get('res.partner').browse(cr, uid, partner_id)
-			tipopago_id = p.tipopago_id and p.tipopago_id.id or False
-		result['value']['tipopago_id'] = tipopago_id
-		return result
-account_invoice()
 
 
 class remesas_remesa(osv.osv):
@@ -450,41 +386,50 @@ class remesas_remesa(osv.osv):
 		txt_remesa = _cabecera_ordenante_19(self,txt_remesa)
 		if rem.agrupar_recibos == True: 
 			#Nota: En la SELECT se ha eliminado (and b.active=True) ya que no existe el campo active
-			cr.execute(""" 	SELECT
-						p.id as ref,
-						p.name as nombre,
-						(select b.acc_number as iban from res_partner_bank b where b.partner_id=p.id order by b."sequence" limit 1) as banco,
-						sum(l.debit) - sum(l.credit) as importe,
-						'Fras: ' || min(l.ref) || ' -> ' || max(l.ref) as concepto
-					FROM
-						account_move_line l
-					LEFT OUTER JOIN
-						res_partner p
-					ON 
-						l.partner_id = p.id
-					WHERE
-						l.remesa_id =""" + str(rem.id)	+ """
-					GROUP BY
-						p.id,
-						p.name""")
+			cr.execute("""	SELECT
+								p.id as ref, 
+								p.name as nombre, 
+								b.acc_number as banco, 
+								sum(l.debit) - sum(l.credit) as importe,
+								'Fras: ' || min(l.ref) || ' -> ' || max(l.ref) as concepto
+							FROM 
+								account_move_line l 
+							LEFT OUTER JOIN 
+								res_partner_bank b 
+							ON 
+								l.acc_number=b.id 
+							LEFT OUTER JOIN
+								res_partner p 
+							ON
+								l.partner_id=p.id 
+							WHERE 
+								l.remesa_id=""" + str(rem.id)+ """
+							GROUP BY
+								p.id,
+								p.name,
+								b.acc_number""")
 			recibos = cr.dictfetchall()
 
 		else:
 			#Nota: En la SELECT se ha eliminado (and b.active=True) ya que no existe el campo active
 			cr.execute("""	SELECT
-						p.id as ref,
-						p.name as nombre,
-						(select b.acc_number as iban from res_partner_bank b where b.partner_id=p.id order by b."sequence" limit 1) as banco,
-						l.debit as importe,
-						'Factura ' || l.ref as concepto
-					FROM
-						account_move_line l
-					LEFT OUTER JOIN
-						res_partner p
-					ON 
-						l.partner_id = p.id
-					WHERE 
-						l.remesa_id=""" + str(rem.id))
+								p.id as ref, 
+								p.name as nombre, 
+								b.acc_number as banco, 
+								l.debit as importe, 
+								'Factura ' || l.ref as concepto 
+							FROM 
+								account_move_line l 
+							LEFT OUTER JOIN 
+								res_partner_bank b 
+							ON 
+								l.acc_number=b.id 
+							LEFT OUTER JOIN
+								res_partner p 
+							ON
+								l.partner_id=p.id 
+							WHERE 
+								l.remesa_id=""" + str(rem.id))
 			recibos = cr.dictfetchall()
 		
 #		logger.notifyChannel('Numero de recibos',netsvc.LOG_INFO, recibos.__len__())
@@ -618,50 +563,60 @@ class remesas_remesa(osv.osv):
 		txt_remesa = _cabecera_ordenante_58(self,txt_remesa)
 		if rem.agrupar_recibos == True:
 			#Nota: En la SELECT se ha eliminado (and b.active=True) ya que no existe el campo active
-			cr.execute(""" 	SELECT
-					p.id as ref,
-					p.name as nombre,
-					(select b.acc_number as iban from res_partner_bank b where b.partner_id=p.id order by b."sequence" limit 1) as banco,
-					sum(l.debit) - sum(l.credit) as importe,
-					'Fras: ' || min(l.ref) || ' -> ' || max(l.ref) as concepto,
-					to_char(date_maturity, 'DDMMYY') as vencimiento
-				FROM
-					account_move_line l
-				LEFT OUTER JOIN
-					res_partner p
-				ON 
-					l.partner_id = p.id
-				WHERE
-				l.remesa_id =""" + str(rem.id)	+ """
-				GROUP BY
-					p.id,
-					p.name,
-					vencimiento""")
+			cr.execute("""	SELECT
+								p.id as ref, 
+								p.name as nombre, 
+								b.acc_number as banco, 
+								sum(l.debit) - sum(l.credit) as importe,
+								'Fras: ' || min(l.ref) || ' -> ' || max(l.ref) as concepto,
+								to_char(l.date_maturity, 'DDMMYY') as vencimiento
+							FROM 
+								account_move_line l 
+							LEFT OUTER JOIN 
+								res_partner_bank b 
+							ON 
+								l.acc_number=b.id 
+							LEFT OUTER JOIN
+								res_partner p 
+							ON
+								l.partner_id=p.id 
+							WHERE 
+								l.remesa_id=""" + str(rem.id)+ """
+							GROUP BY
+								p.id,
+								p.name,
+								b.acc_number,
+								vencimiento""")
 			recibos = cr.dictfetchall()
 		else:
 			#Nota: En la SELECT se ha eliminado (and b.active=True) ya que no existe el campo active
-			cr.execute(""" 	SELECT
-					p.id as ref,
-					p.name as nombre,
-					(select b.acc_number as iban from res_partner_bank b where b.partner_id=p.id order by b."sequence" limit 1) as banco,
-					l.debit as importe,
-					'Factura ' || l.ref as concepto,
-					to_char(l.date_maturity, 'DDMMYY') as vencimiento
-				FROM
-					account_move_line l
-				LEFT OUTER JOIN
-					res_partner p
-				ON 
-					l.partner_id = p.id
-				WHERE
-				l.remesa_id =""" + str(rem.id))
-				
+			cr.execute("""	SELECT
+								p.id as ref, 
+								p.name as nombre, 
+								b.acc_number as banco, 
+								l.debit as importe, 
+								'Factura ' || l.ref as concepto,
+								to_char(l.date_maturity, 'DDMMYY') as vencimiento
+							FROM 
+								account_move_line l 
+							LEFT OUTER JOIN 
+								res_partner_bank b 
+							ON 
+								l.acc_number=b.id 
+							LEFT OUTER JOIN
+								res_partner p 
+							ON
+								l.partner_id=p.id 
+							WHERE 
+								l.remesa_id=""" + str(rem.id))
 			recibos = cr.dictfetchall()
 		
 #		logger.notifyChannel('Numero de recibos',netsvc.LOG_INFO, recibos.__len__())
 		
 		for recibo in recibos:
 #			logger.notifyChannel('recibo objeto...',netsvc.LOG_INFO, recibo)
+			if not recibo['vencimiento']:
+				raise osv.except_osv('Error del usuario', 'Añada la fecha de vencimiento a todos los recibos')
 			txt_remesa = _individual_obligatorio_58(self,txt_remesa,recibo)
 	
 		txt_remesa = _total_ordenante_58(self,txt_remesa)
@@ -685,14 +640,39 @@ class account_move_line(osv.osv):
 #			logger.notifyChannel('Facturas...', netsvc.LOG_INFO, res)
 			if res and res[0][1]:
 				remesa_id = res[0][1]
-				result[rec.id] = (remesa_id, self.pool.get('remesas.tipopago').browse(cr, uid, remesa_id).name)
+				result[rec.id] = (remesa_id, self.pool.get('account.paytype').browse(cr, uid, remesa_id).name)
 			else:
 				result[rec.id] = (0,0)
 		return result
 
+	def write(self, cr, uid, ids, vals, context=None, check=True, update_check=True):
+		for key in vals.keys():
+			if key not in ['acc_number', 'cheque_recibido', 'date_maturity']:
+				return super(account_move_line, self).write(cr, uid, ids, vals, context, check, update_check=True)
+		return super(account_move_line, self).write(cr, uid, ids, vals, context, check, update_check=False)
+
+
 	_columns ={
 		'remesa_id': fields.many2one('remesas.remesa','Remesa'),
-		'tipopago_id': fields.function(_tipopago_n, method=True, type="many2one", relation="remesas.tipopago", string="Tipo de Pago"),
+		'tipopago_id': fields.function(_tipopago_n, method=True, type="many2one", relation="account.paytype", string="Tipo de Pago"),
 	}
 
 account_move_line()
+
+class account_invoice(osv.osv):
+	_inherit = "account.invoice"
+	
+	def action_move_create(self, cr, uid, ids, *args):
+		ret = super(account_invoice, self).action_move_create(cr, uid, ids, *args)
+		if ret:
+			move_line_ids = []
+			for inv in self.browse(cr, uid, ids):
+				for move_line in inv.move_id.line_id:
+					if move_line.account_id.type == 'receivable' and move_line.state != 'reconciled' and not move_line.remesa_id.id and not move_line.reconcile_id.id:
+						move_line_ids.append(move_line.id)
+				if len(move_line_ids) and inv.acc_number.id:
+					aml_obj = self.pool.get("account.move.line")
+					aml_obj.write(cr, uid, move_line_ids, {'acc_number': inv.acc_number.id})
+		return ret
+
+account_invoice()

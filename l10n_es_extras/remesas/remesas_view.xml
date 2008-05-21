@@ -9,18 +9,10 @@
 			<field name="type">form</field>
 			<field name="arch" type="xml">
 				<form string="Remesas">
-				<!--<notebook>
-					<page string="Principal">-->
-					<!--<field name="nombre" />-->
-					<!--<field name="cif" />-->
-					<!--<field name="sufijo" />-->
-					<!--<field name="cuenta_id"/>  Añadido -->
-					<field name="cuenta_id"/> <!-- Añadido Modificar banco por cuenta_id-->
+					<field name="cuenta_id"/>
 					<field name="name" select="1"/>
 					<field name="fecha" select="1"/>
 					<field name="fecha_cargo" select="1" />
-					<!--<field name="banco" select="1"/>-->
-					<!--<field name="tipo" select="1" />-->
 					<field name="account_id" />
           <field name="diario" select="1"/>
           <field name="asiento" select="1" />
@@ -41,11 +33,6 @@
 					<!-- Hay que encontrar la forma de que las entradas de los asientos de cobro cuando todavía no estan conciliadas no se vean como recibos -->
 					<field name="receipts" domain="[('account_id.type','=','receivable'),('state','&lt;&gt;','reconciled'),('remesa_id','=',False),('reconcile_id','=',False)]" widget="many2many" colspan="4" nolabel="1" />
 					<field name="texto" colspan="4" nolabel="1"/>
-					<!--</page>
-					<page string="Borrar">
-						<field name="receipts" domain="[('tipopago_id','=','2')]" widget="one2many_list" colspan="4" nolabel="1" select="1"/>
-					</page>
-				</notebook>-->
 				</form>
 			</field>
 		</record>
@@ -94,109 +81,6 @@
 			name="Financial Management/Remesas y Efectos/Remesas/Todas las remesas"
 			action="action_remesas_remesa_tree"
 			id="menu_action_remesas_remesa_todas"/>
-
-
-	<!--****************************** TIPOS DE PAGO ******************************-->
-	<record model="ir.ui.view" id="view_remesas_tipopago_tree">
-		<field name="name">remesas.tipopago.tree</field>
-		<field name="model">remesas.tipopago</field>
-		<field name="type">tree</field>
-		<field name="arch" type="xml">
-			<tree>
-				<field name="name" />
-				<field name="active" />
-			</tree>
-		</field>
-	</record>
-
-	<record model="ir.ui.view" id="view_remesas_tipopago_form">
-		<field name="name">remesas.tipopago.form</field>
-		<field name="model">remesas.tipopago</field>
-		<field name="type">form</field>
-		<field name="arch" type="xml">
-			<form>
-				<field name="name" select="1" />
-				<field name="active" select="1" />
-				<field name="note" />
-			</form>
-		</field>
-	</record>
-
-	<record model="ir.actions.act_window" id="action_remesas_tipopago_form">
-		<field name="name">Tipos de pago</field>
-		<field name="res_model">remesas.tipopago</field>
-		<field name="view_mode">tree,form</field>
-	</record>
-
-	<menuitem 
-		name="Financial Management/Configuration/Tipos de Pago" 
-		id="menu_action_remesas_tipopago"
-		action="action_remesas_tipopago_form"/>
-
-
-	<!--****************************** PARTNERS ******************************-->
-	<record model="ir.ui.view" id="view_remesas_res_partner_form">
-		<field name="name">res.partner.form.remesas</field>
-		<field name="model">res.partner</field>
-		<field name="type">form</field>
-		<field name="inherit_id" ref="base.view_partner_form"/>
-		<field name="arch" type="xml">
-			<!--<field name="vat" position="after">
-				<field name="tipopago_id" />
-			</field>-->
-			<page string="Properties" position="inside">
-				<separator string="Pago" colspan="4"/>
-				<field name="tipopago_id" />
-			</page>
-		</field>
-	</record>
-
-
-	<!--****************************** INVOICES ******************************-->
-	<record model="ir.ui.view" id="invoice_form1">
-		<field name="name">account.invoice.form1.remesas</field>
-		<field name="model">account.invoice</field>
-		<field name="type">form</field>
-		<field name="inherit_id" ref="account.invoice_form"/>
-		<field name="arch" type="xml">
-			<field name="partner_id" position="replace"/>
-		</field>
-	</record>
-
-	<record model="ir.ui.view" id="invoice_form2">
-		<field name="name">account.invoice.form2.remesas</field>
-		<field name="model">account.invoice</field>
-		<field name="type">form</field>
-		<field name="inherit_id" ref="account.invoice_form"/>
-		<field name="arch" type="xml">
-			<field name="date_due" position="replace"/>
-		</field>
-	</record>
-
-	<record model="ir.ui.view" id="invoice_form3">
-		<field name="name">account.invoice.form3.remesas</field>
-		<field name="model">account.invoice</field>
-		<field name="type">form</field>
-		<field name="inherit_id" ref="account.invoice_form"/>
-		<field name="arch" type="xml">
-			<field name="type" position="after">
-				<field name="partner_id" on_change="onchange_partner_id2(type,partner_id,date_invoice,payment_term)" select="1"/>
-			</field>
-		</field>
-	</record>
-
-	<record model="ir.ui.view" id="invoice_form4">
-		<field name="name">account.invoice.form4.remesas</field>
-		<field name="model">account.invoice</field>
-		<field name="type">form</field>
-		<field name="inherit_id" ref="account.invoice_form"/>
-		<field name="arch" type="xml">
-			<field name="payment_term" position="before">
-				<field name="tipopago_id" select="2"/>
-				<field name="date_due" select="1"/>
-			</field>
-		</field>
-	</record>
 
 
 	<!--****************************** EFECTOS ***********************************-->
@@ -252,11 +136,12 @@
 			<field name="priority" eval="8"/>
 			<field name="arch" type="xml">
 				<form string="Cuenta de remesas">
-					<field name="name" colspan="4"/>
-					<field name="tipo"/>
+					<field name="name"  colspan="4"/>
+					<!-- Antes tipo y sufijo estaban agrupados. Lo cambio porque al abrir la ventana de la cuenta de remesas desde la ventana de remesas, la ventana que se abre no es suficientemente ancha y a sipre vista no se distingue si el tipo de remesa es CSB19 o CSB58-->
+          <field name="tipo"/>
 					<field name="sufijo"/>
-          <field name="partner_id" on_change="onchange_partner(partner_id)" colspan="4"/>
-          <field name="nombre" colspan="4"/>
+					<field name="partner_id" on_change="onchange_partner(partner_id)" colspan="4"/>
+					<field name="nombre" colspan="4"/>
 					<!--<field name="banco_id"/>-->
 					<field name="banco_id" domain="[('partner_id','=',partner_id)]" colspan="4"/>
 					<field name="cif" colspan="4"/>

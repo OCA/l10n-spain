@@ -49,6 +49,7 @@ class account_move_line(osv.osv):
 
 	_columns = {
 		'cheque_recibido': fields.boolean('Cheque Recibido'),
-		'invoice_id':fields.function(_invoice_n, method=True, type="many2one", relation="account.invoice", string="Factura")
+		'invoice_id':fields.function(_invoice_n, method=True, type="many2one", relation="account.invoice", string="Factura"),
+		'acc_number': fields.many2one('res.partner.bank','Account number', select=True,),
 	}
 account_move_line()
