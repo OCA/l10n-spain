@@ -526,11 +526,11 @@ field,"delivery.grid,state_ids",0,States,Provincias
 field,"delivery.grid,zip_from",0,Start Zip,C.Postal inicial
 field,"delivery.grid,zip_to",0,To Zip,C.Postal final
 field,"hr.action.reason,action_type",0,Action's type,Tipo de acción
-field,"hr.action.reason,name",0,Reason,Razón
+field,"hr.action.reason,name",0,Reason,Motivo
 field,"hr.analytic.timesheet,line_id",0,Analytic line,Línea analítica
 field,"hr.analytic.timesheet,sheet_id",0,Sheet,Hoja
 field,"hr.attendance,action",0,Action,Acción
-field,"hr.attendance,action_desc",0,Action reason,Razón de la acción
+field,"hr.attendance,action_desc",0,Action reason,Motivo de la acción
 field,"hr.attendance,employee_id",0,Employee,Empleado
 field,"hr.attendance,name",0,Date,Fecha
 field,"hr.attendance,sheet_id",0,Sheet,Hoja
@@ -558,7 +558,7 @@ field,"hr.department,note",0,Note,Nota
 field,"hr.department,parent_id",0,Parent Department,Departamento padre
 field,"hr.employee,active",0,Active,Activo
 field,"hr.employee,address_id",0,Contact address,Dirección contacto
-field,"hr.employee,attendances",0,Employee's attendances,Servicios del empleado
+field,"hr.employee,attendances",0,Employee's attendances,Asistencia del empleado
 field,"hr.employee,audiens_num",0,AUDIENS Number,Número de AUDIENS
 field,"hr.employee,birth_date",0,Birth Date,Fecha nacimiento
 field,"hr.employee.category,child_ids",0,Childs Categories,Categorías hijas
@@ -586,7 +586,7 @@ field,"hr.employee,product_id",0,Product,Producto
 field,"hr.employee,regime",0,Workhours by week,Horas de trabajo por semana
 field,"hr.employee,soc_security",0,Social security number,Número del seguridad social
 field,"hr.employee,started",0,Started on,Empezó el
-field,"hr.employee,state",0,Attendance,Servicios
+field,"hr.employee,state",0,Attendance,Asistencia
 field,"hr.employee,user_id",0,Tiny ERP User,Usuario de Tiny ERP
 field,"hr.employee,workgroups",0,Employee's work team,Grupo de trabajo del empleado
 field,"hr.expense.expense,account_move_id",0,Account Move,Asiento
@@ -2308,7 +2308,7 @@ model,"ir.actions.act_window,name",base.open_module_users_list,Users,Usuarios
 model,"ir.actions.act_window,name",base.open_repository_tree,,
 model,"ir.actions.act_window,name",base.res_partner_canal-act,,
 model,"ir.actions.act_window,name",base.res_partner_event_type-act,,
-model,"ir.actions.act_window,name",base.res_partner_som-act,States of mind,Estados de satisfacción
+model,"ir.actions.act_window,name",base.res_partner_som-act,States of mind,Grados de satisfacción
 model,"ir.actions.act_window,name",base.res_request-act,,
 model,"ir.actions.act_window,name",base.res_request_link-act,,
 model,"ir.actions.act_window,name",board_account.action_account_analytic_line_to_invoice,,
@@ -2609,7 +2609,7 @@ model,"ir.actions.report.xml,name",account.account_analytic_budget_print,Print B
 model,"ir.actions.report.xml,name",account.account_budget,Print Budget,Imprimir presupuesto
 model,"ir.actions.report.xml,name",account.account_central_journal,Print Central Journal,Imprimir diario central
 model,"ir.actions.report.xml,name",account.account_general_journal,Print General Journal,Imprimir diario general
-model,"ir.actions.report.xml,name",account.account_general_ledger,General Ledger,Libro de contabilidad general
+model,"ir.actions.report.xml,name",account.account_general_ledger,General Ledger,Libro mayor
 model,"ir.actions.report.xml,name",account.account_intracom,IntraCom,IntraCom
 model,"ir.actions.report.xml,name",account.account_invoices,Invoices,Facturas
 model,"ir.actions.report.xml,name",account.account_journal,Print Journal,Imprimir diario
@@ -2669,7 +2669,7 @@ model,"ir.actions.wizard,name",account.wizard_balance_report,Account balance,Sal
 model,"ir.actions.wizard,name",account.wizard_budget_report,Budget,Presupuesto
 model,"ir.actions.wizard,name",account.wizard_budget_spread,Spread amount,Importe de margen
 model,"ir.actions.wizard,name",account.wizard_fiscalyear_close,Close a fiscal year,Cerrar un ejercicio fiscal
-model,"ir.actions.wizard,name",account.wizard_general_ledger_report,General ledger,Libro de contabilidad general
+model,"ir.actions.wizard,name",account.wizard_general_ledger_report,General ledger,Libro mayor
 model,"ir.actions.wizard,name",account.wizard_generate_subscription,Create subscription entries,Crear asientos periódicos
 model,"ir.actions.wizard,name",account.wizard_invoice_pay,Pay invoice,Pagar factura
 model,"ir.actions.wizard,name",account.wizard_invoice_refund,Refund invoice,Reintegrar factura
@@ -2750,7 +2750,7 @@ model,"ir.model,name",0,Account reporting,Informe de contabilidad
 model,"ir.model,name",0,Account Subscription,Subscripción de contabilidad
 model,"ir.model,name",0,Account Subscription Line,Línea de subscripción de contabilidad
 model,"ir.model,name",0,Account Type,Tipo de cuenta
-model,"ir.model,name",0,Action reason,Razón de la acción
+model,"ir.model,name",0,Action reason,Motivo de la acción
 model,"ir.model,name",0,Analytic account costs and revenues,Cuenta analítica costes y retornos
 model,"ir.model,name",0,Analytic Accounts,Cuentas analíticas
 model,"ir.model,name",0,Analytic account to close,Cuenta analítica a cerrar
@@ -3025,7 +3025,7 @@ model,"ir.ui.menu,name",0,Production,Producción
 model,"ir.ui.menu,name",0,Project,Proyecto
 model,"ir.ui.menu,name",0,Properties,Propiedades
 model,"ir.ui.menu,name",0,Reconciliation,Conciliación
-model,"ir.ui.menu,name",0,Reordering Policy,Política de volver a ordenar
+model,"ir.ui.menu,name",0,Reordering Policy,Política de reabastecimiento
 model,"ir.ui.menu,name",0,Reporting,Informe
 model,"ir.ui.menu,name",0,Requests,Solicitudes
 model,"ir.ui.menu,name",0,Sales,Ventas
@@ -3196,7 +3196,7 @@ model,"ir.ui.menu,name",base.menu_partner_function_form,Functions,Cargos
 model,"ir.ui.menu,name",base.menu_partner_title,Titles,Títulos
 model,"ir.ui.menu,name",base.menu_res_partner_canal-act,Channels,Canales
 model,"ir.ui.menu,name",base.menu_res_partner_event_type-act,Active Partner Events,Eventos de empresas activas
-model,"ir.ui.menu,name",base.menu_res_partner_som-act,States of Mind,Estados de satisfacción
+model,"ir.ui.menu,name",base.menu_res_partner_som-act,States of Mind,Grados de satisfacción
 model,"ir.ui.menu,name",base.menu_res_request_act,Requests,Solicitudes
 model,"ir.ui.menu,name",base.menu_res_request_link_act,Request Links,Enlaces a solicitudes
 model,"ir.ui.menu,name",base.menu_security,Security,Seguridad
@@ -3257,12 +3257,12 @@ model,"ir.ui.menu,name",hr_expense.menu_expense_my,My Expenses,Mis gastos
 model,"ir.ui.menu,name",hr.menu_department_def,Define Departments,Definir departamentos
 model,"ir.ui.menu,name",hr.menu_department_tree,Departments Structure,Árbol de los departamentos
 model,"ir.ui.menu,name",hr.menu_edit_workgroup,Timesheet Categories,Categorías de las hojas de asistencia
-model,"ir.ui.menu,name",hr.menu_hr_attendance,Attendances,Servicios
+model,"ir.ui.menu,name",hr.menu_hr_attendance,Attendances,Asistencia
 model,"ir.ui.menu,name",hr.menu_hr_reporting,Reporting,Informe
 model,"ir.ui.menu,name",hr.menu_hr_root,Human Resources,Recursos humanos
 model,"ir.ui.menu,name",hr.menu_open_ask_holidays,Vacation Request,Petición de vacaciones
-model,"ir.ui.menu,name",hr.menu_open_view_attendance,Attendances,Servicios
-model,"ir.ui.menu,name",hr.menu_open_view_attendance_reason,Attendance Reasons,Motivos de servicios
+model,"ir.ui.menu,name",hr.menu_open_view_attendance,Attendances,Asistencia
+model,"ir.ui.menu,name",hr.menu_open_view_attendance_reason,Attendance Reasons,Motivos de asistencia
 model,"ir.ui.menu,name",hr.menu_open_view_employee_list,Employees,Empleados
 model,"ir.ui.menu,name",hr.menu_open_view_employee_new,New Employee,Nuevo empleado
 model,"ir.ui.menu,name",hr.menu_open_view_employee_tree,Employees,Empleados
@@ -3715,7 +3715,7 @@ rml,account.general.ledger,0,Currency:,Moneda:
 rml,account.general.ledger,0,Date,Fecha
 rml,account.general.ledger,0,Debit,Debe
 rml,account.general.ledger,0,Entry label,Ref. asiento
-rml,account.general.ledger,0,General ledger,Libro de contabilidad general
+rml,account.general.ledger,0,General ledger,Libro mayor
 rml,account.general.ledger,0,Printing date:,Fecha impresión:
 rml,account.general.ledger,0,Progressive balance,Saldo acumulado
 rml,account.general.ledger,0,Ref.,Ref.
@@ -4953,7 +4953,7 @@ view,hr.analytic.timesheet,0,Timesheet Lines,Líneas de la hoja de asistencia
 view,hr.analytic.timesheet,0,Total cost,Coste total
 view,hr.analytic.timesheet,0,Total time,Tiempo total
 view,hr.attendance,0,Employee attendance,Asistencia empleado
-view,hr.attendance,0,Employee attendances,Servicios empleado
+view,hr.attendance,0,Employee attendances,Asistencia empleado
 view,hr.contract,0,Contract,Contrato
 view,hr.contract,0,Contract Duration,Duración del contrato
 view,hr.contract,0,Contracts,Contratos
@@ -5988,8 +5988,8 @@ wizard_field,"res.partner.sms_send,init,app_id",0,API ID,ID API
 wizard_field,"res.partner.sms_send,init,password",0,Password,Contraseña
 wizard_field,"res.partner.sms_send,init,text",0,SMS Message,Mensaje de SMS
 wizard_field,"res.partner.sms_send,init,user",0,Login,Usuario
-wizard_field,"res.partner.spam_send,init,from",0,Sender's email,Emisor email
-wizard_field,"res.partner.spam_send,init,subject",0,Subject,Sujeto
+wizard_field,"res.partner.spam_send,init,from",0,Sender's email,Email remitente
+wizard_field,"res.partner.spam_send,init,subject",0,Subject,Asunto
 wizard_field,"res.partner.spam_send,init,text",0,Message,Mensaje
 wizard_field,"sale.order.line.make_invoice,init,grouped",0,Group the invoices,Agrupar las facturas
 wizard_field,"sale.order.make_invoice,init,grouped",0,Group the invoices,Agrupar las facturas

@@ -526,11 +526,11 @@ field,"delivery.grid,state_ids",0,States,Províncies
 field,"delivery.grid,zip_from",0,Start Zip,C.Postal inicial
 field,"delivery.grid,zip_to",0,To Zip,C.Postal final
 field,"hr.action.reason,action_type",0,Action's type,Tipus d'acció
-field,"hr.action.reason,name",0,Reason,Raó
+field,"hr.action.reason,name",0,Reason,Motiu
 field,"hr.analytic.timesheet,line_id",0,Analytic line,Línia analítica
 field,"hr.analytic.timesheet,sheet_id",0,Sheet,Full
 field,"hr.attendance,action",0,Action,Acció
-field,"hr.attendance,action_desc",0,Action reason,Raó de l'acció
+field,"hr.attendance,action_desc",0,Action reason,Motiu de l'acció
 field,"hr.attendance,employee_id",0,Employee,Empleat
 field,"hr.attendance,name",0,Date,Data
 field,"hr.attendance,sheet_id",0,Sheet,Full
@@ -558,7 +558,7 @@ field,"hr.department,note",0,Note,Nota
 field,"hr.department,parent_id",0,Parent Department,Departament pare
 field,"hr.employee,active",0,Active,Actiu
 field,"hr.employee,address_id",0,Contact address,Adreça contacte
-field,"hr.employee,attendances",0,Employee's attendances,Serveis de l'empleat
+field,"hr.employee,attendances",0,Employee's attendances,Assitència de l'empleat
 field,"hr.employee,audiens_num",0,AUDIENS Number,Número d'aUDIENS
 field,"hr.employee,birth_date",0,Birth Date,Data naixement
 field,"hr.employee.category,child_ids",0,Childs Categories,Categories filles
@@ -586,7 +586,7 @@ field,"hr.employee,product_id",0,Product,Producte
 field,"hr.employee,regime",0,Workhours by week,Hores de treball per setmana
 field,"hr.employee,soc_security",0,Social security number,Número de seguretat social
 field,"hr.employee,started",0,Started on,Va començar el
-field,"hr.employee,state",0,Attendance,Serveis
+field,"hr.employee,state",0,Attendance,Assistència
 field,"hr.employee,user_id",0,Tiny ERP User,Usuari de Tiny ERP
 field,"hr.employee,workgroups",0,Employee's work team,Grup de treball de l'empleat
 field,"hr.expense.expense,account_move_id",0,Account Move,Assentament
@@ -734,8 +734,8 @@ field,"ir.cron,interval_number",0,Interval Number,Número d'intervals
 field,"ir.cron,interval_type",0,Interval Unit,Unitat d'interval
 field,"ir.cron,model",0,Model,Model
 field,"ir.cron,name",0,Name,Nom
-field,"ir.cron,nextcall",0,Next call date,Data de la propera trucada
-field,"ir.cron,numbercall",0,Number of calls,Número de trucades
+field,"ir.cron,nextcall",0,Next call date,Data de la propera crida
+field,"ir.cron,numbercall",0,Number of calls,Número de crides
 field,"ir.cron,priority",0,Priority,Prioritat (0=Molt urgent)
 field,"ir.cron,user_id",0,User,Usuari
 field,"ir.default,company_id",0,Company,Companyia
@@ -2308,7 +2308,7 @@ model,"ir.actions.act_window,name",base.open_module_users_list,Users,Usuaris
 model,"ir.actions.act_window,name",base.open_repository_tree,,
 model,"ir.actions.act_window,name",base.res_partner_canal-act,,
 model,"ir.actions.act_window,name",base.res_partner_event_type-act,,
-model,"ir.actions.act_window,name",base.res_partner_som-act,States of mind,Estats de satisfacció
+model,"ir.actions.act_window,name",base.res_partner_som-act,States of mind,Graus de satisfacció
 model,"ir.actions.act_window,name",base.res_request-act,,
 model,"ir.actions.act_window,name",base.res_request_link-act,,
 model,"ir.actions.act_window,name",board_account.action_account_analytic_line_to_invoice,,
@@ -2609,7 +2609,7 @@ model,"ir.actions.report.xml,name",account.account_analytic_budget_print,Print B
 model,"ir.actions.report.xml,name",account.account_budget,Print Budget,Imprimeix pressupost
 model,"ir.actions.report.xml,name",account.account_central_journal,Print Central Journal,Imprimeix diari central
 model,"ir.actions.report.xml,name",account.account_general_journal,Print General Journal,Imprimeix diari general
-model,"ir.actions.report.xml,name",account.account_general_ledger,General Ledger,Llibre de comptabilitat general
+model,"ir.actions.report.xml,name",account.account_general_ledger,General Ledger,Llibre major
 model,"ir.actions.report.xml,name",account.account_intracom,IntraCom,IntraCom
 model,"ir.actions.report.xml,name",account.account_invoices,Invoices,Factures
 model,"ir.actions.report.xml,name",account.account_journal,Print Journal,Imprimeix diari
@@ -2669,7 +2669,7 @@ model,"ir.actions.wizard,name",account.wizard_balance_report,Account balance,Sal
 model,"ir.actions.wizard,name",account.wizard_budget_report,Budget,Pressupost
 model,"ir.actions.wizard,name",account.wizard_budget_spread,Spread amount,Import de marge
 model,"ir.actions.wizard,name",account.wizard_fiscalyear_close,Close a fiscal year,Tanca un exercici fiscal
-model,"ir.actions.wizard,name",account.wizard_general_ledger_report,General ledger,Llibre de comptabilitat general
+model,"ir.actions.wizard,name",account.wizard_general_ledger_report,General ledger,Llibre major
 model,"ir.actions.wizard,name",account.wizard_generate_subscription,Create subscription entries,Crea assentaments periòdics
 model,"ir.actions.wizard,name",account.wizard_invoice_pay,Pay invoice,Paga factura
 model,"ir.actions.wizard,name",account.wizard_invoice_refund,Refund invoice,Reintegra factura
@@ -2750,7 +2750,7 @@ model,"ir.model,name",0,Account reporting,Informe de comptabilitat
 model,"ir.model,name",0,Account Subscription,Subscripció de comptabilitat
 model,"ir.model,name",0,Account Subscription Line,Línia de subscripció de comptabilitat
 model,"ir.model,name",0,Account Type,Tipus de compte
-model,"ir.model,name",0,Action reason,Raó de l'acció
+model,"ir.model,name",0,Action reason,Motiu de l'acció
 model,"ir.model,name",0,Analytic account costs and revenues,Compte analític costos i retorns
 model,"ir.model,name",0,Analytic Accounts,Comptes analítics
 model,"ir.model,name",0,Analytic account to close,Compte analític a tancar
@@ -2988,7 +2988,7 @@ model,"ir.ui.menu,name",0,Contract,Contracte
 model,"ir.ui.menu,name",0,Database Structure,Estructura de les bases de dades
 model,"ir.ui.menu,name",0,Delivery,Lliurament
 model,"ir.ui.menu,name",0,Draft Helpdesk,Helpdesk esborrany
-model,"ir.ui.menu,name",0,End of Year Treatments,Trataments de fi d'any
+model,"ir.ui.menu,name",0,End of Year Treatments,Tractaments de fi d'any
 model,"ir.ui.menu,name",0,Entries,Assentaments
 model,"ir.ui.menu,name",0,Expenses,Despeses
 model,"ir.ui.menu,name",0,Financial Management,Gestió financera
@@ -3025,7 +3025,7 @@ model,"ir.ui.menu,name",0,Production,Producció
 model,"ir.ui.menu,name",0,Project,Projecte
 model,"ir.ui.menu,name",0,Properties,Propietats
 model,"ir.ui.menu,name",0,Reconciliation,Conciliació
-model,"ir.ui.menu,name",0,Reordering Policy,Política de tornar a ordenar
+model,"ir.ui.menu,name",0,Reordering Policy,Política de reproveïment
 model,"ir.ui.menu,name",0,Reporting,Informe
 model,"ir.ui.menu,name",0,Requests,Sol·licituds
 model,"ir.ui.menu,name",0,Sales,Vendes
@@ -3196,7 +3196,7 @@ model,"ir.ui.menu,name",base.menu_partner_function_form,Functions,Càrrecs
 model,"ir.ui.menu,name",base.menu_partner_title,Titles,Títols
 model,"ir.ui.menu,name",base.menu_res_partner_canal-act,Channels,Canals
 model,"ir.ui.menu,name",base.menu_res_partner_event_type-act,Active Partner Events,Esdeveniments d'empreses actives
-model,"ir.ui.menu,name",base.menu_res_partner_som-act,States of Mind,Estats de satisfacció
+model,"ir.ui.menu,name",base.menu_res_partner_som-act,States of Mind,Graus de satisfacció
 model,"ir.ui.menu,name",base.menu_res_request_act,Requests,Sol·licituds
 model,"ir.ui.menu,name",base.menu_res_request_link_act,Request Links,Enllaços a sol·licituds
 model,"ir.ui.menu,name",base.menu_security,Security,Seguretat
@@ -3215,7 +3215,7 @@ model,"ir.ui.menu,name",base.menu_workflow_instance,Instances,Casos
 model,"ir.ui.menu,name",base.menu_workflow_transition,Transitions,Transicions
 model,"ir.ui.menu,name",base.menu_workflow,Workflows,Fluxes de treball
 model,"ir.ui.menu,name",base.menu_workflow_workitem,Workitems,Elements de treball
-model,"ir.ui.menu,name",base_report_designer.menu_wizard_report_designer_modify,Report Designer,Disenyador d'informes
+model,"ir.ui.menu,name",base_report_designer.menu_wizard_report_designer_modify,Report Designer,Dissenyador d'informes
 model,"ir.ui.menu,name",board_account.menu_board_account,Accounting Dashboard,Taulell de comptabilitat
 model,"ir.ui.menu,name",board.dashboard_menu,Dashboards,Taulells
 model,"ir.ui.menu,name",board_manufacturing.menu_board_manufacturing,Production Dashboard,Taulell de producció
@@ -3257,12 +3257,12 @@ model,"ir.ui.menu,name",hr_expense.menu_expense_my,My Expenses,Les meves despese
 model,"ir.ui.menu,name",hr.menu_department_def,Define Departments,Defineix departaments
 model,"ir.ui.menu,name",hr.menu_department_tree,Departments Structure,Arbre dels departaments
 model,"ir.ui.menu,name",hr.menu_edit_workgroup,Timesheet Categories,Categories dels fulls d'assistència
-model,"ir.ui.menu,name",hr.menu_hr_attendance,Attendances,Serveis
+model,"ir.ui.menu,name",hr.menu_hr_attendance,Attendances,Assistència
 model,"ir.ui.menu,name",hr.menu_hr_reporting,Reporting,Informe
 model,"ir.ui.menu,name",hr.menu_hr_root,Human Resources,Recursos humans
 model,"ir.ui.menu,name",hr.menu_open_ask_holidays,Vacation Request,Petició de vacances
-model,"ir.ui.menu,name",hr.menu_open_view_attendance,Attendances,Serveis
-model,"ir.ui.menu,name",hr.menu_open_view_attendance_reason,Attendance Reasons,Motius de serveis
+model,"ir.ui.menu,name",hr.menu_open_view_attendance,Attendances,Assistència
+model,"ir.ui.menu,name",hr.menu_open_view_attendance_reason,Attendance Reasons,Motius d'assitència
 model,"ir.ui.menu,name",hr.menu_open_view_employee_list,Employees,Empleats
 model,"ir.ui.menu,name",hr.menu_open_view_employee_new,New Employee,Nou empleat
 model,"ir.ui.menu,name",hr.menu_open_view_employee_tree,Employees,Empleats
@@ -3715,7 +3715,7 @@ rml,account.general.ledger,0,Currency:,Moneda:
 rml,account.general.ledger,0,Date,Data
 rml,account.general.ledger,0,Debit,Deure
 rml,account.general.ledger,0,Entry label,Ref. assentament
-rml,account.general.ledger,0,General ledger,Llibre de comptabilitat general
+rml,account.general.ledger,0,General ledger,Llibre major
 rml,account.general.ledger,0,Printing date:,Data impressió:
 rml,account.general.ledger,0,Progressive balance,Saldo acumulat
 rml,account.general.ledger,0,Ref.,Ref.
@@ -4953,7 +4953,7 @@ view,hr.analytic.timesheet,0,Timesheet Lines,Línies de la full d'assistència
 view,hr.analytic.timesheet,0,Total cost,Cost total
 view,hr.analytic.timesheet,0,Total time,Temps total
 view,hr.attendance,0,Employee attendance,Assistència empleat
-view,hr.attendance,0,Employee attendances,Serveis empleat
+view,hr.attendance,0,Employee attendances,Assistència empleat
 view,hr.contract,0,Contract,Contracte
 view,hr.contract,0,Contract Duration,Duració del contracte
 view,hr.contract,0,Contracts,Contractes
@@ -5988,8 +5988,8 @@ wizard_field,"res.partner.sms_send,init,app_id",0,API ID,ID API
 wizard_field,"res.partner.sms_send,init,password",0,Password,Contrasenya
 wizard_field,"res.partner.sms_send,init,text",0,SMS Message,Missatge de SMS
 wizard_field,"res.partner.sms_send,init,user",0,Login,Usuari
-wizard_field,"res.partner.spam_send,init,from",0,Sender's email,Emisor email
-wizard_field,"res.partner.spam_send,init,subject",0,Subject,Sujecte
+wizard_field,"res.partner.spam_send,init,from",0,Sender's email,Email remitent
+wizard_field,"res.partner.spam_send,init,subject",0,Subject,Assumpte
 wizard_field,"res.partner.spam_send,init,text",0,Message,Missatge
 wizard_field,"sale.order.line.make_invoice,init,grouped",0,Group the invoices,Agrupa les factures
 wizard_field,"sale.order.make_invoice,init,grouped",0,Group the invoices,Agrupa les factures
