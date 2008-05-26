@@ -38,6 +38,7 @@ logger = netsvc.Logger()
 from osv import osv, fields, orm
 import ir
 import time
+import base64
 
 import mx.DateTime
 from mx.DateTime import RelativeDateTime, now, DateTime, localtime
@@ -110,9 +111,10 @@ class remesas_remesa(osv.osv):
 		'account_id': fields.many2one('account.account', 'Cuenta asiento bancario', domain=[('type','<>','view'), ('type', '<>', 'closed')]),
 		'receipts': fields.one2many('account.move.line', 'remesa_id' ,'Recibos', readonly=True, states={'draft':[('readonly',False)]}),
 		'texto': fields.text('Texto para el banco'),
-		'state': fields.selection( (('draft','Draft'),('confirmed','Confirmed'),('2reconcile','A Conciliar'),('done','Done')), 'Estado', readonly=True),
+		'state': fields.selection( (('draft','Borrador'),('confirmed','Confirmada'),('2reconcile','A Conciliar'),('done','Realizada')), 'Estado', readonly=True),
 		'agrupar_recibos': fields.boolean('Agrupar Recibos'),
-		'asiento': fields.many2one('account.move', 'Asiento de Cobro', readonly=True),	
+		'asiento': fields.many2one('account.move', 'Asiento de Cobro', readonly=True),
+		'fichero': fields.binary('Fichero para el banco', readonly=True),
 	}
 
 	_defaults={
@@ -440,7 +442,7 @@ class remesas_remesa(osv.osv):
 	
 		txt_remesa = _total_ordenante_19(self,txt_remesa)
 		txt_remesa = _total_general_19(self,txt_remesa)
-		self.write(cr, uid, ids, {'texto':txt_remesa})
+		self.write(cr, uid, ids, {'texto':txt_remesa, 'fichero':base64.encodestring(txt_remesa)})
 #		logger.notifyChannel('remesas texto',netsvc.LOG_INFO, '\r\n' + txt_remesa)
 
 
@@ -621,7 +623,7 @@ class remesas_remesa(osv.osv):
 	
 		txt_remesa = _total_ordenante_58(self,txt_remesa)
 		txt_remesa = _total_general_58(self,txt_remesa)
-		self.write(cr, uid, ids, {'texto':txt_remesa})
+		self.write(cr, uid, ids, {'texto':txt_remesa, 'fichero':base64.encodestring(txt_remesa)})
 #		logger.notifyChannel('remesas texto',netsvc.LOG_INFO, '\r\n' + txt_remesa)
 
 remesas_remesa()

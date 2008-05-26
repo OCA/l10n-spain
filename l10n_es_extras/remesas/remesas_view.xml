@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <terp>
 	<data>
 
@@ -14,24 +14,25 @@
 					<field name="fecha" select="1"/>
 					<field name="fecha_cargo" select="1" />
 					<field name="account_id" />
-          <field name="diario" select="1"/>
-          <field name="asiento" select="1" />
+					<field name="diario" select="1"/>
+					<field name="asiento" select="1" />
 					<field name="agrupar_recibos" />
-          <group colspan="2" col="4">
-					<field name="state" />
-          <field name="total" select="1"/>
+					<group colspan="2" col="4">
+						<field name="state" />
+						<field name="total" select="1"/>
 					</group>
 					<group colspan="2" col="5">
-					<button name="button_compute" string="Calcular Totales" states="draft" />
-          <button name="button_confirm" string="Crear Fichero" states="draft,confirmed,2reconcile" type="object"/>
-					<button name="button_contabilizar" string="Contabilizar" states="confirmed" type="object"/>
-					<button name="button_reconcile" string="Conciliar apuntes" states="2reconcile" type="object"/>
-					<button name="button_cancel" string="Cancelar" states="draft,confirmed" type="object"/>
+						<button name="button_compute" string="Calcular Totales" states="draft" />
+						<button name="button_confirm" string="Crear Fichero" states="draft,confirmed,2reconcile" type="object"/>
+						<button name="button_contabilizar" string="Contabilizar" states="confirmed" type="object"/>
+						<button name="button_reconcile" string="Conciliar apuntes" states="2reconcile" type="object"/>
+						<button name="button_cancel" string="Cancelar" states="draft,confirmed" type="object"/>
 					</group>
 					<separator string="Recibos" colspan="4" />
 					<!-- ('state','&lt;&gt;','reconciled') no funciona pues no existe este estado y se ha añadido ('reconcile_id','=',False) -->
 					<!-- Hay que encontrar la forma de que las entradas de los asientos de cobro cuando todavía no estan conciliadas no se vean como recibos -->
 					<field name="receipts" domain="[('account_id.type','=','receivable'),('state','&lt;&gt;','reconciled'),('remesa_id','=',False),('reconcile_id','=',False)]" widget="many2many" colspan="4" nolabel="1" />
+					<field name="fichero" colspan="4"/>
 					<field name="texto" colspan="4" nolabel="1"/>
 				</form>
 			</field>
