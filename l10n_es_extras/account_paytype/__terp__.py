@@ -16,10 +16,8 @@ This module provides:
 	* A default check field in partner bank accounts
 """,
     "depends" : [
-        "base", 
-        "account", 
-        #"l10n_sp_2008", # Plan General Contable 2008 ACYSOS, S.L.
-        #"paydays",
+        "base",
+        "account",
         ],
     "init_xml" : [],
     "demo_xml" : [],

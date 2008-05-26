@@ -21,7 +21,7 @@ cuenta y fecha de vencimiento a nivel de recibo.
 """,
 	"website" : "www.acysos.com",
 	"license" : "GPL-2",
-    "depends" : ["base","account","account_paytype"],
+    "depends" : ["base","account","account_paytype","paydays",],
     "init_xml" : [],
     "demo_xml" : [],
     "update_xml" : ['recibos_view.xml','remesas_report.xml','remesas_sequence.xml','remesas_view.xml','remesas_workflow.xml',],
