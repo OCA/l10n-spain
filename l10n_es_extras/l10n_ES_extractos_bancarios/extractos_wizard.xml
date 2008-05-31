@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<terp>
+	<data>
+		<wizard
+			string="Importar extracto bancario"
+			model="account.bank.statement"
+			name="l10n_ES_extractos_bancarios.importar"
+			id="wizard_l10n_ES_extractos_bancarios.importar"/>
+			<!--menu="False"-->
+
+	</data>
+</terp>

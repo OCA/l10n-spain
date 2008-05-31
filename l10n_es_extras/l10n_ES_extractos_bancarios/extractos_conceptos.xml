@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<terp>
+	<data noupdate='1'>
+		<record model='l10n.es.extractos.concepto' id='01'>
+			<field name='code'>01</field>
+			<field name='name'>Reintegro/Talón</field>
+			<field search="[('code','=','43000000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='02'>
+			<field name='code'>02</field>
+			<field name='name'>Ingreso/Abonaré</field>
+			<field search="[('code','=','41000000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='03'>
+			<field name='code'>03</field>
+			<field name='name'>Recibo/Letra domiciliado</field>
+			<field search="[('code','=','41000000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='04'>
+			<field name='code'>04</field>
+			<field name='name'>Transf./Giro/Cheque</field>
+			<field search="[('code','=','43000000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='05'>
+			<field name='code'>05</field>
+			<field name='name'>Amortización préstamo</field>
+			<field search="[('code','=','68000000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='06'>
+			<field name='code'>06</field>
+			<field name='name'>Remesa efectos</field>
+			<field search="[('code','=','40100000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='07'>
+			<field name='code'>07</field>
+			<field name='name'>Subscripción/Canje</field>
+			<field search="[('code','=','57000000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='08'>
+			<field name='code'>08</field>
+			<field name='name'>Amortización</field>
+			<field search="[('code','=','68000000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='09'>
+			<field name='code'>09</field>
+			<field name='name'>Compra/Venta valores</field>
+			<field search="[('code','=','25100000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='10'>
+			<field name='code'>10</field>
+			<field name='name'>Cheque gasolina</field>
+			<field search="[('code','=','57000000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='11'>
+			<field name='code'>11</field>
+			<field name='name'>Cajero automático</field>
+			<field search="[('code','=','57000000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='12'>
+			<field name='code'>12</field>
+			<field name='name'>Tarjeta crédito/débito</field>
+			<field search="[('code','=','57000000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='13'>
+			<field name='code'>13</field>
+			<field name='name'>Operaciones extranjero</field>
+			<field search="[('code','=','57300000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='14'>
+			<field name='code'>14</field>
+			<field name='name'>Devolución/Impagado</field>
+			<field search="[('code','=','43000000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='15'>
+			<field name='code'>15</field>
+			<field name='name'>Nómina/Seg. social</field>
+			<field search="[('code','=','64000000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='16'>
+			<field name='code'>16</field>
+			<field name='name'>Timbre/Corretaje/Póliza</field>
+			<field search="[('code','=','66900000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='17'>
+			<field name='code'>17</field>
+			<field name='name'>Intereses/Comisión/Gastos/Custodia</field>
+			<field search="[('code','=','66900000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='98'>
+			<field name='code'>98</field>
+			<field name='name'>Anulación/Corrección</field>
+			<field search="[('code','=','57200000')]" model='account.account' name='account_id'/>
+		</record>
+		<record model='l10n.es.extractos.concepto' id='99'>
+			<field name='code'>99</field>
+			<field name='name'>Varios</field>
+			<field search="[('code','=','57200000')]" model='account.account' name='account_id'/>
+		</record>
+	</data>
+</terp>
