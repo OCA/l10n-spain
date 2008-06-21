@@ -94,6 +94,8 @@ def check_vat_es(cTexto):
             suma += ((2*int(cadena[2*i]) % 10) + (2*int(cadena[2*i]) // 10))
         resultado = (10 - (suma % 10)) % 10
         if cTexto[0].upper() in ('K','P','Q','S'):
+            if resultado == 0:
+                resultado = 10
             return cTexto[8]==chr(64+resultado)
         return cTexto[8] == resultado.__str__()
 
