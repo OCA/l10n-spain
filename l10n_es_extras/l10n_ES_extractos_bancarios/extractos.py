@@ -39,3 +39,15 @@ class l10n_es_extractos_concepto(osv.osv):
 		'account_id': fields.many2one('account.account', 'Cuenta asociada al concepto', domain=[('type','<>','view'), ('type', '<>', 'closed')], select=True, required=True, help='Cuenta contable por defecto que se asociará al concepto al importar el fichero de extractos bancarios C43'),
 		}
 l10n_es_extractos_concepto()
+
+
+class account_bank_statement_line(osv.osv):
+	_inherit = "account.bank.statement.line"
+
+	def onchange_partner_id(self, cursor, user, line_id, partner_id, type, currency_id, context={}):
+		"""Elimina el precálculo del importe de la línea del extracto bancario"""
+		res = super(account_bank_statement_line, self).onchange_partner_id(cursor, user, line_id, partner_id, type, currency_id, context=context)
+		# devuelve res = {'value': {'amount': balance, 'account_id': account_id}}
+		del res['value']['amount']
+		return res
+account_bank_statement_line()

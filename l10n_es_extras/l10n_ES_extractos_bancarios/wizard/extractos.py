@@ -32,6 +32,8 @@ import pooler
 import base64
 import time
 from tools import mod10r
+import netsvc
+logger = netsvc.Logger()
 
 form = """<?xml version="1.0"?>
 <form string="Importación extracto bancario según norma C43">
@@ -95,10 +97,10 @@ def _importar(obj, cursor, user, data, context):
 			lextracto[-1]['num_documento'] = line[41:52]
 			lextracto[-1]['referencia1'] = line[52:64]
 			lextracto[-1]['referencia2'] = line[64:]
-			lextracto[-1]['conceptos'] = []
+			lextracto[-1]['conceptos'] = ''
 		elif line[0:2]=='23': # Registros complementarios de concepto (opcionales y hasta un máximo de 5)
 			num_registros += 1
-			lextracto[-1]['conceptos'].append(line[4:]) # Se han unido los dos conceptos line[4:42]+line[42:] en uno
+			lextracto[-1]['conceptos'] += line[4:] # Se han unido los dos conceptos line[4:42]+line[42:] en uno
 		elif line[0:2]=='24': # Registro complementario de información de equivalencia del importe (opcional y sin valor contable)
 			num_registros += 1
 			lextracto[-1]['divisa_eq'] = line[4:7]
@@ -160,9 +162,12 @@ def _importar(obj, cursor, user, data, context):
 		elif property.fields_id.name == 'property_account_payable':
 			account_payable = int(property.value.split(',')[1])
 
-	# La búsqueda del partner se hace a partir del CIF/NIF que se encuentra en los 9 primeros caracteres de la referencia1
-	# ¿Esto es válido para los extractos bancarios de todas las entidades? Comprobado para Banc Sabadell
-	# La referencia2 acostumbra a ser la referencia de la operación que da el partner
+	# La búsqueda del partner se hace a partir del CIF/NIF que se encuentra en:
+	#   Banc Sabadell: l['referencia1'][:9]
+	#   Caja Rural del Jalón: l['conceptos'][21:30]
+	# Referencia de la operación que da el partner:
+	#   Banc Sabadell: l['referencia2'] o l['conceptos']
+	#   Caja Rural del Jalón: l['conceptos']
 	for l in lextracto:
 		concepto_id = conceptos_obj.search(cursor, user, [('code', '=', l['concepto_c']),], context=context)
 		concepto_name = '-'
@@ -176,7 +181,7 @@ def _importar(obj, cursor, user, data, context):
 			'name': concepto_name,
 			'date': l['fecha_opera'],
 			'amount': l['importe'],
-			'ref': l['referencia2'],
+			'ref': l['conceptos'].strip()[:32],
 			'type': (l['importe'] >= 0 and 'customer') or 'supplier',
 			'statement_id': statement_id,
 		}
@@ -190,7 +195,7 @@ def _importar(obj, cursor, user, data, context):
 
 		# 1) Búsqueda en los apuntes no conciliados por referencia
 		line_ids = move_line_obj.search(cursor, user, [
-			('ref', '=', l['referencia2']),
+			('ref', '=', values['ref']),
 			('reconcile_id', '=', False),
 			('account_id.type', 'in', ['receivable', 'payable']),
 			], order='date DESC, id DESC', context=context)
@@ -217,6 +222,11 @@ def _importar(obj, cursor, user, data, context):
 				('vat', '=', l['referencia1'][:9]),
 				('active', '=', True),
 				], context=context)
+			if not partner_ids:
+				partner_ids = partner_obj.search(cursor, user, [
+					('vat', '=', l['conceptos'][21:30]),
+					('active', '=', True),
+					], context=context)
 			for line in partner_obj.browse(cursor, user, partner_ids, context=context):
 				partner_id = line.id
 				if values['type'] == 'customer':
@@ -228,7 +238,28 @@ def _importar(obj, cursor, user, data, context):
 						account_id = line.property_account_payable.id
 						break
 
-		# 3) No hemos encontrado partner: Ponemos valores por defecto para la cuenta
+		# 3) Búsqueda en los apuntes no conciliados por importe
+		if not partner_id:
+			if l['importe'] >= 0:
+				line_ids = move_line_obj.search(cursor, user, [
+					('debit', '=', round(l['importe'], 2)),
+					('reconcile_id', '=', False),
+					('account_id.type', 'in', ['receivable', 'payable']),
+					], order='date ASC, id ASC', context=context)
+			else:
+				line_ids = move_line_obj.search(cursor, user, [
+					('credit', '=', round(-l['importe'], 2)),
+					('reconcile_id', '=', False),
+					('account_id.type', 'in', ['receivable', 'payable']),
+					], order='date ASC, id ASC', context=context)
+			if line_ids:
+				line = move_line_obj.browse(cursor, user, line_ids, context=context)[0]
+				if line.partner_id.id:
+					partner_id = line.partner_id.id
+				line2reconcile = line.id
+				account_id = line.account_id.id
+
+		# 4) No hemos encontrado partner: Ponemos valores por defecto para la cuenta
 		if not account_id and values['type'] in ['customer','supplier']:
 			if values['type'] == 'customer':
 				account_id = account_receivable
@@ -242,7 +273,8 @@ def _importar(obj, cursor, user, data, context):
 
 		values['account_id'] = account_id
 		values['partner_id'] = partner_id
-		# La conciliación de líneas de extractos bancarios no la tengo clara (de hecho no la uso)
+		# La conciliación de líneas de extractos bancarios creo que es prematuro hacerla en este momento.
+		# Es mejor validar manualmente el extracto bancario importado y posteriormente hacer conciliación automatizada.
 		#if line2reconcile:
 		#	values['reconcile_id'] = statement_reconcile_obj.create(cursor, user, {
 		#		'line_ids': [(6, 0, [line2reconcile])],
