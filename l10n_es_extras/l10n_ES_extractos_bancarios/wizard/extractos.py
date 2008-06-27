@@ -164,6 +164,7 @@ def _importar(obj, cursor, user, data, context):
 
 	# La búsqueda del partner se hace a partir del CIF/NIF que se encuentra en:
 	#   Banc Sabadell: l['referencia1'][:9]
+	#   La Caixa: l['conceptos'][:9]
 	#   Caja Rural del Jalón: l['conceptos'][21:30]
 	# Referencia de la operación que da el partner:
 	#   Banc Sabadell: l['referencia2'] o l['conceptos']
@@ -181,7 +182,7 @@ def _importar(obj, cursor, user, data, context):
 			'name': concepto_name,
 			'date': l['fecha_opera'],
 			'amount': l['importe'],
-			'ref': l['conceptos'].strip()[:32],
+			'ref': l['conceptos'].strip()[:32].strip(),
 			'type': (l['importe'] >= 0 and 'customer') or 'supplier',
 			'statement_id': statement_id,
 		}
@@ -222,6 +223,11 @@ def _importar(obj, cursor, user, data, context):
 				('vat', '=', l['referencia1'][:9]),
 				('active', '=', True),
 				], context=context)
+			if not partner_ids:
+				partner_ids = partner_obj.search(cursor, user, [
+					('vat', '=', l['conceptos'][:9]),
+					('active', '=', True),
+					], context=context)
 			if not partner_ids:
 				partner_ids = partner_obj.search(cursor, user, [
 					('vat', '=', l['conceptos'][21:30]),
