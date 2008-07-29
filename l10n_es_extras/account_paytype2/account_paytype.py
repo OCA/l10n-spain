@@ -60,6 +60,7 @@ class sale_order(osv.osv):
 	_columns={
 		'tipopago_id': fields.many2one('account.paytype', 'Tipo de Pago'),	
 		'acc_number': fields.many2one('res.partner.bank','Account number', select=True,),	
+		'payment_term': fields.many2one('account.payment.term', 'Payment Term',readonly=True, states={'draft':[('readonly',False)]} ),		
 	}
 	
 	def onchange_partner_id2(self, cr, uid, ids, part):
@@ -70,8 +71,9 @@ class sale_order(osv.osv):
 			partner_line = self.pool.get('res.partner').browse(cr, uid, part)
 			if partner_line:
 				tipopago_id = partner_line.tipopago_id.id
-			if tipopago_id:	
 				result['value']['tipopago_id'] = tipopago_id
+				result['value']['payment_term'] = partner_line.property_payment_term.id
+				
 		return self.onchange_tipopago_id(cr, uid, ids, tipopago_id, part, result)
 
 	def onchange_tipopago_id(self, cr, uid, ids, tipopago_id, partner_id, result = {'value': {}}):
@@ -86,10 +88,9 @@ class sale_order(osv.osv):
 					return result
 		result['value']['acc_number'] = False
 		return result
+
 		
 	# readylan *** la factura generada debe recoger el tipo de pago y la cuenta bancaria del pedido de venta.
-	# La funcion _make_invoice del modulo sale parece la encargada de crear la factura basándose en el pedido
-	# de venta. 
 	"""
 	def _make_invoice(self, cr, uid, order, lines):
 	"""

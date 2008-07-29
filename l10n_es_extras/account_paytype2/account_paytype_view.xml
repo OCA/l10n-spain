@@ -130,6 +130,18 @@
 		</field>
 	</record>
 	
+	<record model="ir.ui.view" id="view_account_paytype_sale_order_form_fp">
+		<field name="name">sale.order.form.account_paytype</field>
+		<field name="model">sale.order</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="sale.view_order_form"/>
+		<field name="arch" type="xml">
+			<field name="acc_number" position="after">
+				<field name="payment_term"/>
+			</field>
+		</field>
+	</record>
+
 	<!--****************************** INVOICES ******************************-->
 	<record model="ir.ui.view" id="invoice_form2">
 		<field name="name">account.invoice.form2.remesas</field>
