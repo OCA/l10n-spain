@@ -54,7 +54,7 @@ class res_partner(osv.osv):
 	}
 res_partner()
 
-# readylan *** aquí extiendo la funcionalidad a pedidos de venta
+# añadimos campos relativos a la forma de pago a pedidos de venta
 class sale_order(osv.osv):
 	_inherit='sale.order'
 	_columns={
@@ -89,11 +89,13 @@ class sale_order(osv.osv):
 		result['value']['acc_number'] = False
 		return result
 
-		
-	# readylan *** la factura generada debe recoger el tipo de pago y la cuenta bancaria del pedido de venta.
-	"""
+	# redefinimos _make_invoice para que 
+	# la factura generada recoja el payment_term, tipopago_id y acc_number del pedido de venta.
 	def _make_invoice(self, cr, uid, order, lines):
-	"""
+		inv_id = super(sale_order, self)._make_invoice(cr, uid, order, lines)
+		inv_obj = self.pool.get('account.invoice').browse(cr, uid, [inv_id])[0]
+		inv_obj.write(cr, uid, inv_id, {'payment_term':order.payment_term.id,'tipopago_id':order.tipopago_id.id,'acc_number':order.acc_number.id}, None)
+		return inv_id	
 	
 sale_order()
 
