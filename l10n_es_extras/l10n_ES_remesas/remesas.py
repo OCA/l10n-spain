@@ -284,6 +284,15 @@ class remesas_remesa(osv.osv):
 		return cc
 
 
+	def conv_ascii(self, text):
+		"Convierte vocales accentuadas, ñ y ç a sus caracteres equivalentes ASCII"
+		old_chars = ['á','é','í','ó','ú','à','è','ì','ò','ù','ä','ë','ï','ö','ü','â','ê','î','ô','û','Á','É','Í','Ú','Ó','À','È','Ì','Ò','Ù','Ä','Ë','Ï','Ö','Ü','Â','Ê','Î','Ô','Û','ñ','Ñ','ç','Ç']
+		new_chars = ['a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','A','E','I','O','U','A','E','I','O','U','A','E','I','O','U','A','E','I','O','U','n','N','c','C']
+		for old, new in zip(old_chars, new_chars):
+			text = text.replace(old, new)
+		return text
+
+
 	def create_csb19(self,cr,uid,ids):
 		txt_remesa = ''
 		rem = self.browse(cr,uid,ids)[0]
@@ -338,16 +347,16 @@ class remesas_remesa(osv.osv):
 			texto += '5680'
 			texto += (rem.cuenta_id.partner_id.vat+rem.cuenta_id.sufijo).zfill(12)
 			texto += recibo['ref'].__str__().zfill(12)
-			nombre = recibo['nombre'].decode('ascii', 'ignore')
+			nombre = self.conv_ascii(recibo['nombre']).decode('ascii', 'ignore')
 			texto += nombre[0:40].ljust(40)
 			texto += ccc.__str__()[0:20].zfill(20)
 			importe = int(round(recibo['importe']*100,0))
 			texto += importe.__str__().zfill(10)
 			texto += 16*' '
-			texto += recibo['concepto'].__str__().ljust(40)
+			texto += self.conv_ascii(recibo['concepto']).decode('ascii', 'ignore').ljust(40)
 			texto += 8*' '
 			texto += '\r\n'
-#			logger.notifyChannel('Individual obligatorio',netsvc.LOG_INFO, texto)
+			logger.notifyChannel('Individual obligatorio',netsvc.LOG_INFO, texto)
 			return texto
 
 		def _total_ordenante_19(self,texto):
@@ -419,7 +428,7 @@ class remesas_remesa(osv.osv):
 								p.name as nombre, 
 								b.acc_number as banco, 
 								l.debit as importe, 
-								'Factura ' || l.ref as concepto 
+								'Factura ' || l.ref || '. ' || l.name as concepto 
 							FROM 
 								account_move_line l 
 							LEFT OUTER JOIN 
@@ -500,13 +509,13 @@ class remesas_remesa(osv.osv):
 			texto += '5670'
 			texto += (rem.cuenta_id.partner_id.vat+rem.cuenta_id.sufijo).zfill(12)
 			texto += recibo['ref'].__str__().zfill(12)
-			nombre = recibo['nombre'].decode('ascii', 'ignore')
+			nombre = self.conv_ascii(recibo['nombre']).decode('ascii', 'ignore')
 			texto += nombre[0:40].ljust(40)
 			texto += ccc.__str__()[0:20].zfill(20)
 			importe = int(round(recibo['importe']*100,0))
 			texto += importe.__str__().zfill(10)
 			texto += 16*' '
-			texto += recibo['concepto'].__str__().ljust(40)
+			texto += self.conv_ascii(recibo['concepto']).__str__().ljust(40)
 			texto += recibo['vencimiento']
 			texto += 2*' '
 			texto += '\n'
@@ -517,12 +526,12 @@ class remesas_remesa(osv.osv):
 			texto += '5676'
 			texto += (rem.cuenta_id.partner_id.vat+rem.cuenta_id.sufijo).zfill(12)
 			texto += recibo['ref'].__str__().zfill(12)
-			texto += recibo['nombre'].ljust(40)
+			texto += self.conv_ascii(recibo['nombre']).ljust(40)
 			texto += recibo['banco'].__str__()[0:20].zfill(20)
 			importe = int(recibo['importe']*100)
 			texto += importe.__str__().zfill(10)
 			texto += 16*' '
-			texto += recibo['concepto'].__str__()[0:40].ljust(40)
+			texto += self.conv_ascii(recibo['concepto']).__str__()[0:40].ljust(40)
 			texto += recibo['vencimiento']
 			texto += '  '
 			texto += '\n'
@@ -597,7 +606,7 @@ class remesas_remesa(osv.osv):
 								p.name as nombre, 
 								b.acc_number as banco, 
 								l.debit as importe, 
-								'Factura ' || l.ref as concepto,
+								'Factura ' || l.ref || '. ' || l.name as concepto,
 								to_char(l.date_maturity, 'DDMMYY') as vencimiento
 							FROM 
 								account_move_line l 

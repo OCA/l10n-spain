@@ -13,7 +13,7 @@
 - Definición de las 6 cuentas contables asociadas (47200004, 47200007, 47200016, 47700004, 47700007, 47700016)
 - Definición de la cuenta 47500001, Hacienda acreedora IVA
 """,
-		"depends" : ["base","account","l10n_sp_2008"],
+		"depends" : ["base","account","l10n_chart_ES"],
 		"init_xml" : ["l10n_ES_taxes_data.xml"],
 		"demo_xml" : [ ],
 		"update_xml" : ["partner_view.xml"],

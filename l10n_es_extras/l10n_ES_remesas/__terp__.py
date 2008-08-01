@@ -1,7 +1,7 @@
 {
     "name" : "Recibos y remesas de recibos CSB 19 y CSB 58",
     "version" : "1.5",
-    "author" : "ACYSOS SL, ZIKZAKMEDIA SL, Pablo Rocandio",
+    "author" : "Acysos SL, Zikzakmedia SL, Pablo Rocandio",
 	"description" : """Módulo para la gestión de:
   * Recibos (permite marcarlos como cheque/pagaré recibido)
   * Gestión de remesas de recibos y su posterior exportación según las normas CSB 19 (recibos domiciliados)
@@ -9,7 +9,7 @@
 
 Puede funcionar con o sin el módulo partner_es que comprueba los 2 dígitos de control de la C.C.
 
-Modificaciones de ZIKZAKMEDIA SL:
+Modificaciones de Zikzakmedia SL:
 Corregida y mejorada para instalación TinyERP estándar 4.2.0
 Botón para generar los archivos y guardarlos en el disco duro
 

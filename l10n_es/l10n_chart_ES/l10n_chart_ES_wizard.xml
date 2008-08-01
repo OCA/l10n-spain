@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<terp>
+	<data>
+
+<record model="ir.actions.wizard" id="wizard_crear_cuentas">
+	<field name="name">Crear plan de cuentas</field>
+	<field name="wiz_name">l10n_chart_ES_2008.crearcuentas</field>
+</record>
+
+<menuitem
+	name="Financial Management/Configuration/Crear Plan de Cuentas"
+	action="wizard_crear_cuentas"
+	type="wizard"
+	id="l10n_chart_ES_2008_crear_cuentas"/>
+
+</data>
+</terp>

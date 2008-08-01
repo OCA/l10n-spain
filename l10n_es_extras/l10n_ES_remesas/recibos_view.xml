@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <terp>
 	<data>
 
@@ -56,7 +56,7 @@
 				<field name="credit" select="2"/>
 				<field name="move_id" select="2" readonly="1"/>
 				<field name="reconcile_id" />
-				<field name="acc_number" select="1"/>
+				<field name="acc_number" select="1" domain="[('partner_id','=',partner_id)]"/>
 				<newline/>
 				<field name="tipopago_id" readonly="1"/>
 				<field name="remesa_id" readonly="1"/>
