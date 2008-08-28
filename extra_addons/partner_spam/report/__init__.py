@@ -27,6 +27,5 @@
 #
 ##############################################################################
 
-import report
-import wizard
-import report_label
+import report_partner_labels
+

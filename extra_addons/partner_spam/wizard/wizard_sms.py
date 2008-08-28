@@ -47,23 +47,22 @@ sms_send_form = '''<?xml version="1.0"?>
 	<field name="default"/>
 	<field name="text" nolabel="1" colspan="4"/>
 
-	<separator colspan="4"/>
-	<label string="The following tags can be included in the message. They will be replaced to the the corresponding values of each partner contact:" colspan="4"/>
-	<label string="[[partner_id]] -> Partner name" colspan="4"/>
-	<label string="[[name]] -> Contact name" colspan="4"/>
-	<label string="[[function]] -> Function" colspan="4"/>
-	<label string="[[title]] -> Title" colspan="4"/>
-	<label string="[[street]] -> Street" colspan="4"/>
-	<label string="[[street2]] -> Street 2" colspan="4"/>
-	<label string="[[zip]] -> Zip code" colspan="4"/>
-	<label string="[[city]] -> City" colspan="4"/>
-	<label string="[[state_id]] -> State" colspan="4"/>
-	<label string="[[country_id]] -> Country" colspan="4"/>
-	<label string="[[email]] -> Email" colspan="4"/>
-	<label string="[[phone]] -> Phone" colspan="4"/>
-	<label string="[[fax]] -> Fax" colspan="4"/>
-	<label string="[[mobile]] -> Mobile" colspan="4"/>
-	<label string="[[birthdate]] -> Birthday" colspan="4"/>
+	<separator string="The following tags can be included in the message. They will be replaced to the corresponding values of each partner contact:" colspan="4"/>
+	<label string="[[partner_id]] -> Partner name" colspan="2"/>
+	<label string="[[name]] -> Contact name" colspan="2"/>
+	<label string="[[function]] -> Function" colspan="2"/>
+	<label string="[[title]] -> Title" colspan="2"/>
+	<label string="[[street]] -> Street" colspan="2"/>
+	<label string="[[street2]] -> Street 2" colspan="2"/>
+	<label string="[[zip]] -> Zip code" colspan="2"/>
+	<label string="[[city]] -> City" colspan="2"/>
+	<label string="[[state_id]] -> State" colspan="2"/>
+	<label string="[[country_id]] -> Country" colspan="2"/>
+	<label string="[[email]] -> Email" colspan="2"/>
+	<label string="[[phone]] -> Phone" colspan="2"/>
+	<label string="[[fax]] -> Fax" colspan="2"/>
+	<label string="[[mobile]] -> Mobile" colspan="2"/>
+	<label string="[[birthdate]] -> Birthday" colspan="2"/>
 </form>''' % ('SMS - Gateway: clickatell','Bulk SMS send')
 
 sms_send_fields = {

@@ -1,8 +1,6 @@
-# -*- encoding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2008 Zikzakmedia. (http://zikzakmedia.com) All Rights Reserved.
-#                    Jordi Esteve <jesteve@zikzakmedia.com>
+# Copyright (c) 2007 Zikzakmedia SL (http://www.zikzakmedia.com) All Rights Reserved.
 #
 # WARNING: This program as such is intended to be used by professional
 # programmers who take the whole responsability of assessing all potential
@@ -27,6 +25,31 @@
 #
 ##############################################################################
 
-import report
+import time
 import wizard
-import report_label
+
+dates_form = '''<?xml version="1.0"?>
+<form string="Select period">
+	<field name="d_from"/>
+	<field name="d_to"/>
+	<field name="channel_id"/>
+</form>'''
+
+dates_fields = {
+	'd_from': {'string': 'Start', 'type':'date', 'required':True, 'default': lambda *a: time.strftime('%Y-%m-%d')},
+	'd_to':  {'string': 'End', 'type':'date', 'default': lambda *a: time.strftime('%Y-%m-%d')},
+	'channel_id': {'string': 'Channel', 'type': 'many2one', 'relation':'radiotv.channel', 'required':True},
+}
+
+class wizard_broadcast_compact_report(wizard.interface):
+	states = {
+		'init': {
+			'actions': [],
+			'result': {'type':'form', 'arch':dates_form, 'fields':dates_fields, 'state':[('end','Cancel'),('report','Print')]}
+		},
+		'report': {
+			'actions': [],
+			'result': {'type':'print', 'report':'radiotv.broadcast.compact.report', 'state':'end'}
+		}
+	}
+wizard_broadcast_compact_report('radiotv.broadcast.compact.report')

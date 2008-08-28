@@ -1,8 +1,6 @@
-# -*- encoding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2008 Zikzakmedia. (http://zikzakmedia.com) All Rights Reserved.
-#                    Jordi Esteve <jesteve@zikzakmedia.com>
+# Copyright (c) 2007 Zikzakmedia SL (http://www.zikzakmedia.com) All Rights Reserved.
 #
 # WARNING: This program as such is intended to be used by professional
 # programmers who take the whole responsability of assessing all potential
@@ -27,6 +25,23 @@
 #
 ##############################################################################
 
-import report
-import wizard
-import report_label
+import time
+
+def obt_date(self, date, items=3, sep='-'):
+	if items==1:
+		res = time.strftime('%Y', time.strptime(date, '%Y-%m-%d %H:%M:%S'))
+	elif items==2:
+		res = time.strftime('%m'+sep+'%Y', time.strptime(date, '%Y-%m-%d %H:%M:%S'))
+	else:
+		res = time.strftime('%d'+sep+'%m'+sep+'%Y', time.strptime(date, '%Y-%m-%d %H:%M:%S'))
+	return res
+
+def obt_time(self, date, items=3, sep=':'):
+	if items==1:
+		res = time.strftime('%H', time.strptime(date, '%Y-%m-%d %H:%M:%S'))
+	elif items==2:
+		res = time.strftime('%H'+sep+'%M', time.strptime(date, '%Y-%m-%d %H:%M:%S'))
+	else:
+		res = time.strftime('%H'+sep+'%M'+sep+'%S', time.strptime(date, '%Y-%m-%d %H:%M:%S'))
+	return res
+

@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2008 Zikzakmedia. (http://zikzakmedia.com) All Rights Reserved.
+# Copyright (c) 2008 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                    Jordi Esteve <jesteve@zikzakmedia.com>
 #
 # WARNING: This program as such is intended to be used by professional
@@ -27,6 +27,6 @@
 #
 ##############################################################################
 
-import report
 import wizard
-import report_label
+
+

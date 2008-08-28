@@ -1,7 +1,8 @@
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2004-2006 TINY SPRL. (http://tiny.be) All Rights Reserved.
-#                    Fabien Pinckaers <fp@tiny.Be>
+# Copyright (c) 2008 Zikzakmedia. (http://zikzakmedia.com) All Rights Reserved.
+#                    Jordi Esteve <jesteve@zikzakmedia.com>
 #
 # WARNING: This program as such is intended to be used by professional
 # programmers who take the whole responsability of assessing all potential
@@ -28,4 +29,5 @@
 
 import wizard_sms
 import wizard_spam
+import wizard_partner_labels
 
