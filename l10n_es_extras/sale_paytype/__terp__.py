@@ -13,6 +13,7 @@ The sale order inherits payment type from business partner as default. Next, the
     "depends" : [
         "account_paytype",
         "sale",
+        "stock",
         ],
     "init_xml" : [],
     "demo_xml" : [],
