@@ -1,0 +1,16 @@
+    <?xml version="1.0"?> 
+    <terp> 
+    <data>
+		<record model="workflow.activity" id="sale.act_albaranar">
+			<field name="wkf_id" ref="wkf_sale"/>
+			<field name="name">albaranar</field>
+			<field name="kind">function</field>
+			<field name="action">albaranar()</field>
+		</record>
+		<record model="workflow.transition" id="sale.trans_ship_albaranar">
+			<field name="act_from" ref="act_ship"/>
+			<field name="act_to" ref="act_ship_end"/>
+			<field name="signal">manual_ship</field>
+		</record>
+    </data> 
+    </terp> 
