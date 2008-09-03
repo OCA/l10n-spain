@@ -28,6 +28,7 @@
 import netsvc
 import pooler
 from osv import fields, osv
+from report import report_sxw
 
 
 # modificamos modulo stock estableciendo autopicking a True por defecto.
@@ -46,9 +47,7 @@ class sale_order(osv.osv):
 	
 	def albaranar(self, cr, uid, ids):
 		# obtener el picking del pedido actual:
-		#"SELECT stock_picking.id FROM stock_picking INNER JOIN sale_order ON stock_picking.sale_id=sale_order.id"
 		pick = self.browse(cr, uid, ids)[0].picking_ids[0]
 		pick.force_assign(cr, uid, [pick.id])
-		#report_sxw.report_sxw('sale_autopicking_albaran', 'stock.picking', 'addons/stock_valued/report/albaran.rml')
-
+		# lanzar report albaran valorado
 sale_order()
