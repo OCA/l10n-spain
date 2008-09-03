@@ -1,16 +1,21 @@
-    <?xml version="1.0"?> 
-    <terp> 
+<?xml version="1.0"?> 
+<terp> 
     <data>
-		<record model="workflow.activity" id="sale.act_albaranar">
-			<field name="wkf_id" ref="wkf_sale"/>
-			<field name="name">albaranar</field>
-			<field name="kind">function</field>
-			<field name="action">albaranar()</field>
-		</record>
-		<record model="workflow.transition" id="sale.trans_ship_albaranar">
-			<field name="act_from" ref="act_ship"/>
-			<field name="act_to" ref="act_ship_end"/>
-			<field name="signal">manual_ship</field>
-		</record>
+        <record model="workflow" id="wkf_sale">
+            <field name="name">sale.order.basic</field>
+            <field name="osv">sale.order</field>
+            <field name="on_create">True</field>
+        </record>
+        <record model="workflow.activity" id="sale.act_albaranar">
+            <field name="wkf_id" ref="wkf_sale"/>
+            <field name="name">albaranar</field>
+            <field name="kind">function</field>
+            <field name="action">albaranar()</field>
+        </record>
+        <record model="workflow.transition" id="sale.trans_ship_albaranar">
+            <field name="act_from" ref="sale.act_ship"/>
+            <field name="act_to" ref="sale.act_albaranar"/>
+            <field name="signal">manual_ship</field>
+        </record>
     </data> 
-    </terp> 
+</terp> 
