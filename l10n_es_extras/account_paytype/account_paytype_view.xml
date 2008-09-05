@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <terp>
 <data>
 
@@ -13,14 +13,36 @@
     </record>
 
 	<record model="ir.ui.view" id="view_partner_form">
-		<field name="model">res.partner</field>
-    <field name="inherit_id" ref="base.view_partner_form"/>
+		<field name="model">res.partner.bank</field>
+    		<field name="inherit_id" ref="base.view_partner_form"/>
 		<field name="arch" type="xml">
-		<field name="sequence" position="after">
-		  <field name="default_bank"/>
+			<field name="sequence" position="after">
+		 		 <field name="default_bank"/>
+			</field>
+    		</field>
+    	</record>
+	
+	<record model="ir.ui.view" id="view_partner_form3">
+		<field name="name">view.partner.form3 </field>
+		<field name="model">res.partner.bank</field>
+		<field name="inherit_id" ref="base.view_partner_bank_form"/>
+		<field name="arch" type="xml">
+			<field name="sequence" position="after">
+				<field name="default_bank"/>
+			</field>
 		</field>
-    </field>
-    </record>
+    	</record>
+	
+	<record model="ir.ui.view" id="view_partner_bank_tree">
+		<field name="name">view.partner.bank.tree </field>
+		<field name="model">res.partner.bank</field>
+		<field name="inherit_id" ref="base.view_partner_bank_tree"/>
+		<field name="arch" type="xml">
+			<field name="state" position="before">
+				<field name="default_bank"/>
+			</field>
+		</field>
+    	</record>
    
    	<record model="ir.ui.view" id="view_partner_form2">
 		<field name="model">res.partner</field>
