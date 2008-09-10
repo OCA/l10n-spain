@@ -17,5 +17,13 @@
             <field name="act_to" ref="sale.act_albaranar"/>
             <field name="signal">manual_ship</field>
         </record>
+        <record model="workflow.transition" id="sale.trans_albaranar_ship_end">
+            <field name="act_from" ref="sale.act_albaranar"/>
+            <field name="act_to" ref="sale.act_ship_end"/>
+            <field name="condition">test_state('finished')</field>
+			<field name="trigger_model">mrp.procurement</field>
+			<field name="trigger_expr_id">procurement_lines_get()</field>
+        </record>
+
     </data> 
 </terp> 
