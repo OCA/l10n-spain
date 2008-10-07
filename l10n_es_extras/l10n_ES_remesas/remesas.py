@@ -353,8 +353,10 @@ class remesas_remesa(osv.osv):
 			importe = int(round(recibo['importe']*100,0))
 			texto += importe.__str__().zfill(10)
 			texto += 16*' '
-			texto += self.conv_ascii(recibo['concepto']).decode('ascii', 'ignore').ljust(40)
-			texto += 8*' '
+			texto += self.conv_ascii(recibo['concepto']).decode('ascii', 'ignore')[0:48].ljust(48)
+			# Esto es lo convencional, descripción de 40 caracteres, pero se puede aprovechar los 8 espacios en blanco finales
+			#texto += self.conv_ascii(recibo['concepto']).decode('ascii', 'ignore')[0:40].ljust(40)
+			#texto += 8*' '
 			texto += '\r\n'
 			logger.notifyChannel('Individual obligatorio',netsvc.LOG_INFO, texto)
 			return texto
@@ -515,7 +517,7 @@ class remesas_remesa(osv.osv):
 			importe = int(round(recibo['importe']*100,0))
 			texto += importe.__str__().zfill(10)
 			texto += 16*' '
-			texto += self.conv_ascii(recibo['concepto']).__str__().ljust(40)
+			texto += self.conv_ascii(recibo['concepto']).__str__()[0:40].ljust(40)
 			texto += recibo['vencimiento']
 			texto += 2*' '
 			texto += '\n'
