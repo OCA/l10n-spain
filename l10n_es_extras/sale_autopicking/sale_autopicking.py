@@ -33,21 +33,21 @@ from report import report_sxw
 
 # modificamos modulo stock estableciendo autopicking a True por defecto.
 class stock_picking(osv.osv):
-	_inherit='stock.picking'	
-	_name = "stock.picking"
-	_defaults = {
-		'auto_picking': lambda *a: 1,
-	}
+    _inherit='stock.picking'    
+    _name = "stock.picking"
+    _defaults = {
+        'auto_picking': lambda *a: 1,
+    }
 
 stock_picking()
 
 class sale_order(osv.osv):
-	_inherit = 'sale.order'
-	_name = "sale.order"
-	
-	def albaranar(self, cr, uid, ids):
-		# obtener el picking del pedido actual:
-		pick = self.browse(cr, uid, ids)[0].picking_ids[0]
-		pick.force_assign(cr, uid, [pick.id])
-		# lanzar report albaran valorado
+    _inherit = 'sale.order'
+    _name = "sale.order"
+    
+    def albaranar(self, cr, uid, ids):
+        # obtener el picking del pedido actual:
+        pick = self.browse(cr, uid, ids)[0].picking_ids[0]
+        pick.force_assign(cr, uid, [pick.id])
+        # lanzar report albaran valorado
 sale_order()

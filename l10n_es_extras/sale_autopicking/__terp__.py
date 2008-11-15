@@ -1,6 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
+# -*- encoding: utf-8 -*-
 {
     "name" : "Sale Auto-picking",
     "version" : "1.0",

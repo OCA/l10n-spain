@@ -1,5 +1,4 @@
-# Autor: Pablo Rocandio
-
+# -*- encoding: utf-8 -*-
 {
     "name" : "Sale Group",
     "version" : "1.0",

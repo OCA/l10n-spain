@@ -1,18 +1,18 @@
-﻿<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <terp>
-	<data>
-		
-		<report id="sale_autopicking_albaran"
-			string="Valued Packing List"
-      		model="stock.picking"
-			name="sale_autopicking_albaran"
-			rml="stock_valued/report/albaran.rml" 
-			menu="True"
+    <data>
+        
+        <report id="sale_autopicking_albaran"
+            string="Valued Packing List"
+              model="stock.picking"
+            name="sale_autopicking_albaran"
+            rml="stock_valued/report/albaran.rml" 
+            menu="True"
       auto="True"
       header="False"
-		/>
+        />
 
-	</data>
+    </data>
 </terp>
 
 

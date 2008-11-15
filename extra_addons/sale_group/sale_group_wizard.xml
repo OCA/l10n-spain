@@ -1,20 +1,20 @@
-﻿<?xml version="1.0" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <terp>
-	<data>
+    <data>
 
     <wizard
-			string="Make pickings"
-			model="sale.order"
-			name="sale_group.make_picking"
-			keyword="client_action_multi"
-			id="wizard_sale_order_make_picking"/>
-			
-		<wizard
-			string="Make pickings"
-			model="sale.order.line"
-			name="sale_group.make_line_picking"
-			keyword="client_action_multi"
-			id="wizard_sale_order_line_picking"/>
+            string="Make pickings"
+            model="sale.order"
+            name="sale_group.make_picking"
+            keyword="client_action_multi"
+            id="wizard_sale_order_make_picking"/>
+            
+        <wizard
+            string="Make pickings"
+            model="sale.order.line"
+            name="sale_group.make_line_picking"
+            keyword="client_action_multi"
+            id="wizard_sale_order_line_picking"/>
 
-	</data>
+    </data>
 </terp>

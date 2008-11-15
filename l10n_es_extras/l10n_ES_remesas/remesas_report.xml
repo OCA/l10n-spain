@@ -1,12 +1,12 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <terp>
-	<data>
-		<report
-			id="remesas_report"
-			string="Remesa"
-			model="remesas.remesa"
-			name="remesas.report"
-			rml="l10n_ES_remesas/report/remesas_report.rml"
-			auto="False"/>
-	</data>
+    <data>
+        <report
+            id="remesas_report"
+            string="Remesa"
+            model="remesas.remesa"
+            name="remesas.report"
+            rml="l10n_ES_remesas/report/remesas_report.rml"
+            auto="False"/>
+    </data>
 </terp>

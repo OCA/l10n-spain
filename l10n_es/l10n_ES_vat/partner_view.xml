@@ -1,32 +1,32 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <terp>
 <data>
-	<!--
-		Partners Extension
-	-->
+    <!--
+        Partners Extension
+    -->
 
-	<record model="ir.ui.view" id="view_partner_form">
-		<field name="name">l10n_sp_iva.partner.form</field>
-		<field name="model">res.partner</field>
-		<field name="type">form</field>
-		<field name="inherit_id" ref="base.view_partner_form"/>
-		<field name="arch" type="xml">
-			<field name="ref" position="after">
-			<field name="requivalencia"/>
-			</field>
-		</field>
-	</record>
-	
-	<record model="ir.ui.view" id="view_product_form">
-		<field name="name">l10n_sp_iva.product.form</field>
-		<field name="model">product.product</field>
-		<field name="type">form</field>
-		<field name="inherit_id" ref="product.product_normal_form_view"/>
-		<field name="arch" type="xml">
-			<field name="categ_id" position="after">
-			<field name="requivalencia"/>
-			</field>
-		</field>
-	</record>
+    <record model="ir.ui.view" id="view_partner_form">
+        <field name="name">l10n_sp_iva.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="ref" position="after">
+            <field name="requivalencia"/>
+            </field>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="view_product_form">
+        <field name="name">l10n_sp_iva.product.form</field>
+        <field name="model">product.product</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+            <field name="requivalencia"/>
+            </field>
+        </field>
+    </record>
 </data>
 </terp>

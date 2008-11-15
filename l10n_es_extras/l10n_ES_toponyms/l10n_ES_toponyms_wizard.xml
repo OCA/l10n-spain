@@ -1,17 +1,17 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <terp>
-	<data>
+    <data>
 
 <record model="ir.actions.wizard" id="wizard_crear_cpostal">
-	<field name="name">Crear códigos postales</field>
-	<field name="wiz_name">l10n_ES_toponyms.crear_cpostal</field>
+    <field name="name">Crear códigos postales</field>
+    <field name="wiz_name">l10n_ES_toponyms.crear_cpostal</field>
 </record>
 
 <menuitem
-	name="Partners/Configuration/Localisation/Asociar municipios y provincias a códigos postales de España"
-	action="wizard_crear_cpostal"
-	type="wizard"
-	id="l10n_ES_toponyms_crear_cpostal"/>
+    name="Partners/Configuration/Localisation/Asociar municipios y provincias a códigos postales de España"
+    action="wizard_crear_cpostal"
+    type="wizard"
+    id="l10n_ES_toponyms_crear_cpostal"/>
 
 </data>
 </terp>

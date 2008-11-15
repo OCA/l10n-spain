@@ -2,7 +2,7 @@
 ##############################################################################
 #
 # Copyright (c) 2006 ACYSOS S.L.. (http://acysos.com) All Rights Reserved.
-#	Pedro Tarrafeta <pedro@acysos.com>
+#    Pedro Tarrafeta <pedro@acysos.com>
 #
 # WARNING: This program as such is intended to be used by professional
 # programmers who take the whole responsability of assessing all potential
@@ -32,24 +32,24 @@ import netsvc
 logger = netsvc.Logger()
 
 class account_move_line(osv.osv):
-	_name = 'account.move.line'
-	_inherit = 'account.move.line'
+    _name = 'account.move.line'
+    _inherit = 'account.move.line'
 
-	def _invoice_n(self, cr, uid, ids, field_name, arg, context={}):
-		result = {}
-		for rec in self.browse(cr, uid, ids, context):
-			cr.execute("SELECT id, number FROM account_invoice WHERE move_id = %d", (rec.move_id.id,))
-			res = cr.fetchall()
-#			logger.notifyChannel('Facturas...', netsvc.LOG_INFO, res)
-			if res:
-				result[rec.id] = res[0]
-			else:
-				result[rec.id] = (0,0)
-		return result
+    def _invoice_n(self, cr, uid, ids, field_name, arg, context={}):
+        result = {}
+        for rec in self.browse(cr, uid, ids, context):
+            cr.execute("SELECT id, number FROM account_invoice WHERE move_id = %d", (rec.move_id.id,))
+            res = cr.fetchall()
+#            logger.notifyChannel('Facturas...', netsvc.LOG_INFO, res)
+            if res:
+                result[rec.id] = res[0]
+            else:
+                result[rec.id] = (0,0)
+        return result
 
-	_columns = {
-		'cheque_recibido': fields.boolean('Cheque Recibido'),
-		'invoice_id':fields.function(_invoice_n, method=True, type="many2one", relation="account.invoice", string="Factura"),
-		'acc_number': fields.many2one('res.partner.bank','Account number', select=True,),
-	}
+    _columns = {
+        'cheque_recibido': fields.boolean('Cheque Recibido'),
+        'invoice_id':fields.function(_invoice_n, method=True, type="many2one", relation="account.invoice", string="Factura"),
+        'acc_number': fields.many2one('res.partner.bank','Account number', select=True,),
+    }
 account_move_line()

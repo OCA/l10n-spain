@@ -1,18 +1,18 @@
-﻿<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <terp>
-	<data>
-		
-		<report id="reprml"
-			string="Valued Packing List"
+    <data>
+        
+        <report id="reprml"
+            string="Valued Packing List"
       model="stock.picking"
-			name="stock_valued.stock_valued_rml"
-			rml="stock_valued/report/albaran.rml" 
-			menu="True"
+            name="stock_valued.stock_valued_rml"
+            rml="stock_valued/report/albaran.rml" 
+            menu="True"
       auto="True"
       header="False"
-		/>
+        />
 
-	</data>
+    </data>
 </terp>
 
 

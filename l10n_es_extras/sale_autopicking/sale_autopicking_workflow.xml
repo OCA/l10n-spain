@@ -1,4 +1,4 @@
-<?xml version="1.0"?> 
+<?xml version="1.0" encoding="utf-8"?> 
 <terp> 
     <data>
         <record model="workflow" id="wkf_sale">
@@ -21,8 +21,8 @@
             <field name="act_from" ref="sale.act_albaranar"/>
             <field name="act_to" ref="sale.act_ship_end"/>
             <field name="condition">test_state('finished')</field>
-			<field name="trigger_model">mrp.procurement</field>
-			<field name="trigger_expr_id">procurement_lines_get()</field>
+            <field name="trigger_model">mrp.procurement</field>
+            <field name="trigger_expr_id">procurement_lines_get()</field>
         </record>
 
     </data> 

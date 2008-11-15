@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 # Copyright (c) 2007 Zikzakmedia SL (http://www.zikzakmedia.com) All Rights Reserved.
@@ -30,13 +31,13 @@ from report import report_sxw
 
 class remesas_report(report_sxw.rml_parse):
 
-	def __init__(self, cr, uid, name, context):
-		super(remesas_report, self).__init__(cr, uid, name, context)
-		self.localcontext.update({
-			'time': time,
-		})
+    def __init__(self, cr, uid, name, context):
+        super(remesas_report, self).__init__(cr, uid, name, context)
+        self.localcontext.update({
+            'time': time,
+        })
 
 
 report_sxw.report_sxw('report.remesas.report', 'remesas.remesa',
-		'addons/l10n_ES_remesas/report/remesas_report.rml',
-		parser=remesas_report)
+        'addons/l10n_ES_remesas/report/remesas_report.rml',
+        parser=remesas_report)

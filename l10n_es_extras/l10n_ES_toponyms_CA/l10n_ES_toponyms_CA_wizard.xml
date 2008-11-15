@@ -1,17 +1,17 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <terp>
-	<data>
+    <data>
 
 <record model="ir.actions.wizard" id="wizard_crea_cpostal_ca">
-	<field name="name">Crear codigos postales</field>
-	<field name="wiz_name">l10n_ES_toponyms_CA.crea_cpostal</field>
+    <field name="name">Crear codigos postales</field>
+    <field name="wiz_name">l10n_ES_toponyms_CA.crea_cpostal</field>
 </record>
 
 <menuitem
-	name="Partners/Configuration/Localisation/Asociar las Comunidades Autónomas a los codigos postales"
-	action="wizard_crea_cpostal_ca"
-	type="wizard"
-	id="l10n_ES_toponyms_CA_crea_cpostal_ca"/>
+    name="Partners/Configuration/Localisation/Asociar las Comunidades Autónomas a los codigos postales"
+    action="wizard_crea_cpostal_ca"
+    type="wizard"
+    id="l10n_ES_toponyms_CA_crea_cpostal_ca"/>
 
 </data>
 </terp>

@@ -34,27 +34,27 @@ import netsvc
 logger = netsvc.Logger()
 
 class res_partner(osv.osv):
-	_name = 'res.partner'
-	_inherit = 'res.partner'
-	_columns = {
-		'requivalencia': fields.boolean('Recargo Equivalencia'),
-	}
-	_defaults = {
-		'requivalencia' : lambda *a: 0,
-	}
-	
+    _name = 'res.partner'
+    _inherit = 'res.partner'
+    _columns = {
+        'requivalencia': fields.boolean('Recargo Equivalencia'),
+    }
+    _defaults = {
+        'requivalencia' : lambda *a: 0,
+    }
+    
 res_partner()
 
 class product_product(osv.osv):
-	_name = 'product.product'
-	_inherit = 'product.product'
-	_columns = {
-		'requivalencia': fields.boolean('Recargo Equivalencia'),
-	}
-	_defaults = {
-		'requivalencia' : lambda *a: 1,
-	}
-	
+    _name = 'product.product'
+    _inherit = 'product.product'
+    _columns = {
+        'requivalencia': fields.boolean('Recargo Equivalencia'),
+    }
+    _defaults = {
+        'requivalencia' : lambda *a: 1,
+    }
+    
 product_product()
 
 

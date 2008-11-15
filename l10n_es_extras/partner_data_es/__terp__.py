@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 {
     "name" : "Datos para módulo partners",
     "version" : "1.0",

@@ -1,56 +1,56 @@
-﻿<?xml version="1.0"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <terp>
 <data>
 
-	<!--****************************** SALE ORDER ****************************-->
-	
-	<record model="ir.ui.view" id="view_sale_paytype_sale_order_form_bp">
-		<field name="name">sale.order.form.sale_paytype</field>
-		<field name="model">sale.order</field>
-		<field name="type">form</field>
-		<field name="inherit_id" ref="sale.view_order_form"/>
-		<field name="arch" type="xml">
-				<field name="partner_id" position="replace">
-					<field name="partner_id" select="1" on_change="onchange_partner_id2(partner_id)" required="1"/>
-				</field>
-		</field>
-	</record>
-	
-	<record model="ir.ui.view" id="view_sale_paytype_sale_order_form_tp">
-		<field name="name">sale.order.form.sale_paytype</field>
-		<field name="model">sale.order</field>
-		<field name="type">form</field>
-		<field name="inherit_id" ref="sale.view_order_form"/>
-		<field name="arch" type="xml">
-				<field name="client_order_ref" position="after">
-					<field name="tipopago_id" on_change="onchange_tipopago_id(tipopago_id, partner_id)" select="2"/>
-				</field>
-		</field>
-	</record>
-	
-	<record model="ir.ui.view" id="view_sale_paytype_sale_order_form_cc">
-		<field name="name">sale.order.form.sale_paytype</field>
-		<field name="model">sale.order</field>
-		<field name="type">form</field>
-		<field name="inherit_id" ref="sale.view_order_form"/>
-		<field name="arch" type="xml">
-			<field name="tipopago_id" position="after">
-				<field name="acc_number" domain="[('partner_id','=',partner_id)]"/>
-			</field>
-		</field>
-	</record>
-	
-	<record model="ir.ui.view" id="view_sale_paytype_sale_order_form_pt">
-		<field name="name">sale.order.form.account_paytype</field>
-		<field name="model">sale.order</field>
-		<field name="type">form</field>
-		<field name="inherit_id" ref="sale.view_order_form"/>
-		<field name="arch" type="xml">
-			<field name="acc_number" position="after">
-				<field name="payment_term"/>
-			</field>
-		</field>
-	</record>
+    <!--****************************** SALE ORDER ****************************-->
+    
+    <record model="ir.ui.view" id="view_sale_paytype_sale_order_form_bp">
+        <field name="name">sale.order.form.sale_paytype</field>
+        <field name="model">sale.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+                <field name="partner_id" position="replace">
+                    <field name="partner_id" select="1" on_change="onchange_partner_id2(partner_id)" required="1"/>
+                </field>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="view_sale_paytype_sale_order_form_tp">
+        <field name="name">sale.order.form.sale_paytype</field>
+        <field name="model">sale.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+                <field name="client_order_ref" position="after">
+                    <field name="tipopago_id" on_change="onchange_tipopago_id(tipopago_id, partner_id)" select="2"/>
+                </field>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="view_sale_paytype_sale_order_form_cc">
+        <field name="name">sale.order.form.sale_paytype</field>
+        <field name="model">sale.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="tipopago_id" position="after">
+                <field name="acc_number" domain="[('partner_id','=',partner_id)]"/>
+            </field>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="view_sale_paytype_sale_order_form_pt">
+        <field name="name">sale.order.form.account_paytype</field>
+        <field name="model">sale.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="acc_number" position="after">
+                <field name="payment_term"/>
+            </field>
+        </field>
+    </record>
 
 </data>
 </terp>

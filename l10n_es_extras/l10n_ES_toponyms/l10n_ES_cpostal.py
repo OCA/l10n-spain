@@ -2,7 +2,7 @@
 ##############################################################################
 #
 # Copyright (c) 2008 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
-#					Jordi Esteve <jesteve@zikzakmedia.com>
+#                    Jordi Esteve <jesteve@zikzakmedia.com>
 #
 # WARNING: This program as such is intended to be used by professional
 # programmers who take the whole responsability of assessing all potential
@@ -32,42 +32,42 @@ import pooler
 import codecs
 import tools
 
-cpostal_end_form = '''<?xml version="1.0"?>
+cpostal_end_form = '''<?xml version="1.0" encoding="utf-8"?>
 <form string="Códigos postales">
-	<separator string="Resultado:" colspan="4"/>
-	<label string="Se han asociado los municipios y provincias a los códigos postales del Estado Español." colspan="4" align="0.0"/>
-	<label string="Permite rellenar automáticamente los campos ciudad y provincia del formulario de empresa y contacto a partir del código postal." colspan="4" align="0.0"/>
+    <separator string="Resultado:" colspan="4"/>
+    <label string="Se han asociado los municipios y provincias a los códigos postales del Estado Español." colspan="4" align="0.0"/>
+    <label string="Permite rellenar automáticamente los campos ciudad y provincia del formulario de empresa y contacto a partir del código postal." colspan="4" align="0.0"/>
 </form>'''
 
 class l10n_ES_crear_cpostal(wizard.interface):
-	def _crear_cpostal(self, cr, uid, data, context):
-		pool = pooler.get_pool(cr.dbname)
-		idc = pool.get('res.country').search(cr, uid, [('code', '=', 'ES'),])
-		if not idc:
-			return
-		idc = idc[0]
-		con = codecs.open(tools.config['addons_path']+'/l10n_ES_toponyms/municipios_cpostal.csv','r','utf-8')
-		for linea in con:
-			linea = linea[:-1]
-			m = linea.split(";")
-			ids = pool.get('res.country.state').search(cr, uid, [('country_id', '=', idc), ('code', '=', m[0][:2]),])
-			if ids:
-				ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'state_id', [('res.partner.address', False)], ids[0])
-			ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'city', [('res.partner.address', False)], m[1])
-		con.close()
-		return {}
+    def _crear_cpostal(self, cr, uid, data, context):
+        pool = pooler.get_pool(cr.dbname)
+        idc = pool.get('res.country').search(cr, uid, [('code', '=', 'ES'),])
+        if not idc:
+            return
+        idc = idc[0]
+        con = codecs.open(tools.config['addons_path']+'/l10n_ES_toponyms/municipios_cpostal.csv','r','utf-8')
+        for linea in con:
+            linea = linea[:-1]
+            m = linea.split(";")
+            ids = pool.get('res.country.state').search(cr, uid, [('country_id', '=', idc), ('code', '=', m[0][:2]),])
+            if ids:
+                ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'state_id', [('res.partner.address', False)], ids[0])
+            ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'city', [('res.partner.address', False)], m[1])
+        con.close()
+        return {}
 
-	states = {
-		'init': {
-			'actions': [_crear_cpostal],
-			'result': {
-				'type':'form',
-				'arch':cpostal_end_form,
-				'fields': {},
-				'state':[('end', 'Aceptar', 'gtk-ok'),]
-			}
-		}
-		
-	}
+    states = {
+        'init': {
+            'actions': [_crear_cpostal],
+            'result': {
+                'type':'form',
+                'arch':cpostal_end_form,
+                'fields': {},
+                'state':[('end', 'Aceptar', 'gtk-ok'),]
+            }
+        }
+        
+    }
 
 l10n_ES_crear_cpostal('l10n_ES_toponyms.crear_cpostal')

@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 
 from osv import osv, fields
 
@@ -31,7 +30,7 @@ class res_partner_bank(osv.osv):
         'acc_country_id': fields.many2one("res.country", 'País de la cuenta', help="""Si el país de la cuenta bancaria es España valida el número de la cuenta: Cuenta los caracteres que sean dígitos de la cuenta bancaria:
 - Si los dígitos son 18 calcula los dos dígitos de control
 - Si los dígitos son 20 calcula los dos dígitos de control e ignora los actuales
-	Presenta el resultado con el formato "1234 5678 06 1234567890"
+    Presenta el resultado con el formato "1234 5678 06 1234567890"
 - Si el número de dígitos es diferente de 18 0 20 deja el valor inalterado"""),
         }
     def onchange_banco(self, cr, uid, ids, account, country_id):

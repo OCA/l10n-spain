@@ -1,47 +1,47 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <terp>
-	<data>
+    <data>
 
-	<!--****************************** CUENTAS POR DEFECTO PARA LOS EXTRACTOS BANCARIOS ***********************************-->
-		<!-- FORMULARIO -->
-		<record model="ir.ui.view" id="view_extractos_concepto">
-			<field name="name">l10n.es.extractos.concepto.form</field>
-			<field name="model">l10n.es.extractos.concepto</field>
-			<field name="type">form</field>
-			<field name="arch" type="xml">
-				<form string="Cuentas por defecto C43">
-					<field name="code"/>
-					<field name="name"/>
-					<field name="account_id"/>
-				</form>
-			</field>
-		</record>
+    <!--****************************** CUENTAS POR DEFECTO PARA LOS EXTRACTOS BANCARIOS ***********************************-->
+        <!-- FORMULARIO -->
+        <record model="ir.ui.view" id="view_extractos_concepto">
+            <field name="name">l10n.es.extractos.concepto.form</field>
+            <field name="model">l10n.es.extractos.concepto</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Cuentas por defecto C43">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="account_id"/>
+                </form>
+            </field>
+        </record>
 
-		<!-- LISTA -->
-		<record model="ir.ui.view" id="view_extractos_concepto_tree">
-			<field name="name">l10n.es.extractos.concepto.tree</field>
-			<field name="model">l10n.es.extractos.concepto</field>
-			<field name="type">tree</field>
-			<field name="arch" type="xml">
-				<tree string="Cuentas por defecto C43">
-						<field name="code"/>
-						<field name="name"/>
-						<field name="account_id"/>
-				</tree>
-			</field>
-		</record> 
+        <!-- LISTA -->
+        <record model="ir.ui.view" id="view_extractos_concepto_tree">
+            <field name="name">l10n.es.extractos.concepto.tree</field>
+            <field name="model">l10n.es.extractos.concepto</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Cuentas por defecto C43">
+                        <field name="code"/>
+                        <field name="name"/>
+                        <field name="account_id"/>
+                </tree>
+            </field>
+        </record> 
 
-		<record model="ir.actions.act_window" id="action_extractos_concepto"> 
-			<field name="name">Cuentas por defecto C43</field> 
-			<field name="res_model">l10n.es.extractos.concepto</field> 
-		</record> 
+        <record model="ir.actions.act_window" id="action_extractos_concepto"> 
+            <field name="name">Cuentas por defecto C43</field> 
+            <field name="res_model">l10n.es.extractos.concepto</field> 
+        </record> 
 
-		<!-- menu -->
-		<menuitem
-		name="Financial Management/Configuration/Extractos bancarios C43/Cuentas por defecto asociadas a los códigos C43"
-		id="menu_extractos_concepto"
-		action="action_extractos_concepto"/>
+        <!-- menu -->
+        <menuitem
+        name="Financial Management/Configuration/Extractos bancarios C43/Cuentas por defecto asociadas a los códigos C43"
+        id="menu_extractos_concepto"
+        action="action_extractos_concepto"/>
 
-	</data>
+    </data>
 </terp>
 

@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 
 #import time
 #import netsvc
@@ -12,14 +11,14 @@ from osv import fields, osv
 # Partner
 #----------------------------------------------------------
 class partner_new(osv.osv):
-	_inherit = 'res.partner'
-	_columns = {
-		'alb_val': fields.boolean('Albarán valorado'), # Enviar albarán valorado
-		#'parent_id': fields.many2one('res.partner','Partner', select=True), # ???
-		       }
-	_defaults = {
-		'alb_val' : lambda *a: 1,
-	}
+    _inherit = 'res.partner'
+    _columns = {
+        'alb_val': fields.boolean('Albarán valorado'), # Enviar albarán valorado
+        #'parent_id': fields.many2one('res.partner','Partner', select=True), # ???
+               }
+    _defaults = {
+        'alb_val' : lambda *a: 1,
+    }
 partner_new()
 
 

@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 {
     "name" : "Partner ES",
     "version" : "0.2",
@@ -9,16 +10,16 @@
 
 Funcionamiento de la validación de la cuenta bancaria:
     * Se descartan todos los caracteres que no sean dígitos del campo número de cuenta.
-	* Si los dígitos son 18 calcula los dos dígitos de control
-	* Si los dígitos son 20 calcula los dos dígitos de control e ignora los actuales
-		Presenta el resultado con el formato "1234 5678 06 1234567890"
-	* Si el número de dígitos es diferente de 18 0 20 deja el valor inalterado
+    * Si los dígitos son 18 calcula los dos dígitos de control
+    * Si los dígitos son 20 calcula los dos dígitos de control e ignora los actuales
+        Presenta el resultado con el formato "1234 5678 06 1234567890"
+    * Si el número de dígitos es diferente de 18 0 20 deja el valor inalterado
     
 PENDIENTE
 Sería conveniente que la aplicación mostrase un mensaje informativo cuando se introduce un CIF/NIF incorrecto, en lugar de borrarlo directamente sin informar de la acción realizada.
 Al igual que sucede con el CIF/NIF, sería conveniente que la aplicación mostrase un mensaje informativo cuando una cuenta bancaria no puede ser validada
 
-	""",
+    """,
     "depends" : ["base", "base_vat", "base_iban"],
     "init_xml" : [],
     "update_xml" : ['partner_es_view.xml',],

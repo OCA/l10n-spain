@@ -1,8 +1,9 @@
+# -*- encoding: utf-8 -*-
 {
     "name" : "Recibos y remesas de recibos CSB 19 y CSB 58",
     "version" : "1.5",
     "author" : "Acysos SL, Zikzakmedia SL, Pablo Rocandio",
-	"description" : """Módulo para la gestión de:
+    "description" : """Módulo para la gestión de:
   * Recibos (permite marcarlos como cheque/pagaré recibido)
   * Gestión de remesas de recibos y su posterior exportación según las normas CSB 19 (recibos domiciliados)
     y CSB 58 (anticipos de créditos) para poder ser enviados a la entidad bancaria.
@@ -19,8 +20,8 @@ crea un módulo de tipos de pago (account_paytype) que se añade como dependenci
 de remesas. Se modifica también el código para poder modificar el número de 
 cuenta y fecha de vencimiento a nivel de recibo.
 """,
-	"website" : "www.acysos.com",
-	"license" : "GPL-2",
+    "website" : "www.acysos.com",
+    "license" : "GPL-2",
     "depends" : ["base","account","account_paytype","paydays",],
     "init_xml" : [],
     "demo_xml" : [],

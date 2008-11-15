@@ -1,39 +1,39 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <terp>
 <data noupdate="1">
-	<record model="res.partner.canal">
-		<field name="name">Web</field>
-	</record>
-	<record model="res.partner.canal">
-		<field name="name">Teléfono</field>
-	</record>
-	<record model="res.partner.canal">
-		<field name="name">Directo</field>
-	</record>
-	<record model="res.partner.canal">
-		<field name="name">E-mail</field>
-	</record>
+    <record model="res.partner.canal">
+        <field name="name">Web</field>
+    </record>
+    <record model="res.partner.canal">
+        <field name="name">Teléfono</field>
+    </record>
+    <record model="res.partner.canal">
+        <field name="name">Directo</field>
+    </record>
+    <record model="res.partner.canal">
+        <field name="name">E-mail</field>
+    </record>
 
-	<record model="res.partner.som">
-		<field name="name">Furioso</field>
-		<field name="factor">1.0</field>
-	</record>
-	<record model="res.partner.som">
-		<field name="name">Descontento</field>
-		<field name="factor">3.0</field>
-	</record>
-	<record model="res.partner.som">
-		<field name="name">Normal</field>
-		<field name="factor">5.0</field>
-	</record>
-	<record model="res.partner.som">
-		<field name="name">Contento</field>
-		<field name="factor">7.0</field>
-	</record>
-	<record model="res.partner.som">
-		<field name="name">Muy contento</field>
-		<field name="factor">9.0</field>
-	</record>
+    <record model="res.partner.som">
+        <field name="name">Furioso</field>
+        <field name="factor">1.0</field>
+    </record>
+    <record model="res.partner.som">
+        <field name="name">Descontento</field>
+        <field name="factor">3.0</field>
+    </record>
+    <record model="res.partner.som">
+        <field name="name">Normal</field>
+        <field name="factor">5.0</field>
+    </record>
+    <record model="res.partner.som">
+        <field name="name">Contento</field>
+        <field name="factor">7.0</field>
+    </record>
+    <record model="res.partner.som">
+        <field name="name">Muy contento</field>
+        <field name="factor">9.0</field>
+    </record>
 
 </data>
 </terp>

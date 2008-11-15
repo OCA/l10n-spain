@@ -1,11 +1,11 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <terp>
-	<data>
-		<wizard
-			string="Auto-Picking"
-			model="sale.order"
-			name="sale_autopicking.manual_picking"
-			keyword="client_action_multi"
-			id="wizard_sale_autopicking"/>
+    <data>
+        <wizard
+            string="Auto-Picking"
+            model="sale.order"
+            name="sale_autopicking.manual_picking"
+            keyword="client_action_multi"
+            id="wizard_sale_autopicking"/>
     </data>
 </terp>
