@@ -13,7 +13,7 @@ class city(osv.osv):
         for line in self.browse(cr, uid, ids):
             state = line.state_id.name    
             country = line.state_id.country_id.name    
-            location = "%s %s %s %s" %(line.zipcode, line.name, state, country)
+            location = "%s, %s, %s, %s" %(line.zipcode, line.name, state, country)
             res.append((line['id'], location))
         return res
 
@@ -22,10 +22,10 @@ class city(osv.osv):
         if not res and args:
             args = [('zipcode', 'ilike', args[0][2])]
             res = super(city, self).search(cr, uid, args, offset, limit, unknow, context)
-        return res    
-        
+        return res
+
     _name = 'city.city'
-    _description = 'City'
+    _description = 'Ciudad'
     _columns = {
         'state_id': fields.many2one('res.country.state', 'State', required=True, select=1),
         'name': fields.char('City', size=64, required=True, select=1),
@@ -42,7 +42,7 @@ class CountryState(osv.osv):
 CountryState()
 
 
-class res_partner_address(osv.osv):    
+class res_partner_address(osv.osv):
     def _get_zip(self, cr, uid, ids, field_name, arg, context):
         res={}
         for obj in self.browse(cr,uid,ids):
@@ -51,7 +51,7 @@ class res_partner_address(osv.osv):
             else:
                 res[obj.id] = ""
         return res
-        
+
     def _get_city(self, cr, uid, ids, field_name, arg, context):
         res={}
         for obj in self.browse(cr,uid,ids):
@@ -60,7 +60,7 @@ class res_partner_address(osv.osv):
             else:
                 res[obj.id] = ""
         return res
-        
+
     def _get_state(self, cr, uid, ids, field_name, arg, context):
         res={}
         for obj in self.browse(cr,uid,ids):
@@ -88,9 +88,3 @@ class res_partner_address(osv.osv):
             'country_id': fields.function(_get_country, obj="res.country" ,method=True, type="many2one", string='Country'), 
                 }
 res_partner_address()
-
-
-
-
-
-

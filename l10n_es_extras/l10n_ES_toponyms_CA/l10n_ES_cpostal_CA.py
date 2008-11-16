@@ -44,15 +44,13 @@ cpostal_end_form = '''<?xml version="1.0" encoding="utf-8"?>
 
 class l10n_ES_crea_cpostal_CA(wizard.interface):
     def _crea_cpostal(self, cr, uid, data, context):
+        from cpostal import cod_postales
         pool = pooler.get_pool(cr.dbname)
-        
-        con = codecs.open(tools.config['addons_path']+'/l10n_ES_toponyms_CA/cpostal.csv','r','utf-8')
-        for linea in con:
-            codi = linea[:-5] #aqui tinc els 2 primers digits del cp
+        for m in cod_postales:
+            codi = m[0][:-3] #2 primeros dígitos del cp
             ids = pool.get('res.country.cautonoma').search(cr, uid, [('code', '=', com_auto[codi])])
             if ids:
-                ir.ir_set(cr, uid, 'default', 'zip='+linea[:-2], 'cautonoma', [('res.partner.address', False)], ids[0])
-        con.close()
+                ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'cautonoma', [('res.partner.address', False)], ids[0])
         return {}
 
     states = {
@@ -65,7 +63,7 @@ class l10n_ES_crea_cpostal_CA(wizard.interface):
                 'state':[('end', 'Accepta', 'gtk-ok'),]
             }
         }
-        
+
     }
 l10n_ES_crea_cpostal_CA('l10n_ES_toponyms_CA.crea_cpostal')
 
