@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <terp>
     <data>
 
@@ -191,7 +191,7 @@
             <field name="view_type">form</field>
         </record>
 
-        <menuitem name="Partners/Configuration/Localisation/Cities"
+        <menuitem name="Partners/Configuration/Localisation/Ciudades"
             groups="admin" action="action_city"
             id="menu_city_partner"/>
 

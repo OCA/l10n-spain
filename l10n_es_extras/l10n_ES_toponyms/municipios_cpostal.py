@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-municipios = [
+cod_postales = [
 ["01150","Amurrio"],
 ["01450","Amurrio"],
 ["01468","Amurrio"],

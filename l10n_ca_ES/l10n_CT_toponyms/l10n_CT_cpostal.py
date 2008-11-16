@@ -42,11 +42,9 @@ cpostal_end_form = '''<?xml version="1.0" encoding="utf-8"?>
 
 class l10n_CT_crea_cpostal(wizard.interface):
     def _crea_cpostal(self, cr, uid, data, context):
+        from comarca_cpostal import cod_postales
         pool = pooler.get_pool(cr.dbname)
-        con = codecs.open(tools.config['addons_path']+'/l10n_CT_toponyms/comarca_cpostal.csv','r','utf-8')
-        for linea in con:
-            linea = linea[:-1]
-            m = linea.split(";")
+        for m in cod_postales:
             ids = pool.get('res.country.state.comarca').search(cr, uid, [('name', '=', m[1])])
             if ids:
                 ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'comarca', [('res.partner.address', False)], ids[0])
@@ -62,7 +60,7 @@ class l10n_CT_crea_cpostal(wizard.interface):
                 'state':[('end', 'Accepta', 'gtk-ok'),]
             }
         }
-        
+
     }
 l10n_CT_crea_cpostal('l10n_CT_toponyms.crea_cpostal')
 

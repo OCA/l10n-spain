@@ -41,20 +41,17 @@ cpostal_end_form = '''<?xml version="1.0" encoding="utf-8"?>
 
 class l10n_ES_crear_cpostal(wizard.interface):
     def _crear_cpostal(self, cr, uid, data, context):
+        from municipios_cpostal import cod_postales
         pool = pooler.get_pool(cr.dbname)
         idc = pool.get('res.country').search(cr, uid, [('code', '=', 'ES'),])
         if not idc:
             return
         idc = idc[0]
-        con = codecs.open(tools.config['addons_path']+'/l10n_ES_toponyms/municipios_cpostal.csv','r','utf-8')
-        for linea in con:
-            linea = linea[:-1]
-            m = linea.split(";")
+        for m in cod_postales:
             ids = pool.get('res.country.state').search(cr, uid, [('country_id', '=', idc), ('code', '=', m[0][:2]),])
             if ids:
                 ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'state_id', [('res.partner.address', False)], ids[0])
             ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'city', [('res.partner.address', False)], m[1])
-        con.close()
         return {}
 
     states = {
@@ -67,7 +64,7 @@ class l10n_ES_crear_cpostal(wizard.interface):
                 'state':[('end', 'Aceptar', 'gtk-ok'),]
             }
         }
-        
+
     }
 
 l10n_ES_crear_cpostal('l10n_ES_toponyms.crear_cpostal')
