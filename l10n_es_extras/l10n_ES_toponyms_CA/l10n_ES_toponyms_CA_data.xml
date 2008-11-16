@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<terp>
+<openerp>
     <data noupdate="1">
         <record model='res.country.cautonoma' id='CA01'>
             <field name='name'>Catalunya</field>
@@ -97,4 +97,4 @@
             <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
         </record>
     </data>
-</terp>
+</openerp>

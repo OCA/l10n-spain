@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<terp>
+<openerp>
     <data>
         <report
             id="remesas_report"
@@ -9,4 +9,4 @@
             rml="l10n_ES_remesas/report/remesas_report.rml"
             auto="False"/>
     </data>
-</terp>
+</openerp>

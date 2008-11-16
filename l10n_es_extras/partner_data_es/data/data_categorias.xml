@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='UTF-8'?>
-<terp>
+<openerp>
   <data noupdate='1'>
     <!--proveedor cliente banco fabricante-->
     <record model="res.partner.category" id="pro">
@@ -20,5 +20,5 @@
       <field name="active">True</field>
     </record>
   </data>
-</terp>
+</openerp>
 

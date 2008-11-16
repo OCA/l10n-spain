@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<terp>
+<openerp>
 <data ><record id="BA" model="account.report.bs">
         <field eval="&quot;&quot;&quot;Balance Abreviado&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
@@ -691,4 +691,4 @@
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PB16')])]" name="account_id"/>
     </record></data>
-</terp>
+</openerp>

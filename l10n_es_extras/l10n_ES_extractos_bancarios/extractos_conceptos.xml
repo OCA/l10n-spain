@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<terp>
+<openerp>
     <data noupdate='1'>
         <record model='l10n.es.extractos.concepto' id='01'>
             <field name='code'>01</field>
@@ -97,4 +97,4 @@
             <field search="[('code','=','57200000')]" model='account.account' name='account_id'/>
         </record>
     </data>
-</terp>
+</openerp>

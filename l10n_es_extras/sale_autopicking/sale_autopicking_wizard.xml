@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<terp>
+<openerp>
     <data>
         <wizard
             string="Auto-Picking"
@@ -8,4 +8,4 @@
             keyword="client_action_multi"
             id="wizard_sale_autopicking"/>
     </data>
-</terp>
+</openerp>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<terp>
+<openerp>
     <data>
 <!-- Add "Comunidad autónoma" field to partner_address form -->
         <record model="ir.ui.view" id="view_partner_address_cautonoma1">
@@ -76,4 +76,4 @@
          groups="admin" action="action_country_cautonoma" id="menu_country_cautonoma"/>
 
     </data>
-</terp>
+</openerp>

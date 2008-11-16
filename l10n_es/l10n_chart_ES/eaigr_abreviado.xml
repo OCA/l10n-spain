@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<terp>
+<openerp>
 <data  noupdate="1">
 <record id="eaigr_0" model="account.account">
         <field name="code">0</field>
@@ -177,4 +177,4 @@
 <record id="pgc_837" model="account.account">
         <field name="parent_id" eval="[(4, [ref('eaigr_ECIX')][0])]"/>
         </record></data>
-</terp>
+</openerp>
