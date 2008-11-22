@@ -16,7 +16,10 @@ Los datos han sido obtenidos de los datos públicos del Instituto Nacional de Es
         "depends" : ["base"],
         "init_xml" : ["l10n_ES_toponyms_country.xml", ],
         "demo_xml" : [ ],
-        "update_xml" : ["l10n_ES_toponyms_wizard.xml" ],
+        "update_xml" : [
+            "l10n_ES_toponyms_wizard.xml",
+            "security/ir.model.access.csv",
+        ],
         "active": False,
         "installable": True
 } 

@@ -117,6 +117,7 @@ class config_ES_toponyms(osv.osv_memory):
                 if res['city_info_recover'] == 'yes':
                     res= self._recover_zipcodes(cr, uid, context)
                     #print res
+        cr.commit()
         return {}
 
 
