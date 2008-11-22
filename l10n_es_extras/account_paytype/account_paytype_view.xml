@@ -106,7 +106,7 @@
         <field name="type">form</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <page string="Properties" position="inside">
+            <page string="Accounting" position="inside">
                 <separator string="Pago" colspan="4"/>
                 <field name="tipopago_id" />
             </page>

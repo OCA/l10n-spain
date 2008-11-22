@@ -58,7 +58,7 @@ class remesas_cuenta(osv.osv):
             else:
                 res[line.id] = ""    
         return res
-    
+
     def onchange_partner(self, cr, uid, ids, partner_id):
         if partner_id:        
             pool = pooler.get_pool(cr.dbname)
@@ -68,7 +68,7 @@ class remesas_cuenta(osv.osv):
             filas = obj.read(cr, uid, ids, field) 
             return {'value':{'nombre': filas[0]["name"][:40]}}
         return {'value':{'nombre': ""}}
-        
+
     _columns = {
         'name': fields.char('Nombre de la cuenta', size=64, select=True, required=True),
         'banco_id': fields.many2one('res.partner.bank','Cuenta bancaria', change_default=True, select=True, required=True),    
@@ -89,7 +89,7 @@ class remesas_remesa(osv.osv):
         cr.execute("SELECT s.id,COALESCE(SUM(l.debit - l.credit),0) AS amount FROM remesas_remesa s LEFT OUTER JOIN account_move_line l ON (s.id=l.remesa_id) WHERE s.id IN ("+id_set+") GROUP BY s.id ")
         res=dict(cr.fetchall())
         return res
-    
+
     def _get_period(self, cr, uid, data, context={}):
         pool = pooler.get_pool(cr.dbname)
         ids = pool.get('account.period').find(cr, uid, context=context)
@@ -97,7 +97,7 @@ class remesas_remesa(osv.osv):
         if len(ids):
             period_id = ids[0]
         return {'period_id': period_id}
-    
+
     _name='remesas.remesa'
     _description='Remesas'
     _order = "name desc"
@@ -137,19 +137,19 @@ class remesas_remesa(osv.osv):
                 logger.notifyChannel('remesa.recibo', netsvc.LOG_INFO, [6, 0, [x.id for x in remesa.receipts]][2])
 #                logger.notifyChannel('remesas', netsvc.LOG_INFO, recibo[0])
         return True
-    
+
     def add_receipts(self,cr,uid,id):
         pass
-    
+
     def remove_receipt(self):
         pass
-    
+
     def receipt_move(self):
         pass
-    
+
     def remesa_move(self):
         pass
-    
+
     def button_confirm(self, cr, uid, ids, context={}):
 #        self.reset_efectos(cr,uid,ids)
         self._total
@@ -167,7 +167,7 @@ class remesas_remesa(osv.osv):
             pass
         self.write(cr, uid, ids, {'state':'confirmed'})
         return True
-        
+
     def button_cancel(self, cr, uid, ids, context={}):
         self.write(cr, uid, ids, {'state':'draft'})
         return True
@@ -184,7 +184,7 @@ class remesas_remesa(osv.osv):
             name = self.pool.get('ir.sequence').get_id(cr, uid, journal.sequence_id.id)
         else:
             raise osv.except_osv('¡Asiento sin número !', '¡No se ha encontrado un numerador para esta secuencia!')
-        
+
         # Inicialización de cuenta destino (de la cuenta bancaria), totalizador de importe y lineas de abono
 #        logger.notifyChannel('remesas',netsvc.LOG_INFO, rem[0]['receipts'])
         dst_account_id = rem[0].account_id.id
@@ -197,7 +197,7 @@ class remesas_remesa(osv.osv):
         for recibo in rem[0]['receipts']:
             # Elegimos cuenta destino, segun cuenta asociada a recibo
             src_account_id = recibo.account_id.id
-            
+
 #            types = {'out_invoice': -1, 'in_invoice': 1, 'out_refund': 1, 'in_refund': -1}
             # Copiado de _pay_and_reconcile, del invoice.py
             direction = -1
@@ -210,7 +210,7 @@ class remesas_remesa(osv.osv):
                 'date': rem[0]['fecha_cargo'],
                 'ref': recibo.ref,
             }
-            
+
             importe_total += (recibo.debit - recibo.credit)
             lines.append((0,0,l1))
             asientos_ids += str(recibo.move_id.id) + ','
@@ -227,12 +227,12 @@ class remesas_remesa(osv.osv):
             'date': rem[0]['fecha_cargo'],
         }
         lines.append((0, 0, l2))
-            
+
 #        logger.notifyChannel('lines',netsvc.LOG_INFO, lines)
-            
+
         move = {'name': name, 'line_id': lines, 'journal_id':journal_id}
 #        logger.notifyChannel('moves',netsvc.LOG_INFO, move)
-            
+
         move_id = self.pool.get('account.move').create(cr, uid, move)
 #        logger.notifyChannel('remesas',netsvc.LOG_INFO, recibo.id)
         self.write(cr,uid,ids, {'state':'2reconcile', 'asiento': move_id})
@@ -247,7 +247,7 @@ class remesas_remesa(osv.osv):
 #        src_account_ids = []
 #        Para cada recibo de la remesa, localizamos el apunte del pago y conciliamos. Si no encontramos el pago, avisamos.
         line = self.pool.get('account.move.line')
-        
+
         for recibo in rem[0]['receipts']:
             cr.execute('select id from account_move_line where move_id = '+str(move_id)+' and partner_id ='+str(recibo.partner_id.id)+' and ref= \''+str(recibo.ref)+'\' and debit = '+str(recibo.credit)+' and credit = '+str(recibo.debit)+' and state <> \''+str('reconciled')+'\' limit 1')
             lines = line.browse(cr, uid, map(lambda x: x[0], cr.fetchall()) )
@@ -266,9 +266,9 @@ class remesas_remesa(osv.osv):
 #                logger.notifyChannel('cuentas', netsvc.LOG_INFO, str(l.account_id.id) + '   ' +str(src_account_id) )
 #                line_ids.append(l.id)
 #            logger.notifyChannel('lineas',netsvc.LOG_INFO, line_ids)
-            
+
         self.write(cr,uid,ids, {'state':'done'})
-            
+
         return True
 
 
@@ -296,11 +296,11 @@ class remesas_remesa(osv.osv):
     def create_csb19(self,cr,uid,ids):
         txt_remesa = ''
         rem = self.browse(cr,uid,ids)[0]
-        
+
         # Comprobamos que exista número de C.C. y que tenga 20 dígitos
         if not rem.cuenta_id: 
             raise osv.except_osv('Error del usuario', 'El C.C. de la compañía %s no existe.' % rem.cuenta_id.nombre)
-                    
+
         cc = self.digitos_cc(rem.cuenta_id.banco_id.acc_number)
         if len(cc) != 20:
             raise osv.except_osv('Error del usuario', 'El número de C.C. de la compañía %s no tiene 20 dígitos.' % rem.cuenta_id.partner_id.name)
@@ -321,7 +321,7 @@ class remesas_remesa(osv.osv):
             return texto
 
         def _cabecera_ordenante_19(self,texto):
-            
+
             texto += '5380'
             texto += (rem.cuenta_id.partner_id.vat+rem.cuenta_id.sufijo).zfill(12)
             date_now = now().strftime('%d%m%y')
@@ -333,7 +333,7 @@ class remesas_remesa(osv.osv):
             texto += 8*' '
             texto += '01'
             texto += 64*' '
-             texto += '\r\n'
+            texto += '\r\n'
             return texto
 
         def _individual_obligatorio_19(self,texto,recibo):
@@ -450,7 +450,7 @@ class remesas_remesa(osv.osv):
         for recibo in recibos:
 #            logger.notifyChannel('recibo objeto...',netsvc.LOG_INFO, recibo)
             txt_remesa = _individual_obligatorio_19(self,txt_remesa,recibo)
-    
+
         txt_remesa = _total_ordenante_19(self,txt_remesa)
         txt_remesa = _total_general_19(self,txt_remesa)
         self.write(cr, uid, ids, {'texto':txt_remesa, 'fichero':base64.encodestring(txt_remesa)})
@@ -497,7 +497,7 @@ class remesas_remesa(osv.osv):
             # Codigo INE de la plaza... en blanco...
             texto += 9*' '
             texto += 3*' '
-             texto += '\n'
+            texto += '\n'
             return texto
 
         def _individual_obligatorio_58(self,texto,recibo):
@@ -623,15 +623,15 @@ class remesas_remesa(osv.osv):
                             WHERE 
                                 l.remesa_id=""" + str(rem.id))
             recibos = cr.dictfetchall()
-        
+
 #        logger.notifyChannel('Numero de recibos',netsvc.LOG_INFO, recibos.__len__())
-        
+
         for recibo in recibos:
 #            logger.notifyChannel('recibo objeto...',netsvc.LOG_INFO, recibo)
             if not recibo['vencimiento']:
                 raise osv.except_osv('Error del usuario', 'Añada la fecha de vencimiento a todos los recibos')
             txt_remesa = _individual_obligatorio_58(self,txt_remesa,recibo)
-    
+
         txt_remesa = _total_ordenante_58(self,txt_remesa)
         txt_remesa = _total_general_58(self,txt_remesa)
         self.write(cr, uid, ids, {'texto':txt_remesa, 'fichero':base64.encodestring(txt_remesa)})
@@ -674,7 +674,7 @@ account_move_line()
 
 class account_invoice(osv.osv):
     _inherit = "account.invoice"
-    
+
     def action_move_create(self, cr, uid, ids, *args):
         ret = super(account_invoice, self).action_move_create(cr, uid, ids, *args)
         if ret:

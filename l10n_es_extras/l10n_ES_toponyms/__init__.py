@@ -1,1 +1,1 @@
-import l10n_ES_cpostal
+import l10n_ES_toponyms
