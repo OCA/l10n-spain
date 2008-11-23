@@ -1,1 +1,0 @@
-import l10n_ES_cpostal_CA

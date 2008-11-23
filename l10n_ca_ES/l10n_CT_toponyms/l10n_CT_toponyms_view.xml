@@ -73,7 +73,7 @@
         </record>
 
         <menuitem name="Partners/Configuration/Localisation/Comarques"
-            groups="admin" action="action_country_state_comarca"
+            action="action_country_state_comarca"
             id="menu_country_state_comarca"/>
 
     </data>

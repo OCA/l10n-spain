@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-<!-- Add "Comunidad autónoma" field to partner_address form -->
-        <record model="ir.ui.view" id="view_partner_address_cautonoma1">
-            <field name="name">res.partner.address.cautonoma</field>
+<!-- Add "region" field to partner_address form -->
+        <record model="ir.ui.view" id="view_partner_address_region1">
+            <field name="name">res.partner.address.region</field>
             <field name="model">res.partner.address</field>
             <field name="type">form</field>
             <field name="inherit_id" ref="base.view_partner_address_form1"/>
             <field name="arch" type="xml">
                 <field name="state_id" position="before">
-                    <field name="cautonoma"/>
+                    <field name="region"/>
                 </field>
             </field>
         </record>
-        <record model="ir.ui.view" id="view_partner_address_cautonoma2">
-            <field name="name">res.partner.address.cautonoma</field>
+        <record model="ir.ui.view" id="view_partner_address_region2">
+            <field name="name">res.partner.address.region</field>
             <field name="model">res.partner.address</field>
             <field name="type">form</field>
             <field name="inherit_id" ref="base.view_partner_address_form2"/>
             <field name="arch" type="xml">
                 <field name="state_id" position="before">
-                    <field name="cautonoma"/>
+                    <field name="region"/>
                 </field>
             </field>
         </record>
-        <record model="ir.ui.view" id="view_partner_address_cautonoma3">
-            <field name="name">res.partner.cautonoma</field>
+        <record model="ir.ui.view" id="view_partner_address_region3">
+            <field name="name">res.partner.region</field>
             <field name="model">res.partner</field>
             <field name="type">form</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <field name="state_id" position="before">
-                    <field name="cautonoma"/>
+                    <field name="region"/>
                 </field>
             </field>
         </record>
 
 
-<!-- Comunidad Autónoma -->
-<record model="ir.ui.view" id="view_country_cautonoma_tree">
-    <field name="name">res.country.cautonoma.tree</field>
-    <field name="model">res.country.cautonoma</field>
+<!-- Region -->
+<record model="ir.ui.view" id="view_country_region_tree">
+    <field name="name">res.country.region.tree</field>
+    <field name="model">res.country.region</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="Comunidad Autónoma">
+                <tree string="Region">
                     <field name="country_id"/>
                     <field name="name"/>
                     <field name="code"/>
@@ -51,12 +51,12 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="view_country_cautonoma_form">
-            <field name="name">res.country.cautonoma.form</field>
-            <field name="model">res.country.cautonoma</field>
+        <record model="ir.ui.view" id="view_country_region_form">
+            <field name="name">res.country.region.form</field>
+            <field name="model">res.country.region</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Comunidad Autónoma">
+                <form string="Region">
                     <field name="country_id" select="1"/>
                     <field name="name" select="1"/>
                     <field name="code" select="1"/>
@@ -64,16 +64,16 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="action_country_cautonoma">
-            <field name="name">Comunidad Autónoma</field>
+        <record model="ir.actions.act_window" id="action_country_region">
+            <field name="name">Region</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">res.country.cautonoma</field>
+            <field name="res_model">res.country.region</field>
             <field name="view_type">form</field>
-            <field name="view_id" ref="view_country_cautonoma_tree"/>
+            <field name="view_id" ref="view_country_region_tree"/>
         </record>
 
-        <menuitem name="Partners/Configuration/Localisation/Comunidades Autónomas"
-         groups="admin" action="action_country_cautonoma" id="menu_country_cautonoma"/>
+        <menuitem name="Partners/Configuration/Localisation/Regions"
+         action="action_country_region" id="menu_country_region"/>
 
     </data>
 </openerp>
