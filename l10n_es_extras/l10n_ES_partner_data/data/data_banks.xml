@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+    <data noupdate='1'>
+        <record id="res_bank_deutschebank" model="res.bank">
+            <field eval="&quot;&quot;&quot;0019&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Deutsche Bank&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_banesto" model="res.bank">
+            <field eval="&quot;&quot;&quot;0030&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Banesto&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_bancoguipuzcoano" model="res.bank">
+            <field eval="&quot;&quot;&quot;0042&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Banco Guipuzcoano&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_bancosantander" model="res.bank">
+            <field eval="&quot;&quot;&quot;0049&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;BDERESMM&quot;&quot;&quot;" name="bic"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Banco Santander&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_barclaysbank" model="res.bank">
+            <field eval="&quot;&quot;&quot;0065&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Barclays Bank&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_bancopastor" model="res.bank">
+            <field eval="&quot;&quot;&quot;0072&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;PSTRESMM&quot;&quot;&quot;" name="bic"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Banco Pastor&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_bancopopular" model="res.bank">
+            <field eval="&quot;&quot;&quot;0075&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;POPUESMM&quot;&quot;&quot;" name="bic"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Banco Popular&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_bancsabadellatlntico" model="res.bank">
+            <field eval="&quot;&quot;&quot;0081&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;BSAB ES BB&quot;&quot;&quot;" name="bic"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Banc Sabadell Atlántico&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_bancozaragozano" model="res.bank">
+            <field eval="&quot;&quot;&quot;0103&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Banco Zaragozano&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_bankinter" model="res.bank">
+            <field eval="&quot;&quot;&quot;0128&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Bankinter&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_bbvabancobilbaovizcayaargentaria" model="res.bank">
+            <field eval="&quot;&quot;&quot;0182&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;BBVIESMM&quot;&quot;&quot;" name="bic"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;BBVA (Banco Bilbao Vizcaya Argentaria)&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_caixacatalunya" model="res.bank">
+            <field eval="&quot;&quot;&quot;2013&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Caixa Catalunya&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_cajamadrid" model="res.bank">
+            <field eval="&quot;&quot;&quot;2038&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Caja Madrid&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_cajamurcia" model="res.bank">
+            <field eval="&quot;&quot;&quot;2043&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Caja Murcia&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_caixasabadell" model="res.bank">
+            <field eval="&quot;&quot;&quot;2059&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Caixa Sabadell&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_caixatarragona" model="res.bank">
+            <field eval="&quot;&quot;&quot;2073&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Caixa Tarragona&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_caixaterrassa" model="res.bank">
+            <field eval="&quot;&quot;&quot;2074&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Caixa Terrassa&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_bancaja" model="res.bank">
+            <field eval="&quot;&quot;&quot;2077&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Bancaja&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_caixapenedes" model="res.bank">
+            <field eval="&quot;&quot;&quot;2081&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Caixa Penedès&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_ibercaja" model="res.bank">
+            <field eval="&quot;&quot;&quot;2085&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Ibercaja&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_cajadeahorrosdelmediterraneo" model="res.bank">
+            <field eval="&quot;&quot;&quot;2090&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;CAAMES2A&quot;&quot;&quot;" name="bic"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Caja de Ahorros del Mediterraneo&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_caixagalicia" model="res.bank">
+            <field eval="&quot;&quot;&quot;2091&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Caixa Galicia&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_lacaixa" model="res.bank">
+            <field eval="&quot;&quot;&quot;2100&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;CAIXESBB&quot;&quot;&quot;" name="bic"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;La Caixa&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="res_bank_unicaja" model="res.bank">
+            <field eval="&quot;&quot;&quot;2103&quot;&quot;&quot;" name="code"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;Unicaja&quot;&quot;&quot;" name="name"/>
+        </record>
+    </data>
+</openerp>
