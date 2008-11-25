@@ -1,0 +1,37 @@
+# Translation of OpenERP Server.
+# This file containt the translation of the following modules:
+#	* l10n_ES_partner
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 5.0.0-alpha\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2008-11-25 19:38:05+0000\n"
+"PO-Revision-Date: 2008-11-25 20:47+0100\n"
+"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: l10n_ES_partner
+#: help:res.partner.bank,acc_country_id:0
+msgid "If the country of the bank is Spain, it validates the bank code. It only reads the digit characters of the bank code:\n- If the number of digits is 18, computes the two digits of control.\n- If the number of digits is 20, computes the two digits of control and ignores the current ones.\n- If the number of digits is different from 18 or 20, it leaves the bank code unaltered.\nThe result is shown in the '1234 5678 06 1234567890' format."
+msgstr "Si el país del compte bancari és Espanya, valida el número del compte. Només mira els caràcters del compte que siguin dígits:\n- Si el nombre de dígits és 18, calcula els dos dígits de control.\n- Si el nombre de dígits és 20, calcula els dos dígits de control i ignora els actuals.\n- Si el número de dígits és diferent de 18 o 20, deixa el valor inalterat.\nPresenta el resultat amb el format '1234 5678 06 1234567890'."
+
+#. module: l10n_ES_partner
+#: field:res.partner,comercial:0
+msgid "Trade name"
+msgstr "Nom comercial"
+
+#. module: l10n_ES_partner
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr "XML invàlid per a la definició de la vista!"
+
+#. module: l10n_ES_partner
+#: field:res.partner.bank,acc_country_id:0
+msgid "Bank country"
+msgstr "País del compte"
+
