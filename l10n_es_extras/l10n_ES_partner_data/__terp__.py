@@ -3,7 +3,14 @@
     "name" : "Datos iniciales para módulo base",
     "version" : "1.0",
     "author" : "Pablo Rocandio, Jordi Esteve (Zikzakmedia SL)",
+    "website" : "http://www.zikzakmedia.com",
     "category" : "Localisation/Europe",
+    "description": """Añade datos iniciales a las tablas:
+    * Canales
+    * Estados de ánimo
+    * Categorías de empresas
+    * Cargos de contactos
+    * Bancos""",
     "depends" : [
         "base",
         ],

@@ -3,8 +3,8 @@
         "name" : "Comunidades Autónomas de España",
         "version" : "1.0",
         "author" : "Zikzakmedia SL",
-        "website" : "http://zikzakmedia.com",
-        "category" : "Localisations/Others",
+        "website" : "http://www.zikzakmedia.com",
+        "category" : "Localisations/Europe",
         "description": """Comunidades Autónomas del Estado Español
 
   * Añade un nuevo campo de comunidades autónomas al formulario de empresas y contactos.
