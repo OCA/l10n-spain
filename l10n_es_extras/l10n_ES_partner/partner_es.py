@@ -64,6 +64,16 @@ class res_partner_bank(osv.osv):
 res_partner_bank()
 
 
+class Bank(osv.osv):
+    _inherit = 'res.bank'
+    _columns = {
+        'lname': fields.char('Long name', size=128),
+        'vat': fields.char('VAT code',size=32 ,help="Value Added Tax number"),
+        'website': fields.char('Website',size=64),
+    }
+Bank()
+
+
 class res_partner(osv.osv):
     _inherit = 'res.partner'
     _columns = {

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.0-alpha\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2008-11-25 19:36:13+0000\n"
-"PO-Revision-Date: 2008-11-25 20:46+0100\n"
+"POT-Creation-Date: 2008-11-28 17:20:06+0000\n"
+"PO-Revision-Date: 2008-11-28 18:21+0100\n"
 "Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,9 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_ES_partner
-#: help:res.partner.bank,acc_country_id:0
-msgid "If the country of the bank is Spain, it validates the bank code. It only reads the digit characters of the bank code:\n- If the number of digits is 18, computes the two digits of control.\n- If the number of digits is 20, computes the two digits of control and ignores the current ones.\n- If the number of digits is different from 18 or 20, it leaves the bank code unaltered.\nThe result is shown in the '1234 5678 06 1234567890' format."
-msgstr "Si el país de la cuenta bancaria es España, valida el número de la cuenta. Sólo mira los caracteres de la cuenta que sean dígitos:\n- Si el número de dígitos es 18, calcula los dos dígitos de control.\n- Si el número de dígitos es 20, calcula los dos dígitos de control e ignora los actuales.\n- Si el número de dígitos es diferente de 18 o 20, deja el valor inalterado.\nPresenta el resultado con el formato '1234 5678 06 1234567890'."
+#: field:res.bank,website:0
+msgid "Website"
+msgstr "Sitio web"
 
 #. module: l10n_ES_partner
 #: field:res.partner,comercial:0
@@ -26,12 +26,42 @@ msgid "Trade name"
 msgstr "Nombre comercial"
 
 #. module: l10n_ES_partner
-#: constraint:ir.ui.view:0
-msgid "Invalid XML for View Architecture!"
-msgstr "¡XML inválido para la definición de la vista!"
+#: field:res.bank,lname:0
+msgid "Long name"
+msgstr "Nombre completo"
 
 #. module: l10n_ES_partner
 #: field:res.partner.bank,acc_country_id:0
 msgid "Bank country"
 msgstr "País de la cuenta"
+
+#. module: l10n_ES_partner
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr "¡XML inválido para la definición de la vista!"
+
+#. module: l10n_ES_partner
+#: help:res.bank,vat:0
+msgid "Value Added Tax number"
+msgstr "Código de Identificación Fiscal"
+
+#. module: l10n_ES_partner
+#: field:res.bank,vat:0
+msgid "VAT code"
+msgstr "CIF"
+
+#. module: l10n_ES_partner
+#: help:res.partner.bank,acc_country_id:0
+msgid ""
+"If the country of the bank is Spain, it validates the bank code. It only reads the digit characters of the bank code:\n"
+"- If the number of digits is 18, computes the two digits of control.\n"
+"- If the number of digits is 20, computes the two digits of control and ignores the current ones.\n"
+"- If the number of digits is different from 18 or 20, it leaves the bank code unaltered.\n"
+"The result is shown in the '1234 5678 06 1234567890' format."
+msgstr ""
+"Si el país de la cuenta bancaria es España, valida el número de la cuenta. Sólo mira los caracteres de la cuenta que sean dígitos:\n"
+"- Si el número de dígitos es 18, calcula los dos dígitos de control.\n"
+"- Si el número de dígitos es 20, calcula los dos dígitos de control e ignora los actuales.\n"
+"- Si el número de dígitos es diferente de 18 o 20, deja el valor inalterado.\n"
+"Presenta el resultado con el formato '1234 5678 06 1234567890'."
 

@@ -9,8 +9,7 @@
     * Canals
     * Estats d'ànim
     * Categories d'empreses
-    * Càrrecs de contactes
-    * Bancs""",
+    * Càrrecs de contactes""",
     "depends" : [
         "base",
         ],
@@ -18,7 +17,6 @@
         "data/data_partner_events.xml",     # Canals i estats d'ànim
         "data/data_partner_categories.xml", # Categories d'empreses
         "data/data_partner_functions.xml",  # Càrrecs de contactes
-        "data/data_banks.xml",              # Bancs
         ],
     "demo_xml" : [],
     "update_xml" :[],

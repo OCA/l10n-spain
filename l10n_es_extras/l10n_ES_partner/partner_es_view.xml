@@ -2,26 +2,60 @@
 <openerp>
   <data>
     <!-- Añadimos el campo country_id a cuenta bancaria de empresa -->
-    <record model="ir.ui.view" id="view_partner_form_dc">
-      <field name="model">res.partner</field>
-      <field name="inherit_id" ref="base.view_partner_form"/>
-      <field name="arch" type="xml">
+    <record model="ir.ui.view" id="view_partner_form_banco">
+        <field name="name">view.partner.form.banco</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
             <field name="acc_number" position="replace">
                 <field name="acc_number" on_change="onchange_banco(acc_number, acc_country_id)"/>
                 <field name="acc_country_id" on_change="onchange_banco(acc_number, acc_country_id)"/>
             </field>
-      </field>
+        </field>
+    </record>
+
+    <!-- Añadimos los campos nombre largo, CIF y web a bancos -->
+    <record model="ir.ui.view" id="view_res_bank_form_es1">
+        <field name="name">view.res.bank.form.es1</field>
+        <field name="model">res.bank</field>
+        <field name="inherit_id" ref="base.view_res_bank_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="lname" select="2" colspan="4"/>
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_res_bank_form_es2">
+        <field name="name">view.res.bank.form.es2</field>
+        <field name="model">res.bank</field>
+        <field name="inherit_id" ref="base.view_res_bank_form"/>
+        <field name="arch" type="xml">
+            <field name="bic" position="after">
+                <field name="vat" select="1"/>
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_res_bank_form_es3">
+        <field name="name">view.res.bank.form.es3</field>
+        <field name="model">res.bank</field>
+        <field name="inherit_id" ref="base.view_res_bank_form"/>
+        <field name="arch" type="xml">
+            <field name="email" position="after">
+                <field name="website" select="2" widget="url"/>
+            </field>
+        </field>
     </record>
 
     <!-- Añadimos el campo nombre comercial a empresa -->
-    <record model="ir.ui.view" id="view_partner_new_form2">
-      <field name="model">res.partner</field>
-      <field name="inherit_id" ref="base.view_partner_form"/>
-      <field name="arch" type="xml">
+    <record model="ir.ui.view" id="view_partner_form_comercial">
+        <field name="name">view.partner.form.comercial</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
             <field name="parent_id" position="after">
                 <field name="comercial"/>
             </field>
-      </field>
+        </field>
     </record>
   </data>
 </openerp>

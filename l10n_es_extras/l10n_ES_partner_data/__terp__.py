@@ -9,8 +9,7 @@
     * Canales
     * Estados de ánimo
     * Categorías de empresas
-    * Cargos de contactos
-    * Bancos""",
+    * Cargos de contactos""",
     "depends" : [
         "base",
         ],
@@ -18,7 +17,6 @@
         "data/data_partner_events.xml",     # Canales y estados de ánimo
         "data/data_partner_categories.xml", # Categorías de empresas
         "data/data_partner_functions.xml",  # Cargos de contactos
-        "data/data_banks.xml",              # Bancos
         ],
     "demo_xml" : [],
     "update_xml" :[],

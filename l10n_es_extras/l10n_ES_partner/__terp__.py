@@ -5,6 +5,8 @@
     "author" : "Spanish Localization Team",
     "description": """Funcionalidades:
     * Añade el campo *Nombre Comercial* a las empresas
+    * Añades campos nombre largo, CIF y web a los bancos
+    * Añade datos de 191 bancos y cajas españolas extraídos del registro oficial del Banco de España
     * Permite validar las cuentas bancarias, para ello añade un campo de país a los bancos de las empresas
 
 Funcionamiento de la validación de la cuenta bancaria:
@@ -18,8 +20,11 @@ Se ha eliminado la validación de CIF/NIF españoles, pues el módulo base_vat d
     "depends" : [
         "base",
         "base_iban",
+        "l10n_ES_toponyms",
         ],
-    "init_xml" : [],
+    "init_xml" : [
+        "data_banks.xml"
+        ],
     "update_xml" : [
         "partner_es_view.xml",
         ],
