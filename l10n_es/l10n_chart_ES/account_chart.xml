@@ -61,7 +61,6 @@
 				<field name="code">0</field>
 				<field name="reconcile" eval="False"/>
 				<field name="close_method">none</field>
-				<field name="parent_id" eval="[(6, 0, [ref('0')])]"/>
 				<field name="type">view</field>
 				<field name="name">Plan General Contable 2008</field>
 				<field name="user_type" ref="view"/>

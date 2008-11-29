@@ -3,8 +3,8 @@
         "name" : "Topònims dels Països Catalans",
         "version" : "1.0",
         "author" : "Zikzakmedia SL",
-        "website" : "http://zikzakmedia.com",
-        "category" : "Localisations/Others",
+        "website" : "http://www.zikzakmedia.com",
+        "category" : "Localisations/Europe",
         "description": """Comarques dels Països Catalans (Catalunya, País Valencià i Illes Balears)
 
   * Afegeix un nou camp comarca al formulari d'empresa i contacte.

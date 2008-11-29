@@ -3,7 +3,7 @@
         "name" : "Topónimos del Estado español",
         "version" : "1.0",
         "author" : "Zikzakmedia SL",
-        "website" : "http://zikzakmedia.com",
+        "website" : "http://www.zikzakmedia.com",
         "category" : "Localisations/Europe",
         "description": """Provincias, municipios y códigos postales del Estado Español
 
