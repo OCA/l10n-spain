@@ -36,13 +36,13 @@ import netsvc
 logger = netsvc.Logger()
 
 form = """<?xml version="1.0" encoding="utf-8"?>
-<form string="Importación extracto bancario según norma C43">
+<form string="Bank statements import according to norm C43">
     <field name="file"/>
 </form>"""
 
 fields = {
     'file': {
-        'string': 'Fichero extracto',
+        'string': 'Bank Statements File',
         'type': 'binary',
         'required': True,
     },
@@ -67,7 +67,15 @@ def _importar(obj, cursor, user, data, context):
     num_registros = 0
     extracto = {}
     lextracto = []
-    for line in base64.decodestring(file).split("\n"):
+    file2 = base64.decodestring(file)
+    try:
+        unicode(file2, 'utf8')
+    except Exception, e: # Si no puede convertir a UTF-8 es que debe estar en ISO-8859-1: Lo convertimos
+        file2 = unicode(file2, 'iso-8859-1').encode('utf-8')
+        #print e
+        #raise wizard.except_wizard('Error !', 'Fichero a importar codificado en ISO-8859-1')
+
+    for line in file2.split("\n"):
         if len(line) == 0:
             continue
         if line[0:2]=='11': # Registro cabecera de cuenta (obligatorio)
@@ -117,7 +125,7 @@ def _importar(obj, cursor, user, data, context):
         elif line[0:2]=='88': # Registro de fin de fichero
             extracto['num_registros'] = int(line[20:26])
         else:
-            raise wizard.except_wizard('Error en el fichero C43', 'Tipo de registro no válido.')
+            raise wizard.except_wizard(_('Error in C43 file'), _('Not valid record type.'))
 
     #print extracto
     num_debe = num_haber = debe = haber = 0
@@ -133,17 +141,17 @@ def _importar(obj, cursor, user, data, context):
 
     # Verificaciones fichero C43 correcto
     if num_registros != extracto['num_registros']:
-        raise wizard.except_wizard('Error en el fichero C43', 'Número de registros no coincide con el definido en el registro fin de fichero.')
+        raise wizard.except_wizard(_('Error in C43 file'), _('Number of records does not agree with the defined in the last record.'))
     if num_debe != extracto['num_debe']:
-        raise wizard.except_wizard('Error en el fichero C43', 'Número de registros debe no coincide con el definido en el registro final de cuenta.')
+        raise wizard.except_wizard(_('Error in C43 file'), _('Number of debit records does not agree with the defined in the last record of account.'))
     if num_haber != extracto['num_haber']:
-        raise wizard.except_wizard('Error en el fichero C43', 'Número de registros haber no coincide con el definido en el registro final de cuenta.')
+        raise wizard.except_wizard(_('Error in C43 file'), _('Number of credit records does not agree with the defined in the last record of account.'))
     if round(extracto['debe'] - debe, 2) >= 0.01:
-        raise wizard.except_wizard('Error en el fichero C43', 'Importe debe no coincide con el definido en el registro final de cuenta.')
+        raise wizard.except_wizard(_('Error in C43 file'), _('Debit amount does not agree with the defined in the last record of account.'))
     if round(extracto['haber'] - haber, 2) >= 0.01:
-        raise wizard.except_wizard('Error en el fichero C43', 'Importe haber no coincide con el definido en el registro final de cuenta.')
+        raise wizard.except_wizard(_('Error in C43 file'), _('Credit amount does not agree with the defined in the last record of account.'))
     if round(extracto['saldo_fin'] - saldo_fin, 2) >= 0.01:
-        raise wizard.except_wizard('Error en el fichero C43', 'Importe saldo final = (saldo inicial + haber - debe) no coincide con el definido en el registro final de cuenta.')
+        raise wizard.except_wizard(_('Error in C43 file'), _('Final balance amount = (initial balance + credit - debit) does not agree with the defined in the last record of account.'))
 
     model_fields_ids = model_fields_obj.search(cursor, user, [
         ('name', 'in', ['property_account_receivable', 'property_account_payable']),
@@ -199,7 +207,9 @@ def _importar(obj, cursor, user, data, context):
             ('ref', '=', values['ref']),
             ('reconcile_id', '=', False),
             ('account_id.type', 'in', ['receivable', 'payable']),
-            ], order='date DESC, id DESC', context=context)
+            ],
+            #order='date DESC, id DESC', # En OpenERP 5.0 no funciona
+            context=context)
         line2reconcile = False
         partner_id = False
         account_id = False
@@ -217,20 +227,20 @@ def _importar(obj, cursor, user, data, context):
                     account_id = line.account_id.id
                     break
 
-        # 2) Búsqueda por el CIF/NIF del partner
+        # 2) Búsqueda por el CIF/NIF del partner. Nota: A partir OpenERP 5.0 los CIFs tienen un prefijo de 2 letras que indica el país.
         if not partner_id:
             partner_ids = partner_obj.search(cursor, user, [
-                ('vat', '=', l['referencia1'][:9]),
+                ('vat', 'like', '%'+l['referencia1'][:9]),
                 ('active', '=', True),
                 ], context=context)
             if not partner_ids:
                 partner_ids = partner_obj.search(cursor, user, [
-                    ('vat', '=', l['conceptos'][:9]),
+                    ('vat', 'like', '%'+l['conceptos'][:9]),
                     ('active', '=', True),
                     ], context=context)
             if not partner_ids:
                 partner_ids = partner_obj.search(cursor, user, [
-                    ('vat', '=', l['conceptos'][21:30]),
+                    ('vat', 'like', '%'+l['conceptos'][21:30]),
                     ('active', '=', True),
                     ], context=context)
             for line in partner_obj.browse(cursor, user, partner_ids, context=context):
@@ -251,13 +261,17 @@ def _importar(obj, cursor, user, data, context):
                     ('debit', '=', round(l['importe'], 2)),
                     ('reconcile_id', '=', False),
                     ('account_id.type', 'in', ['receivable', 'payable']),
-                    ], order='date ASC, id ASC', context=context)
+                    ],
+                    #order='date ASC, id ASC', # En OpenERP 5.0 no funciona
+                    context=context)
             else:
                 line_ids = move_line_obj.search(cursor, user, [
                     ('credit', '=', round(-l['importe'], 2)),
                     ('reconcile_id', '=', False),
                     ('account_id.type', 'in', ['receivable', 'payable']),
-                    ], order='date ASC, id ASC', context=context)
+                    ],
+                    #order='date ASC, id ASC', # En OpenERP 5.0 no funciona
+                    context=context)
             if line_ids:
                 line = move_line_obj.browse(cursor, user, line_ids, context=context)[0]
                 if line.partner_id.id:
@@ -273,7 +287,7 @@ def _importar(obj, cursor, user, data, context):
                 account_id = account_payable
         if not account_id:
             if not concepto_account_id:
-                raise wizard.except_wizard('Error', 'No se ha definido una cuenta contable por defecto para el concepto ' + l['concepto_c'] )
+                raise wizard.except_wizard(_('Error'), _('A default account has not been defined for the C43 concept ') + l['concepto_c'] )
             else:
                 account_id = concepto_account_id
 
@@ -314,8 +328,8 @@ class importar_extracto(wizard.interface):
                 'arch': form,
                 'fields': fields,
                 'state': [
-                    ('end', 'Cancelar', 'gtk-cancel'),
-                    ('import', 'Importar', 'gtk-ok', True),
+                    ('end', 'Cancel', 'gtk-cancel'),
+                    ('import', 'Import', 'gtk-ok', True),
                 ],
             },
         },

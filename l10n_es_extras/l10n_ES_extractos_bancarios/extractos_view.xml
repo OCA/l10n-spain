@@ -9,7 +9,7 @@
             <field name="model">l10n.es.extractos.concepto</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Cuentas por defecto C43">
+                <form string="C43 default accounts">
                     <field name="code"/>
                     <field name="name"/>
                     <field name="account_id"/>
@@ -23,7 +23,7 @@
             <field name="model">l10n.es.extractos.concepto</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="Cuentas por defecto C43">
+                <tree string="C43 default accounts">
                         <field name="code"/>
                         <field name="name"/>
                         <field name="account_id"/>
@@ -32,15 +32,13 @@
         </record> 
 
         <record model="ir.actions.act_window" id="action_extractos_concepto"> 
-            <field name="name">Cuentas por defecto C43</field> 
+            <field name="name">C43 default accounts</field> 
             <field name="res_model">l10n.es.extractos.concepto</field> 
         </record> 
 
         <!-- menu -->
-        <menuitem
-        name="Financial Management/Configuration/Extractos bancarios C43/Cuentas por defecto asociadas a los códigos C43"
-        id="menu_extractos_concepto"
-        action="action_extractos_concepto"/>
+        <menuitem id="menu_extractos_bancarios" name="C43 bank statements" parent="account.menu_finance_configuration"/>
+        <menuitem id="menu_extractos_bancarios_concepto" name="Default accounts associated to C43 codes" parent="menu_extractos_bancarios" action="action_extractos_concepto"/>
 
     </data>
 </openerp>

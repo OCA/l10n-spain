@@ -31,12 +31,12 @@ from osv import osv,fields
 
 class l10n_es_extractos_concepto(osv.osv):
     _name = 'l10n.es.extractos.concepto'
-    _description = 'Códigos C43'
-        
+    _description = 'C43 codes'
+
     _columns = {
-        'code': fields.char('Código concepto', size=2, select=True, required=True, help='Código de 2 dígitos del concepto definido en el fichero de extractos bancarios C43'),
-        'name': fields.char('Nombre concepto', size=64, select=True, required=True),
-        'account_id': fields.many2one('account.account', 'Cuenta asociada al concepto', domain=[('type','<>','view'), ('type', '<>', 'closed')], select=True, required=True, help='Cuenta contable por defecto que se asociará al concepto al importar el fichero de extractos bancarios C43'),
+        'code': fields.char('Concept code', size=2, select=True, required=True, help='2 digits code of the concept defined in the file of C43 bank statements'),
+        'name': fields.char('Concept name', size=64, select=True, required=True),
+        'account_id': fields.many2one('account.account', 'Account associated to the concept', domain=[('type','<>','view'), ('type', '<>', 'closed')], select=True, required=True, help='Default account to be associated with the concept when the file of C43 bank statements is imported'),
         }
 l10n_es_extractos_concepto()
 

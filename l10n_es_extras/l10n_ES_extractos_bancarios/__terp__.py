@@ -23,7 +23,11 @@ Elimina el precálculo del importe de la línea del extracto bancario cuando se 
     "depends" : ["base","account","l10n_ES_partner","l10n_chart_ES",],
     "init_xml" : ['extractos_conceptos.xml',],
     "demo_xml" : [],
-    "update_xml" : ['extractos_view.xml','extractos_wizard.xml',],
+    "update_xml" : [
+        "extractos_view.xml",
+        "extractos_wizard.xml",
+        "security/ir.model.access.csv",
+        ],
     "installable" : True,
     "active" : False,
 }

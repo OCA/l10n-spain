@@ -2,10 +2,10 @@
 <openerp>
     <data>
         <wizard
-            string="Importar ext. bancario"
+            string="Import bank stat."
             model="account.bank.statement"
             name="l10n_ES_extractos_bancarios.importar"
-            id="wizard_l10n_ES_extractos_bancarios.importar"/>
+            id="wizard_l10n_ES_extractos_bancarios_importar"/>
             <!--menu="False"-->
 
     </data>
