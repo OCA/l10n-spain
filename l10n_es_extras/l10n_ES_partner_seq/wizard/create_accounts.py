@@ -32,65 +32,77 @@
 import wizard
 import netsvc
 import pooler
+import string
 
 accounts_create_form = """<?xml version="1.0" encoding="utf-8"?>
 <form string="Create accounts">
-    <separator string="Do you want to create accounts for the selected partners" />
+    <label string="Do you want to create accounts for the selected partners?" />
 </form>"""
 
 accounts_create_fields = {}
 
 def strip0d(cadena):
     # Elimina los ceros de la derecha en una cadena de texto de dígitos
-    return str(int(cadena[::-1]))[::-1]   
-    
+    return str(int(cadena[::-1]))[::-1]
+
 def strip0i(cadena):
     # Elimina los ceros de la izquierda en una cadena de texto de dígitos
     return str(int(cadena))
-     
+
 
 def _createAccounts(self, cr, uid, data, context):
     partner_obj = pooler.get_pool(cr.dbname).get('res.partner')
     account_obj = pooler.get_pool(cr.dbname).get('account.account')
     sequence_obj = pooler.get_pool(cr.dbname).get('ir.sequence')
-    
-    def link_account(ref,parent_code, acc_type, acc_property):
-        # parent_code: Código del padre (Ej.: 4300)
-        # type: Puede ser 'payable' o 'receivable'
-        # acc_property: 'property_account_receivable' o 'property_account_payable'
-        acc_code = parent_code + ref[2:]  # acc_code es el nuevo código de subcuenta      
+
+    account_type_obj = pooler.get_pool(cr.dbname).get('account.account.type')
+    ids = account_type_obj.search(cr, uid, [('code', '=', 'terceros - rec')]) # Busca tipo cuenta de usuario rec
+    acc_user_type_rec = ids and ids[0]
+    ids = account_type_obj.search(cr, uid, [('code', '=', 'terceros - pay')]) # Busca tipo cuenta de usuario pay
+    acc_user_type_pay = ids and ids[0]
+    if not acc_user_type_rec and not acc_user_type_pay:
+        return
+
+    def link_account(ref, parent_code, acc_type, acc_user_type, acc_property):
+        """
+        parent_code: Código del padre (Ej.: 4300)
+        type: Puede ser 'payable' o 'receivable'
+        acc_property: 'property_account_receivable' o 'property_account_payable'"""
+        acc_code = parent_code + ref  # acc_code es el nuevo código de subcuenta
         args = [('code', '=', acc_code)]
         if not account_obj.search(cr, uid, args):
-            args = [('code', '=', parent_code)]
-            parent_acc_ids = account_obj.search(cr, uid, args) # Busca id de la subcuenta padre
             vals = {
             'name': partner.name,
             'code': acc_code,
             'type': acc_type,
-            'parent_id': [(6,0,parent_acc_ids)], # acc_ids es un diccionario
-            'sign': 1,
-            'close_method': 'unreconciled',
+            'user_type': acc_user_type,
             'shortcut': strip0d(acc_code[:4]) + "." + strip0i(acc_code[-5:]),
             }
-            acc_id = account_obj.create(cr, uid, vals)           
+            args = [('code', '=', parent_code)]
+            parent_acc_ids = account_obj.search(cr, uid, args) # Busca id de la subcuenta padre
+            if parent_acc_ids:
+                vals['parent_id'] = parent_acc_ids[0]
+            acc_id = account_obj.create(cr, uid, vals)
             vals = {acc_property: acc_id}
-            partner_obj.write(cr, uid, [partner.id], vals)     # Asocia la nueva subcuenta con el partner
-       
+            partner_obj.write(cr, uid, [partner.id], vals) # Asocia la nueva subcuenta con el partner
+
     for partner in partner_obj.browse(cr, uid, data['ids'], context=context):
+        if not partner.customer and not partner.supplier:
+            continue
         if not partner.ref or not partner.ref.strip():
             ref = sequence_obj.get(cr, uid, 'res.partner')
             vals = {'ref': ref}
             partner_obj.write(cr, uid, [partner.id], vals)
         else:
-             ref =  partner.ref  
-                        
-        if (len(ref) == 7) and (ref[2:].isdigit()):            
-            for category in partner.category_id:
-                if category.name.lower() == 'cliente':
-                    link_account(ref,'4300', 'receivable', 'property_account_receivable')
+             ref = partner.ref
 
-                if category.name.lower() == 'proveedor':
-                    link_account(ref,'4000', 'payable', 'property_account_payable')
+        ref = ''.join([i for i in ref if i in string.digits]) # Solo nos interesa los dígitos del código
+        if (ref.isdigit()):
+            if partner.customer:
+                link_account(ref, '430', 'receivable', acc_user_type_rec, 'property_account_receivable')
+
+            if partner.supplier:
+                link_account(ref, '400', 'payable', acc_user_type_pay, 'property_account_payable')
     return {}
 
 
@@ -110,4 +122,4 @@ class create_accounts(wizard.interface):
                     'state' : 'end'}
         },
     }
-create_accounts("partner_seq.create_accounts")
+create_accounts("l10n_ES_partner_seq.create_accounts")
