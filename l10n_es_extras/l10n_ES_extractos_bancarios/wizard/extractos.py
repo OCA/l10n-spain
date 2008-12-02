@@ -67,7 +67,15 @@ def _importar(obj, cursor, user, data, context):
     num_registros = 0
     extracto = {}
     lextracto = []
-    for line in base64.decodestring(file).split("\n"):
+    file2 = base64.decodestring(file)
+    try:
+        unicode(file2, 'utf8')
+    except Exception, e: # Si no puede convertir a UTF-8 es que debe estar en ISO-8859-1: Lo convertimos
+        file2 = unicode(file2, 'iso-8859-1').encode('utf-8')
+        #print e
+        #raise wizard.except_wizard('Error !', 'Fichero a importar codificado en ISO-8859-1')
+
+    for line in file2.split("\n"):
         if len(line) == 0:
             continue
         if line[0:2]=='11': # Registro cabecera de cuenta (obligatorio)
