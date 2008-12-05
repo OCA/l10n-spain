@@ -13,5 +13,18 @@
     type="wizard"
     id="l10n_chart_ES_2008_crear_cuentas"/>
 
+<wizard
+       string="Close a fiscal year (ES)"
+       model="account.fiscalyear"
+       name="l10n_es.fiscalyear.close"
+       menu="False"
+       id="wizard_l10n_fiscalyear_close"/>
+<menuitem
+	 name="Financial Management/End of Year Treatments/Close a Fiscal Year(ES)"
+	 action="wizard_l10n_fiscalyear_close"
+	 type="wizard"
+         id="menu_wizard_l10n_fy_close"/>
+
+
 </data>
 </terp>
