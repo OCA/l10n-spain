@@ -2154,7 +2154,7 @@ model,"ir.actions.act_window,name",account.act_account_analytic_account_2_accoun
 model,"ir.actions.act_window,name",account.act_account_journal_2_account_bank_statement,Bank statements,Extractos Bancarios
 model,"ir.actions.act_window,name",account.act_account_journal_2_account_invoice_opened,Open invoices,Facturas abiertas
 model,"ir.actions.act_window,name",account.act_account_journal_2_account_move_line,Entry lines,Líneas de asiento
-model,"ir.actions.act_window,name",account.act_account_partner_account_move,All account entries,Todas los asientos de la cuenta
+model,"ir.actions.act_window,name",account.act_account_partner_account_move,All account entries,Todos los asientos de la cuenta
 model,"ir.actions.act_window,name",account.act_account_partner_account_move_unreconciled,Receivables & Payables,Cuentas a cobrar & pagar
 model,"ir.actions.act_window,name",account.action_account_analytic_account_form,,
 model,"ir.actions.act_window,name",account.action_account_analytic_account_line_extended_form,,
@@ -2218,8 +2218,8 @@ model,"ir.actions.act_window,name",account_analytic_analysis.action_account_anal
 model,"ir.actions.act_window,name",account_analytic_analysis.action_account_analytic_managed_overpassed,Overpassed accounts,Cuentas caducadas
 model,"ir.actions.act_window,name",account_analytic_analysis.action_account_analytic_managed_pending,My Pending Managed Accounts,Mis cuentas gestionadas pendientes
 model,"ir.actions.act_window,name",account_analytic_analysis.action_hr_tree_invoiced_my,Uninvoiced entries of my accounts,Entradas no facturadas de mis cuentas
-model,"ir.actions.act_window,name",account_followup.act_account_partner_account_move_all,All receivable entries,Todas los asientos cuentas a cobrar
-model,"ir.actions.act_window,name",account_followup.act_account_partner_account_move_payable_all,All payable entries,Todas los asientos cuentas a pagar
+model,"ir.actions.act_window,name",account_followup.act_account_partner_account_move_all,All receivable entries,Todos los asientos cuentas a cobrar
+model,"ir.actions.act_window,name",account_followup.act_account_partner_account_move_payable_all,All payable entries,Todos los asientos cuentas a pagar
 model,"ir.actions.act_window,name",account_followup.action_account_followup_definition_form,,
 model,"ir.actions.act_window,name",account_followup.action_followup_stat,Follow-Ups,Seguimientos
 model,"ir.actions.act_window,name",account.open_account_analytic_budget_post_form,,
@@ -2613,7 +2613,7 @@ model,"ir.actions.report.xml,name",account.account_general_ledger,General Ledger
 model,"ir.actions.report.xml,name",account.account_intracom,IntraCom,IntraCom
 model,"ir.actions.report.xml,name",account.account_invoices,Invoices,Facturas
 model,"ir.actions.report.xml,name",account.account_journal,Print Journal,Imprimir diario
-model,"ir.actions.report.xml,name",account.account_move_line_list,All Entries,Todas los asientos
+model,"ir.actions.report.xml,name",account.account_move_line_list,All Entries,Todos los asientos
 model,"ir.actions.report.xml,name",account.account_overdue,Overdue payments,Pagos atrasados
 model,"ir.actions.report.xml,name",account.account_transfers,Transfers,Transferencias
 model,"ir.actions.report.xml,name",account.account_vat_declaration,Taxes report,Informe de impuestos
