@@ -4,8 +4,8 @@ from osv import fields,osv
 class stock_inventory(osv.osv):
         _name = "stock.inventory"
         _inherit = 'stock.inventory'
-        
-    def action_done(self, cr, uid, ids, *args):
+
+        def action_done(self, cr, uid, ids, *args):
                 for inv in self.browse(cr,uid,ids):
                         move_ids = []
                         move_line=[]
@@ -48,8 +48,8 @@ stock_inventory()
 class stock_inventory_line(osv.osv):
         _name = "stock.inventory.line"
         _inherit = 'stock.inventory.line'
-        
-    def on_change_product_id(self, cr, uid, ids, location_id, product, date_inv, uom=False):
+
+        def on_change_product_id(self, cr, uid, ids, location_id, product, date_inv, uom=False):
                 if not product:
                         return {}
                 if not uom:
