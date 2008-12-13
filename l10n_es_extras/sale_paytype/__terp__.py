@@ -18,7 +18,7 @@ The sale order inherits payment type from business partner as default. Next, the
     "update_xml" : [
         "sale_paytype_view.xml",
         ],
-    "active": True,
+    "active": False,
     "installable": True
 }
 
