@@ -38,7 +38,7 @@ class stock_location(osv.osv):
 
     def _product_get_all_report(self, cr, uid, ids, product_ids=False, context={}, date_ref=False):
         return self._product_get_report(cr, uid, ids, product_ids=product_ids, context=context, date_ref=date_ref, recursive=True)
-        
+
     def _product_get_report(self, cr, uid, ids, product_ids=False, context=None, date_ref=False, recursive=False):
         if context is None:
             context = {}
@@ -77,7 +77,7 @@ class stock_location(osv.osv):
                         'uom': product.uom_id.name,
                         'amount': qty[product_id],
                     })
-        
+
         return result
 
     def _product_get_multi_location(self, cr, uid, ids, product_ids=False, date_ref=False, context={}, states=['done'], what=('in', 'out')):
@@ -92,7 +92,7 @@ class stock_location(osv.osv):
             res[id] = 0.0
         if not ids:
             return res
-        
+
         product2uom = {}
         for product in product_obj.browse(cr, uid, product_ids, context=context):
             product2uom[product.id] = product.uom_id.id
@@ -133,9 +133,9 @@ class stock_location(osv.osv):
             amount = uom_obj._compute_qty(cr, uid, prod_uom, amount,
                     context.get('uom', False) or product2uom[prod_id])
             res[prod_id] -= amount
-            
+
         return res
-    
+
     def _product_get(self, cr, uid, id, product_ids=False, context={}, states=['done'], date_ref=False):
                 ids = id and [id] or []
                 return self._product_get_multi_location(cr, uid, ids, product_ids=product_ids, date_ref=date_ref, context=context, states=states )    
@@ -154,7 +154,7 @@ stock_location()
 
 class product_product(osv.osv):
     _inherit = "product.product"
-    
+
     def _get_product_available_func(states, what):
         def _product_available(self, cr, uid, ids, name, arg, context={}):
             if context.get('shop', False):

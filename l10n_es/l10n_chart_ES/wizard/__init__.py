@@ -1,2 +1,2 @@
-import cierre.py
+import cierre
 import crear_cuentas
