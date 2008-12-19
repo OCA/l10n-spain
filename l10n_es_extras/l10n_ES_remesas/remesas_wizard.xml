@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+
+		<wizard
+			string="Create Remesas Payment"
+			model="payment.order"
+			name="export_remesas"
+			menu="False" 
+			id="wizard_account_payment_remesas_create"/>
+
+	</data>
+</openerp>

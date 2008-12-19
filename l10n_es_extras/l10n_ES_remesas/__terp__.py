@@ -4,7 +4,6 @@
     "version" : "1.5",
     "author" : "Acysos SL, Zikzakmedia SL, Pablo Rocandio",
     "description" : """Módulo para la gestión de:
-  * Recibos (permite marcarlos como cheque/pagaré recibido)
   * Gestión de remesas de recibos y su posterior exportación según las normas CSB 19 (recibos domiciliados)
     y CSB 58 (anticipos de créditos) para poder ser enviados a la entidad bancaria.
 
@@ -22,10 +21,10 @@ cuenta y fecha de vencimiento a nivel de recibo.
 """,
     "website" : "www.acysos.com",
     "license" : "GPL-2",
-    "depends" : ["base","account","account_paytype","paydays",],
+    "depends" : ["base","account","account_payment_extension",],
     "init_xml" : [],
     "demo_xml" : [],
-    "update_xml" : ['recibos_view.xml','remesas_report.xml','remesas_sequence.xml','remesas_view.xml','remesas_workflow.xml',],
+    "update_xml" : ['remesas_report.xml','remesas_view.xml','remesas_wizard.xml',],
     "installable" : True,
     "active" : False,
 }

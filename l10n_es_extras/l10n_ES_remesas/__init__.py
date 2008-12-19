@@ -27,6 +27,6 @@
 ##############################################################################
 
 import remesas
-import recibos
 import report
+import wizard
 

@@ -4,7 +4,7 @@
         <report
             id="remesas_report"
             string="Remesa"
-            model="remesas.remesa"
+            model="payment.order"
             name="remesas.report"
             rml="l10n_ES_remesas/report/remesas_report.rml"
             auto="False"/>
