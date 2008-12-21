@@ -38,6 +38,6 @@ class remesas_report(report_sxw.rml_parse):
         })
 
 
-report_sxw.report_sxw('report.remesas.report', 'remesas.remesa',
+report_sxw.report_sxw('report.remesas.report', 'payment.order',
         'addons/l10n_ES_remesas/report/remesas_report.rml',
         parser=remesas_report)

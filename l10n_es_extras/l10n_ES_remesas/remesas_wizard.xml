@@ -3,11 +3,10 @@
 	<data>
 
 		<wizard
-			string="Create Remesas Payment"
+			string="Create payment file 19/58"
 			model="payment.order"
-			name="export_remesas"
-			menu="False" 
-			id="wizard_account_payment_remesas_create"/>
+			name="export_payment_file_19_58"
+			id="wizard_create_payment_file_19_58"/>
 
 	</data>
 </openerp>

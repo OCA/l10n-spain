@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <document filename="test.pdf">
   <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
     <pageTemplate id="first">
@@ -32,13 +32,13 @@
     <paraStyle name="P1" fontName="Helvetica"/>
     <paraStyle name="P2" fontName="Helvetica"/>
     <paraStyle name="P3" fontName="Helvetica" alignment="CENTER"/>
-    <paraStyle name="P4" fontName="Helvetica" alignment="CENTER"/>
-    <paraStyle name="P5" fontName="Helvetica" alignment="LEFT"/>
+    <paraStyle name="P4" fontName="Helvetica" alignment="LEFT"/>
+    <paraStyle name="P5" fontName="Helvetica" fontSize="6.0" leading="8"/>
     <paraStyle name="P6" fontName="Helvetica" fontSize="6.0" leading="8"/>
-    <paraStyle name="P7" fontName="Helvetica" fontSize="6.0" leading="8"/>
+    <paraStyle name="P7" fontName="Helvetica-Bold" alignment="LEFT"/>
     <paraStyle name="P8" fontName="Helvetica" alignment="CENTER"/>
-    <paraStyle name="P9" fontName="Helvetica-Bold" alignment="LEFT"/>
-    <paraStyle name="P10" fontName="Helvetica" alignment="CENTER"/>
+    <paraStyle name="P9" fontName="Helvetica"/>
+    <paraStyle name="P10" fontName="Helvetica"/>
     <paraStyle name="Standard" fontName="Helvetica"/>
     <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
     <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
@@ -58,62 +58,67 @@
     <blockTable colWidths="270.0,212.0" style="Taula2">
       <tr>
         <td>
-          <para style="P1">Compañía: [[o.banco.owner_name]]</para>
-          <para style="P1">Banco: [[o.banco.bank.name]]</para>
-          <para style="P1">C.C.: [[o.banco.acc_number]]</para>
-          <para style="P1">Fecha confección: [[time.strftime('%d-%m-%Y', time.strptime(o.fecha, '%Y-%m-%d'))]]</para>
-          <para style="P1">Fecha cargo: [[time.strftime('%d-%m-%Y', time.strptime(o.fecha_cargo, '%Y-%m-%d'))]]</para>
+          <para style="P1">Company: [[o.mode.partner_id.name]]</para>
+          <para style="P1">Bank: [[o.mode.bank_id.bank.name]]</para>
+          <para style="P1">Account: [[o.mode.bank_id.acc_number]]</para>
+          <para style="P1">Created date: [[time.strftime('%d-%m-%Y', time.strptime(o.date_created, '%Y-%m-%d'))]]</para>
+          <para style="P1">Payment date: [[o.date_planned and time.strftime('%d-%m-%Y', time.strptime(o.date_planned, '%Y-%m-%d'))]]</para>
         </td>
         <td>
-          <para style="P2">REMESA Nº: [[o.name]]</para>
-          <para style="P2">Tipo: [[o.tipo]]</para>
-          <para style="P2">Recibos Agrupados: [[o.agrupar_recibos==1 and 'SI' or 'NO']]</para>
-          <para style="P2">Total Remesa: [[o.total]]</para>
+          <para style="P2">PAYMENT ORDER Num.: [[o.reference]]</para>
+          <para style="P2">
+            <font color="white"> </font>
+          </para>
+          <para style="P2">Type: [[o.mode.tipo]]</para>
+          <para style="P2">
+            <font color="white"> </font>
+          </para>
+          <para style="P2">Total payment order: [[-o.total]]</para>
         </td>
       </tr>
     </blockTable>
     <para style="P2">
       <font color="white"> </font>
     </para>
-    <para style="P9"><font color="white"> .........</font>RECIBOS</para>
-    <para style="P5">
+    <para style="P7"><font color="white"> .........</font>PAYMENT LINES</para>
+    <para style="P4">
       <font color="white"> </font>
     </para>
-    <blockTable colWidths="265.0,64.0,71.0,83.0" repeatRows="1" style="Taula3">
+    <blockTable colWidths="176.0,153.0,71.0,83.0" repeatRows="1" style="Taula3">
       <tr>
         <td>
-          <para style="Table Heading">Empresa</para>
+          <para style="Table Heading">Partner</para>
         </td>
         <td>
-          <para style="Table Heading">Factura</para>
+          <para style="Table Heading">Invoice</para>
         </td>
         <td>
-          <para style="Table Heading">Importe</para>
+          <para style="Table Heading">Amount</para>
         </td>
         <td>
-          <para style="Table Heading">Fecha Vto.</para>
+          <para style="Table Heading">Matur. date</para>
         </td>
       </tr>
     </blockTable>
     <section>
-      <para style="P6">[[o.receipts.sort(lambda x, y: cmp(x.name, y.name))]][[repeatIn(o.receipts,'r')]]</para>
-      <blockTable colWidths="265.0,64.0,71.0,83.0" repeatRows="1" style="Taula1">
+      <para style="P5">[[o.line_ids.sort(lambda x, y: cmp(x.name, y.name))]][[repeatIn(o.line_ids,'r')]]</para>
+      <blockTable colWidths="175.0,153.0,71.0,83.0" repeatRows="1" style="Taula1">
         <tr>
           <td>
             <para style="P3">[[r.partner_id.name]]</para>
           </td>
           <td>
-            <para style="P4">[[r.ref]]</para>
+            <para style="P8">[[r.communication]]</para>
           </td>
           <td>
-            <para style="P4">[[r.debit-r.credit]]</para>
+            <para style="P8">[[-r.amount]]</para>
           </td>
           <td>
-            <para style="P4">[[time.strftime('%d-%m-%Y', time.strptime(r.date_maturity, '%Y-%m-%d'))]]</para>
+            <para style="P8">[[time.strftime('%d-%m-%Y', time.strptime(r.ml_maturity_date, '%Y-%m-%d'))]]</para>
           </td>
         </tr>
       </blockTable>
-      <para style="P7">
+      <para style="P6">
         <font color="white"> </font>
       </para>
     </section>

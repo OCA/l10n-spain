@@ -36,16 +36,7 @@
 #
 ##############################################################################
 
-import netsvc
-logger = netsvc.Logger()
 from osv import osv, fields, orm
-import ir
-import time
-import base64
-
-import mx.DateTime
-from mx.DateTime import RelativeDateTime, now, DateTime, localtime
-
 import pooler
 
 
@@ -74,26 +65,17 @@ class payment_mode(osv.osv):
         return {'value':{'nombre': ""}}
 
     _columns = {
-        'tipo': fields.selection([('none','None'),('csb_19','CSB 19'),('csb_58','CSB 58')], 'Tipo de remesa', size=6, select=True, required=True),
-        'sufijo': fields.char('Sufijo',size=3, select=True),
-        #'remesas': fields.one2many('remesas.remesa', 'banco', 'Remesas'),
+        'tipo': fields.selection([('none','None'),('csb_19','CSB 19'),('csb_58','CSB 58')], 'Type of payment file', size=6, select=True, required=True),
+        'sufijo': fields.char('suffix',size=3, select=True),
         'partner_id': fields.many2one('res.partner', 'Partner', select=True),
-        'nombre': fields.char('Nombre Empresa para fichero', size=40),
-        'cif': fields.function(_get_cif, method=True, string='CIF', type="char", select=True),
+        'nombre': fields.char('Company name in file', size=40),
+        'cif': fields.function(_get_cif, method=True, string='VAT code', type="char", select=True),
         }
 
     _defaults = {
         'tipo': lambda *a: 'none',
         'sufijo': lambda *a: '000',
     }
-    #_columns= {
-        #'name': fields.char('Name', size=64, required=True,help='Mode of Payment'),
-        #'bank_id': fields.many2one('res.partner.bank', "Bank account",
-            #required=True,help='Bank Account for the Payment Mode'),
-        #'journal': fields.many2one('account.journal', 'Journal', required=True,
-            #domain=[('type', '=', 'cash')],help='Cash Journal for the Payment Mode'),
-        #'type': fields.many2one('payment.type','Payment type',required=True,help='Select the Payment Type for the Payment Mode.'),
-    #}
 
 payment_mode()
 
@@ -104,25 +86,9 @@ class payment_order(osv.osv):
 
     def get_wizard(self, type):
         if type == 'RECIBO_CSB':
-            return (self._module, 'wizard_account_payment_remesas_create')
+            return (self._module, 'wizard_create_payment_file_19_58')
         else:
             return super(payment_order, self).get_wizard(type)
 
 payment_order()
 
-
-    #_columns={ 
-        #'name': fields.char('Codigo de remesa', size=15),
-        #'cuenta_id': fields.many2one('remesas.cuenta','Cuenta de remesas', required=True, ),
-        #'total': fields.function(_total, method=True, string='Importe Total' ),
-        #'fecha': fields.date('Fecha'),
-        #'fecha_cargo': fields.date('Fecha Cargo (C19)'),
-        #'diario': fields.many2one('account.journal', 'Diario asiento cobro'),
-        #'account_id': fields.many2one('account.account', 'Cuenta asiento bancario', domain=[('type','<>','view'), ('type', '<>', 'closed')]),
-        #'receipts': fields.one2many('account.move.line', 'remesa_id' ,'Recibos', readonly=True, states={'draft':[('readonly',False)]}),
-        #'texto': fields.text('Texto para el banco'),
-        #'state': fields.selection( (('draft','Borrador'),('confirmed','Confirmada'),('2reconcile','A Conciliar'),('done','Realizada')), 'Estado', readonly=True),
-        #'agrupar_recibos': fields.boolean('Agrupar Recibos'),
-        #'asiento': fields.many2one('account.move', 'Asiento de Cobro', readonly=True),
-        #'fichero': fields.binary('Fichero para el banco', readonly=True),
-    #}
