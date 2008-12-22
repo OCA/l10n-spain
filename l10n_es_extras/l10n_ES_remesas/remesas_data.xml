@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+		<record id="payment_type_recibodomiciliado0" model="payment.type">
+			<field eval="&quot;&quot;&quot;RECIBO_CSB&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;Recibo domiciliado&quot;&quot;&quot;" name="name"/>
+			<field eval="[(6,0,[ref('base.bank_normal')])]" name="suitable_bank_types"/>
+			<field eval="&quot;&quot;&quot;Recibo domiciliado&quot;&quot;&quot;" name="note"/>
+			<field eval="1" name="active"/>
+		</record>
+	</data>
+</openerp>

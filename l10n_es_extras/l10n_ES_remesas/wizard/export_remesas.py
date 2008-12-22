@@ -106,7 +106,7 @@ def _create_payment_file(self, cr, uid, data, context):
         date_now = now().strftime('%d%m%y')
         texto += date_now
         texto += 6*' '
-        texto += orden.mode.nombre.ljust(40)
+        texto += conv_ascii(orden.mode.nombre).ljust(40)
         texto += 20*' '
         texto += cc[0:8]
         texto += 66*' '
@@ -124,7 +124,7 @@ def _create_payment_file(self, cr, uid, data, context):
             raise log
         date_cargo = mx.DateTime.strptime(orden.date_planned,'%Y-%m-%d')
         texto += date_cargo.strftime('%d%m%y')
-        texto += orden.mode.nombre.ljust(40)
+        texto += conv_ascii(orden.mode.nombre).ljust(40)
         texto += cc[0:20]
         texto += 8*' '
         texto += '01'
@@ -211,7 +211,7 @@ def _create_payment_file(self, cr, uid, data, context):
         date_now = now().strftime('%d%m%y')
         texto += date_now
         texto += 6*' '
-        texto += orden.mode.nombre.ljust(40)
+        texto += conv_ascii(orden.mode.nombre).ljust(40)
         texto += 20*' '
         texto += cc[0:8]
         texto += 66*' '
@@ -225,7 +225,7 @@ def _create_payment_file(self, cr, uid, data, context):
         date_now = now().strftime('%d%m%y')
         texto += date_now
         texto += 6*' '
-        texto += orden.mode.nombre.ljust(40)
+        texto += conv_ascii(orden.mode.nombre).ljust(40)
         texto += cc[0:20]
         texto += 8*' '
         texto += '06'
@@ -345,11 +345,11 @@ def _create_payment_file(self, cr, uid, data, context):
 
         # Comprobamos que exista número de C.C. y que tenga 20 dígitos
         if not orden.mode.bank_id:
-            log.add(_('User error:\n\nThe bank account of the company %s is not defined.') % (rem.cuenta_id.nombre), True)
+            log.add(_('User error:\n\nThe bank account of the company %s is not defined.') % (orden.mode.partner_id.name), True)
             raise log
         cc = digitos_cc(orden.mode.bank_id.acc_number)
         if len(cc) != 20:
-            log.add(_('User error:\n\nThe bank account number of the company %s has not 20 digits.') % (rem.cuenta_id.partner_id.name), True)
+            log.add(_('User error:\n\nThe bank account number of the company %s has not 20 digits.') % (orden.mode.partner_id.name), True)
             raise log
         # Comprobamos que exista el CIF de la compañía asociada al C.C. del modo de pago
         if not orden.mode.bank_id.partner_id.vat:
