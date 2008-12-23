@@ -463,7 +463,7 @@ result = price_unit * 0.10&quot;" name="python_compute"/>
                    # partner : res.partner object or None
                    
                    result = price_unit * 0.10&quot;" name="python_compute"/>
-            <field eval="&quot;result = (partner.requivalencia  == True) and (product.requivalencia == True)&quot;" name="python_applicable"/>
+            <field eval="&quot;result = (partner and partner.requivalencia  == True) and (product and product.requivalencia == True)&quot;" name="python_applicable"/>
             <field eval="1.0" name="tax_sign"/>
         </record>
     </data>
@@ -516,7 +516,7 @@ result = price_unit * 0.10&quot;" name="python_compute"/>
                    # partner : res.partner object or None
                    
                    result = price_unit * 0.10&quot;" name="python_compute"/>
-            <field eval="&quot;result = (partner.requivalencia  == True) and (product.requivalencia == True)&quot;" name="python_applicable"/>
+            <field eval="&quot;result = (partner and partner.requivalencia  == True) and (product and product.requivalencia == True)&quot;" name="python_applicable"/>
             <field eval="1.0" name="tax_sign"/>
         </record>
     </data>
@@ -567,7 +567,7 @@ result = price_unit * 0.10&quot;" name="python_compute"/>
                    # partner : res.partner object or None
                    
                    result = price_unit * 0.10&quot;" name="python_compute"/>
-            <field eval="&quot;result = (partner.requivalencia  == True) and (product.requivalencia == True)&quot;" name="python_applicable"/>
+            <field eval="&quot;result = (partner and partner.requivalencia  == True) and (product and product.requivalencia == True)&quot;" name="python_applicable"/>
             <field eval="1.0" name="tax_sign"/>
         </record>
     </data>
