@@ -1,12 +1,14 @@
 # -*- encoding: utf-8 -*-
 {
-    "name" : "Plan general contable 2008 - España",
+    "name" : "Spain - New Chart of Accounts 2008",
     "version" : "2.0",
-    "author" : "Acysos SL",
-    "category" : "Localisation/Account charts",
-    "description": """Plan general contable español 2008
+    "author" : "Spanish Localization Team",
+    "category" : "Localisation/Account Charts",
+    "description": """Nuevo plan general contable español 2008
 
-* Define el plan general contable 2008
+* Define la plantilla del plan general contable 2008
+* Define la plantilla de los impuestos IVA soportado, IVA repercutido, recargos de equivalencia
+* Define la plantilla de códigos de impuestos
 """,
     "depends" : ["account", "base_vat", "base_iban"],
     "init_xml" : [
