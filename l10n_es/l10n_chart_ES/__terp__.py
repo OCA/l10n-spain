@@ -13,6 +13,7 @@
     "depends" : ["account", "base_vat", "base_iban"],
     "init_xml" : [
         "account_chart.xml",
+	"taxes_data.xml"
         ],
     "demo_xml" : [],
     "update_xml" : [
