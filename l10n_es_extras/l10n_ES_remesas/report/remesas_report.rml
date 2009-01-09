@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <document filename="test.pdf">
   <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
     <pageTemplate id="first">
@@ -58,15 +58,15 @@
     <blockTable colWidths="270.0,212.0" style="Taula2">
       <tr>
         <td>
-          <para style="P1">Compañía: [[o.banco.owner_name]]</para>
-          <para style="P1">Banco: [[o.banco.bank.name]]</para>
-          <para style="P1">C.C.: [[o.banco.acc_number]]</para>
+          <para style="P1">Compañía: [[o.cuenta_id.banco_id.owner_name]]</para>
+          <para style="P1">Banco: [[o.cuenta_id.banco_id.bank.name]]</para>
+          <para style="P1">C.C.: [[o.cuenta_id.banco_id.acc_number]]</para>
           <para style="P1">Fecha confección: [[time.strftime('%d-%m-%Y', time.strptime(o.fecha, '%Y-%m-%d'))]]</para>
           <para style="P1">Fecha cargo: [[time.strftime('%d-%m-%Y', time.strptime(o.fecha_cargo, '%Y-%m-%d'))]]</para>
         </td>
         <td>
           <para style="P2">REMESA Nº: [[o.name]]</para>
-          <para style="P2">Tipo: [[o.tipo]]</para>
+          <para style="P2">Tipo: [[o.cuenta_id.tipo]]</para>
           <para style="P2">Recibos Agrupados: [[o.agrupar_recibos==1 and 'SI' or 'NO']]</para>
           <para style="P2">Total Remesa: [[o.total]]</para>
         </td>
@@ -103,7 +103,7 @@
             <para style="P3">[[r.partner_id.name]]</para>
           </td>
           <td>
-            <para style="P4">[[r.ref]]</para>
+            <para style="P4">[[r.invoice_id.number]]</para>
           </td>
           <td>
             <para style="P4">[[r.debit-r.credit]]</para>
