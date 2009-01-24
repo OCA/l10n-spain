@@ -7,77 +7,77 @@
 		    -->
 		
 		
-		<!-- Configuracion de codigos  de impuesto-->
+		<!-- Configuracion de codigos de impuesto-->
 		
 		
 		<!--record id="vat_code_chart_root" model="account.tax.code.template">
 			<field name="name">Plan de Impuestos Español</field>
-        	</record--> 
+		</record-->
 		
 		<!-- IVA Repercutido (devengado)-->
 		<!--Base imponible-->
-		<record model="account.tax.code.template" id="iva_rep_base">
+		<record id="iva_rep_base" model="account.tax.code.template">
 			<field name="name">IVA repercutido Base Imponible</field>
 			<field name="code">a)</field>
 			<field name="sign">1.00</field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
-	    	</record>
+		</record>
 		
 		<record id="iva_rep_base_4" model="account.tax.code.template">
 			<field name="name">IVA repercutido Base Imponible 4% (Mod.300: IVA devengado)</field>
-			<field name="code">01 </field>
+			<field name="code">01</field>
 			<field name="parent_id" ref="iva_rep_base"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_rep_base_7" model="account.tax.code.template">
 			<field name="name">IVA repercutido Base Imponible 7% (Mod.300: IVA devengado)</field>
-			<field name="code">04 </field>
+			<field name="code">04</field>
 			<field name="parent_id" ref="iva_rep_base"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_rep_base_16" model="account.tax.code.template">
 			<field name="name">IVA repercutido Base Imponible 16% (Mod.300: IVA devengado)</field>
-			<field name="code">07 </field>
+			<field name="code">07</field>
 			<field name="parent_id" ref="iva_rep_base"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 	
 		<!--Cuotas-->
 		<record id="iva_rep_cuota_total" model="account.tax.code.template">
 			<field name="name">IVA repercutido Total Cuota (Mod.300: IVA devengado)</field>
-			<field name="code">21 </field>
+			<field name="code">21</field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_rep_cuota_4" model="account.tax.code.template">
 			<field name="name">IVA repercutido Cuota 4% (Mod.300: IVA devengado)</field>
-			<field name="code">03 </field>
+			<field name="code">03</field>
 			<field name="parent_id" ref="iva_rep_cuota_total"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_rep_cuota_7" model="account.tax.code.template">
 			<field name="name">IVA repercutido Cuota 7% (Mod.300: IVA devengado)</field>
-			<field name="code">06 </field>
+			<field name="code">06</field>
 			<field name="parent_id" ref="iva_rep_cuota_total"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 			
 		<record id="iva_rep_cuota_16" model="account.tax.code.template">
 			<field name="name">IVA repercutido Cuota 16% (Mod.300: IVA devengado)</field>
-			<field name="code">09 </field>
+			<field name="code">09</field>
 			<field name="parent_id" ref="iva_rep_cuota_total"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 			
 		
 		
 		<!-- IVA Soportado (Deducible)-->
 		<!-- Base Imponible-->
-		<record model="account.tax.code.template" id="iva_sop_base">
+		<record id="iva_sop_base" model="account.tax.code.template">
 			<field name="name">IVA soportado Base Imponible</field>
 			<field name="code">b)</field>
 			<field name="sign">1.00</field>
@@ -85,58 +85,58 @@
 		</record>
 		
 		<record id="iva_sop_base_4" model="account.tax.code.template">
-			<field name="name">IVA soportado Base Imponible 4% </field>
-			<field name="code">(base_sop_4) </field>
+			<field name="name">IVA soportado Base Imponible 4%</field>
+			<field name="code">(base_sop_4)</field>
 			<field name="parent_id" ref="iva_sop_base"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_sop_base_7" model="account.tax.code.template">
-			<field name="name">IVA soportado Base Imponible 7% </field>
-			<field name="code">(base_sop_7) </field>
+			<field name="name">IVA soportado Base Imponible 7%</field>
+			<field name="code">(base_sop_7)</field>
 			<field name="parent_id" ref="iva_sop_base"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_sop_base_16" model="account.tax.code.template">
-			<field name="name">IVA soportado Base Imponible 16% </field>
-			<field name="code">(base_sop_16) </field>
+			<field name="name">IVA soportado Base Imponible 16%</field>
+			<field name="code">(base_sop_16)</field>
 			<field name="parent_id" ref="iva_sop_base"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 		
 		<!-- Cuotas-->
 		<record id="iva_sop_cuota_total" model="account.tax.code.template">
 			<field name="name">IVA soportado Total Cuota (Mod.300: IVA deducible)</field>
-			<field name="code">22 </field>
+			<field name="code">22</field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 			
 		<record id="iva_sop_cuota_4" model="account.tax.code.template">
-			<field name="name">IVA soportado Cuota 4% </field>
-			<field name="code">(sop_4) </field>
+			<field name="name">IVA soportado Cuota 4%</field>
+			<field name="code">(sop_4)</field>
 			<field name="parent_id" ref="iva_sop_cuota_total"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 					
 		<record id="iva_sop_cuota_7" model="account.tax.code.template">
-			<field name="name">IVA soportado Cuota 7% </field>
-			<field name="code">(sop_7) </field>
+			<field name="name">IVA soportado Cuota 7%</field>
+			<field name="code">(sop_7)</field>
 			<field name="parent_id" ref="iva_sop_cuota_total"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 								
 		<record id="iva_sop_cuota_16" model="account.tax.code.template">
-			<field name="name">IVA soportado Cuota 16% </field>
-			<field name="code">(sop_16) </field>
+			<field name="name">IVA soportado Cuota 16%</field>
+			<field name="code">(sop_16)</field>
 			<field name="parent_id" ref="iva_sop_cuota_total"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 		
 		<!-- RECARGO DE EQUIVALENCIA -->
 		<!--Base imponible-->
-		<record model="account.tax.code.template" id="re_base">
+		<record id="re_base" model="account.tax.code.template">
 			<field name="name">Recargo Equivalencia Base Imponible</field>
 			<field name="code">c)</field>
 			<field name="sign">1.00</field>
@@ -147,50 +147,50 @@
 			<field name="name">Recargo Equivalencia Base Imponible 0.5% (Mod. 300: IVA devengado)</field>
 			<field name="code">10</field>
 			<field name="parent_id" ref="re_base"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="re_base_1" model="account.tax.code.template">
-			<field name="name">Recargo Equivalencia Base Imponible 1% (Mod. 300: IVA devengado) </field>
+			<field name="name">Recargo Equivalencia Base Imponible 1% (Mod. 300: IVA devengado)</field>
 			<field name="code">13</field>
 			<field name="parent_id" ref="re_base"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="re_base_4" model="account.tax.code.template">
-			<field name="name">Recargo Equivalencia Base Imponible 4% (Mod. 300: IVA devengado) </field>
+			<field name="name">Recargo Equivalencia Base Imponible 4% (Mod. 300: IVA devengado)</field>
 			<field name="code">16</field>
 			<field name="parent_id" ref="re_base"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 		
 		<!--Cuotas-->
 		<record id="re_cuota_total" model="account.tax.code.template">
-			<field name="name">Regargo Equivalencia Total Cuota (Mod.300: IVA devengado) </field>
-			<field name="code">20 </field>
-			<field name="parent_id" ref="iva_rep_cuota_total"/>
-			<field name="sign"> 1.0</field>
+			<field name="name">Regargo Equivalencia Total Cuota (Mod.300: IVA devengado)</field>
+			<field name="code">20</field>
+			<field name="parent_id" ref="vat_code_chart_root"/>
+			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="re_cuota_05" model="account.tax.code.template">
-			<field name="name">Recargo Equivalencia Cuota 0.5% (Mod. 300: IVA devengado) </field>
-			<field name="code">12 </field>
+			<field name="name">Recargo Equivalencia Cuota 0.5% (Mod. 300: IVA devengado)</field>
+			<field name="code">12</field>
 			<field name="parent_id" ref="re_cuota_total"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="re_cuota_1" model="account.tax.code.template">
 			<field name="name">Recargo Equivalencia Cuota 1% (Mod. 300: IVA devengado)</field>
-			<field name="code">15 </field>
+			<field name="code">15</field>
 			<field name="parent_id" ref="re_cuota_total"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="re_cuota_4" model="account.tax.code.template">
-			<field name="name">Recargo de Equivalencia Cuota 4% (Mod. 300: IVA devengado) </field>
-			<field name="code">18 </field>
+			<field name="name">Recargo de Equivalencia Cuota 4% (Mod. 300: IVA devengado)</field>
+			<field name="code">18</field>
 			<field name="parent_id" ref="re_cuota_total"/>
-			<field name="sign"> 1.0</field>
+			<field name="sign">1.0</field>
 		</record>
 		
 		<!--Cuentas para IVA-->
@@ -258,10 +258,9 @@
 		</record>
 		
 		<!-- Plantillas de Impuestos-->
-		
 		<record id="iva_sop_4" model="account.tax.template">
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
-			<field name="name"> 4% IVA Soportado</field>
+			<field name="name">4% IVA Soportado</field>
 			<field eval="0.04" name="amount"/>
 			<field name="type">percent</field>
 			<field name="account_collected_id" ref="pgc_472004"/>
@@ -274,11 +273,12 @@
 			<field eval="1.0" name="base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
-        	</record>
+			<field name="type_tax_use">purchase</field>
+		</record>
 		
 		<record id="iva_sop_7" model="account.tax.template">
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
-			<field name="name"> 7% IVA Soportado</field>
+			<field name="name">7% IVA Soportado</field>
 			<field eval="0.07" name="amount"/>
 			<field name="type">percent</field>
 			<field name="account_collected_id" ref="pgc_472007"/>
@@ -291,11 +291,12 @@
 			<field eval="1.0" name="base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
-        	</record>
+			<field name="type_tax_use">purchase</field>
+		</record>
 		
 		<record id="iva_sop_16" model="account.tax.template">
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
-			<field name="name"> 16% IVA Soportado</field>
+			<field name="name">16% IVA Soportado</field>
 			<field eval="0.16" name="amount"/>
 			<field name="type">percent</field>
 			<field name="account_collected_id" ref="pgc_472016"/>
@@ -308,11 +309,12 @@
 			<field eval="1.0" name="base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
-        	</record>
+			<field name="type_tax_use">purchase</field>
+		</record>
 		
 		<record id="iva_rep_4" model="account.tax.template">
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
-			<field name="name"> 4% IVA </field>
+			<field name="name">IVA4%</field>
 			<field eval="0.04" name="amount"/>
 			<field name="type">percent</field>
 			<field name="account_collected_id" ref="pgc_477004"/>
@@ -325,11 +327,12 @@
 			<field eval="1.0" name="base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
-        	</record>
+			<field name="type_tax_use">sale</field>
+		</record>
 		
 		<record id="iva_rep_7" model="account.tax.template">
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
-			<field name="name"> 7% IVA </field>
+			<field name="name">IVA7%</field>
 			<field eval="0.07" name="amount"/>
 			<field name="type">percent</field>
 			<field name="account_collected_id" ref="pgc_477007"/>
@@ -342,11 +345,12 @@
 			<field eval="1.0" name="base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
-        	</record>
+			<field name="type_tax_use">sale</field>
+		</record>
 		
 		<record id="iva_rep_16" model="account.tax.template">
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
-			<field name="name"> 16% IVA </field>
+			<field name="name">IVA16%</field>
 			<field eval="0.16" name="amount"/>
 			<field name="type">percent</field>
 			<field name="account_collected_id" ref="pgc_477016"/>
@@ -359,13 +363,14 @@
 			<field eval="1.0" name="base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
-        	</record>
+			<field name="type_tax_use">sale</field>
+		</record>
 		
 		
 		<!-- Plantillas para recargo de equivalencia-->
 		<record id="re_05" model="account.tax.template">
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
-			<field name="name"> 0.50% Recargo Equivalencia </field>
+			<field name="name">0.50% Recargo Equivalencia</field>
 			<field eval="0.005" name="amount"/>
 			<field name="type">percent</field>
 			<field name="account_collected_id" ref="pgc_475001"/>
@@ -378,11 +383,12 @@
 			<field eval="1.0" name="base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
-        	</record>
+			<field name="type_tax_use">sale</field>
+		</record>
 		
 		<record id="re_1" model="account.tax.template">
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
-			<field name="name"> 1% Recargo Equivalencia </field>
+			<field name="name">1% Recargo Equivalencia</field>
 			<field eval="0.01" name="amount"/>
 			<field name="type">percent</field>
 			<field name="account_collected_id" ref="pgc_475001"/>
@@ -395,11 +401,12 @@
 			<field eval="1.0" name="base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
-        	</record>
+			<field name="type_tax_use">sale</field>
+		</record>
 		
 		<record id="re_4" model="account.tax.template">
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
-			<field name="name"> 4% Recargo Equivalencia </field>
+			<field name="name">4% Recargo Equivalencia</field>
 			<field eval="0.04" name="amount"/>
 			<field name="type">percent</field>
 			<field name="account_collected_id" ref="pgc_475001"/>
@@ -412,7 +419,196 @@
 			<field eval="1.0" name="base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
-        	</record>
+			<field name="type_tax_use">sale</field>
+		</record>
 		
+		
+		<!-- RETENCIONES DE IRPF -->
+		<!--
+		- Tipo general de retención IRPF al 18%. Se aplica a rendimientos por arrendamientos de inmuebles urbanos, capital mobiliario y ganancias patrimoniales sometidas a retención.
+		- Rendimientos de actividades profesionales: 15% (tipo general) y 7% (tipo especial reducido por inicio de actividad)
+		- Retención del 1% a aplicar en el pago de rendimientos a empresarios en módulos.-->
+		
+		<!--Base imponible-->
+		<record id="irpf_base" model="account.tax.code.template">
+			<field name="name">Retenciones IRPF Base Imponible</field>
+			<field name="code">B.IRPF</field>
+			<field name="sign">1.00</field>
+			<field name="parent_id" ref="vat_code_chart_root"/>
+		</record>
+		
+		<record id="irpf_base_1" model="account.tax.code.template">
+			<field name="name">Retenciones IRPF Base Imponible 1%</field>
+			<field name="code">B.IRPF1</field>
+			<field name="parent_id" ref="irpf_base"/>
+			<field name="sign">1.0</field>
+		</record>
+		
+		<record id="irpf_base_7" model="account.tax.code.template">
+			<field name="name">Retenciones IRPF Base Imponible 7%</field>
+			<field name="code">B.IRPF7</field>
+			<field name="parent_id" ref="irpf_base"/>
+			<field name="sign">1.0</field>
+		</record>
+		
+		<record id="irpf_base_15" model="account.tax.code.template">
+			<field name="name">Retenciones IRPF Base Imponible 15%</field>
+			<field name="code">B.IRPF15</field>
+			<field name="parent_id" ref="irpf_base"/>
+			<field name="sign">1.0</field>
+		</record>
+		
+		<record id="irpf_base_18" model="account.tax.code.template">
+			<field name="name">Retenciones IRPF Base Imponible 18%</field>
+			<field name="code">B.IRPF18</field>
+			<field name="parent_id" ref="irpf_base"/>
+			<field name="sign">1.0</field>
+		</record>
+		
+		<!--Cuotas-->
+		<record id="irpf_cuota_total" model="account.tax.code.template">
+			<field name="name">Retenciones IRPF Total Cuota</field>
+			<field name="code">IRPF</field>
+			<field name="parent_id" ref="vat_code_chart_root"/>
+			<field name="sign">1.0</field>
+		</record>
+		
+		<record id="irpf_cuota_1" model="account.tax.code.template">
+			<field name="name">Retenciones IRPF Cuota 1%</field>
+			<field name="code">IRPF1</field>
+			<field name="parent_id" ref="irpf_cuota_total"/>
+			<field name="sign">1.0</field>
+		</record>
+		
+		<record id="irpf_cuota_7" model="account.tax.code.template">
+			<field name="name">Retenciones IRPF Cuota 7%</field>
+			<field name="code">IRPF7</field>
+			<field name="parent_id" ref="irpf_cuota_total"/>
+			<field name="sign">1.0</field>
+		</record>
+		
+		<record id="irpf_cuota_15" model="account.tax.code.template">
+			<field name="name">Retenciones IRPF Cuota 15%</field>
+			<field name="code">IRPF15</field>
+			<field name="parent_id" ref="irpf_cuota_total"/>
+			<field name="sign">1.0</field>
+		</record>
+		
+		<record id="irpf_cuota_18" model="account.tax.code.template">
+			<field name="name">Retenciones IRPF Cuota 18%</field>
+			<field name="code">IRPF18</field>
+			<field name="parent_id" ref="irpf_cuota_total"/>
+			<field name="sign">1.0</field>
+		</record>
+		
+		<!--Cuentas para Retenciones-->
+		<record id="pgc_475101" model="account.account.template">
+			<field name="code">475101</field>
+			<field name="reconcile" eval="True"/>
+			<field name="parent_id" ref="pgc_475"/>
+			<field name="type">other</field>
+			<field name="name">Hacienda Pública. Retenciones empresarios módulos 1%</field>
+			<field name="user_type" ref="tax"/>
+		</record>
+		
+		<record id="pgc_475107" model="account.account.template">
+			<field name="code">475107</field>
+			<field name="reconcile" eval="True"/>
+			<field name="parent_id" ref="pgc_475"/>
+			<field name="type">other</field>
+			<field name="name">Hacienda Pública. Retenciones act. profesionales 7%</field>
+			<field name="user_type" ref="tax"/>
+		</record>
+		
+		<record id="pgc_475115" model="account.account.template">
+			<field name="code">475115</field>
+			<field name="reconcile" eval="True"/>
+			<field name="parent_id" ref="pgc_475"/>
+			<field name="type">other</field>
+			<field name="name">Hacienda Pública. Retenciones act. profesionales 15%</field>
+			<field name="user_type" ref="tax"/>
+		</record>
+		
+		<record id="pgc_475118" model="account.account.template">
+			<field name="code">475118</field>
+			<field name="reconcile" eval="True"/>
+			<field name="parent_id" ref="pgc_475"/>
+			<field name="type">other</field>
+			<field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 18%</field>
+			<field name="user_type" ref="tax"/>
+		</record>
+		
+		<!-- Plantillas de retenciones-->
+		<record id="irpf_1" model="account.tax.template">
+			<field name="chart_template_id" ref="l10nES_chart_template"/>
+			<field name="name">Retenciones IRPF 1%</field>
+			<field eval="-0.01" name="amount"/>
+			<field name="type">percent</field>
+			<field name="account_collected_id" ref="pgc_475101"/>
+			<field name="account_paid_id" ref="pgc_475101"/>
+			<field name="base_code_id" ref="irpf_base_1"/>
+			<field name="tax_code_id" ref="irpf_cuota_1"/>
+			<field name="ref_base_code_id" ref="irpf_base_1"/>
+			<field name="ref_tax_code_id" ref="irpf_cuota_1"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
+			<field name="type_tax_use">purchase</field>
+		</record>
+		
+		<record id="irpf_7" model="account.tax.template">
+			<field name="chart_template_id" ref="l10nES_chart_template"/>
+			<field name="name">Retenciones IRPF 7%</field>
+			<field eval="-0.07" name="amount"/>
+			<field name="type">percent</field>
+			<field name="account_collected_id" ref="pgc_475107"/>
+			<field name="account_paid_id" ref="pgc_475107"/>
+			<field name="base_code_id" ref="irpf_base_7"/>
+			<field name="tax_code_id" ref="irpf_cuota_7"/>
+			<field name="ref_base_code_id" ref="irpf_base_7"/>
+			<field name="ref_tax_code_id" ref="irpf_cuota_7"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
+			<field name="type_tax_use">purchase</field>
+		</record>
+		
+		<record id="irpf_15" model="account.tax.template">
+			<field name="chart_template_id" ref="l10nES_chart_template"/>
+			<field name="name">Retenciones IRPF 15%</field>
+			<field eval="-0.15" name="amount"/>
+			<field name="type">percent</field>
+			<field name="account_collected_id" ref="pgc_475115"/>
+			<field name="account_paid_id" ref="pgc_475115"/>
+			<field name="base_code_id" ref="irpf_base_15"/>
+			<field name="tax_code_id" ref="irpf_cuota_15"/>
+			<field name="ref_base_code_id" ref="irpf_base_15"/>
+			<field name="ref_tax_code_id" ref="irpf_cuota_15"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
+			<field name="type_tax_use">purchase</field>
+		</record>
+		
+		<record id="irpf_18" model="account.tax.template">
+			<field name="chart_template_id" ref="l10nES_chart_template"/>
+			<field name="name">Retenciones IRPF 18%</field>
+			<field eval="-0.18" name="amount"/>
+			<field name="type">percent</field>
+			<field name="account_collected_id" ref="pgc_475118"/>
+			<field name="account_paid_id" ref="pgc_475118"/>
+			<field name="base_code_id" ref="irpf_base_18"/>
+			<field name="tax_code_id" ref="irpf_cuota_18"/>
+			<field name="ref_base_code_id" ref="irpf_base_18"/>
+			<field name="ref_tax_code_id" ref="irpf_cuota_18"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
+			<field name="type_tax_use">purchase</field>
+		</record>
 	</data>
 </openerp>
