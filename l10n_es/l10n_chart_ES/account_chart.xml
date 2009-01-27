@@ -5469,7 +5469,7 @@
 				<field name="code">4000</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_400"/>
-				<field name="type">other</field>
+				<field name="type">payable</field>
 				<field name="name">Proveedores (euros)</field>
 				<field name="user_type" ref="terceros - pay"/>
 			</record>
@@ -5478,7 +5478,7 @@
 				<field name="code">4004</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_400"/>
-				<field name="type">other</field>
+				<field name="type">payable</field>
 				<field name="name">Proveedores (moneda extranjera)</field>
 				<field name="user_type" ref="terceros - pay"/>
 			</record>
@@ -5487,7 +5487,7 @@
 				<field name="code">4009</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_400"/>
-				<field name="type">other</field>
+				<field name="type">payable</field>
 				<field name="name">Proveedores, facturas pendientes de recibir o de formalizar</field>
 				<field name="user_type" ref="terceros - pay"/>
 			</record>
@@ -5496,7 +5496,7 @@
 				<field name="code">4030</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_403"/>
-				<field name="type">other</field>
+				<field name="type">payable</field>
 				<field name="name">Proveedores, empresas del grupo (euros)</field>
 				<field name="user_type" ref="terceros - pay"/>
 			</record>
@@ -5505,7 +5505,7 @@
 				<field name="code">4031</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_403"/>
-				<field name="type">other</field>
+				<field name="type">payable</field>
 				<field name="name">Efectos comerciales a pagar, empresas del grupo</field>
 				<field name="user_type" ref="terceros - pay"/>
 			</record>
@@ -5514,7 +5514,7 @@
 				<field name="code">4034</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_403"/>
-				<field name="type">other</field>
+				<field name="type">payable</field>
 				<field name="name">Proveedores, empresas del grupo (moneda extranjera)</field>
 				<field name="user_type" ref="terceros - pay"/>
 			</record>
@@ -5523,7 +5523,7 @@
 				<field name="code">4036</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_403"/>
-				<field name="type">other</field>
+				<field name="type">payable</field>
 				<field name="name">Envases y embalajes a devolver a proveedores, empresas del grupo</field>
 				<field name="user_type" ref="terceros - pay"/>
 			</record>
@@ -5532,7 +5532,7 @@
 				<field name="code">4039</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_403"/>
-				<field name="type">other</field>
+				<field name="type">payable</field>
 				<field name="name">Proveedores, empresas del grupo, facturas pendientes de recibir o de formalizar</field>
 				<field name="user_type" ref="terceros - pay"/>
 			</record>
@@ -5541,7 +5541,7 @@
 				<field name="code">4100</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_410"/>
-				<field name="type">other</field>
+				<field name="type">payable</field>
 				<field name="name">Acreedores por prestaciones de servicios (euros)</field>
 				<field name="user_type" ref="view"/>
 			</record>
@@ -5550,7 +5550,7 @@
 				<field name="code">4104</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_410"/>
-				<field name="type">other</field>
+				<field name="type">payable</field>
 				<field name="name">Acreedores por prestaciones de servicios (moneda extranjera)</field>
 				<field name="user_type" ref="view"/>
 			</record>
@@ -5559,7 +5559,7 @@
 				<field name="code">4109</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_410"/>
-				<field name="type">other</field>
+				<field name="type">payable</field>
 				<field name="name">Acreedores por prestaciones de servicios, facturas pendientes de recibir o de formalizar</field>
 				<field name="user_type" ref="view"/>
 			</record>
@@ -5568,7 +5568,7 @@
 				<field name="code">4300</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_430"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Clientes (euros)</field>
 				<field name="user_type" ref="terceros - rec"/>
 			</record>
@@ -5577,7 +5577,7 @@
 				<field name="code">4304</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_430"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Clientes (moneda extranjera)</field>
 				<field name="user_type" ref="terceros - rec"/>
 			</record>
@@ -5586,7 +5586,7 @@
 				<field name="code">4309</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_430"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Clientes, facturas pendientes de recibir o de formalizar</field>
 				<field name="user_type" ref="terceros - rec"/>
 			</record>
@@ -5595,7 +5595,7 @@
 				<field name="code">4310</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_431"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Efectos comerciales en cartera</field>
 				<field name="user_type" ref="terceros - rec"/>
 			</record>
@@ -5604,7 +5604,7 @@
 				<field name="code">4311</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_431"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Efectos comerciales descontados</field>
 				<field name="user_type" ref="terceros - rec"/>
 			</record>
@@ -5613,7 +5613,7 @@
 				<field name="code">4312</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_431"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Efectos comerciales en gestión de cobro</field>
 				<field name="user_type" ref="terceros - rec"/>
 			</record>
@@ -5622,7 +5622,7 @@
 				<field name="code">4315</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_431"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Efectos comerciales impagados</field>
 				<field name="user_type" ref="terceros - rec"/>
 			</record>
@@ -5631,7 +5631,7 @@
 				<field name="code">4330</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_433"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Clientes empresas del grupo (euros)</field>
 				<field name="user_type" ref="terceros - rec"/>
 			</record>
@@ -5640,7 +5640,7 @@
 				<field name="code">4331</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_433"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Efectos comerciales a cobrar, empresas del grupo</field>
 				<field name="user_type" ref="terceros - rec"/>
 			</record>
@@ -5649,7 +5649,7 @@
 				<field name="code">4332</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_433"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Clientes empresas del grupo, operaciones de factoring</field>
 				<field name="user_type" ref="terceros - rec"/>
 			</record>
@@ -5658,7 +5658,7 @@
 				<field name="code">4334</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_433"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Clientes empresas del grupo (moneda extranjera)</field>
 				<field name="user_type" ref="terceros - rec"/>
 			</record>
@@ -5667,7 +5667,7 @@
 				<field name="code">4336</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_433"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Clientes empresas del grupo de dudoso cobro</field>
 				<field name="user_type" ref="terceros - rec"/>
 			</record>
@@ -5676,7 +5676,7 @@
 				<field name="code">4337</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_433"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Envases y embalajes a devolver a clientes, empresas del grupo</field>
 				<field name="user_type" ref="terceros - rec"/>
 			</record>
@@ -5685,7 +5685,7 @@
 				<field name="code">4339</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_433"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Clientes empresas del grupo, facturas pendientes de formalizar</field>
 				<field name="user_type" ref="terceros - rec"/>
 			</record>
@@ -5694,7 +5694,7 @@
 				<field name="code">4400</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_440"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Deudores (euros)</field>
 				<field name="user_type" ref="view"/>
 			</record>
@@ -5703,7 +5703,7 @@
 				<field name="code">4404</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_440"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Deudores (moneda extranjera)</field>
 				<field name="user_type" ref="view"/>
 			</record>
@@ -5712,7 +5712,7 @@
 				<field name="code">4409</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_440"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Deudores, facturas pendientes de formalizar</field>
 				<field name="user_type" ref="view"/>
 			</record>
@@ -5721,7 +5721,7 @@
 				<field name="code">4410</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_441"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Deudores, efectos comerciales en cartera</field>
 				<field name="user_type" ref="view"/>
 			</record>
@@ -5730,7 +5730,7 @@
 				<field name="code">4411</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_441"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Deudores, efectos comerciales descontados</field>
 				<field name="user_type" ref="view"/>
 			</record>
@@ -5739,7 +5739,7 @@
 				<field name="code">4412</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_441"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Deudores, efectos comerciales en gestión de cobro</field>
 				<field name="user_type" ref="view"/>
 			</record>
@@ -5748,7 +5748,7 @@
 				<field name="code">4415</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_441"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Deudores, efectos comerciales impagados</field>
 				<field name="user_type" ref="view"/>
 			</record>
@@ -5757,7 +5757,7 @@
 				<field name="code">4700</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_470"/>
-				<field name="type">other</field>
+				<field name="type">receivable</field>
 				<field name="name">Hacienda Pública, deudora por IVA</field>
 				<field name="user_type" ref="tax"/>
 			</record>
@@ -5766,7 +5766,7 @@
 				<field name="code">4708</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_470"/>
-				<field name="type">other</field>
+                                <field name="type">receivable</field>
 				<field name="name">Hacienda Pública, deudora por subvenciones concedidas</field>
 				<field name="user_type" ref="tax"/>
 			</record>
@@ -5775,7 +5775,7 @@
 				<field name="code">4709</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_470"/>
-				<field name="type">other</field>
+                                <field name="type">receivable</field>
 				<field name="name">Hacienda Pública, deudora por devolución de impuestos</field>
 				<field name="user_type" ref="tax"/>
 			</record>
@@ -5811,7 +5811,7 @@
 				<field name="code">4750</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_475"/>
-				<field name="type">other</field>
+				<field name="type">payable</field>
 				<field name="name">Hacienda Pública, acreedora por IVA</field>
 				<field name="user_type" ref="tax"/>
 			</record>
@@ -5820,7 +5820,7 @@
 				<field name="code">4751</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_475"/>
-				<field name="type">other</field>
+                                <field name="type">payable</field>
 				<field name="name">Hacienda Pública, acreedora por retenciones practicadas</field>
 				<field name="user_type" ref="tax"/>
 			</record>
@@ -5829,7 +5829,7 @@
 				<field name="code">4752</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_475"/>
-				<field name="type">other</field>
+                                <field name="type">payable</field>
 				<field name="name">Hacienda Pública, acreedora por impuesto sobre sociedades</field>
 				<field name="user_type" ref="tax"/>
 			</record>
@@ -5838,7 +5838,7 @@
 				<field name="code">4758</field>
 				<field name="reconcile" eval="True"/>
 				<field name="parent_id" ref="pgc_475"/>
-				<field name="type">other</field>
+                                <field name="type">payable</field>
 				<field name="name">Hacienda Pública, acreedora por subvenciones a reintegrar</field>
 				<field name="user_type" ref="tax"/>
 			</record>
