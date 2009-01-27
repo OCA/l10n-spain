@@ -24,21 +24,21 @@
 	    	</record>
 		
 		<record id="iva_rep_base_4" model="account.tax.code.template">
-			<field name="name">IVA repercutido Base Imponible 4% (Modelo 300: IVA devengado)</field>
+			<field name="name">IVA repercutido Base Imponible 4% (Mod.300: IVA devengado)</field>
 			<field name="code">01 </field>
 			<field name="parent_id" ref="iva_rep_base"/>
 			<field name="sign"> 1.0</field>
 		</record>
 		
 		<record id="iva_rep_base_7" model="account.tax.code.template">
-			<field name="name">IVA repercutido Base Imponible 7% (Modelo 300: IVA devengado)</field>
+			<field name="name">IVA repercutido Base Imponible 7% (Mod.300: IVA devengado)</field>
 			<field name="code">04 </field>
 			<field name="parent_id" ref="iva_rep_base"/>
 			<field name="sign"> 1.0</field>
 		</record>
 		
 		<record id="iva_rep_base_16" model="account.tax.code.template">
-			<field name="name">IVA repercutido Base Imponible 16% (Modelo 300: IVA devengado)</field>
+			<field name="name">IVA repercutido Base Imponible 16% (Mod.300: IVA devengado)</field>
 			<field name="code">07 </field>
 			<field name="parent_id" ref="iva_rep_base"/>
 			<field name="sign"> 1.0</field>
@@ -46,28 +46,28 @@
 	
 		<!--Cuotas-->
 		<record id="iva_rep_cuota_total" model="account.tax.code.template">
-			<field name="name">IVA repercutido Total Cuota (Modelo 300: IVA devengado)</field>
+			<field name="name">IVA repercutido Total Cuota (Mod.300: IVA devengado)</field>
 			<field name="code">21 </field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
 			<field name="sign"> 1.0</field>
 		</record>
 		
 		<record id="iva_rep_cuota_4" model="account.tax.code.template">
-			<field name="name">IVA repercutido Cuota 4% (Modelo 300: IVA devengado)</field>
+			<field name="name">IVA repercutido Cuota 4% (Mod.300: IVA devengado)</field>
 			<field name="code">03 </field>
 			<field name="parent_id" ref="iva_rep_cuota_total"/>
 			<field name="sign"> 1.0</field>
 		</record>
 		
 		<record id="iva_rep_cuota_7" model="account.tax.code.template">
-			<field name="name">IVA repercutido Cuota 7% (Modelo 300: IVA devengado)</field>
+			<field name="name">IVA repercutido Cuota 7% (Mod.300: IVA devengado)</field>
 			<field name="code">06 </field>
 			<field name="parent_id" ref="iva_rep_cuota_total"/>
 			<field name="sign"> 1.0</field>
 		</record>
 			
 		<record id="iva_rep_cuota_16" model="account.tax.code.template">
-			<field name="name">IVA repercutido Cuota 16% (Modelo 300: IVA devengado)</field>
+			<field name="name">IVA repercutido Cuota 16% (Mod.300: IVA devengado)</field>
 			<field name="code">09 </field>
 			<field name="parent_id" ref="iva_rep_cuota_total"/>
 			<field name="sign"> 1.0</field>
@@ -107,7 +107,7 @@
 		
 		<!-- Cuotas-->
 		<record id="iva_sop_cuota_total" model="account.tax.code.template">
-			<field name="name">IVA soportado Total Cuota (Modelo 300: IVA deducible)</field>
+			<field name="name">IVA soportado Total Cuota (Mod.300: IVA deducible)</field>
 			<field name="code">22 </field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
 			<field name="sign"> 1.0</field>
@@ -137,28 +137,28 @@
 		<!-- RECARGO DE EQUIVALENCIA -->
 		<!--Base imponible-->
 		<record model="account.tax.code.template" id="re_base">
-			<field name="name">Recargo de Equivalencia Base Imponible</field>
+			<field name="name">Recargo Equivalencia Base Imponible</field>
 			<field name="code">c)</field>
 			<field name="sign">1.00</field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
 		</record>
 		
 		<record id="re_base_05" model="account.tax.code.template">
-			<field name="name">Recargo de Equivalencia Base Imponible 0.5% </field>
+			<field name="name">Recargo Equivalencia Base Imponible 0.5% (Mod. 300: IVA devengado)</field>
 			<field name="code">10</field>
 			<field name="parent_id" ref="re_base"/>
 			<field name="sign"> 1.0</field>
 		</record>
 		
 		<record id="re_base_1" model="account.tax.code.template">
-			<field name="name">Recargo de Equivalencia Base Imponible 1% </field>
+			<field name="name">Recargo Equivalencia Base Imponible 1% (Mod. 300: IVA devengado) </field>
 			<field name="code">13</field>
 			<field name="parent_id" ref="re_base"/>
 			<field name="sign"> 1.0</field>
 		</record>
 		
 		<record id="re_base_4" model="account.tax.code.template">
-			<field name="name">Recargo de Equivalencia Base Imponible 4% </field>
+			<field name="name">Recargo Equivalencia Base Imponible 4% (Mod. 300: IVA devengado) </field>
 			<field name="code">16</field>
 			<field name="parent_id" ref="re_base"/>
 			<field name="sign"> 1.0</field>
@@ -166,34 +166,34 @@
 		
 		<!--Cuotas-->
 		<record id="re_cuota_total" model="account.tax.code.template">
-			<field name="name">Regargo de Equivalencia Total Cuota (Modelo 300: IVA deducible) </field>
+			<field name="name">Regargo Equivalencia Total Cuota (Mod.300: IVA devengado) </field>
 			<field name="code">20 </field>
 			<field name="parent_id" ref="iva_rep_cuota_total"/>
 			<field name="sign"> 1.0</field>
 		</record>
 		
 		<record id="re_cuota_05" model="account.tax.code.template">
-			<field name="name">Recargo de Equivalencia Cuota 0.5% </field>
+			<field name="name">Recargo Equivalencia Cuota 0.5% (Mod. 300: IVA devengado) </field>
 			<field name="code">12 </field>
 			<field name="parent_id" ref="re_cuota_total"/>
 			<field name="sign"> 1.0</field>
 		</record>
 		
 		<record id="re_cuota_1" model="account.tax.code.template">
-			<field name="name">Recargo de Equivalencia Cuota 1% </field>
+			<field name="name">Recargo Equivalencia Cuota 1% (Mod. 300: IVA devengado)</field>
 			<field name="code">15 </field>
 			<field name="parent_id" ref="re_cuota_total"/>
 			<field name="sign"> 1.0</field>
 		</record>
 		
 		<record id="re_cuota_4" model="account.tax.code.template">
-			<field name="name">Recargo de Equivalencia Cuota 4% </field>
+			<field name="name">Recargo de Equivalencia Cuota 4% (Mod. 300: IVA devengado) </field>
 			<field name="code">18 </field>
 			<field name="parent_id" ref="re_cuota_total"/>
 			<field name="sign"> 1.0</field>
 		</record>
 		
-		<!--Cuantas para IVA-->
+		<!--Cuentas para IVA-->
 		<record id="pgc_472004" model="account.account.template">
 			<field name="code">472004</field>
 			<field name="reconcile" eval="True"/>
