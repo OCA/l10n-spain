@@ -312,7 +312,8 @@ class remesas_remesa(osv.osv):
             date_now = now().strftime('%d%m%y')
             texto += date_now
             texto += 6*' '
-            texto += rem.cuenta_id.nombre.ljust(40)
+            nombre = self.conv_ascii(rem.cuenta_id.nombre).decode('ascii', 'ignore')
+            texto += nombre.ljust(40)
             texto += 20*' '
             texto += cc[0:8]
             texto += 66*' '
@@ -327,7 +328,8 @@ class remesas_remesa(osv.osv):
             texto += date_now
             date_cargo = mx.DateTime.strptime(rem.fecha_cargo,'%Y-%m-%d')
             texto += str(date_cargo.strftime('%d%m%y'))
-            texto += rem.cuenta_id.nombre.ljust(40)
+            nombre = self.conv_ascii(rem.cuenta_id.nombre).decode('ascii', 'ignore')
+            texto += nombre.ljust(40)
             texto += cc[0:20]
             texto += 8*' '
             texto += '01'
