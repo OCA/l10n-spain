@@ -1,14 +1,14 @@
 # Translation of OpenERP Server.
 # This file containt the translation of the following modules:
-#	* l10n_ES_extractos_bancarios
+# 	* l10n_ES_extractos_bancarios
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.0-rc1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2008-11-30 20:21:59+0000\n"
-"PO-Revision-Date: 2008-11-30 21:29+0100\n"
-"Last-Translator: Jordi Esteve <jesteve@zikzakmedia.com>\n"
+"POT-Creation-Date: 2009-02-02 19:57:02+0000\n"
+"PO-Revision-Date: 2009-02-02 21:12+0100\n"
+"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,25 +31,25 @@ msgid "Account associated to the concept"
 msgstr "Cuenta asociada al concepto"
 
 #. module: l10n_ES_extractos_bancarios
-#: wizard_field:l10n_ES_extractos_bancarios.importar,init,file:0
-msgid "Bank Statements File"
-msgstr "Fichero extracto"
-
-#. module: l10n_ES_extractos_bancarios
 #: wizard_button:l10n_ES_extractos_bancarios.importar,init,import:0
 msgid "Import"
 msgstr "Importar"
 
 #. module: l10n_ES_extractos_bancarios
+#: wizard_field:l10n_ES_extractos_bancarios.importar,init,file:0
+msgid "Bank Statements File"
+msgstr "Archivo extracto"
+
+#. module: l10n_ES_extractos_bancarios
 #: code:addons/l10n_ES_extractos_bancarios/wizard/extractos.py:0
 #, python-format
-msgid "Error in C43 file"
-msgstr "Error en el fichero C43"
+msgid "Final balance amount = (initial balance + credit - debit) does not agree with the defined in the last record of account."
+msgstr "Importe saldo final = (saldo inicial + haber - debe) no coincide con el definido en el registro final de cuenta."
 
 #. module: l10n_ES_extractos_bancarios
 #: help:l10n.es.extractos.concepto,account_id:0
 msgid "Default account to be associated with the concept when the file of C43 bank statements is imported"
-msgstr "Cuenta contable por defecto que se asociará al concepto al importar el fichero de extractos bancarios C43"
+msgstr "Cuenta contable por defecto que se asociará al concepto al importar el archivo de extractos bancarios C43"
 
 #. module: l10n_ES_extractos_bancarios
 #: wizard_view:l10n_ES_extractos_bancarios.importar,init:0
@@ -61,6 +61,11 @@ msgstr "Importación extracto bancario según norma C43"
 #: view:l10n.es.extractos.concepto:0
 msgid "C43 default accounts"
 msgstr "Cuentas por defecto C43"
+
+#. module: l10n_ES_extractos_bancarios
+#: model:ir.model,name:l10n_ES_extractos_bancarios.model_l10n_es_extractos_concepto
+msgid "C43 codes"
+msgstr "Códigos C43"
 
 #. module: l10n_ES_extractos_bancarios
 #: code:addons/l10n_ES_extractos_bancarios/wizard/extractos.py:0
@@ -77,8 +82,8 @@ msgstr "Número de registros haber no coincide con el definido en el registro fi
 #. module: l10n_ES_extractos_bancarios
 #: code:addons/l10n_ES_extractos_bancarios/wizard/extractos.py:0
 #, python-format
-msgid "Final balance amount = (initial balance + credit - debit) does not agree with the defined in the last record of account."
-msgstr "Importe saldo final = (saldo inicial + haber - debe) no coincide con el definido en el registro final de cuenta."
+msgid "Error in C43 file"
+msgstr "Error en el archivo C43"
 
 #. module: l10n_ES_extractos_bancarios
 #: model:ir.ui.menu,name:l10n_ES_extractos_bancarios.menu_extractos_bancarios_concepto
@@ -99,7 +104,7 @@ msgstr "¡XML inválido para la definición de la vista!"
 #. module: l10n_ES_extractos_bancarios
 #: help:l10n.es.extractos.concepto,code:0
 msgid "2 digits code of the concept defined in the file of C43 bank statements"
-msgstr "Código de 2 dígitos del concepto definido en el fichero de extractos bancarios C43"
+msgstr "Código de 2 dígitos del concepto definido en el archivo de extractos bancarios C43"
 
 #. module: l10n_ES_extractos_bancarios
 #: code:addons/l10n_ES_extractos_bancarios/wizard/extractos.py:0
@@ -110,19 +115,14 @@ msgstr "Importe debe no coincide con el definido en el registro final de cuenta.
 #. module: l10n_ES_extractos_bancarios
 #: code:addons/l10n_ES_extractos_bancarios/wizard/extractos.py:0
 #, python-format
-msgid "Not valid record type."
-msgstr "Tipo de registro no válido."
+msgid "Number of records does not agree with the defined in the last record."
+msgstr "Número de registros no coincide con el definido en el registro fin de archivo."
 
 #. module: l10n_ES_extractos_bancarios
 #: code:addons/l10n_ES_extractos_bancarios/wizard/extractos.py:0
 #, python-format
-msgid "Number of records does not agree with the defined in the last record."
-msgstr "Número de registros no coincide con el definido en el registro fin de fichero."
-
-#. module: l10n_ES_extractos_bancarios
-#: model:ir.model,name:l10n_ES_extractos_bancarios.model_l10n_es_extractos_concepto
-msgid "C43 codes"
-msgstr "Códigos C43"
+msgid "Not valid record type."
+msgstr "Tipo de registro no válido."
 
 #. module: l10n_ES_extractos_bancarios
 #: code:addons/l10n_ES_extractos_bancarios/wizard/extractos.py:0
@@ -140,6 +140,12 @@ msgstr "Nombre concepto"
 #, python-format
 msgid "Credit amount does not agree with the defined in the last record of account."
 msgstr "Importe haber no coincide con el definido en el registro final de cuenta."
+
+#. module: l10n_ES_extractos_bancarios
+#: code:addons/l10n_ES_extractos_bancarios/wizard/extractos.py:0
+#, python-format
+msgid "The bank statement is alredy confirmed. It can not be imported from file."
+msgstr "El extracto bancario ya está confirmado. No se puede importar desde archivo."
 
 #. module: l10n_ES_extractos_bancarios
 #: field:l10n.es.extractos.concepto,code:0

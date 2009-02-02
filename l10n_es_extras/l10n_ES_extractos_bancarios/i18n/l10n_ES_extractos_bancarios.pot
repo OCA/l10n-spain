@@ -1,13 +1,13 @@
 # Translation of OpenERP Server.
-# This file containt the translation of the following modules:
+# This file contains the translation of the following modules:
 #	* l10n_ES_extractos_bancarios
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.0-rc1\n"
+"Project-Id-Version: OpenERP Server 5.0.0_rc3\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2008-12-07 19:54:43+0000\n"
-"PO-Revision-Date: 2008-12-07 19:54:43+0000\n"
+"POT-Creation-Date: 2009-02-02 19:57:02+0000\n"
+"PO-Revision-Date: 2009-02-02 19:57:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,19 +31,19 @@ msgid "Account associated to the concept"
 msgstr ""
 
 #. module: l10n_ES_extractos_bancarios
-#: wizard_field:l10n_ES_extractos_bancarios.importar,init,file:0
-msgid "Bank Statements File"
-msgstr ""
-
-#. module: l10n_ES_extractos_bancarios
 #: wizard_button:l10n_ES_extractos_bancarios.importar,init,import:0
 msgid "Import"
 msgstr ""
 
 #. module: l10n_ES_extractos_bancarios
+#: wizard_field:l10n_ES_extractos_bancarios.importar,init,file:0
+msgid "Bank Statements File"
+msgstr ""
+
+#. module: l10n_ES_extractos_bancarios
 #: code:addons/l10n_ES_extractos_bancarios/wizard/extractos.py:0
 #, python-format
-msgid "Error in C43 file"
+msgid "Final balance amount = (initial balance + credit - debit) does not agree with the defined in the last record of account."
 msgstr ""
 
 #. module: l10n_ES_extractos_bancarios
@@ -63,6 +63,11 @@ msgid "C43 default accounts"
 msgstr ""
 
 #. module: l10n_ES_extractos_bancarios
+#: model:ir.model,name:l10n_ES_extractos_bancarios.model_l10n_es_extractos_concepto
+msgid "C43 codes"
+msgstr ""
+
+#. module: l10n_ES_extractos_bancarios
 #: code:addons/l10n_ES_extractos_bancarios/wizard/extractos.py:0
 #, python-format
 msgid "Number of debit records does not agree with the defined in the last record of account."
@@ -77,7 +82,7 @@ msgstr ""
 #. module: l10n_ES_extractos_bancarios
 #: code:addons/l10n_ES_extractos_bancarios/wizard/extractos.py:0
 #, python-format
-msgid "Final balance amount = (initial balance + credit - debit) does not agree with the defined in the last record of account."
+msgid "Error in C43 file"
 msgstr ""
 
 #. module: l10n_ES_extractos_bancarios
@@ -110,18 +115,13 @@ msgstr ""
 #. module: l10n_ES_extractos_bancarios
 #: code:addons/l10n_ES_extractos_bancarios/wizard/extractos.py:0
 #, python-format
-msgid "Not valid record type."
+msgid "Number of records does not agree with the defined in the last record."
 msgstr ""
 
 #. module: l10n_ES_extractos_bancarios
 #: code:addons/l10n_ES_extractos_bancarios/wizard/extractos.py:0
 #, python-format
-msgid "Number of records does not agree with the defined in the last record."
-msgstr ""
-
-#. module: l10n_ES_extractos_bancarios
-#: model:ir.model,name:l10n_ES_extractos_bancarios.model_l10n_es_extractos_concepto
-msgid "Códigos C43"
+msgid "Not valid record type."
 msgstr ""
 
 #. module: l10n_ES_extractos_bancarios
@@ -139,6 +139,12 @@ msgstr ""
 #: code:addons/l10n_ES_extractos_bancarios/wizard/extractos.py:0
 #, python-format
 msgid "Credit amount does not agree with the defined in the last record of account."
+msgstr ""
+
+#. module: l10n_ES_extractos_bancarios
+#: code:addons/l10n_ES_extractos_bancarios/wizard/extractos.py:0
+#, python-format
+msgid "The bank statement is alredy confirmed. It can not be imported from file."
 msgstr ""
 
 #. module: l10n_ES_extractos_bancarios
