@@ -63,7 +63,11 @@ def _importar(obj, cursor, user, data, context):
     file = data['form']['file']
     statement_id = data['id']
 
-    # Lectura del fichero C43
+    st = statement_obj.browse(cursor, user, statement_id)
+    if st.state == 'confirm':
+        raise wizard.except_wizard(_('Error'), _('The bank statement is alredy confirmed. It can not be imported from file.'))
+
+    # Lectura del archivo C43
     num_registros = 0
     extracto = {}
     lextracto = []
@@ -73,7 +77,7 @@ def _importar(obj, cursor, user, data, context):
     except Exception, e: # Si no puede convertir a UTF-8 es que debe estar en ISO-8859-1: Lo convertimos
         file2 = unicode(file2, 'iso-8859-1').encode('utf-8')
         #print e
-        #raise wizard.except_wizard('Error !', 'Fichero a importar codificado en ISO-8859-1')
+        #raise wizard.except_wizard('Error !', 'Archivo a importar codificado en ISO-8859-1')
 
     for line in file2.split("\n"):
         if len(line) == 0:
@@ -122,7 +126,7 @@ def _importar(obj, cursor, user, data, context):
             extracto['saldo_fin'] = float(line[59:71]) + (float(line[71:73]) / 100)
             if line[58:59] == '1': # 1-Deudor 2-Acreedor
                 extracto['saldo_fin'] *= -1
-        elif line[0:2]=='88': # Registro de fin de fichero
+        elif line[0:2]=='88': # Registro de fin de archivo
             extracto['num_registros'] = int(line[20:26])
         else:
             raise wizard.except_wizard(_('Error in C43 file'), _('Not valid record type.'))
@@ -139,7 +143,7 @@ def _importar(obj, cursor, user, data, context):
         #print l
     saldo_fin = extracto['saldo_ini'] + haber - debe
 
-    # Verificaciones fichero C43 correcto
+    # Verificaciones archivo C43 correcto
     if num_registros != extracto['num_registros']:
         raise wizard.except_wizard(_('Error in C43 file'), _('Number of records does not agree with the defined in the last record.'))
     if num_debe != extracto['num_debe']:
