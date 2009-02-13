@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+    
+	<!-- Fiscal Position Templates -->
+	<record id="fp_nacional" model="account.fiscal.position.template">
+            <field name="name">Régimen Nacional</field>
+            <field name="chart_template_id" ref="l10nES_chart_template"/>
+	</record>
+
+    <record id="fp_recargo" model="account.fiscal.position.template">
+            <field name="name">Recargo de Equivalencia</field>
+            <field name="chart_template_id" ref="l10nES_chart_template"/>
+	</record>
+
+    <record id="fp_extra" model="account.fiscal.position.template">
+            <field name="name">Régimen Extracomunitario</field>
+            <field name="chart_template_id" ref="l10nES_chart_template"/>
+	</record>
+
+    <record id="fp_intra" model="account.fiscal.position.template">
+            <field name="name">Régimen Intracomunitario</field>
+            <field name="chart_template_id" ref="l10nES_chart_template"/>
+	</record>
+
+    <!-- Fiscal Position Tax Templates -->
+    <!-- ************************************************************* -->
+
+    <!-- Extracomunitarios fiscal.position.tax.template-->
+
+    <record id="fptt_extra_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="tax_src_id" ref="iva_sop_16" />
+            <field name="tax_dest_id" ref="iva_X16_compras_bc" />
+	</record>
+    <record id="fptt_extra_16_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="tax_src_id" ref="iva_sop_16_inv" />
+            <field name="tax_dest_id" ref="iva_X16_compras_bi" />
+	</record>
+
+    <record id="fptt_extra_7" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="tax_src_id" ref="iva_sop_7" />
+            <field name="tax_dest_id" ref="iva_X7_compras_bc" />
+	</record>
+    <record id="fptt_extra_7_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="tax_src_id" ref="iva_sop_7_inv" />
+            <field name="tax_dest_id" ref="iva_X7_compras_bi" />
+	</record>
+     <record id="fptt_extra_4" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="tax_src_id" ref="iva_sop_4" />
+            <field name="tax_dest_id" ref="iva_X4_compras_bc" />
+	</record>
+    <record id="fptt_extra_4_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="tax_src_id" ref="iva_sop_4_inv" />
+            <field name="tax_dest_id" ref="iva_X4_compras_bi" />
+	</record>
+
+    <record id="fptt_extra_ventas" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="tax_src_id" ref="iva_rep_4" />
+            <field name="tax_dest_id" ref="iva_X0" />
+	</record>
+
+    <record id="fptt_extra_ventas" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="tax_src_id" ref="iva_rep_7" />
+            <field name="tax_dest_id" ref="iva_X0" />
+	</record>
+
+    <record id="fptt_extra_ventas" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="tax_src_id" ref="iva_rep_16" />
+            <field name="tax_dest_id" ref="iva_X0" />
+	</record>
+
+
+    <!-- Intracomunitarios fiscal.position.tax.template-->
+
+     <record id="fptt_intra_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_intra"  />
+            <field name="tax_src_id" ref="iva_sop_16" />
+            <field name="tax_dest_id" ref="iva_IC_compras_16_bc" />
+	</record>
+    <record id="fptt_intra_16_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_intra"  />
+            <field name="tax_src_id" ref="iva_sop_16_inv" />
+            <field name="tax_dest_id" ref="iva_IC_compras_16_bi" />
+	</record>
+
+    <record id="fptt_intra_7" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_intra"  />
+            <field name="tax_src_id" ref="iva_sop_7" />
+            <field name="tax_dest_id" ref="iva_IC_compras_7_bc" />
+	</record>
+    <record id="fptt_intra_7_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_intra"  />
+            <field name="tax_src_id" ref="iva_sop_7_inv" />
+            <field name="tax_dest_id" ref="iva_IC_compras_7_bi" />
+	</record>
+     <record id="fptt_intra_4" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_intra"  />
+            <field name="tax_src_id" ref="iva_sop_4" />
+            <field name="tax_dest_id" ref="iva_IC_compras_4_bc" />
+	</record>
+    <record id="fptt_intra_4_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_intra"  />
+            <field name="tax_src_id" ref="iva_sop_4_inv" />
+            <field name="tax_dest_id" ref="iva_IC_compras_4_bi" />
+	</record>
+
+    <record id="fptt_intra_ventas" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_intra"  />
+            <field name="tax_src_id" ref="iva_rep_4" />
+            <field name="tax_dest_id" ref="iva_IO" />
+	</record>
+
+    <record id="fptt_intra_ventas" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_intra"  />
+            <field name="tax_src_id" ref="iva_rep_7" />
+            <field name="tax_dest_id" ref="iva_IO" />
+	</record>
+
+    <record id="fptt_intra_ventas" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_intra"  />
+            <field name="tax_src_id" ref="iva_rep_16" />
+            <field name="tax_dest_id" ref="iva_IO" />
+	</record>
+
+    <!-- Recargo de equivalencia fiscal.position.tax.template-->
+
+
+
+    <record id="fptt_recargo_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_recargo"  />
+            <field name="tax_src_id" ref="iva_rep_16" />
+            <field name="tax_dest_id" ref="iva_rep_16" />
+	</record>
+
+    <record id="fptt_recargo_16_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_recargo"  />
+            <field name="tax_src_id" ref="iva_rep_16" />
+            <field name="tax_dest_id" ref="re_4" />
+	</record>
+
+    <record id="fptt_recargo_7" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_recargo"  />
+            <field name="tax_src_id" ref="iva_rep_7" />
+            <field name="tax_dest_id" ref="iva_rep_7" />
+	</record>
+
+    <record id="fptt_recargo_7_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_recargo"  />
+            <field name="tax_src_id" ref="iva_rep_7" />
+            <field name="tax_dest_id" ref="re_1" />
+	</record>
+
+    <record id="fptt_recargo_4" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_recargo"  />
+            <field name="tax_src_id" ref="iva_rep_4" />
+            <field name="tax_dest_id" ref="iva_rep_4" />
+	</record>
+
+    <record id="fptt_recargo_4_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_recargo"  />
+            <field name="tax_src_id" ref="iva_rep_4" />
+            <field name="tax_dest_id" ref="re_05" />
+	</record>
+
+     <!-- Extracomunitarios fiscal.position.account.template-->
+
+     <record id="fpat_extra_acc_1" model="account.fiscal.position.account.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="account_src_id" ref="pgc_7000" />
+            <field name="account_dest_id" ref="pgc_7002" />
+	</record>
+
+    <record id="fpat_extra_acc_2" model="account.fiscal.position.account.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="account_src_id" ref="pgc_7010" />
+            <field name="account_dest_id" ref="pgc_7012" />
+	</record>
+
+    <record id="fpat_extra_acc_3" model="account.fiscal.position.account.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="account_src_id" ref="pgc_7020" />
+            <field name="account_dest_id" ref="pgc_7022" />
+	</record>
+
+    <record id="fpat_extra_acc_4" model="account.fiscal.position.account.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="account_src_id" ref="pgc_7030" />
+            <field name="account_dest_id" ref="pgc_7032" />
+	</record>
+
+     <record id="fpat_extra_acc_5" model="account.fiscal.position.account.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="account_src_id" ref="pgc_7040" />
+            <field name="account_dest_id" ref="pgc_7042" />
+	</record>
+
+    <record id="fpat_extra_acc_6" model="account.fiscal.position.account.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="account_src_id" ref="pgc_7050" />
+            <field name="account_dest_id" ref="pgc_7052" />
+	</record>
+
+    <!-- Intracomunitarios fiscal.position.account.template-->
+
+     <record id="fpat_extra_acc_1" model="account.fiscal.position.account.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="account_src_id" ref="pgc_7000" />
+            <field name="account_dest_id" ref="pgc_7001" />
+	</record>
+
+    <record id="fpat_extra_acc_2" model="account.fiscal.position.account.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="account_src_id" ref="pgc_7010" />
+            <field name="account_dest_id" ref="pgc_7011" />
+	</record>
+
+    <record id="fpat_extra_acc_3" model="account.fiscal.position.account.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="account_src_id" ref="pgc_7020" />
+            <field name="account_dest_id" ref="pgc_7021" />
+	</record>
+
+    <record id="fpat_extra_acc_4" model="account.fiscal.position.account.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="account_src_id" ref="pgc_7030" />
+            <field name="account_dest_id" ref="pgc_7031" />
+	</record>
+
+     <record id="fpat_extra_acc_5" model="account.fiscal.position.account.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="account_src_id" ref="pgc_7040" />
+            <field name="account_dest_id" ref="pgc_7041" />
+	</record>
+
+    <record id="fpat_extra_acc_6" model="account.fiscal.position.account.template">
+            <field name="position_id" ref="fp_extra"  />
+            <field name="account_src_id" ref="pgc_7050" />
+            <field name="account_dest_id" ref="pgc_7051" />
+	</record>
+    </data>
+</openerp>
