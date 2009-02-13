@@ -3795,17 +3795,73 @@
 				<field name="code">700</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_70"/>
-				<field name="type">other</field>
+				<field name="type">view</field>
 				<field name="name">Ventas de mercaderías</field>
 				<field name="user_type" ref="ingresos"/>
 			</record>
+			
+			<record id="pgc_7000" model="account.account.template">
+				<field name="code">7000</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_700"/>
+				<field name="type">other</field>
+				<field name="name">Ventas de mercaderías en España</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7001" model="account.account.template">
+				<field name="code">7001</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_700"/>
+				<field name="type">other</field>
+				<field name="name">Ventas de mercaderías Intracomunitarias</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7002" model="account.account.template">
+				<field name="code">7002</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_700"/>
+				<field name="type">other</field>
+				<field name="name">Ventas de mercaderías Exportación</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			
 			
 			<record id="pgc_701" model="account.account.template">
 				<field name="code">701</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_70"/>
-				<field name="type">other</field>
+				<field name="type">view</field>
 				<field name="name">Ventas de productos terminados</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7010" model="account.account.template">
+				<field name="code">7010</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_701"/>
+				<field name="type">other</field>
+				<field name="name">Ventas de productos terminados en España</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7011" model="account.account.template">
+				<field name="code">7011</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_701"/>
+				<field name="type">other</field>
+				<field name="name">Ventas de productos terminados Intracomunitarias</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7012" model="account.account.template">
+				<field name="code">7012</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_701"/>
+				<field name="type">other</field>
+				<field name="name">Ventas de productos terminados Exportación</field>
 				<field name="user_type" ref="ingresos"/>
 			</record>
 			
@@ -3813,8 +3869,35 @@
 				<field name="code">702</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_70"/>
-				<field name="type">other</field>
+				<field name="type">view</field>
 				<field name="name">Ventas de productos semiterminados</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7020" model="account.account.template">
+				<field name="code">7020</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_702"/>
+				<field name="type">other</field>
+				<field name="name">Ventas de productos semiterminados en España</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7021" model="account.account.template">
+				<field name="code">7021</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_702"/>
+				<field name="type">other</field>
+				<field name="name">Ventas de productos semiterminados Intracomunitarias</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7022" model="account.account.template">
+				<field name="code">7022</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_702"/>
+				<field name="type">other</field>
+				<field name="name">Ventas de productos semiterminados Exportación</field>
 				<field name="user_type" ref="ingresos"/>
 			</record>
 			
@@ -3822,8 +3905,35 @@
 				<field name="code">703</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_70"/>
-				<field name="type">other</field>
+				<field name="type">view</field>
 				<field name="name">Ventas de subproductos y residuos</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7030" model="account.account.template">
+				<field name="code">7030</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_703"/>
+				<field name="type">other</field>
+				<field name="name">Ventas de subproductos y residuos en España</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7031" model="account.account.template">
+				<field name="code">7031</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_703"/>
+				<field name="type">other</field>
+				<field name="name">Ventas de subproductos y residuos Intracomunitarias</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7032" model="account.account.template">
+				<field name="code">7032</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_703"/>
+				<field name="type">other</field>
+				<field name="name">Ventas de subproductos y residuos Exportación</field>
 				<field name="user_type" ref="ingresos"/>
 			</record>
 			
@@ -3831,8 +3941,35 @@
 				<field name="code">704</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_70"/>
-				<field name="type">other</field>
+				<field name="type">view</field>
 				<field name="name">Ventas de envases y embalajes</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7040" model="account.account.template">
+				<field name="code">7040</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_704"/>
+				<field name="type">other</field>
+				<field name="name">Ventas de envases y embalajes en España</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7041" model="account.account.template">
+				<field name="code">7041</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_704"/>
+				<field name="type">other</field>
+				<field name="name">Ventas de envases y embalajes Intracomunitarias</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7042" model="account.account.template">
+				<field name="code">7042</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_704"/>
+				<field name="type">other</field>
+				<field name="name">Ventas de envases y embalajes Exportación</field>
 				<field name="user_type" ref="ingresos"/>
 			</record>
 			
@@ -3840,10 +3977,38 @@
 				<field name="code">705</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_70"/>
-				<field name="type">other</field>
+				<field name="type">view</field>
 				<field name="name">Prestaciones de servicios</field>
 				<field name="user_type" ref="ingresos"/>
 			</record>
+			
+			<record id="pgc_7050" model="account.account.template">
+				<field name="code">7050</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_705"/>
+				<field name="type">other</field>
+				<field name="name">Prestaciones de servicios en España</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7051" model="account.account.template">
+				<field name="code">7051</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_705"/>
+				<field name="type">other</field>
+				<field name="name">Prestaciones de servicios Intracomunitarias</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
+			<record id="pgc_7052" model="account.account.template">
+				<field name="code">7052</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_705"/>
+				<field name="type">other</field>
+				<field name="name">Prestaciones de servicios fuera de la UE</field>
+				<field name="user_type" ref="ingresos"/>
+			</record>
+			
 			
 			<record id="pgc_706" model="account.account.template">
 				<field name="code">706</field>
@@ -8248,10 +8413,10 @@
 				<field name="account_root_id" ref="pgc_0"/>
 				<field name="tax_code_root_id" ref="vat_code_chart_root"/>
 				<field name="bank_account_view_id" ref="pgc_550"/>
-				<field name="property_account_receivable" ref="pgc_43"/>
-				<field name="property_account_payable" ref="pgc_41"/>
+				<field name="property_account_receivable" ref="pgc_4300"/>
+				<field name="property_account_payable" ref="pgc_4100"/>
 				<field name="property_account_expense_categ" ref="pgc_600"/>
-				<field name="property_account_income_categ" ref="pgc_700"/>
+				<field name="property_account_income_categ" ref="pgc_7000"/>
 			</record>
 		</data>
 </openerp>
