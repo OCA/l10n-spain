@@ -19,6 +19,8 @@ La búsqueda de la empresa se hace a partir de:
 Si no se encuentra la empresa se asigna la cuenta contable que se haya definido por defecto para el concepto de ese registro.
 
 Elimina el precálculo del importe de la línea del extracto bancario cuando se modifica la empresa (ya que los importes importados ya son los correctos)
+
+NOTA para su instalación: Es importante instalar anteriormente el módulo l10n_chart_ES (bien directamente, bien a partir del asistente de selección de plan contable que se ejecuta al instalar el módulo account) y ejecutar el asistente de creación del plan contable a partir de la plantilla que se encuentra en Gestión financiera/Configuración/Contabilidad financiera/Plantillas.
 """,
     "website" : "www.zikzakmedia.com",
     "license" : "GPL-2",

@@ -16,7 +16,10 @@ Funcionamiento de la validación de la cuenta bancaria:
         Presenta el resultado con el formato "1234 5678 06 1234567890"
     * Si el número de dígitos es diferente de 18 0 20 deja el valor inalterado
 NOTA
-Se ha eliminado la validación de CIF/NIF españoles, pues el módulo base_vat de OpenERP 5.0 añade un campo CIF/NIF en la pestaña de contabilidad de las empresas y la validación automática de los CIF de 27 paises europeos. Los CIFs deben introducirse añadiendo al principio los 2 caracteres que identifican cada país en mayúsculas (ES para España), por ejemplo ESB64425879""",
+Se ha eliminado la validación de CIF/NIF españoles, pues el módulo base_vat de OpenERP 5.0 añade un campo CIF/NIF en la pestaña de contabilidad de las empresas y la validación automática de los CIF de 27 paises europeos. Los CIFs deben introducirse añadiendo al principio los 2 caracteres que identifican cada país en mayúsculas (ES para España), por ejemplo ESB64425879
+
+NOTA para su instalación: Es importante instalar anteriormente el módulo l10n_ES_toponyms y crear las provincias desde su asistente de instalación, pues los bancos/cajas que se definen en este módulo tienen referencias a provincias.
+""",
     "depends" : [
         "base",
         "base_iban",
