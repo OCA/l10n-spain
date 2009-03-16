@@ -209,38 +209,38 @@
 
 	<!-- Intracomunitarios fiscal.position.account.template-->
 
-	 <record id="fpat_extra_acc_1" model="account.fiscal.position.account.template">
-			<field name="position_id" ref="fp_extra"  />
+	 <record id="fpat_intra_acc_1" model="account.fiscal.position.account.template">
+			<field name="position_id" ref="fp_intra"  />
 			<field name="account_src_id" ref="pgc_7000" />
 			<field name="account_dest_id" ref="pgc_7001" />
 	</record>
 
-	<record id="fpat_extra_acc_2" model="account.fiscal.position.account.template">
-			<field name="position_id" ref="fp_extra"  />
+	<record id="fpat_intra_acc_2" model="account.fiscal.position.account.template">
+			<field name="position_id" ref="fp_intra"  />
 			<field name="account_src_id" ref="pgc_7010" />
 			<field name="account_dest_id" ref="pgc_7011" />
 	</record>
 
-	<record id="fpat_extra_acc_3" model="account.fiscal.position.account.template">
-			<field name="position_id" ref="fp_extra"  />
+	<record id="fpat_intra_acc_3" model="account.fiscal.position.account.template">
+			<field name="position_id" ref="fp_intra"  />
 			<field name="account_src_id" ref="pgc_7020" />
 			<field name="account_dest_id" ref="pgc_7021" />
 	</record>
 
-	<record id="fpat_extra_acc_4" model="account.fiscal.position.account.template">
-			<field name="position_id" ref="fp_extra"  />
+	<record id="fpat_intra_acc_4" model="account.fiscal.position.account.template">
+			<field name="position_id" ref="fp_intra"  />
 			<field name="account_src_id" ref="pgc_7030" />
 			<field name="account_dest_id" ref="pgc_7031" />
 	</record>
 
-	 <record id="fpat_extra_acc_5" model="account.fiscal.position.account.template">
-			<field name="position_id" ref="fp_extra"  />
+	 <record id="fpat_intra_acc_5" model="account.fiscal.position.account.template">
+			<field name="position_id" ref="fp_intra"  />
 			<field name="account_src_id" ref="pgc_7040" />
 			<field name="account_dest_id" ref="pgc_7041" />
 	</record>
 
-	<record id="fpat_extra_acc_6" model="account.fiscal.position.account.template">
-			<field name="position_id" ref="fp_extra"  />
+	<record id="fpat_intra_acc_6" model="account.fiscal.position.account.template">
+			<field name="position_id" ref="fp_intra"  />
 			<field name="account_src_id" ref="pgc_7050" />
 			<field name="account_dest_id" ref="pgc_7051" />
 	</record>

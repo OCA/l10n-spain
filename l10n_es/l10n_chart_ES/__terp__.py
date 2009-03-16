@@ -13,11 +13,14 @@
     "depends" : ["account", "base_vat", "base_iban"],
     "init_xml" : [
     "account_chart.xml",
-	"taxes_data.xml",
+    "taxes_data.xml", 
     "fiscal_templates.xml"
         ],
     "demo_xml" : [],
+
+
     "update_xml" : [
+         
 #        "l10n_chart_ES_wizard.xml",
 #        "l10n_chart_ES_report.xml"
     ],
