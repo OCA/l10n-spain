@@ -4919,21 +4919,21 @@
 				<field name="user_type" ref="capital"/>
 			</record>
 			
-			<record id="pgc_1371" model="account.account.template">
-				<field name="code">1341</field>
-				<field name="reconcile" eval="False"/>
-				<field name="parent_id" ref="pgc_134"/>
-				<field name="type">other</field>
-				<field name="name">Ingresos fiscales por deducciones y bonificaciones a distribuir en varios ejercicios</field>
-				<field name="user_type" ref="capital"/>
-			</record>
-			
 			<record id="pgc_1370" model="account.account.template">
 				<field name="code">1370</field>
 				<field name="reconcile" eval="False"/>
 				<field name="parent_id" ref="pgc_137"/>
 				<field name="type">other</field>
 				<field name="name">Ingresos fiscales por diferencias permanentes a distribuir en varios ejercicios</field>
+				<field name="user_type" ref="capital"/>
+			</record>
+			
+			<record id="pgc_1371" model="account.account.template">
+				<field name="code">1371</field>
+				<field name="reconcile" eval="False"/>
+				<field name="parent_id" ref="pgc_137"/>
+				<field name="type">other</field>
+				<field name="name">Ingresos fiscales por deducciones y bonificaciones a distribuir en varios ejercicios</field>
 				<field name="user_type" ref="capital"/>
 			</record>
 			
