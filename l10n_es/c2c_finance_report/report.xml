@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?><terp>
+  <data >
+	# Report journal account move
+	<report id="report_account_jouvrnal_for_printing"
+		string="Printing journal entries"
+		model="account.move.line"
+		name="report.account.journal.movec2c"
+		rml="c2c_finance_report/account_journal_move.rml"
+		auto="False"
+		menu="False"/>
+
+	# Wizards journal account move
+	<wizard 
+		string="Print journal entries"
+		model="account.move.line"
+		name="account.journal.movec2c"
+		keyword="client_print_multi"
+		id="wizard_account_jouvrnal_for_printing"/>
+	
+			
+    # Report general ledger
+		<report id="account.account_general_ledger"
+			string="General ledger C2C"
+			model="account.account"
+			name="report.account.general.ledgerc2c"
+			rml="c2c_finance_report/general_ledger.rml"
+			auto="False"
+			menu="False"/>
+		<report id="account.account_general_ledger_landscape"
+			string="General ledger Landscape C2C"
+			model="account.account"
+			name="report.account.general.ledger_landscapec2c"
+			rml="c2c_finance_report/general_ledger_landscape.rml"
+			auto="False"
+			menu="False"/>
+                <menuitem
+                        name="Financial Management/Reporting/Accounts/General Ledger"
+                        action="account.wizard_general_ledger_report"
+                        type="wizard"
+                        id="account.menu_general_ledger"/>
+
+	# Wizards
+		<wizard 
+			string="General ledger"
+			model="account.account"
+			name="account.general.ledger.reportc2c"
+			keyword="client_print_multi"
+			id="account.wizard_general_ledger_report"/>			
+ 	 # Report Account
+		<report id="account.account_balance"
+			string="Account balance"
+			model="account.account"
+			name="report.account.account.balancec2c"
+			rml="c2c_finance_report/account_balance.rml"
+			auto="False"
+			menu="False"/>
+	# Wizards
+		<wizard 
+			string="Account balance"
+			model="account.account"
+			name="account.account.balance.report2c"
+			keyword="client_print_multi"
+			id="account.wizard_balance_report"/>
+                
+                 <menuitem
+                        name="Financial Management/Reporting/Accounts/Account Balance"
+                        action="account.wizard_balance_report"
+                        type="wizard"
+                        id="account.menu_account_balance"/>
+
+			
+	# Report Balanced Compared
+		<report id="account_account_balance"
+			string="Account balance"
+			model="account.account"
+			name="report.account.account.balance_comparedc2c"
+			rml="c2c_finance_report/account_balance_compared.rml"
+			auto="False"
+			menu="False"/>
+		<report id="account_account_balance_landscape"
+			string="Account balance"
+			model="account.account"
+			name="report.account.account.balance_comparedc2c.landscape"
+			rml="c2c_finance_report/account_balance_compared_landscape.rml"
+			auto="False"
+			menu="False"/>
+	# Wizards
+		<wizard
+			string="Account balance-Compare Years"
+			model="account.account"
+			name="account.account.balance_comparedc2c"
+                        menu="False"
+			id="account.wizard_account_balance_report"/>
+	# Wizards Account _chart
+		<wizard
+			string="Account balance-Compare Years"
+			model="account.account"
+			name="account.account.chart_reportc2c"
+                        menu="False"
+			id="account.wizard_chart_reportc2c"/>
+	# report print account Chart
+		<report id="account_account_chart"
+			string="Account Chart"
+			model="account.account"
+			name="account.account.chartc2c"
+			rml="c2c_finance_report/account_chart.rml"
+			auto="False"/>
+                <menuitem
+                        name="Financial Management/Reporting/Accounts/Account Chart"
+                        action="account.wizard_chart_reportc2c"
+                        type="wizard"
+                        id="account.menu_account_chart"/>
+	# Report Taxes
+			<report id="account_vat_declaration"
+			string="Taxes report"
+			model="account.tax.code"
+			name="account.vat.declaration"
+			rml="c2c_finance_report/tax_report.rml"
+			auto="False"
+			menu="False"/>
+		<wizard 
+			string="Wizard taxes report"
+			model="account.tax.code"
+			name="account.vat.declarationc2c"
+			keyword="client_print_multi"
+			id="wizard_vat_declarationc2c"/>
+		<menuitem
+			name="Financial Management/Reporting/Taxes Report"
+			action="wizard_vat_declarationc2c"
+			type="wizard"
+			id="account.menu_wizard_vat_declaration"/>
+        # Report Third partiy ledger
+                        <report id="account_3rdparty_ledgerc2c"
+                        string="Partner ledger"
+                        model="res.partner"
+                        name="account.third_party_ledger"
+                        rml="c2c_finance_report/third_party_ledger.rml"
+                        auto="False"
+                        menu="False"/>
+                        
+                        <wizard 
+                        string="Third Party Ledger"
+                        model="res.partner"
+                        name="account.third_party_ledger.reportc2c"
+                        keyword="client_print_multi"
+                        id="account.wizard_third_party_ledgerc2c"/>
+                        
+                        <menuitem
+                        name="Financial Management/Reporting/Partner Accounts/Partner Ledger"
+                        action="account.wizard_third_party_ledgerc2c"
+                        type="wizard"
+                        id="account.menu_third_party_ledger"/>
+
+        # Report Aged Partner Ledger
+                        <wizard 
+			string="Aged partner balance"
+			model="res.partner"
+			name="account.aged.trial.balancec2c"
+			keyword="client_print_multi"
+			id="wizard_aged_trial_balancec2c"/>
+                        
+                        <menuitem
+			name="Financial Management/Reporting/Partner Accounts/Aged Partner Balance"
+			action="wizard_aged_trial_balancec2c"
+			type="wizard"
+			id="account.menu_aged_trial_balancec2c"/>
+                
+        # Report Partner Balance
+                      <report id="account_3rdparty_account_balance"
+			string="Partner balance"
+			model="account.account"
+			name="account.partner.balancec2c"
+			rml="c2c_finance_report/partner_balance.rml"
+			auto="False"
+			menu="False"/>
+                        <wizard
+			string="Partner balance"
+			model="res.partner"
+                        keyword="client_print_multi"
+			name="account.partner.balance.reportc2c"
+			id="wizard_partner_balance_reportc2c"/>
+                        <menuitem
+			name="Financial Management/Reporting/Partner Accounts/Partner Balance"
+			action="wizard_partner_balance_reportc2c"
+                        keyword="client_print_multi"
+			type="wizard"
+			id="account.menu_partner_balance"/>
+	
+			<report id="report_account_print_invoices"
+			string="Print invoices"
+			model="account.invoice"
+			name="account.print_invoice_list"
+			rml="c2c_finance_report/list_invoice.rml"
+			auto="False"
+			menu="True"/>
+	
+  </data>
+</terp>

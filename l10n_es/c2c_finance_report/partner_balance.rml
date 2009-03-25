@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<document filename="HipHop.pdf">
+  <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
+    <pageTemplate id="first">
+      <frame id="first" x1="57.0" y1="57.0" width="481" height="728"/>
+			<pageGraphics>
+				<!--logo-->
+				<!--<fill color="darkblue"/>-->
+				<!--<stroke color="darkblue"/>-->
+
+				<!--TITLE COMPANY-->
+				<!-- <drawString x="4.6cm" y="28.7cm">[[ company.partner_id.name ]]</drawString> -->
+
+				<setFont name="Helvetica-Bold" size="9"/>
+
+
+				<!--COL 1-->
+				<drawString x="1.0cm" y="28.1cm">[[ company.name ]]</drawString>
+				<drawString x="12.7cm" y="28.1cm">Movimientos de Terceros  [[ data['form']['result_selection'] == 'customer' and '/ Deudor' ]] [[ data['form']['result_selection'] == 'supplier' and '/ Acreedor' ]] [[ data['form']['result_selection'] == 'all' and '/ Acreedor y Deudor' ]] - [[ get_currency(data['form']) ]]</drawString>
+				
+				<!-- Header -->
+				
+				
+				<setFont name="Helvetica" size="9"/>
+				<drawString x="1.0cm" y="1cm"> [[ time.strftime("%d-%m-%y %H:%M", time.localtime()) ]]</drawString>
+				<drawString x="19.0cm" y="1cm">Página <pageNumber/></drawString>
+
+				<!--<drawRightString x="19.8cm" y="28cm">[[ company.rml_header1 ]]</drawRightString>-->
+				
+
+			    <lineMode width="0.7"/>
+				<lines>1cm 27.7cm 20cm 27.7cm</lines>
+				<setFont name="Helvetica" size="8"/>
+			</pageGraphics>                  
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <blockBackground colorName="#e6e6e6" start="0,0" stop="0,0"/>
+      <blockBackground colorName="#e6e6e6" start="1,0" stop="1,0"/>
+      <blockBackground colorName="#e6e6e6" start="2,0" stop="2,0"/>
+      <blockBackground colorName="#e6e6e6" start="0,1" stop="0,1"/>
+      <blockBackground colorName="#e6e6e6" start="1,1" stop="1,1"/>
+      <blockBackground colorName="#e6e6e6" start="2,1" stop="2,1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table6">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table2">
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,0" stop="-1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,1" stop="-1,-1"/>
+      
+      <blockValign value="TOP"/>
+      <blockAlignment value="RIGHT" start="2,1" stop="-1,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table3">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table4">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+   <blockTableStyle id="Tableau3">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" />
+      <lineStyle kind="OUTLINE" colorName="#e6e6e6" />
+      <blockBackground colorName="white" start="0,0" stop="-1,0"/>
+    </blockTableStyle>    
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="P1" fontName="Helvetica" fontSize="8.0" leading="25" alignment="CENTER" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P2" fontName="Helvetica" fontSize="10.0" leading="13" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P3" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P4" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P5" fontName="Helvetica" alignment="CENTER" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P6" fontName="Helvetica" fontSize="11.0" leading="14" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P7" fontName="Helvetica" fontSize="8.0" leading="14" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P9" fontName="Helvetica" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P9b" fontName="Helvetica-Bold" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P10" fontName="Helvetica" alignment="CENTER"/>
+    <paraStyle name="P11" fontName="Helvetica" fontSize="8.0" leading="10"/>
+    <paraStyle name="P12" fontName="Helvetica-Bold" fontSize="8.0" leading="14" alignment="CENTER" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P12a" fontName="Helvetica-Bold" fontSize="8.0" leading="14" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P13" fontName="Helvetica" fontSize="8.0" leading="10" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P14" rightIndent="17.0" leftIndent="-0.0" fontName="Times-Bold" fontSize="8.0" leading="10" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Table Contents" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Table Heading" fontName="Helvetica" alignment="CENTER" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Caption" fontName="Helvetica" fontSize="10.0" leading="13" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Index" fontName="Helvetica"/>
+  </stylesheet>
+  <story>
+ 
+
+    <blockTable colWidths="61.0,196.0,60.0,58.0,109.0,57.0" repeatRows="1" style="Table2">[[ data['form']['amount_currency'] == True or removeParentNode('blockTable') ]]
+      <tr>
+        <td>
+          <para style="P12a">Código</para>
+        </td>
+        <td>
+          <para style="P12a">Empresa</para>
+        </td>
+        <td>
+          <para style="P12">Debe</para>
+        </td>
+        <td>
+          <para style="P12">Haber</para>
+        </td>
+        <td>
+          <para style="P12">Saldo</para>
+        </td>
+        <td>
+          <para style="P12">En divisa</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P3">[[ repeatIn(lines(data), 'a') ]]<font face="Helvetica">[[ a['type']==3 and ( setTag('para','para',{'fontName':'Helvetica-Bold'})) ]] [[ a['ref'] ]]</font></para>
+        </td>
+        <td>
+          <para style="P3">[[ a['type']==3 and ( setTag('para','para',{'fontName':'Helvetica-Bold'})) ]] [[ a['type']==3 and a['code'] ]]  [[ a['name']  ]] </para>
+        </td>
+        <td>
+          <para style="P4">[[ a['type']==3 and ( setTag('para','para',{'fontName':'Helvetica-Bold'})) ]]  [[ comma_me(a['debit']) ]]</para>
+        </td>
+        <td>
+          <para style="P4">[[ a['type']==3 and ( setTag('para','para',{'fontName':'Helvetica-Bold'})) ]] [[ comma_me(a['credit']) ]]</para>
+        </td>
+        <td>
+          <para style="P4">[[ a['type']==3 and ( setTag('para','para',{'fontName':'Helvetica-Bold'})) ]] [[ comma_me(a['balance']) ]]</para>
+        </td>
+        <td>
+          <para style="P4">[[ a['type']==3 and ( setTag('para','para',{'fontName':'Helvetica-Bold'})) ]] [[ comma_me(a['sum_currency'] or 0.0 ) ]] [[ a['type']==3 and a['currency_code'] ]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    
+    
+    
+    
+    <blockTable colWidths="61.0,253.0,60.0,58.0,109.0" repeatRows="1" style="Table2">[[ data['form']['amount_currency'] == False or removeParentNode('blockTable') ]]
+      <tr>
+        <td>
+          <para style="P12a">Código</para>
+        </td>
+        <td>
+          <para style="P12a">Empresa</para>
+        </td>
+        <td>
+          <para style="P12">Debe</para>
+        </td>
+        <td>
+          <para style="P12">Haber</para>
+        </td>
+        <td>
+          <para style="P12">Saldo</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P3">[[ repeatIn(lines(data), 'a') ]]<font face="Helvetica">[[ a['type']==3 and ( setTag('para','para',{'fontName':'Helvetica-Bold'})) ]] [[ a['ref'] ]]</font></para>
+        </td>
+        <td>
+          <para style="P3">[[ a['type']==3 and ( setTag('para','para',{'fontName':'Helvetica-Bold'})) ]] [[ a['type']==3 and a['code'] ]]  [[ a['name']  ]] </para>
+        </td>
+        <td>
+          <para style="P4">[[ a['type']==3 and ( setTag('para','para',{'fontName':'Helvetica-Bold'})) ]]  [[ comma_me(a['debit']) ]]</para>
+        </td>
+        <td>
+          <para style="P4">[[ a['type']==3 and ( setTag('para','para',{'fontName':'Helvetica-Bold'})) ]] [[ comma_me(a['credit']) ]]</para>
+        </td>
+        <td>
+          <para style="P4">[[ a['type']==3 and ( setTag('para','para',{'fontName':'Helvetica-Bold'})) ]] [[ comma_me(a['balance']) ]]</para>
+        </td>
+      </tr>
+    </blockTable>
+
+    
+    
+    
+    
+    
+    
+    <para style="Standard">
+      <font color="white"> </font>
+    </para>
+ <!--   <blockTable colWidths="247.0,60.0,58.0,55.0,54.0,57.0" style="Tableau3">
+      <tr>
+        <td>
+          <para style="P7">Total</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(sum_debit(data)) ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(sum_credit(data)) ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(sum_sdebit(data)) ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(sum_scredit(data)) ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(sum_litige(data)) ]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P7">Balance</para>
+        </td>
+        <td>
+          <para style="P8">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P8">
+            <font color="white"> </font>
+          </para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(solde_debit(data)) ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(solde_credit(data)) ]]</para>
+        </td>
+        <td>
+          <para style="P8">
+            <font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+    </blockTable>-->
+    <para style="P11"/>
+    <para style="P9">
+      <font color="white"> </font>
+    </para>
+  </story>
+</document>
+
