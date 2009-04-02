@@ -16,11 +16,11 @@
 
 				<!--COL 1-->
 				<drawString x="1.0cm" y="25.50cm">[[ company.name ]]</drawString>
-				<drawString x="34.70cm" y="25.50cm">Evolución del balance de terceros - [[ get_currency(data['form']) ]]</drawString>
+				<drawString x="34.70cm" y="25.50cm">Evolución balance de terceros - [[ get_currency(data['form']) ]]</drawString>
 
 				<!--COL 2-->
 				<setFont name="Helvetica" size="9"/>
-				<drawString x="1.0cm" y="0.90cm"> [[ time.strftime("%m-%d-%y %H:%M", time.localtime()) ]]</drawString>
+				<drawString x="1.0cm" y="0.90cm"> [[ time.strftime("%d-%m-%y %H:%M", time.localtime()) ]]</drawString>
 				<drawString x="37.30cm" y="0.90cm">Página <pageNumber/></drawString>
 
 				<!--<drawRightString x="19.8cm" y="28cm">[[ company.rml_header1 ]]</drawRightString>-->

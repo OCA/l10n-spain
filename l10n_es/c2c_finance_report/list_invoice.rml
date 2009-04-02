@@ -17,11 +17,11 @@
 
                 <!--COL 1-->
                 <drawString x="1.0cm" y="25.50cm">[[ company.name ]]</drawString>
-                <drawString x="35.50cm" y="25.50cm">Lista de Facturas</drawString>
+                <drawString x="35.50cm" y="25.50cm">Listado de Facturas</drawString>
 
                 <!--COL 2-->
                 <setFont name="Helvetica" size="9"/>
-                <drawString x="1.0cm" y="0.90cm"> [[ time.strftime("%m-%d-%y %H:%M",time.localtime()) ]]</drawString>
+                <drawString x="1.0cm" y="0.90cm"> [[ time.strftime("%d-%m-%y %H:%M",time.localtime()) ]]</drawString>
                 <drawString x="35.50cm" y="0.90cm">Página <pageNumber/></drawString>
 
                 <!--<drawRightString x="19.8cm" y="28cm">[[ company.rml_header1 ]]</drawRightString>-->
@@ -165,7 +165,7 @@
                             <para style="Standard" size="5">Descripción Factura</para>
                         </td>
                         <td>
-                            <para style="Standard" size="5">Total</para>
+                            <para style="Standard" size="5">Estado</para>
                         </td>
                         <td>
                             <para alignment="RIGHT" style="Standard" size="5">Total sin impuestos</para>
@@ -195,10 +195,10 @@
                             <para>[[inv.state]]</para>
                         </td>
                         <td>
-                            <para alignment="RIGHT">[[(inv.amount_untaxed)]]</para>
+                            <para alignment="RIGHT">[[comma_me(inv.amount_untaxed)]]</para>
                         </td>
                         <td>
-                            <para alignment="RIGHT">[[(inv.amount_total)]]</para>
+                            <para alignment="RIGHT">[[comma_me(inv.amount_total)]]</para>
                         </td>
                     </tr>
                     <tr>

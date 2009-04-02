@@ -16,7 +16,7 @@
 
 				<!--COL 1-->
 				<drawString x="1.0cm" y="28.1cm">[[ company.name ]]</drawString>
-				<drawRightString x="20cm" y="28.1cm">Movimientos de Terceros [[ data['form']['result_selection'] == 'customer' and '/ Deudor' ]] [[ data['form']['result_selection'] == 'supplier' and '/ Acreedor' ]] [[ data['form']['result_selection'] == 'all' and '/ Acreedor y Deudor' ]]</drawRightString>
+				<drawRightString x="20cm" y="28.1cm">Movimientos de Terceros [[ data['form']['result_selection'] == 'customer' and '/ Deudor' ]][[ data['form']['result_selection'] == 'supplier' and '/ Acreedor' ]][[ data['form']['result_selection'] == 'all' and '/ Acreedor y Deudor' ]]</drawRightString>
 				
 				<!-- Header -->
 				

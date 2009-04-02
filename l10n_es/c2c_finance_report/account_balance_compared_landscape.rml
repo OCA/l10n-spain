@@ -19,7 +19,7 @@
 				<drawString x="25.7cm" y="18.1cm">Balance Contable</drawString>
 				
 				<setFont name="Helvetica" size="9"/>
-				<drawString x="1.0cm" y="1cm"> [[ time.strftime("%m-%d-%y %H:%M", time.localtime()) ]]</drawString>
+				<drawString x="1.0cm" y="1cm"> [[ time.strftime("%d-%m-%y %H:%M", time.localtime()) ]]</drawString>
 				<drawString x="27.7cm" y="1cm">Página <pageNumber/></drawString>
 
 				<!--<drawRightString x="19.8cm" y="28cm">[[ company.rml_header1 ]]</drawRightString>-->
@@ -117,7 +117,7 @@
       </blockTable>
     </section>
     <section>
-      <para style="P13">[[ repeatIn([],'title',td=len(data['form']['fiscalyear'][0][2]),width=[42,42,42],value=['Debito','Credito','Balance'],type=[comma_me('lable'),comma_me('lable'),comma_me('lable')]) ]]</para>
+      <para style="P13">[[ repeatIn([],'title',td=len(data['form']['fiscalyear'][0][2]),width=[42,42,42],value=['Debit','Credit','Balance'],type=[comma_me('lable'),comma_me('lable'),comma_me('lable')]) ]]</para>
       <blockTable colWidths="180.0" style="Table6">
         <tr>
           <td>
@@ -127,7 +127,7 @@
       </blockTable>
     </section>
     <section>
-      <para style="P13">[[ repeatIn([],'title',td=len(data['form']['fiscalyear'][0][2]),width=[84,42],value=['Efectivo','%'],type=['lable','lable']) ]]</para>
+      <para style="P13">[[ repeatIn([],'title',td=len(data['form']['fiscalyear'][0][2]),width=[84,42],value=['Cash','%'],type=['lable','lable']) ]]</para>
     </section>
     <para style="P8">
       <font color="white"> </font>

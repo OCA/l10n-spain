@@ -271,11 +271,11 @@ class general_ledgerc2c(rml_parse.rml_parse):
 			#
 			if (l['credit'] > 0):
 				if l['amount_currency'] != None:
-					l['amount_currency'] = abs(l['amount_currency']) * -1
-			currency_progress += l['amount_currency']
+					l['amount_currency'] = abs((l['amount_currency'] or 0.0)) * -1
+			currency_progress += (l['amount_currency'] or 0.0)
 			
 			if l['amount_currency'] != None:
-				self.tot_currency += l['amount_currency']			
+				self.tot_currency += (l['amount_currency'] or 0.0)
 
 			## We will test if we have check With initial account or not
 			if form['soldeinit']:

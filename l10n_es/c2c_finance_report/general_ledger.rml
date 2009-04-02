@@ -20,7 +20,7 @@
 
 				<!--COL 2-->
 				<setFont name="Helvetica" size="9"/>
-				<drawString x="1.0cm" y="1cm"> [[ time.strftime("%m-%d-%y %H:%M", time.localtime()) ]]</drawString>
+				<drawString x="1.0cm" y="1cm"> [[ time.strftime("%d-%m-%y %H:%M", time.localtime()) ]]</drawString>
 				<drawString x="19.0cm" y="1cm">Página <pageNumber/></drawString>
 				<!--<drawRightString x="19.8cm" y="28cm">[[ company.rml_header1 ]]</drawRightString>-->
 				
@@ -117,7 +117,7 @@
         </tr>
       </blockTable>   
       <!-- <para style="P17">[[ o.code ]] [[ o.name ]]</para> -->
-     <blockTable colWidths="50.0,120.0,80.0,70.0,120.0,50.0,50.0,50.0" style="Table2">[[ data['form']['amount_currency'] == False or removeParentNode('blockTable') ]]
+     <blockTable colWidths="50.0,120.0,100.0,70.0,100.0,50.0,50.0,50.0" style="Table2">[[ data['form']['amount_currency'] == False or removeParentNode('blockTable') ]]
         <tr>
           <td>
             <para style="P3">Fecha</para>
@@ -206,7 +206,7 @@
       </blockTable>
       
       
-      <blockTable colWidths="45.0,80.0,40.0,30.0,80.0,59.0,52.0,54.0,60.0,61.0" style="Table2" >[[ data['form']['amount_currency'] == True or removeParentNode('blockTable') ]]
+      <blockTable colWidths="45.0,80.0,50.0,30.0,70.0,59.0,52.0,54.0,60.0,61.0" style="Table2" >[[ data['form']['amount_currency'] == True or removeParentNode('blockTable') ]]
         <tr>
           <td>
             <para style="P3">Fecha</para>
