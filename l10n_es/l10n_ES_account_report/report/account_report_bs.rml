@@ -64,21 +64,19 @@
     <blockTable colWidths="143.0,226.0,156.0" repeatRows="1" style="Table1">
       <tr>
         <td>
-          <para style="Table Contents"><font color='blue'>[[ company.name ]]</font></para>
+          <para style="Table Contents"><font color='black'>[[ company.name ]]</font></para>
         </td>
         <td>
-          <para style="P3">
-            <font color="white"> </font>
-          </para>
+          <para style="P5"><font color='black'>[[ fiscalyear(data['form']) ]]</font></para>
         </td>
         <td>
-          <para style="P4"><font color='blue'>Currency: [[ company.currency_id.name ]]</font></para>
+          <para style="P4"><font color='black'>Divisa: [[ company.currency_id.name ]]</font></para>
         </td>
       </tr>
     </blockTable>
-    <para style="P8"><font color='blue'>Printing date: [[ time.strftime('%Y-%m-%d') ]] at [[ time.strftime('%H:%M:%S') ]]</font></para>
+    <para style="P7"><font color='gray'>Impreso el [[ time.strftime('%d-%m-%Y') ]] a las [[ time.strftime('%H:%M:%S') ]]</font></para>
     <para style="P7">[[repeatIn(objects,'o') ]]</para>
-    <blockTable colWidths="143.0,226.0,156.0" repeatRows="1" style="Table2">
+    <blockTable colWidths="103.0,306.0,116.0" repeatRows="1" style="Table2">
       <tr>
         <td>
           <para style="Table Contents">
@@ -95,7 +93,7 @@
         </td>
       </tr>
     </blockTable>
-    <blockTable colWidths="341.0,131.0" style="Table7">
+    <!--<blockTable colWidths="341.0,131.0" style="Table7">
       <tr>
         <td>
           <para style="P12"><font color='blue'>Account name</font></para>
@@ -104,7 +102,7 @@
           <para style="P13"><font color='blue'>Balance</font></para>
         </td>
       </tr>
-    </blockTable>
+    </blockTable>-->
     <blockTable colWidths="341.0,131.0" style="Table4">
       <tr>
         <!--<td>

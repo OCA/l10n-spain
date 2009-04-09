@@ -45,9 +45,19 @@ class account_report_bs(report_sxw.rml_parse):
         self.localcontext.update({
             'time': time,
             'lines': self.lines,
+            'fiscalyear': self.fiscalyear,
         })
         self.context = context
 
+    def fiscalyear(self, form):
+        """Returns name of the fiscal year and optional periods"""
+        res = self.pool.get('account.fiscalyear').browse(self.cr, self.uid, form['fiscalyear']).name
+        if form['periods'][0][2]:
+            res += ': '
+            for period in self.pool.get('account.period').browse(self.cr, self.uid, sorted(form['periods'][0][2])):
+                res += period.name + ', '
+            res = res [:-2]
+        return res
 
     def line_total(self,line_id,ctx):
         _total = 0
@@ -81,8 +91,7 @@ class account_report_bs(report_sxw.rml_parse):
         def cmp_code(x, y):
             return cmp(x.sequence, y.sequence)
         report_objs.sort(cmp_code)
-        
-        
+
         for report_obj in report_objs:
             if report_obj.id in done:
                 continue
@@ -93,7 +102,7 @@ class account_report_bs(report_sxw.rml_parse):
                 color_font = report_obj.color_font.name
             if report_obj.color_back:
                 color_back = report_obj.color_back.name
-                
+
             res = {
                 'code': report_obj.code,
                 'name': report_obj.name,
@@ -144,4 +153,4 @@ class account_report_bs(report_sxw.rml_parse):
 #
 #    def _sum_debit(self):
 #        return self.sum_debit
-report_sxw.report_sxw('report.account.report.bs', 'account.report.bs', 'addons/account_ES_reporting/report/account_report_bs.rml', parser=account_report_bs)
+report_sxw.report_sxw('report.account.report.bs', 'account.report.bs', 'addons/l10n_ES_account_report/report/account_report_bs.rml', parser=account_report_bs, header=False)

@@ -40,7 +40,6 @@ dates_form = '''<?xml version="1.0"?>
 	<field name="date_from" colspan="4"/>
 	<field name="date_to" colspan="4"/>
 	<field name="display_account" colspan="4"/>
-	
 </form>'''
 
 dates_fields = {
@@ -55,14 +54,10 @@ period_form = '''<?xml version="1.0"?>
 	<field name="fiscalyear" colspan="4"/>
 	<field name="periods" colspan="4"/>
 	<field name="display_account" colspan="4"/>
-	
 </form>'''
 
-
-
 period_fields = {
-	'fiscalyear': {'string': 'Fiscal year', 'type': 'many2one', 'relation': 'account.fiscalyear',
-		'help': 'Keep empty for all open fiscal year'},
+	'fiscalyear': {'string': 'Fiscal year', 'type': 'many2one', 'relation': 'account.fiscalyear', 'help': 'Keep empty for all open fiscal year'},
 	'periods': {'string': 'Periods', 'type': 'many2many', 'relation': 'account.period', 'help': 'All periods if empty'},
 	'display_account':{'string':"Display accounts ",'type':'selection','selection':[('bal_mouvement','With movements'),('bal_all','All'),('bal_solde','With balance is not equal to 0')]}
 }
@@ -136,7 +131,6 @@ class wizard_report(wizard.interface):
 			'actions': [],
 			'result': {'type':'choice','next_state':_check_date}
 		},
-
 		'report': {
 			'actions': [],
 			'result': {'type':'print', 'report':'account.account.balancec2c', 'state':'end'}
