@@ -43,43 +43,11 @@ dates_form = '''<?xml version="1.0" encoding="utf-8"?>
     <field name="periods" colspan="4"/>
 </form>'''
 
-#    <field name="report_type" colspan="4"/>
-
-
 dates_fields = {
     'fiscalyear': {'string': 'Fiscal year', 'type': 'many2one', 'relation': 'account.fiscalyear', 'required': True},
     'periods': {'string': 'Periods', 'type': 'many2many', 'relation': 'account.period', 'help': 'All periods if empty'},
-#    'report_type': {'string': 'Report Type','type': 'selection','selection': [('only_obj', 'Report Objects Only'),('with_account', 'Report Objects With Accounts'),('acc_with_child', 'Report Objects With Accounts and child of Accounts'),],'required': True},
 }
 
-back_form='''<?xml version="1.0" encoding="utf-8"?>
-<form string="Notification">
-<separator string="You might have done following mistakes.Please correct them and try again." colspan="4"/>
-<separator string="1. You have selected more than 3 years in any case." colspan="4"/>
-<separator string="2. You have not selected 'Percentage' option,but you have selected more than 2 years." colspan="4"/>
-<label string="You can select maximum 3 years.Please check again." colspan="4"/>
-</form>'''
-
-back_fields={
-}
-
-zero_form='''<?xml version="1.0" encoding="utf-8"?>
-<form string="Notification">
-<label string="You have to select atleast 1 Fiscal Year. Try again."/>
-</form>'''
-
-zero_fields={
-}
-
-periods_form='''<?xml version="1.0" encoding="utf-8"?>
-<form string="Set Periods">
-<separator string="Select Period(s) (All periods if empty)" colspan="4"/>
-            <field name="periods" colspan="4" nolabel="1"/>
-</form>'''
-
-periods_fields={
-    'periods': {'string': 'Periods', 'type': 'many2many', 'relation': 'account.period', 'help': 'All periods if empty'}
-}
 
 class wizard_report(wizard.interface):
     def _get_defaults(self, cr, uid, data, context):

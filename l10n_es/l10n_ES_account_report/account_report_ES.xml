@@ -1,694 +1,806 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-<data ><record id="BA" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;Balance Abreviado&quot;&quot;&quot;" name="name"/>
+<data  noupdate="1">
+<!-- Balance abreviado de situación -->
+<record id="BA" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;Balance abreviado de situación&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field eval="&quot;&quot;&quot;BA&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
+    <field name="color_font" ref="c0" /> <!--white para ocultarlo en los reports-->
     </record>
+
 <record id="AC" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;ACTIVO&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;ACTIVO&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="BA" />
     <field eval="&quot;&quot;&quot;AC&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.ba_1')])]" name="account_id"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
+    <field name="color_back" ref="c51" />
     </record>
 <record id="TAC" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;TOTAL ACTIVO&quot;&quot;&quot;" name="name"/>
-    <field eval="190" name="sequence"/>
-    <field name="parent_id" ref="AC" />
+    <field eval="&quot;&quot;&quot;TOTAL ACTIVO&quot;&quot;&quot;" name="name"/>
+    <field eval="1" name="sequence"/>
+    <field name="parent_id" ref="BA" />
     <field eval="&quot;&quot;&quot;TAC&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1')])]" name="account_id"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
     </record>
 
 <record id="1A" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;A) ACTIVO NO CORRIENTE&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;A) ACTIVO NO CORRIENTE&quot;&quot;&quot;" name="name"/>
     <field eval="10" name="sequence"/>
     <field name="parent_id" ref="AC" />
     <field eval="&quot;&quot;&quot;1A&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.ba_1A')])]" name="account_id"/>
-    </record><record id="1AI" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;I. Inmovilizado intangible&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
+    </record>
+<record id="1AI" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;I. Inmovilizado intangible&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1A" />
     <field eval="&quot;&quot;&quot;1AI&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1AI')])]" name="account_id"/>
-    </record><record id="1AII" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;II. Inmovilizado material&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="1AII" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;II. Inmovilizado material&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1A" />
     <field eval="&quot;&quot;&quot;1AII&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1AII')])]" name="account_id"/>
-    </record><record id="1AIII" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;III. Inversiones inmobiliarias&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="1AIII" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;III. Inversiones inmobiliarias&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1A" />
     <field eval="&quot;&quot;&quot;1AIII&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1AIII')])]" name="account_id"/>
-    </record><record id="1AIV" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;IV. Inversiones en empresas del grupo y asociadas a largo plazo&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="1AIV" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;IV. Inversiones en empresas del grupo y asociadas a largo plazo&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1A" />
     <field eval="&quot;&quot;&quot;1AIV&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1AIV')])]" name="account_id"/>
-    </record><record id="1AV" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;V. Inversiones financieras a largo plazo&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="1AV" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;V. Inversiones financieras a largo plazo&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1A" />
     <field eval="&quot;&quot;&quot;1AV&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1AV')])]" name="account_id"/>
-    </record><record id="1AVI" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;VI. Activos por impuesto diferido&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="1AVI" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;VI. Activos por impuesto diferido&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1A" />
     <field eval="&quot;&quot;&quot;1AVI&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1AVI')])]" name="account_id"/>
-    </record><record id="1B" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;B) ACTIVO CORRIENTE&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="1B" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;B) ACTIVO CORRIENTE&quot;&quot;&quot;" name="name"/>
     <field eval="80" name="sequence"/>
     <field name="parent_id" ref="AC" />
     <field eval="&quot;&quot;&quot;1B&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.ba_1B')])]" name="account_id"/>
-    </record><record id="1BI" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;I. Activos no corrientes mantenidos para la venta.&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
+    </record>
+<record id="1BI" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;I. Activos no corrientes mantenidos para la venta.&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1B" />
     <field eval="&quot;&quot;&quot;1BI&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1BI')])]" name="account_id"/>
-    </record><record id="1BII" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;II. Existencias&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="1BII" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;II. Existencias&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1B" />
     <field eval="&quot;&quot;&quot;1BII&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1BII')])]" name="account_id"/>
-    </record><record id="1BIII" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;III. Deudores comerciales y otras cuentas a cobrar&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="1BIII" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;III. Deudores comerciales y otras cuentas a cobrar&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1B" />
     <field eval="&quot;&quot;&quot;1BIII&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.ba_1BIII')])]" name="account_id"/>
-    </record><record id="1BIII1" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;1. Clientes por ventas y prestaciones de servicios.&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="1BIII1" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;1. Clientes por ventas y prestaciones de servicios.&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1BIII" />
     <field eval="&quot;&quot;&quot;1BIII1&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1BIII1')])]" name="account_id"/>
-    </record><record id="1BIII2" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;2. Accionistas (socios) por dedesembolsos exigidos.&quot;&quot;&quot;" name="name"/>
+    <field name="color_font" ref="c41" />
+    </record>
+<record id="1BIII2" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;2. Accionistas (socios) por dedesembolsos exigidos.&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1BIII" />
     <field eval="&quot;&quot;&quot;1BIII2&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1BIII2')])]" name="account_id"/>
-    </record><record id="1BIII3" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;3. Otros Deudores&quot;&quot;&quot;" name="name"/>
+    <field name="color_font" ref="c41" />
+    </record>
+<record id="1BIII3" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;3. Otros Deudores&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1BIII" />
     <field eval="&quot;&quot;&quot;1BIII3&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1BIII3')])]" name="account_id"/>
-    </record><record id="1BIV" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;IV. Inversiones en empresas del grupo y asociadas a corto plazo&quot;&quot;&quot;" name="name"/>
+    <field name="color_font" ref="c41" />
+    </record>
+<record id="1BIV" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;IV. Inversiones en empresas del grupo y asociadas a corto plazo&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1B" />
     <field eval="&quot;&quot;&quot;1BIV&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1BIV')])]" name="account_id"/>
-    </record><record id="1BV" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;V. Inversiones financieras a corto plazo&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="1BV" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;V. Inversiones financieras a corto plazo&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1B" />
     <field eval="&quot;&quot;&quot;1BV&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1BV')])]" name="account_id"/>
-    </record><record id="1BVI" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;VI. Periodificaciones a corto plazo&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="1BVI" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;VI. Periodificaciones a corto plazo&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1B" />
     <field eval="&quot;&quot;&quot;1BVI&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1BVI')])]" name="account_id"/>
-    </record><record id="1BVII" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;VII. Efectivo y otros activos líquidos equivalentes.&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="1BVII" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;VII. Efectivo y otros activos líquidos equivalentes.&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="1B" />
     <field eval="&quot;&quot;&quot;1BVII&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_1BVII')])]" name="account_id"/>
-    </record><record id="TPNP" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;TOTAL PATRIMONIO NETO Y PASIVO&quot;&quot;&quot;" name="name"/>
-    <field eval="0" name="sequence"/>
+    </record>
+
+<record id="PA" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;PASIVO&quot;&quot;&quot;" name="name"/>
+    <field eval="2" name="sequence"/>
+    <field name="parent_id" ref="BA" />
+    <field eval="&quot;&quot;&quot;PA&quot;&quot;&quot;" name="code"/>
+    <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
+    <field name="color_back" ref="c51" />
+    </record>
+<record id="TPNP" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;TOTAL PATRIMONIO NETO Y PASIVO&quot;&quot;&quot;" name="name"/>
+    <field eval="3" name="sequence"/>
     <field name="parent_id" ref="BA" />
     <field eval="&quot;&quot;&quot;TPNP&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2')])]" name="account_id"/>
-    </record><record id="PA" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;PASIVO&quot;&quot;&quot;" name="name"/>
-    <field eval="0" name="sequence"/>
-    <field name="parent_id" ref="BA" />
-    <field eval="&quot;&quot;&quot;PA&quot;&quot;&quot;" name="code"/>
-    <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.ba_2')])]" name="account_id"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
     </record>
+
 <record id="2A" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;A) PATRIMONIO NETO&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;A) PATRIMONIO NETO&quot;&quot;&quot;" name="name"/>
     <field eval="200" name="sequence"/>
     <field name="parent_id" ref="PA" />
     <field eval="&quot;&quot;&quot;2A&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A')])]" name="account_id"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
     </record>
 <record id="2A1" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;A-1) Fondos Propios&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;A-1) Fondos Propios&quot;&quot;&quot;" name="name"/>
     <field eval="210" name="sequence"/>
     <field name="parent_id" ref="2A" />
     <field eval="&quot;&quot;&quot;2A1&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A1')])]" name="account_id"/>
     </record>
-
-<record id="2A1II" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;II. Prima de emisión&quot;&quot;&quot;" name="name"/>
-    <field eval="250" name="sequence"/>
-    <field name="parent_id" ref="2A1" />
-    <field eval="&quot;&quot;&quot;2A1II&quot;&quot;&quot;" name="code"/>
-    <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A1')])]" name="account_id"/>
-    </record>
-
 <record id="2A1I" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;I. Capital&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;I. Capital&quot;&quot;&quot;" name="name"/>
     <field eval="220" name="sequence"/>
     <field name="parent_id" ref="2A1" />
     <field eval="&quot;&quot;&quot;2A1I&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A1I')])]" name="account_id"/>
-    </record><record id="2A1I1" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;1. Capital escriturado&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2A1I1" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;1. Capital escriturado&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2A1I" />
     <field eval="&quot;&quot;&quot;2A1I1&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A1I1')])]" name="account_id"/>
-    </record><record id="2A1I2" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;2. (Capital no exigido)&quot;&quot;&quot;" name="name"/>
+    <field name="color_font" ref="c41" />
+    </record>
+<record id="2A1I2" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;2. (Capital no exigido)&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2A1I" />
     <field eval="&quot;&quot;&quot;2A1I2&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A1I2')])]" name="account_id"/>
-    </record><record id="2A1III" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;III. Reservas&quot;&quot;&quot;" name="name"/>
+    <field name="color_font" ref="c41" />
+    </record>
+<record id="2A1II" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;II. Prima de emisión&quot;&quot;&quot;" name="name"/>
+    <field eval="250" name="sequence"/>
+    <field name="parent_id" ref="2A1" />
+    <field eval="&quot;&quot;&quot;2A1II&quot;&quot;&quot;" name="code"/>
+    <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
+    <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A1II')])]" name="account_id"/>
+    </record>
+<record id="2A1III" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;III. Reservas&quot;&quot;&quot;" name="name"/>
     <field eval="260" name="sequence"/>
     <field name="parent_id" ref="2A1" />
     <field eval="&quot;&quot;&quot;2A1III&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A1III')])]" name="account_id"/>
-    </record><record id="2A1IV" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;IV. (Acciones y participaciones en patrimonio propias)&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2A1IV" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;IV. (Acciones y participaciones en patrimonio propias)&quot;&quot;&quot;" name="name"/>
     <field eval="270" name="sequence"/>
     <field name="parent_id" ref="2A1" />
     <field eval="&quot;&quot;&quot;2A1IV&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A1IV')])]" name="account_id"/>
-    </record><record id="2A1V" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;V. Resultados de ejercicios anteriores&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2A1V" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;V. Resultados de ejercicios anteriores&quot;&quot;&quot;" name="name"/>
     <field eval="280" name="sequence"/>
     <field name="parent_id" ref="2A1" />
     <field eval="&quot;&quot;&quot;2A1V&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A1V')])]" name="account_id"/>
-    </record><record id="2A1VI" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;VI. Otras aportaciones de socios&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2A1VI" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;VI. Otras aportaciones de socios&quot;&quot;&quot;" name="name"/>
     <field eval="290" name="sequence"/>
     <field name="parent_id" ref="2A1" />
     <field eval="&quot;&quot;&quot;2A1VI&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A1VI')])]" name="account_id"/>
-    </record><record id="2A1VII" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;VII. Resultado del ejercicio&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2A1VII" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;VII. Resultado del ejercicio&quot;&quot;&quot;" name="name"/>
     <field eval="300" name="sequence"/>
     <field name="parent_id" ref="2A1" />
     <field eval="&quot;&quot;&quot;2A1VII&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A1VII')])]" name="account_id"/>
-    </record><record id="2AIVIII" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;VIII. (Dividendo a cuenta)&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2AIVIII" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;VIII. (Dividendo a cuenta)&quot;&quot;&quot;" name="name"/>
     <field eval="310" name="sequence"/>
     <field name="parent_id" ref="2A1" />
     <field eval="&quot;&quot;&quot;2AIVIII&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A1VIII')])]" name="account_id"/>
-    </record><record id="2A1IX" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;IX. Otros instrumentos de patrimonio neto&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2A1IX" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;IX. Otros instrumentos de patrimonio neto&quot;&quot;&quot;" name="name"/>
     <field eval="320" name="sequence"/>
     <field name="parent_id" ref="2A1" />
     <field eval="&quot;&quot;&quot;2A1IX&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A1IX')])]" name="account_id"/>
-    </record><record id="2A2" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;A-2) Ajustes por cambio de valor&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2A2" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;A-2) Ajustes por cambio de valor&quot;&quot;&quot;" name="name"/>
     <field eval="330" name="sequence"/>
     <field name="parent_id" ref="2A" />
     <field eval="&quot;&quot;&quot;2A2&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A2')])]" name="account_id"/>
-    </record><record id="2A3" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;A-3) Subvenciones&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2A3" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;A-3) Subvenciones&quot;&quot;&quot;" name="name"/>
     <field eval="340" name="sequence"/>
     <field name="parent_id" ref="2A" />
     <field eval="&quot;&quot;&quot;2A3&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2A3')])]" name="account_id"/>
-    </record><record id="2B" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;B) PASIVO NO CORRIENTE&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2B" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;B) PASIVO NO CORRIENTE&quot;&quot;&quot;" name="name"/>
     <field eval="350" name="sequence"/>
     <field name="parent_id" ref="PA" />
     <field eval="&quot;&quot;&quot;2B&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.ba_2B')])]" name="account_id"/>
-    </record><record id="2BI" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;I. Provisiones a largo plazo&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
+    </record>
+<record id="2BI" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;I. Provisiones a largo plazo&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2B" />
     <field eval="&quot;&quot;&quot;2BI&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2BI')])]" name="account_id"/>
-    </record><record id="2BII" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;II. Deudas a largo plazo&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2BII" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;II. Deudas a largo plazo&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2B" />
     <field eval="&quot;&quot;&quot;2BII&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.ba_2BII')])]" name="account_id"/>
-    </record><record id="2BII1" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;1. Deudas con entidades de crédito&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2BII1" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;1. Deudas con entidades de crédito&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2BII" />
     <field eval="&quot;&quot;&quot;2BII1&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2BII1')])]" name="account_id"/>
-    </record><record id="2BII2" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;2. Acreedores por arrendamiento financiero&quot;&quot;&quot;" name="name"/>
+    <field name="color_font" ref="c41" />
+    </record>
+<record id="2BII2" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;2. Acreedores por arrendamiento financiero&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2BII" />
     <field eval="&quot;&quot;&quot;2BII2&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2BII2')])]" name="account_id"/>
-    </record><record id="2BII3" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;3. Otras deudas a largo plazo&quot;&quot;&quot;" name="name"/>
+    <field name="color_font" ref="c41" />
+    </record>
+<record id="2BII3" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;3. Otras deudas a largo plazo&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2BII" />
     <field eval="&quot;&quot;&quot;2BII3&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2BII3')])]" name="account_id"/>
-    </record><record id="2BIII" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;III. Deudas con empresas del grupo y asociadas a largo plazo&quot;&quot;&quot;" name="name"/>
+    <field name="color_font" ref="c41" />
+    </record>
+<record id="2BIII" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;III. Deudas con empresas del grupo y asociadas a largo plazo&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2B" />
     <field eval="&quot;&quot;&quot;2BIII&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2BIII')])]" name="account_id"/>
-    </record><record id="2BIV" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;IV. Pasivos por impuesto diferido&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2BIV" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;IV. Pasivos por impuesto diferido&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2B" />
     <field eval="&quot;&quot;&quot;2BIV&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2BIV')])]" name="account_id"/>
-    </record><record id="2BV" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;V. Periodificaciones a largo plazo&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2BV" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;V. Periodificaciones a largo plazo&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2B" />
     <field eval="&quot;&quot;&quot;2BV&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2BV')])]" name="account_id"/>
-    </record><record id="2C" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;C) PASIVO CORRIENTE&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2C" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;C) PASIVO CORRIENTE&quot;&quot;&quot;" name="name"/>
     <field eval="440" name="sequence"/>
     <field name="parent_id" ref="PA" />
     <field eval="&quot;&quot;&quot;2C&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.ba_2C')])]" name="account_id"/>
-    </record><record id="2CI" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;I. Pasivos vinculados a activos no corrientes mantenidos venta&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
+    </record>
+<record id="2CI" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;I. Pasivos vinculados con activos no corrientes mantenidos para la venta&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2C" />
     <field eval="&quot;&quot;&quot;2CI&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2CI')])]" name="account_id"/>
-    </record><record id="2CII" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;II. Provisiones a corto plazo&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2CII" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;II. Provisiones a corto plazo&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2C" />
     <field eval="&quot;&quot;&quot;2CII&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2CII')])]" name="account_id"/>
-    </record><record id="2CIII" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;III. Deudas a corto plazo&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2CIII" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;III. Deudas a corto plazo&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2C" />
     <field eval="&quot;&quot;&quot;2CIII&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.ba_2CIII')])]" name="account_id"/>
-    </record><record id="2CIII1" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;1. Deudas con entidades de crédito&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2CIII1" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;1. Deudas con entidades de crédito&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2CIII" />
     <field eval="&quot;&quot;&quot;2CIII1&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2CIII1')])]" name="account_id"/>
-    </record><record id="2CIII2" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;2. Acreedores por arrendamientos financiero&quot;&quot;&quot;" name="name"/>
+    <field name="color_font" ref="c41" />
+    </record>
+<record id="2CIII2" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;2. Acreedores por arrendamientos financiero&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2CIII" />
     <field eval="&quot;&quot;&quot;2CIII2&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2CIII2')])]" name="account_id"/>
-    </record><record id="2CIII3" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;3. Otras deudas a corto plazo&quot;&quot;&quot;" name="name"/>
+    <field name="color_font" ref="c41" />
+    </record>
+<record id="2CIII3" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;3. Otras deudas a corto plazo&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2CIII" />
     <field eval="&quot;&quot;&quot;2CIII3&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2CIII3')])]" name="account_id"/>
-    </record><record id="2CIV" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;IV. Deudas con empresas del grupo y asociadas a corto plazo&quot;&quot;&quot;" name="name"/>
+    <field name="color_font" ref="c41" />
+    </record>
+<record id="2CIV" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;IV. Deudas con empresas del grupo y asociadas a corto plazo&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2C" />
     <field eval="&quot;&quot;&quot;2CIV&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2CIV')])]" name="account_id"/>
-    </record><record id="2CV" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;V. Acreedores comerciales y otras cuentas a pagar&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2CV" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;V. Acreedores comerciales y otras cuentas a pagar&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2C" />
     <field eval="&quot;&quot;&quot;2CV&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.ba_2CV')])]" name="account_id"/>
-    </record><record id="2CV1" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;1. Proveedores&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="2CV1" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;1. Proveedores&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2CV" />
     <field eval="&quot;&quot;&quot;2CV1&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2CV1')])]" name="account_id"/>
-    </record><record id="2CV2" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;2. Otros acreedores&quot;&quot;&quot;" name="name"/>
+    <field name="color_font" ref="c41" />
+    </record>
+<record id="2CV2" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;2. Otros acreedores&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2CV" />
     <field eval="&quot;&quot;&quot;2CV2&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2CV2')])]" name="account_id"/>
-    </record><record id="2CVI" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;VI. Periodificaciones a corto plazo&quot;&quot;&quot;" name="name"/>
+    <field name="color_font" ref="c41" />
+    </record>
+<record id="2CVI" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;VI. Periodificaciones a corto plazo&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field name="parent_id" ref="2C" />
     <field eval="&quot;&quot;&quot;2CVI&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.ba_2CVI')])]" name="account_id"/>
     </record>
-<record id="PYG" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;PYG&quot;&quot;&quot;" name="name"/>
-    <field eval="0" name="sequence"/>
-    <field eval="&quot;&quot;&quot;PYG&quot;&quot;&quot;" name="code"/>
-    <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    </record>
+
+<!-- Estado abreviado de ingresos y gastos -->
 <record id="EAIG" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;Estado Abreviado de Ingresos y Gastos&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;Estado abreviado de ingresos y gastos&quot;&quot;&quot;" name="name"/>
     <field eval="0" name="sequence"/>
     <field eval="&quot;&quot;&quot;EAIG&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
+    <field name="color_font" ref="c0" /> <!--white para ocultarlo en los reports-->
     </record>
 <record id="EABC" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;TOTAL DE INGRESOS Y GASTOS RECONOCIDOS&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;TOTAL DE INGRESOS Y GASTOS RECONOCIDOS&quot;&quot;&quot;" name="name"/>
     <field eval="150" name="sequence"/>
     <field name="parent_id" ref="EAIG" />
     <field eval="&quot;&quot;&quot;EABC&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.eaigr_EABC')])]" name="account_id"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
     </record>
 
 <record id="EA" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;A) Resultado de la cuenta de perdidas y ganancias&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;A) Resultado de la cuenta de perdidas y ganancias&quot;&quot;&quot;" name="name"/>
     <field eval="10" name="sequence"/>
     <field name="parent_id" ref="EAIG" />
     <field eval="&quot;&quot;&quot;EA&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.eaigr_EA')])]" name="account_id"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
     </record>
 <record id="EBp" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;Ingresos y gastos imputados directamente al patrimonio neto&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;Ingresos y gastos imputados directamente al patrimonio neto&quot;&quot;&quot;" name="name"/>
     <field eval="20" name="sequence"/>
     <field name="parent_id" ref="EAIG" />
     <field eval="&quot;&quot;&quot;EBp&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     </record>
 <record id="EB" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;B) Total Ingresos y gastos imputados directamente al patrimonio &quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;B) Total ingresos y gastos imputados directamente al patrimonio&quot;&quot;&quot;" name="name"/>
     <field eval="80" name="sequence"/>
     <field name="parent_id" ref="EAIG" />
     <field eval="&quot;&quot;&quot;EB&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.eaigr_EB')])]" name="account_id"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
     </record>
 <record id="ECp" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;Transferencias a la cuenta de pérdidas y ganacias&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;Transferencias a la cuenta de pérdidas y ganacias&quot;&quot;&quot;" name="name"/>
     <field eval="90" name="sequence"/>
     <field name="parent_id" ref="EAIG" />
     <field eval="&quot;&quot;&quot;ECp&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     </record>
 <record id="EBI" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;I. Por valoración de instrumentos financieros&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;I. Por valoración de instrumentos financieros&quot;&quot;&quot;" name="name"/>
     <field eval="30" name="sequence"/>
     <field name="parent_id" ref="EBp" />
     <field eval="&quot;&quot;&quot;EBI&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.eaigr_EBI')])]" name="account_id"/>
-    </record><record id="EBII" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;II. Por cobertura de flujos de efectivo&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="EBII" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;II. Por cobertura de flujos de efectivo&quot;&quot;&quot;" name="name"/>
     <field eval="40" name="sequence"/>
     <field name="parent_id" ref="EBp" />
     <field eval="&quot;&quot;&quot;EBII&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.eaigr_EBII')])]" name="account_id"/>
-    </record><record id="EBIII" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;III. Subvenciones&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="EBIII" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;III. Subvenciones&quot;&quot;&quot;" name="name"/>
     <field eval="50" name="sequence"/>
     <field name="parent_id" ref="EBp" />
     <field eval="&quot;&quot;&quot;EBIII&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.eaigr_EBIII')])]" name="account_id"/>
-    </record><record id="EBIV" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;IV. Por ganancias y pérdidas actuariles y otros ajustes&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="EBIV" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;IV. Por ganancias y pérdidas actuariles y otros ajustes&quot;&quot;&quot;" name="name"/>
     <field eval="60" name="sequence"/>
     <field name="parent_id" ref="EBp" />
     <field eval="&quot;&quot;&quot;EBIV&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.eaigr_EBIV')])]" name="account_id"/>
-    </record><record id="EBV" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;V. Efecto impositivo&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="EBV" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;V. Efecto impositivo&quot;&quot;&quot;" name="name"/>
     <field eval="70" name="sequence"/>
     <field name="parent_id" ref="EBp" />
     <field eval="&quot;&quot;&quot;EBV&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.eaigr_EBV')])]" name="account_id"/>
-    </record><record id="EC" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;C) Total transferencias a la cuenta de pérdidas y ganancias&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="EC" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;C) Total transferencias a la cuenta de pérdidas y ganancias&quot;&quot;&quot;" name="name"/>
     <field eval="140" name="sequence"/>
     <field name="parent_id" ref="EAIG" />
     <field eval="&quot;&quot;&quot;EC&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.eaigr_EC')])]" name="account_id"/>
-    </record><record id="ECVI" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;VI. Por valoración de instrumentos financieros&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
+    </record>
+<record id="ECVI" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;VI. Por valoración de instrumentos financieros&quot;&quot;&quot;" name="name"/>
     <field eval="100" name="sequence"/>
     <field name="parent_id" ref="ECp" />
     <field eval="&quot;&quot;&quot;ECVI&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.eaigr_ECVI')])]" name="account_id"/>
-    </record><record id="ECVII" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;VII. Por coberturas de flujos de efectivo&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="ECVII" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;VII. Por coberturas de flujos de efectivo&quot;&quot;&quot;" name="name"/>
     <field eval="110" name="sequence"/>
     <field name="parent_id" ref="ECp" />
     <field eval="&quot;&quot;&quot;ECVII&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.eaigr_ECVII')])]" name="account_id"/>
-    </record><record id="ECVIII" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;VIII. Subvenciones&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="ECVIII" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;VIII. Subvenciones&quot;&quot;&quot;" name="name"/>
     <field eval="120" name="sequence"/>
     <field name="parent_id" ref="ECp" />
     <field eval="&quot;&quot;&quot;ECVIII&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.eaigr_ECVIII')])]" name="account_id"/>
-    </record><record id="ECIX" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;IX. Efecto impositivo&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="ECIX" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;IX. Efecto impositivo&quot;&quot;&quot;" name="name"/>
     <field eval="130" name="sequence"/>
     <field name="parent_id" ref="ECp" />
     <field eval="&quot;&quot;&quot;ECIX&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.eaigr_ECIX')])]" name="account_id"/>
-    </record><record id="PD" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;D) RESULTADO DEL EJERCICIO&quot;&quot;&quot;" name="name"/>
+    </record>
+
+<!-- Pérdidas y ganancias -->
+<record id="PYG" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;Pérdidas y ganancias&quot;&quot;&quot;" name="name"/>
+    <field eval="0" name="sequence"/>
+    <field eval="&quot;&quot;&quot;PYG&quot;&quot;&quot;" name="code"/>
+    <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
+    <field name="color_font" ref="c0" /> <!--white para ocultarlo en los reports-->
+    </record>
+<record id="PD" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;D) RESULTADO DEL EJERCICIO&quot;&quot;&quot;" name="name"/>
     <field eval="210" name="sequence"/>
     <field name="parent_id" ref="PYG" />
     <field eval="&quot;&quot;&quot;PD&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PD')])]" name="account_id"/>
-    </record><record id="PC" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;C) RESULTADO ANTES DE IMPUESTOS&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
+    </record>
+<record id="PC" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;C) RESULTADO ANTES DE IMPUESTOS&quot;&quot;&quot;" name="name"/>
     <field eval="190" name="sequence"/>
     <field name="parent_id" ref="PYG" />
     <field eval="&quot;&quot;&quot;PC&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PC')])]" name="account_id"/>
-    </record><record id="PC17" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;17. Impuestos sobre beneficios&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
+    </record>
+<record id="PC17" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;17. Impuestos sobre beneficios&quot;&quot;&quot;" name="name"/>
     <field eval="200" name="sequence"/>
     <field name="parent_id" ref="PYG" />
     <field eval="&quot;&quot;&quot;PC17&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PC17')])]" name="account_id"/>
-    </record><record id="PA-PA" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;A) RESULTADO DE EXPLOTACIÓN&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PA-PA" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;A) RESULTADO DE EXPLOTACIÓN&quot;&quot;&quot;" name="name"/>
     <field eval="120" name="sequence"/>
     <field name="parent_id" ref="PYG" />
     <field eval="&quot;&quot;&quot;PA-PA&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PA')])]" name="account_id"/>
-    </record><record id="PA1" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;1. Importe neto de la cigfra de negocios&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
+    </record>
+<record id="PA1" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;1. Importe neto de la cifra de negocios&quot;&quot;&quot;" name="name"/>
     <field eval="10" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PA-PA" />
     <field eval="&quot;&quot;&quot;PA1&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PA1')])]" name="account_id"/>
-    </record><record id="PA2" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;2. Variación de existencias de productos terminados y en curso &quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PA2" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;2. Variación de existencias de productos terminados y en curso de fabricación&quot;&quot;&quot;" name="name"/>
     <field eval="20" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PA-PA" />
     <field eval="&quot;&quot;&quot;PA2&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PA2')])]" name="account_id"/>
-    </record><record id="PA3" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;3. Trabajos realizados por la empresa para su activo&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PA3" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;3. Trabajos realizados por la empresa para su activo&quot;&quot;&quot;" name="name"/>
     <field eval="30" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PA-PA" />
     <field eval="&quot;&quot;&quot;PA3&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PA3')])]" name="account_id"/>
-    </record><record id="PA4" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;4. Aprovisionamientos&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PA4" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;4. Aprovisionamientos&quot;&quot;&quot;" name="name"/>
     <field eval="40" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PA-PA" />
     <field eval="&quot;&quot;&quot;PA4&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PA4')])]" name="account_id"/>
-    </record><record id="PA5" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;5. Otros ingresos de explotación&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PA5" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;5. Otros ingresos de explotación&quot;&quot;&quot;" name="name"/>
     <field eval="50" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PA-PA" />
     <field eval="&quot;&quot;&quot;PA5&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PA5')])]" name="account_id"/>
-    </record><record id="PA6" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;6. Gastos de personal&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PA6" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;6. Gastos de personal&quot;&quot;&quot;" name="name"/>
     <field eval="60" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PA-PA" />
     <field eval="&quot;&quot;&quot;PA6&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PA6')])]" name="account_id"/>
-    </record><record id="PA7" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;7. Otros gastos de explotación&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PA7" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;7. Otros gastos de explotación&quot;&quot;&quot;" name="name"/>
     <field eval="70" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PA-PA" />
     <field eval="&quot;&quot;&quot;PA7&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PA7')])]" name="account_id"/>
-    </record><record id="PA8" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;8. Amortización del inmovilizado&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PA8" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;8. Amortización del inmovilizado&quot;&quot;&quot;" name="name"/>
     <field eval="80" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PA-PA" />
     <field eval="&quot;&quot;&quot;PA8&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PA8')])]" name="account_id"/>
-    </record><record id="PA9" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;9. Imputación de subvenciones de inmovilizado no financiero y o&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PA9" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;9. Imputación de subvenciones de inmovilizado no financiero y otras&quot;&quot;&quot;" name="name"/>
     <field eval="90" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PA-PA" />
     <field eval="&quot;&quot;&quot;PA9&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PA9')])]" name="account_id"/>
-    </record><record id="PA10" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;10. Excesos de provisiones&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PA10" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;10. Excesos de provisiones&quot;&quot;&quot;" name="name"/>
     <field eval="100" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PA-PA" />
     <field eval="&quot;&quot;&quot;PA10&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PA10')])]" name="account_id"/>
-    </record><record id="PA11" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;11. Deterioro y resultado por enajenaciones del imovilizado&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PA11" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;11. Deterioro y resultado por enajenaciones del imovilizado&quot;&quot;&quot;" name="name"/>
     <field eval="120" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PA-PA" />
     <field eval="&quot;&quot;&quot;PA11&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PA11')])]" name="account_id"/>
-    </record><record id="PB" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;B) RESULTADO FINANCIERO&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PB" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;B) RESULTADO FINANCIERO&quot;&quot;&quot;" name="name"/>
     <field eval="180" name="sequence"/>
     <field name="parent_id" ref="PYG" />
     <field eval="&quot;&quot;&quot;PB&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
-    <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PB')])]" name="account_id"/>
-    </record><record id="PB12" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;12. Ingresos financieros&quot;&quot;&quot;" name="name"/>
+    <field eval="&quot;&quot;&quot;Helvetica-Bold&quot;&quot;&quot;" name="font_style"/>
+    </record>
+<record id="PB12" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;12. Ingresos financieros&quot;&quot;&quot;" name="name"/>
     <field eval="130" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PB" />
     <field eval="&quot;&quot;&quot;PB12&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PB12')])]" name="account_id"/>
-    </record><record id="PB13" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;13. Gastos financieros&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PB13" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;13. Gastos financieros&quot;&quot;&quot;" name="name"/>
     <field eval="140" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PB" />
     <field eval="&quot;&quot;&quot;PB13&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PB13')])]" name="account_id"/>
-    </record><record id="PB14" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;14. Variación de valor razonable en instrumentos financiero&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PB14" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;14. Variación de valor razonable en instrumentos financieros&quot;&quot;&quot;" name="name"/>
     <field eval="150" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PB" />
     <field eval="&quot;&quot;&quot;PB14&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PB14')])]" name="account_id"/>
-    </record><record id="PB15" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;15. Diferencias de cambio&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PB15" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;15. Diferencias de cambio&quot;&quot;&quot;" name="name"/>
     <field eval="160" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PB" />
     <field eval="&quot;&quot;&quot;PB15&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PB15')])]" name="account_id"/>
-    </record><record id="PB16" model="account.report.bs">
-        <field eval="&quot;&quot;&quot;16. Deterioro y resultado por enajjenaciones de instrumentos fin&quot;&quot;&quot;" name="name"/>
+    </record>
+<record id="PB16" model="account.report.bs">
+    <field eval="&quot;&quot;&quot;16. Deterioro y resultado por enajenaciones de instrumentos financieros&quot;&quot;&quot;" name="name"/>
     <field eval="170" name="sequence"/>
-    <field name="parent_id" ref="PYG" />
+    <field name="parent_id" ref="PB" />
     <field eval="&quot;&quot;&quot;PB16&quot;&quot;&quot;" name="code"/>
     <field eval="&quot;&quot;&quot;only_obj&quot;&quot;&quot;" name="report_type"/>
     <field eval="[(6,0,[ref('l10n_chart_ES.pyg_PB16')])]" name="account_id"/>
-    </record></data>
+    </record>
+</data>
 </openerp>

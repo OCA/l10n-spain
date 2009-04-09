@@ -51,36 +51,36 @@ class account_report_bs(osv.osv):
     _name = "account.report.bs"
     _description = "Account reporting for Balance Sheet"
     _font = [
-             ('',''),
-             ('Courier','Courier'),
-             ('Courier-Bold','Courier-Bold'),
-             ('Courier-BoldOblique','Courier-BoldOblique'),
-             ('Courier-Oblique','Courier-Oblique'),
-             ('Helvetica','Helvetica'),
-             ('Helvetica-Bold','Helvetica-Bold'),
-             ('Helvetica-Oblique','Helvetica-Oblique'),
-             ('Times-Bold','Times-Bold'),
-             ('Times-BoldItalic','Times-BoldItalic'),
-             ('Times-Italic','Times-Italic'),
-             ('Times-Roman','Times-Roman'),
-            ]
+        ('',''),
+        ('Courier','Courier'),
+        ('Courier-Bold','Courier-Bold'),
+        ('Courier-BoldOblique','Courier-BoldOblique'),
+        ('Courier-Oblique','Courier-Oblique'),
+        ('Helvetica','Helvetica'),
+        ('Helvetica-Bold','Helvetica-Bold'),
+        ('Helvetica-Oblique','Helvetica-Oblique'),
+        ('Times-Bold','Times-Bold'),
+        ('Times-BoldItalic','Times-BoldItalic'),
+        ('Times-Italic','Times-Italic'),
+        ('Times-Roman','Times-Roman'),
+    ]
     _color = [
-            ('', ''),
-            ('green','Green'),
-            ('red','Red'),
-            ('pink','Pink'),
-            ('blue','Blue'),
-            ('yellow','Yellow'),
-            ('cyan','Cyan'),
-            ('lightblue','Light Blue'),
-            ('orange','Orange'),
-            ]
+        ('', ''),
+        ('green','Green'),
+        ('red','Red'),
+        ('pink','Pink'),
+        ('blue','Blue'),
+        ('yellow','Yellow'),
+        ('cyan','Cyan'),
+        ('lightblue','Light Blue'),
+        ('orange','Orange'),
+    ]
     _style = [
-            ('', ''),
-            ('h1','Header 1'),
-            ('h2','Header 2'),
-            ('h3','Header 3'),
-            ]
+        ('', ''),
+        ('h1','Header 1'),
+        ('h2','Header 2'),
+        ('h3','Header 3'),
+    ]
 
     def onchange_parent_id(self, cr, uid, ids, parent_id):
         v={}
@@ -92,7 +92,7 @@ class account_report_bs(osv.osv):
         return {'value': v}
 
     _columns = {
-        'name': fields.char('Name', size=64, required=True),
+        'name': fields.char('Name', size=128, required=True),
         'sequence': fields.integer('Sequence'),
         'code': fields.char('Code', size=64, required=True),
         'account_id': fields.many2many('account.account', 'account_report_rel', 'report_id', 'account_id', 'Accounts'),
@@ -108,9 +108,9 @@ class account_report_bs(osv.osv):
     _defaults = {
         'report_type': lambda *a :'only_obj'
     }
-    
+
     _order = 'sequence'
-    
+
     def name_search(self, cr, user, name, args=None, operator='ilike', context=None, limit=80):
         if not args:
             args=[]
