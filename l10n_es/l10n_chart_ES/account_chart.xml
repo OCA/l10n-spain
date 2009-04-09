@@ -2370,7 +2370,7 @@
         <field name="close_method">none</field>
         <field name="parent_id" eval="[(6, 0, [ref('pgc_5')])]"/>
         <field name="type">view</field>
-        <field name="name">Deudas a corto plazo por pŕestamos recibidos y otros conceptos</field></record><record id="pgc_520" model="account.account">
+        <field name="name">Deudas a corto plazo por préstamos recibidos y otros conceptos</field></record><record id="pgc_520" model="account.account">
         <field name="code">520</field>
         <field name="reconcile" eval="False"/>
         <field name="close_method">none</field>
@@ -4242,7 +4242,7 @@
         <field name="close_method">none</field>
         <field name="parent_id" eval="[(6, 0, [ref('pgc_7')])]"/>
         <field name="type">view</field>
-        <field name="name">Ventas de mercadeŕias, de producción propia, de servicios, etc.</field></record><record id="pgc_700" model="account.account">
+        <field name="name">Ventas de mercaderías, de producción propia, de servicios, etc.</field></record><record id="pgc_700" model="account.account">
         <field name="code">700</field>
         <field name="reconcile" eval="False"/>
         <field name="close_method">none</field>

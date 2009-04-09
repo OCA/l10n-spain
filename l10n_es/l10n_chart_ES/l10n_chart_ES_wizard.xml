@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <terp>
-    <data>
+<data>
 
 <record model="ir.actions.wizard" id="wizard_crear_cuentas">
-    <field name="name">Crear plan de cuentas</field>
-    <field name="wiz_name">l10n_chart_ES_2008.crearcuentas</field>
+	<field name="name">Crear plan de cuentas</field>
+	<field name="wiz_name">l10n_chart_ES_2008.crearcuentas</field>
 </record>
-
 <menuitem
-    name="Financial Management/Configuration/Crear Plan de Cuentas"
-    action="wizard_crear_cuentas"
-    type="wizard"
-    id="l10n_chart_ES_2008_crear_cuentas"/>
+	name="Financial Management/Configuration/Crear Plan de Cuentas"
+	action="wizard_crear_cuentas"
+	type="wizard"
+	id="l10n_chart_ES_2008_crear_cuentas"/>
 
 <wizard
-       string="Close a fiscal year (ES)"
-       model="account.fiscalyear"
-       name="l10n_es.fiscalyear.close"
-       menu="False"
-       id="wizard_l10n_fiscalyear_close"/>
+	string="Cerrar un ejercicio fiscal (ES)"
+	model="account.fiscalyear"
+	name="l10n_chart_ES.fiscalyear.close"
+	menu="False"
+	id="wizard_l10n_chart_ES_fiscalyear_close"/>
 <menuitem
-	 name="Financial Management/End of Year Treatments/Close a Fiscal Year(ES)"
-	 action="wizard_l10n_fiscalyear_close"
-	 type="wizard"
-         id="menu_wizard_l10n_fy_close"/>
-
+	name="Financial Management/End of Year Treatments/Cerrar un ejercicio fiscal (ES)"
+	action="wizard_l10n_chart_ES_fiscalyear_close"
+	type="wizard"
+	id="menu_wizard_l10n_fy_close"/>
 
 </data>
 </terp>
