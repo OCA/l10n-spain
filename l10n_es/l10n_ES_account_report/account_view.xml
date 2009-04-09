@@ -20,7 +20,7 @@
 					<field name="report_type" />
 					<newline/>
 					<separator string="Accounts" colspan="4"/>
-						<field name="account_id" colspan="4" nolable="1" domain="[('type','=','view')]"/>
+						<field name="account_id" colspan="4" nolabel="1" domain="[('type','=','view')]"/>
 				</page><page string="Notes">
 					<field name="note" nolabel="1" colspan="4"/>
 				</page>
@@ -48,7 +48,7 @@
 		<field name="view_type">tree</field>
 		<field name="view_id" ref="view_account_report_tree_bs"/>
 	</record>
-	<menuitem name="Financial Management/Configuration/Balance Sheet Report/Balance Sheet Report Tree" id="action_account_report_bs_form" action="action_account_tree_bs"/>
+	<menuitem name="Financial Management/Reporting/Balance Sheet Report" id="action_account_report_bs_form" action="action_account_tree_bs"/>
 
 	<record model="ir.actions.act_window" id="acc_bs_report_action_form">
 		<field name="type">ir.actions.act_window</field>
@@ -56,7 +56,7 @@
 		<field name="view_type">form</field>
 		<field name="view_id" ref="view_account_report_tree_bs"/>
 	</record>
-	<menuitem name="Financial Management/Configuration/Balance Sheet Report/Balance Sheet Report Form" id="bs_report_action_form" action="acc_bs_report_action_form"/>
+	<menuitem name="Financial Management/Configuration/Balance Sheet Report/Balance Sheet Report definition" id="bs_report_action_form" action="acc_bs_report_action_form"/>
 
 </data>
 </terp>
