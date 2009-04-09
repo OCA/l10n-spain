@@ -484,7 +484,7 @@
 		<field name="reconcile" eval="False"/>
 		<field name="parent_id" ref="pgc_5"/>
 		<field name="type">view</field>
-		<field name="name">Deudas a corto plazo por pŕestamos recibidos y otros conceptos</field>
+		<field name="name">Deudas a corto plazo por préstamos recibidos y otros conceptos</field>
 		<field name="user_type" ref="financieras"/>
 	</record>
 	
@@ -646,7 +646,7 @@
 		<field name="reconcile" eval="False"/>
 		<field name="parent_id" ref="pgc_7"/>
 		<field name="type">view</field>
-		<field name="name">Ventas de mercadeŕias, de producción propia, de servicios, etc.</field>
+		<field name="name">Ventas de mercaderías, de producción propia, de servicios, etc.</field>
 		<field name="user_type" ref="ingresos"/>
 	</record>
 	
@@ -1231,7 +1231,7 @@
 		<field name="reconcile" eval="False"/>
 		<field name="parent_id" ref="pgc_17"/>
 		<field name="type">other</field>
-		<field name="name">Deudas  transformables en subvenciones, donaciones y legados</field>
+		<field name="name">Deudas transformables en subvenciones, donaciones y legados</field>
 		<field name="user_type" ref="capital"/>
 	</record>
 	
