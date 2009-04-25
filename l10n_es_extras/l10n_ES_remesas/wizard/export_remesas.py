@@ -147,7 +147,7 @@ def _create_payment_file(self, cr, uid, data, context):
         nombre = conv_ascii(recibo['partner_id'].name)
         texto += nombre[0:40].ljust(40)
         texto += str(ccc)[0:20].zfill(20)
-        importe = int(round(recibo['amount']*100,0))
+        importe = int(round(-recibo['amount']*100,0))
         texto += str(importe).zfill(10)
         texto += 16*' '
         concepto = ''
@@ -251,7 +251,7 @@ def _create_payment_file(self, cr, uid, data, context):
         nombre = conv_ascii(recibo['partner_id'].name)
         texto += nombre[0:40].ljust(40)
         texto += str(ccc)[0:20].zfill(20)
-        importe = int(round(recibo['amount']*100,0))
+        importe = int(round(-recibo['amount']*100,0))
         texto += str(importe).zfill(10)
         texto += 16*' '
         concepto = ''
@@ -285,7 +285,7 @@ def _create_payment_file(self, cr, uid, data, context):
         texto += str(recibo['name']).zfill(12)
         texto += conv_ascii(recibo['partner_id'].name).ljust(40)
         texto += str(recibo['bank_id'].acc_number)[0:20].zfill(20)
-        importe = int(recibo['amount']*100)
+        importe = int(-recibo['amount']*100)
         texto += str(importe).zfill(10)
         texto += 16*' '
         concepto = ''
