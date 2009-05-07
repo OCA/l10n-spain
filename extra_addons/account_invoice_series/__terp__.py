@@ -9,6 +9,6 @@
     "update_xml" : [
         "invoice_series_view.xml"
     ],
-    "active": True,
+    "active": False,
     "installable": True
 }
