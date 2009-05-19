@@ -177,164 +177,164 @@
 			<field name="parent_id" ref="vat_code_chart_root"/>
 		</record>
 		
-		<!-- Base en OPERACIONES INTERIORES CORRIENTES--> 
+		<!-- Base en OPERACIONES INTERIORES CORRIENTES-->
 		<record id="iva_ded_22" model="account.tax.code.template">
-			<field name="name">Base en operaciones interiores corrientes</field>
+			<field name="name">Base operaciones interiores corrientes</field>
 			<field name="code">[22]</field>
 			<field name="parent_id" ref="iva_ded_base_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_22_16" model="account.tax.code.template">
-			<field name="name">Base en operaciones interiores corrientes (16%)</field>
+			<field name="name">Base operaciones interiores corrientes (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_22"/>
 			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_ded_22_7" model="account.tax.code.template">
-			<field name="name">Base en operaciones interiores corrientes (7%)</field>
+			<field name="name">Base operaciones interiores corrientes (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_22"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_22_4" model="account.tax.code.template">
-			<field name="name">Base en operaciones interiores corrientes (4%)</field>
+			<field name="name">Base operaciones interiores corrientes (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_22"/>
 			<field name="sign">1.0</field>
 		</record>
 		
-		<!-- Base en OPERACIONES INTERIORES CON BIENES DE INVERSIÓN--> 
+		<!-- Base en OPERACIONES INTERIORES CON BIENES DE INVERSIÓN-->
 		<record id="iva_ded_24" model="account.tax.code.template">
-			<field name="name">Base en operaciones interiores con bienes de inversión</field>
+			<field name="name">Base operaciones interiores bienes inversión</field>
 			<field name="code">[24]</field>
 			<field name="parent_id" ref="iva_ded_base_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_24_16" model="account.tax.code.template">
-			<field name="name">Base en operaciones interiores con bienes de inversión (16%)</field>
+			<field name="name">Base operaciones interiores bienes inversión (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_24"/>
 			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_ded_24_7" model="account.tax.code.template">
-			<field name="name">Base en operaciones interiores con bienes de inversión (7%)</field>
+			<field name="name">Base operaciones interiores bienes inversión (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_24"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_24_4" model="account.tax.code.template">
-			<field name="name">Base en operaciones interiores con bienes de inversión (4%)</field>
+			<field name="name">Base operaciones interiores bienes inversión (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_24"/>
 			<field name="sign">1.0</field>
 		</record>
 		
 		
-		<!-- Base EN LAS IMPORTACIONES DE BIENES CORRIENTES--> 
+		<!-- Base EN LAS IMPORTACIONES DE BIENES CORRIENTES-->
 		<record id="iva_ded_26" model="account.tax.code.template">
-			<field name="name">Base en las importaciones de bienes corrientes</field>
+			<field name="name">Base importaciones bienes corrientes</field>
 			<field name="code">[26]</field>
 			<field name="parent_id" ref="iva_ded_base_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_26_16" model="account.tax.code.template">
-			<field name="name">Base en las importaciones de bienes corrientes (16%)</field>
+			<field name="name">Base importaciones bienes corrientes (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_26"/>
 			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_ded_26_7" model="account.tax.code.template">
-			<field name="name">Base en las importaciones de bienes corrientes (7%)</field>
+			<field name="name">Base importaciones bienes corrientes (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_26"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_26_4" model="account.tax.code.template">
-			<field name="name">Base en las importaciones de bienes corrientes (4%)</field>
+			<field name="name">Base importaciones bienes corrientes (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_26"/>
 			<field name="sign">1.0</field>
 		</record>
 		
-		<!-- Base EN LAS IMPORTACIONES DE BIENES DE INVERSIÓN--> 
+		<!-- Base EN LAS IMPORTACIONES DE BIENES DE INVERSIÓN-->
 		<record id="iva_ded_28" model="account.tax.code.template">
-			<field name="name">Base en las importaciones de bienes de inversión</field>
+			<field name="name">Base importaciones bienes inversión</field>
 			<field name="code">[28]</field>
 			<field name="parent_id" ref="iva_ded_base_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_28_16" model="account.tax.code.template">
-			<field name="name">Base en las importaciones de bienes de inversión (16%)</field>
+			<field name="name">Base importaciones bienes inversión (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_28"/>
 			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_ded_28_7" model="account.tax.code.template">
-			<field name="name">Base en las importaciones de bienes de inversión (7%)</field>
+			<field name="name">Base importaciones bienes inversión (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_28"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_28_4" model="account.tax.code.template">
-			<field name="name">Base en las importaciones de bienes de inversión (4%)</field>
+			<field name="name">Base importaciones bienes inversión (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_28"/>
 			<field name="sign">1.0</field>
 		</record>
 		
-		<!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES CORRIENTES--> 
+		<!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES CORRIENTES-->
 		<record id="iva_ded_30" model="account.tax.code.template">
-			<field name="name">Base en adquisiciones intracomunitarias de bienes corrientes</field>
+			<field name="name">Base adquisiciones intracomunitarias bienes corrientes</field>
 			<field name="code">[30]</field>
 			<field name="parent_id" ref="iva_ded_base_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_30_16" model="account.tax.code.template">
-			<field name="name">Base en adquisiciones intracomunitarias de bienes corrientes (16%)</field>
+			<field name="name">Base adquisiciones intracomunitarias bienes corrientes (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_30"/>
 			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_ded_30_7" model="account.tax.code.template">
-			<field name="name">Base en adquisiciones intracomunitarias de bienes corrientes (7%)</field>
+			<field name="name">Base adquisiciones intracomunitarias bienes corrientes (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_30"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_30_4" model="account.tax.code.template">
-			<field name="name">Base en adquisiciones intracomunitarias de bienes corrientes (4%)</field>
+			<field name="name">Base adquisiciones intracomunitarias bienes corrientes (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_30"/>
 			<field name="sign">1.0</field>
 		</record>
 		
-		<!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES DE INVERSIÓN--> 
+		<!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES DE INVERSIÓN-->
 		<record id="iva_ded_32" model="account.tax.code.template">
-			<field name="name">Base en adquisiciones intracomunitarias de bienes de inversión</field>
+			<field name="name">Base adquisiciones intracomunitarias bienes inversión</field>
 			<field name="code">[32]</field>
 			<field name="parent_id" ref="iva_ded_base_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_32_16" model="account.tax.code.template">
-			<field name="name">Base en adquisiciones intracomunitarias de bienes de inversión (16%)</field>
+			<field name="name">Base adquisiciones intracomunitarias bienes inversión (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_32"/>
 			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_ded_32_7" model="account.tax.code.template">
-			<field name="name">Base en adquisiciones intracomunitarias de bienes de inversión (7%)</field>
+			<field name="name">Base adquisiciones intracomunitarias bienes inversión (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_32"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_32_4" model="account.tax.code.template">
-			<field name="name">Base en adquisiciones intracomunitarias de bienes de inversión (4%)</field>
+			<field name="name">Base adquisiciones intracomunitarias bienes inversión (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_32"/>
 			<field name="sign">1.0</field>
@@ -351,186 +351,185 @@
 			<field name="parent_id" ref="vat_code_chart_root"/>
 			<field name="sign">1.0</field>
 		</record>
-	   <!-- Cuotas en OPERACIONES INTERIORES CORRIENTES--> 
+
+		<!-- Cuotas en OPERACIONES INTERIORES CORRIENTES-->
 		<record id="iva_ded_23" model="account.tax.code.template">
-			<field name="name">Cuotas soportadas en operaciones interiores corrientes</field>
+			<field name="name">Cuotas soportadas operaciones interiores corrientes</field>
 			<field name="code">[23]</field>
 			<field name="parent_id" ref="iva_ded_cuota_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_23_16" model="account.tax.code.template">
-			<field name="name">Cuotas soportadas en operaciones interiores corrientes (16%)</field>
+			<field name="name">Cuotas soportadas operaciones interiores corrientes (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_23"/>
 			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_ded_23_7" model="account.tax.code.template">
-			<field name="name">Cuotas soportadas en operaciones interiores corrientes (7%)</field>
+			<field name="name">Cuotas soportadas operaciones interiores corrientes (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_23"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_23_4" model="account.tax.code.template">
-			<field name="name">Cuotas soportadas en operaciones interiores corrientes (4%)</field>
+			<field name="name">Cuotas soportadas operaciones interiores corrientes (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_23"/>
 			<field name="sign">1.0</field>
 		</record>
 		
-		<!-- Cuotas en OPERACIONES INTERIORES CON BIENES DE INVERSIÓN--> 
+		<!-- Cuotas en OPERACIONES INTERIORES CON BIENES DE INVERSIÓN-->
 		<record id="iva_ded_25" model="account.tax.code.template">
-			<field name="name">Cuotas soportadas en operaciones interiores con bienes de inversión</field>
+			<field name="name">Cuotas soportadas operaciones interiores bienes inversión</field>
 			<field name="code">[25]</field>
 			<field name="parent_id" ref="iva_ded_cuota_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_25_16" model="account.tax.code.template">
-			<field name="name">Cuotas soportadas en operaciones interiores con bienes de inversión (16%)</field>
+			<field name="name">Cuotas soportadas operaciones interiores bienes inversión (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_25"/>
 			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_ded_25_7" model="account.tax.code.template">
-			<field name="name">Cuotas soportadas en operaciones interiores con bienes de inversión (7%)</field>
+			<field name="name">Cuotas soportadas operaciones interiores bienes inversión (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_25"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_25_4" model="account.tax.code.template">
-			<field name="name">Cuotas soportadas en operaciones interiores con bienes de inversión (4%)</field>
+			<field name="name">Cuotas soportadas operaciones interiores bienes inversión (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_25"/>
 			<field name="sign">1.0</field>
 		</record>
 		
-		
-		<!-- Cuotas devengadas EN LAS IMPORTACIONES DE BIENES CORRIENTES--> 
+		<!-- Cuotas devengadas EN LAS IMPORTACIONES DE BIENES CORRIENTES-->
 		<record id="iva_ded_27" model="account.tax.code.template">
-			<field name="name">Cuotas devengadas en las importaciones de bienes corrientes</field>
+			<field name="name">Cuotas devengadas importaciones bienes corrientes</field>
 			<field name="code">[27]</field>
 			<field name="parent_id" ref="iva_ded_cuota_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_27_16" model="account.tax.code.template">
-			<field name="name">Cuotas devengadas en las importaciones de bienes corrientes (16%)</field>
+			<field name="name">Cuotas devengadas importaciones bienes corrientes (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_27"/>
 			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_ded_27_7" model="account.tax.code.template">
-			<field name="name">Cuotas devengadas en las importaciones de bienes corrientes (7%)</field>
+			<field name="name">Cuotas devengadas importaciones bienes corrientes (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_27"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_27_4" model="account.tax.code.template">
-			<field name="name">Cuotas devengadas en las importaciones de bienes corrientes (4%)</field>
+			<field name="name">Cuotas devengadas importaciones bienes corrientes (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_27"/>
 			<field name="sign">1.0</field>
 		</record>
 		
-		<!-- Cuotas devengadas EN LAS IMPORTACIONES DE BIENES DE INVERSIÓN--> 
+		<!-- Cuotas devengadas EN LAS IMPORTACIONES DE BIENES DE INVERSIÓN-->
 		<record id="iva_ded_29" model="account.tax.code.template">
-			<field name="name">Cuotas devengadas en las importaciones de bienes de inversión</field>
+			<field name="name">Cuotas devengadas importaciones bienes inversión</field>
 			<field name="code">[29]</field>
 			<field name="parent_id" ref="iva_ded_cuota_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_29_16" model="account.tax.code.template">
-			<field name="name">Cuotas devengadas en las importaciones de bienes de inversión (16%)</field>
+			<field name="name">Cuotas devengadas importaciones bienes inversión (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_29"/>
 			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_ded_29_7" model="account.tax.code.template">
-			<field name="name">Cuotas devengadas en las importaciones de bienes de inversión (7%)</field>
+			<field name="name">Cuotas devengadas importaciones bienes inversión (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_29"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_29_4" model="account.tax.code.template">
-			<field name="name">Cuotas devengadas en las importaciones de bienes de inversión (4%)</field>
+			<field name="name">Cuotas devengadas importaciones bienes inversión (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_29"/>
 			<field name="sign">1.0</field>
 		</record>
 		
-		<!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES CORRIENTES--> 
+		<!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES CORRIENTES-->
 		<record id="iva_ded_31" model="account.tax.code.template">
-			<field name="name">En adquisiciones intracomunitarias de bienes corrientes</field>
+			<field name="name">En adquisiciones intracomunitarias bienes corrientes</field>
 			<field name="code">[31]</field>
 			<field name="parent_id" ref="iva_ded_cuota_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_31_16" model="account.tax.code.template">
-			<field name="name">En adquisiciones intracomunitarias de bienes corrientes (16%)</field>
+			<field name="name">En adquisiciones intracomunitarias bienes corrientes (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_31"/>
 			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_ded_31_7" model="account.tax.code.template">
-			<field name="name">En adquisiciones intracomunitarias de bienes corrientes (7%)</field>
+			<field name="name">En adquisiciones intracomunitarias bienes corrientes (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_31"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_31_4" model="account.tax.code.template">
-			<field name="name">En adquisiciones intracomunitarias de bienes corrientes (4%)</field>
+			<field name="name">En adquisiciones intracomunitarias bienes corrientes (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_31"/>
 			<field name="sign">1.0</field>
 		</record>
 		
-		<!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES DE INVERSIÓN--> 
+		<!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES DE INVERSIÓN-->
 		<record id="iva_ded_33" model="account.tax.code.template">
-			<field name="name">En adquisiciones intracomunitarias de bienes de inversión</field>
+			<field name="name">En adquisiciones intracomunitarias bienes inversión</field>
 			<field name="code">[33]</field>
 			<field name="parent_id" ref="iva_ded_cuota_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_33_16" model="account.tax.code.template">
-			<field name="name">En adquisiciones intracomunitarias de bienes bienes de inversión (16%)</field>
+			<field name="name">En adquisiciones intracomunitarias bienes inversión (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_33"/>
 			<field name="sign">1.0</field>
 		</record>
 		
 		<record id="iva_ded_33_7" model="account.tax.code.template">
-			<field name="name">En adquisiciones intracomunitarias de bienes bienes de inversión (7%)</field>
+			<field name="name">En adquisiciones intracomunitarias bienes inversión (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_33"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_33_4" model="account.tax.code.template">
-			<field name="name">En adquisiciones intracomunitarias de bienes bienes de inversión (4%)</field>
+			<field name="name">En adquisiciones intracomunitarias bienes inversión (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_33"/>
 			<field name="sign">1.0</field>
 		</record>
 
 
-                <!--Otros Códiogs de Impuesto-->
+		<!--Otros Códiogs de Impuesto-->
+		 <record id="base_intra_42" model="account.tax.code.template">
+			<field name="name">Entregas Intracomunitarias</field>
+			<field name="code">[42]</field>
+			<field name="parent_id" ref="vat_code_chart_root"/>
+			<field name="sign">1.0</field>
+		</record>
 
-                 <record id="base_intra_42" model="account.tax.code.template">
-                        <field name="name">Entregas Intracomunitarias</field>
-                        <field name="code">[42]</field>
-                        <field name="parent_id" ref="vat_code_chart_root"/>
-                        <field name="sign">1.0</field>
-                </record>   
-                
-                 <record id="base_extra_43" model="account.tax.code.template">
-                        <field name="name">Exportaciones y operaciones asimiladas</field>
-                        <field name="code">[43]</field>
-                        <field name="parent_id" ref="vat_code_chart_root"/>
-                        <field name="sign">1.0</field>
-                </record>   
-<!-- ********************************* -->		
+		 <record id="base_extra_43" model="account.tax.code.template">
+			<field name="name">Exportaciones y operaciones asimiladas</field>
+			<field name="code">[43]</field>
+			<field name="parent_id" ref="vat_code_chart_root"/>
+			<field name="sign">1.0</field>
+		</record>
+<!-- ********************************* -->
 <!--Cuentas para IVA-->
 <!-- ********************************* -->
 
@@ -722,10 +721,10 @@
 			<field name="type">percent</field>
 			<field name="base_code_id" ref="iva_ded_26"/>
 			<field name="ref_base_code_id" ref="iva_ded_26"/>
-                        <field name="tax_code_id" ref="iva_ded_27"/>
-                        <field name="ref_tax_code_id" ref="iva_ded_27"/>
-                        <field eval="-1.0" name="ref_tax_sign"/>
-                        <field eval="-1.0" name="ref_base_sign"/>
+			<field name="tax_code_id" ref="iva_ded_27"/>
+			<field name="ref_tax_code_id" ref="iva_ded_27"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_X0_compras_bi" model="account.tax.template">
@@ -736,10 +735,10 @@
 			<field name="type">percent</field>
 			<field name="base_code_id" ref="iva_ded_28"/>
 			<field name="ref_base_code_id" ref="iva_ded_28"/>
-                        <field name="tax_code_id" ref="iva_ded_29"/>
-                        <field name="ref_tax_code_id" ref="iva_ded_29"/>
-                        <field eval="-1.0" name="ref_tax_sign"/>
-                        <field eval="-1.0" name="ref_base_sign"/>
+			<field name="tax_code_id" ref="iva_ded_29"/>
+			<field name="ref_tax_code_id" ref="iva_ded_29"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		
@@ -752,13 +751,13 @@
 			<field name="account_collected_id" ref="pgc_472004"/>
 			<field name="account_paid_id" ref="pgc_472004"/>
 			<field name="base_code_id" ref="iva_ded_26_4"/>
-                        <field name="tax_code_id" ref="iva_ded_27_4"/>
+			<field name="tax_code_id" ref="iva_ded_27_4"/>
 			<field name="ref_base_code_id" ref="iva_ded_26_4"/>
-                        <field name="ref_tax_code_id" ref="iva_ded_27_4"/>
-                        <field eval="1.0" name="tax_sign"/>
-                        <field eval="1.0" name="base_sign"/>
-                        <field eval="-1.0" name="ref_tax_sign"/>
-                        <field eval="-1.0" name="ref_base_sign"/>
+			<field name="ref_tax_code_id" ref="iva_ded_27_4"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_X4_compras_bi" model="account.tax.template">
@@ -770,13 +769,13 @@
 			<field name="account_collected_id" ref="pgc_472004"/>
 			<field name="account_paid_id" ref="pgc_472004"/>
 			<field name="base_code_id" ref="iva_ded_28_4"/>
-                        <field name="tax_code_id" ref="iva_ded_29_4"/>
-                        <field name="ref_base_code_id" ref="iva_ded_28_4"/>
-                        <field name="ref_tax_code_id" ref="iva_ded_29_4"/>
-                        <field eval="1.0" name="tax_sign"/>
-                        <field eval="1.0" name="base_sign"/>
-                        <field eval="-1.0" name="ref_tax_sign"/>
-                        <field eval="-1.0" name="ref_base_sign"/>
+			<field name="tax_code_id" ref="iva_ded_29_4"/>
+			<field name="ref_base_code_id" ref="iva_ded_28_4"/>
+			<field name="ref_tax_code_id" ref="iva_ded_29_4"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		 
@@ -789,13 +788,13 @@
 			<field name="account_collected_id" ref="pgc_472007"/>
 			<field name="account_paid_id" ref="pgc_472007"/>
 			<field name="base_code_id" ref="iva_ded_26_7"/>
-                        <field name="tax_code_id" ref="iva_ded_27_7"/>
-                        <field name="ref_base_code_id" ref="iva_ded_26_7"/>
-                        <field name="ref_tax_code_id" ref="iva_ded_27_7"/>
-                        <field eval="1.0" name="tax_sign"/>
-                        <field eval="1.0" name="base_sign"/>
-                        <field eval="-1.0" name="ref_tax_sign"/>
-                        <field eval="-1.0" name="ref_base_sign"/>
+			<field name="tax_code_id" ref="iva_ded_27_7"/>
+			<field name="ref_base_code_id" ref="iva_ded_26_7"/>
+			<field name="ref_tax_code_id" ref="iva_ded_27_7"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_X7_compras_bi" model="account.tax.template">
@@ -807,13 +806,13 @@
 			<field name="account_collected_id" ref="pgc_472007"/>
 			<field name="account_paid_id" ref="pgc_472007"/>
 			<field name="base_code_id" ref="iva_ded_28_7"/>
-                        <field name="tax_code_id" ref="iva_ded_29_7"/>
-                        <field name="ref_base_code_id" ref="iva_ded_28_7"/>
-                        <field name="ref_tax_code_id" ref="iva_ded_29_7"/>
-                        <field eval="1.0" name="tax_sign"/>
-                        <field eval="1.0" name="base_sign"/>
-                        <field eval="-1.0" name="ref_tax_sign"/>
-                        <field eval="-1.0" name="ref_base_sign"/>
+			<field name="tax_code_id" ref="iva_ded_29_7"/>
+			<field name="ref_base_code_id" ref="iva_ded_28_7"/>
+			<field name="ref_tax_code_id" ref="iva_ded_29_7"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		
@@ -826,13 +825,13 @@
 			<field name="account_collected_id" ref="pgc_472016"/>
 			<field name="account_paid_id" ref="pgc_472016"/>
 			<field name="base_code_id" ref="iva_ded_26_16"/>
-                        <field name="tax_code_id" ref="iva_ded_27_16"/>
-                        <field name="ref_base_code_id" ref="iva_ded_26_16"/>
-                        <field name="ref_tax_code_id" ref="iva_ded_27_16"/>
-                        <field eval="1.0" name="tax_sign"/>
-                        <field eval="1.0" name="base_sign"/>
-                        <field eval="-1.0" name="ref_tax_sign"/>
-                        <field eval="-1.0" name="ref_base_sign"/>
+			<field name="tax_code_id" ref="iva_ded_27_16"/>
+			<field name="ref_base_code_id" ref="iva_ded_26_16"/>
+			<field name="ref_tax_code_id" ref="iva_ded_27_16"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_X16_compras_bi" model="account.tax.template">
@@ -844,13 +843,13 @@
 			<field name="account_collected_id" ref="pgc_472016"/>
 			<field name="account_paid_id" ref="pgc_472016"/>
 			<field name="base_code_id" ref="iva_ded_28_16"/>
-                        <field name="tax_code_id" ref="iva_ded_29_16"/>
-                        <field name="ref_base_code_id" ref="iva_ded_28_16"/>
-                        <field name="ref_tax_code_id" ref="iva_ded_29_16"/>
-                        <field eval="1.0" name="tax_sign"/>
-                        <field eval="1.0" name="base_sign"/>
-                        <field eval="-1.0" name="ref_tax_sign"/>
-                        <field eval="-1.0" name="ref_base_sign"/>
+			<field name="tax_code_id" ref="iva_ded_29_16"/>
+			<field name="ref_base_code_id" ref="iva_ded_28_16"/>
+			<field name="ref_tax_code_id" ref="iva_ded_29_16"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		
@@ -862,9 +861,9 @@
 			<field eval="0.00" name="amount"/>
 			<field name="type">percent</field>
 			
-                        <field name="base_code_id" ref="base_extra_43"/>
+			<field name="base_code_id" ref="base_extra_43"/>
 			<field name="ref_base_code_id" ref="base_extra_43"/>
-                        <field eval="-1.0" name="ref_base_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			
 			<field name="type_tax_use">sale</field>
 		</record>
@@ -993,7 +992,7 @@
 			<field name="type">percent</field>
 			<field name="base_code_id" ref="base_intra_42"/>
 			<field name="ref_base_code_id" ref="base_intra_42"/>
-                        <field eval="-1.0" name="ref_base_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 
 			<field name="type_tax_use">sale</field>
 		</record>
@@ -1020,15 +1019,15 @@
 			<field name="account_collected_id" ref="pgc_472016"/>
 			<field name="base_code_id" ref="iva_ded_30_16"/>
 			<field name="tax_code_id" ref="iva_ded_31_16"/>
-                        
+			
 			<field name="ref_base_code_id" ref="iva_ded_30_16"/>
-                        <field name="ref_tax_code_id" ref="iva_ded_31_16"/>
-                        <field eval="-1" name="ref_base_sign"/>
-                        <field eval="-1.0" name="ref_tax_sign"/>
+			<field name="ref_tax_code_id" ref="iva_ded_31_16"/>
+			<field eval="-1" name="ref_base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 
-                
+		
 		<record id="iva_IC_compras_16_bc_2" model="account.tax.template">
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="parent_id" ref="iva_IC_compras_16_bc"/>
@@ -1042,9 +1041,9 @@
 			<field eval="-1" name="tax_sign"/>
 			<field name="ref_base_code_id" ref="iva_dev_19"/>
 			<field eval="-1" name="ref_base_sign"/>
-                        <!--ATENCIÓN AQUÍ CON LO S SIGNOS. PENDIENTE DE PRUEBA EN PROFUNDIDAD-->
-                        <field name="ref_tax_code_id" ref="iva_dev_20"/>
-                        <field eval="1.0" name="ref_tax_sign"/>
+			<!--ATENCIÓN AQUÍ CON LO S SIGNOS. PENDIENTE DE PRUEBA EN PROFUNDIDAD-->
+			<field name="ref_tax_code_id" ref="iva_dev_20"/>
+			<field eval="1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<!--record id="vat_IO_buy_21b_3" model="account.tax.template">
@@ -1079,9 +1078,9 @@
 			<field name="base_code_id" ref="iva_ded_32_16"/>
 			<field name="tax_code_id" ref="iva_ded_33_16"/>
 			<field name="ref_base_code_id" ref="iva_ded_32_16"/>
-                        <field eval="-1" name="ref_base_sign"/>
-                        <field name="ref_tax_code_id" ref="iva_ded_33_16"/>
-                        <field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1" name="ref_base_sign"/>
+			<field name="ref_tax_code_id" ref="iva_ded_33_16"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_16_bi_2" model="account.tax.template">
@@ -1097,8 +1096,8 @@
 			<field eval="-1" name="tax_sign"/>
 			<field name="ref_base_code_id" ref="iva_dev_19"/>
 			<field eval="-1" name="ref_base_sign"/>
-                        <field name="ref_tax_code_id" ref="iva_dev_20"/>
-                        <field eval="1.0" name="ref_tax_sign"/>
+			<field name="ref_tax_code_id" ref="iva_dev_20"/>
+			<field eval="1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 
@@ -1122,8 +1121,8 @@
 			<field name="base_code_id" ref="iva_ded_30_7"/>
 			<field name="tax_code_id" ref="iva_ded_31_7"/>
 			<field name="ref_base_code_id" ref="iva_ded_30_7"/>
-                        <field name="ref_tax_code_id" ref="iva_ded_31_7"/>
-                        <field eval="-1.0" name="ref_tax_sign"/>
+			<field name="ref_tax_code_id" ref="iva_ded_31_7"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_7_bc_2" model="account.tax.template">
@@ -1139,8 +1138,8 @@
 			<field eval="-1" name="tax_sign"/>
 			<field name="ref_base_code_id" ref="iva_dev_19"/>
 			<field eval="-1" name="ref_base_sign"/>
-                        <field name="ref_tax_code_id" ref="iva_dev_20"/>
-                        <field eval="1.0" name="ref_tax_sign"/>
+			<field name="ref_tax_code_id" ref="iva_dev_20"/>
+			<field eval="1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 
@@ -1164,8 +1163,8 @@
 			<field name="base_code_id" ref="iva_ded_32_7"/>
 			<field name="tax_code_id" ref="iva_ded_33_7"/>
 			<field name="ref_base_code_id" ref="iva_ded_32_7"/>
-                        <field name="ref_tax_code_id" ref="iva_ded_33_7"/>
-                        <field eval="-1.0" name="ref_tax_sign"/>
+			<field name="ref_tax_code_id" ref="iva_ded_33_7"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_7_bi_2" model="account.tax.template">
@@ -1181,8 +1180,8 @@
 			<field eval="-1" name="tax_sign"/>
 			<field name="ref_base_code_id" ref="iva_dev_19"/>
 			<field eval="-1" name="ref_base_sign"/>
-                        <field name="ref_tax_code_id" ref="iva_dev_20"/>
-                        <field eval="1.0" name="ref_tax_sign"/>
+			<field name="ref_tax_code_id" ref="iva_dev_20"/>
+			<field eval="1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 
@@ -1206,8 +1205,8 @@
 			<field name="base_code_id" ref="iva_ded_30_4"/>
 			<field name="tax_code_id" ref="iva_ded_31_4"/>
 			<field name="ref_base_code_id" ref="iva_ded_30_4"/>
-                        <field name="ref_tax_code_id" ref="iva_ded_31_4"/>
-                        <field eval="-1.0" name="ref_tax_sign"/>
+			<field name="ref_tax_code_id" ref="iva_ded_31_4"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_4_bc_2" model="account.tax.template">
@@ -1223,8 +1222,8 @@
 			<field eval="-1" name="tax_sign"/>
 			<field name="ref_base_code_id" ref="iva_dev_19"/>
 			<field eval="-1" name="ref_base_sign"/>
-                        <field name="ref_tax_code_id" ref="iva_dev_20"/>
-                        <field eval="1.0" name="ref_tax_sign"/>
+			<field name="ref_tax_code_id" ref="iva_dev_20"/>
+			<field eval="1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 
@@ -1248,8 +1247,8 @@
 			<field name="base_code_id" ref="iva_ded_32_4"/>
 			<field name="tax_code_id" ref="iva_ded_33_4"/>
 			<field name="ref_base_code_id" ref="iva_ded_32_4"/>
-                        <field name="ref_tax_code_id" ref="iva_ded_33_4"/>
-                        <field eval="-1.0" name="ref_tax_sign"/>
+			<field name="ref_tax_code_id" ref="iva_ded_33_4"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_4_bi_2" model="account.tax.template">
@@ -1265,8 +1264,8 @@
 			<field eval="-1" name="tax_sign"/>
 			<field name="ref_base_code_id" ref="iva_dev_19"/>
 			<field eval="-1" name="ref_base_sign"/>
-                        <field name="ref_tax_code_id" ref="iva_dev_20"/>
-                        <field eval="1.0" name="ref_tax_sign"/>
+			<field name="ref_tax_code_id" ref="iva_dev_20"/>
+			<field eval="1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		
