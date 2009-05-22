@@ -17,7 +17,7 @@
 		<record id="iva_dev_base" model="account.tax.code.template">
 			<field name="name">IVA Devengado Base Imponible</field>
 			<field name="code">--</field>
-			<field name="sign">1.00</field>
+			<field name="sign">1.0</field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
 		</record>
 		
@@ -50,7 +50,7 @@
 		<!--record id="re_base" model="account.tax.code.template">
 			<field name="name">Recargo Equivalencia Base Imponible</field>
 			<field name="code">_</field>
-			<field name="sign">1.00</field>
+			<field name="sign">1.0</field>
 			<field name="parent_id" ref="iva_dev_base"/>
 		</record-->
 		
@@ -95,7 +95,7 @@
 		<record id="iva_dev_21" model="account.tax.code.template">
 			<field name="name">IVA Cuota total devengada</field>
 			<field name="code">[21]</field>
-			<field name="sign">1.00</field>
+			<field name="sign">1.0</field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
 		</record>
 		 
@@ -124,7 +124,7 @@
 		<!--record id="re_base" model="account.tax.code.template">
 			<field name="name">Recargo Equivalencia Base Imponible</field>
 			<field name="code">_</field>
-			<field name="sign">1.00</field>
+			<field name="sign">1.0</field>
 			<field name="parent_id" ref="iva_dev_base"/>
 		</record-->
 		
@@ -173,7 +173,7 @@
 		<record id="iva_ded_base_total" model="account.tax.code.template">
 			<field name="name">IVA Deducible Base Imponible</field>
 			<field name="code">--</field>
-			<field name="sign">1.00</field>
+			<field name="sign">1.0</field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
 		</record>
 		
@@ -953,7 +953,7 @@
 			<field name="account_paid_id" ref="pgc_475001"/>
 			<field name="base_code_id" ref="iva_dev_13"/>
 			<field name="tax_code_id" ref="iva_dev_15"/>
-			<field name="ref_base_code_id" ref="iva_dev_12"/>
+			<field name="ref_base_code_id" ref="iva_dev_13"/>
 			<field name="ref_tax_code_id" ref="iva_dev_15"/>
 			<field eval="1.0" name="tax_sign"/>
 			<field eval="1.0" name="base_sign"/>
@@ -993,13 +993,12 @@
 			<field name="base_code_id" ref="base_intra_42"/>
 			<field name="ref_base_code_id" ref="base_intra_42"/>
 			<field eval="-1.0" name="ref_base_sign"/>
-
+                        <field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">sale</field>
 		</record>
 		
 		
 		<!-- COMPRAS -->
-		
 		<record id="iva_IC_compras_16_bc" model="account.tax.template">
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 16% Intracomunitario. Bienes corrientes</field>
@@ -1019,15 +1018,12 @@
 			<field name="account_collected_id" ref="pgc_472016"/>
 			<field name="base_code_id" ref="iva_ded_30_16"/>
 			<field name="tax_code_id" ref="iva_ded_31_16"/>
-			
 			<field name="ref_base_code_id" ref="iva_ded_30_16"/>
 			<field name="ref_tax_code_id" ref="iva_ded_31_16"/>
-			<field eval="-1" name="ref_base_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
-
-		
 		<record id="iva_IC_compras_16_bc_2" model="account.tax.template">
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="parent_id" ref="iva_IC_compras_16_bc"/>
@@ -1038,10 +1034,10 @@
 			<field name="account_collected_id" ref="pgc_477016"/>
 			<field name="base_code_id" ref="iva_dev_19"/>
 			<field name="tax_code_id" ref="iva_dev_20"/>
-			<field eval="-1" name="tax_sign"/>
+			<field eval="-1.0" name="tax_sign"/>
 			<field name="ref_base_code_id" ref="iva_dev_19"/>
-			<field eval="-1" name="ref_base_sign"/>
-			<!--ATENCIÓN AQUÍ CON LO S SIGNOS. PENDIENTE DE PRUEBA EN PROFUNDIDAD-->
+			<field eval="-1.0" name="ref_base_sign"/>
+			<!--ATENCIÓN AQUÍ CON LOS SIGNOS. PENDIENTE DE PRUEBA EN PROFUNDIDAD-->
 			<field name="ref_tax_code_id" ref="iva_dev_20"/>
 			<field eval="1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
@@ -1053,7 +1049,7 @@
 			<field eval="0.00" name="amount"/>
 			<field name="type">percent</field>
 			<field name="ref_base_code_id" ref="vat_code_a86"/>
-			<field eval="-1" name="ref_base_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">purchase</field>
 		</record-->
 <!-- ES NECESARIO ESTE ÚLTIMO REGISTRO????-->
@@ -1078,7 +1074,7 @@
 			<field name="base_code_id" ref="iva_ded_32_16"/>
 			<field name="tax_code_id" ref="iva_ded_33_16"/>
 			<field name="ref_base_code_id" ref="iva_ded_32_16"/>
-			<field eval="-1" name="ref_base_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="ref_tax_code_id" ref="iva_ded_33_16"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
@@ -1093,9 +1089,9 @@
 			<field name="account_collected_id" ref="pgc_477016"/>
 			<field name="base_code_id" ref="iva_dev_19"/>
 			<field name="tax_code_id" ref="iva_dev_20"/>
-			<field eval="-1" name="tax_sign"/>
+			<field eval="-1.0" name="tax_sign"/>
 			<field name="ref_base_code_id" ref="iva_dev_19"/>
-			<field eval="-1" name="ref_base_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="ref_tax_code_id" ref="iva_dev_20"/>
 			<field eval="1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
@@ -1121,6 +1117,7 @@
 			<field name="base_code_id" ref="iva_ded_30_7"/>
 			<field name="tax_code_id" ref="iva_ded_31_7"/>
 			<field name="ref_base_code_id" ref="iva_ded_30_7"/>
+                        <field eval="-1.0" name="ref_base_sign"/>
 			<field name="ref_tax_code_id" ref="iva_ded_31_7"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
@@ -1135,9 +1132,9 @@
 			<field name="account_collected_id" ref="pgc_477007"/>
 			<field name="base_code_id" ref="iva_dev_19"/>
 			<field name="tax_code_id" ref="iva_dev_20"/>
-			<field eval="-1" name="tax_sign"/>
+			<field eval="-1.0" name="tax_sign"/>
 			<field name="ref_base_code_id" ref="iva_dev_19"/>
-			<field eval="-1" name="ref_base_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="ref_tax_code_id" ref="iva_dev_20"/>
 			<field eval="1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
@@ -1163,6 +1160,7 @@
 			<field name="base_code_id" ref="iva_ded_32_7"/>
 			<field name="tax_code_id" ref="iva_ded_33_7"/>
 			<field name="ref_base_code_id" ref="iva_ded_32_7"/>
+                        <field eval="-1.0" name="ref_base_sign"/>
 			<field name="ref_tax_code_id" ref="iva_ded_33_7"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
@@ -1177,9 +1175,9 @@
 			<field name="account_collected_id" ref="pgc_477007"/>
 			<field name="base_code_id" ref="iva_dev_19"/>
 			<field name="tax_code_id" ref="iva_dev_20"/>
-			<field eval="-1" name="tax_sign"/>
+			<field eval="-1.0" name="tax_sign"/>
 			<field name="ref_base_code_id" ref="iva_dev_19"/>
-			<field eval="-1" name="ref_base_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="ref_tax_code_id" ref="iva_dev_20"/>
 			<field eval="1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
@@ -1205,6 +1203,7 @@
 			<field name="base_code_id" ref="iva_ded_30_4"/>
 			<field name="tax_code_id" ref="iva_ded_31_4"/>
 			<field name="ref_base_code_id" ref="iva_ded_30_4"/>
+                        <field eval="-1.0" name="ref_base_sign"/>
 			<field name="ref_tax_code_id" ref="iva_ded_31_4"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
@@ -1219,9 +1218,9 @@
 			<field name="account_collected_id" ref="pgc_477004"/>
 			<field name="base_code_id" ref="iva_dev_19"/>
 			<field name="tax_code_id" ref="iva_dev_20"/>
-			<field eval="-1" name="tax_sign"/>
+			<field eval="-1.0" name="tax_sign"/>
 			<field name="ref_base_code_id" ref="iva_dev_19"/>
-			<field eval="-1" name="ref_base_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="ref_tax_code_id" ref="iva_dev_20"/>
 			<field eval="1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
@@ -1247,6 +1246,7 @@
 			<field name="base_code_id" ref="iva_ded_32_4"/>
 			<field name="tax_code_id" ref="iva_ded_33_4"/>
 			<field name="ref_base_code_id" ref="iva_ded_32_4"/>
+                        <field eval="-1.0" name="ref_base_sign"/>
 			<field name="ref_tax_code_id" ref="iva_ded_33_4"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
@@ -1261,9 +1261,9 @@
 			<field name="account_collected_id" ref="pgc_477004"/>
 			<field name="base_code_id" ref="iva_dev_19"/>
 			<field name="tax_code_id" ref="iva_dev_20"/>
-			<field eval="-1" name="tax_sign"/>
+			<field eval="-1.0" name="tax_sign"/>
 			<field name="ref_base_code_id" ref="iva_dev_19"/>
-			<field eval="-1" name="ref_base_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="ref_tax_code_id" ref="iva_dev_20"/>
 			<field eval="1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
@@ -1281,7 +1281,7 @@
 		<record id="irpf_base" model="account.tax.code.template">
 			<field name="name">IRPF Retenciones practicadas Base Imponible</field>
 			<field name="code">B.IRPF</field>
-			<field name="sign">1.00</field>
+			<field name="sign">1.0</field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
 		</record>
 		
@@ -1465,7 +1465,7 @@
 		<record id="irpf_base_sale" model="account.tax.code.template">
 			<field name="name">IRPF Retenciones a cuenta Base Imponible</field>
 			<field name="code">B.IRPF AC</field>
-			<field name="sign">1.00</field>
+			<field name="sign">1.0</field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
 		</record>
 		
