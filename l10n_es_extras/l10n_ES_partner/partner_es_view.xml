@@ -57,5 +57,31 @@
             </field>
         </field>
     </record>
+
+    <!-- Import wizard -->
+    <record model="ir.ui.view" id="partner_import_wizard">
+        <field name="name">l10n.es.partner.import.form</field>
+        <field name="model">l10n.es.partner.import.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Import Wizard">
+                <label colspan="4" string="This wizard will import Spanish bank data."/>
+                <button icon="gtk-cancel" special="cancel" string="Cancel" type="object"/>
+                <button icon="gtk-ok" name="action_import" string="Import" type="object"/>
+            </form>
+        </field>
+    </record>
+ 
+    <record id="action_partner_import_wizard" model="ir.actions.act_window">
+        <field name="name">Import Bank Data Wizard </field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">l10n.es.partner.import.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+        <menuitem parent="base.menu_action_res_bank_form" action="action_partner_import_wizard" id="menu_import_wizard"/>
+
   </data>
 </openerp>

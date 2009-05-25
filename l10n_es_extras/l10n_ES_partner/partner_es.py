@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
 
 from osv import osv, fields
+import tools
+import os
 
 def _CRC(cTexto):
     """Calculo el CRC de un número de 10 dígitos
@@ -80,3 +82,16 @@ class res_partner(osv.osv):
         'comercial': fields.char('Trade name', size=128, select=True), # Nombre Comercial del Partner
     }
 res_partner()
+
+class l10n_es_partner_import_wizard(osv.osv_memory):
+    _name = 'l10n.es.partner.import.wizard'
+
+    def action_import(self, cr, uid, ids, context=None):
+        try:
+            fp = tools.file_open(os.path.join('l10n_ES_partner', 'data_banks.xml'))
+        except IOError, e:
+	    return {}
+        idref = {}
+        tools.convert_xml_import(cr, 'l10n_ES_partner', fp,  idref, 'init', noupdate=True)
+	return {}
+l10n_es_partner_import_wizard()
