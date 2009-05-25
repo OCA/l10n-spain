@@ -40,6 +40,32 @@
         <menuitem id="menu_extractos_bancarios" name="C43 bank statements" parent="account.menu_finance_configuration"/>
         <menuitem id="menu_extractos_bancarios_concepto" name="Default accounts associated to C43 codes" parent="menu_extractos_bancarios" action="action_extractos_concepto"/>
 
+
+	<!-- Import wizard -->
+        <record model="ir.ui.view" id="extractos_import_wizard">
+            <field name="name">l10n.es.extractos.import.form</field>
+            <field name="model">l10n.es.extractos.import.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Import Wizard">
+                    <label colspan="4" string="This wizard will import default concepts related to standard accounts of spanish charts."/>
+                    <button icon="gtk-cancel" special="cancel" string="Cancel" type="object"/>
+                    <button icon="gtk-ok" name="action_import" string="Import" type="object"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_extractos_import_wizard" model="ir.actions.act_window">
+            <field name="name">Import Statement Concepts Wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">l10n.es.extractos.import.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem parent="account.account_template_folder" action="action_extractos_import_wizard" id="menu_import_wizard"/>
+
     </data>
 </openerp>
 

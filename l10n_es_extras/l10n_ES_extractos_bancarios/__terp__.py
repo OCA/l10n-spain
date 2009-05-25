@@ -20,14 +20,12 @@ Si no se encuentra la empresa se asigna la cuenta contable que se haya definido 
 
 Elimina el precálculo del importe de la línea del extracto bancario cuando se modifica la empresa (ya que los importes importados ya son los correctos)
 
-NOTA para su instalación: Es importante instalar anteriormente el módulo l10n_chart_ES (bien directamente, bien a partir del asistente de selección de plan contable que se ejecuta al instalar el módulo account) y ejecutar el asistente de creación del plan contable a partir de la plantilla que se encuentra en Gestión financiera/Configuración/Contabilidad financiera/Plantillas.
+El módulo añade un asistente en Gestión financiera/Configuración/Contabilidad financiera/Plantillas para la importación de los conceptos de extractos que se debe ejecutar una vez creado el plan de cuentas con el asistente correspondiente y con el módulo l10n_chart_ES previamente instalado.
 """,
     "website" : "www.zikzakmedia.com",
     "license" : "GPL-2",
     "depends" : ["base","account","l10n_chart_ES",],
-    "init_xml" : [
-        "extractos_conceptos.xml",
-        ],
+    "init_xml" : [],
     "demo_xml" : [],
     "update_xml" : [
         "extractos_view.xml",

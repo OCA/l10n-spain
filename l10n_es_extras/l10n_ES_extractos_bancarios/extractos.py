@@ -28,6 +28,21 @@
 ##############################################################################
 
 from osv import osv,fields
+import tools
+import os
+
+class l10n_es_extractos_import_wizard(osv.osv_memory):
+    _name = 'l10n.es.extractos.import.wizard'
+
+    def action_import(self, cr, uid, ids, context=None):
+        try:
+            fp = tools.file_open(os.path.join('l10n_ES_extractos_bancarios', 'extractos_conceptos.xml'))
+        except IOError, e:
+	    return {}
+        idref = {}
+        tools.convert_xml_import(cr, 'l10n_ES_extractos_bancarios', fp,  idref, 'init', noupdate=True)
+	return {}
+l10n_es_extractos_import_wizard()
 
 class l10n_es_extractos_concepto(osv.osv):
     _name = 'l10n.es.extractos.concepto'
