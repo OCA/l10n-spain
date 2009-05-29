@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <wizard 
+                string="Import Invoices Issued"
+                model="l10n.es.aeat.mod340"
+                name="l10n_ES_aeat_mod340.wizard_issued"
+                menu="True"
+                id="wizard_l10n_ES_aeat_mod340_importar"/>
+        <wizard 
+                string="Import Invoices Received"
+                model="l10n.es.aeat.mod340"
+                name="l10n_ES_aeat_mod340.wizard_received"
+                menu="True"
+                id="wizard_l10n_ES_aeat_mod340_received"/>
+	<wizard
+		string="Create Model 340 file "
+		model="l10n.es.aeat.mod340"
+		name="export_mod340_file"
+		id="wizard_create_mod340_file"/>
+	
+    </data>
+</openerp>
