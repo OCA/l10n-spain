@@ -38,11 +38,12 @@ class l10n_es_extractos_import_wizard(osv.osv_memory):
         try:
             fp = tools.file_open(os.path.join('l10n_ES_extractos_bancarios', 'extractos_conceptos.xml'))
         except IOError, e:
-	    return {}
+            return {}
         idref = {}
         tools.convert_xml_import(cr, 'l10n_ES_extractos_bancarios', fp,  idref, 'init', noupdate=True)
-	return {}
+        return {}
 l10n_es_extractos_import_wizard()
+
 
 class l10n_es_extractos_concepto(osv.osv):
     _name = 'l10n.es.extractos.concepto'

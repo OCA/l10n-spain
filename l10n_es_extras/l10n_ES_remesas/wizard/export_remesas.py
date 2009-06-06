@@ -368,9 +368,9 @@ def _create_payment_file(self, cr, uid, data, context):
                 recibos.append({
                     'partner_id': partner,
                     'bank_id': bank,
-                    'name': reduce(lambda x, y: x+' '+y, [l.name for l in lineas], ''),
+                    'name': partner.ref,
                     'amount': reduce(lambda x, y: x+y, [l.amount for l in lineas], 0),
-                    'communication': reduce(lambda x, y: x+' '+(y or ''), [l.communication for l in lineas], ''),
+                    'communication': reduce(lambda x, y: x+' '+(y or ''), [l.name+' '+l.communication for l in lineas], ''),
                     'communication2': reduce(lambda x, y: x+' '+(y or ''), [l.communication2 for l in lineas], ''),
                     'date': max([l.date for l in lineas]),
                     'ml_maturity_date': max([l.ml_maturity_date]),
@@ -381,9 +381,9 @@ def _create_payment_file(self, cr, uid, data, context):
                 recibos.append({
                     'partner_id': l.partner_id,
                     'bank_id': l.bank_id,
-                    'name': l.name,
+                    'name': l.partner_id.ref,
                     'amount': l.amount,
-                    'communication': l.communication,
+                    'communication': l.name+' '+l.communication,
                     'communication2': l.communication2,
                     'date': l.date,
                     'ml_maturity_date': l.ml_maturity_date,

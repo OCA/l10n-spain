@@ -476,7 +476,7 @@
             <field eval="[(6,0,[ref('account.res_role_period'),ref('account.res_roles_invoice0'),ref('sale.res_roles_salesman0'),ref('point_of_sale.role_pos'),ref('purchase.res_roles_purchase0')])]" name="roles_id"/>
             <field eval="1" name="active"/>
             <field eval="&quot;&quot;&quot;usuario&quot;&quot;&quot;" name="password"/>
-            <field eval="&quot;&quot;&quot;es_ES&quot;&quot;&quot;" name="context_lang"/>
+            <!--<field eval="&quot;&quot;&quot;es_ES&quot;&quot;&quot;" name="context_lang"/> Da problemas si se instala Català, Euskera o Galego por defecto-->
             <field eval="&quot;&quot;&quot;Usuario normal&quot;&quot;&quot;" name="name"/>
             <field name="company_id" ref="base.main_company"/>
             <field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="signature"/>
@@ -490,7 +490,7 @@
             <field eval="[(6,0,[ref('account.res_role_period'),ref('account.res_roles_invoice0'),ref('sale.res_roles_salesman0'),ref('point_of_sale.role_pos'),ref('purchase.res_roles_purchase0')])]" name="roles_id"/>
             <field eval="1" name="active"/>
             <field eval="&quot;&quot;&quot;usuarioconf&quot;&quot;&quot;" name="password"/>
-            <field eval="&quot;&quot;&quot;es_ES&quot;&quot;&quot;" name="context_lang"/>
+            <!--<field eval="&quot;&quot;&quot;es_ES&quot;&quot;&quot;" name="context_lang"/> Da problemas si se instala Català, Euskera o Galego por defecto-->
             <field eval="&quot;&quot;&quot;Usuario con acceso a la configuración&quot;&quot;&quot;" name="name"/>
             <field name="company_id" ref="base.main_company"/>
             <field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="signature"/>

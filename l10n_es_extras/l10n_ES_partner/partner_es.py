@@ -83,6 +83,7 @@ class res_partner(osv.osv):
     }
 res_partner()
 
+
 class l10n_es_partner_import_wizard(osv.osv_memory):
     _name = 'l10n.es.partner.import.wizard'
 
@@ -90,8 +91,8 @@ class l10n_es_partner_import_wizard(osv.osv_memory):
         try:
             fp = tools.file_open(os.path.join('l10n_ES_partner', 'data_banks.xml'))
         except IOError, e:
-	    return {}
+            return {}
         idref = {}
         tools.convert_xml_import(cr, 'l10n_ES_partner', fp,  idref, 'init', noupdate=True)
-	return {}
+        return {}
 l10n_es_partner_import_wizard()

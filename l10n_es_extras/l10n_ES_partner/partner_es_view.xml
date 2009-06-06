@@ -71,7 +71,7 @@
             </form>
         </field>
     </record>
- 
+
     <record id="action_partner_import_wizard" model="ir.actions.act_window">
         <field name="name">Import Bank Data Wizard </field>
         <field name="type">ir.actions.act_window</field>
@@ -81,7 +81,7 @@
         <field name="target">new</field>
     </record>
 
-        <menuitem parent="base.menu_action_res_bank_form" action="action_partner_import_wizard" id="menu_import_wizard"/>
+    <menuitem parent="base.menu_action_res_bank_form" action="action_partner_import_wizard" id="menu_import_wizard"/>
 
   </data>
 </openerp>
