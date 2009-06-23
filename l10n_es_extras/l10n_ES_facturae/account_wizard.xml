@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	<wizard
+		string="Create Facutra-E file "
+		model="account.invoice"
+		name="create_facturae_file"
+		id="wizard_create_facturae_file"/>
+    </data>
+</openerp>
