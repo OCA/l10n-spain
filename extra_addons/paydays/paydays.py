@@ -27,7 +27,7 @@
 #
 ##############################################################################
 #Este módulo añade la condición 'Días de Pago' para las formas de pago. Los días
-#de pago se especifican en una cadena separada por guiones. Ejemplo, una empresa 
+#de pago se especifican en una cadena separada por guiones. Ejemplo, una empresa
 #paga los días 5, 15 y 25 de cada mes, tendrá unos días de pago indicados por
 #5-15-25
 ##############################################################################
@@ -53,7 +53,7 @@ class res_partner(osv.osv):
     _inherit='res.partner'
     _table='res_partner'
     _columns={
-        'payment_days':fields.char('Días de pago', size=25),
+        'payment_days':fields.char('Días de pago', size=25, help="Aquí puede establecer los días de pago de la empresa. Por ejemplo, para una empresa que pague los días 5 y 20 de cada mes debemos escribir: 5-20."),
     }
 
     def _check_payment_days(self,cr,uid,id,context={}):
@@ -73,7 +73,7 @@ class res_partner(osv.osv):
                 return False
         return True
 
-    def on_change_paydays(self, cr, uid, ids, payment_days): 
+    def on_change_paydays(self, cr, uid, ids, payment_days):
         days = []
         day = ''
         if payment_days:
@@ -98,14 +98,14 @@ res_partner()
 
 # Se modifica la clase de las formas de pago. El método 'compute' modificado tiene en cuenta
 # la condición 'Días de Pago' y calcula las fechas de vencimiento de los efectos según esa
-# condición, trás aplicar los correspondiente vencimientos. Los loggers para debug están 
+# condición, trás aplicar los correspondiente vencimientos. Los loggers para debug están
 # desactivados
 
 
 class account_payment_term(osv.osv):
     _name="account.payment.term"
     _inherit="account.payment.term"
-    
+
     def compute(self, cr, uid, id, value, paydays, date_ref=False, context={}):
         if not date_ref:
             date_ref = now().strftime('%Y-%m-%d')
@@ -127,9 +127,9 @@ class account_payment_term(osv.osv):
                 if line.condition == 'end of month':
                     next_date += RelativeDateTime(day=-1)
                 # Esta condición es la que se añade. Se crea una lista a partir de la cadena de 'Días de Pago'
-                # y se ordena. Trás aplicar los días de plazo par el efecto se recorre la lista y se calcula 
+                # y se ordena. Trás aplicar los días de plazo par el efecto se recorre la lista y se calcula
                 # la fecha de vencimiento. Se ha añadido un día extra "en el mes siguiente" para vencimientos
-                # posteriores a la última fecha. Dicho día es el primero de la lista del mes siguiente. Ejemplo: día 35 de 
+                # posteriores a la última fecha. Dicho día es el primero de la lista del mes siguiente. Ejemplo: día 35 de
                 # noviembre = 5 de Diciembre
                 if line.condition == 'payment days' and paydays:
                     payment_days_list = map(int,paydays.split('-'))
@@ -146,8 +146,8 @@ class account_payment_term(osv.osv):
 #                            logger.notifyChannel('next_date1',netsvc.LOG_INFO, next_date)
                             # Se debe establecer un criterio de como actuar en el caso
                             # de que en un mes no exista el día de pago. ¿Qué se hace
-                            # si el día de pago es el 30 y estamos en febrero?. Las 
-                            # tres siguiente líneas hacen que en este caso  
+                            # si el día de pago es el 30 y estamos en febrero?. Las
+                            # tres siguiente líneas hacen que en este caso
                             # se tome como día de pago el último día del mes.
                             # Si se comentan estas líneas el día de pago será el
                             # día 1 o 2 del mes siguiente.
@@ -157,7 +157,7 @@ class account_payment_term(osv.osv):
                             break
                 result.append( (next_date.strftime('%Y-%m-%d'), amt) )
                 amount -= amt
-        return result    
+        return result
 
 account_payment_term()
 
@@ -181,7 +181,7 @@ class account_invoice(osv.osv):
     _columns = {
         'move_id': fields.many2one('account.move', 'Invoice Movement', readonly= True),
     }
-    
+
     def action_move_create(self, cr, uid, ids, *args):
         ait_obj = self.pool.get('account.invoice.tax')
         cur_obj = self.pool.get('res.currency')
@@ -340,7 +340,9 @@ class account_invoice(osv.osv):
         pt_obj= self.pool.get('account.payment.term')
 
         if not date_invoice :
-            date_invoice = self._defaults["date_invoice"](cr,uid,{})
+            #date_invoice = self._defaults["date_invoice"](cr,uid,{})
+	    # In 5.0 it there's no longer a default for date_invoice field
+	    date_invoice = time.strftime('%Y-%m-%d')
 
         pterm_list= pt_obj.compute(cr, uid, payment_term_id, value=1, paydays=paydays, date_ref=date_invoice)
 
