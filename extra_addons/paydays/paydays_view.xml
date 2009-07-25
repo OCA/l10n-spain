@@ -6,7 +6,7 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <field name="active" position="after">
+            <field name="property_account_receivable" position="after">
                 <field name="payment_days" on_change="on_change_paydays(payment_days)" select="1"/>
             </field>
         </field>
