@@ -354,7 +354,7 @@ class account_invoice(osv.osv):
         return res
 
 
-    def onchange_partner_id(self, cr, uid, ids, type, partner_id, date_invoice=False, payment_term=False):
+    def onchange_partner_id(self, cr, uid, ids, type, partner_id, date_invoice=False, payment_term=False, partner_bank_id=False):
         invoice_addr_id = False
         contact_addr_id = False
         partner_payment_term = False
