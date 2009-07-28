@@ -14,7 +14,6 @@ Previamente debe instalar el módulo l10_ES_pyme_install y crear los topónimos 
     "init_xml" : ["pyme_data.xml"],
     "demo_xml" : [],
     "update_xml" : [
-        "pos_view.xml",
     ],
     "active": False,
     "installable": True
