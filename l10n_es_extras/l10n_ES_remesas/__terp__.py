@@ -1,8 +1,33 @@
 # -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (c) 2008 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#                       Jordi Esteve <jesteve@zikzakmedia.com>
+#    Copyright (c) 2008 Acysos SL. All Rights Reserved.
+#    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
+#    $Id$
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+
 {
     "name" : "Remesas de recibos CSB 19 y CSB 58",
     "version" : "1.5",
     "author" : "Acysos SL, Zikzakmedia SL, Pablo Rocandio",
+    "category" : "Localisation/Accounting",
     "description" : """Módulo para la exportación de remesas de recibos según las normas CSB 19 (recibos domiciliados) y CSB 58 (anticipos de créditos) para poder ser enviados a la entidad bancaria.
 
 Crea un tipo de pago "Recibo domiciliado" con el código RECIBO_CSB. Este código es importante pues permite ejecutar el asistente de creación del fichero de remesas cuando se presiona el botón "Realizar pagos" en la orden de pagos o remesa.
@@ -17,7 +42,7 @@ Al crear el fichero de remesa:
 También se proporciona un informe para imprimir un listado de los recibos de la remesa.
 """,
     "website" : "www.zikzakmedia.com",
-    "license" : "GPL-2",
+    "license" : "GPL-3",
     "depends" : ["base", "account", "account_payment_extension",],
     "init_xml" : ["remesas_data.xml"],
     "demo_xml" : [],

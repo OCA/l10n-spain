@@ -1,4 +1,26 @@
 # -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (c) 2008 ACYSOS S.L. (http://acysos.com) All Rights Reserved.
+#                       Pedro Tarrafeta <pedro@acysos.com>
+#    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
+#    $Id$
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 from osv import fields, osv
 
@@ -101,12 +123,12 @@ class stock_move(osv.osv):
         return res
 
     _inherit = "stock.move"
-    _columns = {   
+    _columns = {
         'sale_line_id': fields.many2one('sale.order.line', 'Sale Order Line'), 
         'price_subtotal': fields.function(_price_subtotal, method=True, digits=(16,2),string='Subtotal', select=True),
         'price_net': fields.function(_price_net, method=True, digits=(16,2),string='Net', select=True), # Con descuento aplicado
         'price_unit': fields.function(_price_unit, method=True, digits=(16,2),string='Price', select=True),
         'discount': fields.function(_discount, method=True, digits=(16,2),string='Discount (%)', select=True),
-               }               
+               }
 stock_move()
 

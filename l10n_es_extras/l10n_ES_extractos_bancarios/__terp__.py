@@ -1,8 +1,31 @@
 # -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#                       Jordi Esteve <jesteve@zikzakmedia.com>
+#    $Id$
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+
 {
     "name" : "Importación de extractos bancarios C43",
     "version" : "1.0",
     "author" : "Zikzakmedia SL",
+    "category" : "Localisation/Accounting",
     "description" : """Módulo para la importación de extractos bancarios según la norma C43 de la Asociación Española de la Banca.
 
 Añade un asistente a los extractos bancarios para realizar la importación. El fichero importado queda como fichero adjunto al extracto en cuestión.
@@ -23,7 +46,7 @@ Elimina el precálculo del importe de la línea del extracto bancario cuando se 
 El módulo añade un asistente en Gestión financiera/Configuración/Contabilidad financiera/Plantillas para la importación de los conceptos de extractos que se debe ejecutar una vez creado el plan de cuentas con el asistente correspondiente y con el módulo l10n_chart_ES previamente instalado.
 """,
     "website" : "www.zikzakmedia.com",
-    "license" : "GPL-2",
+    "license" : "GPL-3",
     "depends" : ["base","account","l10n_chart_ES",],
     "init_xml" : [],
     "demo_xml" : [],

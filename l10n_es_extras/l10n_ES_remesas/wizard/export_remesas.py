@@ -1,8 +1,13 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2006 ACYSOS S.L.. (http://acysos.com) All Rights Reserved.
-#    Pedro Tarrafeta <pedro@acysos.com>
+#    OpenERP, Open Source Management Solution
+#    Copyright (c) 2006 ACYSOS S.L. (http://acysos.com) All Rights Reserved.
+#                       Pedro Tarrafeta <pedro@acysos.com>
+#    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#                       Jordi Esteve <jesteve@zikzakmedia.com>
+#    $Id$
 #
 # Corregido para instalación TinyERP estándar 4.2.0: Zikzakmedia S.L. 2008
 #   Jordi Esteve <jesteve@zikzakmedia.com>
@@ -27,6 +32,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 import pooler
 import wizard
 import base64
