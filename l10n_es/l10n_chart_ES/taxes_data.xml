@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-	<data noupdate="True">
+	<data noupdate="0">
 		
 		<!-- Definición de IVA y retenciones, códigos de impuestos y cuentas contables adicionales -->
 		
@@ -15,6 +15,7 @@
 	<!--Base imponible-->
 	<!-- *********************************************** -->
 		<record id="iva_dev_base" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IVA Devengado Base Imponible</field>
 			<field name="code">--</field>
 			<field name="sign">1.0</field>
@@ -26,6 +27,7 @@
 	<!--Régimen general-->
 		 
 		<record id="iva_dev_01" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Régimen general IVA Devengado. Base Imponible 4%</field>
 			<field name="code">[01]</field>
 			<field name="parent_id" ref="iva_dev_base"/>
@@ -33,6 +35,7 @@
 		</record>
 		
 		<record id="iva_dev_04" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Régimen general IVA Devengado. Base Imponible 7%</field>
 			<field name="code">[04]</field>
 			<field name="parent_id" ref="iva_dev_base"/>
@@ -40,6 +43,7 @@
 		</record>
 		
 		<record id="iva_dev_07" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Régimen general IVA Devengado. Base Imponible 16%</field>
 			<field name="code">[07]</field>
 			<field name="parent_id" ref="iva_dev_base"/>
@@ -48,6 +52,7 @@
 	
 		<!-- RECARGO DE EQUIVALENCIA -->
 		<!--record id="re_base" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Recargo Equivalencia Base Imponible</field>
 			<field name="code">_</field>
 			<field name="sign">1.0</field>
@@ -55,6 +60,7 @@
 		</record-->
 		
 		<record id="iva_dev_10" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Recargo Equivalencia Base Imponible 0.5%</field>
 			<field name="code">[10]</field>
 			<field name="parent_id" ref="iva_dev_base"/>
@@ -62,6 +68,7 @@
 		</record>
 		
 		<record id="iva_dev_13" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Recargo Equivalencia Base Imponible 1%</field>
 			<field name="code">[13]</field>
 			<field name="parent_id" ref="iva_dev_base"/>
@@ -69,6 +76,7 @@
 		</record>
 		
 		<record id="iva_dev_16" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Recargo Equivalencia Base Imponible 4%</field>
 			<field name="code">[16]</field>
 			<field name="parent_id" ref="iva_dev_base"/>
@@ -79,6 +87,7 @@
 		<!-- ADQUISICIONES INTRACOMUNITARIAS -->
 		
 		<record id="iva_dev_19" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Adquisiciones intracomunitarias. Base Imponible</field>
 			<field name="code">[19]</field>
 			<field name="parent_id" ref="iva_dev_base"/>
@@ -93,6 +102,7 @@
 		 
 		 
 		<record id="iva_dev_21" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IVA Cuota total devengada</field>
 			<field name="code">[21]</field>
 			<field name="sign">1.0</field>
@@ -100,6 +110,7 @@
 		</record>
 		 
 		<record id="iva_dev_03" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Régimen general IVA Devengado. Cuota 4%</field>
 			<field name="code">[03]</field>
 			<field name="parent_id" ref="iva_dev_21"/>
@@ -107,6 +118,7 @@
 		</record>
 		
 		<record id="iva_dev_06" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Régimen general IVA Devengado. Cuota 7%</field>
 			<field name="code">[06]</field>
 			<field name="parent_id" ref="iva_dev_21"/>
@@ -114,6 +126,7 @@
 		</record>
 		
 		<record id="iva_dev_09" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Régimen general IVA Devengado. Cuota 16%</field>
 			<field name="code">[09]</field>
 			<field name="parent_id" ref="iva_dev_21"/>
@@ -122,6 +135,7 @@
 	
 		<!-- RECARGO DE EQUIVALENCIA -->
 		<!--record id="re_base" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Recargo Equivalencia Base Imponible</field>
 			<field name="code">_</field>
 			<field name="sign">1.0</field>
@@ -129,6 +143,7 @@
 		</record-->
 		
 		<record id="iva_dev_12" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Recargo Equivalencia. Cuota 0.5%</field>
 			<field name="code">[12]</field>
 			<field name="parent_id" ref="iva_dev_21"/>
@@ -136,6 +151,7 @@
 		</record>
 		
 		<record id="iva_dev_15" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Recargo Equivalencia. Cuota 1%</field>
 			<field name="code">[15]</field>
 			<field name="parent_id" ref="iva_dev_21"/>
@@ -143,6 +159,7 @@
 		</record>
 		
 		<record id="iva_dev_18" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Recargo Equivalencia. Cuota 4%</field>
 			<field name="code">[18]</field>
 			<field name="parent_id" ref="iva_dev_21"/>
@@ -153,6 +170,7 @@
 		<!-- ADQUISICIONES INTRACOMUNITARIAS -->
 		
 		<record id="iva_dev_20" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Adquisiciones intracomunitarias. Cuota</field>
 			<field name="code">[20]</field>
 			<field name="parent_id" ref="iva_dev_21"/>
@@ -171,6 +189,7 @@
 	<!--IVA Soportado (Deducible) Base Imponible-->
 	<!-- *********************************************** -->
 		<record id="iva_ded_base_total" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IVA Deducible Base Imponible</field>
 			<field name="code">--</field>
 			<field name="sign">1.0</field>
@@ -179,12 +198,14 @@
 		
 		<!-- Base en OPERACIONES INTERIORES CORRIENTES-->
 		<record id="iva_ded_22" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base operaciones interiores corrientes</field>
 			<field name="code">[22]</field>
 			<field name="parent_id" ref="iva_ded_base_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_22_16" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base operaciones interiores corrientes (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_22"/>
@@ -192,12 +213,14 @@
 		</record>
 		
 		<record id="iva_ded_22_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base operaciones interiores corrientes (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_22"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_22_4" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base operaciones interiores corrientes (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_22"/>
@@ -206,12 +229,14 @@
 		
 		<!-- Base en OPERACIONES INTERIORES CON BIENES DE INVERSIÓN-->
 		<record id="iva_ded_24" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base operaciones interiores bienes inversión</field>
 			<field name="code">[24]</field>
 			<field name="parent_id" ref="iva_ded_base_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_24_16" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base operaciones interiores bienes inversión (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_24"/>
@@ -219,12 +244,14 @@
 		</record>
 		
 		<record id="iva_ded_24_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base operaciones interiores bienes inversión (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_24"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_24_4" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base operaciones interiores bienes inversión (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_24"/>
@@ -234,12 +261,14 @@
 		
 		<!-- Base EN LAS IMPORTACIONES DE BIENES CORRIENTES-->
 		<record id="iva_ded_26" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base importaciones bienes corrientes</field>
 			<field name="code">[26]</field>
 			<field name="parent_id" ref="iva_ded_base_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_26_16" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base importaciones bienes corrientes (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_26"/>
@@ -247,12 +276,14 @@
 		</record>
 		
 		<record id="iva_ded_26_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base importaciones bienes corrientes (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_26"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_26_4" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base importaciones bienes corrientes (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_26"/>
@@ -261,12 +292,14 @@
 		
 		<!-- Base EN LAS IMPORTACIONES DE BIENES DE INVERSIÓN-->
 		<record id="iva_ded_28" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base importaciones bienes inversión</field>
 			<field name="code">[28]</field>
 			<field name="parent_id" ref="iva_ded_base_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_28_16" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base importaciones bienes inversión (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_28"/>
@@ -274,12 +307,14 @@
 		</record>
 		
 		<record id="iva_ded_28_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base importaciones bienes inversión (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_28"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_28_4" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base importaciones bienes inversión (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_28"/>
@@ -288,12 +323,14 @@
 		
 		<!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES CORRIENTES-->
 		<record id="iva_ded_30" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base adquisiciones intracomunitarias bienes corrientes</field>
 			<field name="code">[30]</field>
 			<field name="parent_id" ref="iva_ded_base_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_30_16" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base adquisiciones intracomunitarias bienes corrientes (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_30"/>
@@ -301,12 +338,14 @@
 		</record>
 		
 		<record id="iva_ded_30_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base adquisiciones intracomunitarias bienes corrientes (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_30"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_30_4" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base adquisiciones intracomunitarias bienes corrientes (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_30"/>
@@ -315,12 +354,14 @@
 		
 		<!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES DE INVERSIÓN-->
 		<record id="iva_ded_32" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base adquisiciones intracomunitarias bienes inversión</field>
 			<field name="code">[32]</field>
 			<field name="parent_id" ref="iva_ded_base_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_32_16" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base adquisiciones intracomunitarias bienes inversión (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_32"/>
@@ -328,12 +369,14 @@
 		</record>
 		
 		<record id="iva_ded_32_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base adquisiciones intracomunitarias bienes inversión (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_32"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_32_4" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Base adquisiciones intracomunitarias bienes inversión (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_32"/>
@@ -346,6 +389,7 @@
 	<!-- *********************************************** -->
 	
 		<record id="iva_ded_cuota_total" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IVA deducible (Cuota)- Total a deducir [Mod.303]</field>
 			<field name="code">[37]</field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
@@ -354,12 +398,14 @@
 
 		<!-- Cuotas en OPERACIONES INTERIORES CORRIENTES-->
 		<record id="iva_ded_23" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas soportadas operaciones interiores corrientes</field>
 			<field name="code">[23]</field>
 			<field name="parent_id" ref="iva_ded_cuota_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_23_16" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas soportadas operaciones interiores corrientes (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_23"/>
@@ -367,12 +413,14 @@
 		</record>
 		
 		<record id="iva_ded_23_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas soportadas operaciones interiores corrientes (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_23"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_23_4" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas soportadas operaciones interiores corrientes (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_23"/>
@@ -381,12 +429,14 @@
 		
 		<!-- Cuotas en OPERACIONES INTERIORES CON BIENES DE INVERSIÓN-->
 		<record id="iva_ded_25" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas soportadas operaciones interiores bienes inversión</field>
 			<field name="code">[25]</field>
 			<field name="parent_id" ref="iva_ded_cuota_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_25_16" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas soportadas operaciones interiores bienes inversión (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_25"/>
@@ -394,12 +444,14 @@
 		</record>
 		
 		<record id="iva_ded_25_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas soportadas operaciones interiores bienes inversión (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_25"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_25_4" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas soportadas operaciones interiores bienes inversión (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_25"/>
@@ -408,12 +460,14 @@
 		
 		<!-- Cuotas devengadas EN LAS IMPORTACIONES DE BIENES CORRIENTES-->
 		<record id="iva_ded_27" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas devengadas importaciones bienes corrientes</field>
 			<field name="code">[27]</field>
 			<field name="parent_id" ref="iva_ded_cuota_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_27_16" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas devengadas importaciones bienes corrientes (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_27"/>
@@ -421,12 +475,14 @@
 		</record>
 		
 		<record id="iva_ded_27_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas devengadas importaciones bienes corrientes (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_27"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_27_4" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas devengadas importaciones bienes corrientes (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_27"/>
@@ -435,12 +491,14 @@
 		
 		<!-- Cuotas devengadas EN LAS IMPORTACIONES DE BIENES DE INVERSIÓN-->
 		<record id="iva_ded_29" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas devengadas importaciones bienes inversión</field>
 			<field name="code">[29]</field>
 			<field name="parent_id" ref="iva_ded_cuota_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_29_16" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas devengadas importaciones bienes inversión (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_29"/>
@@ -448,12 +506,14 @@
 		</record>
 		
 		<record id="iva_ded_29_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas devengadas importaciones bienes inversión (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_29"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_29_4" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Cuotas devengadas importaciones bienes inversión (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_29"/>
@@ -462,12 +522,14 @@
 		
 		<!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES CORRIENTES-->
 		<record id="iva_ded_31" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">En adquisiciones intracomunitarias bienes corrientes</field>
 			<field name="code">[31]</field>
 			<field name="parent_id" ref="iva_ded_cuota_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_31_16" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">En adquisiciones intracomunitarias bienes corrientes (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_31"/>
@@ -475,12 +537,14 @@
 		</record>
 		
 		<record id="iva_ded_31_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">En adquisiciones intracomunitarias bienes corrientes (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_31"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_31_4" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">En adquisiciones intracomunitarias bienes corrientes (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_31"/>
@@ -489,12 +553,14 @@
 		
 		<!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES DE INVERSIÓN-->
 		<record id="iva_ded_33" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">En adquisiciones intracomunitarias bienes inversión</field>
 			<field name="code">[33]</field>
 			<field name="parent_id" ref="iva_ded_cuota_total"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_33_16" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">En adquisiciones intracomunitarias bienes inversión (16%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_33"/>
@@ -502,12 +568,14 @@
 		</record>
 		
 		<record id="iva_ded_33_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">En adquisiciones intracomunitarias bienes inversión (7%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_33"/>
 			<field name="sign">1.0</field>
 		</record>
 		<record id="iva_ded_33_4" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">En adquisiciones intracomunitarias bienes inversión (4%)</field>
 			<field name="code">--</field>
 			<field name="parent_id" ref="iva_ded_33"/>
@@ -517,6 +585,7 @@
 
 		<!--Otros Códiogs de Impuesto-->
 		 <record id="base_intra_42" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Entregas Intracomunitarias</field>
 			<field name="code">[42]</field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
@@ -524,6 +593,7 @@
 		</record>
 
 		 <record id="base_extra_43" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">Exportaciones y operaciones asimiladas</field>
 			<field name="code">[43]</field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
@@ -534,6 +604,7 @@
 <!-- ********************************* -->
 
 		<record id="pgc_472004" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="code">472004</field>
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_472"/>
@@ -543,6 +614,7 @@
 		</record>
 		
 		<record id="pgc_472007" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="code">472007</field>
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_472"/>
@@ -552,6 +624,7 @@
 		</record>
 		
 		<record id="pgc_472016" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="code">472016</field>
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_472"/>
@@ -561,6 +634,7 @@
 		</record>
 		
 		<record id="pgc_477004" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="code">477004</field>
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_477"/>
@@ -570,6 +644,7 @@
 		</record>
 		
 		<record id="pgc_477007" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="code">477007</field>
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_477"/>
@@ -579,6 +654,7 @@
 		</record>
 		
 		<record id="pgc_477016" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="code">477016</field>
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_477"/>
@@ -588,6 +664,7 @@
 		</record>
 		
 		<record id="pgc_475001" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="code">475001</field>
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_475"/>
@@ -604,6 +681,7 @@
 <!-- IVA Soportado -->
 
 		<record id="iva_sop_4" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">4% IVA Soportado (operaciones corrientes)</field>
 			<field eval="0.04" name="amount"/>
@@ -622,6 +700,7 @@
 		</record>
 		
 		<record id="iva_sop_4_inv" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">4% IVA Soportado (bienes de inversión)</field>
 			<field eval="0.04" name="amount"/>
@@ -640,6 +719,7 @@
 		</record>
 		
 		<record id="iva_sop_7" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">7% IVA Soportado (operaciones corrientes)</field>
 			<field eval="0.07" name="amount"/>
@@ -658,6 +738,7 @@
 		</record>
 		
 		<record id="iva_sop_7_inv" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">7% IVA Soportado (bienes de inversión)</field>
 			<field eval="0.07" name="amount"/>
@@ -676,6 +757,7 @@
 		</record>
 		
 		<record id="iva_sop_16" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">16% IVA Soportado (operaciones corrientes)</field>
 			<field eval="0.16" name="amount"/>
@@ -694,6 +776,7 @@
 		</record>
 		
 		<record id="iva_sop_16_inv" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">16% IVA Soportado (bienes de inversión)</field>
 			<field eval="0.16" name="amount"/>
@@ -714,6 +797,7 @@
 		<!-- Plantillas para Extracomunitario-->
 		<!-- IVA compras -->
 		<record id="iva_X0_compras_bc" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 0% Importaciones bienes corrientes</field>
 			<field name="description">IVA 0% Importaciones bienes corrientes</field>
@@ -728,6 +812,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_X0_compras_bi" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 0% Importaciones bienes de inversión</field>
 			<field name="description">IVA 0% Importaciones bienes de inversión</field>
@@ -743,6 +828,7 @@
 		</record>
 		
 		<record id="iva_X4_compras_bc" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 4% Importaciones bienes corrientes</field>
 			<field name="description">IVA 4% Importaciones bienes corrientes</field>
@@ -761,6 +847,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_X4_compras_bi" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 4% Importaciones bienes de inversión</field>
 			<field name="description">IVA 4% Importaciones bienes de inversión</field>
@@ -780,6 +867,7 @@
 		</record>
 		 
 		<record id="iva_X7_compras_bc" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 7% Importaciones bienes corrientes</field>
 			<field name="description">IVA 7% Importaciones bienes corrientes</field>
@@ -798,6 +886,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_X7_compras_bi" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 7% Importaciones bienes de inversión</field>
 			<field name="description">IVA 7% Importaciones bienes de inversión</field>
@@ -817,6 +906,7 @@
 		</record>
 		
 		<record id="iva_X16_compras_bc" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 16% Importaciones bienes corrientes</field>
 			<field name="description">IVA 16% Importaciones bienes corrientes</field>
@@ -835,6 +925,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_X16_compras_bi" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 16% Importaciones bienes de inversión</field>
 			<field name="description">IVA 16% Importaciones bienes de inversión</field>
@@ -855,6 +946,7 @@
 		
 		<!-- IVA EXPORTACIONES (VENTAS )-->
 		 <record id="iva_X0" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 0% Exportaciones</field>
 			<field name="description">IVA 0% Exportaciones</field>
@@ -871,6 +963,7 @@
 		
 		<!-- IVA REPERCUTIDO-->
 		<record id="iva_rep_4" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 4%</field>
 			<field eval="0.04" name="amount"/>
@@ -889,6 +982,7 @@
 		</record>
 		
 		<record id="iva_rep_7" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 7%</field>
 			<field eval="0.07" name="amount"/>
@@ -907,6 +1001,7 @@
 		</record>
 		
 		<record id="iva_rep_16" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 16%</field>
 			<field eval="0.16" name="amount"/>
@@ -927,6 +1022,7 @@
 		
 		<!-- Plantillas para recargo de equivalencia-->
 		<record id="re_05" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">0.50% Recargo Equivalencia</field>
 			<field eval="0.005" name="amount"/>
@@ -945,6 +1041,7 @@
 		</record>
 		
 		<record id="re_1" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">1% Recargo Equivalencia</field>
 			<field eval="0.01" name="amount"/>
@@ -963,6 +1060,7 @@
 		</record>
 		
 		<record id="re_4" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">4% Recargo Equivalencia</field>
 			<field eval="0.04" name="amount"/>
@@ -985,6 +1083,7 @@
 		
 		<!-- VENTAS -->
 		<record id="iva_IO" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 0% Intracomunitario</field>
 			<field name="description">IVA 0% Intracomunitario 0</field>
@@ -1000,6 +1099,7 @@
 		
 		<!-- COMPRAS -->
 		<record id="iva_IC_compras_16_bc" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 16% Intracomunitario. Bienes corrientes</field>
 			<field name="description">IVA 16% Intracomunitario. Bienes corrientes</field>
@@ -1009,6 +1109,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_16_bc_1" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="parent_id" ref="iva_IC_compras_16_bc"/>
 			<field name="name">IVA 16% Intracomunitario. Bienes corrientes (1)</field>
@@ -1025,6 +1126,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_16_bc_2" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="parent_id" ref="iva_IC_compras_16_bc"/>
 			<field name="name">IVA 16% Intracomunitario. Bienes corrientes (2)</field>
@@ -1043,6 +1145,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<!--record id="vat_IO_buy_21b_3" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="parent_id" ref="vat_IO_buy_21b"/>
 			<field name="name">Biens Déductibles 21% (3)</field>
@@ -1055,6 +1158,7 @@
 <!-- ES NECESARIO ESTE ÚLTIMO REGISTRO????-->
 
 		<record id="iva_IC_compras_16_bi" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 16% Intracomunitario. Bienes de inversión</field>
 			<field name="description">IVA 16% Intracomunitario. Bienes de inversión</field>
@@ -1064,6 +1168,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_16_bi_1" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="parent_id" ref="iva_IC_compras_16_bi"/>
 			<field name="name">IVA 16% Intracomunitario. Bienes de inversión (1)</field>
@@ -1080,6 +1185,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_16_bi_2" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="parent_id" ref="iva_IC_compras_16_bi"/>
 			<field name="name">IVA 16% Intracomunitario. Bienes de inversión (2)</field>
@@ -1098,6 +1204,7 @@
 		</record>
 
 		<record id="iva_IC_compras_7_bc" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 7% Intracomunitario. Bienes corrientes</field>
 			<field name="description">IVA 7% Intracomunitario. Bienes corrientes</field>
@@ -1107,6 +1214,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_7_bc_1" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="parent_id" ref="iva_IC_compras_7_bc"/>
 			<field name="name">IVA 7% Intracomunitario. Bienes corrientes (1)</field>
@@ -1123,6 +1231,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_7_bc_2" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="parent_id" ref="iva_IC_compras_7_bc"/>
 			<field name="name">IVA 7% Intracomunitario. Bienes corrientes (2)</field>
@@ -1141,6 +1250,7 @@
 		</record>
 
 		<record id="iva_IC_compras_7_bi" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 7% Intracomunitario. Bienes de inversión</field>
 			<field name="description">IVA 7% Intracomunitario. Bienes de inversión</field>
@@ -1150,6 +1260,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_7_bi_1" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="parent_id" ref="iva_IC_compras_7_bi"/>
 			<field name="name">IVA 7% Intracomunitario. Bienes de inversión (1)</field>
@@ -1166,6 +1277,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_7_bi_2" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="parent_id" ref="iva_IC_compras_7_bi"/>
 			<field name="name">IVA 7% Intracomunitario. Bienes de inversión (2)</field>
@@ -1184,6 +1296,7 @@
 		</record>
 
 		<record id="iva_IC_compras_4_bc" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 4% Intracomunitario. Bienes corrientes</field>
 			<field name="description">IVA 4% Intracomunitario. Bienes corrientes</field>
@@ -1193,6 +1306,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_4_bc_1" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="parent_id" ref="iva_IC_compras_4_bc"/>
 			<field name="name">IVA 4% Intracomunitario. Bienes corrientes (1)</field>
@@ -1209,6 +1323,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_4_bc_2" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="parent_id" ref="iva_IC_compras_4_bc"/>
 			<field name="name">IVA 4% Intracomunitario. Bienes corrientes (2)</field>
@@ -1227,6 +1342,7 @@
 		</record>
 
 		<record id="iva_IC_compras_4_bi" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">IVA 4% Intracomunitario. Bienes de inversión</field>
 			<field name="description">IVA 4% Intracomunitario. Bienes de inversión</field>
@@ -1236,6 +1352,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_4_bi_1" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="parent_id" ref="iva_IC_compras_4_bi"/>
 			<field name="name">IVA 4% Intracomunitario. Bienes de inversión (1)</field>
@@ -1252,6 +1369,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_IC_compras_4_bi_2" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="parent_id" ref="iva_IC_compras_4_bi"/>
 			<field name="name">IVA 4% Intracomunitario. Bienes de inversión (2)</field>
@@ -1279,6 +1397,7 @@
 		
 		<!--Base imponible-->
 		<record id="irpf_base" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones practicadas Base Imponible</field>
 			<field name="code">B.IRPF</field>
 			<field name="sign">1.0</field>
@@ -1286,6 +1405,7 @@
 		</record>
 		
 		<record id="irpf_base_1" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones practicadas Base Imponible 1%</field>
 			<field name="code">B.IRPF1</field>
 			<field name="parent_id" ref="irpf_base"/>
@@ -1293,6 +1413,7 @@
 		</record>
 		
 		<record id="irpf_base_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones practicadas Base Imponible 7%</field>
 			<field name="code">B.IRPF7</field>
 			<field name="parent_id" ref="irpf_base"/>
@@ -1300,6 +1421,7 @@
 		</record>
 		
 		<record id="irpf_base_15" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones practicadas Base Imponible 15%</field>
 			<field name="code">B.IRPF15</field>
 			<field name="parent_id" ref="irpf_base"/>
@@ -1307,6 +1429,7 @@
 		</record>
 		
 		<record id="irpf_base_18" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones practicadas Base Imponible 18%</field>
 			<field name="code">B.IRPF18</field>
 			<field name="parent_id" ref="irpf_base"/>
@@ -1315,6 +1438,7 @@
 		
 		<!--Cuotas-->
 		<record id="irpf_cuota_total" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones practicadas Total Cuota</field>
 			<field name="code">IRPF</field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
@@ -1322,6 +1446,7 @@
 		</record>
 		
 		<record id="irpf_cuota_1" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones practicadas Cuota 1%</field>
 			<field name="code">IRPF1</field>
 			<field name="parent_id" ref="irpf_cuota_total"/>
@@ -1329,6 +1454,7 @@
 		</record>
 		
 		<record id="irpf_cuota_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones practicadas Cuota 7%</field>
 			<field name="code">IRPF7</field>
 			<field name="parent_id" ref="irpf_cuota_total"/>
@@ -1336,6 +1462,7 @@
 		</record>
 		
 		<record id="irpf_cuota_15" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones practicadas Cuota 15%</field>
 			<field name="code">IRPF15</field>
 			<field name="parent_id" ref="irpf_cuota_total"/>
@@ -1343,6 +1470,7 @@
 		</record>
 		
 		<record id="irpf_cuota_18" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones practicadas Cuota 18%</field>
 			<field name="code">IRPF18</field>
 			<field name="parent_id" ref="irpf_cuota_total"/>
@@ -1351,6 +1479,7 @@
 		
 		<!--Cuentas para Retenciones-->
 		<record id="pgc_475101" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="code">475101</field>
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_475"/>
@@ -1360,6 +1489,7 @@
 		</record>
 		
 		<record id="pgc_475107" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="code">475107</field>
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_475"/>
@@ -1369,6 +1499,7 @@
 		</record>
 		
 		<record id="pgc_475115" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="code">475115</field>
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_475"/>
@@ -1378,6 +1509,7 @@
 		</record>
 		
 		<record id="pgc_475118" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="code">475118</field>
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_475"/>
@@ -1388,6 +1520,7 @@
 		
 		<!-- Plantillas de retenciones-->
 		<record id="irpf_1" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">Retenciones IRPF 1%</field>
 			<field eval="-0.01" name="amount"/>
@@ -1406,6 +1539,7 @@
 		</record>
 		
 		<record id="irpf_7" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">Retenciones IRPF 7%</field>
 			<field eval="-0.07" name="amount"/>
@@ -1424,6 +1558,7 @@
 		</record>
 		
 		<record id="irpf_15" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">Retenciones IRPF 15%</field>
 			<field eval="-0.15" name="amount"/>
@@ -1442,6 +1577,7 @@
 		</record>
 		
 		<record id="irpf_18" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">Retenciones IRPF 18%</field>
 			<field eval="-0.18" name="amount"/>
@@ -1463,6 +1599,7 @@
 		
 		<!--Base imponible-->
 		<record id="irpf_base_sale" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones a cuenta Base Imponible</field>
 			<field name="code">B.IRPF AC</field>
 			<field name="sign">1.0</field>
@@ -1470,6 +1607,7 @@
 		</record>
 		
 		<record id="irpf_base_sale_1" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones a cuenta Base Imponible 1%</field>
 			<field name="code">B.IRPF1 AC</field>
 			<field name="parent_id" ref="irpf_base_sale"/>
@@ -1477,6 +1615,7 @@
 		</record>
 		
 		<record id="irpf_base_sale_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones a cuenta Base Imponible 7%</field>
 			<field name="code">B.IRPF7 AC</field>
 			<field name="parent_id" ref="irpf_base_sale"/>
@@ -1484,6 +1623,7 @@
 		</record>
 		
 		<record id="irpf_base_sale_15" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones a cuenta Base Imponible 15%</field>
 			<field name="code">B.IRPF15 AC</field>
 			<field name="parent_id" ref="irpf_base_sale"/>
@@ -1491,6 +1631,7 @@
 		</record>
 		
 		<record id="irpf_base_sale_18" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones a cuenta Base Imponible 18%</field>
 			<field name="code">B.IRPF18 AC</field>
 			<field name="parent_id" ref="irpf_base_sale"/>
@@ -1499,6 +1640,7 @@
 		
 		<!--Cuotas-->
 		<record id="irpf_cuota_sale_total" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones a cuenta Total Cuota</field>
 			<field name="code">IRPF AC</field>
 			<field name="parent_id" ref="vat_code_chart_root"/>
@@ -1506,6 +1648,7 @@
 		</record>
 		
 		<record id="irpf_cuota_sale_1" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones a cuenta Cuota 1%</field>
 			<field name="code">IRPF1 AC</field>
 			<field name="parent_id" ref="irpf_cuota_sale_total"/>
@@ -1513,6 +1656,7 @@
 		</record>
 		
 		<record id="irpf_cuota_sale_7" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones a cuenta Cuota 7%</field>
 			<field name="code">IRPF7 AC</field>
 			<field name="parent_id" ref="irpf_cuota_sale_total"/>
@@ -1520,6 +1664,7 @@
 		</record>
 		
 		<record id="irpf_cuota_sale_15" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones a cuenta Cuota 15%</field>
 			<field name="code">IRPF15 AC</field>
 			<field name="parent_id" ref="irpf_cuota_sale_total"/>
@@ -1527,6 +1672,7 @@
 		</record>
 		
 		<record id="irpf_cuota_sale_18" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones a cuenta Cuota 18%</field>
 			<field name="code">IRPF18 AC</field>
 			<field name="parent_id" ref="irpf_cuota_sale_total"/>
@@ -1535,6 +1681,7 @@
 		
 		<!--Cuentas para Retenciones-->
 		<record id="pgc_473001" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="code">473001</field>
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_473"/>
@@ -1544,6 +1691,7 @@
 		</record>
 		
 		<record id="pgc_473007" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="code">473007</field>
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_473"/>
@@ -1553,6 +1701,7 @@
 		</record>
 		
 		<record id="pgc_473015" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="code">473015</field>
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_473"/>
@@ -1562,6 +1711,7 @@
 		</record>
 		
 		<record id="pgc_473018" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="code">473018</field>
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_473"/>
@@ -1572,6 +1722,7 @@
 		
 		<!-- Plantillas de retenciones-->
 		<record id="irpf_sale_1" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">Retenciones a cuenta IRPF 1%</field>
 			<field eval="-0.01" name="amount"/>
@@ -1590,6 +1741,7 @@
 		</record>
 		
 		<record id="irpf_sale_7" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">Retenciones a cuenta IRPF 7%</field>
 			<field eval="-0.07" name="amount"/>
@@ -1608,6 +1760,7 @@
 		</record>
 		
 		<record id="irpf_sale_15" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">Retenciones a cuenta IRPF 15%</field>
 			<field eval="-0.15" name="amount"/>
@@ -1626,6 +1779,7 @@
 		</record>
 		
 		<record id="irpf_sale_18" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
 			<field name="chart_template_id" ref="l10nES_chart_template"/>
 			<field name="name">Retenciones a cuenta IRPF 18%</field>
 			<field eval="-0.18" name="amount"/>

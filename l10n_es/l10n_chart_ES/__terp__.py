@@ -35,9 +35,13 @@
     "license" : "GPL-3",
     "depends" : ["account", "base_vat", "base_iban"],
     "init_xml" : [
+        "account_view.xml",
         "account_chart.xml",
         "taxes_data.xml",
-        "fiscal_templates.xml"
+        "fiscal_templates.xml",
+        "account_chart_pymes.xml",
+        "taxes_data_pymes.xml",
+        "fiscal_templates_pymes.xml"
     ],
     "demo_xml" : [],
     "update_xml" : [
