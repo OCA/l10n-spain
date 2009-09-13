@@ -31,7 +31,7 @@ logger = netsvc.Logger()
 
 facturae_form = """<?xml version="1.0"?>
 <form string="Create Factura-E">
-    <label string="Do you want to Create Factura-E" />
+    <label string="Do you want to Create Factura-E?"/>
 </form>"""
 
 facturae_fields = {}
@@ -119,10 +119,14 @@ def _create_facturae_file(self, cr, uid, data, context):
         schemaversion = '3.1'
         modality = 'I'
         
+        if not invoice.number:
+            log.add(_('User error:\n\nCan not create Factura-E file if invoice has no number.'))
+            raise log
+
         if company_partner_obj.vat:
             BatchIdentifier = invoice.number + company_partner_obj.vat
         else:
-            log.add(_('User error:\n\nEl Cliente %s no tiene Cif') % (company_partner_obj.name), True)
+            log.add(_('User error:\n\nCompany %s has no VAT number.') % (company_partner_obj.name), True)
             raise log
 
         texto = ''
@@ -148,6 +152,9 @@ def _create_facturae_file(self, cr, uid, data, context):
 
         #obtencion direccion company recogemos la de facura adress_get si no encuentra invoice devuelve primera
         company_address_id = pool.get('res.partner').address_get(cr, uid, [company_obj.partner_id.id], ['invoice'])
+        if not company_address_id['invoice']:
+            log.add(_('User error:\n\nCompany %s does not have an invoicing address.') % (company_partner_obj.name))
+            raise log
         company_address_obj = pool.get('res.partner.address').browse(cr, uid, company_address_id['invoice'])
 
         #obtencion de la direccion del partner
@@ -158,7 +165,7 @@ def _create_facturae_file(self, cr, uid, data, context):
         if invoice_partner_obj.vat:
             tipo_buyer = _persona(invoice_partner_obj.vat)
         else:
-            log.add(_('User error:\n\nEl Cliente %s no tiene Cif') % (invoice_partner_obj.name), True)
+            log.add(_('User error:\n\nPartner %s does not have a VAT number.') % (invoice_partner_obj.name), True)
             raise log
         
         texto = ''
@@ -198,27 +205,27 @@ def _create_facturae_file(self, cr, uid, data, context):
             else:
                 texto += '<Address>' + company_address_obj.street + '</Address>'
         else:
-            log.add(_('User error:\n\nEl Cliente %s no tiene direccion') % (company_partner_obj.name), True)
+            log.add(_('User error:\n\nCompany %s has no street.') % (company_partner_obj.name), True)
             raise log
         if company_address_obj.zip:
             texto += '<PostCode>' + company_address_obj.zip + '</PostCode>'
         else:
-            log.add(_('User error:\n\nEl Cliente %s no tiene codigo postal.') % (company_partner_obj.name), True)
+            log.add(_('User error:\n\nCompany %s has no zip code.') % (company_partner_obj.name), True)
             raise log
         if company_address_obj.city:
             texto += '<Town>' + company_address_obj.city + '</Town>'
         else:
-            log.add(_('User error:\n\nEl Cliente %s no tiene Ciudad.') % (company_partner_obj.name), True)
+            log.add(_('User error:\n\nCompany %s has no city.') % (company_partner_obj.name), True)
             raise log
         if  company_address_obj.state_id.name:
             texto += '<Province>' + company_address_obj.state_id.name + '</Province>'
         else:
-            log.add(_('User error:\n\nEl Cliente %s no tiene Provincia.') % (company_partner_obj.name), True)
+            log.add(_('User error:\n\nCompany %s has no province.') % (company_partner_obj.name), True)
             raise log
         if company_address_obj.country_id.code_3166:
             texto += '<CountryCode>' + company_address_obj.country_id.code_3166 + '</CountryCode>'
         else:
-            log.add(_('User error:\n\nEl Cliente %s no tiene Pais.') % (company_partner_obj.name), True)
+            log.add(_('User error:\n\nCompany %s has no country.') % (company_partner_obj.name), True)
             raise log
         texto += '</AddressInSpain>'
 
@@ -265,28 +272,28 @@ def _create_facturae_file(self, cr, uid, data, context):
             else:
                 texto += '<Address>' + invoice_partner_address_obj.street + '</Address>'
         else:
-            log.add(_('User error:\n\nEl Cliente %s no tiene direccion') % (invoice_partner_address_obj.name), True)
+            log.add(_('User error:\n\nPartner %s has no street.') % (invoice_partner_address_obj.name), True)
             raise log
         if invoice_partner_address_obj.zip:
             texto += '<PostCode>' + invoice_partner_address_obj.zip + '</PostCode>'
         else:
-            log.add(_('User error:\n\nEl Cliente %s no tiene codigo postal.') % (invoice_partner_obj.name), True)
+            log.add(_('User error:\n\nPartner %s has no zip code.') % (invoice_partner_obj.name), True)
             raise log
 
         if invoice_partner_address_obj.city:
             texto += '<Town>' + invoice_partner_address_obj.city + '</Town>'
         else:
-            log.add(_('User error:\n\nEl Cliente %s no tiene Ciudad.') % (invoice_partner_obj.name), True)
+            log.add(_('User error:\n\nPartner %s has no city.') % (invoice_partner_obj.name), True)
             raise log
         if invoice_partner_address_obj.state_id.name:
             texto += '<Province>' + invoice_partner_address_obj.state_id.name + '</Province>'
         else:
-            log.add(_('User error:\n\nEl Cliente %s no tiene Provincia.') % (invoice_partner_obj.name), True)
+            log.add(_('User error:\n\nPartner %s has no province.') % (invoice_partner_obj.name), True)
             raise log
         if invoice_partner_address_obj.country_id.code_3166:
             texto += '<CountryCode>' + invoice_partner_address_obj.country_id.code_3166 + '</CountryCode>'
         else:
-            log.add(_('User error:\n\nEl Cliente %s no tiene Pais.') % (invoice_partner_obj.name), True)
+            log.add(_('User error:\n\nPartner %s has no country.') % (invoice_partner_obj.name), True)
             raise log
         texto += '</AddressInSpain>'
 
@@ -391,7 +398,7 @@ def _create_facturae_file(self, cr, uid, data, context):
             texto += '<Discount>'
             texto += '<DiscountReason>Descuento</DiscountReason>'
             texto += '<DiscountRate>' + str('%.4f' % line.discount) + '</DiscountRate>'
-            texto += '<DiscountAmount>' + str('%.2f' % (line.price_unit - line.price_subtotal)) + '</DiscountAmount>'
+            texto += '<DiscountAmount>' + str('%.2f' % ( (line.price_unit*line.quantity) - line.price_subtotal)) + '</DiscountAmount>'
             texto += '</Discount>'
             texto += '</DiscountsAndRebates>'
             texto += '<GrossAmount>' + str('%.2f' % line.price_subtotal) + '</GrossAmount>'
@@ -469,13 +476,13 @@ def _create_facturae_file(self, cr, uid, data, context):
         file = base64.encodestring(xml_facturae)
         fname = (_('facturae') + '_' + invoice.number + '.xml').replace('/','-')
         pool.get('ir.attachment').create(cr, uid, {
-            'name': _('FacturaE ' + invoice.number) ,
+            'name': '%s %s' % (_('FacturaE'), invoice.number),
             'datas': file,
             'datas_fname': fname,
             'res_model': 'account.invoice',
             'res_id': invoice.id,
             }, context=context)
-        log.add(_("Exportacion sactisfactoria\n\nSummary:\n Numero de Factura: %s \n") % (invoice.number))
+        log.add(_("Export successful\n\nSummary:\nInvoice number: %s\n") % (invoice.number))
         pool.get('account.invoice').set_done(cr,uid,invoice.id,context)
 
         return {'note':log(), 'reference':invoice.id, 'facturae':file, 'facturae_fname':fname, 'state':'succeeded'}
