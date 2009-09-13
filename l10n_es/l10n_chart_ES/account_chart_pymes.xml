@@ -5338,7 +5338,7 @@
       
       <record id="pgc_pymes_4100" model="account.account.template">
 	      <field name="code">4100</field>
-	      <field name="reconcile" eval="False"/>
+	      <field name="reconcile" eval="True"/>
 	      <field name="parent_id" ref="pgc_pymes_410"/>
 	      <field name="type">payable</field>
 	      <field name="name">Acreedores por prestaciones de servicios (euros)</field>
@@ -5348,7 +5348,7 @@
       
       <record id="pgc_pymes_4104" model="account.account.template">
 	      <field name="code">4104</field>
-	      <field name="reconcile" eval="False"/>
+	      <field name="reconcile" eval="True"/>
 	      <field name="parent_id" ref="pgc_pymes_410"/>
 	      <field name="type">payable</field>
 	      <field name="name">Acreedores por prestaciones de servicios (moneda extranjera)</field>
@@ -5358,7 +5358,7 @@
       
       <record id="pgc_pymes_4109" model="account.account.template">
 	      <field name="code">4109</field>
-	      <field name="reconcile" eval="False"/>
+	      <field name="reconcile" eval="True"/>
 	      <field name="parent_id" ref="pgc_pymes_410"/>
 	      <field name="type">payable</field>
 	      <field name="name">Acreedores por prestaciones de servicios, facturas pendientes de recibir o de formalizar</field>
