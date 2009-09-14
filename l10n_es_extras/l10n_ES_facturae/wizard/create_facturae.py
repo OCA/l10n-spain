@@ -27,6 +27,8 @@ import base64
 import mx.DateTime
 from mx.DateTime import now
 import netsvc
+from tools.translate import _
+
 logger = netsvc.Logger()
 
 facturae_form = """<?xml version="1.0"?>
