@@ -38,8 +38,8 @@ import wizard
 import base64
 import mx.DateTime
 from mx.DateTime import now
-import netsvc
-logger = netsvc.Logger()
+from tools.translate import _
+from common import *
 
 join_form = """<?xml version="1.0"?>
 <form string="Payment order export">
@@ -69,41 +69,6 @@ export_fields = {
 }
 
 
-def digitos_cc(cc_in):
-    """Quita los espacios en blanco del número de C.C. (por ej. los que pone el módulo l10n_ES_partner)"""
-    cc = ""
-    for i in cc_in:
-        try:
-            int(i)
-            cc += i
-        except ValueError:
-            pass
-    return cc
-
-
-def conv_ascii(text):
-    """Convierte vocales accentuadas, ñ y ç a sus caracteres equivalentes ASCII"""
-    old_chars = ['á','é','í','ó','ú','à','è','ì','ò','ù','ä','ë','ï','ö','ü','â','ê','î','ô','û','Á','É','Í','Ú','Ó','À','È','Ì','Ò','Ù','Ä','Ë','Ï','Ö','Ü','Â','Ê','Î','Ô','Û','ñ','Ñ','ç','Ç','ª','º']
-    new_chars = ['a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','A','E','I','O','U','A','E','I','O','U','A','E','I','O','U','A','E','I','O','U','n','N','c','C','a','o']
-    for old, new in zip(old_chars, new_chars):
-        text = text.replace(unicode(old,'UTF-8'), new)
-    return text
-
-
-class Log(Exception):
-    def __init__(self):
-        self.content = ""
-        self.error = False
-    def add(self, s, error=True):
-        self.content = self.content + s
-        if error:
-            self.error = error
-    def __call__(self):
-        return self.content
-    def __str__(self):
-        return self.content
-
-
 def _create_payment_file(self, cr, uid, data, context):
 
     def _cabecera_presentador_19(self):
@@ -117,7 +82,6 @@ def _create_payment_file(self, cr, uid, data, context):
         texto += cc[0:8]
         texto += 66*' '
         texto += '\r\n'
-        #logger.notifyChannel('cabecera presentador: ',netsvc.LOG_INFO, texto)
         return texto
 
     def _cabecera_ordenante_19(self):
@@ -164,7 +128,6 @@ def _create_payment_file(self, cr, uid, data, context):
         #texto += conv_ascii(concepto)[0:40].ljust(40)
         #texto += 8*' '
         texto += '\r\n'
-        #logger.notifyChannel('Individual obligatorio: ',netsvc.LOG_INFO, texto)
         return texto
 
     def _individual_opcional_19(self, recibo):
@@ -176,7 +139,6 @@ def _create_payment_file(self, cr, uid, data, context):
         texto += '00000' # Campo de código postal ficticio
         texto += 14*' '
         texto += '\n'
-        #logger.notifyChannel('Individual opcional: ',netsvc.LOG_INFO, texto)
         return texto
 
     def _total_ordenante_19(self):
@@ -186,7 +148,6 @@ def _create_payment_file(self, cr, uid, data, context):
         totalordenante = int(round(-orden.total * 100,0))
         texto += str(totalordenante).zfill(10)
         texto += 6*' '
-        #logger.notifyChannel('Numero total de recibos: ',netsvc.LOG_INFO, str(num_recibos))
         texto += str(num_recibos).zfill(10)
         texto += str(num_recibos + num_lineas_opc + 2).zfill(10)
         texto += 38*' '
@@ -202,7 +163,6 @@ def _create_payment_file(self, cr, uid, data, context):
         totalremesa = int(round(-orden.total * 100,0))
         texto += str(totalremesa).zfill(10)
         texto += 6*' '
-        #logger.notifyChannel('Numero total de recibos: ',netsvc.LOG_INFO, str(num_recibos))
         texto += str(num_recibos).zfill(10)
         texto += str(num_recibos + num_lineas_opc + 4).zfill(10)
         texto += 38*' '
@@ -222,7 +182,6 @@ def _create_payment_file(self, cr, uid, data, context):
         texto += cc[0:8]
         texto += 66*' '
         texto += '\n'
-        #logger.notifyChannel('cabecera presentador: ',netsvc.LOG_INFO, texto)
         return texto
 
     def _cabecera_ordenante_58(self):
@@ -271,7 +230,6 @@ def _create_payment_file(self, cr, uid, data, context):
         texto += date_cargo.strftime('%d%m%y')
         texto += 2*' '
         texto += '\n'
-        #logger.notifyChannel('Individual obligatorio: ',netsvc.LOG_INFO, texto)
         return texto
 
     def _individual_opcional_58(self, recibo):
@@ -281,7 +239,6 @@ def _create_payment_file(self, cr, uid, data, context):
         texto += str(recibo['name']).zfill(12)
         texto += conv_ascii(recibo['communication2'])[0:134].ljust(134)
         texto += '\n'
-        #logger.notifyChannel('Individual opcional: ',netsvc.LOG_INFO, texto)
         return texto
 
     def _registro_obligatorio_domicilio_58(self, recibo):
@@ -304,7 +261,6 @@ def _create_payment_file(self, cr, uid, data, context):
             texto += recibo['ml_maturity_date']
         texto += '  '
         texto += '\n'
-        #logger.notifyChannel('Individual obligatorio: ',netsvc.LOG_INFO, texto)
         return texto
 
     def _total_ordenante_58(self):
@@ -314,7 +270,6 @@ def _create_payment_file(self, cr, uid, data, context):
         totalordenante = int(-orden.total * 100)
         texto += str(totalordenante).zfill(10)
         texto += 6*' '
-        #logger.notifyChannel('Numero total de recibos: ',netsvc.LOG_INFO, str(num_recibos))
         texto += str(num_recibos).zfill(10)
         texto += str(num_recibos + num_lineas_opc + 2).zfill(10)
         texto += 38*' '
@@ -330,7 +285,6 @@ def _create_payment_file(self, cr, uid, data, context):
         totalremesa = int(round(-orden.total * 100,0))
         texto += str(totalremesa).zfill(10)
         texto += 6*' '
-        #logger.notifyChannel('Numero total de recibos: ',netsvc.LOG_INFO, str(num_recibos))
         texto += str(num_recibos).zfill(10)
         texto += str(num_recibos + num_lineas_opc + 4).zfill(10)
         texto += 38*' '
@@ -426,8 +380,6 @@ def _create_payment_file(self, cr, uid, data, context):
         else:
             log.add(_('User error:\n\nThe payment mode is not CSB 19 or CSB 58'), True)
             raise log
-
-        #logger.notifyChannel('remesas texto: ',netsvc.LOG_INFO, '\r\n' + txt_remesa)
 
     except Log:
         return {'note':log(), 'reference':orden.id, 'pay':False, 'state':'failed'}
