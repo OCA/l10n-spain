@@ -12,6 +12,7 @@
             l10nES_chart_template => l10nES_chart_template_pymes
             pgc_* => pgc_pymes_*
             iva_* => iva_pymes_*
+            re_* => re_pymes_*
             irpf_* => irpf_pymes_*
       - Se establece el template_name de las plantillas (este es un campo creado
             específicamente para diferenciar las plantillas de ambos planes).
@@ -69,7 +70,7 @@
 		</record>
 	
 		<!-- RECARGO DE EQUIVALENCIA -->
-		<!--record id="re_base" model="account.tax.code.template">
+		<!--record id="re_pymes_base" model="account.tax.code.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="name">Recargo Equivalencia Base Imponible</field>
 			<field name="code">_</field>
@@ -1039,7 +1040,7 @@
 		
 		
 		<!-- Plantillas para recargo de equivalencia-->
-		<record id="re_05" model="account.tax.template">
+		<record id="re_pymes_05" model="account.tax.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
 			<field name="name">0.50% Recargo Equivalencia</field>
@@ -1058,7 +1059,7 @@
 			<field name="type_tax_use">sale</field>
 		</record>
 		
-		<record id="re_1" model="account.tax.template">
+		<record id="re_pymes_1" model="account.tax.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
 			<field name="name">1% Recargo Equivalencia</field>
@@ -1077,7 +1078,7 @@
 			<field name="type_tax_use">sale</field>
 		</record>
 		
-		<record id="re_4" model="account.tax.template">
+		<record id="re_pymes_4" model="account.tax.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
 			<field name="name">4% Recargo Equivalencia</field>

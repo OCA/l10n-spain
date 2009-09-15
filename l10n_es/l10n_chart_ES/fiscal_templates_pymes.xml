@@ -12,6 +12,7 @@
             l10nES_chart_template => l10nES_chart_template_pymes
             pgc_* => pgc_pymes_*
             iva_* => iva_pymes_*
+            re_* => re_pymes_*
             irpf_* => irpf_pymes_*
             fp_* => fp_pymes_*
             fptt_* => fptt_pymes_*
@@ -186,7 +187,7 @@
 			<field name="template_name">PGCE PYMES</field>
 			<field name="position_id" ref="fp_pymes_recargo"  />
 			<field name="tax_src_id" ref="iva_pymes_rep_16" />
-			<field name="tax_dest_id" ref="re_4" />
+			<field name="tax_dest_id" ref="re_pymes_4" />
 	</record>
 
 	<record id="fptt_pymes_recargo_7" model="account.fiscal.position.tax.template">
@@ -200,7 +201,7 @@
 			<field name="template_name">PGCE PYMES</field>
 			<field name="position_id" ref="fp_pymes_recargo"  />
 			<field name="tax_src_id" ref="iva_pymes_rep_7" />
-			<field name="tax_dest_id" ref="re_1" />
+			<field name="tax_dest_id" ref="re_pymes_1" />
 	</record>
 
 	<record id="fptt_pymes_recargo_4" model="account.fiscal.position.tax.template">
@@ -214,7 +215,7 @@
 			<field name="template_name">PGCE PYMES</field>
 			<field name="position_id" ref="fp_pymes_recargo"  />
 			<field name="tax_src_id" ref="iva_pymes_rep_4" />
-			<field name="tax_dest_id" ref="re_05" />
+			<field name="tax_dest_id" ref="re_pymes_05" />
 	</record>
 
 	<!-- Extracomunitarios fiscal.position.account.template-->
