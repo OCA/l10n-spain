@@ -8,5 +8,12 @@
 			<field eval="&quot;&quot;&quot;Recibo domiciliado&quot;&quot;&quot;" name="note"/>
 			<field eval="1" name="active"/>
 		</record>
+		<record id="payment_type_transferencia0" model="payment.type">
+			<field name="code">TRANSFERENCIA_CSB</field>
+			<field name="name">Transferencia</field>
+			<field eval="[(6,0,[ref('base.bank_normal')])]" name="suitable_bank_types"/>
+			<field name="note">Transferencia</field>
+			<field eval="1" name="active"/>
+		</record>
 	</data>
 </openerp>

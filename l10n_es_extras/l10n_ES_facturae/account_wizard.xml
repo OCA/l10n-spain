@@ -2,7 +2,7 @@
 <openerp>
     <data>
 	<wizard
-		string="Create Facutra-E file "
+		string="Create Factura-E file "
 		model="account.invoice"
 		name="create_facturae_file"
 		id="wizard_create_facturae_file"/>

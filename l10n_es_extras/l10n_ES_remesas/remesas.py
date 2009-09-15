@@ -61,7 +61,7 @@ class payment_mode(osv.osv):
         return {'value':{'nombre': ""}}
 
     _columns = {
-        'tipo': fields.selection([('none','None'),('csb_19','CSB 19'),('csb_58','CSB 58')], 'Type of payment file', size=6, select=True, required=True),
+        'tipo': fields.selection([('none','None'),('csb_19','CSB 19'),('csb_58','CSB 58'),('csb_34','CSB 34')], 'Type of payment file', size=6, select=True, required=True),
         'sufijo': fields.char('suffix',size=3, select=True),
         'partner_id': fields.many2one('res.partner', 'Partner', select=True),
         'nombre': fields.char('Company name in file', size=40),
@@ -88,3 +88,4 @@ class payment_order(osv.osv):
 
 payment_order()
 
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

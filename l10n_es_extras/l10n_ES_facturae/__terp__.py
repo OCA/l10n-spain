@@ -22,13 +22,13 @@
 ##############################################################################
 
 {
-    "name" : "Generación de Factura-e",
+    "name" : "Factura-e File Creation",
     "version" : "1.0",
     "author" : "Alejandro Sanchez",
     "category" : "Localisation/Accounting",
-    "description" : """Módulo para la generación de factura electrónica
-********************* Esta versión se encuentra en desarrollo ************************
-Supera la validación de formato y la validación contable de la AEAT
+    "description" : """This module creates Factura-e files from invoices.
+******* Module under development *******
+Successfully passes format and account validation tests from AEAT: http://www11.mityc.es/FacturaE/ValidarCompleto
 """,
     "website" : "www.asr-oss.com",
     "license" : "GPL-3",

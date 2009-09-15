@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -26,13 +26,15 @@
 {
     "name" : "Remesas de recibos CSB 19 y CSB 58",
     "version" : "1.5",
-    "author" : "Acysos SL, Zikzakmedia SL, Pablo Rocandio",
+    "author" : "Acysos SL, Zikzakmedia SL, Pablo Rocandio, NaN",
     "category" : "Localisation/Accounting",
-    "description" : """Módulo para la exportación de remesas de recibos según las normas CSB 19 (recibos domiciliados) y CSB 58 (anticipos de créditos) para poder ser enviados a la entidad bancaria.
+    "description" : """Módulo para la exportación de remesas de recibos según las normas CSB 19 (recibos domiciliados), CSB 58 (anticipos de créditos) y CSB 34 (emisión de transferencias) para poder ser enviados a la entidad bancaria.
 
 Crea un tipo de pago "Recibo domiciliado" con el código RECIBO_CSB. Este código es importante pues permite ejecutar el asistente de creación del fichero de remesas cuando se presiona el botón "Realizar pagos" en la orden de pagos o remesa.
 
-Antes de generar un fichero de remesas habrá que definir un modo de pago que use el tipo de pago anterior y donde se defina la forma de pago (CSB 19 o CSB 58), la compañía que emite el fichero y el sufijo y nombre de compañia a incluir en el fichero (lo que en la versión 4.2 se definía como la cuenta de remesas).
+También crea el tipo de pago "Transferencia" con el código TRANSFERENCIA_CSB.
+
+Antes de generar un fichero de remesas habrá que definir un modo de pago que use el tipo de pago anterior y donde se defina la forma de pago (CSB 19, CSB 58 o CSB 34), la compañía que emite el fichero y el sufijo y nombre de compañia a incluir en el fichero (lo que en la versión 4.2 se definía como la cuenta de remesas).
 
 Al crear el fichero de remesa:
 
