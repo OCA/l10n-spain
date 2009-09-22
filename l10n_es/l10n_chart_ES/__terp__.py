@@ -28,9 +28,14 @@
     "category" : "Localisation/Account Charts",
     "description": """Plan general contable español 2008
 
-* Define la plantilla del plan general contable 2008 (a utilizar desde el 01-01-2008)
-* Define la plantilla de los impuestos IVA soportado, IVA repercutido, recargos de equivalencia
-* Define la plantilla de códigos de impuestos
+* Define las plantilla de planes contables:
+        * Plan General Contable Español 2008.
+        * Plan General Contable Español PYMES 2008.
+* Define la plantilla de los impuestos IVA soportado, IVA repercutido, recargos de equivalencia.
+* Define la plantilla de códigos de impuestos.
+
+Nota: Para la impresión de cuentas anuales (balance, perdidas y ganancias) 
+se recomienda instalar el módulo l10n_ES_account_balance_report.
 """,
     "license" : "GPL-3",
     "depends" : ["account", "base_vat", "base_iban"],
@@ -45,8 +50,6 @@
     ],
     "demo_xml" : [],
     "update_xml" : [
-#        "l10n_chart_ES_wizard.xml",
-#        "l10n_chart_ES_report.xml"
     ],
     "active": False,
     "installable": True
