@@ -3627,7 +3627,7 @@
 		<field name="reconcile" eval="False"/>
 		<field name="parent_id" ref="pgc_61"/>
 		<field name="type">other</field>
-		<field name="name">Variación de existenciasde mercaderías</field>
+		<field name="name">Variación de existencias de mercaderías</field>
 		<field name="user_type" ref="gastos"/>
 		<field name="template_name">PGCE 2008</field>
 	</record>
@@ -3637,7 +3637,7 @@
 		<field name="reconcile" eval="False"/>
 		<field name="parent_id" ref="pgc_61"/>
 		<field name="type">other</field>
-		<field name="name">Variación de existenciasde materias primas</field>
+		<field name="name">Variación de existencias de materias primas</field>
 		<field name="user_type" ref="gastos"/>
 		<field name="template_name">PGCE 2008</field>
 	</record>
@@ -3647,7 +3647,7 @@
 		<field name="reconcile" eval="False"/>
 		<field name="parent_id" ref="pgc_61"/>
 		<field name="type">other</field>
-		<field name="name">Variación de existenciasde otros aprovisionamientos</field>
+		<field name="name">Variación de existencias de otros aprovisionamientos</field>
 		<field name="user_type" ref="gastos"/>
 		<field name="template_name">PGCE 2008</field>
 	</record>
