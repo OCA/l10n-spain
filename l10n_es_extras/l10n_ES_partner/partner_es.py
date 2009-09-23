@@ -23,6 +23,7 @@
 ##############################################################################
 
 from osv import osv, fields
+from tools.translate import _
 import tools
 import os
 
@@ -48,12 +49,27 @@ def CalcCC(cBanco,cSucursal,cCuenta):
     DC2=_CRC(cTexto)
     return "%1d%1d" % (DC1,DC2)
 
+def checkBankAccount(account):
+    number = ""
+    for i in account:
+        if i.isdigit():
+            number += i
+    if len(number) != 20:
+        return 'invalid-size'
+    bank = number[0:4]
+    office = number[4:8]
+    dc = number[8:10]
+    account = number[10:20]
+    if dc != CalcCC(bank, office, account):
+        return 'invalid-dc'
+    return '%s %s %s %s' % (bank, office, dc, account)
+
 class res_partner_bank(osv.osv):
     _inherit = 'res.partner.bank'
     _columns = {
         'acc_country_id': fields.many2one("res.country", 'Bank country', help="If the country of the bank is Spain, it validates the bank code. It only reads the digit characters of the bank code:\n- If the number of digits is 18, computes the two digits of control.\n- If the number of digits is 20, computes the two digits of control and ignores the current ones.\n- If the number of digits is different from 18 or 20, it leaves the bank code unaltered.\nThe result is shown in the '1234 5678 06 1234567890' format."),
-        }
-    def onchange_banco(self, cr, uid, ids, account, country_id):
+    }
+    def onchange_banco(self, cr, uid, ids, account, country_id, context):
         # No se por qué motivo, al añadir un nuevo banco, en ocasiones
         # la función onchange_banco se ejecuta con el valor account=False
         # dando el error: TypeError: 'bool' object is not iterable
@@ -62,26 +78,17 @@ class res_partner_bank(osv.osv):
         if type(account) <> str or type(country_id) <> int:
             #print "¿Por qué account es <type 'bool'>?"
             return {'value':{}}
-        country = self.pool.get('res.country').browse(cr, uid, country_id)
+        country = self.pool.get('res.country').browse(cr, uid, country_id, context)
         if country.code.upper() in ('ES', 'CT'):
-            number = ""
-            for i in account:
-                if i.isdigit():
-                    number += i
-            if len(number) == 18:
-                cuenta = number[8:18]
-            elif len(number) == 20:
-                cuenta = number[10:20]
-            else:
-                return {'value':{}}
-            name = number[0:4]
-            oficina = number[4:8]
-            dc = CalcCC(name, oficina, cuenta)
-            number = "%s %s %s %s" %(name, oficina, dc, cuenta)
-            b = self.pool.get('res.bank')
-            b_id = b.search(cr, uid, [('code','=',name)])
-            if b_id:
-                return {'value':{'acc_number': number, 'bank': b_id[0]}}
+            number = checkBankAccount( account )
+            if number == 'invalid-size':
+		        return { 'warning': { 'title': _('Warning'), 'message': _('Bank account should have 20 digits.') } }
+            if number == 'invalid-dc':
+                return { 'warning': { 'title': _('Warning'), 'message': _('Invalid bank account.') } }
+
+            bank_ids = self.pool.get('res.bank').search(cr, uid, [('code','=',number[:4])], context=context)
+            if bank_ids:
+                return {'value':{'acc_number': number, 'bank': bank_ids[0]}}
             else:
                 return {'value':{'acc_number': number}}
         return {'value':{}}
@@ -118,3 +125,5 @@ class l10n_es_partner_import_wizard(osv.osv_memory):
         tools.convert_xml_import(cr, 'l10n_ES_partner', fp,  idref, 'init', noupdate=True)
         return {}
 l10n_es_partner_import_wizard()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

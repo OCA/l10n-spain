@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.0-alpha\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2009-05-25 08:19:04+0000\n"
-"PO-Revision-Date: 2009-05-25 10:26+0200\n"
+"POT-Creation-Date: 2009-09-23 01:31:24+0000\n"
+"PO-Revision-Date: 2009-09-15 18:33+0200\n"
 "Last-Translator: Albert Cervera i Areny <albert@nan-tic.com>\n"
-"Language-Team: American English <kde-i18n-doc@kde.org>\n"
+"Language-Team: American English <kde-i18n-ca@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Lokalize 0.3\n"
+"X-Generator: Lokalize 1.0\n"
 
 #. module: l10n_ES_partner
 #: field:res.bank,website:0
@@ -31,6 +31,12 @@ msgstr "Nombre comercial"
 #: constraint:ir.ui.view:0
 msgid "Invalid XML for View Architecture!"
 msgstr "¡XML inválido para la definición de la vista!"
+
+#. module: l10n_ES_partner
+#: code:addons/l10n_ES_partner/partner_es.py:0
+#, python-format
+msgid "Bank account should have 20 digits."
+msgstr "La número de cuenta bancaria debe tener 20 dígitos."
 
 #. module: l10n_ES_partner
 #: constraint:ir.model:0
@@ -78,10 +84,10 @@ msgid ""
 "identifican cada país en mayúsculas (ES para España), por ejemplo "
 "ESB64425879\n"
 "\n"
-"NOTA para su instalación: Es importante instalar anteriormente el módulo "
-"l10n_ES_toponyms y crear las provincias desde su asistente de instalación, "
-"pues los bancos/cajas que se definen en este módulo tienen referencias a "
-"provincias.\n"
+"NOTA: Éste módulo añade un asistente en Empresas/Configuración/Bancos para "
+"la importación de todos los bancos y cajas de España. Antes de ejecutar éste "
+"asistente deberá tener importadas las provincias disponibles en el módulo "
+"l10n_ES_toponyms.\n"
 msgstr ""
 
 #. module: l10n_ES_partner
@@ -122,6 +128,12 @@ msgid "Import Bank Data Wizard "
 msgstr "Asistente de importación de todos los bancos del Estado Español"
 
 #. module: l10n_ES_partner
+#: code:addons/l10n_ES_partner/partner_es.py:0
+#, python-format
+msgid "Warning"
+msgstr "Advertencia"
+
+#. module: l10n_ES_partner
 #: field:res.bank,vat:0
 msgid "VAT code"
 msgstr "CIF"
@@ -152,7 +164,12 @@ msgid "Adaptación de partner para Estado Español"
 msgstr "Adaptación de partner para el Estado Español"
 
 #. module: l10n_ES_partner
+#: code:addons/l10n_ES_partner/partner_es.py:0
+#, python-format
+msgid "Invalid bank account."
+msgstr "Cuenta bancaria inválida."
+
+#. module: l10n_ES_partner
 #: model:ir.model,name:l10n_ES_partner.model_l10n_es_partner_import_wizard
 msgid "l10n.es.partner.import.wizard"
-msgstr ""
-
+msgstr "l10n.es.partner.import.wizard"
