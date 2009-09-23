@@ -25,6 +25,7 @@ import wizard
 import pooler
 import base64
 import time
+import re
 from tools import mod10r
 import netsvc
 logger = netsvc.Logger()
@@ -184,11 +185,16 @@ def _importar(obj, cursor, user, data, context):
             concepto_name = concepto.name
             concepto_account_id = concepto.account_id.id
         l['referencia2'] = l['referencia2'].strip()
+        # try to fit as much as usefull information as possible in ref, because it has a limited size.
+        # the complete description will always be available in the note field.
+        note = l['conceptos'].strip()
+        ref = re.sub(' +', ' ', note).strip()
         values = {
             'name': concepto_name,
             'date': l['fecha_opera'],
             'amount': l['importe'],
-            'ref': l['conceptos'].strip()[:32].strip(),
+            'ref': ref,
+            'note': note,
             'type': (l['importe'] >= 0 and 'customer') or 'supplier',
             'statement_id': statement_id,
         }
@@ -342,3 +348,5 @@ class importar_extracto(wizard.interface):
     }
 
 importar_extracto('l10n_ES_extractos_bancarios.importar')
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

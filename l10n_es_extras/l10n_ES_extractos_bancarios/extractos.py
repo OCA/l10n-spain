@@ -61,3 +61,5 @@ class account_bank_statement_line(osv.osv):
         del res['value']['amount']
         return res
 account_bank_statement_line()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
