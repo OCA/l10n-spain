@@ -205,6 +205,7 @@ class remesas_remesa(osv.osv):
                 'name': name,
                 'debit': direction == 1 and (recibo.debit - recibo.credit),
                 'credit': direction == -1 and (recibo.debit - recibo.credit),
+                'amount_currency': 0,
                 'account_id': src_account_id,
                 'partner_id': recibo.partner_id['id'],
                 'date': rem[0]['fecha_cargo'],
@@ -221,6 +222,7 @@ class remesas_remesa(osv.osv):
             'name':name,
             'debit': direction == -1 and importe_total,
             'credit': direction == 1 and importe_total,
+            'amount_currency': 0,
             'account_id': dst_account_id,
             'partner_id': rem[0]['cuenta_id'].partner_id.id, # PRC
             #'partner_id': rem[0]['banco'].partner_id.id, 
@@ -248,13 +250,29 @@ class remesas_remesa(osv.osv):
 #        Para cada recibo de la remesa, localizamos el apunte del pago y conciliamos. Si no encontramos el pago, avisamos.
         line = self.pool.get('account.move.line')
 
+        # Cuenta desajuste conciliación
+        account_obj = self.pool.get('account.account')
+        acc_ids = account_obj.search(cr, uid, [('code', '=like', '67800%0')])
+        cuenta = acc_ids and acc_ids[0] or False
+        if not cuenta:
+            raise osv.except_osv('Error del usuario', 'No existe una cuenta con código 67800...0 para crear los asientos de desajuste.')
+
+        # Diario desajuste conciliación
+        journal_obj = self.pool.get('account.journal')
+        jou_ids = journal_obj.search(cr, uid, [('name', 'ilike', '%general%')])
+        diario = jou_ids and jou_ids[0] or False
+        if not diario:
+            raise osv.except_osv('Error del usuario', 'No existe un diario llamado ...general... donde crear los asientos de desajuste.')
+
+        periodo =self._get_period(cr,uid,ids,context)['period_id']
+
         for recibo in rem[0]['receipts']:
             cr.execute('select id from account_move_line where move_id = '+str(move_id)+' and partner_id ='+str(recibo.partner_id.id)+' and ref= \''+str(recibo.ref)+'\' and debit = '+str(recibo.credit)+' and credit = '+str(recibo.debit)+' and state <> \''+str('reconciled')+'\' limit 1')
             lines = line.browse(cr, uid, map(lambda x: x[0], cr.fetchall()) )
             assert len(lines) == 1, "Error en el numero de recibos"
 #            logger.notifyChannel('lines.id',netsvc.LOG_INFO, lines[0].id)
 #            logger.notifyChannel('recibo.id',netsvc.LOG_INFO, recibo.id)
-            self.pool.get('account.move.line').reconcile(cr, uid, [lines[0].id, recibo.id], 'remesa', 290, self._get_period(cr,uid,ids,context)['period_id'], 1, context)
+            self.pool.get('account.move.line').reconcile(cr, uid, [lines[0].id, recibo.id], 'remesa', cuenta, periodo, diario, context)
 
 #            asientos_ids += str(recibo.move_id.id) + ','
 #            if recibo.account_id.id not in src_account_ids:
