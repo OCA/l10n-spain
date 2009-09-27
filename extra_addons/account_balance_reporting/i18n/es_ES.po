@@ -27,7 +27,8 @@ msgid "Information"
 msgstr "Información"
 
 #. module: account_balance_reporting
-#: view:account.balance.report:0 view:account.balance.report.line:0
+#: view:account.balance.report:0
+#: view:account.balance.report.line:0
 #: view:account.balance.report.template:0
 #: view:account.balance.report.template.line:0
 msgid "Style"
@@ -86,7 +87,8 @@ msgid "Print"
 msgstr "Imprimir"
 
 #. module: account_balance_reporting
-#: view:account.balance.report:0 field:account.balance.report,state:0
+#: view:account.balance.report:0
+#: field:account.balance.report,state:0
 msgid "State"
 msgstr "Estado"
 
@@ -306,7 +308,8 @@ msgid "Default"
 msgstr "Por defecto"
 
 #. module: account_balance_reporting
-#: view:account.balance.report:0 field:account.balance.report,line_ids:0
+#: view:account.balance.report:0
+#: field:account.balance.report,line_ids:0
 #: view:account.balance.report.template:0
 #: field:account.balance.report.template,line_ids:0
 msgid "Lines"
@@ -344,7 +347,8 @@ msgid "Code"
 msgstr "Código"
 
 #. module: account_balance_reporting
-#: view:account.balance.report:0 view:account.balance.report.line:0
+#: view:account.balance.report:0
+#: view:account.balance.report.line:0
 #: view:account.balance.report.template:0
 #: view:account.balance.report.template.line:0
 msgid "Values"
