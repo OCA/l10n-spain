@@ -54,6 +54,7 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
                                         <field name="previous_fiscalyear_id" colspan="4" nolabel="1"/>
                                         <field name="previous_period_ids" colspan="4" nolabel="1" domain="[('fiscalyear_id','=',previous_fiscalyear_id)]"/>
                                     </group>
+                                    <label string="If you don't select any fiscal period, all the periods of the fiscal year will be considered" />
                                 </group>
                             </group>
                             <group string="State" colspan="4">
@@ -61,9 +62,9 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
                                 <field name="calc_date" select="2" readonly="1"/>
                             </group>
                             <group colspan="4">
-                                <button name="calculate" string="Calculate" states="draft,calc_done"/>
+                                <button name="calculate" string="Calculate" states="draft"/>
                                 <button name="confirm" string="Confirm" states="calc_done"/>
-                                <button name="cancel" string="Cancel" states="done"/>
+                                <button name="cancel" string="Cancel" states="calc_done,done"/>
                             </group>
                         </page>
                         <page string="Lines">

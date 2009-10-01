@@ -61,23 +61,28 @@ class account_balance_report(osv.osv):
         # Name of this report
         'name': fields.char('Name', size=64, required=True, select=True),
         # Template used to calculate this report
-        'template_id': fields.many2one('account.balance.report.template', 'Template', ondelete='set null'),
+        'template_id': fields.many2one('account.balance.report.template', 'Template', ondelete='set null', required=True, select=True,
+                            states = {'calc_done': [('readonly', True)], 'done': [('readonly', True)]}),
         # Date of the last calculation
         'calc_date': fields.datetime("Calculation date"),
         # State of the report
         'state': fields.selection([('draft','Draft'),('calc','Processing'),('calc_done','Processed'),('done','Done')], 'State'),
         # Company
-        'company_id': fields.many2one('res.company', 'Company', readonly=True, ondelete='cascade'),
+        'company_id': fields.many2one('res.company', 'Company', ondelete='cascade', readonly=True, required=True),
         #
         # Current fiscal year and it's (selected) periods
         #
-        'current_fiscalyear_id': fields.many2one('account.fiscalyear','Fiscal year 1', select=True),
-        'current_period_ids': fields.many2many('account.period', 'account_balance_report_account_period_current_rel', 'account_balance_report_id', 'period_id', 'Fiscal year 1 periods'),
+        'current_fiscalyear_id': fields.many2one('account.fiscalyear','Fiscal year 1', select=True, required=True,
+                            states = {'calc_done': [('readonly', True)], 'done': [('readonly', True)]}),
+        'current_period_ids': fields.many2many('account.period', 'account_balance_report_account_period_current_rel', 'account_balance_report_id', 'period_id', 'Fiscal year 1 periods',
+                            states = {'calc_done': [('readonly', True)], 'done': [('readonly', True)]}),
         #
         # Previous fiscal year and it's (selected) periods
         #
-        'previous_fiscalyear_id': fields.many2one('account.fiscalyear','Fiscal year 2', select=True),
-        'previous_period_ids': fields.many2many('account.period', 'account_balance_report_account_period_previous_rel', 'account_balance_report_id', 'period_id', 'Fiscal year 2 periods'),
+        'previous_fiscalyear_id': fields.many2one('account.fiscalyear','Fiscal year 2', select=True,
+                            states = {'calc_done': [('readonly', True)], 'done': [('readonly', True)]}),
+        'previous_period_ids': fields.many2many('account.period', 'account_balance_report_account_period_previous_rel', 'account_balance_report_id', 'period_id', 'Fiscal year 2 periods',
+                            states = {'calc_done': [('readonly', True)], 'done': [('readonly', True)]}),
     }
 
     _defaults = {
@@ -308,79 +313,84 @@ class account_balance_report_line(osv.osv):
                 # Remove characters after a ";" (we use ; for comments)
                 template_value = template_value.split(';')[0]
 
-                #
-                # Calculate the value
-                #
-                if not template_value:
+                if (fyear == 'current' and not line.report_id.current_fiscalyear_id) \
+                        or (fyear == 'previous' and not line.report_id.previous_fiscalyear_id):
+                    value = 0
+                else:
                     #
-                    # Empy template value => sum of the children, of this concept, values.
+                    # Calculate the value
                     #
-                    for child in line.child_ids:
-                        if child.calc_date != child.report_id.calc_date:
-                            # Tell the child to refresh its values
-                            child.refresh_values()
-                            # Reload the child data
-                            child = self.browse(cr, uid, [child.id])[0]
+                    if not template_value:
+                        #
+                        # Empy template value => sum of the children, of this concept, values.
+                        #
+                        for child in line.child_ids:
+                            if child.calc_date != child.report_id.calc_date:
+                                # Tell the child to refresh its values
+                                child.refresh_values()
+                                # Reload the child data
+                                child = self.browse(cr, uid, [child.id])[0]
+                            if fyear == 'current':
+                                value += float(child.current_value)
+                            elif fyear == 'previous':
+                                value += float(child.previous_value)
+
+                    elif re.match(r'^\-?[0-9]*\.[0-9]*$', template_value):
+                        #
+                        # Number with decimal points => that number value (constant).
+                        #
+                        value = float(template_value)
+
+                    elif re.match(r'^[0-9a-zA-Z,\(\)\*_]*$', template_value):
+                        #
+                        # Account numbers separated by commas => sum of the account balances.
+                        #
+                        # We will use the context to filter the accounts by fiscalyear
+                        # and periods.
+                        #
                         if fyear == 'current':
-                            value += float(child.current_value)
+                            ctx = {
+                                'fiscalyear': line.report_id.current_fiscalyear_id.id,
+                                'periods': [p.id for p in line.report_id.current_period_ids],
+                            }
                         elif fyear == 'previous':
-                            value += float(child.previous_value)
+                            ctx = {
+                                'fiscalyear': line.report_id.previous_fiscalyear_id.id,
+                                'periods': [p.id for p in line.report_id.previous_period_ids],
+                            }
+                        dcb = line._get_account_debit_credit_and_balance(template_value, ctx)
+                        value = dcb[2]
 
-                elif re.match(r'^\-?[0-9]*\.[0-9]*$', template_value):
-                    #
-                    # Number with decimal points => that number value (constant).
-                    #
-                    value = float(template_value)
+                    elif re.match(r'^[\+\-0-9a-zA-Z_\*]*$', template_value):
+                        #
+                        # Account concept codes separated by "+" => sum of the concept (report lines) values.
+                        #
+                        for line_code in re.findall(r'(-?\(?[0-9a-zA-Z_]*\)?)', template_value):
+                            # Check the sign of the code (substraction)
+                            if line_code.startswith('-') or line_code.startswith('('):
+                                sign = -1.0
+                            else:
+                                sign = 1.0
+                            line_code = line_code.strip('-()*')
 
-                elif re.match(r'^[0-9a-zA-Z,\(\)\*_]*$', template_value):
-                    #
-                    # Account numbers separated by commas => sum of the account balances.
-                    #
-                    # We will use the context to filter the accounts by fiscalyear
-                    # and periods.
-                    #
-                    if fyear == 'current':
-                        ctx = {
-                            'fiscalyear': line.report_id.current_fiscalyear_id.id,
-                            'periods': [p.id for p in line.report_id.current_period_ids],
-                        }
-                    elif fyear == 'previous':
-                        ctx = {
-                            'fiscalyear': line.report_id.previous_fiscalyear_id.id,
-                            'periods': [p.id for p in line.report_id.previous_period_ids],
-                        }
-                    dcb = line._get_account_debit_credit_and_balance(template_value, ctx)
-                    value = dcb[2]
-
-                elif re.match(r'^[\+\-0-9a-zA-Z_\*]*$', template_value):
-                    #
-                    # Account concept codes separated by "+" => sum of the concept (report lines) values.
-                    #
-                    for line_code in re.findall(r'(-?\(?[0-9a-zA-Z_]*\)?)', template_value):
-                        # Check the sign of the code (substraction)
-                        if line_code.startswith('-') or line_code.startswith('('):
-                            sign = -1.0
-                        else:
-                            sign = 1.0
-                        line_code = line_code.strip('-()*')
-                        
-                        # Check if the code is valid (findall might return empty strings)
-                        if len(line_code) > 0:
-                            # Search for the line (perfect match)
-                            line_ids = self.search(cr, uid, [
-                                    ('report_id','=', line.report_id.id),
-                                    ('code', '=', line_code),
-                                ])  
-                            for child in self.browse(cr, uid, line_ids):
-                                if child.calc_date != child.report_id.calc_date:
-                                    # Tell the child to refresh its values
-                                    child.refresh_values()
-                                    # Reload the child data
-                                    child = self.browse(cr, uid, [child.id])[0]
-                                if fyear == 'current':
-                                    value += float(child.current_value) * sign
-                                elif fyear == 'previous':
-                                    value += float(child.previous_value) * sign
+                            # Check if the code is valid (findall might return empty strings)
+                            if len(line_code) > 0:
+                                # Search for the line (perfect match)
+                                line_ids = self.search(cr, uid, [
+                                        ('report_id','=', line.report_id.id),
+                                        ('code', '=', line_code),
+                                    ])
+                                for child in self.browse(cr, uid, line_ids):
+                                    if child.calc_date != child.report_id.calc_date:
+                                        # Tell the child to refresh its values
+                                        child.refresh_values()
+                                        # Reload the child data
+                                        child = self.browse(cr, uid, [child.id])[0]
+                                    if fyear == 'current':
+                                        value += float(child.current_value) * sign
+                                    elif fyear == 'previous':
+                                        value += float(child.previous_value) * sign
+                                        
                 if fyear == 'current':
                     current_value = value
                 elif fyear == 'previous':
@@ -448,7 +458,8 @@ class account_balance_report_withlines(osv.osv):
     _inherit = "account.balance.report"
 
     _columns = {
-        'line_ids': fields.one2many('account.balance.report.line', 'report_id', 'Lines'),
+        'line_ids': fields.one2many('account.balance.report.line', 'report_id', 'Lines',
+                            states = {'done': [('readonly', True)]}),
     }
 
 account_balance_report_withlines()

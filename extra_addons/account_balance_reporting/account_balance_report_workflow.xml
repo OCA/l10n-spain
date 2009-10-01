@@ -94,6 +94,12 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
             <field name="signal">confirm</field>
         </record>
 
+        <record model="workflow.transition" id="trans_calculated_cancel">
+            <field name="act_from" ref="act_calculated"/>
+            <field name="act_to" ref="act_cancel"/>
+            <field name="signal">cancel</field>
+        </record>
+
         <record model="workflow.transition" id="trans_confirm_cancel">
             <field name="act_from" ref="act_confirm"/>
             <field name="act_to" ref="act_cancel"/>
