@@ -54,7 +54,6 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
                                         <field name="previous_fiscalyear_id" colspan="4" nolabel="1"/>
                                         <field name="previous_period_ids" colspan="4" nolabel="1" domain="[('fiscalyear_id','=',previous_fiscalyear_id)]"/>
                                     </group>
-                                    <label string="If you don't select any fiscal period, all the periods of the fiscal year will be considered" />
                                 </group>
                             </group>
                             <group string="State" colspan="4">

@@ -24,7 +24,7 @@
 {
         "name" : "Spanish account balance reports",
         "version" : "0.1",
-        "author" : "Pexego",
+        "author" : "Pexego, Zikzakmedia",
         "website" : "http://www.pexego.es",
         "category" : "Enterprise Specific Modules",
         "description": """
@@ -50,6 +50,7 @@ ABREVIADO: http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&blobheader=
         "update_xml" : [
                 'data/balance_pymes.xml',
                 'data/pyg_pymes.xml',
+                #'data/balance_normal.xml',
             ],
         "installable": True
 }

@@ -38,7 +38,7 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
             <field name="type">system</field>
             <field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
             <field name="description">
-CUENTAS ANUALES - BALANCE DE PYMES
+CUENTAS ANUALES - BALANCE DE SITUACIÓN PARA PYMES
 
 Balance de PYMES al cierre del ejercicio, según Plan General Contable Español para Pequeñas Y Medianas Empresas, para el depósito de cuentas anuales en el registro mercantil.
 
@@ -87,7 +87,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
             <field name="previous_value">20,(280),(290)</field>
             <field name="parent_id" ref="es_balance_pymes_11000"/>
             <field name="sequence">BP1/02</field>
-            <field name="css_class">l2</field>
+            <field name="css_class">l3</field>
         </record>
 
         <record model="account.balance.report.template.line" id="es_balance_pymes_11200">
@@ -98,7 +98,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
             <field name="previous_value">21,(281),(291),23</field>
             <field name="parent_id" ref="es_balance_pymes_11000"/>
             <field name="sequence">BP1/03</field>
-            <field name="css_class">l2</field>
+            <field name="css_class">l3</field>
         </record>
 
         <record model="account.balance.report.template.line" id="es_balance_pymes_11300">
@@ -109,7 +109,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
             <field name="previous_value">22,(282),(292)</field>
             <field name="parent_id" ref="es_balance_pymes_11000"/>
             <field name="sequence">BP1/04</field>
-            <field name="css_class">l2</field>
+            <field name="css_class">l3</field>
         </record>
 
         <record model="account.balance.report.template.line" id="es_balance_pymes_11400">
@@ -120,7 +120,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
             <field name="previous_value">2403,2404,2413,2414,2423,2424,(2493),(2494),(2933),(2934),(2943),(2944),(2953),(2954)</field>
             <field name="parent_id" ref="es_balance_pymes_11000"/>
             <field name="sequence">BP1/05</field>
-            <field name="css_class">l2</field>
+            <field name="css_class">l3</field>
         </record>
 
         <record model="account.balance.report.template.line" id="es_balance_pymes_11500">
@@ -131,7 +131,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
             <field name="previous_value">2405,2415,2425,(2495),250,251,252,253,254,255,258,(259),26,(2935),(2945),(2955),(296),(297),(298)</field>
             <field name="parent_id" ref="es_balance_pymes_11000"/>
             <field name="sequence">BP1/06</field>
-            <field name="css_class">l2</field>
+            <field name="css_class">l3</field>
         </record>
 
         <record model="account.balance.report.template.line" id="es_balance_pymes_11600">
@@ -142,7 +142,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
             <field name="previous_value">474</field>
             <field name="parent_id" ref="es_balance_pymes_11000"/>
             <field name="sequence">BP1/07</field>
-            <field name="css_class">l2</field>
+            <field name="css_class">l3</field>
         </record>
 
         <record model="account.balance.report.template.line" id="es_balance_pymes_11700">
@@ -153,7 +153,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
             <field name="previous_value">;NECA 5.a 5</field>
             <field name="parent_id" ref="es_balance_pymes_11000"/>
             <field name="sequence">BP1/08</field>
-            <field name="css_class">l2</field>
+            <field name="css_class">l3</field>
         </record>
 
         <record model="account.balance.report.template.line" id="es_balance_pymes_12000">

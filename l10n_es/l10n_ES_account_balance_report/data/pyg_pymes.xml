@@ -230,7 +230,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
             <field name="previous_value">746;NECA 6.a 4</field>
             <field name="parent_id" ref="es_pyg_pymes_41400"/>
             <field name="sequence">PP/15</field>
-            <field name="css_class">l4</field>
+            <field name="css_class">l5</field>
         </record>
 
         <record model="account.balance.report.template.line" id="es_pyg_pymes_41490">
@@ -241,7 +241,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
             <field name="previous_value">760,761,762,769</field>
             <field name="parent_id" ref="es_pyg_pymes_41400"/>
             <field name="sequence">PP/16</field>
-            <field name="css_class">l4</field>
+            <field name="css_class">l5</field>
         </record>
 
         <record model="account.balance.report.template.line" id="es_pyg_pymes_41500">
