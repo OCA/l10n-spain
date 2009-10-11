@@ -58,7 +58,8 @@ class account_bank_statement_line(osv.osv):
         """Elimina el precálculo del importe de la línea del extracto bancario"""
         res = super(account_bank_statement_line, self).onchange_partner_id(cursor, user, line_id, partner_id, type, currency_id, context=context)
         # devuelve res = {'value': {'amount': balance, 'account_id': account_id}}
-        del res['value']['amount']
+        if 'value' in res and 'amount' in res['value']:
+            del res['value']['amount']
         return res
 account_bank_statement_line()
 
