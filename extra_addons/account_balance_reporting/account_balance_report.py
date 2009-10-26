@@ -248,7 +248,7 @@ class account_balance_report_line(osv.osv):
         # Use context report_id as the the parent report
         'report_id': lambda self, cr, uid, context: context.get('report_id', None),
         # Default css class (so we always have a class)
-        'css_class': 'default',
+        'css_class': lambda *a: 'default',
     }
 
     # Lines are sorted by its sequence and code
