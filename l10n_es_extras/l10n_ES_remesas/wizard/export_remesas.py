@@ -241,27 +241,108 @@ def _create_payment_file(self, cr, uid, data, context):
         texto += '\n'
         return texto
 
-    def _registro_obligatorio_domicilio_58(self, recibo):
-        """registro obligatorio domicilio 58 para los no domiciliados (por ahora no se contempla)"""
+
+    def _registro_obligatorio_domicilio_58(self, recibo, alt_format=False):
+        """
+        Registro obligatorio domicilio 58 para no domiciliados.
+        
+        Formato:
+         ZONA  DESCRIPCION                                   POS     LONGITUD TIPO
+                                                             INICIAL          REGISTRO
+         A: A1 Código de Registro: 56                        1       2        Numérico
+         A2    Código de Dato: 76                            3       2        Numérico
+         B: B1 Código del Cliente Ordenante (NIF 9POS Y SUF  5       12       Alfanumérico
+               3POS)
+         B2    Código de Referencia                          17      12       Alfanumérico
+         C:    Domicilio del Deudor                          29      40       Alfanumérico
+         D: D1 Plaza del Domicilio del Deudor                69      35       Alfanumérico
+         D2    Código Postal del Domicilio del Deudor        104     5        Numérico
+         E: E1 Localidad del Ordenante al que se anticipó el 109     38       Alfanumérico
+               Crédito
+         E2    Código de la Provincia de esta Localidad      147     2        Numérico
+         F: F1 Fecha de origen en que se formalizó el Cto.   149     6        Numérico
+               (DDMMAA)
+         F2    Libre                                         155     8        Alfanumérico
+        """
+        #
+        # Obtenemos la dirección (por defecto) del partner, a imagen
+        # y semejanza de lo que hace info_partner
+        # del objeto payment.line (account_payment/payment.py),
+        # Pero si no encontramos ninguna dirección por defecto,
+        # tomamos la primera del partner.
+        #
+        st = ''
+        st1 = ''
+        zip = ''
+        city = ''
+        state_code = ''
+        if recibo['partner_id'].address:
+            ads = None
+            for item in recibo['partner_id'].address:
+                if item.type=='default':
+                    ads = item
+                    break
+            if not ads and len(recibo['partner_id'].address) > 0:
+                ads = recibo['partner_id'].address[0]
+
+            st=ads.street and ads.street or ''
+            st1=ads.street2 and ads.street2 or ''
+            if 'zip_id' in ads:
+                obj_zip_city= ads.zip_id and pool.get('res.partner.zip').browse(cr,uid,ads.zip_id.id) or ''
+                zip=obj_zip_city and obj_zip_city.name or ''
+                city=obj_zip_city and obj_zip_city.city or  ''
+            else:
+                zip=ads.zip and ads.zip or ''
+                city= ads.city and ads.city or  ''
+            state_name = ads.state_id.name and ads.state_id.name or ''
+            state_code = ads.state_id.code and ads.state_id.code or ''
+
+        #
+        # Comprobamos el código postal:
+        #   "Cuando no se conozca el código
+        #    completo, se cumplimentara, al menos, las dos primeras posiciones 
+        #    que identifican la provincia, dejando el resto de posiciones a cero."
+        #
+        if len(zip) < 2:
+            zip = state_code
+
+        #
+        # Calculamos la 'Fecha de origen en que se formalizo el crédito anticipado'
+        # esto es, la fecha de creación del recibo.
+        #
+        if recibo.get('create_date'):
+            date_ct = mx.DateTime.strptime(recibo['create_date'],'%Y-%m-%d %H:%M:%S') # Cuidado, que es un datetime
+        else:
+            date_ct = mx.DateTime.strptime(recibo['ml_date_created'],'%Y-%m-%d')
+
+        #
+        # En el formato alternativo cambiamos los campos de plaza
+        # y localidad para usar un formato más similar a otros programas,
+        # pero menos correcto desde el punto de vista de la norma.
+        #
+        if alt_format:
+            square = city
+            location = state_name
+        else:
+            square = st1
+            location = state_name
+
+        #
+        # Componemos la línea formateada
+        #
         texto = '5676'
         texto += (orden.mode.bank_id.partner_id.vat[2:] + orden.mode.sufijo).zfill(12)
         texto += str(recibo['name']).zfill(12)
-        texto += conv_ascii(recibo['partner_id'].name).ljust(40)
-        texto += str(recibo['bank_id'].acc_number)[0:20].zfill(20)
-        importe = int(-recibo['amount']*100)
-        texto += str(importe).zfill(10)
-        texto += 16*' '
-        concepto = ''
-        if recibo['communication']:
-            concepto = recibo['communication']
-        texto += conv_ascii(concepto)[0:40].ljust(40)
-        if recibo['date']:
-            texto += recibo['date']
-        else:
-            texto += recibo['ml_maturity_date']
-        texto += '  '
+        texto += conv_ascii(st)[:40].ljust(40)          # Domicilio
+        texto += conv_ascii(square)[:35].ljust(35)      # Plaza (calle2 o ciudad)
+        texto += conv_ascii(zip)[:5].zfill(5)           # CP
+        texto += conv_ascii(location)[:38].ljust(38)    # Localidad (ciudad o provincia)
+        texto += conv_ascii(state_code)[:2].zfill(2)    # Cod prov
+        texto += date_ct.strftime('%d%m%y')             # Fecha crédito
+        texto += 8*' '                                  # Libre
         texto += '\n'
         return texto
+
 
     def _total_ordenante_58(self):
         texto = '5870'
@@ -334,6 +415,8 @@ def _create_payment_file(self, cr, uid, data, context):
                     'communication2': reduce(lambda x, y: x+' '+(y or ''), [l.communication2 for l in lineas], ''),
                     'date': max([l.date for l in lineas]),
                     'ml_maturity_date': max([l.ml_maturity_date]),
+                    'create_date': max([l.create_date]),
+                    'ml_date_created': max([l.ml_date_created]),
                 })
         else:
             # Cada línea de pago es un recibo
@@ -347,6 +430,8 @@ def _create_payment_file(self, cr, uid, data, context):
                     'communication2': l.communication2,
                     'date': l.date,
                     'ml_maturity_date': l.ml_maturity_date,
+                    'create_date': l.create_date,
+                    'ml_date_created': l.ml_date_created,
                 })
 
         if orden.mode.tipo == 'csb_19':
@@ -370,6 +455,13 @@ def _create_payment_file(self, cr, uid, data, context):
             for recibo in recibos:
                 txt_remesa += _individual_obligatorio_58(self, recibo)
                 num_recibos = num_recibos + 1
+
+                # Para recibos no domiciliados, añadimos el registro obligatorio
+                # de domicilio (necesario con algunos bancos/cajas).
+                if orden.mode.inc_domicile:
+                    txt_remesa += _registro_obligatorio_domicilio_58(self, recibo, alt_format=orden.mode.alt_domicile_format)
+                    num_lineas_opc = num_lineas_opc + 1
+
                 if recibo['communication2']:
                     txt_remesa += _individual_opcional_58(self, recibo)
                     num_lineas_opc = num_lineas_opc + 1

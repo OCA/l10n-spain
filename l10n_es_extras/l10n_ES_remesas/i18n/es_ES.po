@@ -18,6 +18,26 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 
 #. module: l10n_ES_remesas
+#: field:payment.mode,inc_domicile:0
+msgid "Include domicile"
+msgstr "Incluir domicilio"
+
+#. module: l10n_ES_remesas
+#: help:payment.mode,inc_domicile:0
+msgid "Add partner domicile records to the exported file (CSB 58)"
+msgstr "Añadir registros de domicilio de los clientes a el archivo exportado (CSB 58)"
+
+#. module: l10n_ES_remesas
+#: field:payment.mode,alt_domicile_format:0
+msgid "Alt. domicile format"
+msgstr "Formato domicilio alt."
+
+#. module: l10n_ES_remesas
+#: help:payment.mode,alt_domicile_format:0
+msgid "Alternative domicile format, uses city and the state name instead of street2 and city"
+msgstr "Formato de domicilio alternativo, usa ciudad y el nombre de provincia en lugar de calle2 y ciudad"
+
+#. module: l10n_ES_remesas
 #: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
 #, python-format
 msgid ""

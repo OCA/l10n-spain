@@ -30,6 +30,8 @@
                     <field name="nombre" attrs="{'required':[('tipo','!=','none')]}"/>
                     <field name="bank_id" domain="[('partner_id','=',partner_id)]"/>
                     <field name="cif"/>
+                    <field name="inc_domicile"/>
+                    <field name="alt_domicile_format"/>
                 </field>
             </field>
         </record>

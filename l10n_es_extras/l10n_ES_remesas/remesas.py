@@ -66,11 +66,17 @@ class payment_mode(osv.osv):
         'partner_id': fields.many2one('res.partner', 'Partner', select=True),
         'nombre': fields.char('Company name in file', size=40),
         'cif': fields.function(_get_cif, method=True, string='VAT code', type="char", select=True),
+        # Incluir registro obligatorio de domicilio (para no domiciliados)
+        'inc_domicile': fields.boolean('Include domicile', help='Add partner domicile records to the exported file (CSB 58)'),
+        # Usar formato alternativo para el registro de domicilio
+        'alt_domicile_format': fields.boolean('Alt. domicile format', help='Alternative domicile format, uses city and the state name instead of street2 and city'),
         }
 
     _defaults = {
         'tipo': lambda *a: 'none',
         'sufijo': lambda *a: '000',
+        'inc_domicile': lambda *a: False,
+        'alt_domicile_format': lambda *a: False,
     }
 
 payment_mode()

@@ -15,6 +15,27 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
+
+#. module: l10n_ES_remesas
+#: field:payment.mode,inc_domicile:0
+msgid "Include domicile"
+msgstr ""
+
+#. module: l10n_ES_remesas
+#: help:payment.mode,inc_domicile:0
+msgid "Add partner domicile records to the exported file (CSB 58)"
+msgstr ""
+
+#. module: l10n_ES_remesas
+#: field:payment.mode,alt_domicile_format:0
+msgid "Alt. domicile format"
+msgstr ""
+
+#. module: l10n_ES_remesas
+#: help:payment.mode,alt_domicile_format:0
+msgid "Alternative domicile format, uses city and the state name instead of street2 and city"
+msgstr ""
+
 #. module: l10n_ES_remesas
 #: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
 #, python-format
