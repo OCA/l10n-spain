@@ -23,15 +23,28 @@
             <field name="inherit_id" ref="account_payment.view_payment_mode_form"/>
             <field name="arch" type="xml">
                 <field name="bank_id" position="replace">
-                    <newline/>
                     <field name="tipo"/>
-                    <field name="sufijo" attrs="{'required':[('tipo','!=','none')]}"/>
+                    <newline/>
+                    <separator string="Presenter data" colspan="4"/>
                     <field name="partner_id" attrs="{'required':[('tipo','!=','none')]}" on_change="onchange_partner(partner_id)"/>
-                    <field name="nombre" attrs="{'required':[('tipo','!=','none')]}"/>
                     <field name="bank_id" domain="[('partner_id','=',partner_id)]"/>
                     <field name="cif"/>
-                    <field name="inc_domicile"/>
-                    <field name="alt_domicile_format"/>
+                    <field name="nombre" attrs="{'required':[('tipo','!=','none')]}"/>
+                    <field name="sufijo" attrs="{'required':[('tipo','!=','none')]}"/>
+                    <field name="ine"/>
+                    <newline/>
+                    <group colspan="4">
+                        <group colspan="2">
+                            <separator string="CSB 58 options" colspan="4"/>
+                            <field name="inc_domicile"/>
+                            <field name="alt_domicile_format"/>
+                        </group>
+                        <group colspan="2">
+                            <separator string="File format options" colspan="4"/>
+                            <field name="use_crlf"/>
+                        </group>
+                    </group>
+                    <newline/>
                 </field>
             </field>
         </record>

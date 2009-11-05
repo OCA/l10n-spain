@@ -195,8 +195,7 @@ def _create_payment_file(self, cr, uid, data, context):
         texto += 8*' '
         texto += '06'
         texto += 52*' '
-        # Codigo INE de la plaza... en blanco...
-        texto += 9*' '
+        texto += orden.mode.ine and conv_ascii(orden.mode.ine)[:9].zfill(9) or 9*' '
         texto += 3*' '
         texto += '\n'
         return texto
@@ -223,10 +222,12 @@ def _create_payment_file(self, cr, uid, data, context):
         if recibo['communication']:
             concepto = recibo['communication']
         texto += conv_ascii(concepto)[0:40].ljust(40)
-        if recibo['date']:
+        if recibo.get('date'):
             date_cargo = mx.DateTime.strptime(recibo['date'],'%Y-%m-%d')
-        else:
+        elif recibo.get('ml_maturity_date'):
             date_cargo = mx.DateTime.strptime(recibo['ml_maturity_date'],'%Y-%m-%d')
+        else:
+            date_cargo = mx.DateTime.today()
         texto += date_cargo.strftime('%d%m%y')
         texto += 2*' '
         texto += '\n'
@@ -242,7 +243,7 @@ def _create_payment_file(self, cr, uid, data, context):
         return texto
 
 
-    def _registro_obligatorio_domicilio_58(self, recibo, alt_format=False):
+    def _registro_obligatorio_domicilio_58(self, recibo):
         """
         Registro obligatorio domicilio 58 para no domiciliados.
         
@@ -264,6 +265,9 @@ def _create_payment_file(self, cr, uid, data, context):
                (DDMMAA)
          F2    Libre                                         155     8        Alfanumérico
         """
+
+        alt_format = orden.mode.alt_domicile_format
+
         #
         # Obtenemos la dirección (por defecto) del partner, a imagen
         # y semejanza de lo que hace info_partner
@@ -272,10 +276,8 @@ def _create_payment_file(self, cr, uid, data, context):
         # tomamos la primera del partner.
         #
         st = ''
-        st1 = ''
         zip = ''
         city = ''
-        state_code = ''
         if recibo['partner_id'].address:
             ads = None
             for item in recibo['partner_id'].address:
@@ -286,7 +288,6 @@ def _create_payment_file(self, cr, uid, data, context):
                 ads = recibo['partner_id'].address[0]
 
             st=ads.street and ads.street or ''
-            st1=ads.street2 and ads.street2 or ''
             if 'zip_id' in ads:
                 obj_zip_city= ads.zip_id and pool.get('res.partner.zip').browse(cr,uid,ads.zip_id.id) or ''
                 zip=obj_zip_city and obj_zip_city.name or ''
@@ -294,17 +295,31 @@ def _create_payment_file(self, cr, uid, data, context):
             else:
                 zip=ads.zip and ads.zip or ''
                 city= ads.city and ads.city or  ''
-            state_name = ads.state_id.name and ads.state_id.name or ''
-            state_code = ads.state_id.code and ads.state_id.code or ''
+            #
+            # Comprobamos el código postal:
+            #   "Cuando no se conozca el código
+            #    completo, se cumplimentara, al menos, las dos primeras posiciones
+            #    que identifican la provincia, dejando el resto de posiciones a cero."
+            #
+            if len(zip) < 2:
+                zip = ads.state_id and ads.state_id.code or ''
 
         #
-        # Comprobamos el código postal:
-        #   "Cuando no se conozca el código
-        #    completo, se cumplimentara, al menos, las dos primeras posiciones 
-        #    que identifican la provincia, dejando el resto de posiciones a cero."
+        # Obtenemos la localidad y código de provincia del ordenante
         #
-        if len(zip) < 2:
-            zip = state_code
+        ord_city = ''
+        ord_state_code = ''
+        if orden.mode.partner_id.address:
+            ads = None
+            for item in orden.mode.partner_id.address:
+                if item.type=='default':
+                    ads = item
+                    break
+            if not ads and len(orden.mode.partner_id.address) > 0:
+                ads =  orden.mode.partner_id.address[0]
+
+            ord_city = ads.state_id and ads.state_id.name or ''
+            ord_state_code = ads.state_id and ads.state_id.code or ''
 
         #
         # Calculamos la 'Fecha de origen en que se formalizo el crédito anticipado'
@@ -312,20 +327,10 @@ def _create_payment_file(self, cr, uid, data, context):
         #
         if recibo.get('create_date'):
             date_ct = mx.DateTime.strptime(recibo['create_date'],'%Y-%m-%d %H:%M:%S') # Cuidado, que es un datetime
-        else:
+        elif recibo.get('ml_date_created'):
             date_ct = mx.DateTime.strptime(recibo['ml_date_created'],'%Y-%m-%d')
-
-        #
-        # En el formato alternativo cambiamos los campos de plaza
-        # y localidad para usar un formato más similar a otros programas,
-        # pero menos correcto desde el punto de vista de la norma.
-        #
-        if alt_format:
-            square = city
-            location = state_name
         else:
-            square = st1
-            location = state_name
+            date_ct = mx.DateTime.today()
 
         #
         # Componemos la línea formateada
@@ -334,11 +339,23 @@ def _create_payment_file(self, cr, uid, data, context):
         texto += (orden.mode.bank_id.partner_id.vat[2:] + orden.mode.sufijo).zfill(12)
         texto += str(recibo['name']).zfill(12)
         texto += conv_ascii(st)[:40].ljust(40)          # Domicilio
-        texto += conv_ascii(square)[:35].ljust(35)      # Plaza (calle2 o ciudad)
+        texto += conv_ascii(city)[:35].ljust(35)        # Plaza (ciudad)
         texto += conv_ascii(zip)[:5].zfill(5)           # CP
-        texto += conv_ascii(location)[:38].ljust(38)    # Localidad (ciudad o provincia)
-        texto += conv_ascii(state_code)[:2].zfill(2)    # Cod prov
-        texto += date_ct.strftime('%d%m%y')             # Fecha crédito
+        texto += conv_ascii(ord_city)[:38].ljust(38)    # Localidad del ordenante (ciudad)
+        if alt_format:
+            #
+            # Si usamos el formato alternativo (basado en FacturaPlus)
+            # escribimos la fecha en la posición 147 y dejamos dos carácteres
+            # en blanco tras ella.
+            # Lo correcto, según la norma, es que en la posición 147 aparezca
+            # el código de provincia (2 dígitos) y la fecha empiece en
+            # la posición 149.
+            #
+            texto += date_ct.strftime('%d%m%y')                 # Fecha crédito
+            texto += 2*' '
+        else:
+            texto += conv_ascii(ord_state_code)[:2].zfill(2)    # Cod prov del ordenante
+            texto += date_ct.strftime('%d%m%y')                 # Fecha crédito
         texto += 8*' '                                  # Libre
         texto += '\n'
         return texto
@@ -455,15 +472,16 @@ def _create_payment_file(self, cr, uid, data, context):
             for recibo in recibos:
                 txt_remesa += _individual_obligatorio_58(self, recibo)
                 num_recibos = num_recibos + 1
+                
+                # Sólo emitimos el registro individual si communication2 contiene texto
+                if recibo['communication2'] and len(recibo['communication2'].strip()) > 0:
+                    txt_remesa += _individual_opcional_58(self, recibo)
+                    num_lineas_opc = num_lineas_opc + 1
 
                 # Para recibos no domiciliados, añadimos el registro obligatorio
                 # de domicilio (necesario con algunos bancos/cajas).
                 if orden.mode.inc_domicile:
-                    txt_remesa += _registro_obligatorio_domicilio_58(self, recibo, alt_format=orden.mode.alt_domicile_format)
-                    num_lineas_opc = num_lineas_opc + 1
-
-                if recibo['communication2']:
-                    txt_remesa += _individual_opcional_58(self, recibo)
+                    txt_remesa += _registro_obligatorio_domicilio_58(self, recibo)
                     num_lineas_opc = num_lineas_opc + 1
 
             txt_remesa += _total_ordenante_58(self)
@@ -476,6 +494,23 @@ def _create_payment_file(self, cr, uid, data, context):
     except Log:
         return {'note':log(), 'reference':orden.id, 'pay':False, 'state':'failed'}
     else:
+        #
+        # Comprobamos si debemos exportar el archivo en formato DOS 
+        # (forzar CRLF como final de línea), y realizamos la transformación.
+        #
+        # Nota: Esto se basa en los siguientes puntos de la norma 58:
+        # "
+        #  - Registros de longitud fija (162 bytes). En CD añadir 2 bytes (CRLF)
+        #  - Formato MS/DOS secuencial tipo texto.
+        # "
+        # y la norma 19:
+        # "
+        # - Formato MS-DOS secuencial tipo texto.
+        # "
+        #
+        if orden.mode.use_crlf:
+            txt_remesa = txt_remesa.replace('\r\n','\n').replace('\n','\r\n')
+
         file = base64.encodestring(txt_remesa)
         fname = (_('remesa') + '_' + orden.mode.tipo + '_' + orden.reference + '.txt').replace('/','-')
         pool.get('ir.attachment').create(cr, uid, {

@@ -17,6 +17,41 @@ msgstr ""
 
 
 #. module: l10n_ES_remesas
+#: field:payment.mode,ine:0
+msgid "INE code"
+msgstr ""
+
+#. module: l10n_ES_remesas
+#: view:payment.mode:0
+msgid "File format options"
+msgstr ""
+
+#. module: l10n_ES_remesas
+#: field:payment.mode,use_crlf:0
+msgid "CRLF line terminators"
+msgstr ""
+
+#. module: l10n_ES_remesas
+#: view:payment.mode:0
+msgid "CSB 58 options"
+msgstr ""
+
+#. module: l10n_ES_remesas
+#: view:payment.mode:0
+msgid "Presenter data"
+msgstr ""
+
+#. module: l10n_ES_remesas
+#: help:payment.mode,alt_domicile_format:0
+msgid "Alternative domicile record format"
+msgstr ""
+
+#. module: l10n_ES_remesas
+#: help:payment.mode,use_crlf:0
+msgid "Force the usage of CRLF line terminators (DOS/Windows compatible ASCII file) instead of LF terminators (Unix ASCII file)"
+msgstr ""
+
+#. module: l10n_ES_remesas
 #: field:payment.mode,inc_domicile:0
 msgid "Include domicile"
 msgstr ""
@@ -29,11 +64,6 @@ msgstr ""
 #. module: l10n_ES_remesas
 #: field:payment.mode,alt_domicile_format:0
 msgid "Alt. domicile format"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: help:payment.mode,alt_domicile_format:0
-msgid "Alternative domicile format, uses city and the state name instead of street2 and city"
 msgstr ""
 
 #. module: l10n_ES_remesas

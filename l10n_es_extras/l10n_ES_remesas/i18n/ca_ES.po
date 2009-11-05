@@ -18,6 +18,41 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 
 #. module: l10n_ES_remesas
+#: field:payment.mode,ine:0
+msgid "INE code"
+msgstr "Codi INE"
+
+#. module: l10n_ES_remesas
+#: view:payment.mode:0
+msgid "File format options"
+msgstr "Opcions de format d'arxiu"
+
+#. module: l10n_ES_remesas
+#: field:payment.mode,use_crlf:0
+msgid "CRLF line terminators"
+msgstr "Terminadores de línia CRLF"
+
+#. module: l10n_ES_remesas
+#: view:payment.mode:0
+msgid "CSB 58 options"
+msgstr "Opcions CSB 58"
+
+#. module: l10n_ES_remesas
+#: view:payment.mode:0
+msgid "Presenter data"
+msgstr "Dades del presentador"
+
+#. module: l10n_ES_remesas
+#: help:payment.mode,alt_domicile_format:0
+msgid "Alternative domicile record format"
+msgstr "Format de registre de domicili alternatiu"
+
+#. module: l10n_ES_remesas
+#: help:payment.mode,use_crlf:0
+msgid "Force the usage of CRLF line terminators (DOS/Windows compatible ASCII file) instead of LF terminators (Unix ASCII file)"
+msgstr "Forçar l'ús de terminadores de línia CRLF (arxiu ASCII compatible DOS/Windows) en comptes de terminadores LF (arxiu ASCII Unix)"
+
+#. module: l10n_ES_remesas
 #: field:payment.mode,inc_domicile:0
 msgid "Include domicile"
 msgstr "Incloure domicili"
@@ -31,12 +66,6 @@ msgstr "Afegir registres de domicili dels clients a l'arxiu exportat (CSB 58)"
 #: field:payment.mode,alt_domicile_format:0
 msgid "Alt. domicile format"
 msgstr "Format domicili alt."
-
-#. module: l10n_ES_remesas
-#: help:payment.mode,alt_domicile_format:0
-msgid "Alternative domicile format, uses city and the state name instead of street2 and city"
-msgstr "Format de domicili alternatiu, usa ciutat i el nom de província en lloc de carrer2 i ciutat"
-
 
 #. module: l10n_ES_remesas
 #: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
