@@ -34,6 +34,7 @@ __author__ = "Borja López Soilán (Pexego)"
 from osv import fields, osv
 import re
 import time
+from tools.translate import _
 
 
 ################################################################################
