@@ -312,7 +312,8 @@ class account_balance_report_line(osv.osv):
                     template_value = line.template_line_id.previous_value
 
                 # Remove characters after a ";" (we use ; for comments)
-                template_value = template_value.split(';')[0]
+                if template_value and len(template_value):
+                    template_value = template_value.split(';')[0]
 
                 if (fyear == 'current' and not line.report_id.current_fiscalyear_id) \
                         or (fyear == 'previous' and not line.report_id.previous_fiscalyear_id):
@@ -321,7 +322,7 @@ class account_balance_report_line(osv.osv):
                     #
                     # Calculate the value
                     #
-                    if not template_value:
+                    if not template_value or not len(template_value):
                         #
                         # Empy template value => sum of the children, of this concept, values.
                         #
