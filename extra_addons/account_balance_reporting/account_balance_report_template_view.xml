@@ -37,9 +37,10 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
             <field name="arch" type="xml">
                 <form string="Account balance report template">
                     <group colspan="4">
-                        <field name="name" select="1" colspan="2"/>
-                        <field name="type" select="1" colspan="1" readonly="1"/>
-                        <field name="report_xml_id" select="1" colspan="4" domain="[('model','=','account.balance.report')]"/>
+                        <field name="name" select="1"/>
+                        <field name="type" select="1" readonly="1"/>
+                        <field name="report_xml_id" select="2" domain="[('model','=','account.balance.report')]"/>
+                        <field name="balance_mode" select="2"/>
                     </group>
                     <notebook colspan="4">
                         <page string="Information">
@@ -53,6 +54,7 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
                                     <field name="name" select="1" colspan="2"/>
                                     <field name="current_value" colspan="2"/>
                                     <field name="previous_value" colspan="2"/>
+                                    <field name="negate" select="2" colspan="1"/>
                                     <field name="report_id" invisible="1"/>
                                     <field name="parent_id" select="1" colspan="1" domain="[('report_id','=',report_id)]"/>
                                     <field name="sequence" select="1" colspan="1"/>
@@ -68,12 +70,13 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
                                         <field name="parent_id" select="1" domain="[('report_id','=',report_id)]"/>
                                     </group>
                                     <group string="Values" colspan="4">
-                                        <field name="current_value" colspan="2"/>
-                                        <field name="previous_value" colspan="2"/>
+                                        <field name="current_value"/>
+                                        <field name="previous_value"/>
+                                        <field name="negate" select="2" colspan="1"/>
                                     </group>
                                     <group string="Style" colspan="4">
-                                        <field name="sequence" colspan="1"/>
-                                        <field name="css_class" colspan="1"/>
+                                        <field name="sequence"/>
+                                        <field name="css_class"/>
                                     </group>
                                 </form>
                             </field>

@@ -58,10 +58,10 @@ but it might be used as a generic accounting report engine.
         "demo_xml" : [ ],
         "update_xml" : [
                 'security/ir.model.access.csv',
+                'account_balance_report_wizard.xml',
                 'account_balance_report_template_view.xml',
                 'account_balance_report_view.xml',
                 'account_balance_report_workflow.xml',
-                'account_balance_report_wizard.xml',
                 'account_balance_report_reports.xml',
             ],
         "installable": True

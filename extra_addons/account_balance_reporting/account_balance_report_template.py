@@ -36,6 +36,20 @@ import re
 import time
 from tools.translate import _
 
+_BALANCE_MODE_HELP = """Formula calculation mode: Depending on it, the balance is calculated as follows:
+  Mode 0: debit-credit (default);
+  Mode 1: debit-credit, credit-debit for accounts in brackets;
+  Mode 2: credit-debit;
+  Mode 3: credit-debit, debit-credit for accounts in brackets."""
+
+_VALUE_FORMULA_HELP = """Value calculation formula: Depending on this formula the final value is calculated as follows:
+  Empy template value: sum of (this concept) children values.
+  Number with decimal point ("10.2"): that value (constant).
+  Account numbers separated by commas ("430,431,(437)"): Sum of the account balances
+    (the sign of the balance depends on the balance mode).
+  Concept codes separated by "+" ("11000+12000"): Sum of those concepts values.
+"""
+
 ################################################################################
 # CSS classes for the account lines
 ################################################################################
@@ -66,11 +80,15 @@ class account_balance_report_template(osv.osv):
         'report_xml_id': fields.many2one('ir.actions.report.xml', 'Report design', ondelete='set null'),
         # Description
         'description': fields.text('Description'),
+        # Balance mode
+        'balance_mode': fields.selection([('0','Debit-Credit'),('1','Debit-Credit, reversed with brakets'),('2','Credit-Debit'),('3','Credit-Debit, reversed with brakets')], 'Balance mode', help=_BALANCE_MODE_HELP),
     }
 
     _defaults = {
         # New templates are 'user' editable by default
-        'type': lambda *a: 'user'
+        'type': lambda *a: 'user',
+        # Use mode 0 by default
+        'balance_mode': lambda *a: '0',
     }
 
 account_balance_report_template()
@@ -96,18 +114,20 @@ class account_balance_report_template_line(osv.osv):
         'report_id': fields.many2one('account.balance.report.template', 'Template', ondelete='cascade'),
 
         # Order sequence, it's also used for grouping into sections, that's why it is a char
-        'sequence': fields.char('Sequence', size=32, required=False),
+        'sequence': fields.char('Sequence', size=32, required=False, help="Lines will be sorted/grouped by this field"),
         # CSS class, used when printing to set the style of the line
-        'css_class': fields.selection(CSS_CLASSES, 'CSS Class', required=False),
+        'css_class': fields.selection(CSS_CLASSES, 'CSS Class', required=False, help="Style-sheet class"),
 
         # Concept official code (as specified by normalized models, will be used when printing)
-        'code': fields.char('Code', size=64, required=True, select=True),
+        'code': fields.char('Code', size=64, required=True, select=True, help="Concept code, may be used on formulas to reference this line"),
         # Concept official name (will be used when printing)
-        'name': fields.char('Name', size=256, required=True, select=True),
+        'name': fields.char('Name', size=256, required=True, select=True, help="Concept name/description"),
         # Concept value formula in this fiscal year
-        'current_value': fields.text('Fiscal year 1 formula'),
+        'current_value': fields.text('Fiscal year 1 formula', help=_VALUE_FORMULA_HELP),
         # Concept value on the previous fiscal year
-        'previous_value': fields.text('Fiscal year 2 formula'),
+        'previous_value': fields.text('Fiscal year 2 formula', help=_VALUE_FORMULA_HELP),
+        # Negate the value?
+        'negate': fields.boolean('Negate', help="Negate the value (change the sign of the balance)"),
 
         # Parent accounting concept
         'parent_id': fields.many2one('account.balance.report.template.line', 'Parent', ondelete='cascade'),
@@ -118,8 +138,10 @@ class account_balance_report_template_line(osv.osv):
     _defaults = {
         # Use context report_id as the the parent report
         'report_id': lambda self, cr, uid, context: context.get('report_id', None),
+        # Don't negate by default
+        'negate': lambda *a: False,
         # Default css class (so we always have a class)
-        'css_class': 'default',
+        'css_class': lambda *a: 'default',
     }
 
     # Lines are sorted by its sequence and code

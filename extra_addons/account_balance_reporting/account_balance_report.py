@@ -35,7 +35,7 @@ from osv import fields, osv
 import re
 import time
 from tools.translate import _
-
+import netsvc
 
 ################################################################################
 # CSS classes for the account line templates
@@ -67,7 +67,7 @@ class account_balance_report(osv.osv):
         # Date of the last calculation
         'calc_date': fields.datetime("Calculation date"),
         # State of the report
-        'state': fields.selection([('draft','Draft'),('calc','Processing'),('calc_done','Processed'),('done','Done')], 'State'),
+        'state': fields.selection([('draft','Draft'),('calc','Processing'),('calc_done','Processed'),('done','Done'),('canceled','Canceled')], 'State'),
         # Company
         'company_id': fields.many2one('res.company', 'Company', ondelete='cascade', readonly=True, required=True),
         #
@@ -174,12 +174,6 @@ class account_balance_report(osv.osv):
                 self.write(cr, uid, [report.id], {'state': 'draft'})
         return True
 
-    def action_calculated(self, cr, uid, ids, context=None):
-        """
-        Called when the calculation ends.
-        """
-        # TODO: Send a notice to the user about the report calculation results?
-        return True
 
     def action_confirm(self, cr, uid, ids, context=None):
         """
@@ -188,12 +182,25 @@ class account_balance_report(osv.osv):
         self.write(cr, uid, ids, {'state': 'done'})
         return True
 
+
     def action_cancel(self, cr, uid, ids, context=None):
         """
         Called when the user clicks the cancel button.
         """
-        self.write(cr, uid, ids, {'state': 'draft', 'calc_date': None})
+        self.write(cr, uid, ids, {'state': 'canceled'})
         return True
+
+    def action_recover(self, cr, uid, ids, context=None):
+        """
+        Called when the user clicks the draft button to create
+        a new workflow instance.
+        """
+        self.write(cr, uid, ids, {'state': 'draft', 'calc_date': None})
+        wf_service = netsvc.LocalService("workflow")
+        for item_id in ids:
+            wf_service.trg_create(uid, 'account.balance.report', item_id, cr)
+        return True
+
 
 account_balance_report()
 
@@ -291,10 +298,12 @@ class account_balance_report_line(osv.osv):
         Recalculates the values of this report line using the
         linked line template values formulas:
 
-        - Empy template value => sum of the children, of this concept, values.
-        - Number with decimal points ("10.2") => that number value (constant).
-        - Account numbers separated by commas ("430,431,(437)") => sum of the account balances.
-        - Account concept codes separated by "+" ("11000+12000") => sum of the concept (report lines) values.
+        Depending on this formula the final value is calculated as follows:
+        - Empy template value: sum of (this concept) children values.
+        - Number with decimal point ("10.2"): that value (constant).
+        - Account numbers separated by commas ("430,431,(437)"): Sum of the account balances.
+            (The sign of the balance depends on the balance mode)
+        - Concept codes separated by "+" ("11000+12000"): Sum of those concepts values.
         """
         for line in self.browse(cr, uid, ids):
             current_value = 0.0
@@ -360,7 +369,13 @@ class account_balance_report_line(osv.osv):
                                 'fiscalyear': line.report_id.previous_fiscalyear_id.id,
                                 'periods': [p.id for p in line.report_id.previous_period_ids],
                             }
-                        dcb = line._get_account_debit_credit_and_balance(template_value, ctx)
+                        #
+                        # Get the mode of balance calculation from the template
+                        #
+                        balance_mode = line.template_line_id.report_id.balance_mode
+
+                        # Get the balance 
+                        dcb = line._get_account_debit_credit_and_balance(template_value, balance_mode, ctx)
                         value = dcb[2]
 
                     elif re.match(r'^[\+\-0-9a-zA-Z_\*]*$', template_value):
@@ -392,7 +407,13 @@ class account_balance_report_line(osv.osv):
                                         value += float(child.current_value) * sign
                                     elif fyear == 'previous':
                                         value += float(child.previous_value) * sign
-                                        
+
+                #
+                # Negate the value if needed
+                #
+                if line.template_line_id.negate:
+                    value = -value
+
                 if fyear == 'current':
                     current_value = value
                 elif fyear == 'previous':
@@ -407,11 +428,16 @@ class account_balance_report_line(osv.osv):
         return True
 
 
-    def _get_account_debit_credit_and_balance(self, cr, uid, ids, code, context=None):
+    def _get_account_debit_credit_and_balance(self, cr, uid, ids, code, balance_mode=0, context=None):
         """
-        It returns the (debit, credit, balance) tuple for a account with the
+        It returns the (debit, credit, balance*) tuple for a account with the
         given code, or the sum of those values for a set of accounts
         when the code is in the form "400,300,(323)"
+        Depending on the balance_mode, the balance is calculated as follows:
+          Mode 0: debit-credit for all accounts (default);
+          Mode 1: debit-credit, credit-debit for accounts in brackets;
+          Mode 2: credit-debit for all accounts;
+          Mode 3: credit-debit, debit-credit for accounts in brackets.
         """
         acc_facade = self.pool.get('account.account')
         res = [0.0, 0.0, 0.0]
@@ -420,13 +446,40 @@ class account_balance_report_line(osv.osv):
         # We iterate over the accounts listed in "code", so code can be
         # a string like "430+431+432-438"; accounts split by "+" will be added,
         # accounts split by "-" will be substracted.
+        #
+        # We also take in consideration the balance_mode:
+        #   Mode 0: credit-debit for all accounts
+        #   Mode 1: debit-credit, credit-debit for accounts in brackets
+        #   Mode 2: credit-debit, debit-credit for accounts in brackets
+        #
         for account_code in re.findall('(-?\(?[0-9a-zA-Z_]*\)?)', code):
             # Check the sign of the code (substraction)
-            if account_code.startswith('-') or account_code.startswith('('):
+            if account_code.startswith('-'):
                 sign = -1.0
             else:
                 sign = 1.0
-            account_code = account_code.strip('-()')
+            
+            # Strip the debit/substraction sign (if it has one)
+            account_code = account_code.strip('-')
+
+            # Check the balance mode
+            assert balance_mode in ('0','1','2','3'), "balance_mode should be in [0..3]"
+            if balance_mode == '1':
+                # We use debit-credit as default balance,
+                # but for accounts in brackets we use credit-debit
+                if account_code.startswith('('):
+                    sign = -1.0 * sign
+            elif balance_mode == '2':
+                # We use credit-debit as the balance,
+                sign = -1.0 * sign
+            elif balance_mode == '3':
+                # We use credit-debit as default balance,
+                # but for accounts in brackets we use debit-credit
+                if not account_code.startswith('('):
+                    sign = -1.0 * sign
+
+            # Strip the brackets (if it has) so we get just the number
+            account_code = account_code.strip('()')
 
             # Check if the code is valid (findall might return empty strings)
             if len(account_code) > 0:

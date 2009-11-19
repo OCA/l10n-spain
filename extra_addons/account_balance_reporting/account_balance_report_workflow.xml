@@ -29,7 +29,7 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
         <!-- *** Nodes ***************************************************** -->
 
         <record model="workflow" id="wkf_account_balance_report">
-            <field name="name">account.balance.report</field>
+            <field name="name">Account balance report workflow</field>
             <field name="osv">account.balance.report</field>
             <field name="on_create">True</field>
         </record>
@@ -43,26 +43,22 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
 
         <record model="workflow.activity" id="act_calculate">
             <field name="wkf_id" ref="wkf_account_balance_report"/>
-            <field name="name">calculate</field>
+            <field name="name">calculated</field>
             <field name="action">action_calculate()</field>
             <field name="kind">function</field>
         </record>
 
-        <record model="workflow.activity" id="act_calculated">
-            <field name="wkf_id" ref="wkf_account_balance_report"/>
-            <field name="name">calculated</field>
-        </record>
-
         <record model="workflow.activity" id="act_confirm">
             <field name="wkf_id" ref="wkf_account_balance_report"/>
-            <field name="name">confirm</field>
+            <field name="name">confirmed</field>
             <field name="action">action_confirm()</field>
             <field name="kind">function</field>
         </record>
 
         <record model="workflow.activity" id="act_cancel">
             <field name="wkf_id" ref="wkf_account_balance_report"/>
-            <field name="name">cancel</field>
+            <field name="name">canceled</field>
+            <field name="flow_stop">True</field>
             <field name="action">action_cancel()</field>
             <field name="kind">function</field>
         </record>
@@ -76,26 +72,14 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
             <field name="signal">calculate</field>
         </record>
 
-        <record model="workflow.transition" id="trans_calculate_calculated">
+        <record model="workflow.transition" id="trans_calculate_confirm">
             <field name="act_from" ref="act_calculate"/>
-            <field name="act_to" ref="act_calculated"/>
-            <field name="signal"></field>
-        </record>
-
-        <record model="workflow.transition" id="trans_calculated_calculate">
-            <field name="act_from" ref="act_calculated"/>
-            <field name="act_to" ref="act_calculate"/>
-            <field name="signal">calculate</field>
-        </record>
-
-        <record model="workflow.transition" id="trans_calculated_confirm">
-            <field name="act_from" ref="act_calculated"/>
             <field name="act_to" ref="act_confirm"/>
             <field name="signal">confirm</field>
         </record>
 
-        <record model="workflow.transition" id="trans_calculated_cancel">
-            <field name="act_from" ref="act_calculated"/>
+        <record model="workflow.transition" id="trans_calculate_draft">
+            <field name="act_from" ref="act_calculate"/>
             <field name="act_to" ref="act_cancel"/>
             <field name="signal">cancel</field>
         </record>
@@ -106,10 +90,5 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
             <field name="signal">cancel</field>
         </record>
 
-        <record model="workflow.transition" id="trans_cancel_draft">
-            <field name="act_from" ref="act_cancel"/>
-            <field name="act_to" ref="act_draft"/>
-            <field name="signal"></field>
-        </record>
     </data>
 </openerp>

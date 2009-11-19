@@ -61,9 +61,11 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
                                 <field name="calc_date" select="2" readonly="1"/>
                             </group>
                             <group colspan="4">
-                                <button name="calculate" string="Calculate" states="draft"/>
-                                <button name="confirm" string="Confirm" states="calc_done"/>
-                                <button name="cancel" string="Cancel" states="calc_done,done"/>
+                                <!-- <button name="calculate" string="Calculate" states="draft"/> -->
+                                <button name="%(wiz_account_balance_report_calculate)d" type="action" string="Calculate" states="draft" icon="gtk-execute"/>
+                                <button name="confirm" string="Confirm" states="calc_done" icon="gtk-apply"/>
+                                <button name="cancel" string="Cancel" states="calc_done,done" icon="gtk-cancel"/>
+								<button name="action_recover" string="Draft" type="object" states="canceled" icon="gtk-undo"/>
                             </group>
                         </page>
                         <page string="Lines">

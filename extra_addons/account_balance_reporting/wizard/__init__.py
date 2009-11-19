@@ -27,4 +27,5 @@ Account balance reporting engine wizards
 __author__ = "Borja López Soilán (Pexego) - borjals@pexego.es"
 
 
+import wizard_calculate
 import wizard_print
