@@ -38,6 +38,7 @@ Author: Raimon Esteve (Zikzakmedia) - resteve@zikzakmedia.com
 		<record model="account.balance.report.template" id="es_balance_normal">
 			<field name="name">BALANCE NORMAL (PGCE 2008)</field>
 			<field name="type">system</field>
+			<field name="balance_mode">2</field>
 			<field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
 			<field name="description">
 CUENTAS ANUALES - BALANCE DE SITUACIÓN NORMAL 
@@ -99,6 +100,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">1. Desarrollo</field>
 			<field name="current_value">201,(2801),(2901)</field>
 			<field name="previous_value">201,(2801),(2901)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11100"/>
 			<field name="sequence">B1.1/03</field>
 			<field name="css_class">l4</field>
@@ -110,6 +112,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">2. Concesiones</field>
 			<field name="current_value">202,(2802),(2902)</field>
 			<field name="previous_value">202,(2802),(2902)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11100"/>
 			<field name="sequence">B1.1/04</field>
 			<field name="css_class">l4</field>
@@ -121,6 +124,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">3. Patentes, licencias, marcas y similares</field>
 			<field name="current_value">203,(2803),(2903)</field>
 			<field name="previous_value">203,(2803),(2903)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11100"/>
 			<field name="sequence">B1.1/05</field>
 			<field name="css_class">l4</field>
@@ -132,6 +136,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">4. Fondo de comercio</field>
 			<field name="current_value">204</field>
 			<field name="previous_value">204</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11100"/>
 			<field name="sequence">B1.1/06</field>
 			<field name="css_class">l4</field>
@@ -143,6 +148,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">5. Aplicaciones informáticas</field>
 			<field name="current_value">206,(2806),(2906)</field>
 			<field name="previous_value">206,(2806),(2906)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11100"/>
 			<field name="sequence">B1.1/07</field>
 			<field name="css_class">l4</field>
@@ -154,6 +160,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">6. Investigación</field>
 			<field name="current_value">200,(2800); NECA 6.ª 4</field>
 			<field name="previous_value">200,(2800); NECA 6.ª 4</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11100"/>
 			<field name="sequence">B1.1/07</field>
 			<field name="css_class">l4</field>
@@ -165,6 +172,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">7. Otro inmovilizado intangible</field>
 			<field name="current_value">205, 209,(2805),(2905)</field>
 			<field name="previous_value">205, 209,(2805),(2905)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11100"/>
 			<field name="sequence">B1.1/08</field>
 			<field name="css_class">l4</field>
@@ -187,6 +195,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">1. Terrenos y construcciones</field>
 			<field name="current_value">210, 211,(2811),(2910),(2911)</field>
 			<field name="previous_value">210, 211,(2811),(2910),(2911)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11200"/>
 			<field name="sequence">B1.1/10</field>
 			<field name="css_class">l4</field>
@@ -198,6 +207,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">2. Instalaciones técnicas y otro inmovilizado material</field>
 			<field name="current_value">212,213,214,215,216,217,218,219,(2812),(2813),(2814),(2815),(2816),(2817),(2818),(2819),(2912),(2913),(2914),(2915),(2916),(2917),(2918),(2919)</field>
 			<field name="previous_value">212,213,214,215,216,217,218,219,(2812),(2813),(2814),(2815),(2816),(2817),(2818),(2819),(2912),(2913),(2914),(2915),(2916),(2917),(2918),(2919)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11200"/>
 			<field name="sequence">B1.1/11</field>
 			<field name="css_class">l4</field>
@@ -209,6 +219,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">3. Inmovilizado en curso y anticipos</field>
 			<field name="current_value">23</field>
 			<field name="previous_value">23</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11200"/>
 			<field name="sequence">B1.1/12</field>
 			<field name="css_class">l4</field>
@@ -231,6 +242,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">1. Terrenos</field>
 			<field name="current_value">220,(2920)</field>
 			<field name="previous_value">220,(2920)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11300"/>
 			<field name="sequence">B1.1/14</field>
 			<field name="css_class">l4</field>
@@ -242,6 +254,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">2. Construcciones</field>
 			<field name="current_value">221,(282),(2921)</field>
 			<field name="previous_value">221,(282),(2921)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11300"/>
 			<field name="sequence">B1.1/15</field>
 			<field name="css_class">l4</field>
@@ -264,6 +277,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">1. Instrumentos de patrimonio</field>
 			<field name="current_value">2403,2404,(2493),(2494),(293)</field>
 			<field name="previous_value">2403,2404,(2493),(2494),(293)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11400"/>
 			<field name="sequence">B1.1/17</field>
 			<field name="css_class">l4</field>
@@ -275,6 +289,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">2. Créditos a empresas</field>
 			<field name="current_value">2423,2424,(2953),(2954)</field>
 			<field name="previous_value">2423,2424,(2953),(2954)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11400"/>
 			<field name="sequence">B1.1/18</field>
 			<field name="css_class">l4</field>
@@ -286,6 +301,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">3. Valores representativos de deuda</field>
 			<field name="current_value">2413,2414,(2943),(2944)</field>
 			<field name="previous_value">2413,2414,(2943),(2944)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11400"/>
 			<field name="sequence">B1.1/19</field>
 			<field name="css_class">l4</field>
@@ -319,6 +335,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">6. Otras inversiones</field>
 			<field name="current_value">;NECA 6.ª 6</field>
 			<field name="previous_value">;NECA 6.ª 6</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11400"/>
 			<field name="sequence">B1.1/22</field>
 			<field name="css_class">l4</field>
@@ -341,6 +358,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">1. Instrumentos de patrimonio</field>
 			<field name="current_value">2405,(2495),250,(259)</field>
 			<field name="previous_value">2405,(2495),250,(259)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11500"/>
 			<field name="sequence">B1.1/24</field>
 			<field name="css_class">l4</field>
@@ -352,6 +370,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">2. Créditos a terceros</field>
 			<field name="current_value">2425,252,253,254,(2955),(298)</field>
 			<field name="previous_value">2425,252,253,254,(2955),(298)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11500"/>
 			<field name="sequence">B1.1/25</field>
 			<field name="css_class">l4</field>
@@ -363,6 +382,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">3. Valores representativos de deuda</field>
 			<field name="current_value">2415,251,(2945),(297)</field>
 			<field name="previous_value">2415,251,(2945),(297)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11500"/>
 			<field name="sequence">B1.1/26</field>
 			<field name="css_class">l4</field>
@@ -374,6 +394,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">4. Derivados</field>
 			<field name="current_value">255</field>
 			<field name="previous_value">255</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11500"/>
 			<field name="sequence">B1.1/27</field>
 			<field name="css_class">l4</field>
@@ -383,8 +404,9 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_normal"/>
 			<field name="code">11550</field>
 			<field name="name">5. Otros activos financieros</field>
-			<field name="current_value">258.26</field>
-			<field name="previous_value">258.26</field>
+			<field name="current_value">258,26</field>
+			<field name="previous_value">258,26</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11500"/>
 			<field name="sequence">B1.1/28</field>
 			<field name="css_class">l4</field>
@@ -396,6 +418,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">6. Otras inversiones</field>
 			<field name="current_value">257; NECA 6.ª 6</field>
 			<field name="previous_value">257; NECA 6.ª 6</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11500"/>
 			<field name="sequence">B1.1/29</field>
 			<field name="css_class">l4</field>
@@ -407,6 +430,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">VI. Activos por impuesto diferido</field>
 			<field name="current_value">474</field>
 			<field name="previous_value">474</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11000"/> 
 			<field name="sequence">B1.1/30</field>
 			<field name="css_class">l3</field>
@@ -418,6 +442,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">VII. Deudas comerciales no corrientes</field>
 			<field name="current_value">;NECA 6.ª 8</field>
 			<field name="previous_value">;NECA 6.ª 8</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11000"/> 
 			<field name="sequence">B1.1/31</field>
 			<field name="css_class">l3</field>
@@ -440,6 +465,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">I. Activos no corrientes mantenidos para la venta</field>
 			<field name="current_value">580,581,582,583,584,(599)</field>
 			<field name="previous_value">580,581,582,583,584,(599)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12000"/> 
 			<field name="sequence">B1.2/02</field>
 			<field name="css_class">l3</field>
@@ -462,6 +488,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">1. Comerciales</field>
 			<field name="current_value">30,(390)</field>
 			<field name="previous_value">30,(390)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12200"/>
 			<field name="sequence">B1.2/04</field>
 			<field name="css_class">l4</field>
@@ -473,6 +500,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">2. Materias primas y otros aprovisionamientos</field>
 			<field name="current_value">31,32,(391),(392)</field>
 			<field name="previous_value">31,32,(391),(392)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12200"/>
 			<field name="sequence">B1.2/04</field>
 			<field name="css_class">l4</field>
@@ -484,6 +512,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">3. Productos en curso</field>
 			<field name="current_value">33,34,(393),(394)</field>
 			<field name="previous_value">33,34,(393),(394)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12200"/>
 			<field name="sequence">B1.2/04</field>
 			<field name="css_class">l4</field>
@@ -495,6 +524,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">a) De ciclo largo de produccción</field>
 			<field name="current_value">;NECA 6.ª 7</field>
 			<field name="previous_value">;NECA 6.ª 7</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12230"/>
 			<field name="sequence">B1.2/05</field>
 			<field name="css_class">l5</field>
@@ -506,6 +536,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">b) De ciclo corto de producción</field>
 			<field name="current_value">;NECA 6.ª 7</field>
 			<field name="previous_value">;NECA 6.ª 7</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12230"/>
 			<field name="sequence">B1.2/06</field>
 			<field name="css_class">l5</field>
@@ -517,6 +548,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">4. Productos terminados</field>
 			<field name="current_value">35,(395)</field>
 			<field name="previous_value">35,(395)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12200"/>
 			<field name="sequence">B1.2/07</field>
 			<field name="css_class">l4</field>
@@ -528,6 +560,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">a) De ciclo largo de produccción</field>
 			<field name="current_value">;NECA 6.ª 7</field>
 			<field name="previous_value">;NECA 6.ª 7</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12240"/>
 			<field name="sequence">B1.2/08</field>
 			<field name="css_class">l5</field>
@@ -539,6 +572,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">b) De ciclo corto de producción</field>
 			<field name="current_value">;NECA 6.ª 7</field>
 			<field name="previous_value">;NECA 6.ª 7</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12240"/>
 			<field name="sequence">B1.2/09</field>
 			<field name="css_class">l5</field>
@@ -550,6 +584,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">5. Subproductos, residuos y materiales recuperados</field>
 			<field name="current_value">36,(396)</field>
 			<field name="previous_value">36,(396)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12200"/>
 			<field name="sequence">B1.2/10</field>
 			<field name="css_class">l4</field>
@@ -561,6 +596,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">6. Anticipos a proveedores</field>
 			<field name="current_value">407</field>
 			<field name="previous_value">407</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12200"/>
 			<field name="sequence">B1.2/11</field>
 			<field name="css_class">l4</field>
@@ -583,6 +619,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">1. Clientes por ventas y prestaciones de servicios</field>
 			<field name="current_value">430,431,432,435,436,(437),(490),(4935)</field>
 			<field name="previous_value">430,431,432,435,436,(437),(490),(4935)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12300"/>
 			<field name="sequence">B1.2/13</field>
 			<field name="css_class">l4</field>
@@ -594,6 +631,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">a) Clientes por ventas y prestaciones de servicios a largo plazo</field>
 			<field name="current_value">;NECA 6.ª 8</field>
 			<field name="previous_value">;NECA 6.ª 8</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12310"/>
 			<field name="sequence">B1.2/14</field>
 			<field name="css_class">l5</field>
@@ -605,6 +643,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">b) Clientes por ventas y prestaciones de servicios a corto plazo</field>
 			<field name="current_value">;NECA 6.ª 8</field>
 			<field name="previous_value">;NECA 6.ª 8</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12310"/>
 			<field name="sequence">B1.2/15</field>
 			<field name="css_class">l5</field>
@@ -616,6 +655,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">2. Clientes empresas del grupo y asociadas</field>
 			<field name="current_value">433,434,(4933),(4934)</field>
 			<field name="previous_value">433,434,(4933),(4934)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12300"/>
 			<field name="sequence">B1.2/16</field>
 			<field name="css_class">l4</field>
@@ -627,6 +667,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">3. Deudores varios</field>
 			<field name="current_value">44,5531,5533</field>
 			<field name="previous_value">44,5531,5533</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12300"/>
 			<field name="sequence">B1.2/17</field>
 			<field name="css_class">l4</field>
@@ -638,6 +679,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">4. Personal</field>
 			<field name="current_value">460,544</field>
 			<field name="previous_value">460,544</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12300"/>
 			<field name="sequence">B1.2/18</field>
 			<field name="css_class">l4</field>
@@ -649,6 +691,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">5. Activos por impuesto corriente</field>
 			<field name="current_value">4709</field>
 			<field name="previous_value">4709</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12300"/>
 			<field name="sequence">B1.2/19</field>
 			<field name="css_class">l4</field>
@@ -660,6 +703,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">6. Otros créditos con las Administraciones Públicas</field>
 			<field name="current_value">4700,4708,471,472</field>
 			<field name="previous_value">4700,4708,471,472</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12300"/>
 			<field name="sequence">B1.2/20</field>
 			<field name="css_class">l4</field>
@@ -671,6 +715,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">7. Accionistas (socios) por desembolsos exigidos</field>
 			<field name="current_value">5580</field>
 			<field name="previous_value">5580</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12300"/>
 			<field name="sequence">B1.2/21</field>
 			<field name="css_class">l4</field>
@@ -693,6 +738,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">1. Instrumentos de patrimonio</field>
 			<field name="current_value">5303,5304,(5393),(5394),(593)</field>
 			<field name="previous_value">5303,5304,(5393),(5394),(593)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12400"/>
 			<field name="sequence">B1.2/23</field>
 			<field name="css_class">l4</field>
@@ -704,6 +750,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">2. Créditos a empresas</field>
 			<field name="current_value">5323,5324,5343,5344,(5953),(5954)</field>
 			<field name="previous_value">5323,5324,5343,5344,(5953),(5954)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12400"/>
 			<field name="sequence">B1.2/24</field>
 			<field name="css_class">l4</field>
@@ -715,6 +762,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">3. Valores representativos de deuda</field>
 			<field name="current_value">5313,5314, 5333,5334,(5943),(5944)</field>
 			<field name="previous_value">5313,5314, 5333,5334,(5943),(5944)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12400"/>
 			<field name="sequence">B1.2/25</field>
 			<field name="css_class">l4</field>
@@ -737,6 +785,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">5. Otros activos financieros</field>
 			<field name="current_value">5353,5354,5523,5524</field>
 			<field name="previous_value">5353,5354,5523,5524</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12400"/>
 			<field name="sequence">B1.2/27</field>
 			<field name="css_class">l4</field>
@@ -748,6 +797,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">6. Otras inversiones</field>
 			<field name="current_value">;NECA 6.ª 6</field>
 			<field name="previous_value">;NECA 6.ª 6</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12400"/>
 			<field name="sequence">B1.2/28</field>
 			<field name="css_class">l4</field>
@@ -770,6 +820,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">1. Instrumentos de patrimonio</field>
 			<field name="current_value">5305,540,(5395),(549)</field>
 			<field name="previous_value">5305,540,(5395),(549)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12500"/>
 			<field name="sequence">B1.3/02</field>
 			<field name="css_class">l4</field>
@@ -781,6 +832,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">2. Créditos a empresas</field>
 			<field name="current_value">5325,5345,542,543,547,(5955),(598)</field>
 			<field name="previous_value">5325,5345,542,543,547,(5955),(598)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12500"/>
 			<field name="sequence">B1.3/03</field>
 			<field name="css_class">l4</field>
@@ -792,6 +844,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">3. Valores representativos de deuda</field>
 			<field name="current_value">5315,5335,541,546,(5945),(597)</field>
 			<field name="previous_value">5315,5335,541,546,(5945),(597)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12500"/>
 			<field name="sequence">B1.3/04</field>
 			<field name="css_class">l4</field>
@@ -803,6 +856,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">4. Derivados</field>
 			<field name="current_value">5590,5593</field>
 			<field name="previous_value">5590,5593</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12500"/>
 			<field name="sequence">B1.3/05</field>
 			<field name="css_class">l4</field>
@@ -814,6 +868,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">5. Otros activos financieros</field>
 			<field name="current_value">5355,545,548,551,5525,565,566</field>
 			<field name="previous_value">5355,545,548,551,5525,565,566</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12500"/>
 			<field name="sequence">B1.3/06</field>
 			<field name="css_class">l4</field>
@@ -825,6 +880,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">6. Otras inversiones</field>
 			<field name="current_value">;NECA 6.ª 6</field>
 			<field name="previous_value">;NECA 6.ª 6</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12500"/>
 			<field name="sequence">B1.3/07</field>
 			<field name="css_class">l4</field>
@@ -836,6 +892,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">VI. Periodificaciones a corto plazo</field>
 			<field name="current_value">480,567</field>
 			<field name="previous_value">480,567</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12000"/> 
 			<field name="sequence">B1.3/08</field>
 			<field name="css_class">l3</field>
@@ -858,6 +915,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">1. Tesorería</field>
 			<field name="current_value">570,571,572,573,574,575</field>
 			<field name="previous_value">570,571,572,573,574,575</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12700"/>
 			<field name="sequence">B1.3/10</field>
 			<field name="css_class">l4</field>
@@ -869,6 +927,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">2. Otros activos líquidos equivalentes</field>
 			<field name="current_value">576</field>
 			<field name="previous_value">576</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12700"/>
 			<field name="sequence">B1.3/11</field>
 			<field name="css_class">l4</field>

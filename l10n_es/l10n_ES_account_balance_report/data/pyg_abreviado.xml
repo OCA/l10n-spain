@@ -38,6 +38,7 @@ Author: Raimon Esteve (Zikzakmedia) - resteve@zikzakmedia.com
 		<record model="account.balance.report.template" id="es_pyg_abreviado">
 			<field name="name">PÉRDIDAS Y GANANCIAS ABREVIADO (PGCE 2008)</field>
 			<field name="type">system</field>
+			<field name="balance_mode">2</field>
 			<field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
 			<field name="description">
 CUENTAS ANUALES - PÉRDIDAS Y GANANCIAS ABREVIADO
@@ -185,8 +186,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_pyg_abreviado"/>
 			<field name="code">41100</field>
 			<field name="name">11. Deterioro y resultado por enajenaciones del inmovilizado</field>
-			<field name="current_value">(670),(671),(672),(690),(691),(692),770,771,772,790,791,792  </field>
-			<field name="previous_value">(670),(671),(672),(690),(691),(692),770,771,772,790,791,792 </field>
+			<field name="current_value">(670),(671),(672),(690),(691),(692),770,771,772,790,791,792</field>
+			<field name="previous_value">(670),(671),(672),(690),(691),(692),770,771,772,790,791,792</field>
 			<field name="parent_id" ref=""/>
 			<field name="sequence">PA/11</field>
 			<field name="css_class">l3</field>

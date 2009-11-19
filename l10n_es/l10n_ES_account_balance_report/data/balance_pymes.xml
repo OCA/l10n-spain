@@ -36,6 +36,7 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
 		<record model="account.balance.report.template" id="es_balance_pymes">
 			<field name="name">BALANCE PYMES (PGCE 2008)</field>
 			<field name="type">system</field>
+			<field name="balance_mode">2</field>
 			<field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
 			<field name="description">
 CUENTAS ANUALES - BALANCE DE SITUACIÓN PARA PYMES
@@ -85,6 +86,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">I. Inmovilizado intangible.</field>
 			<field name="current_value">20,(280),(290)</field>
 			<field name="previous_value">20,(280),(290)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_11000"/>
 			<field name="sequence">BP1/02</field>
 			<field name="css_class">l3</field>
@@ -96,6 +98,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">II. Inmovilizado material</field>
 			<field name="current_value">21,(281),(291),23</field>
 			<field name="previous_value">21,(281),(291),23</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_11000"/>
 			<field name="sequence">BP1/03</field>
 			<field name="css_class">l3</field>
@@ -107,6 +110,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">III. Inversiones inmobiliarias</field>
 			<field name="current_value">22,(282),(292)</field>
 			<field name="previous_value">22,(282),(292)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_11000"/>
 			<field name="sequence">BP1/04</field>
 			<field name="css_class">l3</field>
@@ -118,6 +122,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">IV. Inversiones en empresas del grupo y asociadas a largo plazo</field>
 			<field name="current_value">2403,2404,2413,2414,2423,2424,(2493),(2494),(2933),(2934),(2943),(2944),(2953),(2954)</field>
 			<field name="previous_value">2403,2404,2413,2414,2423,2424,(2493),(2494),(2933),(2934),(2943),(2944),(2953),(2954)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_11000"/>
 			<field name="sequence">BP1/05</field>
 			<field name="css_class">l3</field>
@@ -129,6 +134,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">V. Inversiones financieras a largo plazo</field>
 			<field name="current_value">2405,2415,2425,(2495),250,251,252,253,254,255,258,(259),26,(2935),(2945),(2955),(296),(297),(298)</field>
 			<field name="previous_value">2405,2415,2425,(2495),250,251,252,253,254,255,258,(259),26,(2935),(2945),(2955),(296),(297),(298)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_11000"/>
 			<field name="sequence">BP1/06</field>
 			<field name="css_class">l3</field>
@@ -140,6 +146,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">VI. Activos por impuesto diferido</field>
 			<field name="current_value">474</field>
 			<field name="previous_value">474</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_11000"/>
 			<field name="sequence">BP1/07</field>
 			<field name="css_class">l3</field>
@@ -151,6 +158,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">VII. Deudores comerciales no corrientes</field>
 			<field name="current_value">;NECA 5.a 5</field>
 			<field name="previous_value">;NECA 5.a 5</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_11000"/>
 			<field name="sequence">BP1/08</field>
 			<field name="css_class">l3</field>
@@ -173,6 +181,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">I. Existencias</field>
 			<field name="current_value">30,31,32,33,34,35,36,(39),407</field>
 			<field name="previous_value">30,31,32,33,34,35,36,(39),407</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_12000"/>
 			<field name="sequence">BP1/10</field>
 			<field name="css_class">l3</field>
@@ -195,6 +204,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">1. Clientes por ventas y prestaciones de servicios</field>
 			<field name="current_value">430,431,432,433,434,435,436,(437),(490),(493)</field>
 			<field name="previous_value">430,431,432,433,434,435,436,(437),(490),(493)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_12300"/>
 			<field name="sequence">BP1/12</field>
 			<field name="css_class">l4</field>
@@ -228,6 +238,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">2. Accionistas (socios) por desembolsos exigidos</field>
 			<field name="current_value">5580</field>
 			<field name="previous_value">5580</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_12300"/>
 			<field name="sequence">BP1/15</field>
 			<field name="css_class">l4</field>
@@ -239,6 +250,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">3. Otros deudores</field>
 			<field name="current_value">44,460,470,471,472,544</field>
 			<field name="previous_value">44,460,470,471,472,544</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_12300"/>
 			<field name="sequence">BP1/16</field>
 			<field name="css_class">l4</field>
@@ -251,6 +263,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">III. Inversiones en empresas del grupo y asociadas a corto plazo</field>
 			<field name="current_value">5303,5304,5313,5314,5323,5324,5333,5334,5343,5344,5353,5354,(5393),(5394),5523,5524,(5933),(5934),(5943),(5944),(5953),(5954)</field>
 			<field name="previous_value">5303,5304,5313,5314,5323,5324,5333,5334,5343,5344,5353,5354,(5393),(5394),5523,5524,(5933),(5934),(5943),(5944),(5953),(5954)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_12000"/>
 			<field name="sequence">BP1/17</field>
 			<field name="css_class">l3</field>
@@ -262,6 +275,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">IV. Inversiones financieras a corto plazo</field>
 			<field name="current_value">5305,5315,5325,5335,5345,5355,(5395),540,541,542,543,545,546,547,548,(549),551,5525,5590,565,566,(5935),(5945),(5955),(596),(597),(598)</field>
 			<field name="previous_value">5305,5315,5325,5335,5345,5355,(5395),540,541,542,543,545,546,547,548,(549),551,5525,5590,565,566,(5935),(5945),(5955),(596),(597),(598)</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_12000"/>
 			<field name="sequence">BP1/18</field>
 			<field name="css_class">l3</field>
@@ -273,6 +287,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">V. Periodificaciones a corto plazo</field>
 			<field name="current_value">480,567</field>
 			<field name="previous_value">480,567</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_12000"/>
 			<field name="sequence">BP1/19</field>
 			<field name="css_class">l3</field>
@@ -284,6 +299,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="name">VI. Efectivo y otros activos líquidos equivalentes</field>
 			<field name="current_value">57</field>
 			<field name="previous_value">57</field>
+            <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_12000"/>
 			<field name="sequence">BP1/20</field>
 			<field name="css_class">l3</field>

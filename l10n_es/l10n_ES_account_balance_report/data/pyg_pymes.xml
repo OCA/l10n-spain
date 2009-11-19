@@ -36,6 +36,7 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
 		<record model="account.balance.report.template" id="es_pyg_pymes">
 			<field name="name">PÉRDIDAS Y GANANCIAS DE PYMES (PGCE 2008)</field>
 			<field name="type">system</field>
+			<field name="balance_mode">2</field>
 			<field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
 			<field name="description">
 CUENTAS ANUALES - CUENTA DE PÉRDIDAS Y GANANCIAS DE PYMES

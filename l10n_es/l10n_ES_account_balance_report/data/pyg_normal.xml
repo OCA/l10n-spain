@@ -38,6 +38,7 @@ Author: Raimon Esteve (Zikzakmedia) - resteve@zikzakmedia.com
 		<record model="account.balance.report.template" id="es_pyg_normal">
 			<field name="name">PÉRDIDAS Y GANANCIAS NORMAL (PGCE 2008)</field>
 			<field name="type">system</field>
+			<field name="balance_mode">2</field>
 			<field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
 			<field name="description">
 CUENTAS ANUALES - PÉRDIDAS Y GANANCIAS NORMAL
@@ -97,8 +98,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40110</field>
 			<field name="name">a) Ventas</field>
-			<field name="current_value">700,701,702,703,704,(706),(708),(709)a) Ventas</field>
-			<field name="previous_value">700,701,702,703,704,(706),(708),(709)a) Ventas</field>
+			<field name="current_value">700,701,702,703,704,(706),(708),(709)</field>
+			<field name="previous_value">700,701,702,703,704,(706),(708),(709)</field>
 			<field name="parent_id" ref="es_pyg_normal_40100"/>
 			<field name="sequence">P1.1/03</field>
 			<field name="css_class">l4</field>
