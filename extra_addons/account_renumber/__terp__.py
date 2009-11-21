@@ -28,11 +28,16 @@
         "website" : "http://www.pexego.es",
         "category" : "Enterprise Specific Modules",
         "description": """
-The module allows the user to renumber accounting entries by date.
+This module adds a wizard to renumber account moves by date.
 
-Renumbering can be done per journal, and between dates. It will
-recreate the sequence number of each account move, so the moves
-have a sequence number ascending by date.
+The wizard, that will be added to the "End of Year Treatments",
+let's you select one or more journals and fiscal periods,
+set a starting number; and then renumber all the posted moves
+from those journals and periods sorted by date.
+
+It will recreate the sequence number of each account move using their journal sequence so:
+    - Sequences per journal are supported.
+    - Sequences with prefixes and sufixes based on the move date are also supported.
             """,
         "depends" : [
                 'base',

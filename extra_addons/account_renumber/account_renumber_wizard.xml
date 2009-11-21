@@ -29,14 +29,15 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
 
         <!-- Account renumber wizard -->
         <wizard id="wiz_account_renumber"
-                model="account.fiscalyear"
-                string="Renumber entries"
+                model="account.journal"
+                string="Renumber Account Moves"
                 name="account_renumber.renumber_wizard"/>
                 
         <menuitem id="menu_account_renumber"
                 action="wiz_account_renumber"
-                sequence="5"
+                sequence="-1"
                 parent="account.menu_account_end_year_treatments"
+                groups="account.group_account_manager"
                 type="wizard"/>
 
     </data>
