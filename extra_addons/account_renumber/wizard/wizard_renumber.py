@@ -113,7 +113,8 @@ class wizard_renumber(wizard.interface):
     ############################################################################
 
     _renumber_fields = {
-      'account_move_ids': {'string': 'Renumbered account moves', 'type': 'many2many', 'relation': 'account.move'},
+      'journal_ids': {'string': 'Journals', 'type': 'many2many', 'relation': 'account.journal', 'help': "Renumbered journals"},
+      'period_ids': {'string': 'Periods', 'type': 'many2many', 'relation': 'account.period', 'help': 'Renumbered fiscal periods'},
     }
 
     _renumber_form = """<?xml version="1.0" encoding="utf-8"?>
@@ -121,8 +122,7 @@ class wizard_renumber(wizard.interface):
         <group string="" colspan="4">
             <label string="The moves of the selected journals and periods have been renumbered." colspan="4"/>
             <label string="" colspan="4"/>
-            <label string="Renumbered account moves:" colspan="4"/>
-            <field name="account_move_ids" readonly="1" colspan="4" nolabel="1"/>
+            <label string="You may now review them using the show results button." colspan="4"/>
         </group>
     </form>"""
 
@@ -131,6 +131,8 @@ class wizard_renumber(wizard.interface):
         Action that renumbers all the posted moves on the given
         journal and periods, and returns their ids.
         """
+        logger = netsvc.Logger()
+
         period_ids = data['form'].get('period_ids')
         journal_ids = data['form'].get('journal_ids')
         number_next = data['form'].get('number_next', 1)
@@ -142,14 +144,17 @@ class wizard_renumber(wizard.interface):
         journal_ids = journal_ids[0][2]
 
 
-        move_facade = pooler.get_pool(cr.dbname).get('account.move')
+        logger.notifyChannel("account_renumber", netsvc.LOG_DEBUG, "Searching for account moves to renumber.")
 
+        move_facade = pooler.get_pool(cr.dbname).get('account.move')
         move_ids = move_facade.search(cr, uid, [('journal_id','in',journal_ids),('period_id','in',period_ids),('state','=','posted')], limit=0, order='date,id', context=context)
 
         if len(move_ids) == 0:
             raise wizard.except_wizard(_('No Data Available'), _('No records found for your selection!'))
 
         sequences_seen = []
+
+        logger.notifyChannel("account_renumber", netsvc.LOG_DEBUG, "Renumbering %d account moves." % len(move_ids))
 
         for move in move_facade.browse(cr, uid, move_ids):
             #
@@ -168,11 +173,47 @@ class wizard_renumber(wizard.interface):
             new_name = self.get_id(cr, uid, sequence.id, context=context, date_to_use=date_to_use)
             move_facade.write(cr, uid, [move.id], {'name': new_name})
 
+
+        logger.notifyChannel("account_renumber", netsvc.LOG_DEBUG, "%d account moves renumbered." % len(move_ids))
+
         vals = {
-            'account_move_ids': move_ids,
+            'journal_ids': journal_ids,
+            'period_ids': period_ids,
         }
         return vals
 
+
+    ############################################################################
+    # Show results action
+    ############################################################################
+
+    def _show_results_action(self, cr, uid, data, context):
+        """
+        Action that shows the list of (non-draft) account moves from
+        the selected journals and periods, so the user can review
+        the renumbered account moves.
+        """
+        period_ids = data['form'].get('period_ids')
+        journal_ids = data['form'].get('journal_ids')
+
+        assert (period_ids and journal_ids)
+
+        period_ids = period_ids[0][2]
+        journal_ids = journal_ids[0][2]
+
+        cr.execute('select id,name from ir_ui_view where model=%s and type=%s', ('account.move', 'tree'))
+        view_res = cr.fetchone()
+        res = {
+            'domain': "[('journal_id','in',%s), ('period_id','in',%s), ('state','=','posted')]" % (repr(journal_ids), repr(period_ids)),
+            'name': _("Renumbered account moves"),
+            'view_type': 'form',
+            'view_mode': 'tree,form',
+            'res_model': 'account.move',
+            'view_id': view_res,
+            'context': context,
+            'type': 'ir.actions.act_window',
+        }
+        return res
 
 
     ############################################################################
@@ -182,12 +223,16 @@ class wizard_renumber(wizard.interface):
     states = {
         'init': {
             'actions': [],
-            'result': {'type':'form', 'arch': _init_form, 'fields': _init_fields, 'state':[('end', 'Cancel', 'gtk-cancel', True),('renumber', 'Renumber', 'gtk-apply', True)]}
+            'result': {'type':'form', 'arch': _init_form, 'fields': _init_fields, 'state':[('end', 'Cancel', 'gtk-cancel', True),('renumber', 'Renumber', 'gtk-ok', True)]}
         },
         'renumber': {
             'actions': [_renumber_action],
-            'result': {'type':'form', 'arch': _renumber_form, 'fields': _renumber_fields, 'state':[('end', 'Done', 'gtk-ok', True)]}
+            'result': {'type':'form', 'arch': _renumber_form, 'fields': _renumber_fields, 'state':[('end', 'Close', 'gtk-close', True), ('show_results', 'Show results', 'gtk-ok', True)]}
         },
+        'show_results': {
+            'actions': [],
+            'result': {'type': 'action', 'action': _show_results_action, 'state':'end'}
+        }
     }
 
 wizard_renumber('account_renumber.renumber_wizard')
