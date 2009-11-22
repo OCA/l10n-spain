@@ -14,11 +14,16 @@
             iva_* => iva_pymes_*
             re_* => re_pymes_*
             irpf_* => irpf_pymes_*
+            base_* => base_pymes_*
       - Se establece el template_name de las plantillas (este es un campo creado
             específicamente para diferenciar las plantillas de ambos planes).
 
       Borja López Soilán (Pexego) - borjals@pexego.es
-      Última actualización: 2009-09-09
+        Última actualización: 2009-09-09
+
+      Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com (2009-11-21)
+        Corrección: Códigos 42 "Entregas Intracomunitarias" y 43 "Exportaciones y operaciones asimiladas"
+        no se diferenciaban entre el plan general y el plan pyme (base_* => base_pymes_*)
       -->
 
 		<!-- Definición de IVA y retenciones, códigos de impuestos y cuentas contables adicionales -->
@@ -601,9 +606,8 @@
 			<field name="sign">1.0</field>
 		</record>
 
-
-		<!--Otros Códiogs de Impuesto-->
-		 <record id="base_intra_42" model="account.tax.code.template">
+		<!--Otros Códigos de Impuestos-->
+		 <record id="base_pyme_intra_42" model="account.tax.code.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="name">Entregas Intracomunitarias</field>
 			<field name="code">[42]</field>
@@ -611,13 +615,15 @@
 			<field name="sign">1.0</field>
 		</record>
 
-		 <record id="base_extra_43" model="account.tax.code.template">
+		 <record id="base_pyme_extra_43" model="account.tax.code.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="name">Exportaciones y operaciones asimiladas</field>
 			<field name="code">[43]</field>
 			<field name="parent_id" ref="vat_code_chart_pymes_root"/>
 			<field name="sign">1.0</field>
 		</record>
+
+
 <!-- ********************************* -->
 <!--Cuentas para IVA-->
 <!-- ********************************* -->
@@ -963,6 +969,7 @@
 			<field name="type_tax_use">purchase</field>
 		</record>
 		
+
 		<!-- IVA EXPORTACIONES (VENTAS )-->
 		 <record id="iva_pymes_X0" model="account.tax.template">
 			<field name="template_name">PGCE PYMES</field>
@@ -971,11 +978,9 @@
 			<field name="description">IVA 0% Exportaciones</field>
 			<field eval="0.00" name="amount"/>
 			<field name="type">percent</field>
-			
-			<field name="base_code_id" ref="base_extra_43"/>
-			<field name="ref_base_code_id" ref="base_extra_43"/>
+			<field name="base_code_id" ref="base_pyme_extra_43"/>
+			<field name="ref_base_code_id" ref="base_pyme_extra_43"/>
 			<field eval="-1.0" name="ref_base_sign"/>
-			
 			<field name="type_tax_use">sale</field>
 		</record>
 		
@@ -1108,10 +1113,10 @@
 			<field name="description">IVA 0% Intracomunitario 0</field>
 			<field eval="0.00" name="amount"/>
 			<field name="type">percent</field>
-			<field name="base_code_id" ref="base_intra_42"/>
-			<field name="ref_base_code_id" ref="base_intra_42"/>
+			<field name="base_code_id" ref="base_pyme_intra_42"/>
+			<field name="ref_base_code_id" ref="base_pyme_intra_42"/>
 			<field eval="-1.0" name="ref_base_sign"/>
-                        <field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">sale</field>
 		</record>
 		
@@ -1244,7 +1249,7 @@
 			<field name="base_code_id" ref="iva_pymes_ded_30_7"/>
 			<field name="tax_code_id" ref="iva_pymes_ded_31_7"/>
 			<field name="ref_base_code_id" ref="iva_pymes_ded_30_7"/>
-                        <field eval="-1.0" name="ref_base_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="ref_tax_code_id" ref="iva_pymes_ded_31_7"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
@@ -1290,7 +1295,7 @@
 			<field name="base_code_id" ref="iva_pymes_ded_32_7"/>
 			<field name="tax_code_id" ref="iva_pymes_ded_33_7"/>
 			<field name="ref_base_code_id" ref="iva_pymes_ded_32_7"/>
-                        <field eval="-1.0" name="ref_base_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="ref_tax_code_id" ref="iva_pymes_ded_33_7"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
@@ -1336,7 +1341,7 @@
 			<field name="base_code_id" ref="iva_pymes_ded_30_4"/>
 			<field name="tax_code_id" ref="iva_pymes_ded_31_4"/>
 			<field name="ref_base_code_id" ref="iva_pymes_ded_30_4"/>
-                        <field eval="-1.0" name="ref_base_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="ref_tax_code_id" ref="iva_pymes_ded_31_4"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
@@ -1382,7 +1387,7 @@
 			<field name="base_code_id" ref="iva_pymes_ded_32_4"/>
 			<field name="tax_code_id" ref="iva_pymes_ded_33_4"/>
 			<field name="ref_base_code_id" ref="iva_pymes_ded_32_4"/>
-                        <field eval="-1.0" name="ref_base_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="ref_tax_code_id" ref="iva_pymes_ded_33_4"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field name="type_tax_use">purchase</field>
