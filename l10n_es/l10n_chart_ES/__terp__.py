@@ -26,16 +26,16 @@
     "version" : "2.0",
     "author" : "Spanish Localization Team",
     "category" : "Localisation/Account Charts",
-    "description": """Plan general contable español 2008
+    "description": """Spanish General Chart of Accounts 2008
 
-* Define las plantilla de planes contables:
-        * Plan General Contable Español 2008.
-        * Plan General Contable Español PYMES 2008.
-* Define la plantilla de los impuestos IVA soportado, IVA repercutido, recargos de equivalencia.
-* Define la plantilla de códigos de impuestos.
+* Defines the following chart of account templates:
+        * Spanish General Chart of Accounts 2008.
+        * Spanish General Chart of Accounts 2008 for small and medium companies.
+* Defines templates for sale and purchase VAT.
+* Defines tax code templates.
 
-Nota: Para la impresión de cuentas anuales (balance, perdidas y ganancias) 
-se recomienda instalar el módulo l10n_ES_account_balance_report.
+Note: You should install the l10n_ES_account_balance_report module
+for yearly account reporting (balance, profit & losses).
 """,
     "license" : "GPL-3",
     "depends" : ["account", "base_vat", "base_iban"],
