@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Cerrar un ejercicio fiscal creando asientos PyG, cierre y apertura -->
+        <wizard
+	        string="Close Fiscal Year creating Loss and Profit, Opening and Closing entries"
+	        model="account.fiscalyear"
+	        name="l10n_ES.fiscalyear.close"
+	        menu="False"
+	        id="wizard_l10n_ES_fiscalyear_close"/>
+        <menuitem
+	        name="Close Fiscal Year creating Loss and Profit, Opening and Closing entries"
+            parent="account.menu_account_end_year_treatments"
+	        action="wizard_l10n_ES_fiscalyear_close"
+	        type="wizard"
+	        id="menu_wizard_l10n_ES_fiscalyear_close"/>
+    </data>
+</openerp>
