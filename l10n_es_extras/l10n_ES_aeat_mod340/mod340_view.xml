@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	<!-- Modelo 340 -->
+	<record id="action_account_mod340" model="ir.actions.act_window">
+            <field name="name">Model 340</field>
+            <field name="res_model">l10n.es.aeat.mod340</field>
+	    <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+	<record model="ir.ui.view" id="view_account_mod340_tree">
+		<field name="name">l10n.es.aeat.mod340.tree</field>
+		<field name="model">l10n.es.aeat.mod340</field>
+		<field name="type">tree</field>
+		<!--<field name="priority" eval="5"/>-->
+		<field name="arch" type="xml">
+			<tree string="Model 340">
+			    <field name="fiscalyear"/>
+			    <field name="type"/>
+			</tree>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="view_account_mod340_form">
+		<field name="name">l10n.es.aeat.mod340.form</field>
+		<field name="model">l10n.es.aeat.mod340</field>
+		<field name="type">form</field>
+		<field name="priority" eval="5"/>
+		<field name="arch" type="xml">
+		    <form string="Model 340">
+                        <group col="6" colspan="4">
+                            <field name="fiscalyear" select="2"/>
+                            <!--<field name="company_id" on_change="onchange_company_id(company_id)" select="2"/> -->
+                            <field name="company_id" select="2"/>
+                            <!--<field name="vat_company" select="2"/>-->
+                            <field name="config_id" select="2"/>
+                            <field name="vat_representative" select="2"/>
+                            <field name="type"/>
+                            <field name="type_support"/>
+                        </group>
+                        <notebook  colspan="4">
+                                <page string="General">
+                                    <field name="name_surname"/>
+				    <field name="phone" select="1"/>
+				    <field name="period" select="1"/>
+                                    <field name="name_contact" select="1"/>
+                                    <field name="phone_contact" select="1"/>
+                                    <field name="number_records" select="1"/>
+                                    <field name="total_taxable" select="1"/>
+                                    <field name="total_sharetax" select="1"/>
+                                    <field name="total" select="1"/>
+                                </page>
+                                <page string="Issued">
+				    <field colspan="4" mode="tree" name="issued" nolabel="1" select="1">
+		                        <tree string="Invoices Issued">
+                                            <field name="partner_name" select="2"/>
+		                            <field name="vat_declared" select="2"/>	
+		                        </tree>
+		                        <form string ="Model 340 Issued">
+		                            <field name="partner_name" select="1"/>
+                                            <field name="vat_declared" select="1"/>
+                                            <field name="key_country" select="1"/>
+                                            <field name="vat_representative" select="1"/>
+                                            <field name="cod_country" select="1"/>
+                                            <field name="vat_country" select="1"/>
+                                            <field name="key_book" select="1"/>
+                                            <field name="key_operation" select="1"/>
+                                            <field name="invoice_date" select="1"/>
+                                            <field name="operation_date" select="1"/>
+                                            <field name="rate" select="1"/>
+                                            <field name="taxable" select="1"/>
+                                            <field name="share_tax" select="1"/>
+                                            <field name="total" select="1"/>
+                                            <field name="taxable_cost" select="1"/>
+                                            <field name="number" select="1"/>
+                                            <field name="number_amendment" select="1"/>
+                                            <field name="charge" select="1"/>
+                                            <field name="share_charge" select="1"/>
+                                            <field name="number_invoices" select="1"/>
+                                            <field name="number_records" select="1"/>
+                                            <field name="iterval_ini" select="1"/>
+                                            <field name="iterval_end" select="1"/>
+                                            <field name="invoice_corrected" select="1"/>
+                                        </form>
+                                    </field>
+                                </page>
+                                <page string="Received">
+				    <field colspan="4" mode="tree" name="received" nolabel="1" select="1">
+		                        <tree string="Invoices Received">
+                                            <field name="partner_name" select="2"/>
+		                            <field name="vat_declared" select="2"/>	
+		                        </tree>
+		                        <form string ="Model 340 Received">
+		                            <field name="partner_name" select="1"/>
+                                            <field name="vat_declared" select="1"/>
+                                            <field name="key_country" select="1"/>
+                                            <field name="vat_representative" select="1"/>
+                                            <field name="cod_country" select="1"/>
+                                            <field name="vat_country" select="1"/>
+                                            <field name="key_book" select="1"/>
+                                            <field name="key_operation" select="1"/>
+                                            <field name="invoice_date" select="1"/>
+                                            <field name="operation_date" select="1"/>
+                                            <field name="rate" select="1"/>
+                                            <field name="taxable" select="1"/>
+                                            <field name="share_tax" select="1"/>
+                                            <field name="total" select="1"/>
+                                            <field name="taxable_cost" select="1"/>
+                                            <field name="number" select="1"/>
+                                            <field name="number_amendment" select="1"/>
+                                            <field name="charge" select="1"/>
+                                            <field name="share_charge" select="1"/>
+                                        </form>
+                                    </field>
+                                </page>
+                                <page string="Investment">
+				    <field colspan="4" mode="tree" name="investment" nolabel="1" select="1">
+		                        <tree string="Property Investment">
+                                            <field name="partner_name" select="2"/>
+		                            <field name="vat_declared" select="2"/>	
+		                        </tree>
+		                        <form string ="Model 340 Investment">
+		                            <field name="partner_name" select="1"/>
+                                            <field name="vat_declared" select="1"/>
+                                            <field name="key_country" select="1"/>
+                                            <field name="vat_representative" select="1"/>
+                                            <field name="cod_country" select="1"/>
+                                            <field name="vat_country" select="1"/>
+                                            <field name="key_book" select="1"/>
+                                            <field name="key_operation" select="1"/>
+                                            <field name="invoice_date" select="1"/>
+                                            <field name="operation_date" select="1"/>
+                                            <field name="rate" select="1"/>
+                                            <field name="taxable" select="1"/>
+                                            <field name="share_tax" select="1"/>
+                                            <field name="total" select="1"/>
+                                            <field name="taxable_cost" select="1"/>
+                                            <field name="number" select="1"/>
+                                            <field name="number_amendment" select="1"/>
+                                            <field name="charge" select="1"/>
+                                            <field name="share_charge" select="1"/>
+                                        </form>
+                                    </field>
+                                </page>
+                                <page string="Intracomunitarias">
+				    <field colspan="4" mode="tree" name="intracomunitarias" nolabel="1" select="1">
+		                        <tree string="Operations Intracomunitarias">
+                                            <field name="partner_name" select="2"/>
+		                            <field name="vat_declared" select="2"/>	
+		                        </tree>
+		                        <form string ="Model 340 intracomunitarias">
+		                            <field name="partner_name" select="1"/>
+                                            <field name="vat_declared" select="1"/>
+                                            <field name="key_country" select="1"/>
+                                            <field name="vat_representative" select="1"/>
+                                            <field name="cod_country" select="1"/>
+                                            <field name="vat_country" select="1"/>
+                                            <field name="key_book" select="1"/>
+                                            <field name="key_operation" select="1"/>
+                                            <field name="invoice_date" select="1"/>
+                                            <field name="operation_date" select="1"/>
+                                            <field name="rate" select="1"/>
+                                            <field name="taxable" select="1"/>
+                                            <field name="share_tax" select="1"/>
+                                            <field name="total" select="1"/>
+                                            <field name="taxable_cost" select="1"/>
+                                            <field name="number" select="1"/>
+                                            <field name="number_amendment" select="1"/>
+                                            <field name="charge" select="1"/>
+                                            <field name="share_charge" select="1"/>
+                                        </form>
+                                    </field>
+                                </page>
+                        </notebook>
+		    </form>
+		</field>
+	</record>
+	<!-- FIN Modelo 340 -->
+
+	<!-- Config Modelo 340 -->
+
+	<record id="action_account_mod340_config" model="ir.actions.act_window">
+            <field name="name">Config Model 340</field>
+            <field name="res_model">l10n.es.aeat.mod340.config</field>
+	    <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+	<record model="ir.ui.view" id="view_account_mod340_config_tree">
+		<field name="name">l10n.es.aeat.mod340.config</field>
+		<field name="model">l10n.es.aeat.mod340.config</field>
+		<field name="type">tree</field>
+		<field name="priority" eval="5"/>
+		<field name="arch" type="xml">
+			<tree string="Config Model 340">
+				<field name="name" select="1"/>
+			</tree>
+		</field>
+	</record>
+
+	<record model="ir.ui.view" id="view_account_mod340_config_form">
+		<field name="name">l10n.es.aeat.mod340.config</field>
+		<field name="model">l10n.es.aeat.mod340.config</field>
+		<field name="type">form</field>
+		<field name="priority" eval="5"/>
+		<field name="arch" type="xml">
+			<form string="Config Model 340">
+			    <field name="name" select="1"/>
+			    <newline/>
+			    <separator string="Sales Properties" colspan="2"/>
+		            <separator string="Purchase Properties" colspan="2"/>
+                            <field name="taxes_id"/>
+			    <field name="supplier_taxes_id"/>
+			</form>
+		</field>
+	</record>
+
+	<!-- FIN Config Modelo 340 -->
+
+	<menuitem id="menu_account_aeat" name="Agencia Tributaria" parent="account.menu_finance_legal_statement"/>
+	<menuitem action="action_account_mod340" id="menu_account_mod340" parent="l10n_ES_aeat_mod340.menu_account_aeat"/>
+	<menuitem action="action_account_mod340_config" id="menu_account_mod340_config" parent="l10n_ES_aeat_mod340.menu_account_aeat"/>
+    </data>
+</openerp>

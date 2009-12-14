@@ -1,16 +1,16 @@
-<?xml version="1.0"?>
-<terp>
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
 <data>
-	<record model="ir.ui.view" id="view_stock_past_inventory_line_form">
-		<field name="name">stock.inventory.line.form</field>
-		<field name="model">stock.inventory.line</field>
-		<field name="inherit_id" ref="stock.view_inventory_line_form"/>
-		<field name="type">form</field>
-		<field name="arch" type="xml">
-			<field name="product_id" position="replace">
-				<field name="product_id" select="1"  on_change="on_change_product_id(location_id,product_id,parent.date,product_uom)" context="location=location_id,uom=product_uom"/>
-			</field>
-		</field>
-	</record>
+    <record model="ir.ui.view" id="view_stock_past_inventory_line_form">
+        <field name="name">stock.inventory.line.form</field>
+        <field name="model">stock.inventory.line</field>
+        <field name="inherit_id" ref="stock.view_inventory_line_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="product_id" position="replace">
+                <field name="product_id" select="1"  on_change="on_change_product_id(location_id,product_id,parent.date,product_uom)" context="location=location_id,uom=product_uom"/>
+            </field>
+        </field>
+    </record>
 </data>
-</terp>
+</openerp>

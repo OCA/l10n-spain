@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+<record model="ir.actions.wizard" id="wizard_create_zipcode_region">
+    <field name="name">Create zip codes</field>
+    <field name="wiz_name">l10n_ES_toponyms_region.create_zipcode</field>
+</record>
+
+<menuitem
+    name="Partners/Configuration/Localisation/Associate regions to Spanish zip codes"
+    action="wizard_create_zipcode_region"
+    type="wizard"
+    id="l10n_ES_toponyms_region_create_zipcode_region"/>
+
+</data>
+</openerp>

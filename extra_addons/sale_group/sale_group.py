@@ -1,5 +1,24 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
+#    $Id$
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
 import time
 import netsvc
@@ -32,11 +51,11 @@ class sale_order(osv.osv):
             ('allmanual','Manual shipping and invoice'),
         ], 'Shipping Policy', required=True, readonly=True, states={'draft':[('readonly',False)]},),
                 }
-                
+
     _defaults = {
         'order_policy': lambda *a: 'allmanual',
                 }
-                
+
     def action_ship_activity(self, cr, uid, ids, *args):
         if len(ids) > 1:
             for order in self.browse(cr, uid, ids, context={}):
@@ -47,7 +66,7 @@ class sale_order(osv.osv):
             for order in self.browse(cr, uid, ids, context={}):
                 if order.order_policy <> 'allmanual':
                     self.action_ship_create(cr, uid, ids, *args)   
-                
+
     def action_ship_create(self, cr, uid, ids, *args, **argv):
         # args: Group or not picking. Ej: (0,) 
         # argv: Picking from lines. Ej: {'lines_ids': {2: [1], 3: [2, 3]}}
@@ -55,7 +74,7 @@ class sale_order(osv.osv):
         for order in self.browse(cr, uid, ids, context={}):
             output_id = order.shop_id.warehouse_id.lot_output_id.id
             if args and (args[0] == 0): # Agrupa o no los albaranes
-                picking_id = False		# 0: No agrupar		1: Agrupar
+                picking_id = False        # 0: No agrupar        1: Agrupar
             if argv and (len(argv['lines_ids'])>0): # Picking from sale order lines
                 lines_ids = argv['lines_ids'][order.id]
                 browse_lines = self.pool.get('sale.order.line').browse(cr, uid, lines_ids, context={})    
@@ -154,6 +173,7 @@ class sale_order(osv.osv):
         return True
 sale_order()
 
+
 class sale_order_line(osv.osv):
     def _picked_sum(self, cr, uid, ids, field_name, arg, context):
         res = {}
@@ -170,27 +190,28 @@ class sale_order_line(osv.osv):
                }
 sale_order_line()
 
-   
+
 class stock_picking(osv.osv):
     _inherit = "stock.picking"
 
     def unlink(self, cr, uid, ids):
         line_ids = []
-        fields=['move_lines']       
+        fields=['move_lines']
         for picking in self.read(cr, uid, ids, fields, context={}):
             line_ids += picking['move_lines']
         self.pool.get('stock.move').unlink(cr, uid, line_ids)
-        return super(stock_picking, self).unlink(cr, uid, ids)    
+        return super(stock_picking, self).unlink(cr, uid, ids)
 stock_picking()
-                              
+
+
 class stock_move(osv.osv):
     _inherit = "stock.move"
-    _columns = {    
+    _columns = {
         'picking_id': fields.many2one('stock.picking', 'Packing list', select=True, ondelete='cascade'), # ondelete='cascade' added
-               }  
+               }
     def unlink(self, cr, uid, ids):
         print "Dentro de Unlink de lineas"        # Pendiente de modificar el estado de las sale order line
-        return super(stock_move, self).unlink(cr, uid, ids)       
+        return super(stock_move, self).unlink(cr, uid, ids)
 stock_move()
 
 

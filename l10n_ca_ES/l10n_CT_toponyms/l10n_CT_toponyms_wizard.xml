@@ -1,17 +1,17 @@
-<?xml version="1.0" ?>
-<terp>
-	<data>
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
 
 <record model="ir.actions.wizard" id="wizard_crea_cpostal">
-	<field name="name">Crea codis postals</field>
-	<field name="wiz_name">l10n_CT_toponyms.crea_cpostal</field>
+    <field name="name">Crea codis postals</field>
+    <field name="wiz_name">l10n_CT_toponyms.crea_cpostal</field>
 </record>
 
 <menuitem
-	name="Partners/Configuration/Localisation/Associar les comarques dels Països Catalans als codis postals"
-	action="wizard_crea_cpostal"
-	type="wizard"
-	id="l10n_CT_toponyms_crea_cpostal"/>
+    name="Partners/Configuration/Localisation/Associa les comarques dels Països Catalans als codis postals"
+    action="wizard_crea_cpostal"
+    type="wizard"
+    id="l10n_CT_toponyms_crea_cpostal"/>
 
 </data>
-</terp>
+</openerp>

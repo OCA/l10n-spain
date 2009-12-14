@@ -1,25 +1,41 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
+##############################################################################
+#
+#    OpenERP, Open Source Management Solution
+#    Copyright (c) 2008 ACYSOS S.L. (http://acysos.com) All Rights Reserved.
+#                       Pedro Tarrafeta <pedro@acysos.com>
+#    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
+#    $Id$
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
 
-#import time
-#import netsvc
 from osv import fields, osv
-#import ir
-#from mx import DateTime
-#from tools import config
 
 #----------------------------------------------------------
 # Partner
 #----------------------------------------------------------
 class partner_new(osv.osv):
-	_inherit = 'res.partner'
-	_columns = {
-		'alb_val': fields.boolean('Albarán valorado'), # Enviar albarán valorado
-		#'parent_id': fields.many2one('res.partner','Partner', select=True), # ???
-		       }
-	_defaults = {
-		'alb_val' : lambda *a: 1,
-	}
+    _inherit = 'res.partner'
+    _columns = {
+        'alb_val': fields.boolean('Albarán valorado'), # Enviar albarán valorado
+        #'parent_id': fields.many2one('res.partner','Partner', select=True), # ???
+               }
+    _defaults = {
+        'alb_val' : lambda *a: 1,
+    }
 partner_new()
 
 
@@ -31,14 +47,16 @@ class stock_picking(osv.osv):
 ##Esto es para que el picking salga valorado
 
     def _amount_untaxed(self, cr, uid, ids, prop, unknow_none,unknow_dict):
-        id_set=",".join(map(str,ids))
-        cr.execute("select sp.id, COALESCE(sum( sm.product_uos_qty*sol.price_unit*(100-sol.discount))/100.0,0)::decimal(16,2) as amount from stock_picking sp left join stock_move sm on sp.id=sm.picking_id left join sale_order_line sol on sm.sale_line_id=sol.id where sp.id in ("+id_set+") group by sp.id")
+
+        id_set=",".join(map(str,map(int, ids)))
+        cr.execute("select sp.id, COALESCE(sum( sm.product_qty*sol.price_unit*(100-sol.discount))/100.0,0)::decimal(16,2) as amount from stock_picking sp left join stock_move sm on sp.id=sm.picking_id left join sale_order_line sol on sm.sale_line_id=sol.id where sp.id in ("+id_set+") group by sp.id")
         res=dict(cr.fetchall())
+
         return res
 
     def _amount_tax(self, cr, uid, ids, field_name, arg, context):
-        id_set = ",".join(map(str, ids))
-        cr.execute("select sp.id, COALESCE(sum( at.amount*sm.product_uos_qty*sol.price_unit*(100-sol.discount))/100.0,0)::decimal(16,2) as amount from stock_picking sp left join stock_move sm on sp.id=sm.picking_id left join sale_order_line sol on sm.sale_line_id=sol.id left join sale_order_tax sot on sol.id=sot.order_line_id left join account_tax at on at.id=sot.tax_id where sp.id in ("+id_set+") group by sp.id")
+        id_set = ",".join(map(str, map(int,ids)))
+        cr.execute("select sp.id, COALESCE(sum( at.amount*sm.product_qty*sol.price_unit*(100-sol.discount))/100.0,0)::decimal(16,2) as amount from stock_picking sp left join stock_move sm on sp.id=sm.picking_id left join sale_order_line sol on sm.sale_line_id=sol.id left join sale_order_tax sot on sol.id=sot.order_line_id left join account_tax at on at.id=sot.tax_id where sp.id in ("+id_set+") group by sp.id")
         res = dict(cr.fetchall())
         return res
 
@@ -105,14 +123,12 @@ class stock_move(osv.osv):
         return res
 
     _inherit = "stock.move"
-    _columns = {   
+    _columns = {
         'sale_line_id': fields.many2one('sale.order.line', 'Sale Order Line'), 
         'price_subtotal': fields.function(_price_subtotal, method=True, digits=(16,2),string='Subtotal', select=True),
         'price_net': fields.function(_price_net, method=True, digits=(16,2),string='Net', select=True), # Con descuento aplicado
         'price_unit': fields.function(_price_unit, method=True, digits=(16,2),string='Price', select=True),
         'discount': fields.function(_discount, method=True, digits=(16,2),string='Discount (%)', select=True),
-               }               
+               }
 stock_move()
-
-
 

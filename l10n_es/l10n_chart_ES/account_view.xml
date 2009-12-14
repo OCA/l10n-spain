@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--
+
+        Extensión de las vistas formulario / lista de las plantillas
+        del plan contable (cuentas, impuestos y otros), para añadir un
+        campo con el nombre de la plantilla en si (para poder diferenciar
+        entre PGCE 2008 y PGCE PYMES).
+
+        -->
+
+        <!-- Account Templates -->
+        <record id="view_account_template_form" model="ir.ui.view">
+            <field name="name">account.account.template.form</field>
+            <field name="model">account.account.template</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_account_template_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="template_name"/>
+                    <newline/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_account_template_tree" model="ir.ui.view">
+            <field name="name">account.account.template.tree</field>
+            <field name="model">account.account.template</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="account.view_account_template_tree"/>
+            <field name="arch" type="xml">
+                <field name="code" position="before">
+                    <field name="template_name"/>
+                </field>
+            </field>
+        </record>
+
+
+        <!-- Chart of Accounts Templates -->
+
+        <record id="view_account_chart_template_form" model="ir.ui.view">
+            <field name="name">account.chart.template.form</field>
+            <field name="model">account.chart.template</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_account_chart_template_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="template_name"/>
+                    <newline/>
+                </field>
+            </field>
+        </record>
+        <record id="view_account_chart_template_tree" model="ir.ui.view">
+            <field name="name">account.chart.template.tree</field>
+            <field name="model">account.chart.template</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="account.view_account_chart_template_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="template_name"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Account Tax Templates -->
+
+        <record id="view_account_tax_template_form" model="ir.ui.view">
+            <field name="name">account.tax.template.form</field>
+            <field name="model">account.tax.template</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_account_tax_template_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="template_name"/>
+                    <newline/>
+                </field>
+            </field>
+        </record>
+        <record id="view_account_tax_template_tree" model="ir.ui.view">
+            <field name="name">account.tax.template.tree</field>
+            <field name="model">account.tax.template</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="account.view_account_tax_template_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="template_name"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Account Tax Code Templates -->
+        <record id="view_tax_code_template_tree" model="ir.ui.view">
+            <field name="name">account.tax.code.template.tree</field>
+            <field name="model">account.tax.code.template</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="account.view_tax_code_template_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="template_name"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_tax_code_template_form" model="ir.ui.view">
+            <field name="name">account.tax.code.template.form</field>
+            <field name="model">account.tax.code.template</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_tax_code_template_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="template_name"/>
+                    <newline/>
+                </field>
+            </field>
+        </record>
+
+     	<!-- Fiscal Position Templates -->
+
+		<record id="view_account_position_template_form" model="ir.ui.view">
+            <field name="name">account.fiscal.position.template.form</field>
+            <field name="model">account.fiscal.position.template</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_account_position_template_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="template_name"/>
+                    <newline/>
+                </field>
+            </field>
+        </record>
+        <record id="view_account_position_template_tree" model="ir.ui.view">
+            <field name="name">account.fiscal.position.template.tree</field>
+            <field name="model">account.fiscal.position.template</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="account.view_account_position_template_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="template_name"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

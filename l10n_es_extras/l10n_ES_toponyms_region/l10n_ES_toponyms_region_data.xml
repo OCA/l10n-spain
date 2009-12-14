@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record model='res.country.region' id='CA01'>
+            <field name='name'>Catalunya</field>
+            <field name='code'>CA</field>
+             <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA02'>
+            <field name='name'>Andalucía</field>
+            <field name='code'>AN</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA03'>
+            <field name='name'>Aragón</field>
+            <field name='code'>AR</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA04'>
+            <field name='name'>Asturias</field>
+            <field name='code'>AS</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA05'>
+            <field name='name'>Balears, Illes</field>
+            <field name='code'>IB</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA06'>
+            <field name='name'>Euskadi</field>
+            <field name='code'>EK</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA07'>
+            <field name='name'>Islas Canarias</field>
+            <field name='code'>IC</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA08'>
+            <field name='name'>Cantabria</field>
+            <field name='code'>CB</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA09'>
+            <field name='name'>Castilla La Mancha</field>
+            <field name='code'>CM</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA10'>
+            <field name='name'>Castilla y León</field>
+            <field name='code'>CL</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA11'>
+            <field name='name'>Extremadura</field>
+            <field name='code'>EX</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA12'>
+            <field name='name'>Galicia</field>
+            <field name='code'>GA</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA13'>
+            <field name='name'>Madrid</field>
+            <field name='code'>MA</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA14'>
+            <field name='name'>Múrcia</field>
+            <field name='code'>MU</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA15'>
+            <field name='name'>Navarra</field>
+            <field name='code'>NA</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA16'>
+            <field name='name'>La Rioja</field>
+            <field name='code'>LR</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA17'>
+            <field name='name'>País Valencià</field>
+            <field name='code'>PV</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA18'>
+            <field name='name'>Ceuta</field>
+            <field name='code'>CE</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+        <record model='res.country.region' id='CA19'>
+            <field name='name'>Melilla</field>
+            <field name='code'>ME</field>
+            <field search="[('code','=','ES')]" model='res.country' name='country_id'/> 
+        </record>
+    </data>
+</openerp>

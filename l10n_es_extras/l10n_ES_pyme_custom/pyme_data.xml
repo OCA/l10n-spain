@@ -1,0 +1,550 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data noupdate="1">
+<!--Ejercicios fiscales-->
+        <record id="account_fiscalyear_2009" model="account.fiscalyear">
+            <field eval="&quot;&quot;&quot;2009-12-31&quot;&quot;&quot;" name="date_stop"/>
+            <field eval="&quot;&quot;&quot;2009&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;2009&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;2009-01-01&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+        </record>
+        <record id="account_fiscalyear_2010" model="account.fiscalyear">
+            <field eval="&quot;&quot;&quot;2010-12-31&quot;&quot;&quot;" name="date_stop"/>
+            <field eval="&quot;&quot;&quot;2010&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;2010&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;2010-01-01&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+        </record>
+
+<!--Periodos fiscales-->
+        <record id="account_period_20091T" model="account.period">
+            <field name="fiscalyear_id" ref="account_fiscalyear_2009"/>
+            <field eval="&quot;&quot;&quot;1T09&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;1T09&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;2009-01-01&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;2009-03-31&quot;&quot;&quot;" name="date_stop"/>
+        </record>
+        <record id="account_period_20092T" model="account.period">
+            <field name="fiscalyear_id" ref="account_fiscalyear_2009"/>
+            <field eval="&quot;&quot;&quot;2T09&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;2T09&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;2009-04-01&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;2009-06-30&quot;&quot;&quot;" name="date_stop"/>
+        </record>
+        <record id="account_period_20093T" model="account.period">
+            <field name="fiscalyear_id" ref="account_fiscalyear_2009"/>
+            <field eval="&quot;&quot;&quot;3T09&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;3T09&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;2009-07-01&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;2009-09-30&quot;&quot;&quot;" name="date_stop"/>
+        </record>
+        <record id="account_period_20094T" model="account.period">
+            <field name="fiscalyear_id" ref="account_fiscalyear_2009"/>
+            <field eval="&quot;&quot;&quot;4T09&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;4T09&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;2009-10-01&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;2009-12-31&quot;&quot;&quot;" name="date_stop"/>
+        </record>
+        <record id="account_period_2009C" model="account.period">
+            <field name="fiscalyear_id" ref="account_fiscalyear_2009"/>
+            <field eval="&quot;&quot;&quot;C09&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;C09&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;2009-12-31&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;2009-12-31&quot;&quot;&quot;" name="date_stop"/>
+            <field eval="1" name="special"/>
+        </record>
+        <record id="account_period_20101T" model="account.period">
+            <field name="fiscalyear_id" ref="account_fiscalyear_2010"/>
+            <field eval="&quot;&quot;&quot;1T10&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;1T10&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;2010-01-01&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;2010-03-31&quot;&quot;&quot;" name="date_stop"/>
+        </record>
+        <record id="account_period_20102T" model="account.period">
+            <field name="fiscalyear_id" ref="account_fiscalyear_2010"/>
+            <field eval="&quot;&quot;&quot;2T10&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;2T10&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;2010-04-01&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;2010-06-30&quot;&quot;&quot;" name="date_stop"/>
+        </record>
+        <record id="account_period_20103T" model="account.period">
+            <field name="fiscalyear_id" ref="account_fiscalyear_2010"/>
+            <field eval="&quot;&quot;&quot;3T10&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;3T10&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;2010-07-01&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;2010-09-30&quot;&quot;&quot;" name="date_stop"/>
+        </record>
+        <record id="account_period_20104T" model="account.period">
+            <field name="fiscalyear_id" ref="account_fiscalyear_2010"/>
+            <field eval="&quot;&quot;&quot;4T10&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;4T10&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;2010-10-01&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;2010-12-31&quot;&quot;&quot;" name="date_stop"/>
+        </record>
+        <record id="account_period_2010C" model="account.period">
+            <field name="fiscalyear_id" ref="account_fiscalyear_2010"/>
+            <field eval="&quot;&quot;&quot;C10&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;C10&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;2010-12-31&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;2010-12-31&quot;&quot;&quot;" name="date_stop"/>
+            <field eval="1" name="special"/>
+        </record>
+
+<!--Títulos vaciós de contacto y empresa-->
+        <record id="res_partner_title_0" model="res.partner.title">
+            <field eval="&quot;&quot;&quot;partner&quot;&quot;&quot;" name="domain"/>
+            <field eval="&quot;&quot;&quot; &quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot; &quot;&quot;&quot;" name="shortcut"/>
+        </record>
+        <record id="res_partner_title_1" model="res.partner.title">
+            <field eval="&quot;&quot;&quot;contact&quot;&quot;&quot;" name="domain"/>
+            <field eval="&quot;&quot;&quot; &quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot; &quot;&quot;&quot;" name="shortcut"/>
+        </record>
+
+<!--Cuentas contables de bancos/cajas de ahorro-->
+        <record id="account_account_banco1" model="account.account">
+            <field eval="&quot;&quot;&quot;57200001&quot;&quot;&quot;" name="code"/>
+            <field eval="0" name="reconcile"/>
+            <field eval="988" name="parent_left"/>
+            <field eval="&quot;&quot;&quot;current&quot;&quot;&quot;" name="currency_mode"/>
+            <field eval="&quot;&quot;&quot;Banco/Caja de Ahorros 1&quot;&quot;&quot;" name="name"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="user_type" ref="l10n_chart_ES.financieras"/>
+            <field eval="[(6,0,[])]" name="child_consol_ids"/>
+            <field model="account.account" name="parent_id" search="[('name','=','Tesorería')]"/>
+            <field eval="989" name="parent_right"/>
+            <field eval="1" name="check_history"/>
+            <field eval="&quot;&quot;&quot;other&quot;&quot;&quot;" name="type"/>
+            <field eval="1" name="active"/>
+            <field eval="[(6,0,[])]" name="tax_ids"/>
+        </record>
+
+        <record id="account_account_banco2" model="account.account">
+            <field eval="&quot;&quot;&quot;57200002&quot;&quot;&quot;" name="code"/>
+            <field eval="0" name="reconcile"/>
+            <field eval="986" name="parent_left"/>
+            <field eval="&quot;&quot;&quot;current&quot;&quot;&quot;" name="currency_mode"/>
+            <field eval="&quot;&quot;&quot;Banco/Caja de Ahorros 2&quot;&quot;&quot;" name="name"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="user_type" ref="l10n_chart_ES.financieras"/>
+            <field eval="[(6,0,[])]" name="child_consol_ids"/>
+            <field model="account.account" name="parent_id" search="[('name','=','Tesorería')]"/>
+            <field eval="987" name="parent_right"/>
+            <field eval="1" name="check_history"/>
+            <field eval="&quot;&quot;&quot;other&quot;&quot;&quot;" name="type"/>
+            <field eval="1" name="active"/>
+            <field eval="[(6,0,[])]" name="tax_ids"/>
+        </record>
+
+        <record id="account_account_banco3" model="account.account">
+            <field eval="&quot;&quot;&quot;57200003&quot;&quot;&quot;" name="code"/>
+            <field eval="0" name="reconcile"/>
+            <field eval="994" name="parent_left"/>
+            <field eval="&quot;&quot;&quot;current&quot;&quot;&quot;" name="currency_mode"/>
+            <field eval="&quot;&quot;&quot;Banco/Caja de Ahorros 3&quot;&quot;&quot;" name="name"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="user_type" ref="l10n_chart_ES.financieras"/>
+            <field eval="[(6,0,[])]" name="child_consol_ids"/>
+            <field model="account.account" name="parent_id" search="[('name','=','Tesorería')]"/>
+            <field eval="995" name="parent_right"/>
+            <field eval="1" name="check_history"/>
+            <field eval="&quot;&quot;&quot;other&quot;&quot;&quot;" name="type"/>
+            <field eval="1" name="active"/>
+            <field eval="[(6,0,[])]" name="tax_ids"/>
+        </record>
+
+<!--Diarios-->
+        <record id="account_journal_diariogeneral0" model="account.journal">
+            <field eval="&quot;&quot;&quot;GRAL&quot;&quot;&quot;" name="code"/>
+            <field eval="[(6,0,[])]" name="account_control_ids"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field eval="0" name="centralisation"/>
+            <field eval="0" name="group_invoice_lines"/>
+            <field eval="&quot;&quot;&quot;general&quot;&quot;&quot;" name="type"/>
+            <field name="view_id" ref="account.account_journal_view"/>
+            <field eval="[(6,0,[])]" name="type_control_ids"/>
+            <field name="sequence_id" ref="account.sequence_journal"/>
+            <field eval="1" name="active"/>
+            <field eval="0" name="update_posted"/>
+            <field eval="&quot;&quot;&quot;General&quot;&quot;&quot;" name="name"/>
+            <field eval="0" name="refund_journal"/>
+            <field eval="0" name="entry_posted"/>
+        </record>
+
+        <record id="account_journal_banco1" model="account.journal">
+            <field eval="&quot;&quot;&quot;BANCO1&quot;&quot;&quot;" name="code"/>
+            <field eval="[(6,0,[])]" name="account_control_ids"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field eval="0" name="centralisation"/>
+            <field eval="0" name="group_invoice_lines"/>
+            <field eval="&quot;&quot;&quot;cash&quot;&quot;&quot;" name="type"/>
+            <field name="default_credit_account_id" ref="account_account_banco1"/>
+            <field name="default_debit_account_id" ref="account_account_banco1"/>
+            <field name="view_id" ref="account.account_journal_bank_view"/>
+            <field eval="[(6,0,[])]" name="type_control_ids"/>
+            <field name="sequence_id" ref="account.sequence_journal"/>
+            <field eval="1" name="active"/>
+            <field eval="0" name="update_posted"/>
+            <field eval="&quot;&quot;&quot;0001 Banco/Caja de Ahorros 1&quot;&quot;&quot;" name="name"/>
+            <field eval="0" name="refund_journal"/>
+            <field eval="0" name="entry_posted"/>
+        </record>
+
+        <record id="account_journal_banco2" model="account.journal">
+            <field eval="&quot;&quot;&quot;BANCO2&quot;&quot;&quot;" name="code"/>
+            <field eval="[(6,0,[])]" name="account_control_ids"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field eval="0" name="centralisation"/>
+            <field eval="0" name="group_invoice_lines"/>
+            <field eval="&quot;&quot;&quot;cash&quot;&quot;&quot;" name="type"/>
+            <field name="default_credit_account_id" ref="account_account_banco2"/>
+            <field name="default_debit_account_id" ref="account_account_banco2"/>
+            <field name="view_id" ref="account.account_journal_bank_view"/>
+            <field eval="[(6,0,[])]" name="type_control_ids"/>
+            <field name="sequence_id" ref="account.sequence_journal"/>
+            <field eval="1" name="active"/>
+            <field eval="0" name="update_posted"/>
+            <field eval="&quot;&quot;&quot;0002 Banco/Caja de Ahorros 2&quot;&quot;&quot;" name="name"/>
+            <field eval="0" name="refund_journal"/>
+            <field eval="0" name="entry_posted"/>
+        </record>
+
+        <record id="account_journal_banco3" model="account.journal">
+            <field eval="&quot;&quot;&quot;BANCO3&quot;&quot;&quot;" name="code"/>
+            <field eval="[(6,0,[])]" name="account_control_ids"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field eval="0" name="centralisation"/>
+            <field eval="0" name="group_invoice_lines"/>
+            <field eval="&quot;&quot;&quot;cash&quot;&quot;&quot;" name="type"/>
+            <field name="default_credit_account_id" ref="account_account_banco3"/>
+            <field name="default_debit_account_id" ref="account_account_banco3"/>
+            <field name="view_id" ref="account.account_journal_bank_view"/>
+            <field eval="[(6,0,[])]" name="type_control_ids"/>
+            <field name="sequence_id" ref="account.sequence_journal"/>
+            <field eval="1" name="active"/>
+            <field eval="0" name="update_posted"/>
+            <field eval="&quot;&quot;&quot;0003 Banco/Caja de Ahorros 3&quot;&quot;&quot;" name="name"/>
+            <field eval="0" name="refund_journal"/>
+            <field eval="0" name="entry_posted"/>
+        </record>
+
+        <record id="account_journal_efectivo0" model="account.journal">
+            <field eval="&quot;&quot;&quot;EFECTIVO&quot;&quot;&quot;" name="code"/>
+            <field eval="[(6,0,[])]" name="account_control_ids"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field eval="0" name="centralisation"/>
+            <field eval="0" name="group_invoice_lines"/>
+            <field eval="&quot;&quot;&quot;cash&quot;&quot;&quot;" name="type"/>
+            <field name="default_credit_account_id" model="account.account" search="[('code','like','5700%00')]"/>
+            <field name="default_debit_account_id" model="account.account" search="[('code','like','5700%00')]"/>
+            <field name="view_id" ref="account.account_journal_bank_view"/>
+            <field eval="[(6,0,[])]" name="type_control_ids"/>
+            <field name="sequence_id" ref="account.sequence_journal"/>
+            <field eval="1" name="active"/>
+            <field eval="0" name="update_posted"/>
+            <field eval="&quot;&quot;&quot;Efectivo&quot;&quot;&quot;" name="name"/>
+            <field eval="0" name="refund_journal"/>
+            <field eval="0" name="entry_posted"/>
+        </record>
+
+        <record id="account_journal_tarjeta0" model="account.journal">
+            <field eval="&quot;&quot;&quot;TARJETA&quot;&quot;&quot;" name="code"/>
+            <field eval="[(6,0,[])]" name="account_control_ids"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field eval="0" name="centralisation"/>
+            <field eval="0" name="group_invoice_lines"/>
+            <field eval="&quot;&quot;&quot;cash&quot;&quot;&quot;" name="type"/>
+            <field name="default_credit_account_id" model="account.account" search="[('code','like','4380%00')]"/>
+            <field name="default_debit_account_id" model="account.account" search="[('code','like','4380%00')]"/>
+            <field name="view_id" ref="account.account_journal_bank_view"/>
+            <field eval="[(6,0,[])]" name="type_control_ids"/>
+            <field name="sequence_id" ref="account.sequence_journal"/>
+            <field eval="1" name="active"/>
+            <field eval="0" name="update_posted"/>
+            <field eval="&quot;&quot;&quot;Tarjeta&quot;&quot;&quot;" name="name"/>
+            <field eval="0" name="refund_journal"/>
+            <field eval="0" name="entry_posted"/>
+        </record>
+
+<!--Plazos de pago-->
+        <record id="account.account_payment_term_0" model="account.payment.term">
+            <field eval="&quot;&quot;&quot;0 días&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;0 días&quot;&quot;&quot;" name="note"/>
+        </record>
+        <record id="account.account_payment_term_line_0" model="account.payment.term.line">
+            <field name="payment_id" ref="account.account_payment_term_0"/>
+            <field eval="&quot;&quot;&quot;0 días&quot;&quot;&quot;" name="name"/>
+            <field eval="5" name="sequence"/>
+            <field eval="0" name="days"/>
+            <field eval="&quot;&quot;&quot;balance&quot;&quot;&quot;" name="value"/>
+        </record>
+
+        <record id="account.account_payment_term_30" model="account.payment.term">
+            <field eval="&quot;&quot;&quot;30 días&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;30 días&quot;&quot;&quot;" name="note"/>
+        </record>
+        <record id="account.account_payment_term_line_30" model="account.payment.term.line">
+            <field name="payment_id" ref="account.account_payment_term_30"/>
+            <field eval="&quot;&quot;&quot;30 días&quot;&quot;&quot;" name="name"/>
+            <field eval="5" name="sequence"/>
+            <field eval="30" name="days"/>
+            <field eval="&quot;&quot;&quot;balance&quot;&quot;&quot;" name="value"/>
+        </record>
+
+        <record id="account.account_payment_term_60" model="account.payment.term">
+            <field eval="&quot;&quot;&quot;60 días&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;60 días&quot;&quot;&quot;" name="note"/>
+        </record>
+        <record id="account.account_payment_term_line_60" model="account.payment.term.line">
+            <field name="payment_id" ref="account.account_payment_term_60"/>
+            <field eval="&quot;&quot;&quot;60 días&quot;&quot;&quot;" name="name"/>
+            <field eval="5" name="sequence"/>
+            <field eval="60" name="days"/>
+            <field eval="&quot;&quot;&quot;balance&quot;&quot;&quot;" name="value"/>
+        </record>
+
+        <record id="account.account_payment_term_90" model="account.payment.term">
+            <field eval="&quot;&quot;&quot;90 días&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;90 días&quot;&quot;&quot;" name="note"/>
+        </record>
+        <record id="account.account_payment_term_line_90" model="account.payment.term.line">
+            <field name="payment_id" ref="account.account_payment_term_90"/>
+            <field eval="&quot;&quot;&quot;90 días&quot;&quot;&quot;" name="name"/>
+            <field eval="5" name="sequence"/>
+            <field eval="90" name="days"/>
+            <field eval="&quot;&quot;&quot;balance&quot;&quot;&quot;" name="value"/>
+        </record>
+
+        <record id="account.account_payment_term_3060" model="account.payment.term">
+            <field eval="&quot;&quot;&quot;30/60 días&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;30/60 días&quot;&quot;&quot;" name="note"/>
+        </record>
+        <record id="account.account_payment_term_line_3060_1" model="account.payment.term.line">
+            <field name="payment_id" ref="account.account_payment_term_3060"/>
+            <field eval="&quot;&quot;&quot;30 días&quot;&quot;&quot;" name="name"/>
+            <field eval="5" name="sequence"/>
+            <field eval="30" name="days"/>
+            <field eval="0.5" name="value_amount"/>
+            <field eval="&quot;&quot;&quot;procent&quot;&quot;&quot;" name="value"/>
+        </record>
+        <record id="account.account_payment_term_line_3060_2" model="account.payment.term.line">
+            <field name="payment_id" ref="account.account_payment_term_3060"/>
+            <field eval="&quot;&quot;&quot;60 días&quot;&quot;&quot;" name="name"/>
+            <field eval="5" name="sequence"/>
+            <field eval="60" name="days"/>
+            <field eval="&quot;&quot;&quot;balance&quot;&quot;&quot;" name="value"/>
+        </record>
+
+        <record id="account.account_payment_term_306090" model="account.payment.term">
+            <field eval="&quot;&quot;&quot;30/60/90 días&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;30/60/90 días&quot;&quot;&quot;" name="note"/>
+        </record>
+        <record id="account.account_payment_term_line_306090_1" model="account.payment.term.line">
+            <field name="payment_id" ref="account.account_payment_term_306090"/>
+            <field eval="&quot;&quot;&quot;30 días&quot;&quot;&quot;" name="name"/>
+            <field eval="5" name="sequence"/>
+            <field eval="30" name="days"/>
+            <field eval="0.33" name="value_amount"/>
+            <field eval="&quot;&quot;&quot;procent&quot;&quot;&quot;" name="value"/>
+        </record>
+        <record id="account.account_payment_term_line_306090_2" model="account.payment.term.line">
+            <field name="payment_id" ref="account.account_payment_term_306090"/>
+            <field eval="&quot;&quot;&quot;60 días&quot;&quot;&quot;" name="name"/>
+            <field eval="5" name="sequence"/>
+            <field eval="60" name="days"/>
+            <field eval="0.33" name="value_amount"/>
+            <field eval="&quot;&quot;&quot;procent&quot;&quot;&quot;" name="value"/>
+        </record>
+        <record id="account.account_payment_term_line_306090_3" model="account.payment.term.line">
+            <field name="payment_id" ref="account.account_payment_term_306090"/>
+            <field eval="&quot;&quot;&quot;90 días&quot;&quot;&quot;" name="name"/>
+            <field eval="5" name="sequence"/>
+            <field eval="90" name="days"/>
+            <field eval="&quot;&quot;&quot;balance&quot;&quot;&quot;" name="value"/>
+        </record>
+
+<!--Tipos de pago-->
+        <record id="payment_type_efectivo0" model="payment.type">
+            <field eval="&quot;&quot;&quot;EFECTIVO&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;Efectivo&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;Efectivo&quot;&quot;&quot;" name="note"/>
+            <field eval="[(6,0,[])]" name="suitable_bank_types"/>
+            <field eval="1" name="active"/>
+        </record>
+
+        <record id="payment_type_tarjeta0" model="payment.type">
+            <field eval="&quot;&quot;&quot;TARJETA&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;Tarjeta&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;Tarjeta de crédito/débito&quot;&quot;&quot;" name="note"/>
+            <field eval="[(6,0,[])]" name="suitable_bank_types"/>
+            <field eval="1" name="active"/>
+        </record>
+
+        <record id="payment_type_transferencia0" model="payment.type">
+            <field eval="&quot;&quot;&quot;TRANSF&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;Transferencia&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;Transferencia bancaria&quot;&quot;&quot;" name="note"/>
+            <field eval="[(6,0,[])]" name="suitable_bank_types"/>
+            <field eval="1" name="active"/>
+        </record>
+
+        <record id="payment_type_cheque0" model="payment.type">
+            <field eval="&quot;&quot;&quot;CHEQUE&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;Cheque&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;Talón o cheque&quot;&quot;&quot;" name="note"/>
+            <field eval="[(6,0,[])]" name="suitable_bank_types"/>
+            <field eval="1" name="active"/>
+        </record>
+
+        <record id="payment_type_pagare0" model="payment.type">
+            <field eval="&quot;&quot;&quot;PAGARE&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;Pagaré&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;Pagaré&quot;&quot;&quot;" name="note"/>
+            <field eval="[(6,0,[])]" name="suitable_bank_types"/>
+            <field eval="1" name="active"/>
+        </record>
+
+        <!--Ya lo crea el módulo de remesas de recibos-->
+        <!--<record id="payment_type_recibodomiciliado0" model="payment.type">
+            <field eval="&quot;&quot;&quot;RECIBO_CSB&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;Recibo domiciliado&quot;&quot;&quot;" name="name"/>
+            <field eval="[(6,0,[ref('base.bank_normal')])]" name="suitable_bank_types"/>
+            <field eval="1" name="active"/>
+        </record>-->
+
+<!--Tipos precio-->
+        <!--<record id="product.list_price" model="product.price.type">
+            <field eval="&quot;&quot;&quot;Precio público&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="product.standard_price" model="product.price.type">
+            <field eval="&quot;&quot;&quot;Precio coste&quot;&quot;&quot;" name="name"/>
+        </record>-->
+
+<!--Tipos tarifa-->
+        <!--<record id="purchase.pricelist_type_purchase" model="product.pricelist.type">
+            <field eval="&quot;&quot;&quot;Tarifa de compra&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="product.pricelist_type_sale" model="product.pricelist.type">
+            <field eval="&quot;&quot;&quot;Tarifa de venta&quot;&quot;&quot;" name="name"/>
+        </record>-->
+
+<!--Versiones de tarifa-->
+        <!--<record id="purchase.ver0" model="product.pricelist.version">
+            <field eval="&quot;&quot;&quot;Versión tarifa de compra&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="purchase.item0" model="product.pricelist.item">
+            <field eval="&quot;&quot;&quot;Línea tarifa de compra&quot;&quot;&quot;" name="name"/>
+            <field eval="5" name="sequence"/>
+            <field name="base" model="product.price.type" search="[('name','=','Precio coste')]"/>
+            <field name="price_version_id" ref="purchase.ver0"/>
+        </record>
+
+        <record id="product.ver0" model="product.pricelist.version">
+            <field eval="&quot;&quot;&quot;Versión tarifa de venta pública&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="product.item0" model="product.pricelist.item">
+            <field eval="&quot;&quot;&quot;Línea tarifa de venta pública&quot;&quot;&quot;" name="name"/>
+            <field eval="5" name="sequence"/>
+            <field name="base" model="product.price.type" search="[('name','=','Precio público')]"/>
+            <field name="price_version_id" ref="product.ver0"/>
+        </record>-->
+
+<!--Tarifas-->
+        <!--<record id="purchase.list0" model="product.pricelist">
+            <field eval="&quot;&quot;&quot;Tarifa de compra&quot;&quot;&quot;" name="name"/>
+        </record>
+        <record id="product.list0" model="product.pricelist">
+            <field eval="&quot;&quot;&quot;Tarifa de venta pública&quot;&quot;&quot;" name="name"/>
+        </record>-->
+
+<!--Usuarios-->
+        <record id="res_users_usuarionormal0" model="res.users">
+            <field model="ir.actions.actions" name="menu_id" search="[('name','=','Menu')]"/>
+            <field eval="[(6,0,[ref('base.group_user'),ref('account.group_account_user'),ref('account.group_account_invoice'),ref('account_payment.group_account_payment'),ref('base.group_partner_manager'),ref('point_of_sale.group_pos_user'),ref('product.group_product_manager'),ref('sale.group_sale_user'),ref('base.group_extended'),ref('purchase.group_purchase_user'),ref('stock.group_stock_user')])]" name="groups_id"/>
+            <field eval="[(6,0,[ref('account.res_role_period'),ref('account.res_roles_invoice0'),ref('sale.res_roles_salesman0'),ref('point_of_sale.role_pos'),ref('purchase.res_roles_purchase0')])]" name="roles_id"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;usuario&quot;&quot;&quot;" name="password"/>
+            <!--<field eval="&quot;&quot;&quot;es_ES&quot;&quot;&quot;" name="context_lang"/> Da problemas si se instala Català, Euskera o Galego por defecto-->
+            <field eval="&quot;&quot;&quot;Usuario normal&quot;&quot;&quot;" name="name"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="signature"/>
+            <field eval="&quot;&quot;&quot;usuario&quot;&quot;&quot;" name="login"/>
+            <field model="ir.actions.actions" name="action_id" search="[('name','=','Menu')]"/>
+        </record>
+
+        <record id="res_users_usuarioconf0" model="res.users">
+            <field model="ir.actions.actions" name="menu_id" search="[('name','=','Menu')]"/>
+            <field eval="[(6,0,[ref('base.group_user'),ref('account.group_account_user'),ref('account.group_account_invoice'),ref('account.group_account_manager'),ref('account_payment.group_account_payment'),ref('base.group_partner_manager'),ref('point_of_sale.group_pos_manager'),ref('point_of_sale.group_pos_user'),ref('product.group_product_manager'),ref('sale.group_sale_manager'),ref('sale.group_sale_user'),ref('base.group_extended'),ref('purchase.group_purchase_manager'),ref('purchase.group_purchase_user'),ref('stock.group_stock_manager'),ref('stock.group_stock_user')])]" name="groups_id"/>
+            <field eval="[(6,0,[ref('account.res_role_period'),ref('account.res_roles_invoice0'),ref('sale.res_roles_salesman0'),ref('point_of_sale.role_pos'),ref('purchase.res_roles_purchase0')])]" name="roles_id"/>
+            <field eval="1" name="active"/>
+            <field eval="&quot;&quot;&quot;usuarioconf&quot;&quot;&quot;" name="password"/>
+            <!--<field eval="&quot;&quot;&quot;es_ES&quot;&quot;&quot;" name="context_lang"/> Da problemas si se instala Català, Euskera o Galego por defecto-->
+            <field eval="&quot;&quot;&quot;Usuario con acceso a la configuración&quot;&quot;&quot;" name="name"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="signature"/>
+            <field eval="&quot;&quot;&quot;usuarioconf&quot;&quot;&quot;" name="login"/>
+            <field model="ir.actions.actions" name="action_id" search="[('name','=','Menu')]"/>
+        </record>
+
+<!--Valores por defecto: No funciona, hay que crearlos a mano :-( -->
+        <!--<record id="ir_values_default0" model="ir.values">
+            <field eval="&quot;&quot;&quot;default_bank&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;default&quot;&quot;&quot;" name="key"/>
+            <field eval="&quot;&quot;&quot;res.partner.bank&quot;&quot;&quot;" name="model"/>
+            <field eval="&quot;&quot;&quot;I1
+.&quot;&quot;&quot;" name="value"/>
+            <field eval="0" name="object"/>
+        </record>
+
+        <record id="ir_values_default1" model="ir.values">
+            <field eval="&quot;&quot;&quot;acc_country_id&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;default&quot;&quot;&quot;" name="key"/>
+            <field eval="&quot;&quot;&quot;res.partner.bank&quot;&quot;&quot;" name="model"/>
+            <field eval="&quot;&quot;&quot;I67
+.&quot;&quot;&quot;" name="value"/>
+            <field eval="0" name="object"/>
+        </record>
+
+        <record id="ir_values_default2" model="ir.values">
+            <field eval="&quot;&quot;&quot;state&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;default&quot;&quot;&quot;" name="key"/>
+            <field eval="&quot;&quot;&quot;res.partner.bank&quot;&quot;&quot;" name="model"/>
+            <field eval="&quot;&quot;&quot;S'bank'
+p0
+.&quot;&quot;&quot;" name="value"/>
+            <field eval="0" name="object"/>
+        </record>
+
+        <record id="ir_values_default3" model="ir.values">
+            <field eval="&quot;&quot;&quot;lang&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;default&quot;&quot;&quot;" name="key"/>
+            <field eval="&quot;&quot;&quot;res.partner&quot;&quot;&quot;" name="model"/>
+            <field eval="&quot;&quot;&quot;S'es_ES'
+p0
+.&quot;&quot;&quot;" name="value"/>
+            <field eval="0" name="object"/>
+        </record>
+
+        <record id="ir_values_default4" model="ir.values">
+            <field eval="&quot;&quot;&quot;country_id&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;default&quot;&quot;&quot;" name="key"/>
+            <field eval="&quot;&quot;&quot;res.partner.address&quot;&quot;&quot;" name="model"/>
+            <field eval="&quot;&quot;&quot;I67
+.&quot;&quot;&quot;" name="value"/>
+            <field eval="0" name="object"/>
+        </record>-->
+
+    </data>
+</openerp>
