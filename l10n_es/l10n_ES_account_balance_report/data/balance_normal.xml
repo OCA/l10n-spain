@@ -170,8 +170,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_normal"/>
 			<field name="code">11170</field>
 			<field name="name">7. Otro inmovilizado intangible</field>
-			<field name="current_value">205, 209,(2805),(2905)</field>
-			<field name="previous_value">205, 209,(2805),(2905)</field>
+			<field name="current_value">205,209,(2805),(2905)</field>
+			<field name="previous_value">205,209,(2805),(2905)</field>
             <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11100"/>
 			<field name="sequence">B1.1/08</field>
@@ -193,8 +193,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_normal"/>
 			<field name="code">11210</field>
 			<field name="name">1. Terrenos y construcciones</field>
-			<field name="current_value">210, 211,(2811),(2910),(2911)</field>
-			<field name="previous_value">210, 211,(2811),(2910),(2911)</field>
+			<field name="current_value">210,211,(2811),(2910),(2911)</field>
+			<field name="previous_value">210,211,(2811),(2910),(2911)</field>
             <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11200"/>
 			<field name="sequence">B1.1/10</field>
@@ -760,8 +760,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_normal"/>
 			<field name="code">12430</field>
 			<field name="name">3. Valores representativos de deuda</field>
-			<field name="current_value">5313,5314, 5333,5334,(5943),(5944)</field>
-			<field name="previous_value">5313,5314, 5333,5334,(5943),(5944)</field>
+			<field name="current_value">5313,5314,5333,5334,(5943),(5944)</field>
+			<field name="previous_value">5313,5314,5333,5334,(5943),(5944)</field>
             <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12400"/>
 			<field name="sequence">B1.2/25</field>
