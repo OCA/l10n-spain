@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record id="view_nomina_empleado_form" model="ir.ui.view">
+    		<field name="name">hr.employee.nomina.form</field>
+    		<field name="model">hr.employee</field>
+    		<field name="type">form</field>
+    		<field name="inherit_id" ref="hr.view_employee_form"/>
+    		<field name="arch" type="xml">
+    			<page string="Personal Information" position="after">
+    				<page string="Salario">
+    					<field name="cuenta_id" readonly="0" colspan="4"/>				
+    					<notebook colspan="4">
+    						<page string="Retribución Nomina">
+		    					<field name="retribucion_bruta"/>
+		    					<field name="irpf"/>
+		    					<field name="ss_empresa"/>
+		    					<field name="ss_trabajador"/>
+		    				</page>
+		    				<page string="Pagas Extra">
+		    					<field name="retribucion_bruta_extra"/>
+		    					<field name="irpf_extra"/>
+		    					<field name="ss_empresa_extra"/>
+		    					<field name="ss_trabajador_extra"/>
+		    				</page>
+    					</notebook>
+    				</page>
+    				<page string="Nóminas">
+    					<field name="nominas_ids" nolabel="1"/>
+    				</page>
+    				<page string="Anticipos">
+    					<field name="anticipos_ids" nolabel="1"/>
+    				</page>
+    			</page>
+    		</field>
+    	</record>
+    	
+    	<record id="view_nomina_form" model="ir.ui.view">
+    		<field name="name">hr.nomina.form</field>
+    		<field name="model">hr.nomina</field>
+    		<field name="type">form</field>
+    		<field name="arch" type="xml">
+    			<form string="Nómina">			
+	    			<field name="employee_id"  readonly="1" colspan="4"/>
+	    			<field name="numero" readonly="1"/>
+	    			<field name="fecha_nomina" readonly="1"/>
+	    			<field name="extra" readonly="1"/>	    			
+	    			<notebook colspan="4">
+	    				<page string="Nómina">
+	    					<field name="retribucion_bruta" attrs="{'readonly':[('state','!=','borrador')]}"/>
+	    					<field name="irpf" attrs="{'readonly':[('state','!=','borrador')]}"/>
+	    					<field name="ss_empresa" attrs="{'readonly':[('state','!=','borrador')]}"/>
+	    					<field name="ss_trabajador" attrs="{'readonly':[('state','!=','borrador')]}"/>
+	    				</page>    						
+	    			</notebook>
+	    			<field name="state"/>
+	    			<button name="confirmar_nomina" string="Confirmar Nómina" type="object" states="borrador"/>
+	    			<button name="pagar_nomina" string="Pagar Nómina" type="object" states="confirmada"/>
+    			</form>
+    		</field>
+    	</record>
+    	
+    	<record id="view_nomina_tree" model="ir.ui.view">
+    		<field name="name">hr.nomina.tree</field>
+    		<field name="model">hr.nomina</field>
+    		<field name="type">tree</field>
+    		<field name="arch" type="xml">
+    			<tree string="Nóminas">
+    				<field name="numero"/>
+    				<field name="employee_id"/>
+    				<field name="fecha_nomina"/>
+    				<field name="retribucion_bruta"/>
+    				<field name="state"/>
+    			</tree>
+    		</field>
+    	</record>
+    	
+    	
+    	<record id="view_nomina_action" model="ir.actions.act_window">
+    		<field name="name">Ver Todas las Nóminas</field>
+    		<field name="type">ir.actions.act_window</field>
+    		<field name="res_model">hr.nomina</field>
+    		<field name="view_type">form</field>
+    		<field name="view_mode">tree,form</field>
+    		<field name="view_id" ref="view_nomina_tree"/>
+    	</record>
+    	
+    	<record id="view_anticipo_form" model="ir.ui.view">
+    		<field name="name">hr.anticipo.form</field>
+    		<field name="model">hr.anticipo</field>
+    		<field name="type">form</field>
+    		<field name="arch" type="xml">
+    			<form string="Anticipo de Nómina">			
+	    			<field name="employee_id"  colspan="4"/>	    			
+	    			<field name="fecha_anticipo"/>	    			
+	    			<notebook colspan="4">
+	    				<page string="Anticipo">
+	    					<field name="cantidad" attrs="{'readonly':[('state','!=','borrador')]}"/>	    					
+	    				</page>    						
+	    			</notebook>
+	    			<field name="state"/>
+	    			<button name="pagar_anticipo" string="Pagar Anticipo" type="object" states="borrador"/>
+    			</form>
+    		</field>    		
+    	</record>
+    	
+    	<record id="view_anticipo_tree" model="ir.ui.view">
+    		<field name="name">hr.anticipo.tree</field>
+    		<field name="model">hr.anticipo</field>
+    		<field name="type">tree</field>
+    		<field name="arch" type="xml">
+    			<tree string="Anticipo">
+    				<field name="fecha_anticipo"/>
+    				<field name="employee_id"/>
+    				<field name="cantidad"/>
+    				<field name="state"/>
+    			</tree>
+    		</field>
+    	</record>
+    	
+    	<record id="view_anticipo_action" model="ir.actions.act_window">
+    		<field name="name">Ver los anticipos</field>
+    		<field name="type">ir.actions.act_window</field>
+    		<field name="res_model">hr.anticipo</field>
+    		<field name="view_type">form</field>
+    		<field name="view_mode">tree,form</field>
+    		<field name="view_id" ref="view_anticipo_tree"/>
+    	</record>
+		
+		<record id="view_company_nomina_inherit_form" model="ir.ui.view">
+			<field name="name">res.company.nominas.form</field>
+			<field name="model">res.company</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_company_form"/>
+			<field name="arch" type="xml">
+				<page string="Configuration" position="inside">
+					<separator string="Configuración Cuentas Nóminas" colspan="4"/>
+					<field name="diario_destino"/>
+					<field name="cuenta_ss_empresa"/>
+					<field name="cuenta_ss_acreedores"/>
+					<field name="cuenta_hacienda_publica"/>
+					<field name="cuenta_pendientes_pago"/>
+					<field name="cuenta_bancos"/>
+					<field name="cuenta_anticipos"/>
+				</page>
+			</field>
+		</record>
+    	
+    	<menuitem id="menu_nomina" parent="hr.menu_hr_root" icon="terp-hr" name="Nóminas"/>    	
+    	<menuitem id="menu_ver_nominas" parent="menu_nomina" action="view_nomina_action"/>
+    	<menuitem id="menu_ver_anticipos" parent="menu_nomina" action="view_anticipo_action"/>
+
+    </data>
+</openerp>

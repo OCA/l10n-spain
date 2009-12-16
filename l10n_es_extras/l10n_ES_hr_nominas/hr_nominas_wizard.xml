@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	<wizard string="Generar Nóminas" model="hr.nomina" name="wiz_crear_nominas" menu="False" id="wizard_crea_nominas" />
+	<wizard string="Generar Pagas Extras" model="hr.nomina" name="wiz_crear_extras" menu="False" id="wizard_crea_extras"/>
+	<wizard string="Generar Anticipos" model="hr.anticipo" name="wiz_crear_anticipos" menu="False" id="wizard_crea_anticipos"/>
+    	<menuitem id="menu_crea_nominas" parent="menu_nomina" action="wizard_crea_nominas" type="wizard"/>
+    	<menuitem id="menu_crea_extras" parent="menu_nomina" action="wizard_crea_extras" type="wizard"/>
+    	<menuitem id="menu_crea_anticipos" parent="menu_nomina" action="wizard_crea_anticipos" type="wizard"/>
+    </data>
+</openerp>
