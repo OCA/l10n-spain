@@ -35,7 +35,10 @@ Successfully passes format and account validation tests from AEAT: http://www11.
     "depends" : ["account"],
     "init_xml" : ["data_res_country.xml"],
     "demo_xml" : [],
-    "update_xml" : ["account_wizard.xml","country_view.xml"],
+    "update_xml" : [
+        "account_wizard.xml",
+        "account_invoice_view.xml",
+        "country_view.xml",],
     "installable" : True,
     "active" : False,
 }
