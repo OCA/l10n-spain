@@ -50,10 +50,28 @@
             <field eval="&quot;&quot;&quot;2009-10-01&quot;&quot;&quot;" name="date_start"/>
             <field eval="&quot;&quot;&quot;2009-12-31&quot;&quot;&quot;" name="date_stop"/>
         </record>
+        <record id="account_period_2009A" model="account.period">
+            <field name="fiscalyear_id" ref="account_fiscalyear_2009"/>
+            <field eval="&quot;&quot;&quot;A09&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;A09&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;2009-01-01&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;2009-01-01&quot;&quot;&quot;" name="date_stop"/>
+            <field eval="1" name="special"/>
+        </record>
         <record id="account_period_2009C" model="account.period">
             <field name="fiscalyear_id" ref="account_fiscalyear_2009"/>
             <field eval="&quot;&quot;&quot;C09&quot;&quot;&quot;" name="code"/>
             <field eval="&quot;&quot;&quot;C09&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;2009-12-31&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;2009-12-31&quot;&quot;&quot;" name="date_stop"/>
+            <field eval="1" name="special"/>
+        </record>
+        <record id="account_period_2009PG" model="account.period">
+            <field name="fiscalyear_id" ref="account_fiscalyear_2009"/>
+            <field eval="&quot;&quot;&quot;PG09&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;PG09&quot;&quot;&quot;" name="name"/>
             <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
             <field eval="&quot;&quot;&quot;2009-12-31&quot;&quot;&quot;" name="date_start"/>
             <field eval="&quot;&quot;&quot;2009-12-31&quot;&quot;&quot;" name="date_stop"/>
@@ -91,6 +109,15 @@
             <field eval="&quot;&quot;&quot;2010-10-01&quot;&quot;&quot;" name="date_start"/>
             <field eval="&quot;&quot;&quot;2010-12-31&quot;&quot;&quot;" name="date_stop"/>
         </record>
+        <record id="account_period_2010A" model="account.period">
+            <field name="fiscalyear_id" ref="account_fiscalyear_2010"/>
+            <field eval="&quot;&quot;&quot;A10&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;A10&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;2010-01-01&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;2010-01-01&quot;&quot;&quot;" name="date_stop"/>
+            <field eval="1" name="special"/>
+        </record>
         <record id="account_period_2010C" model="account.period">
             <field name="fiscalyear_id" ref="account_fiscalyear_2010"/>
             <field eval="&quot;&quot;&quot;C10&quot;&quot;&quot;" name="code"/>
@@ -100,8 +127,17 @@
             <field eval="&quot;&quot;&quot;2010-12-31&quot;&quot;&quot;" name="date_stop"/>
             <field eval="1" name="special"/>
         </record>
+        <record id="account_period_2010PG" model="account.period">
+            <field name="fiscalyear_id" ref="account_fiscalyear_2010"/>
+            <field eval="&quot;&quot;&quot;PG10&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;PG10&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;draft&quot;&quot;&quot;" name="state"/>
+            <field eval="&quot;&quot;&quot;2010-12-31&quot;&quot;&quot;" name="date_start"/>
+            <field eval="&quot;&quot;&quot;2010-12-31&quot;&quot;&quot;" name="date_stop"/>
+            <field eval="1" name="special"/>
+        </record>
 
-<!--Títulos vaciós de contacto y empresa-->
+<!--Títulos vacios de contacto y empresa-->
         <record id="res_partner_title_0" model="res.partner.title">
             <field eval="&quot;&quot;&quot;partner&quot;&quot;&quot;" name="domain"/>
             <field eval="&quot;&quot;&quot; &quot;&quot;&quot;" name="name"/>

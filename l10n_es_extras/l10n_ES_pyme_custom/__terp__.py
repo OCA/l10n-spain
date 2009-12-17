@@ -33,7 +33,7 @@ Instala los módulos de importación de extractos bancarios y datos de bancos es
 
 Previamente debe instalar el módulo l10_ES_pyme_install y crear los topónimos del Estado Español (crear las provincias mediante el asistente que se ejecuta automáticamente) y las cuentas contables a partir de la plantilla (mediante el menú Gestión financiera/Configuración/Contabilidad financiera/Plantillas/Generar plan contable a partir de una plantilla de plan contable.)""",
     "license" : "GPL-3",
-    "depends" : ["l10n_ES_pyme_install", "l10n_ES_partner", "l10n_ES_extractos_bancarios"],
+    "depends" : ["l10n_ES_pyme_install", "l10n_ES_partner", "l10n_ES_extractos_bancarios", "l10n_ES_account_balance_report"],
     "init_xml" : ["pyme_data.xml"],
     "demo_xml" : [],
     "update_xml" : [
