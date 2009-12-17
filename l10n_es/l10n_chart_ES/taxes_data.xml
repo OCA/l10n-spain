@@ -2,8 +2,12 @@
 <openerp>
 	<data noupdate="0">
 		
-		<!-- Definición de IVA y retenciones, códigos de impuestos y cuentas contables adicionales -->
+     <!--
+     Definición de IVA y retenciones, códigos de impuestos y cuentas contables adicionales
 		
+      Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com (2009-11-28)
+        Impuestos IRPF se les ha asignado el grupo others (Otros) en lugar del grupo vat (IVA) por defecto
+     -->
 		
 <!-- Configuracion de codigos de impuesto-->
 		
@@ -1535,6 +1539,7 @@
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">purchase</field>
+			<field name="tax_group">other</field>
 		</record>
 		
 		<record id="irpf_7" model="account.tax.template">
@@ -1554,6 +1559,7 @@
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">purchase</field>
+			<field name="tax_group">other</field>
 		</record>
 		
 		<record id="irpf_15" model="account.tax.template">
@@ -1573,6 +1579,7 @@
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">purchase</field>
+			<field name="tax_group">other</field>
 		</record>
 		
 		<record id="irpf_18" model="account.tax.template">
@@ -1592,6 +1599,7 @@
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">purchase</field>
+			<field name="tax_group">other</field>
 		</record>
 		
 		<!-- RETENCIONES DE IRPF: Hacienda pública, retenciones a cuenta como clientes -->
@@ -1737,6 +1745,7 @@
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">sale</field>
+			<field name="tax_group">other</field>
 		</record>
 		
 		<record id="irpf_sale_7" model="account.tax.template">
@@ -1756,6 +1765,7 @@
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">sale</field>
+			<field name="tax_group">other</field>
 		</record>
 		
 		<record id="irpf_sale_15" model="account.tax.template">
@@ -1775,6 +1785,7 @@
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">sale</field>
+			<field name="tax_group">other</field>
 		</record>
 		
 		<record id="irpf_sale_18" model="account.tax.template">
@@ -1794,6 +1805,7 @@
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
 			<field name="type_tax_use">sale</field>
+			<field name="tax_group">other</field>
 		</record>
 	</data>
 </openerp>
