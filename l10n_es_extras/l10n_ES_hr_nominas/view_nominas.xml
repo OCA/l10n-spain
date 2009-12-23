@@ -81,7 +81,7 @@
     	
     	
     	<record id="view_nomina_action" model="ir.actions.act_window">
-    		<field name="name">Ver Todas las Nóminas</field>
+    		<field name="name">Todas las Nóminas</field>
     		<field name="type">ir.actions.act_window</field>
     		<field name="res_model">hr.nomina</field>
     		<field name="view_type">form</field>
@@ -90,7 +90,7 @@
     	</record>
     	
     	<record id="view_nominas_borrador_action" model="ir.actions.act_window">
-    	    <field name="name">Ver Nóminas en estado borrador</field>
+    	    <field name="name">Nóminas en estado borrador</field>
     	    <field name="type">ir.actions.act_window</field>
     	    <field name="res_model">hr.nomina</field>
     	    <field name="view_type">form</field>
@@ -99,7 +99,7 @@
     	</record>
     	
     	<record id="view_nominas_confirmadas_action" model="ir.actions.act_window">
-    	    <field name="name">Ver Nóminas confirmadas</field>
+    	    <field name="name">Nóminas confirmadas</field>
     	    <field name="type">ir.actions.act_window</field>
     	    <field name="res_model">hr.nomina</field>
     	    <field name="view_type">form</field>
@@ -108,7 +108,7 @@
     	</record>
     	
     	<record id="view_nominas_pagadas_action" model="ir.actions.act_window">
-    	    <field name="name">Ver Nóminas pagadas</field>
+    	    <field name="name">Nóminas pagadas</field>
     	    <field name="type">ir.actions.act_window</field>
     	    <field name="res_model">hr.nomina</field>
     	    <field name="view_type">form</field>
@@ -117,7 +117,7 @@
     	</record>
     	
     	<record id="view_nominas_canceladas_action" model="ir.actions.act_window">
-    	    <field name="name">Ver Nóminas canceladas</field>
+    	    <field name="name">Nóminas canceladas</field>
     	    <field name="type">ir.actions.act_window</field>
     	    <field name="res_model">hr.nomina</field>
     	    <field name="view_type">form</field>
@@ -163,7 +163,7 @@
     	</record>
     	
     	<record id="view_anticipo_action" model="ir.actions.act_window">
-    		<field name="name">Ver los anticipos</field>
+    		<field name="name">Todos los anticipos</field>
     		<field name="type">ir.actions.act_window</field>
     		<field name="res_model">hr.anticipo</field>
     		<field name="view_type">form</field>
@@ -172,7 +172,7 @@
     	</record>
     	
     	<record id="view_anticipo_borrador_action" model="ir.actions.act_window">
-    	    <field name="name">Ver anticipos en estado borrador</field>
+    	    <field name="name">Anticipos en estado borrador</field>
     	    <field name="type">ir.actions.act_window</field>
     	    <field name="res_model">hr.anticipo</field>
     	    <field name="view_type">form</field>
@@ -181,7 +181,7 @@
     	</record>
     	
     	<record id="view_anticipo_confirmado_action" model="ir.actions.act_window">
-    	    <field name="name">Ver anticipos confirmados</field>
+    	    <field name="name">Anticipos confirmados</field>
     	    <field name="type">ir.actions.act_window</field>
     	    <field name="res_model">hr.anticipo</field>
     	    <field name="view_type">form</field>
@@ -190,7 +190,7 @@
     	</record>
     	
     	<record id="view_anticipo_pagado_action" model="ir.actions.act_window">
-    	    <field name="name">Ver anticipos pagados</field>
+    	    <field name="name">Anticipos pagados</field>
     	    <field name="type">ir.actions.act_window</field>
     	    <field name="res_model">hr.anticipo</field>
     	    <field name="view_type">form</field>
@@ -199,7 +199,7 @@
     	</record>
     	
     	<record id="view_anticipo_cancelado_action" model="ir.actions.act_window">
-    	    <field name="name">Ver anticipos cancelados</field>
+    	    <field name="name">Anticipos cancelados</field>
     	    <field name="type">ir.actions.act_window</field>
     	    <field name="res_model">hr.anticipo</field>
     	    <field name="view_type">form</field>

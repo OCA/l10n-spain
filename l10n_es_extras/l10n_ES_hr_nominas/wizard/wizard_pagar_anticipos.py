@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution    
+#    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>). All Rights Reserved
 #    $Id$
 #
@@ -26,12 +26,12 @@ import pooler
 
 form_pagar = """<?xml version="1.0"?>
 <form string="Pagar Anticipos">
-   <field name="anticipos_ids" height="320" width="780" domain="[('state','=','confirmado')]"/>    
+   <field name="anticipos_ids" height="320" width="780" domain="[('state','=','confirmado')]"/>
 </form>"""
 
 form_confirmar = """<?xml version="1.0"?>
 <form string="Confirmar Anticipos">
-   <field name="anticipos_ids" height="320" width="780" domain="[('state','=','borrador')]"/>    
+   <field name="anticipos_ids" height="320" width="780" domain="[('state','=','borrador')]"/>
 </form>"""
 
 fields = {
@@ -39,39 +39,50 @@ fields = {
 }
 
 class wizard_pagar_anticipo(wizard.interface):
+    def _get_defaults(self, cr, uid, data, context={}):
+        if data['model'] == 'hr.anticipo':
+            data['form']['anticipos_ids'] = data['ids']
+        return data['form']
+
     def _pagar_anticipos(self, cr, uid, data, context):
         pool = pooler.get_pool(cr.dbname)
         for ant_id in data['form']['anticipos_ids'][0][2]:
             anticipo = pool.get('hr.anticipo').browse(cr, uid, ant_id)
             anticipo.pagar_anticipo(self, cr, uid, ant_id)
-    
+
     states = {
         'init': {
-            'actions': [],
+            'actions': [_get_defaults],
             'result': {'type':'form', 'arch':form_pagar, 'fields':fields, 'state':[('end','Cancelar','gtk-no'),('pagar_anticipos','Pagar','gtk-yes')]}
         },
         'pagar_anticipos': {
             'actions': [],
             'result': {'type':'action', 'action':_pagar_anticipos, 'state':'end'}
-        }        
+        }
     }
 wizard_pagar_anticipo('wizard_pagar_anticipos')
 
+
 class wizard_confirmar_anticipo(wizard.interface):
+    def _get_defaults(self, cr, uid, data, context={}):
+        if data['model'] == 'hr.anticipo':
+            data['form']['anticipos_ids'] = data['ids']
+        return data['form']
+
     def _confirmar_anticipos(self, cr, uid, data, context):
         pool = pooler.get_pool(cr.dbname)
         for ant_id in data['form']['anticipos_ids'][0][2]:
             anticipo = pool.get('hr.anticipo').browse(cr, uid, ant_id)
             anticipo.confirmar_anticipo(self, cr, uid, ant_id)
-    
+
     states = {
         'init': {
-            'actions': [],
+            'actions': [_get_defaults],
             'result': {'type':'form', 'arch':form_confirmar, 'fields':fields, 'state':[('end','Cancelar','gtk-no'),('confirmar_anticipos','confirmar','gtk-yes')]}
         },
         'confirmar_anticipos': {
             'actions': [],
             'result': {'type':'action', 'action':_confirmar_anticipos, 'state':'end'}
-        }        
+        }
     }
 wizard_confirmar_anticipo('wizard_confirmar_anticipos')

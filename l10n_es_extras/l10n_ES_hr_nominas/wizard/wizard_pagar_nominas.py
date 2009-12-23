@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution    
+#    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>). All Rights Reserved
 #    $Id$
 #
@@ -31,7 +31,7 @@ form_confirmar = """<?xml version="1.0"?>
 
 form_pagar = """<?xml version="1.0"?>
 <form string="Pagar Nominas">
-   <field name="nominas_ids" height="320" width="780" domain="[('state','=','confirmada')]"/>    
+   <field name="nominas_ids" height="320" width="780" domain="[('state','=','confirmada')]"/>
 </form>"""
 
 fields = {
@@ -39,37 +39,50 @@ fields = {
 }
 
 class confirmar_nominas(wizard.interface):
-    def _confirmaNominas(self, cr, uid, data, context):
+    def _get_defaults(self, cr, uid, data, context={}):
+        if data['model'] == 'hr.nomina':
+            data['form']['nominas_ids'] = data['ids']
+        return data['form']
+
+    def _confirma_nominas(self, cr, uid, data, context):
         pool = pooler.get_pool(cr.dbname)
         for nom_id in data['form']['nominas_ids'][0][2]:
             nom = pool.get('hr.nomina').browse(cr, uid, nom_id)
             nom.confirmar_nomina(self, cr, uid, nom_id)
+
     states = {
         'init': {
-            'actions': [],
+            'actions': [_get_defaults],
             'result': {'type':'form', 'arch':form_confirmar, 'fields':fields, 'state':[('end','Cancelar','gtk-no'),('confirmar_nominas','Confirmar','gtk-yes')]}
         },
         'confirmar_nominas': {
             'actions': [],
-            'result': {'type':'action', 'action':_confirmaNominas, 'state':'end'}
-        }        
+            'result': {'type':'action', 'action':_confirma_nominas, 'state':'end'}
+        }
     }
 confirmar_nominas('wizard_confirmar_nominas')
 
+
 class pagar_nominas(wizard.interface):
-    def _pagaNominas(self, cr, uid, data, context):
+    def _get_defaults(self, cr, uid, data, context={}):
+        if data['model'] == 'hr.nomina':
+            data['form']['nominas_ids'] = data['ids']
+        return data['form']
+
+    def _paga_nominas(self, cr, uid, data, context):
         pool = pooler.get_pool(cr.dbname)
         for nom_id in data['form']['nominas_ids'][0][2]:
-            nom = pool.get('hr.nomina').browse(cr, uid, nom_id)           
+            nom = pool.get('hr.nomina').browse(cr, uid, nom_id)
             nom.pagar_nomina(self, cr, uid, nom_id)
+
     states = {
         'init': {
-            'actions': [],
+            'actions': [_get_defaults],
             'result': {'type':'form', 'arch':form_pagar, 'fields':fields, 'state':[('end','Cancelar','gtk-no'),('pagar_nominas','Pagar','gtk-yes')]}
         },
         'pagar_nominas': {
             'actions': [],
-            'result': {'type':'action', 'action':_pagaNominas, 'state':'end'}
-        }        
+            'result': {'type':'action', 'action':_paga_nominas, 'state':'end'}
+        }
     }
 pagar_nominas('wizard_pagar_nominas')
