@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="view_nomina_empleado_form" model="ir.ui.view">
+			<field name="name">hr.employee.nomina.form</field>
+			<field name="model">hr.employee</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="hr.view_employee_form"/>
+			<field name="arch" type="xml">
+				<page string="Personal Information" position="after">
+					<page string="Salario">
+						<field name="cuenta_id" readonly="0" colspan="4"/>
+						<notebook colspan="4">
+							<page string="Retribución Nomina">
+								<field name="retribucion_bruta"/>
+								<field name="irpf"/>
+								<field name="ss_empresa"/>
+								<field name="ss_trabajador"/>
+							</page>
+							<page string="Pagas Extra">
+								<field name="retribucion_bruta_extra"/>
+								<field name="irpf_extra"/>
+								<field name="ss_empresa_extra"/>
+								<field name="ss_trabajador_extra"/>
+							</page>
+						</notebook>
+					</page>
+					<page string="Nóminas">
+						<field name="nominas_ids" nolabel="1"/>
+					</page>
+					<page string="Anticipos">
+						<field name="anticipos_ids" nolabel="1"/>
+					</page>
+				</page>
+			</field>
+		</record>
+
+		<record id="view_nomina_form" model="ir.ui.view">
+			<field name="name">hr.nomina.form</field>
+			<field name="model">hr.nomina</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Nómina">
+					<field name="employee_id"  readonly="1" colspan="4"/>
+					<field name="numero" readonly="1"/>
+					<field name="fecha_nomina" readonly="1"/>
+					<field name="extra" readonly="1"/>
+					<notebook colspan="4">
+						<page string="Nómina">
+							<field name="retribucion_bruta" attrs="{'readonly':[('state','!=','borrador')]}"/>
+							<field name="irpf" attrs="{'readonly':[('state','!=','borrador')]}"/>
+							<field name="ss_empresa" attrs="{'readonly':[('state','!=','borrador')]}"/>
+							<field name="ss_trabajador" attrs="{'readonly':[('state','!=','borrador')]}"/>
+							<field name="asiento_nomina_confirmada"/>
+							<field name="asiento_nomina_pagada"/>
+						</page>
+					</notebook>
+					<field name="state" colspan="4"/>
+					<newline/>
+					<button name="confirmar_nomina" string="Confirmar Nómina" type="object" states="borrador" colspan="4"/>
+					<button name="cancelar_nomina" string="Cancelar" type="object" states="confirmada" colspan="2"/>
+					<button name="pagar_nomina" string="Pagar Nómina" type="object" states="confirmada" colspan="2"/>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_nomina_tree" model="ir.ui.view">
+			<field name="name">hr.nomina.tree</field>
+			<field name="model">hr.nomina</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Nóminas">
+					<field name="numero"/>
+					<field name="employee_id"/>
+					<field name="fecha_nomina"/>
+					<field name="retribucion_bruta"/>
+					<field name="state"/>
+					<field name="extra" select="2"/>
+				</tree>
+			</field>
+		</record>
+
+
+		<record id="view_nomina_action" model="ir.actions.act_window">
+			<field name="name">Todas las Nóminas</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">hr.nomina</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="view_nomina_tree"/>
+		</record>
+
+		<record id="view_nominas_borrador_action" model="ir.actions.act_window">
+			<field name="name">Nóminas en estado borrador</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">hr.nomina</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('state','=','borrador')]</field>
+		</record>
+
+		<record id="view_nominas_confirmadas_action" model="ir.actions.act_window">
+			<field name="name">Nóminas confirmadas</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">hr.nomina</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('state','=','confirmada')]</field>
+		</record>
+
+		<record id="view_nominas_pagadas_action" model="ir.actions.act_window">
+			<field name="name">Nóminas pagadas</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">hr.nomina</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('state','=','pagada')]</field>
+		</record>
+
+		<record id="view_nominas_canceladas_action" model="ir.actions.act_window">
+			<field name="name">Nóminas canceladas</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">hr.nomina</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('state','=','cancelada')]</field>
+		</record>
+
+		<record id="view_anticipo_form" model="ir.ui.view">
+			<field name="name">hr.anticipo.form</field>
+			<field name="model">hr.anticipo</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Anticipo de Nómina">
+					<field name="employee_id"  colspan="4"/>
+					<field name="fecha_anticipo"/>
+					<notebook colspan="4">
+						<page string="Anticipo">
+							<field name="cantidad" attrs="{'readonly':[('state','!=','borrador')]}"/>
+							<field name="asiento_anticipo"/>
+						</page>
+					</notebook>
+					<field name="state" colspan="4"/>
+					<newline/>
+					<button name="confirmar_anticipo" string="Confirmar Anticipo" type="object" states="borrador" colspan="4"/>
+					<button name="cancelar_anticipo" string="Cancelar Anticipo" type="object" states="confirmado" colspan="2"/>
+					<button name="pagar_anticipo" string="Pagar Anticipo" type="object" states="confirmado" colspan="2"/>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_anticipo_tree" model="ir.ui.view">
+			<field name="name">hr.anticipo.tree</field>
+			<field name="model">hr.anticipo</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Anticipo">
+					<field name="fecha_anticipo"/>
+					<field name="employee_id"/>
+					<field name="cantidad"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_anticipo_action" model="ir.actions.act_window">
+			<field name="name">Todos los anticipos</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">hr.anticipo</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="view_anticipo_tree"/>
+		</record>
+
+		<record id="view_anticipo_borrador_action" model="ir.actions.act_window">
+			<field name="name">Anticipos en estado borrador</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">hr.anticipo</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('state','=','borrador')]</field>
+		</record>
+
+		<record id="view_anticipo_confirmado_action" model="ir.actions.act_window">
+			<field name="name">Anticipos confirmados</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">hr.anticipo</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('state','=','confirmado')]</field>
+		</record>
+
+		<record id="view_anticipo_pagado_action" model="ir.actions.act_window">
+			<field name="name">Anticipos pagados</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">hr.anticipo</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('state','=','pagado')]</field>
+		</record>
+
+		<record id="view_anticipo_cancelado_action" model="ir.actions.act_window">
+			<field name="name">Anticipos cancelados</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">hr.anticipo</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('state','=','cancelado')]</field>
+		</record>
+
+		<record id="view_company_nomina_inherit_form" model="ir.ui.view">
+			<field name="name">res.company.nominas.form</field>
+			<field name="model">res.company</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_company_form"/>
+			<field name="arch" type="xml">
+				<page string="Configuration" position="inside">
+					<separator string="Configuración Cuentas Nóminas" colspan="4"/>
+					<field name="diario_destino"/>
+					<field name="cuenta_ss_empresa"/>
+					<field name="cuenta_ss_acreedores"/>
+					<field name="cuenta_hacienda_publica"/>
+					<field name="cuenta_pendientes_pago"/>
+					<field name="cuenta_bancos"/>
+					<field name="cuenta_anticipos"/>
+				</page>
+			</field>
+		</record>
+
+		<menuitem id="menu_nomina" parent="hr.menu_hr_root" icon="terp-hr" name="Nóminas y anticipos"/>
+		<menuitem id="menu_nomina_wizard" parent="menu_nomina" name="Asistentes"/>
+		<!--Nóminas-->
+		<menuitem id="menu_nominas_folder" parent="menu_nomina" name="Nóminas"/>
+		<menuitem id="menu_ver_nominas" parent="menu_nominas_folder" action="view_nomina_action"/>
+		<menuitem id="menu_ver_nominas_borrador" parent="menu_nominas_folder" action="view_nominas_borrador_action"/>
+		<menuitem id="menu_ver_nominas_confirmadas" parent="menu_nominas_folder" action="view_nominas_confirmadas_action"/>
+		<menuitem id="menu_ver_nominas_pagadas" parent="menu_nominas_folder" action="view_nominas_pagadas_action"/>
+		<menuitem id="menu_ver_nominas_canceladas" parent="menu_nominas_folder" action="view_nominas_canceladas_action"/>
+		<!--Anticipos-->
+		<menuitem id="menu_anticipos_folder" parent="menu_nomina" name="Anticipos"/>
+		<menuitem id="menu_ver_anticipos" parent="menu_anticipos_folder" action="view_anticipo_action"/>
+		<menuitem id="menu_ver_anticipos_borrador" parent="menu_anticipos_folder" action="view_anticipo_borrador_action"/>
+		<menuitem id="menu_ver_anticipos_confirmados" parent="menu_anticipos_folder" action="view_anticipo_confirmado_action"/>
+		<menuitem id="menu_ver_anticipos_pagados" parent="menu_anticipos_folder" action="view_anticipo_pagado_action"/>
+		<menuitem id="menu_ver_anticipos_cancelados" parent="menu_anticipos_folder" action="view_anticipo_cancelado_action"/>
+
+	</data>
+</openerp>
