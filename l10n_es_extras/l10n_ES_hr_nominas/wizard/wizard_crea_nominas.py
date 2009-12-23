@@ -32,7 +32,7 @@ form = """<?xml version="1.0"?>
 
 fields = {
     'employee_ids': {'string': 'Empleados', 'type': 'many2many', 'relation': 'hr.employee', 'required': True},
-    'fecha': {'string': 'Fecha Nomina', 'type': 'date', 'required': True},
+    'fecha': {'string': 'Fecha Nomina', 'type': 'date', 'required': True,},
     
 }
 
@@ -61,7 +61,7 @@ class crea_extras(wizard.interface):
         pool = pooler.get_pool(cr.dbname)
         for emp_id in data['form']['employee_ids'][0][2]:
             empleado = pool.get('hr.employee').browse(cr, uid, emp_id)                 
-            pool.get('hr.nomina').create(cr, uid, {'employee_id': empleado.id, 'fecha_nomina': data['form']['fecha'], 'retribucion_bruta': empleado.retribucion_bruta_extra, 'ss_empresa': empleado.ss_empresa_extra, 'ss_trabajador': empleado.ss_trabajador_extra, 'irpf': empleado.irpf_extra, 'extra': True})
+            pool.get('hr.nomina').create(cr, uid, {'name': empleado.name + ' ' + str(data['form']['fecha']),'employee_id': empleado.id, 'fecha_nomina': data['form']['fecha'], 'retribucion_bruta': empleado.retribucion_bruta_extra, 'ss_empresa': empleado.ss_empresa_extra, 'ss_trabajador': empleado.ss_trabajador_extra, 'irpf': empleado.irpf_extra, 'extra': True})
     
     states = {
         'init': {
@@ -86,7 +86,7 @@ form_anticipos = """<?xml version="1.0"?>
 
 fields_anticipos = {
     'employee_ids': {'string': 'Empleados', 'type': 'many2many', 'relation': 'hr.employee', 'required': True},
-    'fecha': {'string': 'Fecha Nomina', 'type': 'date', 'required': True},
+    'fecha': {'string': 'Fecha Anticipo', 'type': 'date', 'required': True, 'default': lambda *a: time.strftime('%Y-%m-%d')},
     'cantidad': {'string': 'Cantidad Anticipo', 'type': 'float', 'required': True}
 }
 

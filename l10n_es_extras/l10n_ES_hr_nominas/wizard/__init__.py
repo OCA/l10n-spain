@@ -20,3 +20,5 @@
 #
 ##############################################################################
 import wizard_crea_nominas
+import wizard_pagar_nominas
+import wizard_pagar_anticipos

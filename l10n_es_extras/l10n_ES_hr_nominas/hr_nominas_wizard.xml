@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+    
 	<wizard string="Generar Nóminas" model="hr.nomina" name="wiz_crear_nominas" menu="False" id="wizard_crea_nominas" />
 	<wizard string="Generar Pagas Extras" model="hr.nomina" name="wiz_crear_extras" menu="False" id="wizard_crea_extras"/>
 	<wizard string="Generar Anticipos" model="hr.anticipo" name="wiz_crear_anticipos" menu="False" id="wizard_crea_anticipos"/>
-    	<menuitem id="menu_crea_nominas" parent="menu_nomina" action="wizard_crea_nominas" type="wizard"/>
-    	<menuitem id="menu_crea_extras" parent="menu_nomina" action="wizard_crea_extras" type="wizard"/>
-    	<menuitem id="menu_crea_anticipos" parent="menu_nomina" action="wizard_crea_anticipos" type="wizard"/>
+	<wizard string="Confirmar nóminas" model="hr.nomina" name="wizard_confirmar_nominas" menu="False" id="wiz_confirmar_nominas"/>
+	<wizard string="Pagar nóminas" model="hr.nomina" name="wizard_pagar_nominas" menu="False" id="wiz_pagar_nominas"/>
+	<wizard string="Pagar Anticipos" model="hr.anticipo" name="wizard_pagar_anticipos" menu="False" id="wiz_pagar_anticipos"/>
+    <wizard string="Confirmar Anticipos" model="hr.anticipo" name="wizard_confirmar_anticipos" menu="False" id="wiz_confirmar_anticipos"/>
+    
+    <menuitem id="menu_crea_nominas" parent="menu_nomina_wizard" action="wizard_crea_nominas" type="wizard"/>
+    <menuitem id="menu_crea_extras" parent="menu_nomina_wizard" action="wizard_crea_extras" type="wizard"/>
+    <menuitem id="menu_crea_anticipos" parent="menu_nomina_wizard" action="wizard_crea_anticipos" type="wizard"/>
+    <menuitem id="menu_confirmar_nominas" parent="menu_nomina_wizard" action="wiz_confirmar_nominas" type="wizard" name="Confirmar Nóminas"/>
+    <menuitem id="menu_pagar_nominas" parent="menu_nomina_wizard" action="wiz_pagar_nominas" type="wizard" name="Pagar Nóminas"/>
+    <menuitem id="menu_confirmar_anticipos" parent="menu_nomina_wizard" action="wiz_confirmar_anticipos" type="wizard"/>
+    <menuitem id="menu_pagar_anticipos" parent="menu_nomina_wizard" action="wiz_pagar_anticipos" type="wizard"/>
+    
     </data>
 </openerp>

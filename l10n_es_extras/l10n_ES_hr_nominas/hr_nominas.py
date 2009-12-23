@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution    
-#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>). All Rights Reserved
+#    Copyright (C) 2009 Ting! (<http://www.ting.es>). All Rights Reserved
 #    d$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -25,12 +25,13 @@ from osv import fields
 import time
 import datetime
 import pooler
+from tools.translate import _
 
 class res_company(osv.osv):
 	_name = 'res.company'
 	_inherit = 'res.company'
 	_columns = {
-		'diario_destino': fields.many2one('account.journal', 'Diario de Destino', required=True),		
+		'diario_destino': fields.many2one('account.journal', 'Diario de Destino', required=True), 		
 		'cuenta_ss_empresa': fields.many2one('account.account', 'Cuenta Seguridad Social a cargo de la empresa', required=True),
 		'cuenta_ss_acreedores': fields.many2one('account.account', 'Cuenta Organismos de la S.S acreedores', required=True),
 		'cuenta_hacienda_publica': fields.many2one('account.account', 'Cuenta H.P acreedor por retenciones practicadas', required=True),
@@ -57,7 +58,7 @@ def get_configuration(cr, uid, ids, context=None):
 		return res  
 	else:
 		company_name = str(obj_user.company_id.name)
-		raise osv.except_osv(_('No hay una configuración de cuentas activa para la compañia '+ company_name +'!'), _('Debe configurar las cuentas!\nPor favor configure las cuentas en el menú de configuración de la compañia: ' + company_name))
+		raise osv.except_osv(_('No hay una configuración de cuentas activa para la compañia ' + company_name + '!'), _('Debe configurar las cuentas!\nPor favor configure las cuentas en el menú de configuración de la compañia: ' + company_name))
 
 class hr_employee(osv.osv):
 	_name = 'hr.employee'
@@ -71,12 +72,12 @@ class hr_employee(osv.osv):
       'ss_empresa_extra': fields.float('S.S a Cargo de la empresa', digits=(16, 2)),
       'ss_trabajador_extra': fields.float('S.S a cargo del Trabajador', digits=(16, 2)),
       'irpf_extra': fields.float('Retención IRPF (%)', digits=(16, 2)),
-	  'nominas_ids': fields.one2many('hr.nomina','employee_id','Nóminas del Empleado', readonly=True),
+	  'nominas_ids': fields.one2many('hr.nomina', 'employee_id', 'Nóminas del Empleado', readonly=True),
 	  'anticipos_ids': fields.one2many('hr.anticipo', 'employee_id', 'Anticipos del Empleado', readonly=True),
 	  'cuenta_id': fields.many2one('account.account', 'Cuenta', required=True, help="El empleado debe tener una cuenta para su nómina."),
 	}
 	_defaults = {
-		'cuenta_id': lambda *a: 377 or None,
+		'cuenta_id': lambda * a: 377 or None,
 	}
 
 	
@@ -86,27 +87,33 @@ class hr_nomina(osv.osv):
     _name = 'hr.nomina'
     _description = 'Nominas de Empleados'
     _columns = {
+       'name': fields.char('Nómina', size=20),
        'employee_id': fields.many2one('hr.employee', 'Empleado', required=True, select="1"),
        'retribucion_bruta': fields.float('Retribución Bruta', digits=(16, 2)),
        'ss_empresa': fields.float('S.S a Cargo de la empresa', digits=(16, 2)),
        'ss_trabajador': fields.float('S.S a cargo del Trabajador', digits=(16, 2)),
        'irpf': fields.float('Retención IRPF (%)', digits=(16, 2)),
        'fecha_nomina': fields.date('Fecha de la Nómina', select="1"),
-       'state': fields.selection((('borrador','Borrador'),('confirmada','Confirmada'),('pagada','Pagada')),'Estado Nómina', readonly=True, select="2"),
+       'state': fields.selection((('borrador', 'Borrador'),
+                                  ('confirmada', 'Confirmada'),
+                                  ('pagada', 'Pagada'),
+                                  ('cancelada', 'Cancelada')), 'Estado Nómina', readonly=True, select="2"),
        'numero': fields.char('Número de nomina', size=32, readonly=True, help="Número único de nómina, se asigna automáticamente cuando se crea la nómina", select="1"),
        'extra': fields.boolean('Paga Extra'),
+       'asiento_nomina_confirmada': fields.many2one('account.move', 'Asiento Nómina confirmada', readonly=True),
+       'asiento_nomina_pagada': fields.many2one('account.move', 'Asiento Nómina pagada', readonly=True),
     }
     
     _defaults = {
-        'state': lambda *a:'borrador',             
+        'state': lambda * a:'borrador',
     }
     
     
 
     
     def comprueba_mes(self, fecha_anticipo, fecha_nomina):
-    	anticipo = time.strptime(fecha_anticipo,'%Y-%m-%d')
-        nomina = time.strptime(fecha_nomina,'%Y-%m-%d')
+    	anticipo = time.strptime(fecha_anticipo, '%Y-%m-%d')
+        nomina = time.strptime(fecha_nomina, '%Y-%m-%d')
         dateNomina = datetime.datetime(nomina[0], nomina[1], nomina[2])
         dateAnterior = time.strptime((dateNomina - datetime.timedelta(nomina[2] + 1)).strftime('%Y-%m-%d'), '%Y-%m-%d')
                
@@ -129,16 +136,16 @@ class hr_nomina(osv.osv):
         
         for nom in self.browse(cr, uid, ids):
             journal_id = cuentas['diario_destino']
-            numero = self.pool.get('ir.sequence').get(cr, uid,'hr.nomina')
+            numero = self.pool.get('ir.sequence').get(cr, uid, 'hr.nomina')
             journal = self.pool.get('account.journal').browse(cr, uid, journal_id)
             fechaNomina = nom.fecha_nomina
             line = {}
            
-            period_ids= self.pool.get('account.period').search(cr,uid,[('date_start','<=',fechaNomina or time.strftime('%Y-%m-%d')),('date_stop','>=',fechaNomina or time.strftime('%Y-%m-%d'))])
+            period_ids = self.pool.get('account.period').search(cr, uid, [('date_start', '<=', fechaNomina or time.strftime('%Y-%m-%d')), ('date_stop', '>=', fechaNomina or time.strftime('%Y-%m-%d'))])
             if len(period_ids):
-                periodo_id=period_ids[0]
+                periodo_id = period_ids[0]
             else:
-                raise osv.except_osv(('No existe un periodo para esa fecha de nomina !'), ('No se pueden generar nóminas cuya fecha esté en un periodo que no existe, \nsi desea generarla por favor cree el periodo contable correspondiente'))
+                raise osv.except_osv(_('No existe un periodo para esa fecha de nomina !'), _('No se pueden generar nóminas cuya fecha esté en un periodo que no existe, \nsi desea generarla por favor cree el periodo contable correspondiente'))
                  
             referencia = numero + ' : ' + nom.employee_id.name + ' - ' + fechaNomina
             if nom.extra:
@@ -152,12 +159,12 @@ class hr_nomina(osv.osv):
             cuenta_id = nom.employee_id.cuenta_id.id
             #si no tiene cuenta lanzamos un error
             if not cuenta_id:
-                raise osv.except_osv(('No existe una cuenta configurada para el empleado!'), ('Por favor configure una cuenta en la ficha del empleado en la que generar los asientos de la nómina'))
-            retencion_irpf = (nom.retribucion_bruta * nom.irpf)/100
+                raise osv.except_osv(_('No existe una cuenta configurada para el empleado!'), _('Por favor configure una cuenta en la ficha del empleado en la que generar los asientos de la nómina'))
+            retencion_irpf = (nom.retribucion_bruta * nom.irpf) / 100
             anticipo = self.comprueba_anticipo(cr, uid, ids, fechaNomina, nom.employee_id.id)
             
           
-            sueldo_neto = nom.retribucion_bruta-retencion_irpf-nom.ss_trabajador
+            sueldo_neto = nom.retribucion_bruta - retencion_irpf - nom.ss_trabajador
             if anticipo and nom.extra == False:
             	sueldo_neto -= anticipo
             	obj_linea.create(cr, uid, {'account_id': cuentas['cuenta_anticipos'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Anticipo', 'credit': anticipo, 'ref': referencia})
@@ -170,8 +177,8 @@ class hr_nomina(osv.osv):
 
             self.pool.get('account.move').write(cr, uid, [move_id], {'date': fechaNomina})
             self.pool.get('account.move').post(cr, uid, [move_id])
-            self.write(cr,uid,ids,{'numero': numero})
-            self.write(cr, uid, ids, {'state': 'confirmada'})        
+            self.write(cr, uid, ids, {'numero': numero})
+            self.write(cr, uid, ids, {'state': 'confirmada', 'asiento_nomina_confirmada': move_id})        
                  
     def pagar_nomina(self, cr, uid, ids, *args):
     	cuentas = get_configuration(cr, uid, ids)
@@ -182,9 +189,9 @@ class hr_nomina(osv.osv):
             fechaNomina = nom.fecha_nomina            
             line = {}
             
-            period_ids= self.pool.get('account.period').search(cr,uid,[('date_start','<=',fechaNomina or time.strftime('%Y-%m-%d')),('date_stop','>=',fechaNomina or time.strftime('%Y-%m-%d'))])
+            period_ids = self.pool.get('account.period').search(cr, uid, [('date_start', '<=', fechaNomina or time.strftime('%Y-%m-%d')), ('date_stop', '>=', fechaNomina or time.strftime('%Y-%m-%d'))])
             if len(period_ids):
-                periodo_id=period_ids[0]
+                periodo_id = period_ids[0]
                 
             
             referencia = nom.numero + ' : Pago ' + nom.employee_id.name + ' - ' + fechaNomina
@@ -194,8 +201,8 @@ class hr_nomina(osv.osv):
 
             move_id = self.pool.get('account.move').create(cr, uid, move)
             
-            retencion_irpf = (nom.retribucion_bruta * nom.irpf)/100
-            sueldo_neto = nom.retribucion_bruta-retencion_irpf-nom.ss_trabajador
+            retencion_irpf = (nom.retribucion_bruta * nom.irpf) / 100
+            sueldo_neto = nom.retribucion_bruta - retencion_irpf - nom.ss_trabajador
             anticipo = self.comprueba_anticipo(cr, uid, ids, fechaNomina, nom.employee_id.id)
             if anticipo and nom.extra == False:
             	sueldo_neto -= anticipo
@@ -203,44 +210,64 @@ class hr_nomina(osv.osv):
             self.pool.get('account.move.line').create(cr, uid, {'account_id': cuentas['cuenta_bancos'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Banco', 'credit': sueldo_neto, 'ref': referencia})
             self.pool.get('account.move.line').create(cr, uid, {'account_id': cuentas['cuenta_pendientes_pago'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Renumeraciones pendientes', 'debit': sueldo_neto, 'ref': referencia})
 
-            self.write(cr, uid, ids, {'state': 'pagada'})
+            self.write(cr, uid, ids, {'state': 'pagada', 'asiento_nomina_pagada':move_id})
             self.pool.get('account.move').write(cr, uid, [move_id], {'date': fechaNomina})
-            self.pool.get('account.move').post(cr, uid, [move_id])            
+            self.pool.get('account.move').post(cr, uid, [move_id])
+            
+    def cancelar_nomina(self, cr, uid, ids, *args):
+        for nom in self.browse(cr, uid, ids):
+            acc_obj = self.pool.get('account.move')           
+            if nom.state == 'confirmada':               
+                acc_obj.button_cancel(cr, uid, [nom.asiento_nomina_confirmada.id])
+                self.write(cr, uid, ids, {'state': 'cancelada'})           
             
 hr_nomina()
 
 class hr_anticipo(osv.osv):
-	_name = 'hr.anticipo'
-	_description = 'Anticipos de Nominas'
-	_columns = {
-			'employee_id': fields.many2one('hr.employee', 'Empleado', required=True, select="1", readonly="1"),
-			'fecha_anticipo': fields.date('Fecha de Anticipo', select="1", readonly="1"),
-			'cantidad': fields.float('Cantidad Anticipo', digits=(16, 2), readonly="1"),
-			'state': fields.selection((('borrador','Borrador'),('pagado','Pagado')),'Estado de anticipo', readonly="1"),
-	}
-	
-	_defaults = {
-			'state': lambda *a:'borrador',
-	}
-		
-	def pagar_anticipo(self, cr, uid, ids, *args):
-		cuentas = get_configuration(cr, uid, ids)	
-	
-		for anticipo in self.browse(cr, uid, ids):
-			journal_id = cuentas['diario_destino']
-			journal = self.pool.get('account.journal').browse(cr, uid, journal_id)
-			fecha_anticipo = anticipo.fecha_anticipo
-			#PERIODO
-			period_ids= self.pool.get('account.period').search(cr,uid,[('date_start','<=',fecha_anticipo or time.strftime('%Y-%m-%d')),('date_stop','>=',fecha_anticipo or time.strftime('%Y-%m-%d'))])
-			if len(period_ids):
-				periodo_id=period_ids[0]
-			referencia = 'Anticipo: ' + anticipo.employee_id.name + ' - ' + fecha_anticipo 
-			move_id = self.pool.get('account.move').create(cr, uid, {'ref': referencia, 'journal_id': journal_id, 'date': fecha_anticipo, 'period_id': periodo_id })
-			self.pool.get('account.move.line').create(cr, uid, {'account_id': cuentas['cuenta_anticipos'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Anticipo', 'debit': anticipo.cantidad, 'ref': referencia})
-			self.pool.get('account.move.line').create(cr, uid, {'account_id': cuentas['cuenta_bancos'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Bancos', 'credit': anticipo.cantidad, 'ref': referencia})
-			self.write(cr, uid, ids, {'state': 'pagado'})
-			self.pool.get('account.move').write(cr, uid, [move_id], {'date': fecha_anticipo})
-			self.pool.get('account.move').post(cr, uid, [move_id])	
-			
-
+    _name = 'hr.anticipo'
+    _description = 'Anticipos de Nominas'
+    _columns = {
+            'name': fields.char('Anticipo', size=30),
+            'employee_id': fields.many2one('hr.employee', 'Empleado', required=True, select="1", readonly=True),
+            'fecha_anticipo': fields.date('Fecha de Anticipo', select="1", readonly=True),
+            'cantidad': fields.float('Cantidad Anticipo', digits=(16, 2), readonly=True),
+            'state': fields.selection((('borrador', 'Borrador'),
+                                       ('confirmado', 'Confirmado'),
+                                       ('pagado', 'Pagado'),
+                                       ('cancelado', 'Cancelado')), 'Estado de anticipo', readonly=True, select="1"),
+            'asiento_anticipo': fields.many2one('account.move', 'Asiento Anticipo', readonly=True),
+    }
+    
+    _defaults = {
+            'state': lambda * a:'borrador',
+    }
+    
+    def confirmar_anticipo(self, cr, uid, ids, *args):
+        cuentas = get_configuration(cr, uid, ids)    
+        for anticipo in self.browse(cr, uid, ids):
+            journal_id = cuentas['diario_destino']
+            journal = self.pool.get('account.journal').browse(cr, uid, journal_id)
+            fecha_anticipo = anticipo.fecha_anticipo
+            #PERIODO
+            period_ids = self.pool.get('account.period').search(cr, uid, [('date_start', '<=', fecha_anticipo or time.strftime('%Y-%m-%d')), ('date_stop', '>=', fecha_anticipo or time.strftime('%Y-%m-%d'))])
+            if len(period_ids):
+                periodo_id = period_ids[0]
+            referencia = 'Anticipo: ' + anticipo.employee_id.name + ' - ' + fecha_anticipo 
+            move_id = self.pool.get('account.move').create(cr, uid, {'ref': referencia, 'journal_id': journal_id, 'date': fecha_anticipo, 'period_id': periodo_id })
+            self.pool.get('account.move.line').create(cr, uid, {'account_id': cuentas['cuenta_anticipos'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Anticipo', 'debit': anticipo.cantidad, 'ref': referencia})
+            self.pool.get('account.move.line').create(cr, uid, {'account_id': cuentas['cuenta_bancos'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Bancos', 'credit': anticipo.cantidad, 'ref': referencia})
+            self.write(cr, uid, ids, {'state': 'confirmado', 'asiento_anticipo': move_id})
+            self.pool.get('account.move').write(cr, uid, [move_id], {'date': fecha_anticipo})
+    
+    def pagar_anticipo(self, cr, uid, ids, *args):
+        for ant in self.browse(cr, uid, ids):
+            acc_obj = self.pool.get('account.move')
+            acc_obj.post(cr, uid, [ant.asiento_anticipo.id])
+            self.write(cr, uid, ids, {'state':'pagado'})
+            
+    def cancelar_anticipo(self, cr, uid, ids, *args):
+        for ant in self.browse(cr, uid, ids):
+            acc_obj = self.pool.get('account.move')
+            if ant.state == 'confirmado':
+                self.write(cr, uid, ids, {'state':'cancelado'})  
 hr_anticipo()
