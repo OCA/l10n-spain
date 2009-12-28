@@ -171,8 +171,11 @@ class wizard_renumber(wizard.interface):
             #
             date_to_use = datetime.strptime(move.date, '%Y-%m-%d')
             new_name = self.get_id(cr, uid, sequence.id, context=context, date_to_use=date_to_use)
-            move_facade.write(cr, uid, [move.id], {'name': new_name})
-
+            # Note: We can't just do a 
+            # "move_facade.write(cr, uid, [move.id], {'name': new_name})"
+            # cause it might raise a "You can't do this modificication on a confirmed entry"
+            # exception.
+            cr.execute('UPDATE account_move SET name=%s WHERE id=%s', (new_name, move.id))
 
         logger.notifyChannel("account_renumber", netsvc.LOG_DEBUG, "%d account moves renumbered." % len(move_ids))
 
