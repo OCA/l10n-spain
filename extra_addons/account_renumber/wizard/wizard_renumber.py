@@ -83,6 +83,22 @@ class wizard_renumber(wizard.interface):
             cr.commit()
         return False
 
+
+    def get_sequence_id_for_fiscalyear_id(self, cr, uid, sequence_id, fiscalyear_id, context=None):
+        """
+        Based on ir_sequence.get_id from the account module.
+        Allows us to get the real sequence for the given fiscal year.
+        """
+        cr.execute('SELECT id FROM ir_sequence WHERE id=%s AND active=%s', (sequence_id, True,))
+        res = cr.dictfetchone()
+        if res:
+            seq_facade = pooler.get_pool(cr.dbname).get('ir.sequence')
+            for line in seq_facade.browse(cr, uid, res['id'], context=context).fiscal_ids:
+                if line.fiscalyear_id.id==fiscalyear_id:
+                    return line.sequence_id.id
+        return sequence_id
+
+
     ############################################################################
     # Init form
     ############################################################################
@@ -158,22 +174,26 @@ class wizard_renumber(wizard.interface):
 
         for move in move_facade.browse(cr, uid, move_ids):
             #
-            # Get the sequence to use for this move
+            # Get the sequence to use for this move.
+            # Note: We will use the journal's sequence or one of its
+            #       children (if it has children sequences per fiscalyear)
             #
-            sequence = move.journal_id.sequence_id
-            if not sequence.id in sequences_seen:
+            sequence_id = self.get_sequence_id_for_fiscalyear_id(cr, uid,
+                                sequence_id=move.journal_id.sequence_id.id,
+                                fiscalyear_id=move.period_id.fiscalyear_id.id)
+            if not sequence_id in sequences_seen:
                 # First time we see this sequence, reset it
-                pooler.get_pool(cr.dbname).get('ir.sequence').write(cr, uid, [sequence.id], {'number_next': number_next})
-                sequences_seen.append(sequence.id)
+                pooler.get_pool(cr.dbname).get('ir.sequence').write(cr, uid, [sequence_id], {'number_next': number_next})
+                sequences_seen.append(sequence_id)
                 
             #
-            # Generate (using our own get_id) and write the new move number
+            # Generate (using our own get_id) and write the new move number.
             #
             date_to_use = datetime.strptime(move.date, '%Y-%m-%d')
-            new_name = self.get_id(cr, uid, sequence.id, context=context, date_to_use=date_to_use)
+            new_name = self.get_id(cr, uid, sequence_id, context=context, date_to_use=date_to_use)
             # Note: We can't just do a 
             # "move_facade.write(cr, uid, [move.id], {'name': new_name})"
-            # cause it might raise a "You can't do this modificication on a confirmed entry"
+            # cause it might raise a "You can't do this modification on a confirmed entry"
             # exception.
             cr.execute('UPDATE account_move SET name=%s WHERE id=%s', (new_name, move.id))
 
