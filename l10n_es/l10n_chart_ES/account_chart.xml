@@ -29,17 +29,17 @@
 	<record id="terceros - rec" model="account.account.type">
 		<field name="name">Terceros - A Cobrar</field>
 		<field name="code">terceros - rec</field>
-		<field name="close_method">unreconciled</field>
+		<field name="close_method">balance</field>
 	</record>
 	<record id="terceros - pay" model="account.account.type">
 		<field name="name">Terceros - A Pagar</field>
 		<field name="code">terceros - pay</field>
-		<field name="close_method">unreconciled</field>
+		<field name="close_method">balance</field>
 	</record>
 	<record id="tax" model="account.account.type">
 		<field name="name">Impuestos</field>
 		<field name="code">tax</field>
-		<field name="close_method">unreconciled</field>
+		<field name="close_method">balance</field>
 	</record>
 	<record id="financieras" model="account.account.type">
 		<field name="name">Financieras</field>
