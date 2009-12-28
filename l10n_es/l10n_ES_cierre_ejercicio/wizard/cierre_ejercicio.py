@@ -127,8 +127,8 @@ class wiz_journal_close(wizard.interface):
         ids = pool.get('account.move.line').search(cr, uid, [('journal_id','=',journal_id),('period_id','=',period_id)])
         if ids:
             move_line = pool.get('account.move.line').browse(cr, uid, ids[0])
-            pool.get('account.move').write(cr, uid, [move_line.move_id.id], {'name': data['form']['desc_asiento_pyg']})
-            pool.get('account.move').button_validate(cr, uid, [move_line.move_id.id], context)
+            pool.get('account.move').write(cr, uid, [move_line.move_id.id], {'ref': data['form']['desc_asiento_pyg']})
+            # pool.get('account.move').button_validate(cr, uid, [move_line.move_id.id], context)
             print "ID Loss and Profit entry: " + str(move_line.move_id.id)
         return {}
 
@@ -144,7 +144,7 @@ class wiz_journal_close(wizard.interface):
             linea =  {
                 'debit': line.credit,
                 'credit': line.debit,
-                'name': line.name == data['form']['desc_asiento_cierre'] and data['form']['desc_asiento_apertura'] or line.name,
+                'name': line.name == data['form']['desc_asiento_apertura'] and data['form']['desc_asiento_apertura'] or line.name,
                 'journal_id': journal_id,
                 'period_id': period_id,
                 'account_id': line.account_id.id
@@ -157,7 +157,7 @@ class wiz_journal_close(wizard.interface):
         if ids:
             move_line = pool.get('account.move.line').browse(cr, uid, ids[0])
             copy_id = move_line.move_id.id
-            move_obj.write(cr, uid, [copy_id], {'name': data['form']['desc_asiento_apertura']})
+            move_obj.write(cr, uid, [copy_id], {'ref': data['form']['desc_asiento_apertura']})
         else:
             return False
 
@@ -204,8 +204,8 @@ class wiz_journal_close(wizard.interface):
             if accnt_type_data.close_method=='balance':
                 if abs(account.balance) > 10**-int(config['price_accuracy']):
                     pool.get('account.move.line').create(cr, uid, {
-                        'debit': account.balance>0 and account.balance,
-                        'credit': account.balance<0 and -account.balance,
+                        'debit': account.balance<0 and -account.balance,
+                        'credit': account.balance>0 and account.balance,
                         'name': data['form']['desc_asiento_cierre'],
                         'date': period.date_start,
                         'journal_id': journal_id,
@@ -305,7 +305,7 @@ class wiz_journal_close(wizard.interface):
             #pool.get('account.move.line').reconcile(cr, uid, ids, context=context)
             move_line = pool.get('account.move.line').browse(cr, uid, ids[0])
             cierre_id = move_line.move_id.id
-            pool.get('account.move').write(cr, uid, [cierre_id], {'name': data['form']['desc_asiento_cierre']})
+            pool.get('account.move').write(cr, uid, [cierre_id], {'ref': data['form']['desc_asiento_cierre']})
             print "ID closing entry: " + str(cierre_id)
         else:
             return {}
@@ -323,7 +323,7 @@ class wiz_journal_close(wizard.interface):
 
         apertura_id = self.revert_move(cr, uid, data, cierre_id, data['form']['diario_apertura'], data['form']['periodo_apertura_id'], pool.get('account.period').browse(cr,uid,data['form']['periodo_apertura_id']).date_start, True, context)
         print "ID opening entry: " + str(apertura_id)
-        pool.get('account.move').button_validate(cr, uid, [cierre_id, apertura_id], context)
+        # pool.get('account.move').button_validate(cr, uid, [cierre_id, apertura_id], context)
 
         result = cr.commit()
         return {}
@@ -366,8 +366,9 @@ class wiz_journal_close(wizard.interface):
             raise osv.except_osv(_('UserError'),
                     _('The Closing, Opening and Loss and Profit periods must be different!'))
 
-        threaded_calculation = threading.Thread(target=self._asiento_cierre, args=(cr.dbname, uid, data, context))
-        threaded_calculation.start()
+        # threaded_calculation = threading.Thread(target=self._asiento_cierre, args=(cr.dbname, uid, data, context))
+        # threaded_calculation.start()
+        self._asiento_cierre(cr.dbname, uid, data, context)
         return {}
 
 

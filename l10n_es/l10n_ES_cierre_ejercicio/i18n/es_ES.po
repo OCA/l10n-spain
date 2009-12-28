@@ -1,34 +1,138 @@
 # Translation of OpenERP Server.
-# This file containt the translation of the following modules:
-#	* l10n_ES_partner_seq
+# This file contains the translation of the following modules:
+#	* l10n_ES_cierre_ejercicio
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.0-rc1\n"
+"Project-Id-Version: OpenERP Server 5.0.7\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2008-12-01 00:52:33+0000\n"
-"PO-Revision-Date: 2008-12-01 01:55+0100\n"
-"Last-Translator: Jordi Esteve <jesteve@zikzakmedia.com>\n"
+"POT-Creation-Date: 2009-12-28 10:34:37+0000\n"
+"PO-Revision-Date: 2009-12-28 11:41+0100\n"
+"Last-Translator: Borja López Soilán (Pexego) <borjals@pexego.es>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 
-#. module: l10n_ES_partner_seq
-#: wizard_button:l10n_ES_partner_seq.create_accounts,init,end:0
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,periodo_cierre_id:0
+msgid "Closing period"
+msgstr "Periodo de cierre"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_view:l10n_ES.fiscalyear.close,init:0
+msgid "Financial closure"
+msgstr "Cierre fiscal"
+
+#. module: l10n_ES_cierre_ejercicio
+#: model:ir.actions.wizard,name:l10n_ES_cierre_ejercicio.wizard_l10n_ES_fiscalyear_close
+#: model:ir.ui.menu,name:l10n_ES_cierre_ejercicio.menu_wizard_l10n_ES_fiscalyear_close
+msgid "Close Fiscal Year creating Loss and Profit, Opening and Closing "
+msgstr "Cerrar ejercicio fiscal creando Pérdidas y Ganancias, Cierre y Apertura"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,diario_apertura:0
+msgid "Opening journal"
+msgstr "Diario de apertura"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,desc_asiento_pyg:0
+msgid "Loss & Profit entry description"
+msgstr "Descripción del asiento de PYG"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,ejercicio_apertura_id:0
+msgid "Fiscal year to open"
+msgstr "Ejercicio fiscal a abrir"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,ejercicio_cierre_id:0
+msgid "Fical year to close"
+msgstr "Ejercicio fiscal a cerrar"
+
+#. module: l10n_ES_cierre_ejercicio
+#: model:ir.module.module,description:l10n_ES_cierre_ejercicio.module_meta_information
+msgid ""
+"Close Fiscal Year creating Loss and Profit, Opening and Closing entries.\n"
+"You can set the journal, period and description for each of these three entries.\n"
+"\n"
+"Improved and ported to OpenERP 5.0 by Zikzakmedia. Based on the work done by Acysos for TinyERP 4.2.\n"
+"    "
+msgstr ""
+"Cerrar ejercicio fiscal creando asientos de Pérdidas y ganancias, Cierre y Apertura.\n"
+"Puede configurar el diario, periodo y descripción para cada una de estas tres entradas.\n"
+"\n"
+"Mejorado y portado a OpenERP 5.0 por Zikzakmedia. Basado en el trabajo realizado por Acysos para TinyERP 4.2.\n"
+"    "
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_button:l10n_ES.fiscalyear.close,init,close:0
+msgid "Close fiscal year"
+msgstr "Cerrar ejercicio fiscal"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,asiento_pyg:0
+msgid "Create Loss & Profit entry"
+msgstr "Crear asiento de Pérdidas y Ganancias"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,periodo_apertura_id:0
+msgid "Opening period"
+msgstr "Periodo de apertura"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_view:l10n_ES.fiscalyear.close,init:0
+msgid "Fiscal year closing confirmation"
+msgstr "Confirmación de cierre de ejercicio fiscal"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,sure:0
+msgid "Check this box if you are sure"
+msgstr "Marque esta casilla si está seguro"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,desc_asiento_apertura:0
+msgid "Opening entry description"
+msgstr "Descripción del asiento de apertura"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,periodo_pyg_id:0
+msgid "Loss & Profit period"
+msgstr "Periodo de Pérdidas y Ganancias"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_view:l10n_ES.fiscalyear.close,init:0
+msgid "Loss & Profit entry"
+msgstr "Asiento de Pérdidas y Ganancias"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,diario_cierre:0
+msgid "Closing journal"
+msgstr "Diario de cierre"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_view:l10n_ES.fiscalyear.close,init:0
+msgid "Opening and Closing entries"
+msgstr "Asientos de Cierre y Apertura"
+
+#. module: l10n_ES_cierre_ejercicio
+#: model:ir.module.module,shortdesc:l10n_ES_cierre_ejercicio.module_meta_information
+msgid "Close Fiscal Year with Loss and Profit, Opening and Closing entries"
+msgstr "Cerrar ejercicio fiscal con asientos de Pérdidas y Ganancias, Cierre y Apertura"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,desc_asiento_cierre:0
+msgid "Closing entry description"
+msgstr "Descripción del asiento de cierre"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_button:l10n_ES.fiscalyear.close,init,end:0
 msgid "Cancel"
 msgstr "Cancelar"
 
-#. module: l10n_ES_partner_seq
-#: wizard_view:l10n_ES_partner_seq.create_accounts,init:0
-msgid "Do you want to create accounts for the selected partners?"
-msgstr "¿Quiere crear cuentas contables para las empresas seleccionadas?"
-
-#. module: l10n_ES_partner_seq
-#: wizard_view:l10n_ES_partner_seq.create_accounts,init:0
-#: wizard_button:l10n_ES_partner_seq.create_accounts,init,create:0
-#: model:ir.actions.wizard,name:l10n_ES_partner_seq.id_create_accounts
-msgid "Create accounts"
-msgstr "Crear cuentas"
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,diario_pyg:0
+msgid "Loss & Profit entry journal"
+msgstr "Diario del asiento de PYG"
 
