@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data noupdate="0">
-        <record id="view" model="account.account.type">
-            <field name="name">Vista</field>
-            <field name="code">view</field>
-            <field name="close_method">none</field>
-        </record>
         <record id="capital" model="account.account.type">
             <field name="name">Capital</field>
             <field name="code">capital</field>
@@ -64,7 +59,7 @@
             <field name="parent_id" ref=""/>
             <field name="type">view</field> 
             <field name="name">Plan General Contable 2008</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="capital"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_1" model="account.account.template">
@@ -4321,7 +4316,7 @@
             <field name="parent_id" ref="pgc_0"/>
             <field name="type">view</field> 
             <field name="name">Acreedores y deudores por operaciones comerciales</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_40" model="account.account.template">
@@ -4600,7 +4595,7 @@
             <field name="parent_id" ref="pgc_41"/>
             <field name="type">view</field> 
             <field name="name">Acreedores por prestaciones de servicios</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - pay"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4100" model="account.account.template">
@@ -4609,7 +4604,7 @@
             <field name="parent_id" ref="pgc_410"/>
             <field name="type">view</field> 
             <field name="name">Acreedores por prestaciones de servicios (euros)</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - pay"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4100_child" model="account.account.template">
@@ -4618,7 +4613,7 @@
             <field name="parent_id" ref="pgc_4100"/>
             <field name="type">payable</field> 
             <field name="name">Acreedores por prestaciones de servicios (euros)</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - pay"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4104" model="account.account.template">
@@ -4627,7 +4622,7 @@
             <field name="parent_id" ref="pgc_410"/>
             <field name="type">view</field> 
             <field name="name">Acreedores por prestaciones de servicios (moneda extranjera)</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - pay"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4104_child" model="account.account.template">
@@ -4636,7 +4631,7 @@
             <field name="parent_id" ref="pgc_4104"/>
             <field name="type">payable</field> 
             <field name="name">Acreedores por prestaciones de servicios (moneda extranjera)</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - pay"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4109" model="account.account.template">
@@ -4645,7 +4640,7 @@
             <field name="parent_id" ref="pgc_410"/>
             <field name="type">view</field> 
             <field name="name">Acreedores por prestaciones de servicios, facturas pendientes de recibir o de formalizar</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - pay"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4109_child" model="account.account.template">
@@ -4654,7 +4649,7 @@
             <field name="parent_id" ref="pgc_4109"/>
             <field name="type">payable</field> 
             <field name="name">Acreedores por prestaciones de servicios, facturas pendientes de recibir o de formalizar</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - pay"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_411" model="account.account.template">
@@ -4663,7 +4658,7 @@
             <field name="parent_id" ref="pgc_41"/>
             <field name="type">view</field> 
             <field name="name">Acreedores, efectos comerciales a pagar</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - pay"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_411_child" model="account.account.template">
@@ -4672,7 +4667,7 @@
             <field name="parent_id" ref="pgc_411"/>
             <field name="type">other</field> 
             <field name="name">Acreedores, efectos comerciales a pagar</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - pay"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_419" model="account.account.template">
@@ -4681,7 +4676,7 @@
             <field name="parent_id" ref="pgc_41"/>
             <field name="type">view</field> 
             <field name="name">Acreedores por operaciones en común</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - pay"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_419_child" model="account.account.template">
@@ -4690,7 +4685,7 @@
             <field name="parent_id" ref="pgc_419"/>
             <field name="type">other</field> 
             <field name="name">Acreedores por operaciones en común</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - pay"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_43" model="account.account.template">
@@ -5104,7 +5099,7 @@
             <field name="parent_id" ref="pgc_44"/>
             <field name="type">view</field> 
             <field name="name">Deudores</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4400" model="account.account.template">
@@ -5113,7 +5108,7 @@
             <field name="parent_id" ref="pgc_440"/>
             <field name="type">view</field> 
             <field name="name">Deudores (euros)</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4400_child" model="account.account.template">
@@ -5122,7 +5117,7 @@
             <field name="parent_id" ref="pgc_4400"/>
             <field name="type">receivable</field> 
             <field name="name">Deudores (euros)</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4404" model="account.account.template">
@@ -5131,7 +5126,7 @@
             <field name="parent_id" ref="pgc_440"/>
             <field name="type">view</field> 
             <field name="name">Deudores (moneda extranjera)</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4404_child" model="account.account.template">
@@ -5140,7 +5135,7 @@
             <field name="parent_id" ref="pgc_4404"/>
             <field name="type">receivable</field> 
             <field name="name">Deudores (moneda extranjera)</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4409" model="account.account.template">
@@ -5149,7 +5144,7 @@
             <field name="parent_id" ref="pgc_440"/>
             <field name="type">view</field> 
             <field name="name">Deudores, facturas pendientes de formalizar</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4409_child" model="account.account.template">
@@ -5158,7 +5153,7 @@
             <field name="parent_id" ref="pgc_4409"/>
             <field name="type">receivable</field> 
             <field name="name">Deudores, facturas pendientes de formalizar</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_441" model="account.account.template">
@@ -5167,7 +5162,7 @@
             <field name="parent_id" ref="pgc_44"/>
             <field name="type">view</field> 
             <field name="name">Deudores, efectos comerciales a cobrar</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4410" model="account.account.template">
@@ -5176,7 +5171,7 @@
             <field name="parent_id" ref="pgc_441"/>
             <field name="type">view</field> 
             <field name="name">Deudores, efectos comerciales en cartera</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4410_child" model="account.account.template">
@@ -5185,7 +5180,7 @@
             <field name="parent_id" ref="pgc_4410"/>
             <field name="type">receivable</field> 
             <field name="name">Deudores, efectos comerciales en cartera</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4411" model="account.account.template">
@@ -5194,7 +5189,7 @@
             <field name="parent_id" ref="pgc_441"/>
             <field name="type">view</field> 
             <field name="name">Deudores, efectos comerciales descontados</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4411_child" model="account.account.template">
@@ -5203,7 +5198,7 @@
             <field name="parent_id" ref="pgc_4411"/>
             <field name="type">receivable</field> 
             <field name="name">Deudores, efectos comerciales descontados</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4412" model="account.account.template">
@@ -5212,7 +5207,7 @@
             <field name="parent_id" ref="pgc_441"/>
             <field name="type">view</field> 
             <field name="name">Deudores, efectos comerciales en gestión de cobro</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4412_child" model="account.account.template">
@@ -5221,7 +5216,7 @@
             <field name="parent_id" ref="pgc_4412"/>
             <field name="type">receivable</field> 
             <field name="name">Deudores, efectos comerciales en gestión de cobro</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4415" model="account.account.template">
@@ -5230,7 +5225,7 @@
             <field name="parent_id" ref="pgc_441"/>
             <field name="type">view</field> 
             <field name="name">Deudores, efectos comerciales impagados</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4415_child" model="account.account.template">
@@ -5239,7 +5234,7 @@
             <field name="parent_id" ref="pgc_4415"/>
             <field name="type">receivable</field> 
             <field name="name">Deudores, efectos comerciales impagados</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_446" model="account.account.template">
@@ -5248,7 +5243,7 @@
             <field name="parent_id" ref="pgc_44"/>
             <field name="type">view</field> 
             <field name="name">Deudores de dudoso cobro</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_446_child" model="account.account.template">
@@ -5257,7 +5252,7 @@
             <field name="parent_id" ref="pgc_446"/>
             <field name="type">other</field> 
             <field name="name">Deudores de dudoso cobro</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_449" model="account.account.template">
@@ -5266,7 +5261,7 @@
             <field name="parent_id" ref="pgc_44"/>
             <field name="type">view</field> 
             <field name="name">Deudores por operaciones en común</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_449_child" model="account.account.template">
@@ -5275,7 +5270,7 @@
             <field name="parent_id" ref="pgc_449"/>
             <field name="type">other</field> 
             <field name="name">Deudores por operaciones en común</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros - rec"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_46" model="account.account.template">
@@ -5284,7 +5279,7 @@
             <field name="parent_id" ref="pgc_4"/>
             <field name="type">view</field> 
             <field name="name">Personal</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_460" model="account.account.template">
@@ -5644,7 +5639,7 @@
             <field name="parent_id" ref="pgc_4"/>
             <field name="type">view</field> 
             <field name="name">Ajustes por periodificación</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_480" model="account.account.template">
@@ -5689,7 +5684,7 @@
             <field name="parent_id" ref="pgc_4"/>
             <field name="type">view</field> 
             <field name="name">Deterioro de valor de créditos comerciales y provisiones a corto plazo</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_490" model="account.account.template">
@@ -5698,7 +5693,7 @@
             <field name="parent_id" ref="pgc_49"/>
             <field name="type">view</field> 
             <field name="name">Deterioro de valor de créditos por operaciones comerciales</field>
-            <field name="user_type" ref="terceros - rec"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_490_child" model="account.account.template">
@@ -5707,7 +5702,7 @@
             <field name="parent_id" ref="pgc_490"/>
             <field name="type">other</field> 
             <field name="name">Deterioro de valor de créditos por operaciones comerciales</field>
-            <field name="user_type" ref="terceros - rec"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_493" model="account.account.template">
@@ -5716,7 +5711,7 @@
             <field name="parent_id" ref="pgc_49"/>
             <field name="type">view</field> 
             <field name="name">Deterioro de valor de créditos por operaciones comerciales con partes vinculadas</field>
-            <field name="user_type" ref="terceros - rec"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4933" model="account.account.template">
@@ -5725,7 +5720,7 @@
             <field name="parent_id" ref="pgc_493"/>
             <field name="type">view</field> 
             <field name="name">Deterioro de valor de créditos por operaciones comerciales con empresas del grupo</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4933_child" model="account.account.template">
@@ -5734,7 +5729,7 @@
             <field name="parent_id" ref="pgc_4933"/>
             <field name="type">other</field> 
             <field name="name">Deterioro de valor de créditos por operaciones comerciales con empresas del grupo</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4934" model="account.account.template">
@@ -5743,7 +5738,7 @@
             <field name="parent_id" ref="pgc_493"/>
             <field name="type">view</field> 
             <field name="name">Deterioro de valor de créditos por operaciones comerciales con empresas asociadas</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4934_child" model="account.account.template">
@@ -5752,7 +5747,7 @@
             <field name="parent_id" ref="pgc_4934"/>
             <field name="type">other</field> 
             <field name="name">Deterioro de valor de créditos por operaciones comerciales con empresas asociadas</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4935" model="account.account.template">
@@ -5761,7 +5756,7 @@
             <field name="parent_id" ref="pgc_493"/>
             <field name="type">view</field> 
             <field name="name">Deterioro de valor de créditos por operaciones comerciales con otras partes vinculadas</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4935_child" model="account.account.template">
@@ -5770,7 +5765,7 @@
             <field name="parent_id" ref="pgc_4935"/>
             <field name="type">other</field> 
             <field name="name">Deterioro de valor de créditos por operaciones comerciales con otras partes vinculadas</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_499" model="account.account.template">
@@ -5779,7 +5774,7 @@
             <field name="parent_id" ref="pgc_49"/>
             <field name="type">view</field> 
             <field name="name">Provisiones por operaciones comerciales</field>
-            <field name="user_type" ref="terceros - pay"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4994" model="account.account.template">
@@ -5788,7 +5783,7 @@
             <field name="parent_id" ref="pgc_499"/>
             <field name="type">view</field> 
             <field name="name">Provisión por contratos onerosos</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4994_child" model="account.account.template">
@@ -5797,7 +5792,7 @@
             <field name="parent_id" ref="pgc_4994"/>
             <field name="type">other</field> 
             <field name="name">Provisión por contratos onerosos</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4999" model="account.account.template">
@@ -5806,7 +5801,7 @@
             <field name="parent_id" ref="pgc_499"/>
             <field name="type">view</field> 
             <field name="name">Provisión para otras operaciones comerciales</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_4999_child" model="account.account.template">
@@ -5815,7 +5810,7 @@
             <field name="parent_id" ref="pgc_4999"/>
             <field name="type">other</field> 
             <field name="name">Provisión para otras operaciones comerciales</field>
-            <field name="user_type" ref="view"/>
+            <field name="user_type" ref="terceros"/>
             <field name="template_name">PGCE 2008</field>
         </record>
         <record id="pgc_5" model="account.account.template">

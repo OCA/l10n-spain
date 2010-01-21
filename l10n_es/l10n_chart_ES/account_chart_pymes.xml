@@ -48,7 +48,7 @@
           <field name="parent_id" ref=""/>
           <field name="type">view</field> 
           <field name="name">Plan General Contable PYMES 2008</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="capital"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_1" model="account.account.template">
@@ -3981,7 +3981,7 @@
           <field name="parent_id" ref="pgc_pymes_0"/>
           <field name="type">view</field> 
           <field name="name">Acreedores y deudores por operaciones comerciales</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_40" model="account.account.template">
@@ -4260,7 +4260,7 @@
           <field name="parent_id" ref="pgc_pymes_41"/>
           <field name="type">view</field> 
           <field name="name">Acreedores por prestaciones de servicios</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - pay"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4100" model="account.account.template">
@@ -4269,7 +4269,7 @@
           <field name="parent_id" ref="pgc_pymes_410"/>
           <field name="type">view</field> 
           <field name="name">Acreedores por prestaciones de servicios (euros)</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - pay"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4100_child" model="account.account.template">
@@ -4278,7 +4278,7 @@
           <field name="parent_id" ref="pgc_pymes_4100"/>
           <field name="type">payable</field> 
           <field name="name">Acreedores por prestaciones de servicios (euros)</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - pay"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4104" model="account.account.template">
@@ -4287,7 +4287,7 @@
           <field name="parent_id" ref="pgc_pymes_410"/>
           <field name="type">view</field> 
           <field name="name">Acreedores por prestaciones de servicios (moneda extranjera)</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - pay"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4104_child" model="account.account.template">
@@ -4296,7 +4296,7 @@
           <field name="parent_id" ref="pgc_pymes_4104"/>
           <field name="type">payable</field> 
           <field name="name">Acreedores por prestaciones de servicios (moneda extranjera)</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - pay"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4109" model="account.account.template">
@@ -4305,7 +4305,7 @@
           <field name="parent_id" ref="pgc_pymes_410"/>
           <field name="type">view</field> 
           <field name="name">Acreedores por prestaciones de servicios, facturas pendientes de recibir o de formalizar</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - pay"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4109_child" model="account.account.template">
@@ -4314,7 +4314,7 @@
           <field name="parent_id" ref="pgc_pymes_4109"/>
           <field name="type">payable</field> 
           <field name="name">Acreedores por prestaciones de servicios, facturas pendientes de recibir o de formalizar</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - pay"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_411" model="account.account.template">
@@ -4323,7 +4323,7 @@
           <field name="parent_id" ref="pgc_pymes_41"/>
           <field name="type">view</field> 
           <field name="name">Acreedores, efectos comerciales a pagar</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - pay"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_411_child" model="account.account.template">
@@ -4332,7 +4332,7 @@
           <field name="parent_id" ref="pgc_pymes_411"/>
           <field name="type">other</field> 
           <field name="name">Acreedores, efectos comerciales a pagar</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - pay"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_419" model="account.account.template">
@@ -4341,7 +4341,7 @@
           <field name="parent_id" ref="pgc_pymes_41"/>
           <field name="type">view</field> 
           <field name="name">Acreedores por operaciones en común</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - pay"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_419_child" model="account.account.template">
@@ -4350,7 +4350,7 @@
           <field name="parent_id" ref="pgc_pymes_419"/>
           <field name="type">other</field> 
           <field name="name">Acreedores por operaciones en común</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - pay"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_43" model="account.account.template">
@@ -4764,7 +4764,7 @@
           <field name="parent_id" ref="pgc_pymes_44"/>
           <field name="type">view</field> 
           <field name="name">Deudores</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4400" model="account.account.template">
@@ -4773,7 +4773,7 @@
           <field name="parent_id" ref="pgc_pymes_440"/>
           <field name="type">view</field> 
           <field name="name">Deudores (euros)</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4400_child" model="account.account.template">
@@ -4782,7 +4782,7 @@
           <field name="parent_id" ref="pgc_pymes_4400"/>
           <field name="type">receivable</field> 
           <field name="name">Deudores (euros)</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4404" model="account.account.template">
@@ -4791,7 +4791,7 @@
           <field name="parent_id" ref="pgc_pymes_440"/>
           <field name="type">view</field> 
           <field name="name">Deudores (moneda extranjera)</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4404_child" model="account.account.template">
@@ -4800,7 +4800,7 @@
           <field name="parent_id" ref="pgc_pymes_4404"/>
           <field name="type">receivable</field> 
           <field name="name">Deudores (moneda extranjera)</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4409" model="account.account.template">
@@ -4809,7 +4809,7 @@
           <field name="parent_id" ref="pgc_pymes_440"/>
           <field name="type">view</field> 
           <field name="name">Deudores, facturas pendientes de formalizar</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4409_child" model="account.account.template">
@@ -4818,7 +4818,7 @@
           <field name="parent_id" ref="pgc_pymes_4409"/>
           <field name="type">receivable</field> 
           <field name="name">Deudores, facturas pendientes de formalizar</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_441" model="account.account.template">
@@ -4827,7 +4827,7 @@
           <field name="parent_id" ref="pgc_pymes_44"/>
           <field name="type">view</field> 
           <field name="name">Deudores, efectos comerciales a cobrar</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4410" model="account.account.template">
@@ -4836,7 +4836,7 @@
           <field name="parent_id" ref="pgc_pymes_441"/>
           <field name="type">view</field> 
           <field name="name">Deudores, efectos comerciales en cartera</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4410_child" model="account.account.template">
@@ -4845,7 +4845,7 @@
           <field name="parent_id" ref="pgc_pymes_4410"/>
           <field name="type">receivable</field> 
           <field name="name">Deudores, efectos comerciales en cartera</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4411" model="account.account.template">
@@ -4854,7 +4854,7 @@
           <field name="parent_id" ref="pgc_pymes_441"/>
           <field name="type">view</field> 
           <field name="name">Deudores, efectos comerciales descontados</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4411_child" model="account.account.template">
@@ -4863,7 +4863,7 @@
           <field name="parent_id" ref="pgc_pymes_4411"/>
           <field name="type">receivable</field> 
           <field name="name">Deudores, efectos comerciales descontados</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4412" model="account.account.template">
@@ -4872,7 +4872,7 @@
           <field name="parent_id" ref="pgc_pymes_441"/>
           <field name="type">view</field> 
           <field name="name">Deudores, efectos comerciales en gestión de cobro</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4412_child" model="account.account.template">
@@ -4881,7 +4881,7 @@
           <field name="parent_id" ref="pgc_pymes_4412"/>
           <field name="type">receivable</field> 
           <field name="name">Deudores, efectos comerciales en gestión de cobro</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4415" model="account.account.template">
@@ -4890,7 +4890,7 @@
           <field name="parent_id" ref="pgc_pymes_441"/>
           <field name="type">view</field> 
           <field name="name">Deudores, efectos comerciales impagados</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4415_child" model="account.account.template">
@@ -4899,7 +4899,7 @@
           <field name="parent_id" ref="pgc_pymes_4415"/>
           <field name="type">receivable</field> 
           <field name="name">Deudores, efectos comerciales impagados</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_446" model="account.account.template">
@@ -4908,7 +4908,7 @@
           <field name="parent_id" ref="pgc_pymes_44"/>
           <field name="type">view</field> 
           <field name="name">Deudores de dudoso cobro</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_446_child" model="account.account.template">
@@ -4917,7 +4917,7 @@
           <field name="parent_id" ref="pgc_pymes_446"/>
           <field name="type">other</field> 
           <field name="name">Deudores de dudoso cobro</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_449" model="account.account.template">
@@ -4926,7 +4926,7 @@
           <field name="parent_id" ref="pgc_pymes_44"/>
           <field name="type">view</field> 
           <field name="name">Deudores por operaciones en común</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_449_child" model="account.account.template">
@@ -4935,7 +4935,7 @@
           <field name="parent_id" ref="pgc_pymes_449"/>
           <field name="type">other</field> 
           <field name="name">Deudores por operaciones en común</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros - rec"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_46" model="account.account.template">
@@ -4944,7 +4944,7 @@
           <field name="parent_id" ref="pgc_pymes_4"/>
           <field name="type">view</field> 
           <field name="name">Personal</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_460" model="account.account.template">
@@ -5286,7 +5286,7 @@
           <field name="parent_id" ref="pgc_pymes_4"/>
           <field name="type">view</field> 
           <field name="name">Ajustes por periodificación</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_480" model="account.account.template">
@@ -5331,7 +5331,7 @@
           <field name="parent_id" ref="pgc_pymes_4"/>
           <field name="type">view</field> 
           <field name="name">Deterioro de valor de créditos comerciales y provisiones a corto plazo</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_490" model="account.account.template">
@@ -5340,7 +5340,7 @@
           <field name="parent_id" ref="pgc_pymes_49"/>
           <field name="type">view</field> 
           <field name="name">Deterioro de valor de créditos por operaciones comerciales</field>
-          <field name="user_type" ref="terceros - rec"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_490_child" model="account.account.template">
@@ -5349,7 +5349,7 @@
           <field name="parent_id" ref="pgc_pymes_490"/>
           <field name="type">other</field> 
           <field name="name">Deterioro de valor de créditos por operaciones comerciales</field>
-          <field name="user_type" ref="terceros - rec"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_493" model="account.account.template">
@@ -5358,7 +5358,7 @@
           <field name="parent_id" ref="pgc_pymes_49"/>
           <field name="type">view</field> 
           <field name="name">Deterioro de valor de créditos por operaciones comerciales con partes vinculadas</field>
-          <field name="user_type" ref="terceros - rec"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4933" model="account.account.template">
@@ -5367,7 +5367,7 @@
           <field name="parent_id" ref="pgc_pymes_493"/>
           <field name="type">view</field> 
           <field name="name">Deterioro de valor de créditos por operaciones comerciales con empresas del grupo</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4933_child" model="account.account.template">
@@ -5376,7 +5376,7 @@
           <field name="parent_id" ref="pgc_pymes_4933"/>
           <field name="type">other</field> 
           <field name="name">Deterioro de valor de créditos por operaciones comerciales con empresas del grupo</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4934" model="account.account.template">
@@ -5385,7 +5385,7 @@
           <field name="parent_id" ref="pgc_pymes_493"/>
           <field name="type">view</field> 
           <field name="name">Deterioro de valor de créditos por operaciones comerciales con empresas asociadas</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4934_child" model="account.account.template">
@@ -5394,7 +5394,7 @@
           <field name="parent_id" ref="pgc_pymes_4934"/>
           <field name="type">other</field> 
           <field name="name">Deterioro de valor de créditos por operaciones comerciales con empresas asociadas</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4935" model="account.account.template">
@@ -5403,7 +5403,7 @@
           <field name="parent_id" ref="pgc_pymes_493"/>
           <field name="type">view</field> 
           <field name="name">Deterioro de valor de créditos por operaciones comerciales con otras partes vinculadas</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4935_child" model="account.account.template">
@@ -5412,7 +5412,7 @@
           <field name="parent_id" ref="pgc_pymes_4935"/>
           <field name="type">other</field> 
           <field name="name">Deterioro de valor de créditos por operaciones comerciales con otras partes vinculadas</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_499" model="account.account.template">
@@ -5421,7 +5421,7 @@
           <field name="parent_id" ref="pgc_pymes_49"/>
           <field name="type">view</field> 
           <field name="name">Provisiones por operaciones comerciales</field>
-          <field name="user_type" ref="terceros - pay"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4994" model="account.account.template">
@@ -5430,7 +5430,7 @@
           <field name="parent_id" ref="pgc_pymes_499"/>
           <field name="type">view</field> 
           <field name="name">Provisión por contratos onerosos</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4994_child" model="account.account.template">
@@ -5439,7 +5439,7 @@
           <field name="parent_id" ref="pgc_pymes_4994"/>
           <field name="type">other</field> 
           <field name="name">Provisión por contratos onerosos</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4999" model="account.account.template">
@@ -5448,7 +5448,7 @@
           <field name="parent_id" ref="pgc_pymes_499"/>
           <field name="type">view</field> 
           <field name="name">Provisión para otras operaciones comerciales</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_4999_child" model="account.account.template">
@@ -5457,7 +5457,7 @@
           <field name="parent_id" ref="pgc_pymes_4999"/>
           <field name="type">other</field> 
           <field name="name">Provisión para otras operaciones comerciales</field>
-          <field name="user_type" ref="view"/>
+          <field name="user_type" ref="terceros"/>
           <field name="template_name">PGCE PYMES</field>
       </record>
       <record id="pgc_pymes_5" model="account.account.template">
