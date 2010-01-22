@@ -28,6 +28,8 @@
         "website" : "http://www.pexego.es",
         "category" : "Enterprise Specific Modules",
         "description": """
+WARNING: This module has been moved to extra-addons, please download the lastest version from the OpenERP extra-addons repository (https://code.launchpad.net/~openerp-commiter/openobject-addons/stable_5.0-extra-addons)!
+        
 The module allows the user to create account balance reports and templates,
 comparing the values of 'accounting concepts' between two fiscal years
 or a set of fiscal periods.
