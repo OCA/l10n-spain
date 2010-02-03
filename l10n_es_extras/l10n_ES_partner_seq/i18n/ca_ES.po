@@ -1,14 +1,14 @@
 # Translation of OpenERP Server.
 # This file containt the translation of the following modules:
-#	* l10n_ES_partner_seq
+# 	* l10n_ES_partner_seq
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.0-rc1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2008-12-01 00:55:43+0000\n"
-"PO-Revision-Date: 2008-12-01 01:56+0100\n"
-"Last-Translator: Jordi Esteve <jesteve@zikzakmedia.com>\n"
+"POT-Creation-Date: 2010-02-03 19:17:24+0000\n"
+"PO-Revision-Date: 2010-02-03 20:17+0100\n"
+"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,19 +16,79 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_ES_partner_seq
-#: wizard_button:l10n_ES_partner_seq.create_accounts,init,end:0
-msgid "Cancel"
-msgstr "Cancel·la"
+#: help:l10n_ES_partner_seq.create_accounts,init,parent_receivable:0
+msgid ""
+"Parent for the receivable account, like 4300 for clients, 4400 for debtors, ... It also will be used as the code prefix of the created account.\n"
+"Tip: Save the most used parent account as the default value."
+msgstr ""
+"Pare per al compte a cobrar, per exemple 4300 per a clients, 4400 per deutors, ... També s'utilitza com a prefix del codi del compte creat.\n"
+"Truc: Deseu el compte pare més utilitzat com el valor per defecte."
 
 #. module: l10n_ES_partner_seq
 #: wizard_view:l10n_ES_partner_seq.create_accounts,init:0
 msgid "Do you want to create accounts for the selected partners?"
-msgstr "Voleu crear comptes comptables per a les empreses seleccionades?"
+msgstr "Voleu crear els comptes comptables per a les empreses seleccionades?"
 
 #. module: l10n_ES_partner_seq
+#: model:ir.module.module,description:l10n_ES_partner_seq.module_meta_information
+#, fuzzy
+msgid ""
+"Este módulo:\n"
+"  * Vincula una secuencia al campo de código de empresa para generar el código de forma automática (sólo al crear nuevas empresas clientes o proveedores).\n"
+"  * Añade un asistente para crear las cuentas a pagar y a cobrar de la empresa según su código (si no tuviera código se crea uno según la secuencia) cuyo prefijo será la cuenta contable padre indicada (por ejemplo, para cuentas a cobrar usaríamos 4300 para clientes o 4400 para deudores, para cuentas a pagar usaríamos 4000 para proveedores o 4100 para acreedores).\n"
+"\n"
+"La secuencia de empresa por defecto se inicia en NP00101 (prefijo NP y relleno de 5 dígitos) y puede modificarse posteriormente en Administración/Personalización/Secuencias. Los códigos de las cuentas a pagar/cobrar se crearán usando los últimos dígitos necesarios del código de empresa para que, junto con el prefijo indicado, tengan el número total de dígitos estipulado. Si, por ejemplo, las cuentas son de 8 dígitos, el prefijo es 4300 y el código de empresa es NP00101 sólo se usaran los 4 últimos dígitos del código de empresa: 4300 + 0101 = 43000101.\n"
+"    "
+msgstr ""
+"Aquest mòdul:\n"
+"  * Vincula una seqüència al camp de codi d'empresa per generar el codi de forma automàtica (només en crear noves empreses clients o proveïdors).\n"
+"  * Afegeix un assistent per crear els comptes a pagar i a cobrar de l'empresa segons el seu codi (si no tingués codi es crea un segons la seqüència) el prefix serà el compte comptable pare indicat (per exemple, per comptes a cobrar usaríem 4300 per clients o 4400 per deutors, per comptes a pagar usaríem 4000 per proveïdors o 4100 per creditors).\n"
+"\n"
+"La seqüència d'empresa per defecte s'inicia en NP00101 (prefix NP i omplenat de 5 dígits) i pot modificar-se posteriorment en Administració / Personalització / Seqüències. Els codis dels comptes a pagar/cobrar es crearan usant els últims dígits necessaris del codi d'empresa per que, juntament amb el prefix indicat, tinguin el nombre total de dígits estipulat. Si, per exemple, els comptes són de 8 dígits, el prefix és 4300 i el codi d'empresa és NP00101 només es faran servir els 4 últims dígits del codi d'empresa: 4300 + 0101 = 43000101.\n"
+
+#. module: l10n_ES_partner_seq
+#: help:l10n_ES_partner_seq.create_accounts,init,number_digits:0
+msgid "Number of digits of the account codes."
+msgstr "Nombre de dígits dels codis de comptes."
+
+#. module: l10n_ES_partner_seq
+#: wizard_field:l10n_ES_partner_seq.create_accounts,init,number_digits:0
+msgid "Number of digits"
+msgstr "Nombre de dígits"
+
+#. module: l10n_ES_partner_seq
+#: wizard_field:l10n_ES_partner_seq.create_accounts,init,parent_receivable:0
+msgid "Parent Receivable Account"
+msgstr "Compte a cobrar pare"
+
+#. module: l10n_ES_partner_seq
+#: model:ir.actions.wizard,name:l10n_ES_partner_seq.id_create_accounts
 #: wizard_view:l10n_ES_partner_seq.create_accounts,init:0
 #: wizard_button:l10n_ES_partner_seq.create_accounts,init,create:0
-#: model:ir.actions.wizard,name:l10n_ES_partner_seq.id_create_accounts
 msgid "Create accounts"
 msgstr "Crea comptes"
+
+#. module: l10n_ES_partner_seq
+#: model:ir.module.module,shortdesc:l10n_ES_partner_seq.module_meta_information
+msgid "Secuencia empresa"
+msgstr "Seqüència empresa"
+
+#. module: l10n_ES_partner_seq
+#: help:l10n_ES_partner_seq.create_accounts,init,parent_payable:0
+msgid ""
+"Parent for the payable account, like 4000 for suppliers, 4100 for creditors, ... It also will be used as the code prefix of the created account.\n"
+"Tip: Save the most used parent account as the default value."
+msgstr ""
+"Pare per al compte a pagar, per exemple 4000 per proveïdors, 4100 per creditors, ... També s'utilitza com a prefix del codi del compte creat.\n"
+"Truc: Deseu el compte pare més utilitzat com el valor per defecte."
+
+#. module: l10n_ES_partner_seq
+#: wizard_field:l10n_ES_partner_seq.create_accounts,init,parent_payable:0
+msgid "Parent Payable Account"
+msgstr "Compte a pagar pare"
+
+#. module: l10n_ES_partner_seq
+#: wizard_button:l10n_ES_partner_seq.create_accounts,init,end:0
+msgid "Cancel"
+msgstr "Cancel·la"
 
