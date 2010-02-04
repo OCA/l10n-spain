@@ -365,7 +365,7 @@ def _create_payment_file(self, cr, uid, data, context):
         texto = '5870'
         texto += (orden.mode.bank_id.partner_id.vat[2:] + orden.mode.sufijo).zfill(12)
         texto += 72*' '
-        totalordenante = int(-orden.total * 100)
+        totalordenante = int(round(-orden.total * 100,0))
         texto += str(totalordenante).zfill(10)
         texto += 6*' '
         texto += str(num_recibos).zfill(10)
