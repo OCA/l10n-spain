@@ -117,7 +117,7 @@ msgid "Módulo para la importación de extractos bancarios según la norma C43 d
 "\n"
 "Elimina el precálculo del importe de la línea del extracto bancario cuando se modifica la empresa (ya que los importes importados ya son los correctos)\n"
 "\n"
-"NOTA para su instalación: Es importante instalar anteriormente el módulo l10n_chart_ES (bien directamente, bien a partir del asistente de selección de plan contable que se ejecuta al instalar el módulo account) y ejecutar el asistente de creación del plan contable a partir de la plantilla que se encuentra en Gestión financiera/Configuración/Contabilidad financiera/Plantillas.\n"
+"El módulo añade un asistente en Gestión financiera/Configuración/Extractos bancarios C43 para la importación de los conceptos de extractos que se debe ejecutar una vez creado el plan de cuentas con el asistente correspondiente y con el módulo l10n_chart_ES previamente instalado.\n"
 ""
 msgstr ""
 

@@ -43,7 +43,7 @@ Si no se encuentra la empresa se asigna la cuenta contable que se haya definido 
 
 Elimina el precálculo del importe de la línea del extracto bancario cuando se modifica la empresa (ya que los importes importados ya son los correctos)
 
-El módulo añade un asistente en Gestión financiera/Configuración/Contabilidad financiera/Plantillas para la importación de los conceptos de extractos que se debe ejecutar una vez creado el plan de cuentas con el asistente correspondiente y con el módulo l10n_chart_ES previamente instalado.
+El módulo añade un asistente en Gestión financiera/Configuración/Extractos bancarios C43 para la importación de los conceptos de extractos que se debe ejecutar una vez creado el plan de cuentas con el asistente correspondiente y con el módulo l10n_chart_ES previamente instalado.
 """,
     "website" : "www.zikzakmedia.com",
     "license" : "GPL-3",

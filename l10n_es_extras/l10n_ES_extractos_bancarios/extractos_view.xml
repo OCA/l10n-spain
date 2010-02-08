@@ -64,7 +64,7 @@
             <field name="target">new</field>
         </record>
 
-        <menuitem parent="account.account_template_folder" action="action_extractos_import_wizard" id="menu_import_wizard"/>
+        <menuitem id="menu_import_wizard" parent="menu_extractos_bancarios" action="action_extractos_import_wizard"/>
 
     </data>
 </openerp>
