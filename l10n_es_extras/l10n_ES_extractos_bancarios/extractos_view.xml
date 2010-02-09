@@ -13,6 +13,7 @@
                     <field name="code"/>
                     <field name="name"/>
                     <field name="account_id"/>
+                    <field name="company_id"/>
                 </form>
             </field>
         </record>
@@ -24,9 +25,10 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="C43 default accounts">
-                        <field name="code"/>
-                        <field name="name"/>
-                        <field name="account_id"/>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="account_id"/>
+                    <field name="company_id" select="1"/>
                 </tree>
             </field>
         </record> 

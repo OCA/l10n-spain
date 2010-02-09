@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.0-rc1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2009-05-25 07:50:45+0000\n"
-"PO-Revision-Date: 2009-05-25 09:57+0200\n"
-"Last-Translator: Albert Cervera i Areny <albert@nan-tic.com>\n"
+"POT-Creation-Date: 2010-02-09 19:28:50+0000\n"
+"PO-Revision-Date: 2010-02-09 20:30+0100\n"
+"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,11 +19,8 @@ msgstr ""
 
 #. module: l10n_ES_extractos_bancarios
 #: constraint:ir.model:0
-msgid ""
-"The Object name must start with x_ and not contain any special character !"
-msgstr ""
-"El nom de l'objecte ha de començar amb x_ i no contenir cap caràcter "
-"especial!"
+msgid "The Object name must start with x_ and not contain any special character !"
+msgstr "El nom de l'objecte ha de començar amb x_ i no contenir cap caràcter especial!"
 
 #. module: l10n_ES_extractos_bancarios
 #: constraint:ir.actions.act_window:0
@@ -63,12 +60,8 @@ msgstr ""
 
 #. module: l10n_ES_extractos_bancarios
 #: help:l10n.es.extractos.concepto,account_id:0
-msgid ""
-"Default account to be associated with the concept when the file of C43 bank "
-"statements is imported"
-msgstr ""
-"Compte per defecte que s'associarà al concepte en importar el fitxer "
-"d'extractes bancaris C43"
+msgid "Default account to be associated with the concept when the file of C43 bank statements is imported"
+msgstr "Compte per defecte que s'associarà al concepte en importar el fitxer d'extractes bancaris C43"
 
 #. module: l10n_ES_extractos_bancarios
 #: wizard_view:l10n_ES_extractos_bancarios.importar,init:0
@@ -80,6 +73,11 @@ msgstr "Importació extracte bancari segons norma C43"
 #: view:l10n.es.extractos.concepto:0
 msgid "C43 default accounts"
 msgstr "Comptes per defecte C43"
+
+#. module: l10n_ES_extractos_bancarios
+#: field:l10n.es.extractos.concepto,company_id:0
+msgid "Company"
+msgstr "Companyia"
 
 #. module: l10n_ES_extractos_bancarios
 #: model:ir.model,name:l10n_ES_extractos_bancarios.model_l10n_es_extractos_concepto
@@ -98,6 +96,29 @@ msgid "Import Statement Concepts Wizard"
 msgstr "Assistent d'importació de conceptes d'extractes"
 
 #. module: l10n_ES_extractos_bancarios
+#: model:ir.module.module,description:l10n_ES_extractos_bancarios.module_meta_information
+msgid ""
+"Módulo para la importación de extractos bancarios según la norma C43 de la Asociación Española de la Banca.\n"
+"\n"
+"Añade un asistente a los extractos bancarios para realizar la importación. El fichero importado queda como fichero adjunto al extracto en cuestión.\n"
+"Permite definir las cuentas contables por defecto que se asociarán a los conceptos definidos en los fichero de extractos bancarios C43.\n"
+"\n"
+"La búsqueda de la empresa se hace a partir de:\n"
+"    1) La referencia2 del registro del extracto que acostumbra a ser la referencia de la operación que da la empresa. Se busca un apunte no conciliado con la misma referencia.\n"
+"    2) El CIF/NIF que se encuentra en:\n"
+"      - Los 9 primeros caracteres de l['referencia1'] del registro del extracto (Banc Sabadell)\n"
+"      - Los 9 primeros caracteres de l['conceptos'] del registro del extracto (La Caixa)\n"
+"      - Los caracteres [21:30] de l['conceptos'] (Caja Rural del Jalón)\n"
+"      - Si otros bancos o cajas guardan el CIF en otro lugar contactar con el autor/equipo de localización para poderlo añadir o implementar una forma flexible de definirlo.\n"
+"    3) Búsqueda en los apuntes no conciliados por importe\n"
+"Si no se encuentra la empresa se asigna la cuenta contable que se haya definido por defecto para el concepto de ese registro.\n"
+"\n"
+"Elimina el precálculo del importe de la línea del extracto bancario cuando se modifica la empresa (ya que los importes importados ya son los correctos)\n"
+"\n"
+"El módulo añade un asistente en Gestión financiera/Configuración/Extractos bancarios C43 para la importación de los conceptos de extractos que se debe ejecutar una vez creado el plan de cuentas con el asistente correspondiente y con el módulo l10n_chart_ES previamente instalado.\n"
+msgstr ""
+
+#. module: l10n_ES_extractos_bancarios
 #: constraint:ir.ui.view:0
 msgid "Invalid XML for View Architecture!"
 msgstr "XML invàlid per a la definició de la vista!"
@@ -105,43 +126,7 @@ msgstr "XML invàlid per a la definició de la vista!"
 #. module: l10n_ES_extractos_bancarios
 #: help:l10n.es.extractos.concepto,code:0
 msgid "2 digits code of the concept defined in the file of C43 bank statements"
-msgstr ""
-"Codi de 2 dígits del concepte definit al fitxer d'extractes bancaris C43"
-
-#. module: l10n_ES_extractos_bancarios
-#: model:ir.module.module,description:l10n_ES_extractos_bancarios.module_meta_information
-msgid ""
-"Módulo para la importación de extractos bancarios según la norma C43 de la "
-"Asociación Española de la Banca.\n"
-"\n"
-"Añade un asistente a los extractos bancarios para realizar la importación. "
-"El fichero importado queda como fichero adjunto al extracto en cuestión.\n"
-"Permite definir las cuentas contables por defecto que se asociarán a los "
-"conceptos definidos en los fichero de extractos bancarios C43.\n"
-"\n"
-"La búsqueda de la empresa se hace a partir de:\n"
-"    1) La referencia2 del registro del extracto que acostumbra a ser la "
-"referencia de la operación que da la empresa. Se busca un apunte no "
-"conciliado con la misma referencia.\n"
-"    2) El CIF/NIF que se encuentra en:\n"
-"      - Los 9 primeros caracteres de l['referencia1'] del registro del "
-"extracto (Banc Sabadell)\n"
-"      - Los 9 primeros caracteres de l['conceptos'] del registro del "
-"extracto (La Caixa)\n"
-"      - Los caracteres [21:30] de l['conceptos'] (Caja Rural del Jalón)\n"
-"      - Si otros bancos o cajas guardan el CIF en otro lugar contactar con "
-"el autor/equipo de localización para poderlo añadir o implementar una forma "
-"flexible de definirlo.\n"
-"    3) Búsqueda en los apuntes no conciliados por importe\n"
-"Si no se encuentra la empresa se asigna la cuenta contable que se haya "
-"definido por defecto para el concepto de ese registro.\n"
-"\n"
-"Elimina el precálculo del importe de la línea del extracto bancario cuando "
-"se modifica la empresa (ya que los importes importados ya son los "
-"correctos)\n"
-"\n"
-"El módulo añade un asistente en Gestión financiera/Configuración/Extractos bancarios C43 para la importación de los conceptos de extractos que se debe ejecutar una vez creado el plan de cuentas con el asistente correspondiente y con el módulo l10n_chart_ES previamente instalado.\n"
-msgstr ""
+msgstr "Codi de 2 dígits del concepte definit al fitxer d'extractes bancaris C43"
 
 #. module: l10n_ES_extractos_bancarios
 #: field:l10n.es.extractos.concepto,name:0
@@ -150,12 +135,8 @@ msgstr "Nom concepte"
 
 #. module: l10n_ES_extractos_bancarios
 #: view:l10n.es.extractos.import.wizard:0
-msgid ""
-"This wizard will import default concepts related to standard accounts of "
-"spanish charts."
-msgstr ""
-"Aquest assistent importarà els conceptes per defecte relacionats amb els "
-"comptes comptables estàndards del pla de comptes espanyol."
+msgid "This wizard will import default concepts related to standard accounts of spanish charts."
+msgstr "Aquest assistent importarà els conceptes per defecte relacionats amb els comptes comptables estàndards del pla de comptes espanyol."
 
 #. module: l10n_ES_extractos_bancarios
 #: view:l10n.es.extractos.import.wizard:0
@@ -184,56 +165,46 @@ msgstr "Importa ext. bancari"
 #~ msgstr ""
 #~ "Importi saldo final = (saldo inicial + haver - deure) no coincideix amb "
 #~ "el definit en el registre final de compte."
-
 #~ msgid ""
 #~ "Number of debit records does not agree with the defined in the last "
 #~ "record of account."
 #~ msgstr ""
 #~ "Nombre de registres deure no coincideix amb el definit en el registre "
 #~ "final de compte."
-
 #~ msgid ""
 #~ "Number of credit records does not agree with the defined in the last "
 #~ "record of account."
 #~ msgstr ""
 #~ "Nombre de registres haver no coincideix amb el definit en el registre "
 #~ "final de compte."
-
 #~ msgid "Error in C43 file"
 #~ msgstr "Error al fitxer C43"
-
 #~ msgid "A default account has not been defined for the C43 concept "
 #~ msgstr ""
 #~ "No s'ha definit un compte comptable per defecte per al concepte C43 "
-
 #~ msgid ""
 #~ "Debit amount does not agree with the defined in the last record of "
 #~ "account."
 #~ msgstr ""
 #~ "Import deure no coincideix amb el definit en el registre final de compte."
-
 #~ msgid ""
 #~ "Number of records does not agree with the defined in the last record."
 #~ msgstr ""
 #~ "Nombre de registres no coincideix amb el definit en el registre final de "
 #~ "fitxer."
-
 #~ msgid "Not valid record type."
 #~ msgstr "Tipus de registre no vàlid."
-
 #~ msgid "Error"
 #~ msgstr "Error"
-
 #~ msgid ""
 #~ "Credit amount does not agree with the defined in the last record of "
 #~ "account."
 #~ msgstr ""
 #~ "Import haver no coincideix amb el definit en el registre final de compte."
-
 #~ msgid ""
 #~ "The bank statement is alredy confirmed. It can not be imported from file."
 #~ msgstr ""
 #~ "L'extracte bancari ja està confirmat. No es pot importar des de fitxer."
-
 #~ msgid "Fichero extracto"
 #~ msgstr "Fitxer extracte"
+

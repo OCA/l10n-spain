@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.0\n"
+"Project-Id-Version: OpenERP Server 5.0.7\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2009-05-25 07:50:45+0000\n"
-"PO-Revision-Date: 2009-05-25 07:50:45+0000\n"
+"POT-Creation-Date: 2010-02-09 19:28:50+0000\n"
+"PO-Revision-Date: 2010-02-09 19:28:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -73,6 +73,11 @@ msgid "C43 default accounts"
 msgstr ""
 
 #. module: l10n_ES_extractos_bancarios
+#: field:l10n.es.extractos.concepto,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: l10n_ES_extractos_bancarios
 #: model:ir.model,name:l10n_ES_extractos_bancarios.model_l10n_es_extractos_concepto
 msgid "C43 codes"
 msgstr ""
@@ -86,16 +91,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:l10n_ES_extractos_bancarios.action_extractos_import_wizard
 #: model:ir.ui.menu,name:l10n_ES_extractos_bancarios.menu_import_wizard
 msgid "Import Statement Concepts Wizard"
-msgstr ""
-
-#. module: l10n_ES_extractos_bancarios
-#: constraint:ir.ui.view:0
-msgid "Invalid XML for View Architecture!"
-msgstr ""
-
-#. module: l10n_ES_extractos_bancarios
-#: help:l10n.es.extractos.concepto,code:0
-msgid "2 digits code of the concept defined in the file of C43 bank statements"
 msgstr ""
 
 #. module: l10n_ES_extractos_bancarios
@@ -119,6 +114,16 @@ msgid "Módulo para la importación de extractos bancarios según la norma C43 d
 "\n"
 "El módulo añade un asistente en Gestión financiera/Configuración/Extractos bancarios C43 para la importación de los conceptos de extractos que se debe ejecutar una vez creado el plan de cuentas con el asistente correspondiente y con el módulo l10n_chart_ES previamente instalado.\n"
 ""
+msgstr ""
+
+#. module: l10n_ES_extractos_bancarios
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr ""
+
+#. module: l10n_ES_extractos_bancarios
+#: help:l10n.es.extractos.concepto,code:0
+msgid "2 digits code of the concept defined in the file of C43 bank statements"
 msgstr ""
 
 #. module: l10n_ES_extractos_bancarios

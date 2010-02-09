@@ -24,6 +24,7 @@
 from osv import osv,fields
 import tools
 import os
+from tools.translate import _
 
 class l10n_es_extractos_import_wizard(osv.osv_memory):
     _name = 'l10n.es.extractos.import.wizard'
@@ -47,7 +48,19 @@ class l10n_es_extractos_concepto(osv.osv):
         'code': fields.char('Concept code', size=2, select=True, required=True, help='2 digits code of the concept defined in the file of C43 bank statements'),
         'name': fields.char('Concept name', size=64, select=True, required=True),
         'account_id': fields.many2one('account.account', 'Account associated to the concept', domain=[('type','<>','view'), ('type', '<>', 'closed')], select=True, required=True, help='Default account to be associated with the concept when the file of C43 bank statements is imported'),
-        }
+        'company_id': fields.many2one('res.company', 'Company', required=True),
+    }
+
+    def _default_company(self, cr, uid, context={}):
+        user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
+        if user.company_id:
+            return user.company_id.id
+        return self.pool.get('res.company').search(cr, uid, [('parent_id', '=', False)])[0]
+
+    _defaults = {
+        'company_id': _default_company,
+    }
+
 l10n_es_extractos_concepto()
 
 

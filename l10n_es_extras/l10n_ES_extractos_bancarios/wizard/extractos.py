@@ -27,6 +27,7 @@ import base64
 import time
 import re
 from tools import mod10r
+from tools.translate import _
 import netsvc
 logger = netsvc.Logger()
 
@@ -72,7 +73,7 @@ def _importar(obj, cursor, user, data, context):
     except Exception, e: # Si no puede convertir a UTF-8 es que debe estar en ISO-8859-1: Lo convertimos
         file2 = unicode(file2, 'iso-8859-1').encode('utf-8')
         #print e
-        #raise wizard.except_wizard('Error !', 'Archivo a importar codificado en ISO-8859-1')
+        #raise wizard.except_wizard(_('Error !'), _('Archivo a importar codificado en ISO-8859-1'))
 
     for line in file2.split("\n"):
         if len(line) == 0:
