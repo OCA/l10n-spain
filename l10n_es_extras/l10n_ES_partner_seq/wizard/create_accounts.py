@@ -125,12 +125,12 @@ class create_accounts(wizard.interface):
                 if partner.customer:
                     len_ref = data['form']['number_digits'] - len(data['form']['parent_receivable']) # longitud del código que aprovechamos
                     if len_ref > 0:
-                        link_account(ref[-len_ref:], data['form']['parent_receivable'], 'receivable', acc_user_type_rec, 'property_account_receivable')
+                        link_account(ref[-len_ref:].zfill(len_ref), data['form']['parent_receivable'], 'receivable', acc_user_type_rec, 'property_account_receivable')
 
                 if partner.supplier:
                     len_ref = data['form']['number_digits'] - len(data['form']['parent_payable']) # longitud del código que aprovechamos
                     if len_ref > 0:
-                        link_account(ref[-len_ref:], data['form']['parent_payable'], 'payable', acc_user_type_pay, 'property_account_payable')
+                        link_account(ref[-len_ref:].zfill(len_ref), data['form']['parent_payable'], 'payable', acc_user_type_pay, 'property_account_payable')
         return {}
 
 
