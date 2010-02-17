@@ -113,6 +113,7 @@ class config_ES_toponyms(osv.osv_memory):
                     res= self._recover_zipcodes(cr, uid, context)
                     #print res
         cr.commit()
+	cr.close()
         return {}
 
 
