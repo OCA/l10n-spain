@@ -9,6 +9,7 @@
         Impuestos IRPF se les ha asignado el grupo others (Otros) en lugar del grupo vat (IVA) por defecto
 
       Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com (2010-02-18)
+   		Añadido IRPF 2% (act. agrícolas, ganaderas, forestales), 19% y 21% (antiguo 18%)
 		Novedad 2010: Los rendimientos derivados de rentas de capital mobiliario o inmobiliario, el tipo base de retención pasa del 18% al 19% para los primeros 6000 EUR y al 21% a partir de los 6000 EUR.
      -->
 		
@@ -1468,6 +1469,7 @@
 		- Novedad 2010: Los rendimientos derivados de rentas de capital mobiliario o inmobiliario, el tipo base de retención pasa del 18% al 19% para los primeros 6000 EUR y al 21% a partir de los 6000 EUR.
 		- Tipo general de retención IRPF al 18%. Se aplica a rendimientos por arrendamientos de inmuebles urbanos y ganancias patrimoniales sometidas a retención.
 		- Rendimientos de actividades profesionales: 15% (tipo general) y 7% (tipo especial reducido por inicio de actividad)
+		- Rendimientos de actividades agrícolas, ganaderas, forestales: 2%
 		- Retención del 1% a aplicar en el pago de rendimientos a empresarios en módulos.-->
 		
 		<!-- RETENCIONES DE IRPF: Hacienda pública, acreedora por retenciones practicadas a proveedores -->
@@ -1485,6 +1487,14 @@
 			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones practicadas Base Imponible 1%</field>
 			<field name="code">B.IRPF1</field>
+			<field name="parent_id" ref="irpf_base"/>
+			<field name="sign">1.0</field>
+		</record>
+		
+		<record id="irpf_base_2" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="name">IRPF Retenciones practicadas Base Imponible 2%</field>
+			<field name="code">B.IRPF2</field>
 			<field name="parent_id" ref="irpf_base"/>
 			<field name="sign">1.0</field>
 		</record>
@@ -1546,6 +1556,14 @@
 			<field name="sign">1.0</field>
 		</record>
 		
+		<record id="irpf_cuota_2" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="name">IRPF Retenciones practicadas Cuota 2%</field>
+			<field name="code">IRPF2</field>
+			<field name="parent_id" ref="irpf_cuota_total"/>
+			<field name="sign">1.0</field>
+		</record>
+		
 		<record id="irpf_cuota_7" model="account.tax.code.template">
 			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones practicadas Cuota 7%</field>
@@ -1597,6 +1615,16 @@
 			<field name="user_type" ref="tax"/>
 		</record>
 		
+		<record id="pgc_475102" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="code">475102</field>
+			<field name="reconcile" eval="True"/>
+			<field name="parent_id" ref="pgc_4751"/>
+			<field name="type">other</field>
+			<field name="name">Hacienda Pública. Retenciones act. agrícolas, ganaderas, forestales 2%</field>
+			<field name="user_type" ref="tax"/>
+		</record>
+		
 		<record id="pgc_475107" model="account.account.template">
 			<field name="template_name">PGCE 2008</field>
 			<field name="code">475107</field>
@@ -1623,7 +1651,7 @@
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_4751"/>
 			<field name="type">other</field>
-			<field name="name">Hacienda Pública. Retenciones arrendamientos 18%</field>
+			<field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 18%</field>
 			<field name="user_type" ref="tax"/>
 		</record>
 		
@@ -1633,7 +1661,7 @@
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_4751"/>
 			<field name="type">other</field>
-			<field name="name">Hacienda Pública. Retenciones cap. mobiliario 19%</field>
+			<field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 19%</field>
 			<field name="user_type" ref="tax"/>
 		</record>
 		
@@ -1643,7 +1671,7 @@
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_4751"/>
 			<field name="type">other</field>
-			<field name="name">Hacienda Pública. Retenciones cap. mobiliario 21%</field>
+			<field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 21%</field>
 			<field name="user_type" ref="tax"/>
 		</record>
 		
@@ -1660,6 +1688,26 @@
 			<field name="tax_code_id" ref="irpf_cuota_1"/>
 			<field name="ref_base_code_id" ref="irpf_base_1"/>
 			<field name="ref_tax_code_id" ref="irpf_cuota_1"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
+			<field name="type_tax_use">purchase</field>
+			<field name="tax_group">other</field>
+		</record>
+		
+		<record id="irpf_2" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="chart_template_id" ref="l10nES_chart_template"/>
+			<field name="name">Retenciones IRPF 2%</field>
+			<field eval="-0.02" name="amount"/>
+			<field name="type">percent</field>
+			<field name="account_collected_id" ref="pgc_475102"/>
+			<field name="account_paid_id" ref="pgc_475102"/>
+			<field name="base_code_id" ref="irpf_base_2"/>
+			<field name="tax_code_id" ref="irpf_cuota_2"/>
+			<field name="ref_base_code_id" ref="irpf_base_2"/>
+			<field name="ref_tax_code_id" ref="irpf_cuota_2"/>
 			<field eval="1.0" name="tax_sign"/>
 			<field eval="1.0" name="base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
@@ -1787,6 +1835,14 @@
 			<field name="sign">1.0</field>
 		</record>
 		
+		<record id="irpf_base_sale_2" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="name">IRPF Retenciones a cuenta Base Imponible 2%</field>
+			<field name="code">B.IRPF2 AC</field>
+			<field name="parent_id" ref="irpf_base_sale"/>
+			<field name="sign">1.0</field>
+		</record>
+		
 		<record id="irpf_base_sale_7" model="account.tax.code.template">
 			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones a cuenta Base Imponible 7%</field>
@@ -1844,6 +1900,14 @@
 			<field name="sign">1.0</field>
 		</record>
 		
+		<record id="irpf_cuota_sale_2" model="account.tax.code.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="name">IRPF Retenciones a cuenta Cuota 2%</field>
+			<field name="code">IRPF2 AC</field>
+			<field name="parent_id" ref="irpf_cuota_sale_total"/>
+			<field name="sign">1.0</field>
+		</record>
+		
 		<record id="irpf_cuota_sale_7" model="account.tax.code.template">
 			<field name="template_name">PGCE 2008</field>
 			<field name="name">IRPF Retenciones a cuenta Cuota 7%</field>
@@ -1895,6 +1959,16 @@
 			<field name="user_type" ref="tax"/>
 		</record>
 		
+		<record id="pgc_473002" model="account.account.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="code">473002</field>
+			<field name="reconcile" eval="True"/>
+			<field name="parent_id" ref="pgc_473"/>
+			<field name="type">other</field>
+			<field name="name">Hacienda Pública. Retenciones a cuenta act. agrícolas, ganaderas, forestales 2%</field>
+			<field name="user_type" ref="tax"/>
+		</record>
+
 		<record id="pgc_473007" model="account.account.template">
 			<field name="template_name">PGCE 2008</field>
 			<field name="code">473007</field>
@@ -1921,7 +1995,7 @@
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_473"/>
 			<field name="type">other</field>
-			<field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos 18%</field>
+			<field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 18%</field>
 			<field name="user_type" ref="tax"/>
 		</record>
 		
@@ -1931,7 +2005,7 @@
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_473"/>
 			<field name="type">other</field>
-			<field name="name">Hacienda Pública. Retenciones a cuenta cap. mobiliario 19%</field>
+			<field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 19%</field>
 			<field name="user_type" ref="tax"/>
 		</record>
 		
@@ -1941,7 +2015,7 @@
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_473"/>
 			<field name="type">other</field>
-			<field name="name">Hacienda Pública. Retenciones a cuenta cap. mobiliario 21%</field>
+			<field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 21%</field>
 			<field name="user_type" ref="tax"/>
 		</record>
 		
@@ -1958,6 +2032,26 @@
 			<field name="tax_code_id" ref="irpf_cuota_sale_1"/>
 			<field name="ref_base_code_id" ref="irpf_base_sale_1"/>
 			<field name="ref_tax_code_id" ref="irpf_cuota_sale_1"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
+			<field name="type_tax_use">sale</field>
+			<field name="tax_group">other</field>
+		</record>
+		
+		<record id="irpf_sale_2" model="account.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="chart_template_id" ref="l10nES_chart_template"/>
+			<field name="name">Retenciones a cuenta IRPF 2%</field>
+			<field eval="-0.02" name="amount"/>
+			<field name="type">percent</field>
+			<field name="account_collected_id" ref="pgc_473002"/>
+			<field name="account_paid_id" ref="pgc_473002"/>
+			<field name="base_code_id" ref="irpf_base_sale_2"/>
+			<field name="tax_code_id" ref="irpf_cuota_sale_2"/>
+			<field name="ref_base_code_id" ref="irpf_base_sale_2"/>
+			<field name="ref_tax_code_id" ref="irpf_cuota_sale_2"/>
 			<field eval="1.0" name="tax_sign"/>
 			<field eval="1.0" name="base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>

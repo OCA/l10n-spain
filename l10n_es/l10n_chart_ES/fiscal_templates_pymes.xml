@@ -36,7 +36,9 @@
         referencias incorrectas:
             iva_* => iva_pymes_*
             irpf_* => irpf_pymes_*
-      -->
+
+         Añadidas posiciones fiscales Retención de IRPF 19%, 2% :
+           Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com 2010-02-18 -->
 
 	<!-- Fiscal Position Templates -->
 	<record id="fp_pymes_nacional" model="account.fiscal.position.template">
@@ -63,6 +65,12 @@
 			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
 	</record>
 
+	<record id="fp_pymes_irpf19" model="account.fiscal.position.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="name">Retención IRPF 19%</field>
+			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+	</record>
+
 	<record id="fp_pymes_irpf18" model="account.fiscal.position.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="name">Retención IRPF 18%</field>
@@ -78,6 +86,12 @@
 	<record id="fp_pymes_irpf7" model="account.fiscal.position.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="name">Retención IRPF 7%</field>
+			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+	</record>
+
+	<record id="fp_pymes_irpf2" model="account.fiscal.position.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="name">Retención IRPF 2%</field>
 			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
 	</record>
 
@@ -346,6 +360,92 @@
 	</record>
 
 
+	<!-- Retenciones IRPF 19% fiscal.position.tax.template-->
+
+	<record id="fptt_pymes_irpf19sale_16" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf19" />
+			<field name="tax_src_id" ref="iva_pymes_rep_16" />
+			<field name="tax_dest_id" ref="iva_pymes_rep_16" />
+	</record>
+
+	<record id="fptt_pymes_irpf19sale_16_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf19" />
+			<field name="tax_src_id" ref="iva_pymes_rep_16" />
+			<field name="tax_dest_id" ref="irpf_pymes_sale_19" />
+	</record>
+
+	<record id="fptt_pymes_irpf19sale_7" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf19" />
+			<field name="tax_src_id" ref="iva_pymes_rep_7" />
+			<field name="tax_dest_id" ref="iva_pymes_rep_7" />
+	</record>
+
+	<record id="fptt_pymes_irpf19sale_7_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf19" />
+			<field name="tax_src_id" ref="iva_pymes_rep_7" />
+			<field name="tax_dest_id" ref="irpf_pymes_sale_19" />
+	</record>
+
+	<record id="fptt_pymes_irpf19sale_4" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf19" />
+			<field name="tax_src_id" ref="iva_pymes_rep_4" />
+			<field name="tax_dest_id" ref="iva_pymes_rep_4" />
+	</record>
+
+	<record id="fptt_pymes_irpf19sale_4_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf19" />
+			<field name="tax_src_id" ref="iva_pymes_rep_4" />
+			<field name="tax_dest_id" ref="irpf_pymes_sale_19" />
+	</record>
+
+	<record id="fptt_pymes_irpf19_16" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf19" />
+			<field name="tax_src_id" ref="iva_pymes_sop_16" />
+			<field name="tax_dest_id" ref="iva_pymes_sop_16" />
+	</record>
+
+	<record id="fptt_pymes_irpf19_16_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf19" />
+			<field name="tax_src_id" ref="iva_pymes_sop_16" />
+			<field name="tax_dest_id" ref="irpf_pymes_19" />
+	</record>
+
+	<record id="fptt_pymes_irpf19_7" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf19" />
+			<field name="tax_src_id" ref="iva_pymes_sop_7" />
+			<field name="tax_dest_id" ref="iva_pymes_sop_7" />
+	</record>
+
+	<record id="fptt_pymes_irpf19_7_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf19" />
+			<field name="tax_src_id" ref="iva_pymes_sop_7" />
+			<field name="tax_dest_id" ref="irpf_pymes_19" />
+	</record>
+
+	<record id="fptt_pymes_irpf19_4" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf19" />
+			<field name="tax_src_id" ref="iva_pymes_sop_4" />
+			<field name="tax_dest_id" ref="iva_pymes_sop_4" />
+	</record>
+
+	<record id="fptt_pymes_irpf19_4_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf19" />
+			<field name="tax_src_id" ref="iva_pymes_sop_4" />
+			<field name="tax_dest_id" ref="irpf_pymes_19" />
+	</record>
+
 	<!-- Retenciones IRPF 18% fiscal.position.tax.template-->
 
 	<record id="fptt_pymes_irpf18sale_16" model="account.fiscal.position.tax.template">
@@ -602,6 +702,92 @@
 			<field name="position_id" ref="fp_pymes_irpf7" />
 			<field name="tax_src_id" ref="iva_pymes_sop_4" />
 			<field name="tax_dest_id" ref="irpf_pymes_7" />
+	</record>
+
+	<!-- Retenciones IRPF 2% fiscal.position.tax.template-->
+
+	<record id="fptt_pymes_irpf2sale_16" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf2" />
+			<field name="tax_src_id" ref="iva_pymes_rep_16" />
+			<field name="tax_dest_id" ref="iva_pymes_rep_16" />
+	</record>
+
+	<record id="fptt_pymes_irpf2sale_16_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf2" />
+			<field name="tax_src_id" ref="iva_pymes_rep_16" />
+			<field name="tax_dest_id" ref="irpf_pymes_sale_2" />
+	</record>
+
+	<record id="fptt_pymes_irpf2sale_7" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf2" />
+			<field name="tax_src_id" ref="iva_pymes_rep_7" />
+			<field name="tax_dest_id" ref="iva_pymes_rep_7" />
+	</record>
+
+	<record id="fptt_pymes_irpf2sale_7_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf2" />
+			<field name="tax_src_id" ref="iva_pymes_rep_7" />
+			<field name="tax_dest_id" ref="irpf_pymes_sale_2" />
+	</record>
+
+	<record id="fptt_pymes_irpf2sale_4" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf2" />
+			<field name="tax_src_id" ref="iva_pymes_rep_4" />
+			<field name="tax_dest_id" ref="iva_pymes_rep_4" />
+	</record>
+
+	<record id="fptt_pymes_irpf2sale_4_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf2" />
+			<field name="tax_src_id" ref="iva_pymes_rep_4" />
+			<field name="tax_dest_id" ref="irpf_pymes_sale_2" />
+	</record>
+
+	<record id="fptt_pymes_irpf2_16" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf2" />
+			<field name="tax_src_id" ref="iva_pymes_sop_16" />
+			<field name="tax_dest_id" ref="iva_pymes_sop_16" />
+	</record>
+
+	<record id="fptt_pymes_irpf2_16_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf2" />
+			<field name="tax_src_id" ref="iva_pymes_sop_16" />
+			<field name="tax_dest_id" ref="irpf_pymes_2" />
+	</record>
+
+	<record id="fptt_pymes_irpf2_7" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf2" />
+			<field name="tax_src_id" ref="iva_pymes_sop_7" />
+			<field name="tax_dest_id" ref="iva_pymes_sop_7" />
+	</record>
+
+	<record id="fptt_pymes_irpf2_7_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf2" />
+			<field name="tax_src_id" ref="iva_pymes_sop_7" />
+			<field name="tax_dest_id" ref="irpf_pymes_2" />
+	</record>
+
+	<record id="fptt_pymes_irpf2_4" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf2" />
+			<field name="tax_src_id" ref="iva_pymes_sop_4" />
+			<field name="tax_dest_id" ref="iva_pymes_sop_4" />
+	</record>
+
+	<record id="fptt_pymes_irpf2_4_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="position_id" ref="fp_pymes_irpf2" />
+			<field name="tax_src_id" ref="iva_pymes_sop_4" />
+			<field name="tax_dest_id" ref="irpf_pymes_2" />
 	</record>
 
 	<!-- Retenciones IRPF 1% fiscal.position.tax.template-->
