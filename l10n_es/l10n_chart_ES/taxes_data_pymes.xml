@@ -26,6 +26,9 @@
 
       Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com (2009-11-28)
         Impuestos IRPF se les ha asignado el grupo others (Otros) en lugar del grupo vat (IVA) por defecto
+
+      Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com (2010-02-18)
+		Novedad 2010: Los rendimientos derivados de rentas de capital mobiliario o inmobiliario, el tipo base de retención pasa del 18% al 19% para los primeros 6000 EUR y al 21% a partir de los 6000 EUR.
       -->
 
 		<!-- Definición de IVA y retenciones, códigos de impuestos y cuentas contables adicionales -->
@@ -1415,7 +1418,8 @@
 		
 		<!-- RETENCIONES DE IRPF -->
 		<!--
-		- Tipo general de retención IRPF al 18%. Se aplica a rendimientos por arrendamientos de inmuebles urbanos, capital mobiliario y ganancias patrimoniales sometidas a retención.
+		- Novedad 2010: Los rendimientos derivados de rentas de capital mobiliario o inmobiliario, el tipo base de retención pasa del 18% al 19% para los primeros 6000 EUR y al 21% a partir de los 6000 EUR.
+		- Tipo general de retención IRPF al 18%. Se aplica a rendimientos por arrendamientos de inmuebles urbanos y ganancias patrimoniales sometidas a retención.
 		- Rendimientos de actividades profesionales: 15% (tipo general) y 7% (tipo especial reducido por inicio de actividad)
 		- Retención del 1% a aplicar en el pago de rendimientos a empresarios en módulos.-->
 		
@@ -1462,6 +1466,22 @@
 			<field name="sign">1.0</field>
 		</record>
 		
+		<record id="irpf_pymes_base_19" model="account.tax.code.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="name">IRPF Retenciones practicadas Base Imponible 19%</field>
+			<field name="code">B.IRPF19</field>
+			<field name="parent_id" ref="irpf_pymes_base"/>
+			<field name="sign">1.0</field>
+		</record>
+		
+		<record id="irpf_pymes_base_21" model="account.tax.code.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="name">IRPF Retenciones practicadas Base Imponible 21%</field>
+			<field name="code">B.IRPF21</field>
+			<field name="parent_id" ref="irpf_pymes_base"/>
+			<field name="sign">1.0</field>
+		</record>
+		
 		<!--Cuotas-->
 		<record id="irpf_pymes_cuota_total" model="account.tax.code.template">
 			<field name="template_name">PGCE PYMES</field>
@@ -1503,6 +1523,22 @@
 			<field name="sign">1.0</field>
 		</record>
 		
+		<record id="irpf_pymes_cuota_19" model="account.tax.code.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="name">IRPF Retenciones practicadas Cuota 19%</field>
+			<field name="code">IRPF19</field>
+			<field name="parent_id" ref="irpf_pymes_cuota_total"/>
+			<field name="sign">1.0</field>
+		</record>
+		
+		<record id="irpf_pymes_cuota_21" model="account.tax.code.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="name">IRPF Retenciones practicadas Cuota 21%</field>
+			<field name="code">IRPF21</field>
+			<field name="parent_id" ref="irpf_pymes_cuota_total"/>
+			<field name="sign">1.0</field>
+		</record>
+		
 		<!--Cuentas para Retenciones-->
 		<record id="pgc_pymes_475101" model="account.account.template">
 			<field name="template_name">PGCE PYMES</field>
@@ -1540,7 +1576,27 @@
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_pymes_4751"/>
 			<field name="type">other</field>
-			<field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 18%</field>
+			<field name="name">Hacienda Pública. Retenciones arrendamientos 18%</field>
+			<field name="user_type" ref="tax"/>
+		</record>
+		
+		<record id="pgc_pymes_475119" model="account.account.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="code">475119</field>
+			<field name="reconcile" eval="True"/>
+			<field name="parent_id" ref="pgc_pymes_4751"/>
+			<field name="type">other</field>
+			<field name="name">Hacienda Pública. Retenciones cap. mobiliario 19%</field>
+			<field name="user_type" ref="tax"/>
+		</record>
+		
+		<record id="pgc_pymes_475121" model="account.account.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="code">475121</field>
+			<field name="reconcile" eval="True"/>
+			<field name="parent_id" ref="pgc_pymes_4751"/>
+			<field name="type">other</field>
+			<field name="name">Hacienda Pública. Retenciones cap. mobiliario 21%</field>
 			<field name="user_type" ref="tax"/>
 		</record>
 		
@@ -1624,6 +1680,46 @@
 			<field name="type_tax_use">purchase</field>
 			<field name="tax_group">other</field>
 		</record>
+				
+		<record id="irpf_pymes_19" model="account.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+			<field name="name">Retenciones IRPF 19%</field>
+			<field eval="-0.19" name="amount"/>
+			<field name="type">percent</field>
+			<field name="account_collected_id" ref="pgc_pymes_475119"/>
+			<field name="account_paid_id" ref="pgc_pymes_475119"/>
+			<field name="base_code_id" ref="irpf_pymes_base_19"/>
+			<field name="tax_code_id" ref="irpf_pymes_cuota_19"/>
+			<field name="ref_base_code_id" ref="irpf_pymes_base_19"/>
+			<field name="ref_tax_code_id" ref="irpf_pymes_cuota_19"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
+			<field name="type_tax_use">purchase</field>
+			<field name="tax_group">other</field>
+		</record>
+
+		<record id="irpf_pymes_21" model="account.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+			<field name="name">Retenciones IRPF 21%</field>
+			<field eval="-0.21" name="amount"/>
+			<field name="type">percent</field>
+			<field name="account_collected_id" ref="pgc_pymes_475121"/>
+			<field name="account_paid_id" ref="pgc_pymes_475121"/>
+			<field name="base_code_id" ref="irpf_pymes_base_21"/>
+			<field name="tax_code_id" ref="irpf_pymes_cuota_21"/>
+			<field name="ref_base_code_id" ref="irpf_pymes_base_21"/>
+			<field name="ref_tax_code_id" ref="irpf_pymes_cuota_21"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
+			<field name="type_tax_use">purchase</field>
+			<field name="tax_group">other</field>
+		</record>
 		
 		<!-- RETENCIONES DE IRPF: Hacienda pública, retenciones a cuenta como clientes -->
 		
@@ -1664,6 +1760,22 @@
 			<field name="template_name">PGCE PYMES</field>
 			<field name="name">IRPF Retenciones a cuenta Base Imponible 18%</field>
 			<field name="code">B.IRPF18 AC</field>
+			<field name="parent_id" ref="irpf_pymes_base_sale"/>
+			<field name="sign">1.0</field>
+		</record>
+		
+		<record id="irpf_pymes_base_sale_19" model="account.tax.code.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="name">IRPF Retenciones a cuenta Base Imponible 19%</field>
+			<field name="code">B.IRPF19 AC</field>
+			<field name="parent_id" ref="irpf_pymes_base_sale"/>
+			<field name="sign">1.0</field>
+		</record>
+		
+		<record id="irpf_pymes_base_sale_21" model="account.tax.code.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="name">IRPF Retenciones a cuenta Base Imponible 21%</field>
+			<field name="code">B.IRPF21 AC</field>
 			<field name="parent_id" ref="irpf_pymes_base_sale"/>
 			<field name="sign">1.0</field>
 		</record>
@@ -1709,6 +1821,22 @@
 			<field name="sign">1.0</field>
 		</record>
 		
+		<record id="irpf_pymes_cuota_sale_19" model="account.tax.code.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="name">IRPF Retenciones a cuenta Cuota 19%</field>
+			<field name="code">IRPF19 AC</field>
+			<field name="parent_id" ref="irpf_pymes_cuota_sale_total"/>
+			<field name="sign">1.0</field>
+		</record>
+		
+		<record id="irpf_pymes_cuota_sale_21" model="account.tax.code.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="name">IRPF Retenciones a cuenta Cuota 21%</field>
+			<field name="code">IRPF21 AC</field>
+			<field name="parent_id" ref="irpf_pymes_cuota_sale_total"/>
+			<field name="sign">1.0</field>
+		</record>
+		
 		<!--Cuentas para Retenciones-->
 		<record id="pgc_pymes_473001" model="account.account.template">
 			<field name="template_name">PGCE PYMES</field>
@@ -1746,7 +1874,27 @@
 			<field name="reconcile" eval="True"/>
 			<field name="parent_id" ref="pgc_pymes_473"/>
 			<field name="type">other</field>
-			<field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 18%</field>
+			<field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos 18%</field>
+			<field name="user_type" ref="tax"/>
+		</record>
+		
+		<record id="pgc_pymes_473019" model="account.account.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="code">473019</field>
+			<field name="reconcile" eval="True"/>
+			<field name="parent_id" ref="pgc_pymes_473"/>
+			<field name="type">other</field>
+			<field name="name">Hacienda Pública. Retenciones a cuenta cap. mobiliario 19%</field>
+			<field name="user_type" ref="tax"/>
+		</record>
+		
+		<record id="pgc_pymes_473021" model="account.account.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="code">473021</field>
+			<field name="reconcile" eval="True"/>
+			<field name="parent_id" ref="pgc_pymes_473"/>
+			<field name="type">other</field>
+			<field name="name">Hacienda Pública. Retenciones a cuenta cap. mobiliario 21%</field>
 			<field name="user_type" ref="tax"/>
 		</record>
 		
@@ -1823,6 +1971,46 @@
 			<field name="tax_code_id" ref="irpf_pymes_cuota_sale_18"/>
 			<field name="ref_base_code_id" ref="irpf_pymes_base_sale_18"/>
 			<field name="ref_tax_code_id" ref="irpf_pymes_cuota_sale_18"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
+			<field name="type_tax_use">sale</field>
+			<field name="tax_group">other</field>
+		</record>
+		
+		<record id="irpf_pymes_sale_19" model="account.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+			<field name="name">Retenciones a cuenta IRPF 19%</field>
+			<field eval="-0.19" name="amount"/>
+			<field name="type">percent</field>
+			<field name="account_collected_id" ref="pgc_pymes_473019"/>
+			<field name="account_paid_id" ref="pgc_pymes_473019"/>
+			<field name="base_code_id" ref="irpf_pymes_base_sale_19"/>
+			<field name="tax_code_id" ref="irpf_pymes_cuota_sale_19"/>
+			<field name="ref_base_code_id" ref="irpf_pymes_base_sale_19"/>
+			<field name="ref_tax_code_id" ref="irpf_pymes_cuota_sale_19"/>
+			<field eval="1.0" name="tax_sign"/>
+			<field eval="1.0" name="base_sign"/>
+			<field eval="-1.0" name="ref_tax_sign"/>
+			<field eval="-1.0" name="ref_base_sign"/>
+			<field name="type_tax_use">sale</field>
+			<field name="tax_group">other</field>
+		</record>
+		
+		<record id="irpf_pymes_sale_21" model="account.tax.template">
+			<field name="template_name">PGCE PYMES</field>
+			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+			<field name="name">Retenciones a cuenta IRPF 21%</field>
+			<field eval="-0.21" name="amount"/>
+			<field name="type">percent</field>
+			<field name="account_collected_id" ref="pgc_pymes_473021"/>
+			<field name="account_paid_id" ref="pgc_pymes_473021"/>
+			<field name="base_code_id" ref="irpf_pymes_base_sale_21"/>
+			<field name="tax_code_id" ref="irpf_pymes_cuota_sale_21"/>
+			<field name="ref_base_code_id" ref="irpf_pymes_base_sale_21"/>
+			<field name="ref_tax_code_id" ref="irpf_pymes_cuota_sale_21"/>
 			<field eval="1.0" name="tax_sign"/>
 			<field eval="1.0" name="base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
