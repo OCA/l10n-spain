@@ -31,12 +31,21 @@ import threading
 class config_ES_toponyms(osv.osv_memory):
     _name='config.ES.toponyms'
 
-    def _city_module(self, cr, uid, context={}):
+    def _city_module_default(self, cr, uid, context=None):
         cr.execute('select * from ir_module_module where name=%s and state=%s', ('city','installed'))
         if cr.fetchone():
             return 'installed'
         else:
             return 'uninstalled'
+
+    def _city_info_recover_default(self, cr, uid, context=None):
+        # City info can be selected if zip field exists in the database. That will happen only
+        # if module city wasn't installed by the initial profile.
+        cr.execute("select * from information_schema.columns where table_name='res_partner_address' and table_schema='public' and column_name='zip'")
+        if cr.fetchone():
+            return 'yes'
+        else:
+            return 'no'
 
     _columns = {
         'name':fields.char('Name', size=64),
@@ -48,18 +57,18 @@ class config_ES_toponyms(osv.osv_memory):
 
     _defaults={
         'state': lambda *args: 'official',
-        'city_module': _city_module,
+        'city_module': _city_module_default,
         'city_info': lambda *args: 'yes',
+        'city_info_recover': _city_info_recover_default,
     }
 
     def _onchange_city_info(self, cr, uid, ids, city_info, city_module):
         if city_module == 'uninstalled':
             v = {'city_info_recover': 'no'}
-        else:
-            if city_info == 'yes':
-                v = {'city_info_recover': 'yes'}
-            else:
-                v = {'city_info_recover': 'no'}
+        elif city_info == 'yes':
+            v = {
+                'city_info_recover': self._city_info_recover_default(cr, uid)
+            }
         return {'value':v}
 
 
@@ -98,7 +107,6 @@ class config_ES_toponyms(osv.osv_memory):
         # Import Spanish cities and zip codes (15000 zip codes can take several minutes)
         db, pool = pooler.get_db_and_pool(db_name)
         cr = db.cursor()
-
         if res['city_module'] == 'uninstalled': # city module no installed
             self._create_defaults(cr, uid, context)
         else:                                   # city module installed
