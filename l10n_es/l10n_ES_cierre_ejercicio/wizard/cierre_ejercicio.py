@@ -52,7 +52,7 @@ _transaction_form = '''<?xml version="1.0"?>
 </form>'''
 
 _transaction_fields = {
-    'ejercicio_cierre_id': {'string':'Fical year to close', 'type':'many2one', 'relation': 'account.fiscalyear','required':True, 'domain':[('state','=','draft')]},
+    'ejercicio_cierre_id': {'string':'Fiscal year to close', 'type':'many2one', 'relation': 'account.fiscalyear','required':True, 'domain':[('state','=','draft')]},
     'ejercicio_apertura_id': {'string':'Fiscal year to open', 'type':'many2one', 'relation': 'account.fiscalyear', 'domain':[('state','=','draft')], 'required':True},
     'asiento_pyg': {'string':'Create Loss & Profit entry', 'type':'boolean', 'required':True, 'default': lambda *a:True},
     'desc_asiento_pyg': {'string':'Loss & Profit entry description', 'type':'char', 'size': 64},
