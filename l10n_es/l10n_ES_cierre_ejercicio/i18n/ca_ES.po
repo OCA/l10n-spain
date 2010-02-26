@@ -1,34 +1,270 @@
 # Translation of OpenERP Server.
 # This file containt the translation of the following modules:
-#	* l10n_ES_partner_seq
+# 	* l10n_ES_partner_seq
 #
+# Albert Cervera i Areny <albert@nan-tic.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.0-rc1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2008-12-01 00:55:43+0000\n"
-"PO-Revision-Date: 2008-12-01 01:56+0100\n"
-"Last-Translator: Jordi Esteve <jesteve@zikzakmedia.com>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2010-02-26 18:02:45+0000\n"
+"PO-Revision-Date: 2010-02-26 19:03+0100\n"
+"Last-Translator: Albert Cervera i Areny <albert@nan-tic.com>\n"
+"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Lokalize 1.0\n"
 
-#. module: l10n_ES_partner_seq
-#: wizard_button:l10n_ES_partner_seq.create_accounts,init,end:0
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,periodo_cierre_id:0
+msgid "Closing period"
+msgstr "Període del tancament"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_view:l10n_ES.fiscalyear.close,init:0
+msgid "Financial closure"
+msgstr "Tancament comptable"
+
+#. module: l10n_ES_cierre_ejercicio
+#: model:ir.module.module,shortdesc:l10n_ES_cierre_ejercicio.module_meta_information
+msgid "Close Fiscal Year with Loss and Profit, Opening and Closing entries"
+msgstr ""
+"Tanca l'any fiscal amb els assentaments de pèrdues i guanys, obertura i "
+"tancament"
+
+#. module: l10n_ES_cierre_ejercicio
+#: model:ir.actions.wizard,name:l10n_ES_cierre_ejercicio.wizard_l10n_ES_fiscalyear_close
+#: model:ir.ui.menu,name:l10n_ES_cierre_ejercicio.menu_wizard_l10n_ES_fiscalyear_close
+msgid "Close Fiscal Year creating Loss and Profit, Opening and Closing "
+msgstr ""
+"Tanca l'any fiscal creant els assentaments de pèrdues i guanys, tancament i "
+"obertura"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,diario_apertura:0
+msgid "Opening journal"
+msgstr "Diari d'obertura"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,desc_asiento_pyg:0
+msgid "Loss & Profit entry description"
+msgstr "Descripció de l'assentament de pèrdues i guanys"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "Loss and Profit entry"
+msgstr "Assentament de pèrdues i guanys"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,ejercicio_apertura_id:0
+msgid "Fiscal year to open"
+msgstr "Any fiscal a obrir"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "If you are sure you want to close the fiscal year, check the box"
+msgstr "Marque-ho si esteu segur que voleu tancar l'any fiscal"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid ""
+"The journal for Closing entry must have default credit and debit account"
+msgstr ""
+"El diari de l'assentament de tancament ha de tenir comptes de deure i haver "
+"per defecte"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "Opening entry"
+msgstr "Assentament d'obertura"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "The journal for Closing entry must have centralised counterpart"
+msgstr ""
+"el diari de l'assentament de tancament ha de tenir la marca d'Homòleg "
+"Centralitzat"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,ejercicio_cierre_id:0
+msgid "Fiscal year to close"
+msgstr "Any fiscal a tancar"
+
+#. module: l10n_ES_cierre_ejercicio
+#: model:ir.module.module,description:l10n_ES_cierre_ejercicio.module_meta_information
+msgid ""
+"Close Fiscal Year creating Loss and Profit, Opening and Closing entries.\n"
+"You can set the journal, period and description for each of these three "
+"entries.\n"
+"\n"
+"Improved and ported to OpenERP 5.0 by Zikzakmedia. Based on the work done by "
+"Acysos for TinyERP 4.2.\n"
+"    "
+msgstr ""
+"Tanca l'any fiscal creant els assentaments de pèrdues i guanys, obertura i "
+"tancament.\n"
+"Podeu establir el diari, període i descripció per cada un dels "
+"assentaments.\n"
+"\n"
+"Millorat i portat a OpenERP 5.0 per Zikzakmedia. Basat en la feina feta per "
+"Acysos per TinyERP 4.2.\n"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_button:l10n_ES.fiscalyear.close,init,close:0
+msgid "Close fiscal year"
+msgstr "Tanca l'any fiscal"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "The journal for Loss and Profit entry must have centralised counterpart"
+msgstr ""
+"El diari de l'assentament de pèrdues i guanys ha de tenir la marca d'Homòleg "
+"Centralitzat"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,asiento_pyg:0
+msgid "Create Loss & Profit entry"
+msgstr "Crear l'assentament de pèrdues i guanys"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,periodo_apertura_id:0
+msgid "Opening period"
+msgstr "Període d'obertura"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_view:l10n_ES.fiscalyear.close,init:0
+msgid "Fiscal year closing confirmation"
+msgstr "Confirmació del tancament de l'any fiscal"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,sure:0
+msgid "Check this box if you are sure"
+msgstr "Feu clic en aquesta caixa si n'esteu segur"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid ""
+"The journal for Loss and Profit entry must have default credit and debit "
+"account"
+msgstr ""
+"El diari de l'assentament de pèrdues i guanys ha de tenir comptes de deure i "
+"haver per defecte"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,desc_asiento_apertura:0
+msgid "Opening entry description"
+msgstr "Descripció de l'assentament d'obertura"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "The journal for Opening entry must have centralised counterpart"
+msgstr ""
+"El diari de l'assentament d'obertura ha de tenir la marca d'Homòleg "
+"Centralitzat"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid ""
+"The journal for Opening entry must have default credit and debit account"
+msgstr ""
+"El diari de l'assentament d'obertura ha de tenir comptes de deure i haver "
+"per defecte"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "UserError"
+msgstr "Error d'usuari"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,periodo_pyg_id:0
+msgid "Loss & Profit period"
+msgstr "Període de pèrdues i guanys"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_view:l10n_ES.fiscalyear.close,init:0
+msgid "Loss & Profit entry"
+msgstr "Assentament de pèrdues i guanys"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid ""
+"The journal and period for Loss and Profit entry must not have any previous "
+"entry!"
+msgstr ""
+"El diari i període de l'assentament de pèrdues i guanys no pot tenir cap "
+"assentament prèvi."
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,diario_cierre:0
+msgid "Closing journal"
+msgstr "Diari de tancament"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_view:l10n_ES.fiscalyear.close,init:0
+msgid "Opening and Closing entries"
+msgstr "Assentaments d'obertura i tancament"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "The Closing, Opening and Loss and Profit periods must be different!"
+msgstr ""
+"Els períodes de tancament, obertura i pèrdues i guanys han de ser diferents."
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "Closing entry"
+msgstr "Assentament de tancament"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid ""
+"The journal and period for Opening entry must not have any previous entry!"
+msgstr ""
+"El diari i període de l'assentament d'obertura no poden tenir cap "
+"assentament previ."
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid ""
+"The journal and period for Closing entry must not have any previous entry!"
+msgstr ""
+"El diari i període de l'assentament de tancament no poden tenir cap "
+"assentament previ."
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,desc_asiento_cierre:0
+msgid "Closing entry description"
+msgstr "Descripció de l'assentament de tancament"
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_button:l10n_ES.fiscalyear.close,init,end:0
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#. module: l10n_ES_partner_seq
-#: wizard_view:l10n_ES_partner_seq.create_accounts,init:0
-msgid "Do you want to create accounts for the selected partners?"
-msgstr "Voleu crear comptes comptables per a les empreses seleccionades?"
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,diario_pyg:0
+msgid "Loss & Profit entry journal"
+msgstr "Diari de l'assentament de pèrdues i guanys"
 
-#. module: l10n_ES_partner_seq
-#: wizard_view:l10n_ES_partner_seq.create_accounts,init:0
-#: wizard_button:l10n_ES_partner_seq.create_accounts,init,create:0
-#: model:ir.actions.wizard,name:l10n_ES_partner_seq.id_create_accounts
-msgid "Create accounts"
-msgstr "Crea comptes"
+#~ msgid "Do you want to create accounts for the selected partners?"
+#~ msgstr "Voleu crear comptes comptables per a les empreses seleccionades?"
 
+#~ msgid "Create accounts"
+#~ msgstr "Crea comptes"

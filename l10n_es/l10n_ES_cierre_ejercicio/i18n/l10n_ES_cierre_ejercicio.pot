@@ -1,13 +1,13 @@
 # Translation of OpenERP Server.
-# This file containt the translation of the following modules:
-#	* l10n_ES_partner_seq
+# This file contains the translation of the following modules:
+#	* l10n_ES_cierre_ejercicio
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.0-rc1\n"
+"Project-Id-Version: OpenERP Server 5.0.7\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2008-12-11 23:01:45+0000\n"
-"PO-Revision-Date: 2008-12-11 23:01:45+0000\n"
+"POT-Creation-Date: 2010-02-26 18:02:45+0000\n"
+"PO-Revision-Date: 2010-02-26 18:02:45+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,20 +15,208 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: l10n_ES_partner_seq
-#: wizard_button:l10n_ES_partner_seq.create_accounts,init,end:0
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,periodo_cierre_id:0
+msgid "Closing period"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_view:l10n_ES.fiscalyear.close,init:0
+msgid "Financial closure"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: model:ir.module.module,shortdesc:l10n_ES_cierre_ejercicio.module_meta_information
+msgid "Close Fiscal Year with Loss and Profit, Opening and Closing entries"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: model:ir.actions.wizard,name:l10n_ES_cierre_ejercicio.wizard_l10n_ES_fiscalyear_close
+#: model:ir.ui.menu,name:l10n_ES_cierre_ejercicio.menu_wizard_l10n_ES_fiscalyear_close
+msgid "Close Fiscal Year creating Loss and Profit, Opening and Closing "
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,diario_apertura:0
+msgid "Opening journal"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,desc_asiento_pyg:0
+msgid "Loss & Profit entry description"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "Loss and Profit entry"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,ejercicio_apertura_id:0
+msgid "Fiscal year to open"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "If you are sure you want to close the fiscal year, check the box"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "The journal for Closing entry must have default credit and debit account"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "Opening entry"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "The journal for Closing entry must have centralised counterpart"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,ejercicio_cierre_id:0
+msgid "Fiscal year to close"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: model:ir.module.module,description:l10n_ES_cierre_ejercicio.module_meta_information
+msgid "Close Fiscal Year creating Loss and Profit, Opening and Closing entries.\n"
+"You can set the journal, period and description for each of these three entries.\n"
+"\n"
+"Improved and ported to OpenERP 5.0 by Zikzakmedia. Based on the work done by Acysos for TinyERP 4.2.\n"
+"    "
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_button:l10n_ES.fiscalyear.close,init,close:0
+msgid "Close fiscal year"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "The journal for Loss and Profit entry must have centralised counterpart"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,asiento_pyg:0
+msgid "Create Loss & Profit entry"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,periodo_apertura_id:0
+msgid "Opening period"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_view:l10n_ES.fiscalyear.close,init:0
+msgid "Fiscal year closing confirmation"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,sure:0
+msgid "Check this box if you are sure"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "The journal for Loss and Profit entry must have default credit and debit account"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,desc_asiento_apertura:0
+msgid "Opening entry description"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "The journal for Opening entry must have centralised counterpart"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "The journal for Opening entry must have default credit and debit account"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "UserError"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,periodo_pyg_id:0
+msgid "Loss & Profit period"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_view:l10n_ES.fiscalyear.close,init:0
+msgid "Loss & Profit entry"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "The journal and period for Loss and Profit entry must not have any previous entry!"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,diario_cierre:0
+msgid "Closing journal"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_view:l10n_ES.fiscalyear.close,init:0
+msgid "Opening and Closing entries"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "The Closing, Opening and Loss and Profit periods must be different!"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "Closing entry"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "The journal and period for Opening entry must not have any previous entry!"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/cierre_ejercicio.py:0
+#, python-format
+msgid "The journal and period for Closing entry must not have any previous entry!"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,desc_asiento_cierre:0
+msgid "Closing entry description"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_button:l10n_ES.fiscalyear.close,init,end:0
 msgid "Cancel"
 msgstr ""
 
-#. module: l10n_ES_partner_seq
-#: wizard_view:l10n_ES_partner_seq.create_accounts,init:0
-msgid "Do you want to create accounts for the selected partners?"
-msgstr ""
-
-#. module: l10n_ES_partner_seq
-#: wizard_view:l10n_ES_partner_seq.create_accounts,init:0
-#: wizard_button:l10n_ES_partner_seq.create_accounts,init,create:0
-#: model:ir.actions.wizard,name:l10n_ES_partner_seq.id_create_accounts
-msgid "Create accounts"
+#. module: l10n_ES_cierre_ejercicio
+#: wizard_field:l10n_ES.fiscalyear.close,init,diario_pyg:0
+msgid "Loss & Profit entry journal"
 msgstr ""
 
