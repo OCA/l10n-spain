@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.5-bzr\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2009-09-13 11:35:16+0000\n"
+"POT-Creation-Date: 2010-02-27 12:21:56+0000\n"
 "PO-Revision-Date: 2009-09-13 13:33+0200\n"
 "Last-Translator: Albert Cervera i Areny <albert@nan-tic.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -20,14 +20,8 @@ msgstr ""
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Can not create Factura-E file if invoice has no number."
-msgstr ""
-"Error de usuario:\n"
-"\n"
-"No se puede crear el fichero Factura-e si la factura no tiene número."
+msgid "User error:\n\nCan not create Factura-E file if invoice has no number."
+msgstr "Error de usuario:\n\nNo se puede crear el fichero Factura-e si la factura no tiene número."
 
 #. module: l10n_ES_facturae
 #: wizard_field:create_facturae_file,export,note:0
@@ -37,14 +31,8 @@ msgstr "Información"
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Partner %s does not have a VAT number."
-msgstr ""
-"Error de usuario:\n"
-"\n"
-"La empresa %s no tiene NIF/CIF. "
+msgid "User error:\n\nPartner %s does not have a VAT number."
+msgstr "Error de usuario:\n\nLa empresa %s no tiene NIF/CIF. "
 
 #. module: l10n_ES_facturae
 #: wizard_field:create_facturae_file,export,facturae:0
@@ -54,28 +42,14 @@ msgstr "Fichero Factura-e"
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Partner %s has no city."
-msgstr ""
-"Error de usuario:\n"
-"\n"
-"La empresa %s no tiene ciudad."
+msgid "User error:\n\nPartner %s has no city."
+msgstr "Error de usuario:\n\nLa empresa %s no tiene ciudad."
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid ""
-"Export successful\n"
-"\n"
-"Summary:\n"
-"Invoice number: %s\n"
-msgstr ""
-"La exportación se ha realizado correctamente\n"
-"\n"
-"Resumen:\n"
-"Número de factura: %s\n"
+msgid "Export successful\n\nSummary:\nInvoice number: %s\n"
+msgstr "La exportación se ha realizado correctamente\n\nResumen:\nNúmero de factura: %s\n"
 
 #. module: l10n_ES_facturae
 #: model:ir.module.module,shortdesc:l10n_ES_facturae.module_meta_information
@@ -85,14 +59,8 @@ msgstr "Creación de ficheros Factura-e"
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Company %s has no VAT number."
-msgstr ""
-"Error de usuario:\n"
-"\n"
-"La compañía %s no tiene CIF/NIF."
+msgid "User error:\n\nCompany %s has no VAT number."
+msgstr "Error de usuario:\n\nLa compañía %s no tiene CIF/NIF."
 
 #. module: l10n_ES_facturae
 #: help:res.country,code_3166:0
@@ -137,14 +105,8 @@ msgstr "Aceptar"
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Company %s has no country."
-msgstr ""
-"Error de usuario:\n"
-"\n"
-"La compañía %s no tiene país."
+msgid "User error:\n\nCompany %s has no country."
+msgstr "Error de usuario:\n\nLa compañía %s no tiene país."
 
 #. module: l10n_ES_facturae
 #: view:res.country:0
@@ -159,14 +121,8 @@ msgstr "Nombre del fichero"
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Partner %s has no street."
-msgstr ""
-"Error de usuario:\n"
-"\n"
-"La empresa %s no tiene calle."
+msgid "User error:\n\nPartner %s has no street."
+msgstr "Error de usuario:\n\nLa empresa %s no tiene calle."
 
 #. module: l10n_ES_facturae
 #: field:res.country,code_3166:0
@@ -186,74 +142,43 @@ msgstr "Exportar orden de pago"
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Company %s has no street."
-msgstr ""
-"Error de usuario:\n"
-"\n"
-"La compañía %s no tiene calle."
+msgid "User error:\n\nCompany %s has no street."
+msgstr "Error de usuario:\n\nLa compañía %s no tiene calle."
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Company %s has no city."
-msgstr ""
-"Error de usuario:\n"
-"\n"
-"La compañía %s no tiene ciudad."
+msgid "User error:\n\nCompany %s has no city."
+msgstr "Error de usuario:\n\nLa compañía %s no tiene ciudad."
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Partner %s has no province."
-msgstr ""
-"Error de usuario:\n"
-"\n"
-"La empresa %s no tiene provincia."
+msgid "User error:\n\nPartner %s has no province."
+msgstr "Error de usuario:\n\nLa empresa %s no tiene provincia."
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Company %s has no province."
-msgstr ""
-"Error de usuario:\n"
-"\n"
-"La compañía %s no tiene provincia."
+msgid "User error:\n\nCompany %s has no province."
+msgstr "Error de usuario:\n\nLa compañía %s no tiene provincia."
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Company %s does not have an invoicing address."
-msgstr ""
-"Error de usuario:\n"
-"\n"
-"La compañía %s no tiene dirección de facturación."
+msgid "User error:\n\nCompany %s does not have an invoicing address."
+msgstr "Error de usuario:\n\nLa compañía %s no tiene dirección de facturación."
+
+#. module: l10n_ES_facturae
+#: view:account.invoice:0
+msgid "Tax amount"
+msgstr "Total impuestos"
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Partner %s has no zip code."
-msgstr ""
-"Error de usuario:\n"
-"\n"
-"La empresa %s no tiene código postal."
+msgid "User error:\n\nPartner %s has no zip code."
+msgstr "Error de usuario:\n\nLa empresa %s no tiene código postal."
 
 #. module: l10n_ES_facturae
 #: wizard_button:create_facturae_file,init,export:0
@@ -262,9 +187,9 @@ msgstr "Exportar"
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "FacturaE"
-msgstr "facturae"
+msgstr "factura-e"
 
 #. module: l10n_ES_facturae
 #: wizard_button:create_facturae_file,init,end:0
@@ -274,26 +199,14 @@ msgstr "Cancelar"
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Partner %s has no country."
-msgstr ""
-"Error de usuario:\n"
-"\n"
-"La empresa %s no tiene país."
+msgid "User error:\n\nPartner %s has no country."
+msgstr "Error de usuario:\n\nLa empresa %s no tiene país."
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Company %s has no zip code."
-msgstr ""
-"Error de usuario:\n"
-"\n"
-"La compañía %s no tiene código postal."
+msgid "User error:\n\nCompany %s has no zip code."
+msgstr "Error de usuario:\n\nLa compañía %s no tiene código postal."
 
 #. module: l10n_ES_facturae
 #: model:ir.actions.wizard,name:l10n_ES_facturae.wizard_create_facturae_file
