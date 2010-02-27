@@ -144,18 +144,17 @@ class wiz_journal_close(wizard.interface):
             linea =  {
                 'debit': line.credit,
                 'credit': line.debit,
-                'name': line.name == data['form']['desc_asiento_apertura'] and data['form']['desc_asiento_apertura'] or line.name,
+                'name': line.name,
                 'journal_id': journal_id,
                 'period_id': period_id,
-                'account_id': line.account_id.id
+                'account_id': line.account_id.id,
+		'date': date or False,
                 }
-            if date:
-                linea['date'] = date,
             pool.get('account.move.line').create(cr, uid, linea, {'journal_id': journal_id, 'period_id':period_id})
 
         ids = pool.get('account.move.line').search(cr, uid, [('journal_id','=',journal_id),('period_id','=',period_id)])
         if ids:
-            move_line = pool.get('account.move.line').browse(cr, uid, ids[0])
+            move_line = pool.get('account.move.line').browse(cr, uid, ids[0], context)
             copy_id = move_line.move_id.id
             move_obj.write(cr, uid, [copy_id], {'ref': data['form']['desc_asiento_apertura']})
         else:
@@ -165,7 +164,8 @@ class wiz_journal_close(wizard.interface):
             reconcile_lines = pool.get('account.move.line').search(cr, uid, [('account_id.reconcile','=','True'),('move_id','in',[move_id, copy_id])])
             r_id = pool.get('account.move.reconcile').create(cr, uid, {
                 'type': 'manual',
-                'line_id': map(lambda x: (4,x,False), reconcile_lines)})
+                'line_id': map(lambda x: (4,x,False), reconcile_lines)
+            }, context)
         print "Revert entry (opening entry) done"
         return copy_id
 
@@ -191,17 +191,10 @@ class wiz_journal_close(wizard.interface):
 
         query_line = pool.get('account.move.line')._query_get(cr, uid,
                 obj='account_move_line', context={'fiscalyear': fy_id})
-        cr.execute('select id from account_account WHERE active')
-        ids = map(lambda x: x[0], cr.fetchall())
-        for account in pool.get('account.account').browse(cr, uid, ids,
-            context={'fiscalyear': fy_id}):
+	ids = pool.get('account.account').search(cr, uid, [('user_type','!=',False),('user_type.close_method','!=','none'),('type','!=','view')], context=context)
+        for account in pool.get('account.account').browse(cr, uid, ids, context={'fiscalyear': fy_id}):
             
-            accnt_type_data = account.user_type
-            if not accnt_type_data:
-                continue
-            if accnt_type_data.close_method=='none' or account.type == 'view':
-                continue
-            if accnt_type_data.close_method=='balance':
+            if account.user_type.close_method=='balance':
                 if abs(account.balance) > 10**-int(config['price_accuracy']):
                     pool.get('account.move.line').create(cr, uid, {
                         'debit': account.balance<0 and -account.balance,
@@ -212,7 +205,7 @@ class wiz_journal_close(wizard.interface):
                         'period_id': period_id,
                         'account_id': account.id
                     }, {'journal_id': journal_id, 'period_id':period_id})
-            if accnt_type_data.close_method == 'unreconciled':
+            if account.user_type.close_method == 'unreconciled':
                 offset = 0
                 limit = 100
                 while True:
@@ -223,8 +216,9 @@ class wiz_journal_close(wizard.interface):
                             'WHERE account_id = %s ' \
                                 'AND ' + query_line + ' ' \
                                 'AND reconcile_id is NULL ' \
+				'AND period_id <> %s' \
                             'ORDER BY id ' \
-                            'LIMIT %s OFFSET %s', (account.id, limit, offset))
+                            'LIMIT %s OFFSET %s', (account.id, period_id, limit, offset))
                     result = cr.dictfetchall()
                     if not result:
                         break
@@ -274,7 +268,7 @@ class wiz_journal_close(wizard.interface):
                             'period_id': period_id,
                             })
                     offset += limit
-            if accnt_type_data.close_method=='detail':
+            if account.user_type.close_method=='detail':
                 offset = 0
                 limit = 100
                 while True:
