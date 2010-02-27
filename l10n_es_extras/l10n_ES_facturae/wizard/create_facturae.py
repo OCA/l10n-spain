@@ -94,7 +94,7 @@ def _create_facturae_file(self, cr, uid, data, context):
             texto = 'J'
         return texto
 
-    def _apoyo_batch(self):
+    def _apoyo_batch():
 
         texto = ''
         currency = invoice.currency_id
@@ -114,7 +114,7 @@ def _create_facturae_file(self, cr, uid, data, context):
 
         return texto
 
-    def _header_facturae(self):
+    def _header_facturae(cr, context):
 
         company_partner_obj = invoice.company_id.partner_id        
 
@@ -139,12 +139,12 @@ def _create_facturae_file(self, cr, uid, data, context):
         texto += '<Batch>'
         texto += '<BatchIdentifier>' + BatchIdentifier + '</BatchIdentifier>'
         texto += '<InvoicesCount>1</InvoicesCount>'
-        texto += _apoyo_batch(self)
+        texto += _apoyo_batch()
         texto += '</Batch>'
         texto += '</FileHeader>'
         return texto
 
-    def _parties_facturae(self):
+    def _parties_facturae(cr, context):
 
         pool = pooler.get_pool(cr.dbname)
         company_obj = invoice.company_id
@@ -320,7 +320,7 @@ def _create_facturae_file(self, cr, uid, data, context):
         texto += '</Parties>'
         return texto
 
-    def _taxes_output(self):
+    def _taxes_output():
         
         texto = ''
         rate = 0.0
@@ -360,7 +360,7 @@ def _create_facturae_file(self, cr, uid, data, context):
 
         return texto
 
-    def _invoice_totals(self):
+    def _invoice_totals():
         
         total_gross_amount = 0.0
         texto = ''
@@ -384,7 +384,7 @@ def _create_facturae_file(self, cr, uid, data, context):
         texto += '</InvoiceTotals>'
         return texto
 
-    def _invoice_items(self):
+    def _invoice_items():
         
         rate = 0.0
         texto = ''
@@ -429,7 +429,7 @@ def _create_facturae_file(self, cr, uid, data, context):
         texto += '</Items>'
         return texto
 
-    def _invoices_facturae(self):
+    def _invoices_facturae():
 
         texto = ''
         texto += '<Invoices>'
@@ -446,9 +446,9 @@ def _create_facturae_file(self, cr, uid, data, context):
         texto += '<TaxCurrencyCode>' + invoice.currency_id.code + '</TaxCurrencyCode>'
         texto += '<LanguageName>es</LanguageName>'
         texto += '</InvoiceIssueData>'
-        texto += _taxes_output(self)
-        texto += _invoice_totals(self)
-        texto += _invoice_items(self)
+        texto += _taxes_output()
+        texto += _invoice_totals()
+        texto += _invoice_items()
         texto += '<AdditionalData>'
         texto += '<InvoiceAdditionalInformation>' + str(invoice.comment) + '</InvoiceAdditionalInformation>'
         texto += '</AdditionalData>'
@@ -467,9 +467,9 @@ def _create_facturae_file(self, cr, uid, data, context):
         contador = 1
         lines_issued = []
         xml_facturae += _format_xml()
-        xml_facturae += _header_facturae(self)
-        xml_facturae += _parties_facturae(self)
-        xml_facturae += _invoices_facturae(self)
+        xml_facturae += _header_facturae(cr, context)
+        xml_facturae += _parties_facturae(cr, context)
+        xml_facturae += _invoices_facturae()
         xml_facturae += _end_document()
         xml_facturae = conv_ascii(xml_facturae)
     except Log:
