@@ -39,7 +39,7 @@ import base64
 import mx.DateTime
 from mx.DateTime import now
 from tools.translate import _
-from common import *
+from converter import *
 
 join_form = """<?xml version="1.0"?>
 <form string="Payment order export">
@@ -77,7 +77,7 @@ def _create_payment_file(self, cr, uid, data, context):
         date_now = now().strftime('%d%m%y')
         texto += date_now
         texto += 6*' '
-        texto += conv_ascii(orden.mode.nombre).ljust(40)
+        texto += to_ascii(orden.mode.nombre).ljust(40)
         texto += 20*' '
         texto += cc[0:8]
         texto += 66*' '
@@ -90,11 +90,10 @@ def _create_payment_file(self, cr, uid, data, context):
         date_now = now().strftime('%d%m%y')
         texto += date_now
         if not orden.date_planned:
-            log.add(_('User error:\n\nFixed date of charge has not been defined.'), True)
-            raise log
+            raise Log(_('User error:\n\nFixed date of charge has not been defined.'), True)
         date_cargo = mx.DateTime.strptime(orden.date_planned,'%Y-%m-%d')
         texto += date_cargo.strftime('%d%m%y')
-        texto += conv_ascii(orden.mode.nombre).ljust(40)
+        texto += to_ascii(orden.mode.nombre).ljust(40)
         texto += cc[0:20]
         texto += 8*' '
         texto += '01'
@@ -105,16 +104,14 @@ def _create_payment_file(self, cr, uid, data, context):
     def _individual_obligatorio_19(self, recibo):
         # Comprobamos que exista número de C.C. y que tenga 20 dígitos
         if type(recibo['bank_id'].acc_number) != unicode:
-            log.add(_('User error:\n\nThe bank account number of the customer %s is not defined.') % (recibo['partner_id'].name), True)
-            raise log
-        ccc = digitos_cc(recibo['bank_id'].acc_number)
+            raise Log(_('User error:\n\nThe bank account number of the customer %s is not defined.') % (recibo['partner_id'].name), True)
+        ccc = digits_only(recibo['bank_id'].acc_number)
         if len(ccc) != 20:
-            log.add(_('User error:\n\nThe bank account number of the customer %s has not 20 digits.') % (recibo['partner_id'].name), True)
-            raise log
+            raise Log(_('User error:\n\nThe bank account number of the customer %s has not 20 digits.') % (recibo['partner_id'].name), True)
         texto = '5680'
         texto += (orden.mode.bank_id.partner_id.vat[2:] + orden.mode.sufijo).zfill(12)
         texto += str(recibo['name']).zfill(12)
-        nombre = conv_ascii(recibo['partner_id'].name)
+        nombre = to_ascii(recibo['partner_id'].name)
         texto += nombre[0:40].ljust(40)
         texto += str(ccc)[0:20].zfill(20)
         importe = int(round(-recibo['amount']*100,0))
@@ -123,9 +120,9 @@ def _create_payment_file(self, cr, uid, data, context):
         concepto = ''
         if recibo['communication']:
             concepto = recibo['communication']
-        texto += conv_ascii(concepto)[0:48].ljust(48)
+        texto += to_ascii(concepto)[0:48].ljust(48)
         # Esto es lo convencional, descripción de 40 caracteres, pero se puede aprovechar los 8 espacios en blanco finales
-        #texto += conv_ascii(concepto)[0:40].ljust(40)
+        #texto += to_ascii(concepto)[0:40].ljust(40)
         #texto += 8*' '
         texto += '\r\n'
         return texto
@@ -135,7 +132,7 @@ def _create_payment_file(self, cr, uid, data, context):
         texto = '5686'
         texto += (orden.mode.bank_id.partner_id.vat[2:] + orden.mode.sufijo).zfill(12)
         texto += str(recibo['name']).zfill(12)
-        texto += conv_ascii(recibo['communication2'])[0:115].ljust(115)
+        texto += to_ascii(recibo['communication2'])[0:115].ljust(115)
         texto += '00000' # Campo de código postal ficticio
         texto += 14*' '
         texto += '\n'
@@ -177,7 +174,7 @@ def _create_payment_file(self, cr, uid, data, context):
         date_now = now().strftime('%d%m%y')
         texto += date_now
         texto += 6*' '
-        texto += conv_ascii(orden.mode.nombre).ljust(40)
+        texto += to_ascii(orden.mode.nombre).ljust(40)
         texto += 20*' '
         texto += cc[0:8]
         texto += 66*' '
@@ -190,12 +187,12 @@ def _create_payment_file(self, cr, uid, data, context):
         date_now = now().strftime('%d%m%y')
         texto += date_now
         texto += 6*' '
-        texto += conv_ascii(orden.mode.nombre).ljust(40)
+        texto += to_ascii(orden.mode.nombre).ljust(40)
         texto += cc[0:20]
         texto += 8*' '
         texto += '06'
         texto += 52*' '
-        texto += orden.mode.ine and conv_ascii(orden.mode.ine)[:9].zfill(9) or 9*' '
+        texto += orden.mode.ine and to_ascii(orden.mode.ine)[:9].zfill(9) or 9*' '
         texto += 3*' '
         texto += '\n'
         return texto
@@ -203,16 +200,14 @@ def _create_payment_file(self, cr, uid, data, context):
     def _individual_obligatorio_58(self, recibo):
         # Comprobamos que exista número de C.C. y que tenga 20 dígitos
         if type(recibo['bank_id'].acc_number) != unicode:
-            log.add(_('User error:\n\nThe bank account number of the customer %s is not defined.') % (recibo['partner_id'].name), True)
-            raise log
-        ccc = digitos_cc(recibo['bank_id'].acc_number)
+            raise Log(_('User error:\n\nThe bank account number of the customer %s is not defined.') % (recibo['partner_id'].name), True)
+        ccc = digits_only(recibo['bank_id'].acc_number)
         if len(ccc) != 20:
-            log.add(_('User error:\n\nThe bank account number of the customer %s has not 20 digits.') % (recibo['partner_id'].name), True)
-            raise log
+            raise Log(_('User error:\n\nThe bank account number of the customer %s has not 20 digits.') % (recibo['partner_id'].name), True)
         texto = '5670'
         texto += (orden.mode.bank_id.partner_id.vat[2:] + orden.mode.sufijo).zfill(12)
         texto += str(recibo['name']).zfill(12)
-        nombre = conv_ascii(recibo['partner_id'].name)
+        nombre = to_ascii(recibo['partner_id'].name)
         texto += nombre[0:40].ljust(40)
         texto += str(ccc)[0:20].zfill(20)
         importe = int(round(-recibo['amount']*100,0))
@@ -221,7 +216,7 @@ def _create_payment_file(self, cr, uid, data, context):
         concepto = ''
         if recibo['communication']:
             concepto = recibo['communication']
-        texto += conv_ascii(concepto)[0:40].ljust(40)
+        texto += to_ascii(concepto)[0:40].ljust(40)
         if recibo.get('date'):
             date_cargo = mx.DateTime.strptime(recibo['date'],'%Y-%m-%d')
         elif recibo.get('ml_maturity_date'):
@@ -238,7 +233,7 @@ def _create_payment_file(self, cr, uid, data, context):
         texto = '5671'
         texto += (orden.mode.bank_id.partner_id.vat[2:] + orden.mode.sufijo).zfill(12)
         texto += str(recibo['name']).zfill(12)
-        texto += conv_ascii(recibo['communication2'])[0:134].ljust(134)
+        texto += to_ascii(recibo['communication2'])[0:134].ljust(134)
         texto += '\n'
         return texto
 
@@ -338,10 +333,10 @@ def _create_payment_file(self, cr, uid, data, context):
         texto = '5676'
         texto += (orden.mode.bank_id.partner_id.vat[2:] + orden.mode.sufijo).zfill(12)
         texto += str(recibo['name']).zfill(12)
-        texto += conv_ascii(st)[:40].ljust(40)          # Domicilio
-        texto += conv_ascii(city)[:35].ljust(35)        # Plaza (ciudad)
-        texto += conv_ascii(zip)[:5].zfill(5)           # CP
-        texto += conv_ascii(ord_city)[:38].ljust(38)    # Localidad del ordenante (ciudad)
+        texto += to_ascii(st)[:40].ljust(40)          # Domicilio
+        texto += to_ascii(city)[:35].ljust(35)        # Plaza (ciudad)
+        texto += to_ascii(zip)[:5].zfill(5)           # CP
+        texto += to_ascii(ord_city)[:38].ljust(38)    # Localidad del ordenante (ciudad)
         if alt_format:
             #
             # Si usamos el formato alternativo (basado en FacturaPlus)
@@ -354,7 +349,7 @@ def _create_payment_file(self, cr, uid, data, context):
             texto += date_ct.strftime('%d%m%y')                 # Fecha crédito
             texto += 2*' '
         else:
-            texto += conv_ascii(ord_state_code)[:2].zfill(2)    # Cod prov del ordenante
+            texto += to_ascii(ord_state_code)[:2].zfill(2)    # Cod prov del ordenante
             texto += date_ct.strftime('%d%m%y')                 # Fecha crédito
         texto += 8*' '                                  # Libre
         texto += '\n'
@@ -392,27 +387,23 @@ def _create_payment_file(self, cr, uid, data, context):
     txt_remesa = ''
     num_recibos = 0
     num_lineas_opc = 0
-    log = Log()
 
     try:
         pool = pooler.get_pool(cr.dbname)
         orden = pool.get('payment.order').browse(cr, uid, data['id'], context)
         if not orden.line_ids:
-            log.add(_('User error:\n\nWizard can not generate export file, there are not payment lines.'), True)
-            raise log
+            raise Log( _('User error:\n\nWizard can not generate export file, there are not payment lines.'), True )
 
         # Comprobamos que exista número de C.C. y que tenga 20 dígitos
         if not orden.mode.bank_id:
-            log.add(_('User error:\n\nThe bank account of the company %s is not defined.') % (orden.mode.partner_id.name), True)
-            raise log
-        cc = digitos_cc(orden.mode.bank_id.acc_number)
+            raise Log( _('User error:\n\nThe bank account of the company %s is not defined.') % (orden.mode.partner_id.name), True )
+        cc = digits_only(orden.mode.bank_id.acc_number)
         if len(cc) != 20:
-            log.add(_('User error:\n\nThe bank account number of the company %s has not 20 digits.') % (orden.mode.partner_id.name), True)
-            raise log
+            raise Log( _('User error:\n\nThe bank account number of the company %s has not 20 digits.') % (orden.mode.partner_id.name), True)
+
         # Comprobamos que exista el CIF de la compañía asociada al C.C. del modo de pago
         if not orden.mode.bank_id.partner_id.vat:
-            log.add(_('User error:\n\nThe company VAT number related to the bank account of the payment mode is not defined.'), True)
-            raise log
+            raise Log(_('User error:\n\nThe company VAT number related to the bank account of the payment mode is not defined.'), True)
 
         recibos = []
         if data['form']['join']:
@@ -488,11 +479,15 @@ def _create_payment_file(self, cr, uid, data, context):
             txt_remesa += _total_general_58(self)
 
         else:
-            log.add(_('User error:\n\nThe payment mode is not CSB 19 or CSB 58'), True)
-            raise log
+            raise Log(_('User error:\n\nThe payment mode is not CSB 19 or CSB 58'), True)
 
-    except Log:
-        return {'note':log(), 'reference':orden.id, 'pay':False, 'state':'failed'}
+    except Log, log:
+        return {
+            'note': log(), 
+            'reference': orden.id, 
+            'pay': False, 
+            'state':'failed'
+        }
     else:
         #
         # Comprobamos si debemos exportar el archivo en formato DOS 
@@ -520,9 +515,15 @@ def _create_payment_file(self, cr, uid, data, context):
             'res_model': 'payment.order',
             'res_id': orden.id,
             }, context=context)
-        log.add(_("Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n") % (-orden.total, num_recibos))
+        log = _("Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n") % (-orden.total, num_recibos)
         pool.get('payment.order').set_done(cr,uid,orden.id,context)
-        return {'note':log(), 'reference':orden.id, 'pay':file, 'pay_fname':fname, 'state':'succeeded'}
+        return {
+            'note': log, 
+            'reference': orden.id, 
+            'pay': file, 
+            'pay_fname': fname, 
+            'state': 'succeeded',
+        }
 
 
 class wizard_payment_file_19_58(wizard.interface):

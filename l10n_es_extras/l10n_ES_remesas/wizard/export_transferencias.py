@@ -41,7 +41,7 @@ import base64
 import mx.DateTime
 from mx.DateTime import now
 from tools.translate import _
-from common import *
+from converter import *
 
 join_form = """<?xml version="1.0"?>
 <form string="Payment order export">
@@ -71,60 +71,18 @@ export_fields = {
 }
 
 class payment_file_creator:
-    def convert_text(self, text, size):
-        return conv_ascii(text)[:size].ljust(size)
 
-    def convert_float(self, number, size):
-        # Set context for translations
-        context = self.context
+    def start(self, cr, context):
+        return convert(cr, self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo, 12, context)
 
-        text = str( int( round( number * 100, 0 ) ) )
-        if len(text) > size:
-            self.log.add(_('Error:\n\nCan not convert float number %(number).2f to fit in %(size)d characters.') % {'number': number, 'size': size})
-            raise self.log
-        return text.zfill(size)
-
-    def convert_int(self, number, size):
-        # Set context for translations
-        context = self.context
-
-        text = str( number )
-        if len(text) > size:
-            self.log.add(_('Error:\n\nCan not convert integer number %(number)d to fit in %(size)d characters.') % {'number': number, 'size': size})
-            raise self.log
-        return text.zfill(size)
-
-    def convert(self, value, size):
-        if value == False:
-            return self.convert_text('', size)
-        elif isinstance(value, float):
-            return self.convert_float(value, size)
-        elif isinstance(value, int):
-            return self.convert_int(value, size)
-        else:
-            return self.convert_text(value, size)
-
-    def convert_bank_account(self, value, partner_name):
-        if not isinstance(value, basestring):
-            self.log.add(_('User error:\n\nThe bank account number of %s is not defined.') % partner_name)
-            raise self.log
-        ccc = digitos_cc(value)
-        if len(ccc) != 20:
-            self.log.add(_('User error:\n\nThe bank account number of %s does not have 20 digits.') % partner_name)
-            raise self.log
-        return ccc
-
-    def start(self):
-        return self.convert(self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo, 12)
-
-    def _cabecera_ordenante_34(self):
+    def _cabecera_ordenante_34(self, cr, uid, context):
         today = now().strftime('%d%m%y')
 
         text = ''
 
         # Primer tipo
         text += '0362'
-        text += self.start()
+        text += self.start(cr, context)
         text += 12*' '
         text += '001'
         text += today
@@ -134,64 +92,63 @@ class payment_file_creator:
         else:
             text += today
         #text += self.convert(self.order.mode.nombre, 40)
-        text += self.convert_bank_account(self.order.mode.bank_id.acc_number, self.order.mode.partner_id.name)
+        text += convert_bank_account(cr, self.order.mode.bank_id.acc_number, self.order.mode.partner_id.name, context)
         text += '0'
         text += 8*' '
         text += '\n'
 
         # Segundo Tipo 
         text += '0362'
-        text += self.start()
+        text += self.start(cr, context)
         text += 12*' '
         text += '002'
-        text += self.convert(self.order.mode.bank_id.partner_id.name, 36)
+        text += convert(cr, self.order.mode.bank_id.partner_id.name, 36, context)
         text += 5*' '
         text += '\n'
 
         # Tercer Tipo 
         text += '0362'
-        text += self.start()
+        text += self.start(cr, context)
         text += 12*' '
         text += '003'
         # Direccion
-        address_id = self.pool.get('res.partner').address_get(self.cr, self.uid, [self.order.mode.bank_id.partner_id.id], ['invoice'])['invoice']
+        address_id = self.pool.get('res.partner').address_get(cr, uid, [self.order.mode.bank_id.partner_id.id], ['invoice'])['invoice']
         if not address_id:
-            self.log.add(_('User error:\n\nCompany %s has no invoicing address.') % address_id)
-            raise self.log
+            raise Log( _('User error:\n\nCompany %s has no invoicing address.') % address_id )
 
-        street = self.pool.get('res.partner.address').read(self.cr, self.uid, [address_id], ['street'], self.context)[0]['street']
-        text += self.convert(street, 36)
+        street = self.pool.get('res.partner.address').read(cr, uid, [address_id], ['street'], context)[0]['street']
+        text += convert(cr, street, 36, context)
         text += 5*' '
         text += '\n'
 
         # Cuarto Tipo 
         text += '0362'
-        text += self.start()
+        text += self.start(cr, context)
         text += 12*' '
         text += '004'
-        text += self.convert(self.order.mode.bank_id.street, 36)
+        text += convert(cr, self.order.mode.bank_id.street, 36, context)
         text += 5*' '
         text += '\n'
         return text
 
-    def _cabecera_nacionales_34(self):
+    def _cabecera_nacionales_34(self, cr, uid, context):
         text = '0456'
-        text += self.start()
+        text += self.start(cr, context)
         text += 12*' '
         text += 3*' '
         text += 41*' '
         text += '\n'
         return text
 
-    def _detalle_nacionales_34(self, recibo):
+    def _detalle_nacionales_34(self, cr, uid, recibo, context):
         # Primer Registro
         text = ''
         text += '0656'
-        text += self.start()
-        text += self.convert(recibo['partner_id'].vat, 12)
+        text += self.start(cr, context)
+        text += convert(cr, recibo['partner_id'].vat, 12, context)
         text += '010'
-        text += self.convert(recibo['amount'], 12)
-        text += self.convert_bank_account(recibo['bank_id'].acc_number, recibo['partner_id'].name)
+        text += convert(cr, recibo['amount'], 12, context)
+        text += convert_bank_account(cr, recibo['bank_id'].acc_number, recibo['partner_id'].name, context)
         text += '1'
         text += '9' # Otros conceptos (ni Nomina ni Pension)
         text += '1'
@@ -200,51 +157,49 @@ class payment_file_creator:
 
         # Segundo Registro
         text += '0656'
-        text += self.start()
-        text += self.convert( recibo['partner_id'].vat, 12)
+        text += self.start(cr, context)
+        text += convert(cr, recibo['partner_id'].vat, 12, context)
         text += '011'
-        text += self.convert( recibo['partner_id'].name, 36)
+        text += convert(cr, recibo['partner_id'].name, 36, context)
         text += 5*' '
         text += '\n'
         return text
 
-    def _totales_nacionales_34(self):
+    def _totales_nacionales_34(self, cr, uid, context):
         text = '0856'
-        text += self.start()
+        text += self.start(cr, context)
         text += 12*' '
         text += 3*' '
-        text += self.convert(self.order.total, 12)
-        text += self.convert(self.payment_line_count, 8)
-        text += self.convert(1 + (self.payment_line_count * 2) + 1, 10)
+        text += convert(cr, self.order.total, 12, context)
+        text += convert(cr, self.payment_line_count, 8, context)
+        text += convert(cr, 1 + (self.payment_line_count * 2) + 1, 10, context)
         text += 6*' '
         text += 5*' '
         text += '\n'
         return text
 
-    def _total_general_34(self):
+    def _total_general_34(self, cr, uid, context):
         text = '0962'
-        text += self.start()
+        text += self.start(cr, context)
         text += 12*' '
         text += 3*' '
-        text += self.convert(self.order.total, 12)
-        text += self.convert(self.payment_line_count, 8)
-        text += self.convert(4 + 1 + (self.payment_line_count * 2 ) + 1 + 1, 10)
+        text += convert(cr, self.order.total, 12, context)
+        text += convert(cr, self.payment_line_count, 8, context)
+        text += convert(cr, 4 + 1 + (self.payment_line_count * 2 ) + 1 + 1, 10, context)
         text += 6*' '
         text += 5*' '
         text += '\n'
         return text
 
-    def create_file(self):
-        self.pool = pooler.get_pool(self.cr.dbname)
-        self.order = self.pool.get('payment.order').browse(self.cr, self.uid, self.data['id'], self.context)
+    def create_file(self, cr, uid, context):
+        self.pool = pooler.get_pool(cr.dbname)
+        self.order = self.pool.get('payment.order').browse(cr, uid, self.data['id'], context)
         if not self.order.line_ids:
-            self.log.add(_('User error:\n\nWizard can not generate export file, there are no payment lines.'))
-            raise self.log
+            raise Log( _('User error:\n\nWizard can not generate export file, there are no payment lines.') )
 
         # Comprobamos que exista el CIF de la compañía asociada al C.C. del modo de pago
         if not self.order.mode.bank_id.partner_id.vat:
-            self.log.add(_('User error:\n\nThe company VAT number related to the bank account of the payment mode is not defined.'))
-            raise self.log
+            raise Log( _('User error:\n\nThe company VAT number related to the bank account of the payment mode is not defined.') )
 
         recibos = []
         if self.data['form']['join']:
@@ -280,35 +235,35 @@ class payment_file_creator:
                 })
 
         if self.order.mode.tipo != 'csb_34':
-            self.log.add(_('User error:\n\nThe payment mode is not CSB 34'))
-            raise self.log
+            raise Log( _('User error:\n\nThe payment mode is not CSB 34') )
 
         self.payment_line_count = 0
         self.record_count = 0
 
         file = ''
-        file += self._cabecera_ordenante_34()
-        file += self._cabecera_nacionales_34()
+        file += self._cabecera_ordenante_34(cr, uid, context)
+        file += self._cabecera_nacionales_34(cr, uid, context)
         for recibo in recibos:
-            file += self._detalle_nacionales_34(recibo)
+            file += self._detalle_nacionales_34(cr, uid, recibo, context)
             self.payment_line_count += 1
             self.record_count += 2
-        file += self._totales_nacionales_34()
+        file += self._totales_nacionales_34(cr, uid, context)
         self.record_count += 1
-        file += self._total_general_34()
+        file += self._total_general_34(cr, uid, context)
         return file
 
     def create(self, cr, uid, data, context):
-        self.cr = cr
-        self.uid = uid
         self.data = data
-        self.context = context
 
-        self.log = Log()
         try:
-            file = self.create_file()
-        except Log:
-            return {'note': self.log(), 'reference':self.order.id, 'pay':False, 'state':'failed'}
+            file = self.create_file(cr, uid, context)
+        except Log, log:
+            return {
+                'note': log(), 
+                'reference': self.order.id, 
+                'pay': False, 
+                'state': 'failed'
+            }
 
         file = base64.encodestring(file)
         fname = '%s_%s.txt' % (self.order.mode.tipo, self.order.reference)
@@ -320,9 +275,18 @@ class payment_file_creator:
             'res_model': 'payment.order',
             'res_id': self.order.id,
         }, context=context)
-        self.log.add(_("Successfully Exported\n\nSummary:\n Total amount paid: %(amount).2f\n Total Number of Payments: %(number)d\n") % {'amount': self.order.total, 'number': self.payment_line_count} )
+        log = _("Successfully Exported\n\nSummary:\n Total amount paid: %(amount).2f\n Total Number of Payments: %(number)d\n") % {
+                'amount': self.order.total, 
+                'number': self.payment_line_count
+        }
         self.pool.get('payment.order').set_done(cr,uid,self.order.id,context)
-        return {'note': self.log(), 'reference':self.order.id, 'pay':file, 'pay_fname':fname, 'state':'succeeded'}
+        return {
+            'note': log, 
+            'reference': self.order.id, 
+            'pay': file, 
+            'pay_fname': fname, 
+            'state': 'succeeded'
+        }
 
 
 class wizard_payment_file_34(wizard.interface):
