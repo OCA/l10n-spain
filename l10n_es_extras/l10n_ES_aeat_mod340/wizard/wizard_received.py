@@ -64,13 +64,12 @@ def _importreceived(self, cr, uid, data, context):
     where_taxes = ""
     try:
       for tax in configura_obj.supplier_taxes_id:
-        taxes_codes = tax.ref_tax_code_id
         if len(where_taxes) == 0:
                 where_taxes = " and ( "
         else:
                 where_taxes = where_taxes + " or"
 
-        where_taxes = where_taxes + " t.tax_code_id = " + str(taxes_codes.id)
+        where_taxes = where_taxes + " t.tax_code_id = " + str(tax.ref_tax_code_id and tax.ref_tax_code_id.id or 'NULL')
     except Exception:
         print "error"
     finally:
@@ -87,7 +86,7 @@ def _importreceived(self, cr, uid, data, context):
 	           left join account_invoice i on t.invoice_id = i.id
                    left join res_partner p on i.partner_id = p.id
                    left join account_tax a on t.tax_code_id = a.tax_code_id
-                where i.state <> 'draft' i.type =%s and i.date_invoice between %s and %s """  + where_taxes +
+                where i.state <> 'draft' and i.type =%s and i.date_invoice between %s and %s """  + where_taxes +
                 """order by date_invoice""",('in_invoice',from_date_invoices,to_date_invoices))
 
     for resultado in cr.fetchall():
