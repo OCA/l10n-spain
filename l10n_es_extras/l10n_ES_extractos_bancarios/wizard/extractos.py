@@ -322,8 +322,6 @@ def _importar(obj, cursor, user, data, context):
                 'line_ids': [(6, 0, [line2reconcile])],
             }, context=context)
 
-        if not line2reconcile:
-
         #print values
         statement_line_obj.create(cursor, user, values, context=context)
 
