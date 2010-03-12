@@ -215,7 +215,7 @@ def _importar(obj, cursor, user, data, context):
             ],
             #order='date DESC, id DESC', # En OpenERP 5.0 no funciona
             context=context)
-        line2reconcile = False
+        lines2reconcile = []
         partner_id = False
         account_id = False
         for line in move_line_obj.browse(cursor, user, line_ids, context=context):
@@ -223,12 +223,10 @@ def _importar(obj, cursor, user, data, context):
                 partner_id = line.partner_id.id
             if l['importe'] >= 0:
                 if round(l['importe'] - line.debit, 2) < 0.01:
-                    #line2reconcile = line.id
                     account_id = line.account_id.id
                     break
             else:
                 if round(line.credit + l['importe'], 2) < 0.01:
-                    #line2reconcile = line.id
                     account_id = line.account_id.id
                     break
 
@@ -281,7 +279,6 @@ def _importar(obj, cursor, user, data, context):
                 line = move_line_obj.browse(cursor, user, line_ids, context=context)[0]
                 if line.partner_id.id:
                     partner_id = line.partner_id.id
-                #line2reconcile = line.id
                 account_id = line.account_id.id
 
         if partner_id:
@@ -299,7 +296,7 @@ def _importar(obj, cursor, user, data, context):
             # que coincida. Si hay mas de uno el usuario tendra que conciliar manualmente y
             # seleccionar cual de ellos es el correcto.
             if len(line_ids) == 1:
-                line2reconcile = line.id
+                lines2reconcile = [ line.id ]
 
         # 4) No hemos encontrado partner: Ponemos valores por defecto para la cuenta
         if not account_id and values['type'] in ['customer','supplier']:
@@ -313,16 +310,29 @@ def _importar(obj, cursor, user, data, context):
             else:
                 account_id = concepto_account_id
 
+        # Si no se han encontrado apuntes individuales que cuadren con los datos de la línea
+        # del extracto, buscamos en las órdenes de pago/cobro, siempre y cuando el módulo
+        # account.payment esté instalado
+        if not lines2reconcile and 'payment.order' in pool.obj_list():
+            # Tenemos que cambiar el signo porque los cobros se muestran en negativo en
+            # y los pagos en positivo en las órdenes de pago/cobro.
+            line_total = '%.2f' % -l['importe']
+            order_ids = pool.get('payment.order').search(cursor, user, [], context=context)
+            for order in pool.get('payment.order').browse(cursor, user, order_ids, context):
+                order_total = '%.2f' % order.total 
+                if line_total != order_total:
+                    continue
+                for line in order.line_ids:
+                    lines2reconcile.append( line.move_line_id.id )
+
         values['account_id'] = account_id
         values['partner_id'] = partner_id
-        # La conciliación de líneas de extractos bancarios creo que es prematuro hacerla en este momento.
-        # Es mejor validar manualmente el extracto bancario importado y posteriormente hacer conciliación automatizada.
-        if line2reconcile:
+
+        if lines2reconcile:
             values['reconcile_id'] = statement_reconcile_obj.create(cursor, user, {
-                'line_ids': [(6, 0, [line2reconcile])],
+                'line_ids': [(6, 0, lines2reconcile)],
             }, context=context)
 
-        #print values
         statement_line_obj.create(cursor, user, values, context=context)
 
     values = {
@@ -332,10 +342,21 @@ def _importar(obj, cursor, user, data, context):
         }
     statement_obj.write(cursor, user, statement_id, values, context=context)
 
+    attachment_name = _('Bank Statement')
+
+    # Avoid an error if it's the second time the user tries to import the statement
+    ids = attachment_obj.search(cursor, user, [
+        ('res_id','=',statement_id),
+        ('res_model','=','account.bank.statement'),
+        ('name','=',attachment_name),
+    ], context=context)
+    if ids:
+        attachment_obj.unlink(cursor, user, ids, context)
+
     attachment_obj.create(cursor, user, {
-        'name': 'Extracto bancario',
+        'name': attachment_name,
         'datas': file,
-        'datas_fname': 'extracto_bancario.txt',
+        'datas_fname': _('bank-statement.txt'),
         'res_model': 'account.bank.statement',
         'res_id': statement_id,
         }, context=context)
