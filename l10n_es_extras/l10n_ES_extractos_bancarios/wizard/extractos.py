@@ -49,7 +49,7 @@ def _importar(obj, cursor, user, data, context):
     pool = pooler.get_pool(cursor.dbname)
     statement_obj = pool.get('account.bank.statement')
     statement_line_obj = pool.get('account.bank.statement.line')
-    #statement_reconcile_obj = pool.get('account.bank.statement.reconcile')
+    statement_reconcile_obj = pool.get('account.bank.statement.reconcile')
     move_line_obj = pool.get('account.move.line')
     partner_obj = pool.get('res.partner')
     property_obj = pool.get('ir.property')
@@ -223,12 +223,12 @@ def _importar(obj, cursor, user, data, context):
                 partner_id = line.partner_id.id
             if l['importe'] >= 0:
                 if round(l['importe'] - line.debit, 2) < 0.01:
-                    line2reconcile = line.id
+                    #line2reconcile = line.id
                     account_id = line.account_id.id
                     break
             else:
                 if round(line.credit + l['importe'], 2) < 0.01:
-                    line2reconcile = line.id
+                    #line2reconcile = line.id
                     account_id = line.account_id.id
                     break
 
@@ -263,7 +263,7 @@ def _importar(obj, cursor, user, data, context):
         if not partner_id:
             if l['importe'] >= 0:
                 line_ids = move_line_obj.search(cursor, user, [
-                    ('debit', '=', round(l['importe'], 2)),
+                    ('debit', '=', '%.2f' % l['importe']),
                     ('reconcile_id', '=', False),
                     ('account_id.type', 'in', ['receivable', 'payable']),
                     ],
@@ -271,7 +271,7 @@ def _importar(obj, cursor, user, data, context):
                     context=context)
             else:
                 line_ids = move_line_obj.search(cursor, user, [
-                    ('credit', '=', round(-l['importe'], 2)),
+                    ('credit', '=', '%.2f' % -l['importe']),
                     ('reconcile_id', '=', False),
                     ('account_id.type', 'in', ['receivable', 'payable']),
                     ],
@@ -281,8 +281,25 @@ def _importar(obj, cursor, user, data, context):
                 line = move_line_obj.browse(cursor, user, line_ids, context=context)[0]
                 if line.partner_id.id:
                     partner_id = line.partner_id.id
-                line2reconcile = line.id
+                #line2reconcile = line.id
                 account_id = line.account_id.id
+
+        if partner_id:
+            domain = [
+                ('partner_id', '=', partner_id),
+                ('reconcile_id', '=', False),
+                ('account_id.type', 'in', ['receivable', 'payable']),
+            ]
+            if l['importe'] >= 0:
+                domain.append( ('debit', '=', '%.2f' % l['importe']) )
+            else:
+                domain.append( ('credit', '=', '%.2f' % -l['importe']) )
+            line_ids = move_line_obj.search(cursor, user, domain, context=context)
+            # Solamente crearemos la conciliacion automatica cuando exista un solo apunte
+            # que coincida. Si hay mas de uno el usuario tendra que conciliar manualmente y
+            # seleccionar cual de ellos es el correcto.
+            if len(line_ids) == 1:
+                line2reconcile = line.id
 
         # 4) No hemos encontrado partner: Ponemos valores por defecto para la cuenta
         if not account_id and values['type'] in ['customer','supplier']:
@@ -300,10 +317,13 @@ def _importar(obj, cursor, user, data, context):
         values['partner_id'] = partner_id
         # La conciliación de líneas de extractos bancarios creo que es prematuro hacerla en este momento.
         # Es mejor validar manualmente el extracto bancario importado y posteriormente hacer conciliación automatizada.
-        #if line2reconcile:
-        #    values['reconcile_id'] = statement_reconcile_obj.create(cursor, user, {
-        #        'line_ids': [(6, 0, [line2reconcile])],
-        #        }, context=context)
+        if line2reconcile:
+            values['reconcile_id'] = statement_reconcile_obj.create(cursor, user, {
+                'line_ids': [(6, 0, [line2reconcile])],
+            }, context=context)
+
+        if not line2reconcile:
+
         #print values
         statement_line_obj.create(cursor, user, values, context=context)
 
