@@ -39,9 +39,9 @@ import time
 # Helper functions
 ############################################################################
 
-def _formatString(text, length, fill=' ', align='<'):
+def _formatString(text, length):
     """
-    Formats the string into a fixed lenght ASCII (iso-8859-1) record.
+    Formats the string into a fixed length ASCII (iso-8859-1) record.
 
     Note:
         'Todos los campos alfanuméricos y alfabéticos se presentarán alineados a la izquierda y
@@ -60,9 +60,9 @@ def _formatString(text, length, fill=' ', align='<'):
         ascii_string = str(text or '')
     # Cut the string if it is too long
     if len(ascii_string) > length:
-        ascii_string = ascii_string[:lenght]
+        ascii_string = ascii_string[:length]
     # Format the string
-    ascii_string = '{0:{1}{2}{3}s}'.format(ascii_string, fill, align, length)
+    ascii_string = ascii_string.ljust(length)
     # Turn into uppercase
     return ascii_string.upper()
     #
@@ -77,9 +77,9 @@ def _formatString(text, length, fill=' ', align='<'):
     # Return string
     return ascii_string
 
-def _formatNumber(number, int_lenght, dec_lenght=0, include_sign=False):
+def _formatNumber(number, int_length, dec_length=0, include_sign=False):
     """
-    Formats the number into a fixed lenght ASCII (iso-8859-1) record.
+    Formats the number into a fixed length ASCII (iso-8859-1) record.
     Note:
         'Todos los campos numéricos se presentarán alineados a la derecha
         y rellenos a ceros por la izquierda sin signos y sin empaquetar.'
@@ -98,19 +98,19 @@ def _formatNumber(number, int_lenght, dec_lenght=0, include_sign=False):
     ascii_string = ''
     if include_sign:
         ascii_string += sign
-    if int_lenght > 0:
-        ascii_string += '{0:0>{1}}'.format(int_part, int_lenght)
-    if dec_lenght > 0:
-        ascii_string += '{0:0<{1}}'.format(dec_part, dec_lenght)
+    if int_length > 0:
+	ascii_string += str(int_part).zfill( int_length )
+    if dec_length > 0:
+	ascii_string += str(int_part).zfill( dec_length )
     # Sanity-check
-    assert len(ascii_string) == (include_sign and 1 or 0) + int_lenght + dec_lenght, \
+    assert len(ascii_string) == (include_sign and 1 or 0) + int_length + dec_length, \
                         _("The formated string must match the given length")
     # Return the string
     return ascii_string
 
 def _formatBoolean(value, yes='X', no=' '):
     """
-    Formats a boolean value into a fixed lenght ASCII (iso-8859-1) record.
+    Formats a boolean value into a fixed length ASCII (iso-8859-1) record.
     """
     return value and yes or no
 
