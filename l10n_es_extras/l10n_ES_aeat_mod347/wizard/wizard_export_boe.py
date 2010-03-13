@@ -39,7 +39,7 @@ import time
 # Helper functions
 ############################################################################
 
-def _formatString(text, length):
+def _formatString(text, length, fill=' ', align='<'):
     """
     Formats the string into a fixed length ASCII (iso-8859-1) record.
 
@@ -62,7 +62,13 @@ def _formatString(text, length):
     if len(ascii_string) > length:
         ascii_string = ascii_string[:length]
     # Format the string
-    ascii_string = ascii_string.ljust(length)
+    #ascii_string = '{0:{1}{2}{3}s}'.format(ascii_string, fill, align, length) #for python >= 2.6
+    if align == '<':
+        ascii_string = str(ascii_string) + (length-len(str(ascii_string)))*fill
+    elif align == '>':
+        ascii_string = (length-len(str(ascii_string)))*fill + str(ascii_string)
+    else:
+        assert False, _('Wrong aling option. It should be < or >')
     # Turn into uppercase
     return ascii_string.upper()
     #
@@ -99,9 +105,11 @@ def _formatNumber(number, int_length, dec_length=0, include_sign=False):
     if include_sign:
         ascii_string += sign
     if int_length > 0:
-	ascii_string += str(int_part).zfill( int_length )
+        #ascii_string += '{0:0>{1}}'.format(int_part, int_length) #for python >= 2.6
+        ascii_string += '%.*d' % (int_length, int_part)
     if dec_length > 0:
-	ascii_string += str(int_part).zfill( dec_length )
+        #ascii_string += '{0:0<{1}}'.format(dec_part, dec_length) #for python >= 2.6
+        ascii_string += str(dec_part)+(dec_length-len(str(dec_part)))*'0'
     # Sanity-check
     assert len(ascii_string) == (include_sign and 1 or 0) + int_length + dec_length, \
                         _("The formated string must match the given length")
@@ -205,7 +213,6 @@ class wizard_export_boe(wizard.interface):
         text += 88*' '                                        # Blancos
         text += 13*' '                                        # Sello electrónico 
         text += '\r\n'
-
         assert len(text) == 502, _("The type 1 record must be 502 characters long")
         return text
 

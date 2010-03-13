@@ -113,15 +113,12 @@ class wizard_calculate(wizard.interface):
             #
             pool.get('l10n.es.aeat.mod347.partner_record').unlink(cr, uid, [r.id for r in report.partner_records])
 
-
             # Get the cash journals (moves on this journals will be considered cash)
-            cash_journal_ids = pool.get('account.journal').search(cr, uid, [
-                                            ('cash_journal', '=', True)
-                                    ])
+            cash_journal_ids = pool.get('account.journal').search(cr, uid, [('cash_journal', '=', True)])
 
-            # Get the fiscal year period ids
-            period_ids = [period.id for period in report.fiscalyear_id.period_ids]
-
+            # Get the fiscal year period ids of the non-special periods
+            # (to ignore closing/opening entries)
+            period_ids = [period.id for period in report.fiscalyear_id.period_ids if not period.special]
 
             #
             # We will check every partner with include_in_mod347
