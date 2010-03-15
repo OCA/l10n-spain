@@ -94,6 +94,8 @@ def _formatNumber(number, int_length, dec_length=0, include_sign=False):
     #
     # Separate the number parts (-55.23 => int_part=55, dec_part=0.23, sign='N')
     #
+    if number == '':
+        number = 0
     _number = float(number)
     int_part = int(_number)
     dec_part = int((_number % 1)*100)
@@ -368,10 +370,17 @@ class wizard_export_boe(wizard.interface):
             file_contents += self._get_formated_real_state_record(report, real_state_record)
 
         #
-        # Generate the file
+        # Generate the file and save as attachment
         #
         file = base64.encodestring(file_contents)
         file_name = _('347_report_%s.txt') %  time.strftime(_('%Y-%m-%d'))
+        pool.get('ir.attachment').create(cr, uid, {
+            'name': _('347 report %s') %  time.strftime(_('%Y-%m-%d')),
+            'datas': file,
+            'datas_fname': file_name,
+            'res_model': 'l10n.es.aeat.mod347.report',
+            'res_id': data['id'],
+            }, context=context)
 
         #
         # Return the data

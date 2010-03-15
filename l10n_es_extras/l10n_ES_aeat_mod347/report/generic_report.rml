@@ -21,33 +21,29 @@
         <blockTableStyle id="Tabla10">
             <blockAlignment value="LEFT"/>
             <blockValign value="TOP"/>
+            <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="-1,0"/>
+            <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="-1,-1"/>
             <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
-            <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="0,0"/>
-            <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
             <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,0" stop="1,-1"/>
-            <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
-            <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
             <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,0" stop="2,-1"/>
-            <lineStyle kind="LINEAFTER" colorName="#000000" start="2,0" stop="2,-1"/>
-            <lineStyle kind="LINEABOVE" colorName="#000000" start="2,0" stop="2,0"/>
-            <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
-            <blockBackground colorName="#e6e6ff" start="0,0" stop="0,-1"/>
-            <blockBackground colorName="#e6e6ff" start="1,0" stop="1,-1"/>
-            <blockBackground colorName="#e6e6ff" start="2,0" stop="2,-1"/>
+            <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,0" stop="3,-1"/>
+            <lineStyle kind="LINEBEFORE" colorName="#000000" start="4,0" stop="4,-1"/>
+            <lineStyle kind="LINEBEFORE" colorName="#000000" start="5,0" stop="5,-1"/>
+            <lineStyle kind="LINEAFTER" colorName="#000000" start="-1,0" stop="-1,-1"/>
+            <blockBackground colorName="#e6e6ff" start="0,0" stop="-1,-1"/>
         </blockTableStyle>
         <blockTableStyle id="Tabla9">
             <blockAlignment value="LEFT"/>
             <blockValign value="TOP"/>
+            <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="-1,0"/>
+            <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="-1,-1"/>
             <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
-            <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="0,0"/>
-            <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
             <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,0" stop="1,-1"/>
-            <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
-            <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
             <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,0" stop="2,-1"/>
-            <lineStyle kind="LINEAFTER" colorName="#000000" start="2,0" stop="2,-1"/>
-            <lineStyle kind="LINEABOVE" colorName="#000000" start="2,0" stop="2,0"/>
-            <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+            <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,0" stop="3,-1"/>
+            <lineStyle kind="LINEBEFORE" colorName="#000000" start="4,0" stop="4,-1"/>
+            <lineStyle kind="LINEBEFORE" colorName="#000000" start="5,0" stop="5,-1"/>
+            <lineStyle kind="LINEAFTER" colorName="#000000" start="-1,0" stop="-1,-1"/>
         </blockTableStyle>
         <initialize>
             <paraStyle name="all" alignment="justify"/>
@@ -93,7 +89,17 @@
                 </td>
             </tr>
         </blockTable>
-        <blockTable colWidths="160.0,70.0,60.0,60.0,60.0,60.0,20.0,20.0" style="Tabla10">
+        <blockTable colWidths="511" style="Tabla9">
+            <tr>
+                <td>
+                    <para style="Bal3">Partner: [[report.company_id.name]]</para>
+                    <para style="Bal3">Fiscal year: [[report.fiscalyear_id.name]]</para>
+                    <para style="Bal3">Number: [[report.number]]</para>
+                    <para style="Bal3">Suport type: [[report.support_type=='T' and 'Telematics' or 'DVD']]</para>
+                </td>
+            </tr>
+        </blockTable>
+        <blockTable colWidths="200.0,90.0,60.0,60.0,60.0,20.0,20.0" style="Tabla10">
             <tr>
                 <td>
                     <para style="BalCabecera">Partner</para>
@@ -118,7 +124,7 @@
                 </td>
             </tr>
         </blockTable>
-        <blockTable colWidths="160.0,70.0,60.0,60.0,60.0,60.0,20.0,20.0" style="Tabla9">
+        <blockTable colWidths="200.0,90.0,60.0,60.0,60.0,20.0,20.0" style="Tabla9">
             <tr>
                 [[repeatIn(report.partner_record_ids,'partner_record')]]
                 <td>
@@ -128,7 +134,7 @@
                     <para style="P3">[[partner_record.partner_vat]]</para>
                 </td>
                 <td>
-                    <para style="P2">[[partner_record.invoiced_amount]]</para>
+                    <para style="P2">[[partner_record.amount]]</para>
                 </td>
                 <td>
                     <para style="P2">[[partner_record.cash_amount]]</para>

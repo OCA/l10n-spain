@@ -75,14 +75,9 @@ Authors: Alejandro Sanchez Ramirez Asr Oss - alejandro@asr-oss.com
                                 <field name="total_real_state_amount"/>
                             </group>
                             <group string="Calculation" colspan="4">
-                                <group colspan="4">
-                                    <field name="operations_limit"/>
-                                    <field name="received_cash_limit"/>
-                                </group>
-                                <group colspan="4">
-                                    <field name="charges_obtp_limit"/>
-                                    <label string=""/>
-                                </group>
+                                <field name="operations_limit"/>
+                                <field name="received_cash_limit"/>
+                                <field name="charges_obtp_limit"/>
                             </group>
                             <group colspan="4">
                                 <field name="state" select="2" readonly="1"/>
@@ -95,7 +90,7 @@ Authors: Alejandro Sanchez Ramirez Asr Oss - alejandro@asr-oss.com
                                     string="Calculate"
                                     colspan="3"
                                     icon="gtk-execute"
-                                    states="draft,calc_done"/>
+                                    states="draft"/>
                                 <button name="%(wiz_l10n_es_aeat_mod347_export_boe)d"
                                     type="action"
                                     string="Export"

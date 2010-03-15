@@ -79,6 +79,7 @@ Desarrollado por Alejandro Sanchez (ASR-OSS, www.asr-oss.com)
                     'mod347_view.xml',
                     'partner_view.xml',
                     'account_journal_view.xml',
+                    'security/ir.model.access.csv',
                     ],
     "installable" : True,
     "active" : False,

@@ -235,8 +235,6 @@ class wizard_calculate(wizard.interface):
                                     'amount': line.credit,
                                 })
 
-
-
                     #
                     # TODO: Calculate records of operation keys C-D-E-F-G !
                     #
@@ -262,7 +260,6 @@ class wizard_calculate(wizard.interface):
         finally:
             data['calculation_done'] = True
         return {}
-
 
 
     def _calculate_in_background_choice(self, cr, uid, data, context):
