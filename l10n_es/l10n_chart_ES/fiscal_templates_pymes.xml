@@ -145,21 +145,21 @@
 			<field name="tax_dest_id" ref="iva_pymes_X4_compras_bi" />
 	</record>
 
-	<record id="fptt_pymes_extra_ventas" model="account.fiscal.position.tax.template">
+	<record id="fptt_pymes_extra_ventas_4" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="position_id" ref="fp_pymes_extra"  />
 			<field name="tax_src_id" ref="iva_pymes_rep_4" />
 			<field name="tax_dest_id" ref="iva_pymes_X0" />
 	</record>
 
-	<record id="fptt_pymes_extra_ventas" model="account.fiscal.position.tax.template">
+	<record id="fptt_pymes_extra_ventas_7" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="position_id" ref="fp_pymes_extra"  />
 			<field name="tax_src_id" ref="iva_pymes_rep_7" />
 			<field name="tax_dest_id" ref="iva_pymes_X0" />
 	</record>
 
-	<record id="fptt_pymes_extra_ventas" model="account.fiscal.position.tax.template">
+	<record id="fptt_pymes_extra_ventas_16" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="position_id" ref="fp_pymes_extra"  />
 			<field name="tax_src_id" ref="iva_pymes_rep_16" />
@@ -206,21 +206,21 @@
 			<field name="tax_dest_id" ref="iva_pymes_IC_compras_4_bi" />
 	</record>
 
-	<record id="fptt_pymes_intra_ventas" model="account.fiscal.position.tax.template">
+	<record id="fptt_pymes_intra_ventas_4" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="position_id" ref="fp_pymes_intra"  />
 			<field name="tax_src_id" ref="iva_pymes_rep_4" />
 			<field name="tax_dest_id" ref="iva_pymes_IO" />
 	</record>
 
-	<record id="fptt_pymes_intra_ventas" model="account.fiscal.position.tax.template">
+	<record id="fptt_pymes_intra_ventas_7" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="position_id" ref="fp_pymes_intra"  />
 			<field name="tax_src_id" ref="iva_pymes_rep_7" />
 			<field name="tax_dest_id" ref="iva_pymes_IO" />
 	</record>
 
-	<record id="fptt_pymes_intra_ventas" model="account.fiscal.position.tax.template">
+	<record id="fptt_pymes_intra_ventas_16" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="position_id" ref="fp_pymes_intra"  />
 			<field name="tax_src_id" ref="iva_pymes_rep_16" />
