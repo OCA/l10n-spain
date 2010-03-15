@@ -246,7 +246,7 @@ def _importar(obj, cursor, user, data, context):
                     ], context=context)
             
             if len(partner_ids) == 1:
-                partner = partner_obj.browse(cursor, user, partner_ids, context=context)
+                partner = partner_obj.browse(cursor, user, partner_ids[0], context=context)
                 partner_id = partner.id
                 if values['type'] == 'customer':
                     account_id = line.property_account_receivable and line.property_account_receivable.id or False
