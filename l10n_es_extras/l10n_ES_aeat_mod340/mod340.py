@@ -216,7 +216,7 @@ class l10n_es_aeat_mod340_issued(osv.osv):
         'share_tax' : fields.float('Share Tax',digits=(13,2)),
         'total' : fields.float('Total Invoice',digits=(13,2)),
         'taxable_cost' : fields.float('Taxable Cost',digits=(13,2)),
-        'number' : fields.char('Number Invoices',size=40),
+        'number' : fields.char('Invoice Number',size=40),
         'number_amendment' : fields.char('Number Invoice Amendment',size=40),
         #HASTA AQUI COMUNES EL RESTO ESPECIFICOS
         'number_invoices' : fields.integer('Invoices Accumulated',size = 4),

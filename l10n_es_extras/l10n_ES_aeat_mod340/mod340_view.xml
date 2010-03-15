@@ -56,6 +56,11 @@
 		                        <tree string="Invoices Issued">
                                             <field name="partner_name" select="2"/>
 		                            <field name="vat_declared" select="2"/>	
+					    <field name="number"/>
+					    <field name="invoice_date"/>
+					    <field name="rate"/>
+					    <field name="share_tax"/>
+					    <field name="total"/>
 		                        </tree>
 		                        <form string ="Model 340 Issued">
 		                            <field name="partner_name" select="1"/>
@@ -90,6 +95,11 @@
 		                        <tree string="Invoices Received">
                                             <field name="partner_name" select="2"/>
 		                            <field name="vat_declared" select="2"/>	
+					    <field name="number"/>
+					    <field name="invoice_date"/>
+					    <field name="rate"/>
+					    <field name="share_tax"/>
+					    <field name="total"/>
 		                        </tree>
 		                        <form string ="Model 340 Received">
 		                            <field name="partner_name" select="1"/>
@@ -119,6 +129,11 @@
 		                        <tree string="Property Investment">
                                             <field name="partner_name" select="2"/>
 		                            <field name="vat_declared" select="2"/>	
+					    <field name="number"/>
+					    <field name="invoice_date"/>
+					    <field name="rate"/>
+					    <field name="share_tax"/>
+					    <field name="total"/>
 		                        </tree>
 		                        <form string ="Model 340 Investment">
 		                            <field name="partner_name" select="1"/>
@@ -148,6 +163,11 @@
 		                        <tree string="Operations Intracomunitarias">
                                             <field name="partner_name" select="2"/>
 		                            <field name="vat_declared" select="2"/>	
+					    <field name="number"/>
+					    <field name="invoice_date"/>
+					    <field name="rate"/>
+					    <field name="share_tax"/>
+					    <field name="total"/>
 		                        </tree>
 		                        <form string ="Model 340 intracomunitarias">
 		                            <field name="partner_name" select="1"/>

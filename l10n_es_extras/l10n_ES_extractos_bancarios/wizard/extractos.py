@@ -207,31 +207,29 @@ def _importar(obj, cursor, user, data, context):
         if l['concepto_c'] in ['14']: # Devolución/Impagado
             values['type'] = 'customer'
 
-        # 1) Búsqueda en los apuntes no conciliados por referencia
-        line_ids = move_line_obj.search(cursor, user, [
+        line2reconcile = False
+        partner_id = False
+        account_id = False
+
+        # 1) Búsqueda en los apuntes no conciliados por referencia e importe
+        domain = [
             ('ref', '=', values['ref']),
             ('reconcile_id', '=', False),
             ('account_id.type', 'in', ['receivable', 'payable']),
-            ],
-            #order='date DESC, id DESC', # En OpenERP 5.0 no funciona
-            context=context)
-        lines2reconcile = []
-        partner_id = False
-        account_id = False
-        for line in move_line_obj.browse(cursor, user, line_ids, context=context):
-            if line.partner_id.id:
-                partner_id = line.partner_id.id
-            if l['importe'] >= 0:
-                if round(l['importe'] - line.debit, 2) < 0.01:
-                    account_id = line.account_id.id
-                    break
-            else:
-                if round(line.credit + l['importe'], 2) < 0.01:
-                    account_id = line.account_id.id
-                    break
+        ]
+        if l['importe'] >= 0:
+            domain.append( ('debit', '=', '%.2f' % l['importe']) )
+        else:
+            domain.append( ('credit', '=', '%.2f' % -l['importe']) )
 
-        # 2) Búsqueda por el CIF/NIF del partner. Nota: A partir OpenERP 5.0 los CIFs tienen un prefijo de 2 letras que indica el país.
-        if not partner_id:
+        line_ids = move_line_obj.search(cursor, user, domain, context=context)
+        if len(line_ids) == 1:
+            line = move_line_obj.browse(cursor, user, line_ids[0], context)
+            line2reconcile = line.id
+            partner_id = line.partner_id and line.partner_id.id or False
+            account_id = line.account_id.id
+        else:
+            # 2) Búsqueda por el CIF/NIF del partner. Nota: Los CIFs tienen un prefijo de 2 letras que indica el país.
             partner_ids = partner_obj.search(cursor, user, [
                 ('vat', 'like', '%'+l['referencia1'][:9]),
                 ('active', '=', True),
@@ -246,44 +244,17 @@ def _importar(obj, cursor, user, data, context):
                     ('vat', 'like', '%'+l['conceptos'][21:30]),
                     ('active', '=', True),
                     ], context=context)
-            for line in partner_obj.browse(cursor, user, partner_ids, context=context):
-                partner_id = line.id
+            
+            if len(partner_ids) == 1:
+                partner = partner_obj.browse(cursor, user, partner_ids, context=context)
+                partner_id = partner.id
                 if values['type'] == 'customer':
-                    if line.property_account_receivable:
-                        account_id = line.property_account_receivable.id
-                        break
+                    account_id = line.property_account_receivable and line.property_account_receivable.id or False
                 else:
-                    if line.property_account_payable:
-                        account_id = line.property_account_payable.id
-                        break
+                    account_id = line.property_account_payable and line.property_account_payable.id or False
 
-        # 3) Búsqueda en los apuntes no conciliados por importe
-        if not partner_id:
-            if l['importe'] >= 0:
-                line_ids = move_line_obj.search(cursor, user, [
-                    ('debit', '=', '%.2f' % l['importe']),
-                    ('reconcile_id', '=', False),
-                    ('account_id.type', 'in', ['receivable', 'payable']),
-                    ],
-                    #order='date ASC, id ASC', # En OpenERP 5.0 no funciona
-                    context=context)
-            else:
-                line_ids = move_line_obj.search(cursor, user, [
-                    ('credit', '=', '%.2f' % -l['importe']),
-                    ('reconcile_id', '=', False),
-                    ('account_id.type', 'in', ['receivable', 'payable']),
-                    ],
-                    #order='date ASC, id ASC', # En OpenERP 5.0 no funciona
-                    context=context)
-            if line_ids:
-                line = move_line_obj.browse(cursor, user, line_ids, context=context)[0]
-                if line.partner_id.id:
-                    partner_id = line.partner_id.id
-                account_id = line.account_id.id
-
-        if partner_id:
+            # 3) Búsqueda del apunte por importe (con o sin partner)
             domain = [
-                ('partner_id', '=', partner_id),
                 ('reconcile_id', '=', False),
                 ('account_id.type', 'in', ['receivable', 'payable']),
             ]
@@ -291,14 +262,20 @@ def _importar(obj, cursor, user, data, context):
                 domain.append( ('debit', '=', '%.2f' % l['importe']) )
             else:
                 domain.append( ('credit', '=', '%.2f' % -l['importe']) )
+            if partner_id:
+                domain.append( ('partner_id', '=', partner_id) )
+
             line_ids = move_line_obj.search(cursor, user, domain, context=context)
             # Solamente crearemos la conciliacion automatica cuando exista un solo apunte
             # que coincida. Si hay mas de uno el usuario tendra que conciliar manualmente y
             # seleccionar cual de ellos es el correcto.
             if len(line_ids) == 1:
-                lines2reconcile = [ line.id ]
+                line = move_line_obj.browse(cursor, user, line_ids[0], context)
+                line2reconcile = line.id
+                partner_id = line.partner_id and line.partner_id.id or False
+                account_id = line.account_id.id
 
-        # 4) No hemos encontrado partner: Ponemos valores por defecto para la cuenta
+        # 4) No hemos encontrado cuenta: Ponemos valores por defecto
         if not account_id and values['type'] in ['customer','supplier']:
             if values['type'] == 'customer':
                 account_id = account_receivable
@@ -310,30 +287,57 @@ def _importar(obj, cursor, user, data, context):
             else:
                 account_id = concepto_account_id
 
-        # Si no se han encontrado apuntes individuales que cuadren con los datos de la línea
+        payment_order = False
+
+        # 5) Si no se han encontrado apuntes individuales que cuadren con los datos de la línea
         # del extracto, buscamos en las órdenes de pago/cobro, siempre y cuando el módulo
         # account.payment esté instalado
-        if not lines2reconcile and 'payment.order' in pool.obj_list():
+        if not line2reconcile and 'payment.order' in pool.obj_list():
             # Tenemos que cambiar el signo porque los cobros se muestran en negativo en
             # y los pagos en positivo en las órdenes de pago/cobro.
             line_total = '%.2f' % -l['importe']
+            # We cannot search by total because it's a functional field.
             order_ids = pool.get('payment.order').search(cursor, user, [], context=context)
             for order in pool.get('payment.order').browse(cursor, user, order_ids, context):
                 order_total = '%.2f' % order.total 
                 if line_total != order_total:
                     continue
+
+                # Ensure all move lines are unreconciled.
+                reconciled = False
                 for line in order.line_ids:
-                    lines2reconcile.append( line.move_line_id.id )
+                    if line.move_line_id.reconcile_id or line.move_line_id.reconcile_partial_id:
+                        reconciled = True
+                        break
+                if reconciled:
+                    continue
 
-        values['account_id'] = account_id
-        values['partner_id'] = partner_id
+                if payment_order:
+                    # If we find two unreconciled payment orders with the same total we will not expand any of them
+                    payment_order = False
+                    break
+                payment_order = order
 
-        if lines2reconcile:
-            values['reconcile_id'] = statement_reconcile_obj.create(cursor, user, {
-                'line_ids': [(6, 0, lines2reconcile)],
-            }, context=context)
+            if payment_order:
+                # If there is one (and only one) totally unreconciled payment order, we reconcile all its lines
+                # by splitting current bank statement.
+                for line in payment_order.line_ids:
+                    values['account_id'] = line.move_line_id.account_id.id
+                    values['partner_id'] = line.move_line_id.partner_id and line.move_line_id.partner_id.id or False
+                    values['amount'] = -line.amount_currency
+                    values['reconcile_id'] = statement_reconcile_obj.create(cursor, user, {
+                        'line_ids': [(6, 0, [line.move_line_id.id])],
+                    }, context=context)
+                    statement_line_obj.create(cursor, user, values, context=context)
 
-        statement_line_obj.create(cursor, user, values, context=context)
+        if not payment_order:
+            values['account_id'] = account_id
+            values['partner_id'] = partner_id
+            if line2reconcile:
+                values['reconcile_id'] = statement_reconcile_obj.create(cursor, user, {
+                    'line_ids': [(6, 0, [line2reconcile])],
+                }, context=context)
+            statement_line_obj.create(cursor, user, values, context=context)
 
     values = {
         'balance_start': extracto['saldo_ini'],
