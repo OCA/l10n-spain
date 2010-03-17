@@ -132,7 +132,7 @@ class wizard_calculate(wizard.interface):
                 # Search for invoices
                 #
                 # We will repeat the process for sales and purchases:
-                for invoice_type in ('out_invoice', 'in_invoice'):
+                for invoice_type, refund_type in zip(('out_invoice', 'in_invoice'), ('out_refund', 'in_refund')):
                     #
                     # CHECK THE SALE/PURCHASES INVOICE LIMIT -------------------
                     # (A and B operation keys)
@@ -147,10 +147,19 @@ class wizard_calculate(wizard.interface):
                                 ('period_id', 'in', period_ids),
                                 ('move_id', '!=', None),
                             ])
+                    refund_ids = pool.get('account.invoice').search(cr, uid, [
+                                ('partner_id', '=', partner.id),
+                                ('type', '=', refund_type),
+                                ('period_id', 'in', period_ids),
+                                ('move_id', '!=', None),
+                            ])
                     invoices = pool.get('account.invoice').browse(cr, uid, invoice_ids)
+                    refunds = pool.get('account.invoice').browse(cr, uid, refund_ids)
 
                     # Calculate the invoiced amount
-                    total_amount = sum([invoice.amount_total for invoice in invoices])
+                    invoice_amount = sum([invoice.amount_total for invoice in invoices])
+                    refund_amount = sum([invoice.amount_total for invoice in refunds])
+                    total_amount = invoice_amount - refund_amount
 
                     #
                     # Search for payments received in cash from this partner.
@@ -162,9 +171,6 @@ class wizard_calculate(wizard.interface):
                                 ('period_id', 'in', period_ids),
                             ])
                     cash_account_move_lines = pool.get('account.move.line').browse(cr, uid, cash_account_move_line_ids)
-
-                    # Calculate the invoiced amount
-                    total_amount = sum([invoice.amount_total for invoice in invoices])
 
                     # Calculate the cash amount
                     received_cash_amount = sum([line.credit for line in cash_account_move_lines])
@@ -221,6 +227,13 @@ class wizard_calculate(wizard.interface):
                                 'invoice_id': invoice.id,
                                 'date': invoice.date_invoice,
                                 'amount': invoice.amount_total,
+                            })
+                        for invoice in refunds:
+                            pool.get('l10n.es.aeat.mod347.invoice_record').create(cr, uid, {
+                                'partner_record_id' : partner_record,
+                                'invoice_id': invoice.id,
+                                'date': invoice.date_invoice,
+                                'amount': -invoice.amount_total,
                             })
 
                         #
