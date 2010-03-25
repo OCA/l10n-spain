@@ -67,12 +67,43 @@ l10n_es_extractos_concepto()
 class account_bank_statement_line(osv.osv):
     _inherit = "account.bank.statement.line"
 
-    def onchange_partner_id(self, cursor, user, line_id, partner_id, type, currency_id, context={}):
-        """Elimina el precálculo del importe de la línea del extracto bancario"""
+    def onchange_partner_id(self, cursor, user, line_id, partner_id, type, currency_id, amount, reconcile_id, context={}):
+        """Elimina el precálculo del importe de la línea del extracto bancario
+            y propone una conciliación automática si encuentra una."""
+        statement_reconcile_obj = self.pool.get('account.bank.statement.reconcile')
+        move_line_obj = self.pool.get('account.move.line')
         res = super(account_bank_statement_line, self).onchange_partner_id(cursor, user, line_id, partner_id, type, currency_id, context=context)
+
         # devuelve res = {'value': {'amount': balance, 'account_id': account_id}}
         if 'value' in res and 'amount' in res['value']:
             del res['value']['amount']
+
+        # Eliminamos la propuesta de concilacion que hubiera
+        if reconcile_id:
+            statement_reconcile_obj.unlink(cursor, user, [reconcile_id])
+            if 'value' not in res:
+                res['value'] = {}
+            res['value']['reconcile_id'] = False
+
+        # Busqueda del apunte por importe con partner
+        if partner_id and amount:
+            domain = [
+                ('reconcile_id', '=', False),
+                ('account_id.type', 'in', ['receivable', 'payable']),
+                ('partner_id', '=', partner_id),
+            ]
+            if amount >= 0:
+                domain.append( ('debit', '=', '%.2f' % amount) )
+            else:
+                domain.append( ('credit', '=', '%.2f' % -amount) )
+            line_ids = move_line_obj.search(cursor, user, domain, context=context)
+            # Solamente crearemos la conciliacion automatica cuando exista un solo apunte
+            # que coincida. Si hay mas de uno el usuario tendra que conciliar manualmente y
+            # seleccionar cual de ellos es el correcto.
+            if len(line_ids) == 1:
+                res['value']['reconcile_id'] = statement_reconcile_obj.create(cursor, user, {
+                    'line_ids': [(6, 0, line_ids)],
+                }, context=context)
         return res
 account_bank_statement_line()
 
