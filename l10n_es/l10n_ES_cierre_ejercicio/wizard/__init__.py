@@ -20,5 +20,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-import cierre_ejercicio
+"""
+Spanish Fiscal Year Closing Wizards
+"""
+import wizard_run
