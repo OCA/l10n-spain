@@ -277,8 +277,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">12400</field>
 			<field name="name">IV. Inversiones en empresas del grupo y asociadas a corto plazo</field>
-			<field name="current_value">5303,5304,5313,5314,5323,5324,5333,5334,5343,5344,5353,5354,(5393),(5394),5523,5524,(593),(5943),(5944),(5953),(5954)</field>
-			<field name="previous_value">5303,5304,5313,5314,5323,5324,5333,5334,5343,5344,5353,5354,(5393),(5394),5523,5524,(593),(5943),(5944),(5953),(5954)</field>
+			<field name="current_value">5303,5304,5313,5314,5323,5324,5333,5334,5343,5344,5353,5354,(5393),(5394),debit(5523),debit(5524),(593),(5943),(5944),(5953),(5954)</field>
+			<field name="previous_value">5303,5304,5313,5314,5323,5324,5333,5334,5343,5344,5353,5354,(5393),(5394),debit(5523),debit(5524),(593),(5943),(5944),(5953),(5954)</field>
             <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_abreviado_12000"/>
 			<field name="sequence">BA1/18</field>
@@ -289,8 +289,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">12500</field>
 			<field name="name">V. Inversiones financieras a corto plazo</field>
-			<field name="current_value">5305,5315,5325,5335,5345,5355,(5395),540,541,542,543,545,546,547,548,(549),551,5525,5590,5593,565,566,(5945),(5955),(597),(598)</field>
-			<field name="previous_value">5305,5315,5325,5335,5345,5355,(5395),540,541,542,543,545,546,547,548,(549),551,5525,5590,5593,565,566,(5945),(5955),(597),(598)</field>
+			<field name="current_value">5305,5315,5325,5335,5345,5355,(5395),540,541,542,543,545,546,547,548,(549),debit(551),debit(5525),5590,5593,565,566,(5945),(5955),(597),(598)</field>
+			<field name="previous_value">5305,5315,5325,5335,5345,5355,(5395),540,541,542,543,545,546,547,548,(549),debit(551),debit(5525),5590,5593,565,566,(5945),(5955),(597),(598)</field>
             <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_abreviado_12000"/>
 			<field name="sequence">BA1/19</field>
@@ -688,8 +688,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32390</field>
 			<field name="name">3. Otras deudas a corto plazo</field>
-			<field name="current_value">(1034),(1044),(190),(192),194,500,501,505,506,509,5115,5135,5145,521,522,523,525,526,528,551,5525,5530,5532,555,5565,5566,5595,5598,560,561,569</field>
-			<field name="previous_value">(1034),(1044),(190),(192),194,500,501,505,506,509,5115,5135,5145,521,522,523,525,526,528,551,5525,5530,5532,555,5565,5566,5595,5598,560,561,569</field>
+			<field name="current_value">(1034),(1044),(190),(192),194,500,501,505,506,509,5115,5135,5145,521,522,523,525,526,528,credit(551),credit(5525),5530,5532,555,5565,5566,5595,5598,560,561,569</field>
+			<field name="previous_value">(1034),(1044),(190),(192),194,500,501,505,506,509,5115,5135,5145,521,522,523,525,526,528,credit(551),credit(5525),5530,5532,555,5565,5566,5595,5598,560,561,569</field>
 			<field name="parent_id" ref="es_balance_abreviado_32300"/>
 			<field name="sequence">BA2.2/07</field>
 			<field name="css_class">l4</field>
@@ -699,8 +699,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32400</field>
 			<field name="name">IV. Deudas con empresas del grupo y asociadas a corto plazo</field>
-			<field name="current_value">5103,5104,5113,5114,5123,5124,5133,5134,5143,5144,5523,5524,5563,5564</field>
-			<field name="previous_value">5103,5104,5113,5114,5123,5124,5133,5134,5143,5144,5523,5524,5563,5564</field>
+			<field name="current_value">5103,5104,5113,5114,5123,5124,5133,5134,5143,5144,credit(5523),credit(5524),5563,5564</field>
+			<field name="previous_value">5103,5104,5113,5114,5123,5124,5133,5134,5143,5144,credit(5523),credit(5524),5563,5564</field>
 			<field name="parent_id" ref="es_balance_abreviado_32000"/>
 			<field name="sequence">BA2.2/08</field>
 			<field name="css_class">l3</field>
