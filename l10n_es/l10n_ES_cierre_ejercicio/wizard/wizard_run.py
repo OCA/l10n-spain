@@ -784,9 +784,10 @@ class wizard_run(wizard.interface):
         """
         Action that gets the calculation exception text
         """
-        exception_text = ''
-        if data['process_exception']:
-            exception_text = u"%s" % data['process_exception']
+        try:
+            exception_text = unicode(data.get('process_exception', ''))
+        except UnicodeDecodeError:
+            exception_text = str(data.get('process_exception', ''))
         return { 'exception_text': exception_text }
 
     ############################################################################
