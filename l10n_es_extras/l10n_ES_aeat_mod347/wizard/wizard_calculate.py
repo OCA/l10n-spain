@@ -271,6 +271,7 @@ class wizard_calculate(wizard.interface):
             cr.rollback()
             raise
         finally:
+            cr.close()
             data['calculation_done'] = True
         return {}
 
