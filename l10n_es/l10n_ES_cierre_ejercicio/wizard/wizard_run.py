@@ -131,7 +131,7 @@ class wizard_run(wizard.interface):
         if len(account_move_ids):
             invalid_period_moves = pool.get('account.move').browse(cr, uid, account_move_ids, context)
             str_invalid_period_moves = '\n'.join(['id: %s, date: %s, number: %s, ref: %s' % (move.id, move.date, move.name, move.ref) for move in invalid_period_moves])
-            assert len(invalid_period_moves)==0, _('One or more moves with invalid period or date found on the fiscal year: \n%s') % str_invalid_period_moves
+            raise wizard.except_wizard(_('Error'), _('One or more moves with invalid period or date found on the fiscal year: \n%s') % str_invalid_period_moves)
 
         data['process_task_progress'] = 100.0
 
@@ -166,7 +166,7 @@ class wizard_run(wizard.interface):
         if len(account_move_ids):
             draft_moves = pool.get('account.move').browse(cr, uid, account_move_ids, context)
             str_draft_moves = '\n'.join(['id: %s, date: %s, number: %s, ref: %s' % (move.id, move.date, move.name, move.ref) for move in draft_moves])
-            assert len(draft_moves)==0, _('One or more draft moves found: \n%s') % str_draft_moves
+            raise wizard.except_wizard(_('Error'), _('One or more draft moves found: \n%s') % str_draft_moves)
 
         data['process_task_progress'] = 100.0
 
@@ -217,7 +217,7 @@ class wizard_run(wizard.interface):
         #
         if len(unbalanced_moves):
             str_unbalanced_moves = '\n'.join(['id: %s, date: %s, number: %s, ref: %s' % (move.id, move.date, move.name, move.ref) for move in unbalanced_moves])
-            assert len(unbalanced_moves), _('One or more unbalanced moves found: \n%s') % str_unbalanced_moves
+            raise wizard.except_wizard(_('Error'), _('One or more unbalanced moves found: \n%s') % str_unbalanced_moves)
 
         data['process_task_progress'] = 100.0
 
@@ -263,10 +263,14 @@ class wizard_run(wizard.interface):
             #
             # Get the values for the lines
             #
-            assert fyc.lp_description, _("The L&P description must be defined")
-            assert fyc.lp_date, _("The L&P date must be defined")
-            assert fyc.lp_period_id and fyc.lp_period_id.id, _("The L&P period must be defined")
-            assert fyc.lp_journal_id and fyc.lp_journal_id.id, _("The L&P journal must be defined")
+            if not fyc.lp_description:
+                raise wizard.except_wizard(_('UserError'), _("The L&P description must be defined"))
+            if not fyc.lp_date:
+                raise wizard.except_wizard(_('UserError'), _("The L&P date must be defined"))
+            if not (fyc.lp_period_id and fyc.lp_period_id.id):
+                raise wizard.except_wizard(_('UserError'), _("The L&P period must be defined"))
+            if not (fyc.lp_journal_id and fyc.lp_journal_id.id):
+                raise wizard.except_wizard(_('UserError'), _("The L&P journal must be defined"))
             description = fyc.lp_description
             date = fyc.lp_date
             period_id = fyc.lp_period_id.id
@@ -285,17 +289,22 @@ class wizard_run(wizard.interface):
             #
             # Get the values for the lines
             #
-            assert fyc.nlp_description, _("The Net L&P description must be defined")
-            assert fyc.nlp_date, _("The Net L&P date must be defined")
-            assert fyc.nlp_period_id and fyc.nlp_period_id.id, _("The Net L&P period must be defined")
-            assert fyc.nlp_journal_id and fyc.nlp_journal_id.id, _("The Net L&P journal must be defined")
+            if not fyc.nlp_description:
+                raise wizard.except_wizard(_('UserError'), _("The Net L&P description must be defined"))
+            if not fyc.nlp_date:
+                raise wizard.except_wizard(_('UserError'), _("The Net L&P date must be defined"))
+            if not (fyc.nlp_period_id and fyc.nlp_period_id.id):
+                raise wizard.except_wizard(_('UserError'), _("The Net L&P period must be defined"))
+            if not (fyc.nlp_journal_id and fyc.nlp_journal_id.id):
+                raise wizard.except_wizard(_('UserError'), _("The Net L&P journal must be defined"))
             description = fyc.nlp_description
             date = fyc.nlp_date
             period_id = fyc.nlp_period_id.id
             journal_id = fyc.nlp_journal_id.id
         elif operation == 'close':
             # Require the user to have performed the L&P operation
-            assert fyc.loss_and_profit_move_id and fyc.loss_and_profit_move_id.id, _("The L&P move must exist before creating the closing one")
+            if not (fyc.loss_and_profit_move_id and fyc.loss_and_profit_move_id.id):
+                raise wizard.except_wizard(_('UserError'), _("The L&P move must exist before creating the closing one"))
             #
             # Consider all the periods of the fiscal year *BUT* the Closing one.
             #
@@ -307,16 +316,20 @@ class wizard_run(wizard.interface):
             #
             # Get the values for the lines
             #
-            assert fyc.c_description, _("The closing description must be defined")
-            assert fyc.c_date, _("The closing date must be defined")
-            assert fyc.c_period_id and fyc.c_period_id.id, _("The closing period must be defined")
-            assert fyc.c_journal_id and fyc.c_journal_id.id, _("The closing journal must be defined")
+            if not fyc.c_description:
+                raise wizard.except_wizard(_('UserError'), _("The closing description must be defined"))
+            if not fyc.c_date:
+                raise wizard.except_wizard(_('UserError'), _("The closing date must be defined"))
+            if not (fyc.c_period_id and fyc.c_period_id.id):
+                raise wizard.except_wizard(_('UserError'), _("The closing period must be defined"))
+            if not (fyc.c_journal_id and fyc.c_journal_id.id):
+                raise wizard.except_wizard(_('UserError'), _("The closing journal must be defined"))
             description = fyc.c_description
             date = fyc.c_date
             period_id = fyc.c_period_id.id
             journal_id = fyc.c_journal_id.id
         else:
-            assert operation in ('loss_and_profit', 'net_loss_and_profit', 'close'), _("The operation must be a supported one")
+            assert operation in ('loss_and_profit', 'net_loss_and_profit', 'close'), "The operation must be a supported one"
 
 
         #
@@ -432,21 +445,27 @@ class wizard_run(wizard.interface):
         if operation == 'open':
             closing_move = fyc.closing_move_id
             # Require the user to have performed the closing operation
-            assert closing_move and closing_move.id, _("The closing move must exist to create the opening one")
-            assert len(closing_move.line_id), _("The closing move shouldn't be empty")
+            if not (closing_move and closing_move.id):
+                raise wizard.except_wizard(_('UserError'), _("The closing move must exist to create the opening one"))
+            if not closing_move.line_id:
+                raise wizard.except_wizard(_('UserError'), _("The closing move shouldn't be empty"))
             #
             # Get the values for the lines
             #
-            assert fyc.o_description, _("The opening description must be defined")
-            assert fyc.o_date, _("The opening date must be defined")
-            assert fyc.o_period_id and fyc.o_period_id.id, _("The opening period must be defined")
-            assert fyc.o_journal_id and fyc.o_journal_id.id, _("The opening journal must be defined")
+            if not fyc.o_description:
+                raise wizard.except_wizard(_('UserError'), _("The opening description must be defined"))
+            if not fyc.o_date:
+                raise wizard.except_wizard(_('UserError'), _("The opening date must be defined"))
+            if not (fyc.o_period_id and fyc.o_period_id.id):
+                raise wizard.except_wizard(_('UserError'), _("The opening period must be defined"))
+            if not (fyc.o_journal_id and fyc.o_journal_id.id):
+                raise wizard.except_wizard(_('UserError'), _("The opening journal must be defined"))
             description = fyc.o_description
             date = fyc.o_date
             period_id = fyc.o_period_id.id
             journal_id = fyc.o_journal_id.id
         else:
-            assert operation in ('open'), _("The operation must be a supported one")
+            assert operation in ('open'), "The operation must be a supported one"
 
         #
         # Read the lines from the closing move, and append the inverse lines
@@ -488,7 +507,7 @@ class wizard_run(wizard.interface):
         if operation == 'open':
             pool.get('l10n_es_cierre_ejercicio.fyc').write(cr, uid, [fyc.id], { 'opening_move_id': move_id })
         else:
-            assert operation in ('open'), _("The operation must be a supported one")
+            assert operation in ('open'), "The operation must be a supported one"
 
         data['process_task_progress'] = 100.0
         return move_id
@@ -784,10 +803,15 @@ class wizard_run(wizard.interface):
         """
         Action that gets the calculation exception text
         """
-        try:
-            exception_text = unicode(data.get('process_exception', ''))
-        except UnicodeDecodeError:
-            exception_text = str(data.get('process_exception', ''))
+        exception_text = ''
+        if data.get('process_exception'):
+            if isinstance(data['process_exception'], wizard.except_wizard):
+                exception_text = data['process_exception'].value
+            else:
+                try:
+                    exception_text = unicode(data['process_exception'])
+                except:
+                    exception_text = str(data['process_exception'])
         return { 'exception_text': exception_text }
 
     ############################################################################
