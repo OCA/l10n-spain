@@ -249,9 +249,9 @@ def _importar(obj, cursor, user, data, context):
                 partner = partner_obj.browse(cursor, user, partner_ids[0], context=context)
                 partner_id = partner.id
                 if values['type'] == 'customer':
-                    account_id = line.property_account_receivable and line.property_account_receivable.id or False
+                    account_id = partner.property_account_receivable and partner.property_account_receivable.id or False
                 else:
-                    account_id = line.property_account_payable and line.property_account_payable.id or False
+                    account_id = partner.property_account_payable and partner.property_account_payable.id or False
 
             # 3) Búsqueda del apunte por importe (con o sin partner)
             domain = [
