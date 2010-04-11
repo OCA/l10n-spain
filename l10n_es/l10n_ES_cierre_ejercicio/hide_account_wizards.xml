@@ -48,10 +48,10 @@ Authors: Borja López Soilán (Pexego) - borjals@pexego.es
             parent="menu_account_end_year_treatments_old"
             type="wizard"/>
 
-        <menuitem id="account.menu_action_account_period_close_tree"
+        <!--<menuitem id="account.menu_action_account_period_close_tree"
             action="account.action_account_period_tree"
             parent="menu_account_end_year_treatments_old"
-            sequence="0"/>
+            sequence="0"/>-->
 
     </data>
 </openerp>
