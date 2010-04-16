@@ -62,7 +62,7 @@ class config_ES_toponyms(osv.osv_memory):
         'city_info_recover': _city_info_recover_default,
     }
 
-    def _onchange_city_info(self, cr, uid, ids, city_info, city_module):
+    def onchange_city_info(self, cr, uid, ids, city_info, city_module):
         if city_module == 'uninstalled':
             v = {'city_info_recover': 'no'}
         elif city_info == 'yes':
@@ -71,6 +71,9 @@ class config_ES_toponyms(osv.osv_memory):
             }
         return {'value':v}
 
+    def _onchange_city_info(self, cr, uid, ids, city_info, city_module):
+        """onchange_city_info alias for backwards compatibility"""
+        return self._onchange_city_info(cr, uid, ids, city_info, city_module)
 
     def _create_defaults(self, cr, uid, context):
         # Creates default values of state and city res.partner.address fields linked to zip codes
