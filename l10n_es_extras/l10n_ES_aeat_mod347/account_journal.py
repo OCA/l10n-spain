@@ -20,10 +20,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+"""
+Extends the account journals to add fields used by the 347 report.
+"""
 
-from osv import osv,fields
+from osv import osv, fields
 
 class account_journal(osv.osv):
+    """
+    Extends the account journals to add the cash_journal field.
+    """
     _inherit = 'account.journal'
 
     _columns = {

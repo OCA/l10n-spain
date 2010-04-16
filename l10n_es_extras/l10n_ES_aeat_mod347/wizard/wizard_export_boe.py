@@ -70,7 +70,7 @@ def _formatString(text, length, fill=' ', align='<'):
     else:
         assert False, _('Wrong aling option. It should be < or >')
     # Turn into uppercase
-    return ascii_string.upper()
+    ascii_string = ascii_string.upper()
     #
     # Replace accents
     #

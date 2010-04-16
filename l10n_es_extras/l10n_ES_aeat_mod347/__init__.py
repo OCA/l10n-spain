@@ -20,6 +20,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+"""
+Spanish AEAT 347 Model Wizard
+"""
 
 import mod347
 import account_journal

@@ -20,10 +20,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+"""
+AEAT 347 model object and detail lines.
+"""
 
-from tools.translate import _
-from osv import osv,fields
-import time
+from osv import osv, fields
 import netsvc
 import re
 
@@ -36,6 +37,9 @@ class l10n_es_aeat_mod347_report(osv.osv):
     _description = 'AEAT 347 Report'
 
     def _get_totals(self, cr, uid, ids, name, args, context=None):
+        """
+        Calculates the total_* fields from the line values.
+        """
         if context is None:
             context = {}
         res = {}
@@ -242,11 +246,11 @@ class l10n_es_aeat_mod347_partner_record(osv.osv):
             # Get the default invoice address of the partner
             #
             address = None
-            address_ids = pool.get('res.partner.address').address_get(cr, uid, [partner.id], ['invoice', 'default'])
+            address_ids = self.pool.get('res.partner.address').address_get(cr, uid, [partner.id], ['invoice', 'default'])
             if address_ids.get('invoice'):
-                address = pool.get('res.partner.address').browse(cr, uid, address_ids.get('invoice'))
+                address = self.pool.get('res.partner.address').browse(cr, uid, address_ids.get('invoice'))
             elif address_ids.get('default'):
-                address = pool.get('res.partner.address').browse(cr, uid, address_ids.get('default'))
+                address = self.pool.get('res.partner.address').browse(cr, uid, address_ids.get('default'))
 
             partner_vat = partner.vat and re.match("(ES){0,1}(.*)", partner.vat).groups()[1]
             partner_state_code = address.state_id and address.state_id.code or ''
@@ -387,7 +391,8 @@ class l10n_es_aeat_mod347_partner_record_add_real_state_records(osv.osv):
         """
         Get the real state records from this record parent report for this partner.
         """
-        if context is None: context = {}
+        if context is None:
+            context = {}
         res = {}
         real_state_record_facade = self.pool.get('l10n.es.aeat.mod347.real_state_record')
         for partner_record in self.browse(cr, uid, ids):
@@ -403,7 +408,8 @@ class l10n_es_aeat_mod347_partner_record_add_real_state_records(osv.osv):
         """
         Set the real state records from this record parent report for this partner.
         """
-        if context is None: context = {}
+        if context is None:
+            context = {}
         if values:
             real_state_record_facade = self.pool.get('l10n.es.aeat.mod347.real_state_record')
             for value in values:
@@ -492,16 +498,4 @@ class l10n_es_aeat_mod347_partner_record_add_cash_records(osv.osv):
     }
 l10n_es_aeat_mod347_partner_record_add_cash_records()
 
-
-class l10n_es_aeat_mod347_partner_record_add_cash_records(osv.osv):
-    """
-    Extends the partner record to add the detail of invoices
-    """
-    _inherit = 'l10n.es.aeat.mod347.partner_record'
-
-    _columns = {
-        'cash_record_ids': fields.one2many('l10n.es.aeat.mod347.cash_record', 'partner_record_id', 'Payment records',
-                            states = {'done': [('readonly', True)]}),
-    }
-l10n_es_aeat_mod347_partner_record_add_cash_records()
 

@@ -20,10 +20,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+"""
+Extends the partners to add fields used by the 347 report.
+"""
 
-from osv import osv,fields
+from osv import osv, fields
 
 class res_partner(osv.osv):
+    """
+    Extends the partners to add the include_in_mod347 field.
+    """
+
     _inherit = 'res.partner'
 
     _columns = {

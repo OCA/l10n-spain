@@ -29,7 +29,6 @@ __author__ = """Alejandro Sanchez Ramirez Asr Oss - alejandro@asr-oss.com
 
 
 
-from tools.translate import _
 import wizard
 import pooler
 import time
@@ -123,7 +122,7 @@ class wizard_calculate(wizard.interface):
             #
             # We will check every partner with include_in_mod347
             #
-            partner_ids = pool.get('res.partner').search(cr, uid, [('include_in_mod347','=',True)])
+            partner_ids = pool.get('res.partner').search(cr, uid, [('include_in_mod347', '=', True)])
             partners_done = 0
             total_partners = len(partner_ids)
             for partner in pool.get('res.partner').browse(cr, uid, partner_ids):
@@ -266,8 +265,8 @@ class wizard_calculate(wizard.interface):
 
             data['calculation_progress'] = 100
             cr.commit()
-        except Exception, e:
-            data['calculation_exception'] = e
+        except Exception, ex:
+            data['calculation_exception'] = ex
             cr.rollback()
             raise
         finally:
