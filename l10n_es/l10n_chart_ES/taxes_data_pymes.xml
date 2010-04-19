@@ -1006,6 +1006,10 @@
 			<field name="amount" eval="1.00"/>
 			<field name="type">percent</field>
 			<field name="child_depend" eval="1"/>
+			<field name="base_sign" eval="1.0"/>
+			<field name="tax_sign" eval="1.0"/>
+			<field name="ref_base_sign" eval="-1.0"/>
+			<field name="ref_tax_sign" eval="-1.0"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_pymes_ISP_compras_16_1" model="account.tax.template">
@@ -1018,7 +1022,9 @@
 			<field name="base_code_id" ref="base_pymes_extra_44"/>
 			<field name="ref_base_code_id" ref="base_pymes_extra_44"/>
 			<field name="base_sign" eval="1.0"/>
-			<field name="ref_base_sign" eval="1.0"/>
+			<field name="tax_sign" eval="1.0"/>
+			<field name="ref_base_sign" eval="-1.0"/>
+			<field name="ref_tax_sign" eval="-1.0"/>
 			<field name="type_tax_use">purchase</field>
 		</record>
 		<record id="iva_pymes_ISP_compras_16_2" model="account.tax.template">
