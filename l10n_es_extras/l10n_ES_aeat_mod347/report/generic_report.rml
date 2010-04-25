@@ -23,12 +23,7 @@
             <blockValign value="TOP"/>
             <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="-1,0"/>
             <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="-1,-1"/>
-            <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
-            <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,0" stop="1,-1"/>
-            <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,0" stop="2,-1"/>
-            <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,0" stop="3,-1"/>
-            <lineStyle kind="LINEBEFORE" colorName="#000000" start="4,0" stop="4,-1"/>
-            <lineStyle kind="LINEBEFORE" colorName="#000000" start="5,0" stop="5,-1"/>
+            <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="-1,-1"/>
             <lineStyle kind="LINEAFTER" colorName="#000000" start="-1,0" stop="-1,-1"/>
             <blockBackground colorName="#e6e6ff" start="0,0" stop="-1,-1"/>
         </blockTableStyle>
@@ -36,13 +31,9 @@
             <blockAlignment value="LEFT"/>
             <blockValign value="TOP"/>
             <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="-1,0"/>
+            <lineStyle kind="LINEBELOW" colorName="#cccccc" start="0,0" stop="-1,-1"/>
             <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="-1,-1"/>
-            <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
-            <lineStyle kind="LINEBEFORE" colorName="#000000" start="1,0" stop="1,-1"/>
-            <lineStyle kind="LINEBEFORE" colorName="#000000" start="2,0" stop="2,-1"/>
-            <lineStyle kind="LINEBEFORE" colorName="#000000" start="3,0" stop="3,-1"/>
-            <lineStyle kind="LINEBEFORE" colorName="#000000" start="4,0" stop="4,-1"/>
-            <lineStyle kind="LINEBEFORE" colorName="#000000" start="5,0" stop="5,-1"/>
+            <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="-1,-1"/>
             <lineStyle kind="LINEAFTER" colorName="#000000" start="-1,0" stop="-1,-1"/>
         </blockTableStyle>
         <initialize>
@@ -99,7 +90,7 @@
                 </td>
             </tr>
         </blockTable>
-        <blockTable colWidths="200.0,90.0,60.0,60.0,60.0,20.0,20.0" style="Tabla10">
+        <blockTable colWidths="150.0,90.0,60.0,60.0,60.0,30.0,30.0,30.0" style="Tabla10">
             <tr>
                 <td>
                     <para style="BalCabecera">Partner</para>
@@ -117,6 +108,9 @@
                     <para style="P1">R.S.T. amount</para>
                 </td>
                 <td>
+                    <para style="P1">Key Oper.</para>
+                </td>
+                <td>
                     <para style="P1">Ins. Oper.</para>
                 </td>
                 <td>
@@ -124,7 +118,7 @@
                 </td>
             </tr>
         </blockTable>
-        <blockTable colWidths="200.0,90.0,60.0,60.0,60.0,20.0,20.0" style="Tabla9">
+        <blockTable colWidths="150.0,90.0,60.0,60.0,60.0,30.0,30.0,30.0" style="Tabla9">
             <tr>
                 [[repeatIn(report.partner_record_ids,'partner_record')]]
                 <td>
@@ -141,6 +135,9 @@
                 </td>
                 <td>
                     <para style="P2">[[partner_record.real_state_transmissions_amount]]</para>
+                </td>
+                <td>
+                    <para style="P2">[[partner_record.operation_key and partner_record.operation_key[:1] or '']]</para>
                 </td>
                 <td>
                     <para style="P2">[[partner_record.insurance_operation and 'X' or '']]</para>

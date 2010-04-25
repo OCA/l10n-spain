@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.7\n"
+"Project-Id-Version: OpenERP Server 5.0.9\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-03-17 12:19:22+0000\n"
-"PO-Revision-Date: 2010-03-17 12:19:22+0000\n"
+"POT-Creation-Date: 2010-04-25 19:37:19+0000\n"
+"PO-Revision-Date: 2010-04-25 19:37:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgstr ""
 
 #. module: l10n_ES_aeat_mod347
 #: rml:report_l10n_es_aeat_mod347.generic:0
-msgid "R.S. Rent"
+msgid "Key Oper."
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347
@@ -187,8 +187,14 @@ msgid "Partner records"
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,support_type:0
-msgid "Support Type"
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "The type 1 record must be 502 characters long"
+msgstr ""
+
+#. module: l10n_ES_aeat_mod347
+#: rml:report_l10n_es_aeat_mod347.generic:0
+msgid "R.S. Rent"
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347
@@ -239,6 +245,12 @@ msgid "Exported file"
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "The type 2-I record (real state) must be 502 characters long"
+msgstr ""
+
+#. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
 #: selection:l10n.es.aeat.mod347.report,state:0
 msgid "Draft"
@@ -257,6 +269,11 @@ msgstr ""
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
 msgid "Confirm"
+msgstr ""
+
+#. module: l10n_ES_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,support_type:0
+msgid "Support Type"
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347
@@ -307,6 +324,12 @@ msgid "Legal Representative VAT number"
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "347_report_%s.txt"
+msgstr ""
+
+#. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,door:0
 msgid "Door"
 msgstr ""
@@ -329,6 +352,12 @@ msgstr ""
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "C - Cobros por cuenta de terceros superiores al límite (3)"
+msgstr ""
+
+#. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "%Y-%m-%d"
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347
@@ -585,6 +614,12 @@ msgid "Address type"
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "The formated string must match the given length"
+msgstr ""
+
+#. module: l10n_ES_aeat_mod347
 #: wizard_view:l10n_es_aeat_mod347.calculate_wizard,init:0
 msgid "  B - Sales of goods and services over the limit (1)."
 msgstr ""
@@ -610,8 +645,9 @@ msgid "Cash payments journal"
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "Summary"
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "347 report %s"
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347
@@ -634,6 +670,12 @@ msgstr ""
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
 msgid "Susbtitutive/complementary declaration"
+msgstr ""
+
+#. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "The type 2-D record (partner) must be 502 characters long"
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347
@@ -868,6 +910,11 @@ msgid "Country Code"
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Summary"
+msgstr ""
+
+#. module: l10n_ES_aeat_mod347
 #: rml:report_l10n_es_aeat_mod347.generic:0
 msgid "R.S.T. amount"
 msgstr ""
@@ -895,6 +942,12 @@ msgstr ""
 #. module: l10n_ES_aeat_mod347
 #: wizard_field:l10n_es_aeat_mod347.wizard_export_boe,export,aeat_program_download_url:0
 msgid "AEAT URL"
+msgstr ""
+
+#. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "Wrong aling option. It should be < or >"
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347

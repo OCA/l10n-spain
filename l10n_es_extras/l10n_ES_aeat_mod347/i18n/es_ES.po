@@ -1,14 +1,14 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* l10n_ES_aeat_mod347
+# 	* l10n_ES_aeat_mod347
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.6\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-03-15 12:31:52+0000\n"
-"PO-Revision-Date: 2010-03-17 20:03+0100\n"
-"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
+"POT-Creation-Date: 2010-04-25 19:37:19+0000\n"
+"PO-Revision-Date: 2010-04-25 21:52+0100\n"
+"Last-Translator: Jordi Esteve <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,13 +71,13 @@ msgstr "Registro de empresa"
 
 #. module: l10n_ES_aeat_mod347
 #: rml:report_l10n_es_aeat_mod347.generic:0
-msgid "R.S. Rent"
-msgstr "Arrend. inmueble negocio "
+msgid "Key Oper."
+msgstr "Clave op."
 
 #. module: l10n_ES_aeat_mod347
-#: model:ir.model,name:l10n_ES_aeat_mod347.model_l10n_es_aeat_mod347_invoice_record
-msgid "Invoice Record"
-msgstr "Registro de factura"
+#: constraint:ir.actions.act_window:0
+msgid "Invalid model name in the action definition."
+msgstr "Nombre de modelo inválido en la definición de la acción."
 
 #. module: l10n_ES_aeat_mod347
 #: wizard_field:l10n_es_aeat_mod347.calculate_wizard,progress,progress:0
@@ -188,9 +188,15 @@ msgid "Partner records"
 msgstr "Registros de empresas"
 
 #. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,support_type:0
-msgid "Support Type"
-msgstr "Tipo de soporte"
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "The type 1 record must be 502 characters long"
+msgstr "El registro de tipo 1 debe tener una longitud de 502 caracteres."
+
+#. module: l10n_ES_aeat_mod347
+#: rml:report_l10n_es_aeat_mod347.generic:0
+msgid "R.S. Rent"
+msgstr "Arrend. inmueb. negocio "
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
@@ -229,11 +235,6 @@ msgid "Real State Records"
 msgstr "Registros de inmuebles"
 
 #. module: l10n_ES_aeat_mod347
-#: model:ir.model,name:l10n_ES_aeat_mod347.model_l10n_es_aeat_mod347_partner
-msgid "Partner Operations"
-msgstr "Operaciones con empresas"
-
-#. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
 msgid "Calculation"
 msgstr "Cálculo"
@@ -243,6 +244,12 @@ msgstr "Cálculo"
 #: wizard_field:l10n_es_aeat_mod347.wizard_export_boe,export,file_name:0
 msgid "Exported file"
 msgstr "Fichero exportado"
+
+#. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "The type 2-I record (real state) must be 502 characters long"
+msgstr "El registro de tipo 2-I (inmueble) debe tener una longitud de 502 caracteres."
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -256,14 +263,19 @@ msgid "Real State records"
 msgstr "Registros de inmuebles"
 
 #. module: l10n_ES_aeat_mod347
-#: constraint:ir.actions.act_window:0
-msgid "Invalid model name in the action definition."
-msgstr "Nombre de modelo inválido en la definición de la acción."
+#: model:ir.model,name:l10n_ES_aeat_mod347.model_l10n_es_aeat_mod347_invoice_record
+msgid "Invoice Record"
+msgstr "Registro de factura"
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
 msgid "Confirm"
 msgstr "Confirmar"
+
+#. module: l10n_ES_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,support_type:0
+msgid "Support Type"
+msgstr "Tipo de soporte"
 
 #. module: l10n_ES_aeat_mod347
 #: constraint:ir.ui.view:0
@@ -313,6 +325,12 @@ msgid "Legal Representative VAT number"
 msgstr "NIF del representante legal."
 
 #. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "347_report_%s.txt"
+msgstr "informe_347_%s.txt"
+
+#. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,door:0
 msgid "Door"
 msgstr "Puerta"
@@ -336,6 +354,12 @@ msgstr "Informe 347 AEAT"
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "C - Cobros por cuenta de terceros superiores al límite (3)"
 msgstr "C - Cobros por cuenta de terceros superiores al límite (3)"
+
+#. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "%Y-%m-%d"
+msgstr "%Y-%m-%d"
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
@@ -438,11 +462,6 @@ msgid "Catastral Reference"
 msgstr "Referencia Catastral"
 
 #. module: l10n_ES_aeat_mod347
-#: model:ir.model,name:l10n_ES_aeat_mod347.model_l10n_es_aeat_mod347_invoices
-msgid "Invoices Partner Operations"
-msgstr "Facturas de operaciones con empresas"
-
-#. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,number:0
 msgid "Declaration Number"
 msgstr "Número de la declaración"
@@ -503,11 +522,6 @@ msgstr "DVD"
 #: view:l10n.es.aeat.mod347.report:0
 msgid "Identification"
 msgstr "Identificación"
-
-#. module: l10n_ES_aeat_mod347
-#: model:ir.model,name:l10n_ES_aeat_mod347.model_l10n_es_aeat_mod347
-msgid "Model 347"
-msgstr "Modelo 347"
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,number_calification:0
@@ -601,6 +615,12 @@ msgid "Address type"
 msgstr "Tipo de vía"
 
 #. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "The formated string must match the given length"
+msgstr "El texto con formato debe concordar con la longitud dada."
+
+#. module: l10n_ES_aeat_mod347
 #: wizard_view:l10n_es_aeat_mod347.calculate_wizard,init:0
 msgid "  B - Sales of goods and services over the limit (1)."
 msgstr " B - Ventas de bienes y servicios superiores a (1)."
@@ -626,9 +646,10 @@ msgid "Cash payments journal"
 msgstr "Diario de pagos en efectivo"
 
 #. module: l10n_ES_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "Summary"
-msgstr "Resumen"
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "347 report %s"
+msgstr "Informe 347 %s"
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,state:0
@@ -651,6 +672,12 @@ msgstr "Registro de efectivo"
 #: view:l10n.es.aeat.mod347.report:0
 msgid "Susbtitutive/complementary declaration"
 msgstr "Declaración Complementaria / Sustitutiva"
+
+#. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "The type 2-D record (partner) must be 502 characters long"
+msgstr "El registro de tipo 2-D (empresa) debe tener una longitud de 502 caracteres."
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
@@ -884,6 +911,11 @@ msgid "Country Code"
 msgstr "Código de país"
 
 #. module: l10n_ES_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Summary"
+msgstr "Resumen"
+
+#. module: l10n_ES_aeat_mod347
 #: rml:report_l10n_es_aeat_mod347.generic:0
 msgid "R.S.T. amount"
 msgstr "Importe T.I."
@@ -914,8 +946,21 @@ msgid "AEAT URL"
 msgstr "URL AEAT"
 
 #. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "Wrong aling option. It should be < or >"
+msgstr "Opción de alineación incorrecta. Debería ser < o >."
+
+#. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
 #: wizard_button:l10n_es_aeat_mod347.wizard_export_boe,init,export:0
 msgid "Export"
 msgstr "Exportar"
+
+#~ msgid "Partner Operations"
+#~ msgstr "Operaciones con empresas"
+#~ msgid "Invoices Partner Operations"
+#~ msgstr "Facturas de operaciones con empresas"
+#~ msgid "Model 347"
+#~ msgstr "Modelo 347"
 

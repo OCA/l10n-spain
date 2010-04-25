@@ -69,6 +69,7 @@ Desarrollado por Alejandro Sanchez (ASR-OSS, www.asr-oss.com)
     "depends" : [
                     'account',
                     'base_vat',
+                    'account_invoice_currency',
                 ],
     "init_xml" : [],
     "demo_xml" : [],
