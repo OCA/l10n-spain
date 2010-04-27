@@ -206,7 +206,7 @@ class wizard_run(wizard.interface):
             for line in move.line_id:
                 amount += (line.debit - line.credit)
 
-            if abs(amount) > 10 ** -int(config['price_accuracy']):
+            if abs(amount) > 0.5 * 10 ** -int(config['price_accuracy']):
                 unbalanced_moves.append(move)
 
             accounts_done += 1
@@ -355,7 +355,7 @@ class wizard_run(wizard.interface):
                     # Compute the balance for the account (uses the previous browse context filter)
                     balance = account.balance
                     # Check if the balance is greater than the limit
-                    if abs(balance) > 10 ** -int(config['price_accuracy']):
+                    if abs(balance) >= 0.5 * 10 ** -int(config['price_accuracy']):
                         #
                         # Add a new line to the move
                         #
