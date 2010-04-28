@@ -567,7 +567,7 @@ class fiscal_year_closing(osv.osv):
                 amount = 0
                 for line in move.line_id:
                     amount += (line.debit - line.credit)
-                if abs(amount) > 10 ** -int(config['price_accuracy']):
+                if abs(amount) > 0.5 * 10 ** -int(config['price_accuracy']):
                     raise osv.except_osv(_("Some moves are unbalanced!"), _("All the moves should be balanced before continuing"))
 
                 #
