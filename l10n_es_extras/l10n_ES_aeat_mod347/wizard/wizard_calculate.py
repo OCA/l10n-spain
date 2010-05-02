@@ -156,8 +156,8 @@ class wizard_calculate(wizard.interface):
                     refunds = pool.get('account.invoice').browse(cr, uid, refund_ids)
 
                     # Calculate the invoiced amount
-                    invoice_amount = sum([invoice.amount_total for invoice in invoices])
-                    refund_amount = sum([invoice.amount_total for invoice in refunds])
+                    invoice_amount = sum([invoice.cc_amount_total for invoice in invoices])
+                    refund_amount = sum([invoice.cc_amount_total for invoice in refunds])
                     total_amount = invoice_amount - refund_amount
 
                     #
@@ -225,14 +225,14 @@ class wizard_calculate(wizard.interface):
                                 'partner_record_id' : partner_record,
                                 'invoice_id': invoice.id,
                                 'date': invoice.date_invoice,
-                                'amount': invoice.amount_total,
+                                'amount': invoice.cc_amount_total,
                             })
                         for invoice in refunds:
                             pool.get('l10n.es.aeat.mod347.invoice_record').create(cr, uid, {
                                 'partner_record_id' : partner_record,
                                 'invoice_id': invoice.id,
                                 'date': invoice.date_invoice,
-                                'amount': -invoice.amount_total,
+                                'amount': -invoice.cc_amount_total,
                             })
 
                         #
