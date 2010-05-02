@@ -73,7 +73,7 @@ class config_ES_toponyms(osv.osv_memory):
 
     def _onchange_city_info(self, cr, uid, ids, city_info, city_module):
         """onchange_city_info alias for backwards compatibility"""
-        return self._onchange_city_info(cr, uid, ids, city_info, city_module)
+        return self.onchange_city_info(cr, uid, ids, city_info, city_module)
 
     def _create_defaults(self, cr, uid, context):
         # Creates default values of state and city res.partner.address fields linked to zip codes
