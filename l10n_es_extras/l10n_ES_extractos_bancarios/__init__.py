@@ -4,6 +4,8 @@
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
+#    Copyright (c) 2010 Pexego Sistemas Informáticos. All Rights Reserved
+#                       Borja López Soilán <borjals@pexego.es>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,7 +23,13 @@
 #
 ##############################################################################
 
-import extractos
+"""
+Spanish localization of the bank statements.
+"""
+
+import concepto
+import account_bank_statement
+import import_conceptos
 import wizard
 
 

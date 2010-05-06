@@ -4,6 +4,8 @@
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
+#    Copyright (c) 2010 Pexego Sistemas Informáticos. All Rights Reserved
+#                       Borja López Soilán <borjals@pexego.es>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,29 +24,28 @@
 ##############################################################################
 
 {
-    "name" : "Importación de extractos bancarios C43",
+    "name" : "Spanish Bank Statements Importation",
     "version" : "1.0",
-    "author" : "Zikzakmedia SL",
+    "author" : "Zikzakmedia, Pexego",
     "category" : "Localisation/Accounting",
-    "description" : """Módulo para la importación de extractos bancarios según la norma C43 de la Asociación Española de la Banca.
+    "description" : """Module for the importation of Spanish bank statements following the C43 normative of the 'Asociación Española de la Banca'.
+    
+    Adds a wizard to the bank statements to perform the importation. The imported file gets attached to the given bank statement.
+    It allows to define default accounting codes for the concepts defined in the C43 bank statement file.
 
-Añade un asistente a los extractos bancarios para realizar la importación. El fichero importado queda como fichero adjunto al extracto en cuestión.
-Permite definir las cuentas contables por defecto que se asociarán a los conceptos definidos en los fichero de extractos bancarios C43.
+    The search of the entries to reconcile (and partner) is done like this:
+        1) Unreconciled entries with the given reference and amount. The reference is taken from the 'conceptos' or 'referencia2' fields of the statement.
+        2) Unreconciled entries with (a partner with) the given VAT number and amount.
+           These fields are tested to find a valid spanish VAT:
+              - First 9 characters of 'referencia1' (Banc Sabadell)
+              - First 9 characters of 'conceptos' (La Caixa)
+              - Characters [21:30] of 'conceptos' (Caja Rural del Jalón)
+        3) Unreconciled entries with the given amount.
 
-La búsqueda de la empresa se hace a partir de:
-    1) La referencia2 del registro del extracto que acostumbra a ser la referencia de la operación que da la empresa. Se busca un apunte no conciliado con la misma referencia.
-    2) El CIF/NIF que se encuentra en:
-      - Los 9 primeros caracteres de l['referencia1'] del registro del extracto (Banc Sabadell)
-      - Los 9 primeros caracteres de l['conceptos'] del registro del extracto (La Caixa)
-      - Los caracteres [21:30] de l['conceptos'] (Caja Rural del Jalón)
-      - Si otros bancos o cajas guardan el CIF en otro lugar contactar con el autor/equipo de localización para poderlo añadir o implementar una forma flexible de definirlo.
-    3) Búsqueda en los apuntes no conciliados por importe
-Si no se encuentra la empresa se asigna la cuenta contable que se haya definido por defecto para el concepto de ese registro.
+    If no partner is found, the default account defined for the concept is used.
 
-Elimina el precálculo del importe de la línea del extracto bancario cuando se modifica la empresa (ya que los importes importados ya son los correctos)
-
-El módulo añade un asistente en Gestión financiera/Configuración/Extractos bancarios C43 para la importación de los conceptos de extractos que se debe ejecutar una vez creado el plan de cuentas con el asistente correspondiente y con el módulo l10n_chart_ES previamente instalado.
-""",
+    The module also adds a wizard in Financial Management/Configuration/C43 bank statements to import the default statement concepts, that must be run after creating the spanish chart of accounts (l10n_chart_ES module).
+    """,
     "website" : "www.zikzakmedia.com",
     "license" : "GPL-3",
     "depends" : ["base","account","l10n_chart_ES",],

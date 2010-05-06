@@ -24,8 +24,30 @@
 ##############################################################################
 
 """
-Wizards for the spanish localization of the bank statements.
+C43 format concepts and extension of the bank statement lines.
 """
 
-import wizard_import_c43_file
+from osv import osv, fields
+import tools
+import os
+
+
+
+class l10n_es_extractos_import_wizard(osv.osv_memory):
+    """
+    Wizard to import the XML file defining the statement concepts (concepto)
+    """
+
+    _name = 'l10n.es.extractos.import.wizard'
+
+    def action_import(self, cr, uid, ids, context=None):
+        try:
+            fp = tools.file_open(os.path.join('l10n_ES_extractos_bancarios', 'extractos_conceptos.xml'))
+        except IOError, ex:
+            return {}
+        idref = {}
+        tools.convert_xml_import(cr, 'l10n_ES_extractos_bancarios', fp,  idref, 'init', noupdate=True)
+        return {}
+
+l10n_es_extractos_import_wizard()
 
