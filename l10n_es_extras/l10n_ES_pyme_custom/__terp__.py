@@ -22,12 +22,12 @@
 ##############################################################################
 
 {
-    "name" : "Instal·lación PYME estándar (2o paso)",
+    "name" : "Instalación PYME estándar (2o paso)",
     "version" : "1.0",
     "author" : "Zikzakmedia SL",
     "category" : "Generic Modules/Others",
     "website": "www.zikzakmedia.com",
-    "description": """Instal·lación OpenERP para una PYME estándar (2o paso).
+    "description": """Instalación OpenERP para una PYME estándar (2o paso).
 
 Instala los módulos de importación de extractos bancarios y datos de bancos españoles y su validación.
 

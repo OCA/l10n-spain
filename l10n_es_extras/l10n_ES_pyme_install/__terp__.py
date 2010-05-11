@@ -22,12 +22,12 @@
 ##############################################################################
 
 {
-    "name" : "Instal·lación PYME estándar (1er paso)",
+    "name" : "Instalación PYME estándar (1er paso)",
     "version" : "1.0",
     "author" : "Zikzakmedia SL",
     "category" : "Generic Modules/Others",
     "website": "www.zikzakmedia.com",
-    "description": """Instal·lación OpenERP para una PYME estándar (1er paso).
+    "description": """Instalación OpenERP para una PYME estándar (1er paso).
 
 Instala los módulos habituales de una PYME del Estado Español: ventas, compras, TPV, productos, stocks, contabilidad y facturación, pagos, remesas de recibos, plan contable 2008, topónimos.
 
@@ -37,7 +37,7 @@ Después de instalar este módulo y todas sus dependencias, deberá crear los to
 
 Posteriormente, instalando el módulo l10_ES_pyme_custom, se instalaran los módulos restantes: l10n_ES_extractos_bancarios, l10n_ES_partner""",
     "license" : "GPL-3",
-    "depends" : ["base", "account", "account_payment", "account_payment_extension", "account_financial_report", "point_of_sale", "product", "sale", "sale_payment", "purchase", "stock", "label", "partner_spam", "l10n_ES_remesas", "l10n_chart_ES", "l10n_ES_toponyms", "l10n_ES_partner_data", "l10n_ES_partner_seq"],
+    "depends" : ["base", "account", "account_payment", "account_payment_extension", "account_renumber", "account_financial_report", "point_of_sale", "product", "sale", "sale_payment", "purchase", "stock", "label", "partner_spam", "l10n_ES_remesas", "l10n_chart_ES", "l10n_ES_toponyms", "l10n_ES_partner_data", "l10n_ES_partner_seq"],
     "init_xml" : [],
     "demo_xml" : [],
     "update_xml" : [],

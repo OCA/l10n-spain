@@ -38,7 +38,7 @@ Después de instalar este módulo y todas sus dependencias, deberá crear los to
 Posteriormente podrá crear los bancos españoles mediante el menú "Empresas/Configuración/Bancos/Asistente de importación de todos los bancos del Estado Español" y los conceptos de extractos bancarios mediante el menú "Gestión financiera/Configuración/Extractos bancarios C43/Asistente de importación de conceptos de extractos".
 """,
     "license" : "GPL-3",
-    "depends" : ["base", "account", "account_payment", "account_payment_extension", "account_financial_report", "l10n_chart_ES", "l10n_ES_toponyms", "l10n_ES_partner", "l10n_ES_partner_seq", "l10n_ES_remesas", "l10n_ES_extractos_bancarios", "l10n_ES_cierre_ejercicio", "l10n_ES_account_balance_report", "l10n_ES_aeat_mod347"],
+    "depends" : ["base", "account", "account_payment", "account_payment_extension", "account_renumber", "account_financial_report", "l10n_chart_ES", "l10n_ES_toponyms", "l10n_ES_partner", "l10n_ES_partner_seq", "l10n_ES_remesas", "l10n_ES_extractos_bancarios", "l10n_ES_cierre_ejercicio", "l10n_ES_account_balance_report", "l10n_ES_aeat_mod347"],
     "init_xml" : ["pyme_data.xml"],
     "demo_xml" : [],
     "update_xml" : [
