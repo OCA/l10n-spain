@@ -317,6 +317,8 @@ class wizard_import_c43_file(wizard.interface):
                 divisa_eq
                 importe_eq
         """
+        if context is None:
+            context = {}
 
         #
         # st_data will contain the data read from the file, plus the internal
@@ -368,6 +370,8 @@ class wizard_import_c43_file(wizard.interface):
         """
         Attachs a file to the given bank statement.
         """
+        if context is None:
+            context = {}
         pool = pooler.get_pool(cr.dbname)
         attachment_facade = pool.get('ir.attachment')
         
@@ -403,6 +407,8 @@ class wizard_import_c43_file(wizard.interface):
         Returns the ids of the default receivable and payable accounts
         for partners.
         """
+        if context is None:
+            context = {}
         pool = pooler.get_pool(cr.dbname)
 
         model_fields_ids = pool.get('ir.model.fields').search(cr, uid, [
@@ -436,11 +442,12 @@ class wizard_import_c43_file(wizard.interface):
           spanish VAT number, and then search for a partner with that VAT.
         - Only works for spanish VAT numbers.
         """
+        if context is None:
+            context = {}
         pool = pooler.get_pool(cr.dbname)
         partner_facade = pool.get('res.partner')
 
         partner = None
-
 
         possible_vat_numbers = [
             st_line['referencia1'][:9],     # Banc Sabadell
@@ -450,7 +457,7 @@ class wizard_import_c43_file(wizard.interface):
         for possible_vat_number in possible_vat_numbers:
             if partner_facade.check_vat_es(possible_vat_number):
                 partner_ids = partner_facade.search(cr, uid, [
-                                    ('vat', 'like', 'ES%' % possible_vat_number),
+                                    ('vat', 'like', 'ES%s' % possible_vat_number),
                                     ('active', '=', True),
                                 ], context=context)
                 if len(partner_ids) == 1:
@@ -491,6 +498,8 @@ class wizard_import_c43_file(wizard.interface):
               Banc Sabadell => 'referencia2' or 'conceptos'
               Caja Rural del Jalón => 'conceptos'
         """
+        if context is None:
+            context = {}
         pool = pooler.get_pool(cr.dbname)
         move_line_facade = pool.get('account.move.line')
 
@@ -528,6 +537,8 @@ class wizard_import_c43_file(wizard.interface):
         If more than one line is found, and one of the lines has the same
         maturity date or at least the same month, that line is returned.
         """
+        if context is None:
+            context = {}
         pool = pooler.get_pool(cr.dbname)
         move_line_facade = pool.get('account.move.line')
 
@@ -563,6 +574,8 @@ class wizard_import_c43_file(wizard.interface):
         """
         Searchs for a non-conciled entry given the line amount.
         """
+        if context is None:
+            context = {}
         pool = pooler.get_pool(cr.dbname)
         move_line_facade = pool.get('account.move.line')
 
@@ -592,6 +605,8 @@ class wizard_import_c43_file(wizard.interface):
         Searchs for a non-conciled payment order with the same total amount.
         (If more than one order matches None is returned).
         """
+        if context is None:
+            context = {}
         pool = pooler.get_pool(cr.dbname)
 
         # We require account_payment to be instaled
@@ -636,6 +651,8 @@ class wizard_import_c43_file(wizard.interface):
         Imports the C43 file selected by the user on the wizard form,
         into the current bank statement statement.
         """
+        if context is None:
+            context = {}
         pool = pooler.get_pool(cr.dbname)
 
         statement_facade = pool.get('account.bank.statement')
