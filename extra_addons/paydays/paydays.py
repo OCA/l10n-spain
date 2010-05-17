@@ -59,7 +59,9 @@ class account_payment_term(osv.osv):
 
         # Admit space, dash and colon separators.
         days = term.payment_days.replace(' ','-').replace(',','-')
-        days = days.split('-')
+        days = [x.strip() for x in days.split('-') if x]
+        if not days:
+            return result
         days = [int(x) for x in days]
         days.sort()
         new_result = []
