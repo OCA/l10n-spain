@@ -3,14 +3,9 @@
 	<data>
 
 		<wizard
-			string="Create payment file 19/58"
+			string="Create payment file"
 			model="payment.order"
-			name="export_payment_file_19_58"
-			id="wizard_create_payment_file_19_58"/>
-		<wizard
-			string="Create payment file 34"
-			model="payment.order"
-			name="export_payment_file_34"
-			id="wizard_create_payment_file_34"/>
+			name="export_payment_file_spain"
+			id="wizard_create_payment_file_spain"/>
 	</data>
 </openerp>

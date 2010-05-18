@@ -33,15 +33,15 @@
                     <field name="sufijo" attrs="{'required':[('tipo','!=','none')]}"/>
                     <field name="ine"/>
                     <newline/>
-                    <group colspan="4">
-                        <group colspan="2">
-                            <separator string="CSB 58 options" colspan="4"/>
+                    <group colspan="4" attrs="{'invisible': [('tipo', '=', 'none')]}">
+                        <group colspan="2" col="2" attrs="{ 'invisible': [('tipo', '!=', 'csb_58')] }">
+                            <separator string="CSB 58 Options" colspan="2"/>
                             <field name="inc_domicile"/>
                             <field name="alt_domicile_format"/>
                         </group>
-                        <group colspan="2">
-                            <separator string="File format options" colspan="4"/>
-                            <field name="use_crlf"/>
+                        <group colspan="2" col="2" attrs="{ 'invisible': [('tipo', '!=', 'csb_32')] }">
+                            <separator string="CSB 32 Options" colspan="2"/>
+                            <field name="cedente"/>
                         </group>
                     </group>
                     <newline/>

@@ -25,4 +25,3 @@
 ##############################################################################
 
 import export_remesas
-import export_transferencias

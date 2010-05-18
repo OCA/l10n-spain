@@ -40,16 +40,6 @@ class payment_mode(osv.osv):
     _name= 'payment.mode'
     _inherit = 'payment.mode'
 
-
-    def _get_cif(self, cr, uid, ids, field_name, arg, context):
-        res = {}
-        for line in self.browse(cr, uid, ids):
-            if line.partner_id:
-                res[line.id] = line.partner_id.vat
-            else:
-                res[line.id] = ""
-        return res
-
     def onchange_partner(self, cr, uid, ids, partner_id):
         if partner_id:
             pool = pooler.get_pool(cr.dbname)
@@ -61,19 +51,18 @@ class payment_mode(osv.osv):
         return {'value':{'nombre': ""}}
 
     _columns = {
-        'tipo': fields.selection([('none','None'),('csb_19','CSB 19'),('csb_58','CSB 58'),('csb_34','CSB 34')], 'Type of payment file', size=6, select=True, required=True),
+        'tipo': fields.selection([('none','None'),('csb_19','CSB 19'),('csb_32','CSB 32'),('csb_34','CSB 34'),('csb_58','CSB 58')], 'Type of payment file', size=6, select=True, required=True),
         'sufijo': fields.char('suffix',size=3, select=True),
         'partner_id': fields.many2one('res.partner', 'Partner', select=True),
         'nombre': fields.char('Company name in file', size=40),
-        'cif': fields.function(_get_cif, method=True, string='VAT code', type="char", select=True),
+        'cif': fields.related('partner_id','vat', type='char', string='VAT code', select=True),
         # Código INE (9 dígitos)
         'ine': fields.char('INE code',size=9),
+        'cedente': fields.char('Cedente', size=15),
         # Incluir registro obligatorio de domicilio (para no domiciliados)
         'inc_domicile': fields.boolean('Include domicile', help='Add partner domicile records to the exported file (CSB 58)'),
         # Usar formato alternativo para el registro de domicilio
         'alt_domicile_format': fields.boolean('Alt. domicile format', help='Alternative domicile record format'),
-        # Usar formato ASCII-DOS con CRLF (\r\n) al final de línea
-        'use_crlf': fields.boolean('CRLF line terminators', help='Force the usage of CRLF line terminators (DOS/Windows compatible ASCII file) instead of LF terminators (Unix ASCII file)'),
         }
 
     _defaults = {
@@ -81,7 +70,6 @@ class payment_mode(osv.osv):
         'sufijo': lambda *a: '000',
         'inc_domicile': lambda *a: False,
         'alt_domicile_format': lambda *a: False,
-        'use_crlf': lambda *a: False,
     }
 
 payment_mode()
@@ -92,11 +80,12 @@ class payment_order(osv.osv):
     _inherit = 'payment.order'
 
     def get_wizard(self, type):
-        if type == 'RECIBO_CSB':
-            return (self._module, 'wizard_create_payment_file_19_58')
+        if type in ('RECIBO_CSB', 'TRANSFERENCIA_CSB'):
+            return (self._module, 'wizard_create_payment_file_spain')
         else:
             return super(payment_order, self).get_wizard(type)
 
 payment_order()
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
