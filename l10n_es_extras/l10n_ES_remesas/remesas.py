@@ -70,6 +70,9 @@ class payment_mode(osv.osv):
         'sufijo': lambda *a: '000',
         'inc_domicile': lambda *a: False,
         'alt_domicile_format': lambda *a: False,
+
+        # Override default: We want to be safe so we require bank account by default
+        'require_bank_account': lambda *a: True, 
     }
 
 payment_mode()
