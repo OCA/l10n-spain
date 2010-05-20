@@ -77,7 +77,6 @@ export_fields = {
 def _create_payment_file(self, cr, uid, data, context):
 
     txt_remesa = ''
-    num_recibos = 0
     num_lineas_opc = 0
 
     try:
@@ -175,7 +174,7 @@ def _create_payment_file(self, cr, uid, data, context):
             'res_model': 'payment.order',
             'res_id': orden.id,
             }, context=context)
-        log = _("Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n") % (-orden.total, num_recibos)
+        log = _("Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n") % (-orden.total, len(recibos))
         pool.get('payment.order').set_done(cr,uid,orden.id,context)
         return {
             'note': log, 
