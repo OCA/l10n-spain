@@ -425,9 +425,19 @@ class wizard_import_c43_file(wizard.interface):
 
         for prop in pool.get('ir.property').browse(cr, uid, property_ids, context=context):
             if prop.fields_id.name == 'property_account_receivable':
-                account_receivable_id = int(prop.value.split(',')[1])
+                try:
+                    # OpenERP 5.0 and 5.2/6.0 revno <= 2236
+                    account_receivable_id = int(prop.value.split(',')[1])
+                except AttributeError:
+                    # OpenERP 6.0 revno >= 2236
+                    account_receivable_id = prop.value_reference.id
             elif prop.fields_id.name == 'property_account_payable':
-                account_payable_id = int(prop.value.split(',')[1])
+                try:
+                    # OpenERP 5.0 and 5.2/6.0 revno <= 2236
+                    account_payable_id = int(prop.value.split(',')[1])
+                except AttributeError:
+                    # OpenERP 6.0 revno >= 2236
+                    account_payable_id = prop.value_reference.id
 
         return (account_receivable_id, account_payable_id)
 
