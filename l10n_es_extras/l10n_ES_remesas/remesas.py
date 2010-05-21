@@ -63,7 +63,9 @@ class payment_mode(osv.osv):
         'inc_domicile': fields.boolean('Include domicile', help='Add partner domicile records to the exported file (CSB 58)'),
         # Usar formato alternativo para el registro de domicilio
         'alt_domicile_format': fields.boolean('Alt. domicile format', help='Alternative domicile record format'),
-        }
+        # Require bank account?
+        'require_bank_account': fields.boolean('Require bank account', help='If your bank allows you to send orders without the bank account info, you may disable this option'),
+    }
 
     _defaults = {
         'tipo': lambda *a: 'none',
