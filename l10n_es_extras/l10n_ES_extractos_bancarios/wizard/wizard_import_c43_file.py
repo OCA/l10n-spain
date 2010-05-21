@@ -360,6 +360,8 @@ class wizard_import_c43_file(wizard.interface):
                 self._process_record_33(cr, uid, st_data, line, context)
             elif line[0:2] == '88': # Registro de fin de archivo
                 self._process_record_88(cr, uid, st_data, line, context)
+            elif ord(line[0]) == 26: # CTRL-Z (^Z), is often used as an end-of-file marker in DOS
+                pass
             else:
                 raise wizard.except_wizard(_('Error in C43 file'), _('Not valid record type.'))
 
