@@ -8,12 +8,12 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2009-09-05 14:26:09+0000\n"
-"PO-Revision-Date: 2009-09-05 16:34+0200\n"
-"Last-Translator: Albert Cervera i Areny <albert@nan-tic.com>\n"
+"PO-Revision-Date: 2010-05-22 18:34+0100\n"
+"Last-Translator: Jordi Esteve <jesteve@zikzakmedia.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "X-Generator: Lokalize 1.0\n"
 
@@ -24,29 +24,21 @@ msgstr "Dies de pagament"
 
 #. module: paydays
 #: help:account.payment.term,payment_days:0
-msgid ""
-"If a company has more than one payment days in a month you should fill them "
-"in this field and set 'Day of the Month' field in line to zero. For example, "
-"if a company pays the 5th and 20th days of the month you should write '5-20' "
-"here."
-msgstr ""
-"Si una empresa té més d'un dia de pagament al mes, heu de posar-los en "
-"aquest camp i posar a zero el camp Dia del mes en les línies. Per exemple, "
-"si una empresa paga els dies 5 i 20 de cada mes, cal escriure '5-20' aquí."
+msgid "If a company has more than one payment days in a month you should fill them in this field and set 'Day of the Month' field in line to zero. For example, if a company pays the 5th and 20th days of the month you should write '5-20' here."
+msgstr "Si una empresa té més d'un dia de pagament al mes, heu de posar-los en aquest camp i posar a zero el camp 'Dia del mes' en les línies. Per exemple, si una empresa paga els dies 5 i 20 de cada mes, heu d'introduir '5-20'."
 
 #. module: paydays
 #: constraint:ir.ui.view:0
 msgid "Invalid XML for View Architecture!"
-msgstr ""
+msgstr "XML no vàlid per a l'estructura de la vista!"
 
 #. module: paydays
 #: model:ir.module.module,description:paydays.module_meta_information
 msgid "This module allows setting more than one payment days in payment terms."
-msgstr ""
-"Aquest mòdul permet establir més d'un dia de pagament en els plaços de "
-"pagament."
+msgstr "Aquest mòdul permet establir més d'un dia de pagament en els terminis de pagament."
 
 #. module: paydays
 #: field:account.payment.term,payment_days:0
 msgid "Payment days"
 msgstr "Dies de pagament"
+
