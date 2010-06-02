@@ -49,13 +49,47 @@ _LP_ACCOUNT_MAPPING = [
 # Net Loss & Profit
 _NLP_ACCOUNT_MAPPING = [
     ('800', '133%', False),
-    ('801', '133%', False),
     ('802', '133%', False),
-    ('803', '133%', False),
-    ('810', '134%0', False),
-    ('811', '134%1', False),
-    ('812', '134%0', False),
-    ('900', '135%', False),
+    ('810', '1340%0', False),
+    ('811', '1341%0', False),
+    ('812', '1340%0', False),
+    ('813', '1341%0', False),
+    ('820', '135%0', False),
+    ('821', '135%0', False),
+    ('830', '13', False), # Can be any 13? account, like 130 or 133
+    ('833', '13', False), # Can be any 13? account, like 130 or 133
+    ('834', '137%0', False),
+    ('835', '137%0', False),
+    ('835', '137%0', False),
+    ('838', '133%0', False),
+    ('840', '130%0', False),
+    ('841', '131%0', False),
+    ('842', '132%0', False),
+    ('850', '115%0', False),
+    ('851', '115%0', False),
+    ('860', '136%0', False),
+    ('862', '136%0', False),
+    ('890', '133%0', False),
+    ('892', '133%0', False),
+    ('900', '133%', False),
+    ('902', '133%', False),
+    ('910', '1340%0', False),
+    ('911', '1341%0', False),
+    ('912', '1340%0', False),
+    ('913', '1341%0', False),
+    ('920', '135%0', False),
+    ('921', '135%0', False),
+    ('940', '130%0', False),
+    ('941', '131%0', False),
+    ('942', '132%0', False),
+    ('950', '115%0', False),
+    ('951', '115%0', False),
+    ('960', '136%0', False),
+    ('962', '136%0', False),
+    ('990', '133%0', False),
+    ('991', '133%0', False),
+    ('992', '133%0', False),
+    ('993', '133%0', False),
 ]
 
 # Closing
@@ -107,7 +141,7 @@ class fiscal_year_closing_lp_account_mapping(osv.osv):
 
         # Accounts
         'source_account_id':fields.many2one('account.account', 'Source account', required=True, ondelete='cascade'),
-        'dest_account_id':fields.many2one('account.account', 'Dest account', required=True, ondelete='cascade'),
+        'dest_account_id':fields.many2one('account.account', 'Dest account', required=False, ondelete='cascade'),
     }
 fiscal_year_closing_lp_account_mapping()
 
@@ -128,7 +162,7 @@ class fiscal_year_closing_nlp_account_mapping(osv.osv):
 
         # Accounts
         'source_account_id':fields.many2one('account.account', 'Source account', required=True, ondelete='cascade'),
-        'dest_account_id':fields.many2one('account.account', 'Dest account', required=True, ondelete='cascade'),
+        'dest_account_id':fields.many2one('account.account', 'Dest account', required=False, ondelete='cascade'),
     }
 fiscal_year_closing_nlp_account_mapping()
 
@@ -400,14 +434,27 @@ class fiscal_year_closing(osv.osv):
                     description = self.pool.get('account.account').read(cr, uid, source_account_id, ['name'])['name']
 
             #
-            # Add the line to the result
+            # If the mapping is valid for this chart of accounts
             #
             if source_account_id:
-                account_mappings.append({
-                        'name': description,
-                        'source_account_id': source_account_id,
-                        'dest_account_id': dest_account_id,
-                    })
+                #
+                # Make sure that the dest account is valid
+                #
+                if dest_account_id:
+                    # Add the line to the result
+                    account_mappings.append({
+                            'name': description,
+                            'source_account_id': source_account_id,
+                            'dest_account_id': dest_account_id,
+                        })
+                else:
+                    # Add the line to the result
+                    account_mappings.append({
+                            'name': _('No destination account %s found for account %s.') % (dest, source),
+                            'source_account_id': source_account_id,
+                            'dest_account_id': None,
+                        })
+
         return [(0, 0, acc_map) for acc_map in account_mappings]
 
 

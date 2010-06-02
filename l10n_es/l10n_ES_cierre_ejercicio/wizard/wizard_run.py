@@ -258,8 +258,14 @@ class wizard_run(wizard.interface):
                         and period.id != fyc.nlp_period_id.id \
                         and period.id != fyc.c_period_id.id:
                     period_ids.append(period.id)
+            #
             # Set the accounts to use
+            #
             account_mapping_ids = fyc.lp_account_mapping_ids
+            for account_map in account_mapping_ids:
+                if not account_map.dest_account_id:
+                    raise wizard.except_wizard(_('UserError'), _("The L&P account mappings are not properly configured: %s") % account_map.name)
+
             #
             # Get the values for the lines
             #
@@ -284,8 +290,13 @@ class wizard_run(wizard.interface):
                 if period.id != fyc.nlp_period_id.id \
                         and period.id != fyc.c_period_id.id:
                     period_ids.append(period.id)
+            #
             # Set the accounts to use
+            #
             account_mapping_ids = fyc.nlp_account_mapping_ids
+            for account_map in account_mapping_ids:
+                if not account_map.dest_account_id:
+                    raise wizard.except_wizard(_('UserError'), _("The Net L&P account mappings are not properly configured: %s") % account_map.name)
             #
             # Get the values for the lines
             #

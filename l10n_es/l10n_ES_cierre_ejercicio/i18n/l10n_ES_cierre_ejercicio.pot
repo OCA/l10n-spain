@@ -16,6 +16,48 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
+#, python-format
+msgid "UserError"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/fyc.py:0
+#, python-format
+msgid "No destination account %s found for account %s."
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
+#, python-format
+msgid "The Net L&P account mappings are not properly configured: %s"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
+#, python-format
+msgid "The L&P account mappings are not properly configured: %s"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
+#, python-format
+msgid "One or more draft moves found: \n%s"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
+#, python-format
+msgid "One or more moves with invalid period or date found on the fiscal year: \n%s"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
+#, python-format
+msgid "One or more unbalanced moves found: \n%s"
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/fyc.py:0
 #, python-format
 msgid "You have to review and confirm each of the moves before continuing"
@@ -269,12 +311,6 @@ msgid "This wizard will perform the selected operations."
 msgstr ""
 
 #. module: l10n_ES_cierre_ejercicio
-#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
-#, python-format
-msgid "One or more draft moves found: \n%s"
-msgstr ""
-
-#. module: l10n_ES_cierre_ejercicio
 #: field:l10n_es_cierre_ejercicio.fyc_lp_account_map,source_account_id:0
 #: field:l10n_es_cierre_ejercicio.fyc_nlp_account_map,source_account_id:0
 msgid "Source account"
@@ -416,12 +452,6 @@ msgid "Checks that there are no moves, on the fiscal year that is being closed, 
 msgstr ""
 
 #. module: l10n_ES_cierre_ejercicio
-#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
-#, python-format
-msgid "One or more moves with invalid period or date found on the fiscal year: \n%s"
-msgstr ""
-
-#. module: l10n_ES_cierre_ejercicio
 #: wizard_button:l10n_es_cierre_ejercicio.wizard_run,progress,run:0
 #: wizard_button:l10n_es_cierre_ejercicio.wizard_cancel,progress,run:0
 msgid "Keep waiting"
@@ -528,12 +558,6 @@ msgstr ""
 #. module: l10n_ES_cierre_ejercicio
 #: field:l10n_es_cierre_ejercicio.fyc,closing_fiscalyear_id:0
 msgid "Fiscal year to close"
-msgstr ""
-
-#. module: l10n_ES_cierre_ejercicio
-#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
-#, python-format
-msgid "One or more unbalanced moves found: \n%s"
 msgstr ""
 
 #. module: l10n_ES_cierre_ejercicio
@@ -748,12 +772,6 @@ msgid "There is already a fiscal year closing with this name."
 msgstr ""
 
 #. module: l10n_ES_cierre_ejercicio
-#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
-#, python-format
-msgid "One or more draft moves found: \n%s"
-msgstr ""
-
-#. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/fyc.py:0
 #, python-format
 msgid "There is already a fiscal year closing for the fiscal year to close."
@@ -765,14 +783,4 @@ msgstr ""
 msgid "There is already a fiscal year closing for the fiscal year to open."
 msgstr ""
 
-#. module: l10n_ES_cierre_ejercicio
-#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
-#, python-format
-msgid "One or more moves with invalid period or date found on the fiscal year: \n%s"
-msgstr ""
 
-#. module: l10n_ES_cierre_ejercicio
-#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
-#, python-format
-msgid "One or more unbalanced moves found: \n%s"
-msgstr ""
