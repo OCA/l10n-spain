@@ -90,6 +90,19 @@
 			<field name="tax_src_id" ref="iva_sop_16_inv" />
 			<field name="tax_dest_id" ref="iva_X16_compras_bi" />
 	</record>
+	
+	<record id="fptt_extra_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_extra" />
+			<field name="tax_src_id" ref="iva_sop_18" />
+			<field name="tax_dest_id" ref="iva_X18_compras_bc" />
+	</record>
+	<record id="fptt_extra_18_inv" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_extra" />
+			<field name="tax_src_id" ref="iva_sop_18_inv" />
+			<field name="tax_dest_id" ref="iva_X18_compras_bi" />
+	</record>
 
 	<record id="fptt_extra_7" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE 2008</field>
@@ -102,6 +115,18 @@
 			<field name="position_id" ref="fp_extra" />
 			<field name="tax_src_id" ref="iva_sop_7_inv" />
 			<field name="tax_dest_id" ref="iva_X7_compras_bi" />
+	</record>
+	<record id="fptt_extra_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_extra" />
+			<field name="tax_src_id" ref="iva_sop_8" />
+			<field name="tax_dest_id" ref="iva_X8_compras_bc" />
+	</record>
+	<record id="fptt_extra_8_inv" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_extra" />
+			<field name="tax_src_id" ref="iva_sop_8_inv" />
+			<field name="tax_dest_id" ref="iva_X8_compras_bi" />
 	</record>
 	 <record id="fptt_extra_4" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE 2008</field>
@@ -129,11 +154,23 @@
 			<field name="tax_src_id" ref="iva_rep_7" />
 			<field name="tax_dest_id" ref="iva_X0" />
 	</record>
+	<record id="fptt_extra_ventas_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_extra" />
+			<field name="tax_src_id" ref="iva_rep_8" />
+			<field name="tax_dest_id" ref="iva_X0" />
+	</record>
 
 	<record id="fptt_extra_ventas_16" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE 2008</field>
 			<field name="position_id" ref="fp_extra" />
 			<field name="tax_src_id" ref="iva_rep_16" />
+			<field name="tax_dest_id" ref="iva_X0" />
+	</record>
+	<record id="fptt_extra_ventas_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_extra" />
+			<field name="tax_src_id" ref="iva_rep_18" />
 			<field name="tax_dest_id" ref="iva_X0" />
 	</record>
 
@@ -151,6 +188,19 @@
 			<field name="tax_src_id" ref="iva_sop_16_inv" />
 			<field name="tax_dest_id" ref="iva_IC_compras_16_bi" />
 	</record>
+	
+	<record id="fptt_intra_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_intra" />
+			<field name="tax_src_id" ref="iva_sop_18" />
+			<field name="tax_dest_id" ref="iva_IC_compras_18_bc" />
+	</record>
+	<record id="fptt_intra_18_inv" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_intra" />
+			<field name="tax_src_id" ref="iva_sop_18_inv" />
+			<field name="tax_dest_id" ref="iva_IC_compras_18_bi" />
+	</record>
 
 	<record id="fptt_intra_7" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE 2008</field>
@@ -163,6 +213,18 @@
 			<field name="position_id" ref="fp_intra" />
 			<field name="tax_src_id" ref="iva_sop_7_inv" />
 			<field name="tax_dest_id" ref="iva_IC_compras_7_bi" />
+	</record>
+	<record id="fptt_intra_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_intra" />
+			<field name="tax_src_id" ref="iva_sop_8" />
+			<field name="tax_dest_id" ref="iva_IC_compras_8_bc" />
+	</record>
+	<record id="fptt_intra_8_inv" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_intra" />
+			<field name="tax_src_id" ref="iva_sop_8_inv" />
+			<field name="tax_dest_id" ref="iva_IC_compras_8_bi" />
 	</record>
 	 <record id="fptt_intra_4" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE 2008</field>
@@ -190,11 +252,25 @@
 			<field name="tax_src_id" ref="iva_rep_7" />
 			<field name="tax_dest_id" ref="iva_IO" />
 	</record>
+	
+	<record id="fptt_intra_ventas_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_intra" />
+			<field name="tax_src_id" ref="iva_rep_8" />
+			<field name="tax_dest_id" ref="iva_IO" />
+	</record>
 
 	<record id="fptt_intra_ventas_16" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE 2008</field>
 			<field name="position_id" ref="fp_intra" />
 			<field name="tax_src_id" ref="iva_rep_16" />
+			<field name="tax_dest_id" ref="iva_IO" />
+	</record>
+	
+	<record id="fptt_intra_ventas_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_intra" />
+			<field name="tax_src_id" ref="iva_rep_18" />
 			<field name="tax_dest_id" ref="iva_IO" />
 	</record>
 
@@ -214,6 +290,20 @@
 			<field name="tax_dest_id" ref="re_4" />
 	</record>
 
+	<record id="fptt_recargo_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_recargo" />
+			<field name="tax_src_id" ref="iva_rep_18" />
+			<field name="tax_dest_id" ref="iva_rep_18" />
+	</record>
+
+	<record id="fptt_recargo_18_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_recargo" />
+			<field name="tax_src_id" ref="iva_rep_18" />
+			<field name="tax_dest_id" ref="re_4" />
+	</record>
+
 	<record id="fptt_recargo_7" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE 2008</field>
 			<field name="position_id" ref="fp_recargo" />
@@ -225,6 +315,20 @@
 			<field name="template_name">PGCE 2008</field>
 			<field name="position_id" ref="fp_recargo" />
 			<field name="tax_src_id" ref="iva_rep_7" />
+			<field name="tax_dest_id" ref="re_1" />
+	</record>
+	
+	<record id="fptt_recargo_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_recargo" />
+			<field name="tax_src_id" ref="iva_rep_8" />
+			<field name="tax_dest_id" ref="iva_rep_8" />
+	</record>
+
+	<record id="fptt_recargo_8_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_recargo" />
+			<field name="tax_src_id" ref="iva_rep_8" />
 			<field name="tax_dest_id" ref="re_1" />
 	</record>
 
