@@ -814,7 +814,7 @@ class wizard_import_c43_file(wizard.interface):
                     if partner:
                         # Use the partner accounts
                         if values['type'] == 'customer':
-                            account_id = partner.property_account_receivable and partner.property_account_receivable.idO
+                            account_id = partner.property_account_receivable and partner.property_account_receivable.id
                         else:
                             account_id = partner.property_account_payable and partner.property_account_payable.id
                     else:
