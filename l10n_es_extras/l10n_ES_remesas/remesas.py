@@ -86,7 +86,7 @@ class payment_order(osv.osv):
 
     def get_wizard(self, type):
         if type in ('RECIBO_CSB', 'TRANSFERENCIA_CSB'):
-            return (self._module, 'wizard_create_payment_file_spain')
+            return ('l10n_ES_remesas', 'wizard_create_payment_file_spain')
         else:
             return super(payment_order, self).get_wizard(type)
 
