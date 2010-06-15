@@ -53,7 +53,7 @@ class csb_32:
         texto += '\n'
         return texto
 
-    def _cabecera_remesa_32(self):
+    def _cabecera_remesa_32(self, cr, context):
         # A: 
         texto = '1165'
         texto += '  '
@@ -64,9 +64,9 @@ class csb_32:
         texto += ' '*12
 
         # C
-        texto += self.order.mode.cedente # TODO: Identificador del cedente. Qué es?
-        texto += '1' # Identificativo de efectos truncados
-        texto += ' '*21
+        texto += convert(cr, self.order.mode.cedente, 15, context) # TODO: Identificador del cedente. Qué es?
+        #texto += '1' # Identificativo de efectos truncados
+        #texto += ' '*21
 
         # D
         texto += digits_only( self.order.mode.bank_id.acc_number )
@@ -92,12 +92,12 @@ class csb_32:
         texto += '  '
 
         # D
-        texto += convert(cr, self.order.mode.bank_id.name, 20, context)
+        texto += convert(cr, self.order.mode.bank_id.city, 20, context)
         texto += ' '
 
         # E
         texto += ' '*24
-        texto += convert(cr, -recibo['amount'], 9, context)
+        texto += convert(cr, abs(recibo['amount']), 9, context)
         texto += ' '*15
         texto += datetime.strptime( recibo['ml_maturity_date'], '%Y-%m-%d').strftime('%d%m%y') 
         texto += ' '*(6+6+1+4+16)
@@ -126,7 +126,9 @@ class csb_32:
             texto += ' '*20
 
         # D: Datos del efecto
-        texto += ' '*(34+34+30)
+        texto += convert(cr, self.order.mode.partner_id.name, 34, context)
+        texto += convert(cr, recibo['partner_id'].name, 34, context)
+        texto += ' '*30
         texto += '\n'
         return texto
 
@@ -144,11 +146,9 @@ class csb_32:
         address = self.pool.get('res.partner.address').browse(self.cr, self.uid, addresses['default'], self.context)
         texto += convert( cr, address.street, 34, context )
         texto += convert( cr, address.zip, 5, context )
-        name = recibo['bank_id'] and recibo['bank_id'].name or False
-        texto += convert( cr, name, 20, context )
-        state = recibo['bank_id'].state_id and recibo['bank_id'].state_id.code or False
-        texto += convert( cr, state, 2, context )
-        texto += ' '*7
+        texto += convert( cr, address.city, 20, context )
+        texto += convert( cr, address.state_id and address.state_id.code or False, 2, context )
+        texto += '0'*7
 
         # C: Datos del efecto
         vat = recibo['partner_id'].vat and recibo['partner_id'].vat[2:] or False
@@ -195,6 +195,7 @@ class csb_32:
         texto += ' '*37
 
         # D: Acumuladores de importes
+        texto += ' '*10
         texto += convert( cr, -self.order.total, 10, context )
         texto += ' '*(10+6+7+6+6+6)
 
@@ -218,7 +219,7 @@ class csb_32:
         self.num_lineas_opc = 0
 
         txt_remesa += self._cabecera_fichero_32()
-        txt_remesa += self._cabecera_remesa_32()
+        txt_remesa += self._cabecera_remesa_32(cr, context)
         for recibo in lines:
             txt_remesa += self._registro_individual_i_32(cr, recibo, context)
             txt_remesa += self._registro_individual_ii_32(cr, recibo, context)
