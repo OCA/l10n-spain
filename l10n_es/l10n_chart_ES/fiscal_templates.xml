@@ -436,6 +436,34 @@
 
 	<!-- Retenciones IRPF 19% fiscal.position.tax.template-->
 
+	<record id="fptt_irpf19sale_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf19" />
+			<field name="tax_src_id" ref="iva_rep_18" />
+			<field name="tax_dest_id" ref="iva_rep_18" />
+	</record>
+
+	<record id="fptt_irpf19sale_18_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf19" />
+			<field name="tax_src_id" ref="iva_rep_18" />
+			<field name="tax_dest_id" ref="irpf_sale_19" />
+	</record>
+
+	<record id="fptt_irpf19sale_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf19" />
+			<field name="tax_src_id" ref="iva_rep_8" />
+			<field name="tax_dest_id" ref="iva_rep_8" />
+	</record>
+
+	<record id="fptt_irpf19sale_8_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf19" />
+			<field name="tax_src_id" ref="iva_rep_8" />
+			<field name="tax_dest_id" ref="irpf_sale_19" />
+	</record>
+
 	<record id="fptt_irpf19sale_16" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE 2008</field>
 			<field name="position_id" ref="fp_irpf19" />
@@ -476,6 +504,34 @@
 			<field name="position_id" ref="fp_irpf19" />
 			<field name="tax_src_id" ref="iva_rep_4" />
 			<field name="tax_dest_id" ref="irpf_sale_19" />
+	</record>
+
+	<record id="fptt_irpf19_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf19" />
+			<field name="tax_src_id" ref="iva_sop_18" />
+			<field name="tax_dest_id" ref="iva_sop_18" />
+	</record>
+
+	<record id="fptt_irpf19_18_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf19" />
+			<field name="tax_src_id" ref="iva_sop_18" />
+			<field name="tax_dest_id" ref="irpf_19" />
+	</record>
+
+	<record id="fptt_irpf19_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf19" />
+			<field name="tax_src_id" ref="iva_sop_8" />
+			<field name="tax_dest_id" ref="iva_sop_8" />
+	</record>
+
+	<record id="fptt_irpf19_8_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf19" />
+			<field name="tax_src_id" ref="iva_sop_8" />
+			<field name="tax_dest_id" ref="irpf_19" />
 	</record>
 
 	<record id="fptt_irpf19_16" model="account.fiscal.position.tax.template">
@@ -522,6 +578,34 @@
 
 	<!-- Retenciones IRPF 18% fiscal.position.tax.template-->
 
+	<record id="fptt_irpf18sale_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf18" />
+			<field name="tax_src_id" ref="iva_rep_18" />
+			<field name="tax_dest_id" ref="iva_rep_18" />
+	</record>
+
+	<record id="fptt_irpf18sale_18_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf18" />
+			<field name="tax_src_id" ref="iva_rep_18" />
+			<field name="tax_dest_id" ref="irpf_sale_18" />
+	</record>
+
+	<record id="fptt_irpf18sale_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf18" />
+			<field name="tax_src_id" ref="iva_rep_8" />
+			<field name="tax_dest_id" ref="iva_rep_8" />
+	</record>
+
+	<record id="fptt_irpf18sale_8_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf18" />
+			<field name="tax_src_id" ref="iva_rep_8" />
+			<field name="tax_dest_id" ref="irpf_sale_18" />
+	</record>
+
 	<record id="fptt_irpf18sale_16" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE 2008</field>
 			<field name="position_id" ref="fp_irpf18" />
@@ -562,6 +646,34 @@
 			<field name="position_id" ref="fp_irpf18" />
 			<field name="tax_src_id" ref="iva_rep_4" />
 			<field name="tax_dest_id" ref="irpf_sale_18" />
+	</record>
+
+	<record id="fptt_irpf18_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf18" />
+			<field name="tax_src_id" ref="iva_sop_18" />
+			<field name="tax_dest_id" ref="iva_sop_18" />
+	</record>
+
+	<record id="fptt_irpf18_18_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf18" />
+			<field name="tax_src_id" ref="iva_sop_18" />
+			<field name="tax_dest_id" ref="irpf_18" />
+	</record>
+
+	<record id="fptt_irpf18_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf18" />
+			<field name="tax_src_id" ref="iva_sop_8" />
+			<field name="tax_dest_id" ref="iva_sop_8" />
+	</record>
+
+	<record id="fptt_irpf18_8_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf18" />
+			<field name="tax_src_id" ref="iva_sop_8" />
+			<field name="tax_dest_id" ref="irpf_18" />
 	</record>
 
 	<record id="fptt_irpf18_16" model="account.fiscal.position.tax.template">
@@ -608,6 +720,34 @@
 
 	<!-- Retenciones IRPF 15% fiscal.position.tax.template-->
 
+	<record id="fptt_irpf15sale_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf15" />
+			<field name="tax_src_id" ref="iva_rep_18" />
+			<field name="tax_dest_id" ref="iva_rep_18" />
+	</record>
+
+	<record id="fptt_irpf15sale_18_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf15" />
+			<field name="tax_src_id" ref="iva_rep_18" />
+			<field name="tax_dest_id" ref="irpf_sale_15" />
+	</record>
+
+	<record id="fptt_irpf15sale_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf15" />
+			<field name="tax_src_id" ref="iva_rep_8" />
+			<field name="tax_dest_id" ref="iva_rep_8" />
+	</record>
+
+	<record id="fptt_irpf15sale_8_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf15" />
+			<field name="tax_src_id" ref="iva_rep_8" />
+			<field name="tax_dest_id" ref="irpf_sale_15" />
+	</record>
+
 	<record id="fptt_irpf15sale_16" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE 2008</field>
 			<field name="position_id" ref="fp_irpf15" />
@@ -648,6 +788,34 @@
 			<field name="position_id" ref="fp_irpf15" />
 			<field name="tax_src_id" ref="iva_rep_4" />
 			<field name="tax_dest_id" ref="irpf_sale_15" />
+	</record>
+
+	<record id="fptt_irpf15_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf15" />
+			<field name="tax_src_id" ref="iva_sop_18" />
+			<field name="tax_dest_id" ref="iva_sop_18" />
+	</record>
+
+	<record id="fptt_irpf15_18_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf15" />
+			<field name="tax_src_id" ref="iva_sop_18" />
+			<field name="tax_dest_id" ref="irpf_15" />
+	</record>
+
+	<record id="fptt_irpf15_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf15" />
+			<field name="tax_src_id" ref="iva_sop_8" />
+			<field name="tax_dest_id" ref="iva_sop_8" />
+	</record>
+
+	<record id="fptt_irpf15_8_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf15" />
+			<field name="tax_src_id" ref="iva_sop_8" />
+			<field name="tax_dest_id" ref="irpf_15" />
 	</record>
 
 	<record id="fptt_irpf15_16" model="account.fiscal.position.tax.template">
@@ -694,6 +862,34 @@
 
 	<!-- Retenciones IRPF 7% fiscal.position.tax.template-->
 
+	<record id="fptt_irpf7sale_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf7" />
+			<field name="tax_src_id" ref="iva_rep_18" />
+			<field name="tax_dest_id" ref="iva_rep_18" />
+	</record>
+
+	<record id="fptt_irpf7sale_18_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf7" />
+			<field name="tax_src_id" ref="iva_rep_18" />
+			<field name="tax_dest_id" ref="irpf_sale_7" />
+	</record>
+
+	<record id="fptt_irpf7sale_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf7" />
+			<field name="tax_src_id" ref="iva_rep_8" />
+			<field name="tax_dest_id" ref="iva_rep_8" />
+	</record>
+
+	<record id="fptt_irpf7sale_8_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf7" />
+			<field name="tax_src_id" ref="iva_rep_8" />
+			<field name="tax_dest_id" ref="irpf_sale_7" />
+	</record>
+
 	<record id="fptt_irpf7sale_16" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE 2008</field>
 			<field name="position_id" ref="fp_irpf7" />
@@ -734,6 +930,34 @@
 			<field name="position_id" ref="fp_irpf7" />
 			<field name="tax_src_id" ref="iva_rep_4" />
 			<field name="tax_dest_id" ref="irpf_sale_7" />
+	</record>
+
+	<record id="fptt_irpf7_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf7" />
+			<field name="tax_src_id" ref="iva_sop_18" />
+			<field name="tax_dest_id" ref="iva_sop_18" />
+	</record>
+
+	<record id="fptt_irpf7_18_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf7" />
+			<field name="tax_src_id" ref="iva_sop_18" />
+			<field name="tax_dest_id" ref="irpf_7" />
+	</record>
+
+	<record id="fptt_irpf7_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf7" />
+			<field name="tax_src_id" ref="iva_sop_8" />
+			<field name="tax_dest_id" ref="iva_sop_8" />
+	</record>
+
+	<record id="fptt_irpf7_8_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf7" />
+			<field name="tax_src_id" ref="iva_sop_8" />
+			<field name="tax_dest_id" ref="irpf_7" />
 	</record>
 
 	<record id="fptt_irpf7_16" model="account.fiscal.position.tax.template">
@@ -780,6 +1004,34 @@
 
 	<!-- Retenciones IRPF 2% fiscal.position.tax.template-->
 
+	<record id="fptt_irpf2sale_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf2" />
+			<field name="tax_src_id" ref="iva_rep_18" />
+			<field name="tax_dest_id" ref="iva_rep_18" />
+	</record>
+
+	<record id="fptt_irpf2sale_18_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf2" />
+			<field name="tax_src_id" ref="iva_rep_18" />
+			<field name="tax_dest_id" ref="irpf_sale_2" />
+	</record>
+
+	<record id="fptt_irpf2sale_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf2" />
+			<field name="tax_src_id" ref="iva_rep_8" />
+			<field name="tax_dest_id" ref="iva_rep_8" />
+	</record>
+
+	<record id="fptt_irpf2sale_8_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf2" />
+			<field name="tax_src_id" ref="iva_rep_8" />
+			<field name="tax_dest_id" ref="irpf_sale_2" />
+	</record>
+
 	<record id="fptt_irpf2sale_16" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE 2008</field>
 			<field name="position_id" ref="fp_irpf2" />
@@ -820,6 +1072,34 @@
 			<field name="position_id" ref="fp_irpf2" />
 			<field name="tax_src_id" ref="iva_rep_4" />
 			<field name="tax_dest_id" ref="irpf_sale_2" />
+	</record>
+
+	<record id="fptt_irpf2_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf2" />
+			<field name="tax_src_id" ref="iva_sop_18" />
+			<field name="tax_dest_id" ref="iva_sop_18" />
+	</record>
+
+	<record id="fptt_irpf2_18_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf2" />
+			<field name="tax_src_id" ref="iva_sop_18" />
+			<field name="tax_dest_id" ref="irpf_2" />
+	</record>
+
+	<record id="fptt_irpf2_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf2" />
+			<field name="tax_src_id" ref="iva_sop_8" />
+			<field name="tax_dest_id" ref="iva_sop_8" />
+	</record>
+
+	<record id="fptt_irpf2_8_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf2" />
+			<field name="tax_src_id" ref="iva_sop_8" />
+			<field name="tax_dest_id" ref="irpf_2" />
 	</record>
 
 	<record id="fptt_irpf2_16" model="account.fiscal.position.tax.template">
@@ -866,6 +1146,34 @@
 
 	<!-- Retenciones IRPF 1% fiscal.position.tax.template-->
 
+	<record id="fptt_irpf1sale_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf1" />
+			<field name="tax_src_id" ref="iva_rep_18" />
+			<field name="tax_dest_id" ref="iva_rep_18" />
+	</record>
+
+	<record id="fptt_irpf1sale_18_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf1" />
+			<field name="tax_src_id" ref="iva_rep_18" />
+			<field name="tax_dest_id" ref="irpf_sale_1" />
+	</record>
+
+	<record id="fptt_irpf1sale_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf1" />
+			<field name="tax_src_id" ref="iva_rep_8" />
+			<field name="tax_dest_id" ref="iva_rep_8" />
+	</record>
+
+	<record id="fptt_irpf1sale_8_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf1" />
+			<field name="tax_src_id" ref="iva_rep_8" />
+			<field name="tax_dest_id" ref="irpf_sale_1" />
+	</record>
+
 	<record id="fptt_irpf1sale_16" model="account.fiscal.position.tax.template">
 			<field name="template_name">PGCE 2008</field>
 			<field name="position_id" ref="fp_irpf1" />
@@ -906,6 +1214,34 @@
 			<field name="position_id" ref="fp_irpf1" />
 			<field name="tax_src_id" ref="iva_rep_4" />
 			<field name="tax_dest_id" ref="irpf_sale_1" />
+	</record>
+
+	<record id="fptt_irpf1_18" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf1" />
+			<field name="tax_src_id" ref="iva_sop_18" />
+			<field name="tax_dest_id" ref="iva_sop_18" />
+	</record>
+
+	<record id="fptt_irpf1_18_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf1" />
+			<field name="tax_src_id" ref="iva_sop_18" />
+			<field name="tax_dest_id" ref="irpf_1" />
+	</record>
+
+	<record id="fptt_irpf1_8" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf1" />
+			<field name="tax_src_id" ref="iva_sop_8" />
+			<field name="tax_dest_id" ref="iva_sop_8" />
+	</record>
+
+	<record id="fptt_irpf1_8_2" model="account.fiscal.position.tax.template">
+			<field name="template_name">PGCE 2008</field>
+			<field name="position_id" ref="fp_irpf1" />
+			<field name="tax_src_id" ref="iva_sop_8" />
+			<field name="tax_dest_id" ref="irpf_1" />
 	</record>
 
 	<record id="fptt_irpf1_16" model="account.fiscal.position.tax.template">
