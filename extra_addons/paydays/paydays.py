@@ -26,10 +26,9 @@ from osv import fields, osv
 
 
 class account_payment_term(osv.osv):
-    _name="account.payment.term"
     _inherit="account.payment.term"
 
-    def _check_payment_days(self, cr, uid, id, context={}):
+    def _check_payment_days(self, cr, uid, id, context=None):
         days = self.read(cr, uid, id, ['payment_days'], context)[0]['payment_days']
         if days == False:
             return True
@@ -51,7 +50,7 @@ class account_payment_term(osv.osv):
     }
     _constraints = [(_check_payment_days, 'Error: Payment days field format is not valid.', ['payment_days'])]
 
-    def compute(self, cr, uid, id, value, date_ref=False, context={}):
+    def compute(self, cr, uid, id, value, date_ref=False, context=None):
         result = super(account_payment_term,self).compute(cr, uid, id, value, date_ref, context)
         term = self.browse(cr, uid, id, context)
         if not term.payment_days:
@@ -63,7 +62,7 @@ class account_payment_term(osv.osv):
         if not days:
             return result
         days = [int(x) for x in days]
-        days.sort()
+        days.sort(reverse=True)
         new_result = []
         for line in result:
             new_date = None
