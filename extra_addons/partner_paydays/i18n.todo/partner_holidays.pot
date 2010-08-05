@@ -1,0 +1,138 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* partner_holidays
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 5.0.11\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2010-06-21 01:50:12+0000\n"
+"PO-Revision-Date: 2010-06-21 01:50:12+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: partner_holidays
+#: model:ir.module.module,shortdesc:partner_holidays.module_meta_information
+msgid "Partner Holidays"
+msgstr ""
+
+#. module: partner_holidays
+#: field:res.partner.holidays,end:0
+msgid "End"
+msgstr ""
+
+#. module: partner_holidays
+#: field:res.partner,pays_during_holidays:0
+msgid "Pays During Holidays"
+msgstr ""
+
+#. module: partner_holidays
+#: field:res.partner.holidays,start:0
+msgid "Start"
+msgstr ""
+
+#. module: partner_holidays
+#: constraint:ir.model:0
+msgid "The Object name must start with x_ and not contain any special character !"
+msgstr ""
+
+#. module: partner_holidays
+#: code:addons/partner_holidays/invoice.py:0
+#, python-format
+msgid "The Payment Term of Supplier does not have Payment Term Lines(Computation) defined !"
+msgstr ""
+
+#. module: partner_holidays
+#: view:res.partner:0
+#: field:res.partner,holiday_ids:0
+msgid "Holidays"
+msgstr ""
+
+#. module: partner_holidays
+#: code:addons/partner_holidays/invoice.py:0
+#, python-format
+msgid "Please verify the price of the invoice !\nThe real total does not match the computed total."
+msgstr ""
+
+#. module: partner_holidays
+#: model:ir.model,name:partner_holidays.model_res_partner_holidays
+msgid "res.partner.holidays"
+msgstr ""
+
+#. module: partner_holidays
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr ""
+
+#. module: partner_holidays
+#: view:res.partner:0
+msgid "Notes"
+msgstr ""
+
+#. module: partner_holidays
+#: help:res.partner,pays_during_holidays:0
+msgid "Indicates whether the partner pays during holidays. If it doesnt, it will be taken into account when calculating due dates."
+msgstr ""
+
+#. module: partner_holidays
+#: code:addons/partner_holidays/invoice.py:0
+#, python-format
+msgid "Warning !"
+msgstr ""
+
+#. module: partner_holidays
+#: code:addons/partner_holidays/invoice.py:0
+#, python-format
+msgid "Taxes missing !"
+msgstr ""
+
+#. module: partner_holidays
+#: code:addons/partner_holidays/invoice.py:0
+#, python-format
+msgid "UserError"
+msgstr ""
+
+#. module: partner_holidays
+#: code:addons/partner_holidays/invoice.py:0
+#, python-format
+msgid "Tax base different !\nClick on compute to update tax base"
+msgstr ""
+
+#. module: partner_holidays
+#: code:addons/partner_holidays/invoice.py:0
+#, python-format
+msgid "Data Insufficient !"
+msgstr ""
+
+#. module: partner_holidays
+#: model:ir.module.module,description:partner_holidays.module_meta_information
+msgid "This module adds fields to introduce partner's holidays. It also allows due date in customer invoices to take into account vacations if the partner doesn't pay during that period."
+msgstr ""
+
+#. module: partner_holidays
+#: code:addons/partner_holidays/invoice.py:0
+#, python-format
+msgid "Bad total !"
+msgstr ""
+
+#. module: partner_holidays
+#: code:addons/partner_holidays/invoice.py:0
+#, python-format
+msgid "Global taxes defined, but are not in invoice lines !"
+msgstr ""
+
+#. module: partner_holidays
+#: field:res.partner.holidays,partner_id:0
+msgid "Partner"
+msgstr ""
+
+#. module: partner_holidays
+#: code:addons/partner_holidays/invoice.py:0
+#, python-format
+msgid "Cannot create invoice move on centralised journal"
+msgstr ""
+
