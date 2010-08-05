@@ -100,11 +100,6 @@ class account_payment_term(osv.osv):
             return result
         partner = self.pool.get('res.partner').browse(cr, uid, context.get('partner_id'), context)
 
-        #if partner.pays_during_holidays:
-        #    return result
-
-        #term = self.browse(cr, uid, id, context)
-
         # Admit space, dash and colon separators.
         days = (partner.payment_days or '').replace(' ','-').replace(',','-')
         days = [x.strip() for x in days.split('-') if x]

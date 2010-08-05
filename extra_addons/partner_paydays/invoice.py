@@ -29,7 +29,7 @@ from tools.translate import _
 class account_invoice(osv.osv):
     _inherit = 'account.invoice'
 
-    def onchange_payment_term_date_invoice(self, cr, uid, ids, payment_term_id, date_invoice, partner_id, context=None):
+    def onchange_payment_term_date_invoice(self, cr, uid, ids, payment_term_id, date_invoice, context=None):
         if context is None:
             context = {}
 
@@ -39,8 +39,6 @@ class account_invoice(osv.osv):
         pt_obj= self.pool.get('account.payment.term')
         if not date_invoice :
             date_invoice = time.strftime('%Y-%m-%d')
-
-        context['partner_id'] = partner_id
 
         pterm_list = pt_obj.compute(cr, uid, payment_term_id, value=1, date_ref=date_invoice, context=context)
 
@@ -55,7 +53,9 @@ class account_invoice(osv.osv):
 
     def action_date_assign(self, cr, uid, ids, *args):
         for inv in self.browse(cr, uid, ids):
-            res = self.onchange_payment_term_date_invoice(cr, uid, inv.id, inv.payment_term.id, inv.date_invoice, inv.partner_id.id)
+            context={}
+            context['partner_id']=inv.partner_id.id
+            res = self.onchange_payment_term_date_invoice(cr, uid, inv.id, inv.payment_term.id, inv.date_invoice, context)
             if res and res['value']:
                 self.write(cr, uid, [inv.id], res['value'])
         return True
