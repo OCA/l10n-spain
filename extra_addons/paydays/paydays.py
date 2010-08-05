@@ -62,7 +62,7 @@ class account_payment_term(osv.osv):
         if not days:
             return result
         days = [int(x) for x in days]
-        days.sort(reverse=True)
+        days.sort()
         new_result = []
         for line in result:
             new_date = None
