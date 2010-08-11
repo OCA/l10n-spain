@@ -1,19 +1,73 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* l10n_ES_cierre_ejercicio
+# 	* l10n_ES_cierre_ejercicio
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.7\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-03-23 18:01:36+0000\n"
-"PO-Revision-Date: 2010-04-12 00:29+0100\n"
-"Last-Translator: Jordi Esteve <jesteve@zikzakmedia.com>\n"
+"POT-Creation-Date: 2010-03-23 18:01:19+0000\n"
+"PO-Revision-Date: 2010-08-11 20:06+0100\n"
+"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
+#, python-format
+msgid "UserError"
+msgstr "Error d'usuari"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/fyc.py:0
+#, python-format
+msgid "No destination account %s found for account %s."
+msgstr ""
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
+#, python-format
+msgid "The Net L&P account mappings are not properly configured: %s"
+msgstr "El mapa de comptes de PiG Net no està configurat correctament: %s"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
+#, python-format
+msgid "The L&P account mappings are not properly configured: %s"
+msgstr "El mapa de comptes de PiG no està configurat correctament: %s"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
+#, python-format
+msgid ""
+"One or more draft moves found: \n"
+"%s"
+msgstr ""
+"S'han trobat un o més assentaments esborrany: \n"
+"%s"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
+#, python-format
+msgid ""
+"One or more moves with invalid period or date found on the fiscal year: \n"
+"%s"
+msgstr ""
+"S'han trobat un o més assentaments amb períodes o data invàlids en l'exercici fiscal:\n"
+"%s"
+
+#. module: l10n_ES_cierre_ejercicio
+#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
+#, python-format
+msgid ""
+"One or more unbalanced moves found: \n"
+"%s"
+msgstr ""
+"Es trobaran un o més assentaments desquadrats: \n"
+"%s"
 
 #. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/fyc.py:0
@@ -53,7 +107,7 @@ msgstr "Altres operacions (per a plans comptables no espanyols)"
 #. module: l10n_ES_cierre_ejercicio
 #: model:ir.model,name:l10n_ES_cierre_ejercicio.model_l10n_es_cierre_ejercicio_fyc_c_account_map
 msgid "SFYC Closing Account Mapping"
-msgstr "Mapa comptes tancament CEFE"
+msgstr "Mapa de comptes de tancament CEFE"
 
 #. module: l10n_ES_cierre_ejercicio
 #: field:l10n_es_cierre_ejercicio.fyc,check_invalid_period_moves:0
@@ -122,7 +176,7 @@ msgstr "Comptes"
 #. module: l10n_ES_cierre_ejercicio
 #: model:ir.model,name:l10n_ES_cierre_ejercicio.model_l10n_es_cierre_ejercicio_fyc_nlp_account_map
 msgid "SFYC Net Loss & Profit Account Mapping"
-msgstr "Mapa de compte de Pèrdues i Guanys Patr. Net CECE"
+msgstr "Mapa de comptes de Pèrdues i Guanys Patr. Net CECE"
 
 #. module: l10n_ES_cierre_ejercicio
 #: view:l10n_es_cierre_ejercicio.fyc:0
@@ -269,16 +323,6 @@ msgid "This wizard will perform the selected operations."
 msgstr "L'assistent realitzarà les operacions seleccionades."
 
 #. module: l10n_ES_cierre_ejercicio
-#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
-#, python-format
-msgid ""
-"One or more draft moves found: \n"
-"%s"
-msgstr ""
-"S'han trobat un o més assentaments esborrany: \n"
-"%s"
-
-#. module: l10n_ES_cierre_ejercicio
 #: field:l10n_es_cierre_ejercicio.fyc_lp_account_map,source_account_id:0
 #: field:l10n_es_cierre_ejercicio.fyc_nlp_account_map,source_account_id:0
 msgid "Source account"
@@ -420,16 +464,6 @@ msgid "Checks that there are no moves, on the fiscal year that is being closed, 
 msgstr "Comprova que no existeixin assentaments, en l'exercici fiscal que s'està tancant, amb dates o períodes fora d'aquest exercici fiscal."
 
 #. module: l10n_ES_cierre_ejercicio
-#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
-#, python-format
-msgid ""
-"One or more moves with invalid period or date found on the fiscal year: \n"
-"%s"
-msgstr ""
-"S'han trobat un o més assentaments amb períodes o data invàlids en l'exercici fiscal:\n"
-"%s"
-
-#. module: l10n_ES_cierre_ejercicio
 #: wizard_button:l10n_es_cierre_ejercicio.wizard_run,progress,run:0
 #: wizard_button:l10n_es_cierre_ejercicio.wizard_cancel,progress,run:0
 msgid "Keep waiting"
@@ -537,16 +571,6 @@ msgstr "Exercicis fiscals"
 #: field:l10n_es_cierre_ejercicio.fyc,closing_fiscalyear_id:0
 msgid "Fiscal year to close"
 msgstr "Exercici fiscal a tancar"
-
-#. module: l10n_ES_cierre_ejercicio
-#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
-#, python-format
-msgid ""
-"One or more unbalanced moves found: \n"
-"%s"
-msgstr ""
-"Es trobaran un o més assentaments desquadrats: \n"
-"%s"
 
 #. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
@@ -777,16 +801,6 @@ msgid "There is already a fiscal year closing with this name."
 msgstr "Ja existeix un tancament d'exercici amb aquest nom."
 
 #. module: l10n_ES_cierre_ejercicio
-#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
-#, python-format
-msgid ""
-"One or more draft moves found: \n"
-"%s"
-msgstr ""
-"Un o més assentaments esborrany trobats: \n"
-"%s"
-
-#. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/fyc.py:0
 #, python-format
 msgid "There is already a fiscal year closing for the fiscal year to close."
@@ -797,24 +811,4 @@ msgstr "Ja existeix un tancament d'exercici per l'exercici a tancar."
 #, python-format
 msgid "There is already a fiscal year closing for the fiscal year to open."
 msgstr "Ja existeix un tancament d'exercici per l'exercici a obrir."
-
-#. module: l10n_ES_cierre_ejercicio
-#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
-#, python-format
-msgid ""
-"One or more moves with invalid period or date found on the fiscal year: \n"
-"%s"
-msgstr ""
-"S'han trobat un o més assentaments amb períodes o data invàlids en l'exercici: \n"
-"%s"
-
-#. module: l10n_ES_cierre_ejercicio
-#: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
-#, python-format
-msgid ""
-"One or more unbalanced moves found: \n"
-"%s"
-msgstr ""
-"S'ha trobat un o més assentaments desquadrats: \n"
-"%s"
 
