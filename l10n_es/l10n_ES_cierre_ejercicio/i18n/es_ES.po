@@ -6,20 +6,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.7\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-03-23 18:01:36+0000\n"
-"PO-Revision-Date: 2010-08-11 20:01+0100\n"
-"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
+"POT-Creation-Date: 2010-03-23 18:01+0000\n"
+"PO-Revision-Date: 2010-07-27 11:24+0000\n"
+"Last-Translator: Borja López Soilán (Pexego) <borjals@pexego.es>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"X-Launchpad-Export-Date: 2010-09-25 16:04+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
 #, python-format
 msgid "UserError"
-msgstr "Error de usuario"
+msgstr "ErrorUsuario"
 
 #. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/fyc.py:0
@@ -31,13 +32,13 @@ msgstr "Sin cuenta destino %s para la cuenta %s."
 #: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
 #, python-format
 msgid "The Net L&P account mappings are not properly configured: %s"
-msgstr "El mapeo de cuentas de PyG Neto no está configurado correctamente: %s"
+msgstr "El mapeo de cuentas P&G Neto no está configurado correctamente: %s"
 
 #. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
 #, python-format
 msgid "The L&P account mappings are not properly configured: %s"
-msgstr "El mapeo de cuentas de PyG no está configurado correctamente: %s"
+msgstr "El mapeo de cuentas P&G no está configurado correctamente: %s"
 
 #. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
@@ -56,7 +57,8 @@ msgid ""
 "One or more moves with invalid period or date found on the fiscal year: \n"
 "%s"
 msgstr ""
-"Se encontraron uno o más asientos con periodo o fecha inválidos en el ejercicio fiscal: \n"
+"Se encontraron uno o más asientos con periodo o fecha inválidos en el "
+"ejercicio fiscal: \n"
 "%s"
 
 #. module: l10n_ES_cierre_ejercicio
@@ -107,7 +109,7 @@ msgstr "Otras operaciones (para planes contables no españoles)"
 #. module: l10n_ES_cierre_ejercicio
 #: model:ir.model,name:l10n_ES_cierre_ejercicio.model_l10n_es_cierre_ejercicio_fyc_c_account_map
 msgid "SFYC Closing Account Mapping"
-msgstr "Mapeo de cuentas de cierre CEFE"
+msgstr "Mapeo cuentas cierre CEFE"
 
 #. module: l10n_ES_cierre_ejercicio
 #: field:l10n_es_cierre_ejercicio.fyc,check_invalid_period_moves:0
@@ -176,7 +178,7 @@ msgstr "Cuentas"
 #. module: l10n_ES_cierre_ejercicio
 #: model:ir.model,name:l10n_ES_cierre_ejercicio.model_l10n_es_cierre_ejercicio_fyc_nlp_account_map
 msgid "SFYC Net Loss & Profit Account Mapping"
-msgstr "Mapeo de cuenta de Pérdidas y Ganancias Patr. Neto CECE"
+msgstr "Mapeado de cuenta de Pérdidas y Ganancias Patr. Neto CECE"
 
 #. module: l10n_ES_cierre_ejercicio
 #: view:l10n_es_cierre_ejercicio.fyc:0
@@ -202,7 +204,7 @@ msgstr "El asiento de Apertura es obligatorio"
 #. module: l10n_ES_cierre_ejercicio
 #: view:l10n_es_cierre_ejercicio.fyc:0
 msgid "Account mapping"
-msgstr "Mapeo de cuentas"
+msgstr "Mapeado de cuenta"
 
 #. module: l10n_ES_cierre_ejercicio
 #: field:l10n_es_cierre_ejercicio.fyc,check_unbalanced_moves:0
@@ -302,8 +304,11 @@ msgstr "Abrir ejercicio fiscal siguiente"
 
 #. module: l10n_ES_cierre_ejercicio
 #: view:l10n_es_cierre_ejercicio.fyc:0
-msgid "Please, select the company, fiscal year to close and fiscal year to open."
-msgstr "Por favor, seleccione la compañía, ejercicio fiscal a cerrar y ejercicio fiscal a abrir."
+msgid ""
+"Please, select the company, fiscal year to close and fiscal year to open."
+msgstr ""
+"Por favor, seleccione la compañía, ejercicio fiscal a cerrar y ejercicio "
+"fiscal a abrir."
 
 #. module: l10n_ES_cierre_ejercicio
 #: selection:l10n_es_cierre_ejercicio.fyc,state:0
@@ -347,8 +352,11 @@ msgstr "Cierres de ejercicio fiscal españoles"
 
 #. module: l10n_ES_cierre_ejercicio
 #: constraint:ir.model:0
-msgid "The Object name must start with x_ and not contain any special character !"
-msgstr "¡El nombre del objeto debe empezar con x_ y no contener ningún carácter especial!"
+msgid ""
+"The Object name must start with x_ and not contain any special character !"
+msgstr ""
+"¡El nombre del objeto debe empezar con x_ y no contener ningún carácter "
+"especial!"
 
 #. module: l10n_ES_cierre_ejercicio
 #: view:l10n_es_cierre_ejercicio.fyc:0
@@ -395,7 +403,7 @@ msgstr "Cierre de ejercicio fiscal - Realizado"
 #: wizard_view:l10n_es_cierre_ejercicio.wizard_run,init_run:0
 #: wizard_view:l10n_es_cierre_ejercicio.wizard_cancel,init_run:0
 msgid "Non-selected operations will be canceled."
-msgstr "Las operaciones no seleccionadas serán canceladas. "
+msgstr "Las operaciones no seleccionadas serán canceladas."
 
 #. module: l10n_ES_cierre_ejercicio
 #: wizard_field:l10n_es_cierre_ejercicio.wizard_run,show_exception,exception_text:0
@@ -405,13 +413,19 @@ msgstr "Excepción"
 
 #. module: l10n_ES_cierre_ejercicio
 #: help:l10n_es_cierre_ejercicio.fyc,check_draft_moves:0
-msgid "Checks that there are no draft moves on the fiscal year that is being closed. Non-confirmed moves won't be taken in account on the closing operations."
-msgstr "Comprueba que no existan asientos borrador en el ejercicio fiscal que se está cerrando. Los asientos no confirmados no se tendrán en cuenta en las operaciones de cierre."
+msgid ""
+"Checks that there are no draft moves on the fiscal year that is being "
+"closed. Non-confirmed moves won't be taken in account on the closing "
+"operations."
+msgstr ""
+"Comprueba que no existan asientos borrador en el ejercicio fiscal que se "
+"está cerrando. Los asientos no confirmados no se tendrán en cuenta en las "
+"operaciones de cierre."
 
 #. module: l10n_ES_cierre_ejercicio
 #: model:ir.model,name:l10n_ES_cierre_ejercicio.model_l10n_es_cierre_ejercicio_fyc_lp_account_map
 msgid "SFYC Loss & Profit Account Mapping"
-msgstr "Mapeo de cuentas de PyG CECE"
+msgstr "Mapeado de cuenta de PyG CECE"
 
 #. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
@@ -460,8 +474,12 @@ msgstr "Hecho"
 
 #. module: l10n_ES_cierre_ejercicio
 #: help:l10n_es_cierre_ejercicio.fyc,check_invalid_period_moves:0
-msgid "Checks that there are no moves, on the fiscal year that is being closed, with dates or periods outside that fiscal year."
-msgstr "Comprueba que no existan asientos, en el ejercicio fiscal que se está cerrando, con fechas o periodos fuera de ese ejercicio fiscal."
+msgid ""
+"Checks that there are no moves, on the fiscal year that is being closed, "
+"with dates or periods outside that fiscal year."
+msgstr ""
+"Comprueba que no existan asientos, en el ejercicio fiscal que se está "
+"cerrando, con fechas o periodos fuera de ese ejercicio fiscal."
 
 #. module: l10n_ES_cierre_ejercicio
 #: wizard_button:l10n_es_cierre_ejercicio.wizard_run,progress,run:0
@@ -495,8 +513,12 @@ msgstr "Detalles"
 #. module: l10n_ES_cierre_ejercicio
 #: wizard_view:l10n_es_cierre_ejercicio.wizard_run,init_run:0
 #: wizard_view:l10n_es_cierre_ejercicio.wizard_cancel,init_run:0
-msgid "It will create account moves for the operations you selected, skipping those already created."
-msgstr "Creará asientos para las operaciones seleccionadas, ignorando aquellos ya creados."
+msgid ""
+"It will create account moves for the operations you selected, skipping those "
+"already created."
+msgstr ""
+"Creará asientos para las operaciones seleccionadas, ignorando aquellos ya "
+"creados."
 
 #. module: l10n_ES_cierre_ejercicio
 #: model:ir.actions.act_window,name:l10n_ES_cierre_ejercicio.action_view_fyc_tree
@@ -619,7 +641,8 @@ msgid ""
 "  - Create the Closing entry.\n"
 "  - Create the Opening entry.\n"
 "\n"
-"It's hightly configurable, and comes preconfigured for the current Spanish chart of accounts.\n"
+"It's hightly configurable, and comes preconfigured for the current Spanish "
+"chart of accounts.\n"
 "\n"
 "Also is stateful, saving all the info about the fiscal year closing, so the\n"
 "user can cancel and undo the operations easily.\n"
@@ -627,7 +650,8 @@ msgid ""
 msgstr ""
 "Asistente de cierre de ejercicio fiscal español\n"
 "    \n"
-"Substituye los asistentes de fin de año predeterminados de OpenERP (del módulo account)\n"
+"Substituye los asistentes de fin de año predeterminados de OpenERP (del "
+"módulo account)\n"
 "con un asistente todo-en-uno más avanzado que permitirá a los usuarios:\n"
 "  - Comprobar los asientos descuadrados, con fechas y periodos\n"
 "    inválidos o asientos borrador en el ejercicio fiscal a cerrar.\n"
@@ -636,9 +660,11 @@ msgstr ""
 "  - Crear el asiento de Cierre.\n"
 "  - Crear el asiento de Apertura.\n"
 "\n"
-"Es altamente configurable, y viene preconfigurado para el plan de cuentas español actual.\n"
+"Es altamente configurable, y viene preconfigurado para el plan de cuentas "
+"español actual.\n"
 "\n"
-"También conserva el estado, guardando toda la información sobre el cierre del ejercicio fiscal,\n"
+"También conserva el estado, guardando toda la información sobre el cierre "
+"del ejercicio fiscal,\n"
 "para que el usuario pueda cancelar y deshacer las operaciones fácilmente.\n"
 "    "
 
@@ -659,8 +685,12 @@ msgstr "Asistente de cierre de ejercicio fiscal español"
 
 #. module: l10n_ES_cierre_ejercicio
 #: help:l10n_es_cierre_ejercicio.fyc,check_unbalanced_moves:0
-msgid "Checks that there are no unbalanced moves on the fiscal year that is being closed."
-msgstr "Comprueba que no existan asientos descuadrados en el ejercicio fiscal que se está cerrando."
+msgid ""
+"Checks that there are no unbalanced moves on the fiscal year that is being "
+"closed."
+msgstr ""
+"Comprueba que no existan asientos descuadrados en el ejercicio fiscal que se "
+"está cerrando."
 
 #. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/fyc.py:0
@@ -811,4 +841,3 @@ msgstr "Ya existe un cierre de ejercicio para el ejercicio a cerrar."
 #, python-format
 msgid "There is already a fiscal year closing for the fiscal year to open."
 msgstr "Ya existe un cierre de ejercicio para el ejercicio a abrir."
-

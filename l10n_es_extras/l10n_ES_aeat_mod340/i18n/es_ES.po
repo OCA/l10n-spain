@@ -1,0 +1,158 @@
+# Spanish translation for openerp-spain
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the openerp-spain package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: openerp-spain\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2009-02-02 19:57+0000\n"
+"PO-Revision-Date: 2010-07-05 22:11+0000\n"
+"Last-Translator: Roberto Lizana (trey.es) <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-09-25 16:04+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#. module: l10n_ES_aeat_mod340
+#: field:l10n.es.aeat.mod340,fiscalyear:0
+msgid "Fiscal Year"
+msgstr "Ejercicio fiscal"
+
+#. module: l10n_ES_aeat_mod340
+#: field:l10n.es.aeat.mod340,type:0
+msgid "Type Statement"
+msgstr "Tipo de sentencia"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,type:0
+msgid "Normal"
+msgstr "Normal"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,type:0
+msgid "Complementary"
+msgstr "Complementario"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,type:0
+msgid "Replacement"
+msgstr "Sustitución"
+
+#. module: l10n_ES_aeat_mod340
+#: field:l10n.es.aeat.mod340,company_id:0
+msgid "Company"
+msgstr "Empresa"
+
+#. module: l10n_ES_aeat_mod340
+#: field:l10n.es.aeat.mod340,vat_company:0
+msgid "VAT"
+msgstr "CIF/NIF"
+
+#. module: l10n_ES_aeat_mod340
+#: field:l10n.es.aeat.mod340,name_surname:0
+msgid "Name and Surname"
+msgstr "Nombre y apellidos"
+
+#. module: l10n_ES_aeat_mod340
+#: field:l10n.es.aeat.mod340,phone:0
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: l10n_ES_aeat_mod340
+#: field:l10n.es.aeat.mod340,period:0
+msgid "Period"
+msgstr "Período"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "First quarter"
+msgstr "Primer trimestre"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "Second quarter"
+msgstr "Segundo trimestre"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "Third quarter"
+msgstr "Tercer trimestre"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "Fourth quarter"
+msgstr "Cuarto trimestre"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "January"
+msgstr "Enero"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "February"
+msgstr "Febrero"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "March"
+msgstr "Marzo"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "April"
+msgstr "Abril"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "May"
+msgstr "Mayo"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "June"
+msgstr "Junio"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "July"
+msgstr "Julio"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "August"
+msgstr "Agosto"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "September"
+msgstr "Septiembre"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "October"
+msgstr "Octubre"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "November"
+msgstr "Noviembre"
+
+#. module: l10n_ES_aeat_mod340
+#: selection:l10n.es.aeat.mod340,period:0
+msgid "December"
+msgstr "Diciembre"
+
+#. module: l10n_ES_aeat_mod340
+#: model:ir.ui.menu,name:menu_account_aeat.action_account_mod340
+msgid "Model 340"
+msgstr "Modelo 340"
+
+#. module: l10n_ES_aeat_mod340
+#: model:ir.ui.menu,name:l10n_ES_aeat_mod340.menu_account_aeat
+msgid "Agencia Tributaria"
+msgstr "Agencia Tributaria"

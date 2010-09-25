@@ -1,19 +1,21 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-# 	* l10n_ES_cierre_ejercicio
+#	* l10n_ES_cierre_ejercicio
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.7\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-03-23 18:01:19+0000\n"
-"PO-Revision-Date: 2010-08-11 20:06+0100\n"
-"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
+"POT-Creation-Date: 2010-03-23 18:01+0000\n"
+"PO-Revision-Date: 2010-09-25 16:01+0000\n"
+"Last-Translator: Jordi Esteve (www.zikzakmedia.com) "
+"<jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"X-Launchpad-Export-Date: 2010-09-25 16:04+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
@@ -25,19 +27,19 @@ msgstr "Error d'usuari"
 #: code:addons/l10n_ES_cierre_ejercicio/fyc.py:0
 #, python-format
 msgid "No destination account %s found for account %s."
-msgstr ""
+msgstr "No s'ha trobat compte destí %s pel compte %s."
 
 #. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
 #, python-format
 msgid "The Net L&P account mappings are not properly configured: %s"
-msgstr "El mapa de comptes de PiG Net no està configurat correctament: %s"
+msgstr "L'assignació de comptes PiG Net no està configurada correctament: %s"
 
 #. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
 #, python-format
 msgid "The L&P account mappings are not properly configured: %s"
-msgstr "El mapa de comptes de PiG no està configurat correctament: %s"
+msgstr "El mapeo de cuentas P&G no está configurado correctamente: %s"
 
 #. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/wizard/wizard_run.py:0
@@ -56,7 +58,8 @@ msgid ""
 "One or more moves with invalid period or date found on the fiscal year: \n"
 "%s"
 msgstr ""
-"S'han trobat un o més assentaments amb períodes o data invàlids en l'exercici fiscal:\n"
+"S'han trobat un o més assentaments amb períodes o data invàlids en "
+"l'exercici fiscal:\n"
 "%s"
 
 #. module: l10n_ES_cierre_ejercicio
@@ -73,7 +76,8 @@ msgstr ""
 #: code:addons/l10n_ES_cierre_ejercicio/fyc.py:0
 #, python-format
 msgid "You have to review and confirm each of the moves before continuing"
-msgstr "Hauríeu de revisar i confirmar cadascun dels assentaments abans de continuar"
+msgstr ""
+"Hauríeu de revisar i confirmar cadascun dels assentaments abans de continuar"
 
 #. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/fyc.py:0
@@ -107,7 +111,7 @@ msgstr "Altres operacions (per a plans comptables no espanyols)"
 #. module: l10n_ES_cierre_ejercicio
 #: model:ir.model,name:l10n_ES_cierre_ejercicio.model_l10n_es_cierre_ejercicio_fyc_c_account_map
 msgid "SFYC Closing Account Mapping"
-msgstr "Mapa de comptes de tancament CEFE"
+msgstr "Mapa comptes tancament CEFE"
 
 #. module: l10n_ES_cierre_ejercicio
 #: field:l10n_es_cierre_ejercicio.fyc,check_invalid_period_moves:0
@@ -176,7 +180,7 @@ msgstr "Comptes"
 #. module: l10n_ES_cierre_ejercicio
 #: model:ir.model,name:l10n_ES_cierre_ejercicio.model_l10n_es_cierre_ejercicio_fyc_nlp_account_map
 msgid "SFYC Net Loss & Profit Account Mapping"
-msgstr "Mapa de comptes de Pèrdues i Guanys Patr. Net CECE"
+msgstr "Mapa de compte de Pèrdues i Guanys Patr. Net CECE"
 
 #. module: l10n_ES_cierre_ejercicio
 #: view:l10n_es_cierre_ejercicio.fyc:0
@@ -302,8 +306,10 @@ msgstr "Obre exercici fiscal següent"
 
 #. module: l10n_ES_cierre_ejercicio
 #: view:l10n_es_cierre_ejercicio.fyc:0
-msgid "Please, select the company, fiscal year to close and fiscal year to open."
-msgstr "Seleccioneu la companyia, exercici fiscal a tancar i exercici fiscal a obrir."
+msgid ""
+"Please, select the company, fiscal year to close and fiscal year to open."
+msgstr ""
+"Seleccioneu la companyia, exercici fiscal a tancar i exercici fiscal a obrir."
 
 #. module: l10n_ES_cierre_ejercicio
 #: selection:l10n_es_cierre_ejercicio.fyc,state:0
@@ -347,8 +353,11 @@ msgstr "Tancaments d'exercicis fiscals espanyols"
 
 #. module: l10n_ES_cierre_ejercicio
 #: constraint:ir.model:0
-msgid "The Object name must start with x_ and not contain any special character !"
-msgstr "El nom de l'objecte ha de començar amb x_ i no contenir cap caràcter especial!"
+msgid ""
+"The Object name must start with x_ and not contain any special character !"
+msgstr ""
+"El nom de l'objecte ha de començar amb x_ i no contenir cap caràcter "
+"especial!"
 
 #. module: l10n_ES_cierre_ejercicio
 #: view:l10n_es_cierre_ejercicio.fyc:0
@@ -395,7 +404,7 @@ msgstr "Tancament d'exercici fiscal - Realitzat"
 #: wizard_view:l10n_es_cierre_ejercicio.wizard_run,init_run:0
 #: wizard_view:l10n_es_cierre_ejercicio.wizard_cancel,init_run:0
 msgid "Non-selected operations will be canceled."
-msgstr "Les operacions no seleccionades seran cancel·lades. "
+msgstr "Les operacions no seleccionades seran cancel·lades."
 
 #. module: l10n_ES_cierre_ejercicio
 #: wizard_field:l10n_es_cierre_ejercicio.wizard_run,show_exception,exception_text:0
@@ -405,8 +414,14 @@ msgstr "Excepció"
 
 #. module: l10n_ES_cierre_ejercicio
 #: help:l10n_es_cierre_ejercicio.fyc,check_draft_moves:0
-msgid "Checks that there are no draft moves on the fiscal year that is being closed. Non-confirmed moves won't be taken in account on the closing operations."
-msgstr "Comprova que no existeixen assentaments esborrany en l'exercici fiscal que s'està tancant. Els assentaments no confirmats no es tindran en compte en les operacions de tancament."
+msgid ""
+"Checks that there are no draft moves on the fiscal year that is being "
+"closed. Non-confirmed moves won't be taken in account on the closing "
+"operations."
+msgstr ""
+"Comprova que no existeixen assentaments esborrany en l'exercici fiscal que "
+"s'està tancant. Els assentaments no confirmats no es tindran en compte en "
+"les operacions de tancament."
 
 #. module: l10n_ES_cierre_ejercicio
 #: model:ir.model,name:l10n_ES_cierre_ejercicio.model_l10n_es_cierre_ejercicio_fyc_lp_account_map
@@ -460,8 +475,12 @@ msgstr "Fet"
 
 #. module: l10n_ES_cierre_ejercicio
 #: help:l10n_es_cierre_ejercicio.fyc,check_invalid_period_moves:0
-msgid "Checks that there are no moves, on the fiscal year that is being closed, with dates or periods outside that fiscal year."
-msgstr "Comprova que no existeixin assentaments, en l'exercici fiscal que s'està tancant, amb dates o períodes fora d'aquest exercici fiscal."
+msgid ""
+"Checks that there are no moves, on the fiscal year that is being closed, "
+"with dates or periods outside that fiscal year."
+msgstr ""
+"Comprova que no existeixin assentaments, en l'exercici fiscal que s'està "
+"tancant, amb dates o períodes fora d'aquest exercici fiscal."
 
 #. module: l10n_ES_cierre_ejercicio
 #: wizard_button:l10n_es_cierre_ejercicio.wizard_run,progress,run:0
@@ -495,8 +514,12 @@ msgstr "Detalls"
 #. module: l10n_ES_cierre_ejercicio
 #: wizard_view:l10n_es_cierre_ejercicio.wizard_run,init_run:0
 #: wizard_view:l10n_es_cierre_ejercicio.wizard_cancel,init_run:0
-msgid "It will create account moves for the operations you selected, skipping those already created."
-msgstr "Crearà assentaments per a les operacions seleccionades, ignorant els que ja s'han creat."
+msgid ""
+"It will create account moves for the operations you selected, skipping those "
+"already created."
+msgstr ""
+"Crearà assentaments per a les operacions seleccionades, ignorant els que ja "
+"s'han creat."
 
 #. module: l10n_ES_cierre_ejercicio
 #: model:ir.actions.act_window,name:l10n_ES_cierre_ejercicio.action_view_fyc_tree
@@ -619,7 +642,8 @@ msgid ""
 "  - Create the Closing entry.\n"
 "  - Create the Opening entry.\n"
 "\n"
-"It's hightly configurable, and comes preconfigured for the current Spanish chart of accounts.\n"
+"It's hightly configurable, and comes preconfigured for the current Spanish "
+"chart of accounts.\n"
 "\n"
 "Also is stateful, saving all the info about the fiscal year closing, so the\n"
 "user can cancel and undo the operations easily.\n"
@@ -627,7 +651,8 @@ msgid ""
 msgstr ""
 "Assistent de tancament d'exercici fiscal espanyol\n"
 "    \n"
-"Substitueix els assistents de final d'any predeterminats d'OpenERP (del mòdul account)\n"
+"Substitueix els assistents de final d'any predeterminats d'OpenERP (del "
+"mòdul account)\n"
 "amb un assistent tot-en-un més avançat que permetrà als usuaris:\n"
 "  - Comprovar els assentaments desquadrats, amb dates i períodes\n"
 "    invàlids o assentaments esborrany en l'exercici fiscal a tancar.\n"
@@ -636,9 +661,11 @@ msgstr ""
 "  - Crear l'assentament de Tancament.\n"
 "  - Crear l'assentament d'Obertura.\n"
 "\n"
-"És altament configurable, i ve preconfigurat pel pla de comptes espanyol actual.\n"
+"És altament configurable, i ve preconfigurat pel pla de comptes espanyol "
+"actual.\n"
 "\n"
-"També conserva l'estat, guardant tota la informació sobre el tancament de l'exercici fiscal,\n"
+"També conserva l'estat, guardant tota la informació sobre el tancament de "
+"l'exercici fiscal,\n"
 "per a que l'usuari pugui cancel·lar i desfer les operacions fàcilment.\n"
 "    "
 
@@ -659,8 +686,12 @@ msgstr "Assistent de tancament d'exercici fiscal espanyol"
 
 #. module: l10n_ES_cierre_ejercicio
 #: help:l10n_es_cierre_ejercicio.fyc,check_unbalanced_moves:0
-msgid "Checks that there are no unbalanced moves on the fiscal year that is being closed."
-msgstr "Comprova que no existeixen assentaments desquadrats en l'exercici fiscal que s'està tancant."
+msgid ""
+"Checks that there are no unbalanced moves on the fiscal year that is being "
+"closed."
+msgstr ""
+"Comprova que no existeixen assentaments desquadrats en l'exercici fiscal que "
+"s'està tancant."
 
 #. module: l10n_ES_cierre_ejercicio
 #: code:addons/l10n_ES_cierre_ejercicio/fyc.py:0
@@ -811,4 +842,3 @@ msgstr "Ja existeix un tancament d'exercici per l'exercici a tancar."
 #, python-format
 msgid "There is already a fiscal year closing for the fiscal year to open."
 msgstr "Ja existeix un tancament d'exercici per l'exercici a obrir."
-
