@@ -29,6 +29,7 @@
     "description" : """This module creates Factura-e files from invoices.
 ******* Module under development *******
 Successfully passes format and account validation tests from AEAT: http://www11.mityc.es/FacturaE/ValidarCompleto
+http://www11.mityc.es/FacturaE/
 """,
     "website" : "www.asr-oss.com",
     "license" : "GPL-3",
