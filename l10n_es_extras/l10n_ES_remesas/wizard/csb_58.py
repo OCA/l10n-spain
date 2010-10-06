@@ -75,7 +75,10 @@ class csb_58:
         texto += nombre[0:40].ljust(40)
         ccc = recibo['bank_id'] and recibo['bank_id'].acc_number or ''
         ccc = digits_only(ccc)
-        texto += str(ccc)[0:20].zfill(20)
+        if ccc:
+            texto += ccc[:20].zfill(20)
+        else:
+            texto += '0'*20
         importe = int(round(-recibo['amount']*100,0))
         texto += str(importe).zfill(10)
         texto += 16*' '
