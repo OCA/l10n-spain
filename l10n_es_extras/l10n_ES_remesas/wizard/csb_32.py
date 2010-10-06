@@ -120,6 +120,7 @@ class csb_32:
 
         # C: Datos del efecto
         ccc = recibo['bank_id'] and recibo['bank_id'].acc_number or ''
+        ccc = digits_only(ccc)
         if ccc:
             texto += ccc[:20].zfill(20)
         else:
