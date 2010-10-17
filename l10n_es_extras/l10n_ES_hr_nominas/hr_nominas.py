@@ -44,8 +44,8 @@ res_company()
 
 def get_configuration(cr, uid, ids, context=None):
 	pool = pooler.get_pool(cr.dbname)
-	obj_user = pool.get('res.users').browse(cr, uid, uid)
-	obj_company = pool.get('res.company').browse(cr, uid, obj_user.company_id.id)
+	obj_user = pool.get('res.users').browse(cr, uid, uid, context)
+	obj_company = pool.get('res.company').browse(cr, uid, obj_user.company_id.id, context)
 	res = {}
 	if obj_company.cuenta_ss_empresa:#Como las cuentas son obligatorias si esta definida esta cuenta estarán todas definidas
 		res['diario_destino'] = obj_company.diario_destino.id
@@ -64,17 +64,17 @@ class hr_employee(osv.osv):
 	_name = 'hr.employee'
 	_inherit = 'hr.employee'
 	_columns = {
-	  'retribucion_bruta': fields.float('Retribución Bruta', digits=(16, 2)),
-	  'ss_empresa': fields.float('S.S a Cargo de la empresa', digits=(16, 2)),
-	  'ss_trabajador': fields.float('S.S a cargo del Trabajador', digits=(16, 2)),
-	  'irpf': fields.float('Retención IRPF (%)', digits=(16, 2)),
-      'retribucion_bruta_extra': fields.float('Retribución Bruta', digits=(16, 2)),
-      'ss_empresa_extra': fields.float('S.S a Cargo de la empresa', digits=(16, 2)),
-      'ss_trabajador_extra': fields.float('S.S a cargo del Trabajador', digits=(16, 2)),
-      'irpf_extra': fields.float('Retención IRPF (%)', digits=(16, 2)),
-	  'nominas_ids': fields.one2many('hr.nomina', 'employee_id', 'Nóminas del Empleado', readonly=True),
-	  'anticipos_ids': fields.one2many('hr.anticipo', 'employee_id', 'Anticipos del Empleado', readonly=True),
-	  'cuenta_id': fields.many2one('account.account', 'Cuenta', required=True, help="El empleado debe tener una cuenta para su nómina."),
+            'retribucion_bruta': fields.float('Retribución Bruta', digits=(16, 2)),
+            'ss_empresa': fields.float('S.S a Cargo de la empresa', digits=(16, 2)),
+            'ss_trabajador': fields.float('S.S a cargo del Trabajador', digits=(16, 2)),
+            'irpf': fields.float('Retención IRPF (%)', digits=(16, 2)),
+            'retribucion_bruta_extra': fields.float('Retribución Bruta', digits=(16, 2)),
+            'ss_empresa_extra': fields.float('S.S a Cargo de la empresa', digits=(16, 2)),
+            'ss_trabajador_extra': fields.float('S.S a cargo del Trabajador', digits=(16, 2)),
+            'irpf_extra': fields.float('Retención IRPF (%)', digits=(16, 2)),
+            'nominas_ids': fields.one2many('hr.nomina', 'employee_id', 'Nóminas del Empleado', readonly=True),
+            'anticipos_ids': fields.one2many('hr.anticipo', 'employee_id', 'Anticipos del Empleado', readonly=True),
+            'cuenta_id': fields.many2one('account.account', 'Cuenta', required=True, help="El empleado debe tener una cuenta para su nómina."),
 	}
 	_defaults = {
 		'cuenta_id': lambda * a: 377 or None,
@@ -119,27 +119,27 @@ class hr_nomina(osv.osv):
         else:
             return False
 
-    def comprueba_anticipo(self, cr, uid, ids, fechaNomina, empleado_id):
-    	anticipo_ids = self.pool.get('hr.anticipo').search(cr, uid, [('employee_id', '=', empleado_id)])
+    def comprueba_anticipo(self, cr, uid, ids, fechaNomina, empleado_id, context):
+    	anticipo_ids = self.pool.get('hr.anticipo').search(cr, uid, [('employee_id', '=', empleado_id)], context=context)
     	for anticipo in anticipo_ids:
-    		obj_anticipo = self.pool.get('hr.anticipo').browse(cr, uid, anticipo)
+    		obj_anticipo = self.pool.get('hr.anticipo').browse(cr, uid, anticipo, context)
     		if self.comprueba_mes(obj_anticipo.fecha_anticipo, fechaNomina) and obj_anticipo.state == 'pagado':
     			return obj_anticipo.cantidad
     	
     	return 0
 
-    def confirmar_nomina(self, cr, uid, ids, *args):
-    	cuentas = get_configuration(cr, uid, ids)
-        for nom in self.browse(cr, uid, ids):
+    def confirmar_nomina(self, cr, uid, ids, context=None):
+    	cuentas = get_configuration(cr, uid, ids, context)
+        for nom in self.browse(cr, uid, ids, context):
             if nom.state != 'borrador':
                 continue
             journal_id = cuentas['diario_destino']
             numero = self.pool.get('ir.sequence').get(cr, uid, 'hr.nomina')
-            journal = self.pool.get('account.journal').browse(cr, uid, journal_id)
+            journal = self.pool.get('account.journal').browse(cr, uid, journal_id, context)
             fechaNomina = nom.fecha_nomina
             line = {}
 
-            period_ids = self.pool.get('account.period').search(cr, uid, [('date_start', '<=', fechaNomina or time.strftime('%Y-%m-%d')), ('date_stop', '>=', fechaNomina or time.strftime('%Y-%m-%d'))])
+            period_ids = self.pool.get('account.period').search(cr, uid, [('date_start', '<=', fechaNomina or time.strftime('%Y-%m-%d')), ('date_stop', '>=', fechaNomina or time.strftime('%Y-%m-%d'))], context=context)
             if len(period_ids):
                 periodo_id = period_ids[0]
             else:
@@ -147,10 +147,10 @@ class hr_nomina(osv.osv):
 
             referencia = numero + ' : ' + nom.employee_id.name + ' - ' + fechaNomina
             if nom.extra:
-            	referencia = "Paga Extra: " + nom.employee_id.name + ' - ' + fechaNomina
+            	referencia = _("Paga Extra: %s") % ( nom.employee_id.name + ' - ' + fechaNomina )
             move = {'ref': referencia, 'journal_id': journal_id, 'date': fechaNomina, 'period_id': periodo_id}
 
-            move_id = self.pool.get('account.move').create(cr, uid, move)
+            move_id = self.pool.get('account.move').create(cr, uid, move, context)
 
             obj_linea = self.pool.get('account.move.line')
             #Cuenta del empleado
@@ -159,35 +159,40 @@ class hr_nomina(osv.osv):
             if not cuenta_id:
                 raise osv.except_osv(_('No existe una cuenta configurada para el empleado!'), _('Por favor configure una cuenta en la ficha del empleado en la que generar los asientos de la nómina.'))
             retencion_irpf = (nom.retribucion_bruta * nom.irpf) / 100
-            anticipo = self.comprueba_anticipo(cr, uid, ids, fechaNomina, nom.employee_id.id)
+            anticipo = self.comprueba_anticipo(cr, uid, ids, fechaNomina, nom.employee_id.id, context)
 
             sueldo_neto = nom.retribucion_bruta - retencion_irpf - nom.ss_trabajador
             if anticipo and nom.extra == False:
             	sueldo_neto -= anticipo
-            	obj_linea.create(cr, uid, {'account_id': cuentas['cuenta_anticipos'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Anticipo', 'credit': anticipo, 'ref': referencia})
+            	obj_linea.create(cr, uid, {'account_id': cuentas['cuenta_anticipos'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Anticipo', 'credit': anticipo, 'ref': referencia}, context)
             	
-            obj_linea.create(cr, uid, {'account_id': cuenta_id, 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Sueldo Bruto', 'debit': nom.retribucion_bruta , 'ref': referencia})
-            obj_linea.create(cr, uid, {'account_id': cuentas['cuenta_ss_empresa'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'S.S. Empresa', 'debit': nom.ss_empresa, 'ref': referencia})
-            obj_linea.create(cr, uid, {'account_id': cuentas['cuenta_hacienda_publica'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'IRPF', 'credit': retencion_irpf, 'ref': referencia})
-            obj_linea.create(cr, uid, {'account_id': cuentas['cuenta_ss_acreedores'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'S.S. Acreedores ', 'credit': nom.ss_trabajador + nom.ss_empresa, 'ref': referencia})
-            obj_linea.create(cr, uid, {'account_id': cuentas['cuenta_pendientes_pago'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Sueldo Neto', 'credit': sueldo_neto, 'ref': referencia})
+	    if nom.retribucion_bruta != 0.0:
+		    obj_linea.create(cr, uid, {'account_id': cuenta_id, 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Sueldo Bruto', 'debit': nom.retribucion_bruta , 'ref': referencia}, context)
+	    if nom.ss_empresa != 0.0:
+		    obj_linea.create(cr, uid, {'account_id': cuentas['cuenta_ss_empresa'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'S.S. Empresa', 'debit': nom.ss_empresa, 'ref': referencia}, context)
+	    if retencion_irpf != 0.0:
+		    obj_linea.create(cr, uid, {'account_id': cuentas['cuenta_hacienda_publica'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'IRPF', 'credit': retencion_irpf, 'ref': referencia}, context)
+	    if nom.ss_trabajador + nom.ss_empresa != 0.0:
+		    obj_linea.create(cr, uid, {'account_id': cuentas['cuenta_ss_acreedores'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'S.S. Acreedores ', 'credit': nom.ss_trabajador + nom.ss_empresa, 'ref': referencia}, context)
+	    if sueldo_neto != 0.0:
+		    obj_linea.create(cr, uid, {'account_id': cuentas['cuenta_pendientes_pago'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Sueldo Neto', 'credit': sueldo_neto, 'ref': referencia}, context)
 
-            self.pool.get('account.move').write(cr, uid, [move_id], {'date': fechaNomina})
-            self.pool.get('account.move').post(cr, uid, [move_id])
-            self.write(cr, uid, ids, {'numero': numero})
-            self.write(cr, uid, ids, {'state': 'confirmada', 'asiento_nomina_confirmada': move_id})
+            self.pool.get('account.move').write(cr, uid, [move_id], {'date': fechaNomina}, context)
+            self.pool.get('account.move').post(cr, uid, [move_id], context)
+            self.write(cr, uid, ids, {'numero': numero}, context)
+            self.write(cr, uid, ids, {'state': 'confirmada', 'asiento_nomina_confirmada': move_id}, context)
 
-    def pagar_nomina(self, cr, uid, ids, *args):
-    	cuentas = get_configuration(cr, uid, ids)
-        for nom in self.browse(cr, uid, ids):
+    def pagar_nomina(self, cr, uid, ids, context=None):
+    	cuentas = get_configuration(cr, uid, ids, context)
+        for nom in self.browse(cr, uid, ids, context):
             if nom.state != 'confirmada':
                 continue
             journal_id = cuentas['diario_destino']
-            journal = self.pool.get('account.journal').browse(cr, uid, journal_id)
+            journal = self.pool.get('account.journal').browse(cr, uid, journal_id, context)
             fechaNomina = nom.fecha_nomina
             line = {}
 
-            period_ids = self.pool.get('account.period').search(cr, uid, [('date_start', '<=', fechaNomina or time.strftime('%Y-%m-%d')), ('date_stop', '>=', fechaNomina or time.strftime('%Y-%m-%d'))])
+            period_ids = self.pool.get('account.period').search(cr, uid, [('date_start', '<=', fechaNomina or time.strftime('%Y-%m-%d')), ('date_stop', '>=', fechaNomina or time.strftime('%Y-%m-%d'))], context=context)
             if len(period_ids):
                 periodo_id = period_ids[0]
 
@@ -196,7 +201,7 @@ class hr_nomina(osv.osv):
             	referencia = "Pago de Paga Extra: " + nom.employee_id.name + ' - ' + fechaNomina
             move = {'ref': referencia, 'journal_id': journal_id, 'date': fechaNomina, 'period_id': periodo_id}
 
-            move_id = self.pool.get('account.move').create(cr, uid, move)
+            move_id = self.pool.get('account.move').create(cr, uid, move, context)
 
             retencion_irpf = (nom.retribucion_bruta * nom.irpf) / 100
             sueldo_neto = nom.retribucion_bruta - retencion_irpf - nom.ss_trabajador
@@ -204,19 +209,19 @@ class hr_nomina(osv.osv):
             if anticipo and nom.extra == False:
             	sueldo_neto -= anticipo
 
-            self.pool.get('account.move.line').create(cr, uid, {'account_id': cuentas['cuenta_bancos'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Banco', 'credit': sueldo_neto, 'ref': referencia})
-            self.pool.get('account.move.line').create(cr, uid, {'account_id': cuentas['cuenta_pendientes_pago'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Renumeraciones pendientes', 'debit': sueldo_neto, 'ref': referencia})
+            self.pool.get('account.move.line').create(cr, uid, {'account_id': cuentas['cuenta_bancos'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Banco', 'credit': sueldo_neto, 'ref': referencia}, context)
+            self.pool.get('account.move.line').create(cr, uid, {'account_id': cuentas['cuenta_pendientes_pago'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Renumeraciones pendientes', 'debit': sueldo_neto, 'ref': referencia}, context)
 
             self.write(cr, uid, ids, {'state': 'pagada', 'asiento_nomina_pagada':move_id})
-            self.pool.get('account.move').write(cr, uid, [move_id], {'date': fechaNomina})
-            self.pool.get('account.move').post(cr, uid, [move_id])
+            self.pool.get('account.move').write(cr, uid, [move_id], {'date': fechaNomina}, context)
+            self.pool.get('account.move').post(cr, uid, [move_id], context)
 
-    def cancelar_nomina(self, cr, uid, ids, *args):
-        for nom in self.browse(cr, uid, ids):
+    def cancelar_nomina(self, cr, uid, ids, context):
+        for nom in self.browse(cr, uid, ids, context):
             acc_obj = self.pool.get('account.move')
             if nom.state == 'confirmada':
                 acc_obj.button_cancel(cr, uid, [nom.asiento_nomina_confirmada.id])
-                self.write(cr, uid, ids, {'state': 'cancelada'})
+                self.write(cr, uid, ids, {'state': 'cancelada'}, context)
 
 hr_nomina()
 
@@ -239,16 +244,16 @@ class hr_anticipo(osv.osv):
             'state': lambda * a:'borrador',
     }
 
-    def confirmar_anticipo(self, cr, uid, ids, *args):
-        cuentas = get_configuration(cr, uid, ids)
-        for anticipo in self.browse(cr, uid, ids):
+    def confirmar_anticipo(self, cr, uid, ids, context=None):
+        cuentas = get_configuration(cr, uid, ids, context)
+        for anticipo in self.browse(cr, uid, ids, context):
             if anticipo.state != 'borrador':
                 continue
             journal_id = cuentas['diario_destino']
-            journal = self.pool.get('account.journal').browse(cr, uid, journal_id)
+            journal = self.pool.get('account.journal').browse(cr, uid, journal_id, context)
             fecha_anticipo = anticipo.fecha_anticipo
             #PERIODO
-            period_ids = self.pool.get('account.period').search(cr, uid, [('date_start', '<=', fecha_anticipo or time.strftime('%Y-%m-%d')), ('date_stop', '>=', fecha_anticipo or time.strftime('%Y-%m-%d'))])
+            period_ids = self.pool.get('account.period').search(cr, uid, [('date_start', '<=', fecha_anticipo or time.strftime('%Y-%m-%d')), ('date_stop', '>=', fecha_anticipo or time.strftime('%Y-%m-%d'))], context=context)
             if len(period_ids):
                 periodo_id = period_ids[0]
             referencia = 'Anticipo: ' + anticipo.employee_id.name + ' - ' + fecha_anticipo
@@ -258,17 +263,17 @@ class hr_anticipo(osv.osv):
             self.write(cr, uid, ids, {'state': 'confirmado', 'asiento_anticipo': move_id})
             self.pool.get('account.move').write(cr, uid, [move_id], {'date': fecha_anticipo})
 
-    def pagar_anticipo(self, cr, uid, ids, *args):
-        for ant in self.browse(cr, uid, ids):
+    def pagar_anticipo(self, cr, uid, ids, context=None):
+        for ant in self.browse(cr, uid, ids, context):
             if ant.state != 'confirmado':
                 continue
             acc_obj = self.pool.get('account.move')
-            acc_obj.post(cr, uid, [ant.asiento_anticipo.id])
-            self.write(cr, uid, ids, {'state':'pagado'})
+            acc_obj.post(cr, uid, [ant.asiento_anticipo.id], context)
+            self.write(cr, uid, ids, {'state':'pagado'}, context)
 
-    def cancelar_anticipo(self, cr, uid, ids, *args):
-        for ant in self.browse(cr, uid, ids):
+    def cancelar_anticipo(self, cr, uid, ids, context=None):
+        for ant in self.browse(cr, uid, ids, context):
             acc_obj = self.pool.get('account.move')
             if ant.state == 'confirmado':
-                self.write(cr, uid, ids, {'state':'cancelado'})
+                self.write(cr, uid, ids, {'state':'cancelado'}, context)
 hr_anticipo()
