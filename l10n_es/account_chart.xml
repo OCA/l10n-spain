@@ -7975,7 +7975,7 @@
             <field name="code">570</field>
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_570"/>
-            <field name="type">other</field>
+            <field name="type">liquidity</field>
             <field name="name">Caja, euros</field>
             <field name="user_type" ref="financieras"/>
             <field name="template_name">PGCE 2008</field>
@@ -7993,7 +7993,7 @@
             <field name="code">571</field>
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_571"/>
-            <field name="type">other</field>
+            <field name="type">liquidity</field>
             <field name="name">Caja, moneda extranjera</field>
             <field name="user_type" ref="financieras"/>
             <field name="template_name">PGCE 2008</field>
@@ -8011,7 +8011,7 @@
             <field name="code">572</field>
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_572"/>
-            <field name="type">other</field>
+            <field name="type">liquidity</field>
             <field name="name">Bancos e instituciones de crédito c/c vista, euros</field>
             <field name="user_type" ref="financieras"/>
             <field name="template_name">PGCE 2008</field>
@@ -8029,7 +8029,7 @@
             <field name="code">573</field>
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_573"/>
-            <field name="type">other</field>
+            <field name="type">liquidity</field>
             <field name="name">Bancos e instituciones de crédito c/c vista, moneda extranjera</field>
             <field name="user_type" ref="financieras"/>
             <field name="template_name">PGCE 2008</field>
@@ -8047,7 +8047,7 @@
             <field name="code">574</field>
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_574"/>
-            <field name="type">other</field>
+            <field name="type">liquidity</field>
             <field name="name">Bancos e instituciones de crédito, cuentas de ahorro, euros</field>
             <field name="user_type" ref="financieras"/>
             <field name="template_name">PGCE 2008</field>
@@ -8065,7 +8065,7 @@
             <field name="code">575</field>
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_575"/>
-            <field name="type">other</field>
+            <field name="type">liquidity</field>
             <field name="name">Bancos e instituciones de crédito, cuentas de ahorro, moneda extranjera</field>
             <field name="user_type" ref="financieras"/>
             <field name="template_name">PGCE 2008</field>
@@ -8083,7 +8083,7 @@
             <field name="code">576</field>
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_576"/>
-            <field name="type">other</field>
+            <field name="type">liquidity</field>
             <field name="name">Inversiones a corto plazo de gran liquidez</field>
             <field name="user_type" ref="financieras"/>
             <field name="template_name">PGCE 2008</field>
