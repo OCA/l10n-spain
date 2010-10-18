@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_confirm_toponyms_es_form" model="ir.ui.view">
+            <field name="name">config.ES.toponyms</field>
+            <field name="model">config.ES.toponyms</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="State configuration">
+                    <separator col="4" colspan="4" string="Select the toponym version of the Spanish states"/>
+                    <field name="state"/>
+                    <label colspan="2" string="For example: Official (Girona), Spanish (Gerona), Both (Gerona / Girona)" align="0.0"/>
+                    <newline/>
+                    <separator col="4" colspan="4" string="Add city and state information associated to the zip codes for all the Spanish cities"/>
+                    <field name="city_info" on_change="onchange_city_info(city_info, city_module)"/>
+                    <label colspan="2" string="This allows to fill automatically the city and states fields of partner and contact forms from the zip code." align="0.0"/>
+                    <field name="city_info_recover" attrs="{'readonly':[('city_info','=','no'),('city_module','=','uninstalled')]}"/>
+                    <label colspan="2" string="If the city module has been installed, recover the location data there was in the partner addresses before installing it." align="0.0"/>
+                    <field name="city_module" invisible="1"/>
+                    <newline/>
+                    <label colspan="4" string="Warning! Adding more than 15000 zip codes can take several minutes and it will be done in a background process."/>
+                    <separator string="" colspan="4"/>
+                    <label string="" colspan="2"/>
+                    <group col="2" colspan="2">
+                        <button icon="gtk-cancel" name="action_cancel" string="Skip" type="object" special="cancel"/>
+                        <button icon="gtk-ok" name="action_set" string="Create" type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_config_toponyms_es_form" model="ir.actions.act_window">
+            <field name="name">Spanish toponyms configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">config.ES.toponyms</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <!-- register on configuration -->
+        <record id="config_wizard_toponyms_es" model="ir.actions.todo">
+            <field name="name">Spanish toponyms configuration</field>
+            <field name="note">You can select the toponym version of the Spanish states and add the Spanish cities associated to the zip codes.</field>
+            <field name="action_id" ref="action_config_toponyms_es_form"/>
+            <field name="sequence">20</field>
+        </record>
+
+</data>
+</openerp>
