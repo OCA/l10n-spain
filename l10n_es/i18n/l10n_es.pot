@@ -1,6 +1,6 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* l10n_chart_ES
+#	* l10n_es
 #
 msgid ""
 msgstr ""
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: l10n_chart_ES
+#. module: l10n_es
 #: field:account.account.template,template_name:0
 #: field:account.chart.template,template_name:0
 #: field:account.fiscal.position.account.template,template_name:0
@@ -26,13 +26,13 @@ msgstr ""
 msgid "Template"
 msgstr ""
 
-#. module: l10n_chart_ES
+#. module: l10n_es
 #: constraint:account.account.template:0
 msgid "Error ! You can not create recursive account templates."
 msgstr ""
 
-#. module: l10n_chart_ES
-#: model:ir.module.module,description:l10n_chart_ES.module_meta_information
+#. module: l10n_es
+#: model:ir.module.module,description:l10n_es.module_meta_information
 msgid "Spanish General Chart of Accounts 2008\n"
 "\n"
 "* Defines the following chart of account templates:\n"
@@ -46,18 +46,18 @@ msgid "Spanish General Chart of Accounts 2008\n"
 ""
 msgstr ""
 
-#. module: l10n_chart_ES
+#. module: l10n_es
 #: constraint:account.tax.code.template:0
 msgid "Error ! You can not create recursive Tax Codes."
 msgstr ""
 
-#. module: l10n_chart_ES
+#. module: l10n_es
 #: constraint:ir.ui.view:0
 msgid "Invalid XML for View Architecture!"
 msgstr ""
 
-#. module: l10n_chart_ES
-#: model:ir.module.module,shortdesc:l10n_chart_ES.module_meta_information
+#. module: l10n_es
+#: model:ir.module.module,shortdesc:l10n_es.module_meta_information
 msgid "Spain - Chart of Accounts 2008"
 msgstr ""
 

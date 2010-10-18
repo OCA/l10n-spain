@@ -118,7 +118,7 @@
 
      	<!-- Fiscal Position Templates -->
 
-		<record id="view_account_position_template_form" model="ir.ui.view">
+        <record id="view_account_position_template_form" model="ir.ui.view">
             <field name="name">account.fiscal.position.template.form</field>
             <field name="model">account.fiscal.position.template</field>
             <field name="type">form</field>

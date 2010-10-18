@@ -22,11 +22,11 @@
 ##############################################################################
 
 {
-    "name" : "Spain - Chart of Accounts 2008",
-    "version" : "2.0",
+    "name" : "Spanish Charts of Accounts (PGCE 2008)",
+    "version" : "3.0",
     "author" : "Spanish Localization Team",
     "category" : "Localisation/Account Charts",
-    "description": """Spanish General Chart of Accounts 2008
+    "description": """Spanish Charts of Accounts (PGCE 2008)
 
 * Defines the following chart of account templates:
         * Spanish General Chart of Accounts 2008.
@@ -46,7 +46,8 @@ for yearly account reporting (balance, profit & losses).
         "fiscal_templates.xml",
         "account_chart_pymes.xml",
         "taxes_data_pymes.xml",
-        "fiscal_templates_pymes.xml"
+        "fiscal_templates_pymes.xml",
+        "l10n_es_wizard.xml"
     ],
     "demo_xml" : [],
     "update_xml" : [
