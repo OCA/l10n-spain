@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!--
+347 report workflow.
+
+Author: Borja López Soilán (Pexego) - borjals@pexego.es
+-->
+<openerp>
+    <data>
+        <!-- *** Nodes ***************************************************** -->
+
+        <record model="workflow" id="wkf_mod347_report">
+            <field name="name">347 report workflow</field>
+            <field name="osv">l10n.es.aeat.mod347.report</field>
+            <field name="on_create">True</field>
+        </record>
+
+
+        <record model="workflow.activity" id="act_draft">
+            <field name="wkf_id" ref="wkf_mod347_report"/>
+            <field name="flow_start">True</field>
+            <field name="name">draft</field>
+        </record>
+
+        <record model="workflow.activity" id="act_calculate">
+            <field name="wkf_id" ref="wkf_mod347_report"/>
+            <field name="name">calculated</field>
+            <field name="action">action_calculate()</field>
+            <field name="kind">function</field>
+        </record>
+
+        <record model="workflow.activity" id="act_confirm">
+            <field name="wkf_id" ref="wkf_mod347_report"/>
+            <field name="name">confirmed</field>
+            <field name="action">action_confirm()</field>
+            <field name="kind">function</field>
+        </record>
+
+        <record model="workflow.activity" id="act_cancel">
+            <field name="wkf_id" ref="wkf_mod347_report"/>
+            <field name="name">canceled</field>
+            <field name="flow_stop">True</field>
+            <field name="action">action_cancel()</field>
+            <field name="kind">function</field>
+        </record>
+
+
+        <!-- *** Transitions *********************************************** -->
+		
+        <record model="workflow.transition" id="trans_draft_calculate">
+            <field name="act_from" ref="act_draft"/>
+            <field name="act_to" ref="act_calculate"/>
+            <field name="signal">calculate</field>
+        </record>
+
+        <record model="workflow.transition" id="trans_calculate_confirm">
+            <field name="act_from" ref="act_calculate"/>
+            <field name="act_to" ref="act_confirm"/>
+            <field name="signal">confirm</field>
+        </record>
+
+        <record model="workflow.transition" id="trans_calculate_draft">
+            <field name="act_from" ref="act_calculate"/>
+            <field name="act_to" ref="act_cancel"/>
+            <field name="signal">cancel</field>
+        </record>
+
+        <record model="workflow.transition" id="trans_confirm_cancel">
+            <field name="act_from" ref="act_confirm"/>
+            <field name="act_to" ref="act_cancel"/>
+            <field name="signal">cancel</field>
+        </record>
+
+    </data>
+</openerp>
