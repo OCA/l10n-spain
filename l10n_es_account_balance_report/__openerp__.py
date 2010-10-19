@@ -48,7 +48,7 @@ PYMES: http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&blobheader=appl
         "depends" : [
                 'base',
                 'account',
-                'l10n_chart_ES',
+                'l10n_es',
                 'account_balance_reporting',
             ],
         "init_xml" : [

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <wizard
+            string="Import bank stat."
+            model="account.bank.statement"
+            name="l10n_es_bank_statement.importar"
+            id="wizard_l10n_es_bank_statement_importar"/>
+            <!--menu="False"-->
+
+    </data>
+</openerp>

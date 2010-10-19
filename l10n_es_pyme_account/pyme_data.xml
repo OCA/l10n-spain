@@ -157,7 +157,7 @@
             <field eval="&quot;&quot;&quot;current&quot;&quot;&quot;" name="currency_mode"/>
             <field eval="&quot;&quot;&quot;Banco/Caja de Ahorros 1&quot;&quot;&quot;" name="name"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="user_type" ref="l10n_chart_ES.financieras"/>
+            <field name="user_type" ref="l10n_es.financieras"/>
             <field eval="[(6,0,[])]" name="child_consol_ids"/>
             <field model="account.account" name="parent_id" search="[('name','=','Tesorería')]"/>
             <field eval="989" name="parent_right"/>
@@ -174,7 +174,7 @@
             <field eval="&quot;&quot;&quot;current&quot;&quot;&quot;" name="currency_mode"/>
             <field eval="&quot;&quot;&quot;Banco/Caja de Ahorros 2&quot;&quot;&quot;" name="name"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="user_type" ref="l10n_chart_ES.financieras"/>
+            <field name="user_type" ref="l10n_es.financieras"/>
             <field eval="[(6,0,[])]" name="child_consol_ids"/>
             <field model="account.account" name="parent_id" search="[('name','=','Tesorería')]"/>
             <field eval="987" name="parent_right"/>
@@ -191,7 +191,7 @@
             <field eval="&quot;&quot;&quot;current&quot;&quot;&quot;" name="currency_mode"/>
             <field eval="&quot;&quot;&quot;Banco/Caja de Ahorros 3&quot;&quot;&quot;" name="name"/>
             <field name="company_id" ref="base.main_company"/>
-            <field name="user_type" ref="l10n_chart_ES.financieras"/>
+            <field name="user_type" ref="l10n_es.financieras"/>
             <field eval="[(6,0,[])]" name="child_consol_ids"/>
             <field model="account.account" name="parent_id" search="[('name','=','Tesorería')]"/>
             <field eval="995" name="parent_right"/>

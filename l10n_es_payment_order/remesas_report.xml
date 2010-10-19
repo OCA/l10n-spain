@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+            id="remesas_report"
+            string="Remesa"
+            model="payment.order"
+            name="remesas.report"
+            rml="l10n_es_payment_extension/report/remesas_report.rml"
+            auto="False"/>
+    </data>
+</openerp>

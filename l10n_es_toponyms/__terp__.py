@@ -37,10 +37,10 @@
 Los datos han sido obtenidos de los datos públicos del Instituto Nacional de Estadística (INE).""",
     "depends" : ["base"],
     "license" : "GPL-3",
-    "init_xml" : ["l10n_ES_toponyms_country.xml", ],
+    "init_xml" : ["l10n_es_toponyms_country.xml", ],
     "demo_xml" : [ ],
     "update_xml" : [
-        "l10n_ES_toponyms_wizard.xml",
+        "l10n_es_toponyms_wizard.xml",
         "security/ir.model.access.csv",
     ],
     "active": False,

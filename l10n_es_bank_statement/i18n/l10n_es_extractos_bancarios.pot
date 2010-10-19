@@ -1,0 +1,293 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_es_bank_statement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 5.0.7\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2010-05-06 11:26:42+0000\n"
+"PO-Revision-Date: 2010-05-06 11:26:42+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_bank_statement
+#: model:ir.module.module,shortdesc:l10n_es_bank_statement.module_meta_information
+msgid "Spanish Bank Statements Importation"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: wizard_field:l10n_es_bank_statement.importar,init,reco_payment_order:0
+msgid "Reconcile payment orders by total amount"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: wizard_field:l10n_es_bank_statement.importar,init,reco_vat_and_amount:0
+msgid "Reconcile by VAT number and amount"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: wizard_field:l10n_es_bank_statement.importar,init,reco_reference_and_amount:0
+msgid "Reconcile by reference and amount"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: wizard_view:l10n_es_bank_statement.importar,init:0
+msgid "Automatic reconciliation options"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: wizard_field:l10n_es_bank_statement.importar,init,reco_max_days:0
+msgid "Max. days from statement date"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: wizard_view:l10n_es_bank_statement.importar,init:0
+msgid "Bank Statements File:"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: help:l10n_es_bank_statement.importar,init,reco_max_days:0
+msgid "Maximum difference in days, between the maturity date of the entry to reconcile and the bank statement entry"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: wizard_field:l10n_es_bank_statement.importar,init,reco_amount:0
+msgid "Reconcile by amount"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: constraint:ir.model:0
+msgid "The Object name must start with x_ and not contain any special character !"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: constraint:ir.actions.act_window:0
+msgid "Invalid model name in the action definition."
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: model:ir.ui.menu,name:l10n_es_bank_statement.menu_extractos_bancarios
+msgid "C43 bank statements"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: field:l10n.es.extractos.concepto,account_id:0
+msgid "Account associated to the concept"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: model:ir.module.module,shortdesc:l10n_es_bank_statement.module_meta_information
+msgid "Importación de extractos bancarios C43"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: wizard_field:l10n_es_bank_statement.importar,init,file:0
+msgid "Bank Statements File"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: view:l10n.es.extractos.import.wizard:0
+#: wizard_button:l10n_es_bank_statement.importar,init,import:0
+msgid "Import"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: model:ir.model,name:l10n_es_bank_statement.model_l10n_es_extractos_import_wizard
+msgid "l10n.es.extractos.import.wizard"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/wizard/wizard_import_c43_file.py:0
+#, python-format
+msgid "Final balance amount = (initial balance + credit - debit) does not agree with the defined in the last record of account."
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: help:l10n.es.extractos.concepto,account_id:0
+msgid "Default account to be associated with the concept when the file of C43 bank statements is imported"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: wizard_view:l10n_es_bank_statement.importar,init:0
+msgid "Bank statements import according to norm C43"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/wizard/wizard_import_c43_file.py:0
+#, python-format
+msgid "Error !"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: model:ir.actions.act_window,name:l10n_es_bank_statement.action_extractos_concepto
+#: view:l10n.es.extractos.concepto:0
+msgid "C43 default accounts"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: field:l10n.es.extractos.concepto,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: model:ir.model,name:l10n_es_bank_statement.model_l10n_es_extractos_concepto
+msgid "C43 codes"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/wizard/wizard_import_c43_file.py:0
+#, python-format
+msgid "Number of debit records does not agree with the defined in the last record of account."
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/wizard/wizard_import_c43_file.py:0
+#, python-format
+msgid "Number of credit records does not agree with the defined in the last record of account."
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/wizard/wizard_import_c43_file.py:0
+#, python-format
+msgid "Error in C43 file"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: model:ir.ui.menu,name:l10n_es_bank_statement.menu_extractos_bancarios_concepto
+msgid "Default accounts associated to C43 codes"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/wizard/wizard_import_c43_file.py:0
+#, python-format
+msgid "Archivo a importar codificado en ISO-8859-1"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: model:ir.actions.act_window,name:l10n_es_bank_statement.action_extractos_import_wizard
+#: model:ir.ui.menu,name:l10n_es_bank_statement.menu_import_wizard
+msgid "Import Statement Concepts Wizard"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: model:ir.module.module,description:l10n_es_bank_statement.module_meta_information
+msgid "Module for the importation of Spanish bank statements following the C43 normative of the 'Asociación Española de la Banca'.\n"
+"    \n"
+"    Adds a wizard to the bank statements to perform the importation. The imported file gets attached to the given bank statement.\n"
+"    It allows to define default accounting codes for the concepts defined in the C43 bank statement file.\n"
+"\n"
+"    The search of the entries to reconcile (and partner) is done like this:\n"
+"        1) Unreconciled entries with the given reference and amount. The reference is taken from the 'conceptos' or 'referencia2' fields of the statement.\n"
+"        2) Unreconciled entries with (a partner with) the given VAT number and amount.\n"
+"           These fields are tested to find a valid spanish VAT:\n"
+"              - First 9 characters of 'referencia1' (Banc Sabadell)\n"
+"              - First 9 characters of 'conceptos' (La Caixa)\n"
+"              - Characters [21:30] of 'conceptos' (Caja Rural del Jalón)\n"
+"        3) Unreconciled entries with the given amount.\n"
+"\n"
+"    If no partner is found, the default account defined for the concept is used.\n"
+"\n"
+"    The module also adds a wizard in Financial Management/Configuration/C43 bank statements to import the default statement concepts, that must be run after creating the spanish chart of accounts (l10n_es module).\n"
+"    "
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: help:l10n.es.extractos.concepto,code:0
+msgid "2 digits code of the concept defined in the file of C43 bank statements"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/wizard/wizard_import_c43_file.py:0
+#, python-format
+msgid "Debit amount does not agree with the defined in the last record of account."
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/wizard/wizard_import_c43_file.py:0
+#, python-format
+msgid "Number of records does not agree with the defined in the last record."
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/wizard/wizard_import_c43_file.py:0
+#, python-format
+msgid "Not valid record type."
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/wizard/wizard_import_c43_file.py:0
+#, python-format
+msgid "A default account has not been defined for the C43 concept "
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/wizard/wizard_import_c43_file.py:0
+#, python-format
+msgid "Error"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: field:l10n.es.extractos.concepto,name:0
+msgid "Concept name"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/wizard/wizard_import_c43_file.py:0
+#, python-format
+msgid "Credit amount does not agree with the defined in the last record of account."
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: view:l10n.es.extractos.import.wizard:0
+msgid "This wizard will import default concepts related to standard accounts of spanish charts."
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/wizard/wizard_import_c43_file.py:0
+#, python-format
+msgid "The bank statement is alredy confirmed. It can not be imported from file."
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/wizard/wizard_import_c43_file.py:0
+#, python-format
+msgid "Bank Statement"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: view:l10n.es.extractos.import.wizard:0
+msgid "Import Wizard"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/wizard/wizard_import_c43_file.py:0
+#, python-format
+msgid "bank-statement.txt"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: field:l10n.es.extractos.concepto,code:0
+msgid "Concept code"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: view:l10n.es.extractos.import.wizard:0
+#: wizard_button:l10n_es_bank_statement.importar,init,end:0
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: model:ir.actions.wizard,name:l10n_es_bank_statement.wizard_l10n_es_bank_statement_importar
+msgid "Import bank stat."
+msgstr ""
+
