@@ -2406,7 +2406,6 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
-            <field name="tax_group">other</field>
         </record>
 		
         <record id="irpf_pymes_2" model="account.tax.template">
@@ -2426,7 +2425,6 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
-            <field name="tax_group">other</field>
         </record>
 		
         <record id="irpf_pymes_7" model="account.tax.template">
@@ -2446,7 +2444,6 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
-            <field name="tax_group">other</field>
         </record>
 		
         <record id="irpf_pymes_15" model="account.tax.template">
@@ -2466,7 +2463,6 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
-            <field name="tax_group">other</field>
         </record>
 		
         <record id="irpf_pymes_18" model="account.tax.template">
@@ -2486,7 +2482,6 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
-            <field name="tax_group">other</field>
         </record>
 				
         <record id="irpf_pymes_19" model="account.tax.template">
@@ -2506,7 +2501,6 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
-            <field name="tax_group">other</field>
         </record>
 
         <record id="irpf_pymes_21" model="account.tax.template">
@@ -2526,7 +2520,6 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
-            <field name="tax_group">other</field>
         </record>
 		
 		<!-- RETENCIONES DE IRPF: Hacienda pública, retenciones a cuenta como clientes -->
@@ -2750,7 +2743,6 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
-            <field name="tax_group">other</field>
         </record>
 		
         <record id="irpf_pymes_sale_2" model="account.tax.template">
@@ -2770,7 +2762,6 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
-            <field name="tax_group">other</field>
         </record>
 		
         <record id="irpf_pymes_sale_7" model="account.tax.template">
@@ -2790,7 +2781,6 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
-            <field name="tax_group">other</field>
         </record>
 		
         <record id="irpf_pymes_sale_15" model="account.tax.template">
@@ -2810,7 +2800,6 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
-            <field name="tax_group">other</field>
         </record>
 		
         <record id="irpf_pymes_sale_18" model="account.tax.template">
@@ -2830,7 +2819,6 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
-            <field name="tax_group">other</field>
         </record>
 		
         <record id="irpf_pymes_sale_19" model="account.tax.template">
@@ -2850,7 +2838,6 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
-            <field name="tax_group">other</field>
         </record>
 		
         <record id="irpf_pymes_sale_21" model="account.tax.template">
@@ -2870,7 +2857,6 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
-            <field name="tax_group">other</field>
         </record>
     </data>
 </openerp>
