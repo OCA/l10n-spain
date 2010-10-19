@@ -14958,7 +14958,7 @@
             <field name="name">Plantilla Plan General Contable 2008</field>
             <field name="account_root_id" ref="pgc_0"/>
             <field name="tax_code_root_id" ref="vat_code_chart_root"/>
-            <field name="bank_account_view_id" ref="pgc_572_child"/>
+            <field name="bank_account_view_id" ref="pgc_572"/>
             <field name="property_account_receivable" ref="pgc_4300_child"/>
             <field name="property_account_payable" ref="pgc_4100_child"/>
             <field name="property_account_expense_categ" ref="pgc_600_child"/>

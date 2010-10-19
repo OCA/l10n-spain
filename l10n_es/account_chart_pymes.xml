@@ -12869,7 +12869,7 @@
             <field name="name">Plantilla Plan General Contable PYMES 2008</field>
             <field name="account_root_id" ref="pgc_pymes_0"/>
             <field name="tax_code_root_id" ref="vat_code_chart_pymes_root"/>
-            <field name="bank_account_view_id" ref="pgc_pymes_572_child"/>
+            <field name="bank_account_view_id" ref="pgc_pymes_572"/>
             <field name="property_account_receivable" ref="pgc_pymes_4300_child"/>
             <field name="property_account_payable" ref="pgc_pymes_4100_child"/>
             <field name="property_account_expense_categ" ref="pgc_pymes_600_child"/>
