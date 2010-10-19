@@ -9,15 +9,15 @@
             <field name="arch" type="xml">
                 <form string="State configuration">
                     <separator col="4" colspan="4" string="Select the toponym version of the Spanish states"/>
-                    <field name="state"/>
+                    <field name="state" colspan="2"/>
                     <label colspan="2" string="For example: Official (Girona), Spanish (Gerona), Both (Gerona / Girona)" align="0.0"/>
                     <newline/>
                     <separator col="4" colspan="4" string="Add city and state information associated to the zip codes for all the Spanish cities"/>
-                    <field name="city_info" on_change="onchange_city_info(city_info, city_module)"/>
+                    <field name="city_info" colspan="2" on_change="onchange_city_info(city_info, city_module)"/>
                     <label colspan="2" string="This allows to fill automatically the city and states fields of partner and contact forms from the zip code." align="0.0"/>
-                    <field name="city_info_recover" attrs="{'readonly':[('city_info','=','no'),('city_module','=','uninstalled')]}"/>
+                    <field name="city_info_recover" colspan="2" attrs="{'readonly':[('city_info','=','no'),('city_module','=','uninstalled')]}"/>
                     <label colspan="2" string="If the city module has been installed, recover the location data there was in the partner addresses before installing it." align="0.0"/>
-                    <field name="city_module" invisible="1"/>
+                    <field name="city_module" colspan="2" invisible="1"/>
                     <newline/>
                     <label colspan="4" string="Warning! Adding more than 15000 zip codes can take several minutes and it will be done in a background process."/>
                     <separator string="" colspan="4"/>
