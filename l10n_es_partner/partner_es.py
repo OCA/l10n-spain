@@ -118,11 +118,11 @@ class l10n_es_partner_import_wizard(osv.osv_memory):
 
     def action_import(self, cr, uid, ids, context=None):
         try:
-            fp = tools.file_open(os.path.join('l10n_ES_partner', 'data_banks.xml'))
+            fp = tools.file_open(os.path.join('l10n_es_partner', 'data_banks.xml'))
         except IOError, e:
             return {}
         idref = {}
-        tools.convert_xml_import(cr, 'l10n_ES_partner', fp,  idref, 'init', noupdate=True)
+        tools.convert_xml_import(cr, 'l10n_es_partner', fp,  idref, 'init', noupdate=True)
         return {}
 l10n_es_partner_import_wizard()
 
