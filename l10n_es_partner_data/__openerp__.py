@@ -30,17 +30,14 @@
     "category" : "Localisation/Europe",
     "description": """Añade datos iniciales a las tablas:
     * Canales
-    * Estados de ánimo
-    * Categorías de empresas
-    * Cargos de contactos""",
+    * Categorías de empresas""",
     "license" : "GPL-3",
     "depends" : [
         "base",
         ],
     "init_xml" : [
-        "data/data_partner_events.xml",     # Canales y estados de ánimo
+        "data/data_partner_events.xml",     # Canales de comunicación
         "data/data_partner_categories.xml", # Categorías de empresas
-        "data/data_partner_functions.xml",  # Cargos de contactos
         ],
     "demo_xml" : [],
     "update_xml" :[],

@@ -27,12 +27,12 @@
     <record model="res.partner.category" id="cat_cliente_antiguo">
         <field name="name">Client antic</field>
         <field name="active">True</field>
-        <field name="parent_id" ref="l10n_CT_partner_data.cat_cliente"/>
+        <field name="parent_id" ref="l10n_cat_partner_data.cat_cliente"/>
     </record>
     <record model="res.partner.category" id="cat_cliente_potencial">
         <field name="name">Client potencial</field>
         <field name="active">True</field>
-        <field name="parent_id" ref="l10n_CT_partner_data.cat_cliente"/>
+        <field name="parent_id" ref="l10n_cat_partner_data.cat_cliente"/>
     </record>
   </data>
 </openerp>

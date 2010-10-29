@@ -29,17 +29,14 @@
     "category" : "Localisation/Europe",
     "description": """Afegeix dades inicials a les taules:
     * Canals
-    * Estats d'ànim
-    * Categories d'empreses
-    * Càrrecs de contactes""",
+    * Categories d'empreses""",
     "license" : "GPL-3",
     "depends" : [
         "base",
         ],
     "init_xml" : [
-        "data/data_partner_events.xml",     # Canals i estats d'ànim
+        "data/data_partner_events.xml",     # Canals de comunicació
         "data/data_partner_categories.xml", # Categories d'empreses
-        "data/data_partner_functions.xml",  # Càrrecs de contactes
         ],
     "demo_xml" : [],
     "update_xml" :[],
