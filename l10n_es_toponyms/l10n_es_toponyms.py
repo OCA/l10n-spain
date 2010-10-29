@@ -114,12 +114,12 @@ class config_ES_toponyms(osv.osv_memory):
             self._create_defaults(cr, uid, context)
         else:                                   # city module installed
             try:
-                fp = tools.file_open(os.path.join('l10n_ES_toponyms', 'l10n_ES_toponyms_zipcodes.xml'))
+                fp = tools.file_open(os.path.join('l10n_es_toponyms', 'l10n_es_toponyms_zipcodes.xml'))
             except IOError, e:
                 fp = None
             if fp:
                 idref = {}
-                tools.convert_xml_import(cr, 'l10n_ES_toponyms', fp,  idref, 'init', noupdate=True)
+                tools.convert_xml_import(cr, 'l10n_es_toponyms', fp,  idref, 'init', noupdate=True)
                 if res['city_info_recover'] == 'yes':
                     res= self._recover_zipcodes(cr, uid, context)
                     #print res
@@ -133,14 +133,14 @@ class config_ES_toponyms(osv.osv_memory):
         #print res
 
         # Import Spanish states (official, Spanish or both)
-        file_name = 'l10n_ES_toponyms_states_'+res['state']+'.xml'
+        file_name = 'l10n_es_toponyms_states_'+res['state']+'.xml'
         try:
-            fp = tools.file_open(os.path.join('l10n_ES_toponyms', file_name))
+            fp = tools.file_open(os.path.join('l10n_es_toponyms', file_name))
         except IOError, e:
             fp = None
         if fp:
             idref = {}
-            tools.convert_xml_import(cr, 'l10n_ES_toponyms', fp,  idref, 'init', noupdate=True)
+            tools.convert_xml_import(cr, 'l10n_es_toponyms', fp,  idref, 'init', noupdate=True)
 
         # Import Spanish cities and zip codes in other thread (15000 zip codes can take several minutes)
         if res['city_info'] == 'yes':
