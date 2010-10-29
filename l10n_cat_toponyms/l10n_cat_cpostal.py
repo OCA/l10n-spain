@@ -35,7 +35,7 @@ cpostal_end_form = '''<?xml version="1.0" encoding="utf-8"?>
     <label string="Permet omplenar automàticament el camp comarca del formulari d'empresa i contacte a partir del codi postal." colspan="4" align="0.0"/>
 </form>'''
 
-class l10n_CT_crea_cpostal(wizard.interface):
+class l10n_cat_crea_cpostal(wizard.interface):
     def _crea_cpostal(self, cr, uid, data, context):
         from comarca_cpostal import cod_postales
         pool = pooler.get_pool(cr.dbname)
@@ -57,7 +57,7 @@ class l10n_CT_crea_cpostal(wizard.interface):
         }
 
     }
-l10n_CT_crea_cpostal('l10n_CT_toponyms.crea_cpostal')
+l10n_cat_crea_cpostal('l10n_cat_toponyms.crea_cpostal')
 
 
 class comarca(osv.osv):

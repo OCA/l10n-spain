@@ -72,7 +72,8 @@
             <field name="view_id" ref="view_country_state_comarca_tree"/>
         </record>
 
-        <menuitem name="Partners/Configuration/Localisation/Comarques"
+        <menuitem name="Comarques"
+            parent="base.menu_localisation"
             action="action_country_state_comarca"
             id="menu_country_state_comarca"/>
 

@@ -4,14 +4,15 @@
 
 <record model="ir.actions.wizard" id="wizard_crea_cpostal">
     <field name="name">Crea codis postals</field>
-    <field name="wiz_name">l10n_CT_toponyms.crea_cpostal</field>
+    <field name="wiz_name">l10n_cat_toponyms.crea_cpostal</field>
 </record>
 
 <menuitem
-    name="Partners/Configuration/Localisation/Associa les comarques dels Països Catalans als codis postals"
+    name="Associa les comarques dels Països Catalans als codis postals"
+    parent="base.menu_localisation"
     action="wizard_crea_cpostal"
     type="wizard"
-    id="l10n_CT_toponyms_crea_cpostal"/>
+    id="l10n_cat_toponyms_crea_cpostal"/>
 
 </data>
 </openerp>

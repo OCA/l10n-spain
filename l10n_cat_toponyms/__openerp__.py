@@ -35,12 +35,12 @@
 
 Nota: No funciona amb el mòdul city instal·lat.""",
     "license" : "GPL-3",
-    "depends" : ["base","l10n_ES_toponyms"],
-    "init_xml" : ["l10n_CT_toponyms_data.xml"],
+    "depends" : ["base","l10n_es_toponyms"],
+    "init_xml" : ["l10n_cat_toponyms_data.xml"],
     "demo_xml" : [ ],
     "update_xml" : [
-        "l10n_CT_toponyms_view.xml",
-        "l10n_CT_toponyms_wizard.xml",
+        "l10n_cat_toponyms_view.xml",
+        "l10n_cat_toponyms_wizard.xml",
         "security/ir.model.access.csv",
     ],
     "active": False,
