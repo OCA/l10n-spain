@@ -21,4 +21,4 @@
 #
 ##############################################################################
 
-import l10n_ES_cpostal_region
+import l10n_es_cpostal_region

@@ -72,8 +72,10 @@
             <field name="view_id" ref="view_country_region_tree"/>
         </record>
 
-        <menuitem name="Partners/Configuration/Localisation/Regions"
-         action="action_country_region" id="menu_country_region"/>
+        <menuitem name="Regions"
+            parent="base.menu_localisation"
+            action="action_country_region"
+            id="menu_country_region"/>
 
     </data>
 </openerp>

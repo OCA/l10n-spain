@@ -8,7 +8,8 @@
 </record>
 
 <menuitem
-    name="Partners/Configuration/Localisation/Associate regions to Spanish zip codes"
+    name="Associate regions to Spanish zip codes"
+    parent="base.menu_localisation"
     action="wizard_create_zipcode_region"
     type="wizard"
     id="l10n_ES_toponyms_region_create_zipcode_region"/>
