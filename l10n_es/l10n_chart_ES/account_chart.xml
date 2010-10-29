@@ -1003,7 +1003,7 @@
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_153"/>
             <field name="type">view</field> 
-            <field name="name">Provisión por retribuciones del personal</field>
+            <field name="name">Desembolsos no exigidos, otras partes vinculadas</field>
             <field name="user_type" ref="capital"/>
             <field name="template_name">PGCE 2008</field>
         </record>
@@ -1012,7 +1012,7 @@
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_1535"/>
             <field name="type">other</field> 
-            <field name="name">Provisión por retribuciones del personal</field>
+            <field name="name">Desembolsos no exigidos, otras partes vinculadas</field>
             <field name="user_type" ref="capital"/>
             <field name="template_name">PGCE 2008</field>
         </record>
@@ -1021,7 +1021,7 @@
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_153"/>
             <field name="type">view</field> 
-            <field name="name">Provisión por retribuciones del personal</field>
+            <field name="name">Otros desembolsos no exigidos</field>
             <field name="user_type" ref="capital"/>
             <field name="template_name">PGCE 2008</field>
         </record>
@@ -1030,7 +1030,7 @@
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_1536"/>
             <field name="type">other</field> 
-            <field name="name">Provisión por retribuciones del personal</field>
+            <field name="name">Otros desembolsos no exigidos</field>
             <field name="user_type" ref="capital"/>
             <field name="template_name">PGCE 2008</field>
         </record>
@@ -1039,7 +1039,7 @@
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_15"/>
             <field name="type">view</field> 
-            <field name="name">Provisión por retribuciones del personal</field>
+            <field name="name">Aportaciones no dinerarias pendientes por acciones o participaciones consideradas como pasivos financieros</field>
             <field name="user_type" ref="capital"/>
             <field name="template_name">PGCE 2008</field>
         </record>
@@ -1048,7 +1048,7 @@
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_154"/>
             <field name="type">view</field> 
-            <field name="name">Provisión por retribuciones del personal</field>
+            <field name="name">Aportaciones no dinerarias pendientes, empresas del grupo</field>
             <field name="user_type" ref="capital"/>
             <field name="template_name">PGCE 2008</field>
         </record>
@@ -1057,7 +1057,7 @@
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_1543"/>
             <field name="type">other</field> 
-            <field name="name">Provisión por retribuciones del personal</field>
+            <field name="name">Aportaciones no dinerarias pendientes, empresas del grupo</field>
             <field name="user_type" ref="capital"/>
             <field name="template_name">PGCE 2008</field>
         </record>
@@ -1066,7 +1066,7 @@
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_154"/>
             <field name="type">view</field> 
-            <field name="name">Provisión por retribuciones del personal</field>
+            <field name="name">Aportaciones no dinerarias pendientes, empresas asociadas</field>
             <field name="user_type" ref="capital"/>
             <field name="template_name">PGCE 2008</field>
         </record>
@@ -1075,7 +1075,7 @@
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_1544"/>
             <field name="type">other</field> 
-            <field name="name">Provisión por retribuciones del personal</field>
+            <field name="name">Aportaciones no dinerarias pendientes, empresas asociadas</field>
             <field name="user_type" ref="capital"/>
             <field name="template_name">PGCE 2008</field>
         </record>
@@ -1084,7 +1084,7 @@
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_154"/>
             <field name="type">view</field> 
-            <field name="name">Provisión por retribuciones del personal</field>
+            <field name="name">Aportaciones no dinerarias pendientes, otras partes vinculadas</field>
             <field name="user_type" ref="capital"/>
             <field name="template_name">PGCE 2008</field>
         </record>
@@ -1093,7 +1093,7 @@
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_1545"/>
             <field name="type">other</field> 
-            <field name="name">Provisión por retribuciones del personal</field>
+            <field name="name">Aportaciones no dinerarias pendientes, otras partes vinculadas</field>
             <field name="user_type" ref="capital"/>
             <field name="template_name">PGCE 2008</field>
         </record>
@@ -1102,7 +1102,7 @@
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_154"/>
             <field name="type">view</field> 
-            <field name="name">Provisión por retribuciones del personal</field>
+            <field name="name">Otras aportaciones no dinerarias pendientes</field>
             <field name="user_type" ref="capital"/>
             <field name="template_name">PGCE 2008</field>
         </record>
@@ -1111,7 +1111,7 @@
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_1546"/>
             <field name="type">other</field> 
-            <field name="name">Provisión por retribuciones del personal</field>
+            <field name="name">Otras aportaciones no dinerarias pendientes</field>
             <field name="user_type" ref="capital"/>
             <field name="template_name">PGCE 2008</field>
         </record>
