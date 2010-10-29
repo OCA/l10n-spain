@@ -42,13 +42,13 @@ Funcionamiento de la validación de la cuenta bancaria:
 NOTA
 Se ha eliminado la validación de CIF/NIF españoles, pues el módulo base_vat de OpenERP 5.0 añade un campo CIF/NIF en la pestaña de contabilidad de las empresas y la validación automática de los CIF de 27 paises europeos. Los CIFs deben introducirse añadiendo al principio los 2 caracteres que identifican cada país en mayúsculas (ES para España), por ejemplo ESB64425879
 
-NOTA: Éste módulo añade un asistente en Empresas/Configuración/Bancos para la importación de todos los bancos y cajas de España. Antes de ejecutar éste asistente deberá tener importadas las provincias disponibles en el módulo l10n_ES_toponyms.
+NOTA: Éste módulo añade un asistente en Empresas/Configuración/Bancos para la importación de todos los bancos y cajas de España. Antes de ejecutar éste asistente deberá tener importadas las provincias disponibles en el módulo l10n_es_toponyms.
 """,
     "license" : "GPL-3",
     "depends" : [
         "base",
         "base_iban",
-        "l10n_ES_toponyms",
+        "l10n_es_toponyms",
         ],
     "init_xml" : [],
     "update_xml" : [
