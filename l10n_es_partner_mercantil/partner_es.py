@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -21,8 +21,6 @@
 ##############################################################################
 
 from osv import osv, fields
-import tools
-import os
 
 class res_partner(osv.osv):
     _inherit = 'res.partner'
