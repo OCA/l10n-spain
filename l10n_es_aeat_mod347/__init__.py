@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -28,4 +28,3 @@ import mod347
 import account_journal
 import partner
 import wizard
-import report
