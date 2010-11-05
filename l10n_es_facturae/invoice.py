@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -21,8 +21,7 @@
 #
 ##############################################################################
 
-from osv import osv,fields
-import time
+from osv import osv
 import netsvc
 
 class account_invoce(osv.osv):
