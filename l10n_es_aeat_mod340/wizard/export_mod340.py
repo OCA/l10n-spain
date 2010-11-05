@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -24,8 +24,6 @@
 import pooler
 import wizard
 import base64
-import mx.DateTime
-from mx.DateTime import now
 import netsvc
 logger = netsvc.Logger()
 

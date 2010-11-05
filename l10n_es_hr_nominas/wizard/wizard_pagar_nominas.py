@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -20,8 +20,6 @@
 #
 ##############################################################################
 import wizard
-import time
-import datetime
 import pooler
 
 form_confirmar = """<?xml version="1.0"?>

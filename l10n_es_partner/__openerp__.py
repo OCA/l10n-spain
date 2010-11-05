@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -48,7 +48,7 @@ NOTA: Éste módulo añade un asistente en Empresas/Configuración/Bancos para l
     "depends" : [
         "base",
         "base_iban",
-        "l10n_ES_toponyms",
+        "l10n_es_toponyms",
         ],
     "init_xml" : [],
     "update_xml" : [

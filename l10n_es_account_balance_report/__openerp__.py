@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP - Spanish account balance reports

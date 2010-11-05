@@ -1,8 +1,8 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2008 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
 #    $Id$
 #
@@ -22,27 +22,27 @@
 ##############################################################################
 
 {
-    "name" : "Topònims dels Països Catalans",
+    "name" : "Comunidades Autónomas de España",
     "version" : "1.0",
     "author" : "Zikzakmedia SL",
     "website" : "www.zikzakmedia.com",
     "category" : "Localisation/Europe",
-    "description": """Comarques dels Països Catalans (Catalunya, País Valencià i Illes Balears)
+    "description": """Comunidades Autónomas del Estado Español
 
-  * Afegeix un nou camp comarca al formulari d'empresa i contacte.
-  * Insereix totes les comarques dels Països Catalans associades a cada província.
-  * Proporciona un assistent per donar d'alta les comarques per defecte associats als codis postals dels Països Catalans. Permet omplenar automàticament el camp comarca del formulari d'empresa i contacte a partir del codi postal.
+  * Añade un nuevo campo de comunidades autónomas al formulario de empresas y contactos.
+  * Inserta todas las Comunidades Autónomas del Estado Español.
+  * Proporciona un assistente para dar de alta las comunidades autónomas por defecto asociadas a los codigos postales. Permite rellenar automaticamente el campo comunidad autónoma del formulario de las empresas y contactos a partir del codigo postal.
 
-Nota: No funciona amb el mòdul city instal·lat.""",
+Nota: No funciona con el módulo city instalado.""",
+    "depends" : ["base"],
     "license" : "GPL-3",
-    "depends" : ["base","l10n_ES_toponyms"],
-    "init_xml" : ["l10n_CT_toponyms_data.xml"],
+    "init_xml" : ["l10n_es_toponyms_region_data.xml"],
     "demo_xml" : [ ],
     "update_xml" : [
-        "l10n_CT_toponyms_view.xml",
-        "l10n_CT_toponyms_wizard.xml",
+        "l10n_es_toponyms_region_view.xml",
+        "l10n_es_toponyms_region_wizard.xml",
         "security/ir.model.access.csv",
     ],
     "active": False,
     "installable": True
-}
+} 

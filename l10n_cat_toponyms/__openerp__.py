@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2008 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
 #    $Id$
 #
@@ -22,27 +22,27 @@
 ##############################################################################
 
 {
-    "name" : "Topónimos del Estado español",
+    "name" : "Topònims dels Països Catalans",
     "version" : "1.0",
     "author" : "Zikzakmedia SL",
     "website" : "www.zikzakmedia.com",
     "category" : "Localisation/Europe",
-    "description": """Provincias, municipios y códigos postales del Estado Español
+    "description": """Comarques dels Països Catalans (Catalunya, País Valencià i Illes Balears)
 
-  * Traduce el país Spain por España
-  * Añade las 52 provincias actuales del Estado Español con posibilidad de escoger versión oficial, castellana o ambas
-  * Proporciona un asistente para dar de alta los municipios y provincias por defecto asociados a los 15839 códigos postales del Estado Español. Permite rellenar automáticamente los campos ciudad y provincia del formulario de empresa y contacto a partir del código postal.
-  * Nuevo asistente de configuración que permite crear los valores por defecto según módulo city esté instalado (se crean entidades city.city) o no (se crean valores por defecto de los campos ciudad y provincia asociados al código postal).
+  * Afegeix un nou camp comarca al formulari d'empresa i contacte.
+  * Insereix totes les comarques dels Països Catalans associades a cada província.
+  * Proporciona un assistent per donar d'alta les comarques per defecte associats als codis postals dels Països Catalans. Permet omplenar automàticament el camp comarca del formulari d'empresa i contacte a partir del codi postal.
 
-Los datos han sido obtenidos de los datos públicos del Instituto Nacional de Estadística (INE).""",
-    "depends" : ["base"],
+Nota: No funciona amb el mòdul city instal·lat.""",
     "license" : "GPL-3",
-    "init_xml" : ["l10n_es_toponyms_country.xml", ],
+    "depends" : ["base","l10n_ES_toponyms"],
+    "init_xml" : ["l10n_cat_toponyms_data.xml"],
     "demo_xml" : [ ],
     "update_xml" : [
-        "l10n_es_toponyms_wizard.xml",
+        "l10n_cat_toponyms_view.xml",
+        "l10n_cat_toponyms_wizard.xml",
         "security/ir.model.access.csv",
     ],
     "active": False,
     "installable": True
-} 
+}

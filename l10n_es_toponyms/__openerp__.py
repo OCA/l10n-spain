@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -22,25 +22,25 @@
 ##############################################################################
 
 {
-    "name" : "Comunidades Autónomas de España",
+    "name" : "Topónimos del Estado español",
     "version" : "1.0",
     "author" : "Zikzakmedia SL",
     "website" : "www.zikzakmedia.com",
     "category" : "Localisation/Europe",
-    "description": """Comunidades Autónomas del Estado Español
+    "description": """Provincias, municipios y códigos postales del Estado Español
 
-  * Añade un nuevo campo de comunidades autónomas al formulario de empresas y contactos.
-  * Inserta todas las Comunidades Autónomas del Estado Español.
-  * Proporciona un assistente para dar de alta las comunidades autónomas por defecto asociadas a los codigos postales. Permite rellenar automaticamente el campo comunidad autónoma del formulario de las empresas y contactos a partir del codigo postal.
+  * Traduce el país Spain por España
+  * Añade las 52 provincias actuales del Estado Español con posibilidad de escoger versión oficial, castellana o ambas
+  * Proporciona un asistente para dar de alta los municipios y provincias por defecto asociados a los 15839 códigos postales del Estado Español. Permite rellenar automáticamente los campos ciudad y provincia del formulario de empresa y contacto a partir del código postal.
+  * Nuevo asistente de configuración que permite crear los valores por defecto según módulo city esté instalado (se crean entidades city.city) o no (se crean valores por defecto de los campos ciudad y provincia asociados al código postal).
 
-Nota: No funciona con el módulo city instalado.""",
+Los datos han sido obtenidos de los datos públicos del Instituto Nacional de Estadística (INE).""",
     "depends" : ["base"],
     "license" : "GPL-3",
-    "init_xml" : ["l10n_ES_toponyms_region_data.xml"],
+    "init_xml" : ["l10n_es_toponyms_country.xml", ],
     "demo_xml" : [ ],
     "update_xml" : [
-        "l10n_ES_toponyms_region_view.xml",
-        "l10n_ES_toponyms_region_wizard.xml",
+        "l10n_es_toponyms_wizard.xml",
         "security/ir.model.access.csv",
     ],
     "active": False,
