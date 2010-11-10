@@ -26,7 +26,7 @@
     "version" : "1.0",
     "author" : "ASR-OSS, Pexego",
     "category" : "Localisation/Accounting",
-    "description" : """
+    "description" : """NOTA: NO ADAPTADO TODAVÍA A LA VERSIÓN 6.0
 Módulo para la presentación del Modelo AEAT 347 (Declaración Anual de Operaciones con Terceros)
 
 Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban los diseños físicos y lógicos del 347.
