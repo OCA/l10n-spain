@@ -8,16 +8,16 @@
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
+#    it under the terms of the GNU Affero General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+#    GNU Affero General Public License for more details.
 #
-#    You should have received a copy of the GNU General Public License
+#    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
@@ -26,6 +26,7 @@
     "name" : "Adaptación de partner para Estado Español",
     "version" : "1.0",
     "author" : "Spanish Localization Team",
+    "website" : "https://launchpad.net/openerp-spain",
     "category" : "Localisation/Europe",
     "description": """Funcionalidades:
     * Añade el campo *Nombre Comercial* a las empresas
@@ -44,7 +45,7 @@ Se ha eliminado la validación de CIF/NIF españoles, pues el módulo base_vat d
 
 NOTA: Éste módulo añade un asistente en Empresas/Configuración/Bancos para la importación de todos los bancos y cajas de España. Antes de ejecutar éste asistente deberá tener importadas las provincias disponibles en el módulo l10n_es_toponyms.
 """,
-    "license" : "GPL-3",
+    "license" : "AGPL-3",
     "depends" : [
         "base",
         "base_iban",
@@ -53,7 +54,6 @@ NOTA: Éste módulo añade un asistente en Empresas/Configuración/Bancos para l
     "init_xml" : [],
     "update_xml" : [
         "partner_es_view.xml",
-        "security/ir.model.access.csv",
         ],
     "active": False,
     "installable": True
