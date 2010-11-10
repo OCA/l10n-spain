@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -36,9 +36,6 @@
 import pooler
 import wizard
 import base64
-import mx.DateTime
-from mx.DateTime import now
-from datetime import datetime
 from tools.translate import _
 from converter import *
 import csb_19

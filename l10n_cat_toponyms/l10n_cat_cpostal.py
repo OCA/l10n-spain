@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -25,8 +25,6 @@ import ir
 import wizard
 import pooler
 from osv import osv, fields
-import codecs
-import tools
 
 cpostal_end_form = '''<?xml version="1.0" encoding="utf-8"?>
 <form string="Codis postals">

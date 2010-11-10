@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -27,7 +27,7 @@
 C43 format concepts and extension of the bank statement lines.
 """
 
-from osv import osv, fields
+from osv import osv
 import tools
 import os
 

@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution    
@@ -20,4 +20,5 @@
 #
 ##############################################################################
 
-import hr_nominas, wizard
+import hr_nominas
+import wizard

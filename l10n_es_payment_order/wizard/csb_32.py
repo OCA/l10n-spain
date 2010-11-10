@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -34,7 +34,6 @@
 ##############################################################################
 
 from datetime import datetime
-from tools.translate import _
 from converter import *
 
 
