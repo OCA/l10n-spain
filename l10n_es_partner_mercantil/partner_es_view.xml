@@ -7,15 +7,15 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <page string="Notes" position="after">
-		<page string="Commercial Info">
-		    <field name="es_libro"/>
-		    <field name="es_registro_mercantil"/>
-		    <field name="es_hoja"/>
-		    <field name="es_folio"/>
-		    <field name="es_seccion"/>
-		    <field name="es_tomo"/>
-		</page>
-	    </page>
+                <page string="Commercial Info">
+                    <field name="es_libro"/>
+                    <field name="es_registro_mercantil"/>
+                    <field name="es_hoja"/>
+                    <field name="es_folio"/>
+                    <field name="es_seccion"/>
+                    <field name="es_tomo"/>
+                </page>
+             </page>
         </field>
     </record>
   </data>
