@@ -53,7 +53,6 @@ NOTA: Éste módulo añade un asistente en Empresas/Configuración/Bancos para l
     "init_xml" : [],
     "update_xml" : [
         "partner_es_view.xml",
-        "security/ir.model.access.csv",
         ],
     "active": False,
     "installable": True
