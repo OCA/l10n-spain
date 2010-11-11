@@ -30,6 +30,7 @@ import threading
 
 class config_ES_toponyms(osv.osv_memory):
     _name='config.ES.toponyms'
+    _inherit = 'res.config.installer'
 
     def _city_module_default(self, cr, uid, context=None):
         cr.execute('select * from ir_module_module where name=%s and state=%s', ('city','installed'))
@@ -90,7 +91,6 @@ class config_ES_toponyms(osv.osv_memory):
             ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'city', [('res.partner.address', False)], m[1])
         return {}
 
-
     def _recover_zipcodes(self, cr, uid, context):
         # Recovers the location data (city info) from the zip code there was in the partner addresses before installing the city module
         cr.execute("select id, zip from res_partner_address where location IS NULL")
@@ -104,7 +104,6 @@ class config_ES_toponyms(osv.osv_memory):
                     cr.execute("update res_partner_address SET location = %i WHERE id = %i" %(city_id[0][0], zipcode['id']))
                     cont += 1
         return cont
-
 
     def create_zipcodes(self, db_name, uid, ids, res, context):
         # Import Spanish cities and zip codes (15000 zip codes can take several minutes)
@@ -127,10 +126,11 @@ class config_ES_toponyms(osv.osv_memory):
         cr.close()
         return {}
 
-
-    def action_set(self, cr, uid, ids, context=None):
+    def execute(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+        super(config_ES_toponyms, self).execute(cr, uid, ids, context=context)
         res = self.read(cr, uid, ids)[0]
-        #print res
 
         # Import Spanish states (official, Spanish or both)
         file_name = 'l10n_es_toponyms_states_'+res['state']+'.xml'
@@ -147,23 +147,5 @@ class config_ES_toponyms(osv.osv_memory):
             cr.commit()
             thread1 = threading.Thread(target=self.create_zipcodes, args=(cr.dbname, uid, ids, res, context))
             thread1.start()
-
-        return {
-                'view_type': 'form',
-                "view_mode": 'form',
-                'res_model': 'ir.actions.configuration.wizard',
-                'type': 'ir.actions.act_window',
-                'target':'new',
-            }
-
-
-    def action_cancel(self, cr, uid, ids, conect=None):
-        return {
-                'view_type': 'form',
-                "view_mode": 'form',
-                'res_model': 'ir.actions.configuration.wizard',
-                'type': 'ir.actions.act_window',
-                'target':'new',
-         }
 
 config_ES_toponyms()

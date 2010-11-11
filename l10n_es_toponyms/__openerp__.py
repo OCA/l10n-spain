@@ -41,7 +41,6 @@ Los datos han sido obtenidos de los datos públicos del Instituto Nacional de Es
     "demo_xml" : [ ],
     "update_xml" : [
         "l10n_es_toponyms_wizard.xml",
-        "security/ir.model.access.csv",
     ],
     "active": False,
     "installable": True
