@@ -26,6 +26,7 @@
     "name" : "Adaptación de partner para Estado Español",
     "version" : "1.0",
     "author" : "Spanish Localization Team",
+    "website" : "https://launchpad.net/openerp-spain",
     "category" : "Localisation/Europe",
     "description": """Funcionalidades:
     * Añade el campo *Nombre Comercial* a las empresas
