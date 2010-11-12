@@ -26,7 +26,8 @@
     "version" : "1.0",
     "author" : "Alejandro Sanchez",
     "category" : "Localisation/Accounting",
-    "description" : """This module creates Factura-e files from invoices.
+    "description" : """NOTA: NO ADAPTADO TODAVÍA A LA VERSIÓN 6.0
+This module creates Factura-e files from invoices.
 ******* Module under development *******
 Successfully passes format and account validation tests from AEAT: http://www11.mityc.es/FacturaE/ValidarCompleto
 """,
