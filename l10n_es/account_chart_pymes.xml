@@ -4410,7 +4410,7 @@
         </record>
         <record id="pgc_pymes_460_child" model="account.account.template">
             <field name="code">460</field>
-            <field name="reconcile" eval="False"/>
+            <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="pgc_pymes_460"/>
             <field name="type">other</field>
             <field name="name">Anticipos de remuneraciones</field>
@@ -4426,7 +4426,7 @@
         </record>
         <record id="pgc_pymes_465_child" model="account.account.template">
             <field name="code">465</field>
-            <field name="reconcile" eval="False"/>
+            <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="pgc_pymes_465"/>
             <field name="type">other</field>
             <field name="name">Remuneraciones pendientes de pago</field>
