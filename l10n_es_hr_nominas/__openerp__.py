@@ -26,7 +26,8 @@
     "website": "http://www.ting.es",
     "category" : "Generic Modules/Human Resources",
     "license" : "GPL-3",
-    "description": """Recursos Humanos: Gestión de Nóminas
+    "description": """NOTA: NO ADAPTADO TODAVÍA A LA VERSIÓN 6.0
+Recursos Humanos: Gestión de Nóminas
 Este módulo permite automatizar la creación de los asientos contables para las nóminas de los empleados.
         
 Uso del módulo:

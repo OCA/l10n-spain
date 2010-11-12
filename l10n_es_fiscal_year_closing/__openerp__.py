@@ -29,7 +29,8 @@
     "author" : "Pexego",
     "website" : "",
     "category" : "Localisation/Europe",
-    "description": """Spanish Fiscal Year Closing Wizard
+    "description": """NOTA: NO ADAPTADO TODAVÍA A LA VERSIÓN 6.0
+Spanish Fiscal Year Closing Wizard
     
 Replaces the default OpenERP end of year wizards (from account module)
 with a more advanced all-in-one wizard that will let the users:

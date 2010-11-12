@@ -27,7 +27,8 @@
     "author" : "Zikzakmedia SL",
     "category" : "Generic Modules/Others",
     "website": "www.zikzakmedia.com",
-    "description": """Instalación de los módulos contables de OpenERP para una PYME estándar incluyendo los módulos de localización española y algunos datos de configuración iniciales.
+    "description": """NOTA: NO ADAPTADO TODAVÍA A LA VERSIÓN 6.0
+Instalación de los módulos contables de OpenERP para una PYME estándar incluyendo los módulos de localización española y algunos datos de configuración iniciales.
 
 Instala los módulos habituales para la gestión contable de una PYME del Estado Español: contabilidad y facturación, pagos, remesas de recibos, plan contable 2008, topónimos, datos de bancos españoles y su validación, importación de extractos bancarios, cierre de ejercicio, informes contables, ...
 

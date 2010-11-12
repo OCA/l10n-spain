@@ -26,7 +26,8 @@
     "version" : "1.0",
     "author" : "Alejandro Sanchez",
     "category" : "Localisation/Accounting",
-    "description" : """Módulo para la presentación del modelo 340
+    "description" : """NOTA: NO ADAPTADO TODAVÍA A LA VERSIÓN 6.0
+Módulo para la presentación del modelo 340
 ********************* Esta versión se encuetra en desarrollo ************************
 """,
     "website" : "www.asr-oss.com",

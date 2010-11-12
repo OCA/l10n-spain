@@ -28,7 +28,8 @@
     "version" : "1.0",
     "author" : "Zikzakmedia, Pexego",
     "category" : "Localisation/Accounting",
-    "description" : """Module for the importation of Spanish bank statements following the C43 normative of the 'Asociación Española de la Banca'.
+    "description" : """NOTA: NO ADAPTADO TODAVÍA A LA VERSIÓN 6.0
+Module for the importation of Spanish bank statements following the C43 normative of the 'Asociación Española de la Banca'.
     
     Adds a wizard to the bank statements to perform the importation. The imported file gets attached to the given bank statement.
     It allows to define default accounting codes for the concepts defined in the C43 bank statement file.
