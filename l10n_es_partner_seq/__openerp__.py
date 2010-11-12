@@ -28,8 +28,7 @@
     "author" : "Pablo Rocandio, Zikzakmedia SL",
     "website" : "www.zikzakmedia.com",
     "category" : "Localisation/Europe",
-    "description": """NOTA: NO ADAPTADO TODAVÍA A LA VERSIÓN 6.0
-Este módulo:
+    "description": """Este módulo:
   * Vincula una secuencia al campo de código de empresa para generar el código de forma automática (sólo al crear nuevas empresas clientes o proveedores).
   * Añade un asistente para crear las cuentas a pagar y a cobrar de la empresa según su código (si no tuviera código se crea uno según la secuencia) cuyo prefijo será la cuenta contable padre indicada (por ejemplo, para cuentas a cobrar usaríamos 4300 para clientes o 4400 para deudores, para cuentas a pagar usaríamos 4000 para proveedores o 4100 para acreedores).
 
@@ -40,7 +39,7 @@ La secuencia de empresa por defecto se inicia en NP00101 (prefijo NP y relleno d
     "init_xml" : [],
     "update_xml" : [
         "partner_seq_sequence.xml",
-        "partner_seq_wizard.xml"
+        "wizard/create_accounts_view.xml"
         ],
     "active": False,
     "installable": True

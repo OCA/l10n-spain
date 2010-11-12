@@ -1,13 +1,13 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* l10n_ES_partner_seq
+#	* l10n_es_partner_seq
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.7\n"
+"Project-Id-Version: OpenERP Server 6.0.0-rc1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-02-03 19:17:24+0000\n"
-"PO-Revision-Date: 2010-02-03 19:17:24+0000\n"
+"POT-Creation-Date: 2010-11-12 20:28:52+0000\n"
+"PO-Revision-Date: 2010-11-12 20:28:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,16 +15,97 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: l10n_ES_partner_seq
-#: help:l10n_ES_partner_seq.create_accounts,init,parent_receivable:0
+#. module: l10n_es_partner_seq
+#: help:account.create.accounts,parent_receivable:0
 msgid "Parent for the receivable account, like 4300 for clients, 4400 for debtors, ... It also will be used as the code prefix of the created account.\n"
 "Tip: Save the most used parent account as the default value."
-msgstr ""
+msgstr "Parent for the receivable account, like 4300 for clients, 4400 for debtors, ... It also will be used as the code prefix of the created account.\n"
+"Tip: Save the most used parent account as the default value."
 
-#. module: l10n_ES_partner_seq
-#: wizard_view:l10n_ES_partner_seq.create_accounts,init:0
+#. module: l10n_es_partner_seq
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr "Invalid XML for View Architecture!"
+
+#. module: l10n_es_partner_seq
+#: view:account.create.accounts:0
 msgid "Do you want to create accounts for the selected partners?"
-msgstr ""
+msgstr "Do you want to create accounts for the selected partners?"
+
+#. module: l10n_es_partner_seq
+#: code:addons/l10n_es_partner_seq/wizard/create_accounts.py:0
+#, python-format
+msgid "Error !"
+msgstr "Error !"
+
+#. module: l10n_es_partner_seq
+#: view:account.create.accounts:0
+msgid "Create"
+msgstr "Create"
+
+#. module: l10n_es_partner_seq
+#: help:account.create.accounts,num_digits:0
+msgid "Number of digits of the account codes."
+msgstr "Number of digits of the account codes."
+
+#. module: l10n_es_partner_seq
+#: field:account.create.accounts,num_digits:0
+msgid "Number of digits"
+msgstr "Number of digits"
+
+#. module: l10n_es_partner_seq
+#: field:account.create.accounts,parent_receivable:0
+msgid "Parent Receivable Account"
+msgstr "Parent Receivable Account"
+
+#. module: l10n_es_partner_seq
+#: view:account.create.accounts:0
+#: model:ir.actions.act_window,name:l10n_es_partner_seq.action_account_create_accounts
+msgid "Create accounts"
+msgstr "Create accounts"
+
+#. module: l10n_es_partner_seq
+#: constraint:ir.model:0
+msgid "The Object name must start with x_ and not contain any special character !"
+msgstr "The Object name must start with x_ and not contain any special character !"
+
+#. module: l10n_es_partner_seq
+#: help:account.create.accounts,parent_payable:0
+msgid "Parent for the payable account, like 4000 for suppliers, 4100 for creditors, ... It also will be used as the code prefix of the created account.\n"
+"Tip: Save the most used parent account as the default value."
+msgstr "Parent for the payable account, like 4000 for suppliers, 4100 for creditors, ... It also will be used as the code prefix of the created account.\n"
+"Tip: Save the most used parent account as the default value."
+
+#. module: l10n_es_partner_seq
+#: field:account.create.accounts,parent_payable:0
+msgid "Parent Payable Account"
+msgstr "Parent Payable Account"
+
+#. module: l10n_es_partner_seq
+#: constraint:ir.actions.act_window:0
+msgid "Invalid model name in the action definition."
+msgstr "Invalid model name in the action definition."
+
+#. module: l10n_es_partner_seq
+#: view:account.create.accounts:0
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: l10n_es_partner_seq
+#: model:ir.model,name:l10n_es_partner_seq.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_es_partner_seq
+#: model:ir.model,name:l10n_es_partner_seq.model_account_create_accounts
+msgid "create accounts wizard"
+msgstr "create accounts wizard"
+
+#. module: l10n_es_partner_seq
+#: code:addons/l10n_es_partner_seq/wizard/create_accounts.py:0
+#, python-format
+msgid "Account types with codes 'terceros - rec' and 'terceros - pay' have not been defined!"
+msgstr "Account types with codes 'terceros - rec' and 'terceros - pay' have not been defined!"
 
 #. module: l10n_ES_partner_seq
 #: model:ir.module.module,description:l10n_ES_partner_seq.module_meta_information
@@ -37,45 +118,7 @@ msgid "Este módulo:\n"
 msgstr ""
 
 #. module: l10n_ES_partner_seq
-#: help:l10n_ES_partner_seq.create_accounts,init,number_digits:0
-msgid "Number of digits of the account codes."
-msgstr ""
-
-#. module: l10n_ES_partner_seq
-#: wizard_field:l10n_ES_partner_seq.create_accounts,init,number_digits:0
-msgid "Number of digits"
-msgstr ""
-
-#. module: l10n_ES_partner_seq
-#: wizard_field:l10n_ES_partner_seq.create_accounts,init,parent_receivable:0
-msgid "Parent Receivable Account"
-msgstr ""
-
-#. module: l10n_ES_partner_seq
-#: model:ir.actions.wizard,name:l10n_ES_partner_seq.id_create_accounts
-#: wizard_view:l10n_ES_partner_seq.create_accounts,init:0
-#: wizard_button:l10n_ES_partner_seq.create_accounts,init,create:0
-msgid "Create accounts"
-msgstr ""
-
-#. module: l10n_ES_partner_seq
 #: model:ir.module.module,shortdesc:l10n_ES_partner_seq.module_meta_information
 msgid "Secuencia empresa"
-msgstr ""
-
-#. module: l10n_ES_partner_seq
-#: help:l10n_ES_partner_seq.create_accounts,init,parent_payable:0
-msgid "Parent for the payable account, like 4000 for suppliers, 4100 for creditors, ... It also will be used as the code prefix of the created account.\n"
-"Tip: Save the most used parent account as the default value."
-msgstr ""
-
-#. module: l10n_ES_partner_seq
-#: wizard_field:l10n_ES_partner_seq.create_accounts,init,parent_payable:0
-msgid "Parent Payable Account"
-msgstr ""
-
-#. module: l10n_ES_partner_seq
-#: wizard_button:l10n_ES_partner_seq.create_accounts,init,end:0
-msgid "Cancel"
 msgstr ""
 

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.0-rc1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-02-03 19:12:04+0000\n"
-"PO-Revision-Date: 2010-02-03 20:12+0100\n"
+"POT-Creation-Date: 2010-11-12 20:28:52+0000\n"
+"PO-Revision-Date: 2010-11-12 21:41+0100\n"
 "Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 
-#. module: l10n_ES_partner_seq
-#: help:l10n_ES_partner_seq.create_accounts,init,parent_receivable:0
+#. module: l10n_es_partner_seq
+#: help:account.create.accounts,parent_receivable:0
 msgid ""
 "Parent for the receivable account, like 4300 for clients, 4400 for debtors, ... It also will be used as the code prefix of the created account.\n"
 "Tip: Save the most used parent account as the default value."
@@ -24,10 +24,92 @@ msgstr ""
 "Padre para la cuenta a cobrar, por ejemplo 4300 para clientes, 4400 para deudores, ... También se utiliza como prefijo del código de la cuenta creada.\n"
 "Truco: Guarde la cuenta padre más utilizada como el valor por defecto."
 
-#. module: l10n_ES_partner_seq
-#: wizard_view:l10n_ES_partner_seq.create_accounts,init:0
+#. module: l10n_es_partner_seq
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr "¡XML no válido para la estructura de la vista!"
+
+#. module: l10n_es_partner_seq
+#: view:account.create.accounts:0
 msgid "Do you want to create accounts for the selected partners?"
 msgstr "¿Quiere crear las cuentas contables para las empresas seleccionadas?"
+
+#. module: l10n_es_partner_seq
+#: code:addons/l10n_es_partner_seq/wizard/create_accounts.py:0
+#, python-format
+msgid "Error !"
+msgstr "¡Error!"
+
+#. module: l10n_es_partner_seq
+#: view:account.create.accounts:0
+msgid "Create"
+msgstr "Crear"
+
+#. module: l10n_es_partner_seq
+#: help:account.create.accounts,num_digits:0
+msgid "Number of digits of the account codes."
+msgstr "Número de dígitos de los códigos de cuentas."
+
+#. module: l10n_es_partner_seq
+#: field:account.create.accounts,num_digits:0
+msgid "Number of digits"
+msgstr "Número de dígitos"
+
+#. module: l10n_es_partner_seq
+#: field:account.create.accounts,parent_receivable:0
+msgid "Parent Receivable Account"
+msgstr "Cuenta a cobrar padre"
+
+#. module: l10n_es_partner_seq
+#: view:account.create.accounts:0
+#: model:ir.actions.act_window,name:l10n_es_partner_seq.action_account_create_accounts
+msgid "Create accounts"
+msgstr "Crear cuentas"
+
+#. module: l10n_es_partner_seq
+#: constraint:ir.model:0
+msgid "The Object name must start with x_ and not contain any special character !"
+msgstr "¡El nombre del objeto debe empezar con x_ y no contener ningún carácter especial!"
+
+#. module: l10n_es_partner_seq
+#: help:account.create.accounts,parent_payable:0
+msgid ""
+"Parent for the payable account, like 4000 for suppliers, 4100 for creditors, ... It also will be used as the code prefix of the created account.\n"
+"Tip: Save the most used parent account as the default value."
+msgstr ""
+"Padre para la cuenta a pagar, por ejemplo 4000 para proveedores, 4100 para acreedores, ... También se utiliza como prefijo del código de la cuenta creada.\n"
+"Truco: Guarde la cuenta padre más utilizada como el valor por defecto."
+
+#. module: l10n_es_partner_seq
+#: field:account.create.accounts,parent_payable:0
+msgid "Parent Payable Account"
+msgstr "Cuenta a pagar padre"
+
+#. module: l10n_es_partner_seq
+#: constraint:ir.actions.act_window:0
+msgid "Invalid model name in the action definition."
+msgstr "Nombre de modelo no válido en la definición de acción."
+
+#. module: l10n_es_partner_seq
+#: view:account.create.accounts:0
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_es_partner_seq
+#: model:ir.model,name:l10n_es_partner_seq.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_partner_seq
+#: model:ir.model,name:l10n_es_partner_seq.model_account_create_accounts
+msgid "create accounts wizard"
+msgstr "asistente crear cuentas"
+
+#. module: l10n_es_partner_seq
+#: code:addons/l10n_es_partner_seq/wizard/create_accounts.py:0
+#, python-format
+msgid "Account types with codes 'terceros - rec' and 'terceros - pay' have not been defined!"
+msgstr "¡No se han definido tipos de cuenta con códigos 'terceros - rec' y 'terceros - pay'!"
 
 #. module: l10n_ES_partner_seq
 #: model:ir.module.module,description:l10n_ES_partner_seq.module_meta_information
@@ -41,48 +123,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_ES_partner_seq
-#: help:l10n_ES_partner_seq.create_accounts,init,number_digits:0
-msgid "Number of digits of the account codes."
-msgstr "Número de dígitos de los códigos de cuentas."
-
-#. module: l10n_ES_partner_seq
-#: wizard_field:l10n_ES_partner_seq.create_accounts,init,number_digits:0
-msgid "Number of digits"
-msgstr "Número de dígitos"
-
-#. module: l10n_ES_partner_seq
-#: wizard_field:l10n_ES_partner_seq.create_accounts,init,parent_receivable:0
-msgid "Parent Receivable Account"
-msgstr "Cuenta a cobrar padre"
-
-#. module: l10n_ES_partner_seq
-#: model:ir.actions.wizard,name:l10n_ES_partner_seq.id_create_accounts
-#: wizard_view:l10n_ES_partner_seq.create_accounts,init:0
-#: wizard_button:l10n_ES_partner_seq.create_accounts,init,create:0
-msgid "Create accounts"
-msgstr "Crear cuentas"
-
-#. module: l10n_ES_partner_seq
 #: model:ir.module.module,shortdesc:l10n_ES_partner_seq.module_meta_information
 msgid "Secuencia empresa"
 msgstr ""
-
-#. module: l10n_ES_partner_seq
-#: help:l10n_ES_partner_seq.create_accounts,init,parent_payable:0
-msgid ""
-"Parent for the payable account, like 4000 for suppliers, 4100 for creditors, ... It also will be used as the code prefix of the created account.\n"
-"Tip: Save the most used parent account as the default value."
-msgstr ""
-"Padre para la cuenta a pagar, por ejemplo 4000 para proveedores, 4100 para acreedores, ... También se utiliza como prefijo del código de la cuenta creada.\n"
-"Truco: Guarde la cuenta padre más utilizada como el valor por defecto."
-
-#. module: l10n_ES_partner_seq
-#: wizard_field:l10n_ES_partner_seq.create_accounts,init,parent_payable:0
-msgid "Parent Payable Account"
-msgstr "Cuenta a pagar padre"
-
-#. module: l10n_ES_partner_seq
-#: wizard_button:l10n_ES_partner_seq.create_accounts,init,end:0
-msgid "Cancel"
-msgstr "Cancelar"
 
