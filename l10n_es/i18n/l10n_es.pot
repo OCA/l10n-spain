@@ -16,17 +16,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es
-#: field:account.account.template,template_name:0
-#: field:account.chart.template,template_name:0
-#: field:account.fiscal.position.account.template,template_name:0
-#: field:account.fiscal.position.tax.template,template_name:0
-#: field:account.fiscal.position.template,template_name:0
-#: field:account.tax.code.template,template_name:0
-#: field:account.tax.template,template_name:0
-msgid "Template"
-msgstr ""
-
-#. module: l10n_es
 #: constraint:account.account.template:0
 msgid "Error ! You can not create recursive account templates."
 msgstr ""

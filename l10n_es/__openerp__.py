@@ -2,8 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2008 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
-#                       Jordi Esteve <jesteve@zikzakmedia.com>
+#    Copyright (c) 2008-2010 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#                            Jordi Esteve <jesteve@zikzakmedia.com>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@
     "name" : "Spanish Charts of Accounts (PGCE 2008)",
     "version" : "3.0",
     "author" : "Spanish Localization Team",
+    'website' : 'https://launchpad.net/openerp-spain',
     "category" : "Localisation/Account Charts",
     "description": """Spanish Charts of Accounts (PGCE 2008)
 
@@ -40,7 +41,6 @@ for yearly account reporting (balance, profit & losses).
     "license" : "GPL-3",
     "depends" : ["account", "base_vat", "base_iban"],
     "init_xml" : [
-        "account_view.xml",
         "account_chart.xml",
         "taxes_data.xml",
         "fiscal_templates.xml",
