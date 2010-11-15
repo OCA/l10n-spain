@@ -59,8 +59,9 @@ class account_payment_term(osv.osv):
 
     def days_in_month(self, date):
         if date.month == 12:
-            return date.replace(day=31)
-        date = date.replace(month=date.month+1, day=1) - datetime.timedelta(days=1)
+            date = date.replace(day=31)
+        else:
+            date = date.replace(month=date.month+1, day=1) - datetime.timedelta(days=1)
         return date.day
 
     def next_day(self, date, day):
