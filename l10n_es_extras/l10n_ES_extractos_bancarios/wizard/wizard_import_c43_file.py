@@ -462,9 +462,9 @@ class wizard_import_c43_file(wizard.interface):
         partner = None
 
         possible_vat_numbers = [
-            st_line['referencia1'][:9],     # Banc Sabadell
-            st_line['conceptos'][:9],       # La Caixa
-            st_line['conceptos'][21:30],    # Caja Rural del Jalón
+            st_line['referencia1'][:9].replace(' ',''),     # Banc Sabadell
+            st_line['conceptos'][:9].replace(' ',''),       # La Caixa
+            st_line['conceptos'][21:30].replace(' ',''),    # Caja Rural del Jalón
         ]
         for possible_vat_number in possible_vat_numbers:
             if partner_facade.check_vat_es(possible_vat_number):
