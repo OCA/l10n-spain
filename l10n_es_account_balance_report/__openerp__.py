@@ -26,8 +26,7 @@
         "author" : "Pexego, Zikzakmedia",
         "website" : "http://www.pexego.es",
         "category" : "Localisation/Accounting",
-        "description": """NOTA: NO ADAPTADO TODAVÍA A LA VERSIÓN 6.0
-Spanish official account balance reports:
+        "description": """Spanish official account balance reports:
 
 - BALANCE PYMES (PGCE 2008)
 - CUENTA DE PÉRDIDAS Y GANANCIAS PYMES (PGCE 2008)
