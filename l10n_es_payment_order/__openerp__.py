@@ -28,8 +28,7 @@
     "version" : "1.5",
     "author" : "Acysos SL, Zikzakmedia SL, Pablo Rocandio, NaN",
     "category" : "Localisation/Accounting",
-    "description" : """NOTA: NO ADAPTADO TODAVÍA A LA VERSIÓN 6.0
-Módulo para la exportación de remesas de recibos según las normas CSB 19 (recibos domiciliados), CSB 58 (anticipos de créditos) y CSB 34 (emisión de transferencias) para poder ser enviados a la entidad bancaria.
+    "description" : """Módulo para la exportación de remesas de recibos según las normas CSB 19 (recibos domiciliados), CSB 58 (anticipos de créditos) y CSB 34 (emisión de transferencias) para poder ser enviados a la entidad bancaria.
 
 Crea un tipo de pago "Recibo domiciliado" con el código RECIBO_CSB. Este código es importante pues permite ejecutar el asistente de creación del fichero de remesas cuando se presiona el botón "Realizar pagos" en la orden de pagos o remesa.
 

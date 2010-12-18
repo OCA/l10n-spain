@@ -6,7 +6,7 @@
             string="Remesa"
             model="payment.order"
             name="remesas.report"
-            rml="l10n_es_payment_extension/report/remesas_report.rml"
+            rml="l10n_es_payment_order/report/remesas_report.rml"
             auto="False"/>
     </data>
 </openerp>

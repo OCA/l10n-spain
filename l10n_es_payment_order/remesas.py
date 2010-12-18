@@ -15,6 +15,9 @@
 # Corregido para instalación OpenERP 5.0.0 sobre account_payment_extension: Zikzakmedia S.L. 2009
 #   Jordi Esteve <jesteve@zikzakmedia.com>
 #
+# Adaptación para instalación OpenERP 6.0.0 sobre account_payment_extension: Zikzakmedia S.L. 2010
+#   Jordi Esteve <jesteve@zikzakmedia.com>
+#
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -86,7 +89,7 @@ class payment_order(osv.osv):
 
     def get_wizard(self, type):
         if type in ('RECIBO_CSB', 'TRANSFERENCIA_CSB'):
-            return ('l10n_es_payment_extension', 'wizard_create_payment_file_spain')
+            return ('l10n_es_payment_order', 'wizard_create_payment_file_spain')
         else:
             return super(payment_order, self).get_wizard(type)
 

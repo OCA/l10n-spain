@@ -172,7 +172,7 @@ def _create_payment_file(self, cr, uid, data, context):
             'res_id': orden.id,
             }, context=context)
         log = _("Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n") % (-orden.total, len(recibos))
-        pool.get('payment.order').set_done(cr,uid,orden.id,context)
+        pool.get('payment.order').set_done(cr, uid, [orden.id], context)
         return {
             'note': log, 
             'reference': orden.id, 
