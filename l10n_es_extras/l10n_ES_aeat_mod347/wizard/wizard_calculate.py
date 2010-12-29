@@ -119,6 +119,8 @@ class wizard_calculate(wizard.interface):
             # (to ignore closing/opening entries)
             period_ids = [period.id for period in report.fiscalyear_id.period_ids if not period.special]
 
+            data['calculation_progress'] = 0
+
             #
             # We will check every partner with include_in_mod347
             #
@@ -163,16 +165,20 @@ class wizard_calculate(wizard.interface):
                     #
                     # Search for payments received in cash from this partner.
                     #
-                    cash_account_move_line_ids = pool.get('account.move.line').search(cr, uid, [
-                                ('partner_id', '=', partner.id),
-                                ('account_id', '=', partner.property_account_receivable.id),
-                                ('journal_id', 'in', cash_journal_ids),
-                                ('period_id', 'in', period_ids),
-                            ])
-                    cash_account_move_lines = pool.get('account.move.line').browse(cr, uid, cash_account_move_line_ids)
+                    if cash_journal_ids:
+                        cash_account_move_line_ids = pool.get('account.move.line').search(cr, uid, [
+                                    ('partner_id', '=', partner.id),
+                                    ('account_id', '=', partner.property_account_receivable.id),
+                                    ('journal_id', 'in', cash_journal_ids),
+                                    ('period_id', 'in', period_ids),
+                                ])
+                        cash_account_move_lines = pool.get('account.move.line').browse(cr, uid, cash_account_move_line_ids)
 
-                    # Calculate the cash amount
-                    received_cash_amount = sum([line.credit for line in cash_account_move_lines])
+                        # Calculate the cash amount
+                        received_cash_amount = sum([line.credit for line in cash_account_move_lines])
+                    else:
+                        cash_account_move_lines = []
+                        received_cash_amount = 0.0
 
                     #
                     # If the invoiced amount is greater than the limit
@@ -351,3 +357,4 @@ class wizard_calculate(wizard.interface):
 
 wizard_calculate('l10n_es_aeat_mod347.calculate_wizard')
 
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
