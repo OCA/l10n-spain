@@ -41,20 +41,22 @@
         </initialize>
         <paraStyle name="P1" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="CENTER"/>
         <paraStyle name="P2" fontName="Helvetica" fontSize="8.0" leading="10" alignment="CENTER"/>
+        <paraStyle name="PR1" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="RIGHT"/>
+        <paraStyle name="PR2" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT"/>
         <paraStyle name="P3" fontName="Helvetica" fontSize="8.0" leading="10" alignment="CENTER"/>
-        <paraStyle name="P4" fontName="Times-Roman"/>
+        <paraStyle name="P4" fontName="Helvetica"/>
         <paraStyle name="P5" fontName="Helvetica-Bold" fontSize="12.0" leading="15" alignment="CENTER" spaceBefore="12.0" spaceAfter="6.0"/>
-        <paraStyle name="P6" fontName="Times-Roman" fontSize="8.0" leading="10" alignment="LEFT" textColor="#000000"/>
-        <paraStyle name="Standard" fontName="Times-Roman"/>
+        <paraStyle name="P6" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" textColor="#000000"/>
+        <paraStyle name="Standard" fontName="Helvetica"/>
         <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
-        <paraStyle name="Text_20_body" fontName="Times-Roman" spaceBefore="0.0" spaceAfter="6.0"/>
-        <paraStyle name="List" fontName="Times-Roman" spaceBefore="0.0" spaceAfter="6.0"/>
-        <paraStyle name="Caption" fontName="Times-Roman" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
-        <paraStyle name="Index" fontName="Times-Roman"/>
+        <paraStyle name="Text_20_body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+        <paraStyle name="Index" fontName="Helvetica"/>
         <paraStyle name="Heading_20_1" fontName="Helvetica-Bold" fontSize="115%" leading="NaN" spaceBefore="12.0" spaceAfter="6.0"/>
         <paraStyle name="Heading_20_2" fontName="Helvetica-BoldOblique" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
-        <paraStyle name="Table_20_Contents" fontName="Times-Roman"/>
-        <paraStyle name="Table_20_Heading" fontName="Times-Roman" alignment="CENTER"/>
+        <paraStyle name="Table_20_Contents" fontName="Helvetica"/>
+        <paraStyle name="Table_20_Heading" fontName="Helvetica" alignment="CENTER"/>
         <paraStyle name="Bal1" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT"/>
         <paraStyle name="Bal2" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT"/>
         <paraStyle name="BalCabecera" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="CENTER"/>
@@ -90,7 +92,7 @@
                 </td>
             </tr>
         </blockTable>
-        <blockTable colWidths="150.0,90.0,60.0,60.0,60.0,30.0,30.0,30.0" style="Tabla10">
+        <blockTable colWidths="160.0,60.0,60.0,60.0,60.0,30.0,40.0,40.0" style="Tabla10">
             <tr>
                 <td>
                     <para style="BalCabecera">Partner</para>
@@ -99,13 +101,13 @@
                     <para style="BalCabecera">V.A.T. number</para>
                 </td>
                 <td>
-                    <para style="P1">Invoiced amount</para>
+                    <para style="PR1">Invoiced amount</para>
                 </td>
                 <td>
-                    <para style="P1">Cash amount</para>
+                    <para style="PR1">Cash amount</para>
                 </td>
                 <td>
-                    <para style="P1">R.S.T. amount</para>
+                    <para style="PR1">R.S.T. amount</para>
                 </td>
                 <td>
                     <para style="P1">Key Oper.</para>
@@ -118,7 +120,7 @@
                 </td>
             </tr>
         </blockTable>
-        <blockTable colWidths="150.0,90.0,60.0,60.0,60.0,30.0,30.0,30.0" style="Tabla9">
+        <blockTable colWidths="160.0,60.0,60.0,60.0,60.0,30.0,40.0,40.0" style="Tabla9">
             <tr>
                 [[repeatIn(report.partner_record_ids,'partner_record')]]
                 <td>
@@ -128,16 +130,16 @@
                     <para style="P3">[[partner_record.partner_vat]]</para>
                 </td>
                 <td>
-                    <para style="P2">[[partner_record.amount]]</para>
+                    <para style="PR2">[[partner_record.amount]]</para>
                 </td>
                 <td>
-                    <para style="P2">[[partner_record.cash_amount]]</para>
+                    <para style="PR2">[[partner_record.cash_amount]]</para>
                 </td>
                 <td>
-                    <para style="P2">[[partner_record.real_state_transmissions_amount]]</para>
+                    <para style="PR2">[[partner_record.real_state_transmissions_amount]]</para>
                 </td>
                 <td>
-                    <para style="P2">[[partner_record.operation_key and partner_record.operation_key[:1] or '']]</para>
+                    <para style="P2">[[partner_record.operation_key and partner_record.operation_key[0] or '']]</para>
                 </td>
                 <td>
                     <para style="P2">[[partner_record.insurance_operation and 'X' or '']]</para>
