@@ -205,7 +205,7 @@ class hr_nomina(osv.osv):
 
             retencion_irpf = (nom.retribucion_bruta * nom.irpf) / 100
             sueldo_neto = nom.retribucion_bruta - retencion_irpf - nom.ss_trabajador
-            anticipo = self.comprueba_anticipo(cr, uid, ids, fechaNomina, nom.employee_id.id)
+            anticipo = self.comprueba_anticipo(cr, uid, ids, fechaNomina, nom.employee_id.id, context)
             if anticipo and nom.extra == False:
             	sueldo_neto -= anticipo
 

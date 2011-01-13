@@ -48,7 +48,7 @@ class confirmar_nominas(wizard.interface):
         pool = pooler.get_pool(cr.dbname)
         for nom_id in data['form']['nominas_ids'][0][2]:
             nom = pool.get('hr.nomina').browse(cr, uid, nom_id)
-            nom.confirmar_nomina(self, cr, uid, nom_id)
+            nom.confirmar_nomina(context)
 
     states = {
         'init': {
@@ -73,7 +73,7 @@ class pagar_nominas(wizard.interface):
         pool = pooler.get_pool(cr.dbname)
         for nom_id in data['form']['nominas_ids'][0][2]:
             nom = pool.get('hr.nomina').browse(cr, uid, nom_id)
-            nom.pagar_nomina(self, cr, uid, nom_id)
+            nom.pagar_nomina(context)
 
     states = {
         'init': {
