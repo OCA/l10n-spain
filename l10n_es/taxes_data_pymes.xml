@@ -28,6 +28,9 @@
       Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com (2010-02-18)
    		Añadido IRPF 2% (act. agrícolas, ganaderas, forestales), 19% y 21% (antiguo 18%)
 		Novedad 2010: Los rendimientos derivados de rentas de capital mobiliario o inmobiliario, el tipo base de retención pasa del 18% al 19% para los primeros 6000 EUR y al 21% a partir de los 6000 EUR.
+
+      Ignacio Ibeas (Acysos) - ignacio@acysos.com (2011-02-22)
+      Modificado type_tax_use de los recargos de equivalencia a "all"
       -->
 
 		<!-- Definición de IVA y retenciones, códigos de impuestos y cuentas contables adicionales -->
@@ -1493,7 +1496,7 @@
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
-            <field name="type_tax_use">sale</field>
+            <field name="type_tax_use">all</field>
         </record>
 		
         <record id="re_pymes_1" model="account.tax.template">
@@ -1511,7 +1514,7 @@
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
-            <field name="type_tax_use">sale</field>
+            <field name="type_tax_use">all</field>
         </record>
 		
         <record id="re_pymes_4" model="account.tax.template">
@@ -1529,7 +1532,7 @@
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
-            <field name="type_tax_use">sale</field>
+            <field name="type_tax_use">all</field>
         </record>
 		
 		
