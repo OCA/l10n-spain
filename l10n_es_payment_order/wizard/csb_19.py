@@ -56,9 +56,9 @@ class csb_19:
         texto = '5380'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
         texto += datetime.today().strftime('%d%m%y')
-        if not self.order.date_planned:
+        if not self.order.date_scheduled:
             raise Log(_('User error:\n\nFixed date of charge has not been defined.'), True)
-        date_cargo = datetime.strptime(self.order.date_planned,'%Y-%m-%d')
+        date_cargo = datetime.strptime(self.order.date_scheduled,'%Y-%m-%d')
         texto += date_cargo.strftime('%d%m%y')
         texto += to_ascii(self.order.mode.nombre).ljust(40)
         cc = digits_only(self.order.mode.bank_id.acc_number)
