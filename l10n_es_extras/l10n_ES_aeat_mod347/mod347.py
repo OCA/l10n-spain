@@ -69,7 +69,7 @@ class l10n_es_aeat_mod347_report(osv.osv):
         """
         result = {}
         for report in self.browse(cr, uid, ids, context):
-            result[report.id] = report.number
+            result[report.id] = str(report.number)
         return result
 
     _columns = {
