@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Pexego Sistemas Informáticos. All Rights Reserved
-#                       Borja López Soilán <borjals@pexego.es>
-#    $Id$
+#    Copyright (C) 2004-2011
+#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -20,6 +18,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
+__author__ = "Luis Manuel Angueira Blanco (Pexego)"
+
 """
 Extends the account journals to add fields used by the 347 report.
 """
@@ -33,10 +34,12 @@ class account_journal(osv.osv):
     _inherit = 'account.journal'
 
     _columns = {
-        'cash_journal': fields.boolean('Cash payments journal', help="Payments of this journal will be considered as cash (used on the 347 report)"),
+        'cash_journal': fields.boolean('Cash payments journal',
+            help="Payments of this journal will be considered as cash (used on the 347 report)"),
     }
 
     _defaults = {
         'cash_journal': lambda *a : False
     }
+    
 account_journal()

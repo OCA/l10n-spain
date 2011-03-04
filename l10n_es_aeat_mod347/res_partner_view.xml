@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <!--
-        Partners Extension
-        -->
+
+        <!-- ###########
+        ### PARTNERS ###
+        ############ -->
         <record id="view_partner_form_mod347" model="ir.ui.view">
-            <field name="name">res.partner.form.mod347</field>
+            <field name="name">Partners - Add 'include in 347'</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base_vat.view_partner_form"/>
             <field name="arch" type="xml">
@@ -14,5 +15,6 @@
                 </field>
             </field>
         </record>
+                
     </data>
 </openerp>
