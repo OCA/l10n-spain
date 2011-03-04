@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Model 347 Aeat
-#    Copyright (c) 2009 Alejandro Sanchez (http://www.asr-oss.com) All Rights Reserved.
-#                       Alejandro Sanchez <alejandro@asr-oss.com>
-#    $Id$
+#    Copyright (C) 2004-2011
+#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -20,21 +18,50 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-"""
-AEAT 347 model object and detail lines.
-"""
 
-from osv import osv, fields
-import netsvc
+__author__ = "Luis Manuel Angueira Blanco (Pexego)"
+
+
 import re
 
-class l10n_es_aeat_mod347_report(osv.osv):
-    """
-    Represents an AEAT 347 report for a given company and fiscal year.
-    """
+from osv import osv, fields
 
-    _name = 'l10n.es.aeat.mod347.report'
-    _description = 'AEAT 347 Report'
+
+class l10n_es_aeat_mod347_report(osv.osv):
+
+    _inherit = "l10n.es.aeat.report"
+    _name = "l10n.es.aeat.mod347.report"
+    _description = "AEAT 347 Report"
+
+
+    def button_calculate(self, cr, uid, ids, context=None):
+        if not context:
+            context = {}
+
+        calculate_obj = self. pool.get('l10n.es.aeat.mod347.calculate_records')
+        calculate_obj._wkf_calculate_records(cr, uid, ids, context)
+
+        return True
+
+    def button_recalculate(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+
+        calculate_obj = self. pool.get('l10n.es.aeat.mod347.calculate_records')
+        calculate_obj._calculate_records(cr, uid, ids, context)
+
+        return True
+
+
+    def button_export(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+
+        export_obj = self.pool.get("l10n.es.aeat.mod347.export_to_boe")
+        export_obj._export_boe_file(cr, uid, ids, self.browse(cr, uid, ids and ids[0]))
+
+        return True
+
 
     def _get_totals(self, cr, uid, ids, name, args, context=None):
         """
@@ -42,26 +69,21 @@ class l10n_es_aeat_mod347_report(osv.osv):
         """
         if context is None:
             context = {}
+      
         res = {}
+
         for report in self.browse(cr, uid, ids, context=context):
             res[report.id] = {
-                'total_partner_records': 0,
-                'total_amount': 0.0,
-                'total_cash_amount': 0.0,
-                'total_real_state_transmissions_amount': 0.0,
-                'total_real_state_records': 0,
-                'total_real_state_amount': 0,
+                'total_partner_records': len(report.partner_record_ids),
+                'total_amount' : sum([record.amount for record in report.partner_record_ids]) or 0.0,
+                'total_cash_amount' : sum([record.cash_amount for record in report.partner_record_ids]) or 0.0,
+                'total_real_state_transmissions_amount' : sum([record.real_state_transmissions_amount for record in report.partner_record_ids]) or 0.,
+                'total_real_state_records' : len(report.real_state_record_ids),
+                'total_real_state_amount' : sum([record.amount for record in report.real_state_record_ids]) or 0,
             }
-            for partner_record in report.partner_record_ids:
-                res[report.id]['total_partner_records'] += 1
-                res[report.id]['total_amount'] += partner_record.amount
-                res[report.id]['total_cash_amount'] += partner_record.cash_amount
-                res[report.id]['total_real_state_transmissions_amount'] += partner_record.real_state_transmissions_amount
-            for real_state_record in report.real_state_record_ids:
-                res[report.id]['total_real_state_records'] += 1
-                res[report.id]['total_real_state_amount'] += real_state_record.amount
 
         return res
+
 
     def _name_get(self, cr, uid, ids, field_name, arg, context={}):
         """
@@ -72,26 +94,16 @@ class l10n_es_aeat_mod347_report(osv.osv):
             result[report.id] = report.number
         return result
 
+
     _columns = {
         # The name it's just an alias of the number
         'name': fields.function(_name_get, method=True, type="char", size="64", string="Name"),
 
-        'fiscalyear_id': fields.many2one('account.fiscalyear', 'Fical Year', required=True),
-        'company_id': fields.many2one('res.company', 'Company', required=True),
-        'number': fields.integer('Declaration Number', size=13),
-        'support_type': fields.selection([('C','DVD'),('T','Telematics')], 'Support Type'),
-
-        'company_vat': fields.char('VAT number', size=9),
-        'representative_vat': fields.char('L.R. VAT number', size=9, help="Legal Representative VAT number"),
         'contact_name': fields.char("Full Name", size=40),
         'contact_phone': fields.char("Phone", size=9),
 
-        'type': fields.selection([(' ','Normal'),('C','Complementary'),('S','Substitutive')], 'Statement Type'),
-	'previous_number': fields.integer('Previous Declaration Number', size=13),
-
-        #
-        # Limits
-        #
+        ##
+        ## Limits
         'operations_limit': fields.float('Invoiced Limit (1)', digits=(13,2), help="The declaration will include partners with the total of operations over this limit"),
         'received_cash_limit': fields.float('Received cash Limit (2)', digits=(13,2), help="The declaration will show the total of cash operations over this limit"),
         'charges_obtp_limit': fields.float('Charges on behalf of third parties Limit (3)', digits=(13,2), help="The declaration will include partners from which we received payments, on behalf of third parties, over this limit"),
@@ -99,9 +111,8 @@ class l10n_es_aeat_mod347_report(osv.osv):
         # Child records
         'partner_records': fields.one2many('l10n.es.aeat.mod347.partner_record', 'report_id', 'Partner Records'),
 
-        #
-        # Totals
-        #
+        ##
+        ## Totals
         'total_partner_records': fields.function(_get_totals, string="Partners records", method=True, type='integer', multi="totals_multi"),
         'total_amount': fields.function(_get_totals, string="Amount", method=True, type='float', multi="totals_multi"),
         'total_cash_amount': fields.function(_get_totals, string="Cash Amount", method=True, type='float', multi="totals_multi"),
@@ -109,81 +120,24 @@ class l10n_es_aeat_mod347_report(osv.osv):
         'total_real_state_records': fields.function(_get_totals, string="Real state records", method=True, type='integer', multi="totals_multi"),
         'total_real_state_amount': fields.function(_get_totals, string="Real State Amount", method=True, type='float', multi="totals_multi"),
 
-        # Date of the last calculation
-        'calc_date': fields.datetime("Calculation date"),
-        # State of the report
-        'state': fields.selection([('draft','Draft'),('calc','Processing'),('calc_done','Processed'),('done','Done'),('canceled','Canceled')], 'State'),
     }
     _defaults = {
-        # Current company by default:
-        'company_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid, context).company_id.id,
-        # Draft state by default:
-        'state': lambda *a: 'draft',
-
-        #
-        # Default limits
-        #
+        ##
+        ## Default limits
         'operations_limit': lambda *args: 3005.06,
         'charges_obtp_limit': lambda *args: 300.51,
         'received_cash_limit': lambda *args: 6000.00,
 
-        #
-        # Default types
-        #
-        'type': lambda *args: ' ',
-        'support_type': lambda *args: 'T',
+        ##
+        ## AEAT brings number (previous number), so take defautl value as 349 (need to be changed)
+        'number' : lambda *a: '347'
     }
 
-    def on_change_company_id(self, cr, uid, ids, company_id):
-        """
-        Loads some company data (the VAT number) when the selected
-        company changes.
-        """
-        company_vat = ''
-        if company_id:
-            company = self.pool.get('res.company').browse(cr, uid, company_id)
-            if company.partner_id and company.partner_id.vat:
-                # Remove the ES part from spanish vat numbers (ES12345678Z => 12345678Z)
-                company_vat = re.match("(ES){0,1}(.*)", company.partner_id.vat).groups()[1]
-        return  { 'value': { 'company_vat': company_vat } }
-
-
-
-    def action_calculate(self, cr, uid, ids, context=None):
-        """
-        Called when the report is calculated.
-        """
-        # Note: Just change the state, everything else is done on the calculate wizard.
-        self.write(cr, uid, ids, {'state': 'calc_done'})
-        return True
-
-    def action_confirm(self, cr, uid, ids, context=None):
-        """
-        Called when the user clicks the confirm button.
-        """
-        self.write(cr, uid, ids, {'state': 'done'})
-        return True
-
-    def action_cancel(self, cr, uid, ids, context=None):
-        """
-        Called when the user clicks the cancel button.
-        """
-        self.write(cr, uid, ids, {'state': 'canceled'})
-        return True
-
-    def action_recover(self, cr, uid, ids, context=None):
-        """
-        Called when the user clicks the draft button to create
-        a new workflow instance.
-        """
-        self.write(cr, uid, ids, {'state': 'draft', 'calc_date': None})
-        wf_service = netsvc.LocalService("workflow")
-        for item_id in ids:
-            wf_service.trg_create(uid, 'l10n.es.aeat.mod347.report', item_id, cr)
-        return True
 
 
 l10n_es_aeat_mod347_report()
+
+
 
 class l10n_es_aeat_mod347_partner_record(osv.osv):
     """
@@ -394,11 +348,11 @@ class l10n_es_aeat_mod347_partner_record_add_real_state_records(osv.osv):
         if context is None:
             context = {}
         res = {}
-        real_state_record_facade = self.pool.get('l10n.es.aeat.mod347.real_state_record')
+        real_state_record_obj = self.pool.get('l10n.es.aeat.mod347.real_state_record')
         for partner_record in self.browse(cr, uid, ids):
             res[partner_record.id] = []
             if partner_record.partner_id:
-                res[partner_record.id] = real_state_record_facade.search(cr, uid, [
+                res[partner_record.id] = real_state_record_obj.search(cr, uid, [
                             ('report_id', '=', partner_record.report_id.id),
                             ('partner_id', '=', partner_record.partner_id.id),
                         ])
@@ -411,15 +365,15 @@ class l10n_es_aeat_mod347_partner_record_add_real_state_records(osv.osv):
         if context is None:
             context = {}
         if values:
-            real_state_record_facade = self.pool.get('l10n.es.aeat.mod347.real_state_record')
+            real_state_record_obj = self.pool.get('l10n.es.aeat.mod347.real_state_record')
             for value in values:
                 o_action, o_id, o_vals = value
                 if o_action == 1:
-                    real_state_record_facade.write(cr, uid, [o_id], o_vals)
+                    real_state_record_obj.write(cr, uid, [o_id], o_vals)
                 elif o_action == 2:
-                    real_state_record_facade.unlink(cr, uid, [o_id])
+                    real_state_record_obj.unlink(cr, uid, [o_id])
                 elif o_action == 0:
-                    real_state_record_facade.create(cr, uid, o_vals)
+                    real_state_record_obj.create(cr, uid, o_vals)
         return True
 
     _columns = {
@@ -497,5 +451,6 @@ class l10n_es_aeat_mod347_partner_record_add_cash_records(osv.osv):
                             states = {'done': [('readonly', True)]}),
     }
 l10n_es_aeat_mod347_partner_record_add_cash_records()
+
 
 
