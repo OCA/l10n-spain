@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP - Import and Export operations model 347 engine
-#    Copyright (C) 2009 Asr Oss. All Rights Reserved
-#    $Id$
+#    Copyright (C) 2004-2010 Pexego Sistemas Informáticos. All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -20,11 +18,10 @@
 #
 ##############################################################################
 
-"""
-Import operations model 347 engine wizards
-"""
-__author__ = "Alejandro Sanchez Ramirez Asr Oss - alejandro@asr-oss.com"
+__author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
 
-import wizard_calculate
-import wizard_export_boe
+import calculate_mod347_records
+import export_mod347_to_boe
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
