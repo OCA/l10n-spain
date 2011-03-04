@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2010 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2011
+#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -18,10 +19,23 @@
 #
 ##############################################################################
 
-__author__ = "Luis Manuel Angueira Blanco (Pexego)"
-
-
-import calculate_mod347_records
-import export_mod347_to_boe
+{
+    'name' : "AEAT Base",
+    'version' : "1.0",
+    'author' : "Pexego",
+    'website' : "http://www.pexego.es",
+    'category' : "Localisation/Accounting",
+    'init_xml' : [
+        ],
+    'depends' : ["account"],
+    'update_xml' : [
+        'aeat_menuitem.xml',
+        'security/ir.model.access.csv'
+        ],
+    'demo_xml' : [],
+    'test' : [],
+    'installable' : True,
+    'active' : False,
+}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

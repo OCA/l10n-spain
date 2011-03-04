@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2010 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2011
+#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -21,7 +22,9 @@
 __author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
 
-import calculate_mod347_records
-import export_mod347_to_boe
+import account_fiscal_position
+import account_invoice
+import mod349
 
+import wizard
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

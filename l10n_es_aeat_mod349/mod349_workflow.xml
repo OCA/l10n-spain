@@ -2,9 +2,9 @@
 <openerp>
     <data>
 
-        <record id="wkf_l10n_es_aeat_mod347_report" model="workflow">
-            <field name="name">AEAT 347 Report</field>
-            <field name="osv">l10n.es.aeat.mod347.report</field>
+        <record id="wkf_l10n_es_aeat_mod349_report" model="workflow">
+            <field name="name">AEAT 349 Report</field>
+            <field name="osv">l10n.es.aeat.mod349.report</field>
             <field name="on_create">True</field>
         </record>
 
@@ -13,27 +13,27 @@
         ### NODES ###
         -->
         <record id="act_draft" model="workflow.activity">
-            <field name="wkf_id" ref="wkf_l10n_es_aeat_mod347_report"/>
+            <field name="wkf_id" ref="wkf_l10n_es_aeat_mod349_report"/>
             <field name="flow_start">True</field>
             <field name="name">draft</field>
         </record>
 
         <record id="act_calculate" model="workflow.activity">
-            <field name="wkf_id" ref="wkf_l10n_es_aeat_mod347_report"/>
+            <field name="wkf_id" ref="wkf_l10n_es_aeat_mod349_report"/>
             <field name="name">calculated</field>
             <field name="action">write({'state':'calculated'})</field>
             <field name="kind">function</field>
         </record>
 
         <record id="act_confirm" model="workflow.activity">
-            <field name="wkf_id" ref="wkf_l10n_es_aeat_mod347_report"/>
+            <field name="wkf_id" ref="wkf_l10n_es_aeat_mod349_report"/>
             <field name="name">confirmed</field>
-            <field name="action">write({'state':'done'})</field>
+            <field name="action">wkf_confirm()</field>
             <field name="kind">function</field>
         </record>
 
         <record id="act_cancel" model="workflow.activity">
-            <field name="wkf_id" ref="wkf_l10n_es_aeat_mod347_report"/>
+            <field name="wkf_id" ref="wkf_l10n_es_aeat_mod349_report"/>
             <field name="name">canceled</field>
             <field name="flow_stop">True</field>
             <field name="action">write({'state':'canceled'})</field>

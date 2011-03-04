@@ -20,8 +20,5 @@
 
 __author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
-
-import calculate_mod347_records
-import export_mod347_to_boe
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+import calculate_mod349_records
+import export_mod349_to_boe
