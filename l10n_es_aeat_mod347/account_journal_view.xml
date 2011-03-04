@@ -2,8 +2,11 @@
 <openerp>
     <data>
 
-        <record id="view_account_journal_form_mod347" model="ir.ui.view">
-            <field name="name">account.journal.form.mod347</field>
+        <!-- ##################
+        ### ACCOUNT JOURNAL ###
+        ################### -->
+        <record id="view_account_journal_form__add_cash_journal" model="ir.ui.view">
+            <field name="name">Account journal - Add cash journal (form)</field>
             <field name="model">account.journal</field>
             <field name="type">form</field>
             <field name="inherit_id" ref="account.view_account_journal_form"/>
