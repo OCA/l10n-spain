@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem
+            id="menu_root_aeat"
+            parent="account.menu_finance_legal_statement"
+            name="AEAT Reports"/>
+
+    </data>
+</openerp>
