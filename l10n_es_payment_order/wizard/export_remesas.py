@@ -120,7 +120,7 @@ def _create_payment_file(self, cr, uid, data, context):
                 recibos.append({
                     'partner_id': l.partner_id,
                     'bank_id': l.bank_id,
-                    'name': l.partner_id.ref or '',
+                    'name': l.partner_id.ref or '-',
                     'amount': l.amount,
                     'communication': l.name+' '+l.communication,
                     'communication2': l.communication2,
