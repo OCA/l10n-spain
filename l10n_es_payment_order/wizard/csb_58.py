@@ -75,7 +75,7 @@ class csb_58:
         ccc = recibo['bank_id'] and recibo['bank_id'].acc_number or ''
         ccc = digits_only(ccc)
         texto += str(ccc)[0:20].zfill(20)
-        importe = int(round(-recibo['amount']*100,0))
+        importe = int(round(abs(recibo['amount'])*100,0))
         texto += str(importe).zfill(10)
         texto += 16*' '
         concepto = ''
@@ -225,7 +225,7 @@ class csb_58:
         texto = '5870'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
         texto += 72*' '
-        totalordenante = int(round(-self.order.total * 100,0))
+        totalordenante = int(round(abs(self.order.total) * 100,0))
         texto += str(totalordenante).zfill(10)
         texto += 6*' '
         texto += str(self.num_recibos).zfill(10)
@@ -240,7 +240,7 @@ class csb_58:
         texto += 52*' '
         texto += '0001'
         texto += 16*' '
-        totalremesa = int(round(-self.order.total * 100,0))
+        totalremesa = int(round(abs(self.order.total) * 100,0))
         texto += str(totalremesa).zfill(10)
         texto += 6*' '
         texto += str(self.num_recibos).zfill(10)

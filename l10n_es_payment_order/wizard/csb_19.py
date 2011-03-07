@@ -52,13 +52,27 @@ class csb_19:
         texto += '\r\n'
         return texto
 
-    def _cabecera_ordenante_19(self):
+    def _cabecera_ordenante_19(self, recibo=None):
         texto = '5380'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
         texto += datetime.today().strftime('%d%m%y')
-        if not self.order.date_scheduled:
-            raise Log(_('User error:\n\nFixed date of charge has not been defined.'), True)
-        date_cargo = datetime.strptime(self.order.date_scheduled,'%Y-%m-%d')
+
+        if self.order.date_prefered == 'due':
+            assert recibo
+
+            if recibo.get('date'):
+                date_cargo = datetime.strptime(recibo['date'],'%Y-%m-%d')
+            elif recibo.get('ml_maturity_date'):
+                date_cargo = datetime.strptime(recibo['ml_maturity_date'],'%Y-%m-%d')
+            else:
+                date_cargo = datetime.today()
+        elif self.order.date_prefered == 'now':
+            date_cargo = datetime.today()
+        else: # self.order.date_prefered == 'fixed'
+            if not self.order.date_scheduled:
+                raise Log(_('User error:\n\nFixed date of charge has not been defined.'), True)
+            date_cargo = datetime.strptime(self.order.date_scheduled,'%Y-%m-%d')
+
         texto += date_cargo.strftime('%d%m%y')
         texto += to_ascii(self.order.mode.nombre).ljust(40)
         cc = digits_only(self.order.mode.bank_id.acc_number)
@@ -78,7 +92,7 @@ class csb_19:
         ccc = recibo['bank_id'] and recibo['bank_id'].acc_number or ''
         ccc = digits_only(ccc)
         texto += str(ccc)[0:20].zfill(20)
-        importe = int(round(-recibo['amount']*100,0))
+        importe = int(round(abs(recibo['amount'])*100,0))
         texto += str(importe).zfill(10)
         texto += 16*' '
         concepto = ''
@@ -106,11 +120,11 @@ class csb_19:
         texto = '5880'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
         texto += 72*' '
-        totalordenante = int(round(-self.order.total * 100,0))
+        totalordenante = int(round(abs(self.group_amount) * 100,0))
         texto += str(totalordenante).zfill(10)
         texto += 6*' '
-        texto += str(self.num_recibos).zfill(10)
-        texto += str(self.num_recibos + self.num_lineas_opc + 2).zfill(10)
+        texto += str(self.group_payments).zfill(10)
+        texto += str(self.group_payments + self.group_optional_lines + 2).zfill(10)
         texto += 38*' '
         texto += '\r\n'
         return texto
@@ -121,11 +135,11 @@ class csb_19:
         texto += 52*' '
         texto += '0001'
         texto += 16*' '
-        totalremesa = int(round(-self.order.total * 100,0))
+        totalremesa = int(round(abs(self.order.total) * 100,0))
         texto += str(totalremesa).zfill(10)
         texto += 6*' '
-        texto += str(self.num_recibos).zfill(10)
-        texto += str(self.num_recibos + self.num_lineas_opc + 4).zfill(10)
+        texto += str(self.total_payments).zfill(10)
+        texto += str(self.total_payments + self.total_optional_lines + 4).zfill(10)
         texto += 38*' '
         texto += '\r\n'
         return texto
@@ -135,20 +149,50 @@ class csb_19:
         self.order = order
 
         txt_remesa = ''
-        self.num_recibos = 0
-        self.num_lineas_opc = 0
+        self.total_payments = 0
+        self.total_optional_lines = 0
+        self.group_payments = 0
+        self.group_optional_lines = 0
+        self.group_amount = 0.0
 
         txt_remesa += self._cabecera_presentador_19()
-        txt_remesa += self._cabecera_ordenante_19()
 
-        for recibo in lines:
-            txt_remesa += self._individual_obligatorio_19(recibo)
-            self.num_recibos = self.num_recibos + 1
-            if recibo['communication2']:
-                txt_remesa += self._individual_opcional_19(recibo)
-                self.num_lineas_opc = self.num_lineas_opc + 1
+        if order.date_prefered == 'due':
+            for recibo in lines:
+                self.group_payments = 0
+                self.group_optional_lines = 0
+                self.group_amount = 0.0
 
-        txt_remesa += self._total_ordenante_19()
+                txt_remesa += self._cabecera_ordenante_19(recibo)
+                txt_remesa += self._individual_obligatorio_19(recibo)
+                self.total_payments += 1
+                self.group_payments += 1
+                self.group_amount += abs( recibo['amount'] )
+                if recibo['communication2']:
+                    txt_remesa += self._individual_opcional_19(recibo)
+                    #self.num_lineas_opc = self.num_lineas_opc + 1
+                    self.total_optional_lines += 1
+                    self.group_optional_lines += 1
+                txt_remesa += self._total_ordenante_19()
+        else:
+
+            txt_remesa += self._cabecera_ordenante_19()
+            self.group_payments = 0
+            self.group_optional_lines = 0
+            self.group_amount = 0.0
+
+            for recibo in lines:
+                txt_remesa += self._individual_obligatorio_19(recibo)
+                self.total_payments += 1
+                self.group_payments += 1
+                self.group_amount += abs( recibo['amount'] )
+                if recibo['communication2']:
+                    txt_remesa += self._individual_opcional_19(recibo)
+                    self.total_optional_lines += 1
+                    self.group_optional_lines += 1
+
+            txt_remesa += self._total_ordenante_19()
+
         txt_remesa += self._total_general_19()
         return txt_remesa
 

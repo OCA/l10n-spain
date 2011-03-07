@@ -105,14 +105,14 @@ def _create_payment_file(self, cr, uid, data, context):
                 recibos.append({
                     'partner_id': partner,
                     'bank_id': bank,
-                    'name': partner.ref,
+                    'name': partner.ref or '-',
                     'amount': reduce(lambda x, y: x+y, [l.amount for l in lineas], 0),
                     'communication': reduce(lambda x, y: x+' '+(y or ''), [l.name+' '+l.communication for l in lineas], ''),
                     'communication2': reduce(lambda x, y: x+' '+(y or ''), [l.communication2 for l in lineas], ''),
                     'date': max([l.date for l in lineas]),
-                    'ml_maturity_date': max([l.ml_maturity_date]),
-                    'create_date': max([l.create_date]),
-                    'ml_date_created': max([l.ml_date_created]),
+                    'ml_maturity_date': max([l.ml_maturity_date for l in lineas]),
+                    'create_date': max([l.create_date for l in lineas]),
+                    'ml_date_created': max([l.ml_date_created for l in lineas]),
                 })
         else:
             # Cada línea de pago es un recibo
@@ -120,7 +120,7 @@ def _create_payment_file(self, cr, uid, data, context):
                 recibos.append({
                     'partner_id': l.partner_id,
                     'bank_id': l.bank_id,
-                    'name': l.partner_id.ref,
+                    'name': l.partner_id.ref or '',
                     'amount': l.amount,
                     'communication': l.name+' '+l.communication,
                     'communication2': l.communication2,
@@ -171,7 +171,7 @@ def _create_payment_file(self, cr, uid, data, context):
             'res_model': 'payment.order',
             'res_id': orden.id,
             }, context=context)
-        log = _("Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n") % (-orden.total, len(recibos))
+        log = _("Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n") % (orden.total, len(recibos))
         pool.get('payment.order').set_done(cr, uid, [orden.id], context)
         return {
             'note': log, 
@@ -201,5 +201,6 @@ class wizard_payment_file_spain(wizard.interface):
 
     }
 wizard_payment_file_spain('export_payment_file_spain')
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 

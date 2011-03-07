@@ -171,7 +171,7 @@ class csb_32:
 
         # D: Acumuladores de importe
         texto += ' '*10
-        texto += convert( cr, -self.order.total, 10, context )
+        texto += convert( cr, abs(self.order.total), 10, context )
         texto += ' '*(10+6+7+6+6+6)
 
         # E: Controles de lectura de fichero
@@ -195,7 +195,7 @@ class csb_32:
 
         # D: Acumuladores de importes
         texto += ' '*10
-        texto += convert( cr, -self.order.total, 10, context )
+        texto += convert( cr, abs(self.order.total), 10, context )
         texto += ' '*(10+6+7+6+6+6)
 
         # E: Controles de lectura del fichero
