@@ -306,7 +306,7 @@ class l10n_es_aeat_mod349_partner_record(osv.osv):
     """
     _name = 'l10n.es.aeat.mod349.partner_record'
     _description = 'AEAT 349 Model - Partner record'
-
+    _order = 'operation_key asc'
 
     def get_record_name(self, cr, uid, ids, field_name, args, context={}):
         """
@@ -426,7 +426,7 @@ class l10n_es_aeat_mod349_partner_refund(osv.osv):
 
     _name = 'l10n.es.aeat.mod349.partner_refund'
     _description = 'AEAT 349 Model - Partner refund'
-
+    _order = 'operation_key asc'
 
     def _check_partner_refund_line(self, cr, uid, ids, field_name, args, context=None):
         """
