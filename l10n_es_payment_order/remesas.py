@@ -82,18 +82,4 @@ class payment_mode(osv.osv):
 
 payment_mode()
 
-
-class payment_order(osv.osv):
-    _name = 'payment.order'
-    _inherit = 'payment.order'
-
-    def get_wizard(self, type):
-        if type in ('RECIBO_CSB', 'TRANSFERENCIA_CSB'):
-            return ('l10n_es_payment_order', 'wizard_create_payment_file_spain')
-        else:
-            return super(payment_order, self).get_wizard(type)
-
-payment_order()
-
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -54,11 +54,7 @@ class csb_34:
         text += 12*' '
         text += '001'
         text += today
-        if self.order.date_scheduled:
-            planned = datetime.strptime(self.order.date_scheduled, '%Y-%m-%d')
-            text += planned.strftime('%d%m%y')
-        else:
-            text += today
+        text += today
         #text += self.convert(self.order.mode.nombre, 40)
         text += convert_bank_account(cr, self.order.mode.bank_id.acc_number, self.order.mode.partner_id.name, context)
         text += '0'
@@ -115,7 +111,7 @@ class csb_34:
         text += self._start_34(cr, context)
         text += convert(cr, recibo['partner_id'].vat, 12, context)
         text += '010'
-        text += convert(cr, recibo['amount'], 12, context)
+        text += convert(cr, abs(recibo['amount']), 12, context)
         #text += convert_bank_account(cr, recibo['bank_id'].acc_number, recibo['partner_id'].name, context)
         ccc = recibo['bank_id'] and recibo['bank_id'].acc_number or ''
         ccc = digits_only(ccc)

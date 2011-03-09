@@ -839,7 +839,7 @@ class wizard_import_c43_file(wizard.interface):
         #
         # Update the statement
         #
-        statement_facade.write(cr, uid, statement_id, {
+        statement_facade.write(cr, uid, [statement_id], {
                                 'date': st_data['fecha_fin'],
                                 'balance_start': st_data['saldo_ini'],
                                 'balance_end_real': st_data['saldo_fin'],
