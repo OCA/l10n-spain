@@ -33,6 +33,9 @@ msgstr ""
 
 #. module: l10n_ES_aeat_mod349
 #: rml:report_l10n_es_aeat_mod349.report:0
+#: field:l10n.es.aeat.mod349.partner_refund,period_selection:0
+#: field:l10n.es.aeat.mod349.report,period_id:0
+#: field:l10n.es.aeat.mod349.report,period_selection:0
 msgid "Period"
 msgstr ""
 
@@ -254,6 +257,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: help:l10n.es.aeat.mod349.partner_refund,total_origin_amount:0
+#: field:l10n.es.aeat.mod349.partner_refund,total_origin_amount:0
 msgid "Refund original amount"
 msgstr ""
 
@@ -413,11 +417,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Operation key help"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.partner_refund,total_origin_amount:0
-msgid "Refund original amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -660,20 +659,8 @@ msgid "AEAT 349 Model report"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.partner_refund,period_selection:0
-#: field:l10n.es.aeat.mod349.report,period_id:0
-#: field:l10n.es.aeat.mod349.report,period_selection:0
-msgid "Period"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "General"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: selection:l10n.es.aeat.mod349.report,state:0
-msgid "Done"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
