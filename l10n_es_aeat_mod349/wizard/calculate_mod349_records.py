@@ -45,11 +45,13 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
         """creates partner records in 349"""
         invoices_ids = self.pool.get('account.invoice').browse(cr, uid, ids)
 
-        facade = self.pool.get('l10n.es.aeat.mod349.partner_record')
+        obj = self.pool.get('l10n.es.aeat.mod349.partner_record')
 
-        partner_country = [address.country_id.id for address in partner_obj.address if address.type == 'default']
+        partner_country = [address.country_id.id for address in partner_obj.address if address.type == 'invoice']
+        if not len(partner_country):
+            partner_country = [address.country_id.id for address in partner_obj.address if address.type == 'default']
 
-        invoice_created = facade.create(cr, uid, {
+        invoice_created = obj.create(cr, uid, {
             'report_id' : report_id,
             'partner_id' : partner_obj.id,
             'partner_vat' : self._formatPartnerVAT(cr, uid, partner_vat=partner_obj.vat, country_id=partner_country),
@@ -72,9 +74,11 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
         """creates restitution records in 349"""
         refunds = self.pool.get('account.invoice').browse(cr, uid, ids)
 
-        facade = self.pool.get('l10n.es.aeat.mod349.partner_refund')
+        obj = self.pool.get('l10n.es.aeat.mod349.partner_refund')
 
-        partner_country = [address.country_id.id for address in partner_obj.address if address.type == 'default']
+        partner_country = [address.country_id.id for address in partner_obj.address if address.type == 'invoice']
+        if not len(partner_country):
+            partner_country = [address.country_id.id for address in partner_obj.address if address.type == 'default']
 
         record = {}
 
@@ -102,7 +106,7 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
         for line in record:
             partner_rec = self.pool.get('l10n.es.aeat.mod349.partner_record').browse(cr, uid, int(line))
 
-            record_created = facade.create(cr, uid, {
+            record_created = obj.create(cr, uid, {
                 'report_id' : report_id,
                 'partner_id' : partner_obj.id,
                 'partner_vat' : self._formatPartnerVAT(cr, uid, partner_vat=partner_obj.vat, country_id=partner_country),
