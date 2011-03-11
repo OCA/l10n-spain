@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.0-rc1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2010-12-13 17:34:49+0000\n"
-"PO-Revision-Date: 2010-12-13 18:44+0100\n"
-"Last-Translator: Luis Manuel Angueira Blanco <manuel@pexego.es>\n"
+"PO-Revision-Date: 2011-03-11 21:02+0100\n"
+"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +70,7 @@ msgstr "Sustitutiva"
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,fiscalyear_id:0
 msgid "Fical Year"
-msgstr "Año fiscal"
+msgstr "Ejercicio fiscal"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,previous_number:0
@@ -85,17 +85,17 @@ msgstr "Factura rectificativa"
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,representative_vat:0
 msgid "Legal Representative VAT number."
-msgstr "Nombre del Representante Legal."
+msgstr "Nombre del representante legal."
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,support_type:0
 msgid "Support Type"
-msgstr "Tipo de Soporte"
+msgstr "Tipo de soporte"
 
 #. module: l10n_es_aeat
 #: help:account.invoice,origin_invoices_ids:0
 msgid "Links to original invoice which is referred by current refund invoice"
-msgstr "Enlaza con la factura original a la que hace referencia la factura actual"
+msgstr "Enlaza con la factura original a la que hace referencia la factura actual."
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat
@@ -106,7 +106,7 @@ msgstr "AEAT Base"
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report
 msgid "AEAT Report base module"
-msgstr "Módulo base Agencia Tributaria"
+msgstr "Módulo base para las declaraciones de la Agencia Tributaria"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,calculation_date:0
@@ -116,7 +116,7 @@ msgstr "Fecha de cálculo"
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,representative_vat:0
 msgid "L.R. VAT number"
-msgstr "CIF/NIF Repr. Legal"
+msgstr "CIF/NIF Repr. legal"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,company_vat:0
@@ -127,7 +127,7 @@ msgstr "CIF/NIF"
 #: code:addons/l10n_es_aeat/aeat_report.py:107
 #, python-format
 msgid "Only reports in 'draft' or 'cancel' state can be removed"
-msgstr "Sólo informes en estado 'borrador' o 'cancelado' pueden ser borrados"
+msgstr "Sólo declaraciones en estado 'Borrador' o 'Cancelada' pueden ser eliminadas"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,support_type:0
@@ -143,7 +143,7 @@ msgstr "¡Error!"
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,fiscalyear_id:0
 msgid "Fiscal Year"
-msgstr "Año fiscal"
+msgstr "Ejercicio fiscal"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,number:0
@@ -159,7 +159,7 @@ msgstr "Opción de alineamiento errónea. Debería ser < o >"
 #. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
 msgid "AEAT Reports"
-msgstr "Agencia Tributaria"
+msgstr "Declaraciones Agencia Tributaria"
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_export_to_boe
@@ -174,12 +174,12 @@ msgstr "Complementaria"
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,state:0
 msgid "Canceled"
-msgstr "Cancelado"
+msgstr "Cancelada"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,state:0
 msgid "Done"
-msgstr "Hecho"
+msgstr "Realizada"
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_account_invoice
@@ -189,5 +189,5 @@ msgstr "Factura"
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,state:0
 msgid "Processed"
-msgstr "Calculado"
+msgstr "Calculada"
 
