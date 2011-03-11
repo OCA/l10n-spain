@@ -20,22 +20,15 @@
 
 __author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
-
 import threading
-
 import netsvc
 import time
-
 import re
-
 from osv import osv
 
-
 class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
-    
     _name = "l10n.es.aeat.mod347.calculate_records"
     _description = u"AEAT Model 347 Wizard - Calculate Records"
-
 
     def _wkf_calculate_records(self, cr, uid, ids, context=None):
         if context is None:
@@ -46,34 +39,33 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
         wf_service = netsvc.LocalService("workflow")
         wf_service.trg_validate(uid, 'l10n.es.aeat.mod347.report', ids and ids[0], 'calculate', cr)
 
-
     def _calculate_records(self, cr, uid, ids, context=None, recalculate=True):
         if context is None:
             context = {}
 
         try:
 
-            partner_facade = self.pool.get('res.partner')
-            partner_address_facade = self.pool.get('res.partner.address')
+            partner_obj = self.pool.get('res.partner')
+            partner_address_obj = self.pool.get('res.partner.address')
             
-            invoice_facade = self.pool.get('account.invoice')
+            invoice_obj = self.pool.get('account.invoice')
 
-            report_facade = self.pool.get('l10n.es.aeat.mod347.report')
-            partner_record_facade = self.pool.get('l10n.es.aeat.mod347.partner_record')
-            invoice_record_facade = self.pool.get('l10n.es.aeat.mod347.invoice_record')
+            report_obj = self.pool.get('l10n.es.aeat.mod347.report')
+            partner_record_obj = self.pool.get('l10n.es.aeat.mod347.partner_record')
+            invoice_record_obj = self.pool.get('l10n.es.aeat.mod347.invoice_record')
 
-            report_obj = report_facade.browse(cr, uid, ids and ids[0])
+            report_obj = report_obj.browse(cr, uid, ids and ids[0])
 
             ##
             ## Change status to 'calculated' and set current calculate date
-            report_facade.write(cr, uid, ids, {
+            report_obj.write(cr, uid, ids, {
                 'state' : 'calculating',
                 'calculation_date' : time.strftime('%Y-%m-%d %H:%M:%S')
             })
 
             ##
             ## Delete previous partner records
-            partner_record_facade.unlink(cr, uid, [r.id for r in report_obj.partner_records])
+            partner_record_obj.unlink(cr, uid, [r.id for r in report_obj.partner_records])
     
             ##
             ## Get the cash journals (moves on this journals will be considered cash)
@@ -85,8 +77,8 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
 
             ##
             ## We will check every partner with include_in_mod347
-            partner_ids = partner_facade.search(cr, uid, [('include_in_mod347', '=', True)])
-            for partner in partner_facade.browse(cr, uid, partner_ids):
+            partner_ids = partner_obj.search(cr, uid, [('include_in_mod347', '=', True)])
+            for partner in partner_obj.browse(cr, uid, partner_ids):
                 ##
                 ## Search for invoices
                 #
@@ -100,20 +92,20 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                     #
                     # Search for invoices to this partner (with account moves).
                     #
-                    invoice_ids = invoice_facade.search(cr, uid, [
+                    invoice_ids = invoice_obj.search(cr, uid, [
                                 ('partner_id', '=', partner.id),
                                 ('type', '=', invoice_type),
                                 ('period_id', 'in', period_ids),
                                 ('move_id', '!=', None),
                             ])
-                    refund_ids = invoice_facade.search(cr, uid, [
+                    refund_ids = invoice_obj.search(cr, uid, [
                                 ('partner_id', '=', partner.id),
                                 ('type', '=', refund_type),
                                 ('period_id', 'in', period_ids),
                                 ('move_id', '!=', None),
                             ])
-                    invoices = invoice_facade.browse(cr, uid, invoice_ids)
-                    refunds = invoice_facade.browse(cr, uid, refund_ids)
+                    invoices = invoice_obj.browse(cr, uid, invoice_ids)
+                    refunds = invoice_obj.browse(cr, uid, refund_ids)
 
                     ##
                     ## Calculate the invoiced amount
@@ -150,11 +142,11 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                         # Get the default invoice address of the partner
                         #
                         address = None
-                        address_ids = partner_facade.address_get(cr, uid, [partner.id], ['invoice', 'default'])
+                        address_ids = partner_obj.address_get(cr, uid, [partner.id], ['invoice', 'default'])
                         if address_ids.get('invoice'):
-                            address = partner_address_facade.browse(cr, uid, address_ids.get('invoice'))
+                            address = partner_address_obj.browse(cr, uid, address_ids.get('invoice'))
                         elif address_ids.get('default'):
-                            address = partner_address_facade.browse(cr, uid, address_ids.get('default'))
+                            address = partner_address_obj.browse(cr, uid, address_ids.get('default'))
 
                         #
                         # Get the partner data
@@ -166,7 +158,7 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                             partner_country_code, partner_vat = re.match("(ES){0,1}(.*)", partner.vat).groups()
 
                         # Create the partner record
-                        partner_record = partner_record_facade.create(cr, uid, {
+                        partner_record = partner_record_obj.create(cr, uid, {
                                 'report_id': report_obj.id ,
                                 'operation_key' : operation_key,
                                 'partner_id': partner.id,
@@ -182,14 +174,14 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                         # Add the invoices detail to the partner record
                         #
                         for invoice in invoices:
-                            invoice_record_facade.create(cr, uid, {
+                            invoice_record_obj.create(cr, uid, {
                                 'partner_record_id' : partner_record,
                                 'invoice_id': invoice.id,
                                 'date': invoice.date_invoice,
                                 'amount': invoice.cc_amount_total,
                             })
                         for invoice in refunds:
-                            invoice_record_facade.create(cr, uid, {
+                            invoice_record_obj.create(cr, uid, {
                                 'partner_record_id' : partner_record,
                                 'invoice_id': invoice.id,
                                 'date': invoice.date_invoice,
@@ -201,22 +193,20 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                         #
                         if received_cash_amount > report_obj.received_cash_limit:
                             for line in cash_account_move_lines:
-                                pool.get('l10n.es.aeat.mod347.cash_record').create(cr, uid, {
+                                self.pool.get('l10n.es.aeat.mod347.cash_record').create(cr, uid, {
                                     'partner_record_id' : partner_record,
                                     'move_line_id' : line.id,
                                     'date': line.date,
                                     'amount': line.credit,
                                 })
 
-
             if recalculate:
-                report_facade.write(cr, uid, ids, {
+                report_obj.write(cr, uid, ids, {
                     'state' : 'calculated',
                     'calculation_date' : time.strftime('%Y-%m-%d %H:%M:%S')
                 })
         
         except Exception, ex:
-
             raise
 
         return True
@@ -225,7 +215,6 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
     def calculation_threading(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-
 
         threaded_calculation = threading.Thread(target=self._calculate_records, args=(cr, uid, ids, context))
         threaded_calculation.start()

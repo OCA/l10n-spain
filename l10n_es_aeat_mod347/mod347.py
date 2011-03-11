@@ -21,18 +21,14 @@
 
 __author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
-
 import re
-
 from osv import osv, fields
-
 
 class l10n_es_aeat_mod347_report(osv.osv):
 
     _inherit = "l10n.es.aeat.report"
     _name = "l10n.es.aeat.mod347.report"
     _description = "AEAT 347 Report"
-
 
     def button_calculate(self, cr, uid, ids, context=None):
         if not context:
@@ -52,7 +48,6 @@ class l10n_es_aeat_mod347_report(osv.osv):
 
         return True
 
-
     def button_export(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
@@ -61,7 +56,6 @@ class l10n_es_aeat_mod347_report(osv.osv):
         export_obj._export_boe_file(cr, uid, ids, self.browse(cr, uid, ids and ids[0]))
 
         return True
-
 
     def _get_totals(self, cr, uid, ids, name, args, context=None):
         """
@@ -84,7 +78,6 @@ class l10n_es_aeat_mod347_report(osv.osv):
 
         return res
 
-
     def _name_get(self, cr, uid, ids, field_name, arg, context={}):
         """
         Returns the report name
@@ -94,11 +87,9 @@ class l10n_es_aeat_mod347_report(osv.osv):
             result[report.id] = report.number
         return result
 
-
     _columns = {
         # The name it's just an alias of the number
         'name': fields.function(_name_get, method=True, type="char", size="64", string="Name"),
-
         'contact_name': fields.char("Full Name", size=40),
         'contact_phone': fields.char("Phone", size=9),
 
@@ -132,11 +123,7 @@ class l10n_es_aeat_mod347_report(osv.osv):
         ## AEAT brings number (previous number), so take defautl value as 349 (need to be changed)
         'number' : lambda *a: '347'
     }
-
-
-
 l10n_es_aeat_mod347_report()
-
 
 
 class l10n_es_aeat_mod347_partner_record(osv.osv):
@@ -217,7 +204,6 @@ class l10n_es_aeat_mod347_partner_record(osv.osv):
                     'partner_state_code': partner_state_code
             }
         }
-
 l10n_es_aeat_mod347_partner_record()
 
 
@@ -249,7 +235,6 @@ class l10n_es_aeat_mod347_real_state_record(osv.osv):
         for rec in self.browse(cr, uid, ids, context):
             result[rec.id] = rec.reference
         return result
-
 
     _columns = {
         # The name it's just an alias of the reference
@@ -317,7 +302,6 @@ class l10n_es_aeat_mod347_real_state_record(osv.osv):
                     'partner_vat': partner_vat
             }
         }
-
 l10n_es_aeat_mod347_real_state_record()
 
 
@@ -331,7 +315,6 @@ class l10n_es_aeat_mod347_report_add_real_state_records(osv.osv):
                             states = {'done': [('readonly', True)]}),
     }
 l10n_es_aeat_mod347_report_add_real_state_records()
-
 
 
 class l10n_es_aeat_mod347_partner_record_add_real_state_records(osv.osv):
@@ -385,12 +368,10 @@ class l10n_es_aeat_mod347_partner_record_add_real_state_records(osv.osv):
 l10n_es_aeat_mod347_partner_record_add_real_state_records()
 
 
-
 class l10n_es_aeat_mod347_invoice_record(osv.osv):
     """
     Represents an invoice record.
     """
-
     _name = 'l10n.es.aeat.mod347.invoice_record'
     _description = 'Invoice Record'
 
@@ -419,12 +400,10 @@ class l10n_es_aeat_mod347_partner_record_add_invoice_records(osv.osv):
 l10n_es_aeat_mod347_partner_record_add_invoice_records()
 
 
-
 class l10n_es_aeat_mod347_cash_record(osv.osv):
     """
     Represents a payment record.
     """
-
     _name = 'l10n.es.aeat.mod347.cash_record'
     _description = 'Cash Record'
 
