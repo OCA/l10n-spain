@@ -1,19 +1,31 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_aeat_mod347
+# 	* l10n_es_aeat_mod347
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.0-rc1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2010-12-14 10:05:39+0000\n"
-"PO-Revision-Date: 2010-12-14 11:12+0100\n"
-"Last-Translator: Luis Manuel Angueira Blanco <manuel@pexego.es>\n"
+"PO-Revision-Date: 2011-03-11 21:49+0100\n"
+"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:135
+#, python-format
+msgid "The type 2-D record (partner) must be 502 characters long"
+msgstr "El tipus de registre 2-D (empresa) ha de ser de 502 caràcters de llargada"
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:83
+#, python-format
+msgid "The type 1 record must be 502 characters long"
+msgstr "El tipus de registre 1 ha de ser de 502 caràcters de llargada"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_partner_record
@@ -29,7 +41,7 @@ msgstr "Clau op."
 #. module: l10n_es_aeat_mod347
 #: constraint:ir.actions.act_window:0
 msgid "Invalid model name in the action definition."
-msgstr "Nom del model invàlid en la definició de l'acció."
+msgstr "Nom de model no vàlid en la definició de l'acció."
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -39,12 +51,12 @@ msgstr "Calcula"
 #. module: l10n_es_aeat_mod347
 #: field:res.partner,include_in_mod347:0
 msgid "Include in 347 Report"
-msgstr "Incloure en l'informe 347"
+msgstr "Incloure en la declaració 347"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,situation:0
 msgid "Real state Situation"
-msgstr "Situació d'Immobles"
+msgstr "Situació d'immobles"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,township_code:0
@@ -52,9 +64,20 @@ msgid "Township Code"
 msgstr "Codi de municipi"
 
 #. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
+msgid "In process"
+msgstr "En procés"
+
+#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,company_id:0
+#: view:l10n.es.aeat.mod347.report:0
 msgid "Company"
 msgstr "Companyia"
+
+#. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Cancelled"
+msgstr "Cancel·lada"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_real_state_record
@@ -93,6 +116,7 @@ msgid "Real State Amount"
 msgstr "Import immobles"
 
 #. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
 #: field:l10n.es.aeat.mod347.report,fiscalyear_id:0
 msgid "Fiscal Year"
 msgstr "Exercici fiscal"
@@ -115,7 +139,7 @@ msgstr "Mod"
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
 msgid "AEAT 347 Reports"
-msgstr "Informes AEAT 347"
+msgstr "Declaracions AEAT 347"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,situation:0
@@ -172,6 +196,12 @@ msgstr "Registres d'immobles"
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "VAT"
 msgstr "NIF/CIF"
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:210
+#, python-format
+msgid "The type 2-I record (real state) must be 502 characters long"
+msgstr "El tipus de registre 2-I (estat real) ha de ser de 502 caràcters de llargada"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -236,6 +266,11 @@ msgid "Legal Representative VAT number"
 msgstr "NIF del representant legal."
 
 #. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Recalculate"
+msgstr "Recalcula"
+
+#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,door:0
 msgid "Door"
 msgstr "Porta"
@@ -252,7 +287,7 @@ msgstr "Registre d'empresa"
 #: field:l10n.es.aeat.mod347.real_state_record,report_id:0
 #: view:l10n.es.aeat.mod347.report:0
 msgid "AEAT 347 Report"
-msgstr "Informe 347 AEAT"
+msgstr "Declaració AEAT 347"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
@@ -267,12 +302,12 @@ msgstr "Exporta a fitxer BOE"
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "AEAT 347 MODEL"
-msgstr "INFORME 347 AEAT"
+msgstr "DECLARACIÓ AEAT 347"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.actions.report.xml,name:l10n_es_aeat_mod347.report_l10n_es_aeat_mod347
 msgid "AEAT 347 Model report"
-msgstr "Informe Modelo 347 AEAT"
+msgstr "Declaració model AEAT 347"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,partner_vat:0
@@ -312,7 +347,7 @@ msgstr "Registres d'empreses"
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.menu,name:l10n_es_aeat_mod347.menu_aeat_mod347_report
 msgid "AEAT 347 Model"
-msgstr "Model 347 AEAT"
+msgstr "Model AEAT 347"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,total_partner_records:0
@@ -322,7 +357,7 @@ msgstr "Registres d'empreses"
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,calculation_date:0
 msgid "Calculation date"
-msgstr "Data del càlcul"
+msgstr "Data de càlcul"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_res_partner
@@ -355,7 +390,7 @@ msgstr "Import facturat"
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,reference:0
 msgid "Catastral Reference"
-msgstr "Referència Cadastral"
+msgstr "Referència cadastral"
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
@@ -406,7 +441,7 @@ msgstr "A - Adquisicions de bens i serveis superiors al límit (1)"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_calculate_records
 msgid "AEAT Model 347 Wizard - Calculate Records"
-msgstr "Assistent Model 347 AEAT - Calcular registres"
+msgstr "Assistent model AEAT 347 - Calcular registres"
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
@@ -507,7 +542,7 @@ msgstr "Diari de pagaments en efectiu"
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,state:0
 msgid "Processed"
-msgstr "Processat"
+msgstr "Processada"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,representative_vat:0
@@ -539,7 +574,7 @@ msgstr "D - Adquisicions efectuades per Entitats Públiques (...) superiors al l
 #. module: l10n_es_aeat_mod347
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod347.action_l10n_es_aeat_mod347_report
 msgid "Create and query AEAT Model 347 Reports"
-msgstr "Permite crear y consultar informes sobre Modelo AEAT 347"
+msgstr "Permet crear i consultar les declaracions sobre el model AEAT 347"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,type:0
@@ -563,9 +598,10 @@ msgid "Ant"
 msgstr "Ant"
 
 #. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
 #: selection:l10n.es.aeat.mod347.report,state:0
 msgid "Done"
-msgstr "Realitzat"
+msgstr "Realitzada"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.invoice_record,invoice_id:0
@@ -590,7 +626,7 @@ msgstr "Població"
 #. module: l10n_es_aeat_mod347
 #: help:account.journal,cash_journal:0
 msgid "Payments of this journal will be considered as cash (used on the 347 report)"
-msgstr "Els pagaments realitzats en aquest diari seran considerats com efectiu (utilitzant l'informe 347)."
+msgstr "Els pagaments realitzats en aquest diari seran considerats com efectiu (utilitzant la declaració 347)."
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,floor:0
@@ -600,7 +636,7 @@ msgstr "Planta"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_export_to_boe
 msgid "Export AEAT Model 347 to BOE format"
-msgstr "Exportar Modelo Model 347 a formato BOE"
+msgstr "Exporta Model 347 a format BOE"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
@@ -661,7 +697,7 @@ msgstr "Diari"
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "PARTNER RECORD LINES"
-msgstr "LÍNEAS DE REGISTRO DE EMPRESA"
+msgstr "LÍNIES DE REGISTRE D'EMPRESA"
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
@@ -691,12 +727,12 @@ msgstr "Municipi"
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "Operation Key"
-msgstr "Clau Operació"
+msgstr "Clau operació"
 
 #. module: l10n_es_aeat_mod347
 #: help:res.partner,include_in_mod347:0
 msgid "Include in AEAT 347 Model report"
-msgstr "Incloure en l'informe del model 347 per a l'AEAT."
+msgstr "Incloure en la declaració del model 347 de l'AEAT."
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,amount:0
@@ -714,7 +750,7 @@ msgstr "Nom"
 #: view:l10n.es.aeat.mod347.partner_record:0
 #: view:l10n.es.aeat.mod347.real_state_record:0
 msgid "Partner info"
-msgstr "Informació Empresa"
+msgstr "Informació empresa"
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
