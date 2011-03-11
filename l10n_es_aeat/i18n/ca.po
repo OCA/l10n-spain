@@ -1,14 +1,14 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_aeat
+# 	* l10n_es_aeat
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.0-rc1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2010-12-13 17:34:49+0000\n"
-"PO-Revision-Date: 2010-12-13 18:44+0100\n"
-"Last-Translator: Luis Manuel Angueira Blanco <manuel@pexego.es>\n"
+"PO-Revision-Date: 2011-03-11 21:07+0100\n"
+"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,6 +21,13 @@ msgid "Statement Type"
 msgstr "Tipus declaració"
 
 #. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:104
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:144
+#, python-format
+msgid "The formated string must match the given length"
+msgstr "La cadena formatejada ha de satisfer la llargada donada."
+
+#. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,support_type:0
 msgid "DVD"
 msgstr "DVD"
@@ -28,7 +35,7 @@ msgstr "DVD"
 #. module: l10n_es_aeat
 #: field:account.invoice,refund_invoices_description:0
 msgid "Refund invoices description"
-msgstr "Descripción de facturas rectificativas."
+msgstr "Descripció de factures rectificatives."
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,state:0
@@ -88,7 +95,7 @@ msgstr "Tipus de suport"
 #. module: l10n_es_aeat
 #: help:account.invoice,origin_invoices_ids:0
 msgid "Links to original invoice which is referred by current refund invoice"
-msgstr "Enllaça amb la factura original a la qual fa referència la factura actual"
+msgstr "Enllaça amb la factura original a la qual fa referència la factura actual."
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat
@@ -99,7 +106,7 @@ msgstr "AEAT Base"
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report
 msgid "AEAT Report base module"
-msgstr "Mòdul base Agència Tributària"
+msgstr "Mòdul base per les declaracions de l'Agència Tributària"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,calculation_date:0
@@ -117,14 +124,42 @@ msgid "VAT number"
 msgstr "NIF / CIF"
 
 #. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/aeat_report.py:107
+#, python-format
+msgid "Only reports in 'draft' or 'cancel' state can be removed"
+msgstr "Només declaracions en estat 'Esborrany' o 'Cancel·lada' poden ser eliminades"
+
+#. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,support_type:0
 msgid "Telematics"
 msgstr "Telemàtica"
 
 #. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/aeat_report.py:107
+#, python-format
+msgid "Error!"
+msgstr "Error!"
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,fiscalyear_id:0
+msgid "Fiscal Year"
+msgstr "Exercici fiscal"
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,number:0
+msgid "Declaration Number"
+msgstr "Número declaració"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:100
+#, python-format
+msgid "Wrong aling option. It should be < or >"
+msgstr "Opció d'alineament errònia. Hauria de ser < o >"
+
+#. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
 msgid "AEAT Reports"
-msgstr "Informe Agència Tributària"
+msgstr "Declaracions Agència Tributària"
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_export_to_boe
@@ -137,11 +172,6 @@ msgid "Complementary"
 msgstr "Complementària"
 
 #. module: l10n_es_aeat
-#: field:l10n.es.aeat.report,number:0
-msgid "Declaration Number"
-msgstr "Número declaració"
-
-#. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,state:0
 msgid "Canceled"
 msgstr "Cancel·lada"
@@ -149,7 +179,7 @@ msgstr "Cancel·lada"
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,state:0
 msgid "Done"
-msgstr "Realitzat"
+msgstr "Realitzada"
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_account_invoice
@@ -159,5 +189,5 @@ msgstr "Factura"
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,state:0
 msgid "Processed"
-msgstr "Processat"
+msgstr "Calculada"
 
