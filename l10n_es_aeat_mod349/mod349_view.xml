@@ -64,11 +64,11 @@
                 <form string="AEAT 349 Partner records">
                     <notebook colspan="4">
                         <page string="Info">
+                            <field name="operation_key"/>
                             <field name="partner_id"/>
                             <field name="country_id"/>
-                            <field name="operation_key" colspan="4"/>
-                            <field name="total_operation_amount"/>
                             <field name="partner_vat" on_change="onchange_format_partner_vat(partner_vat,country_id)"/>
+                            <field name="total_operation_amount"/>
                         </page>
                         <page string="Detail lines">
                             <field name="record_detail_ids" nolabel="1"/>
@@ -145,10 +145,10 @@
                 <form string="AEAT 349 Partner refunds">
                     <notebook>
                         <page string="Info">
-                            <field name="partner_id" colspan="4"/>
+                            <field name="operation_key"/>
+                            <field name="partner_id"/>
                             <field name="country_id"/>
                             <field name="partner_vat" on_change="onchange_format_partner_vat(partner_vat,country_id)"/>
-                            <field name="operation_key" colspan="4"/>
                             <field name="total_operation_amount"/>
                             <field name="total_origin_amount"/>
                             <separator string="Refund data" colspan="4"/>
