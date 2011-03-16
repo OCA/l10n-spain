@@ -3,6 +3,8 @@
 #
 #    OpenERP, Open Source Management Solution	
 #    Copyright (C) 2009 Ting! (<http://www.ting.es>). All Rights Reserved
+#    Copyright (c) 2010 Acysos S.L. (http://acysos.com) All Rights Reserved.
+#                       Update to OpenERP 6.0 Ignacio Ibeas <ignacio@acysos.com>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,12 +24,11 @@
 {
     "name" : "Recursos Humanos: Gestión de Nóminas",
     "version" : "0.9",
-    "author" : "Ting!",
+    "author" : "Ting!, Acysos S.L.",
     "website": "http://www.ting.es",
     "category" : "Generic Modules/Human Resources",
     "license" : "GPL-3",
-    "description": """NOTA: NO ADAPTADO TODAVÍA A LA VERSIÓN 6.0
-Recursos Humanos: Gestión de Nóminas
+    "description": """Recursos Humanos: Gestión de Nóminas
 Este módulo permite automatizar la creación de los asientos contables para las nóminas de los empleados.
         
 Uso del módulo:
