@@ -110,7 +110,7 @@ class wizard_calculate(wizard.interface):
             #
             # Delete the previous partner records
             #
-            pool.get('l10n.es.aeat.mod347.partner_record').unlink(cr, uid, [r.id for r in report.partner_records])
+            pool.get('l10n.es.aeat.mod347.partner_record').unlink(cr, uid, [r.id for r in report.partner_record_ids])
 
             # Get the cash journals (moves on this journals will be considered cash)
             cash_journal_ids = pool.get('account.journal').search(cr, uid, [('cash_journal', '=', True)])
@@ -128,7 +128,7 @@ class wizard_calculate(wizard.interface):
             partners_done = 0
             total_partners = len(partner_ids)
             for partner in pool.get('res.partner').browse(cr, uid, partner_ids):
-
+                receivable_partner_record = False
                 #
                 # Search for invoices
                 #
@@ -161,24 +161,6 @@ class wizard_calculate(wizard.interface):
                     invoice_amount = sum([invoice.cc_amount_total for invoice in invoices])
                     refund_amount = sum([invoice.cc_amount_total for invoice in refunds])
                     total_amount = invoice_amount - refund_amount
-
-                    #
-                    # Search for payments received in cash from this partner.
-                    #
-                    if cash_journal_ids:
-                        cash_account_move_line_ids = pool.get('account.move.line').search(cr, uid, [
-                                    ('partner_id', '=', partner.id),
-                                    ('account_id', '=', partner.property_account_receivable.id),
-                                    ('journal_id', 'in', cash_journal_ids),
-                                    ('period_id', 'in', period_ids),
-                                ])
-                        cash_account_move_lines = pool.get('account.move.line').browse(cr, uid, cash_account_move_line_ids)
-
-                        # Calculate the cash amount
-                        received_cash_amount = sum([line.credit for line in cash_account_move_lines])
-                    else:
-                        cash_account_move_lines = []
-                        received_cash_amount = 0.0
 
                     #
                     # If the invoiced amount is greater than the limit
@@ -220,8 +202,11 @@ class wizard_calculate(wizard.interface):
                                 'partner_state_code': partner_state_code,
                                 'partner_country_code' : partner_country_code,
                                 'amount': total_amount,
-                                'cash_amount': received_cash_amount > report.received_cash_limit and received_cash_amount or 0,
                             })
+
+                        if invoice_type == 'out_invoice':
+                            receivable_partner_record = partner_record
+
 
                         #
                         # Add the invoices detail to the partner record
@@ -241,17 +226,90 @@ class wizard_calculate(wizard.interface):
                                 'amount': -invoice.cc_amount_total,
                             })
 
-                        #
-                        # Add the cash detail to the partner record if over limit
-                        #
-                        if received_cash_amount > report.received_cash_limit:
-                            for line in cash_account_move_lines:
-                                pool.get('l10n.es.aeat.mod347.cash_record').create(cr, uid, {
-                                    'partner_record_id' : partner_record,
-                                    'move_line_id' : line.id,
-                                    'date': line.date,
-                                    'amount': line.credit,
-                                })
+                #
+                # Search for payments received in cash from this partner.
+                #
+                if cash_journal_ids:
+                    cash_account_move_line_ids = pool.get('account.move.line').search(cr, uid, [
+                                ('partner_id', '=', partner.id),
+                                ('account_id', '=', partner.property_account_receivable.id),
+                                ('journal_id', 'in', cash_journal_ids),
+                                ('period_id', 'in', period_ids),
+                            ])
+                    cash_account_move_lines = pool.get('account.move.line').browse(cr, uid, cash_account_move_line_ids)
+
+                    # Calculate the cash amount in report fiscalyear
+                    received_cash_amount = sum([line.credit for line in cash_account_move_lines])
+                else:
+                    cash_account_move_lines = []
+                    received_cash_amount = 0.0
+
+                #
+                # Add the cash detail to the partner record if over limit
+                #
+                if received_cash_amount > report.received_cash_limit:
+                    cash_moves = {}
+
+                    # Group cash move lines by origin operation fiscalyear
+                    for move_line_obj in cash_account_move_lines:
+                        #FIXME: ugly group by reconciliation invoices, because there isn't any direct relationship between payments and invoice
+                        invoices = []
+                        if move_line_obj.reconcile_id:
+                            for line in move_line_obj.reconcile_id.line_id:
+                                if line.invoice:
+                                    invoices.append(line.invoice)
+                        elif move_line_obj.reconcile_partial_id:
+                            for line in move_line_obj.reconcile_id.line_partial_ids:
+                                if line.invoice:
+                                    invoices.append(line.invoice)
+
+                        invoices = list(set(invoices))
+                        
+                        if invoices:
+                            invoice = invoices[0]
+                            cash_move_fiscalyear = str(invoice.period_id.fiscalyear_id.id)
+                            if cash_move_fiscalyear not in cash_moves:
+                                cash_moves[cash_move_fiscalyear] = [move_line_obj]
+                            else:
+                                cash_moves[cash_move_fiscalyear].append(move_line_obj)
+
+                    if cash_moves:
+                        for record in cash_moves:
+                            partner_rec = False
+                            receivable_amount = 0.0
+                            receivable_amount = sum([line.credit for line in cash_moves[record]])
+                            if receivable_amount > report.received_cash_limit:
+                                if record != str(report.fiscalyear_id.id) and receivable_partner_record:
+                                    #create partner record for cash operation in different year to currently
+                                    cash_partner_record = pool.get('l10n.es.aeat.mod347.partner_record').create(cr, uid, {
+                                            'report_id': report.id ,
+                                            'operation_key' : operation_key,
+                                            'partner_id': partner.id,
+                                            'partner_vat': partner_vat,
+                                            'representative_vat': '',
+                                            'partner_state_code': partner_state_code,
+                                            'partner_country_code' : partner_country_code,
+                                            'amount': 0.0,
+                                            'cash_amount': sum([line.credit for line in cash_moves[record]]),
+                                            'origin_fiscalyear_id': int(record)
+                                        })
+
+                                    partner_rec = cash_partner_record
+                                else:
+                                    pool.get('l10n.es.aeat.mod347.partner_record').write(cr, uid, [receivable_partner_record], {
+                                        'cash_amount': sum([line.credit for line in cash_moves[record]]),
+                                        'origin_fiscalyear_id': int(record)
+                                    })
+
+                                    partner_rec = receivable_partner_record
+
+                                for line in cash_moves[record]:
+                                    pool.get('l10n.es.aeat.mod347.cash_record').create(cr, uid, {
+                                        'partner_record_id' : partner_rec,
+                                        'move_line_id' : line.id,
+                                        'date': line.date,
+                                        'amount': line.credit,
+                                    })
 
                     #
                     # TODO: Calculate records of operation keys C-D-E-F-G !

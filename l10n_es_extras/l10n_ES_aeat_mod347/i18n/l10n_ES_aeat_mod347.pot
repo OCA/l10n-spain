@@ -58,6 +58,34 @@ msgid "\n"
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/mod347.py:0
+#, python-format
+msgid "Error!"
+msgstr ""
+
+#. module: l10n_ES_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
+msgid "Origin fiscal year"
+msgstr ""
+#. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/mod347.py:0
+#, python-format
+msgid "All real state records state code field must be filled."
+msgstr ""
+
+#. module: l10n_ES_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
+msgid "Origin cash operation fiscal year"
+msgstr ""
+
+#. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/mod347.py:0
+#, python-format
+msgid "All partner state code field must be filled."
+msgstr ""
+
+
+#. module: l10n_ES_aeat_mod347
 #: wizard_view:l10n_es_aeat_mod347.wizard_export_boe,export:0
 msgid "You may now verify, print or upload the exported file using the AEAT help program available at:"
 msgstr ""
@@ -101,7 +129,6 @@ msgstr ""
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
 #: field:l10n.es.aeat.mod347.report,partner_record_ids:0
-#: field:l10n.es.aeat.mod347.report,partner_records:0
 msgid "Partner Records"
 msgstr ""
 

@@ -154,6 +154,7 @@ Authors: Alejandro Sanchez Ramirez Asr Oss - alejandro@asr-oss.com
                             <group colspan="4" col="6">
                                 <field name="amount"/>
                                 <field name="cash_amount"/>
+                                <field name="origin_fiscalyear_id"/>
                                 <field name="real_state_transmissions_amount" />
                             </group>
                             <group colspan="4">

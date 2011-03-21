@@ -241,7 +241,8 @@ class wizard_export_boe(wizard.interface):
             99          Arrendamiento local negocio
             100-114 	Importe percibido en metálico
             115-129 	Importe percibido por transmisiones de inmuebles sujetas a IVA
-            130-500 	Blancos
+            130-134     Año de devengo de las operaciones en efectivo
+            134-500 	Blancos
             488-500 	Sello electrónico 
         """
         text = ''
@@ -255,15 +256,15 @@ class wizard_export_boe(wizard.interface):
         text += _formatString(partner_record.partner_id.name, 40)       # Apellidos y nombre, razón social o denominación del declarado
         text += 'D'                                                     # Tipo de hoja: Constante ‘D’.
         text += _formatNumber(partner_record.partner_state_code, 2)     # Código provincia
-        text += _formatString(partner_record.partner_country_code, 2)   # Código país
-        text += ' '                                                     # Blancos
+        text += 3*' '                                                   # Blancos
         text += _formatString(partner_record.operation_key, 1)          # Clave de operación
         text += _formatNumber(partner_record.amount, 13, 2)             # Importe de las operaciones
         text += _formatBoolean(partner_record.insurance_operation)                      # Operación de seguro
         text += _formatBoolean(partner_record.bussiness_real_state_rent)                # Arrendamiento local negocio
         text += _formatNumber(partner_record.cash_amount, 13, 2)                        # Importe percibido en metálico
         text += _formatNumber(partner_record.real_state_transmissions_amount, 13, 2)    # Importe percibido por transmisiones de inmuebles sujetas a IVA
-        text += 371*' '                                                 # Blancos
+        text += partner_record.origin_fiscalyear_id and _formatString(partner_record.origin_fiscalyear_id.code, 4) or 4*'0' #Año de devengo de las operaciones en efectivo
+        text += 367*' '                                                 # Blancos
         text += '\r\n'                                                  # Sello electrónico
 
         assert len(text) == 502, _("The type 2-D record (partner) must be 502 characters long")
@@ -317,29 +318,29 @@ class wizard_export_boe(wizard.interface):
         text += _formatString(partner_record.representative_vat, 9)     # NIF del representante legal
         text += _formatString(partner_record.partner_id.name, 40)       # Apellidos y nombre, razón social o denominación del declarado
         text += 'I'                                                     # Tipo de hoja: Constante ‘I’.
-        text += 23*''                                                   # Blancos
-        text += _formatNumber(partner_record.real_state_amount, 13, 2)  # Importe de las operaciones
-        text += _formatNumber(partner_record.real_state_situation, 1)   # Situación del inmueble
-        text += _formatString(partner_record.real_state_reference, 25)  # Referencia catastral
-        text += _formatString(partner_record.real_state_address_type, 5)        # TIPO DE VÍA
-        text += _formatString(partner_record.real_state_address, 50)            # NOMBRE VÍA PUBLICA
-        text += _formatString(partner_record.real_state_number_type, 3)         # TIPO DE NUMERACIÓN
-        text += _formatString(partner_record.real_state_number, 5)              # NUMERO DE CASA
-        text += _formatString(partner_record.real_state_number_calification, 3) # CALIFICADOR DEL NUMERO
-        text += _formatString(partner_record.real_state_block, 3)               # BLOQUE
-        text += _formatString(partner_record.real_state_portal, 3)              # PORTAL
-        text += _formatString(partner_record.real_state_stairway, 3)            # ESCALERA
-        text += _formatString(partner_record.real_state_floor, 3)               # PLANTA O PISO
-        text += _formatString(partner_record.real_state_door, 3)                # PUERTA
-        text += _formatString(partner_record.real_state_complement, 40)         # COMPLEMENTO
-        text += _formatString(partner_record.real_state_city, 30)               # LOCALIDAD O POBLACIÓN
-        text += _formatString(partner_record.real_state_township, 30)           # MUNICIPIO
-        text += _formatString(partner_record.real_state_township_code, 5)       # CODIGO DE MUNICIPIO
-        text += _formatString(partner_record.real_state_state_code, 2)          # CODIGO PROVINCIA
-        text += _formatString(partner_record.real_state_postal_code, 5)         # CODIGO POSTAL
+        text += 23*' '                                                   # Blancos
+        text += _formatNumber(partner_record.amount, 13, 2)  # Importe de las operaciones
+        text += _formatNumber(partner_record.situation, 1)   # Situación del inmueble
+        text += _formatString(partner_record.reference, 25)  # Referencia catastral
+        text += _formatString(partner_record.address_type, 5)        # TIPO DE VÍA
+        text += _formatString(partner_record.address, 50)            # NOMBRE VÍA PUBLICA
+        text += _formatString(partner_record.number_type, 3)         # TIPO DE NUMERACIÓN
+        text += _formatNumber(partner_record.number, 5)              # NUMERO DE CASA
+        text += _formatString(partner_record.number_calification, 3) # CALIFICADOR DEL NUMERO
+        text += _formatString(partner_record.block, 3)               # BLOQUE
+        text += _formatString(partner_record.portal, 3)              # PORTAL
+        text += _formatString(partner_record.stairway, 3)            # ESCALERA
+        text += _formatString(partner_record.floor, 3)               # PLANTA O PISO
+        text += _formatString(partner_record.door, 3)                # PUERTA
+        text += _formatString(partner_record.complement, 40)         # COMPLEMENTO
+        text += _formatString(partner_record.city, 30)               # LOCALIDAD O POBLACIÓN
+        text += _formatString(partner_record.township, 30)           # MUNICIPIO
+        text += _formatString(partner_record.township_code, 5)       # CODIGO DE MUNICIPIO
+        text += _formatString(partner_record.state_code, 2)          # CODIGO PROVINCIA
+        text += _formatString(partner_record.postal_code, 5)         # CODIGO POSTAL
         text += 167*' '                                                 # Blancos
         text += '\r\n'                                                  # Sello electrónico
-
+        
         assert len(text) == 502, _("The type 2-I record (real state) must be 502 characters long")
         return text
     

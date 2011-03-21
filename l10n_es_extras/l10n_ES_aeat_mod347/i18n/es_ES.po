@@ -73,6 +73,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
+msgid "Origin cash operation fiscal year"
+msgstr "Ejercicio fiscal origen de las operaciones en efectivo."
+
+#. module: l10n_ES_aeat_mod347
 #: wizard_view:l10n_es_aeat_mod347.wizard_export_boe,export:0
 msgid ""
 "You may now verify, print or upload the exported file using the AEAT help "
@@ -80,6 +85,18 @@ msgid ""
 msgstr ""
 "Ahora puede comprobar, imprimir o cargar el archivo exportado por medio del "
 "programa de ayuda de la AEAT disponible en:"
+
+#. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/mod347.py:0
+#, python-format
+msgid "All real state records state code field must be filled."
+msgstr "El código de estado de todos los registros de inmuebles debe estar rellenado."
+
+#. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/mod347.py:0
+#, python-format
+msgid "All partner state code field must be filled."
+msgstr "El código de estado de todos los registros de empresas debe estar rellenado."
 
 #. module: l10n_ES_aeat_mod347
 #: model:ir.model,name:l10n_ES_aeat_mod347.model_l10n_es_aeat_mod347_partner_record
@@ -91,6 +108,11 @@ msgstr "Registro de empresa"
 #: rml:report_l10n_es_aeat_mod347.generic:0
 msgid "Key Oper."
 msgstr "Clave op."
+
+#. module: l10n_ES_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
+msgid "Origin fiscal year"
+msgstr "Ejercicio fiscal origen"
 
 #. module: l10n_ES_aeat_mod347
 #: constraint:ir.actions.act_window:0
@@ -122,7 +144,6 @@ msgstr "Situación de inmuebles"
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
 #: field:l10n.es.aeat.mod347.report,partner_record_ids:0
-#: field:l10n.es.aeat.mod347.report,partner_records:0
 msgid "Partner Records"
 msgstr "Registros de empresas"
 
@@ -356,7 +377,7 @@ msgstr "F - Ventas agencia viaje"
 #: help:l10n.es.aeat.mod347.real_state_record,representative_vat:0
 #: help:l10n.es.aeat.mod347.report,representative_vat:0
 msgid "Legal Representative VAT number"
-msgstr "NIF del representante legal."
+msgstr "CIF/NIF del representante legal."
 
 #. module: l10n_ES_aeat_mod347
 #: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
@@ -410,7 +431,7 @@ msgstr "Cerrar (continuar en segundo plano)"
 #: field:l10n.es.aeat.mod347.real_state_record,partner_vat:0
 #: field:l10n.es.aeat.mod347.report,company_vat:0
 msgid "VAT number"
-msgstr "NIF"
+msgstr "CIF/NIF"
 
 #. module: l10n_ES_aeat_mod347
 #: wizard_view:l10n_es_aeat_mod347.calculate_wizard,done:0
@@ -462,6 +483,12 @@ msgstr "Registros de empresas"
 #: field:l10n.es.aeat.mod347.report,calc_date:0
 msgid "Calculation date"
 msgstr "Fecha de cálculo"
+
+#. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/mod347.py:0
+#, python-format
+msgid "Error!"
+msgstr "¡Error!"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,partner_id:0
@@ -893,7 +920,7 @@ msgstr "El informe se ha generado con éxito."
 #. module: l10n_ES_aeat_mod347
 #: rml:report_l10n_es_aeat_mod347.generic:0
 msgid "V.A.T. number"
-msgstr "NIF"
+msgstr "CIF/NIF"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,total_real_state_transmissions_amount:0

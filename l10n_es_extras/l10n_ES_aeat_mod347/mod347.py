@@ -27,6 +27,7 @@ AEAT 347 model object and detail lines.
 from osv import osv, fields
 import netsvc
 import re
+from tools.translate import _
 
 class l10n_es_aeat_mod347_report(osv.osv):
     """
@@ -96,9 +97,6 @@ class l10n_es_aeat_mod347_report(osv.osv):
         'received_cash_limit': fields.float('Received cash Limit (2)', digits=(13,2), help="The declaration will show the total of cash operations over this limit"),
         'charges_obtp_limit': fields.float('Charges on behalf of third parties Limit (3)', digits=(13,2), help="The declaration will include partners from which we received payments, on behalf of third parties, over this limit"),
 
-        # Child records
-        'partner_records': fields.one2many('l10n.es.aeat.mod347.partner_record', 'report_id', 'Partner Records'),
-
         #
         # Totals
         #
@@ -157,10 +155,38 @@ class l10n_es_aeat_mod347_report(osv.osv):
         self.write(cr, uid, ids, {'state': 'calc_done'})
         return True
 
+    def _check_report_lines(self, cr, uid, ids, context=None):
+        """checks report lines"""
+        if context is None: context = {}
+
+        for item in self.browse(cr, uid, ids, context):
+            ## Browse partner record lines to check if all are correct (all fields filled)
+            for partner_record in item.partner_record_ids:
+                if not partner_record.partner_state_code:
+                    raise osv.except_osv(_('Error!'), _("All partner state code field must be filled."))
+
+            for real_state_record in item.real_state_record_ids:
+                if not real_state_record.state_code:
+                    raise osv.except_osv(_('Error!'), _("All real state records state code field must be filled."))
+
+        return True
+
+
+    def check_report(self, cr, uid, ids, context=None):
+        """Different check out in report"""
+        if context is None: context = {}
+
+        self._check_report_lines(cr, uid, ids, context)
+
+        return True
+
     def action_confirm(self, cr, uid, ids, context=None):
         """
         Called when the user clicks the confirm button.
         """
+        if context is None: context = {}
+
+        self.check_report(cr, uid, ids, context)
         self.write(cr, uid, ids, {'state': 'done'})
         return True
 
@@ -227,6 +253,7 @@ class l10n_es_aeat_mod347_partner_record(osv.osv):
 
         'insurance_operation': fields.boolean('Insurance Operation', help="Only for insurance companies. Set to identify insurance operations aside from the rest."),
         'bussiness_real_state_rent': fields.boolean('Bussiness Real State Rent', help="Set to identify real state rent operations aside from the rest. You'll need to fill in the real state info only when you are the one that receives the money."),
+        'origin_fiscalyear_id': fields.many2one('account.fiscalyear', 'Origin fiscal year', help="Origin cash operation fiscal year")
     }
     _defaults = {
         'report_id': lambda self, cr, uid, context: context.get('report_id', None),
