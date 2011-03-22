@@ -108,7 +108,8 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
             99          Arrendamiento local negocio
             100-114 	Importe percibido en metálico
             115-129 	Importe percibido por transmisiones de inmuebles sujetas a IVA
-            130-500 	Blancos
+            130-134     Año de devengo de las operaciones en efectivo
+            134-500 	Blancos
             488-500 	Sello electrónico
         """
         text = ''
@@ -122,15 +123,15 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
         text += self._formatString(partner_record.partner_id.name, 40)       # Apellidos y nombre, razón social o denominación del declarado
         text += 'D'                                                     # Tipo de hoja: Constante ‘D’.
         text += self._formatNumber(partner_record.partner_state_code, 2)     # Código provincia
-        text += self._formatString(partner_record.partner_country_code, 2)   # Código país
-        text += ' '                                                     # Blancos
+        text += 3*' '                                                     # Blancos
         text += self._formatString(partner_record.operation_key, 1)          # Clave de operación
         text += self._formatNumber(partner_record.amount, 13, 2)             # Importe de las operaciones
         text += self._formatBoolean(partner_record.insurance_operation)                      # Operación de seguro
         text += self._formatBoolean(partner_record.bussiness_real_state_rent)                # Arrendamiento local negocio
         text += self._formatNumber(partner_record.cash_amount, 13, 2)                        # Importe percibido en metálico
         text += self._formatNumber(partner_record.real_state_transmissions_amount, 13, 2)    # Importe percibido por transmisiones de inmuebles sujetas a IVA
-        text += 371*' '                                                 # Blancos
+        text += partner_record.origin_fiscalyear_id and self._formatString(partner_record.origin_fiscalyear_id.code, 4) or 4*'0' #Año de devengo de las operaciones en efectivo
+        text += 367*' '                                                 # Blancos
         text += '\r\n'                                                  # Sello electrónico
 
         assert len(text) == 502, _("The type 2-D record (partner) must be 502 characters long")
