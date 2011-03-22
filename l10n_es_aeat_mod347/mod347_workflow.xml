@@ -28,7 +28,7 @@
         <record id="act_confirm" model="workflow.activity">
             <field name="wkf_id" ref="wkf_l10n_es_aeat_mod347_report"/>
             <field name="name">confirmed</field>
-            <field name="action">write({'state':'done'})</field>
+            <field name="action">action_confirm()</field>
             <field name="kind">function</field>
         </record>
 
