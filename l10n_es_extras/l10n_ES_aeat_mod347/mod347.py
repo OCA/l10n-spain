@@ -273,7 +273,7 @@ class l10n_es_aeat_mod347_partner_record(osv.osv):
             # Get the default invoice address of the partner
             #
             address = None
-            address_ids = self.pool.get('res.partner.address').address_get(cr, uid, [partner.id], ['invoice', 'default'])
+            address_ids = self.pool.get('res.partner').address_get(cr, uid, [partner.id], ['invoice', 'default'])
             if address_ids.get('invoice'):
                 address = self.pool.get('res.partner.address').browse(cr, uid, address_ids.get('invoice'))
             elif address_ids.get('default'):

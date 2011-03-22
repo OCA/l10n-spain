@@ -7,9 +7,8 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.6\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2010-04-25 19:37+0000\n"
-"PO-Revision-Date: 2010-07-27 11:24+0000\n"
-"Last-Translator: Jordi Esteve (www.zikzakmedia.com) "
-"<jesteve@zikzakmedia.com>\n"
+"PO-Revision-Date: 2011-03-22 11:30+0100\n"
+"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,48 +20,36 @@ msgstr ""
 #: model:ir.module.module,description:l10n_ES_aeat_mod347.module_meta_information
 msgid ""
 "\n"
-"Módulo para la presentación del Modelo AEAT 347 (Declaración Anual de "
-"Operaciones con Terceros)\n"
+"Módulo para la presentación del Modelo AEAT 347 (Declaración Anual de Operaciones con Terceros)\n"
 "\n"
-"Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban "
-"los diseños físicos y lógicos del 347.\n"
+"Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban los diseños físicos y lógicos del 347.\n"
 "\n"
-"De acuerdo con la normativa de la Hacienda Española, están obligados a "
-"presentar el modelo 347:\n"
+"De acuerdo con la normativa de la Hacienda Española, están obligados a presentar el modelo 347:\n"
 "    * Todas aquellas personas físicas o jurídicas, de naturaleza pública o\n"
 "        privada que desarrollen actividades empresariales o profesionales,\n"
 "        siempre y cuando hayan realizado operaciones que, en su conjunto,\n"
-"        respecto de otra persona o Entidad, cualquiera que sea su "
-"naturaleza\n"
-"        o carácter, hayan superado la cifra de 3.005,06€ durante el año "
-"natural\n"
+"        respecto de otra persona o Entidad, cualquiera que sea su naturaleza\n"
+"        o carácter, hayan superado la cifra de 3.005,06€ durante el año natural\n"
 "        al que se refiere la declaración. Para el cálculo de la cifra de\n"
 "        3.005,06 € se computan de forma separada las entregas de bienes\n"
 "        y servicios y las adquisiciones de los mismos.\n"
 "\n"
 "De acuerdo con la normativa no están obligados a presentar el modelo 347:\n"
-"    * Quienes realicen en España actividades empresariales o profesionales "
-"sin\n"
-"        tener en territorio español la sede de su actividad, un "
-"establecimiento\n"
+"    * Quienes realicen en España actividades empresariales o profesionales sin\n"
+"        tener en territorio español la sede de su actividad, un establecimiento\n"
 "        permanente o su domicilio fiscal.\n"
-"    * Las personas físicas y entidades en régimen de atribución de rentas "
-"en\n"
+"    * Las personas físicas y entidades en régimen de atribución de rentas en\n"
 "        el IRPF, por las actividades que tributen en dicho impuesto por el\n"
-"        régimen de estimación objetiva y, simultáneamente, en el IVA por "
-"los\n"
+"        régimen de estimación objetiva y, simultáneamente, en el IVA por los\n"
 "        régimenes especiales simplificados o de la agricultura, ganadería\n"
 "        y pesca o recargo de equivalencia, salvo las operaciones que estén\n"
 "        excluidas de la aplicación de los expresados regímenes.\n"
-"    * Los obligados tributarios que no hayan realizado operaciones que en "
-"su\n"
+"    * Los obligados tributarios que no hayan realizado operaciones que en su\n"
 "        conjunto superen la cifra de 3.005,06€\n"
-"    * Los obligados tributarios que hayan realizado exclusivamente "
-"operaciones\n"
+"    * Los obligados tributarios que hayan realizado exclusivamente operaciones\n"
 "        no declarables.\n"
 "    * Los obligados tributarios que deban informar sobre las operaciones\n"
-"        incluidas en los libros registro de IVA (modelo 340) salvo que "
-"realicen\n"
+"        incluidas en los libros registro de IVA (modelo 340) salvo que realicen\n"
 "        operaciones que expresamente deban incluirse en el modelo 347.\n"
 "\n"
 "(http://www.boe.es/boe/dias/2008/10/23/pdfs/A42154-42190.pdf)\n"
@@ -79,24 +66,20 @@ msgstr "Ejercicio fiscal origen de las operaciones en efectivo."
 
 #. module: l10n_ES_aeat_mod347
 #: wizard_view:l10n_es_aeat_mod347.wizard_export_boe,export:0
-msgid ""
-"You may now verify, print or upload the exported file using the AEAT help "
-"program available at:"
-msgstr ""
-"Ahora puede comprobar, imprimir o cargar el archivo exportado por medio del "
-"programa de ayuda de la AEAT disponible en:"
+msgid "You may now verify, print or upload the exported file using the AEAT help program available at:"
+msgstr "Ahora puede comprobar, imprimir o cargar el archivo exportado por medio del programa de ayuda de la AEAT disponible en:"
 
 #. module: l10n_ES_aeat_mod347
 #: code:addons/l10n_ES_aeat_mod347/mod347.py:0
 #, python-format
 msgid "All real state records state code field must be filled."
-msgstr "El código de estado de todos los registros de inmuebles debe estar rellenado."
+msgstr "El código de provincia de todos los registros de inmuebles debe estar rellenado."
 
 #. module: l10n_ES_aeat_mod347
 #: code:addons/l10n_ES_aeat_mod347/mod347.py:0
 #, python-format
 msgid "All partner state code field must be filled."
-msgstr "El código de estado de todos los registros de empresas debe estar rellenado."
+msgstr "El código de provincia de todos los registros de empresas debe estar rellenado."
 
 #. module: l10n_ES_aeat_mod347
 #: model:ir.model,name:l10n_ES_aeat_mod347.model_l10n_es_aeat_mod347_partner_record
@@ -132,9 +115,7 @@ msgstr "Escalera"
 #. module: l10n_ES_aeat_mod347
 #: wizard_view:l10n_es_aeat_mod347.wizard_export_boe,init:0
 msgid "This wizard will export the 347 report data to a BOE format file."
-msgstr ""
-"Este asistente exportará los datos del informe 347 a un archivo en formato "
-"BOE."
+msgstr "Este asistente exportará los datos del informe 347 a un archivo en formato BOE."
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,situation:0
@@ -165,12 +146,8 @@ msgstr "Registros de inmuebles"
 
 #. module: l10n_ES_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,operations_limit:0
-msgid ""
-"The declaration will include partners with the total of operations over this "
-"limit"
-msgstr ""
-"La declaración incluirá las empresas cuya suma de operaciones supere este "
-"límite."
+msgid "The declaration will include partners with the total of operations over this limit"
+msgstr "La declaración incluirá las empresas cuya suma de operaciones supere este límite."
 
 #. module: l10n_ES_aeat_mod347
 #: model:ir.actions.report.xml,name:l10n_ES_aeat_mod347.report_l10n_es_aeat_mod347_generic
@@ -245,12 +222,8 @@ msgstr "Arrend. inmueb. negocio"
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
-msgid ""
-"E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores "
-"al límite (1)"
-msgstr ""
-"E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores "
-"al límite (1)"
+msgid "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores al límite (1)"
+msgstr "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores al límite (1)"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,amount:0
@@ -298,8 +271,7 @@ msgstr "Fichero exportado"
 #: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
 #, python-format
 msgid "The type 2-I record (real state) must be 502 characters long"
-msgstr ""
-"El registro de tipo 2-I (inmueble) debe tener una longitud de 502 caracteres."
+msgstr "El registro de tipo 2-I (inmueble) debe tener una longitud de 502 caracteres."
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -334,12 +306,8 @@ msgstr "¡XML inválido para la estructura de la vista!"
 
 #. module: l10n_ES_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,charges_obtp_limit:0
-msgid ""
-"The declaration will include partners from which we received payments, on "
-"behalf of third parties, over this limit"
-msgstr ""
-"La declaración incluirá las empresas a las que hemos realizado cobros por "
-"cuenta de terceros superiores al límite."
+msgid "The declaration will include partners from which we received payments, on behalf of third parties, over this limit"
+msgstr "La declaración incluirá las empresas a las que hemos realizado cobros por cuenta de terceros superiores al límite."
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,operations_limit:0
@@ -359,8 +327,7 @@ msgstr "Arrendamiento local negocio"
 #. module: l10n_ES_aeat_mod347
 #: wizard_view:l10n_es_aeat_mod347.wizard_export_boe,init:0
 msgid "You may afterwards import this file into the AEAT help program."
-msgstr ""
-"Después podrá importar este archivo en el programa de ayuda de la AEAT."
+msgstr "Después podrá importar este archivo en el programa de ayuda de la AEAT."
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,received_cash_limit:0
@@ -636,18 +603,8 @@ msgstr "Portal"
 
 #. module: l10n_ES_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,bussiness_real_state_rent:0
-msgid ""
-"Set to identify real state rent operations aside from the rest. You'll need "
-"to fill in the real state info only when you are the one that receives the "
-"money."
-msgstr ""
-"(Sólo arrendadores y arrendatarios de Locales de Negocio). Marcarán esta "
-"casilla para identificar las operaciones de arrendamiento de locales de "
-"negocio, debiendo consignarlas separadamente del resto. Además los "
-"arrendadores deberán cumplimentar los campos que componen el REGISTRO DE "
-"INMUEBLE, consignando el Importe Total de cada arrendamiento correspondiente "
-"al año natural al que se refiere la declaración, con independencia de que "
-"éste ya haya sido incluido en la clave 'B' (ventas)."
+msgid "Set to identify real state rent operations aside from the rest. You'll need to fill in the real state info only when you are the one that receives the money."
+msgstr "(Sólo arrendadores y arrendatarios de Locales de Negocio). Marcarán esta casilla para identificar las operaciones de arrendamiento de locales de negocio, debiendo consignarlas separadamente del resto. Además los arrendadores deberán cumplimentar los campos que componen el REGISTRO DE INMUEBLE, consignando el Importe Total de cada arrendamiento correspondiente al año natural al que se refiere la declaración, con independencia de que éste ya haya sido incluido en la clave 'B' (ventas)."
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,charges_obtp_limit:0
@@ -667,11 +624,8 @@ msgstr "Número:"
 
 #. module: l10n_ES_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,received_cash_limit:0
-msgid ""
-"The declaration will show the total of cash operations over this limit"
-msgstr ""
-"La declaración muestra el total de las operaciones realizadas en efectivo "
-"superiores a este límite."
+msgid "The declaration will show the total of cash operations over this limit"
+msgstr "La declaración muestra el total de las operaciones realizadas en efectivo superiores a este límite."
 
 #. module: l10n_ES_aeat_mod347
 #: wizard_field:l10n_es_aeat_mod347.calculate_wizard,show_exception,exception_text:0
@@ -751,8 +705,7 @@ msgstr "Declaración Complementaria / Sustitutiva"
 #: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
 #, python-format
 msgid "The type 2-D record (partner) must be 502 characters long"
-msgstr ""
-"El registro de tipo 2-D (empresa) debe tener una longitud de 502 caracteres."
+msgstr "El registro de tipo 2-D (empresa) debe tener una longitud de 502 caracteres."
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
@@ -761,12 +714,8 @@ msgstr "G - Compras agencia viaje"
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
-msgid ""
-"D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al "
-"límite (1)"
-msgstr ""
-"D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al "
-"límite (1)"
+msgid "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al límite (1)"
+msgstr "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al límite (1)"
 
 #. module: l10n_ES_aeat_mod347
 #: rml:report_l10n_es_aeat_mod347.generic:0
@@ -821,13 +770,8 @@ msgstr "Cancelar"
 
 #. module: l10n_ES_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,insurance_operation:0
-msgid ""
-"Only for insurance companies. Set to identify insurance operations aside "
-"from the rest."
-msgstr ""
-"Sólo entidades aseguradoras. Las entidades aseguradoras marcarán esta "
-"casilla para identificar las operaciones de seguros, debiendo consignarlas "
-"separadamente del resto de operaciones."
+msgid "Only for insurance companies. Set to identify insurance operations aside from the rest."
+msgstr "Sólo entidades aseguradoras. Las entidades aseguradoras marcarán esta casilla para identificar las operaciones de seguros, debiendo consignarlas separadamente del resto de operaciones."
 
 #. module: l10n_ES_aeat_mod347
 #: wizard_button:l10n_es_aeat_mod347.calculate_wizard,progress,calculate_records:0
@@ -841,19 +785,13 @@ msgstr "Población"
 
 #. module: l10n_ES_aeat_mod347
 #: help:account.journal,cash_journal:0
-msgid ""
-"Payments of this journal will be considered as cash (used on the 347 report)"
-msgstr ""
-"Los pagos realizados con este diario serán considerados como efectivo "
-"(utilizado en el informe 347)."
+msgid "Payments of this journal will be considered as cash (used on the 347 report)"
+msgstr "Los pagos realizados con este diario serán considerados como efectivo (utilizado en el informe 347)."
 
 #. module: l10n_ES_aeat_mod347
 #: constraint:ir.model:0
-msgid ""
-"The Object name must start with x_ and not contain any special character !"
-msgstr ""
-"¡El nombre del objeto debe empezar con x_ y no contener ningún carácter "
-"especial!"
+msgid "The Object name must start with x_ and not contain any special character !"
+msgstr "¡El nombre del objeto debe empezar con x_ y no contener ningún carácter especial!"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,floor:0
@@ -1012,10 +950,8 @@ msgstr "Importe T.I."
 
 #. module: l10n_ES_aeat_mod347
 #: wizard_view:l10n_es_aeat_mod347.calculate_wizard,init:0
-msgid ""
-"This wizard will calculate the partner operations records of the 347 report."
-msgstr ""
-"Este asistente calculará las operaciones con empresas para el informe 347."
+msgid "This wizard will calculate the partner operations records of the 347 report."
+msgstr "Este asistente calculará las operaciones con empresas para el informe 347."
 
 #. module: l10n_ES_aeat_mod347
 #: model:ir.module.module,shortdesc:l10n_ES_aeat_mod347.module_meta_information
@@ -1051,9 +987,8 @@ msgstr "Exportar"
 
 #~ msgid "Partner Operations"
 #~ msgstr "Operaciones con empresas"
-
 #~ msgid "Invoices Partner Operations"
 #~ msgstr "Facturas de operaciones con empresas"
-
 #~ msgid "Model 347"
 #~ msgstr "Modelo 347"
+
