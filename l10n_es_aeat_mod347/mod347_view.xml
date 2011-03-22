@@ -45,6 +45,7 @@
                             <group colspan="4" col="6">
                                 <field name="amount"/>
                                 <field name="cash_amount"/>
+                                <field name="origin_fiscalyear_id"/>
                                 <field name="real_state_transmissions_amount" />
                             </group>
                             <group colspan="4">
@@ -238,7 +239,7 @@
                                 <button name="button_export"
                                         type="object"
                                         string="Export to BOE"
-                                        states="calculated,done"
+                                        states="done"
                                         icon="gtk-execute"/>
                                 <button name="confirm" string="Confirm" type="workflow" states="calculated" icon="gtk-ok"/>
                                 <button name="cancel" string="Cancel" type="workflow" states="calculated,done" icon="gtk-cancel"/>
