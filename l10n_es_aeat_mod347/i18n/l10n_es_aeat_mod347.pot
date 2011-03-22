@@ -22,6 +22,34 @@ msgid "The type 2-D record (partner) must be 502 characters long"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/mod347.py:139
+#, python-format
+msgid "All real state records state code field must be filled."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/mod347.py:133
+#, python-format
+msgid "All partner state code field must be filled."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/mod347.py:135
+#, python-format
+msgid "All partner vat number field must be filled."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
+msgid "Origin fiscal year"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
+msgid "Origin cash operation fiscal year"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:83
 #, python-format
 msgid "The type 1 record must be 502 characters long"
