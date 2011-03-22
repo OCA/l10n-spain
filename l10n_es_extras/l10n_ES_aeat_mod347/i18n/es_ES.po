@@ -65,6 +65,12 @@ msgid "Origin cash operation fiscal year"
 msgstr "Ejercicio fiscal origen de las operaciones en efectivo."
 
 #. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/mod347.py:135
+#, python-format
+msgid "All partner vat number field must be filled."
+msgstr "El número CIF/NIF de todos los registros de empresas debe estar rellenado."
+
+#. module: l10n_ES_aeat_mod347
 #: wizard_view:l10n_es_aeat_mod347.wizard_export_boe,export:0
 msgid "You may now verify, print or upload the exported file using the AEAT help program available at:"
 msgstr "Ahora puede comprobar, imprimir o cargar el archivo exportado por medio del programa de ayuda de la AEAT disponible en:"

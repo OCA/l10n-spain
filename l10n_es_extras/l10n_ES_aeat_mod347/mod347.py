@@ -164,6 +164,8 @@ class l10n_es_aeat_mod347_report(osv.osv):
             for partner_record in item.partner_record_ids:
                 if not partner_record.partner_state_code:
                     raise osv.except_osv(_('Error!'), _("All partner state code field must be filled."))
+                if not partner_record.partner_vat:
+                    raise osv.except_osv(_('Error!'), _("All partner vat number field must be filled."))
 
             for real_state_record in item.real_state_record_ids:
                 if not real_state_record.state_code:

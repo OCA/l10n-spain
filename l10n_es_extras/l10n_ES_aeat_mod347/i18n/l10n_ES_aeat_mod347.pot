@@ -64,6 +64,12 @@ msgid "Error!"
 msgstr ""
 
 #. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/mod347.py:135
+#, python-format
+msgid "All partner vat number field must be filled."
+msgstr ""
+
+#. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
 msgid "Origin fiscal year"
 msgstr ""
