@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.0-rc1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2010-12-14 10:05:39+0000\n"
-"PO-Revision-Date: 2011-03-11 21:49+0100\n"
+"PO-Revision-Date: 2011-03-23 15:36+0100\n"
 "Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,34 @@ msgstr ""
 #, python-format
 msgid "The type 2-D record (partner) must be 502 characters long"
 msgstr "El tipus de registre 2-D (empresa) ha de ser de 502 caràcters de llargada"
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/mod347.py:139
+#, python-format
+msgid "All real state records state code field must be filled."
+msgstr "El codi de província de tots els registres d'immobles han d'estar introduïts."
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/mod347.py:133
+#, python-format
+msgid "All partner state code field must be filled."
+msgstr "El codi de província de tots els registres d'empreses han d'estar introduïts."
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/mod347.py:135
+#, python-format
+msgid "All partner vat number field must be filled."
+msgstr "El CIF de totes les empreses han d'estar introduïts."
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
+msgid "Origin fiscal year"
+msgstr "Exercici fiscal origen"
+
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
+msgid "Origin cash operation fiscal year"
+msgstr "Exercici fiscal origen de les operacions en efectiu."
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:83
