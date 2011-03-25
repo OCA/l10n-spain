@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.6\n"
+"Project-Id-Version: OpenERP Server 6.0.0-rc2\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2009-11-23 08:58:57+0000\n"
-"PO-Revision-Date: 2009-11-23 08:58:57+0000\n"
+"POT-Creation-Date: 2011-01-11 11:15:29+0000\n"
+"PO-Revision-Date: 2011-01-11 11:15:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es
-#: constraint:account.account.template:0
-msgid "Error ! You can not create recursive account templates."
+#: model:ir.module.module,shortdesc:l10n_es.module_meta_information
+msgid "Spanish Charts of Accounts (PGCE 2008)"
 msgstr ""
 
 #. module: l10n_es
 #: model:ir.module.module,description:l10n_es.module_meta_information
-msgid "Spanish General Chart of Accounts 2008\n"
+msgid "Spanish Charts of Accounts (PGCE 2008)\n"
 "\n"
 "* Defines the following chart of account templates:\n"
 "        * Spanish General Chart of Accounts 2008.\n"
@@ -34,20 +34,4 @@ msgid "Spanish General Chart of Accounts 2008\n"
 "for yearly account reporting (balance, profit & losses).\n"
 ""
 msgstr ""
-
-#. module: l10n_es
-#: constraint:account.tax.code.template:0
-msgid "Error ! You can not create recursive Tax Codes."
-msgstr ""
-
-#. module: l10n_es
-#: constraint:ir.ui.view:0
-msgid "Invalid XML for View Architecture!"
-msgstr ""
-
-#. module: l10n_es
-#: model:ir.module.module,shortdesc:l10n_es.module_meta_information
-msgid "Spain - Chart of Accounts 2008"
-msgstr ""
-
 
