@@ -6,6 +6,8 @@
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
 #    Copyright (c) 2010 Pexego Sistemas Informáticos. All Rights Reserved
 #                       Borja López Soilán <borjals@pexego.es>
+#    Copyright (c) 2011 Pexego Sistemas Informáticos. All Rights Reserved
+#                       Alberto Luengo Cabanillas <alberto@pexego.es>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -30,6 +32,6 @@ Spanish localization of the bank statements.
 import concepto
 import account_bank_statement
 import import_conceptos
-import wizard
+import import_c43_file
 
 

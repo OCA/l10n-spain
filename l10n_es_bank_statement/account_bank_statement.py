@@ -6,6 +6,8 @@
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
 #    Copyright (c) 2010 Pexego Sistemas Informáticos. All Rights Reserved
 #                       Borja López Soilán <borjals@pexego.es>
+#    Copyright (c) 2011 Pexego Sistemas Informáticos. All Rights Reserved
+#                       Alberto Luengo Cabanillas <alberto@pexego.es>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -28,6 +30,7 @@ C43 format concepts and extension of the bank statement lines.
 """
 
 from osv import osv
+from tools.translate import _
 
 class account_bank_statement_line(osv.osv):
     """
@@ -37,30 +40,92 @@ class account_bank_statement_line(osv.osv):
 
     _inherit = "account.bank.statement.line"
 
-    def onchange_partner_id(self, cr, uid, line_id, partner_id, ptype, currency_id, amount, reconcile_id, context={}):
+    def generate_voucher_from_import_wizard(self, cr, uid, statement_id, statement_line, line_ids, context):
+        """
+            Generate a voucher when conciling lines from an AEB43 extract statement
+        """
+        line_obj = self.pool.get('account.move.line')
+        statement_obj = self.pool.get('account.bank.statement')
+        currency_obj = self.pool.get('res.currency')
+        voucher_obj = self.pool.get('account.voucher')
+        voucher_line_obj = self.pool.get('account.voucher.line')
+        statement = statement_obj.browse(cr, uid, statement_id, context=context)
+
+        # for each selected move lines
+        for line in line_obj.browse(cr, uid, line_ids, context=context):
+            ctx = context.copy()
+            #  take the date for computation of currency => use payment date
+            ctx['date'] = statement_line.date or line.date
+            amount = 0.0
+
+            if line.debit > 0:
+                amount = line.debit
+            elif line.credit > 0:
+                amount = -line.credit
+
+            if line.amount_currency:
+                amount = currency_obj.compute(cr, uid, line.currency_id.id,
+                    statement.currency.id, line.amount_currency, context=ctx)
+            elif (line.invoice and line.invoice.currency_id.id <> statement.currency.id):
+                amount = currency_obj.compute(cr, uid, line.invoice.currency_id.id,
+                    statement.currency.id, amount, context=ctx)
+
+            context.update({'move_line_ids': [line.id]})
+            result = voucher_obj.onchange_partner_id(cr, uid, [], partner_id=line.partner_id.id, journal_id=statement.journal_id.id, price=abs(amount), currency_id= statement.currency.id, ttype=(amount < 0 and 'payment' or 'receipt'), date=line.date, context=context)
+            voucher_res = { 'type':(amount < 0 and 'payment' or 'receipt'),
+                            'name': line.name,
+                            'partner_id': line.partner_id.id,
+                            'journal_id': statement.journal_id.id,
+                            'account_id': result.get('account_id', statement.journal_id.default_credit_account_id.id), # improve me: statement.journal_id.default_credit_account_id.id
+                            'company_id':statement.company_id.id,
+                            'currency_id':statement.currency.id,
+                            'date':line.date,
+                            'amount':abs(amount),
+                            'period_id':statement.period_id.id}
+            voucher_id = voucher_obj.create(cr, uid, voucher_res, context=context)
+
+            voucher_line_dict =  {}
+            if result['value']['line_ids']:
+                for line_dict in result['value']['line_ids']:
+                    move_line = line_obj.browse(cr, uid, line_dict['move_line_id'], context)
+                    if line.move_id.id == move_line.move_id.id:
+                        voucher_line_dict = line_dict
+            if voucher_line_dict:
+                voucher_line_dict.update({'voucher_id': voucher_id})
+                voucher_line_obj.create(cr, uid, voucher_line_dict, context=context)
+
+        return voucher_id
+
+
+    def onchange_partner_id(self, cr, uid, line_ids, context, partner_id, ptype, amount, voucher_id, form_date):
         """Elimina el precálculo del importe de la línea del extracto bancario
             y propone una conciliación automática si encuentra una."""
-        statement_reconcile_obj = self.pool.get('account.bank.statement.reconcile')
-        move_line_obj = self.pool.get('account.move.line')
-        res = super(account_bank_statement_line, self).onchange_partner_id(cr, uid, line_id, partner_id, ptype, currency_id, context=context)
 
+        move_line_obj = self.pool.get('account.move.line')
+        voucher_obj = self.pool.get('account.voucher')
+        partner_obj = self.pool.get('res.partner')
+        bank_st_line_obj = self.pool.get('account.bank.statement.line')
+        current_st_line = bank_st_line_obj.browse(cr, uid, line_ids)[0]
+        statement_id = current_st_line.statement_id.id
+        res = super(account_bank_statement_line, self).onchange_type(cr, uid, line_ids, partner_id, ptype)
         # devuelve res = {'value': {'amount': balance, 'account_id': account_id}}
         if 'value' in res and 'amount' in res['value']:
             del res['value']['amount']
-
-        # Eliminamos la propuesta de concilacion que hubiera
-        if reconcile_id:
-            statement_reconcile_obj.unlink(cr, uid, [reconcile_id])
-            if 'value' not in res:
-                res['value'] = {}
-            res['value']['reconcile_id'] = False
-
+            
         # Busqueda del apunte por importe con partner
         if partner_id and amount:
+            #Actualizamos la cuenta del partner...
+            current_partner = partner_obj.browse(cr, uid, partner_id)
+            if ptype == 'supplier':
+                res['value']['account_id'] = current_partner.property_account_payable.id
+            else:
+                res['value']['account_id'] = current_partner.property_account_receivable.id
+
             domain = [
                 ('reconcile_id', '=', False),
                 ('account_id.type', 'in', ['receivable', 'payable']),
                 ('partner_id', '=', partner_id),
+                ('date', '=', current_st_line.date)
             ]
             if amount >= 0:
                 domain.append( ('debit', '=', '%.2f' % amount) )
@@ -70,11 +135,57 @@ class account_bank_statement_line(osv.osv):
             # Solamente crearemos la conciliacion automatica cuando exista un solo apunte
             # que coincida. Si hay mas de uno el usuario tendra que conciliar manualmente y
             # seleccionar cual de ellos es el correcto.
+            res['value']['voucher_id'] = ""
             if len(line_ids) == 1:
-                res['value']['reconcile_id'] = statement_reconcile_obj.create(cr, uid, {
-                    'line_ids': [(6, 0, line_ids)],
-                }, context=context)
+                #Miro si existe ya una propuesta de pago para esa fecha, cantidad, proveedor y estado...
+                saved_voucher_id_list = voucher_obj.search(cr, uid, [('date','=',current_st_line.date), ('amount','=',current_st_line.amount), ('partner_id','=',partner_id), ('state','in', ['draft', 'proforma'])])
+                saved_voucher_id = saved_voucher_id_list and saved_voucher_id_list[0] or None
+                if saved_voucher_id:
+                    voucher_id = saved_voucher_id
+                form_voucher_id_list = voucher_obj.search(cr, uid, [('date','=', form_date), ('amount','=',amount), ('partner_id','=',partner_id), ('state','in', ['draft', 'proforma'])])
+                form_voucher_id = form_voucher_id_list and form_voucher_id_list[0] or None
+                if form_voucher_id:
+                    voucher_id = form_voucher_id
+                if not saved_voucher_id and not form_voucher_id:
+                    voucher_id = bank_st_line_obj.generate_voucher_from_import_wizard(cr, uid, statement_id, current_st_line, line_ids, context)
+                res['value']['voucher_id'] = voucher_id
+            elif len(line_ids) > 1:
+                move_lines = move_line_obj.browse(cr, uid, line_ids)
+                str_list = []
+                for line in move_lines:
+                    str_list.append("'%s'"%(line.ref or line.name))
+                raise osv.except_osv(_('Beware!'), _("%s moves (%s) found for this date and partner. You'll have to concile this line manually...") %(len(line_ids), ', '.join(str_list)))
         return res
+
+
+    def _get_references( self, cr, uid, line, data, context ):
+        """
+        Override function in nan_account_statement_module.
+        """
+
+        if not 'conceptos' in data or not 'referencia2' in data:
+            if line.search_by != 'all':
+                raise osv.except_osv(_('Search by references'), _('You cannot search by reference because it seems this line has not been imported from a bank statement file. The system expected "conceptos" and "referencia2" keys in line of amount %(amount).2f in statement %(statement)s.') % {
+                    'amount': line.amount, 
+                    'statement': line.statement_id.name
+                })
+            return []
+        return [ data['conceptos'], data['referencia2'] ]
+
+    def _get_vats( self, cr, uid, line, data, context ):
+        """
+        Override function in nan_account_statement_module.
+        """
+
+        if not 'referencia1' in data or not 'conceptos' in data:
+            if line.search_by != 'all':
+                raise osv.except_osv(_('Search by VAT error'), _('You cannot search by VAT because it seems this line has not been imported from a bank statement file. The system expected "referencia1" and "conceptos" keys in line of amount %(amount).2f in statement %(statement)s.') % {
+                    'amount': line.amount, 
+                    'statement': line.statement_id.name
+                })
+            return []
+        return [ data['referencia1'][:9] , data['conceptos'][:9], data['conceptos'][21:30] ]
+
 account_bank_statement_line()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

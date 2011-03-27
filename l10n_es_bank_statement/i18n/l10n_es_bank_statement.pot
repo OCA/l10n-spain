@@ -1,45 +1,40 @@
 # Translation of OpenERP Server.
-# This file containt the translation of the following modules:
-# 	* l10n_es_bank_statement
+# This file contains the translation of the following modules:
+#	* l10n_es_bank_statement
 #
-# Albert Cervera i Areny <albert@nan-tic.com>, 2009, 2010, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.0-rc1\n"
+"Project-Id-Version: OpenERP Server 6.0.1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2011-03-26 20:02+0000\n"
-"PO-Revision-Date: 2011-03-26 20:40+0100\n"
-"Last-Translator: Albert Cervera i Areny <albert@nan-tic.com>\n"
-"Language-Team: American English <kde-i18n-ca@kde.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2011-03-26 20:02+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Lokalize 1.0\n"
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:344
 #, python-format
-msgid ""
-"The bank statement is alredy confirmed. It can not be imported from file."
-msgstr ""
-"L'extracte bancari ja està confirmat. No es pot importar des de fitxer."
+msgid "The bank statement is alredy confirmed. It can not be imported from file."
+msgstr "The bank statement is alredy confirmed. It can not be imported from file."
 
 #. module: l10n_es_bank_statement
 #: model:ir.model,name:l10n_es_bank_statement.model_l10n_es_extractos_concepto
 msgid "C43 codes"
-msgstr "Codis C43"
+msgstr "C43 codes"
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.bank.statement.import.c43.wizard,reco_amount:0
 msgid "Reconcile by amount"
-msgstr "Concilia per quantitat"
+msgstr "Reconcile by amount"
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.extractos.concepto,account_id:0
 msgid "Account associated to the concept"
-msgstr "Compte associat al concepte"
+msgstr "Account associated to the concept"
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/account_bank_statement.py:168
@@ -50,24 +45,24 @@ msgstr "Search by references"
 #. module: l10n_es_bank_statement
 #: model:ir.module.module,shortdesc:l10n_es_bank_statement.module_meta_information
 msgid "Spanish Bank Statements Importation"
-msgstr "Importación de Extractos Bancarios Españoles"
+msgstr "Spanish Bank Statements Importation"
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.bank.statement.import.c43.wizard,file:0
 #: field:l10n.es.bank.statement.import.c43.wizard,file_name:0
 msgid "Bank Statements File"
-msgstr "Fitxer extracte"
+msgstr "Bank Statements File"
 
 #. module: l10n_es_bank_statement
 #: model:ir.actions.act_window,name:l10n_es_bank_statement.action_c43_file_import_wizard
 msgid "Import Bank Statement"
-msgstr "Importació d'extracte bancari"
+msgstr "Import Bank Statement"
 
 #. module: l10n_es_bank_statement
 #: view:l10n.es.bank.statement.import.c43.wizard:0
 #: view:l10n.es.extractos.import.wizard:0
 msgid "Import"
-msgstr "Importa"
+msgstr "Import"
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:319
@@ -91,21 +86,17 @@ msgstr "Search by VAT error"
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:319
 #, python-format
 msgid "Error in C43 file"
-msgstr "Error al fitxer C43"
+msgstr "Error in C43 file"
 
 #. module: l10n_es_bank_statement
 #: help:l10n.es.extractos.concepto,account_id:0
-msgid ""
-"Default account to be associated with the concept when the file of C43 bank "
-"statements is imported"
-msgstr ""
-"Compte per defecte que s'associarà al concepte en importar el fitxer "
-"d'extractes bancaris C43"
+msgid "Default account to be associated with the concept when the file of C43 bank statements is imported"
+msgstr "Default account to be associated with the concept when the file of C43 bank statements is imported"
 
 #. module: l10n_es_bank_statement
 #: view:l10n.es.bank.statement.import.c43.wizard:0
 msgid "Bank statements import according to norm C43"
-msgstr "Importació extracte bancari segons norma C43"
+msgstr "Bank statements import according to norm C43"
 
 #. module: l10n_es_bank_statement
 #: model:ir.model,name:l10n_es_bank_statement.model_l10n_es_extractos_import_wizard
@@ -116,94 +107,68 @@ msgstr "l10n.es.extractos.import.wizard"
 #: model:ir.actions.act_window,name:l10n_es_bank_statement.action_extractos_concepto
 #: view:l10n.es.extractos.concepto:0
 msgid "C43 default accounts"
-msgstr "Comptes per defecte C43"
+msgstr "C43 default accounts"
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/account_bank_statement.py:182
 #, python-format
-msgid ""
-"You cannot search by VAT because it seems this line has not been imported "
-"from a bank statement file. The system expected \"referencia1\" and "
-"\"conceptos\" keys in line of amount %(amount).2f in statement %(statement)s."
-msgstr ""
-"You cannot search by VAT because it seems this line has not been imported "
-"from a bank statement file. The system expected \"referencia1\" and "
-"\"conceptos\" keys in line of amount %(amount).2f in statement %(statement)s."
+msgid "You cannot search by VAT because it seems this line has not been imported from a bank statement file. The system expected \"referencia1\" and \"conceptos\" keys in line of amount %(amount).2f in statement %(statement)s."
+msgstr "You cannot search by VAT because it seems this line has not been imported from a bank statement file. The system expected \"referencia1\" and \"conceptos\" keys in line of amount %(amount).2f in statement %(statement)s."
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:195
 #, python-format
-msgid ""
-"Number of debit records does not agree with the defined in the last record "
-"of account."
-msgstr ""
-"Nombre de registres deure no coincideix amb el definit en el registre final "
-"de compte."
+msgid "Number of debit records does not agree with the defined in the last record of account."
+msgstr "Number of debit records does not agree with the defined in the last record of account."
 
 #. module: l10n_es_bank_statement
 #: view:l10n.es.bank.statement.import.c43.wizard:0
 msgid "Bank Statements File:"
-msgstr "Fitxer extracte bancari:"
+msgstr "Bank Statements File:"
 
 #. module: l10n_es_bank_statement
 #: view:l10n.es.bank.statement.import.c43.wizard:0
 msgid "Automatic reconciliation options"
-msgstr "Opcions de conciliació automàtica"
+msgstr "Automatic reconciliation options"
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/account_bank_statement.py:157
 #, python-format
-msgid ""
-"%s moves (%s) found for this date and partner. You'll have to concile this "
-"line manually..."
-msgstr ""
-"%s moves (%s) found for this date and partner. You'll have to concile this "
-"line manually..."
+msgid "%s moves (%s) found for this date and partner. You'll have to concile this line manually..."
+msgstr "%s moves (%s) found for this date and partner. You'll have to concile this line manually..."
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.bank.statement.import.c43.wizard,reco_max_days:0
 msgid "Max. days from statement date"
-msgstr "Dies màx. des de data extracte"
+msgstr "Max. days from statement date"
 
 #. module: l10n_es_bank_statement
 #: help:l10n.es.bank.statement.import.c43.wizard,reco_max_days:0
-msgid ""
-"Maximum difference in days, between the maturity date of the entry to "
-"reconcile and the bank statement entry"
-msgstr ""
-"Diferencia màxima en dies, entre la data de venciment de l'assentament a "
-"conciliar i la línia de l'extracte bancari"
+msgid "Maximum difference in days, between the maturity date of the entry to reconcile and the bank statement entry"
+msgstr "Maximum difference in days, between the maturity date of the entry to reconcile and the bank statement entry"
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:197
 #, python-format
-msgid ""
-"Number of credit records does not agree with the defined in the last record "
-"of account."
-msgstr ""
-"Nombre de registres haver no coincideix amb el definit en el registre final "
-"de compte."
+msgid "Number of credit records does not agree with the defined in the last record of account."
+msgstr "Number of credit records does not agree with the defined in the last record of account."
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:207
 #, python-format
-msgid ""
-"Final balance amount = (initial balance + credit - debit) does not agree "
-"with the defined in the last record of account."
-msgstr ""
-"Importi saldo final = (saldo inicial + haver - deure) no coincideix amb el "
-"definit en el registre final de compte."
+msgid "Final balance amount = (initial balance + credit - debit) does not agree with the defined in the last record of account."
+msgstr "Final balance amount = (initial balance + credit - debit) does not agree with the defined in the last record of account."
 
 #. module: l10n_es_bank_statement
 #: model:ir.ui.menu,name:l10n_es_bank_statement.menu_extractos_bancarios_concepto
 msgid "Default accounts associated to C43 codes"
-msgstr "Comptes per defecte associats als codis C43"
+msgstr "Default accounts associated to C43 codes"
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:418
 #, python-format
 msgid "A default account has not been defined for the C43 concept "
-msgstr "No s'ha definit un compte comptable per defecte per al concepte C43 "
+msgstr "A default account has not been defined for the C43 concept "
 
 #. module: l10n_es_bank_statement
 #: model:ir.model,name:l10n_es_bank_statement.model_l10n_es_bank_statement_import_c43_wizard
@@ -213,16 +178,8 @@ msgstr "l10n.es.bank.statement.import.c43.wizard"
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/account_bank_statement.py:168
 #, python-format
-msgid ""
-"You cannot search by reference because it seems this line has not been "
-"imported from a bank statement file. The system expected \"conceptos\" and "
-"\"referencia2\" keys in line of amount %(amount).2f in statement "
-"%(statement)s."
-msgstr ""
-"You cannot search by reference because it seems this line has not been "
-"imported from a bank statement file. The system expected \"conceptos\" and "
-"\"referencia2\" keys in line of amount %(amount).2f in statement "
-"%(statement)s."
+msgid "You cannot search by reference because it seems this line has not been imported from a bank statement file. The system expected \"conceptos\" and \"referencia2\" keys in line of amount %(amount).2f in statement %(statement)s."
+msgstr "You cannot search by reference because it seems this line has not been imported from a bank statement file. The system expected \"conceptos\" and \"referencia2\" keys in line of amount %(amount).2f in statement %(statement)s."
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:60
@@ -234,29 +191,24 @@ msgstr "Concepts for this company already imported..."
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:468
 #, python-format
 msgid "bank-statement.txt"
-msgstr "extracte-bancari.txt"
+msgstr "bank-statement.txt"
 
 #. module: l10n_es_bank_statement
 #: help:l10n.es.extractos.concepto,code:0
 msgid "2 digits code of the concept defined in the file of C43 bank statements"
-msgstr ""
-"Codi de 2 dígits del concepte definit al fitxer d'extractes bancaris C43"
+msgstr "2 digits code of the concept defined in the file of C43 bank statements"
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:199
 #, python-format
-msgid ""
-"Debit amount does not agree with the defined in the last record of account."
-msgstr ""
-"Import deure no coincideix amb el definit en el registre final de compte."
+msgid "Debit amount does not agree with the defined in the last record of account."
+msgstr "Debit amount does not agree with the defined in the last record of account."
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:231
 #, python-format
 msgid "Number of records does not agree with the defined in the last record."
-msgstr ""
-"Nombre de registres no coincideix amb el definit en el registre final de "
-"fitxer."
+msgstr "Number of records does not agree with the defined in the last record."
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/account_bank_statement.py:157
@@ -269,7 +221,7 @@ msgstr "Beware!"
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:101
 #, python-format
 msgid "C43 Created Concepts"
-msgstr "S'han creat els conceptes C43"
+msgstr "C43 Created Concepts"
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:344
@@ -286,123 +238,91 @@ msgstr "Error"
 #. module: l10n_es_bank_statement
 #: field:l10n.es.extractos.concepto,name:0
 msgid "Concept name"
-msgstr "Nom concepte"
+msgstr "Concept name"
 
 #. module: l10n_es_bank_statement
 #: constraint:account.bank.statement.line:0
-msgid ""
-"The amount of the voucher must be the same amount as the one on the "
-"statement line"
-msgstr ""
-"The amount of the voucher must be the same amount as the one on the "
-"statement line"
+msgid "The amount of the voucher must be the same amount as the one on the statement line"
+msgstr "The amount of the voucher must be the same amount as the one on the statement line"
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:201
 #, python-format
-msgid ""
-"Credit amount does not agree with the defined in the last record of account."
-msgstr ""
-"Import haver no coincideix amb el definit en el registre final de compte."
+msgid "Credit amount does not agree with the defined in the last record of account."
+msgstr "Credit amount does not agree with the defined in the last record of account."
 
 #. module: l10n_es_bank_statement
 #: view:l10n.es.extractos.import.wizard:0
-msgid ""
-"This wizard will import default concepts related to standard accounts of "
-"spanish charts."
-msgstr ""
-"Aquest assistent importarà els conceptes per defecte relacionats amb els "
-"comptes comptables estàndards del pla de comptes espanyol."
+msgid "This wizard will import default concepts related to standard accounts of spanish charts."
+msgstr "This wizard will import default concepts related to standard accounts of spanish charts."
 
 #. module: l10n_es_bank_statement
 #: model:ir.model,name:l10n_es_bank_statement.model_account_bank_statement_line
 msgid "Bank Statement Line"
-msgstr "Línia d'extracte bancari"
+msgstr "Bank Statement Line"
 
 #. module: l10n_es_bank_statement
 #: model:ir.actions.act_window,name:l10n_es_bank_statement.action_extractos_import_wizard
 #: model:ir.ui.menu,name:l10n_es_bank_statement.menu_import_wizard
 msgid "Import Statement Concepts Wizard"
-msgstr "Assistent d'importació de conceptes d'extractes"
+msgstr "Import Statement Concepts Wizard"
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.bank.statement.import.c43.wizard,reco_payment_order:0
 msgid "Reconcile payment orders by total amount"
-msgstr "Concilia ordres de pagament per total"
+msgstr "Reconcile payment orders by total amount"
 
 #. module: l10n_es_bank_statement
 #: model:ir.module.module,description:l10n_es_bank_statement.module_meta_information
-#, fuzzy
-msgid ""
-"\n"
-"Module for the importation of Spanish bank statements following the C43 "
-"normative of the 'Asociación Española de la Banca'.\n"
+msgid "\n"
+"Module for the importation of Spanish bank statements following the C43 normative of the 'Asociación Española de la Banca'.\n"
 "    \n"
-"    Adds a wizard to the bank statements to perform the importation. The "
-"imported file gets attached to the given bank statement.\n"
-"    It allows to define default accounting codes for the concepts defined in "
-"the C43 bank statement file.\n"
+"    Adds a wizard to the bank statements to perform the importation. The imported file gets attached to the given bank statement.\n"
+"    It allows to define default accounting codes for the concepts defined in the C43 bank statement file.\n"
 "\n"
 "    The search of the entries to reconcile (and partner) is done like this:\n"
-"        1) Unreconciled entries with the given reference and amount. The "
-"reference is taken from the 'conceptos' or 'referencia2' fields of the "
-"statement.\n"
-"        2) Unreconciled entries with (a partner with) the given VAT number "
-"and amount.\n"
+"        1) Unreconciled entries with the given reference and amount. The reference is taken from the 'conceptos' or 'referencia2' fields of the statement.\n"
+"        2) Unreconciled entries with (a partner with) the given VAT number and amount.\n"
 "           These fields are tested to find a valid spanish VAT:\n"
 "              - First 9 characters of 'referencia1' (Banc Sabadell)\n"
 "              - First 9 characters of 'conceptos' (La Caixa)\n"
 "              - Characters [21:30] of 'conceptos' (Caja Rural del Jalón)\n"
 "        3) Unreconciled entries with the given amount.\n"
 "\n"
-"    If no partner is found, the default account defined for the concept is "
-"used.\n"
+"    If no partner is found, the default account defined for the concept is used.\n"
 "\n"
-"    The module also adds a wizard in Financial Management/Configuration/C43 "
-"bank statements to import the default statement concepts, that must be run "
-"after creating the spanish chart of accounts (l10n_es module).\n"
+"    The module also adds a wizard in Financial Management/Configuration/C43 bank statements to import the default statement concepts, that must be run after creating the spanish chart of accounts (l10n_es module).\n"
 "    "
-msgstr ""
-"Modulo para la importación de extractos bancarios españoles según la norma "
-"C43 de la 'Asociación Española de la Banca'.\n"
+msgstr "\n"
+"Module for the importation of Spanish bank statements following the C43 normative of the 'Asociación Española de la Banca'.\n"
 "    \n"
-"    Añade un asistente a los extractos bancarios para realizar la "
-"importación. El fichero importado se queda como fichero adjunto al extracto "
-"en cuestión.\n"
-"    Permite definir cuentas contables por defecto para los conceptos "
-"definidos en el archivo de extracto C43.\n"
+"    Adds a wizard to the bank statements to perform the importation. The imported file gets attached to the given bank statement.\n"
+"    It allows to define default accounting codes for the concepts defined in the C43 bank statement file.\n"
 "\n"
-"    La búsqueda de los apuntes a conciliar (y empresa) se realiza de la "
-"siguiente forma:\n"
-"        1) Apuntes no conciliados con la referencia y cantidad dadas. La "
-"referencia se toma de los campos 'conceptos' o 'referencia2' del extracto.\n"
-"        2) Apuntes no conciliados con (una empresa con) el NIF y cantidad "
-"dados.\n"
-"           Se comprueban estos campos para encontrar un NIF válido:\n"
-"              - Los primeros 9 carácteres de 'referencia1' (Banc Sabadell)\n"
-"              - Los primeros 9 carácteres de 'conceptos' (La Caixa)\n"
-"              - Carácteres [21:30] de 'conceptos' (Caja Rural del Jalón)\n"
-"        3) Apuntes no conciliadas con la cantidad dada.\n"
+"    The search of the entries to reconcile (and partner) is done like this:\n"
+"        1) Unreconciled entries with the given reference and amount. The reference is taken from the 'conceptos' or 'referencia2' fields of the statement.\n"
+"        2) Unreconciled entries with (a partner with) the given VAT number and amount.\n"
+"           These fields are tested to find a valid spanish VAT:\n"
+"              - First 9 characters of 'referencia1' (Banc Sabadell)\n"
+"              - First 9 characters of 'conceptos' (La Caixa)\n"
+"              - Characters [21:30] of 'conceptos' (Caja Rural del Jalón)\n"
+"        3) Unreconciled entries with the given amount.\n"
 "\n"
-"    Si no se encuentra la empresa, se usará la cuenta por defecto definida "
-"para el concepto.\n"
+"    If no partner is found, the default account defined for the concept is used.\n"
 "\n"
-"    El modulo también añade un asistente en Gestión financiera/Configuración/"
-"Extractos bancarios C43 para importar los conceptos de extractos por "
-"defecto, que se debe ejecutar una vez creado el plan de cuentas español "
-"(módulo l10n_es).\n"
+"    The module also adds a wizard in Financial Management/Configuration/C43 bank statements to import the default statement concepts, that must be run after creating the spanish chart of accounts (l10n_es module).\n"
 "    "
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.bank.statement.import.c43.wizard,reco_vat_and_amount:0
 msgid "Reconcile by VAT number and amount"
-msgstr "Concilia per NIF i quantitat"
+msgstr "Reconcile by VAT number and amount"
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:468
 #, python-format
 msgid "Bank Statement"
-msgstr "Extracte Bancari"
+msgstr "Bank Statement"
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:60
@@ -413,28 +333,28 @@ msgstr "Info:"
 #. module: l10n_es_bank_statement
 #: field:l10n.es.bank.statement.import.c43.wizard,reco_reference_and_amount:0
 msgid "Reconcile by reference and amount"
-msgstr "Concilia per referència i quantitat"
+msgstr "Reconcile by reference and amount"
 
 #. module: l10n_es_bank_statement
 #: view:l10n.es.extractos.import.wizard:0
 msgid "Import Wizard"
-msgstr "Assistent d'importació"
+msgstr "Import Wizard"
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.bank.statement.import.c43.wizard,reco_rules:0
 msgid "Statement Line Rules"
-msgstr "Regles de línies d'extracte"
+msgstr "Statement Line Rules"
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.extractos.concepto,code:0
 msgid "Concept code"
-msgstr "Codi concepte"
+msgstr "Concept code"
 
 #. module: l10n_es_bank_statement
 #: view:l10n.es.bank.statement.import.c43.wizard:0
 #: view:l10n.es.extractos.import.wizard:0
 msgid "Cancel"
-msgstr "Cancel·la"
+msgstr "Cancel"
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:113
@@ -442,34 +362,5 @@ msgstr "Cancel·la"
 #: field:l10n.es.extractos.import.wizard,company_id:0
 #, python-format
 msgid "Company"
-msgstr "Companyia"
+msgstr "Company"
 
-#~ msgid ""
-#~ "The Object name must start with x_ and not contain any special character !"
-#~ msgstr ""
-#~ "El nom de l'objecte ha de començar amb x_ i no contenir cap caràcter "
-#~ "especial!"
-
-#~ msgid "Invalid model name in the action definition."
-#~ msgstr "Nom de model incorrecte en la definició de l'acció."
-
-#~ msgid "C43 bank statements"
-#~ msgstr "Extractes bancaris C43"
-
-#~ msgid "Importación de extractos bancarios C43"
-#~ msgstr "Importació d'extractes bancaris C43"
-
-#~ msgid "Archivo a importar codificado en ISO-8859-1"
-#~ msgstr "Fitxer a importar codificat en ISO-8859-1"
-
-#~ msgid "Invalid XML for View Architecture!"
-#~ msgstr "XML invàlid per a la definició de la vista!"
-
-#~ msgid "Not valid record type."
-#~ msgstr "Tipus de registre no vàlid."
-
-#~ msgid "Import bank stat."
-#~ msgstr "Importa ext. bancari"
-
-#~ msgid "Fichero extracto"
-#~ msgstr "Fitxer extracte"

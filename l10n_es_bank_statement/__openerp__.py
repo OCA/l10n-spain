@@ -6,6 +6,8 @@
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
 #    Copyright (c) 2010 Pexego Sistemas Informáticos. All Rights Reserved
 #                       Borja López Soilán <borjals@pexego.es>
+#    Copyright (c) 2011 Pexego Sistemas Informáticos. All Rights Reserved
+#                       Alberto Luengo Cabanillas <alberto@pexego.es>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -25,10 +27,10 @@
 
 {
     "name" : "Spanish Bank Statements Importation",
-    "version" : "1.0",
-    "author" : "Zikzakmedia, Pexego",
+    "version" : "2.0",
+    "author" : "Zikzakmedia, Pexego, NaN·tic",
     "category" : "Localisation/Accounting",
-    "description" : """NOTA: NO ADAPTADO TODAVÍA A LA VERSIÓN 6.0
+    "description" : """
 Module for the importation of Spanish bank statements following the C43 normative of the 'Asociación Española de la Banca'.
     
     Adds a wizard to the bank statements to perform the importation. The imported file gets attached to the given bank statement.
@@ -47,16 +49,24 @@ Module for the importation of Spanish bank statements following the C43 normativ
 
     The module also adds a wizard in Financial Management/Configuration/C43 bank statements to import the default statement concepts, that must be run after creating the spanish chart of accounts (l10n_es module).
     """,
-    "website" : "www.zikzakmedia.com",
+    "website" : "www.zikzakmedia.com / www.pexego.es / www.nan-tic.com",
     "license" : "GPL-3",
-    "depends" : ["base","account","l10n_es",],
+    "depends" : [
+        "account",
+        "account_voucher",
+        "l10n_es",
+        "nan_account_bank_statement",
+        ],
     "init_xml" : [],
     "demo_xml" : [],
     "update_xml" : [
         "extractos_view.xml",
-        "extractos_wizard.xml",
+        "import_c43_file_view.xml",
         "security/ir.model.access.csv",
+        "security/concepto_security.xml"
         ],
     "installable" : True,
     "active" : False,
 }
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
