@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <!--****************************** CUENTAS POR DEFECTO PARA LOS EXTRACTOS BANCARIOS ***********************************-->
+        <!-- FORMULARIO -->
+        <record model="ir.ui.view" id="view_extractos_concepto">
+            <field name="name">l10n.es.extractos.concepto.form</field>
+            <field name="model">l10n.es.extractos.concepto</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="C43 default accounts">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="account_id"/>
+                    <field name="company_id"/>
+                </form>
+            </field>
+        </record>
+
+        <!-- LISTA -->
+        <record model="ir.ui.view" id="view_extractos_concepto_tree">
+            <field name="name">l10n.es.extractos.concepto.tree</field>
+            <field name="model">l10n.es.extractos.concepto</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="C43 default accounts">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="account_id"/>
+                    <field name="company_id" select="1"/>
+                </tree>
+            </field>
+        </record> 
+
+        <record model="ir.actions.act_window" id="action_extractos_concepto"> 
+            <field name="name">C43 default accounts</field> 
+            <field name="res_model">l10n.es.extractos.concepto</field> 
+        </record> 
+
+        <!-- menu -->
+        <menuitem 
+		id="menu_extractos_bancarios_concepto" 
+		name="Default accounts associated to C43 codes" 
+		parent="nan_account_bank_statement.menu_configuration_bank_statement" 
+		action="action_extractos_concepto"/>
+
+
+    <!--************************** Redefinición on_change de las líneas de extracto bancario *******************************-->
+        <record id="view_bank_statement_form_ES1" model="ir.ui.view">
+            <field name="name">account.bank.statement.form.ES1</field>
+            <field name="model">account.bank.statement</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_bank_statement_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="/form/notebook/page[@string='Transaction']/field/tree/field[@name='partner_id']" position="replace">
+                    <field name="partner_id" on_change="onchange_partner_id(line_id, partner_id, type, amount, voucher_id, date)"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_bank_statement_form_ES2" model="ir.ui.view">
+            <field name="name">account.bank.statement.form.ES2</field>
+            <field name="model">account.bank.statement</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_bank_statement_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="/form/notebook/page/field/form/field[@name='partner_id']" position="replace">
+                    <field name="partner_id" on_change="onchange_partner_id(line_id, partner_id, type, amount, voucher_id, date)"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_bank_statement_form_ES3" model="ir.ui.view">
+            <field name="name">account.bank.statement.form.ES3</field>
+            <field name="model">account.bank.statement</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_bank_statement_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="/form/notebook/page/field/tree/field[@name='amount']" position="replace">
+                    <field name="amount" on_change="onchange_partner_id(line_id, partner_id, type, amount, voucher_id, date)"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_bank_statement_form_ES4" model="ir.ui.view">
+            <field name="name">account.bank.statement.form.ES4</field>
+            <field name="model">account.bank.statement</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_bank_statement_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="/form/notebook/page/field/form/field[@name='amount']" position="replace">
+                    <field name="amount" on_change="onchange_partner_id(line_id, partner_id, type, amount, voucher_id, date)"/>
+                </xpath>
+            </field>
+        </record>
+
+
+	<!-- Import wizard -->
+        <record model="ir.ui.view" id="extractos_import_wizard">
+            <field name="name">l10n.es.extractos.import.form</field>
+            <field name="model">l10n.es.extractos.import.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Import Wizard">
+                    <label colspan="4" string="This wizard will import default concepts related to standard accounts of spanish charts."/>
+                    <field name="company_id" colspan="4" widget="selection"/>
+                    <button icon="gtk-cancel" special="cancel" string="Cancel" type="object"/>
+                    <button icon="gtk-ok" name="action_import" string="Import" type="object"/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_extractos_import_wizard" model="ir.actions.act_window">
+            <field name="name">Import Statement Concepts Wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">l10n.es.extractos.import.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem 
+		id="menu_import_wizard" 
+		parent="nan_account_bank_statement.menu_configuration_bank_statement" 
+		action="action_extractos_import_wizard"
+		/>
+
+    </data>
+</openerp>
+
