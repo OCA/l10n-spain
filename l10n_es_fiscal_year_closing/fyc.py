@@ -371,6 +371,12 @@ class fiscal_year_closing(osv.osv):
                             ('date_start', '=', fyc.closing_fiscalyear_id.date_stop),
                             ('code', 'ilike', 'PG'),
                         ])
+        if not period_ids:
+            period_ids = self.pool.get('account.period').search(cr, uid, [
+                                ('fiscalyear_id', '=', fyc.closing_fiscalyear_id.id),
+                                ('special', '=', True),
+                                ('date_start', '=', fyc.closing_fiscalyear_id.date_stop),
+                            ])
         return period_ids and period_ids[0]
 
     def _get_c_period_id(self, cr, uid, fyc, context):
@@ -384,6 +390,13 @@ class fiscal_year_closing(osv.osv):
                             ('date_start', '=', fyc.closing_fiscalyear_id.date_stop),
                             ('code', 'ilike', 'C'),
                         ])
+
+        if not period_ids:
+            period_ids = self.pool.get('account.period').search(cr, uid, [
+                                ('fiscalyear_id', '=', fyc.closing_fiscalyear_id.id),
+                                ('special', '=', True),
+                                ('date_start', '=', fyc.closing_fiscalyear_id.date_stop),
+                            ])
         return period_ids and period_ids[0]
 
     def _get_o_period_id(self, cr, uid, fyc, context):
@@ -397,6 +410,12 @@ class fiscal_year_closing(osv.osv):
                             ('date_stop', '=', fyc.opening_fiscalyear_id.date_start),
                             ('code', 'ilike', 'A'),
                         ])
+        if not period_ids:
+            period_ids = self.pool.get('account.period').search(cr, uid, [
+                                ('fiscalyear_id', '=', fyc.opening_fiscalyear_id.id),
+                                ('special', '=', True),
+                                ('date_stop', '=', fyc.opening_fiscalyear_id.date_start),
+                            ])
         return period_ids and period_ids[0]
 
 
@@ -504,7 +523,7 @@ class fiscal_year_closing(osv.osv):
                     # Perform all the operations by default
                     #
                     'create_loss_and_profit': True,
-                    'create_net_loss_and_profit': True,
+                    'create_net_loss_and_profit': False,
                     'create_closing': True,
                     'create_opening': True,
 

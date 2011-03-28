@@ -23,7 +23,7 @@
 """
 Create FYC entries wizards
 """
-__author__ = """Borja López Soilán (Pexego) - borjals@pexego.es"""
+__author__ = """Borja López Soilán (Pexego) - borja@kami.es"""
 
 from tools.translate import _
 import wizard
@@ -32,6 +32,7 @@ import time
 import threading
 import sql_db
 import netsvc
+import decimal_precision as dp
 from tools import config
 
 class wizard_run(wizard.interface):
@@ -60,7 +61,7 @@ class wizard_run(wizard.interface):
     </form>"""
 
     _progress_form = '''<?xml version="1.0"?>
-    <form string="Fiscal Year Closing - Working" colspan="4" width="400">
+    <form string="Fiscal Year Closing - Working" colspan="4" width="400" auto_refresh="1">
         <label string="The process may take a while." colspan="4"/>
         <label string="" colspan="4"/>
         <field name="task_progress" widget="progressbar" colspan="4"/>
@@ -205,7 +206,7 @@ class wizard_run(wizard.interface):
             for line in move.line_id:
                 amount += (line.debit - line.credit)
 
-            if abs(amount) > 0.5 * 10 ** -int(config['price_accuracy']):
+            if round(abs(amount), pool.get('decimal.precision').precision_get(cr, uid, 'Account')) > 0:
                 unbalanced_moves.append(move)
 
             accounts_done += 1
@@ -352,12 +353,14 @@ class wizard_run(wizard.interface):
             if account_map.dest_account_id:
                 dest_accounts_totals[account_map.dest_account_id.id] = dest_accounts_totals.get(account_map.dest_account_id.id, 0)
 
+            ctx = context.update({'fiscalyear': fiscalyear_id, 'periods': period_ids})
+
             # Find its children accounts (recursively)
             # FIXME: _get_children_and_consol is a protected member of account_account but the OpenERP code base uses it like this :(
-            child_ids = pool.get('account.account')._get_children_and_consol(cr, uid, [account_map.source_account_id.id], context)
-
+            child_ids = pool.get('account.account')._get_children_and_consol(cr, uid, [account_map.source_account_id.id], ctx)
+            
             # For each children account. (Notice the context filter! the computed balanced is based on this filter)
-            for account in pool.get('account.account').browse(cr, uid, child_ids, context={'fiscalyear': fiscalyear_id, 'periods': period_ids}):
+            for account in pool.get('account.account').browse(cr, uid, child_ids, ctx):
                 # Check if the children account needs to (and can) be closed
                 # Note: We currently ignore the close_method (account.user_type.close_method)
                 #       and always do a balance close.
@@ -365,7 +368,7 @@ class wizard_run(wizard.interface):
                     # Compute the balance for the account (uses the previous browse context filter)
                     balance = account.balance
                     # Check if the balance is greater than the limit
-                    if abs(balance) >= 0.5 * 10 ** -int(config['price_accuracy']):
+                    if round(abs(balance), pool.get('decimal.precision').precision_get(cr, uid, 'Account')) > 0:
                         #
                         # Add a new line to the move
                         #
@@ -642,6 +645,7 @@ class wizard_run(wizard.interface):
                 total_operations += 1
                 
             if total_operations > 0:
+
                 #
                 # Check for invalid period moves if needed
                 #

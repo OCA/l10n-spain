@@ -20,7 +20,7 @@
 #
 -->
 <!--
-Authors: Borja López Soilán (Pexego) - borjals@pexego.es
+Authors: Borja López Soilán (Pexego) - borja@kami.es
 -->
 <openerp>
     <data>
@@ -28,30 +28,16 @@ Authors: Borja López Soilán (Pexego) - borjals@pexego.es
         <menuitem id="menu_account_end_year_treatments_old"
             name="Other operations (for non Spanish charts of accounts)"
             parent="account.menu_account_end_year_treatments"
-            sequence="100"
-            groups="base.group_no_one"/>
+            sequence="100"/>
 
         <menuitem id="account.menu_wizard_fy_close"
-            action="account.wizard_fiscalyear_close"
-            parent="menu_account_end_year_treatments_old"
-            type="wizard"
-            sequence="1"/>
+            parent="menu_account_end_year_treatments_old"/>
 
         <menuitem id="account.menu_wizard_fy_close_state"
-            action="account.wizard_fiscalyear_close_state"
-            parent="menu_account_end_year_treatments_old"
-            type="wizard"/>
+            parent="menu_account_end_year_treatments_old"/>
 
-        <menuitem id="account.menu_wizard_open_closed_fy"
-            action="account.wizard_open_closed_fiscalyear"
-            sequence="2"
-            parent="menu_account_end_year_treatments_old"
-            type="wizard"/>
-
-        <!--<menuitem id="account.menu_action_account_period_close_tree"
-            action="account.action_account_period_tree"
-            parent="menu_account_end_year_treatments_old"
-            sequence="0"/>-->
+        <menuitem id="account.menu_wizard_account_open_closed_fiscalyear"
+            parent="menu_account_end_year_treatments_old"/>
 
     </data>
 </openerp>
