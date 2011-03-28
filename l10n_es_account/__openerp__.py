@@ -26,7 +26,7 @@
     "version" : "3.0",
     "author" : "Spanish Localization Team",
     'website' : 'https://launchpad.net/openerp-spain',
-    "category" : "Localisation/Account Charts",
+    "category" : "Localisation/Accounting",
     "description": """Adds several tools to help Spanish accountants:
   * Searching of accounts using a dot to fill the zeroes (like 43.27 to search account 43000027).
   * The account chart template field is added to account templates, tax templates, tax codes templates and fiscal positions templates in list and search views. It helps to filter the template items by the account chart template that they belong.
