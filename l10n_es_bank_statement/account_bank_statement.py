@@ -8,6 +8,8 @@
 #                       Borja López Soilán <borjals@pexego.es>
 #    Copyright (c) 2011 Pexego Sistemas Informáticos. All Rights Reserved
 #                       Alberto Luengo Cabanillas <alberto@pexego.es>
+#    Copyright (c) 2011 Acysos S.L. All Rights Reserved
+#                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -187,5 +189,52 @@ class account_bank_statement_line(osv.osv):
         return [ data['referencia1'][:9] , data['conceptos'][:9], data['conceptos'][21:30] ]
 
 account_bank_statement_line()
+
+class account_bank_statement(osv.osv):
+    
+    _inherit = "account.bank.statement"
+    
+    _defaults = {
+        'name': lambda self, cr, uid, context=None: \
+                self.pool.get('ir.sequence').get(cr, uid, 'account.bank.statement'),
+    }
+
+    
+    def button_confirm_bank(self, cr, uid, ids, context=None):
+        done = []
+        obj_seq = self.pool.get('ir.sequence')
+        if context is None:
+            context = {}
+
+        for st in self.browse(cr, uid, ids, context=context):
+            j_type = st.journal_id.type
+            company_currency_id = st.journal_id.company_id.currency_id.id
+            if not self.check_status_condition(cr, uid, st.state, journal_type=j_type):
+                continue
+
+            self.balance_check(cr, uid, st.id, journal_type=j_type, context=context)
+            if (not st.journal_id.default_credit_account_id) \
+                    or (not st.journal_id.default_debit_account_id):
+                raise osv.except_osv(_('Configuration Error !'),
+                        _('Please verify that an account is defined in the journal.'))
+
+            for line in st.move_line_ids:
+                if line.state <> 'valid':
+                    raise osv.except_osv(_('Error !'),
+                            _('The account entries lines are not in valid state.'))
+            for st_line in st.line_ids:
+                if st_line.analytic_account_id:
+                    if not st.journal_id.analytic_journal_id:
+                        raise osv.except_osv(_('No Analytic Journal !'),_("You have to define an analytic journal on the '%s' journal!") % (st.journal_id.name,))
+                if not st_line.amount:
+                    continue
+                c = {'fiscalyear_id': st.period_id.fiscalyear_id.id}
+                st_line_number = obj_seq.get_id(cr, uid, st.journal_id.sequence_id.id, context=c)
+                self.create_move_from_st_line(cr, uid, st_line.id, company_currency_id, st_line_number, context)
+
+            done.append(st.id)
+        return self.write(cr, uid, ids, {'state':'confirm'}, context=context)
+    
+account_bank_statement()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

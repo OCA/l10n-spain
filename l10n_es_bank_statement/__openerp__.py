@@ -28,7 +28,7 @@
 {
     "name" : "Spanish Bank Statements Importation",
     "version" : "2.0",
-    "author" : "Zikzakmedia, Pexego, NaN·tic",
+    "author" : "Zikzakmedia, Pexego, Acysos, NaN·tic",
     "category" : "Localisation/Accounting",
     "description" : """
 Module for the importation of Spanish bank statements following the C43 normative of the 'Asociación Española de la Banca'.
@@ -49,7 +49,7 @@ Module for the importation of Spanish bank statements following the C43 normativ
 
     The module also adds a wizard in Financial Management/Configuration/C43 bank statements to import the default statement concepts, that must be run after creating the spanish chart of accounts (l10n_es module).
     """,
-    "website" : "www.zikzakmedia.com / www.pexego.es / www.nan-tic.com",
+    "website" : "www.zikzakmedia.com / www.pexego.es / www.acysos.com / www.nan-tic.com",
     "license" : "GPL-3",
     "depends" : [
         "account",
