@@ -43,6 +43,19 @@
                             <separator string="CSB 32 Options" colspan="2"/>
                             <field name="cedente"/>
                         </group>
+                        <group colspan="2" col="4" attrs="{ 'invisible': [('tipo', '!=', 'csb_34')] }">
+                            <separator string="CSB 34 Options" colspan="4"/>
+                            <field name="csb34_type" colspan="1"/>
+                            <field name="send_letter" colspan="1"/>
+                            <group colspan="4" col="4" attrs="{ 'invisible': [('send_letter', '=', False)] }">
+                                <separator string="Optional Text for the Letter (adds 101, 102, 103, data tipes in the file)" colspan="4"/>
+                                <field name="text1" colspan="4"/>
+                                <field name="text2" colspan="4"/>
+                                <field name="text3" colspan="4"/>
+                                <field name="payroll_check"/>
+                                <field name="add_date"/>
+                            </group>
+                        </group>
                     </group>
                     <newline/>
                 </field>

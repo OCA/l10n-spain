@@ -34,7 +34,7 @@
 
 from osv import osv, fields, orm
 import pooler
-
+from tools.translate import _
 
 class payment_mode(osv.osv):
     _name= 'payment.mode'
@@ -65,6 +65,13 @@ class payment_mode(osv.osv):
         'alt_domicile_format': fields.boolean('Alt. domicile format', help='Alternative domicile record format'),
         # Require bank account?
         'require_bank_account': fields.boolean('Require bank account', help='If your bank allows you to send orders without the bank account info, you may disable this option'),
+        'csb34_type': fields.selection([('transfer', 'Transfer'),('promissory_note', 'Promissory Note'),('cheques', 'Cheques'),('certified_payments', 'Certified Payments')], 'Type of CSB 34 payment'),
+        'send_letter': fields.boolean('Send Letter', help='Check it if you want to add the 015 data type and the text of the letter in the file.'),
+        'text1': fields.char('Line 1', size=36, help='Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}'),
+        'text2': fields.char('Line 2', size=36, help='Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}'),
+        'text3': fields.char('Line 3', size=36, help='Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}'),
+        'payroll_check': fields.boolean('Payroll Check', help='Check it if you want to add the 018 data type in the file (the vat of the recipient is added in the 018 data type).'),
+        'add_date': fields.boolean('Add Date', help='Check it if you want to add the 910 data type in the file to include the payment date.'),
     }
 
     _defaults = {
@@ -75,6 +82,10 @@ class payment_mode(osv.osv):
 
         # Override default: We want to be safe so we require bank account by default
         'require_bank_account': lambda *a: True, 
+        'csb34_type': lambda *a: 'transfer',
+        'text1': lambda self,cr,uid,context: _('Dear Sir'),
+        'text2': lambda self,cr,uid,context: _('Payment ref.')+' ${communication}',
+        'text3': lambda self,cr,uid,context: _('Total:')+' ${amount}',
     }
 
 payment_mode()

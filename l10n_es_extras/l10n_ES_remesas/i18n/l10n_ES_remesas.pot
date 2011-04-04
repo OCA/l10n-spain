@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.9\n"
+"Project-Id-Version: OpenERP Server 5.0.15\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-05-18 17:14:06+0000\n"
-"PO-Revision-Date: 2010-05-18 17:14:06+0000\n"
+"POT-Creation-Date: 2011-04-01 14:07:23+0000\n"
+"PO-Revision-Date: 2011-04-01 14:07:23+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,358 +16,484 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_ES_remesas
+#: selection:payment.mode,csb34_type:0
+msgid "Transfer"
+msgstr "Transfer"
+
+#. module: l10n_ES_remesas
 #: wizard_field:export_payment_file_spain,export,pay:0
 msgid "Payment order file"
-msgstr ""
+msgstr "Payment order file"
 
 #. module: l10n_ES_remesas
 #: rml:remesas.report:0
 msgid "Created date:"
-msgstr ""
+msgstr "Created date:"
+
+#. module: l10n_ES_remesas
+#: help:payment.mode,send_letter:0
+msgid "Check it if you want to add the 015 data type and the text of the letter in the file."
+msgstr "Check it if you want to add the 015 data type and the text of the letter in the file."
 
 #. module: l10n_ES_remesas
 #: field:payment.mode,ine:0
 msgid "INE code"
-msgstr ""
+msgstr "INE code"
 
 #. module: l10n_ES_remesas
 #: rml:remesas.report:0
 msgid "Matur. date"
-msgstr ""
+msgstr "Matur. date"
 
 #. module: l10n_ES_remesas
 #: selection:payment.mode,tipo:0
 msgid "CSB 19"
-msgstr ""
+msgstr "CSB 19"
 
 #. module: l10n_ES_remesas
 #: selection:payment.mode,tipo:0
 msgid "CSB 32"
-msgstr ""
+msgstr "CSB 32"
+
+#. module: l10n_ES_remesas
+#: model:ir.module.module,description:l10n_ES_remesas.module_meta_information
+msgid "Módulo para la exportación de ficheros bancarios según las normas CSB 19 (recibos domiciliados), CBS 32 (descuento comercial), CSB 58 (anticipos de créditos) y CSB 34 (emisión de transferencias, nóminas, cheques, pagarés y pagos certificados) para poder ser enviados a la entidad bancaria.\n"
+"\n"
+"Crea un tipo de pago \"Recibo domiciliado\" con el código RECIBO_CSB. Este código es importante pues permite ejecutar el asistente de creación del fichero de remesas cuando se presiona el botón \"Realizar pagos\" en la orden de pagos o remesa.\n"
+"\n"
+"También crea los tipos de pago \"Transferencia\" (TRANSFERENCIA_CSB), \"Pagaré\" (PAGARE_CSB), \"Cheque\" (CHEQUE_CSB), \"Pago certificado\" (PAGO_CERTIFICADO_CSB).\n"
+"\n"
+"Antes de generar un fichero bancario CSB habrá que definir un modo de pago que use el tipo de pago anterior y donde se defina la forma de pago (CSB 19, CSB 32, CSB 34 o CSB 58), la compañía que emite el fichero y el sufijo y nombre de compañia a incluir en el fichero.\n"
+"\n"
+"Al crear el fichero bancario CSB:\n"
+"\n"
+"  * Se pueden agrupar o no los pagos de una misma empresa y cuenta bancaria\n"
+"  * El fichero creado se guarda como adjunto de la orden de pagos. Se puede volver a crear el fichero de remesas siempre que sea necesario (puede tener que renombrar el anterior fichero adjunto si tienen el mismo nombre).\n"
+"\n"
+"También se proporciona un informe para imprimir un listado de los pagos/cobros de la orden de pago/cobro (remesa).\n"
+""
+msgstr "Módulo para la exportación de ficheros bancarios según las normas CSB 19 (recibos domiciliados), CBS 32 (descuento comercial), CSB 58 (anticipos de créditos) y CSB 34 (emisión de transferencias, nóminas, cheques, pagarés y pagos certificados) para poder ser enviados a la entidad bancaria.\n"
+"\n"
+"Crea un tipo de pago \"Recibo domiciliado\" con el código RECIBO_CSB. Este código es importante pues permite ejecutar el asistente de creación del fichero de remesas cuando se presiona el botón \"Realizar pagos\" en la orden de pagos o remesa.\n"
+"\n"
+"También crea los tipos de pago \"Transferencia\" (TRANSFERENCIA_CSB), \"Pagaré\" (PAGARE_CSB), \"Cheque\" (CHEQUE_CSB), \"Pago certificado\" (PAGO_CERTIFICADO_CSB).\n"
+"\n"
+"Antes de generar un fichero bancario CSB habrá que definir un modo de pago que use el tipo de pago anterior y donde se defina la forma de pago (CSB 19, CSB 32, CSB 34 o CSB 58), la compañía que emite el fichero y el sufijo y nombre de compañia a incluir en el fichero.\n"
+"\n"
+"Al crear el fichero bancario CSB:\n"
+"\n"
+"  * Se pueden agrupar o no los pagos de una misma empresa y cuenta bancaria\n"
+"  * El fichero creado se guarda como adjunto de la orden de pagos. Se puede volver a crear el fichero de remesas siempre que sea necesario (puede tener que renombrar el anterior fichero adjunto si tienen el mismo nombre).\n"
+"\n"
+"También se proporciona un informe para imprimir un listado de los pagos/cobros de la orden de pago/cobro (remesa).\n"
+""
 
 #. module: l10n_ES_remesas
 #: view:payment.mode:0
 msgid "CSB 58 Options"
-msgstr ""
+msgstr "CSB 58 Options"
 
 #. module: l10n_ES_remesas
 #: selection:payment.mode,tipo:0
 msgid "None"
-msgstr ""
+msgstr "None"
 
 #. module: l10n_ES_remesas
-#: selection:payment.mode,tipo:0
-msgid "CSB 34"
-msgstr ""
+#: field:payment.mode,add_date:0
+msgid "Add Date"
+msgstr "Add Date"
 
 #. module: l10n_ES_remesas
 #: field:payment.mode,inc_domicile:0
 msgid "Include domicile"
-msgstr ""
+msgstr "Include domicile"
 
 #. module: l10n_ES_remesas
 #: rml:remesas.report:0
 msgid "Bank:"
-msgstr ""
+msgstr "Bank:"
 
 #. module: l10n_ES_remesas
-#: code:addons/l10n_ES_remesas/wizard/export_transferencias.py:0
-#, python-format
-msgid "User error:\n\nThe payment mode is not CSB 34"
-msgstr ""
+#: selection:payment.mode,csb34_type:0
+msgid "Promissory Note"
+msgstr "Promissory Note"
 
 #. module: l10n_ES_remesas
-#: field:payment.mode,cif:0
-msgid "VAT code"
-msgstr ""
+#: help:payment.mode,add_date:0
+msgid "Check it if you want to add the 910 data type in the file to include the payment date."
+msgstr "Check it if you want to add the 910 data type in the file to include the payment date."
 
 #. module: l10n_ES_remesas
 #: selection:payment.mode,tipo:0
 msgid "CSB 58"
-msgstr ""
+msgstr "CSB 58"
+
+#. module: l10n_ES_remesas
+#: code:addons/l10n_ES_remesas/remesas.py:0
+#, python-format
+msgid "Dear Sir"
+msgstr "Dear Sir"
 
 #. module: l10n_ES_remesas
 #: rml:remesas.report:0
 msgid "........."
-msgstr ""
+msgstr "........."
 
 #. module: l10n_ES_remesas
-#: model:payment.type,name:l10n_ES_remesas.payment_type_recibodomiciliado0
-#: model:payment.type,note:l10n_ES_remesas.payment_type_recibodomiciliado0
-msgid "Recibo domiciliado"
-msgstr ""
+#: field:payment.mode,send_letter:0
+msgid "Send Letter"
+msgstr "Send Letter"
+
+#. module: l10n_ES_remesas
+#: selection:payment.mode,csb34_type:0
+msgid "Certified Payments"
+msgstr "Certified Payments"
 
 #. module: l10n_ES_remesas
 #: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
 #, python-format
 msgid "remesa"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: model:ir.module.module,description:l10n_ES_remesas.module_meta_information
-msgid "Módulo para la exportación de remesas de recibos según las normas CSB 19 (recibos domiciliados), CSB 58 (anticipos de créditos) y CSB 34 (emisión de transferencias) para poder ser enviados a la entidad bancaria.\n"
-"\n"
-"Crea un tipo de pago \"Recibo domiciliado\" con el código RECIBO_CSB. Este código es importante pues permite ejecutar el asistente de creación del fichero de remesas cuando se presiona el botón \"Realizar pagos\" en la orden de pagos o remesa.\n"
-"\n"
-"También crea el tipo de pago \"Transferencia\" con el código TRANSFERENCIA_CSB.\n"
-"\n"
-"Antes de generar un fichero de remesas habrá que definir un modo de pago que use el tipo de pago anterior y donde se defina la forma de pago (CSB 19, CSB 58 o CSB 34), la compañía que emite el fichero y el sufijo y nombre de compañia a incluir en el fichero (lo que en la versión 4.2 se definía como la cuenta de remesas).\n"
-"\n"
-"Al crear el fichero de remesa:\n"
-"\n"
-"  * Se pueden agrupar o no los pagos de una misma empresa y cuenta bancaria\n"
-"  * El fichero creado se guarda como adjunto de la orden de pagos. Se puede volver a crear el fichero de remesas siempre que sea necesario (puede tener que renombrar el anterior fichero adjunto si tienen el mismo nombre).\n"
-"\n"
-"También se proporciona un informe para imprimir un listado de los recibos de la remesa.\n"
-""
-msgstr ""
+msgstr "remesa"
 
 #. module: l10n_ES_remesas
 #: help:payment.mode,alt_domicile_format:0
 msgid "Alternative domicile record format"
-msgstr ""
+msgstr "Alternative domicile record format"
 
 #. module: l10n_ES_remesas
 #: wizard_field:export_payment_file_spain,export,note:0
 msgid "Log"
-msgstr ""
+msgstr "Log"
 
 #. module: l10n_ES_remesas
-#: code:addons/l10n_ES_remesas/wizard/export_transferencias.py:0
-#, python-format
-msgid "Successfully Exported\n\nSummary:\n Total amount paid: %(amount).2f\n Total Number of Payments: %(number)d\n"
-msgstr ""
+#: field:payment.mode,csb34_type:0
+msgid "Type of CSB 34 payment"
+msgstr "Type of CSB 34 payment"
 
 #. module: l10n_ES_remesas
 #: help:payment.mode,inc_domicile:0
 msgid "Add partner domicile records to the exported file (CSB 58)"
-msgstr ""
+msgstr "Add partner domicile records to the exported file (CSB 58)"
 
 #. module: l10n_ES_remesas
-#: field:payment.mode,nombre:0
-msgid "Company name in file"
-msgstr ""
+#: code:addons/l10n_ES_remesas/remesas.py:0
+#, python-format
+msgid "Total:"
+msgstr "Total:"
+
+#. module: l10n_ES_remesas
+#: selection:payment.mode,csb34_type:0
+msgid "Cheques"
+msgstr "Cheques"
 
 #. module: l10n_ES_remesas
 #: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
 #, python-format
 msgid "User error:\n\nThe bank account number of the company %s has not 20 digits."
-msgstr ""
+msgstr "User error:\n\nThe bank account number of the company %s has not 20 digits."
+
+#. module: l10n_ES_remesas
+#: field:payment.mode,tipo:0
+msgid "Type of payment file"
+msgstr "Type of payment file"
 
 #. module: l10n_ES_remesas
 #: code:addons/l10n_ES_remesas/wizard/converter.py:0
 #, python-format
 msgid "Error:\n\nCan not convert integer number %(number)d to fit in %(size)d characters."
-msgstr ""
+msgstr "Error:\n\nCan not convert integer number %(number)d to fit in %(size)d characters."
+
+#. module: l10n_ES_remesas
+#: model:ir.module.module,shortdesc:l10n_ES_remesas.module_meta_information
+msgid "Exportación de ficheros bancarios CSB 19, CSB 32, CSB 34 y CSB 58"
+msgstr "Exportación de ficheros bancarios CSB 19, CSB 32, CSB 34 y CSB 58"
+
+#. module: l10n_ES_remesas
+#: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
+#, python-format
+msgid "User error:\n\nThe company VAT number related to the bank account of the payment mode is not defined."
+msgstr "User error:\n\nThe company VAT number related to the bank account of the payment mode is not defined."
 
 #. module: l10n_ES_remesas
 #: view:payment.mode:0
 msgid "Presenter data"
-msgstr ""
+msgstr "Presenter data"
 
 #. module: l10n_ES_remesas
 #: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
 #, python-format
 msgid "Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n"
-msgstr ""
+msgstr "Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n"
 
 #. module: l10n_ES_remesas
 #: code:addons/l10n_ES_remesas/wizard/converter.py:0
 #, python-format
 msgid "Error:\n\nCan not convert float number %(number).2f to fit in %(size)d characters."
-msgstr ""
+msgstr "Error:\n\nCan not convert float number %(number).2f to fit in %(size)d characters."
 
 #. module: l10n_ES_remesas
-#: rml:remesas.report:0
-msgid "PAYMENT ORDER Num.:"
-msgstr ""
+#: code:addons/l10n_ES_remesas/wizard/csb_34.py:0
+#, python-format
+msgid "User error:\n\nPartner %s has no invoicing or default address."
+msgstr "User error:\n\nPartner %s has no invoicing or default address."
+
+#. module: l10n_ES_remesas
+#: model:payment.type,name:l10n_ES_remesas.payment_type_cheque0
+#: model:payment.type,note:l10n_ES_remesas.payment_type_cheque0
+msgid "Cheque"
+msgstr "Cheque"
 
 #. module: l10n_ES_remesas
 #: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
 #, python-format
 msgid "User error:\n\nThe payment mode is not CSB 19, CSB 32, CSB 34 or CSB 58"
-msgstr ""
+msgstr "User error:\n\nThe payment mode is not CSB 19, CSB 32, CSB 34 or CSB 58"
 
 #. module: l10n_ES_remesas
 #: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
-#: code:addons/l10n_ES_remesas/wizard/export_transferencias.py:0
 #, python-format
 msgid "Remesa "
-msgstr ""
+msgstr "Remesa "
 
 #. module: l10n_ES_remesas
 #: rml:remesas.report:0
 msgid "Account:"
-msgstr ""
+msgstr "Account:"
 
 #. module: l10n_ES_remesas
 #: code:addons/l10n_ES_remesas/wizard/converter.py:0
 #, python-format
 msgid "User error:\n\nThe bank account number of %s is not defined."
-msgstr ""
+msgstr "User error:\n\nThe bank account number of %s is not defined."
+
+#. module: l10n_ES_remesas
+#: code:addons/l10n_ES_remesas/remesas.py:0
+#, python-format
+msgid "Payment ref."
+msgstr "Payment ref."
 
 #. module: l10n_ES_remesas
 #: constraint:ir.ui.view:0
 msgid "Invalid XML for View Architecture!"
-msgstr ""
+msgstr "Invalid XML for View Architecture!"
+
+#. module: l10n_ES_remesas
+#: view:payment.mode:0
+msgid "Optional Text for the Letter (adds 101, 102, 103, data tipes in the file)"
+msgstr "Optional Text for the Letter (adds 101, 102, 103, data tipes in the file)"
 
 #. module: l10n_ES_remesas
 #: wizard_button:export_payment_file_spain,export,end:0
 #: wizard_button:export_payment_file_spain,init,export:0
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #. module: l10n_ES_remesas
-#: model:ir.module.module,shortdesc:l10n_ES_remesas.module_meta_information
-msgid "Remesas de recibos CSB 19 y CSB 58"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: wizard_field:export_payment_file_spain,export,pay_fname:0
-msgid "File name"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: code:addons/l10n_ES_remesas/wizard/csb_19.py:0
-#, python-format
-msgid "User error:\n\nFixed date of charge has not been defined."
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: model:ir.actions.report.xml,name:l10n_ES_remesas.remesas_report
-msgid "Remesa"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: wizard_view:export_payment_file_spain,export:0
-#: wizard_view:export_payment_file_spain,init:0
-msgid "Payment order export"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: rml:remesas.report:0
-msgid "Amount"
-msgstr ""
+#: model:payment.type,name:l10n_ES_remesas.payment_type_recibodomiciliado0
+#: model:payment.type,note:l10n_ES_remesas.payment_type_recibodomiciliado0
+msgid "Recibo domiciliado"
+msgstr "Recibo domiciliado"
 
 #. module: l10n_ES_remesas
 #: rml:remesas.report:0
 msgid "Payment date:"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: wizard_field:export_payment_file_spain,init,join:0
-msgid "Join payment lines of the same partner and bank account"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: field:payment.mode,alt_domicile_format:0
-msgid "Alt. domicile format"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
-#: code:addons/l10n_ES_remesas/wizard/export_transferencias.py:0
-#, python-format
-msgid "User error:\n\nThe company VAT number related to the bank account of the payment mode is not defined."
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
-#, python-format
-msgid "User error:\n\nThe bank account number of the customer %s has not 20 digits."
-msgstr ""
+msgstr "Payment date:"
 
 #. module: l10n_ES_remesas
 #: model:payment.type,name:l10n_ES_remesas.payment_type_transferencia0
 #: model:payment.type,note:l10n_ES_remesas.payment_type_transferencia0
 msgid "Transferencia"
-msgstr ""
+msgstr "Transferencia"
 
 #. module: l10n_ES_remesas
-#: model:ir.actions.wizard,name:l10n_ES_remesas.wizard_create_payment_file_spain
-msgid "Create payment file"
-msgstr ""
+#: wizard_field:export_payment_file_spain,export,pay_fname:0
+msgid "File name"
+msgstr "File name"
+
+#. module: l10n_ES_remesas
+#: code:addons/l10n_ES_remesas/wizard/csb_19.py:0
+#, python-format
+msgid "User error:\n\nFixed date of charge has not been defined."
+msgstr "User error:\n\nFixed date of charge has not been defined."
+
+#. module: l10n_ES_remesas
+#: model:payment.type,note:l10n_ES_remesas.payment_type_pagare0
+msgid "Pagare"
+msgstr "Pagare"
+
+#. module: l10n_ES_remesas
+#: view:payment.mode:0
+msgid "CSB 34 Options"
+msgstr "CSB 34 Options"
+
+#. module: l10n_ES_remesas
+#: field:payment.mode,cif:0
+msgid "VAT code"
+msgstr "VAT code"
+
+#. module: l10n_ES_remesas
+#: help:payment.mode,text1:0
+#: help:payment.mode,text2:0
+#: help:payment.mode,text3:0
+msgid "Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}"
+msgstr "Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}"
+
+#. module: l10n_ES_remesas
+#: wizard_view:export_payment_file_spain,export:0
+#: wizard_view:export_payment_file_spain,init:0
+msgid "Payment order export"
+msgstr "Payment order export"
+
+#. module: l10n_ES_remesas
+#: rml:remesas.report:0
+msgid "Amount"
+msgstr "Amount"
 
 #. module: l10n_ES_remesas
 #: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
 #, python-format
 msgid "User error:\n\nThe bank account number of the customer %s is not defined and current payment mode enforces all lines to have a bank account."
-msgstr ""
+msgstr "User error:\n\nThe bank account number of the customer %s is not defined and current payment mode enforces all lines to have a bank account."
 
 #. module: l10n_ES_remesas
-#: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
-#, python-format
-msgid "User error:\n\nThe bank account of the company %s is not defined."
-msgstr ""
+#: model:payment.type,name:l10n_ES_remesas.payment_type_pago_certificado0
+#: model:payment.type,note:l10n_ES_remesas.payment_type_pago_certificado0
+msgid "Pago certificado"
+msgstr "Pago certificado"
 
 #. module: l10n_ES_remesas
-#: field:payment.mode,cedente:0
-msgid "Cedente"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: code:addons/l10n_ES_remesas/wizard/csb_34.py:0
-#: code:addons/l10n_ES_remesas/wizard/export_transferencias.py:0
-#, python-format
-msgid "User error:\n\nCompany %s has no invoicing address."
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: rml:remesas.report:0
-msgid "Total payment order:"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: field:payment.mode,tipo:0
-msgid "Type of payment file"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: code:addons/l10n_ES_remesas/wizard/export_transferencias.py:0
-#, python-format
-msgid "User error:\n\nWizard can not generate export file, there are no payment lines."
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
-#, python-format
-msgid "User error:\n\nWizard can not generate export file, there are not payment lines."
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: field:payment.mode,sufijo:0
-msgid "suffix"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: rml:remesas.report:0
-msgid "Company:"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: rml:remesas.report:0
-msgid "Invoice"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: rml:remesas.report:0
-msgid "Type:"
-msgstr ""
-
-#. module: l10n_ES_remesas
-#: code:addons/l10n_ES_remesas/wizard/converter.py:0
-#, python-format
-msgid "User error:\n\nThe bank account number of %s does not have 20 digits."
-msgstr ""
+#: field:payment.mode,payroll_check:0
+msgid "Payroll Check"
+msgstr "Payroll Check"
 
 #. module: l10n_ES_remesas
 #: field:payment.mode,partner_id:0
 #: rml:remesas.report:0
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
+
+#. module: l10n_ES_remesas
+#: wizard_field:export_payment_file_spain,init,join:0
+msgid "Join payment lines of the same partner and bank account"
+msgstr "Join payment lines of the same partner and bank account"
+
+#. module: l10n_ES_remesas
+#: selection:payment.mode,tipo:0
+msgid "CSB 34"
+msgstr "CSB 34"
+
+#. module: l10n_ES_remesas
+#: field:payment.mode,alt_domicile_format:0
+msgid "Alt. domicile format"
+msgstr "Alt. domicile format"
+
+#. module: l10n_ES_remesas
+#: code:addons/l10n_ES_remesas/wizard/csb_34.py:0
+#, python-format
+msgid "User error:\n\nCompany %s has no invoicing or default address."
+msgstr "User error:\n\nCompany %s has no invoicing or default address."
+
+#. module: l10n_ES_remesas
+#: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
+#, python-format
+msgid "User error:\n\nThe bank account number of the customer %s has not 20 digits."
+msgstr "User error:\n\nThe bank account number of the customer %s has not 20 digits."
+
+#. module: l10n_ES_remesas
+#: help:payment.mode,payroll_check:0
+msgid "Check it if you want to add the 018 data type in the file (the vat of the recipient is added in the 018 data type)."
+msgstr "Check it if you want to add the 018 data type in the file (the vat of the recipient is added in the 018 data type)."
+
+#. module: l10n_ES_remesas
+#: model:ir.actions.wizard,name:l10n_ES_remesas.wizard_create_payment_file_spain
+msgid "Create payment file"
+msgstr "Create payment file"
+
+#. module: l10n_ES_remesas
+#: field:payment.mode,nombre:0
+msgid "Company name in file"
+msgstr "Company name in file"
+
+#. module: l10n_ES_remesas
+#: model:payment.type,name:l10n_ES_remesas.payment_type_pagare0
+msgid "Pagaré"
+msgstr "Pagaré"
+
+#. module: l10n_ES_remesas
+#: field:payment.mode,cedente:0
+msgid "Cedente"
+msgstr "Cedente"
+
+#. module: l10n_ES_remesas
+#: rml:remesas.report:0
+msgid "Total payment order:"
+msgstr "Total payment order:"
+
+#. module: l10n_ES_remesas
+#: rml:remesas.report:0
+msgid "PAYMENT ORDER Num.:"
+msgstr "PAYMENT ORDER Num.:"
+
+#. module: l10n_ES_remesas
+#: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
+#, python-format
+msgid "User error:\n\nWizard can not generate export file, there are not payment lines."
+msgstr "User error:\n\nWizard can not generate export file, there are not payment lines."
+
+#. module: l10n_ES_remesas
+#: field:payment.mode,sufijo:0
+msgid "suffix"
+msgstr "suffix"
+
+#. module: l10n_ES_remesas
+#: rml:remesas.report:0
+msgid "Company:"
+msgstr "Company:"
+
+#. module: l10n_ES_remesas
+#: rml:remesas.report:0
+msgid "Invoice"
+msgstr "Invoice"
+
+#. module: l10n_ES_remesas
+#: rml:remesas.report:0
+msgid "Type:"
+msgstr "Type:"
+
+#. module: l10n_ES_remesas
+#: code:addons/l10n_ES_remesas/wizard/converter.py:0
+#, python-format
+msgid "User error:\n\nThe bank account number of %s does not have 20 digits."
+msgstr "User error:\n\nThe bank account number of %s does not have 20 digits."
+
+#. module: l10n_ES_remesas
+#: field:payment.mode,text1:0
+msgid "Line 1"
+msgstr "Line 1"
+
+#. module: l10n_ES_remesas
+#: field:payment.mode,text2:0
+msgid "Line 2"
+msgstr "Line 2"
+
+#. module: l10n_ES_remesas
+#: field:payment.mode,text3:0
+msgid "Line 3"
+msgstr "Line 3"
+
+#. module: l10n_ES_remesas
+#: model:ir.actions.report.xml,name:l10n_ES_remesas.remesas_report
+msgid "Remesa"
+msgstr "Remesa"
+
+#. module: l10n_ES_remesas
+#: code:addons/l10n_ES_remesas/wizard/export_remesas.py:0
+#, python-format
+msgid "User error:\n\nThe bank account of the company %s is not defined."
+msgstr "User error:\n\nThe bank account of the company %s is not defined."
 
 #. module: l10n_ES_remesas
 #: view:payment.mode:0
 msgid "CSB 32 Options"
-msgstr ""
+msgstr "CSB 32 Options"
 
