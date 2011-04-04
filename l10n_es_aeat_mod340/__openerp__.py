@@ -2,8 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Alejandro Sanchez (http://www.asr-oss.com) All Rights Reserved.
-#                       Alejandro Sanchez <alejandro@asr-oss.com>
+#    Copyright (c) 2011 Ting (http://www.ting.es) All Rights Reserved.
+#                       
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -24,18 +24,22 @@
 {
     "name" : "Generación de fichero modelo 340",
     "version" : "1.0",
-    "author" : "Alejandro Sanchez",
+    "author" : "Francisco Pascual (Ting)",
     "category" : "Localisation/Accounting",
-    "description" : """NOTA: NO ADAPTADO TODAVÍA A LA VERSIÓN 6.0
+    "description" : """
 Módulo para la presentación del modelo 340
 ********************* Esta versión se encuetra en desarrollo ************************
 """,
-    "website" : "www.asr-oss.com",
+    "website" : "www.ting.es",
     "license" : "GPL-3",
-    "depends" : ["account"],
+    "depends" : ["account",
+                 "base_vat",
+                 "l10n_es_aeat",
+                 "report_aeroo_ooo"
+                 ],
     "init_xml" : [],
     "demo_xml" : [],
-    "update_xml" : ["mod340_view.xml","mod340_wizard.xml","security/ir.model.access.csv",],
+    "update_xml" : ["mod340_view.xml","mod340_workflow.xml","security/ir.model.access.csv", 'report/report_view.xml',],
     "installable" : True,
     "active" : False,
 }

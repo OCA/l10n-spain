@@ -2,8 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Alejandro Sanchez (http://www.asr-oss.com) All Rights Reserved.
-#                       Alejandro Sanchez <alejandro@asr-oss.com>
+#    Copyright (c) 20011 Ting (http://www.ting.es) All Rights Reserved.
+#                   
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -23,118 +23,61 @@
 
 from osv import osv,fields
 import time
+from datetime import datetime
 import netsvc
+import tools
+import math
+from tools.translate import _
+import pooler
 
-class l10n_es_aeat_mod340_config(osv.osv):
-    _name = 'l10n.es.aeat.mod340.config'
-    _description = 'Config Model 340'
-    _columns = {
-        'name' : fields.char('Name',size=40),
-        'taxes_id': fields.many2many('account.tax', 'mod340_config_taxes_rel','config_id', 'tax_id', 
-            'Customer Taxes',domain=[('parent_id','=',False),('type_tax_use','in',['sale','all'])]),
-        'supplier_taxes_id': fields.many2many('account.tax',
-        'mod340_config_supplier_taxes_rel', 'config_id', 'tax_id',
-            'Supplier Taxes', domain=[('parent_id', '=', False),('type_tax_use','in',['purchase','all'])])
-    }
-l10n_es_aeat_mod340_config()
+
+
 
 class l10n_es_aeat_mod340(osv.osv):
 
-    def _total_taxable(self, cursor, user, ids, name, args, context=None):
-        if not ids:
-            return {}
-        res = {}
-        for mod340 in self.browse(cursor, user, ids, context=context):
-            res[mod340.id] = 0.0
-            #registros emitidas
-            if mod340.issued:
-                res[mod340.id] = reduce(lambda x, y: x + y.taxable, mod340.issued, 0.0)
-            #registros recibidas
-            if mod340.received:
-                res[mod340.id] = res[mod340.id] + reduce(lambda x, y: x + y.taxable, mod340.received, 0.0)
-            #registros investment
-            if mod340.investment:
-                res[mod340.id] = res[mod340.id] + reduce(lambda x, y: x + y.taxable, mod340.investment, 0.0)
-            #registros intracomunitarias
-            if mod340.intracomunitarias:
-                res[mod340.id] = res[mod340.id] + reduce(lambda x, y: x + y.taxable, mod340.intracomunitarias, 0.0)
 
-        return res
+    
+   
+    def button_calculate(self, cr, uid, ids,  args, context=None):
+        
+        if not context:
+            context = {}
 
-    def _total_share_tax(self, cursor, user, ids, name, args, context=None):
-        if not ids:
-            return {}
-        res = {}
-        for mod340 in self.browse(cursor, user, ids, context=context):
-            res[mod340.id] = 0.0
-            #registros emitidas
-            if mod340.issued:
-                res[mod340.id] = reduce(lambda x, y: x + y.share_tax, mod340.issued, 0.0)
-            #registros recibidas
-            if mod340.received:
-                res[mod340.id] = res[mod340.id] + reduce(lambda x, y: x + y.share_tax, mod340.received, 0.0)
-            #registros investment
-            if mod340.investment:
-                res[mod340.id] = res[mod340.id] + reduce(lambda x, y: x + y.share_tax, mod340.investment, 0.0)
-            #registros intracomunitarias
-            if mod340.intracomunitarias:
-                res[mod340.id] = res[mod340.id] + reduce(lambda x, y: x + y.share_tax, mod340.intracomunitarias, 0.0)
+        calculate_obj = self.pool.get('l10n.es.aeat.mod340.calculate_records')
+        calculate_obj._wkf_calculate_records(cr, uid, ids, context)   
+        
+        
+        return True
+    
+    def button_recalculate(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
 
-        return res
+        calculate_obj = self. pool.get('l10n.es.aeat.mod340.calculate_records')
+        calculate_obj._calculate_records(cr, uid, ids, context)
 
-    def _total(self, cursor, user, ids, name, args, context=None):
-        if not ids:
-            return {}
-        res = {}
-        for mod340 in self.browse(cursor, user, ids, context=context):
-            res[mod340.id] = 0.0
-            #registros emitidas
-            if mod340.issued:
-                res[mod340.id] = reduce(lambda x, y: x + y.total, mod340.issued, 0.0)
-            #registros recibidas
-            if mod340.received:
-                res[mod340.id] = res[mod340.id] + reduce(lambda x, y: x + y.total, mod340.received, 0.0)
-            #registros investment
-            if mod340.investment:
-                res[mod340.id] = res[mod340.id] + reduce(lambda x, y: x + y.total, mod340.investment, 0.0)
-            #registros intracomunitarias
-            if mod340.intracomunitarias:
-                res[mod340.id] = res[mod340.id] + reduce(lambda x, y: x + y.total, mod340.intracomunitarias, 0.0)
+        return True
 
-        return res
+    def button_export(self, cr, uid, ids, context=None):
+        #FUNCION CALCADA DEL MODELO 347, inoperativa de momento
+        
+        raise osv.except_osv(_('No disponible:'), _('En desarrollo'))
+        
+        if context is None:
+            context = {}
 
-    def _numer_records(self, cursor, user, ids, name, args, context=None):
-        if not ids:
-            return {}
-        res = {}
-        for mod340 in self.browse(cursor, user, ids, context=context):
-            res[mod340.id] = 0.0
-            #registros emitidas
-            if mod340.issued:
-                res[mod340.id] = reduce(lambda x, y: x + 1, mod340.issued, 0)
-            #registros recibidas
-            if mod340.received:
-                res[mod340.id] = res[mod340.id] + reduce(lambda x, y: x + 1, mod340.received, 0)
-            #registros investment
-            if mod340.investment:
-                res[mod340.id] = res[mod340.id] + reduce(lambda x, y: x + 1, mod340.investment, 0)
-            #registros intracomunitarias
-            if mod340.intracomunitarias:
-                res[mod340.id] = res[mod340.id] + reduce(lambda x, y: x + 1, mod340.intracomunitarias, 0)
+        export_obj = self.pool.get("l10n.es.aeat.mod340.export_to_boe")
+        export_obj._export_boe_file(cr, uid, ids, self.browse(cr, uid, ids and ids[0]))
 
-        return res
+        return True
+    
+    _inherit = "l10n.es.aeat.report"
     _name = 'l10n.es.aeat.mod340'
     _description = 'Model 340'
     _columns = {
-        'fiscalyear': fields.integer('Fiscal Year',size=4),
-        'type': fields.selection([(' ','Normal'),('C','Complementary'),('S','Replacement')], 'Type Statement'),
-        'type_support': fields.selection([('C','DVD'),('T','Telematics')],'Type Support'),
-        'config_id': fields.many2one('l10n.es.aeat.mod340.config','Config',required=True),
-        'company_id': fields.many2one('res.company', 'Company', required=True),
-        'vat_representative' : fields.char('Vat Legal Representative',size=9),
-        #'vat_company': fields.char('VAT', size=32, requiered=True),
-        'name_surname': fields.char('Name and Surname',size=40),
-        'phone': fields.char('Phone',size=9),
+        
+        
+        'contact_phone': fields.char("Phone", size=9),
         'phone_contact' : fields.char('Phone Contact',size=9),
         'name_contact' : fields.char('Name And Surname Contact',size=40),
         'period': fields.selection([
@@ -145,87 +88,101 @@ class l10n_es_aeat_mod340(osv.osv):
             ], 'Period'),
         'issued': fields.one2many('l10n.es.aeat.mod340.issued','mod340_id','Invoices Issued'),
         'received': fields.one2many('l10n.es.aeat.mod340.received','mod340_id','Invoices Received'),
-        'investment': fields.one2many('l10n.es.aeat.mod340.investment','mod340_id','Property Investment'),
+        'investment': fields.one2many(
+                                      'l10n.es.aeat.mod340.investment','mod340_id','Property Investment'),
         'intracomunitarias': fields.one2many('l10n.es.aeat.mod340.intracomunitarias','mod340_id','Operations Intracomunitarias'),
-        'state': fields.selection([
-            ('draft', 'Draft'),('open','Confirmed'),('cancel','Cancelled'),
-            ('done','Done')
-            ], 'State', select=True),
-        'date_done': fields.date('Execution date', readonly=True),
-        'number_records' : fields.function(_numer_records, string="Total Records", method=True,
-            type='float'),
-        'total_taxable': fields.function(_total_taxable, string="Total Taxable", method=True,
-            type='float'),
-        'total_sharetax': fields.function(_total_share_tax, string="Total Share Tax", method=True,
-            type='float'),
-        'total': fields.function(_total, string="Total", method=True,
-            type='float'),
+        'support_type': fields.selection([
+            ('DVD','DVD'),
+            ('Telemático','Telematics')], 'Support Type',
+            states={'calculated':[('required',True)],'done':[('readonly',True)]}),
+        'type': fields.selection([
+            ('Normal','Normal'),
+            ('Complementario','Complementary'),
+            ('Sustitutivo','Substitutive')], 'Statement Type',
+            states={'calculated':[('required',True)],'done':[('readonly',True)]}),
+        
+        'ean13': fields.char('Electronic Code VAT reverse charge', size=16),
+        'total_taxable': fields.float('Total Taxable', digits=(13,2), help="The declaration will include partners with the total of operations over this limit"),
+        'total_sharetax': fields.float('Total Share Tax', digits=(13,2), help="The declaration will include partners with the total of operations over this limit"),
+        'number_records': fields.float('total number of records', digits=(13,2), help="The declaration will include partners with the total of operations over this limit"),
+        'total': fields.float('Total', digits=(13,2), help="The declaration will include partners with the total of operations over this limit"),
+        'calculation_date': fields.date('Calculation date', readonly=True),
     }
     _defaults = {
-        'fiscalyear': lambda *a: int(time.strftime('%Y')),
-        'type': lambda *args: ' ',
-        'type_support': lambda *args: 'T',
-    }
+        'support_type' : lambda *a: 'Telemático',
+        'number':340,
+        'type': lambda *a: 'Normal'
+               }
 
     def set_done(self, cr, uid, id, *args):
-        self.write(cr,uid,id,{'date_done': time.strftime('%Y-%m-%d'),'state': 'done',})
+        self.write(cr,uid,id,{'calculation_date': time.strftime('%Y-%m-%d'),'state': 'done',})
         wf_service = netsvc.LocalService("workflow")
         wf_service.trg_validate(uid, 'l10n.es.aeat.mod340', id, 'done', cr)
         return True
+    
+    def _check_report_lines(self, cr, uid, ids, context=None):
+        """checks report lines"""
+#                if context is None: context = {}
 
-    #def onchange_company_id(self, cr, uid, ids, company_id):
-    #    vat = False
-    #    if company_id:
-    #        p = self.pool.get('res.company').browse(cr, uid, company_id)
-    #        vat = p.partner_id.vat
-    #        result = {'value':{'vat_company': vat}}
-    #    return result
+#        for item in self.browse(cr, uid, ids, context):
+#            ## Browse partner record lines to check if all are correct (all fields filled)
+#            for partner_record in item.partner_record_ids:
+#                if not partner_record.partner_state_code:
+#                    raise osv.except_osv(_('Error!'), _("All partner state code field must be filled."))
+#                if not partner_record.partner_vat:
+#                    raise osv.except_osv(_('Error!'), _("All partner vat number field must be filled."))
+#
+#            for real_state_record in item.real_state_record_ids:
+#                if not real_state_record.state_code:
+#                    raise osv.except_osv(_('Error!'), _("All real state records state code field must be filled."))
 
+        return True
+    
+    def check_report(self, cr, uid, ids, context=None):
+        """Different check out in report"""
+        if context is None: context = {}
+
+        self._check_report_lines(cr, uid, ids, context)
+
+        return True
+
+    def action_confirm(self, cr, uid, ids, context=None):
+        """set to done the report and check its records"""
+        if context is None: context = {}
+
+        self.check_report(cr, uid, ids, context)
+        self.write(cr, uid, ids, {'state': 'done'})
+
+        return True
+
+    def confirm(self, cr, uid, ids, context=None):
+        """set to done the report and check its records"""
+
+        self.write(cr, uid, ids, {'state': 'done'})
+
+        return True
+
+    def cancel(self, cr, uid, ids, context=None):
+        """set to done the report and check its records"""
+
+        self.write(cr, uid, ids, {'state': 'canceled'})
+
+        return True
+    
 l10n_es_aeat_mod340()
 
 class l10n_es_aeat_mod340_issued(osv.osv):
     _name = 'l10n.es.aeat.mod340.issued'
     _description = 'Invoices Issued'
-    _columns = {
+    _columns = {                        
         'mod340_id': fields.many2one('l10n.es.aeat.mod340','Model 340',ondelete="cascade"),
-        'vat_declared' : fields.char('Vat Declared',size=9),
-        'vat_representative' : fields.char('Legal Representative',size=9),
-        'partner_name': fields.char('Name',size=40),
-        'cod_country' : fields.char('Code Country',size=2),
-        'key_country' : fields.selection([
-            ('1','Nif'),('2','Nif/Iva'),('3','Passport'),('4','Dni'),('5','Fiscal Residence Certificate '),
-            ('6','Other')
-            ],'Key Ident Country'),
-        'vat_country' : fields.char('Vat on Country of residence',size =17),
-        'key_book' : fields.selection([
-            ('E','Invoice Issued'),('I','Property Investment'),('R','Invoices Recibed'),
-            ('U','Intra-Community Transactions'),('F','Invoice Issued IGIC'),
-            ('J','Property Investment IGIC'),('S','Invoices Recibed IGIC')
-            ],'Books'),
-        'key_operation' : fields.selection([
-            ('A','Account move Invoices'),('B','Account move Receipt'),
-            ('C','Invoces varius tax rates'),('D','Amendment Invoices'),
-            ('F','Travel Agency'),('G','IGIC'),('H','Gold Investment'),
-            ('I','ISP'),('J','Receipt'),('K','Error correction'),
-            ('L','None of the above')
-            ],'Key Operation'),
-        'invoice_date' : fields.date('Invoice Date'),
-        'operation_date' : fields.date('Operation Date'),
-        'rate' : fields.float('Rate',digits=(5,2)),
-        'taxable' : fields.float('Taxable',digits=(13,2)),
-        'share_tax' : fields.float('Share Tax',digits=(13,2)),
-        'total' : fields.float('Total Invoice',digits=(13,2)),
-        'taxable_cost' : fields.float('Taxable Cost',digits=(13,2)),
-        'number' : fields.char('Invoice Number',size=40),
-        'number_amendment' : fields.char('Number Invoice Amendment',size=40),
-        #HASTA AQUI COMUNES EL RESTO ESPECIFICOS
-        'number_invoices' : fields.integer('Invoices Accumulated',size = 4),
-        'number_records' : fields.integer('Number records accumulated',size = 4),
-        'iterval_ini' : fields.char('Initiation Interval',size=40),
-        'iterval_end' : fields.char('Order Interval',size=40),
-        'invoice_corrected' : fields.char('Invoice Corrected',size=40),
-        'charge' : fields.float('Charge Equivalence',digits=(5,2)),
-        'share_charge' : fields.float('Rate',digits=(5,2)),
+        'partner_id':fields.many2one('res.partner','Partner',ondelete="cascade"),
+        'company_nif':fields.char('Company CIF/NIF',size=9),
+        'invoice_id':fields.char('Invoice number',size=12),
+        'base_tax':fields.float('Base tax bill',digits=(13,2)),
+        'amount_tax':fields.float('Amount of the tax',digits=(13,2)),
+        'total':fields.float('Total',digits=(13,2)),
+        'invoices':fields.many2many('account.invoice.line', 'invoice_340_relation', 'inv_340_id', 'invo_id', 'Invoices'),
     }
 l10n_es_aeat_mod340_issued()
 

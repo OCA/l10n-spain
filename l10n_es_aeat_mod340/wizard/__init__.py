@@ -2,8 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Alejandro Sanchez (http://www.asr-oss.com) All Rights Reserved.
-#                       Alejandro Sanchez <alejandro@asr-oss.com>
+#    Copyright (c) 2011 Ting (www.ting.es) All Rights Reserved.
+#                      
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@
 #
 ##############################################################################
 
-import wizard_issued
-import wizard_received
-import export_mod340
 
+import export_mod340_to_boe
+import calculate_mod340_records
+import account
