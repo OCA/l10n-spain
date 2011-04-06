@@ -15,5 +15,26 @@
 			<field name="note">Transferencia</field>
 			<field eval="1" name="active"/>
 		</record>
+		<record id="payment_type_cheque0" model="payment.type">
+			<field name="code">CHEQUE_CSB</field>
+			<field name="name">Cheque</field>
+			<field eval="[(6,0,[ref('base.bank_normal')])]" name="suitable_bank_types"/>
+			<field name="note">Cheque</field>
+			<field eval="1" name="active"/>
+		</record>
+		<record id="payment_type_pagare0" model="payment.type">
+			<field name="code">PAGARE_CSB</field>
+			<field name="name">Pagaré</field>
+			<field eval="[(6,0,[ref('base.bank_normal')])]" name="suitable_bank_types"/>
+			<field name="note">Pagare</field>
+			<field eval="1" name="active"/>
+		</record>
+		<record id="payment_type_pago_certificado0" model="payment.type">
+			<field name="code">PAGO_CERTIFICADO_CSB</field>
+			<field name="name">Pago certificado</field>
+			<field eval="[(6,0,[ref('base.bank_normal')])]" name="suitable_bank_types"/>
+			<field name="note">Pago certificado</field>
+			<field eval="1" name="active"/>
+		</record>
 	</data>
 </openerp>
