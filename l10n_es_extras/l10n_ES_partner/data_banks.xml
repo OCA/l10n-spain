@@ -1,84 +1,68 @@
 <?xml version="1.0" encoding='UTF-8'?>
 <openerp>
 	<data noupdate="1">
-		<record id="res_bank_crvillamalea" model="res.bank">
-			<field eval="&quot;&quot;&quot;C.R. VILLAMALEA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. DE VILLAMALEA, S.C.C.A. CASTILLA-LA MANCHA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3144&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F02004299&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM144&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. DE LA CONCEPCION, 1&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;VILLAMALEA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;02270&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.ruralvia.com/villamalea&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;967483026&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;967483672&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES02"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_novanca" model="res.bank">
-			<field eval="&quot;&quot;&quot;NOVANCA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA DE CREDITO COOPERATIVO, S.C.C.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3146&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F28457075&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. VIRGEN DE LOS PELIGROS, 4 PL. 4&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;28013&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;916926153&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;0&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES28"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_crdebalears" model="res.bank">
-			<field eval="&quot;&quot;&quot;C.R. DE BALEARS&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAIXA R. DE BALEARS, S.C.C.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3147&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F07053788&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM147&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. ANTONIO GAUDI, 2&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;PALMA DE MALLORCA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;07013&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.ruralvia.com/balears&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;971432283&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;971759351&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES07"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_crdealbal" model="res.bank">
-			<field eval="&quot;&quot;&quot;C.R. DE ALBAL&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. DE ALBAL, C.C.V.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3150&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F46043824&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM150&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. DEL JARDI, 24&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;ALBAL&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;46470&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;961260075&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;961268683&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_albalat" model="res.bank">
+			<field eval="&quot;&quot;&quot;ALBALAT&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAIXA R. ALBALAT DELS SORELLS, C.C.V.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3186&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F96828728&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CCRIES2A186&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. PADRE SALVADOR, 11&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ALBALAT DELS SORELLS&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;46135&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.caixalbalat.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;961490437&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;961495864&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES46"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_crdevillar" model="res.bank">
-			<field eval="&quot;&quot;&quot;C.R. DE VILLAR&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. DE VILLAR C.C.V.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3152&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F46043816&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM152&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. LAS CRUCES, 33&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;VILLAR DEL ARZOBISPO&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;46170&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajarural.com/villar&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;961646034&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;961646159&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_cajarsur" model="res.bank">
+			<field eval="&quot;&quot;&quot;CAJA R. SUR&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. DEL SUR, S. COOP. DE CREDITO&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3187&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F91119065&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM187&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. MURILLO, 2&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;SEVILLA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;41001&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.ruralvia.com/crdelsur&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;954599100&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;954228160&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES41"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_creditvalencia" model="res.bank">
+			<field eval="&quot;&quot;&quot;CREDIT VALENCIA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CREDIT VALENCIA, C.R.C.C.V.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3188&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F97086805&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM188&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. SANTA MARIA MICAELA, 6&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;VALENCIA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;46008&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;963354930&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;963732954&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES46"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_multicaja" model="res.bank">
+			<field eval="&quot;&quot;&quot;MULTICAJA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. ARAGONESA Y DE LOS PIRINEOS, S.C.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3189&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F22252076&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM189&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. BERENGUER, 2-4&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;HUESCA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;22002&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.multicaja.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;974290000&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;974290067&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES22"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_caixarxilxes" model="res.bank">
@@ -134,7 +118,7 @@
 			<field eval="&quot;&quot;&quot;CAJA R. S. FORTUNATO, S.C.C.C.L.&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;3161&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;F25015660&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM161&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;CL. BONAIRE, 11&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;CASTELLDANS&quot;&quot;&quot;" name="city"/>
 			<field eval="&quot;&quot;&quot;25154&quot;&quot;&quot;" name="zip"/>
@@ -193,132 +177,84 @@
 			<field name="state" ref="l10n_ES_toponyms.ES12"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_caixaadvocats" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAIXA ADVOCATS&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAIXA DELS ADVOCATS-CAJA DE LOS ABOGADOS, S.C.C.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3171&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F08536526&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CXAVESB1XXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. ROGER DE LLURIA, 104 BAJOS&quot;&quot;&quot;" name="street"/>
+		<record id="res_bank_caixavinaros" model="res.bank">
+			<field eval="&quot;&quot;&quot;CAIXA VINAROS&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAIXA R. VINAROS, S.C.C.V.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3174&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F12013249&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM174&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. SAN CRISTOBAL, 19&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;VINAROS&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;12500&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.ruralvia.com&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;964407280&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;964407281&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES12"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_crcanarias" model="res.bank">
+			<field eval="&quot;&quot;&quot;CR.CANARIAS&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. DE CANARIAS, S.C.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3177&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F35040278&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM177&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. NICOLAS ESTEVANEZ, 21 PL. 1 - ED. CENTRAL&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;LAS PALMAS DE GRAN CANARIA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;35007&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.ruralcanarias.com&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;928277000&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;928272363&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES35"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_crdealginet" model="res.bank">
+			<field eval="&quot;&quot;&quot;C.R. DE ALGINET&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. DE ALGINET, S.C.C.V.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3179&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F46163598&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM179&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. VALENCIA, 13&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ALGINET&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;46230&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.ruralvia.com&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;961750400&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;961750433&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES46"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_arquia" model="res.bank">
+			<field eval="&quot;&quot;&quot;ARQUIA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA DE ARQUITECTOS S.C.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3183&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F08809808&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CASDESBBXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. ARCS, 1&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;BARCELONA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08037&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.iurisbank.com&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;934871270&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;934870544&quot;&quot;&quot;" name="fax"/>
+			<field eval="&quot;&quot;&quot;8002&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.arquia.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;934826810&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;934826801&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES08"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_sanjosealcora" model="res.bank">
-			<field eval="&quot;&quot;&quot;SAN JOSE ALCORA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. S. JOSE DE ALCORA S.C.C.V.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3113&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F12013272&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM113&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. SAN FRANCISCO, 14&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;ALCORA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;12110&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.ruralvia.com/alcora&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;964360976&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;964360976&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES12"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_crcastellon" model="res.bank">
-			<field eval="&quot;&quot;&quot;C.R. CASTELLON&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. CASTELLON S. ISIDRO, S.C.C.V.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3114&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F12013355&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM114&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. GASSET, 1&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;CASTELLON DE LA PLANA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;12001&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.crcs.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;964723200&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;964224542&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES12"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_crnmadresol" model="res.bank">
-			<field eval="&quot;&quot;&quot;CR N. MADRE SOL&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. 'NUESTRA MADRE DEL SOL', S.C.A.C.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3115&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F14011399&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM115&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. ALTO GUADALQUIVIR, 4&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;ADAMUZ&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;14430&quot;&quot;&quot;" name="zip"/>
+		<record id="res_bank_cajadealcoy" model="res.bank">
+			<field eval="&quot;&quot;&quot;CAJA DE ALCOY&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA DE CREDITO DE ALCOY, C.C.V. (EN LIQUIDACION)&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3184&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F03285467&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. SANTA ROSA, 48&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ALCOY&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;3800&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;957166028&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;957166313&quot;&quot;&quot;" name="fax"/>
+			<field eval="&quot;&quot;&quot;965525112&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;965524606&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES14"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_crmotacuervo" model="res.bank">
-			<field eval="&quot;&quot;&quot;C.R.MOTA CUERVO&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. COMARCAL DE MOTA DEL CUERVO, S.C.L.C.A.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3116&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F16005324&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM116&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. MAYOR, 9&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;MOTA DEL CUERVO&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;16630&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;967180471&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;967180401&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES16"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_crdalgemesi" model="res.bank">
-			<field eval="&quot;&quot;&quot;C.R.D'ALGEMESI&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAIXA R. D'ALGEMESI, S.C.V.C.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3117&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F46043782&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM117&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. SAN JOSE DE CALASANZ, 6&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;ALGEMESI&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;46680&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajarural.com/rurales/3117&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;962488030&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;962484511&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES46"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_crtorrent" model="res.bank">
-			<field eval="&quot;&quot;&quot;C.R.TORRENT&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAIXA RURAL TORRENT C.C.V.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3118&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F46047809&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM118&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;AV. PAIS VALENCIANO, 3&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;TORRENT&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;46900&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.ruraltorrent.com&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;961550054&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;961575952&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES46"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_crsjaime" model="res.bank">
-			<field eval="&quot;&quot;&quot;C.R. S. JAIME&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. S. JAIME ALQUERIAS NIÑO PERDIDO S.C.C.V.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3119&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F12013298&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM119&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. JAIME CHICHARRO, 24&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;ALQUERIAS NIÑO PERDIDO&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;12539&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;964511650&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;964516001&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES12"/>
+			<field name="state" ref="l10n_ES_toponyms.ES03"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_crdecheste" model="res.bank">
@@ -342,7 +278,7 @@
 			<field eval="&quot;&quot;&quot;CAIXA R. DE TURIS, C.C.V.&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;3123&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;F46027504&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM123&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CCRIES2A123&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;PZ. CONSTITUCION, 2&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;TURIS&quot;&quot;&quot;" name="city"/>
 			<field eval="&quot;&quot;&quot;46389&quot;&quot;&quot;" name="zip"/>
@@ -361,26 +297,10 @@
 			<field eval="&quot;&quot;&quot;BCOEESMM127&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;CL. TERCIA, 49&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;CASAS IBAÑEZ&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;02200&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;2200&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.ruralvia.com/casasibanez&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;967460312&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;967460344&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES02"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_crdelaroda" model="res.bank">
-			<field eval="&quot;&quot;&quot;C.R. DE LA RODA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. DE LA RODA, S.C.C. DE CASTILLA LA MANCHA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3128&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F02004596&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM128&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;AV. RAMON Y CAJAL, 13&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;LA RODA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;02630&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.ruralvia.com/laroda&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;967440508&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;967442795&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES02"/>
 			<field name="country" ref="base.es"/>
@@ -438,7 +358,7 @@
 			<field eval="&quot;&quot;&quot;CAJA R. DE CASINOS S.C.C.V.&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;3137&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;F46043808&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM137&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CCRIES2A137&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;PZ. MAYOR, 10&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;CASINOS&quot;&quot;&quot;" name="city"/>
 			<field eval="&quot;&quot;&quot;46171&quot;&quot;&quot;" name="zip"/>
@@ -481,82 +401,82 @@
 			<field name="state" ref="l10n_ES_toponyms.ES25"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_crdetoledo" model="res.bank">
-			<field eval="&quot;&quot;&quot;C.R. DE TOLEDO&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. DE TOLEDO, S.C.C.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3081&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G45003993&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM081&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. MEJICO, 2&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;TOLEDO&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;45004&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajarural.com/toledo&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;925269600&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;925212951&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_crvillamalea" model="res.bank">
+			<field eval="&quot;&quot;&quot;C.R. VILLAMALEA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. DE VILLAMALEA, S.C.C.A. CASTILLA-LA MANCHA&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3144&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F02004299&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM144&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PZ. DE LA CONCEPCION, 1&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;VILLAMALEA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;2270&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.ruralvia.com/villamalea&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;967483026&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;967483672&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES45"/>
+			<field name="state" ref="l10n_ES_toponyms.ES02"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_ruralcaja" model="res.bank">
-			<field eval="&quot;&quot;&quot;RURALCAJA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. DEL MEDITERRANEO, RURALCAJA, S.C.C.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3082&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F46028064&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM082&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PS. ALAMEDA, 34&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;VALENCIA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;46023&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.ruralcaja.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;963870800&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;963923703&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_novanca" model="res.bank">
+			<field eval="&quot;&quot;&quot;NOVANCA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA DE CREDITO COOPERATIVO, S.C.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3146&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F28457075&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. VIRGEN DE LOS PELIGROS, 4 PL. 4&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;28013&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;916926153&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;0&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES28"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_crdealbal" model="res.bank">
+			<field eval="&quot;&quot;&quot;C.R. DE ALBAL&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. DE ALBAL, C.C.V.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3150&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F46043824&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM150&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PZ. DEL JARDI, 24&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ALBAL&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;46470&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;961260075&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;961268683&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES46"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_iparkutxa" model="res.bank">
-			<field eval="&quot;&quot;&quot;IPAR KUTXA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;IPAR KUTXA RURAL, S.C.C.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3084&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F48046742&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CVRVES2BXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. ARENAL, 4&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;BILBAO&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;48005&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.iparkutxa.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;944065200&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;944065265&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_crdevillar" model="res.bank">
+			<field eval="&quot;&quot;&quot;C.R. DE VILLAR&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. DE VILLAR C.C.V.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3152&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F46043816&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM152&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. LAS CRUCES, 33&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;VILLAR DEL ARZOBISPO&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;46170&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.cajarural.com/villar&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;961646034&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;961646159&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES48"/>
+			<field name="state" ref="l10n_ES_toponyms.ES46"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_crdezamora" model="res.bank">
-			<field eval="&quot;&quot;&quot;C.R. DE ZAMORA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. DE ZAMORA, C.C.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3085&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F49002454&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM085&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;AV. ALFONSO IX, 7&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;ZAMORA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;49013&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajarural.com/zamora&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;980532671&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;980534649&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES49"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_crbaena" model="res.bank">
-			<field eval="&quot;&quot;&quot;C.R.BAENA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. BAENA NTRA. SRA. GUADALUPE S.C.C.A.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3089&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F14016166&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM089&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. RAFAEL ONIEVA ARIZA, 32&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;BAENA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;14850&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.ruralvia.com/baena/&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;957670772&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;957670749&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_crlacarlota" model="res.bank">
+			<field eval="&quot;&quot;&quot;C.R. LA CARLOTA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. DE LA CARLOTA, S.C.A.C.L. (EN LIQUIDACION)&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3154&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F14013833&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. CARLOS III, 31&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;LA CARLOTA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;14100&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;957300088&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;957300632&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES14"/>
 			<field name="country" ref="base.es"/>
@@ -566,7 +486,7 @@
 			<field eval="&quot;&quot;&quot;CAJA CAMPO, CAJA RURAL, S.C.C.&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;3094&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;F46026993&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM094&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CCRIES2A094&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;AV. ARRABAL, 18&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;REQUENA&quot;&quot;&quot;" name="city"/>
 			<field eval="&quot;&quot;&quot;46340&quot;&quot;&quot;" name="zip"/>
@@ -665,7 +585,7 @@
 			<field eval="&quot;&quot;&quot;BCOEESMM105&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;AV. JAIME I, 1&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;CALLOSA D'EN SARRIA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;03510&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;3510&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.ruralvia.com/callosa&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;965880058&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;965880001&quot;&quot;&quot;" name="fax"/>
@@ -721,100 +641,116 @@
 			<field name="state" ref="l10n_ES_toponyms.ES12"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_caixapetrer" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAIXAPETRER&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA DE CREDITO DE PETREL, CAJA RURAL, C.C.V.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3029&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F03014982&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM029&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. SAN BARTOLOME, 2&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;PETRER&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;03610&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajarural.com/rurales/3029&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;966952780&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;966952798&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_sanjosealcora" model="res.bank">
+			<field eval="&quot;&quot;&quot;SAN JOSE ALCORA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. S. JOSE DE ALCORA S.C.C.V.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3113&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F12013272&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM113&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. SAN FRANCISCO, 14&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ALCORA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;12110&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.ruralvia.com/alcora&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;964360976&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;964360976&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES03"/>
+			<field name="state" ref="l10n_ES_toponyms.ES12"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_cajalaboral" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAJA LABORAL&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA LABORAL POPULAR C.C.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3035&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F20022109&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CLPEES2MXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PS. JOSE MARIA ARIZMENDIARRIETA, S/N&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;MONDRAGON&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;20500&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajalaboral.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;943719500&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;943719778&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_crcastellon" model="res.bank">
+			<field eval="&quot;&quot;&quot;C.R. CASTELLON&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. CASTELLON S. ISIDRO, S.C.C.V.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3114&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F12013355&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM114&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. GASSET, 1&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;CASTELLON DE LA PLANA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;12001&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.crcs.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;964723200&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;964224542&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES20"/>
+			<field name="state" ref="l10n_ES_toponyms.ES12"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_caixaltea" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAIXALTEA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAIXA R. ALTEA, C.C.V.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3045&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F03027901&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM045&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PJ. LABRADOR, 1&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;ALTEA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;03590&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.caixaltea.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;965841350&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;965842049&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_crnmadresol" model="res.bank">
+			<field eval="&quot;&quot;&quot;CR N. MADRE SOL&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. 'NUESTRA MADRE DEL SOL', S.C.A.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3115&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F14011399&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM115&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. ALTO GUADALQUIVIR, 4&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ADAMUZ&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;14430&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;957166028&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;957166313&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES03"/>
+			<field name="state" ref="l10n_ES_toponyms.ES14"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_cralbacete" model="res.bank">
-			<field eval="&quot;&quot;&quot;C.R. ALBACETE&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. DE ALBACETE, S.C.C.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3056&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F02004018&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM056&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. TESIFONTE GALLEGO, 18&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;ALBACETE&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;02002&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.ruralvia.com/albacete&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;967229771&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;967227402&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_crmotacuervo" model="res.bank">
+			<field eval="&quot;&quot;&quot;C.R.MOTA CUERVO&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. COMARCAL DE MOTA DEL CUERVO, S.C.L.C.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3116&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F16005324&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM116&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PZ. MAYOR, 9&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;MOTA DEL CUERVO&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;16630&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;967180471&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;967180401&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES02"/>
+			<field name="state" ref="l10n_ES_toponyms.ES16"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_cajamar" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAJAMAR&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJAMAR CAJA RURAL, S.C.C.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3058&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F04001475&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CCRIES2AXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. BARCELONA, 5&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;ALMERIA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;04006&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajamar.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;950210100&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;950266578&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_crdalgemesi" model="res.bank">
+			<field eval="&quot;&quot;&quot;C.R.D'ALGEMESI&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAIXA R. D'ALGEMESI, S.C.V.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3117&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F46043782&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM117&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. SAN JOSE DE CALASANZ, 6&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ALGEMESI&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;46680&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.cajarural.com/rurales/3117&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;962488030&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;962484511&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES04"/>
+			<field name="state" ref="l10n_ES_toponyms.ES46"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_crasturias" model="res.bank">
-			<field eval="&quot;&quot;&quot;C.R. ASTURIAS&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. DE ASTURIAS, S.C.C.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3059&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F33007337&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCOEESMM059&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. MELQUIADES ALVAREZ, 7&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;OVIEDO&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;33002&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.ruralvia.com/asturias/&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;985220591&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;985227149&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_crtorrent" model="res.bank">
+			<field eval="&quot;&quot;&quot;C.R.TORRENT&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAIXA RURAL TORRENT C.C.V.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3118&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F46047809&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM118&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;AV. AL VEDAT, 3&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;TORRENT&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;46900&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.ruraltorrent.com&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;961550054&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;961575952&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES33"/>
+			<field name="state" ref="l10n_ES_toponyms.ES46"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_crsjaime" model="res.bank">
+			<field eval="&quot;&quot;&quot;C.R. S. JAIME&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. S. JAIME ALQUERIAS NIÑO PERDIDO S.C.C.V.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3119&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F12013298&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM119&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. JAIME CHICHARRO, 24&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ALQUERIAS NIÑO PERDIDO&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;12539&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;964511650&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;964516001&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES12"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_crdeburgos" model="res.bank">
@@ -825,7 +761,7 @@
 			<field eval="&quot;&quot;&quot;BCOEESMM060&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;PZ. ESPAÑA, S/N&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;BURGOS&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;09005&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;9005&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.cajarural.com/burgos&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;947200676&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;947271683&quot;&quot;&quot;" name="fax"/>
@@ -915,14 +851,14 @@
 		</record>
 		<record id="res_bank_cajasiete" model="res.bank">
 			<field eval="&quot;&quot;&quot;CAJASIETE&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. DE TENERIFE, S.C.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;CAJASIETE, CAJA RURAL, S.C.C.&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;3076&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;F38005245&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;BCOEESMM076&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;AV. MANUEL HERMOSO ROJAS, 8&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;STA. CRUZ DE TENERIFE&quot;&quot;&quot;" name="city"/>
 			<field eval="&quot;&quot;&quot;38003&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajaruraldetenerife.com&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;www.cajasiete.com&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;922608400&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;922608406&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
@@ -961,100 +897,84 @@
 			<field name="state" ref="l10n_ES_toponyms.ES44"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_kutxa" model="res.bank">
-			<field eval="&quot;&quot;&quot;KUTXA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA DE AHORROS Y M.P. DE GIPUZKOA Y SAN SEBASTIAN&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2101&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G20336251&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CGGKES22XXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. GARIBAY, 15&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;SAN SEBASTIAN&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;20004&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.kutxa.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;943411000&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;943426006&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_crdetoledo" model="res.bank">
+			<field eval="&quot;&quot;&quot;C.R. DE TOLEDO&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. DE TOLEDO, S.C.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3081&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F45003993&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM081&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. MEJICO, 2&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;TOLEDO&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;45004&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.cajarural.com/toledo&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;925269600&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;925212951&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES20"/>
+			<field name="state" ref="l10n_ES_toponyms.ES45"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_unicaja" model="res.bank">
-			<field eval="&quot;&quot;&quot;UNICAJA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;M.P.C.A. RONDA, CADIZ, ALMERIA, MALAGA Y ANTEQUERA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2103&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G29498086&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;UCJAES2MXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;AV. ANDALUCIA, 10-12&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;MALAGA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;29002&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.unicaja.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;952138000&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;952287698&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_ruralcaja" model="res.bank">
+			<field eval="&quot;&quot;&quot;RURALCAJA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. DEL MEDITERRANEO, RURALCAJA, S.C.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3082&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F46028064&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM082&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PS. ALAMEDA, 34&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;VALENCIA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;46023&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.ruralcaja.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;963870800&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;963923703&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES29"/>
+			<field name="state" ref="l10n_ES_toponyms.ES46"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_cajaduero" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAJA DUERO&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA DE AHORROS DE SALAMANCA Y SORIA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2104&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G37244191&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CSSOES2SXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. BANDOS, 15-17&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;SALAMANCA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;37002&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajaduero.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;923279300&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;923211646&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_iparkutxa" model="res.bank">
+			<field eval="&quot;&quot;&quot;IPAR KUTXA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;IPAR KUTXA RURAL, S.C.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3084&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F48046742&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CVRVES2BXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. ARENAL, 4&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;BILBAO&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;48005&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.iparkutxa.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;944065200&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;944065265&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES37"/>
+			<field name="state" ref="l10n_ES_toponyms.ES48"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_castlamancha" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAST.-LA MANCHA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA DE AHORROS DE CASTILLA-LA MANCHA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2105&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G16131336&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM105&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PQ. SAN JULIAN, 20&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;CUENCA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;16002&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.ccm.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;969177300&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;969223568&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_crdezamora" model="res.bank">
+			<field eval="&quot;&quot;&quot;C.R. DE ZAMORA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. DE ZAMORA, C.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3085&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F49002454&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM085&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;AV. ALFONSO IX, 7&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ZAMORA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;49013&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.cajarural.com/zamora&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;980532671&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;980534649&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES16"/>
+			<field name="state" ref="l10n_ES_toponyms.ES49"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_cajasol" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAJASOL&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;M.P. Y C.A. SAN FERNANDO DE HUELVA JEREZ Y SEVILLA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2106&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G91658039&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM106&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. SAN FRANCISCO, 1&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;SEVILLA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;41004&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajasol.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;954597100&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;954597201&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_crbaena" model="res.bank">
+			<field eval="&quot;&quot;&quot;C.R.BAENA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. BAENA NTRA. SRA. GUADALUPE S.C.C.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3089&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F14016166&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM089&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. RAFAEL ONIEVA ARIZA, 32&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;BAENA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;14850&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.ruralvia.com/baena/&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;957670772&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;957670749&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES41"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_cralmendralejo" model="res.bank">
-			<field eval="&quot;&quot;&quot;CR ALMENDRALEJO&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA R. DE ALMENDRALEJO, S.C.C.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;3001&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;F06004816&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. DE SAN ANTONIO, S/N&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;ALMENDRALEJO&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;06200&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajalmendralejo.com&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;924670371&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;924664311&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES06"/>
+			<field name="state" ref="l10n_ES_toponyms.ES14"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_crcentral" model="res.bank">
@@ -1065,7 +985,7 @@
 			<field eval="&quot;&quot;&quot;BCOEESMM005&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;CL. JOSE MARIA SARGET, 29&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;ORIHUELA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;03300&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;3300&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.ruralcentral.es&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;966740001&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;965300975&quot;&quot;&quot;" name="fax"/>
@@ -1113,7 +1033,7 @@
 			<field eval="&quot;&quot;&quot;BCOEESMM009&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;AV. SANTA MARINA, 15&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;BADAJOZ&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;06005&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;6005&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.crextremadura.com&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;924207474&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;924234023&quot;&quot;&quot;" name="fax"/>
@@ -1145,7 +1065,7 @@
 			<field eval="&quot;&quot;&quot;BCOEESMM017&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;CL. DIPUTACION, 1&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;SORIA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;42003&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;42002&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.ruralvia.com/soria&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;975212840&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;975228937&quot;&quot;&quot;" name="fax"/>
@@ -1241,7 +1161,7 @@
 			<field eval="&quot;&quot;&quot;CDENESBBXXX&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;VIA LAYETANA, 39&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;BARCELONA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08003&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;8003&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.caja-ingenieros.es&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;933106000&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;933100060&quot;&quot;&quot;" name="fax"/>
@@ -1249,68 +1169,100 @@
 			<field name="state" ref="l10n_ES_toponyms.ES08"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_caixanova" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAIXANOVA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAIXA AFORROS VIGO,OURENSE E PONTEVEDRA(CAIXANOVA)&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2080&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G36600369&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CAVIES2VXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;AV. GARCIA BARBON, 1 Y 3&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;VIGO&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;36201&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.caixanova.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;986828200&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;986828238&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_caixapetrer" model="res.bank">
+			<field eval="&quot;&quot;&quot;CAIXAPETRER&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA DE CREDITO DE PETREL, CAJA RURAL, C.C.V.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3029&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F03014982&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CCRIES2A029&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. SAN BARTOLOME, 2&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;PETRER&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;3610&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.cajarural.com/rurales/3029&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;966952780&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;966952798&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES36"/>
+			<field name="state" ref="l10n_ES_toponyms.ES03"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_caixapenedes" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAIXA PENEDES&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAIXA D'ESTALVIS DEL PENEDES&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2081&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G08169807&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM081&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;RB. NUESTRA SEÑORA, 2&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;VILAFRANCA DEL PENEDES&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08720&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.caixapenedes.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;938916500&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;938920816&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_cajalaboral" model="res.bank">
+			<field eval="&quot;&quot;&quot;CAJA LABORAL&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA LABORAL POPULAR C.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3035&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F20022109&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CLPEES2MXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PS. JOSE MARIA ARIZMENDIARRIETA, S/N&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;MONDRAGON&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;20500&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.cajalaboral.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;943719500&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;943719778&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES08"/>
+			<field name="state" ref="l10n_ES_toponyms.ES20"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_ibercaja" model="res.bank">
-			<field eval="&quot;&quot;&quot;IBERCAJA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA DE AHORROS Y M.P. DE ZARAGOZA, ARAGON Y RIOJA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2085&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G50000652&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CAZRES2ZXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. BASILIO PARAISO, 2&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;ZARAGOZA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;50008&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.ibercaja.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;976767676&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;976216637&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_caixaltea" model="res.bank">
+			<field eval="&quot;&quot;&quot;CAIXALTEA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAIXA R. ALTEA, C.C.V.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3045&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F03027901&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM045&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PJ. LABRADOR, 1&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ALTEA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;3590&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.caixaltea.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;965841350&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;965842049&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES50"/>
+			<field name="state" ref="l10n_ES_toponyms.ES03"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_cai" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAI&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA DE AHORROS DE LA INMACULADA DE ARAGON&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2086&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G50000819&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM086&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;AV. INDEPENDENCIA, 10&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;ZARAGOZA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;50004&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cai.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;976718100&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;976718600&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_cralbacete" model="res.bank">
+			<field eval="&quot;&quot;&quot;C.R. ALBACETE&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. DE ALBACETE, S.C.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3056&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F02004018&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM056&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. TESIFONTE GALLEGO, 18&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ALBACETE&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;2002&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.ruralvia.com/albacete&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;967229771&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;967227402&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES50"/>
+			<field name="state" ref="l10n_ES_toponyms.ES02"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_cajamar" model="res.bank">
+			<field eval="&quot;&quot;&quot;CAJAMAR&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJAMAR CAJA RURAL, S.C.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3058&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F04001475&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CCRIES2AXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PZ. BARCELONA, 5&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ALMERIA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;4006&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.cajamar.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;950210100&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;950266578&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES04"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_crasturias" model="res.bank">
+			<field eval="&quot;&quot;&quot;C.R. ASTURIAS&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. DE ASTURIAS, S.C.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3059&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F33007337&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BCOEESMM059&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. MELQUIADES ALVAREZ, 7&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;OVIEDO&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;33002&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.ruralvia.com/asturias/&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;985220591&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;985227149&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES33"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_cam" model="res.bank">
@@ -1321,44 +1273,12 @@
 			<field eval="&quot;&quot;&quot;CAAMES2AXXX&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;CL. SAN FERNANDO, 40&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;ALICANTE&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;03001&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;3001&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.cam.es&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;965905000&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;965905044&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES03"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_caixagalicia" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAIXAGALICIA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA DE AHORROS DE GALICIA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2091&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G15028947&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CAGLESMMXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;RUA NUEVA, 30&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;A CORUÑA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;15003&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.caixagalicia.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;981187000&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;981188001&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES15"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_cajadejaen" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAJA DE JAEN&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA PROVINCIAL DE AHORROS DE JAEN&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2092&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G23019003&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM092&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. JAEN POR LA PAZ, 2&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;JAEN&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;23008&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajaen.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;953210500&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;953210513&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES23"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_cajadeavila" model="res.bank">
@@ -1369,7 +1289,7 @@
 			<field eval="&quot;&quot;&quot;CECAESMM094&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;PZ. SANTA TERESA, 10&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;AVILA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;05001&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;5001&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.cajadeavila.es&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;920355300&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;920252528&quot;&quot;&quot;" name="fax"/>
@@ -1393,22 +1313,6 @@
 			<field name="state" ref="l10n_ES_toponyms.ES48"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_cajaespana" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAJA ESPAÑA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA ESPAÑA DE INVERSIONES, CAJA DE AHORROS Y M.P.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2096&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G24219891&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CSPAES2LXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. SAN MARCELO, 5 ED. BOTINES DE GAUDI&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;LEON&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;24002&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajaespana.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;987292500&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;987231026&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES24"/>
-			<field name="country" ref="base.es"/>
-		</record>
 		<record id="res_bank_cajavital" model="res.bank">
 			<field eval="&quot;&quot;&quot;CAJA VITAL&quot;&quot;&quot;" name="name"/>
 			<field eval="&quot;&quot;&quot;CAJA DE AHORROS DE VITORIA Y ALAVA&quot;&quot;&quot;" name="lname"/>
@@ -1417,7 +1321,7 @@
 			<field eval="&quot;&quot;&quot;CECAESMM097&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;PS. BIOSFERA, 6&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;VITORIA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;01013&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;1013&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.cajavital.es&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;945162000&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;945162028&quot;&quot;&quot;" name="fax"/>
@@ -1449,7 +1353,7 @@
 			<field eval="&quot;&quot;&quot;CAIXESBBXXX&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;AV. DIAGONAL, 621-629&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;BARCELONA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08028&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;8028&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.lacaixa.es&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;934046000&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;934046723&quot;&quot;&quot;" name="fax"/>
@@ -1457,36 +1361,100 @@
 			<field name="state" ref="l10n_ES_toponyms.ES08"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_colonya" model="res.bank">
-			<field eval="&quot;&quot;&quot;COLONYA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;COLONYA - CAIXA D'ESTALVIS DE POLLENSA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2056&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G07000045&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM056&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. MAYOR, 7&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;POLLENSA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;07460&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.colonya.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;971530162&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;971530409&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_kutxa" model="res.bank">
+			<field eval="&quot;&quot;&quot;KUTXA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA DE AHORROS Y M.P. DE GIPUZKOA Y SAN SEBASTIAN&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;2101&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;G20336251&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CGGKES22XXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. GARIBAY, 15&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;SAN SEBASTIAN&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;20004&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.kutxa.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;943411000&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;943426006&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES07"/>
+			<field name="state" ref="l10n_ES_toponyms.ES20"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_caixasabadell" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAIXA SABADELL&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAIXA D'ESTALVIS DE SABADELL&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2059&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G08169799&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM059&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. GRACIA, 17&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;SABADELL&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08201&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.caixasabadell.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;937286700&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;937270102&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_unicaja" model="res.bank">
+			<field eval="&quot;&quot;&quot;UNICAJA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;MPCA RONDA,CADIZ,ALMERIA, MALAGA, ANTEQUERA Y JAEN&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;2103&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;G93040566&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;UCJAES2MXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;AV. ANDALUCIA, 10-12&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;MALAGA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;29007&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.unicaja.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;952138000&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;952287698&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES29"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_cajasol" model="res.bank">
+			<field eval="&quot;&quot;&quot;CAJASOL&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;MPCA S.FERNANDO GUADALAJARA,HUELVA,JEREZ Y SEVILLA&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;2106&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;G91658039&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CECAESMM106&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PZ. SAN FRANCISCO, 1&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;SEVILLA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;41004&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.cajasol.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;954597100&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;955401755&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES41"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_unnim" model="res.bank">
+			<field eval="&quot;&quot;&quot;UNNIM&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAIXA E. UNIO CAIXES MANLLEU, SABADELL I TERRASSA&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;2107&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;G65345886&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CECAESMM107&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PZ. CATALUNYA, 9 PL. 6-7&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;BARCELONA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;8002&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.unnim.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;937397700&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;937397777&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES08"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_cajaespana" model="res.bank">
+			<field eval="&quot;&quot;&quot;CAJA ESPAÑA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA ESPAÑA DE INVERSIONES, SALAMANCA Y SORIA,CAMP&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;2108&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;G24611485&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CSPAES2L108&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PZ. SAN MARCELO, 5 ED. BOTINES DE GAUDI&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;LEON&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;24002&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;987292500&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;987231026&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES24"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_cralmendralejo" model="res.bank">
+			<field eval="&quot;&quot;&quot;CR ALMENDRALEJO&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA R. DE ALMENDRALEJO, S.C.C.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;3001&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;F06004816&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PZ. DE SAN ANTONIO, S/N&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ALMENDRALEJO&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;6200&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.cajalmendralejo.com&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;924670371&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;924664311&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES06"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_cajacanarias" model="res.bank">
@@ -1537,38 +1505,6 @@
 			<field name="state" ref="l10n_ES_toponyms.ES40"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_caixatarragona" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAIXA TARRAGONA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAIXA D'ESTALVIS DE TARRAGONA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2073&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G43003938&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM073&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. IMPERIAL TARRACO, 6&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;TARRAGONA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;43005&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.caixatarragona.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;977299200&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;977299250&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES43"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_caixaterrassa" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAIXA TERRASSA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAIXA D'ESTALVIS DE TERRASSA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2074&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G08169781&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM074&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;RB. D'EGARA, 350&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;TERRASSA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08221&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.caixaterrassa.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;937397700&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;937397777&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES08"/>
-			<field name="country" ref="base.es"/>
-		</record>
 		<record id="res_bank_bancaja" model="res.bank">
 			<field eval="&quot;&quot;&quot;BANCAJA&quot;&quot;&quot;" name="name"/>
 			<field eval="&quot;&quot;&quot;CAJA AH. VALENCIA, CASTELLON Y ALICANTE, BANCAJA&quot;&quot;&quot;" name="lname"/>
@@ -1585,100 +1521,68 @@
 			<field name="state" ref="l10n_ES_toponyms.ES12"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_lageneral" model="res.bank">
-			<field eval="&quot;&quot;&quot;LA GENERAL&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA GENERAL DE AHORROS DE GRANADA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2031&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G18000802&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM031&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;AV. FERNANDO DE LOS RIOS, 6&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;GRANADA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;18006&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajagranada.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;958244500&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;958274400&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_novacaixagalici" model="res.bank">
+			<field eval="&quot;&quot;&quot;NOVACAIXAGALICI&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAIXA AFORROS DE GALICIA,VIGO,OURENSE E PONTEVEDRA&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;2080&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;G70270293&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CAGLESMMVIG&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. RUA NUEVA, 30, 32&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;A CORUÑA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;15003&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;981187000&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;981223562&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES18"/>
+			<field name="state" ref="l10n_ES_toponyms.ES15"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_cguadalajara" model="res.bank">
-			<field eval="&quot;&quot;&quot;C. GUADALAJARA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA DE AHORRO PROVINCIAL DE GUADALAJARA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2032&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G19001775&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM032&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. JUAN BAUTISTA TOPETE, 1-3&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;GUADALAJARA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;19001&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajaguadalajara.biz&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;949888100&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;949888134&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES19"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_cajarioja" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAJARIOJA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA DE AHORROS DE LA RIOJA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2037&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G26003038&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM037&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. MIGUEL VILLANUEVA, 9&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;LOGROÑO&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;26001&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajarioja.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;941293131&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;941293145&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES26"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_cajamadrid" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAJA MADRID&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA DE AHORROS Y M.P. DE MADRID&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2038&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G28029007&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CAHMESMMXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. CELENQUE, 2&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;28013&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajamadrid.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;902246810&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;914239454&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES28"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_caixamanlleu" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAIXA MANLLEU&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAIXA D'ESTALVIS COMARCAL DE MANLLEU&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2040&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G08169849&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM040&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. FRA BERNARDI, 24-25&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;MANLLEU&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08560&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.caixamanlleu.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;938510800&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;938506343&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_caixapenedes" model="res.bank">
+			<field eval="&quot;&quot;&quot;CAIXA PENEDES&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAIXA D'ESTALVIS DEL PENEDES&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;2081&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;G08169807&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CECAESMM081&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;RB. NOSTRA SENYORA, 2&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;VILAFRANCA DEL PENEDES&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;8720&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.caixapenedes.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;938916500&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;938920816&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES08"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_caixamanresa" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAIXA MANRESA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAIXA D'ESTALVIS DE MANRESA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2041&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G08169831&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM041&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PS. PEDRO III, 24&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;MANRESA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08242&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.caixamanresa.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;938782700&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;938727787&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_ibercaja" model="res.bank">
+			<field eval="&quot;&quot;&quot;IBERCAJA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA DE AHORROS Y M.P. DE ZARAGOZA, ARAGON Y RIOJA&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;2085&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;G50000652&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CAZRES2ZXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PZ. BASILIO PARAISO, 2&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ZARAGOZA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;50008&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.ibercaja.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;976767676&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;976216637&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES08"/>
+			<field name="state" ref="l10n_ES_toponyms.ES50"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_cai" model="res.bank">
+			<field eval="&quot;&quot;&quot;CAI&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA DE AHORROS DE LA INMACULADA DE ARAGON&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;2086&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;G50000819&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CECAESMM086&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;AV. INDEPENDENCIA, 10&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ZARAGOZA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;50004&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.cai.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;976718100&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;976718600&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES50"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_caixalaietana" model="res.bank">
@@ -1687,9 +1591,9 @@
 			<field eval="&quot;&quot;&quot;2042&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;G08169823&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;CECAESMM042&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. PABLO IGLESIAS, 41-43&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;AV. LLUIS COMPANYS, 44-60&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;MATARO&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08302&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;8302&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.caixalaietana.es&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;937417550&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;937551074&quot;&quot;&quot;" name="fax"/>
@@ -1752,8 +1656,8 @@
 			<field eval="&quot;&quot;&quot;G07013154&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;CECAESMM051&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;CL. RAMON LLULL, 2&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;PALMA DE MALLORCA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;07001&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;PALMA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;7001&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.sanostra.net&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;971171717&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;971726054&quot;&quot;&quot;" name="fax"/>
@@ -1793,6 +1697,102 @@
 			<field name="state" ref="l10n_ES_toponyms.ES31"/>
 			<field name="country" ref="base.es"/>
 		</record>
+		<record id="res_bank_colonya" model="res.bank">
+			<field eval="&quot;&quot;&quot;COLONYA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;COLONYA - CAIXA D'ESTALVIS DE POLLENSA&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;2056&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;G07000045&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CECAESMM056&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PZ. MAYOR, 7&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;POLLENSA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;7460&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.colonya.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;971530162&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;971530409&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES07"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_lageneral" model="res.bank">
+			<field eval="&quot;&quot;&quot;LA GENERAL&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA GENERAL DE AHORROS DE GRANADA&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;2031&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;G18000802&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CECAESMM031&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;AV. FERNANDO DE LOS RIOS, 6&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;GRANADA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;18006&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.cajagranada.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;958244500&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;958274400&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES18"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_cajarioja" model="res.bank">
+			<field eval="&quot;&quot;&quot;CAJARIOJA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA DE AHORROS DE LA RIOJA&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;2037&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;G26003038&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CECAESMM037&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. MIGUEL VILLANUEVA, 9&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;LOGROÑO&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;26001&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.cajarioja.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;941293131&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;941293145&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES26"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_cajamadrid" model="res.bank">
+			<field eval="&quot;&quot;&quot;CAJA MADRID&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAJA DE AHORROS Y M.P. DE MADRID&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;2038&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;G28029007&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CAHMESMMXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PZ. CELENQUE, 2&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;28013&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.cajamadrid.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;902246810&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;914239454&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES28"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_selftradebank" model="res.bank">
+			<field eval="&quot;&quot;&quot;SELF TRADE BANK&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;SELF TRADE BANK, S.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;1490&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;A85597821&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;SELFESMMXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. ARAGONESES, 2A&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ALCOBENDAS&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;28108&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.selftrade.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;917894000&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;917894019&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES28"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_ceca" model="res.bank">
+			<field eval="&quot;&quot;&quot;CECA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CONFEDERACION ESPAÑOLA DE CAJAS DE AHORROS&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;2000&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;G28206936&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;CECAESMMXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. ALCALA, 27&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;28014&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.ceca.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;915965000&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;915965742&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES28"/>
+			<field name="country" ref="base.es"/>
+		</record>
 		<record id="res_bank_cajadebadajoz" model="res.bank">
 			<field eval="&quot;&quot;&quot;CAJA DE BADAJOZ&quot;&quot;&quot;" name="name"/>
 			<field eval="&quot;&quot;&quot;M.P. Y CAJA GENERAL AHORROS DE BADAJOZ&quot;&quot;&quot;" name="lname"/>
@@ -1801,7 +1801,7 @@
 			<field eval="&quot;&quot;&quot;CECAESMM010&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;PS. SAN FRANCISCO, 18&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;BADAJOZ&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;06001&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;6001&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.cajabadajoz.es&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;924214000&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;924214073&quot;&quot;&quot;" name="fax"/>
@@ -1809,16 +1809,16 @@
 			<field name="state" ref="l10n_ES_toponyms.ES06"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_caixacatalunya" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAIXA CATALUNYA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAIXA D'ESTALVIS DE CATALUNYA&quot;&quot;&quot;" name="lname"/>
+		<record id="res_bank_catalunyacaixa" model="res.bank">
+			<field eval="&quot;&quot;&quot;CATALUNYACAIXA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;CAIXA D'ESTALVIS DE CATALUNYA,TARRAGONA I MANRESA&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;2013&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G08169815&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;G65345472&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;CESCESBBXXX&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;PZ. ANTONIO MAURA, 6&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;BARCELONA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08003&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.caixacatalunya.com&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;8003&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.catalunyacaixa.com&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;934845000&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;934845141&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
@@ -1833,7 +1833,7 @@
 			<field eval="&quot;&quot;&quot;CECAESMM017&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;AV. REYES CATOLICOS, 1&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;BURGOS&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;09005&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;9005&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.cajacirculo.com&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;947288200&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;947288210&quot;&quot;&quot;" name="fax"/>
@@ -1849,7 +1849,7 @@
 			<field eval="&quot;&quot;&quot;CECAESMM018&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;PZ. DE LA LIBERTAD, P.CONDESTABLES,  CASA CORDON&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;BURGOS&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;09004&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;9004&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.cajadeburgos.es&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;947258100&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;947258140&quot;&quot;&quot;" name="fax"/>
@@ -1857,36 +1857,20 @@
 			<field name="state" ref="l10n_ES_toponyms.ES09"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_cajasur" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAJASUR&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAJA DE AHORROS Y M.P. DE CORDOBA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2024&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G14004485&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM024&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;RD. LOS TEJARES, 18-24&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;CORDOBA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;14001&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.cajasur.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;957214242&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;957475129&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_finantia" model="res.bank">
+			<field eval="&quot;&quot;&quot;FINANTIA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;BANCO FINANTIA SOFINLOC, S.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;0220&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;A80762941&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;ESFIESM1XXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;AV. MENENDEZ PELAYO, 67&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;28009&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.bfs.es.&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;915572300&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;915572301&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES14"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_caixagirona" model="res.bank">
-			<field eval="&quot;&quot;&quot;CAIXAGIRONA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CAIXA D'ESTALVIS DE GIRONA&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2030&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G17008079&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMM030&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. DE LA CREU, 31&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;GIRONA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;17002&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.caixagirona.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;972182100&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;972207923&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES17"/>
+			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_gemoneybank" model="res.bank">
@@ -1897,7 +1881,7 @@
 			<field eval="&quot;&quot;&quot;GEECESB1XXX&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;CL. LLULL, 95-97 PL. 4&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;BARCELONA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08005&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;8005&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.gemoneybank.es&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;934005900&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;934166813&quot;&quot;&quot;" name="fax"/>
@@ -1953,7 +1937,7 @@
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_unoe" model="res.bank">
+		<record id="res_bank_uno-e" model="res.bank">
 			<field eval="&quot;&quot;&quot;UNO-E&quot;&quot;&quot;" name="name"/>
 			<field eval="&quot;&quot;&quot;UNOE BANK, S.A.&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;0227&quot;&quot;&quot;" name="code"/>
@@ -1969,7 +1953,7 @@
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_bancopopulare" model="res.bank">
+		<record id="res_bank_bancopopular-e" model="res.bank">
 			<field eval="&quot;&quot;&quot;BANCOPOPULAR-E&quot;&quot;&quot;" name="name"/>
 			<field eval="&quot;&quot;&quot;BANCOPOPULAR-E, S.A.&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;0229&quot;&quot;&quot;" name="code"/>
@@ -1979,7 +1963,7 @@
 			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
 			<field eval="&quot;&quot;&quot;28001&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.bancopopular-e.com&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;915207981&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;915208014&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;913202072&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
@@ -2049,34 +2033,130 @@
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_bcl" model="res.bank">
-			<field eval="&quot;&quot;&quot;BCL&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;BANCO DE CREDITO LOCAL DE ESPAÑA, S.A.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;1004&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;A28000719&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCLEESMMXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. SANTA BARBARA, 2&quot;&quot;&quot;" name="street"/>
+		<record id="res_bank_bancopichincha" model="res.bank">
+			<field eval="&quot;&quot;&quot;BANCO PICHINCHA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;BANCO PICHINCHA ESPAÑA, S.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;0235&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;A85882330&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;PIESESM1XXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. LAGASCA, 4&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;28004&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.bcl.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;915376500&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;915376525&quot;&quot;&quot;" name="fax"/>
+			<field eval="&quot;&quot;&quot;28001&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.bancopichincha.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;917818958&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;915758451&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_ceca" model="res.bank">
-			<field eval="&quot;&quot;&quot;CECA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;CONFEDERACION ESPAÑOLA DE CAJAS DE AHORROS&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;2000&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;G28206936&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CECAESMMXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. ALCALA, 27&quot;&quot;&quot;" name="street"/>
+		<record id="res_bank_lloydsbankint" model="res.bank">
+			<field eval="&quot;&quot;&quot;LLOYDS BANK INT&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;LLOYDS BANK INTERNATIONAL, S.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;0236&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;A80481765&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;LOYIESMMXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. ANABEL SEGURA, 16 PL.4&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ALCOBENDAS&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;28108&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;917820300&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;917820314&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES28"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_bbkbankcajasur" model="res.bank">
+			<field eval="&quot;&quot;&quot;BBKBANK CAJASUR&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;BBK BANK CAJASUR, S.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;0237&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;A95622841&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. GRAN VIA, 23&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;BILBAO&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;48001&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;944017000&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;944878225&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES48"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_bancgcajatres" model="res.bank">
+			<field eval="&quot;&quot;&quot;BANC.G.CAJATRES&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;BANCO GRUPO CAJATRES, S.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;0486&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;A99298689&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;TRESES2BXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PS. ISABEL LA CATOLICA, 6&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;ZARAGOZA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;50009&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;976718500&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;976718306&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES50"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_bmarenostrum" model="res.bank">
+			<field eval="&quot;&quot;&quot;B.MARE NOSTRUM&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;BANCO MARE NOSTRUM, S.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;0487&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;A86104189&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;GBMNESMMXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. ALCALA, 28&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
 			<field eval="&quot;&quot;&quot;28014&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.ceca.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;915965000&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;915965742&quot;&quot;&quot;" name="fax"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;917015903&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;915227668&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES28"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_bankia" model="res.bank">
+			<field eval="&quot;&quot;&quot;BANKIA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;BANCO FINANCIERO Y DE AHORROS, S.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;0488&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;A86085685&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BFASESMMXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. PINTOR SOROLLA, 8&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;VALENCIA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;46002&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;964356400&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;963322400&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES46"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_bancobase" model="res.bank">
+			<field eval="&quot;&quot;&quot;BANCO BASE&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;BANCO BASE(CAM,CAJASTUR,EXTREMADURA,CANTABRIA)S.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;0489&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;A86101375&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;EMACESMMXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CARRERA DE SAN JERONIMO, 19&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;28014&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;914225800&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;914225842&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES28"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_bancacivica,sa" model="res.bank">
+			<field eval="&quot;&quot;&quot;BANCA CIVICA,SA&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;BANCA CIVICA, S.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;0490&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;A85973857&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;GBCCESMMXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;PS. RECOLETOS, 37&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;28004&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;913199409&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;913082798&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
@@ -2104,11 +2184,11 @@
 			<field eval="&quot;&quot;&quot;A78963816&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;BEDFESM1XXX&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;CL. SEVERO OCHOA, 5 PQ TEC.DE ANDALUCIA&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;CAMPANILLAS (MÁLAGA)&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;29591&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;CAMPANILLAS&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;29590&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.bef.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;915325402&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;915323065&quot;&quot;&quot;" name="fax"/>
+			<field eval="&quot;&quot;&quot;952367955&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;952367956&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES29"/>
 			<field name="country" ref="base.es"/>
@@ -2129,15 +2209,15 @@
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_fibanc" model="res.bank">
-			<field eval="&quot;&quot;&quot;FIBANC&quot;&quot;&quot;" name="name"/>
+		<record id="res_bank_bancomediolanum" model="res.bank">
+			<field eval="&quot;&quot;&quot;BANCOMEDIOLANUM&quot;&quot;&quot;" name="name"/>
 			<field eval="&quot;&quot;&quot;BANCO DE FINANZAS E INVERSIONES, S.A.&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;0186&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;A58640582&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;BFIVESBBXXX&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;AV. DIAGONAL, 668-670&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;BARCELONA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08034&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;8034&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.fibancmediolanum.es&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;932535400&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;932535430&quot;&quot;&quot;" name="fax"/>
@@ -2179,34 +2259,18 @@
 		</record>
 		<record id="res_bank_privatbank" model="res.bank">
 			<field eval="&quot;&quot;&quot;PRIVAT BANK&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;PRIVAT BANK, S.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;PRIVAT BANK DEGROOF, S.A.&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;0200&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;A58891672&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;PRVBESB1XXX&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;AV. DIAGONAL, 464&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;BARCELONA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08006&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;8006&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.privatbank.es&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;934458500&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;934458501&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES08"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_dbcredit" model="res.bank">
-			<field eval="&quot;&quot;&quot;DB-CREDIT&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;DEUTSCHE BANK CREDIT, S.A.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;0205&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;A79859096&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;DECRESM1XXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. SOMERA, 7-9 LA FLORIDA&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;28023&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.db-credit.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;915893540&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;915893546&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_ebnbanco" model="res.bank">
@@ -2215,12 +2279,12 @@
 			<field eval="&quot;&quot;&quot;0211&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;A28763043&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;PROAESMMXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. ALMAGRO, 46&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;PS. DE RECOLETOS, 29&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;28010&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;28004&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.ebnbanco.com&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;917009800&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;917009829&quot;&quot;&quot;" name="fax"/>
+			<field eval="&quot;&quot;&quot;917009895&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
@@ -2230,29 +2294,13 @@
 			<field eval="&quot;&quot;&quot;BANCO POPULAR HIPOTECARIO, S.A.&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;0216&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;A79223707&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;POHIESM1XXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. LABASTIDA, 11&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;POHIESMMXXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. JOSE ORTEGA Y GASSET, 29 PL. 3ª&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;28034&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;28006&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;915902500&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;915759510&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES28"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_halifaxhispan" model="res.bank">
-			<field eval="&quot;&quot;&quot;HALIFAX HISPAN.&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;BANCO HALIFAX HISPANIA, S.A.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;0217&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;A80481765&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;HLFXESMMXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. ANABEL SEGURA, 16 PL. 4&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;ALCOBENDAS&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;28108&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.halifax.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;917820300&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;917820314&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
@@ -2273,36 +2321,36 @@
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_finantia" model="res.bank">
-			<field eval="&quot;&quot;&quot;FINANTIA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;BANCO FINANTIA SOFINLOC, S.A.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;0220&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;A80762941&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;ESFIESM1XXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;AV. MENENDEZ PELAYO, 67&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;28009&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.bfs.es.&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;915572300&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;915572301&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_industbilbao" model="res.bank">
+			<field eval="&quot;&quot;&quot;INDUST. BILBAO&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;BANCO INDUSTRIAL DE BILBAO, S.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;0113&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;A48036990&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;INBBESM1XXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. GRAN VIA D. DIEGO LOPEZ HARO, 1&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;BILBAO&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;48009&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;944875429&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;944874448&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES28"/>
+			<field name="state" ref="l10n_ES_toponyms.ES48"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_bancoliberta" model="res.bank">
-			<field eval="&quot;&quot;&quot;BANCO LIBERTA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;BANCO LIBERTA, S.A.&quot;&quot;&quot;" name="lname"/>
+		<record id="res_bank_bancoclm" model="res.bank">
+			<field eval="&quot;&quot;&quot;BANCO CLM&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;BANCO DE CASTILLA-LA MANCHA, S.A.&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;0115&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;A15011489&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. DE LA ESCANDALERA, 2&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;OVIEDO&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;33003&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;PQ. DE SAN JULIAN, 20&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;CUENCA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;16001&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;985102222&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;985229950&quot;&quot;&quot;" name="fax"/>
+			<field eval="&quot;&quot;&quot;969177300&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;969223568&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES33"/>
+			<field name="state" ref="l10n_ES_toponyms.ES16"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_occidental" model="res.bank">
@@ -2423,9 +2471,9 @@
 			<field eval="&quot;&quot;&quot;0133&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;A08309429&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. GRAN VIA LES CORTS CATALANES, 130-136&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;CL. JUAN GRIS - TORRE CENTRO, 2-4-6 COMPLEJO TORRE CERDA&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;BARCELONA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08038&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;8014&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.microbanklacaixa.es&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;932973119&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;932973191&quot;&quot;&quot;" name="fax"/>
@@ -2465,20 +2513,36 @@
 			<field name="state" ref="l10n_ES_toponyms.ES20"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_bankpyme" model="res.bank">
-			<field eval="&quot;&quot;&quot;BANKPYME&quot;&quot;&quot;" name="name"/>
+		<record id="res_bank_bankpime" model="res.bank">
+			<field eval="&quot;&quot;&quot;BANKPIME&quot;&quot;&quot;" name="name"/>
 			<field eval="&quot;&quot;&quot;BANCO DE LA PEQUEÑA Y MEDIANA EMPRESA, S.A.&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;0142&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;A08515157&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;BPMEESBBXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;TR. GRACIA, 11&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;CL. PEDRO I PONS, 6-8&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;BARCELONA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08021&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;8034&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.bankpymenet.com&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;933163333&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;933163165&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES08"/>
+			<field name="country" ref="base.es"/>
+		</record>
+		<record id="res_bank_bancapueyo" model="res.bank">
+			<field eval="&quot;&quot;&quot;BANCA PUEYO&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;BANCA PUEYO, S.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;0078&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;A06001671&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BAPUES22XXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;CL. SANTA MARIA DE GUADALUPE, 2&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;VILLANUEVA DE LA SERENA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;6700&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.bancapueyo.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;924846000&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;924844652&quot;&quot;&quot;" name="fax"/>
+			<field eval="1" name="active"/>
+			<field name="state" ref="l10n_ES_toponyms.ES06"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_bancosabadell" model="res.bank">
@@ -2489,28 +2553,12 @@
 			<field eval="&quot;&quot;&quot;BSABESBBXXX&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;PZ. DE SANT ROC, 20&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;SABADELL&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08201&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;8201&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.bancsabadell.com&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;937289289&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;937271867&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES08"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_bancocastilla" model="res.bank">
-			<field eval="&quot;&quot;&quot;BANCO CASTILLA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;BANCO DE CASTILLA, S.A.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;0082&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;A37000163&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;CASTES2SXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. DE LOS BANDOS, 6&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;SALAMANCA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;37002&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.bancocastilla.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;923290000&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;923211902&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES37"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_alicantinocom" model="res.bank">
@@ -2535,7 +2583,7 @@
 			<field eval="&quot;&quot;&quot;0086&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;A33003088&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;NORTESMMXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PS. DE LA CASTELLANA, 24&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;PS. DE LA CASTELLANA, 53&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
 			<field eval="&quot;&quot;&quot;28046&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.banif.es&quot;&quot;&quot;" name="website"/>
@@ -2593,38 +2641,6 @@
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_bancovasconia" model="res.bank">
-			<field eval="&quot;&quot;&quot;BANCO VASCONIA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;BANCO DE VASCONIA, S.A.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;0095&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;A31000417&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;VASCES2PXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. DEL CASTILLO, 39&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;PAMPLONA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;31001&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.bancovasconia.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;948179600&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;948179735&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES31"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_bancogalicia" model="res.bank">
-			<field eval="&quot;&quot;&quot;BANCO GALICIA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;BANCO DE GALICIA, S.A.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;0097&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;A36600229&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;GALIES2VXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. POLICARPO SANZ, 23&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;VIGO&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;36202&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.bancogalicia.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;986822100&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;986822101&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES36"/>
-			<field name="country" ref="base.es"/>
-		</record>
 		<record id="res_bank_altaebanco" model="res.bank">
 			<field eval="&quot;&quot;&quot;ALTAE BANCO&quot;&quot;&quot;" name="name"/>
 			<field eval="&quot;&quot;&quot;ALTAE BANCO, S.A.&quot;&quot;&quot;" name="lname"/>
@@ -2641,20 +2657,20 @@
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_industbilbao" model="res.bank">
-			<field eval="&quot;&quot;&quot;INDUST. BILBAO&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;BANCO INDUSTRIAL DE BILBAO, S.A.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;0113&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;A48036990&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;INBBESM1XXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. GRAN VIA D. DIEGO LOPEZ HARO, 1&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;BILBAO&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;48009&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;944875429&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;944874448&quot;&quot;&quot;" name="fax"/>
+		<record id="res_bank_guipuzcoano" model="res.bank">
+			<field eval="&quot;&quot;&quot;GUIPUZCOANO&quot;&quot;&quot;" name="name"/>
+			<field eval="&quot;&quot;&quot;BANCO GUIPUZCOANO, S.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;0042&quot;&quot;&quot;" name="code"/>
+			<field eval="&quot;&quot;&quot;A20000733&quot;&quot;&quot;" name="vat"/>
+			<field eval="&quot;&quot;&quot;BGUIES22XXX&quot;&quot;&quot;" name="bic"/>
+			<field eval="&quot;&quot;&quot;AV. LIBERTAD, 21&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;SAN SEBASTIAN&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;20004&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.bancogui.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;943418100&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;943418320&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES48"/>
+			<field name="state" ref="l10n_ES_toponyms.ES20"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_bancogallego" model="res.bank">
@@ -2705,7 +2721,7 @@
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_bnpparibassa" model="res.bank">
+		<record id="res_bank_bnpparibas,sa" model="res.bank">
 			<field eval="&quot;&quot;&quot;BNP PARIBAS, SA&quot;&quot;&quot;" name="name"/>
 			<field eval="&quot;&quot;&quot;BNP PARIBAS ESPAÑA, S.A.&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;0058&quot;&quot;&quot;" name="code"/>
@@ -2744,8 +2760,8 @@
 			<field eval="&quot;&quot;&quot;A07004021&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;BMARES2MXXX&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;AV. ALEJANDRO ROSELLO, 8&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;PALMA DE MALLORCA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;07002&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;PALMA&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;7002&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.bancamarch.es&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;971779100&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;971469929&quot;&quot;&quot;" name="fax"/>
@@ -2753,15 +2769,15 @@
 			<field name="state" ref="l10n_ES_toponyms.ES07"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_bmadridmapfre" model="res.bank">
+		<record id="res_bank_bmadrid-mapfre" model="res.bank">
 			<field eval="&quot;&quot;&quot;B.MADRID-MAPFRE&quot;&quot;&quot;" name="name"/>
 			<field eval="&quot;&quot;&quot;BANCO SERVICIOS FINANCIEROS CAJA MADRID-MAPFRE,SA&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;0063&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;A33001215&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;BMAPESM1XXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CR. DE POZUELO DE A. A MAJADAHONDA, 52 EDIFICIO MAPFRE&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;MAJADAHONDA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;28220&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;CL. DOCTOR ESQUERDO, 138&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
+			<field eval="&quot;&quot;&quot;28007&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.bancosfcajamadridmapfre.es&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;915819593&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;915812950&quot;&quot;&quot;" name="fax"/>
@@ -2803,7 +2819,7 @@
 		</record>
 		<record id="res_bank_openbank" model="res.bank">
 			<field eval="&quot;&quot;&quot;OPEN BANK&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;OPEN BANK SANTANDER CONSUMER, S.A.&quot;&quot;&quot;" name="lname"/>
+			<field eval="&quot;&quot;&quot;OPEN BANK, S.A.&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;0073&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;A28021079&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;OPENESMMXXX&quot;&quot;&quot;" name="bic"/>
@@ -2831,22 +2847,6 @@
 			<field eval="&quot;&quot;&quot;915779208&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_bancapueyo" model="res.bank">
-			<field eval="&quot;&quot;&quot;BANCA PUEYO&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;BANCA PUEYO, S.A.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;0078&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;A06001671&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BAPUES22XXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. SANTA MARIA DE GUADALUPE, 2&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;VILLANUEVA DE LA SERENA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;06700&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.bancapueyo.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;924846000&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;924844652&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES06"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_ico" model="res.bank">
@@ -2881,22 +2881,6 @@
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_bancoandalucia" model="res.bank">
-			<field eval="&quot;&quot;&quot;BANCO ANDALUCIA&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;BANCO DE ANDALUCIA, S.A.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;0004&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;A11600624&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BANDESSSXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. FERNANDEZ Y GONZALEZ, 4-12&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;SEVILLA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;41001&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.bancoandalucia.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;954594700&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;954228746&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES41"/>
-			<field name="country" ref="base.es"/>
-		</record>
 		<record id="res_bank_bbvafinanzia" model="res.bank">
 			<field eval="&quot;&quot;&quot;BBVA FINANZIA&quot;&quot;&quot;" name="name"/>
 			<field eval="&quot;&quot;&quot;FINANZIA, BANCO DE CREDITO, S.A.&quot;&quot;&quot;" name="lname"/>
@@ -2929,52 +2913,20 @@
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
 		</record>
-		<record id="res_bank_deutschebank" model="res.bank">
-			<field eval="&quot;&quot;&quot;DEUTSCHE BANK&quot;&quot;&quot;" name="name"/>
+		<record id="res_bank_db-sae" model="res.bank">
+			<field eval="&quot;&quot;&quot;DB-S.A.E.&quot;&quot;&quot;" name="name"/>
 			<field eval="&quot;&quot;&quot;DEUTSCHE BANK, S.A.E.&quot;&quot;&quot;" name="lname"/>
 			<field eval="&quot;&quot;&quot;0019&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;A08000614&quot;&quot;&quot;" name="vat"/>
 			<field eval="&quot;&quot;&quot;DEUTESBBXXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;RD. GENERAL MITRE, 72-74&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;BARCELONA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;08017&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.deutsche-bank.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;934042102&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;934042170&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES08"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_bancocondal" model="res.bank">
-			<field eval="&quot;&quot;&quot;BANCO CONDAL&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;BANCO CONDAL, S.A.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;0021&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;A08022097&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BCNDESM1XXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;CL. JOSE ORTEGA Y GASSET, 29&quot;&quot;&quot;" name="street"/>
+			<field eval="&quot;&quot;&quot;PS. DE LA CASTELLANA, 18&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;28006&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;915783388&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;915783002&quot;&quot;&quot;" name="fax"/>
+			<field eval="&quot;&quot;&quot;28046&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;www.deutsche-bank.es&quot;&quot;&quot;" name="website"/>
+			<field eval="&quot;&quot;&quot;913355600&quot;&quot;&quot;" name="phone"/>
+			<field eval="&quot;&quot;&quot;913351168&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_creditobalear" model="res.bank">
-			<field eval="&quot;&quot;&quot;CREDITO BALEAR&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;BANCO DE CREDITO BALEAR, S.A.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;0024&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;A07000136&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BALEES22XXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;PZ. ESPAÑA, 1&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;PALMA DE MALLORCA&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;07002&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.bancocreditobalear.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;971170100&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;971170137&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES07"/>
 			<field name="country" ref="base.es"/>
 		</record>
 		<record id="res_bank_banesto" model="res.bank">
@@ -2985,7 +2937,7 @@
 			<field eval="&quot;&quot;&quot;ESPCESMMXXX&quot;&quot;&quot;" name="bic"/>
 			<field eval="&quot;&quot;&quot;AV. GRAN VIA DE HORTALEZA, 3&quot;&quot;&quot;" name="street"/>
 			<field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;28043&quot;&quot;&quot;" name="zip"/>
+			<field eval="&quot;&quot;&quot;28033&quot;&quot;&quot;" name="zip"/>
 			<field eval="&quot;&quot;&quot;www.banesto.es  www.ibanesto.com&quot;&quot;&quot;" name="website"/>
 			<field eval="&quot;&quot;&quot;913381000&quot;&quot;&quot;" name="phone"/>
 			<field eval="&quot;&quot;&quot;913382526&quot;&quot;&quot;" name="fax"/>
@@ -3039,22 +2991,6 @@
 			<field eval="&quot;&quot;&quot;913381788&quot;&quot;&quot;" name="fax"/>
 			<field eval="1" name="active"/>
 			<field name="state" ref="l10n_ES_toponyms.ES28"/>
-			<field name="country" ref="base.es"/>
-		</record>
-		<record id="res_bank_guipuzcoano" model="res.bank">
-			<field eval="&quot;&quot;&quot;GUIPUZCOANO&quot;&quot;&quot;" name="name"/>
-			<field eval="&quot;&quot;&quot;BANCO GUIPUZCOANO, S.A.&quot;&quot;&quot;" name="lname"/>
-			<field eval="&quot;&quot;&quot;0042&quot;&quot;&quot;" name="code"/>
-			<field eval="&quot;&quot;&quot;A20000733&quot;&quot;&quot;" name="vat"/>
-			<field eval="&quot;&quot;&quot;BGUIES22XXX&quot;&quot;&quot;" name="bic"/>
-			<field eval="&quot;&quot;&quot;AV. LIBERTAD, 21&quot;&quot;&quot;" name="street"/>
-			<field eval="&quot;&quot;&quot;SAN SEBASTIAN&quot;&quot;&quot;" name="city"/>
-			<field eval="&quot;&quot;&quot;20004&quot;&quot;&quot;" name="zip"/>
-			<field eval="&quot;&quot;&quot;www.bancogui.es&quot;&quot;&quot;" name="website"/>
-			<field eval="&quot;&quot;&quot;943418100&quot;&quot;&quot;" name="phone"/>
-			<field eval="&quot;&quot;&quot;943418320&quot;&quot;&quot;" name="fax"/>
-			<field eval="1" name="active"/>
-			<field name="state" ref="l10n_ES_toponyms.ES20"/>
 			<field name="country" ref="base.es"/>
 		</record>
 	</data>
