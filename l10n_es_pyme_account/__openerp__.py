@@ -47,7 +47,6 @@ Posteriormente podrá crear los bancos españoles mediante el menú "Ventas/Conf
         "account_payment_extension",
 #        "account_renumber",
         "l10n_es",
-        "l10n_es_special_periods",
         "l10n_es_account",
         "l10n_es_account_balance_report",
 #        "l10n_es_aeat_mod347",
@@ -63,6 +62,7 @@ Posteriormente podrá crear los bancos españoles mediante el menú "Ventas/Conf
     ],
     "demo_xml" : [],
     "update_xml" : [
+        'account_installer.xml',
     ],
     "active": False,
     "installable": True
