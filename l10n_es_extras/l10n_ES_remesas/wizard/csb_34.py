@@ -288,7 +288,7 @@ class csb_34:
                     date = time.strftime('%Y-%m-%d')
                 [year,month,day] = date.split('-')
                 message = day+month+year
-                text += '08'
+                text += '06'
                 text += csb34_code[csb34_type] 
                 text += self._start_34(cr, context)
                 text += convert(cr, recibo['partner_id'].vat, 12, context)
