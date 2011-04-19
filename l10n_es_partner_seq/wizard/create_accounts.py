@@ -87,9 +87,9 @@ class create_accounts(osv.osv_memory):
         sequence_obj = self.pool.get('ir.sequence')
 
         account_type_obj = self.pool.get('account.account.type')
-        res_ids = account_type_obj.search(cr, uid, [('code', '=', 'terceros_-_rec')]) # Busca tipo cuenta de usuario rec
+        res_ids = account_type_obj.search(cr, uid, [('code', '=', 'terceros - rec')]) # Busca tipo cuenta de usuario rec
         acc_user_type_rec = res_ids and res_ids[0]
-        res_ids = account_type_obj.search(cr, uid, [('code', '=', 'terceros_-_pay')]) # Busca tipo cuenta de usuario pay
+        res_ids = account_type_obj.search(cr, uid, [('code', '=', 'terceros - pay')]) # Busca tipo cuenta de usuario pay
         acc_user_type_pay = res_ids and res_ids[0]
         if not acc_user_type_rec or not acc_user_type_pay:
             raise osv.except_osv(_('Error !'), _("Account types with codes 'terceros - rec' and 'terceros - pay' have not been defined!"))
