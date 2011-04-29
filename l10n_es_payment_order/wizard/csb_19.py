@@ -133,13 +133,23 @@ class csb_19:
         texto = '5980'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
         texto += 52*' '
-        texto += '0001'
+        if self.order.date_prefered == 'due':
+            # Tantos ordenantes como pagos
+            texto += str(self.total_payments).zfill(4)
+        else:
+            # Sólo un ordenante
+            texto += '0001'
         texto += 16*' '
         totalremesa = int(round(abs(self.order.total) * 100,0))
         texto += str(totalremesa).zfill(10)
         texto += 6*' '
         texto += str(self.total_payments).zfill(10)
-        texto += str(self.total_payments + self.total_optional_lines + 4).zfill(10)
+        if self.order.date_prefered == 'due':
+            # Tantos ordenantes como pagos
+            texto += str(self.total_payments*3 + self.total_optional_lines + 2).zfill(10)
+        else:
+            # Sólo un ordenante
+            texto += str(self.total_payments + self.total_optional_lines + 4).zfill(10)
         texto += 38*' '
         texto += '\r\n'
         return texto
@@ -158,6 +168,7 @@ class csb_19:
         txt_remesa += self._cabecera_presentador_19()
 
         if order.date_prefered == 'due':
+            # Tantos ordenantes como pagos
             for recibo in lines:
                 self.group_payments = 0
                 self.group_optional_lines = 0
@@ -175,7 +186,7 @@ class csb_19:
                     self.group_optional_lines += 1
                 txt_remesa += self._total_ordenante_19()
         else:
-
+            # Sólo un ordenante
             txt_remesa += self._cabecera_ordenante_19()
             self.group_payments = 0
             self.group_optional_lines = 0
