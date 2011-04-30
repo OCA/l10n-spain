@@ -97,7 +97,7 @@ class hr_nomina(osv.osv):
        'state': fields.selection((('borrador', 'Borrador'),
                                   ('confirmada', 'Confirmada'),
                                   ('pagada', 'Pagada'),
-                                  ('cancelada', 'Cancelada')), 'Estado Nómina', readonly=True, select="2"),
+                                  ('cancelada', 'Cancelada')), 'Estado Nómina', readonly=True, select="1"),
        'numero': fields.char('Número de nomina', size=32, readonly=True, help="Número único de nómina, se asigna automáticamente cuando se crea la nómina", select="1"),
        'extra': fields.boolean('Paga Extra'),
        'asiento_nomina_confirmada': fields.many2one('account.move', 'Asiento Nómina confirmada', readonly=True),
@@ -176,6 +176,7 @@ class hr_nomina(osv.osv):
             self.pool.get('account.move').post(cr, uid, [move_id])
             self.write(cr, uid, ids, {'numero': numero})
             self.write(cr, uid, ids, {'state': 'confirmada', 'asiento_nomina_confirmada': move_id})
+        return True
 
     def pagar_nomina(self, cr, uid, ids, *args):
     	cuentas = get_configuration(cr, uid, ids)
@@ -210,6 +211,7 @@ class hr_nomina(osv.osv):
             self.write(cr, uid, ids, {'state': 'pagada', 'asiento_nomina_pagada':move_id})
             self.pool.get('account.move').write(cr, uid, [move_id], {'date': fechaNomina})
             self.pool.get('account.move').post(cr, uid, [move_id])
+        return True
 
     def cancelar_nomina(self, cr, uid, ids, *args):
         for nom in self.browse(cr, uid, ids):
@@ -217,6 +219,7 @@ class hr_nomina(osv.osv):
             if nom.state == 'confirmada':
                 acc_obj.button_cancel(cr, uid, [nom.asiento_nomina_confirmada.id])
                 self.write(cr, uid, ids, {'state': 'cancelada'})
+        return True
 
 hr_nomina()
 
@@ -257,6 +260,7 @@ class hr_anticipo(osv.osv):
             self.pool.get('account.move.line').create(cr, uid, {'account_id': cuentas['cuenta_bancos'], 'move_id': move_id, 'journal_id': journal_id, 'period_id': periodo_id, 'name': 'Bancos', 'credit': anticipo.cantidad, 'ref': referencia})
             self.write(cr, uid, ids, {'state': 'confirmado', 'asiento_anticipo': move_id})
             self.pool.get('account.move').write(cr, uid, [move_id], {'date': fecha_anticipo})
+        return True
 
     def pagar_anticipo(self, cr, uid, ids, *args):
         for ant in self.browse(cr, uid, ids):
@@ -265,10 +269,13 @@ class hr_anticipo(osv.osv):
             acc_obj = self.pool.get('account.move')
             acc_obj.post(cr, uid, [ant.asiento_anticipo.id])
             self.write(cr, uid, ids, {'state':'pagado'})
+        return True
 
     def cancelar_anticipo(self, cr, uid, ids, *args):
         for ant in self.browse(cr, uid, ids):
             acc_obj = self.pool.get('account.move')
             if ant.state == 'confirmado':
                 self.write(cr, uid, ids, {'state':'cancelado'})
+        return True
+
 hr_anticipo()
