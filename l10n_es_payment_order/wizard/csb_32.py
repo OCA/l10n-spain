@@ -34,6 +34,7 @@
 ##############################################################################
 
 from datetime import datetime
+from tools.translate import _
 from converter import *
 
 
@@ -49,7 +50,9 @@ class csb_32:
         texto += ' '*6
         texto += ' '*61
         texto += ' '*24
-        texto += '\n'
+        texto += '\r\n'
+        if len(texto) != 152:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 150 characters long:\n%s') % ('Cabecera fichero 32', texto), True)
         return texto
 
     def _cabecera_remesa_32(self, cr, context):
@@ -64,15 +67,17 @@ class csb_32:
 
         # C
         texto += convert(cr, self.order.mode.cedente, 15, context) # TODO: Identificador del cedente. Qué es?
-        #texto += '1' # Identificativo de efectos truncados
-        #texto += ' '*21
+        texto += '1' # Identificativo de efectos truncados
+        texto += ' '*21
 
         # D
         texto += digits_only( self.order.mode.bank_id.acc_number )
         texto += digits_only( self.order.mode.bank_id.acc_number )
         texto += digits_only( self.order.mode.bank_id.acc_number )
-        texto += ' '*24
-        texto += '\n'
+        texto += ' ' + ' '*24
+        texto += '\r\n'
+        if len(texto) != 152:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 150 characters long:\n%s') % ('Cabecera remesa 32', texto), True)
         return texto
 
     def _registro_individual_i_32(self, cr, recibo, context):
@@ -100,7 +105,9 @@ class csb_32:
         texto += ' '*15
         texto += datetime.strptime( recibo['ml_maturity_date'], '%Y-%m-%d').strftime('%d%m%y') 
         texto += ' '*(6+6+1+4+16)
-        texto += '\n'
+        texto += '\r\n'
+        if len(texto) != 152:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 150 characters long:\n%s') % ('Registro individual I 32', texto), True)
         return texto
 
     def _registro_individual_ii_32(self, cr, recibo, context):
@@ -128,7 +135,9 @@ class csb_32:
         texto += convert(cr, self.order.mode.partner_id.name, 34, context)
         texto += convert(cr, recibo['partner_id'].name, 34, context)
         texto += ' '*30
-        texto += '\n'
+        texto += '\r\n'
+        if len(texto) != 152:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 150 characters long:\n%s') % ('Registro individual II 32', texto), True)
         return texto
 
     def _registro_individual_iii_32(self, cr, recibo, context):
@@ -153,7 +162,9 @@ class csb_32:
         vat = recibo['partner_id'].vat and recibo['partner_id'].vat[2:] or False
         texto += convert(cr, vat, 9, context)
         texto += ' '*50
-        texto += '\n'
+        texto += '\r\n'
+        if len(texto) != 152:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 150 characters long:\n%s') % ('Registro individual III 32', texto), True)
         return texto
 
     def _registro_fin_remesa_32(self, cr, context):
@@ -179,7 +190,9 @@ class csb_32:
         texto += convert(cr, (self.num_recibos*3) + 2, 7, context)
         texto += convert(cr, self.num_recibos, 6, context)
         texto += ' '*6
-        texto += '\n'
+        texto += '\r\n'
+        if len(texto) != 152:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 150 characters long:\n%s') % ('Fin remesa 32', texto), True)
         return texto
 
     def _registro_fin_fichero_32(self, cr, context):
@@ -203,7 +216,9 @@ class csb_32:
         texto += convert(cr, (self.num_recibos*3) + 3, 7, context)
         texto += convert(cr, self.num_recibos, 6, context)
         texto += ' '*6
-        texto += '\n'
+        texto += '\r\n'
+        if len(texto) != 152:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 150 characters long:\n%s') % ('Fin fichero 32', texto), True)
         return texto
  
     def create_file(self, pool, cr, uid, order, lines, context):

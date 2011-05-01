@@ -34,6 +34,7 @@
 ##############################################################################
 
 from datetime import datetime
+from tools.translate import _
 from converter import *
 
 class csb_58:
@@ -47,7 +48,9 @@ class csb_58:
         cc = digits_only(self.order.mode.bank_id.acc_number)
         texto += cc[0:8]
         texto += 66*' '
-        texto += '\n'
+        texto += '\r\n'
+        if len(texto) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Cabecera presentador 58', texto), True)
         return texto
 
     def _cabecera_ordenante_58(self):
@@ -63,13 +66,15 @@ class csb_58:
         texto += 52*' '
         texto += self.order.mode.ine and to_ascii(self.order.mode.ine)[:9].zfill(9) or 9*' '
         texto += 3*' '
-        texto += '\n'
+        texto += '\r\n'
+        if len(texto) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Cabecera ordenante 58', texto), True)
         return texto
 
     def _individual_obligatorio_58(self, recibo):
         texto = '5670'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
-        texto += str(recibo['name']).zfill(12)
+        texto += str(recibo['name'])[-12:].zfill(12)
         nombre = to_ascii(recibo['partner_id'].name)
         texto += nombre[0:40].ljust(40)
         ccc = recibo['bank_id'] and recibo['bank_id'].acc_number or ''
@@ -90,16 +95,20 @@ class csb_58:
             date_cargo = datetime.today()
         texto += date_cargo.strftime('%d%m%y')
         texto += 2*' '
-        texto += '\n'
+        texto += '\r\n'
+        if len(texto) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual obligatorio 58', texto), True)
         return texto
 
     def _individual_opcional_58(self, recibo):
         """Para poner el segundo texto de comunicación"""
         texto = '5671'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
-        texto += str(recibo['name']).zfill(12)
+        texto += str(recibo['name'])[-12:].zfill(12)
         texto += to_ascii(recibo['communication2'])[0:134].ljust(134)
-        texto += '\n'
+        texto += '\r\n'
+        if len(texto) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 58', texto), True)
         return texto
 
 
@@ -197,7 +206,7 @@ class csb_58:
         #
         texto = '5676'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
-        texto += str(recibo['name']).zfill(12)
+        texto += str(recibo['name'])[-12:].zfill(12)
         texto += to_ascii(st)[:40].ljust(40)          # Domicilio
         texto += to_ascii(city)[:35].ljust(35)        # Plaza (ciudad)
         texto += to_ascii(zip)[:5].zfill(5)           # CP
@@ -217,7 +226,9 @@ class csb_58:
             texto += to_ascii(ord_state_code)[:2].zfill(2)    # Cod prov del ordenante
             texto += date_ct.strftime('%d%m%y')                 # Fecha crédito
         texto += 8*' '                                  # Libre
-        texto += '\n'
+        texto += '\r\n'
+        if len(texto) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Obligatorio domicilio 58', texto), True)
         return texto
 
 
@@ -231,7 +242,9 @@ class csb_58:
         texto += str(self.num_recibos).zfill(10)
         texto += str(self.num_recibos + self.num_lineas_opc + 2).zfill(10)
         texto += 38*' '
-        texto += '\n'
+        texto += '\r\n'
+        if len(texto) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Total ordenante 58', texto), True)
         return texto
 
     def _total_general_58(self):
@@ -246,7 +259,9 @@ class csb_58:
         texto += str(self.num_recibos).zfill(10)
         texto += str(self.num_recibos + self.num_lineas_opc + 4).zfill(10)
         texto += 38*' '
-        texto += '\n'
+        texto += '\r\n'
+        if len(texto) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Total general 58', texto), True)
         return texto
 
     def create_file(self, pool, cr, uid, order, lines, context):

@@ -101,7 +101,7 @@ class csb_34:
         text += convert_bank_account(cr, self.order.mode.bank_id.acc_number, self.order.mode.partner_id.name, context)
         text += '0'
         text += 8*' '
-        text += '\n'
+        text += '\r\n'
 
         # Segundo Tipo
         text += '0362'
@@ -110,7 +110,7 @@ class csb_34:
         text += '002'
         text += convert(cr, self.order.mode.bank_id.partner_id.name, 36, context)
         text += 5*' '
-        text += '\n'
+        text += '\r\n'
 
         # Tercer Tipo 
         text += '0362'
@@ -128,7 +128,7 @@ class csb_34:
             raise Log( _('User error:\n\nCompany %s has no invoicing or default address.') % self.order.mode.bank_id.partner_id.name )
         text += convert(cr, address['street'], 36, context)
         text += 5*' '
-        text += '\n'
+        text += '\r\n'
 
         # Cuarto Tipo 
         text += '0362'
@@ -138,8 +138,9 @@ class csb_34:
         text += convert(cr, address['zip'], 6, context)
         text += convert(cr, address['city'], 30, context)
         text += 5*' '
-        text += '\n'
-    
+        text += '\r\n'
+        if len(text)%74 != 0:
+            raise Log(_('Configuration error:\n\nA line in "%s" is not 72 characters long:\n%s') % ('Cabecera ordenante 34', text), True)  
         return text
 
     def _cabecera_nacionales_34(self, cr, uid, context):
@@ -148,7 +149,9 @@ class csb_34:
         text += 12*' '
         text += 3*' '
         text += 41*' '
-        text += '\n'
+        text += '\r\n'
+        if len(text) != 74:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 72 characters long:\n%s') % ('Cabecera nacionales 34', text), True)
         return text
 
     def _detalle_nacionales_34(self, cr, uid, recibo, csb34_type, context):
@@ -178,7 +181,7 @@ class csb_34:
         text += '9' # Otros conceptos (ni Nomina ni Pension)
         text += '1'
         text += 6*' '
-        text += '\n'
+        text += '\r\n'
 
         # Segundo Registro
         text += '06'
@@ -188,7 +191,7 @@ class csb_34:
         text += '011'
         text += convert(cr, recibo['partner_id'].name, 36, context)
         text += 5*' '
-        text += '\n'
+        text += '\r\n'
 
         # Tercer y Cuarto Registro
         lines = []
@@ -204,7 +207,7 @@ class csb_34:
             text += code
             text += convert(cr, street, 36, context)
             text += 5*' '
-            text += '\n'
+            text += '\r\n'
 
         # Quinto Registro
         if address.zip or address.city:
@@ -216,7 +219,7 @@ class csb_34:
             text += convert(cr, address.zip, 6, context)
             text += convert(cr, address.city, 30, context)
             text += 5*' '
-            text += '\n'
+            text += '\r\n'
 
         # Si la orden se emite por carta
         if self.order.mode.send_letter:
@@ -232,7 +235,7 @@ class csb_34:
             text += convert(cr, country_code, 2, context)
             text += convert(cr, state, 34, context)
             text += 5*' '
-            text += '\n'
+            text += '\r\n'
 
             # Séptimo Registro
             if self.order.mode.payroll_check:
@@ -243,7 +246,7 @@ class csb_34:
                 text += '018'
                 text += convert(cr, recibo['partner_id'].vat, 36, context)
                 text += 5*' '
-                text += '\n'
+                text += '\r\n'
 
             # Registro ciento uno (registro usados por algunos bancos como texto de la carta)
             text += '06'
@@ -254,7 +257,7 @@ class csb_34:
             message = self.get_message(recibo, self.order.mode.text1)
             text += convert(cr, message, 36, context)
             text += 5*' '
-            text += '\n'
+            text += '\r\n'
 
             # Registro ciento dos (registro usados por algunos bancos como texto de la carta)
             text += '06'
@@ -265,7 +268,7 @@ class csb_34:
             message = self.get_message(recibo, self.order.mode.text2)
             text += convert(cr, message, 36, context)
             text += 5*' '
-            text += '\n'
+            text += '\r\n'
 
             # Registro ciento tres (registro usados por algunos bancos como texto de la carta)
             text += '06'
@@ -276,7 +279,7 @@ class csb_34:
             message = self.get_message(recibo, self.order.mode.text3)
             text += convert(cr, message, 36, context)
             text += 5*' '
-            text += '\n'
+            text += '\r\n'
 
             # Registro novecientos diez (registro usados por algunos bancos como fecha de la carta)
             if self.order.mode.add_date:
@@ -295,8 +298,10 @@ class csb_34:
                 text += '910'
                 text += convert(cr, message, 36, context)
                 text += 5*' '
-                text += '\n'
+                text += '\r\n'
 
+        if len(text)%74 != 0:
+            raise Log(_('Configuration error:\n\nA line in "%s" is not 72 characters long:\n%s') % ('Detalle nacionales 34', text), True)  
         return text
 
     def _totales_nacionales_34(self, cr, uid, values, context):
@@ -309,7 +314,9 @@ class csb_34:
         text += convert(cr, values[1], 10, context)
         text += 6*' '
         text += 5*' '
-        text += '\n'
+        text += '\r\n'
+        if len(text) != 74:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 72 characters long:\n%s') % ('Totales nacionales 34', text), True)
         return text
 
     def _total_general_34(self, cr, uid, values, context):
@@ -322,7 +329,9 @@ class csb_34:
         text += convert(cr, values[1], 10, context)
         text += 6*' '
         text += 5*' '
-        text += '\n'
+        text += '\r\n'
+        if len(text) != 74:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 72 characters long:\n%s') % ('Total general 34', text), True)
         return text
 
     def create_file(self, pool, cr, uid, order, lines, context):
@@ -339,11 +348,11 @@ class csb_34:
         for recibo in lines:
             text = self._detalle_nacionales_34(cr, uid, recibo, order.mode.csb34_type, context)
             file += text
-            record_count += len(text.split('\n'))-1
+            record_count += len(text.split('\r\n'))-1
             payment_line_count += 1
         values = (payment_line_count, record_count + 2)
         file += self._totales_nacionales_34(cr, uid, values, context)
-        record_count =  len(file.split('\n'))
+        record_count =  len(file.split('\r\n'))
         values = (payment_line_count, record_count)
         file += self._total_general_34(cr, uid, values, context)
         return file

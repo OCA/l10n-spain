@@ -50,6 +50,8 @@ class csb_19:
         texto += cc[0:8]
         texto += 66*' '
         texto += '\r\n'
+        if len(texto) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Cabecera presentador 19', texto), True)
         return texto
 
     def _cabecera_ordenante_19(self, recibo=None):
@@ -59,7 +61,6 @@ class csb_19:
 
         if self.order.date_prefered == 'due':
             assert recibo
-
             if recibo.get('date'):
                 date_cargo = datetime.strptime(recibo['date'],'%Y-%m-%d')
             elif recibo.get('ml_maturity_date'):
@@ -81,12 +82,14 @@ class csb_19:
         texto += '01'
         texto += 64*' '
         texto += '\r\n'
+        if len(texto) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Cabecera ordenante 19', texto), True)
         return texto
 
     def _individual_obligatorio_19(self, recibo):
         texto = '5680'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
-        texto += str(recibo['name']).zfill(12)
+        texto += str(recibo['name'])[-12:].zfill(12)
         nombre = to_ascii(recibo['partner_id'].name)
         texto += nombre[0:40].ljust(40)
         ccc = recibo['bank_id'] and recibo['bank_id'].acc_number or ''
@@ -103,17 +106,21 @@ class csb_19:
         #texto += to_ascii(concepto)[0:40].ljust(40)
         #texto += 8*' '
         texto += '\r\n'
+        if len(texto) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual obligatorio 19', texto), True)
         return texto
 
     def _individual_opcional_19(self, recibo):
         """Para poner el segundo texto de comunicación (en lugar de nombre, domicilio y localidad opcional)"""
         texto = '5686'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
-        texto += str(recibo['name']).zfill(12)
+        texto += str(recibo['name'])[-12:].zfill(12)
         texto += to_ascii(recibo['communication2'])[0:115].ljust(115)
         texto += '00000' # Campo de código postal ficticio
         texto += 14*' '
-        texto += '\n'
+        texto += '\r\n'
+        if len(texto) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 19', texto), True)
         return texto
 
     def _total_ordenante_19(self):
@@ -127,6 +134,8 @@ class csb_19:
         texto += str(self.group_payments + self.group_optional_lines + 2).zfill(10)
         texto += 38*' '
         texto += '\r\n'
+        if len(texto) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Total ordenante 19', texto), True)
         return texto
 
     def _total_general_19(self):
@@ -152,6 +161,8 @@ class csb_19:
             texto += str(self.total_payments + self.total_optional_lines + 4).zfill(10)
         texto += 38*' '
         texto += '\r\n'
+        if len(texto) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Total general 19', texto), True)
         return texto
 
 

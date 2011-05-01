@@ -6,24 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.15\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2011-04-01 14:41+0000\n"
-"PO-Revision-Date: 2011-04-01 16:55+0100\n"
-"Last-Translator: Jesús Martín <jmartin@zikzakmedia.com>\n"
+"POT-Creation-Date: 2011-05-01 12:00+0000\n"
+"PO-Revision-Date: 2011-05-01 14:17+0100\n"
+"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-
-#. module: l10n_es_payment_order
-#: report:remesas.report:0
-msgid "Matur. date"
-msgstr "Data de venciment"
-
-#. module: l10n_es_payment_order
-#: selection:payment.mode,tipo:0
-msgid "CSB 19"
-msgstr "CSB 19"
 
 #. module: l10n_es_payment_order
 #: model:ir.module.module,description:l10n_es_payment_order.module_meta_information
@@ -59,6 +49,21 @@ msgstr ""
 "També es proporciona un informe per imprimir un llistat dels pagaments/cobraments de l'ordre de pagament/cobrament (remesa).\n"
 
 #. module: l10n_es_payment_order
+#: model:ir.module.module,shortdesc:l10n_es_payment_order.module_meta_information
+msgid "Exportación de ficheros bancarios CSB 19, CSB 32, CSB 34 y CSB 58"
+msgstr "Exportació de fitxers bancaris CSB 19, CSB 32, CSB 34 y CSB 58"
+
+#. module: l10n_es_payment_order
+#: report:remesas.report:0
+msgid "Matur. date"
+msgstr "Data de venciment"
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,tipo:0
+msgid "CSB 19"
+msgstr "CSB 19"
+
+#. module: l10n_es_payment_order
 #: field:payment.mode,add_date:0
 msgid "Add Date"
 msgstr "Afegeix data"
@@ -86,9 +91,9 @@ msgstr ""
 "No és possible convertir el nombre %(number).2f i encabir-lo en %(size)d caràcters."
 
 #. module: l10n_es_payment_order
-#: wizard_field:export_payment_file_spain,export,note:0
-msgid "Log"
-msgstr "Registre"
+#: field:payment.mode,sufijo:0
+msgid "suffix"
+msgstr "Sufix"
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb34_type:0
@@ -275,10 +280,46 @@ msgid "Pago certificado"
 msgstr "Pagament certificat"
 
 #. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/csb_32.py:55
+#: code:addons/l10n_es_payment_order/wizard/csb_32.py:80
+#: code:addons/l10n_es_payment_order/wizard/csb_32.py:110
+#: code:addons/l10n_es_payment_order/wizard/csb_32.py:140
+#: code:addons/l10n_es_payment_order/wizard/csb_32.py:167
+#: code:addons/l10n_es_payment_order/wizard/csb_32.py:195
+#: code:addons/l10n_es_payment_order/wizard/csb_32.py:221
+#, python-format
+msgid ""
+"Configuration error:\n"
+"\n"
+"The line \"%s\" is not 150 characters long:\n"
+"%s"
+msgstr ""
+"Error de configuració:\n"
+"\n"
+"La línia \"%s\" no té 150 caràcters:\n"
+"%s"
+
+#. module: l10n_es_payment_order
 #: field:payment.mode,partner_id:0
 #: report:remesas.report:0
 msgid "Partner"
 msgstr "Empresa"
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/csb_34.py:154
+#: code:addons/l10n_es_payment_order/wizard/csb_34.py:319
+#: code:addons/l10n_es_payment_order/wizard/csb_34.py:334
+#, python-format
+msgid ""
+"Configuration error:\n"
+"\n"
+"The line \"%s\" is not 72 characters long:\n"
+"%s"
+msgstr ""
+"Error de configuració:\n"
+"\n"
+"La línia \"%s\" no té 72 caràcters:\n"
+"%s"
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:174
@@ -297,7 +338,7 @@ msgstr ""
 " Nombre total de rebuts: %d\n"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/csb_19.py:60
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:74
 #, python-format
 msgid ""
 "User error:\n"
@@ -332,9 +373,9 @@ msgstr ""
 "No és possible convertir el número enter %(number)d i encabir-lo en %(size)d caràcters."
 
 #. module: l10n_es_payment_order
-#: field:payment.mode,sufijo:0
-msgid "suffix"
-msgstr "Sufix"
+#: wizard_field:export_payment_file_spain,export,note:0
+msgid "Log"
+msgstr "Registre"
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:151
@@ -368,11 +409,6 @@ msgstr "........."
 #: field:payment.mode,send_letter:0
 msgid "Send Letter"
 msgstr "Envia carta"
-
-#. module: l10n_es_payment_order
-#: model:ir.module.module,shortdesc:l10n_es_payment_order.module_meta_information
-msgid "Exportación de ficheros bancarios CSB 19, CSB 32, CSB 34 y CSB 58"
-msgstr "Exportació de fitxers bancaris CSB 19, CSB 32, CSB 34 y CSB 58"
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:128
@@ -521,6 +557,21 @@ msgid "Transfer"
 msgstr "Transferència"
 
 #. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/csb_34.py:143
+#: code:addons/l10n_es_payment_order/wizard/csb_34.py:304
+#, python-format
+msgid ""
+"Configuration error:\n"
+"\n"
+"A line in \"%s\" is not 72 characters long:\n"
+"%s"
+msgstr ""
+"Error de configuració:\n"
+"\n"
+"Una línia del \"%s\" no té 72 caràcters:\n"
+"%s"
+
+#. module: l10n_es_payment_order
 #: view:payment.mode:0
 msgid "CSB 58 Options"
 msgstr "Opcions CSB 58"
@@ -557,7 +608,7 @@ msgid "Type of payment file"
 msgstr "Tipus de remesa"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/csb_34.py:163
+#: code:addons/l10n_es_payment_order/wizard/csb_34.py:166
 #, python-format
 msgid ""
 "User error:\n"
@@ -585,6 +636,32 @@ msgstr "Introduïu text i/o seleccioneu un camp de la factura per incloure'l a l
 #: model:ir.actions.wizard,name:l10n_es_payment_order.wizard_create_payment_file_spain
 msgid "Create payment file"
 msgstr "Crear fitxer de la remesa"
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:54
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:86
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:110
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:123
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:138
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:165
+#: code:addons/l10n_es_payment_order/wizard/csb_58.py:53
+#: code:addons/l10n_es_payment_order/wizard/csb_58.py:71
+#: code:addons/l10n_es_payment_order/wizard/csb_58.py:100
+#: code:addons/l10n_es_payment_order/wizard/csb_58.py:111
+#: code:addons/l10n_es_payment_order/wizard/csb_58.py:231
+#: code:addons/l10n_es_payment_order/wizard/csb_58.py:247
+#: code:addons/l10n_es_payment_order/wizard/csb_58.py:264
+#, python-format
+msgid ""
+"Configuration error:\n"
+"\n"
+"The line \"%s\" is not 162 characters long:\n"
+"%s"
+msgstr ""
+"Error de configuració:\n"
+"\n"
+"La línia \"%s\" no té 162 caràcters:\n"
+"%s"
 
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
