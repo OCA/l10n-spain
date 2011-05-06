@@ -39,7 +39,7 @@ Módulo para la presentación del modelo 340
                  ],
     "init_xml" : [],
     "demo_xml" : [],
-    "update_xml" : ["mod340_view.xml","mod340_workflow.xml","security/ir.model.access.csv", 'report/report_view.xml',],
+    "update_xml" : ['report/report_view.xml',"mod340_view.xml","mod340_workflow.xml","security/ir.model.access.csv", ],
     "installable" : True,
     "active" : False,
 }
