@@ -31,9 +31,8 @@
    		Añadido IRPF 2% (act. agrícolas, ganaderas, forestales), 19% y 21% (antiguo 18%)
         Novedad 2010: Los rendimientos derivados de rentas de capital mobiliario o inmobiliario, el tipo base de retención pasa del 18% al 19% para los primeros 6000 EUR y al 21% a partir de los 6000 EUR.
 
-        Ignacio Ibeas (Acysos) - ignacio@acysos.com (2011-02-22)
-        Modificado type_tax_use de los recargos de equivalencia a "all"
-      -->
+        Ignacio Ibeas (Acysos) - ignacio@acysos.com (2011-05-06)
+      Añadido Recargos de equivalencia para venta y compra -->
 
 		<!-- Definición de IVA y retenciones, códigos de impuestos y cuentas contables adicionales -->
 		
@@ -532,6 +531,31 @@
 			<field name="parent_id" ref="iva_pymes_ded_32"/>
 			<field name="sign">1.0</field>
 		</record>
+        
+        <!-- BASE RECARGO DE EQUIVALENCIA-->
+        <record id="iva_pymes_ded_10" model="account.tax.code.template">
+            <field name="template_name">PGCE PYMES</field>
+            <field name="name">Recargo Equivalencia Base Imponible 0.5%</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_base_total"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="iva_pymes_ded_13" model="account.tax.code.template">
+            <field name="template_name">PGCE PYMES</field>
+            <field name="name">Recargo Equivalencia Base Imponible 1%</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_base_total"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="iva_pymes_ded_16" model="account.tax.code.template">
+            <field name="template_name">PGCE PYMES</field>
+            <field name="name">Recargo Equivalencia Base Imponible 4%</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_base_total"/>
+            <field name="sign">1.0</field>
+        </record>
 
 		
 		
@@ -840,6 +864,31 @@
 			<field name="parent_id" ref="vat_code_chart_pymes_root"/>
 			<field name="sign">1.0</field>
 		</record>
+        
+        <!--Cuota Recargo de Equivalencia-->
+        <record id="iva_pymes_ded_12" model="account.tax.code.template">
+            <field name="template_name">PGCE PYMES</field>
+            <field name="name">Recargo Equivalencia. Cuota 0.5%</field>
+            <field name="code">[12]</field>
+            <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="iva_pymes_ded_15" model="account.tax.code.template">
+            <field name="template_name">PGCE PYMES</field>
+            <field name="name">Recargo Equivalencia. Cuota 1%</field>
+            <field name="code">[15]</field>
+            <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="iva_pymes_ded_18" model="account.tax.code.template">
+            <field name="template_name">PGCE PYMES</field>
+            <field name="name">Recargo Equivalencia. Cuota 4%</field>
+            <field name="code">[18]</field>
+            <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
 
 <!-- ********************************* -->
 <!--Cuentas para IVA-->
@@ -953,6 +1002,16 @@
 			<field name="name">Hacienda acreedora IVA</field>
 			<field name="user_type" ref="tax"/>
 		</record>
+        
+        <record id="pgc_pymes_470001" model="account.account.template">
+            <field name="template_name">PGCE PYMES</field>
+            <field name="code">470001</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_pymes_4700"/>
+            <field name="type">receivable</field>
+            <field name="name">Hacienda deudora IVA</field>
+            <field name="user_type" ref="tax"/>
+        </record>
 		
 		
 <!-- ********************************* -->
@@ -1632,7 +1691,7 @@
 		<record id="re_pymes_05" model="account.tax.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-			<field name="name">0.50% Recargo Equivalencia</field>
+			<field name="name">0.50% Recargo Equivalencia Ventas</field>
 			<field eval="0.005" name="amount"/>
 			<field name="type">percent</field>
 			<field name="account_collected_id" ref="pgc_pymes_475001"/>
@@ -1645,13 +1704,13 @@
 			<field eval="1.0" name="base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
-			<field name="type_tax_use">all</field>
+			<field name="type_tax_use">sale</field>
 		</record>
 		
 		<record id="re_pymes_1" model="account.tax.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-			<field name="name">1% Recargo Equivalencia</field>
+			<field name="name">1% Recargo Equivalencia Ventas</field>
 			<field eval="0.01" name="amount"/>
 			<field name="type">percent</field>
 			<field name="account_collected_id" ref="pgc_pymes_475001"/>
@@ -1664,13 +1723,13 @@
 			<field eval="1.0" name="base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
-			<field name="type_tax_use">all</field>
+			<field name="type_tax_use">sale</field>
 		</record>
 		
 		<record id="re_pymes_4" model="account.tax.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-			<field name="name">4% Recargo Equivalencia</field>
+			<field name="name">4% Recargo Equivalencia Ventas</field>
 			<field eval="0.04" name="amount"/>
 			<field name="type">percent</field>
 			<field name="account_collected_id" ref="pgc_pymes_475001"/>
@@ -1683,8 +1742,65 @@
 			<field eval="1.0" name="base_sign"/>
 			<field eval="-1.0" name="ref_tax_sign"/>
 			<field eval="-1.0" name="ref_base_sign"/>
-			<field name="type_tax_use">all</field>
+			<field name="type_tax_use">sale</field>
 		</record>
+        
+        <record id="re_pymes_buy_05" model="account.tax.template">
+            <field name="template_name">PGCE PYMES</field>
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">0.50% Recargo Equivalencia Compras</field>
+            <field eval="0.005" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_470001"/>
+            <field name="account_paid_id" ref="pgc_pymes_470001"/>
+            <field name="base_code_id" ref="iva_pymes_ded_10"/>
+            <field name="tax_code_id" ref="iva_pymes_ded_12"/>
+            <field name="ref_base_code_id" ref="iva_pymes_ded_10"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_ded_12"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        
+        <record id="re_pymes_buy_1" model="account.tax.template">
+            <field name="template_name">PGCE PYMES</field>
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">1% Recargo Equivalencia Compras</field>
+            <field eval="0.01" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_470001"/>
+            <field name="account_paid_id" ref="pgc_pymes_470001"/>
+            <field name="base_code_id" ref="iva_pymes_ded_13"/>
+            <field name="tax_code_id" ref="iva_pymes_ded_15"/>
+            <field name="ref_base_code_id" ref="iva_pymes_ded_13"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_ded_15"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        
+        <record id="re_pymes_buy_4" model="account.tax.template">
+            <field name="template_name">PGCE PYMES</field>
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">4% Recargo Equivalencia Compras</field>
+            <field eval="0.04" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_470001"/>
+            <field name="account_paid_id" ref="pgc_pymes_470001"/>
+            <field name="base_code_id" ref="iva_pymes_ded_16"/>
+            <field name="tax_code_id" ref="iva_pymes_ded_18"/>
+            <field name="ref_base_code_id" ref="iva_pymes_ded_16"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_ded_18"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
 		
 		
 <!-- OPERACIONES INTRACOMUNITARIAS -->
