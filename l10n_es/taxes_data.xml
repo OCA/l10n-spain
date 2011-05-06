@@ -450,7 +450,27 @@
             <field name="sign">1.0</field>
         </record>
 		
-		
+        <!-- BASE RECARGO DE EQUIVALENCIA-->
+        <record id="iva_ded_10" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Base Imponible 0.5%</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_ded_base_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_ded_13" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Base Imponible 1%</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_ded_base_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_ded_16" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Base Imponible 4%</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_ded_base_total"/>
+            <field name="sign">1.0</field>
+        </record>
 		
 	<!-- IVA DEDUCIBLE Cuotas-->
 	<!-- *********************************************** -->
@@ -718,6 +738,28 @@
             <field name="sign">1.0</field>
         </record>
 
+        <!--Cuota Recargo de Equivalencia-->
+        <record id="iva_ded_12" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia. Cuota 0.5%</field>
+            <field name="code">[12]</field>
+            <field name="parent_id" ref="iva_ded_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_ded_15" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia. Cuota 1%</field>
+            <field name="code">[15]</field>
+            <field name="parent_id" ref="iva_ded_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_ded_18" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia. Cuota 4%</field>
+            <field name="code">[18]</field>
+            <field name="parent_id" ref="iva_ded_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
 <!-- ********************************* -->
 <!--Cuentas para IVA-->
 <!-- ********************************* -->
@@ -818,6 +860,15 @@
             <field name="parent_id" ref="pgc_4750"/>
             <field name="type">payable</field>
             <field name="name">Hacienda acreedora IVA</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_470001" model="account.account.template">
+            <field name="code">470001</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_4700"/>
+            <field name="type">receivable</field>
+            <field name="name">Hacienda deudora IVA</field>
             <field name="user_type" ref="tax"/>
         </record>
 		
@@ -1514,6 +1565,60 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">all</field>
+        </record>
+
+        <record id="re_buy_05" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">0.50% Recargo Equivalencia Compras</field>
+            <field eval="0.005" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_470001"/>
+            <field name="account_paid_id" ref="pgc_470001"/>
+            <field name="base_code_id" ref="iva_ded_10"/>
+            <field name="tax_code_id" ref="iva_ded_12"/>
+            <field name="ref_base_code_id" ref="iva_ded_10"/>
+            <field name="ref_tax_code_id" ref="iva_ded_12"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        
+        <record id="re_buy_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">1% Recargo Equivalencia Compras</field>
+            <field eval="0.01" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_470001"/>
+            <field name="account_paid_id" ref="pgc_470001"/>
+            <field name="base_code_id" ref="iva_ded_13"/>
+            <field name="tax_code_id" ref="iva_ded_15"/>
+            <field name="ref_base_code_id" ref="iva_ded_13"/>
+            <field name="ref_tax_code_id" ref="iva_ded_15"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        
+        <record id="re_buy_4" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">4% Recargo Equivalencia Compras</field>
+            <field eval="0.04" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_470001"/>
+            <field name="account_paid_id" ref="pgc_470001"/>
+            <field name="base_code_id" ref="iva_ded_16"/>
+            <field name="tax_code_id" ref="iva_ded_18"/>
+            <field name="ref_base_code_id" ref="iva_ded_16"/>
+            <field name="ref_tax_code_id" ref="iva_ded_18"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
         </record>
 		
 		
