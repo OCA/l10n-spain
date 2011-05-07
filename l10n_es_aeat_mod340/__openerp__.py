@@ -35,7 +35,6 @@ Módulo para la presentación del modelo 340
     "depends" : ["account",
                  "base_vat",
                  "l10n_es_aeat",
-                 "report_aeroo_ooo"
                  ],
     "init_xml" : [],
     "demo_xml" : [],

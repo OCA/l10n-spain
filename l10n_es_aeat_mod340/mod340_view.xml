@@ -77,7 +77,7 @@
                                         string="Recalculate"
                                         states="calculating,calculated"
                                         icon="gtk-execute"/>
-                                <button name="%(aeroo_mod340_action)d"
+                                <button name="%(report_mod340_action)d"
                                         type="action"
                                         string="Export to BOE"
                                         states="done"
