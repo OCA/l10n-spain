@@ -1669,7 +1669,7 @@
         <!-- Plantillas para recargo de equivalencia-->
         <record id="re_05" model="account.tax.template">
             <field name="template_name">PGCE 2008</field>
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">0.50% Recargo Equivalencia Ventas</field>
             <field eval="0.005" name="amount"/>
             <field name="type">percent</field>
@@ -1688,7 +1688,7 @@
         
         <record id="re_1" model="account.tax.template">
             <field name="template_name">PGCE 2008</field>
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">1% Recargo Equivalencia Ventas</field>
             <field eval="0.01" name="amount"/>
             <field name="type">percent</field>
@@ -1707,7 +1707,7 @@
         
         <record id="re_4" model="account.tax.template">
             <field name="template_name">PGCE 2008</field>
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">4% Recargo Equivalencia Ventas</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
@@ -1726,7 +1726,7 @@
         
         <record id="re_buy_05" model="account.tax.template">
             <field name="template_name">PGCE 2008</field>
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">0.50% Recargo Equivalencia Compras</field>
             <field eval="0.005" name="amount"/>
             <field name="type">percent</field>
@@ -1745,7 +1745,7 @@
         
         <record id="re_buy_1" model="account.tax.template">
             <field name="template_name">PGCE 2008</field>
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">1% Recargo Equivalencia Compras</field>
             <field eval="0.01" name="amount"/>
             <field name="type">percent</field>
@@ -1764,7 +1764,7 @@
         
         <record id="re_buy_4" model="account.tax.template">
             <field name="template_name">PGCE 2008</field>
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">4% Recargo Equivalencia Compras</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
