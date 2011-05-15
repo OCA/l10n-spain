@@ -3,6 +3,8 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 20011 Ting (http://www.ting.es) All Rights Reserved.
+#    Copyright (c) 2011 Acysos S.L. (http://acysos.com) All Rights Reserved
+#                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 #                   
 #    $Id$
 #
@@ -34,9 +36,6 @@ import pooler
 
 
 class l10n_es_aeat_mod340(osv.osv):
-
-
-    
    
     def button_calculate(self, cr, uid, ids,  args, context=None):
         
@@ -61,7 +60,7 @@ class l10n_es_aeat_mod340(osv.osv):
     def button_export(self, cr, uid, ids, context=None):
         #FUNCION CALCADA DEL MODELO 347, inoperativa de momento
         
-        raise osv.except_osv(_('No disponible:'), _('En desarrollo'))
+        #raise osv.except_osv(_('No disponible:'), _('En desarrollo'))
         
         if context is None:
             context = {}
@@ -70,13 +69,22 @@ class l10n_es_aeat_mod340(osv.osv):
         export_obj._export_boe_file(cr, uid, ids, self.browse(cr, uid, ids and ids[0]))
 
         return True
+        
+    def _name_get(self, cr, uid, ids, field_name, arg, context={}):
+        """
+        Returns the report name
+        """
+        result = {}
+        for report in self.browse(cr, uid, ids, context):
+            result[report.id] = report.number
+        return result
     
     _inherit = "l10n.es.aeat.report"
     _name = 'l10n.es.aeat.mod340'
     _description = 'Model 340'
     _columns = {
         
-        
+        'name': fields.function(_name_get, method=True, type="char", size="64", string="Name"),
         'contact_phone': fields.char("Phone", size=9),
         'phone_contact' : fields.char('Phone Contact',size=9),
         'name_contact' : fields.char('Name And Surname Contact',size=40),
@@ -91,15 +99,6 @@ class l10n_es_aeat_mod340(osv.osv):
         'investment': fields.one2many(
                                       'l10n.es.aeat.mod340.investment','mod340_id','Property Investment'),
         'intracomunitarias': fields.one2many('l10n.es.aeat.mod340.intracomunitarias','mod340_id','Operations Intracomunitarias'),
-        'support_type': fields.selection([
-            ('DVD','DVD'),
-            ('Telemático','Telematics')], 'Support Type',
-            states={'calculated':[('required',True)],'done':[('readonly',True)]}),
-        'type': fields.selection([
-            ('Normal','Normal'),
-            ('Complementario','Complementary'),
-            ('Sustitutivo','Substitutive')], 'Statement Type',
-            states={'calculated':[('required',True)],'done':[('readonly',True)]}),
         
         'ean13': fields.char('Electronic Code VAT reverse charge', size=16),
         'total_taxable': fields.float('Total Taxable', digits=(13,2), help="The declaration will include partners with the total of operations over this limit"),
@@ -110,7 +109,7 @@ class l10n_es_aeat_mod340(osv.osv):
     }
     _defaults = {
         'support_type' : lambda *a: 'Telemático',
-        'number':340,
+        'number' : lambda *a: '340',
         'type': lambda *a: 'Normal'
                }
 
@@ -173,16 +172,18 @@ l10n_es_aeat_mod340()
 
 class l10n_es_aeat_mod340_issued(osv.osv):
     _name = 'l10n.es.aeat.mod340.issued'
-    _description = 'Invoices Issued'
+    _description = 'Invoices invoice'
     _columns = {                        
         'mod340_id': fields.many2one('l10n.es.aeat.mod340','Model 340',ondelete="cascade"),
         'partner_id':fields.many2one('res.partner','Partner',ondelete="cascade"),
-        'company_nif':fields.char('Company CIF/NIF',size=9),
-        'invoice_id':fields.char('Invoice number',size=12),
+        'partner_vat':fields.char('Company CIF/NIF',size=9),
+        'representative_vat': fields.char('L.R. VAT number', size=9, help="Legal Representative VAT number"),
+        'partner_country_code': fields.char('Country Code', size=2),
+        'invoice_id':fields.many2one('account.invoice','Invoice',ondelete="cascade"),
         'base_tax':fields.float('Base tax bill',digits=(13,2)),
         'amount_tax':fields.float('Amount of the tax',digits=(13,2)),
         'total':fields.float('Total',digits=(13,2)),
-        'invoices':fields.many2many('account.invoice.line', 'invoice_340_relation', 'inv_340_id', 'invo_id', 'Invoices'),
+        'tax_line_ids': fields.one2many('l10n.es.aeat.mod340.tax_line_issued', 'invoice_record_id', 'Tax lines', states = {'done': [('readonly', True)]}),
     }
 l10n_es_aeat_mod340_issued()
 
@@ -190,6 +191,9 @@ class l10n_es_aeat_mod340_received(osv.osv):
     _name = 'l10n.es.aeat.mod340.received'
     _description = 'Invoices Received'
     _inherit = 'l10n.es.aeat.mod340.issued'
+    _columns = {
+        'tax_line_ids': fields.one2many('l10n.es.aeat.mod340.tax_line_received', 'invoice_record_id', 'Tax lines', states = {'done': [('readonly', True)]}),
+    }
 l10n_es_aeat_mod340_received()
 
 class l10n_es_aeat_mod340_investment(osv.osv):
@@ -203,3 +207,24 @@ class l10n_es_aeat_mod340_intracomunitarias(osv.osv):
     _description = 'Operations Intracomunitarias'
     _inherit = 'l10n.es.aeat.mod340.issued'
 l10n_es_aeat_mod340_intracomunitarias()
+
+class l10n_es_aeat_mod340_tax_line_issued(osv.osv):
+    _name = 'l10n.es.aeat.mod340.tax_line_issued'
+    _description = 'Mod340 vat lines issued'
+    _columns = {
+        'name': fields.char('Name', size=128, required=True, select=True),
+        'tax_percentage': fields.float('Tax percentage',digits=(0,2)),
+        'tax_amount': fields.float('Tax amount',digits=(13,2)),
+        'base_amount': fields.float('Base tax bill',digits=(13,2)),
+        'invoice_record_id': fields.many2one('l10n.es.aeat.mod340.issued', 'Invoice issued', required=True, ondelete="cascade", select=1),
+    }
+l10n_es_aeat_mod340_tax_line_issued()
+
+class l10n_es_aeat_mod340_tax_line_received(osv.osv):
+    _name = 'l10n.es.aeat.mod340.tax_line_received'
+    _description = 'Mod340 vat lines received'
+    _inherit = 'l10n.es.aeat.mod340.tax_line_issued'
+    _columns = {
+        'invoice_record_id': fields.many2one('l10n.es.aeat.mod340.received', 'Invoice received', required=True, ondelete="cascade", select=1),
+    }
+l10n_es_aeat_mod340_tax_line_received()

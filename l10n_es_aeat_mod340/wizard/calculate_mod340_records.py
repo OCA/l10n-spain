@@ -2,6 +2,8 @@
 ##############################################################################
 #
 #    Copyright (C) 2011 Ting. All Rights Reserved
+#    Copyright (c) 2011 Acysos S.L. (http://acysos.com) All Rights Reserved
+#                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -175,58 +177,51 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                 invoices340_rec.unlink(cr, uid, del_ids, context=context)
             
             for partn in invoice:
-                    part = self.pool.get('account.invoice').browse(cr, uid, partn)
-                    if part.type=="out_invoice" or part.type=="out_refund":                     
-                        
-                        if not part.partner_id.vat:
-                            raise osv.except_osv(_('La siguiente empresa no tiene asignado nif:'), _(part.partner_id.name))
-                        
-                        nif = part.partner_id.vat.split('ES')[1]
-                        
-                        invoices_ids = []
-                        
-                        for aux_id in part.invoice_line:
-                            invoices_ids.append(aux_id.id)
-                        
-                        values = {
-                                  'mod340_id': mod340.id,
-                                  'partner_id':part.partner_id.id,
-                                  'company_nif':nif,
-                                  'invoice_id':part.number,
-                                  'base_tax':part.amount_untaxed,
-                                  'amount_tax':part.amount_tax,
-                                  'total':part.amount_total,
-                                  'invoices':[(6,0,invoices_ids)],            
-                               }
-                        
-                        
-                        invoices340.create(cr,uid,values)
-                        
-                    else:
-                        if part.type=="in_invoice" or part.type=="in_refund":
-                        
-                            if not part.partner_id.vat:
-                                raise osv.except_osv(_('La siguiente empresa no tiene asignado nif:'), _(part.partner_id.name))
-                        
-                            nif = part.partner_id.vat.split('ES')[1]
-                        
-                            values = {
-                                  'mod340_id': mod340.id,
-                                  'partner_id':part.partner_id.id,
-                                  'company_nif':nif,
-                                  'invoice_id':part.number,
-                                  'base_tax':part.amount_untaxed,
-                                  'amount_tax':part.amount_tax,
-                                  'total':part.amount_total            
-                               }
-                        
-                        invoices340_rec.create(cr,uid,values)
-       
-                    tot_base = tot_base + part.amount_untaxed
-                    tot_amount = tot_amount + part.amount_tax
-                    tot_tot = tot_tot + part.amount_total
-                    tot_rec = tot_rec + 1
-        
+                part = self.pool.get('account.invoice').browse(cr, uid, partn)
+                if not part.partner_id.vat:
+                    raise osv.except_osv(_('La siguiente empresa no tiene asignado nif:'), _(part.partner_id.name))
+                
+                nif = part.partner_id.vat and re.match(r"([A-Z]{0,2})(.*)", part.partner_id.vat).groups()[1]
+                country_code = part.address_invoice_id.country_id.code
+                
+                values = {
+                    'mod340_id': mod340.id,
+                    'partner_id':part.partner_id.id,
+                    'partner_vat':nif,
+                    'representative_vat': '',
+                    'partner_country_code' : country_code,
+                    'invoice_id':part.id,
+                    'base_tax':part.amount_untaxed,
+                    'amount_tax':part.amount_tax,
+                    'total':part.amount_total
+                }
+
+                if part.type=="out_invoice" or part.type=="out_refund":
+                    invoice_created = invoices340.create(cr,uid,values)
+                    
+                if part.type=="in_invoice" or part.type=="in_refund":
+                    invoice_created = invoices340_rec.create(cr,uid,values)
+                    
+                tot_base = tot_base + part.amount_untaxed
+                tot_amount = tot_amount + part.amount_tax
+                tot_tot = tot_tot + part.amount_total
+                
+                # Add the invoices detail to the partner record
+                for tax_line in part.tax_line:
+                    name = tax_line.name
+                    account_tax = self.pool.get('account.tax').browse(cr, uid, self.pool.get('account.tax').search(cr, uid, [('name','=',name)], context=context))
+                    values = {
+                        'name': name,
+                        'tax_percentage': account_tax[0].amount,
+                        'tax_amount': tax_line.tax_amount,
+                        'base_amount': tax_line.base_amount,
+                        'invoice_record_id': invoice_created,
+                    }
+                    if part.type=="out_invoice" or part.type=="out_refund":
+                        self.pool.get('l10n.es.aeat.mod340.tax_line_issued').create(cr, uid, values)
+                    if part.type=="in_invoice" or part.type=="in_refund":
+                        self.pool.get('l10n.es.aeat.mod340.tax_line_received').create(cr, uid, values)
+                tot_rec = tot_rec + len(part.tax_line)
             mod340.write({'total_taxable':tot_base,'total_sharetax':tot_amount,'number_records':tot_rec,'total':tot_tot,'number':code})
             
             if recalculate:

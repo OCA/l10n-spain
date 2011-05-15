@@ -77,8 +77,8 @@
                                         string="Recalculate"
                                         states="calculating,calculated"
                                         icon="gtk-execute"/>
-                                <button name="%(report_mod340_action)d"
-                                        type="action"
+                                <button name="button_export"
+                                        type="object"
                                         string="Export to BOE"
                                         states="done"
                                         icon="gtk-execute"/>
@@ -89,60 +89,10 @@
                             </group>
                                 </page>
                                 <page string="Issued invoice" >
-                               	 <field name="issued" nolabel="1">
-                               	 	<tree string="Issued invoices">
-	
-	                                 	<field name="partner_id"/>
-	                                  	<field name="company_nif"/>
-	                                  	<field name="invoice_id"/>
-	                               		<field name="base_tax"/>
-	                                  	<field name="amount_tax"/>
-	                                  	<field name="total"/>
-                                  	</tree>   
-                                  	<form string="Issued invoices">
-                                  		<field name="invoice_id"/>
-                                  		<newline/>
-                                  		<field name="partner_id"/>
-                                  		<field name="company_nif"/>
-                                  		<newline/>
-                                  		<field name="base_tax"/>
-                                  		<field name="amount_tax"/>
-                                  		<newline/>
-                                  		<field name="total"/>
-                                  		<newline />
-                                  		<separator string="INVOICE LINES:" />
-                                  		<newline/>
-                                  		<field name="invoices" colspan="4" nolabel="1"/>
-                                  	</form>  
-                                 </field>
+                               	 <field name="issued" nolabel="1" />
                                 </page>
                                 <page string="Received invoice" >
-                               	 <field name="received" nolabel="1">
-                               	 	<tree string="Received invoices">
-
-	                                 	<field name="partner_id"/>
-	                                  	<field name="company_nif"/>
-	                                  	<field name="invoice_id"/>
-	                               		<field name="base_tax"/>
-	                                  	<field name="amount_tax"/>
-	                                  	<field name="total"/>
-                                  	</tree> 
-                                  	<form string="Received invoices">
-                                  		<field name="invoice_id"/>
-                                  		<newline/>
-                                  		<field name="partner_id"/>
-                                  		<field name="company_nif"/>
-                                  		<newline/>
-                                  		<field name="base_tax"/>
-                                  		<field name="amount_tax"/>
-                                  		<newline/>
-                                  		<field name="total"/>
-                                  		<newline />
-                                  		<separator string="INVOICE LINES:" />
-                                  		<newline/>
-                                  		<field name="invoices" colspan="4" nolabel="1"/>
-                                  	</form>      
-                                 </field>
+                               	 <field name="received" nolabel="1" /> 
                                 </page>
                                 
                         </notebook>
@@ -152,10 +102,117 @@
 	<!-- FIN Modelo 340 -->
 
 
+    <!--Invoice Issued-->
+    
+    <record id="view_l10n_es_aeat_mod340_invoice_issued_tree" model="ir.ui.view">
+        <field name="name">l10n.es.aeat.mod340.issued.tree</field>
+        <field name="model">l10n.es.aeat.mod340.issued</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Issued invoices">
+                <field name="partner_id"/>
+                <field name="partner_vat"/>
+                <field name="invoice_id"/>
+                <field name="base_tax"/>
+                <field name="amount_tax"/>
+                <field name="total"/>
+            </tree>   
+        </field>
+    </record>
+    
+    <record id="view_l10n_es_aeat_mod340_invoice_issued_form" model="ir.ui.view">
+        <field name="name">l10n.es.aeat.mod340.issued.form</field>
+        <field name="model">l10n.es.aeat.mod340.issued</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Issued invoices">
+                <field name="invoice_id"/>
+                <newline/>
+                <field name="partner_id"/>
+                <field name="partner_vat"/>
+                <field name="representative_vat"/>
+                <field name="partner_country_code"/>
+                <newline/>
+                <field name="base_tax"/>
+                <field name="amount_tax"/>
+                <newline/>
+                <field name="total"/>
+                <newline />
+                <field name="tax_line_ids" />
+            </form>   
+        </field>
+    </record>
 
-
-	
-	
+    <!--Invoice Received-->
+    
+    <record id="view_l10n_es_aeat_mod340_invoice_received_tree" model="ir.ui.view">
+        <field name="name">l10n.es.aeat.mod340.received.tree</field>
+        <field name="model">l10n.es.aeat.mod340.received</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Received invoices">
+                <field name="partner_id"/>
+                <field name="partner_vat"/>
+                <field name="invoice_id"/>
+                <field name="base_tax"/>
+                <field name="amount_tax"/>
+                <field name="total"/>
+            </tree>   
+        </field>
+    </record>
+    
+    <record id="view_l10n_es_aeat_mod340_invoice_received_form" model="ir.ui.view">
+        <field name="name">l10n.es.aeat.mod340.received.form</field>
+        <field name="model">l10n.es.aeat.mod340.received</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Received invoices">
+                <field name="invoice_id"/>
+                <newline/>
+                <field name="partner_id"/>
+                <field name="partner_vat"/>
+                <field name="representative_vat"/>
+                <field name="partner_country_code"/>
+                <newline/>
+                <field name="base_tax"/>
+                <field name="amount_tax"/>
+                <newline/>
+                <field name="total"/>
+                <newline />
+                <field name="tax_line_ids" />
+            </form>   
+        </field>
+    </record>
+    
+    <!--Vat Lines-->
+    
+    <record id="view_l10n_es_aeat_mod340_tax_line_issued_form" model="ir.ui.view">
+        <field name="name">l10n.es.aeat.mod340.tax_line_issued.form</field>
+        <field name="model">l10n.es.aeat.mod340.tax_line_issued</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Tax line issued">
+                <field name="name"/>
+                <field name="tax_percentage"/>
+                <field name="tax_amount"/>
+                <field name="base_amount"/>
+            </form>
+        </field>
+    </record>
+    
+    <record id="view_l10n_es_aeat_mod340_tax_line_received_form" model="ir.ui.view">
+        <field name="name">l10n.es.aeat.mod340.tax_line_received.form</field>
+        <field name="model">l10n.es.aeat.mod340.tax_line_received</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Tax line received">
+                <field name="name"/>
+                <field name="tax_percentage"/>
+                <field name="tax_amount"/>
+                <field name="base_amount"/>
+            </form>
+        </field>
+    </record>
 	
 	<record id="view_l10n_es_aeat_mod340_report_search" model="ir.ui.view">
             <field name="name">AEAT Model 340 (search)</field>

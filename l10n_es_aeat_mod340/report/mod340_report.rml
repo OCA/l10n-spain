@@ -237,10 +237,10 @@
             <para style="P4">[[r.partner_id.name]]</para>
           </td>
           <td>
-            <para style="P14">[[r.company_nif]]</para>
+            <para style="P14">[[r.partner_vat]]</para>
           </td>
           <td>
-            <para style="P14">[[r.invoice_id]]</para>
+            <para style="P14">[[r.invoice_id.number]]</para>
           </td>
           <td>
             <para style="P13">[[r.base_tax]]</para>
@@ -301,7 +301,7 @@
             <para style="P4">[[r.partner_id.name]]</para>
           </td>
           <td>
-            <para style="P14">[[r.company_nif]]</para>
+            <para style="P14">[[r.partner_vat]]</para>
           </td>
           <td>
             <para style="P14">[[r.invoice_id or '0']]</para>

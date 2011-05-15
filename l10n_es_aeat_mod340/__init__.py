@@ -3,6 +3,8 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 20011 Ting (http://www.ting.es) All Rights Reserved.
+#    Copyright (c) 2011 Acysos S.L. (http://acysos.com) All Rights Reserved
+#                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 #                      
 #    $Id$
 #
@@ -23,5 +25,5 @@
 import report
 import wizard
 import mod340
-import account
+import res_partner
 

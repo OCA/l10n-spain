@@ -3,6 +3,8 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2011 Ting (www.ting.es) All Rights Reserved.
+#    Copyright (c) 2011 Acysos S.L. (http://acysos.com) All Rights Reserved
+#                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 #                      
 #    $Id$
 #
@@ -21,3 +23,4 @@
 #
 ##############################################################################
 import calculate_mod340_records
+import export_mod340_to_boe

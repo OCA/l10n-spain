@@ -3,6 +3,8 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2011 Ting (http://www.ting.es) All Rights Reserved.
+#    Copyright (c) 2011 Acysos S.L. (http://acysos.com) All Rights Reserved
+#                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 #                       
 #    $Id$
 #
@@ -24,13 +26,13 @@
 {
     "name" : "Generación de fichero modelo 340",
     "version" : "1.0",
-    "author" : "Francisco Pascual (Ting)",
+    "author" : "Acysos S.L., Francisco Pascual (Ting)",
     "category" : "Localisation/Accounting",
     "description" : """
-Módulo para la presentación del modelo 340
+Módulo para la presentación del modelo 340. Exportación a formato AEAT.
 ********************* Esta versión se encuetra en desarrollo ************************
 """,
-    "website" : "www.ting.es",
+    "website" : "www.acysos.com, www.ting.es",
     "license" : "GPL-3",
     "depends" : ["account",
                  "base_vat",
@@ -38,7 +40,7 @@ Módulo para la presentación del modelo 340
                  ],
     "init_xml" : [],
     "demo_xml" : [],
-    "update_xml" : ['report/report_view.xml',"mod340_view.xml","mod340_workflow.xml","security/ir.model.access.csv", ],
+    "update_xml" : ['report/report_view.xml',"mod340_view.xml","mod340_workflow.xml","security/ir.model.access.csv", "res_partner_view.xml","mod340_sequence.xml","account_invoice_view.xml"],
     "installable" : True,
     "active" : False,
 }
