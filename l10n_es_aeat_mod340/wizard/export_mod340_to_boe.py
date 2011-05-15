@@ -113,7 +113,7 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             79-95       Número de identificación fiscal en el país de residencia. TODO de momento blancos.
             96-98       Blancos
             99          Clave tipo de libro. Constante 'E'.
-            100         Clave de operación. Constante ' ' para un solo tipo de IVA. Constante 'D' para vatios tipos de IVA. TODO Resto de operaciones. Varios tipos impositivos.
+            100         Clave de operación. Constante ' ' para un solo tipo de IVA. Constante 'C' para varios tipos de IVA. TODO Resto de operaciones. Varios tipos impositivos.
             101-108     Fecha de expedición
             109-116     Fecha de operación. Se consigna la misma que expedición. TODO. Fecha del uso del bien.
             117-121     Tipo impositivo
@@ -150,7 +150,7 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             text += 'E'                                                         # Clave tipo de libro. Constante 'E'.
             
             if len(invoice_issued.tax_line_ids) > 1:                            # Clave de operación
-                text += 'D'
+                text += 'C'
             else:
                 text += ' '
             
@@ -199,7 +199,7 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             79-95       Número de identificación fiscal en el país de residencia. TODO de momento blancos.
             96-98       Blancos
             99          Clave tipo de libro. Constante 'R'.
-            100         Clave de operación. Constante ' ' para un solo tipo de IVA. Constante 'D' para vatios tipos de IVA. TODO Resto de operaciones. Varios tipos impositivos.
+            100         Clave de operación. Constante ' ' para un solo tipo de IVA. Constante 'C' para varios tipos de IVA. TODO Resto de operaciones. Varios tipos impositivos.
             101-108     Fecha de expedición
             109-116     Fecha de operación. Se consigna la misma que expedición. TODO. Fecha del uso del bien.
             117-121     Tipo impositivo
@@ -234,7 +234,7 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             text += 'R'                                                         # Clave tipo de libro. Constante 'E'.
             
             if len(invoice_received.tax_line_ids) > 1:                            # Clave de operación
-                text += 'D'
+                text += 'C'
             else:
                 text += ' '
             
