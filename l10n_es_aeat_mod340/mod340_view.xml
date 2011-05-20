@@ -111,6 +111,7 @@
         <field name="arch" type="xml">
             <tree string="Issued invoices">
                 <field name="partner_id"/>
+                <field name="partner_country_code"/>
                 <field name="partner_vat"/>
                 <field name="invoice_id"/>
                 <field name="base_tax"/>
@@ -152,6 +153,7 @@
         <field name="arch" type="xml">
             <tree string="Received invoices">
                 <field name="partner_id"/>
+                <field name="partner_country_code"/>
                 <field name="partner_vat"/>
                 <field name="invoice_id"/>
                 <field name="base_tax"/>

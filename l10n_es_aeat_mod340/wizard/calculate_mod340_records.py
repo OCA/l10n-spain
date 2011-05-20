@@ -208,7 +208,9 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                 
                 # Add the invoices detail to the partner record
                 for tax_line in part.tax_line:
-                    name = tax_line.name
+                    tax_description = tax_line.name.split(' - ')
+                    if len(tax_description) == 2: name = tax_description[1]
+                    if len(tax_description) == 1: name = tax_description[0]
                     account_tax = self.pool.get('account.tax').browse(cr, uid, self.pool.get('account.tax').search(cr, uid, [('name','=',name)], context=context))
                     values = {
                         'name': name,

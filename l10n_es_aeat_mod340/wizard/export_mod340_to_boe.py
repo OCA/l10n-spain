@@ -71,14 +71,10 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
         text += self._formatString(report.contact_phone, 9)       # Persona de contacto (Teléfono)
         text += self._formatString(report.name_contact, 40)        # Persona de contacto (Apellidos y nombre)
         text += self._formatNumber(report.number, 13)              # Número identificativo de la declaración
-        if (report.type == 'C'):                                    # Declaración complementaria
-            text += 'C'
-        else:
-            text += ' '
-        if (report.type == 'S'):                                    # Declaración substitutiva
-            text += 'S'
-        else:
-            text += ' '
+        if (report.type == 'C'): text += 'C'                       # Declaración complementaria
+        else: text += ' '
+        if (report.type == 'S'): text += 'S'                       # Declaración substitutiva
+        else: text += ' '
         text += self._formatNumber(report.previous_number, 13)     # Número identificativo de la declaración anterior
         text += self._formatString(report.period,2)     # Periodo
         text += self._formatNumber(report.number_records, 9)          # Número total de registros
@@ -140,19 +136,21 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             text += '340'                                                   # Modelo Declaración
             text += self._formatString(report.fiscalyear_id.code, 4)             # Ejercicio
             text += self._formatString(report.company_vat, 9)                    # NIF del declarante
-            text += self._formatString(invoice_issued.partner_vat, 9)            # NIF del declarado
+            if invoice_issued.partner_country_code == 'ES': text += self._formatString(invoice_issued.partner_vat, 9)            # NIF del declarado
+            else: text += self._formatString(' ', 9) 
             text += self._formatString(invoice_issued.representative_vat, 9)     # NIF del representante legal
             text += self._formatString(invoice_issued.partner_id.name, 40)       # Apellidos y nombre, razón social o denominación del declarado
             text += self._formatString(invoice_issued.partner_country_code, 2)     # Código país
             text += self._formatNumber(invoice_issued.partner_id.vat_type, 1)   # Clave de identificación en el país de residencia
-            text += 17*' '                                                      # Número de identificación fiscal en el país de residencia.
+            if invoice_issued.partner_country_code != 'ES':                     # Número de identificación fiscal en el país de residencia.
+                text += self._formatString(invoice_issued.partner_country_code, 2)
+                text += self._formatString(invoice_issued.partner_vat, 15)
+            else: text += 17*' '
             text += 3*' '                                                     # Blancos
             text += 'E'                                                         # Clave tipo de libro. Constante 'E'.
             
-            if len(invoice_issued.tax_line_ids) > 1:                            # Clave de operación
-                text += 'C'
-            else:
-                text += ' '
+            if len(invoice_issued.tax_line_ids) > 1: text += 'C'                # Clave de operación
+            else: text += ' '
             
             text += self._formatNumber(invoice_issued.invoice_id.date_invoice.split('-')[0],4)
             text += self._formatNumber(invoice_issued.invoice_id.date_invoice.split('-')[1],2)
@@ -224,19 +222,21 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             text += '340'                                                   # Modelo Declaración
             text += self._formatString(report.fiscalyear_id.code, 4)             # Ejercicio
             text += self._formatString(report.company_vat, 9)                    # NIF del declarante
-            text += self._formatString(invoice_received.partner_vat, 9)            # NIF del declarado
+            if invoice_received.partner_country_code == 'ES': text += self._formatString(invoice_received.partner_vat, 9)            # NIF del declarado
+            else: text += self._formatString(' ', 9) 
             text += self._formatString(invoice_received.representative_vat, 9)     # NIF del representante legal
             text += self._formatString(invoice_received.partner_id.name, 40)       # Apellidos y nombre, razón social o denominación del declarado
             text += self._formatString(invoice_received.partner_country_code, 2)     # Código país
             text += self._formatNumber(invoice_received.partner_id.vat_type, 1)   # Clave de identificación en el país de residencia
-            text += 17*' '                                                      # Número de identificación fiscal en el país de residencia.
+            if invoice_received.partner_country_code != 'ES':                     # Número de identificación fiscal en el país de residencia.
+                text += self._formatString(invoice_received.partner_country_code, 2)
+                text += self._formatString(invoice_received.partner_vat, 15)
+            else: text += 17*' '
             text += 3*' '                                                     # Blancos
             text += 'R'                                                         # Clave tipo de libro. Constante 'E'.
             
-            if len(invoice_received.tax_line_ids) > 1:                            # Clave de operación
-                text += 'C'
-            else:
-                text += ' '
+            if len(invoice_received.tax_line_ids) > 1: text += 'C'              # Clave de operación
+            else: text += ' '
             
             text += self._formatNumber(invoice_received.invoice_id.date_invoice.split('-')[0],4)
             text += self._formatNumber(invoice_received.invoice_id.date_invoice.split('-')[1],2)
