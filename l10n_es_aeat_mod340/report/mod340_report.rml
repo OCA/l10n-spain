@@ -104,17 +104,14 @@
     <paraStyle name="P1" fontName="Helvetica" alignment="CENTER"/>
     <paraStyle name="P2" fontName="Helvetica"/>
     <paraStyle name="P3" fontName="Helvetica" alignment="RIGHT"/>
-    <paraStyle name="P4" fontName="Helvetica" alignment="CENTER"/>
-    <paraStyle name="P5" fontName="Helvetica-Bold" fontSize="20.0" leading="25" alignment="CENTER"/>
+    <paraStyle name="P4" fontName="Helvetica-Bold" fontSize="20.0" leading="25" alignment="CENTER"/>
+    <paraStyle name="P5" fontName="Helvetica" fontSize="6.0" leading="8"/>
     <paraStyle name="P6" fontName="Helvetica" fontSize="6.0" leading="8"/>
-    <paraStyle name="P7" fontName="Helvetica" fontSize="6.0" leading="8"/>
-    <paraStyle name="P8" fontName="Helvetica" fontSize="6.0" leading="8"/>
-    <paraStyle name="P9" fontName="Helvetica" fontSize="6.0" leading="8"/>
-    <paraStyle name="P10" fontName="Helvetica-Bold" alignment="LEFT"/>
-    <paraStyle name="P11" fontName="Helvetica-Bold"/>
-    <paraStyle name="P12" fontName="Helvetica" alignment="LEFT"/>
-    <paraStyle name="P13" fontName="Helvetica" alignment="CENTER"/>
-    <paraStyle name="P14" fontName="Helvetica" alignment="CENTER"/>
+    <paraStyle name="P7" fontName="Helvetica" alignment="LEFT"/>
+    <paraStyle name="P8" fontName="Helvetica-Bold" fontSize="16.0" leading="20" alignment="LEFT"/>
+    <paraStyle name="P9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER"/>
+    <paraStyle name="P10" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER"/>
+    <paraStyle name="P11" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER"/>
     <paraStyle name="Standard" fontName="Helvetica"/>
     <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
     <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
@@ -128,26 +125,19 @@
   </stylesheet>
   <story>
     <para style="Standard">[[repeatIn(objects, 'o')]]</para>
-    <para style="P5">MODELO AEAT 340</para>
+    <para style="P4">MODELO AEAT 340</para>
     <blockTable colWidths="117.0,219.0" style="Taula2">
       <tr>
         <td>
-          <para style="P3">Compañía:
-</para>
-          <para style="P3">Ejercicio fiscal:
-</para>
-          <para style="P3">Número:
-</para>
-          <para style="P3">Tipo de soporte:
-</para>
+          <para style="P3">Compañía: </para>
+          <para style="P3">Ejercicio fiscal: </para>
+          <para style="P3">Número: </para>
+          <para style="P3">Tipo de soporte: </para>
         </td>
         <td>
-          <para style="P2">[[o.company_id.partner_id.name or '']]
-</para>
-          <para style="P2">[[o.fiscalyear_id.name or '']]
-</para>
-          <para style="P2">[[o.number or '']]
-</para>
+          <para style="P2">[[o.company_id.partner_id.name or '']] </para>
+          <para style="P2">[[o.fiscalyear_id.name or '']] </para>
+          <para style="P2">[[o.number or '']] </para>
           <para style="P2">[[o.support_type]]</para>
         </td>
       </tr>
@@ -161,34 +151,21 @@
     <blockTable colWidths="237.0,244.0" style="Taula1">
       <tr>
         <td>
-          <para style="P3">CIF/NIF:
-</para>
-          <para style="P3">Teléfono de contacto:
-</para>
-          <para style="P3">Apellidos y nombre de contacto:
-</para>
-          <para style="P3">CIF/NIF del representante legal:
-</para>
-          <para style="P3">Tipo de declaración
-</para>
-          <para style="P3">Número de la declaración anterior:
-</para>
-          <para style="P3">Código electrónico autoliquidación IVA:
-</para>
+          <para style="P3">CIF/NIF: </para>
+          <para style="P3">Teléfono de contacto: </para>
+          <para style="P3">Apellidos y nombre de contacto: </para>
+          <para style="P3">CIF/NIF del representante legal: </para>
+          <para style="P3">Tipo de declaración </para>
+          <para style="P3">Número de la declaración anterior: </para>
+          <para style="P3">Código electrónico autoliquidación IVA: </para>
         </td>
         <td>
-          <para style="P2">[[o.company_vat or '']]
-</para>
-          <para style="P2">[[o.contact_phone or '']]
-</para>
-          <para style="P2">[[o.name_contact or '']]
-</para>
-          <para style="P2">[[o.representative_vat or '']]
-</para>
-          <para style="P2">[[o.type or '']]
-</para>
-          <para style="P2">[[o.previous_number or '']]
-</para>
+          <para style="P2">[[o.company_vat or '']] </para>
+          <para style="P2">[[o.contact_phone or '']] </para>
+          <para style="P2">[[o.name_contact or '']] </para>
+          <para style="P2">[[o.representative_vat or '']] </para>
+          <para style="P2">[[o.type or '']] </para>
+          <para style="P2">[[o.previous_number or '']] </para>
           <para style="P2">[[o.ean13 or '']]</para>
         </td>
       </tr>
@@ -196,10 +173,8 @@
     <para style="P2">
       <font color="white"> </font>
     </para>
-    <para style="P10">
-      <font face="Helvetica" size="16.0">FACTURAS DE SALIDA</font>
-    </para>
-    <para style="P12">
+    <para style="P8">FACTURAS DE SALIDA</para>
+    <para style="P7">
       <font color="white"> </font>
     </para>
     <blockTable colWidths="108.0,73.0,76.0,75.0,73.0,78.0" repeatRows="1" style="Taula3">
@@ -224,46 +199,42 @@
         </td>
       </tr>
     </blockTable>
-    <para style="P9">
+    <para style="P6">
       <font color="white"> </font>
     </para>
     <section>
-      <para style="P11">
-        <font face="Helvetica" size="6.0">[[repeatIn(o.issued,'r')]]</font>
-      </para>
+      <para style="P6">[[repeatIn(o.issued,'r')]]</para>
       <blockTable colWidths="108.0,73.0,76.0,75.0,73.0,78.0" repeatRows="1" style="Taula4">
         <tr>
           <td>
-            <para style="P4">[[r.partner_id.name]]</para>
+            <para style="P9">[[r.partner_id.name]]</para>
           </td>
           <td>
-            <para style="P14">[[r.partner_vat]]</para>
+            <para style="P11">[[r.partner_vat]]</para>
           </td>
           <td>
-            <para style="P14">[[r.invoice_id.number]]</para>
+            <para style="P11">[[r.invoice_id.number]]</para>
           </td>
           <td>
-            <para style="P13">[[r.base_tax]]</para>
+            <para style="P10">[[r.base_tax]]</para>
           </td>
           <td>
-            <para style="P13">[[r.amount_tax or '0']]</para>
+            <para style="P10">[[r.amount_tax or '0']]</para>
           </td>
           <td>
-            <para style="P13">[[r.total or '0']]</para>
+            <para style="P10">[[r.total or '0']]</para>
           </td>
         </tr>
       </blockTable>
-      <para style="P7">
+      <para style="P5">
         <font color="white"> </font>
       </para>
     </section>
     <para style="P2">
       <font color="white"> </font>
     </para>
-    <para style="P10">
-      <font face="Helvetica" size="16.0">FACTURAS DE ENTRADA</font>
-    </para>
-    <para style="P12">
+    <para style="P8">FACTURAS DE ENTRADA</para>
+    <para style="P7">
       <font color="white"> </font>
     </para>
     <blockTable colWidths="108.0,73.0,76.0,75.0,73.0,78.0" repeatRows="1" style="Taula5">
@@ -288,40 +259,38 @@
         </td>
       </tr>
     </blockTable>
-    <para style="P9">
+    <para style="P6">
       <font color="white"> </font>
     </para>
     <section>
-      <para style="P11">
-        <font face="Helvetica" size="6.0">[[repeatIn(o.received,'r')]]</font>
-      </para>
+      <para style="P6">[[repeatIn(o.received,'r')]]</para>
       <blockTable colWidths="108.0,73.0,76.0,75.0,73.0,78.0" repeatRows="1" style="Taula6">
         <tr>
           <td>
-            <para style="P4">[[r.partner_id.name]]</para>
+            <para style="P9">[[r.partner_id.name]]</para>
           </td>
           <td>
-            <para style="P14">[[r.partner_vat]]</para>
+            <para style="P11">[[r.partner_vat]]</para>
           </td>
           <td>
-            <para style="P14">[[r.invoice_id or '0']]</para>
+            <para style="P11">[[r.invoice_id.number or '0']]</para>
           </td>
           <td>
-            <para style="P13">[[r.base_tax]]</para>
+            <para style="P10">[[r.base_tax]]</para>
           </td>
           <td>
-            <para style="P13">[[r.amount_tax or '0']]</para>
+            <para style="P10">[[r.amount_tax or '0']]</para>
           </td>
           <td>
-            <para style="P13">[[r.total or '0']]</para>
+            <para style="P10">[[r.total or '0']]</para>
           </td>
         </tr>
       </blockTable>
-      <para style="P7">
+      <para style="P5">
         <font color="white"> </font>
       </para>
     </section>
-    <para style="P7">
+    <para style="P5">
       <font color="white"> </font>
     </para>
   </story>
