@@ -6,14 +6,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.15\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2011-05-01 12:00+0000\n"
-"PO-Revision-Date: 2011-05-01 14:17+0100\n"
-"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
+"POT-Creation-Date: 2011-05-24 11:11+0000\n"
+"PO-Revision-Date: 2011-05-24 13:34+0100\n"
+"Last-Translator: Jesús Martín <jmartin@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+
+#. module: l10n_es_payment_order
+#: report:remesas.report:0
+msgid "Matur. date"
+msgstr "Data de venciment"
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,tipo:0
+msgid "CSB 19"
+msgstr "CSB 19"
 
 #. module: l10n_es_payment_order
 #: model:ir.module.module,description:l10n_es_payment_order.module_meta_information
@@ -49,19 +59,9 @@ msgstr ""
 "També es proporciona un informe per imprimir un llistat dels pagaments/cobraments de l'ordre de pagament/cobrament (remesa).\n"
 
 #. module: l10n_es_payment_order
-#: model:ir.module.module,shortdesc:l10n_es_payment_order.module_meta_information
-msgid "Exportación de ficheros bancarios CSB 19, CSB 32, CSB 34 y CSB 58"
-msgstr "Exportació de fitxers bancaris CSB 19, CSB 32, CSB 34 y CSB 58"
-
-#. module: l10n_es_payment_order
-#: report:remesas.report:0
-msgid "Matur. date"
-msgstr "Data de venciment"
-
-#. module: l10n_es_payment_order
-#: selection:payment.mode,tipo:0
-msgid "CSB 19"
-msgstr "CSB 19"
+#: help:payment.mode,send_type:0
+msgid "The sending type of the payment file"
+msgstr "El tipus de d'enviament de l'arxiu de pagament."
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,add_date:0
@@ -69,9 +69,9 @@ msgid "Add Date"
 msgstr "Afegeix data"
 
 #. module: l10n_es_payment_order
-#: field:payment.mode,inc_domicile:0
-msgid "Include domicile"
-msgstr "Incloure domicili"
+#: view:payment.mode:0
+msgid "Additional data for CSB 34 type of payment file."
+msgstr "Dades addicionals per l'arxiu de tipus de remesa CSB 34."
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,cif:0
@@ -106,31 +106,31 @@ msgid "Add partner domicile records to the exported file (CSB 58)"
 msgstr "Afegir registres de domicili dels clients al fitxer exportat (CSB 58)"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:90
-#, python-format
-msgid ""
-"User error:\n"
-"\n"
-"The bank account number of the company %s has not 20 digits."
-msgstr ""
-"Error d'usuari:\n"
-"\n"
-"El número de C.C. de la companyia %s no té 20 dígits."
-
-#. module: l10n_es_payment_order
 #: field:payment.mode,cedente:0
 msgid "Cedente"
 msgstr "Cedent"
 
 #. module: l10n_es_payment_order
-#: report:remesas.report:0
-msgid "PAYMENT ORDER Num.:"
-msgstr "REMESA Nº:"
+#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:151
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"The payment mode is not CSB 19, CSB 32, CSB 34 or CSB 58"
+msgstr ""
+"Error d'usuari:\n"
+"\n"
+"El mode de pagament no és CSB 19, CSB 32, CSB 34 ni CSB 58"
 
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
 msgid "Account:"
 msgstr "C.C.:"
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,cost_key:0
+msgid "Expense of the Recipient"
+msgstr "Despeses per compte del beneficiari"
 
 #. module: l10n_es_payment_order
 #: wizard_button:export_payment_file_spain,export,end:0
@@ -139,9 +139,26 @@ msgid "Ok"
 msgstr "Accepta"
 
 #. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:140
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"The bank account number of the customer %s has not 20 digits."
+msgstr ""
+"Error d'usuari:\n"
+"\n"
+"El número de C.C. del client %s no té 20 dígits."
+
+#. module: l10n_es_payment_order
 #: wizard_field:export_payment_file_spain,export,pay_fname:0
 msgid "File name"
 msgstr "Nom del fitxer"
+
+#. module: l10n_es_payment_order
+#: help:payment.mode,concept:0
+msgid "Concept of the Order."
+msgstr "Concepte de l'ordre."
 
 #. module: l10n_es_payment_order
 #: model:ir.actions.report.xml,name:l10n_es_payment_order.remesas_report
@@ -149,9 +166,19 @@ msgid "Remesa"
 msgstr "Remesa"
 
 #. module: l10n_es_payment_order
-#: report:remesas.report:0
-msgid "Amount"
-msgstr "Import"
+#: field:payment.mode,barred:0
+msgid "Barred"
+msgstr "Barrat"
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,send_type:0
+msgid "Send Type"
+msgstr "Tipus d'enviament"
+
+#. module: l10n_es_payment_order
+#: help:payment.mode,direct_pay_order:0
+msgid "By default 'Not'."
+msgstr "Per defecte 'No'."
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:137
@@ -166,16 +193,9 @@ msgstr ""
 "L'empresa %s no té compte bancari definit i el mode de pagament actual força que totes les línies tinguin un compte bancari."
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:140
-#, python-format
-msgid ""
-"User error:\n"
-"\n"
-"The bank account number of the customer %s has not 20 digits."
-msgstr ""
-"Error d'usuari:\n"
-"\n"
-"El número de C.C. del client %s no té 20 dígits."
+#: field:payment.mode,inc_domicile:0
+msgid "Include domicile"
+msgstr "Incloure domicili"
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/converter.py:98
@@ -212,9 +232,9 @@ msgstr ""
 "No s'ha definit el C.C. de la companyia %s."
 
 #. module: l10n_es_payment_order
-#: help:payment.mode,send_letter:0
-msgid "Check it if you want to add the 015 data type and the text of the letter in the file."
-msgstr "Activeu-lo si voleu afegir el tipus de dada 015 i el text de la carta al fitxer."
+#: selection:payment.mode,csb34_type:0
+msgid "Transfer"
+msgstr "Transferència"
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,ine:0
@@ -237,19 +257,15 @@ msgid "Payment Mode"
 msgstr "Mode de pagament"
 
 #. module: l10n_es_payment_order
-#: selection:payment.mode,csb34_type:0
-msgid "Certified Payments"
-msgstr "Pagaments certificats"
+#: model:payment.type,name:l10n_es_payment_order.payment_type_recibodomiciliado0
+#: model:payment.type,note:l10n_es_payment_order.payment_type_recibodomiciliado0
+msgid "Recibo domiciliado"
+msgstr "Rebut domiciliat"
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,alt_domicile_format:0
 msgid "Alternative domicile record format"
 msgstr "Format de registre de domicili alternatiu"
-
-#. module: l10n_es_payment_order
-#: view:payment.mode:0
-msgid "Optional Text for the Letter (adds 101, 102, 103 data types in the file)"
-msgstr "Text opcional per a cartes (afegeix els tipus de dades 101, 102, 103 al fitxer)"
 
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
@@ -280,6 +296,11 @@ msgid "Pago certificado"
 msgstr "Pagament certificat"
 
 #. module: l10n_es_payment_order
+#: selection:payment.mode,concept:0
+msgid "Pension"
+msgstr "Pensió"
+
+#. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_32.py:55
 #: code:addons/l10n_es_payment_order/wizard/csb_32.py:80
 #: code:addons/l10n_es_payment_order/wizard/csb_32.py:110
@@ -307,8 +328,8 @@ msgstr "Empresa"
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:154
-#: code:addons/l10n_es_payment_order/wizard/csb_34.py:319
-#: code:addons/l10n_es_payment_order/wizard/csb_34.py:334
+#: code:addons/l10n_es_payment_order/wizard/csb_34.py:355
+#: code:addons/l10n_es_payment_order/wizard/csb_34.py:370
 #, python-format
 msgid ""
 "Configuration error:\n"
@@ -338,6 +359,11 @@ msgstr ""
 " Nombre total de rebuts: %d\n"
 
 #. module: l10n_es_payment_order
+#: field:payment.mode,text3:0
+msgid "Line 3"
+msgstr "Línia 3"
+
+#. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_19.py:74
 #, python-format
 msgid ""
@@ -361,6 +387,18 @@ msgid "remesa"
 msgstr "remesa"
 
 #. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:83
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"Wizard can not generate export file, there are not payment lines."
+msgstr ""
+"Error d'usuari:\n"
+"\n"
+"L'assistent no pot generar el fitxer de remeses, no hi ha cap rebut."
+
+#. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/converter.py:80
 #, python-format
 msgid ""
@@ -378,16 +416,9 @@ msgid "Log"
 msgstr "Registre"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:151
-#, python-format
-msgid ""
-"User error:\n"
-"\n"
-"The payment mode is not CSB 19, CSB 32, CSB 34 or CSB 58"
-msgstr ""
-"Error d'usuari:\n"
-"\n"
-"El mode de pagament no és CSB 19, CSB 32, CSB 34 ni CSB 58"
+#: report:remesas.report:0
+msgid "PAYMENT ORDER Num.:"
+msgstr "REMESA Nº:"
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,tipo:0
@@ -395,7 +426,7 @@ msgid "CSB 58"
 msgstr "CSB 58"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/remesas.py:91
+#: code:addons/l10n_es_payment_order/remesas.py:107
 #, python-format
 msgid "Dear Sir"
 msgstr "Benvolgut Sr."
@@ -406,9 +437,9 @@ msgid "........."
 msgstr "........."
 
 #. module: l10n_es_payment_order
-#: field:payment.mode,send_letter:0
-msgid "Send Letter"
-msgstr "Envia carta"
+#: model:ir.module.module,shortdesc:l10n_es_payment_order.module_meta_information
+msgid "Exportación de ficheros bancarios CSB 19, CSB 32, CSB 34 y CSB 58"
+msgstr "Exportació de fitxers bancaris CSB 19, CSB 32, CSB 34 y CSB 58"
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:128
@@ -435,15 +466,19 @@ msgid "Remesa "
 msgstr "Remesa "
 
 #. module: l10n_es_payment_order
+#: field:payment.mode,cost_key:0
+msgid "Cost Key"
+msgstr "Clau de despeses"
+
+#. module: l10n_es_payment_order
 #: model:ir.model,name:l10n_es_payment_order.model_payment_order
 msgid "Payment Order"
 msgstr "Ordre de pagament"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/remesas.py:93
-#, python-format
-msgid "Total:"
-msgstr "Total:"
+#: field:payment.mode,concept:0
+msgid "Concept of the Order"
+msgstr "Concepte de l'ordre."
 
 #. module: l10n_es_payment_order
 #: model:payment.type,name:l10n_es_payment_order.payment_type_transferencia0
@@ -493,16 +528,9 @@ msgid "Check it if you want to add the 018 data type in the file (the vat of the
 msgstr "Activeu-lo si voleu afegir el tipus de dada 018 al fitxer (s'afegeix el CIF del receptor al tipus de dada 018)."
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:83
-#, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Wizard can not generate export file, there are not payment lines."
-msgstr ""
-"Error d'usuari:\n"
-"\n"
-"L'assistent no pot generar el fitxer de remeses, no hi ha cap rebut."
+#: field:payment.mode,direct_pay_order:0
+msgid "Direct Pay Order"
+msgstr "Ordre d'abonament directe"
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:94
@@ -515,6 +543,11 @@ msgstr ""
 "Error d'usuari:\n"
 "\n"
 "No s'ha definit el CIF de la companyia associada al C.C. del mode de pagament."
+
+#. module: l10n_es_payment_order
+#: view:payment.mode:0
+msgid "Additional data for promissory notes, checks, and certified payments."
+msgstr "Dades addicionals per a pagarés, xecs i pagaments certificats."
 
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
@@ -532,9 +565,9 @@ msgid "Line 2"
 msgstr "Línia 2"
 
 #. module: l10n_es_payment_order
-#: field:payment.mode,text3:0
-msgid "Line 3"
-msgstr "Línia 3"
+#: field:payment.mode,not_to_the_order:0
+msgid "Not to the Order"
+msgstr "No a l'ordre"
 
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
@@ -552,13 +585,13 @@ msgid "Created date:"
 msgstr "Data de confecció:"
 
 #. module: l10n_es_payment_order
-#: selection:payment.mode,csb34_type:0
-msgid "Transfer"
-msgstr "Transferència"
+#: selection:payment.mode,cost_key:0
+msgid "Expense of the Payer"
+msgstr "Despeses per compte de l'ordenant"
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:143
-#: code:addons/l10n_es_payment_order/wizard/csb_34.py:304
+#: code:addons/l10n_es_payment_order/wizard/csb_34.py:340
 #, python-format
 msgid ""
 "Configuration error:\n"
@@ -575,67 +608,6 @@ msgstr ""
 #: view:payment.mode:0
 msgid "CSB 58 Options"
 msgstr "Opcions CSB 58"
-
-#. module: l10n_es_payment_order
-#: report:remesas.report:0
-msgid "Bank:"
-msgstr "Banc:"
-
-#. module: l10n_es_payment_order
-#: selection:payment.mode,csb34_type:0
-msgid "Promissory Note"
-msgstr "Pagaré"
-
-#. module: l10n_es_payment_order
-#: help:payment.mode,add_date:0
-msgid "Check it if you want to add the 910 data type in the file to include the payment date."
-msgstr "Activeu-lo si voleu afegir el tipus de dada 910 amb la data de pagament al fitxer."
-
-#. module: l10n_es_payment_order
-#: model:payment.type,name:l10n_es_payment_order.payment_type_recibodomiciliado0
-#: model:payment.type,note:l10n_es_payment_order.payment_type_recibodomiciliado0
-msgid "Recibo domiciliado"
-msgstr "Rebut domiciliat"
-
-#. module: l10n_es_payment_order
-#: selection:payment.mode,csb34_type:0
-msgid "Cheques"
-msgstr "Xecs"
-
-#. module: l10n_es_payment_order
-#: field:payment.mode,tipo:0
-msgid "Type of payment file"
-msgstr "Tipus de remesa"
-
-#. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/csb_34.py:166
-#, python-format
-msgid ""
-"User error:\n"
-"\n"
-"Partner %s has no invoicing or default address."
-msgstr ""
-"Error d'usuari:\n"
-"\n"
-"La companyia %s no té adreça de facturació o adreça per defecte."
-
-#. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/remesas.py:92
-#, python-format
-msgid "Payment ref."
-msgstr "Ref. de pagament"
-
-#. module: l10n_es_payment_order
-#: help:payment.mode,text1:0
-#: help:payment.mode,text2:0
-#: help:payment.mode,text3:0
-msgid "Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}"
-msgstr "Introduïu text i/o seleccioneu un camp de la factura per incloure'l a la descripció de la carta. Són possibles els següents valors: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}"
-
-#. module: l10n_es_payment_order
-#: model:ir.actions.wizard,name:l10n_es_payment_order.wizard_create_payment_file_spain
-msgid "Create payment file"
-msgstr "Crear fitxer de la remesa"
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_19.py:54
@@ -665,14 +637,129 @@ msgstr ""
 
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
+msgid "Bank:"
+msgstr "Banc:"
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,csb34_type:0
+msgid "Promissory Note"
+msgstr "Pagaré"
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,concept:0
+#: selection:payment.mode,send_type:0
+msgid "Other"
+msgstr "Altres"
+
+#. module: l10n_es_payment_order
+#: help:payment.mode,add_date:0
+msgid "Check it if you want to add the 910 data type in the file to include the payment date."
+msgstr "Activeu-lo si voleu afegir el tipus de dada 910 amb la data de pagament al fitxer."
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,csb34_type:0
+msgid "Certified Payments"
+msgstr "Pagaments certificats"
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/remesas.py:109
+#, python-format
+msgid "Total:"
+msgstr "Total:"
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,csb34_type:0
+msgid "Cheques"
+msgstr "Xecs"
+
+#. module: l10n_es_payment_order
+#: view:payment.mode:0
+msgid "Optional Text for the Letter (adds 101, 102, 103, data tipes in the file)"
+msgstr "Text opcional per a cartes (afegeix els tipus de dades 101, 102, 103 al fitxer)"
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,concept:0
+msgid "Payroll"
+msgstr "Nòmina"
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:90
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"The bank account number of the company %s has not 20 digits."
+msgstr ""
+"Error d'usuari:\n"
+"\n"
+"El número de C.C. de la companyia %s no té 20 dígits."
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,tipo:0
+msgid "Type of payment file"
+msgstr "Tipus de remesa"
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/csb_34.py:166
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"Partner %s has no invoicing or default address."
+msgstr ""
+"Error d'usuari:\n"
+"\n"
+"La companyia %s no té adreça de facturació o adreça per defecte."
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/remesas.py:108
+#, python-format
+msgid "Payment ref."
+msgstr "Ref. de pagament"
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,send_type:0
+msgid "Ordinary Mail"
+msgstr "Correu ordinari"
+
+#. module: l10n_es_payment_order
+#: help:payment.mode,text1:0
+#: help:payment.mode,text2:0
+#: help:payment.mode,text3:0
+msgid "Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}"
+msgstr "Introduïu text i/o seleccioneu un camp de la factura per incloure'l a la descripció de la carta. Són possibles els següents valors: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}"
+
+#. module: l10n_es_payment_order
+#: model:ir.actions.wizard,name:l10n_es_payment_order.wizard_create_payment_file_spain
+msgid "Create payment file"
+msgstr "Crear fitxer de la remesa"
+
+#. module: l10n_es_payment_order
+#: report:remesas.report:0
+msgid "Amount"
+msgstr "Import"
+
+#. module: l10n_es_payment_order
+#: report:remesas.report:0
 msgid "Company:"
 msgstr "Companyia:"
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,send_type:0
+msgid "Certified Mail"
+msgstr "Correu certificat"
 
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
 msgid "Type:"
 msgstr "Tipus:"
 
+#~ msgid ""
+#~ "Check it if you want to add the 015 data type and the text of the letter "
+#~ "in the file."
+#~ msgstr ""
+#~ "Activeu-lo si voleu afegir el tipus de dada 015 i el text de la carta al "
+#~ "fitxer."
 #~ msgid "Date Check"
 #~ msgstr "Incloure data"
 #~ msgid "Invalid XML for View Architecture!"
