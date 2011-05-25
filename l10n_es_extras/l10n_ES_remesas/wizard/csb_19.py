@@ -138,7 +138,7 @@ class csb_19:
         texto += str(self.num_recibos + self.num_lineas_opc + 4).zfill(10)
         texto += 38*' '
         texto += '\r\n'
-        if len(texto) != 163:
+        if len(texto) != 164:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Total general 19', texto), True)
         return texto
 

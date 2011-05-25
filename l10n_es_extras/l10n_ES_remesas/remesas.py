@@ -66,12 +66,28 @@ class payment_mode(osv.osv):
         # Require bank account?
         'require_bank_account': fields.boolean('Require bank account', help='If your bank allows you to send orders without the bank account info, you may disable this option'),
         'csb34_type': fields.selection([('transfer', 'Transfer'),('promissory_note', 'Promissory Note'),('cheques', 'Cheques'),('certified_payments', 'Certified Payments')], 'Type of CSB 34 payment'),
-        'send_letter': fields.boolean('Send Letter', help='Check it if you want to add the 015 data type and the text of the letter in the file.'),
         'text1': fields.char('Line 1', size=36, help='Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}'),
         'text2': fields.char('Line 2', size=36, help='Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}'),
         'text3': fields.char('Line 3', size=36, help='Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}'),
         'payroll_check': fields.boolean('Payroll Check', help='Check it if you want to add the 018 data type in the file (the vat of the recipient is added in the 018 data type).'),
         'add_date': fields.boolean('Add Date', help='Check it if you want to add the 910 data type in the file to include the payment date.'),
+        'send_type':fields.selection([
+            ('mail','Ordinary Mail'),
+            ('certified_mail','Certified Mail'),
+            ('other','Other'),
+        ],'Send Type', help="The sending type of the payment file"),
+        'not_to_the_order':fields.boolean('Not to the Order'),
+        'barred':fields.boolean('Barred'),
+        'cost_key':fields.selection([
+            ('payer','Expense of the Payer'),
+            ('recipient','Expense of the Recipient'),
+        ],'Cost Key'),
+        'concept':fields.selection([
+            ('payroll','Payroll'),
+            ('pension','Pension'),
+            ('other','Other'),
+        ],'Concept of the Order', help="Concept of the Order."),
+        'direct_pay_order':fields.boolean('Direct Pay Order', help="By default 'Not'."),
     }
 
     _defaults = {
@@ -86,6 +102,12 @@ class payment_mode(osv.osv):
         'text1': lambda self,cr,uid,context: _('Dear Sir'),
         'text2': lambda self,cr,uid,context: _('Payment ref.')+' ${communication}',
         'text3': lambda self,cr,uid,context: _('Total:')+' ${amount}',
+        'send_type': lambda *a: 'mail',
+        'not_to_the_order': lambda *a: True,
+        'barred': lambda *a: True,
+        'cost_key': lambda *a: 'payer',
+        'concept': lambda *a: 'other',
+        'direct_pay_order': lambda *a: False,
     }
 
 payment_mode()

@@ -175,12 +175,46 @@ class csb_34:
         text += '010'
         text += convert(cr, recibo['amount'], 12, context)
         #text += convert_bank_account(cr, recibo['bank_id'].acc_number, recibo['partner_id'].name, context)
-        ccc = recibo['bank_id'] and recibo['bank_id'].acc_number or ''
-        ccc = digits_only(ccc)
-        text += ccc[:20].zfill(20)
-        text += '1'
-        text += '9' # Otros conceptos (ni Nomina ni Pension)
-        text += '1'
+
+        # Si la orden se emite para transferencia
+        csb34_type = self.order.mode.csb34_type
+        if csb34_type == 'transfer':
+            ccc = recibo['bank_id'] and recibo['bank_id'].acc_number or ''
+            ccc = digits_only(ccc)
+            text += ccc[:20].zfill(20)
+        # Si la orden se emite para pagaré, cheque o pago certificado
+        else:
+            text += 17*'0'
+            send_type = self.order.mode.send_type
+            if send_type == 'mail':
+                text += '1'
+            elif send_type == 'certified_mail':
+                text += '2'
+            else:
+                text += '3'
+            if self.order.mode.not_to_the_order:
+                text += '1'
+            else:
+                text += '0'
+            if self.order.mode.barred:
+                text += '9'
+            else:
+                text += '0'
+        if self.order.mode.cost_key == 'payer':
+            text += '1'
+        else:
+            text += '2'
+        concept = self.order.mode.concept
+        if concept == 'payroll':
+            text += '1'
+        elif concept == 'pension':
+            text += '8'
+        else:
+            text += '9'
+        if self.order.mode.direct_pay_order:
+            text += '1'
+        else:
+            text += '2'
         text += 6*' '
         text += '\r\n'
 
@@ -223,7 +257,9 @@ class csb_34:
             text += '\r\n'
 
         # Si la orden se emite por carta
-        if self.order.mode.send_letter:
+#        if self.order.mode.send_letter:
+        send_type = self.order.mode.send_type
+        if send_type == 'mail' or send_type == 'certified_mail':
 
             # Sexto Registro
             text += '06'
