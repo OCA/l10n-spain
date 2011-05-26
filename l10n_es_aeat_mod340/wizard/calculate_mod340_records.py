@@ -208,22 +208,23 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                 
                 # Add the invoices detail to the partner record
                 for tax_line in part.tax_line:
-                    tax_description = tax_line.name.split(' - ')
-                    if len(tax_description) == 2: name = tax_description[1]
-                    if len(tax_description) == 1: name = tax_description[0]
-                    account_tax = self.pool.get('account.tax').browse(cr, uid, self.pool.get('account.tax').search(cr, uid, [('name','=',name)], context=context))
-                    values = {
-                        'name': name,
-                        'tax_percentage': account_tax[0].amount,
-                        'tax_amount': tax_line.tax_amount,
-                        'base_amount': tax_line.base_amount,
-                        'invoice_record_id': invoice_created,
-                    }
-                    if part.type=="out_invoice" or part.type=="out_refund":
-                        self.pool.get('l10n.es.aeat.mod340.tax_line_issued').create(cr, uid, values)
-                    if part.type=="in_invoice" or part.type=="in_refund":
-                        self.pool.get('l10n.es.aeat.mod340.tax_line_received').create(cr, uid, values)
-                tot_rec = tot_rec + len(part.tax_line)
+                    if tax_line.name.find('IRPF') == -1: # Remove IRPF from Mod340
+                        tax_description = tax_line.name.split(' - ')
+                        if len(tax_description) == 2: name = tax_description[1]
+                        if len(tax_description) == 1: name = tax_description[0]
+                        account_tax = self.pool.get('account.tax').browse(cr, uid, self.pool.get('account.tax').search(cr, uid, [('name','=',name)], context=context))
+                        values = {
+                            'name': name,
+                            'tax_percentage': account_tax[0].amount,
+                            'tax_amount': tax_line.tax_amount,
+                            'base_amount': tax_line.base_amount,
+                            'invoice_record_id': invoice_created,
+                        }
+                        if part.type=="out_invoice" or part.type=="out_refund":
+                            self.pool.get('l10n.es.aeat.mod340.tax_line_issued').create(cr, uid, values)
+                        if part.type=="in_invoice" or part.type=="in_refund":
+                            self.pool.get('l10n.es.aeat.mod340.tax_line_received').create(cr, uid, values)
+                        tot_rec += 1
             mod340.write({'total_taxable':tot_base,'total_sharetax':tot_amount,'number_records':tot_rec,'total':tot_tot,'number':code})
             
             if recalculate:
