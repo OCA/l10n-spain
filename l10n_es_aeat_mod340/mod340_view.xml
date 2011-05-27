@@ -16,7 +16,9 @@
 		<!--<field name="priority" eval="5"/>-->
 		<field name="arch" type="xml">
 			<tree string="Model 340">
+                <field name="period"/>
 			    <field name="fiscalyear_id"/>
+                <field name="number"/>
 			    <field name="type"/>
 			</tree>
 		</field>
@@ -33,7 +35,7 @@
                         	<field name="company_id" on_change="on_change_company_id(company_id)" required="1" select="1" readonly="1"/>
                         	<newline/>
                         	<field name="fiscalyear_id" select="1"/>
-                        	<field name="period" select="2" required="1"/>
+                        	<field name="period" select="1" required="1"/>
                         	<newline />
                         	<field name="number"/>
                         	<field name="support_type"/>
@@ -233,9 +235,10 @@
                         <filter string="Company" icon="terp-personal" domain="[]" context="{'group_by':'company_id'}"/>
                     </group>
                     <newline/>
+                    <field name="period"/>
+                    <field name="fiscalyear_id"/>
                     <field name="number"/>
                     <field name="type"/>
-                    <field name="support_type"/>
                 </search>
             </field>
         </record>

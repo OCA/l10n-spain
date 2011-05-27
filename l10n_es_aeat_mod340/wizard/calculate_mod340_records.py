@@ -27,9 +27,7 @@ import netsvc
 import time
 import re
 from osv import osv
-import time
 from tools.translate import _
-import time
 from datetime import datetime
 
 class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
@@ -92,9 +90,9 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                     fecha_ini = datetime.strptime(dec_year+'-2-1 0:0:0','%Y-%m-%d %H:%M:%S')
                     fecha_fin = datetime.strptime(dec_year+'-2-28 23:59:59','%Y-%m-%d %H:%M:%S')
             
-#            if mod == '03':
-#                fecha_ini = datetime.strptime(dec_year+'-3-1 0:0:0','%Y-%m-%d %H:%M:%S')
-#                fecha_fin = datetime.strptime(dec_year+'-3-31 23:59:59','%Y-%m-%d %H:%M:%S')
+            if mod == '03':
+                fecha_ini = datetime.strptime(dec_year+'-3-1 0:0:0','%Y-%m-%d %H:%M:%S')
+                fecha_fin = datetime.strptime(dec_year+'-3-31 23:59:59','%Y-%m-%d %H:%M:%S')
             
             if mod == '04':
                 fecha_ini = datetime.strptime(dec_year+'-4-1 0:0:0','%Y-%m-%d %H:%M:%S')
@@ -104,9 +102,9 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                 fecha_ini = datetime.strptime(dec_year+'-5-1 0:0:0','%Y-%m-%d %H:%M:%S')
                 fecha_fin = datetime.strptime(dec_year+'-5-31 23:59:59','%Y-%m-%d %H:%M:%S')
             
-#            if mod == '06':
-#                fecha_ini = datetime.strptime(dec_year+'-6-1 0:0:0','%Y-%m-%d %H:%M:%S')
-#                fecha_fin = datetime.strptime(dec_year+'-6-30 23:59:59','%Y-%m-%d %H:%M:%S')
+            if mod == '06':
+                fecha_ini = datetime.strptime(dec_year+'-6-1 0:0:0','%Y-%m-%d %H:%M:%S')
+                fecha_fin = datetime.strptime(dec_year+'-6-30 23:59:59','%Y-%m-%d %H:%M:%S')
             
             if mod == '07':
                 fecha_ini = datetime.strptime(dec_year+'-7-1 0:0:0','%Y-%m-%d %H:%M:%S')
@@ -116,9 +114,9 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                 fecha_ini = datetime.strptime(dec_year+'-8-1 0:0:0','%Y-%m-%d %H:%M:%S')
                 fecha_fin = datetime.strptime(dec_year+'-8-31 23:59:59','%Y-%m-%d %H:%M:%S')
             
-#            if mod == '09':
-#                fecha_ini = datetime.strptime(dec_year+'-9-1 0:0:0','%Y-%m-%d %H:%M:%S')
-#                fecha_fin = datetime.strptime(dec_year+'-9-30 23:59:59','%Y-%m-%d %H:%M:%S')
+            if mod == '09':
+                fecha_ini = datetime.strptime(dec_year+'-9-1 0:0:0','%Y-%m-%d %H:%M:%S')
+                fecha_fin = datetime.strptime(dec_year+'-9-30 23:59:59','%Y-%m-%d %H:%M:%S')
                 
             if mod == '10':
                 fecha_ini = datetime.strptime(dec_year+'-10-1 0:0:0','%Y-%m-%d %H:%M:%S')
@@ -128,9 +126,9 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                 fecha_ini = datetime.strptime(dec_year+'-11-1 0:0:0','%Y-%m-%d %H:%M:%S')
                 fecha_fin = datetime.strptime(dec_year+'-11-30 23:59:59','%Y-%m-%d %H:%M:%S')
             
-#            if mod == '12':
-#                fecha_ini = datetime.strptime(dec_year+'-12-1 0:0:0','%Y-%m-%d %H:%M:%S')
-#                fecha_fin = datetime.strptime(dec_year+'-12-31 23:59:59','%Y-%m-%d %H:%M:%S')   
+            if mod == '12':
+                fecha_ini = datetime.strptime(dec_year+'-12-1 0:0:0','%Y-%m-%d %H:%M:%S')
+                fecha_fin = datetime.strptime(dec_year+'-12-31 23:59:59','%Y-%m-%d %H:%M:%S')   
                 
             if mod == '1T':
                 fecha_ini = datetime.strptime(dec_year+'-1-1 0:0:0','%Y-%m-%d %H:%M:%S')
@@ -154,7 +152,12 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
             
             code = '340'+dec_year+''+mod+'0001'
             
-            invoice = self.pool.get('account.invoice').search(cr,uid,[('id', '>',0 ),('date_invoice','>', fecha_ini),('date_invoice','<',fecha_fin)])
+            account_period_id = self.pool.get('account.period').search(cr,uid,[('date_start','=',fecha_ini),('date_stop','=',fecha_fin)])
+            
+            if not account_period_id:
+                raise osv.except_osv(_('El periodo seleccionado no coincide con los periodos del año fiscal:'), _(dec_year))
+            
+            invoice = self.pool.get('account.invoice').search(cr,uid,[('period_id', '=',account_period_id[0])])
             
             tot_base = 0
             tot_amount = 0
@@ -201,10 +204,8 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                     
                 if part.type=="in_invoice" or part.type=="in_refund":
                     invoice_created = invoices340_rec.create(cr,uid,values)
-                    
-                tot_base = tot_base + part.amount_untaxed
-                tot_amount = tot_amount + part.amount_tax
-                tot_tot = tot_tot + part.amount_total
+                
+                tot_tax_invoice = 0
                 
                 # Add the invoices detail to the partner record
                 for tax_line in part.tax_line:
@@ -224,7 +225,18 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                             self.pool.get('l10n.es.aeat.mod340.tax_line_issued').create(cr, uid, values)
                         if part.type=="in_invoice" or part.type=="in_refund":
                             self.pool.get('l10n.es.aeat.mod340.tax_line_received').create(cr, uid, values)
+                        tot_tax_invoice += tax_line.tax_amount
                         tot_rec += 1
+                        
+                tot_base += part.amount_untaxed
+                tot_amount += tot_tax_invoice
+                tot_tot += part.amount_untaxed + tot_tax_invoice
+            
+                if part.type=="out_invoice" or part.type=="out_refund":
+                    invoices340.write(cr,uid,invoice_created,{'amount_tax':tot_tax_invoice})
+                if part.type=="in_invoice" or part.type=="in_refund":
+                    invoices340_rec.write(cr,uid,invoice_created,{'amount_tax':tot_tax_invoice})
+                
             mod340.write({'total_taxable':tot_base,'total_sharetax':tot_amount,'number_records':tot_rec,'total':tot_tot,'number':code})
             
             if recalculate:

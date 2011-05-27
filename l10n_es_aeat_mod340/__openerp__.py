@@ -31,6 +31,22 @@
     "description" : """
 Módulo para la presentación del modelo 340. Exportación a formato AEAT.
 ********************* Esta versión se encuetra en desarrollo ************************
+--- ESTADO ACTUAL -------------------------------------------------------------
+
+Búsqueda de facturas emitidas y recibidas. Excluidas lineas de impuestos con IRPF.
+Exportación a formato de AEAT de facturas emitidas y recibidas.
+Exportación de facturas con varios tipos impositivos. Clave de operación C
+Facturas intracomunitarias excepto las operaciones a las que hace referencia el artículo 66 del RIVA que tienen un tratamiento especial
+
+--- COSAS PENDIENTES (TODO LIST) ----------------------------------------------
+
+Facturas bienes de inversión
+Facturas intracomunitarias. Operaciones a las que hace referencia el artículo 66 del RIVA.
+Facturas rectificativas
+Exportación de resúmenes de tiques
+Exportación de asientos resumen de facturas
+
+ADVERTENCIA: Los periodos de la empresas deben coincidir con los peridos de presentación de IVA.
 """,
     "website" : "www.acysos.com, www.ting.es",
     "license" : "GPL-3",
