@@ -43,7 +43,7 @@ class res_partner(osv.osv):
     }
     
     _defaults = {
-        'vat_type': 1,
+        'vat_type': '1',
     }
 
 res_partner()
