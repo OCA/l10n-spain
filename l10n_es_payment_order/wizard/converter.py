@@ -32,7 +32,7 @@ def digits_only(cc_in):
     """Discards non-numeric chars"""
 
     cc = ""
-    for i in cc_in:
+    for i in cc_in or '':
         try:
             int(i)
             cc += i
