@@ -86,6 +86,11 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
 
         assert report, 'No Report defined'
 
+        try:
+            fiscal_year = int((report.fiscalyear_id.code or '')[:4])
+        except:
+            raise osv.except_osv(_('Fiscal year code'), _('First four characters of fiscal year code must be numeric and contain the fiscal year number. Please, fix it and try again.'))
+
         company_name = self._get_company_name_with_title(report.company_id)
         period = report.period_selection == 'MO' and report.month_selection or report.period_selection
 
@@ -93,7 +98,7 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
 
         text += '1'                                                             # Tipo de Registro
         text += '349'                                                           # Modelo Declaración
-        text += self._formatNumber(report.fiscalyear_id.code, 4)                # Ejercicio
+        text += self._formatNumber(fiscal_year, 4)                              # Ejercicio
         text += self._formatString(report.company_vat, 9)                       # NIF del declarante
         text += self._formatString(company_name, 40)                            # Apellidos y nombre o razón social del declarante
         text += self._formatString(report.support_type, 1)                      # Tipo de soporte
@@ -146,6 +151,10 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
 
         text = ''
 
+        try:
+            fiscal_year = int((report.fiscalyear_id.code or '')[:4])
+        except:
+            raise osv.except_osv(_('Fiscal year code'), _('First four characters of fiscal year code must be numeric and contain the fiscal year number. Please, fix it and try again.'))
 
         ## Formateo de algunos campos (debido a que pueden no ser correctos)
         ## NIF : Se comprueba que no se incluya el código de pais
@@ -155,7 +164,7 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
 
         text += '2'                                                                 # Tipo de registro
         text += '349'                                                               # Modelo de declaración
-        text += self._formatNumber(report.fiscalyear_id.code, 4)                    # Ejercicio
+        text += self._formatNumber(fiscal_year, 4)                                  # Ejercicio
         text += self._formatString(company_vat, 9)                                  # NIF del declarante
         text += 58*' '                                                              # Blancos
         text += self._formatString(partner_record.partner_vat, 17)                  # NIF del operador intracomunitario
