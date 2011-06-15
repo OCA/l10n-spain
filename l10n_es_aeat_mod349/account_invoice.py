@@ -25,6 +25,7 @@ from tools.translate import _
 from osv import osv, fields
 
 OPERATION_KEY = [
+    (False, ''),
     ('E', 'E - Intra-Community supplies'),
     ('A', 'A - Intra-Community acquisition'),
     ('T', 'T - Triangular operations'),
@@ -93,19 +94,20 @@ class account_invoice(osv.osv):
         ##
         ## Invoices by month
         else:
+            year = fiscalyear_obj.code[:4]
             if not month and not fiscalyear_id:
                 raise osv.except_osv(_('Error'), _('Cannot get invoices.\nThere is no month and/or fiscalyear selected'))
 
-            search_dict.append(('date_invoice', '>=', MONTH_DATES_MAPPING[month]['date_start'] % fiscalyear_obj.code))
+            search_dict.append(('date_invoice', '>=', MONTH_DATES_MAPPING[month]['date_start'] % year))
 
             if month == '02':
                 #checks if year is leap to can search by last February date in database
-                if int(fiscalyear_obj.code) % 4 == 0 and (int(fiscalyear_obj.code) % 100 != 0 or int(fiscalyear_obj.code) % 400 == 0):
-                    search_dict.append(('date_invoice', '<=', "%s-02-29" % fiscalyear_obj.code))
+                if int(year) % 4 == 0 and (int(year) % 100 != 0 or int(year) % 400 == 0):
+                    search_dict.append(('date_invoice', '<=', "%s-02-29" % year))
                 else:
-                   search_dict.append(('date_invoice', '<=', MONTH_DATES_MAPPING[month]['date_stop'] % fiscalyear_obj.code))
+                   search_dict.append(('date_invoice', '<=', MONTH_DATES_MAPPING[month]['date_stop'] % year))
             else:
-                search_dict.append(('date_invoice', '<=', MONTH_DATES_MAPPING[month]['date_stop'] % fiscalyear_obj.code))
+                search_dict.append(('date_invoice', '<=', MONTH_DATES_MAPPING[month]['date_stop'] % year))
 
         return self.search(cr, uid, search_dict)
 
@@ -137,7 +139,7 @@ class account_invoice(osv.osv):
                                 invoice_lines.append(refund.id)
                                 break
                         else:
-                            if origin_line.date_invoice < MONTH_DATES_MAPPING[month]['date_start'] % fiscalyear_obj.code:
+                            if origin_line.date_invoice < MONTH_DATES_MAPPING[month]['date_start'] % fiscalyear_obj.code[:4]:
                                 restitution_lines.append(refund.id)
                                 break
                             else:
