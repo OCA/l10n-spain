@@ -73,7 +73,7 @@
           <para style="P2">
             <font color="white"> </font>
           </para>
-          <para style="P2">Total payment order: [[-o.total]]</para>
+          <para style="P2">Total payment order: [[o.total]]</para>
         </td>
       </tr>
     </blockTable>
@@ -111,7 +111,7 @@
             <para style="P8">[[r.communication]]</para>
           </td>
           <td>
-            <para style="P8">[[-r.amount]]</para>
+            <para style="P8">[[r.amount]]</para>
           </td>
           <td>
             <para style="P8">[[r.ml_maturity_date and time.strftime('%d-%m-%Y', time.strptime(r.ml_maturity_date, '%Y-%m-%d')) or '']]</para>
