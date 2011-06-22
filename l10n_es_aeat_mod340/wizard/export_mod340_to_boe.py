@@ -252,9 +252,9 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             text += ' '+self._formatNumber(0, 11,2)                             # Base imponible a coste.
             text += self._formatString(invoice_received.invoice_id.reference, 40)  # Identificación de la factura
             text += self._formatString(self.pool.get('ir.sequence').get(cr, uid, 'mod340'),18)  # Número de registro
-            text += self._formatNumber(1, 8) # Número de facturas
+            text += self._formatNumber(1, 18) # Número de facturas
             text += self._formatNumber(len(invoice_received.tax_line_ids), 2)  # Número de registros (Desglose)
-            text += 90*' '  # Intervalo de identificación de la acumulación
+            text += 80*' '  # Intervalo de identificación de la acumulación
             text += ' '+self._formatNumber(0, 11,2)  # Cuota deducible
             text += 151*' '                                                     # Blancos
             text += '\r\n'

@@ -29,6 +29,7 @@ import re
 from osv import osv
 from tools.translate import _
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
     _name = "l10n.es.aeat.mod340.calculate_records"
@@ -51,7 +52,6 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
         try:
             report_obj = self.pool.get('l10n.es.aeat.mod340')
             mod340 = report_obj.browse(cr, uid, ids)[0]
-            partners = self.pool.get('res.partner')
             
             invoices340 = self.pool.get('l10n.es.aeat.mod340.issued')
             invoices340_rec = self.pool.get('l10n.es.aeat.mod340.received')
@@ -61,12 +61,8 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                 'calculation_date' : time.strftime('%Y-%m-%d %H:%M:%S')
             })
         
-            part_id = mod340.company_id.partner_id.id
-            
-            part = partners.browse(cr, uid, part_id)
-            part_vat=part.vat
-            if not part_vat:
-                raise osv.except_osv(_(mod340.company_id.partner_id.name), _('This company dont have NIF'))
+            if not mod340.company_id.partner_id.vat:
+                raise osv.except_osv(mod340.company_id.partner_id.name, _('This company dont have NIF'))
         
             wf_service = netsvc.LocalService("workflow")
             wf_service.trg_validate(uid, 'l10n.es.aeat.mod347.report', ids and ids[0], 'calculate', cr)
@@ -77,87 +73,24 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
             dec_year =mod340.fiscalyear_id.date_start.split('-')[0]
             
             mod = mod340.period
-                
-            if mod == '01':
-                fecha_ini = datetime.strptime(dec_year+'-1-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                fecha_fin = datetime.strptime(dec_year+'-1-31 23:59:59','%Y-%m-%d %H:%M:%S')
-                
-            if mod == '02':
-                if int(dec_year)%4 == 0: 
-                    fecha_ini = datetime.strptime(dec_year+'-2-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                    fecha_fin = datetime.strptime(dec_year+'-2-29 23:59:59','%Y-%m-%d %H:%M:%S')
-                else:
-                    fecha_ini = datetime.strptime(dec_year+'-2-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                    fecha_fin = datetime.strptime(dec_year+'-2-28 23:59:59','%Y-%m-%d %H:%M:%S')
-            
-            if mod == '03':
-                fecha_ini = datetime.strptime(dec_year+'-3-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                fecha_fin = datetime.strptime(dec_year+'-3-31 23:59:59','%Y-%m-%d %H:%M:%S')
-            
-            if mod == '04':
-                fecha_ini = datetime.strptime(dec_year+'-4-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                fecha_fin = datetime.strptime(dec_year+'-4-30 23:59:59','%Y-%m-%d %H:%M:%S')
-                
-            if mod == '05':
-                fecha_ini = datetime.strptime(dec_year+'-5-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                fecha_fin = datetime.strptime(dec_year+'-5-31 23:59:59','%Y-%m-%d %H:%M:%S')
-            
-            if mod == '06':
-                fecha_ini = datetime.strptime(dec_year+'-6-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                fecha_fin = datetime.strptime(dec_year+'-6-30 23:59:59','%Y-%m-%d %H:%M:%S')
-            
-            if mod == '07':
-                fecha_ini = datetime.strptime(dec_year+'-7-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                fecha_fin = datetime.strptime(dec_year+'-7-31 23:59:59','%Y-%m-%d %H:%M:%S')
-                
-            if mod == '08':
-                fecha_ini = datetime.strptime(dec_year+'-8-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                fecha_fin = datetime.strptime(dec_year+'-8-31 23:59:59','%Y-%m-%d %H:%M:%S')
-            
-            if mod == '09':
-                fecha_ini = datetime.strptime(dec_year+'-9-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                fecha_fin = datetime.strptime(dec_year+'-9-30 23:59:59','%Y-%m-%d %H:%M:%S')
-                
-            if mod == '10':
-                fecha_ini = datetime.strptime(dec_year+'-10-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                fecha_fin = datetime.strptime(dec_year+'-10-31 23:59:59','%Y-%m-%d %H:%M:%S')
-            
-            if mod == '11':
-                fecha_ini = datetime.strptime(dec_year+'-11-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                fecha_fin = datetime.strptime(dec_year+'-11-30 23:59:59','%Y-%m-%d %H:%M:%S')
-            
-            if mod == '12':
-                fecha_ini = datetime.strptime(dec_year+'-12-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                fecha_fin = datetime.strptime(dec_year+'-12-31 23:59:59','%Y-%m-%d %H:%M:%S')   
-                
-            if mod == '1T':
-                fecha_ini = datetime.strptime(dec_year+'-1-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                fecha_fin = datetime.strptime(dec_year+'-3-31 23:59:59','%Y-%m-%d %H:%M:%S')
-                mod='03'
-                
-            if mod == '2T':
-                fecha_ini = datetime.strptime(dec_year+'-4-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                fecha_fin = datetime.strptime(dec_year+'-6-30 23:59:59','%Y-%m-%d %H:%M:%S')
-                mod='06'
-                
-            if mod == '3T':
-                fecha_ini = datetime.strptime(dec_year+'-7-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                fecha_fin = datetime.strptime(dec_year+'-9-30 23:59:59','%Y-%m-%d %H:%M:%S')
-                mod='09'
-                
-            if mod == '4T':
-                fecha_ini = datetime.strptime(dec_year+'-10-1 0:0:0','%Y-%m-%d %H:%M:%S')
-                fecha_fin = datetime.strptime(dec_year+'-12-31 23:59:59','%Y-%m-%d %H:%M:%S')
-                mod='12'
-            
+
+            if mod >= '01' and mod <= '12':
+                fecha_ini = datetime.strptime('%s-%s-01' % (dec_year, mod), '%Y-%m-%d')
+                fecha_fin = fecha_ini + relativedelta(months=+1, days=-1)
+
+            if mod in ('T1', 'T2', 'T3', 'T4'):
+                month = ( ( int(mod[0])-1 ) * 3 ) + 1
+                fecha_ini = datetime.strptime('%s-%s-01' % (dec_year, month), '%Y-%m-%d')
+                fecha_fin = fecha_ini + relativedelta(months=+3, days=-1)
+                mod = '%02d' % month
+
             code = '340'+dec_year+''+mod+'0001'
             
             account_period_id = self.pool.get('account.period').search(cr,uid,[('date_start','=',fecha_ini),('date_stop','=',fecha_fin)])
             
             if not account_period_id:
-                raise osv.except_osv(_('El periodo seleccionado no coincide con los periodos del año fiscal:'), _(dec_year))
+                raise osv.except_osv(_('El periodo seleccionado no coincide con los periodos del año fiscal:'), dec_year)
             
-            invoice = self.pool.get('account.invoice').search(cr,uid,[('period_id', '=',account_period_id[0])])
             
             tot_base = 0
             tot_amount = 0
@@ -179,36 +112,42 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
             if del_ids:
                 invoices340_rec.unlink(cr, uid, del_ids, context=context)
             
-            for partn in invoice:
-                part = self.pool.get('account.invoice').browse(cr, uid, partn)
-                if not part.partner_id.vat:
-                    raise osv.except_osv(_('La siguiente empresa no tiene asignado nif:'), _(part.partner_id.name))
+            domain = [('period_id', '=',account_period_id[0])]
+            # If the system has 'l10n_es_aeat_mod349' module installed, discard
+            # invoices with operation_key not null
+            if 'operation_key' in self.pool.get('account.invoice')._columns:
+                domain += [('operation_key','=',False)]
+
+            invoice_ids = self.pool.get('account.invoice').search(cr, uid, domain, context=context)
+            for invoice in self.pool.get('account.invoice').browse(cr, uid, invoice_ids, context):
+                if not invoice.partner_id.vat:
+                    raise osv.except_osv(_('La siguiente empresa no tiene asignado nif:'), invoice.partner_id.name)
                 
-                nif = part.partner_id.vat and re.match(r"([A-Z]{0,2})(.*)", part.partner_id.vat).groups()[1]
-                country_code = part.address_invoice_id.country_id.code
+                nif = invoice.partner_id.vat and re.match(r"([A-Z]{0,2})(.*)", invoice.partner_id.vat).groups()[1]
+                country_code = invoice.address_invoice_id.country_id.code
                 
                 values = {
                     'mod340_id': mod340.id,
-                    'partner_id':part.partner_id.id,
+                    'partner_id':invoice.partner_id.id,
                     'partner_vat':nif,
                     'representative_vat': '',
                     'partner_country_code' : country_code,
-                    'invoice_id':part.id,
-                    'base_tax':part.amount_untaxed,
-                    'amount_tax':part.amount_tax,
-                    'total':part.amount_total
+                    'invoice_id':invoice.id,
+                    'base_tax':invoice.amount_untaxed,
+                    'amount_tax':invoice.amount_tax,
+                    'total':invoice.amount_total
                 }
 
-                if part.type=="out_invoice" or part.type=="out_refund":
+                if invoice.type=="out_invoice" or invoice.type=="out_refund":
                     invoice_created = invoices340.create(cr,uid,values)
                     
-                if part.type=="in_invoice" or part.type=="in_refund":
+                if invoice.type=="in_invoice" or invoice.type=="in_refund":
                     invoice_created = invoices340_rec.create(cr,uid,values)
                 
                 tot_tax_invoice = 0
                 
                 # Add the invoices detail to the partner record
-                for tax_line in part.tax_line:
+                for tax_line in invoice.tax_line:
                     if tax_line.name.find('IRPF') == -1: # Remove IRPF from Mod340
                         tax_description = tax_line.name.split(' - ')
                         if len(tax_description) == 2: name = tax_description[1]
@@ -221,20 +160,20 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                             'base_amount': tax_line.base_amount,
                             'invoice_record_id': invoice_created,
                         }
-                        if part.type=="out_invoice" or part.type=="out_refund":
+                        if invoice.type=="out_invoice" or invoice.type=="out_refund":
                             self.pool.get('l10n.es.aeat.mod340.tax_line_issued').create(cr, uid, values)
-                        if part.type=="in_invoice" or part.type=="in_refund":
+                        if invoice.type=="in_invoice" or invoice.type=="in_refund":
                             self.pool.get('l10n.es.aeat.mod340.tax_line_received').create(cr, uid, values)
                         tot_tax_invoice += tax_line.tax_amount
                         tot_rec += 1
                         
-                tot_base += part.amount_untaxed
+                tot_base += invoice.amount_untaxed
                 tot_amount += tot_tax_invoice
-                tot_tot += part.amount_untaxed + tot_tax_invoice
+                tot_tot += invoice.amount_untaxed + tot_tax_invoice
             
-                if part.type=="out_invoice" or part.type=="out_refund":
+                if invoice.type=="out_invoice" or invoice.type=="out_refund":
                     invoices340.write(cr,uid,invoice_created,{'amount_tax':tot_tax_invoice})
-                if part.type=="in_invoice" or part.type=="in_refund":
+                if invoice.type=="in_invoice" or invoice.type=="in_refund":
                     invoices340_rec.write(cr,uid,invoice_created,{'amount_tax':tot_tax_invoice})
                 
             mod340.write({'total_taxable':tot_base,'total_sharetax':tot_amount,'number_records':tot_rec,'total':tot_tot,'number':code})
