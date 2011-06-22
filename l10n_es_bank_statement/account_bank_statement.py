@@ -107,57 +107,58 @@ class account_bank_statement_line(osv.osv):
         voucher_obj = self.pool.get('account.voucher')
         partner_obj = self.pool.get('res.partner')
         bank_st_line_obj = self.pool.get('account.bank.statement.line')
-        current_st_line = bank_st_line_obj.browse(cr, uid, line_ids)[0]
-        statement_id = current_st_line.statement_id.id
-        res = super(account_bank_statement_line, self).onchange_type(cr, uid, line_ids, partner_id, ptype)
-        # devuelve res = {'value': {'amount': balance, 'account_id': account_id}}
-        if 'value' in res and 'amount' in res['value']:
-            del res['value']['amount']
-            
-        # Busqueda del apunte por importe con partner
-        if partner_id and amount:
-            #Actualizamos la cuenta del partner...
-            current_partner = partner_obj.browse(cr, uid, partner_id)
-            if ptype == 'supplier':
-                res['value']['account_id'] = current_partner.property_account_payable.id
-            else:
-                res['value']['account_id'] = current_partner.property_account_receivable.id
-
-            domain = [
-                ('reconcile_id', '=', False),
-                ('account_id.type', 'in', ['receivable', 'payable']),
-                ('partner_id', '=', partner_id),
-                ('date', '=', current_st_line.date)
-            ]
-            if amount >= 0:
-                domain.append( ('debit', '=', '%.2f' % amount) )
-            else:
-                domain.append( ('credit', '=', '%.2f' % -amount) )
-            line_ids = move_line_obj.search(cr, uid, domain, context=context)
-            # Solamente crearemos la conciliacion automatica cuando exista un solo apunte
-            # que coincida. Si hay mas de uno el usuario tendra que conciliar manualmente y
-            # seleccionar cual de ellos es el correcto.
-            res['value']['voucher_id'] = ""
-            if len(line_ids) == 1:
-                #Miro si existe ya una propuesta de pago para esa fecha, cantidad, proveedor y estado...
-                saved_voucher_id_list = voucher_obj.search(cr, uid, [('date','=',current_st_line.date), ('amount','=',current_st_line.amount), ('partner_id','=',partner_id), ('state','in', ['draft', 'proforma'])])
-                saved_voucher_id = saved_voucher_id_list and saved_voucher_id_list[0] or None
-                if saved_voucher_id:
-                    voucher_id = saved_voucher_id
-                form_voucher_id_list = voucher_obj.search(cr, uid, [('date','=', form_date), ('amount','=',amount), ('partner_id','=',partner_id), ('state','in', ['draft', 'proforma'])])
-                form_voucher_id = form_voucher_id_list and form_voucher_id_list[0] or None
-                if form_voucher_id:
-                    voucher_id = form_voucher_id
-                if not saved_voucher_id and not form_voucher_id:
-                    voucher_id = bank_st_line_obj.generate_voucher_from_import_wizard(cr, uid, statement_id, current_st_line, line_ids, context)
-                res['value']['voucher_id'] = voucher_id
-            elif len(line_ids) > 1:
-                move_lines = move_line_obj.browse(cr, uid, line_ids)
-                str_list = []
-                for line in move_lines:
-                    str_list.append("'%s'"%(line.ref or line.name))
-                raise osv.except_osv(_('Beware!'), _("%s moves (%s) found for this date and partner. You'll have to concile this line manually...") %(len(line_ids), ', '.join(str_list)))
-        return res
+        if bank_st_line_obj.browse(cr, uid, line_ids):
+            current_st_line = bank_st_line_obj.browse(cr, uid, line_ids)[0]
+            statement_id = current_st_line.statement_id.id
+            res = super(account_bank_statement_line, self).onchange_type(cr, uid, line_ids, partner_id, ptype)
+            # devuelve res = {'value': {'amount': balance, 'account_id': account_id}}
+            if 'value' in res and 'amount' in res['value']:
+                del res['value']['amount']
+                
+            # Busqueda del apunte por importe con partner
+            if partner_id and amount:
+                #Actualizamos la cuenta del partner...
+                current_partner = partner_obj.browse(cr, uid, partner_id)
+                if ptype == 'supplier':
+                    res['value']['account_id'] = current_partner.property_account_payable.id
+                else:
+                    res['value']['account_id'] = current_partner.property_account_receivable.id
+    
+                domain = [
+                    ('reconcile_id', '=', False),
+                    ('account_id.type', 'in', ['receivable', 'payable']),
+                    ('partner_id', '=', partner_id),
+                    ('date', '=', current_st_line.date)
+                ]
+                if amount >= 0:
+                    domain.append( ('debit', '=', '%.2f' % amount) )
+                else:
+                    domain.append( ('credit', '=', '%.2f' % -amount) )
+                line_ids = move_line_obj.search(cr, uid, domain, context=context)
+                # Solamente crearemos la conciliacion automatica cuando exista un solo apunte
+                # que coincida. Si hay mas de uno el usuario tendra que conciliar manualmente y
+                # seleccionar cual de ellos es el correcto.
+                res['value']['voucher_id'] = ""
+                if len(line_ids) == 1:
+                    #Miro si existe ya una propuesta de pago para esa fecha, cantidad, proveedor y estado...
+                    saved_voucher_id_list = voucher_obj.search(cr, uid, [('date','=',current_st_line.date), ('amount','=',current_st_line.amount), ('partner_id','=',partner_id), ('state','in', ['draft', 'proforma'])])
+                    saved_voucher_id = saved_voucher_id_list and saved_voucher_id_list[0] or None
+                    if saved_voucher_id:
+                        voucher_id = saved_voucher_id
+                    form_voucher_id_list = voucher_obj.search(cr, uid, [('date','=', form_date), ('amount','=',amount), ('partner_id','=',partner_id), ('state','in', ['draft', 'proforma'])])
+                    form_voucher_id = form_voucher_id_list and form_voucher_id_list[0] or None
+                    if form_voucher_id:
+                        voucher_id = form_voucher_id
+                    if not saved_voucher_id and not form_voucher_id:
+                        voucher_id = bank_st_line_obj.generate_voucher_from_import_wizard(cr, uid, statement_id, current_st_line, line_ids, context)
+                    res['value']['voucher_id'] = voucher_id
+                elif len(line_ids) > 1:
+                    move_lines = move_line_obj.browse(cr, uid, line_ids)
+                    str_list = []
+                    for line in move_lines:
+                        str_list.append("'%s'"%(line.ref or line.name))
+                    raise osv.except_osv(_('Beware!'), _("%s moves (%s) found for this date and partner. You'll have to concile this line manually...") %(len(line_ids), ', '.join(str_list)))
+            return res
 
 
     def _get_references( self, cr, uid, line, data, context ):
