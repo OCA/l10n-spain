@@ -110,6 +110,13 @@ class res_partner(osv.osv):
     _columns = {
         'comercial': fields.char('Trade name', size=128, select=True), # Nombre Comercial del Partner
     }
+
+    def vat_change(self, cr, uid, ids, value, context=None):
+        result = super(res_partner,self).vat_change(cr, uid, ids, value, context = context)
+        if value:
+            result['value']['vat'] = value.upper()
+        return result
+
 res_partner()
 
 
