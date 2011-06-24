@@ -113,10 +113,6 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                 invoices340_rec.unlink(cr, uid, del_ids, context=context)
             
             domain = [('period_id', '=',account_period_id[0])]
-            # If the system has 'l10n_es_aeat_mod349' module installed, discard
-            # invoices with operation_key not null
-            if 'operation_key' in self.pool.get('account.invoice')._columns:
-                domain += [('operation_key','=',False)]
 
             invoice_ids = self.pool.get('account.invoice').search(cr, uid, domain, context=context)
             for invoice in self.pool.get('account.invoice').browse(cr, uid, invoice_ids, context):
