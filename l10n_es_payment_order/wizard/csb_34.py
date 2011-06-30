@@ -255,10 +255,9 @@ class csb_34:
             text += 5*' '
             text += '\r\n'
 
-        # Si la orden se emite por carta
-#        if self.order.mode.send_letter:
+        # Si la orden se emite por carta (sólo tiene sentido si no son transferencias)
         send_type = self.order.mode.send_type
-        if send_type == 'mail' or send_type == 'certified_mail':
+        if csb34_type != 'transfer' and (send_type == 'mail' or send_type == 'certified_mail'):
 
             # Sexto Registro
             text += '06'
