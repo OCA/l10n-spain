@@ -47,9 +47,9 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
 
         obj = self.pool.get('l10n.es.aeat.mod349.partner_record')
 
-        partner_country = [address.country_id.id for address in partner_obj.address if address.type == 'invoice']
+        partner_country = [address.country_id.id for address in partner_obj.address if address.type == 'invoice' and address.country_id]
         if not len(partner_country):
-            partner_country = [address.country_id.id for address in partner_obj.address if address.type == 'default']
+            partner_country = [address.country_id.id for address in partner_obj.address if address.type == 'default' and address.country_id]
 
         invoice_created = obj.create(cr, uid, {
             'report_id' : report_id,
@@ -76,9 +76,9 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
 
         obj = self.pool.get('l10n.es.aeat.mod349.partner_refund')
 
-        partner_country = [address.country_id.id for address in partner_obj.address if address.type == 'invoice']
+        partner_country = [address.country_id.id for address in partner_obj.address if address.type == 'invoice' and address.country_id]
         if not len(partner_country):
-            partner_country = [address.country_id.id for address in partner_obj.address if address.type == 'default']
+            partner_country = [address.country_id.id for address in partner_obj.address if address.type == 'default' and address.country_id]
 
         record = {}
 
@@ -88,8 +88,13 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
                 if origin_inv.state in ['open', 'paid']:
                     #searches for details of another 349s to restor
                     refund_detail = self.pool.get('l10n.es.aeat.mod349.partner_record_detail').search(cr, uid, [('invoice_id', '=', origin_inv.id)])
-                    if refund_detail:
-                        rd = self.pool.get('l10n.es.aeat.mod349.partner_record_detail').browse(cr, uid, refund_detail[0])
+                    valid_refund_details = refund_detail
+                    for detail in self.pool.get('l10n.es.aeat.mod349.partner_record_detail').browse(cr, uid, refund_detail):
+                        if not detail.partner_record_id.report_id:
+                            valid_refund_details.remove(detail.id)
+                    
+                    if valid_refund_details:
+                        rd = self.pool.get('l10n.es.aeat.mod349.partner_record_detail').browse(cr, uid, valid_refund_details[0])
                         #creates a dictionary key with partner_record id to after recover it
                         key = str(rd.partner_record_id.id)
                         #separates restitutive invoices and nomal, refund invoices of correct period
