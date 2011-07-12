@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- ##########################
+        ### ACCOUNT FISCAL POSITION ###
+        ########################### -->
+        <!-- #### Inheritance to add field 'include_in_mod349' #### -->
+        <!-- ## Tree view ## -->
+        <record id="view_account_fiscal_position_add_mod349_tree" model="ir.ui.view">
+            <field name="name">Fiscal position | add 'include in AEAT 349' field (tree)</field>
+            <field name="model">account.fiscal.position</field>
+            <field name="inherit_id" ref="account.view_account_position_tree"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="intracommunity_operations"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- ## Form view ## -->
+        <record id="view_account_fiscal_position_add_mod349_form" model="ir.ui.view">
+            <field name="name">Fiscal position | add 'include in AEAT 349' field (form)</field>
+            <field name="model">account.fiscal.position</field>
+            <field name="inherit_id" ref="account.view_account_position_form"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="intracommunity_operations"/>
+                </field>
+            </field>
+        </record>
+
+
+
+        <!-- ##################
+        ### ACCOUNT INVOICE ###
+        ################### -->
+        <!-- #### Customer invoices #### -->
+        <!-- ### Inheritance to add an on_change method to fiscal_position field ### -->
+        <record id="view_customer_account_invoice_replace_fiscal_position_form" model="ir.ui.view">
+            <field name="name">Account invoice (customer) | replace 'fiscal position' field (form)</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="fiscal_position" position="replace">
+                    <field name="fiscal_position" on_change="on_change_fiscal_position(fiscal_position, type)"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- ### Inheritance to add an on_change method to fiscal_position field ### -->
+        <record id="view_customer_account_invoice_add_operation_key_form" model="ir.ui.view">
+            <field name="name">Account invoice (customer) | add 'operation_key' field (form)</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="view_customer_account_invoice_replace_fiscal_position_form"/>
+            <field name="arch" type="xml">
+                <field name="fiscal_position" position="after">
+                    <field name="operation_key"/>                    
+                </field>
+            </field>
+        </record>
+
+        <!-- #### Supplier invoices #### -->
+        <!-- ### Inheritance to add an on_change method to fiscal_position field ### -->
+        <record id="view_supplier_account_invoice_replace_fiscal_position_form" model="ir.ui.view">
+            <field name="name">Account invoice (supplier) | replace 'fiscal position' field (form)</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="fiscal_position" position="replace">
+                    <field name="fiscal_position" on_change="on_change_fiscal_position(fiscal_position, type)"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- ### Inheritance to add an on_change method to fiscal_position field ### -->
+        <record id="view_supplier_account_invoice_add_operation_key_form" model="ir.ui.view">
+            <field name="name">Account invoice (supplier) | add 'operation_key' field (form)</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="view_supplier_account_invoice_replace_fiscal_position_form"/>
+            <field name="arch" type="xml">
+                <field name="fiscal_position" position="after">
+                    <field name="operation_key"/>
+                </field>
+            </field>
+        </record>
+
+
+
+        <!-- #################################
+        ### AEAT 349 PARTNER RECORD DETAIL ###
+        ################################## -->
+        <!-- ## Tree view ## -->
+        <record id="view_l10n_ES_aeat_mod349_partner_record_detail_tree" model="ir.ui.view">
+            <field name="name">AEAT 349 Partner record detail (tree)</field>
+            <field name="model">l10n.es.aeat.mod349.partner_record_detail</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="AEAT 349 Partner record detail">
+                    <field name="invoice_id"/>
+                    <field name="amount_untaxed"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ## Form view ## -->
+        <record id="view_l10n_ES_aeat_mod349_partner_record_detail_form" model="ir.ui.view">
+            <field name="name">AEAT 349 Partner record detail (form)</field>
+            <field name="model">l10n.es.aeat.mod349.partner_record_detail</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="AEAT 349 Partner record">
+                    <field name="invoice_id"/>
+                    <field name="amount_untaxed"/>
+                    <field name="date"/>
+                </form>
+            </field>
+        </record>
+
+        
+
+        <!-- ###########################
+        ### AEAT 349 PARTNER RECORDS ###
+        ############################ -->
+        <!-- ## Tree view ## -->
+        <record id="view_l10n_ES_aeat_mod349_partner_record_tree" model="ir.ui.view">
+            <field name="name">AEAT 349 Partner record (tree)</field>
+            <field name="model">l10n.es.aeat.mod349.partner_record</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="AEAT 349 Partner records" colors="red:partner_record_ok==False">
+                    <field name="partner_record_ok" invisible="1"/>
+                    <field name="operation_key"/>
+                    <field name="partner_vat"/>
+                    <field name="country_id"/>
+                    <field name="partner_id"/>
+                    <field name="total_operation_amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ## Form view ## -->
+        <record id="view_l10n_ES_aeat_mod349_partner_record_form" model="ir.ui.view">
+            <field name="name">AEAT 349 Partner record (form)</field>
+            <field name="model">l10n.es.aeat.mod349.partner_record</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="AEAT 349 Partner records">
+                    <notebook colspan="4">
+                        <page string="Info">
+                            <field name="operation_key"/>
+                            <field name="partner_id"/>
+                            <field name="country_id"/>
+                            <field name="partner_vat" on_change="onchange_format_partner_vat(partner_vat,country_id)"/>
+                            <field name="total_operation_amount"/>
+                        </page>
+                        <page string="Detail lines">
+                            <field name="record_detail_ids" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+
+
+        <!-- #################################
+        ### AEAT 349 PARTNER REFUND DETAIL ###
+        ################################## -->
+        <!-- ## Tree view ## -->
+        <record id="view_l10n_ES_aeat_mod349_partner_refund_detail_tree" model="ir.ui.view">
+            <field name="name">AEAT 349 Partner refund detail (tree)</field>
+            <field name="model">l10n.es.aeat.mod349.partner_refund_detail</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="AEAT 349 Partner refund detail">
+                    <field name="invoice_id"/>
+                    <field name="amount_untaxed"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ## Form view ## -->
+        <record id="view_l10n_ES_aeat_mod349_partner_refund_detail_form" model="ir.ui.view">
+            <field name="name">AEAT 349 Partner refund detail (form)</field>
+            <field name="model">l10n.es.aeat.mod349.partner_refund_detail</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="AEAT 349 Partner refund">
+                    <field name="invoice_id"/>
+                    <field name="amount_untaxed"/>
+                    <field name="date"/>
+                </form>
+            </field>
+        </record>
+
+
+
+        <!-- ###########################
+        ### AEAT 349 PARTNER REFUNDS ###
+        ############################ -->
+        <!-- ## Tree view ## -->
+        <record id="view_l10n_ES_aeat_mod349_partner_refund_tree" model="ir.ui.view">
+            <field name="name">AEAT 349 Partner refund (tree)</field>
+            <field name="model">l10n.es.aeat.mod349.partner_refund</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="AEAT 349 Partner refunds" colors="red:partner_refund_ok==False">
+                    <field name="partner_refund_ok" invisible="1"/>
+                    <field name="operation_key"/>
+                    <field name="partner_vat"/>
+                    <field name="partner_id"/>
+                    <field name="country_id"/>
+                    <field name="total_operation_amount"/>
+                    <field name="total_origin_amount"/>
+                    <field name="period_selection"/>
+                    <field name="fiscalyear_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ## Form view ## -->
+        <record id="view_l10n_ES_aeat_mod349_partner_refund_form" model="ir.ui.view">
+            <field name="name">AEAT 349 Partner refund (form)</field>
+            <field name="model">l10n.es.aeat.mod349.partner_refund</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="AEAT 349 Partner refunds">
+                    <notebook>
+                        <page string="Info">
+                            <field name="operation_key"/>
+                            <field name="partner_id"/>
+                            <field name="partner_vat"/>
+                            <field name="country_id"/>
+                            <field name="total_operation_amount"/>
+                            <field name="total_origin_amount"/>
+                            <separator string="Refund data" colspan="4"/>
+                            <field name="fiscalyear_id"/>
+                            <field name="period_selection"/>
+                            <group colspan="2" col="2" attrs="{'invisible':[('period_selection','!=','MO')]}">
+                                <field name="month_selection" attrs="{'required':[('period_selection','==','MO')]}"/>
+                            </group>
+                        </page>
+                        <page string="Details">
+                            <field name="refund_detail_ids" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+
+
+        <!-- #################
+        ### AEAT 349 RECORD ##
+        ################## -->
+        <!-- ## Tree view ## -->
+        <record id="view_l10n_ES_aeat_mod349_report_tree" model="ir.ui.view">
+            <field name="name">AEAT 349 Report (tree)</field>
+            <field name="model">l10n.es.aeat.mod349.report</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="AEAT 349 Models">
+                  <field name="number" select="1"/>
+                  <field name="name" select="1"/>
+                  <field name="company_id" select="1"/>
+                  <field name="fiscalyear_id" select="1"/>
+                  <field name="period_selection" select="2"/>
+                  <field name="month_selection" select="2"/>
+                  <field name="type" select="2"/>
+                  <field name="previous_number"/>
+                  <field name="state" select="1"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- ## Form view ## -->
+        <record id="view_l10n_ES_aeat_mod349_report_form" model="ir.ui.view">
+            <field name="name">AEAT 349 Report (form)</field>
+            <field name="model">l10n.es.aeat.mod349.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="AEAT 349 Models">
+                    <group colspan="4" col="6">
+                        <field name="company_id" colspan="4"/>
+                        <field name="number"/>
+                    </group>
+                    <group colspan="4" col="8">
+                        <group colspan="4" col="2">
+                            <field name="fiscalyear_id"/>
+                        </group>
+                        <group colspan="4" col="2">
+                            <field name="period_selection" on_change="onchange_period_selection(period_selection, fiscalyear_id)"/>
+                                <newline/>
+                            <group colspan="2" col="2" attrs="{'invisible':[('period_selection','not in',['1T','2T','3T','4T'])]}">
+                                <field name="period_id"  attrs="{'required':[('period_selection','in',['1T','2T','3T','4T'])]}" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
+                            </group>
+                                <newline/>
+                            <group colspan="2" col="2" attrs="{'invisible':[('period_selection','!=','MO')]}">
+                                <field name="month_selection" attrs="{'required':[('period_selection','==','MO')]}"/>
+                            </group>
+                        </group>
+                    </group>
+
+                    <notebook colspan="4">
+                        <page string="General">
+                            <group string="Identification" colspan="4">
+                                <field name="company_vat"/>
+                                <field name="contact_phone"/>
+                                <field name="contact_name"/>
+                                <field name="representative_vat"/>
+                            </group>
+                            <group string="Complementary/Substitutive declaration" colspan="4">
+                                <field name="type"/>
+                                <!-- Previous number is required if Declaration is substitutive -->
+                                <field name="previous_number"
+                                    attrs="{'required':[('type','==','S'),('state','==','calculated')]}"/>
+                            </group>
+                            <group string="Summary" colspan="4">
+                                <field name="total_partner_records"/>
+                                <field name="total_partner_records_amount"/>
+                                <field name="total_partner_refunds"/>
+                                <field name="total_partner_refunds_amount"/>
+                            </group>
+                            <group string="Options" colspan="4">
+                                <field name="support_type"/>
+                                <field name="frequency_change"/>
+                            </group>
+                        </page>
+                        <page string="Partner records">
+                            <field name="partner_record_ids" nolabel="1"/>
+                        </page>
+                        <page string="Refunds">
+                            <field name="partner_refund_ids" nolabel="1"/>
+                        </page>
+                    </notebook>
+                    <group colspan="4" col="8">
+                        <field name="state"/>
+                        <button name="%(wizard_mod349_calculate_records)d" string="Calculate" type="action" states="draft,calculated" icon="gtk-execute"/>
+                        <button name="%(wizard_mod349_export_to_ascii)d" string="Export" type="action" states="confirmed" icon="gtk-execute"/>
+                        <button name="confirm" string="Confirm" type="workflow" states="calculated" icon="gtk-ok"/>
+                        <button name="cancel" string="Cancel" type="workflow" states="calculated,confirmed" icon="gtk-cancel"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+                   
+
+        <!-- ### Actions ### -->
+        <record id="action_view_l10n_ES_aeat_mod349" model="ir.actions.act_window">
+            <field name="name">AEAT 349 Report</field>
+            <field name="res_model">l10n.es.aeat.mod349.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_l10n_ES_aeat_mod349_report_tree"/>
+        </record>
+
+        
+        <!-- ### Menu access ### -->
+        <!-- Model 349 access -->
+        <menuitem id="menu_action_view_l10n_es_aeat_mod349"
+            parent="l10n_ES_aeat_mod347.menu_account_aeat"
+            name="349 Report"
+            action="action_view_l10n_ES_aeat_mod349"/>
+        
+    </data>
+</openerp>

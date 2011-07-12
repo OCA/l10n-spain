@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- -->
+        <record model="workflow" id="wkf_mod349_report">
+            <field name="name">349 Report workflow</field>
+            <field name="osv">l10n.es.aeat.mod349.report</field>
+            <field name="on_create">True</field>
+        </record>
+
+
+        <!-- ### STATES ### -->
+        <record model="workflow.activity" id="act_draft">
+            <field name="wkf_id" ref="wkf_mod349_report"/>
+            <field name="flow_start">True</field>
+            <field name="name">draft</field>
+        </record>
+
+        <record model="workflow.activity" id="act_calculated">
+            <field name="wkf_id" ref="wkf_mod349_report"/>
+            <field name="name">calculated</field>
+            <field name="action">write({'state':'calculated'})</field>
+            <field name="kind">function</field>
+        </record>
+
+        <record model="workflow.activity" id="act_confirmed">
+            <field name="wkf_id" ref="wkf_mod349_report"/>
+            <field name="name">confirmed</field>
+            <field name="action">wkf_confirm()</field>
+            <field name="kind">function</field>
+        </record>
+
+        <record model="workflow.activity" id="act_canceled">
+            <field name="wkf_id" ref="wkf_mod349_report"/>
+            <field name="name">canceled</field>
+            <field name="flow_stop">True</field>
+            <field name="action">write({'state':'canceled'})</field>
+            <field name="kind">function</field>
+        </record>
+        
+
+        <!-- ### TRANSITIONS ### -->
+        <!-- Draft => Calculate -->
+        <record model="workflow.transition" id="wkf_mod349_draft__calculated">
+            <field name="act_from" ref="act_draft"/>
+            <field name="act_to" ref="act_calculated"/>
+            <field name="signal">calculate</field>
+        </record>
+
+        <!-- Calculated => Confirmed -->
+        <record model="workflow.transition" id="wkf_mod349_calculated__confirmed">
+            <field name="act_from" ref="act_calculated"/>
+            <field name="act_to" ref="act_confirmed"/>
+            <field name="signal">confirm</field>
+        </record>
+        
+        <!-- Calculated => Canceled -->
+        <record model="workflow.transition" id="wkf_mod349_calculated__canceled">
+            <field name="act_from" ref="act_calculated"/>
+            <field name="act_to" ref="act_canceled"/>
+            <field name="signal">cancel</field>
+        </record>
+
+        <!-- Confirmed => Canceled -->
+        <record model="workflow.transition" id="wkf_mod349_confirmed__canceled">
+            <field name="act_from" ref="act_confirmed"/>
+            <field name="act_to" ref="act_canceled"/>
+            <field name="signal">cancel</field>
+        </record>
+
+    </data>
+</openerp>

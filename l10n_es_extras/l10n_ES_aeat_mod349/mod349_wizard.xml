@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Calculate Records Wizard -->
+        <wizard id="wizard_mod349_calculate_records"
+            string="AEAT 349 Model - Calculate records"
+            model="l10n.es.aeat.mod349.report"
+            multi="True"
+            menu="False"
+            name="l10n_ES_aeat_mod349.calculate_mod349"/>
+
+        <!-- Calculate Records Wizard -->
+        <wizard id="wizard_mod349_export_to_ascii"
+            string="AEAT 349 Model - Export to ASCII"
+            model="l10n.es.aeat.mod349.report"
+            multi="True"
+            menu="False"
+            name="l10n_ES_aeat_mod349.export_mod349_to_ascii"/>
+            
+    </data>
+
+</openerp>
