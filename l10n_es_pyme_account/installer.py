@@ -23,15 +23,8 @@
 #
 ##############################################################################
 
-import time
-from datetime import datetime
-#from dateutil.relativedelta import relativedelta
-#from operator import itemgetter
 
-from tools.translate import _
 from osv import fields, osv
-import netsvc
-import tools
 
 
 class account_fiscalyear(osv.osv):
@@ -98,13 +91,10 @@ class account_installer(osv.osv_memory):
         
         fy_obj = self.pool.get('account.fiscalyear')
         
-        for res in self.read(cr, uid, ids, context=context):
-            if 'open_close_periods' in res and 'date_start' in res and 'date_stop' in res:
-                if res['open_close_periods']:
-                    f_ids = fy_obj.search(cr, uid, [('date_start', '<=', res['date_start']), ('date_stop', '>=', res['date_stop']), ('company_id', '=', res['company_id'])], context=context)
-                    if f_ids:
-                        fiscal_id = f_ids[0]
-                        if fiscal_id:
-                            fy_obj.create_period_special(cr, uid, [fiscal_id])
+        if res.get('open_close_periods', False) and res.get('date_start', False) and res.get('date_stop', False) and res.get('company_id', False):
+            f_ids = fy_obj.search(cr, uid, [('date_start', '<=', res['date_start']), ('date_stop', '>=', res['date_stop']), ('company_id', '=', res['company_id'])], context=context)
+            if f_ids:
+                fy_obj.create_period_special(cr, uid, [f_ids[0]])
+
 
 account_installer()
