@@ -18,9 +18,6 @@
 # Rehecho de nuevo para instalación OpenERP 5.0.0 sobre account_payment_extension: Zikzakmedia S.L. 2009
 #   Jordi Esteve <jesteve@zikzakmedia.com>
 #
-# Añadidos conceptos extras del CSB 19: Acysos S.L. 2011
-#   Ignacio Ibeas <ignacio@acysos.com>
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -116,7 +113,6 @@ def _create_payment_file(self, cr, uid, data, context):
                     'ml_maturity_date': max([l.ml_maturity_date for l in lineas]),
                     'create_date': max([l.create_date for l in lineas]),
                     'ml_date_created': max([l.ml_date_created for l in lineas]),
-                    'ml_inv_ref': [l.ml_inv_ref for l in lineas]
                 })
         else:
             # Cada línea de pago es un recibo
@@ -132,7 +128,6 @@ def _create_payment_file(self, cr, uid, data, context):
                     'ml_maturity_date': l.ml_maturity_date,
                     'create_date': l.create_date,
                     'ml_date_created': l.ml_date_created,
-                    'ml_inv_ref':[l.ml_inv_ref]
                 })
 
         if orden.mode.require_bank_account:
