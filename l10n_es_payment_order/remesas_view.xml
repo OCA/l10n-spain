@@ -35,37 +35,30 @@
                     <field name="ine"/>
                     <newline/>
                     <group colspan="4" attrs="{'invisible': [('tipo', '=', 'none')]}">
-                        <group colspan="2" col="2" attrs="{'invisible': [('tipo', '!=', 'csb_58')]}">
+                        <group colspan="2" col="2" attrs="{ 'invisible': [('tipo', '!=', 'csb_58')] }">
                             <separator string="CSB 58 Options" colspan="2"/>
                             <field name="inc_domicile"/>
                             <field name="alt_domicile_format"/>
                         </group>
-                        <group colspan="2" col="2" attrs="{'invisible': [('tipo', '!=', 'csb_32')]}">
+                        <group colspan="2" col="2" attrs="{ 'invisible': [('tipo', '!=', 'csb_32')] }">
                             <separator string="CSB 32 Options" colspan="2"/>
                             <field name="cedente"/>
                         </group>
-                        <group colspan="2" col="4" attrs="{'invisible': [('tipo', '!=', 'csb_34')]}">
+                        <group colspan="2" col="2" attrs="{ 'invisible': [('tipo', '!=', 'csb_19')] }">
+                            <separator string="CSB 19 Options" colspan="2"/>
+                            <field name="csb19_extra_concepts"/>
+                        </group>
+                        <group colspan="2" col="4" attrs="{ 'invisible': [('tipo', '!=', 'csb_34')] }">
                             <separator string="CSB 34 Options" colspan="4"/>
                             <field name="csb34_type" colspan="1"/>
-                            <group colspan="4" col="6">
-                                <separator string="Additional data for CSB 34 type of payment file." colspan="6"/>
-                                <field name="cost_key"/>
-                                <field name="concept"/>
-                                <field name="direct_pay_order"/>
-                            </group>
-                            <group  colspan="4" col="6" attrs="{'invisible': [('csb34_type', '=', 'transfer')]}">
-                                <separator string="Additional data for promissory notes, checks, and certified payments." colspan="6"/>
-                                <field name="send_type" attrs="{'required':[('csb34_type','!=','transfer')]}"/>
-                                <field name="not_to_the_order"/>
-                                <field name="barred"/>
-                                <group colspan="4" col="4" attrs="{'invisible': [('send_type', '=', 'other')]}">
-                                    <separator string="Optional Text for the Letter (adds 101, 102, 103, data tipes in the file)" colspan="4"/>
-                                    <field name="text1" colspan="4"/>
-                                    <field name="text2" colspan="4"/>
-                                    <field name="text3" colspan="4"/>
-                                    <field name="payroll_check"/>
-                                    <field name="add_date"/>
-                                </group>
+                            <field name="send_letter" colspan="1"/>
+                            <group colspan="4" col="4" attrs="{ 'invisible': [('send_letter', '=', False)] }">
+                                <separator string="Optional Text for the Letter (adds 101, 102, 103 data types in the file)" colspan="4"/>
+                                <field name="text1" colspan="4"/>
+                                <field name="text2" colspan="4"/>
+                                <field name="text3" colspan="4"/>
+                                <field name="payroll_check"/>
+                                <field name="add_date"/>
                             </group>
                         </group>
                     </group>
