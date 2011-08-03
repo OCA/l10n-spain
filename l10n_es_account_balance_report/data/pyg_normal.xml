@@ -35,7 +35,7 @@ Author: Raimon Esteve (Zikzakmedia) - resteve@zikzakmedia.com
 <openerp>
 	<data>
 
-		<record model="account.balance.report.template" id="es_pyg_normal">
+		<record model="account.balance.reporting.template" id="es_pyg_normal">
 			<field name="name">PÉRDIDAS Y GANANCIAS NORMAL (PGCE 2008)</field>
 			<field name="type">system</field>
 			<field name="balance_mode">2</field>
@@ -72,7 +72,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_a">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_a">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">A</field>
 			<field name="name">A) OPERACIONES CONTINUADAS</field>
@@ -83,7 +83,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l1</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40100">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40100">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40100</field>
 			<field name="name">1. Importe neto de la cifra de negocios</field>
@@ -94,7 +94,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40110">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40110">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40110</field>
 			<field name="name">a) Ventas</field>
@@ -105,7 +105,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40120">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40120">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40120</field>
 			<field name="name">b) Prestaciones de servicios</field>
@@ -116,7 +116,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40200">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40200">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40200</field>
 			<field name="name">2. Variación de existencias de productos terminados y en curso de fabricación</field>
@@ -127,7 +127,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40300">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40300">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40300</field>
 			<field name="name">3. Trabajos realizados por la empresa para su activo</field>
@@ -138,7 +138,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40400">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40400">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40400</field>
 			<field name="name">4. Aprovisionamientos</field>
@@ -149,7 +149,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40410">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40410">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40410</field>
 			<field name="name">a) Consumo de mercaderías</field>
@@ -160,7 +160,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40420">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40420">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40420</field>
 			<field name="name">b) Consumo de materias primas y otras materias consumibles</field>
@@ -171,7 +171,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40430">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40430">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40430</field>
 			<field name="name">c) Trabajos realizados por otras empresas</field>
@@ -182,7 +182,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40440">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40440">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40440</field>
 			<field name="name">d) Deterioro de mercaderías, materias primas y otros aprovisionamientos</field>
@@ -193,7 +193,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40500">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40500">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40500</field>
 			<field name="name">5. Otros ingresos de explotación</field>
@@ -204,7 +204,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40510">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40510">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40510</field>
 			<field name="name">a) Ingresos accesorios y otros de gestión corriente</field>
@@ -215,7 +215,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40520">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40520">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40520</field>
 			<field name="name">b) Subvenciones de explotación incorporadas al resultado del ejercicio</field>
@@ -226,7 +226,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40600">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40600">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40600</field>
 			<field name="name">6. Gastos de personal</field>
@@ -237,7 +237,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40610">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40610">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40610</field>
 			<field name="name">a) Sueldos, salarios y asimilados</field>
@@ -248,7 +248,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40620">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40620">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40620</field>
 			<field name="name">b) Cargas sociales</field>
@@ -259,7 +259,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40630">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40630">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40630</field>
 			<field name="name">c) Provisiones</field>
@@ -270,7 +270,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40700">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40700">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40700</field>
 			<field name="name">7. Otros gastos de explotación</field>
@@ -281,7 +281,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40710">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40710">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40710</field>
 			<field name="name">a) Servicios exteriores</field>
@@ -292,7 +292,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40720">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40720">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40720</field>
 			<field name="name">b) Tributos</field>
@@ -303,7 +303,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40730">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40730">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40730</field>
 			<field name="name">c) Pérdidas, deterioro y variación de provisiones por operaciones comerciales</field>
@@ -314,7 +314,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40740">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40740">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40740</field>
 			<field name="name">d) Otros gastos de gestión corriente </field>
@@ -325,7 +325,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40800">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40800">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40800</field>
 			<field name="name">8. Amortización del inmovilizado</field>
@@ -336,7 +336,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_40900">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_40900">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">40900</field>
 			<field name="name">9. Imputación de subvenciones de inmovilizado no financiero y otras</field>
@@ -347,7 +347,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41000">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41000">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41000</field>
 			<field name="name">10. Excesos de provisiones </field>
@@ -358,7 +358,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41100">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41100">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41100</field>
 			<field name="name">11. Deterioro y resultado por enajenaciones del inmovilizado</field>
@@ -369,7 +369,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41110">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41110">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41110</field>
 			<field name="name">a) Deterioro y pérdidas</field>
@@ -380,7 +380,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41120">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41120">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41120</field>
 			<field name="name">b) Resultados por enajenaciones y otras</field>
@@ -391,7 +391,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41200">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41200">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41200</field>
 			<field name="name">12. Diferencia negativa de combinaciones de negocio</field>
@@ -402,7 +402,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41300">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41300">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41300</field>
 			<field name="name">13. Otros resultados</field>
@@ -413,7 +413,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_49100">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_49100">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">49100</field>
 			<field name="name">A.1)  RESULTADO DE EXPLOTACIÓN (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 + 13)</field>
@@ -424,7 +424,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l1</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41400">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41400">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41400</field>
 			<field name="name">14. Ingresos financieros</field>
@@ -435,7 +435,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41410">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41410">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41410</field>
 			<field name="name">a) De participaciones en instrumentos de patrimonio</field>
@@ -446,7 +446,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41411">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41411">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41411</field>
 			<field name="name">a 1) En empresas del grupo y asociadas</field>
@@ -457,7 +457,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l5</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41412">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41412">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41412</field>
 			<field name="name">a 2) En terceros</field>
@@ -468,7 +468,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l5</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41420">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41420">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41420</field>
 			<field name="name">b) De valores negociables y otros instrumentos financieros</field>
@@ -479,7 +479,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41421">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41421">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41421</field>
 			<field name="name">b 1) De empresas del grupo y asociadas</field>
@@ -490,7 +490,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l5</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41422">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41422">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41422</field>
 			<field name="name">b 2) De terceros</field>
@@ -501,7 +501,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l5</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41430">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41430">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41430</field>
 			<field name="name">c) Imputación de subvenciones, donaciones y legados de carácter inanciero</field>
@@ -512,7 +512,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41500">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41500">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41500</field>
 			<field name="name">15. Gastos financieros</field>
@@ -523,7 +523,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41510">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41510">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41510</field>
 			<field name="name">a) Por deudas con empresas del grupo y asociadas</field>
@@ -534,7 +534,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41520">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41520">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41520</field>
 			<field name="name">b) Por deudas con terceros</field>
@@ -545,7 +545,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41530">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41530">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41530</field>
 			<field name="name">c) Por actualización de provisiones</field>
@@ -556,7 +556,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41600">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41600">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41600</field>
 			<field name="name">16. Variación de valor razonable en instrumentos financieros</field>
@@ -567,7 +567,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41610">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41610">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41610</field>
 			<field name="name">a) Cartera de negociación y otros </field>
@@ -578,7 +578,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41620">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41620">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41620</field>
 			<field name="name">b) Imputación al resultado del ejercicio por activos financieros disponibles para la venta</field>
@@ -589,7 +589,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41700">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41700">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41700</field>
 			<field name="name">17. Diferencias de cambio</field>
@@ -600,7 +600,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41800">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41800">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41800</field>
 			<field name="name">18. Deterioro y resultado por enajenaciones de instrumentos financieros</field>
@@ -611,7 +611,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41810">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41810">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41810</field>
 			<field name="name">a) Deterioros y pérdidas</field>
@@ -622,7 +622,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41820">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41820">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41820</field>
 			<field name="name">b) Resultados por enajenaciones y otras</field>
@@ -633,7 +633,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_49200">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_49200">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">49200</field>
 			<field name="name">A.2) RESULTADO FINANCIERO (14 + 15 + 16 + 17 + 18)</field>
@@ -644,7 +644,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l1</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_49300">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_49300">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">49300</field>
 			<field name="name">A.3) RESULTADO ANTES DE IMPUESTOS (A.1 + A.2)</field>
@@ -655,7 +655,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l1</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_41900">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_41900">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">41900</field>
 			<field name="name">19. Impuestos sobre beneficios</field>
@@ -666,7 +666,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_49400 ">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_49400 ">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">49400</field>
 			<field name="name">A.4) RESULTADO DEL EJERCICIO PROCEDENTE DE OPERACIONES CONTINUADAS (A.3 + 19)</field>
@@ -677,7 +677,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l1</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_b">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_b">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">B</field>
 			<field name="name">B) OPERACIONES INTERRUMPIDAS</field>
@@ -688,7 +688,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l1</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_42000">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_42000">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">42000</field>
 			<field name="name">20. Resultado del ejercicio procedente de operaciones interrumpidas neto de impuestos</field>
@@ -699,7 +699,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-	<record model="account.balance.report.template.line" id="es_pyg_normal_49500">
+	<record model="account.balance.reporting.template.line" id="es_pyg_normal_49500">
 			<field name="report_id" ref="es_pyg_normal"/>
 			<field name="code">49500</field>
 			<field name="name">A.5) RESULTADO DEL EJERCICIO (A.4 + 20)</field>

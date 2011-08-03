@@ -35,7 +35,7 @@ Author: Raimon Esteve (Zikzakmedia) - resteve@zikzakmedia.com
 <openerp>
 	<data>
 
-		<record model="account.balance.report.template" id="es_balance_abreviado">
+		<record model="account.balance.reporting.template" id="es_balance_abreviado">
 			<field name="name">BALANCE ABREVIADO (PGCE 2008)</field>
 			<field name="type">system</field>
 			<field name="balance_mode">2</field>
@@ -72,7 +72,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_11000">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11000">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">11000</field>
 			<field name="name">A) ACTIVO NO CORRIENTE</field>
@@ -83,7 +83,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l1</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_11100">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11100">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">11100</field>
 			<field name="name">I. Inmovilizado intangible</field>
@@ -95,7 +95,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_11200">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11200">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">11200</field>
 			<field name="name">II. Inmovilizado material </field>
@@ -107,7 +107,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_11300">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11300">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">11300</field>
 			<field name="name">III. Inversiones inmobiliarias</field>
@@ -119,7 +119,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_11400">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11400">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">11400</field>
 			<field name="name">IV. Inversiones en empresas del grupo y asociadas a largo plazo</field>
@@ -131,7 +131,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_11500">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11500">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">11500</field>
 			<field name="name">V. Inversiones financieras a largo plazo</field>
@@ -143,7 +143,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_11600">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11600">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">11600</field>
 			<field name="name">VI. Activos por impuesto diferido</field>
@@ -155,7 +155,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_11700">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11700">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">11700</field>
 			<field name="name">VII. Deudores comerciales no corrientes</field>
@@ -167,7 +167,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_12000">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12000">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">12000</field>
 			<field name="name">B) ACTIVO CORRIENTE</field>
@@ -178,7 +178,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l1</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_12100">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12100">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">12100</field>
 			<field name="name">I. Activos no corrientes mantenidos para la venta</field>
@@ -190,7 +190,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_12200">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12200">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">12200</field>
 			<field name="name">II. Existencias</field>
@@ -202,7 +202,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_12300">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12300">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">12300</field>
 			<field name="name">III. Deudores comerciales y otras cuentas a cobrar</field>
@@ -213,7 +213,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_12380">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12380">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">12380</field>
 			<field name="name">1. Clientes por ventas y prestaciones de servicios</field>
@@ -225,7 +225,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_12381">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12381">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">12381</field>
 			<field name="name">a) Clientes por ventas y prestaciones de servicios a largo plazo</field>
@@ -237,7 +237,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l5</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_12382">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12382">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">12382</field>
 			<field name="name">b) Clientes por ventas y prestaciones de servicios a corto plazo</field>
@@ -249,7 +249,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l5</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_12370">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12370">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">12370</field>
 			<field name="name">2. Accionistas (socios) por desembolsos exigidos</field>
@@ -261,7 +261,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_12390">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12390">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">12390</field>
 			<field name="name">3. Otros deudores</field>
@@ -273,7 +273,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_12400">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12400">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">12400</field>
 			<field name="name">IV. Inversiones en empresas del grupo y asociadas a corto plazo</field>
@@ -285,7 +285,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_12500">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12500">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">12500</field>
 			<field name="name">V. Inversiones financieras a corto plazo</field>
@@ -297,7 +297,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_12600">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12600">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">12600</field>
 			<field name="name">VI. Periodificaciones a corto plazo</field>
@@ -309,7 +309,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_12700">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12700">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">12700</field>
 			<field name="name">VII. Efectivo y otros activos líquidos equivalentes</field>
@@ -321,7 +321,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_10000">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_10000">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">10000</field>
 			<field name="name">TOTAL ACTIVO (A + B)</field>
@@ -332,7 +332,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l1</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_20000">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_20000">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">20000</field>
 			<field name="name">A) PATRIMONIO NETO</field>
@@ -343,7 +343,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l1</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_21000">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21000">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">21000</field>
 			<field name="name">A-1) Fondos propios</field>
@@ -354,7 +354,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l2</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_21100">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21100">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">21100</field>
 			<field name="name">I. Capital</field>
@@ -365,7 +365,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_21110">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21110">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">21110</field>
 			<field name="name">1. Capital escriturado</field>
@@ -376,7 +376,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_21120">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21120">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">21120</field>
 			<field name="name">2. (Capital no exigido) </field>
@@ -387,7 +387,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_21200">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21200">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">21200</field>
 			<field name="name">II. Prima de emisión</field>
@@ -398,7 +398,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_21300">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21300">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">21300</field>
 			<field name="name">III. Reservas</field>
@@ -409,7 +409,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_21400">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21400">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">21400</field>
 			<field name="name">IV. (Acciones y participaciones en patrimonio propias)</field>
@@ -420,7 +420,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_21500">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21500">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">21500</field>
 			<field name="name">V. Resultados de ejercicios anteriores </field>
@@ -431,7 +431,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_21600">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21600">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">21600</field>
 			<field name="name">VI. Otras aportaciones de socios</field>
@@ -442,7 +442,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_21700">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21700">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">21700</field>
 			<field name="name">VII. Resultado del ejercicio</field>
@@ -453,7 +453,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_21800">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21800">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">21800</field>
 			<field name="name">VIII. (Dividendo a cuenta)</field>
@@ -464,7 +464,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_21900">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21900">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">21900</field>
 			<field name="name">IX. Otros instrumentos de patrimonio neto</field>
@@ -475,7 +475,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_22000">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_22000">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">22000</field>
 			<field name="name">A-2) Ajustes por cambios de valor</field>
@@ -486,7 +486,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l2</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_23000">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_23000">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">23000</field>
 			<field name="name">A-3) Subvenciones, donaciones y legados recibidos</field>
@@ -497,7 +497,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l2</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_31000">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31000">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">31000</field>
 			<field name="name">B) PASIVO NO CORRIENTE</field>
@@ -508,7 +508,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l1</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_31100">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31100">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">31100</field>
 			<field name="name">I. Provisiones a largo plazo</field>
@@ -519,7 +519,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_31200">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31200">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">31200</field>
 			<field name="name">II. Deudas a largo plazo</field>
@@ -530,7 +530,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_31220">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31220">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">31220</field>
 			<field name="name">1. Deudas con entidades de crédito</field>
@@ -541,7 +541,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_31230">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31230">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">31230</field>
 			<field name="name">2. Acreedores por arrendamiento financiero</field>
@@ -552,7 +552,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_31290">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31290">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">31290</field>
 			<field name="name">3. Otras deudas a largo plazo</field>
@@ -563,7 +563,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_31300">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31300">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">31300</field>
 			<field name="name">III. Deudas con empresas del grupo y asociadas a largo plazo</field>
@@ -574,7 +574,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_31400">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31400">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">31400</field>
 			<field name="name">IV. Pasivos por impuesto diferido</field>
@@ -585,7 +585,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_31500">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31500">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">31500</field>
 			<field name="name">V. Periodificaciones a largo plazo</field>
@@ -596,7 +596,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_31600">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31600">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">31600</field>
 			<field name="name">VI. Acreedores comerciales no corrientes</field>
@@ -607,7 +607,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_31700">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31700">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">31700</field>
 			<field name="name">VII. Deuda con características especiales a largo plazo</field>
@@ -618,7 +618,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_32000">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32000">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32000</field>
 			<field name="name">C) PASIVO CORRIENTE</field>
@@ -629,7 +629,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l1</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_32100">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32100">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32100</field>
 			<field name="name">I. Pasivos vinculados con activos no corrientes mantenidos para la venta</field>
@@ -640,7 +640,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_32200">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32200">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32200</field>
 			<field name="name">II. Provisiones a corto plazo</field>
@@ -651,7 +651,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_32300">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32300">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32300</field>
 			<field name="name">III. Deudas a corto plazo</field>
@@ -662,7 +662,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_32320">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32320">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32320</field>
 			<field name="name">1. Deudas con entidades de crédito</field>
@@ -673,7 +673,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_32330">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32330">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32330</field>
 			<field name="name">2. Acreedores por arrendamiento financiero</field>
@@ -684,7 +684,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_32390">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32390">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32390</field>
 			<field name="name">3. Otras deudas a corto plazo</field>
@@ -695,7 +695,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_32400">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32400">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32400</field>
 			<field name="name">IV. Deudas con empresas del grupo y asociadas a corto plazo</field>
@@ -706,7 +706,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_32500">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32500">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32500</field>
 			<field name="name">V. Acreedores comerciales y otras cuentas a pagar</field>
@@ -717,7 +717,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_32580">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32580">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32580</field>
 			<field name="name">1. Proveedores</field>
@@ -728,7 +728,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_32581">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32581">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32581</field>
 			<field name="name">a) Proveedores a largo plazo</field>
@@ -739,7 +739,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l5</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_32582">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32582">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32582</field>
 			<field name="name">b) Proveedores a corto plazo</field>
@@ -750,7 +750,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l5</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_32590">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32590">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32590</field>
 			<field name="name">2. Otros acreedores</field>
@@ -761,7 +761,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_32600">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32600">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32600</field>
 			<field name="name">VI. Periodificaciones a corto plazo</field>
@@ -772,7 +772,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_32700">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32700">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">32700</field>
 			<field name="name">VII. Deuda con características especiales a corto plazo</field>
@@ -783,7 +783,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l3</field>
 		</record>
 
-		<record model="account.balance.report.template.line" id="es_balance_abreviado_30000">
+		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_30000">
 			<field name="report_id" ref="es_balance_abreviado"/>
 			<field name="code">30000</field>
 			<field name="name">TOTAL PATRIMONIO NETO Y PASIVO (A + B + C)</field>
