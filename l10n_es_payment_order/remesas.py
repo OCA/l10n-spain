@@ -18,6 +18,9 @@
 # Adaptación para instalación OpenERP 6.0.0 sobre account_payment_extension: Zikzakmedia S.L. 2010
 #   Jordi Esteve <jesteve@zikzakmedia.com>
 #
+# Añadidos conceptos extras del CSB 19: Acysos S.L. 2011
+#   Ignacio Ibeas <ignacio@acysos.com>
+#
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -93,6 +96,7 @@ class payment_mode(osv.osv):
             ('other','Other'),
         ],'Concept of the Order', help="Concept of the Order."),
         'direct_pay_order':fields.boolean('Direct Pay Order', help="By default 'Not'."),
+        'csb19_extra_concepts': fields.boolean('Extra Concepts', help='Check it if you want to add the invoice lines to the extra concepts (Max. 15 lines)'),
     }
 
     _defaults = {

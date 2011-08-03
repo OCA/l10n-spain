@@ -5,6 +5,7 @@
 #    Copyright (c) 2008 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
 #    Copyright (c) 2008 Acysos SL. All Rights Reserved.
+#                       Ignacio Ibeas <ignacio@acysos.com>
 #    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
 #    $Id$
 #
@@ -43,7 +44,7 @@ Al crear el fichero bancario CSB:
 
 También se proporciona un informe para imprimir un listado de los pagos/cobros de la orden de pago/cobro (remesa).
 """,
-    "website" : "www.zikzakmedia.com",
+    "website" : "www.zikzakmedia.com,www.acysos.com",
     "license" : "GPL-3",
     "depends" : ["base", "account", "account_payment_extension",],
     "init_xml" : ["remesas_data.xml"],

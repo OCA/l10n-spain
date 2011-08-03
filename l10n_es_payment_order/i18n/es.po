@@ -754,6 +754,16 @@ msgstr "Correo certificado"
 msgid "Type:"
 msgstr "Tipo:"
 
+#. module: l10n_es_payment_order
+#: view:payment.mode:0
+msgid "CSB 19 Options"
+msgstr "Opciones CSB 19"
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb19_extra_concepts:0
+msgid "Extra Concepts"
+msgstr "Conceptos Extra"
+
 #~ msgid ""
 #~ "Check it if you want to add the 015 data type and the text of the letter "
 #~ "in the file."

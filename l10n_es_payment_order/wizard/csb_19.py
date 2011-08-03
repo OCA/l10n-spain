@@ -18,6 +18,9 @@
 # Rehecho de nuevo para instalación OpenERP 5.0.0 sobre account_payment_extension: Zikzakmedia S.L. 2009
 #   Jordi Esteve <jesteve@zikzakmedia.com>
 #
+# Añadidos conceptos extras del CSB 19: Acysos S.L. 2011
+#   Ignacio Ibeas <ignacio@acysos.com>
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -123,6 +126,41 @@ class csb_19:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 19', texto), True)
         return texto
 
+    def _extra_opcional_19(self, recibo):
+        """Para poner los 15 conceptos opcional de los registros 5681-5685 utilizando las lineas de facturación (Máximo 15 lineas)"""
+        res = {}
+        res['texto'] = ''
+        res['total_lines'] = 0
+        counter = 1
+        registry_counter = 1
+        lenght = 0
+        for invoice in recibo['ml_inv_ref']:
+            lenght += len(invoice.invoice_line)
+        for invoice in recibo['ml_inv_ref']:
+            for invoice_line in invoice.invoice_line:
+                if counter <= lenght:
+                    if counter <= 15:
+                        if (counter-1)%3 == 0:
+                            res['texto'] += '568'+str(registry_counter)
+                            res['texto'] += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
+                            res['texto'] += str(recibo['name']).zfill(12)
+                        price = ' %(#).2f ' % {'#' : invoice_line.price_subtotal}
+                        res['texto'] += to_ascii(invoice_line.name)[0:(40-len(price))].ljust(40-len(price))
+                        res['texto'] += to_ascii(price.replace('.',','))
+                        if counter % 3 == 0:
+                            res['texto'] += 14*' '+'\r\n'
+                            res['total_lines'] += 1
+                            if len(res['texto']) != registry_counter*164:
+                                raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 19', res['texto']), True)
+                            registry_counter += 1
+                        elif counter == lenght:
+                            res['texto'] += (3-(counter % 3))*40*' '+14*' '+'\r\n'
+                            res['total_lines'] += 1
+                            if len(res['texto']) != registry_counter*164:
+                                raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 19', res['texto']), True)
+                        counter += 1
+        return res
+
     def _total_ordenante_19(self):
         texto = '5880'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
@@ -190,6 +228,12 @@ class csb_19:
                 self.total_payments += 1
                 self.group_payments += 1
                 self.group_amount += abs( recibo['amount'] )
+                if order.mode.csb19_extra_concepts:
+                    extra_concepts = self._extra_opcional_19(recibo)
+                    txt_remesa += extra_concepts['texto']
+                    self.total_optional_lines += extra_concepts['total_lines']
+                    self.group_optional_lines += extra_concepts['total_lines']
+
                 if recibo['communication2']:
                     txt_remesa += self._individual_opcional_19(recibo)
                     #self.num_lineas_opc = self.num_lineas_opc + 1
@@ -208,6 +252,11 @@ class csb_19:
                 self.total_payments += 1
                 self.group_payments += 1
                 self.group_amount += abs( recibo['amount'] )
+                if order.mode.csb19_extra_concepts:
+                    extra_concepts = self._extra_opcional_19(recibo)
+                    txt_remesa += extra_concepts['texto']
+                    self.total_optional_lines += extra_concepts['total_lines']
+                    self.group_optional_lines += extra_concepts['total_lines']
                 if recibo['communication2']:
                     txt_remesa += self._individual_opcional_19(recibo)
                     self.total_optional_lines += 1

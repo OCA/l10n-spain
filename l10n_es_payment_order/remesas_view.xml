@@ -44,6 +44,10 @@
                             <separator string="CSB 32 Options" colspan="2"/>
                             <field name="cedente"/>
                         </group>
+                        <group colspan="2" col="2" attrs="{ 'invisible': [('tipo', '!=', 'csb_19')] }">
+                            <separator string="CSB 19 Options" colspan="2"/>
+                            <field name="csb19_extra_concepts"/>
+                        </group>
                         <group colspan="2" col="4" attrs="{'invisible': [('tipo', '!=', 'csb_34')]}">
                             <separator string="CSB 34 Options" colspan="4"/>
                             <field name="csb34_type" colspan="1"/>

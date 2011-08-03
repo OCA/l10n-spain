@@ -718,3 +718,12 @@ msgstr "Certified Mail"
 msgid "Type:"
 msgstr "Type:"
 
+#. module: l10n_es_payment_order
+#: view:payment.mode:0
+msgid "CSB 19 Options"
+msgstr "CSB 19 Options"
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb19_extra_concepts:0
+msgid "Extra Concepts"
+msgstr "Extra Concepts"
