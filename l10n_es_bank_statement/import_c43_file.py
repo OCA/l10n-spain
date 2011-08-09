@@ -400,7 +400,10 @@ class l10n_es_bank_statement_import_c43_wizard(osv.osv_memory):
                     #
                     # Use partner accounts
                     #
-                    partner = statement_line_facade._find_partner_by_line_vat_number(cr, uid, st_line, context)
+                    partner = statement_line_facade._find_partner_by_line_vat_number(cr, uid, st_line['referencia1'][:9], context) or \
+                              statement_line_facade._find_partner_by_line_vat_number(cr, uid, st_line['referencia1'][-9:], context) or \
+                              statement_line_facade._find_partner_by_line_vat_number(cr, uid, st_line['referencia2'][:9], context) or \
+                              statement_line_facade._find_partner_by_line_vat_number(cr, uid, st_line['referencia2'][-9:], context)
                     if partner:
                         # Use the partner accounts
                         if values['type'] == 'customer':
