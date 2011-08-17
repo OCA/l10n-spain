@@ -52,7 +52,7 @@ Posteriormente podrá crear los bancos españoles mediante el menú "Ventas/Conf
         "l10n_es_aeat",
         "l10n_es_aeat_mod340",
         "l10n_es_aeat_mod347",
-        "l10n_es_aeat_mod349",      
+        "l10n_es_aeat_mod349",
         "l10n_es_bank_statement",
         "l10n_es_fiscal_year_closing",
         "l10n_es_partner",

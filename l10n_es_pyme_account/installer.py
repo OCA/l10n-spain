@@ -23,8 +23,8 @@
 #
 ##############################################################################
 
-
 from osv import fields, osv
+from datetime import datetime
 
 
 class account_fiscalyear(osv.osv):
@@ -76,7 +76,6 @@ class account_installer(osv.osv_memory):
     _name = 'account.installer'
     _inherit = 'account.installer'
     
-    
     _columns = {
                 'open_close_periods':fields.boolean('Create Open/Close and PyG Periods'),   
             }
@@ -91,10 +90,10 @@ class account_installer(osv.osv_memory):
         
         fy_obj = self.pool.get('account.fiscalyear')
         
-        if res.get('open_close_periods', False) and res.get('date_start', False) and res.get('date_stop', False) and res.get('company_id', False):
-            f_ids = fy_obj.search(cr, uid, [('date_start', '<=', res['date_start']), ('date_stop', '>=', res['date_stop']), ('company_id', '=', res['company_id'])], context=context)
-            if f_ids:
-                fy_obj.create_period_special(cr, uid, [f_ids[0]])
-
+        for res in self.read(cr, uid, ids, context=context):
+            if res.get('open_close_periods', False) and res.get('date_start', False) and res.get('date_stop', False) and res.get('company_id', False):
+                f_ids = fy_obj.search(cr, uid, [('date_start', '<=', res['date_start']), ('date_stop', '>=', res['date_stop']), ('company_id', '=', res['company_id'])], context=context)
+                if f_ids:
+                    fy_obj.create_period_special(cr, uid, [f_ids[0]])
 
 account_installer()
