@@ -45,7 +45,7 @@ Se ha eliminado la validación de CIF/NIF españoles, pues el módulo base_vat d
 
 NOTA: Éste módulo añade un asistente en Empresas/Configuración/Bancos para la importación de todos los bancos y cajas de España. Antes de ejecutar éste asistente deberá tener importadas las provincias disponibles en el módulo l10n_es_toponyms.
 """,
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "depends" : [
         "base",
         "base_iban",

@@ -50,7 +50,7 @@ Module for the importation of Spanish bank statements following the C43 normativ
     The module also adds a wizard in Financial Management/Configuration/C43 bank statements to import the default statement concepts, that must be run after creating the spanish chart of accounts (l10n_es module).
     """,
     "website" : "www.zikzakmedia.com / www.pexego.es / www.acysos.com / www.nan-tic.com",
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "depends" : [
         "account",
         "account_voucher",

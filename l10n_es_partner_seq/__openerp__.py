@@ -34,7 +34,7 @@
 
 La secuencia de empresa por defecto se inicia en NP00101 (prefijo NP y relleno de 5 dígitos) y puede modificarse posteriormente en Administración/Personalización/Secuencias. Los códigos de las cuentas a pagar/cobrar se crearán usando los últimos dígitos necesarios del código de empresa para que, junto con el prefijo indicado, tengan el número total de dígitos estipulado. Si, por ejemplo, las cuentas son de 8 dígitos, el prefijo es 4300 y el código de empresa es NP00101 sólo se usaran los 4 últimos dígitos del código de empresa: 4300 + 0101 = 43000101.
     """,
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "depends" : ["base","account","l10n_es",],
     "init_xml" : [],
     "update_xml" : [

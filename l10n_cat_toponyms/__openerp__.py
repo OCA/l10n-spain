@@ -34,7 +34,7 @@
   * Proporciona un assistent per donar d'alta les comarques per defecte associats als codis postals dels Països Catalans. Permet omplenar automàticament el camp comarca del formulari d'empresa i contacte a partir del codi postal.
 
 Nota: No funciona amb el mòdul city instal·lat.""",
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "depends" : ["base","l10n_es_toponyms"],
     "init_xml" : ["l10n_cat_toponyms_data.xml"],
     "demo_xml" : [ ],

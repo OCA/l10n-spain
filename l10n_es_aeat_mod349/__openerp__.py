@@ -23,7 +23,7 @@
     "name" : "AEAT Model 349",
     "version" : "1.0",
     "author" : "Pexego",
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "category": 'Localisation/Accounting',
     "description": """
 Módulo para la presentación del Modelo AEAT 349 (Declaración Recapitulativa de Operaciones Intracomunitarias)

@@ -39,7 +39,7 @@ Después de instalar este módulo y todas sus dependencias, deberá crear los to
 
 Posteriormente podrá crear los bancos españoles mediante el menú "Ventas/Configuración/Libreta de direcciones/Bancos/Asistente de importación de todos los bancos del Estado Español" y los conceptos de extractos bancarios mediante el menú "Contabilidad/Configuración/Varios/Extractos bancarios C43/Asistente de importación de conceptos de extractos".
 """,
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "depends" : [
         "account",
         "account_financial_report",

@@ -31,7 +31,7 @@
   * Searching of accounts using a dot to fill the zeroes (like 43.27 to search account 43000027).
   * The account chart template field is added to account templates, tax templates, tax codes templates and fiscal positions templates in list and search views. It helps to filter the template items by the account chart template that they belong.
 """,
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "depends" : ["l10n_es"],
     "init_xml" : [
     ],

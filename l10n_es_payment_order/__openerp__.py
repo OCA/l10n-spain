@@ -45,7 +45,7 @@ Al crear el fichero bancario CSB:
 También se proporciona un informe para imprimir un listado de los pagos/cobros de la orden de pago/cobro (remesa).
 """,
     "website" : "www.zikzakmedia.com,www.acysos.com",
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "depends" : ["base", "account", "account_payment_extension",],
     "init_xml" : ["remesas_data.xml"],
     "demo_xml" : [],

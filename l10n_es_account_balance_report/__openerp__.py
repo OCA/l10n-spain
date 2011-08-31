@@ -24,7 +24,7 @@
         "name" : "Spanish account balance reports",
         "version" : "0.1",
         "author" : "Pexego, Zikzakmedia",
-        "license" : "Affero GPL-3",
+        "license" : "AGPL-3",
         "website" : "http://www.pexego.es",
         "category" : "Localisation/Accounting",
         "description": """Spanish official account balance reports:

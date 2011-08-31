@@ -35,7 +35,7 @@
 
 Nota: No funciona con el módulo city instalado.""",
     "depends" : ["base"],
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "init_xml" : ["l10n_es_toponyms_region_data.xml"],
     "demo_xml" : [ ],
     "update_xml" : [

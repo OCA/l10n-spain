@@ -36,7 +36,7 @@
 
 Los datos han sido obtenidos de los datos públicos del Instituto Nacional de Estadística (INE).""",
     "depends" : ["base"],
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "init_xml" : ["l10n_es_toponyms_country.xml", ],
     "demo_xml" : [ ],
     "update_xml" : [

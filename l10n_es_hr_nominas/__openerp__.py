@@ -27,7 +27,7 @@
     "author" : "Ting!, Acysos S.L.",
     "website": "http://www.ting.es",
     "category" : "Generic Modules/Human Resources",
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "description": """Recursos Humanos: Gestión de Nóminas
 Este módulo permite automatizar la creación de los asientos contables para las nóminas de los empleados.
         

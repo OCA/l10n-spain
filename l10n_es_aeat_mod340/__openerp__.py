@@ -49,7 +49,7 @@ Exportación de asientos resumen de facturas
 ADVERTENCIA: Los periodos de la empresas deben coincidir con los peridos de presentación de IVA.
 """,
     "website" : "www.acysos.com, www.ting.es",
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "depends" : ["account",
                  "base_vat",
                  "l10n_es_aeat",

@@ -38,7 +38,7 @@
 Note: You should install the l10n_ES_account_balance_report module
 for yearly account reporting (balance, profit & losses).
 """,
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "depends" : ["account", "base_vat", "base_iban"],
     "init_xml" : [
         "account_chart.xml",

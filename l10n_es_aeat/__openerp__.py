@@ -23,7 +23,7 @@
     'name' : "AEAT Base",
     'version' : "1.0",
     'author' : "Pexego",
-    'license' : "Affero GPL-3",
+    'license' : "AGPL-3",
     'website' : "http://www.pexego.es",
     'category' : "Localisation/Accounting",
     'init_xml' : [

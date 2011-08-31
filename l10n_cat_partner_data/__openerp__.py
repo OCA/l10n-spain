@@ -30,7 +30,7 @@
     "description": """Afegeix dades inicials a les taules:
     * Canals
     * Categories d'empreses""",
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "depends" : [
         "base",
         ],

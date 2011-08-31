@@ -31,7 +31,7 @@
     "description": """Añade datos iniciales a las tablas:
     * Canales
     * Categorías de empresas""",
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "depends" : [
         "base",
         ],

@@ -23,7 +23,7 @@
     "name" : "AEAT Model 347",
     "version" : "1.0",
     "author" : "Pexego, ASR-OSS",
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "website" : "http://www.pexego.es, www.asr-oss.com",
     "category" : "Localisation/Accounting",
     "description" : """

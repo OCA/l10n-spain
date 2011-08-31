@@ -46,7 +46,7 @@ It's hightly configurable, and comes preconfigured for the current Spanish chart
 Also is stateful, saving all the info about the fiscal year closing, so the
 user can cancel and undo the operations easily.
     """,
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "depends" : [
                     "base",
                     "account",
