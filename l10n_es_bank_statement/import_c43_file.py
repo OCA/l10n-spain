@@ -447,7 +447,7 @@ class l10n_es_bank_statement_import_c43_wizard(osv.osv_memory):
                         'search_by': search_by,
                     }, context)
                     result = pool.get('account.bank.statement.line').reconcile_search(cr, uid, [line_id], context, maturity_date, max_date_diff)
-                    if result[line_id]:
+                    if result[line_id] or search_by == 'payment_order':
                         found = True
                         break
 
