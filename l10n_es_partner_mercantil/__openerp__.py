@@ -34,7 +34,7 @@
     * Seccion
     * Tomo
 """,
-    "license" : "Affero GPL-3",
+    "license" : "AGPL-3",
     "depends" : [
         "base",
         ],
