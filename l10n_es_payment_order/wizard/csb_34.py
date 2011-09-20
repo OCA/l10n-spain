@@ -272,68 +272,70 @@ class csb_34:
             text += 5*' '
             text += '\r\n'
 
-            # Séptimo Registro
-            if self.order.mode.payroll_check:
+            if self.order.mode.csb34_type in ('promissory_note','cheques','certified_payments'):
+
+                # Séptimo Registro
+                if self.order.mode.payroll_check:
+                    text += '06'
+                    text += csb34_code[csb34_type] 
+                    text += self._start_34(cr, context)
+                    text += convert(cr, recibo['partner_id'].vat, 12, context)
+                    text += '018'
+                    text += convert(cr, recibo['partner_id'].vat, 36, context)
+                    text += 5*' '
+                    text += '\r\n'
+
+                # Registro ciento uno (registro usados por algunos bancos como texto de la carta)
                 text += '06'
                 text += csb34_code[csb34_type] 
                 text += self._start_34(cr, context)
                 text += convert(cr, recibo['partner_id'].vat, 12, context)
-                text += '018'
-                text += convert(cr, recibo['partner_id'].vat, 36, context)
-                text += 5*' '
-                text += '\r\n'
-
-            # Registro ciento uno (registro usados por algunos bancos como texto de la carta)
-            text += '06'
-            text += csb34_code[csb34_type] 
-            text += self._start_34(cr, context)
-            text += convert(cr, recibo['partner_id'].vat, 12, context)
-            text += '101'
-            message = self.get_message(recibo, self.order.mode.text1)
-            text += convert(cr, message, 36, context)
-            text += 5*' '
-            text += '\r\n'
-
-            # Registro ciento dos (registro usados por algunos bancos como texto de la carta)
-            text += '06'
-            text += csb34_code[csb34_type] 
-            text += self._start_34(cr, context)
-            text += convert(cr, recibo['partner_id'].vat, 12, context)
-            text += '102'
-            message = self.get_message(recibo, self.order.mode.text2)
-            text += convert(cr, message, 36, context)
-            text += 5*' '
-            text += '\r\n'
-
-            # Registro ciento tres (registro usados por algunos bancos como texto de la carta)
-            text += '06'
-            text += csb34_code[csb34_type] 
-            text += self._start_34(cr, context)
-            text += convert(cr, recibo['partner_id'].vat, 12, context)
-            text += '103'
-            message = self.get_message(recibo, self.order.mode.text3)
-            text += convert(cr, message, 36, context)
-            text += 5*' '
-            text += '\r\n'
-
-            # Registro novecientos diez (registro usados por algunos bancos como fecha de la carta)
-            if self.order.mode.add_date:
-                if recibo['date']:
-                    date = recibo['date']
-                elif self.order.date_scheduled:
-                    date = self.order.date_scheduled
-                else:
-                    date = time.strftime('%Y-%m-%d')
-                [year,month,day] = date.split('-')
-                message = day+month+year
-                text += '06'
-                text += csb34_code[csb34_type] 
-                text += self._start_34(cr, context)
-                text += convert(cr, recibo['partner_id'].vat, 12, context)
-                text += '910'
+                text += '101'
+                message = self.get_message(recibo, self.order.mode.text1)
                 text += convert(cr, message, 36, context)
                 text += 5*' '
                 text += '\r\n'
+
+                # Registro ciento dos (registro usados por algunos bancos como texto de la carta)
+                text += '06'
+                text += csb34_code[csb34_type] 
+                text += self._start_34(cr, context)
+                text += convert(cr, recibo['partner_id'].vat, 12, context)
+                text += '102'
+                message = self.get_message(recibo, self.order.mode.text2)
+                text += convert(cr, message, 36, context)
+                text += 5*' '
+                text += '\r\n'
+
+                # Registro ciento tres (registro usados por algunos bancos como texto de la carta)
+                text += '06'
+                text += csb34_code[csb34_type] 
+                text += self._start_34(cr, context)
+                text += convert(cr, recibo['partner_id'].vat, 12, context)
+                text += '103'
+                message = self.get_message(recibo, self.order.mode.text3)
+                text += convert(cr, message, 36, context)
+                text += 5*' '
+                text += '\r\n'
+
+                # Registro novecientos diez (registro usados por algunos bancos como fecha de la carta)
+                if self.order.mode.add_date:
+                    if recibo['date']:
+                        date = recibo['date']
+                    elif self.order.date_scheduled:
+                        date = self.order.date_scheduled
+                    else:
+                        date = time.strftime('%Y-%m-%d')
+                    [year,month,day] = date.split('-')
+                    message = day+month+year
+                    text += '06'
+                    text += csb34_code[csb34_type] 
+                    text += self._start_34(cr, context)
+                    text += convert(cr, recibo['partner_id'].vat, 12, context)
+                    text += '910'
+                    text += convert(cr, message, 36, context)
+                    text += 5*' '
+                    text += '\r\n'
 
         if len(text)%74 != 0:
             raise Log(_('Configuration error:\n\nA line in "%s" is not 72 characters long:\n%s') % ('Detalle nacionales 34', text), True)  
