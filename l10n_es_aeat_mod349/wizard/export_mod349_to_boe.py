@@ -218,14 +218,14 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
 
         text += '2'                                                             # Tipo de registro
         text += '349'                                                           # Modelo de declaración
-        text += self._formatNumber(report.fiscalyear_id.code, 4)                # Ejercicio
+        text += self._formatNumber(report.fiscalyear_id.code[:4], 4)                # Ejercicio
         text += self._formatString(report.company_vat, 9)                       # NIF del declarante
         text += 58*' '                                                          # Blancos        
         text += self._formatString(refund_record.partner_id.vat, 17)            # NIF del operador intracomunitario
         text += self._formatString(refund_record.partner_id.name, 40)           # Apellidos y nombre o razón social del operador intracomunitario
         text += self._formatString(refund_record.operation_key, 1)              # Clave de operación
         text += 13*' '                                                          # Blancos
-        text += self._formatNumber(refund_record.fiscalyear_id.code, 4)         # Ejercicio (de la rectificación)
+        text += self._formatNumber(refund_record.fiscalyear_id.code[:4], 4)         # Ejercicio (de la rectificación)
         text += self._formatString(period, 2)                                   # Periodo (de la rectificación)
         text += self._formatNumber(refund_record.total_operation_amount, 11, 2) # Base imponible de la rectificación
         text += self._formatNumber(refund_record.total_origin_amount, 11, 2)    # Base imponible declarada anteriormente
