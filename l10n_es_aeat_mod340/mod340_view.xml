@@ -2,13 +2,6 @@
 <openerp>
     <data>
 	<!-- Modelo 340 -->
-	<record id="action_account_mod340" model="ir.actions.act_window">
-            <field name="name">Model 340</field>
-            <field name="res_model">l10n.es.aeat.mod340</field>
-	    <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
 	<record model="ir.ui.view" id="view_account_mod340_tree">
 		<field name="name">l10n.es.aeat.mod340.tree</field>
 		<field name="model">l10n.es.aeat.mod340</field>
@@ -116,9 +109,9 @@
                 <field name="partner_country_code"/>
                 <field name="partner_vat"/>
                 <field name="invoice_id"/>
-                <field name="base_tax"/>
-                <field name="amount_tax"/>
-                <field name="total"/>
+                <field name="base_tax" sum="Total Base" />
+                <field name="amount_tax" sum="Total Tax" />
+                <field name="total" sum="Total"/>
             </tree>   
         </field>
     </record>
@@ -136,8 +129,8 @@
                 <field name="representative_vat"/>
                 <field name="partner_country_code"/>
                 <newline/>
-                <field name="base_tax"/>
-                <field name="amount_tax"/>
+                <field name="base_tax" />
+                <field name="amount_tax" />
                 <newline/>
                 <field name="total"/>
                 <newline />
@@ -158,9 +151,9 @@
                 <field name="partner_country_code"/>
                 <field name="partner_vat"/>
                 <field name="invoice_id"/>
-                <field name="base_tax"/>
-                <field name="amount_tax"/>
-                <field name="total"/>
+                <field name="base_tax" sum="Total Base"/>
+                <field name="amount_tax" sum="Total Tax"/>
+                <field name="total" sum="Total"/>
             </tree>   
         </field>
     </record>

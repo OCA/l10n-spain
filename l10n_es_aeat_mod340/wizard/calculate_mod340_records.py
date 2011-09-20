@@ -133,6 +133,11 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                     'amount_tax':invoice.amount_tax,
                     'total':invoice.amount_total
                 }
+                if invoice.type in ( 'out_refund','in_refund'):
+                    values['base_tax'] *=-1
+                    values['amount_tax'] *=-1
+                    values['total'] *=-1
+
 
                 if invoice.type=="out_invoice" or invoice.type=="out_refund":
                     invoice_created = invoices340.create(cr,uid,values)
@@ -149,6 +154,9 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                         if len(tax_description) == 2: name = tax_description[1]
                         if len(tax_description) == 1: name = tax_description[0]
                         account_tax = self.pool.get('account.tax').browse(cr, uid, self.pool.get('account.tax').search(cr, uid, [('name','=',name)], context=context))
+                        if  account_tax[0].amount < 0:
+                            continue
+
                         values = {
                             'name': name,
                             'tax_percentage': account_tax[0].amount,

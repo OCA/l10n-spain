@@ -3,6 +3,8 @@
 #
 #    Copyright (c) 2011 Acysos S.L. (http://acysos.com) All Rights Reserved.
 #                       Ignacio Ibeas <ignacio@acysos.com>
+#    Copyright (c) 2011 NaN Projectes de Programari Lliure, S.L.
+#                       http://www.NaN-tic.com
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -149,7 +151,11 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             text += 3*' '                                                     # Blancos
             text += 'E'                                                         # Clave tipo de libro. Constante 'E'.
             
-            if len(invoice_issued.tax_line_ids) > 1: text += 'C'                # Clave de operación
+            if invoice_issued.invoice_id.origin_invoices_ids:
+                text +='D'
+            elif invoice_issued.invoice_id.operation_key == 'I':
+                text +='I'
+            elif len(invoice_issued.tax_line_ids) > 1: text += 'C'                # Clave de operación
             else: text += ' '
             
             text += self._formatNumber(invoice_issued.invoice_id.date_invoice.split('-')[0],4)
@@ -169,7 +175,7 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             text += self._formatNumber(1, 8) # Número de facturas
             text += self._formatNumber(len(invoice_issued.tax_line_ids), 2)  # Número de registros (Desglose)
             text += 80*' '  # Intervalo de identificación de la acumulación
-            text += 40*' '   # Identificación factura rectificativa
+            text +=  self._formatString( ",".join( [x.number for x in  invoice_issued.invoice_id.origin_invoices_ids]) , 40 )   # Identificación factura rectificativa
             text += self._formatNumber(0, 5)  # Tipo Recargo de equivalencia
             text += ' '+self._formatNumber(0, 11,2)  # Couta del recargo de equivalencia
             text += 116*' '                                                     # Blancos
@@ -235,7 +241,9 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             text += 3*' '                                                     # Blancos
             text += 'R'                                                         # Clave tipo de libro. Constante 'E'.
             
-            if len(invoice_received.tax_line_ids) > 1: text += 'C'              # Clave de operación
+            if invoice_received.invoice_id.operation_key == 'I':
+                text +='I'
+            elif len(invoice_received.tax_line_ids) > 1: text += 'C'              # Clave de operación
             else: text += ' '
             
             text += self._formatNumber(invoice_received.invoice_id.date_invoice.split('-')[0],4)
