@@ -25,7 +25,7 @@ from tools.translate import _
 from osv import osv, fields
 
 OPERATION_KEY = [
-    (False, ''),
+    ('', ''),
     ('E', 'E - Intra-Community supplies'),
     ('A', 'A - Intra-Community acquisition'),
     ('T', 'T - Triangular operations'),
