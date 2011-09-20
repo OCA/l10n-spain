@@ -244,7 +244,7 @@ class l10n_es_aeat_mod349(osv.osv):
                     ('name', 'like', period_selection),
                     ('fiscalyear_id', '=', fiscalyear_id)])
 
-        return {'value' : { 'period_id' : period_id and period_id[0] or None}}
+        return {'value' : { 'period_id' : period_id and period_id[0] or False}}
 
 
     _columns = {
