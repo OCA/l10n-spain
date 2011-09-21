@@ -109,13 +109,21 @@ class account_payment_term(osv.osv):
 
         new_result = []
         for line in result:
+            new_date = False
             date = datetime.datetime.strptime( line[0], '%Y-%m-%d' )
 
             # dias fijos
             for day in days:
                 if date.day <= day:
-                    date = self.next_day( date, day )
+                    new_date = self.next_day( date, day )
                     break
+
+            if days:
+                if not new_date:
+                    day = days[0]
+                    date = self.next_day(date, day)
+                else:
+                    date = new_date
 
             if not partner.pays_during_holidays:
                 date = self._after_holidays(cr, uid, partner, date, days)
