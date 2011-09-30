@@ -37,19 +37,17 @@
     <paraStyle name="P6" fontName="Helvetica" fontSize="6.0" leading="8"/>
     <paraStyle name="P7" fontName="Helvetica-Bold" alignment="LEFT"/>
     <paraStyle name="P8" fontName="Helvetica" alignment="CENTER"/>
-    <paraStyle name="P9" fontName="Helvetica"/>
-    <paraStyle name="P10" fontName="Helvetica"/>
     <paraStyle name="Standard" fontName="Helvetica"/>
     <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
     <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
-    <paraStyle name="List" fontName="Times-Roman" spaceBefore="0.0" spaceAfter="1.0"/>
+    <paraStyle name="List" fontName="Times-Roman" spaceBefore="0.0" spaceAfter="6.0"/>
     <paraStyle name="Caption" fontName="Times-Italic" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
     <paraStyle name="Index" fontName="Times-Roman"/>
     <paraStyle name="Table Contents" fontName="Helvetica"/>
     <paraStyle name="Table Heading" fontName="Helvetica-BoldOblique" alignment="CENTER"/>
     <paraStyle name="Horizontal Line" fontName="Helvetica" fontSize="6.0" leading="8" spaceBefore="0.0" spaceAfter="14.0"/>
+    <images/>
   </stylesheet>
-  <images/>
   <story>
     <para style="Standard">
       <font color="white"> </font>
@@ -61,8 +59,8 @@
           <para style="P1">Company: [[o.mode.partner_id.name]]</para>
           <para style="P1">Bank: [[o.mode.bank_id.bank.name]]</para>
           <para style="P1">Account: [[o.mode.bank_id.acc_number]]</para>
-          <para style="P1">Created date: [[time.strftime('%d-%m-%Y', time.strptime(o.date_created, '%Y-%m-%d'))]]</para>
-          <para style="P1">Payment date: [[o.date_planned and time.strftime('%d-%m-%Y', time.strptime(o.date_planned, '%Y-%m-%d')) or '']]</para>
+          <para style="P1">Created date: [[formatLang(o.date_created,date=True)]]</para>
+          <para style="P1">Payment date: [[formatLang(o.date_planned,date=True) or '']]</para>
         </td>
         <td>
           <para style="P2">PAYMENT ORDER Num.: [[o.reference]]</para>
@@ -101,7 +99,7 @@
       </tr>
     </blockTable>
     <section>
-      <para style="P5">[[o.line_ids.sort(lambda x, y: cmp(x.name, y.name))]][[repeatIn(o.line_ids,'r')]]</para>
+      <para style="P5">[[o.line_ids.sort(lambda x, y: x.name&lt;y.name and -1 or x.name&gt;y.name and 1 or 0)]][[repeatIn(o.line_ids,'r')]]</para>
       <blockTable colWidths="175.0,153.0,71.0,83.0" repeatRows="1" style="Taula1">
         <tr>
           <td>
@@ -114,14 +112,14 @@
             <para style="P8">[[-r.amount]]</para>
           </td>
           <td>
-            <para style="P8">[[r.ml_maturity_date and time.strftime('%d-%m-%Y', time.strptime(r.ml_maturity_date, '%Y-%m-%d')) or '']]</para>
+            <para style="P8">[[formatLang(r.ml_maturity_date,date=True) or '']] </para>
           </td>
         </tr>
       </blockTable>
+      <para style="P6">
+        <font color="white"> </font>
+      </para>
     </section>
-    <para style="P6">
-      <font color="white"> </font>
-    </para>
   </story>
 </document>
 
