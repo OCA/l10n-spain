@@ -1,0 +1,201 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* stock_valued
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 5.0.15\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-06-28 11:00:50+0000\n"
+"PO-Revision-Date: 2011-06-28 13:18+0100\n"
+"Last-Translator: Raimon Esteve <resteve@zikzakmedia.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "Observaciones:"
+msgstr "Observaciones:"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "weight"
+msgstr "Peso"
+
+#. module: stock_valued
+#: model:ir.module.module,description:stock_valued.module_meta_information
+msgid ""
+"Albaranes valorados\n"
+"    "
+msgstr ""
+"Albaranes valorados\n"
+"    "
+
+#. module: stock_valued
+#: view:stock.picking:0
+msgid "Split move lines in two"
+msgstr "Divide las lineas en dos"
+
+#. module: stock_valued
+#: field:stock.move,price_net:0
+msgid "Net"
+msgstr "Neto"
+
+#. module: stock_valued
+#: field:stock.picking,amount_untaxed:0
+msgid "Untaxed Amount"
+msgstr "Base"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "Description"
+msgstr "Descripción"
+
+#. module: stock_valued
+#: model:ir.module.module,shortdesc:stock_valued.module_meta_information
+msgid "Stock valued"
+msgstr "Stoc valorado"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "Expected Shipping Date"
+msgstr "Fecha envío prevista"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "Conforme Cliente:"
+msgstr "Conformidad del cliente:"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "Dto%"
+msgstr "Dto%"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "TOTAL"
+msgstr "TOTAL"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "Recipient"
+msgstr "Destinatario"
+
+#. module: stock_valued
+#: view:stock.picking:0
+msgid "Partner Address"
+msgstr "Dirección de empresa"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "Importe Impuestos"
+msgstr "Impuestos"
+
+#. module: stock_valued
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr "¡XML no valido para la vista de arquitectura!"
+
+#. module: stock_valued
+#: field:stock.picking,tracking:0
+msgid "Tracking"
+msgstr "Seguimineto"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "Base Imponible"
+msgstr "Base"
+
+#. module: stock_valued
+#: view:stock.picking:0
+msgid "Total amount"
+msgstr "Total"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "Precio"
+msgstr "Precio"
+
+#. module: stock_valued
+#: field:stock.picking,amount_tax:0
+msgid "Taxes"
+msgstr "Impuestos"
+
+#. module: stock_valued
+#: field:res.partner,alb_val:0
+msgid "Albarán valorado"
+msgstr "Albarán valorado"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "["
+msgstr "["
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "I.V.A"
+msgstr "I.V.A"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "]"
+msgstr "]"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "Packing List:"
+msgstr "Albarán:"
+
+#. module: stock_valued
+#: field:stock.move,discount:0
+msgid "Discount (%)"
+msgstr "Descuento (%)"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "Cantidad"
+msgstr "Cantidad"
+
+#. module: stock_valued
+#: field:stock.move,price_subtotal:0
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#. module: stock_valued
+#: model:ir.actions.report.xml,name:stock_valued.reprml
+msgid "Valued Packing List"
+msgstr "Albarán valorado"
+
+#. module: stock_valued
+#: view:stock.picking:0
+msgid "Move State"
+msgstr "Estado del movimiento"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "Order(Origin)"
+msgstr "Pedido (Origen)"
+
+#. module: stock_valued
+#: field:stock.picking,partner_id:0
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: stock_valued
+#: field:stock.picking,amount_total:0
+msgid "Total"
+msgstr "Total"
+
+#. module: stock_valued
+#: view:stock.picking:0
+msgid "Untaxed amount"
+msgstr "Base"
+
+#. module: stock_valued
+#: rml:stock_valued.stock_valued_rml:0
+msgid "Importe"
+msgstr "Importe"
+
