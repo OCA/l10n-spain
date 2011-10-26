@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <openerp>
-	<data>
+	<data noupdate='1'>
 		<record id="payment_type_recibodomiciliado0" model="payment.type">
 			<field eval="&quot;&quot;&quot;RECIBO_CSB&quot;&quot;&quot;" name="code"/>
 			<field eval="&quot;&quot;&quot;Recibo domiciliado&quot;&quot;&quot;" name="name"/>
