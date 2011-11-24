@@ -78,7 +78,7 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                 fecha_ini = datetime.strptime('%s-%s-01' % (dec_year, mod), '%Y-%m-%d')
                 fecha_fin = fecha_ini + relativedelta(months=+1, days=-1)
 
-            if mod in ('T1', 'T2', 'T3', 'T4'):
+            if mod in ('1T', '2T', '3T', '4T'):
                 month = ( ( int(mod[0])-1 ) * 3 ) + 1
                 fecha_ini = datetime.strptime('%s-%s-01' % (dec_year, month), '%Y-%m-%d')
                 fecha_fin = fecha_ini + relativedelta(months=+3, days=-1)
@@ -116,69 +116,70 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
 
             invoice_ids = self.pool.get('account.invoice').search(cr, uid, domain, context=context)
             for invoice in self.pool.get('account.invoice').browse(cr, uid, invoice_ids, context):
-                if not invoice.partner_id.vat:
-                    raise osv.except_osv(_('La siguiente empresa no tiene asignado nif:'), invoice.partner_id.name)
-                
-                nif = invoice.partner_id.vat and re.match(r"([A-Z]{0,2})(.*)", invoice.partner_id.vat).groups()[1]
-                country_code = invoice.address_invoice_id.country_id.code
-                
-                values = {
-                    'mod340_id': mod340.id,
-                    'partner_id':invoice.partner_id.id,
-                    'partner_vat':nif,
-                    'representative_vat': '',
-                    'partner_country_code' : country_code,
-                    'invoice_id':invoice.id,
-                    'base_tax':invoice.amount_untaxed,
-                    'amount_tax':invoice.amount_tax,
-                    'total':invoice.amount_total
-                }
-                if invoice.type in ( 'out_refund','in_refund'):
-                    values['base_tax'] *=-1
-                    values['amount_tax'] *=-1
-                    values['total'] *=-1
-
-
-                if invoice.type=="out_invoice" or invoice.type=="out_refund":
-                    invoice_created = invoices340.create(cr,uid,values)
+                if (invoice.state in ['open','paid']):
+                    if not invoice.partner_id.vat:
+                        raise osv.except_osv(_('La siguiente empresa no tiene asignado nif:'), invoice.partner_id.name)
                     
-                if invoice.type=="in_invoice" or invoice.type=="in_refund":
-                    invoice_created = invoices340_rec.create(cr,uid,values)
-                
-                tot_tax_invoice = 0
-                
-                # Add the invoices detail to the partner record
-                for tax_line in invoice.tax_line:
-                    if tax_line.name.find('IRPF') == -1: # Remove IRPF from Mod340
-                        tax_description = tax_line.name.split(' - ')
-                        if len(tax_description) == 2: name = tax_description[1]
-                        if len(tax_description) == 1: name = tax_description[0]
-                        account_tax = self.pool.get('account.tax').browse(cr, uid, self.pool.get('account.tax').search(cr, uid, [('name','=',name)], context=context))
-                        if  account_tax[0].amount < 0:
-                            continue
-
-                        values = {
-                            'name': name,
-                            'tax_percentage': account_tax[0].amount,
-                            'tax_amount': tax_line.tax_amount,
-                            'base_amount': tax_line.base_amount,
-                            'invoice_record_id': invoice_created,
-                        }
-                        if invoice.type=="out_invoice" or invoice.type=="out_refund":
-                            self.pool.get('l10n.es.aeat.mod340.tax_line_issued').create(cr, uid, values)
-                        if invoice.type=="in_invoice" or invoice.type=="in_refund":
-                            self.pool.get('l10n.es.aeat.mod340.tax_line_received').create(cr, uid, values)
-                        tot_tax_invoice += tax_line.tax_amount
-                        tot_rec += 1
+                    nif = invoice.partner_id.vat and re.match(r"([A-Z]{0,2})(.*)", invoice.partner_id.vat).groups()[1]
+                    country_code = invoice.address_invoice_id.country_id.code
+                    
+                    values = {
+                        'mod340_id': mod340.id,
+                        'partner_id':invoice.partner_id.id,
+                        'partner_vat':nif,
+                        'representative_vat': '',
+                        'partner_country_code' : country_code,
+                        'invoice_id':invoice.id,
+                        'base_tax':invoice.amount_untaxed,
+                        'amount_tax':invoice.amount_tax,
+                        'total':invoice.amount_total
+                    }
+                    if invoice.type in ( 'out_refund','in_refund'):
+                        values['base_tax'] *=-1
+                        values['amount_tax'] *=-1
+                        values['total'] *=-1
+    
+    
+                    if invoice.type=="out_invoice" or invoice.type=="out_refund":
+                        invoice_created = invoices340.create(cr,uid,values)
                         
-                tot_base += invoice.amount_untaxed
-                tot_amount += tot_tax_invoice
-                tot_tot += invoice.amount_untaxed + tot_tax_invoice
-            
-                if invoice.type=="out_invoice" or invoice.type=="out_refund":
-                    invoices340.write(cr,uid,invoice_created,{'amount_tax':tot_tax_invoice})
-                if invoice.type=="in_invoice" or invoice.type=="in_refund":
-                    invoices340_rec.write(cr,uid,invoice_created,{'amount_tax':tot_tax_invoice})
+                    if invoice.type=="in_invoice" or invoice.type=="in_refund":
+                        invoice_created = invoices340_rec.create(cr,uid,values)
+                    
+                    tot_tax_invoice = 0
+                    
+                    # Add the invoices detail to the partner record
+                    for tax_line in invoice.tax_line:
+                        if tax_line.name.find('IRPF') == -1: # Remove IRPF from Mod340
+                            tax_description = tax_line.name.split(' - ')
+                            if len(tax_description) == 2: name = tax_description[1]
+                            if len(tax_description) == 1: name = tax_description[0]
+                            account_tax = self.pool.get('account.tax').browse(cr, uid, self.pool.get('account.tax').search(cr, uid, [('name','=',name)], context=context))
+                            if  account_tax[0].amount < 0:
+                                continue
+    
+                            values = {
+                                'name': name,
+                                'tax_percentage': account_tax[0].amount,
+                                'tax_amount': tax_line.tax_amount,
+                                'base_amount': tax_line.base_amount,
+                                'invoice_record_id': invoice_created,
+                            }
+                            if invoice.type=="out_invoice" or invoice.type=="out_refund":
+                                self.pool.get('l10n.es.aeat.mod340.tax_line_issued').create(cr, uid, values)
+                            if invoice.type=="in_invoice" or invoice.type=="in_refund":
+                                self.pool.get('l10n.es.aeat.mod340.tax_line_received').create(cr, uid, values)
+                            tot_tax_invoice += tax_line.tax_amount
+                            tot_rec += 1
+                            
+                    tot_base += invoice.amount_untaxed
+                    tot_amount += tot_tax_invoice
+                    tot_tot += invoice.amount_untaxed + tot_tax_invoice
+                
+                    if invoice.type=="out_invoice" or invoice.type=="out_refund":
+                        invoices340.write(cr,uid,invoice_created,{'amount_tax':tot_tax_invoice})
+                    if invoice.type=="in_invoice" or invoice.type=="in_refund":
+                        invoices340_rec.write(cr,uid,invoice_created,{'amount_tax':tot_tax_invoice})
                 
             mod340.write({'total_taxable':tot_base,'total_sharetax':tot_amount,'number_records':tot_rec,'total':tot_tot,'number':code})
             
