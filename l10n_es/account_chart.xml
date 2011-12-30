@@ -2722,7 +2722,7 @@
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_281"/>
             <field name="type">view</field>
-            <field name="name">Amortización acumulada de otras instaciones</field>
+            <field name="name">Amortización acumulada de otras instalaciones</field>
             <field name="user_type" ref="inmo"/>
         </record>
         <record id="pgc_2815_child" model="account.account.template">
@@ -2730,7 +2730,7 @@
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_2815"/>
             <field name="type">other</field>
-            <field name="name">Amortización acumulada de otras instaciones</field>
+            <field name="name">Amortización acumulada de otras instalaciones</field>
             <field name="user_type" ref="inmo"/>
         </record>
         <record id="pgc_2816" model="account.account.template">
