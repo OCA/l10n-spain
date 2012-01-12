@@ -313,7 +313,7 @@ class fiscal_year_closing(osv.osv):
                     ('date_stop', '>=', str_date),
                 ])
         return fiscalyear_ids and fiscalyear_ids[0]
-    
+
     _defaults = {
         # Current company by default:
         'company_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid, context).company_id.id,
@@ -496,7 +496,7 @@ class fiscal_year_closing(osv.osv):
             fyc_ids = self.search(cr, uid, [('name', '=', fyc.name)])
             if len(fyc_ids) > 1:
                 raise osv.except_osv(_('Error'), _('There is already a fiscal year closing with this name.'))
-            
+
             assert fyc.closing_fiscalyear_id and fyc.closing_fiscalyear_id.id
             fyc_ids = self.search(cr, uid, [('closing_fiscalyear_id', '=', fyc.closing_fiscalyear_id.id)])
             if len(fyc_ids) > 1:
@@ -632,7 +632,8 @@ class fiscal_year_closing(osv.osv):
                 amount = 0
                 for line in move.line_id:
                     amount += (line.debit - line.credit)
-                if abs(amount) > 0.5 * 10 ** -int(config['price_accuracy']):
+                precision = self.pool.get('decimal.precision').precision_get(cr, uid, 'Account')
+                if abs(amount) > 0.5 * 10 ** -int(precision):
                     raise osv.except_osv(_("Some moves are unbalanced!"), _("All the moves should be balanced before continuing"))
 
                 #
