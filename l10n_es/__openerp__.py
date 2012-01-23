@@ -47,7 +47,8 @@ for yearly account reporting (balance, profit & losses).
         "account_chart_pymes.xml",
         "taxes_data_pymes.xml",
         "fiscal_templates_pymes.xml",
-        "l10n_es_wizard.xml"
+        "l10n_es_wizard.xml",
+        'data/l10n_es_data.xml'
     ],
     "demo_xml" : [],
     "update_xml" : [

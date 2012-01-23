@@ -33,19 +33,6 @@
             </field>
         </record>
 
-        <record id="view_account_template_form" model="ir.ui.view">
-            <field name="name">account.account.template.form</field>
-            <field name="model">account.account.template</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="account.view_account_template_form"/>
-            <field name="arch" type="xml">
-                <field name="name" position="before">
-                    <field name="chart_template_id"/>
-                    <newline/>
-                </field>
-            </field>
-        </record>
-
 
         <!-- Account Tax Templates -->
         <record id="view_account_tax_template_tree" model="ir.ui.view">

@@ -21,7 +21,6 @@
 #
 ##############################################################################
 
-import ir
 import wizard
 import pooler
 from osv import osv, fields
@@ -42,8 +41,9 @@ class l10n_ES_create_zipcode_region(wizard.interface):
         for m in cod_postales:
             codi = m[0][:-3] #2 primeros dígitos del cp
             ids = pool.get('res.country.region').search(cr, uid, [('code', '=', com_auto[codi])])
+            ir_values_obj = pooler.get_pool(cr.dbname).get('ir.values')
             if ids:
-                ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'region', [('res.partner.address', False)], ids[0])
+                ir_values_obj.ir_set(cr, uid, 'default', 'zip='+m[0], 'region', [('res.partner.address', False)], ids[0])
         return {}
 
     states = {

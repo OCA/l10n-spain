@@ -12,7 +12,7 @@
             <field eval="&quot;&quot;&quot;general&quot;&quot;&quot;" name="type"/>
             <field name="view_id" ref="account.account_journal_view"/>
             <field eval="[(6,0,[])]" name="type_control_ids"/>
-            <field name="sequence_id" ref="account.sequence_journal"/>
+            <field name="sequence_id" ref="l10n_es.sequence_journal"/>
             <field eval="1" name="active"/>
             <field eval="0" name="update_posted"/>
             <field eval="&quot;&quot;&quot;General&quot;&quot;&quot;" name="name"/>
@@ -31,7 +31,7 @@
             <field name="default_debit_account_id" model="account.account" search="[('code','like','5700%00')]"/>
             <field name="view_id" ref="account.account_journal_bank_view"/>
             <field eval="[(6,0,[])]" name="type_control_ids"/>
-            <field name="sequence_id" ref="account.sequence_journal"/>
+            <field name="sequence_id" ref="l10n_es.sequence_journal"/>
             <field eval="1" name="active"/>
             <field eval="0" name="update_posted"/>
             <field eval="&quot;&quot;&quot;Efectivo&quot;&quot;&quot;" name="name"/>
@@ -50,7 +50,7 @@
             <field name="default_debit_account_id" model="account.account" search="[('code','like','4380%00')]"/>
             <field name="view_id" ref="account.account_journal_bank_view"/>
             <field eval="[(6,0,[])]" name="type_control_ids"/>
-            <field name="sequence_id" ref="account.sequence_journal"/>
+            <field name="sequence_id" ref="l10n_es.sequence_journal"/>
             <field eval="1" name="active"/>
             <field eval="0" name="update_posted"/>
             <field eval="&quot;&quot;&quot;Tarjeta&quot;&quot;&quot;" name="name"/>

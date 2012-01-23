@@ -1,5 +1,6 @@
 <openerp>
     <data>
+
         <record id="view_account_configuration_installer_inherit" model="ir.ui.view">
             <field name="name">account.installer.form</field>
             <field name="model">account.installer</field>
