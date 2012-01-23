@@ -20,16 +20,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from osv import fields,osv
 import os
-import ir
 import pooler
 import tools
 import threading
 
-class config_ES_toponyms(osv.osv_memory):
-    _name='config.ES.toponyms'
+class config_es_toponyms(osv.osv_memory):
+    _name='config.es.toponyms'
     _inherit = 'res.config.installer'
 
     def _city_module_default(self, cr, uid, context=None):
@@ -86,9 +84,18 @@ class config_ES_toponyms(osv.osv_memory):
         idc = idc[0]
         for m in cod_postales:
             ids = pool.get('res.country.state').search(cr, uid, [('country_id', '=', idc), ('code', '=', m[0][:2]),])
+            ir_values_obj = pooler.get_pool(cr.dbname).get('ir.values')
             if ids:
-                ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'state_id', [('res.partner.address', False)], ids[0])
-            ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'city', [('res.partner.address', False)], m[1])
+                res = ir_values_obj.set(
+                                cr, 
+                                uid, 
+                                 'default', 'zip='+m[0], 'state_id', [('res.partner.address', False)], ids[0])
+                #ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'state_id', [('res.partner.address', False)], ids[0])
+            res = ir_values_obj.set(
+                                cr, 
+                                uid, 
+                                 'default', 'zip='+m[0], 'city', [('res.partner.address', False)], m[1])
+            #ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'city', [('res.partner.address', False)], m[1])
         return {}
 
     def _recover_zipcodes(self, cr, uid, context):
@@ -129,7 +136,7 @@ class config_ES_toponyms(osv.osv_memory):
     def execute(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-        super(config_ES_toponyms, self).execute(cr, uid, ids, context=context)
+        super(config_es_toponyms, self).execute(cr, uid, ids, context=context)
         res = self.read(cr, uid, ids)[0]
 
         # Import Spanish states (official, Spanish or both)
@@ -148,4 +155,4 @@ class config_ES_toponyms(osv.osv_memory):
             thread1 = threading.Thread(target=self.create_zipcodes, args=(cr.dbname, uid, ids, res, context))
             thread1.start()
 
-config_ES_toponyms()
+config_es_toponyms()
