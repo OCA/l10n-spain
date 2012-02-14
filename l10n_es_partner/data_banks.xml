@@ -2993,5 +2993,21 @@
 			<field name="state" ref="l10n_es_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
 		</record>
+        <record id="res_bank_ingdirect" model="res.bank">
+            <field eval="&quot;&quot;&quot;ING DIRECT&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;ING DIRECT, N.V. SUCURSAL EN ESPAÑA&quot;&quot;&quot;" name="lname"/>
+            <field eval="&quot;&quot;&quot;1465&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;W0032177H&quot;&quot;&quot;" name="vat"/>
+            <field eval="&quot;&quot;&quot;INGDESMMXXX&quot;&quot;&quot;" name="bic"/>
+            <field eval="&quot;&quot;&quot;CL SEVERO OCHOA,  2 P.E.MADRID-LAS ROZAS&quot;&quot;&quot;" name="street"/>
+            <field eval="&quot;&quot;&quot;LAS ROZAS&quot;&quot;&quot;" name="city"/>
+            <field eval="&quot;&quot;&quot;28230&quot;&quot;&quot;" name="zip"/>
+            <field eval="&quot;&quot;&quot;WWW.INGDIRECT.ES&quot;&quot;&quot;" name="website"/>
+            <field eval="&quot;&quot;&quot;916349200&quot;&quot;&quot;" name="phone"/>
+            <field eval="&quot;&quot;&quot;916349231&quot;&quot;&quot;" name="fax"/>
+            <field eval="1" name="active"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
+        </record>
 	</data>
 </openerp>
