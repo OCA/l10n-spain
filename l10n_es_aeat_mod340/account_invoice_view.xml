@@ -15,5 +15,26 @@
             </field>
         </record>
         
+        <record id="view_customer_account_invoice_ticket_form" model="ir.ui.view">
+            <field name="name">Account invoice - Ticket summary</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="fiscal_position" position="after">
+                        <field name="is_ticket_summary"/>
+                    </field>
+                    
+                    <xpath expr="/form/notebook" position="inside">
+                        <page string="Tickets" attrs="{'invisible':[('is_ticket_summary','=',False)]}">
+                            <field name="first_ticket" attrs="{'required':[('is_ticket_summary','=',True)]}"/>
+                            <field name="last_ticket" attrs="{'required':[('is_ticket_summary','=',True)]}"/>
+                            <field name="number_tickets" attrs="{'required':[('is_ticket_summary','=',True)]}"/>
+                        </page>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+        
     </data>
 </openerp>

@@ -666,3 +666,33 @@ msgstr "líneas de impuestos"
 #: field:l10n.es.aeat.mod340,total:0
 msgid "Total"
 msgstr "Total"
+
+#. module: l10n_es_aeat_mod340
+#: field:account.invoice,number_tickets:0
+msgid "Number of tickets"
+msgstr "Número de tiques"
+
+#. module: l10n_es_aeat_mod340
+#: field:account.invoice,first_ticket:0
+msgid "First ticket"
+msgstr "Primer tique"
+
+#. module: l10n_es_aeat_mod340
+#: help:account.invoice,is_ticket_summary:0
+msgid "Check if this invoice is a ticket summary"
+msgstr "Active si esta factura es un resumen de tiques"
+
+#. module: l10n_es_aeat_mod340
+#: field:account.invoice,last_ticket:0
+msgid "Last ticket"
+msgstr "Último tique"
+
+#. module: l10n_es_aeat_mod340
+#: field:account.invoice,is_ticket_summary:0
+msgid "Ticket Summary"
+msgstr "Resumen de tiques"
+
+#. module: account
+#: view:account.invoice:0
+msgid "Tickets"
+msgstr "Tiques"
