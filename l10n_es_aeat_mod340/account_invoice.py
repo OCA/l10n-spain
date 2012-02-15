@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 20011 Ting (http://www.ting.es) All Rights Reserved.
-#    Copyright (c) 2011 Acysos S.L. (http://acysos.com) All Rights Reserved
-#                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
-#                      
-#    $Id$
+#    Copyright (c) 2012 Acysos S.L. (http://acysos.com) All Rights Reserved.
+#                       Ignacio Ibeas <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -22,9 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import report
-import wizard
-import mod340
-import res_partner
-import account_invoice
 
+from tools.translate import _
+from osv import osv, fields
+
+class account_invoice(osv.osv):
+    _inherit = 'account.invoice'
+    
+    _columns = {
+        'is_ticket_summary': fields.boolean('Ticket Summary', help='Check if this invoice is a ticket summary'),
+        'number_tickets': fields.integer('Number of tickets', digits=(12,0)),
+        'first_ticket': fields.char('First ticket', size=40),
+        'last_ticket': fields.char('Last ticket', size=40)
+    }
+    
+account_invoice()

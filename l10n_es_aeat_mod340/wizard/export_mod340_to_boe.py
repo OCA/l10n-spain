@@ -151,11 +151,12 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             text += 3*' '                                                     # Blancos
             text += 'E'                                                         # Clave tipo de libro. Constante 'E'.
             
-            if invoice_issued.invoice_id.origin_invoices_ids:
+            if invoice_issued.invoice_id.origin_invoices_ids:               # Clave de operación
                 text +='D'
             elif invoice_issued.invoice_id.operation_key == 'I':
                 text +='I'
-            elif len(invoice_issued.tax_line_ids) > 1: text += 'C'                # Clave de operación
+            elif len(invoice_issued.tax_line_ids) > 1: text += 'C'
+            elif invoice_issued.invoice_id.is_ticket_summary == 1: text += 'B'
             else: text += ' '
             
             text += self._formatNumber(invoice_issued.invoice_id.date_invoice.split('-')[0],4)
@@ -172,9 +173,14 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             text += ' '+self._formatNumber(0, 11,2)                             # Base imponible a coste.
             text += self._formatString(invoice_issued.invoice_id.number, 40)  # Identificación de la factura
             text += self._formatString(self.pool.get('ir.sequence').get(cr, uid, 'mod340'),18)  # Número de registro
-            text += self._formatNumber(1, 8) # Número de facturas
+            if invoice_issued.invoice_id.is_ticket_summary == 1:           # Número de facturas
+                text += self._formatNumber(invoice_issued.invoice_id.number_tickets, 8)
+            else: text += self._formatNumber(1, 8)
             text += self._formatNumber(len(invoice_issued.tax_line_ids), 2)  # Número de registros (Desglose)
-            text += 80*' '  # Intervalo de identificación de la acumulación
+            if invoice_issued.invoice_id.is_ticket_summary == 1:      # Intervalo de identificación de la acumulación
+                text += self._formatString(invoice_issued.invoice_id.first_ticket, 40)
+                text += self._formatString(invoice_issued.invoice_id.last_ticket, 40)
+            else: text += 80*' '
             text +=  self._formatString( ",".join( [x.number for x in  invoice_issued.invoice_id.origin_invoices_ids]) , 40 )   # Identificación factura rectificativa
             text += self._formatNumber(0, 5)  # Tipo Recargo de equivalencia
             text += ' '+self._formatNumber(0, 11,2)  # Couta del recargo de equivalencia
