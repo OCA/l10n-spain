@@ -87,6 +87,7 @@
                 <td>
                     <para style="Bal3">Partner: [[report.company_id.name]]</para>
                     <para style="Bal3">Fiscal year: [[report.fiscalyear_id.name]]</para>
+                    <para style="Bal3">Periods: [[report.period_names]]</para>                    
                     <para style="Bal3">Number: [[report.number]]</para>
                     <para style="Bal3">Suport type: [[report.support_type=='T' and 'Telematics' or 'DVD']]</para>
                 </td>

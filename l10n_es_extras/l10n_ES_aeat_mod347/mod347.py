@@ -73,12 +73,23 @@ class l10n_es_aeat_mod347_report(osv.osv):
             result[report.id] = str(report.number)
         return result
 
+    def _get_period_names(self, cr, uid, ids, field_name, arg, context={}):
+        """
+        Returns the period names to put in generic_report.rml
+        """
+        result = {}
+        for report in self.browse(cr, uid, ids, context):            
+                result[report.id] = ', '.join([ period.name for period in report.period_ids])
+        return result
+
     _columns = {
         # The name it's just an alias of the number
         'name': fields.function(_name_get, method=True, type="char", size="64", string="Name"),
 
         'fiscalyear_id': fields.many2one('account.fiscalyear', 'Fical Year', required=True),
         'period_ids': fields.many2many('account.period', 'mod347_report_periods', 'mod347_id', 'period_id', 'Periods'),
+        'period_names': fields.function(_get_period_names, string="Periods", method=True, type='char', size=128),
+        
         'company_id': fields.many2one('res.company', 'Company', required=True),
         'number': fields.integer('Declaration Number', size=13),
         'support_type': fields.selection([('C','DVD'),('T','Telematics')], 'Support Type'),

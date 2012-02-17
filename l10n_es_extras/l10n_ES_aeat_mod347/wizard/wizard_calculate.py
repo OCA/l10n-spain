@@ -119,7 +119,7 @@ class wizard_calculate(wizard.interface):
             # (to ignore closing/opening entries)
             # or only selected periods                        
             if report.period_ids:
-                period_ids = [period.id for period in report.period_ids or report.fiscalyear_id.period_ids if not period.special]
+                period_ids = [period.id for period in report.period_ids if not period.special]
             else:
                 period_ids = [period.id for period in report.fiscalyear_id.period_ids if not period.special]
 
