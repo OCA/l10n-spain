@@ -53,6 +53,10 @@ Authors: Alejandro Sanchez Ramirez Asr Oss - alejandro@asr-oss.com
                     <group string="Declaration" colspan="4">
                         <field name="company_id" on_change="on_change_company_id(company_id)" required="1" select="1"/>
                         <field name="fiscalyear_id" select="1"/>
+                        <newline />
+                        <separator string="Periods" />
+                        <field name="period_ids" domain="[('fiscalyear_id','=',fiscalyear_id)]" select="1" colspan="4" nolabel="1"/>
+                        <newline />
                         <field name="number"/>
                         <field name="support_type"/>
                     </group>

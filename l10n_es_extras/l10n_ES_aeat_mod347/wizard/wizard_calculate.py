@@ -117,7 +117,11 @@ class wizard_calculate(wizard.interface):
 
             # Get the fiscal year period ids of the non-special periods
             # (to ignore closing/opening entries)
-            period_ids = [period.id for period in report.fiscalyear_id.period_ids if not period.special]
+            # or only selected periods                        
+            if report.period_ids:
+                period_ids = [period.id for period in report.period_ids or report.fiscalyear_id.period_ids if not period.special]
+            else:
+                period_ids = [period.id for period in report.fiscalyear_id.period_ids if not period.special]
 
             data['calculation_progress'] = 0
 

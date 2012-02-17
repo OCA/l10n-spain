@@ -78,6 +78,7 @@ class l10n_es_aeat_mod347_report(osv.osv):
         'name': fields.function(_name_get, method=True, type="char", size="64", string="Name"),
 
         'fiscalyear_id': fields.many2one('account.fiscalyear', 'Fical Year', required=True),
+        'period_ids': fields.many2many('account.period', 'mod347_report_periods', 'mod347_id', 'period_id', 'Periods'),
         'company_id': fields.many2one('res.company', 'Company', required=True),
         'number': fields.integer('Declaration Number', size=13),
         'support_type': fields.selection([('C','DVD'),('T','Telematics')], 'Support Type'),
