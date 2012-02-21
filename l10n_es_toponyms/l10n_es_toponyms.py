@@ -100,18 +100,25 @@ class config_es_toponyms(osv.osv_memory):
 
     def _recover_zipcodes(self, cr, uid, context):
         # Recovers the location data (city info) from the zip code there was in the partner addresses before installing the city module
-        cr.execute("select id, zip from res_partner_address where location IS NULL")
-        zipcodes = cr.dictfetchall()
+        #cr.execute("select id, zip from res_partner_address where location IS NULL")
+        #zipcodes = cr.dictfetchall()
+        address_obj = self.pool.get('res.partner.address')
+        city_obj = self.pool.get('city.city')
+        zip_list = address_obj.search(cr,uid,[('location','=',False)])
+        zipcodes = address_obj.read(cr,uid,zip_list,['zip'])
         cont = 0
         for zipcode in zipcodes:
             if zipcode['zip']:
-                cr.execute("select id from city_city where zipcode = '%s'" %zipcode['zip'])
-                city_id = cr.fetchall()
+                #cr.execute("select id from city_city where zipcode = '%s'" %zipcode['zip'])
+                #city_id = cr.fetchall()
+                
+                city_id = city_obj.search(cr,uid,[('zipcode','=',zipcode['zip'])])
+                
                 if len(city_id) > 0:
-                    cr.execute("update res_partner_address SET location = %i WHERE id = %i" %(city_id[0][0], zipcode['id']))
+                    #cr.execute("update res_partner_address SET location = %i WHERE id = %i" %(city_id[0][0], zipcode['id']))
+                    address_obj.write(cr,uid,zipcode['id'],{'location' : city_id[0]})
                     cont += 1
         return cont
-
     def create_zipcodes(self, db_name, uid, ids, res, context):
         # Import Spanish cities and zip codes (15000 zip codes can take several minutes)
         db, pool = pooler.get_db_and_pool(db_name)
