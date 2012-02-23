@@ -21,15 +21,14 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
                 <data>
-                    <field name="fiscal_position" position="after">
-                        <field name="is_ticket_summary"/>
-                    </field>
-                    
                     <xpath expr="/form/notebook" position="inside">
-                        <page string="Tickets" attrs="{'invisible':[('is_ticket_summary','=',False)]}">
-                            <field name="first_ticket" attrs="{'required':[('is_ticket_summary','=',True)]}"/>
-                            <field name="last_ticket" attrs="{'required':[('is_ticket_summary','=',True)]}"/>
-                            <field name="number_tickets" attrs="{'required':[('is_ticket_summary','=',True)]}"/>
+                        <page string="AEAT 340">
+                            <field name="is_ticket_summary"/>
+                            <group colspan="4" col="4" attrs="{'invisible': [('is_ticket_summary','=',False)]}">
+                                <field name="first_ticket" attrs="{'required':[('is_ticket_summary','=',True)]}"/>
+                                <field name="last_ticket" attrs="{'required':[('is_ticket_summary','=',True)]}"/>
+                                <field name="number_tickets" attrs="{'required':[('is_ticket_summary','=',True)]}"/>
+                            </group>
                         </page>
                     </xpath>
                 </data>
