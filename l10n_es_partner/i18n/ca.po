@@ -172,3 +172,8 @@ msgstr "Número de compte bancari invàlid."
 #: model:ir.model,name:l10n_ES_partner.model_l10n_es_partner_import_wizard
 msgid "l10n.es.partner.import.wizard"
 msgstr "l10n.es.partner.import.wizard"
+
+#. module: l10n_ES_partner
+#: field:res.bank,code:0
+msgid "Code"
+msgstr "Codi"
