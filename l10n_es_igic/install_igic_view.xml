@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_install_igic_form" model="ir.ui.view">
+            <field name="name">install.igic</field>
+            <field name="model">install.igic</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.res_config_installer"/>
+            <field name="arch" type="xml">
+                <data>
+                    <form position="attributes">
+                        <attribute name="string">IGIC configuration</attribute>
+                    </form>
+                    <separator string="title" position="attributes">
+                         <attribute name="string">Configure IGIC</attribute>
+                    </separator>
+                    <xpath expr="//label[@string='description']" position="attributes">
+                        <attribute name="string">Load all igic taxes and accounts to current chart of accounts, it allows change default product taxes and rename national fiscal position too.</attribute>
+                    </xpath>
+                    <xpath expr="//button[@string='Install Modules']" position="attributes">
+                        <attribute name="string">Configure</attribute>
+                    </xpath>
+                    <xpath expr='//separator[@string="vsep"]' position='attributes'>
+                        <attribute name='rowspan'>23</attribute>
+                        <attribute name='string'></attribute>
+                    </xpath>
+                    <group colspan="8">
+                        <group colspan="4" height="450" width="750">
+                            <separator col="4" colspan="4" string="Chart of Accounts"/>
+                            <field name="company_id" on_change="onchange_company_id(company_id)" widget="selection"/>
+                            <field name="code_digits"/>
+                            <field name="chart_template_id" widget="selection"/>
+                            <newline/>
+                            <field name="sale_tax" domain="[('parent_id','=',False),('type_tax_use','in',('sale','all'))]"/>
+                            <field name="purchase_tax" domain="[('parent_id','=',False),('type_tax_use','in',('purchase', 'all'))]"/>
+                            <field name="rename_fiscal_position"/>
+                        </group>
+                    </group>
+                </data>
+            </field>
+        </record>
+
+        <record id="action_install_igic_form" model="ir.actions.act_window">
+            <field name="name">IGIC Installation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">install.igic</field>
+            <field name="view_id" ref="view_install_igic_form"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <!-- register on configuration -->
+        <record id="install_igic_todo_es" model="ir.actions.todo">
+            <field name="name">IGIC Installation</field>
+            <field name="note">Load all igic taxes and accounts to current chart of accounts, it allows change default product taxes and rename national fiscal position too.</field>
+            <field name="action_id" ref="action_install_igic_form"/>
+            <field name="sequence">20</field>
+            <field name="restart">always</field>
+        </record>
+
+
+    </data>
+</openerp>

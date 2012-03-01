@@ -1,0 +1,103 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_es_igic
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-03-01 10:16+0000\n"
+"PO-Revision-Date: 2012-03-01 10:16+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_igic
+#: help:install.igic,rename_fiscal_position:0
+msgid "Rename National Fiscal Position to Canary Fiscal Position, if you doesn't mark this checkbox it will create new fiscal position for Canary."
+msgstr "Renombra la posición fiscal Régiemn Nacionl a Régimen Canario, si no marca este checkbox creará una nueva posición fiscal para Canarias."
+
+#. module: l10n_es_igic
+#: field:install.igic,rename_fiscal_position:0
+msgid "Rename fiscal position"
+msgstr "Renombrar posicion fiscal"
+
+#. module: l10n_es_igic
+#: view:install.igic:0
+msgid "Configure"
+msgstr "Configurar"
+
+#. module: l10n_es_igic
+#: view:install.igic:0
+msgid "title"
+msgstr "título"
+
+#. module: l10n_es_igic
+#: view:install.igic:0
+msgid "IGIC configuration"
+msgstr "Configuración IGIC"
+
+#. module: l10n_es_igic
+#: field:install.igic,company_id:0
+msgid "Company"
+msgstr "Compañía"
+
+#. module: l10n_es_igic
+#: field:install.igic,sale_tax:0
+msgid "Default Sale Tax"
+msgstr "Impuesto venta por defecto"
+
+#. module: l10n_es_igic
+#: model:ir.actions.act_window,name:l10n_es_igic.action_install_igic_form
+msgid "IGIC Installation"
+msgstr "Instalación IGIC"
+
+#. module: l10n_es_igic
+#: field:install.igic,code_digits:0
+msgid "# of Digits"
+msgstr "# de Dígitos"
+
+#. module: l10n_es_igic
+#: view:install.igic:0
+#: model:ir.actions.todo,note:l10n_es_igic.install_igic_todo_es
+msgid "Load all igic taxes and accounts to current chart of accounts, it allows change default product taxes and rename national fiscal position too."
+msgstr "Carga todos los impuestos IGIC y las cuentas en el plan de cuentas activo, permite cambiar los impuestos por defecto de los productos, y renombrar la posición fiscal nacional."
+
+#. module: l10n_es_igic
+#: help:install.igic,code_digits:0
+msgid "No. of Digits to use for account code. Make sure it is the same number as existing accounts."
+msgstr "Número de dígitos para utilizar en el código de cuenta. Asegúrese que sea el mismo número de dígitos que el de las cuentas existentes."
+
+#. module: l10n_es_igic
+#: model:ir.model,name:l10n_es_igic.model_install_igic
+msgid "install.igic"
+msgstr "install.igic"
+
+#. module: l10n_es_igic
+#: field:install.igic,purchase_tax:0
+msgid "Default Supplier Tax"
+msgstr "Impuesto por defecto proveedores"
+
+#. module: l10n_es_igic
+#: field:install.igic,chart_template_id:0
+msgid "Chart Template"
+msgstr "Plantilla plan contable"
+
+#. module: l10n_es_igic
+#: view:install.igic:0
+msgid "Chart of Accounts"
+msgstr "Plan de cuentas"
+
+#. module: l10n_es_igic
+#: field:install.igic,config_logo:0
+msgid "Image"
+msgstr "Imagen"
+
+#. module: l10n_es_igic
+#: view:install.igic:0
+msgid "Configure IGIC"
+msgstr "Configurar IGIC"
+
