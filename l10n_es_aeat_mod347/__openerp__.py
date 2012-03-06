@@ -22,9 +22,9 @@
 {
     "name" : "AEAT Model 347",
     "version" : "1.0",
-    "author" : "Pexego, ASR-OSS",
+    "author" : "Pexego, ASR-OSS, NaN·tic",
     "license" : "AGPL-3",
-    "website" : "http://www.pexego.es, www.asr-oss.com",
+    "website" : "http://www.pexego.es, www.asr-oss.com, www.nan-tic.com",
     "category" : "Localisation/Accounting",
     "description" : """
     Módulo para la presentación del Modelo AEAT 347 (Declaración Anual de Operaciones con Terceros)
