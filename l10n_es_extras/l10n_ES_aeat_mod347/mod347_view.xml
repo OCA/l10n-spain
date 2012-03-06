@@ -1,124 +1,11 @@
-<?xml version="1.0"?>
-<!--
-#
-#    OpenERP - Model 347 Aeat
-#    Copyright (C) 2009 Asr Oss Sistemas Informáticos. All Rights Reserved
-#    $Id$
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
--->
-<!--
-Views for the l10n Es aeat mod347.
-
-Authors: Alejandro Sanchez Ramirez Asr Oss - alejandro@asr-oss.com
-         Borja Lópes Soilán (Pexego) - borjals@pexego.es
--->
+<?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
 
-        <!-- AEAT 347 report tree view -->
-        <record model="ir.ui.view" id="view_l10n_es_aeat_mod347_report_tree">
-            <field name="name">l10n.es.aeat.mod347.report.tree</field>
-            <field name="model">l10n.es.aeat.mod347.report</field>
-            <field name="type">tree</field>
-            <field name="arch" type="xml">
-                <tree string="AEAT 347 Reports">
-                    <field name="company_id" on_change="on_change_company_id(company_id)" required="1" select="1"/>
-                    <field name="fiscalyear_id" select="1"/>
-                    <field name="number"/>
-                    <field name="support_type"/>
-                </tree>
-            </field>
-        </record>
-
-        <!-- AEAT 347 report form view -->
-        <record model="ir.ui.view" id="view_l10n_es_aeat_mod347_report_form">
-            <field name="name">l10n.es.aeat.mod347.report.form</field>
-            <field name="model">l10n.es.aeat.mod347.report</field>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <form string="AEAT 347 Report">
-                    <group string="Declaration" colspan="4">
-                        <field name="company_id" on_change="on_change_company_id(company_id)" required="1" select="1"/>
-                        <field name="fiscalyear_id" select="1"/>
-                        <newline />
-                        <separator string="Periods" />
-                        <field name="period_ids" domain="[('fiscalyear_id','=',fiscalyear_id)]" select="1" colspan="4" nolabel="1"/>
-                        <newline />
-                        <field name="number"/>
-                        <field name="support_type"/>
-                    </group>
-                    <notebook colspan="4">
-                        <page string="General">
-                            <group string="Identification" colspan="4">
-                                <field name="company_vat" required="1"/>
-                                <field name="contact_phone"/>
-                                <field name="contact_name" colspan="4"/>
-                                <field name="representative_vat"/>
-                            </group>
-                            <group string="Susbtitutive/complementary declaration" colspan="4">
-                                <field name="type"/>
-                                <field name="previous_number"/>
-                            </group>
-                            <group string="Summary" colspan="4">
-                                <field name="total_partner_records"/>
-                                <field name="total_amount"/>
-                                <field name="total_real_state_records"/>
-                                <field name="total_real_state_amount"/>
-                            </group>
-                            <group string="Calculation" colspan="4">
-                                <field name="operations_limit"/>
-                                <field name="received_cash_limit"/>
-                                <field name="charges_obtp_limit"/>
-                            </group>
-                            <group colspan="4">
-                                <field name="state" select="2" readonly="1"/>
-                                <field name="calc_date" select="2" readonly="1"/>
-                            </group>
-                            <group colspan="4" col="10">
-                                <!-- <button name="calculate" string="Calculate" states="draft"/> -->
-                                <button name="%(wiz_l10n_es_aeat_mod347_calculate)d"
-                                    type="action"
-                                    string="Calculate"
-                                    colspan="3"
-                                    icon="gtk-execute"
-                                    states="draft"/>
-                                <button name="%(wiz_l10n_es_aeat_mod347_export_boe)d"
-                                    type="action"
-                                    string="Export"
-                                    colspan="3"
-                                    icon="gtk-execute"
-                                    states="done"/>
-                                <button name="confirm" string="Confirm" states="calc_done" icon="gtk-apply"/>
-                                <button name="cancel" string="Cancel" states="calc_done,done" icon="gtk-cancel"/>
-                                <button name="action_recover" string="Draft" type="object" states="canceled" icon="gtk-undo"/>
-                            </group>
-                        </page>
-                        <page string="Partner records">
-                            <field name="partner_record_ids" nolabel="1" context="{'report_id': active_id}"/>
-                        </page>
-                        <page string="Real State records">
-                            <field name="real_state_record_ids" nolabel="1" context="{'report_id': active_id}"/>
-                        </page>
-                    </notebook>
-                </form>
-            </field>
-        </record>
-
-
-        <!-- AEAT 347 partner record tree view -->
+        <!-- ################################
+        ### AEAT MODEL 347 PARTNER RECORD ###
+        ################################# -->
+        <!-- Tree view -->
         <record model="ir.ui.view" id="view_l10n_es_aeat_mod347_partner_record_tree">
             <field name="name">l10n.es.aeat.mod347.partner_record.tree</field>
             <field name="model">l10n.es.aeat.mod347.partner_record</field>
@@ -137,7 +24,7 @@ Authors: Alejandro Sanchez Ramirez Asr Oss - alejandro@asr-oss.com
             </field>
         </record>
 
-        <!-- AEAT 347 partner record form view -->
+        <!-- Form view -->
         <record model="ir.ui.view" id="view_l10n_es_aeat_mod347_partner_record_form">
             <field name="name">l10n.es.aeat.mod347.partner_record.form</field>
             <field name="model">l10n.es.aeat.mod347.partner_record</field>
@@ -161,6 +48,17 @@ Authors: Alejandro Sanchez Ramirez Asr Oss - alejandro@asr-oss.com
                                 <field name="origin_fiscalyear_id"/>
                                 <field name="real_state_transmissions_amount" />
                             </group>
+                            <group colspan="4" col="4">
+                                <field name="first_quarter"/>
+                                <field name="first_quarter_real_state_transmission_amount"/>
+                                <field name="second_quarter"/>
+                                <field name="second_quarter_real_state_transmission_amount"/>
+                                <field name="third_quarter"/>
+                                <field name="third_quarter_real_state_transmission_amount"/>
+                                <field name="fourth_quarter"/>
+                                <field name="fourth_quarter_real_state_transmission_amount"/>
+                            </group>
+
                             <group colspan="4">
                                 <field name="insurance_operation"/>
                                 <field name="bussiness_real_state_rent"/>
@@ -202,8 +100,11 @@ Authors: Alejandro Sanchez Ramirez Asr Oss - alejandro@asr-oss.com
 
 
 
-        <!-- AEAT 347 partner record tree view -->
-        <record model="ir.ui.view" id="view_l10n_es_aeat_mod347_real_state_record_tree">
+        <!-- ############################################
+        ### AEAT MODEL 347 PARTNER REAL STATE RECORDS ###
+        ############################################# -->
+        <!-- Tree view -->
+        <record id="view_l10n_es_aeat_mod347_real_state_record_tree" model="ir.ui.view">
             <field name="name">l10n.es.aeat.mod347.real_state_record.tree</field>
             <field name="model">l10n.es.aeat.mod347.real_state_record</field>
             <field name="type">tree</field>
@@ -221,8 +122,8 @@ Authors: Alejandro Sanchez Ramirez Asr Oss - alejandro@asr-oss.com
             </field>
         </record>
 
-        <!-- AEAT 347 real state record form view -->
-        <record model="ir.ui.view" id="view_l10n_es_aeat_mod347_real_state_record_form">
+        <!-- Form view -->
+        <record id="view_l10n_es_aeat_mod347_real_state_record_form" model="ir.ui.view">
             <field name="name">l10n.es.aeat.mod347.real_state_record.form</field>
             <field name="model">l10n.es.aeat.mod347.real_state_record</field>
             <field name="type">form</field>
@@ -273,25 +174,125 @@ Authors: Alejandro Sanchez Ramirez Asr Oss - alejandro@asr-oss.com
         </record>
 
 
-        <!-- Menus and windows -->
 
-        <record model="ir.actions.act_window" id="action_view_l10n_es_aeat_mod347_report">
-            <field name="name">AEAT 347 Report</field>
-            <field name="type">ir.actions.act_window</field>
+        <!-- #################
+        ### AEAT MODEL 347 ###
+        ################## -->
+        <!-- Tree view -->
+        <record id="view_l10n_es_aeat_mod347_report_tree" model="ir.ui.view">
+            <field name="name">AEAT Model 347 (tree)</field>
+            <field name="model">l10n.es.aeat.mod347.report</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="AEAT 347 Reports">
+                    <field name="number"/>
+                    <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="fiscalyear_id"/>
+                    <field name="type"/>
+                    <field name="previous_number"/>
+                    <field name="support_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form view -->
+        <record id="view_l10n_es_aeat_mod347_report_form" model="ir.ui.view">
+            <field name="name">AEAT Model 347 (form)</field>
+            <field name="model">l10n.es.aeat.mod347.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="AEAT 347 Report">
+                    <group string="Declaration" colspan="4">
+                        <field name="company_id" on_change="on_change_company_id(company_id)" required="1" select="1"/>
+                        <field name="fiscalyear_id" select="1"/>
+                        <field name="number"/>
+                        <field name="support_type"/>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="General">
+                            <group string="Identification" colspan="4">
+                                <field name="company_vat" required="1"/>
+                                <field name="contact_phone"/>
+                                <field name="contact_name" colspan="4"/>
+                                <field name="representative_vat"/>
+                            </group>
+                            <group string="Susbtitutive/complementary declaration" colspan="4">
+                                <field name="type"/>
+                                <field name="previous_number"/>
+                            </group>
+                            <group string="Summary" colspan="4">
+                                <field name="total_partner_records"/>
+                                <field name="total_amount"/>
+                                <field name="total_real_state_records"/>
+                                <field name="total_real_state_amount"/>
+                            </group>
+                            <group string="Calculation" colspan="4">
+                                <field name="operations_limit"/>
+                                <field name="received_cash_limit"/>
+                                <field name="charges_obtp_limit"/>
+                            </group>
+                            <group colspan="4">
+                                <field name="state" select="2" readonly="1"/>
+                                <field name="calculation_date" select="2" readonly="1"/>
+                            </group>
+                            <group colspan="4" col="10">
+                                <button name="button_calculate"
+                                        type="object"
+                                        string="Calculate"
+                                        states="draft"
+                                        icon="gtk-execute"/>
+                                <button name="button_recalculate"
+                                        type="object"
+                                        string="Recalculate"
+                                        states="calculating,calculated"
+                                        icon="gtk-execute"/>
+                                <button name="button_export"
+                                        type="object"
+                                        string="Export to BOE"
+                                        states="done"
+                                        icon="gtk-execute"/>
+                                <button name="confirm" string="Confirm" type="workflow" states="calculated" icon="gtk-ok"/>
+                                <button name="cancel" string="Cancel" type="workflow" states="calculated,done" icon="gtk-cancel"/>
+                                <button name="action_recover" string="Draft" type="object" states="canceled" icon="gtk-undo"/>
+                            </group>
+                        </page>
+                        <page string="Partner records">
+                            <field name="partner_record_ids" nolabel="1" context="{'report_id': active_id}"/>
+                        </page>
+                        <page string="Real State records">
+                            <field name="real_state_record_ids" nolabel="1" context="{'report_id': active_id}"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <!-- Window action -->
+        <record id="action_l10n_es_aeat_mod347_report" model="ir.actions.act_window">
+            <field name="name">AEAT Model 347</field>
             <field name="res_model">l10n.es.aeat.mod347.report</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_l10n_es_aeat_mod347_report_tree"/>
+    
         </record>
+        
 
-        <menuitem id="menu_account_aeat"
-                  name="Agencia Tributaria" 
-                  parent="account.menu_finance_legal_statement"/>
-       
-        <menuitem id="menu_l10n_es_aeat_mod347"
-                    parent="menu_account_aeat"
-                    name="347 Report"
-                    action="action_view_l10n_es_aeat_mod347_report"/>
 
+        <!--
+        ### MENU ACCESS ###
+        -->
+        <menuitem
+            id="menu_root_aeat"
+            parent="account.menu_finance_legal_statement"
+            name="AEAT Reports"/>
+            
+        <menuitem
+            id="menu_aeat_mod347_report"
+            parent="menu_root_aeat"
+            action="action_l10n_es_aeat_mod347_report"
+            sequence="50"
+            name="AEAT 347 Model"/>
+                
     </data>
 </openerp>

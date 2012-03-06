@@ -1,10 +1,8 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Alejandro Sanchez (http://www.asr-oss.com) All Rights Reserved.
-#                       Alejandro Sanchez <alejandro@asr-oss.com>
-#    $Id$
+#    Copyright (C) 2004-2011
+#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -22,12 +20,13 @@
 ##############################################################################
 
 {
-    "name" : "Generación de fichero modelo 347",
+    "name" : "AEAT Model 347",
     "version" : "1.0",
-    "author" : "ASR-OSS, Pexego",
+    "author" : "Pexego, ASR-OSS, NaN·tic",
+    "website" : "http://www.pexego.es, www.asr-oss.com, www.nan-tic.com",
     "category" : "Localisation/Accounting",
     "description" : """
-Módulo para la presentación del Modelo AEAT 347 (Declaración Anual de Operaciones con Terceros)
+    Módulo para la presentación del Modelo AEAT 347 (Declaración Anual de Operaciones con Terceros)
 
 Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban los diseños físicos y lógicos del 347.
 
@@ -60,28 +59,24 @@ De acuerdo con la normativa no están obligados a presentar el modelo 347:
         operaciones que expresamente deban incluirse en el modelo 347.
 
 (http://www.boe.es/boe/dias/2008/10/23/pdfs/A42154-42190.pdf)
-
-Desarrollado por Alejandro Sanchez (ASR-OSS, www.asr-oss.com)
-        y Borja López Soilán (Pexego, www.pexego.es)
     """,
-    "website" : "www.asr-oss.com",
-    "license" : "GPL-3",
-    "depends" : [
-                    'account',
-                    'base_vat',
-                    'account_invoice_currency',
-                ],
     "init_xml" : [],
-    "demo_xml" : [],
+    "depends" : [
+        "base_vat",
+        "account_invoice_currency",
+    ],
     "update_xml" : [
-                    'mod347_workflow.xml',
-                    'mod347_wizard.xml',
-                    'mod347_report.xml',
-                    'mod347_view.xml',
-                    'partner_view.xml',
-                    'account_journal_view.xml',
-                    'security/ir.model.access.csv',
-                    ],
+        "account_journal_view.xml",
+        "res_partner_view.xml",
+        "mod347_view.xml",
+        "mod347_workflow.xml",
+        "mod347_report.xml",
+        "security/ir.model.access.csv",
+        #"security/mod_347_security.xml"
+    ],
+    "demo_xml" : [],
+    "test" : [],
     "installable" : True,
     "active" : False,
 }
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

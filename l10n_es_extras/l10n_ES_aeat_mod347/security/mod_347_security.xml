@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="l10n_es_aeat_mod347_report_rule" model="ir.rule">
+            <field name="name">AEAT Mod 347</field>
+            <field ref="model_l10n_es_aeat_mod347_report" name="model_id"/>
+            
+        </record>
+
+    </data>
+</openerp>

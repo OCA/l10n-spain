@@ -1,91 +1,28 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-# 	* l10n_ES_aeat_mod347
+# 	* l10n_es_aeat_mod347
 #
+# Àngel Àlvarez <angel@nan-tic.com>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.6\n"
+"Project-Id-Version: OpenERP Server 6.0.2\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-04-25 19:37+0000\n"
-"PO-Revision-Date: 2011-03-22 11:30+0100\n"
-"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2012-02-24 15:24:10+0000\n"
+"PO-Revision-Date: 2012-02-23 14:02+0100\n"
+"Last-Translator: Àngel Àlvarez <angel@nan-tic.com>\n"
+"Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-09-25 16:04+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+"X-Generator: Lokalize 1.2\n"
 
 #. module: l10n_ES_aeat_mod347
-#: model:ir.module.module,description:l10n_ES_aeat_mod347.module_meta_information
-msgid ""
-"\n"
-"Módulo para la presentación del Modelo AEAT 347 (Declaración Anual de Operaciones con Terceros)\n"
-"\n"
-"Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban los diseños físicos y lógicos del 347.\n"
-"\n"
-"De acuerdo con la normativa de la Hacienda Española, están obligados a presentar el modelo 347:\n"
-"    * Todas aquellas personas físicas o jurídicas, de naturaleza pública o\n"
-"        privada que desarrollen actividades empresariales o profesionales,\n"
-"        siempre y cuando hayan realizado operaciones que, en su conjunto,\n"
-"        respecto de otra persona o Entidad, cualquiera que sea su naturaleza\n"
-"        o carácter, hayan superado la cifra de 3.005,06€ durante el año natural\n"
-"        al que se refiere la declaración. Para el cálculo de la cifra de\n"
-"        3.005,06 € se computan de forma separada las entregas de bienes\n"
-"        y servicios y las adquisiciones de los mismos.\n"
-"\n"
-"De acuerdo con la normativa no están obligados a presentar el modelo 347:\n"
-"    * Quienes realicen en España actividades empresariales o profesionales sin\n"
-"        tener en territorio español la sede de su actividad, un establecimiento\n"
-"        permanente o su domicilio fiscal.\n"
-"    * Las personas físicas y entidades en régimen de atribución de rentas en\n"
-"        el IRPF, por las actividades que tributen en dicho impuesto por el\n"
-"        régimen de estimación objetiva y, simultáneamente, en el IVA por los\n"
-"        régimenes especiales simplificados o de la agricultura, ganadería\n"
-"        y pesca o recargo de equivalencia, salvo las operaciones que estén\n"
-"        excluidas de la aplicación de los expresados regímenes.\n"
-"    * Los obligados tributarios que no hayan realizado operaciones que en su\n"
-"        conjunto superen la cifra de 3.005,06€\n"
-"    * Los obligados tributarios que hayan realizado exclusivamente operaciones\n"
-"        no declarables.\n"
-"    * Los obligados tributarios que deban informar sobre las operaciones\n"
-"        incluidas en los libros registro de IVA (modelo 340) salvo que realicen\n"
-"        operaciones que expresamente deban incluirse en el modelo 347.\n"
-"\n"
-"(http://www.boe.es/boe/dias/2008/10/23/pdfs/A42154-42190.pdf)\n"
-"\n"
-"Desarrollado por Alejandro Sanchez (ASR-OSS, www.asr-oss.com)\n"
-"        y Borja López Soilán (Pexego, www.pexego.es)\n"
-"    "
-msgstr ""
-
-#. module: l10n_ES_aeat_mod347
-#: help:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
-msgid "Origin cash operation fiscal year"
-msgstr "Ejercicio fiscal origen de las operaciones en efectivo."
-
-#. module: l10n_ES_aeat_mod347
-#: code:addons/l10n_ES_aeat_mod347/mod347.py:135
+#: code:addons/l10n_ES_aeat_mod347/wizard/export_mod347_to_boe.py:0
 #, python-format
-msgid "All partner vat number field must be filled."
-msgstr "El número CIF/NIF de todos los registros de empresas debe estar rellenado."
-
-#. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.wizard_export_boe,export:0
-msgid "You may now verify, print or upload the exported file using the AEAT help program available at:"
-msgstr "Ahora puede comprobar, imprimir o cargar el archivo exportado por medio del programa de ayuda de la AEAT disponible en:"
-
-#. module: l10n_ES_aeat_mod347
-#: code:addons/l10n_ES_aeat_mod347/mod347.py:0
-#, python-format
-msgid "All real state records state code field must be filled."
-msgstr "El código de provincia de todos los registros de inmuebles debe estar rellenado."
-
-#. module: l10n_ES_aeat_mod347
-#: code:addons/l10n_ES_aeat_mod347/mod347.py:0
-#, python-format
-msgid "All partner state code field must be filled."
-msgstr "El código de provincia de todos los registros de empresas debe estar rellenado."
+msgid "The type 2-D record (partner) must be 502 characters long"
+msgstr "El tipo de registro 2-D (empresa) debe ser de 502 caracteres de largo"
 
 #. module: l10n_ES_aeat_mod347
 #: model:ir.model,name:l10n_ES_aeat_mod347.model_l10n_es_aeat_mod347_partner_record
@@ -94,39 +31,44 @@ msgid "Partner Record"
 msgstr "Registro de empresa"
 
 #. module: l10n_ES_aeat_mod347
-#: rml:report_l10n_es_aeat_mod347.generic:0
-msgid "Key Oper."
-msgstr "Clave op."
+#: code:addons/l10n_ES_aeat_mod347/mod347.py:0
+#, python-format
+msgid "All real state records state code field must be filled."
+msgstr ""
+"El código de provincia de todos los registros de inmuebles debe estar "
+"rellenado."
 
 #. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
-msgid "Origin fiscal year"
-msgstr "Ejercicio fiscal origen"
+#: rml:report_l10n_es_aeat_mod347.report:0
+msgid "Key Oper."
+msgstr "Clave oper."
 
 #. module: l10n_ES_aeat_mod347
 #: constraint:ir.actions.act_window:0
 msgid "Invalid model name in the action definition."
-msgstr "Nombre de modelo inválido en la definición de la acción."
+msgstr "Invalid model name in the action definition."
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_field:l10n_es_aeat_mod347.calculate_wizard,progress,progress:0
-msgid "Progress"
-msgstr "Progreso"
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Calculate"
+msgstr "Calcular"
 
 #. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,stairway:0
-msgid "Stairway"
-msgstr "Escalera"
+#: field:res.partner,include_in_mod347:0
+msgid "Include in 347 Report"
+msgstr "Incluir en declaración 347"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.wizard_export_boe,init:0
-msgid "This wizard will export the 347 report data to a BOE format file."
-msgstr "Este asistente exportará los datos del informe 347 a un archivo en formato BOE."
+#: field:l10n.es.aeat.mod347.partner_record,real_state_record_ids:0
+#: view:l10n.es.aeat.mod347.real_state_record:0
+#: field:l10n.es.aeat.mod347.report,real_state_record_ids:0
+msgid "Real State Records"
+msgstr "Registros de inmuebles"
 
 #. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,situation:0
-msgid "Real state Situation"
-msgstr "Situación de inmuebles"
+#: field:l10n.es.aeat.mod347.partner_record,fourth_quarter_real_state_transmission_amount:0
+msgid "Fourth Quarter Real State Transmossion Amount"
+msgstr "Importe transmisión inmueble (T4)"
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
@@ -152,13 +94,17 @@ msgstr "Registros de inmuebles"
 
 #. module: l10n_ES_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,operations_limit:0
-msgid "The declaration will include partners with the total of operations over this limit"
-msgstr "La declaración incluirá las empresas cuya suma de operaciones supere este límite."
+msgid ""
+"The declaration will include partners with the total of operations over this "
+"limit"
+msgstr ""
+"La declaración incluirá las empresas cuya suma de operaciones supere este "
+"límite."
 
 #. module: l10n_ES_aeat_mod347
-#: model:ir.actions.report.xml,name:l10n_ES_aeat_mod347.report_l10n_es_aeat_mod347_generic
-msgid "Generic model 347 report"
-msgstr "Informe genérico modelo 347"
+#: field:l10n.es.aeat.mod347.real_state_record,number_calification:0
+msgid "Number calification"
+msgstr "Calificador del número"
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,type:0
@@ -168,17 +114,17 @@ msgstr "Sustitutiva"
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,total_cash_amount:0
 msgid "Cash Amount"
-msgstr "Importe en metálico"
+msgstr "Importe en efectivo"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.calculate_wizard,progress:0
-msgid "The calculation may take a while."
-msgstr "El cálculo puede tardar varios minutos."
+#: selection:l10n.es.aeat.mod347.report,support_type:0
+msgid "DVD"
+msgstr "DVD"
 
 #. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,fiscalyear_id:0
-msgid "Fical Year"
-msgstr "Ejercicio fiscal"
+#: field:l10n.es.aeat.mod347.report,total_real_state_amount:0
+msgid "Real State Amount"
+msgstr "Importe inmuebles"
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,number_calification:0
@@ -198,7 +144,7 @@ msgstr "Mod"
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
 msgid "AEAT 347 Reports"
-msgstr "Informes AEAT 347"
+msgstr "Declaraciones AEAT 347"
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,situation:0
@@ -206,9 +152,9 @@ msgid "1 - Spain but Basque Country and Navarra"
 msgstr "1 - España excepto País Vasco y Navarra"
 
 #. module: l10n_ES_aeat_mod347
-#: model:ir.actions.wizard,name:l10n_ES_aeat_mod347.wiz_l10n_es_aeat_mod347_export_boe
-msgid "Export BOE file"
-msgstr "Exportar a fichero BOE"
+#: view:l10n.es.aeat.mod347.partner_record:0
+msgid "Invoice record"
+msgstr "Registro de factura"
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -216,20 +162,21 @@ msgid "Partner records"
 msgstr "Registros de empresas"
 
 #. module: l10n_ES_aeat_mod347
-#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#: code:addons/l10n_ES_aeat_mod347/wizard/export_mod347_to_boe.py:0
 #, python-format
 msgid "The type 1 record must be 502 characters long"
-msgstr "El registro de tipo 1 debe tener una longitud de 502 caracteres."
+msgstr "El tipo de registro 1 debe ser de 502 caracteres de largo"
 
 #. module: l10n_ES_aeat_mod347
-#: rml:report_l10n_es_aeat_mod347.generic:0
-msgid "R.S. Rent"
-msgstr "Arrend. inmueb. negocio"
+#: field:l10n.es.aeat.mod347.report,support_type:0
+msgid "Support Type"
+msgstr "Tipo de soporte"
 
 #. module: l10n_ES_aeat_mod347
-#: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
-msgid "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores al límite (1)"
-msgstr "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores al límite (1)"
+#: code:addons/l10n_ES_aeat_mod347/mod347.py:0
+#, python-format
+msgid "Error!"
+msgstr "Error!"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,amount:0
@@ -251,16 +198,14 @@ msgid "Invoice records"
 msgstr "Registros de facturas"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.wizard_export_boe,init:0
-msgid "Export 347 in BOE format"
-msgstr "Exportar 347 en formato BOE"
+#: field:account.period,quarter:0
+msgid "Quarter"
+msgstr "Trimestre"
 
 #. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,real_state_record_ids:0
-#: view:l10n.es.aeat.mod347.real_state_record:0
-#: field:l10n.es.aeat.mod347.report,real_state_record_ids:0
-msgid "Real State Records"
-msgstr "Registros de inmuebles"
+#: rml:report_l10n_es_aeat_mod347.report:0
+msgid "VAT"
+msgstr "CIF/NIF"
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -268,16 +213,21 @@ msgid "Calculation"
 msgstr "Cálculo"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_field:l10n_es_aeat_mod347.wizard_export_boe,export,file:0
-#: wizard_field:l10n_es_aeat_mod347.wizard_export_boe,export,file_name:0
-msgid "Exported file"
-msgstr "Fichero exportado"
-
-#. module: l10n_ES_aeat_mod347
-#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#: code:addons/l10n_ES_aeat_mod347/wizard/export_mod347_to_boe.py:0
 #, python-format
 msgid "The type 2-I record (real state) must be 502 characters long"
-msgstr "El registro de tipo 2-I (inmueble) debe tener una longitud de 502 caracteres."
+msgstr ""
+"El tipo de registro 2-I (estado real) debe ser de 502 caracteres de largo"
+
+#. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/mod347.py:0
+#, python-format
+msgid ""
+"All partner state code field must be filled.\n"
+"Partner: %s (%s)"
+msgstr ""
+"El código de provincia de todos los registros de empresas debe estar "
+"rellenado."
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -291,9 +241,9 @@ msgid "Real State records"
 msgstr "Registros de inmuebles"
 
 #. module: l10n_ES_aeat_mod347
-#: model:ir.model,name:l10n_ES_aeat_mod347.model_l10n_es_aeat_mod347_invoice_record
-msgid "Invoice Record"
-msgstr "Registro de factura"
+#: selection:account.period,quarter:0
+msgid "Fourth"
+msgstr "Fourth"
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -301,19 +251,18 @@ msgid "Confirm"
 msgstr "Confirmar"
 
 #. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,support_type:0
-msgid "Support Type"
-msgstr "Tipo de soporte"
-
-#. module: l10n_ES_aeat_mod347
-#: constraint:ir.ui.view:0
-msgid "Invalid XML for View Architecture!"
-msgstr "¡XML inválido para la estructura de la vista!"
+#: field:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
+msgid "Origin fiscal year"
+msgstr "Ejercicio fiscal origen"
 
 #. module: l10n_ES_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,charges_obtp_limit:0
-msgid "The declaration will include partners from which we received payments, on behalf of third parties, over this limit"
-msgstr "La declaración incluirá las empresas a las que hemos realizado cobros por cuenta de terceros superiores al límite."
+msgid ""
+"The declaration will include partners from which we received payments, on "
+"behalf of third parties, over this limit"
+msgstr ""
+"La declaración incluirá las empresas a las que hemos realizado cobros por "
+"cuenta de terceros superiores al límite."
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,operations_limit:0
@@ -331,11 +280,6 @@ msgid "Bussiness Real State Rent"
 msgstr "Arrendamiento local negocio"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.wizard_export_boe,init:0
-msgid "You may afterwards import this file into the AEAT help program."
-msgstr "Después podrá importar este archivo en el programa de ayuda de la AEAT."
-
-#. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,received_cash_limit:0
 msgid "Received cash Limit (2)"
 msgstr "Límite efectivo (2)"
@@ -346,22 +290,30 @@ msgid "F - Ventas agencia viaje"
 msgstr "F - Ventas agencia viaje"
 
 #. module: l10n_ES_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
+msgid "Origin cash operation fiscal year"
+msgstr "Ejercicio fiscal origen de las operaciones en efectivo."
+
+#. module: l10n_ES_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,representative_vat:0
 #: help:l10n.es.aeat.mod347.real_state_record,representative_vat:0
-#: help:l10n.es.aeat.mod347.report,representative_vat:0
 msgid "Legal Representative VAT number"
 msgstr "CIF/NIF del representante legal."
 
 #. module: l10n_ES_aeat_mod347
-#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
-#, python-format
-msgid "347_report_%s.txt"
-msgstr "informe_347_%s.txt"
+#: field:l10n.es.aeat.mod347.partner_record,fourth_quarter:0
+msgid "Fourth Quarter"
+msgstr "Cuarto Trimestre"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,door:0
 msgid "Door"
 msgstr "Puerta"
+
+#. module: l10n_ES_aeat_mod347
+#: selection:account.period,quarter:0
+msgid "Third"
+msgstr "Third"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,partner_record_id:0
@@ -370,13 +322,12 @@ msgid "Partner record"
 msgstr "Registro de empresa"
 
 #. module: l10n_ES_aeat_mod347
-#: model:ir.actions.act_window,name:l10n_ES_aeat_mod347.action_view_l10n_es_aeat_mod347_report
 #: model:ir.model,name:l10n_ES_aeat_mod347.model_l10n_es_aeat_mod347_report
 #: field:l10n.es.aeat.mod347.partner_record,report_id:0
 #: field:l10n.es.aeat.mod347.real_state_record,report_id:0
 #: view:l10n.es.aeat.mod347.report:0
 msgid "AEAT 347 Report"
-msgstr "Informe 347 AEAT"
+msgstr "Declaración AEAT 347"
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
@@ -384,20 +335,25 @@ msgid "C - Cobros por cuenta de terceros superiores al límite (3)"
 msgstr "C - Cobros por cuenta de terceros superiores al límite (3)"
 
 #. module: l10n_ES_aeat_mod347
-#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#: code:addons/l10n_ES_aeat_mod347/wizard/export_mod347_to_boe.py:0
 #, python-format
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
 
 #. module: l10n_ES_aeat_mod347
-#: view:l10n.es.aeat.mod347.partner_record:0
-msgid "Invoice record"
-msgstr "Registro de factura"
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Export to BOE"
+msgstr "Exportar a formato BOE"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_button:l10n_es_aeat_mod347.calculate_wizard,progress,end:0
-msgid "Close (continues in background)"
-msgstr "Cerrar (continuar en segundo plano)"
+#: rml:report_l10n_es_aeat_mod347.report:0
+msgid "AEAT 347 MODEL"
+msgstr "MODELO AEAT 347"
+
+#. module: l10n_ES_aeat_mod347
+#: model:ir.actions.report.xml,name:l10n_ES_aeat_mod347.report_l10n_es_aeat_mod347
+msgid "AEAT 347 Model report"
+msgstr "Declaración modelo AEAT 347"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,partner_vat:0
@@ -407,19 +363,14 @@ msgid "VAT number"
 msgstr "CIF/NIF"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.calculate_wizard,done:0
-msgid "The partner operation records have been calculated."
-msgstr "Los registros de operaciones con empresas han sido calculados."
-
-#. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,insurance_operation:0
 msgid "Insurance Operation"
 msgstr "Operación seguro"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.calculate_wizard,done:0
-msgid "Calculation done"
-msgstr "Cálculo realizado"
+#: field:l10n.es.aeat.mod347.report,state:0
+msgid "State"
+msgstr "Estado"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,partner_state_code:0
@@ -428,24 +379,24 @@ msgid "State Code"
 msgstr "Código de provincia"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.calculate_wizard,init:0
-msgid "  A - Purchases of goods and services over the limit (1)."
-msgstr "  A - Compras de bienes y servicios por superiores (1)."
+#: field:l10n.es.aeat.mod347.real_state_record,stairway:0
+msgid "Stairway"
+msgstr "Escalera"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.wizard_export_boe,export:0
-msgid "347 report exported in BOE format"
-msgstr "Informe 347 exportado en formato BOE"
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr "Invalid XML for View Architecture!"
 
 #. module: l10n_ES_aeat_mod347
-#: rml:report_l10n_es_aeat_mod347.generic:0
-msgid "Partner:"
-msgstr "Empresa:"
+#: field:l10n.es.aeat.mod347.partner_record,third_quarter:0
+msgid "Third Quarter"
+msgstr "Tercer Trimestre "
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.calculate_wizard,show_exception:0
-msgid "Error: The calculation operation has failed!"
-msgstr "Error: ¡El cálculo ha fallado!"
+#: model:ir.ui.menu,name:l10n_ES_aeat_mod347.menu_aeat_mod347_report
+msgid "AEAT 347 Model"
+msgstr "Modelo AEAT 347"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,total_partner_records:0
@@ -453,27 +404,21 @@ msgid "Partners records"
 msgstr "Registros de empresas"
 
 #. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,calc_date:0
+#: field:l10n.es.aeat.mod347.report,calculation_date:0
 msgid "Calculation date"
 msgstr "Fecha de cálculo"
 
 #. module: l10n_ES_aeat_mod347
-#: code:addons/l10n_ES_aeat_mod347/mod347.py:0
-#, python-format
-msgid "Error!"
-msgstr "¡Error!"
-
-#. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,partner_id:0
 #: field:l10n.es.aeat.mod347.real_state_record,partner_id:0
-#: rml:report_l10n_es_aeat_mod347.generic:0
+#: rml:report_l10n_es_aeat_mod347.report:0
 msgid "Partner"
 msgstr "Empresa"
 
 #. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,contact_name:0
-msgid "Full Name"
-msgstr "Apellidos y nombre"
+#: rml:report_l10n_es_aeat_mod347.report:0
+msgid "Amount (Q1|Q2|Q3|Q4)"
+msgstr "Importe (T1|T2|T3|T4)"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,block:0
@@ -481,24 +426,45 @@ msgid "Block"
 msgstr "Bloque"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.calculate_wizard,progress:0
-msgid "Calculating partner records"
-msgstr "Calculando registros de empresa"
+#: selection:account.period,quarter:0
+msgid "First"
+msgstr "First"
 
 #. module: l10n_ES_aeat_mod347
-#: rml:report_l10n_es_aeat_mod347.generic:0
+#: field:l10n.es.aeat.mod347.real_state_record,situation:0
+msgid "Real state Situation"
+msgstr "Situación de inmuebles"
+
+#. module: l10n_ES_aeat_mod347
+#: rml:report_l10n_es_aeat_mod347.report:0
+msgid "Ins. Oper"
+msgstr "Op. seguro"
+
+#. module: l10n_ES_aeat_mod347
+#: model:ir.ui.menu,name:l10n_ES_aeat_mod347.menu_root_aeat
+#, fuzzy
+msgid "AEAT Reports"
+msgstr "Declaraciones AEAT 347"
+
+#. module: l10n_ES_aeat_mod347
+#: rml:report_l10n_es_aeat_mod347.report:0
 msgid "Invoiced amount"
 msgstr "Importe facturado"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,reference:0
 msgid "Catastral Reference"
-msgstr "Referencia Catastral"
+msgstr "Referencia catastral"
+
+#. module: l10n_ES_aeat_mod347
+#: rml:report_l10n_es_aeat_mod347.report:0
+msgid "Support type:"
+msgstr "Tipo de soporte:"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,number:0
 msgid "Declaration Number"
-msgstr "Número de la declaración"
+msgstr "Número de declaración"
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,state:0
@@ -508,12 +474,12 @@ msgstr "Cancelada"
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,situation:0
 msgid "2 - Basque Country and Navarra"
-msgstr "2 - País Vasco o Navarra"
+msgstr "2 - País Vasco y Navarra"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,postal_code:0
 msgid "Postal code"
-msgstr "Código Postal"
+msgstr "Código postal"
 
 #. module: l10n_ES_aeat_mod347
 #: model:ir.model,name:l10n_ES_aeat_mod347.model_l10n_es_aeat_mod347_cash_record
@@ -521,10 +487,19 @@ msgid "Cash Record"
 msgstr "Registro de efectivo"
 
 #. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/mod347.py:0
+#, python-format
+msgid ""
+"All partner vat number field must be filled.\n"
+"Partner: %s (%s)"
+msgstr ""
+"El número CIF/NIF de todos los registros de empresas debe estar rellenado."
+
+#. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
 #: view:l10n.es.aeat.mod347.real_state_record:0
 msgid "Real state info"
-msgstr "Información Inmuebles"
+msgstr "Información de inmuebles"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,real_state_transmissions_amount:0
@@ -537,20 +512,118 @@ msgid "A - Adquisiciones de bienes y servicios superiores al límite (1)"
 msgstr "A - Adquisiciones de bienes y servicios superiores al límite (1)"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.calculate_wizard,init:0
-msgid "It will create records for the next operations:"
-msgstr "Se crearán los registros de las siguientes operaciones:"
+#: model:ir.model,name:l10n_ES_aeat_mod347.model_l10n_es_aeat_mod347_calculate_records
+msgid "AEAT Model 347 Wizard - Calculate Records"
+msgstr "Asistente modelo AEAT 347 - Cálculo de registros"
 
 #. module: l10n_ES_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-#: wizard_button:l10n_es_aeat_mod347.calculate_wizard,init,calculate_records:0
-msgid "Calculate"
-msgstr "Calcular"
+#: field:l10n.es.aeat.mod347.partner_record,second_quarter:0
+msgid "Second Quarter"
+msgstr "Segundo Trimestre"
 
 #. module: l10n_ES_aeat_mod347
-#: selection:l10n.es.aeat.mod347.report,support_type:0
-msgid "DVD"
-msgstr "DVD"
+#: rml:report_l10n_es_aeat_mod347.report:0
+msgid "RS Rent"
+msgstr "Arrend. inmueb. negocio"
+
+#. module: l10n_ES_aeat_mod347
+#: model:ir.module.module,description:l10n_ES_aeat_mod347.module_meta_information
+msgid ""
+"\n"
+"    Módulo para la presentación del Modelo AEAT 347 (Declaración Anual de "
+"Operaciones con Terceros)\n"
+"\n"
+"Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban "
+"los diseños físicos y lógicos del 347.\n"
+"\n"
+"De acuerdo con la normativa de la Hacienda Española, están obligados a "
+"presentar el modelo 347:\n"
+"    * Todas aquellas personas físicas o jurídicas, de naturaleza pública o\n"
+"        privada que desarrollen actividades empresariales o profesionales,\n"
+"        siempre y cuando hayan realizado operaciones que, en su conjunto,\n"
+"        respecto de otra persona o Entidad, cualquiera que sea su "
+"naturaleza\n"
+"        o carácter, hayan superado la cifra de 3.005,06€ durante el año "
+"natural\n"
+"        al que se refiere la declaración. Para el cálculo de la cifra de\n"
+"        3.005,06 € se computan de forma separada las entregas de bienes\n"
+"        y servicios y las adquisiciones de los mismos.\n"
+"\n"
+"De acuerdo con la normativa no están obligados a presentar el modelo 347:\n"
+"    * Quienes realicen en España actividades empresariales o profesionales "
+"sin\n"
+"        tener en territorio español la sede de su actividad, un "
+"establecimiento\n"
+"        permanente o su domicilio fiscal.\n"
+"    * Las personas físicas y entidades en régimen de atribución de rentas "
+"en\n"
+"        el IRPF, por las actividades que tributen en dicho impuesto por el\n"
+"        régimen de estimación objetiva y, simultáneamente, en el IVA por "
+"los\n"
+"        régimenes especiales simplificados o de la agricultura, ganadería\n"
+"        y pesca o recargo de equivalencia, salvo las operaciones que estén\n"
+"        excluidas de la aplicación de los expresados regímenes.\n"
+"    * Los obligados tributarios que no hayan realizado operaciones que en "
+"su\n"
+"        conjunto superen la cifra de 3.005,06€\n"
+"    * Los obligados tributarios que hayan realizado exclusivamente "
+"operaciones\n"
+"        no declarables.\n"
+"    * Los obligados tributarios que deban informar sobre las operaciones\n"
+"        incluidas en los libros registro de IVA (modelo 340) salvo que "
+"realicen\n"
+"        operaciones que expresamente deban incluirse en el modelo 347.\n"
+"\n"
+"(http://www.boe.es/boe/dias/2008/10/23/pdfs/A42154-42190.pdf)\n"
+"    "
+msgstr ""
+"\n"
+"    Módulo para la presentación del Modelo AEAT 347 (Declaración Anual de "
+"Operaciones con Terceros)\n"
+"\n"
+"Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban "
+"los diseños físicos y lógicos del 347.\n"
+"\n"
+"De acuerdo con la normativa de la Hacienda Española, están obligados a "
+"presentar el modelo 347:\n"
+"    * Todas aquellas personas físicas o jurídicas, de naturaleza pública o\n"
+"        privada que desarrollen actividades empresariales o profesionales,\n"
+"        siempre y cuando hayan realizado operaciones que, en su conjunto,\n"
+"        respecto de otra persona o Entidad, cualquiera que sea su "
+"naturaleza\n"
+"        o carácter, hayan superado la cifra de 3.005,06€ durante el año "
+"natural\n"
+"        al que se refiere la declaración. Para el cálculo de la cifra de\n"
+"        3.005,06 € se computan de forma separada las entregas de bienes\n"
+"        y servicios y las adquisiciones de los mismos.\n"
+"\n"
+"De acuerdo con la normativa no están obligados a presentar el modelo 347:\n"
+"    * Quienes realicen en España actividades empresariales o profesionales "
+"sin\n"
+"        tener en territorio español la sede de su actividad, un "
+"establecimiento\n"
+"        permanente o su domicilio fiscal.\n"
+"    * Las personas físicas y entidades en régimen de atribución de rentas "
+"en\n"
+"        el IRPF, por las actividades que tributen en dicho impuesto por el\n"
+"        régimen de estimación objetiva y, simultáneamente, en el IVA por "
+"los\n"
+"        régimenes especiales simplificados o de la agricultura, ganadería\n"
+"        y pesca o recargo de equivalencia, salvo las operaciones que estén\n"
+"        excluidas de la aplicación de los expresados regímenes.\n"
+"    * Los obligados tributarios que no hayan realizado operaciones que en "
+"su\n"
+"        conjunto superen la cifra de 3.005,06€\n"
+"    * Los obligados tributarios que hayan realizado exclusivamente "
+"operaciones\n"
+"        no declarables.\n"
+"    * Los obligados tributarios que deban informar sobre las operaciones\n"
+"        incluidas en los libros registro de IVA (modelo 340) salvo que "
+"realicen\n"
+"        operaciones que expresamente deban incluirse en el modelo 347.\n"
+"\n"
+"(http://www.boe.es/boe/dias/2008/10/23/pdfs/A42154-42190.pdf)\n"
+"    "
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -563,14 +636,9 @@ msgid "Dup"
 msgstr "Dup"
 
 #. module: l10n_ES_aeat_mod347
-#: rml:report_l10n_es_aeat_mod347.generic:0
-msgid "Ins. Oper."
-msgstr "Op. seguro"
-
-#. module: l10n_ES_aeat_mod347
-#: help:res.partner,include_in_mod347:0
-msgid "Include in AEAT 347 model report"
-msgstr "Incluir en informe del modelo 347 para la AEAT."
+#: model:ir.model,name:l10n_ES_aeat_mod347.model_l10n_es_aeat_mod347_invoice_record
+msgid "Invoice Record"
+msgstr "Registro de factura"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,number_type:0
@@ -593,9 +661,9 @@ msgid "Processing"
 msgstr "Procesando"
 
 #. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,number_calification:0
-msgid "Number calification"
-msgstr "Calificador del número"
+#: field:l10n.es.aeat.mod347.report,contact_name:0
+msgid "Full Name"
+msgstr "Apellidos y nombre"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,contact_phone:0
@@ -609,13 +677,23 @@ msgstr "Portal"
 
 #. module: l10n_ES_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,bussiness_real_state_rent:0
-msgid "Set to identify real state rent operations aside from the rest. You'll need to fill in the real state info only when you are the one that receives the money."
-msgstr "(Sólo arrendadores y arrendatarios de Locales de Negocio). Marcarán esta casilla para identificar las operaciones de arrendamiento de locales de negocio, debiendo consignarlas separadamente del resto. Además los arrendadores deberán cumplimentar los campos que componen el REGISTRO DE INMUEBLE, consignando el Importe Total de cada arrendamiento correspondiente al año natural al que se refiere la declaración, con independencia de que éste ya haya sido incluido en la clave 'B' (ventas)."
+msgid ""
+"Set to identify real state rent operations aside from the rest. You'll need "
+"to fill in the real state info only when you are the one that receives the "
+"money."
+msgstr ""
+"(Sólo arrendadores y arrendatarios de Locales de Negocio). Marcarán esta "
+"casilla para identificar las operaciones de arrendamiento de locales de "
+"negocio, debiendo consignarlas separadamente del resto. Además los "
+"arrendadores deberán cumplimentar los campos que componen el REGISTRO DE "
+"INMUEBLE, consignando el Importe Total de cada arrendamiento correspondiente "
+"al año natural al que se refiere la declaración, con independencia de que "
+"éste ya haya sido incluido en la clave 'B' (ventas)."
 
 #. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,charges_obtp_limit:0
-msgid "Charges on behalf of third parties Limit (3)"
-msgstr "Cargos por cuenta de terceros superiores al límite (3)"
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Declaration"
+msgstr "Declaración"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,date:0
@@ -624,19 +702,22 @@ msgid "Date"
 msgstr "Fecha"
 
 #. module: l10n_ES_aeat_mod347
-#: rml:report_l10n_es_aeat_mod347.generic:0
+#: rml:report_l10n_es_aeat_mod347.report:0
 msgid "Number:"
 msgstr "Número:"
 
 #. module: l10n_ES_aeat_mod347
-#: help:l10n.es.aeat.mod347.report,received_cash_limit:0
-msgid "The declaration will show the total of cash operations over this limit"
-msgstr "La declaración muestra el total de las operaciones realizadas en efectivo superiores a este límite."
+#: code:addons/l10n_ES_aeat_mod347/mod347.py:0
+#, python-format
+msgid "Only reports in 'draft' or 'cancel' state can be removed"
+msgstr "Only reports in 'draft' or 'cancel' state can be removed"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_field:l10n_es_aeat_mod347.calculate_wizard,show_exception,exception_text:0
-msgid "Exception"
-msgstr "Excepción"
+#: help:l10n.es.aeat.mod347.report,received_cash_limit:0
+msgid "The declaration will show the total of cash operations over this limit"
+msgstr ""
+"La declaración muestra el total de las operaciones realizadas en efectivo "
+"superiores a este límite."
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,cash_record_ids:0
@@ -646,18 +727,13 @@ msgstr "Registros de pago"
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,address_type:0
 msgid "Address type"
-msgstr "Tipo de vía"
+msgstr "Tipo de dirección"
 
 #. module: l10n_ES_aeat_mod347
-#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#: code:addons/l10n_ES_aeat_mod347/wizard/export_mod347_to_boe.py:0
 #, python-format
 msgid "The formated string must match the given length"
-msgstr "El texto con formato debe concordar con la longitud dada."
-
-#. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.calculate_wizard,init:0
-msgid "  B - Sales of goods and services over the limit (1)."
-msgstr "  B - Ventas de bienes y servicios superiores a (1)."
+msgstr "The formated string must match the given length"
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,number_type:0
@@ -665,14 +741,14 @@ msgid "Without number"
 msgstr "Sin número"
 
 #. module: l10n_ES_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "Declaration"
-msgstr "Declaración"
+#: field:l10n.es.aeat.mod347.report,charges_obtp_limit:0
+msgid "Charges on behalf of third parties Limit (3)"
+msgstr "Cargos por cuenta de terceros superiores al límite (3)"
 
 #. module: l10n_ES_aeat_mod347
-#: model:ir.actions.wizard,name:l10n_ES_aeat_mod347.wiz_l10n_es_aeat_mod347_calculate
-msgid "Calculate Partner Records"
-msgstr "Calcular registros de empresa"
+#: field:l10n.es.aeat.mod347.partner_record,partner_country_code:0
+msgid "Country Code"
+msgstr "Código de país"
 
 #. module: l10n_ES_aeat_mod347
 #: field:account.journal,cash_journal:0
@@ -680,22 +756,21 @@ msgid "Cash payments journal"
 msgstr "Diario de pagos en efectivo"
 
 #. module: l10n_ES_aeat_mod347
-#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
-#, python-format
-msgid "347 report %s"
-msgstr "Informe 347 %s"
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Summary"
+msgstr "Resumen"
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,state:0
 msgid "Processed"
-msgstr "Procesado"
+msgstr "Procesada"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,representative_vat:0
 #: field:l10n.es.aeat.mod347.real_state_record,representative_vat:0
 #: field:l10n.es.aeat.mod347.report,representative_vat:0
 msgid "L.R. VAT number"
-msgstr "NIF R.L."
+msgstr "CIF/NIF R.L."
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
@@ -708,35 +783,28 @@ msgid "Susbtitutive/complementary declaration"
 msgstr "Declaración Complementaria / Sustitutiva"
 
 #. module: l10n_ES_aeat_mod347
-#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
-#, python-format
-msgid "The type 2-D record (partner) must be 502 characters long"
-msgstr "El registro de tipo 2-D (empresa) debe tener una longitud de 502 caracteres."
-
-#. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "G - Compras agencia viaje"
 msgstr "G - Compras agencia viaje"
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
-msgid "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al límite (1)"
-msgstr "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al límite (1)"
+msgid ""
+"D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al "
+"límite (1)"
+msgstr ""
+"D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al "
+"límite (1)"
 
 #. module: l10n_ES_aeat_mod347
-#: rml:report_l10n_es_aeat_mod347.generic:0
-msgid "Suport type:"
-msgstr "Tipo de soporte:"
-
-#. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,state:0
-msgid "State"
-msgstr "Estado"
+#: field:l10n.es.aeat.mod347.partner_record,third_quarter_real_state_transmission_amount:0
+msgid "Third Quarter Real State Transmission Amount"
+msgstr "Importe transmisión inmueble (T3)"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,type:0
 msgid "Statement Type"
-msgstr "Tipo declaración"
+msgstr "Tipo de declaración"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,number:0
@@ -755,12 +823,14 @@ msgid "Ant"
 msgstr "Ant"
 
 #. module: l10n_ES_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,first_quarter:0
+msgid "First Quarter"
+msgstr "Primer Trimestre"
+
+#. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,state:0
-#: wizard_button:l10n_es_aeat_mod347.calculate_wizard,done,end:0
-#: wizard_button:l10n_es_aeat_mod347.calculate_wizard,show_exception,end:0
-#: wizard_button:l10n_es_aeat_mod347.wizard_export_boe,export,end:0
 msgid "Done"
-msgstr "Realizado"
+msgstr "Realizada"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.invoice_record,invoice_id:0
@@ -768,21 +838,29 @@ msgid "Invoice"
 msgstr "Factura"
 
 #. module: l10n_ES_aeat_mod347
+#: rml:report_l10n_es_aeat_mod347.report:0
+msgid "Real State Transmission (Q1|Q2|Q3|Q4)"
+msgstr "Importe transmisión inmueble (T1|T2|T3|T4)"
+
+#. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
-#: wizard_button:l10n_es_aeat_mod347.calculate_wizard,init,end:0
-#: wizard_button:l10n_es_aeat_mod347.wizard_export_boe,init,end:0
 msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: l10n_ES_aeat_mod347
-#: help:l10n.es.aeat.mod347.partner_record,insurance_operation:0
-msgid "Only for insurance companies. Set to identify insurance operations aside from the rest."
-msgstr "Sólo entidades aseguradoras. Las entidades aseguradoras marcarán esta casilla para identificar las operaciones de seguros, debiendo consignarlas separadamente del resto de operaciones."
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Recalculate"
+msgstr "Recalcular"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_button:l10n_es_aeat_mod347.calculate_wizard,progress,calculate_records:0
-msgid "Keep waiting"
-msgstr "Seguir esperando"
+#: help:l10n.es.aeat.mod347.partner_record,insurance_operation:0
+msgid ""
+"Only for insurance companies. Set to identify insurance operations aside "
+"from the rest."
+msgstr ""
+"Sólo entidades aseguradoras. Las entidades aseguradoras marcarán esta "
+"casilla para identificar las operaciones de seguros, debiendo consignarlas "
+"separadamente del resto de operaciones."
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,city:0
@@ -791,18 +869,28 @@ msgstr "Población"
 
 #. module: l10n_ES_aeat_mod347
 #: help:account.journal,cash_journal:0
-msgid "Payments of this journal will be considered as cash (used on the 347 report)"
-msgstr "Los pagos realizados con este diario serán considerados como efectivo (utilizado en el informe 347)."
+msgid ""
+"Payments of this journal will be considered as cash (used on the 347 report)"
+msgstr ""
+"Los pagos realizados con este diario serán considerados como efectivo "
+"(utilizado en la declaración 347)."
 
 #. module: l10n_ES_aeat_mod347
 #: constraint:ir.model:0
-msgid "The Object name must start with x_ and not contain any special character !"
-msgstr "¡El nombre del objeto debe empezar con x_ y no contener ningún carácter especial!"
+msgid ""
+"The Object name must start with x_ and not contain any special character !"
+msgstr ""
+"The Object name must start with x_ and not contain any special character !"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,floor:0
 msgid "Floor"
 msgstr "Planta"
+
+#. module: l10n_ES_aeat_mod347
+#: model:ir.model,name:l10n_ES_aeat_mod347.model_l10n_es_aeat_mod347_export_to_boe
+msgid "Export AEAT Model 347 to BOE format"
+msgstr "Exportar modelo 347 a formato BOE"
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
@@ -825,26 +913,25 @@ msgid "Kilometer"
 msgstr "Kilómetro"
 
 #. module: l10n_ES_aeat_mod347
-#: rml:report_l10n_es_aeat_mod347.generic:0
+#: rml:report_l10n_es_aeat_mod347.report:0
 msgid "Cash amount"
 msgstr "Importe en efectivo"
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
-#: wizard_view:l10n_es_aeat_mod347.calculate_wizard,show_exception:0
 msgid "Details"
 msgstr "Detalles"
+
+#. module: l10n_ES_aeat_mod347
+#: model:ir.actions.act_window,name:l10n_ES_aeat_mod347.action_l10n_es_aeat_mod347_report
+#: model:ir.module.module,shortdesc:l10n_ES_aeat_mod347.module_meta_information
+msgid "AEAT Model 347"
+msgstr "Modelo AEAT 347"
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.real_state_record:0
 msgid "Real state address"
 msgstr "Dirección del inmueble"
-
-#. module: l10n_ES_aeat_mod347
-#: model:ir.ui.menu,name:l10n_ES_aeat_mod347.menu_l10n_es_aeat_mod347
-#: rml:report_l10n_es_aeat_mod347.generic:0
-msgid "347 Report"
-msgstr "Informe 347"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,cash_amount:0
@@ -857,29 +944,25 @@ msgid "Complementary"
 msgstr "Complementaria"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.wizard_export_boe,export:0
-msgid "The report file has been sucessfully generated."
-msgstr "El informe se ha generado con éxito."
+#: rml:report_l10n_es_aeat_mod347.report:0
+msgid "PARTNER RECORD LINES"
+msgstr "LÍNEAS DE REGISTRO DE EMPRESA"
 
 #. module: l10n_ES_aeat_mod347
-#: rml:report_l10n_es_aeat_mod347.generic:0
-msgid "V.A.T. number"
-msgstr "CIF/NIF"
+#: code:addons/l10n_ES_aeat_mod347/wizard/export_mod347_to_boe.py:0
+#, python-format
+msgid "Wrong aling option. It should be < or >"
+msgstr "Wrong aling option. It should be < or >"
 
 #. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,total_real_state_transmissions_amount:0
-msgid "Real State Transmissions Amount"
-msgstr "Importe transmisión inmueble"
+#: field:l10n.es.aeat.mod347.partner_record,first_quarter_real_state_transmission_amount:0
+msgid "First Quarter Real State Transmission Amount"
+msgstr "Importe transmisión inmueble (T1)"
 
 #. module: l10n_ES_aeat_mod347
-#: rml:report_l10n_es_aeat_mod347.generic:0
-msgid "Fiscal year:"
-msgstr "Ejercicio fiscal:"
-
-#. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,total_real_state_amount:0
-msgid "Real State Amount"
-msgstr "Importe inmuebles"
+#: help:l10n.es.aeat.mod347.report,representative_vat:0
+msgid "Legal Representative VAT number."
+msgstr "CIF/NIF del representante legal."
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,previous_number:0
@@ -887,14 +970,14 @@ msgid "Previous Declaration Number"
 msgstr "Número declaración anterior"
 
 #. module: l10n_ES_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,second_quarter_real_state_transmission_amount:0
+msgid "Second Quarter Real State Transmission Amount"
+msgstr "Importe transmisión inmueble (T2)"
+
+#. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,address:0
 msgid "Address"
 msgstr "Dirección"
-
-#. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.calculate_wizard,show_exception:0
-msgid "Calculation failed!"
-msgstr "¡El cálculo ha fallado!"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,township:0
@@ -907,14 +990,24 @@ msgid "Operation Key"
 msgstr "Clave operación"
 
 #. module: l10n_ES_aeat_mod347
-#: field:res.partner,include_in_mod347:0
-msgid "Include in 347 report"
-msgstr "Incluir en el informe 347"
+#: help:res.partner,include_in_mod347:0
+msgid "Include in AEAT 347 Model report"
+msgstr "Incluir en declaración modelo AEAT 347"
+
+#. module: l10n_ES_aeat_mod347
+#: rml:report_l10n_es_aeat_mod347.report:0
+msgid "Fiscal year:"
+msgstr "Ejercicio fiscal:"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,amount:0
 msgid "Operations amount"
 msgstr "Importe operaciones"
+
+#. module: l10n_ES_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,total_real_state_transmissions_amount:0
+msgid "Real State Transmissions Amount"
+msgstr "Importe transmisión inmueble"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,name:0
@@ -927,42 +1020,17 @@ msgstr "Nombre"
 #: view:l10n.es.aeat.mod347.partner_record:0
 #: view:l10n.es.aeat.mod347.real_state_record:0
 msgid "Partner info"
-msgstr "Información Empresa"
+msgstr "Información empresa"
 
 #. module: l10n_ES_aeat_mod347
-#: model:ir.ui.menu,name:l10n_ES_aeat_mod347.menu_account_aeat
-msgid "Agencia Tributaria"
-msgstr "Agencia Tributaria"
-
-#. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.calculate_wizard,init:0
-msgid "Calculate partner records"
-msgstr "Calcular registros de empresa"
-
-#. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,partner_country_code:0
-msgid "Country Code"
-msgstr "Código de país"
-
-#. module: l10n_ES_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "Summary"
-msgstr "Resumen"
-
-#. module: l10n_ES_aeat_mod347
-#: rml:report_l10n_es_aeat_mod347.generic:0
-msgid "R.S.T. amount"
+#: rml:report_l10n_es_aeat_mod347.report:0
+msgid "RST amount"
 msgstr "Importe T.I."
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_view:l10n_es_aeat_mod347.calculate_wizard,init:0
-msgid "This wizard will calculate the partner operations records of the 347 report."
-msgstr "Este asistente calculará las operaciones con empresas para el informe 347."
-
-#. module: l10n_ES_aeat_mod347
-#: model:ir.module.module,shortdesc:l10n_ES_aeat_mod347.module_meta_information
-msgid "Generación de fichero modelo 347"
-msgstr "Generación de fichero modelo 347"
+#: field:l10n.es.aeat.mod347.report,fiscalyear_id:0
+msgid "Fiscal Year"
+msgstr "Ejercicio fiscal"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,total_real_state_records:0
@@ -975,26 +1043,59 @@ msgid "Telematics"
 msgstr "Telemática"
 
 #. module: l10n_ES_aeat_mod347
-#: wizard_field:l10n_es_aeat_mod347.wizard_export_boe,export,aeat_program_download_url:0
-msgid "AEAT URL"
-msgstr "URL AEAT"
+#: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
+msgid ""
+"E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores "
+"al límite (1)"
+msgstr ""
+"E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores "
+"al límite (1)"
 
 #. module: l10n_ES_aeat_mod347
-#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#: selection:account.period,quarter:0
+msgid "Second"
+msgstr "Second"
+
+#. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/wizard/export_mod347_to_boe.py:0
 #, python-format
-msgid "Wrong aling option. It should be < or >"
-msgstr "Opción de alineación incorrecta. Debería ser < o >."
+msgid "%s_report_%s.txt"
+msgstr "%s_report_%s.txt"
 
-#. module: l10n_ES_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-#: wizard_button:l10n_es_aeat_mod347.wizard_export_boe,init,export:0
-msgid "Export"
-msgstr "Exportar"
+#~ msgid "Error ! The duration of the Period(s) is/are invalid. "
+#~ msgstr "¡Error! La duración de el/los período(s) no es válida. "
 
-#~ msgid "Partner Operations"
-#~ msgstr "Operaciones con empresas"
-#~ msgid "Invoices Partner Operations"
-#~ msgstr "Facturas de operaciones con empresas"
-#~ msgid "Model 347"
-#~ msgstr "Modelo 347"
+#~ msgid "Cancelled"
+#~ msgstr "Cancelada"
 
+#~ msgid "The code of the journal must be unique per company !"
+#~ msgstr "¡El código del diario debe ser único por compañía!"
+
+#~ msgid "In process"
+#~ msgstr "En proceso"
+
+#~ msgid "Journal company and invoice sequence company do not match."
+#~ msgstr "La compaía del diario y de la secuencia de facturas no coinciden."
+
+#~ msgid "Create and query AEAT Model 347 Reports"
+#~ msgstr ""
+#~ "Permite crear y consultar las declaraciones sobre el modelo AEAT 347"
+
+#~ msgid ""
+#~ "Invalid period ! Some periods overlap or the date period is not in the "
+#~ "scope of the fiscal year. "
+#~ msgstr ""
+#~ "¡Periodo inválido! Algunos periodos se superponen o la fecha del periodo "
+#~ "no está dentro del intervalo del ejercicio fiscal. "
+
+#~ msgid "AEAT 347"
+#~ msgstr "MODELO AEAT 347"
+
+#~ msgid "Account period"
+#~ msgstr "Período contable"
+
+#~ msgid "The name of the journal must be unique per company !"
+#~ msgstr "¡El nombre del diaro debe ser único por compañía!"
+
+#~ msgid "Journal"
+#~ msgstr "Diario"

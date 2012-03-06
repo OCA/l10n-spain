@@ -1,42 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-#
-#    OpenERP - Import operations model 347 engine
-#    Copyright (C) 2009 Asr Oss. All Rights Reserved
-#    $Id$
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
--->
-<!--
-Generic reports for the model 347
-
-Author: Alejandro Sanchez Ramirez Asr Oss - alejandro@asr-oss.com
--->
 <openerp>
-	<data>
+    <data>
 
-		<!-- Generic report -->
-		<report id="report_l10n_es_aeat_mod347_generic"
-			string="Generic model 347 report"
-			model="l10n.es.aeat.mod347.report"
-			name="report_l10n_es_aeat_mod347.generic"
-			rml="addons/l10n_ES_aeat_mod347/report/generic_report.rml"
-			auto="True"
-			menu="True"
-			header="True" />
-	</data>
+        <report
+            id="report_l10n_es_aeat_mod347"
+            string="AEAT 347 Model report"
+            model="l10n.es.aeat.mod347.report"
+            name="report_l10n_es_aeat_mod347.report"
+            rml="addons/l10n_ES_aeat_mod347/report/mod347_report.rml"
+            auto="True"
+            menu="True"
+            header="False" />
+
+    </data>
 </openerp>
-
-

@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<document filename="AEAT347_Report.pdf">
+
+    <!-- ################
+    ### PAGE TEMPLATE ###
+    ################# -->
+    <template pageSize="(29.7cm,21cm)" title="AEAT 3479 Report" author="Luis Manuel Angueira Blanco (Pexego)" allowSplitting="20">
+        <pageTemplate id="first">
+            <frame id="first" x1="1cm" y1="1.5cm" width="27cm" height="19cm"/>
+        </pageTemplate>
+    </template>
+
+
+    <!-- #############
+    ### STYLESHEET ###
+    ############## -->
+    <stylesheet>
+
+        <!--
+        ## REPORT INFO ##
+        -->
+        <blockTableStyle id="ReportInfo">
+            <blockAlignment value="LEFT"/>
+            <blockValign value="TOP"/>
+            <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
+            <lineStyle kind="LINEAFTER" colorName="#000000" start="1,0" stop="1,-1"/>
+            <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="1,0"/>
+            <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="-1,-1"/>
+        </blockTableStyle>
+
+        <paraStyle name="ReportInfoDetail" fontName="Helvetica-Bold" fontSize="11.0" leading="13" alignment="RIGHT"/>
+        <paraStyle name="ReportInfo" fontName="Helvetica" fontSize="11.0" leading="13" alignment="JUSTIFY"/>
+
+
+        <!--
+        ## DESRIPTION / SEPARATOR ##
+        -->
+        <blockTableStyle id="SeparatorTable">
+            <blockAlignment value="CENTER"/>
+            <blockValign value="TOP"/>
+            <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
+            <lineStyle kind="LINEAFTER" colorName="#000000" start="0,0" stop="0,-1"/>
+            <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="0,0"/>
+            <blockBackground colorName="#e6e6ff" start="0,0" stop="0,-1"/>
+        </blockTableStyle>
+
+        <paraStyle name="SeparatorHeader" fontName="Helvetica-Bold" fontSize="15.0" leading="13" alignment="CENTER"/>
+        <paraStyle name="Separator" fontName="Helvetica-Bold" fontSize="13.0" leading="13" alignment="CENTER"/>
+        <paraStyle name="White" fontName="Helvetica-Bold" fontSize="13.0" leading="13" alignment="CENTER"/>
+
+
+        <!--
+        ## DETAIL LINES ##
+        -->
+        <blockTableStyle id="DetailLineTable">
+            <blockAlignment value="LEFT"/>
+            <blockValign value="TOP"/>
+            <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="-1,0"/>
+            <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="-1,-1"/>
+            <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="-1,-1"/>
+            <lineStyle kind="LINEAFTER" colorName="#000000" start="-1,0" stop="-1,-1"/>
+            <blockBackground colorName="#e6e6ff" start="0,0" stop="-1,-1"/>
+        </blockTableStyle>
+
+        <paraStyle name="DetailLine" fontName="Helvetica-Bold" fontSize="10.0" leading="13" alignment="CENTER"/>
+
+
+        <!--
+        ## DATA LINES ##
+        -->
+        <blockTableStyle id="DataLineTable">
+            <blockAlignment value="LEFT"/>
+            <blockValign value="TOP"/>
+            <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="-1,0"/>
+            <lineStyle kind="LINEBELOW" colorName="#cccccc" start="0,0" stop="-1,-1"/>
+            <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="-1,-1"/>
+            <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="-1,-1"/>
+            <lineStyle kind="LINEAFTER" colorName="#000000" start="-1,0" stop="-1,-1"/>
+        </blockTableStyle>
+
+        <paraStyle name="DataLine" fontName="Helvetica" fontSize="10.0" leading="13" alignment="JUSTIFY"/>
+        <paraStyle name="DataLineCenter" fontName="Helvetica" fontSize="10.0" leading="13" alignment="CENTER"/>
+        <paraStyle name="DataLineRight" fontName="Helvetica" fontSize="10.0" leading="13" alignment="RIGHT"/>
+
+
+        <initialize>
+          <paraStyle name="all" alignment="justify"/>
+        </initialize>
+
+    </stylesheet>
+
+
+    <!-- #########
+    ### REPORT ###
+    ########## -->
+    <story>
+        [[repeatIn(objects,'report')]]
+        [[setLang(user.context_lang)]]
+        <blockTable colWidths="27cm" style="SeparatorTable">
+            <tr><td><para style="SeparatorHeader">AEAT 347 MODEL</para></td></tr>
+        </blockTable>
+
+
+
+        <!--
+        ### REPORT INFO ###
+        -->
+        <blockTable colWidths="8cm,19cm" style="ReportInfo" id="ReportInfo">
+            <tr>
+                <td><para style="ReportInfoDetail">Partner </para></td>
+                <td><para style="ReportInfo">[[report.company_id.name]]</para></td>
+            </tr>
+            <tr>
+                <td><para style="ReportInfoDetail">Fiscal year: </para></td>
+                <td><para style="ReportInfo">[[report.fiscalyear_id.name]]</para></td>
+            </tr>
+            <tr>
+                <td><para style="ReportInfoDetail">Number: </para></td>
+                <td><para style="ReportInfo">[[report.number]]</para></td>
+            </tr>
+            <tr>
+                <td><para style="ReportInfoDetail">Support type: </para></td>
+                <td><para style="ReportInfo">[[report.support_type=='T' and 'Telematics' or 'DVD']]</para></td>
+            </tr>
+        </blockTable>
+
+        <!-- SEPARATOR -->
+        <para style="Separator"><font color="white"> </font></para>
+
+
+
+        <!--
+        ### PARTER RECORD LINES ###
+        -->
+        <blockTable colWidths="27cm" style="SeparatorTable">
+            <tr><td><para style="Separator">PARTNER RECORD LINES</para></td></tr>
+        </blockTable>
+
+        <blockTable colWidths="6cm,3.5cm,3.5cm,3.5cm,3cm,2.5cm,2.5cm,2.5cm" style="DetailLineTable">
+            <tr>
+                <td><para style="DetailLine">Partner</para></td>
+                <td><para style="DetailLine">VAT</para></td>
+                <td><para style="DetailLine">Invoiced amount</para></td>
+                <td><para style="DetailLine">Cash amount</para></td>
+                <td><para style="DetailLine">RST amount</para></td>
+                <td><para style="DetailLine">Key Oper.</para></td>
+                <td><para style="DetailLine">Ins. Oper</para></td>
+                <td><para style="DetailLine">RS Rent</para></td>
+            </tr>
+        </blockTable>
+
+        <section>
+        [[repeatIn(report.partner_record_ids, 'partner_record')]]
+           <section>
+             <blockTable colWidths="6cm,3.5cm,3.5cm,3.5cm,3cm,2.5cm,2.5cm,2.5cm" style="DataLineTable">
+               <tr>
+                 <td><para style="DataLine">[[partner_record.partner_id.name or '-----']]</para></td>
+                 <td><para style="DataLineCenter">[[partner_record.partner_vat or '-----']]</para></td>
+                 <td><para style="DataLineRight">[[partner_record.amount or 0.0]]</para></td>
+                 <td><para style="DataLineRight">[[partner_record.cash_amount or 0.0]]</para></td>
+                 <td><para style="DataLineRight">[[partner_record.real_state_transmissions_amount or 0.0]]</para></td>
+                 <td><para style="DataLineCenter">[[partner_record.operation_key and partner_record.operation_key[:1] or '']]</para></td>
+                 <td><para style="DataLineCenter">[[partner_record.insurance_operation and 'X' or '']]</para></td>
+                 <td><para style="DataLineCenter">[[partner_record.bussiness_real_state_rent and 'X' or '']]</para></td>
+               </tr>
+             </blockTable>
+             <blockTable colWidths="13cm,3.5cm,3.5cm,3.5cm,3.5cm" style="DataLineTable">
+               <tr>              
+                 <td><para style="DataLineRight"> Amount (Q1|Q2|Q3|Q4)</para> </td>
+                 <td><para style="DataLine">[[partner_record.first_quarter]]</para></td>
+                 <td><para style="DataLine">[[partner_record.second_quarter]]</para></td>
+                 <td><para style="DataLine">[[partner_record.third_quarter]]</para></td>
+                 <td><para style="DataLine">[[partner_record.fourth_quarter]]</para></td>
+               </tr>
+               <tr>
+                 <td><para style="DataLineRight"> Real State Transmission (Q1|Q2|Q3|Q4)  </para></td>
+                 <td><para style="DataLine">[[partner_record.first_quarter_real_state_transmission_amount]]</para></td>
+                 <td><para style="DataLine">[[partner_record.second_quarter_real_state_transmission_amount]]</para></td>
+                 <td><para style="DataLine">[[partner_record.third_quarter_real_state_transmission_amount]]</para></td>
+                 <td><para style="DataLine">[[partner_record.fourth_quarter_real_state_transmission_amount]]</para></td>
+               </tr>
+             </blockTable>
+           </section>
+        </section>
+
+    </story>
+</document>

@@ -1,70 +1,68 @@
-<?xml version="1.0"?>
-<!--
-347 report workflow.
-
-Author: Borja López Soilán (Pexego) - borjals@pexego.es
--->
+<?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <!-- *** Nodes ***************************************************** -->
 
-        <record model="workflow" id="wkf_mod347_report">
-            <field name="name">347 report workflow</field>
+        <record id="wkf_l10n_es_aeat_mod347_report" model="workflow">
+            <field name="name">AEAT 347 Report</field>
             <field name="osv">l10n.es.aeat.mod347.report</field>
             <field name="on_create">True</field>
         </record>
 
 
-        <record model="workflow.activity" id="act_draft">
-            <field name="wkf_id" ref="wkf_mod347_report"/>
+        <!--
+        ### NODES ###
+        -->
+        <record id="act_draft" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_l10n_es_aeat_mod347_report"/>
             <field name="flow_start">True</field>
             <field name="name">draft</field>
         </record>
 
-        <record model="workflow.activity" id="act_calculate">
-            <field name="wkf_id" ref="wkf_mod347_report"/>
+        <record id="act_calculate" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_l10n_es_aeat_mod347_report"/>
             <field name="name">calculated</field>
-            <field name="action">action_calculate()</field>
+            <field name="action">write({'state':'calculated'})</field>
             <field name="kind">function</field>
         </record>
 
-        <record model="workflow.activity" id="act_confirm">
-            <field name="wkf_id" ref="wkf_mod347_report"/>
+        <record id="act_confirm" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_l10n_es_aeat_mod347_report"/>
             <field name="name">confirmed</field>
             <field name="action">action_confirm()</field>
             <field name="kind">function</field>
         </record>
 
-        <record model="workflow.activity" id="act_cancel">
-            <field name="wkf_id" ref="wkf_mod347_report"/>
+        <record id="act_cancel" model="workflow.activity">
+            <field name="wkf_id" ref="wkf_l10n_es_aeat_mod347_report"/>
             <field name="name">canceled</field>
             <field name="flow_stop">True</field>
-            <field name="action">action_cancel()</field>
+            <field name="action">write({'state':'canceled'})</field>
             <field name="kind">function</field>
         </record>
 
 
-        <!-- *** Transitions *********************************************** -->
-		
-        <record model="workflow.transition" id="trans_draft_calculate">
+        <!--
+        ### TRANSITIONS ###
+        -->
+        <record id="trans_draft_calculate" model="workflow.transition">
             <field name="act_from" ref="act_draft"/>
             <field name="act_to" ref="act_calculate"/>
             <field name="signal">calculate</field>
         </record>
 
-        <record model="workflow.transition" id="trans_calculate_confirm">
+        <record id="trans_calculate_confirm" model="workflow.transition">
             <field name="act_from" ref="act_calculate"/>
             <field name="act_to" ref="act_confirm"/>
             <field name="signal">confirm</field>
         </record>
 
-        <record model="workflow.transition" id="trans_calculate_draft">
+        <record id="trans_calculate_draft" model="workflow.transition">
             <field name="act_from" ref="act_calculate"/>
             <field name="act_to" ref="act_cancel"/>
             <field name="signal">cancel</field>
         </record>
 
-        <record model="workflow.transition" id="trans_confirm_cancel">
+        <record id="trans_confirm_cancel" model="workflow.transition">
             <field name="act_from" ref="act_confirm"/>
             <field name="act_to" ref="act_cancel"/>
             <field name="signal">cancel</field>

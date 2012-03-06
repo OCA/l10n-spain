@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2010 Pexego Sistemas Informáticos. All Rights Reserved
+#    Copyright (C) 2004-2011
+#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -20,8 +21,25 @@
 
 __author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
+"""
+Extends the account journals to add fields used by the 347 report.
+"""
 
-import calculate_mod347_records
-import export_mod347_to_boe
+from osv import osv, fields
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+class res_partner(osv.osv):
+    """
+    Extends the partners to add the include_in_mod347 field
+    """
+    _inherit = "res.partner"
+    
+    _columns = {
+        'include_in_mod347' : fields.boolean(u"Include in 347 Report",
+            help="Include in AEAT 347 Model report"),
+    }
+
+    _defaults = {
+        'include_in_mod347' : lambda *a: True,
+    }
+
+res_partner()

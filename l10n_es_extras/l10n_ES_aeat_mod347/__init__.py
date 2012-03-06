@@ -1,10 +1,7 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Alejandro Sanchez (http://www.asr-oss.com) All Rights Reserved.
-#                       Alejandro Sanchez <alejandro@asr-oss.com>
-#    $Id$
+#    Copyright (C) 2004-2010 Pexego Sistemas Informáticos. All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -20,12 +17,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-"""
-Spanish AEAT 347 Model Wizard
-"""
 
-import mod347
+__author__ = "Luis Manuel Angueira Blanco (Pexego)"
+
 import account_journal
-import partner
+import res_partner
+import mod347
 import wizard
 import report
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
