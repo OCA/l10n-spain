@@ -3,6 +3,8 @@
 #
 #    Copyright (C) 2004-2011
 #        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
+#    Copyright (C) 2012
+#        NaN·tic  (http://www.nan-tic.com) All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -73,14 +75,15 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
         text += self._formatString(report.type, 2).replace('N', ' ')                # Declaración complementaria o substitutiva
         text += self._formatNumber(report.previous_number, 13)     # Número identificativo de la declaración anterior
         text += self._formatNumber(report.total_partner_records, 9)          # Número total de personas y entidades
-        text += self._formatNumber(report.total_amount, 13, 2)               # Importe total de las operaciones
+        text += self._formatNumber(report.total_amount, 13, 2,True)               # Importe total de las operaciones
         text += self._formatNumber(report.total_real_state_records, 9)       # Número total de inmuebles
         text += self._formatNumber(report.total_real_state_amount, 13, 2)    # Importe total de las operaciones de arrendamiento
-        text += 207*' '                                       # Blancos
+        text += 206*' '                                       # Blancos
         text += self._formatString(report.representative_vat, 9)   # NIF del representante legal
         text += 88*' '                                        # Blancos
         text += 13*' '                                        # Sello electrónico
         text += '\r\n'
+
 
         assert len(text) == 502, _("The type 1 record must be 502 characters long")
         return text
@@ -104,13 +107,21 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
             77-80 	Código provincia/país
             81          Blancos
             82          Clave de operación
-            83-97 	Importe de las operaciones
+            83-98 	Importe de las operaciones
             98          Operación de seguro
             99          Arrendamiento local negocio
             100-114 	Importe percibido en metálico
             115-129 	Importe percibido por transmisiones de inmuebles sujetas a IVA
             130-134     Año de devengo de las operaciones en efectivo
-            134-500 	Blancos
+            135-151     Importe de las operaciones del primer trimestre
+            151-167     Importe percibido por transmisiones de inmuebles sujates a Iva Primer Trimestre
+            168-183     Importe de las operaciones del Segundo trimestre
+            183-199     Importe percibido por transmisiones de inmuebles sujates a Iva segundo Trimestre
+            200-215     Importe de las operaciones del tercer trimestre
+            215-231     Importe percibido por transmisiones de inmuebles sujates a Iva tercer Trimestre
+            231-247     Importe de las operaciones del quarto trimestre
+            247-263     Importe percibido por transmisiones de inmuebles sujates a Iva quarto Trimestre
+            264-500 	Blancos
             488-500 	Sello electrónico
         """
         text = ''
@@ -126,13 +137,21 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
         text += self._formatNumber(partner_record.partner_state_code, 2)     # Código provincia
         text += 3*' '                                                     # Blancos
         text += self._formatString(partner_record.operation_key, 1)          # Clave de operación
-        text += self._formatNumber(partner_record.amount, 13, 2)             # Importe de las operaciones
+        text += self._formatNumber(partner_record.amount, 13, 2,True)             # Importe de las operaciones
         text += self._formatBoolean(partner_record.insurance_operation)                      # Operación de seguro
         text += self._formatBoolean(partner_record.bussiness_real_state_rent)                # Arrendamiento local negocio
         text += self._formatNumber(partner_record.cash_amount, 13, 2)                        # Importe percibido en metálico
-        text += self._formatNumber(partner_record.real_state_transmissions_amount, 13, 2)    # Importe percibido por transmisiones de inmuebles sujetas a IVA
+        text += self._formatNumber(partner_record.real_state_transmissions_amount, 13, 2,True)    # Importe percibido por transmisiones de inmuebles sujetas a IVA
         text += partner_record.origin_fiscalyear_id and self._formatString(partner_record.origin_fiscalyear_id.code, 4) or 4*'0' #Año de devengo de las operaciones en efectivo
-        text += 367*' '                                                 # Blancos
+        text += self._formatNumber(partner_record.first_quarter,13,2,True)
+        text += self._formatNumber(partner_record.first_quarter_real_state_transmission_amount,13,2,True)
+        text += self._formatNumber(partner_record.second_quarter,13,2,True)
+        text += self._formatNumber(partner_record.second_quarter_real_state_transmission_amount,13,2,True)
+        text += self._formatNumber(partner_record.third_quarter,13,2,True)
+        text += self._formatNumber(partner_record.third_quarter_real_state_transmission_amount,13,2,True)
+        text += self._formatNumber(partner_record.fourth_quarter,13,2,True)
+        text += self._formatNumber(partner_record.fourth_quarter_real_state_transmission_amount,13,2,True)        
+        text += 237*' '                                                 # Blancos
         text += '\r\n'                                                  # Sello electrónico
 
         assert len(text) == 502, _("The type 2-D record (partner) must be 502 characters long")
