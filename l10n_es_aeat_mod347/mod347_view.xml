@@ -48,6 +48,17 @@
                                 <field name="origin_fiscalyear_id"/>
                                 <field name="real_state_transmissions_amount" />
                             </group>
+                            <group colspan="4" col="4">
+                                <field name="first_quarter"/>
+                                <field name="first_quarter_real_state_transmission_amount"/>
+                                <field name="second_quarter"/>
+                                <field name="second_quarter_real_state_transmission_amount"/>
+                                <field name="third_quarter"/>
+                                <field name="third_quarter_real_state_transmission_amount"/>
+                                <field name="fourth_quarter"/>
+                                <field name="fourth_quarter_real_state_transmission_amount"/>
+                            </group>
+
                             <group colspan="4">
                                 <field name="insurance_operation"/>
                                 <field name="bussiness_real_state_rent"/>
