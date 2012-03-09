@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+    #---------------------------------------------------------
+    # Fiscal Year
+    #---------------------------------------------------------
+
+    <record model="ir.ui.view" id="view_account_invoice_asset_form">
+        <field name="name">account.invoice.line.form</field>
+        <field name="model">account.invoice.line</field>
+        <field name="inherit_id" ref="account.view_invoice_line_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="account_id" position="after">
+                <field name="asset_category_id"/>
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="product_normal_form_view_inhav">
+        <field name="name">product.normal.form.inhav</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="asset_category_id"/>
+            </field>
+        </field>
+    </record>	
+</data>
+</openerp>
