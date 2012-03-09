@@ -68,14 +68,15 @@
         </field>
     </record>
     
-    <record id="view_partner_bank_search_es1" model="ir.ui.view">
-        <field name="name">res.partner.bank.search.es1</field>
-        <field name="model">res.partner.bank</field>
-        <field name="inherit_id" ref="base.view_partner_bank_search"/>
+    <record id="view_bank_search_es1" model="ir.ui.view">
+        <field name="name">res.bank.search.es1</field>
+        <field name="model">res.bank</field>
+        <field name="type">search</field>
         <field name="arch" type="xml">
-            <field name="name" position="after">
-                <field name="code" />
-            </field>
+            <field name="code" />
+            <field name="name"/>
+            <field name="bic"/>
+            <field name="country"/>
         </field>
     </record>
     <!-- Añadimos el campo nombre comercial a empresa -->
