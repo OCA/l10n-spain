@@ -153,8 +153,6 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             
             if invoice_issued.invoice_id.origin_invoices_ids:               # Clave de operación
                 text +='D'
-            elif invoice_issued.invoice_id.operation_key == 'I':
-                text +='I'
             elif len(invoice_issued.tax_line_ids) > 1: text += 'C'
             elif invoice_issued.invoice_id.is_ticket_summary == 1: text += 'B'
             else: text += ' '
