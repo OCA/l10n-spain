@@ -4,6 +4,9 @@
 #    Copyright (C) 2004-2011
 #        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
 #
+#    Copyright (C) 2012
+#        NaN·Tic  (http://www.nan-tic.com) All Rights Reserved
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -25,11 +28,21 @@ import re
 from osv import osv, fields
 from tools.translate import _
 
+class account_period(osv.osv):
+    _inherit = "account.period"
+
+    _columns = {
+        'quarter':fields.selection( [('first','First'),('second','Second'),('third','Third'),('fourth','Fourth')], 'Quarter'),
+    }
+account_period()
+
+
 class l10n_es_aeat_mod347_report(osv.osv):
 
     _inherit = "l10n.es.aeat.report"
     _name = "l10n.es.aeat.mod347.report"
     _description = "AEAT 347 Report"
+    _rec_name = "number"
 
     def button_calculate(self, cr, uid, ids, context=None):
         if not context:
@@ -79,20 +92,10 @@ class l10n_es_aeat_mod347_report(osv.osv):
 
         return res
 
-    def _name_get(self, cr, uid, ids, field_name, arg, context={}):
-        """
-        Returns the report name
-        """
-        result = {}
-        for report in self.browse(cr, uid, ids, context):
-            result[report.id] = report.number
-        return result
-
     _columns = {
-        # The name it's just an alias of the number
-        'name': fields.function(_name_get, method=True, type="char", size="64", string="Name"),
         'contact_name': fields.char("Full Name", size=40),
         'contact_phone': fields.char("Phone", size=9),
+        'group_by_cif': fields.boolean('Group by cif', states={'done':[('readonly',True)]}),
 
         ##
         ## Limits
@@ -130,9 +133,9 @@ class l10n_es_aeat_mod347_report(osv.osv):
             ## Browse partner record lines to check if all are correct (all fields filled)
             for partner_record in item.partner_record_ids:
                 if not partner_record.partner_state_code:
-                    raise osv.except_osv(_('Error!'), _("All partner state code field must be filled."))
+                    raise osv.except_osv(_('Error!'), _("All partner state code field must be filled.\nPartner: %s (%s)") % ( partner_record.partner_id.name, partner_record.partner_id.id ) )
                 if not partner_record.partner_vat:
-                    raise osv.except_osv(_('Error!'), _("All partner vat number field must be filled."))
+                    raise osv.except_osv(_('Error!'), _("All partner vat number field must be filled.\nPartner: %s (%s)") % ( partner_record.partner_id.name, partner_record.partner_id.id ) )
 
             for real_state_record in item.real_state_record_ids:
                 if not real_state_record.state_code:
@@ -166,20 +169,47 @@ class l10n_es_aeat_mod347_partner_record(osv.osv):
     """
     _name = 'l10n.es.aeat.mod347.partner_record'
     _description = 'Partner Record'
+    _rec_name = "partner_vat"
 
-    def _name_get(self, cr, uid, ids, field_name, arg, context={}):
-        """
-        Returns the record name
-        """
+    def _get_quarter_totals(self, cr, uid, ids, field_name, arg, context = None):
+        
+        if context is None:
+            context={}
+
         result = {}
-        for rec in self.browse(cr, uid, ids, context):
-            result[rec.id] = rec.partner_vat
-        return result
+        for record  in self.browse(cr, uid, ids, context):
+            result[record.id] ={
+            'first_quarter':0,
+            'first_quarter_real_state_transmission_amount':0,
+            'second_quarter': 0,
+            'second_quarter_real_state_transmission_amount':0,
+            'third_quarter': 0,
+            'third_quarter_real_state_transmission_amount':0,
+            'fourth_quarter': 0,
+            'fourth_quarter_real_state_transmission_amount':0,
+            }
+            for invoice in record.invoice_record_ids:
+                if invoice.invoice_id.period_id.quarter == 'first':
+                    result[record.id]['first_quarter'] += invoice.amount
+                elif invoice.invoice_id.period_id.quarter == 'second':
+                    result[record.id]['second_quarter'] += invoice.amount
+                elif invoice.invoice_id.period_id.quarter == 'third':
+                    result[record.id]['third_quarter'] += invoice.amount
+                elif invoice.invoice_id.period_id.quarter == 'fourth':
+                    result[record.id]['fourth_quarter'] += invoice.amount
 
+        return result                                        
+
+    def _get_lines( self, cr, uid, ids, context ):
+        invoice_record_obj = self.pool.get('l10n.es.aeat.mod347.invoice_record')
+
+        res = []        
+        for invoice_record in invoice_record_obj.browse(cr, uid, ids, context):
+            res.append( invoice_record.partner_record_id.id )
+        return list(set(res))
+                        
+        
     _columns = {
-        # The name it's just an alias of the partner vat
-        'name': fields.function(_name_get, method=True, type="char", size="64", string="Name"),
-
         'report_id': fields.many2one('l10n.es.aeat.mod347.report', 'AEAT 347 Report', ondelete="cascade", select=1),
         'operation_key': fields.selection([
                     ('A', u'A - Adquisiciones de bienes y servicios superiores al límite (1)'),
@@ -194,15 +224,53 @@ class l10n_es_aeat_mod347_partner_record(osv.osv):
         'partner_vat': fields.char('VAT number', size=9),
         'representative_vat': fields.char('L.R. VAT number', size=9, help="Legal Representative VAT number"),
         'partner_country_code': fields.char('Country Code', size=2),
-        'partner_state_code': fields.char('State Code', size=2),
-
+        'partner_state_code': fields.char('State Code', size=2),        
+        'first_quarter': fields.function(_get_quarter_totals, string="First Quarter",
+                method=True, type='float', multi="quarter_multi",digits=(13,2),
+                store= { 
+                    'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
+                }),
+        'first_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="First Quarter Real State Transmission Amount",
+                method=True, type='float', multi="quarter_multi" ,digits=(13,2),
+                store= { 
+                    'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
+                }
+                ),
+        'second_quarter': fields.function(_get_quarter_totals, string="Second Quarter", method=True,
+                type='float', multi="quarter_multi", digits=(13,2), 
+                store= { 
+                    'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
+                }),
+        'second_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="Second Quarter Real State Transmission Amount",
+                method=True, type='float', multi="quarter_multi",digits=(13,2), store= { 
+                    'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
+                }),
+        'third_quarter': fields.function(_get_quarter_totals, string="Third Quarter", method=True, type='float',
+                multi="quarter_multi",digits=(13,2), store= { 
+                    'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
+                }),
+        'third_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="Third Quarter Real State Transmission Amount",
+                method=True, type='float', multi="quarter_multi",digits=(13,2), store= { 
+                    'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
+                } ),
+        'fourth_quarter': fields.function(_get_quarter_totals, string="Fourth Quarter",
+                method=True, type='float', multi="quarter_multi",digits=(13,2), store= { 
+                    'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
+                }),
+        'fourth_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="Fourth Quarter Real State Transmossion Amount",
+                method=True, type='float', multi="quarter_multi",digits=(13,2), store= { 
+                    'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
+                }),        
         'amount': fields.float('Operations amount', digits=(13,2)),
         'cash_amount': fields.float('Received cash amount', digits=(13,2)),
         'real_state_transmissions_amount': fields.float('Real State Transmisions amount', digits=(13,2)),
 
         'insurance_operation': fields.boolean('Insurance Operation', help="Only for insurance companies. Set to identify insurance operations aside from the rest."),
         'bussiness_real_state_rent': fields.boolean('Bussiness Real State Rent', help="Set to identify real state rent operations aside from the rest. You'll need to fill in the real state info only when you are the one that receives the money."),
-        'origin_fiscalyear_id': fields.many2one('account.fiscalyear', 'Origin fiscal year', help="Origin cash operation fiscal year")
+        'origin_fiscalyear_id': fields.many2one('account.fiscalyear', 'Origin fiscal year', help="Origin cash operation fiscal year"),
+        'invoice_record_ids': fields.one2many('l10n.es.aeat.mod347.invoice_record', 'partner_record_id', 'Invoice records',
+                                                      states = {'done': [('readonly', True)]}),
+        
     }
     _defaults = {
         'report_id': lambda self, cr, uid, context: context.get('report_id', None),
@@ -260,21 +328,9 @@ class l10n_es_aeat_mod347_real_state_record(osv.osv):
     """
     _name = 'l10n.es.aeat.mod347.real_state_record'
     _description = 'Real State Record'
-
-
-    def _name_get(self, cr, uid, ids, field_name, arg, context={}):
-        """
-        Returns the record name
-        """
-        result = {}
-        for rec in self.browse(cr, uid, ids, context):
-            result[rec.id] = rec.reference
-        return result
+    _rec_name = "reference"
 
     _columns = {
-        # The name it's just an alias of the reference
-        'name': fields.function(_name_get, method=True, type="char", size="64", string="Name"),
-
         'report_id': fields.many2one('l10n.es.aeat.mod347.report', 'AEAT 347 Report', ondelete="cascade", select=1),
 
         'partner_id': fields.many2one('res.partner', 'Partner', required=True),
@@ -420,19 +476,6 @@ class l10n_es_aeat_mod347_invoice_record(osv.osv):
         'partner_record_id': lambda self, cr, uid, context: context.get('partner_record_id', None),
     }
 l10n_es_aeat_mod347_invoice_record()
-
-
-class l10n_es_aeat_mod347_partner_record_add_invoice_records(osv.osv):
-    """
-    Extends the partner record to add the detail of invoices
-    """
-    _inherit = 'l10n.es.aeat.mod347.partner_record'
-
-    _columns = {
-        'invoice_record_ids': fields.one2many('l10n.es.aeat.mod347.invoice_record', 'partner_record_id', 'Invoice records',
-                            states = {'done': [('readonly', True)]}),
-    }
-l10n_es_aeat_mod347_partner_record_add_invoice_records()
 
 
 class l10n_es_aeat_mod347_cash_record(osv.osv):

@@ -48,6 +48,17 @@
                                 <field name="origin_fiscalyear_id"/>
                                 <field name="real_state_transmissions_amount" />
                             </group>
+                            <group colspan="4" col="4">
+                                <field name="first_quarter"/>
+                                <field name="first_quarter_real_state_transmission_amount"/>
+                                <field name="second_quarter"/>
+                                <field name="second_quarter_real_state_transmission_amount"/>
+                                <field name="third_quarter"/>
+                                <field name="third_quarter_real_state_transmission_amount"/>
+                                <field name="fourth_quarter"/>
+                                <field name="fourth_quarter_real_state_transmission_amount"/>
+                            </group>
+
                             <group colspan="4">
                                 <field name="insurance_operation"/>
                                 <field name="bussiness_real_state_rent"/>
@@ -175,7 +186,6 @@
             <field name="arch" type="xml">
                 <tree string="AEAT 347 Reports">
                     <field name="number"/>
-                    <field name="name"/>
                     <field name="company_id"/>
                     <field name="fiscalyear_id"/>
                     <field name="type"/>
@@ -220,6 +230,7 @@
                                 <field name="operations_limit"/>
                                 <field name="received_cash_limit"/>
                                 <field name="charges_obtp_limit"/>
+                                <field name="group_by_cif"/>
                             </group>
                             <group colspan="4">
                                 <field name="state" select="2" readonly="1"/>
