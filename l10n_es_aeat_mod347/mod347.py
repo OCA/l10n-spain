@@ -42,6 +42,7 @@ class l10n_es_aeat_mod347_report(osv.osv):
     _inherit = "l10n.es.aeat.report"
     _name = "l10n.es.aeat.mod347.report"
     _description = "AEAT 347 Report"
+    _rec_name = "number"
 
     def button_calculate(self, cr, uid, ids, context=None):
         if not context:
@@ -91,20 +92,10 @@ class l10n_es_aeat_mod347_report(osv.osv):
 
         return res
 
-    def _name_get(self, cr, uid, ids, field_name, arg, context={}):
-        """
-        Returns the report name
-        """
-        result = {}
-        for report in self.browse(cr, uid, ids, context):
-            result[report.id] = report.number
-        return result
-
     _columns = {
-        # The name it's just an alias of the number
-        'name': fields.function(_name_get, method=True, type="char", size="64", string="Name"),
         'contact_name': fields.char("Full Name", size=40),
         'contact_phone': fields.char("Phone", size=9),
+        'group_by_cif': fields.boolean('Group by cif', states={'done':[('readonly',True)]}),
 
         ##
         ## Limits
@@ -178,15 +169,7 @@ class l10n_es_aeat_mod347_partner_record(osv.osv):
     """
     _name = 'l10n.es.aeat.mod347.partner_record'
     _description = 'Partner Record'
-
-    def _name_get(self, cr, uid, ids, field_name, arg, context={}):
-        """
-        Returns the record name
-        """
-        result = {}
-        for rec in self.browse(cr, uid, ids, context):
-            result[rec.id] = rec.partner_vat
-        return result
+    _rec_name = "partner_vat"
 
     def _get_quarter_totals(self, cr, uid, ids, field_name, arg, context = None):
         
@@ -227,9 +210,6 @@ class l10n_es_aeat_mod347_partner_record(osv.osv):
                         
         
     _columns = {
-        # The name it's just an alias of the partner vat
-        'name': fields.function(_name_get, method=True, type="char", size="64", string="Name"),
-
         'report_id': fields.many2one('l10n.es.aeat.mod347.report', 'AEAT 347 Report', ondelete="cascade", select=1),
         'operation_key': fields.selection([
                     ('A', u'A - Adquisiciones de bienes y servicios superiores al límite (1)'),
@@ -348,21 +328,9 @@ class l10n_es_aeat_mod347_real_state_record(osv.osv):
     """
     _name = 'l10n.es.aeat.mod347.real_state_record'
     _description = 'Real State Record'
-
-
-    def _name_get(self, cr, uid, ids, field_name, arg, context={}):
-        """
-        Returns the record name
-        """
-        result = {}
-        for rec in self.browse(cr, uid, ids, context):
-            result[rec.id] = rec.reference
-        return result
+    _rec_name = "reference"
 
     _columns = {
-        # The name it's just an alias of the reference
-        'name': fields.function(_name_get, method=True, type="char", size="64", string="Name"),
-
         'report_id': fields.many2one('l10n.es.aeat.mod347.report', 'AEAT 347 Report', ondelete="cascade", select=1),
 
         'partner_id': fields.many2one('res.partner', 'Partner', required=True),

@@ -147,17 +147,28 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                         if partner.vat:
                             partner_country_code, partner_vat = re.match("(ES){0,1}(.*)", partner.vat).groups()
 
-                        # Create the partner record
-                        partner_record = partner_record_obj.create(cr, uid, {
-                                'report_id': report_obj.id ,
-                                'operation_key' : operation_key,
-                                'partner_id': partner.id,
-                                'partner_vat': partner_vat,
-                                'representative_vat': '',
-                                'partner_state_code': partner_state_code,
-                                'partner_country_code' : partner_country_code,
-                                'amount': total_amount,
-                            })
+                        partner_record_ids = []
+                        if report_obj.group_by_cif:
+                            partner_record_ids = partner_record_obj.search(cr, uid, [('report_id','=',report_obj.id),('operation_key', '=', operation_key),('partner_vat', '=', partner_vat)])
+
+                        if partner_record_ids:
+                            partner_rec_obj = partner_record_obj.browse(cr, uid, partner_record_ids[0])
+                            partner_rec_obj.write({
+                                    'amount': partner_rec_obj.amount + total_amount
+                                })
+                            partner_record = partner_rec_obj.id
+                        else:
+                            # Create the partner record
+                            partner_record = partner_record_obj.create(cr, uid, {
+                                    'report_id': report_obj.id ,
+                                    'operation_key' : operation_key,
+                                    'partner_id': partner.id,
+                                    'partner_vat': partner_vat,
+                                    'representative_vat': '',
+                                    'partner_state_code': partner_state_code,
+                                    'partner_country_code' : partner_country_code,
+                                    'amount': total_amount,
+                                })
 
                         if invoice_type == 'out_invoice':
                             receivable_partner_record = partner_record
