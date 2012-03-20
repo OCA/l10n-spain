@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.15\n"
+"Project-Id-Version: OpenERP Server 5.0.16\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2012-02-24 15:24:10+0000\n"
-"PO-Revision-Date: 2012-02-24 15:24:10+0000\n"
+"POT-Creation-Date: 2012-03-20 16:36:17+0000\n"
+"PO-Revision-Date: 2012-03-20 16:36:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,10 +16,83 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_ES_aeat_mod347
-#: code:addons/l10n_ES_aeat_mod347/wizard/export_mod347_to_boe.py:0
-#, python-format
-msgid "The type 2-D record (partner) must be 502 characters long"
-msgstr "The type 2-D record (partner) must be 502 characters long"
+#: model:ir.module.module,description:l10n_ES_aeat_mod347.module_meta_information
+msgid "\n"
+"Módulo para la presentación del Modelo AEAT 347 (Declaración Anual de Operaciones con Terceros)\n"
+"\n"
+"Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban los diseños físicos y lógicos del 347.\n"
+"\n"
+"De acuerdo con la normativa de la Hacienda Española, están obligados a presentar el modelo 347:\n"
+"    * Todas aquellas personas físicas o jurídicas, de naturaleza pública o\n"
+"        privada que desarrollen actividades empresariales o profesionales,\n"
+"        siempre y cuando hayan realizado operaciones que, en su conjunto,\n"
+"        respecto de otra persona o Entidad, cualquiera que sea su naturaleza\n"
+"        o carácter, hayan superado la cifra de 3.005,06€ durante el año natural\n"
+"        al que se refiere la declaración. Para el cálculo de la cifra de\n"
+"        3.005,06 € se computan de forma separada las entregas de bienes\n"
+"        y servicios y las adquisiciones de los mismos.\n"
+"\n"
+"De acuerdo con la normativa no están obligados a presentar el modelo 347:\n"
+"    * Quienes realicen en España actividades empresariales o profesionales sin\n"
+"        tener en territorio español la sede de su actividad, un establecimiento\n"
+"        permanente o su domicilio fiscal.\n"
+"    * Las personas físicas y entidades en régimen de atribución de rentas en\n"
+"        el IRPF, por las actividades que tributen en dicho impuesto por el\n"
+"        régimen de estimación objetiva y, simultáneamente, en el IVA por los\n"
+"        régimenes especiales simplificados o de la agricultura, ganadería\n"
+"        y pesca o recargo de equivalencia, salvo las operaciones que estén\n"
+"        excluidas de la aplicación de los expresados regímenes.\n"
+"    * Los obligados tributarios que no hayan realizado operaciones que en su\n"
+"        conjunto superen la cifra de 3.005,06€\n"
+"    * Los obligados tributarios que hayan realizado exclusivamente operaciones\n"
+"        no declarables.\n"
+"    * Los obligados tributarios que deban informar sobre las operaciones\n"
+"        incluidas en los libros registro de IVA (modelo 340) salvo que realicen\n"
+"        operaciones que expresamente deban incluirse en el modelo 347.\n"
+"\n"
+"(http://www.boe.es/boe/dias/2008/10/23/pdfs/A42154-42190.pdf)\n"
+"\n"
+"Desarrollado por Alejandro Sanchez (ASR-OSS, www.asr-oss.com)\n"
+"        y Borja López Soilán (Pexego, www.pexego.es)\n"
+"    "
+msgstr "\n"
+"Módulo para la presentación del Modelo AEAT 347 (Declaración Anual de Operaciones con Terceros)\n"
+"\n"
+"Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban los diseños físicos y lógicos del 347.\n"
+"\n"
+"De acuerdo con la normativa de la Hacienda Española, están obligados a presentar el modelo 347:\n"
+"    * Todas aquellas personas físicas o jurídicas, de naturaleza pública o\n"
+"        privada que desarrollen actividades empresariales o profesionales,\n"
+"        siempre y cuando hayan realizado operaciones que, en su conjunto,\n"
+"        respecto de otra persona o Entidad, cualquiera que sea su naturaleza\n"
+"        o carácter, hayan superado la cifra de 3.005,06€ durante el año natural\n"
+"        al que se refiere la declaración. Para el cálculo de la cifra de\n"
+"        3.005,06 € se computan de forma separada las entregas de bienes\n"
+"        y servicios y las adquisiciones de los mismos.\n"
+"\n"
+"De acuerdo con la normativa no están obligados a presentar el modelo 347:\n"
+"    * Quienes realicen en España actividades empresariales o profesionales sin\n"
+"        tener en territorio español la sede de su actividad, un establecimiento\n"
+"        permanente o su domicilio fiscal.\n"
+"    * Las personas físicas y entidades en régimen de atribución de rentas en\n"
+"        el IRPF, por las actividades que tributen en dicho impuesto por el\n"
+"        régimen de estimación objetiva y, simultáneamente, en el IVA por los\n"
+"        régimenes especiales simplificados o de la agricultura, ganadería\n"
+"        y pesca o recargo de equivalencia, salvo las operaciones que estén\n"
+"        excluidas de la aplicación de los expresados regímenes.\n"
+"    * Los obligados tributarios que no hayan realizado operaciones que en su\n"
+"        conjunto superen la cifra de 3.005,06€\n"
+"    * Los obligados tributarios que hayan realizado exclusivamente operaciones\n"
+"        no declarables.\n"
+"    * Los obligados tributarios que deban informar sobre las operaciones\n"
+"        incluidas en los libros registro de IVA (modelo 340) salvo que realicen\n"
+"        operaciones que expresamente deban incluirse en el modelo 347.\n"
+"\n"
+"(http://www.boe.es/boe/dias/2008/10/23/pdfs/A42154-42190.pdf)\n"
+"\n"
+"Desarrollado por Alejandro Sanchez (ASR-OSS, www.asr-oss.com)\n"
+"        y Borja López Soilán (Pexego, www.pexego.es)\n"
+"    "
 
 #. module: l10n_ES_aeat_mod347
 #: model:ir.model,name:l10n_ES_aeat_mod347.model_l10n_es_aeat_mod347_partner_record
@@ -39,9 +112,16 @@ msgid "Key Oper."
 msgstr "Key Oper."
 
 #. module: l10n_ES_aeat_mod347
-#: constraint:ir.actions.act_window:0
-msgid "Invalid model name in the action definition."
-msgstr "Invalid model name in the action definition."
+#: selection:account.period,quarter:0
+msgid "Fourth"
+msgstr "Fourth"
+
+#. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/wizard/export_mod347_to_boe.py:0
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "The type 2-D record (partner) must be 502 characters long"
+msgstr "The type 2-D record (partner) must be 502 characters long"
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -108,11 +188,6 @@ msgid "Cash Amount"
 msgstr "Cash Amount"
 
 #. module: l10n_ES_aeat_mod347
-#: selection:l10n.es.aeat.mod347.report,support_type:0
-msgid "DVD"
-msgstr "DVD"
-
-#. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,total_real_state_amount:0
 msgid "Real State Amount"
 msgstr "Real State Amount"
@@ -138,6 +213,11 @@ msgid "AEAT 347 Reports"
 msgstr "AEAT 347 Reports"
 
 #. module: l10n_ES_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,group_by_cif:0
+msgid "Group by cif"
+msgstr "Group by cif"
+
+#. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,situation:0
 msgid "1 - Spain but Basque Country and Navarra"
 msgstr "1 - Spain but Basque Country and Navarra"
@@ -154,6 +234,7 @@ msgstr "Partner records"
 
 #. module: l10n_ES_aeat_mod347
 #: code:addons/l10n_ES_aeat_mod347/wizard/export_mod347_to_boe.py:0
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
 #, python-format
 msgid "The type 1 record must be 502 characters long"
 msgstr "The type 1 record must be 502 characters long"
@@ -205,6 +286,7 @@ msgstr "Calculation"
 
 #. module: l10n_ES_aeat_mod347
 #: code:addons/l10n_ES_aeat_mod347/wizard/export_mod347_to_boe.py:0
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
 #, python-format
 msgid "The type 2-I record (real state) must be 502 characters long"
 msgstr "The type 2-I record (real state) must be 502 characters long"
@@ -227,9 +309,9 @@ msgid "Real State records"
 msgstr "Real State records"
 
 #. module: l10n_ES_aeat_mod347
-#: selection:account.period,quarter:0
-msgid "Fourth"
-msgstr "Fourth"
+#: constraint:ir.actions.act_window:0
+msgid "Invalid model name in the action definition."
+msgstr "Invalid model name in the action definition."
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -288,6 +370,12 @@ msgid "Fourth Quarter"
 msgstr "Fourth Quarter"
 
 #. module: l10n_ES_aeat_mod347
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "347_report_%s.txt"
+msgstr "347_report_%s.txt"
+
+#. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,door:0
 msgid "Door"
 msgstr "Door"
@@ -318,6 +406,7 @@ msgstr "C - Cobros por cuenta de terceros superiores al límite (3)"
 
 #. module: l10n_ES_aeat_mod347
 #: code:addons/l10n_ES_aeat_mod347/wizard/export_mod347_to_boe.py:0
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
 #, python-format
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
@@ -505,77 +594,9 @@ msgid "RS Rent"
 msgstr "RS Rent"
 
 #. module: l10n_ES_aeat_mod347
-#: model:ir.module.module,description:l10n_ES_aeat_mod347.module_meta_information
-msgid "\n"
-"    Módulo para la presentación del Modelo AEAT 347 (Declaración Anual de Operaciones con Terceros)\n"
-"\n"
-"Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban los diseños físicos y lógicos del 347.\n"
-"\n"
-"De acuerdo con la normativa de la Hacienda Española, están obligados a presentar el modelo 347:\n"
-"    * Todas aquellas personas físicas o jurídicas, de naturaleza pública o\n"
-"        privada que desarrollen actividades empresariales o profesionales,\n"
-"        siempre y cuando hayan realizado operaciones que, en su conjunto,\n"
-"        respecto de otra persona o Entidad, cualquiera que sea su naturaleza\n"
-"        o carácter, hayan superado la cifra de 3.005,06€ durante el año natural\n"
-"        al que se refiere la declaración. Para el cálculo de la cifra de\n"
-"        3.005,06 € se computan de forma separada las entregas de bienes\n"
-"        y servicios y las adquisiciones de los mismos.\n"
-"\n"
-"De acuerdo con la normativa no están obligados a presentar el modelo 347:\n"
-"    * Quienes realicen en España actividades empresariales o profesionales sin\n"
-"        tener en territorio español la sede de su actividad, un establecimiento\n"
-"        permanente o su domicilio fiscal.\n"
-"    * Las personas físicas y entidades en régimen de atribución de rentas en\n"
-"        el IRPF, por las actividades que tributen en dicho impuesto por el\n"
-"        régimen de estimación objetiva y, simultáneamente, en el IVA por los\n"
-"        régimenes especiales simplificados o de la agricultura, ganadería\n"
-"        y pesca o recargo de equivalencia, salvo las operaciones que estén\n"
-"        excluidas de la aplicación de los expresados regímenes.\n"
-"    * Los obligados tributarios que no hayan realizado operaciones que en su\n"
-"        conjunto superen la cifra de 3.005,06€\n"
-"    * Los obligados tributarios que hayan realizado exclusivamente operaciones\n"
-"        no declarables.\n"
-"    * Los obligados tributarios que deban informar sobre las operaciones\n"
-"        incluidas en los libros registro de IVA (modelo 340) salvo que realicen\n"
-"        operaciones que expresamente deban incluirse en el modelo 347.\n"
-"\n"
-"(http://www.boe.es/boe/dias/2008/10/23/pdfs/A42154-42190.pdf)\n"
-"    "
-msgstr "\n"
-"    Módulo para la presentación del Modelo AEAT 347 (Declaración Anual de Operaciones con Terceros)\n"
-"\n"
-"Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban los diseños físicos y lógicos del 347.\n"
-"\n"
-"De acuerdo con la normativa de la Hacienda Española, están obligados a presentar el modelo 347:\n"
-"    * Todas aquellas personas físicas o jurídicas, de naturaleza pública o\n"
-"        privada que desarrollen actividades empresariales o profesionales,\n"
-"        siempre y cuando hayan realizado operaciones que, en su conjunto,\n"
-"        respecto de otra persona o Entidad, cualquiera que sea su naturaleza\n"
-"        o carácter, hayan superado la cifra de 3.005,06€ durante el año natural\n"
-"        al que se refiere la declaración. Para el cálculo de la cifra de\n"
-"        3.005,06 € se computan de forma separada las entregas de bienes\n"
-"        y servicios y las adquisiciones de los mismos.\n"
-"\n"
-"De acuerdo con la normativa no están obligados a presentar el modelo 347:\n"
-"    * Quienes realicen en España actividades empresariales o profesionales sin\n"
-"        tener en territorio español la sede de su actividad, un establecimiento\n"
-"        permanente o su domicilio fiscal.\n"
-"    * Las personas físicas y entidades en régimen de atribución de rentas en\n"
-"        el IRPF, por las actividades que tributen en dicho impuesto por el\n"
-"        régimen de estimación objetiva y, simultáneamente, en el IVA por los\n"
-"        régimenes especiales simplificados o de la agricultura, ganadería\n"
-"        y pesca o recargo de equivalencia, salvo las operaciones que estén\n"
-"        excluidas de la aplicación de los expresados regímenes.\n"
-"    * Los obligados tributarios que no hayan realizado operaciones que en su\n"
-"        conjunto superen la cifra de 3.005,06€\n"
-"    * Los obligados tributarios que hayan realizado exclusivamente operaciones\n"
-"        no declarables.\n"
-"    * Los obligados tributarios que deban informar sobre las operaciones\n"
-"        incluidas en los libros registro de IVA (modelo 340) salvo que realicen\n"
-"        operaciones que expresamente deban incluirse en el modelo 347.\n"
-"\n"
-"(http://www.boe.es/boe/dias/2008/10/23/pdfs/A42154-42190.pdf)\n"
-"    "
+#: selection:l10n.es.aeat.mod347.report,support_type:0
+msgid "DVD"
+msgstr "DVD"
 
 #. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -671,6 +692,7 @@ msgstr "Address type"
 
 #. module: l10n_ES_aeat_mod347
 #: code:addons/l10n_ES_aeat_mod347/wizard/export_mod347_to_boe.py:0
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
 #, python-format
 msgid "The formated string must match the given length"
 msgstr "The formated string must match the given length"
@@ -696,9 +718,10 @@ msgid "Cash payments journal"
 msgstr "Cash payments journal"
 
 #. module: l10n_ES_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "Summary"
-msgstr "Summary"
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
+#, python-format
+msgid "347 report %s"
+msgstr "347 report %s"
 
 #. module: l10n_ES_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,state:0
@@ -850,7 +873,6 @@ msgstr "Details"
 
 #. module: l10n_ES_aeat_mod347
 #: model:ir.actions.act_window,name:l10n_ES_aeat_mod347.action_l10n_es_aeat_mod347_report
-#: model:ir.module.module,shortdesc:l10n_ES_aeat_mod347.module_meta_information
 msgid "AEAT Model 347"
 msgstr "AEAT Model 347"
 
@@ -876,6 +898,7 @@ msgstr "PARTNER RECORD LINES"
 
 #. module: l10n_ES_aeat_mod347
 #: code:addons/l10n_ES_aeat_mod347/wizard/export_mod347_to_boe.py:0
+#: code:addons/l10n_ES_aeat_mod347/wizard/wizard_export_boe.py:0
 #, python-format
 msgid "Wrong aling option. It should be < or >"
 msgstr "Wrong aling option. It should be < or >"
@@ -936,13 +959,6 @@ msgid "Real State Transmissions Amount"
 msgstr "Real State Transmissions Amount"
 
 #. module: l10n_ES_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,name:0
-#: field:l10n.es.aeat.mod347.real_state_record,name:0
-#: field:l10n.es.aeat.mod347.report,name:0
-msgid "Name"
-msgstr "Name"
-
-#. module: l10n_ES_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
 #: view:l10n.es.aeat.mod347.real_state_record:0
 msgid "Partner info"
@@ -957,6 +973,16 @@ msgstr "RST amount"
 #: field:l10n.es.aeat.mod347.report,fiscalyear_id:0
 msgid "Fiscal Year"
 msgstr "Fiscal Year"
+
+#. module: l10n_ES_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Summary"
+msgstr "Summary"
+
+#. module: l10n_ES_aeat_mod347
+#: model:ir.module.module,shortdesc:l10n_ES_aeat_mod347.module_meta_information
+msgid "Generación de fichero modelo 347"
+msgstr "Generación de fichero modelo 347"
 
 #. module: l10n_ES_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,total_real_state_records:0

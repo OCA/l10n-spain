@@ -99,7 +99,7 @@ def _formatNumber(number, int_length, dec_length=0, include_sign=False):
     _number = float(number)
     int_part = int(_number)
     dec_part = int((_number % 1)*100)
-    sign = _number > 0 and ' ' or 'N'
+    sign = _number >= 0 and ' ' or 'N'
     #
     # Format the string
     #
