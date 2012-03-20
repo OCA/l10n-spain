@@ -34,4 +34,13 @@ class res_partner(osv.osv):
         except KeyError:
             vals['ref'] = self.pool.get('ir.sequence').get(cr, uid, 'res.partner')
         return super(res_partner, self).create(cr, uid, vals, context)
+
+    def copy(self, cr, uid, ids, default=None, context=None):
+        if not default:
+            default = {}
+        default.update({
+            'ref': '',                        
+        })
+        return super(res_partner, self).copy(cr, uid, ids, default, context=context)
+
 res_partner()
