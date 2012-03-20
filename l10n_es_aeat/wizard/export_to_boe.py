@@ -122,7 +122,7 @@ class l10n_es_aeat_report_export_to_boe(osv.osv_memory):
             number = 0.0
 
         number = float(number)
-        sign = number > 0 and ' ' or 'N'
+        sign = number >= 0 and ' ' or 'N'
         number = abs(number)
         int_part = int(number)
 
