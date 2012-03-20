@@ -6,532 +6,848 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openobject-addons\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2009-11-24 12:54+0000\n"
-"PO-Revision-Date: 2012-02-22 12:16+0000\n"
-"Last-Translator: Urtzi Odriozola <Unknown>\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2012-02-27 13:17+0000\n"
+"PO-Revision-Date: 2012-02-27 16:25+0100\n"
+"Last-Translator: Jesús Martín <jmartin@zikzakmedia.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-02-23 05:01+0000\n"
-"X-Generator: Launchpad (build 14855)\n"
+"X-Launchpad-Export-Date: 2011-10-19 05:53+0000\n"
+"X-Generator: Launchpad (build 14157)\n"
 
-#. module: account_asset
-#: model:ir.actions.act_window,name:account_asset.action_account_asset_asset_list_normal
-#: model:ir.ui.menu,name:account_asset.menu_action_account_asset_asset_list_normal
-msgid "Open Assets"
-msgstr "Actius oberts"
-
-#. module: account_asset
-#: field:account.asset.property,method_end:0
-#: field:account.asset.property.history,method_end:0
+#. module: l10n_es_account_asset
+#: field:account.asset.category,method_end:0
+#: field:account.asset.history,method_end:0
+#: field:asset.modify,method_end:0
 msgid "Ending date"
 msgstr "Data final"
 
-#. module: account_asset
+#. module: l10n_es_account_asset
+#: view:asset.asset.report:0
+msgid "Previous Month"
+msgstr "Mes previ"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,value_residual:0
+msgid "Residual Value"
+msgstr "Valor residual"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.category,account_expense_depreciation_id:0
+msgid "Depr. Expense Account"
+msgstr "Compte despeses amortització"
+
+#. module: l10n_es_account_asset
 #: view:account.asset.asset:0
 msgid "Depreciation board"
 msgstr "Taula d'amortització"
 
-#. module: account_asset
+#. module: l10n_es_account_asset
+#: field:asset.asset.report,gross_value:0
+msgid "Gross Amount"
+msgstr "Valor brut"
+
+#. module: l10n_es_account_asset
 #: view:account.asset.asset:0
 #: field:account.asset.asset,name:0
-#: field:account.asset.board,asset_id:0
-#: field:account.asset.property,asset_id:0
-#: field:account.invoice.line,asset_id:0
+#: field:account.asset.depreciation.line,asset_id:0
+#: field:account.asset.history,asset_id:0
 #: field:account.move.line,asset_id:0
-#: model:ir.actions.act_window,name:account_asset.action_account_asset_asset_form
-#: model:ir.model,name:account_asset.model_account_asset_asset
-#: model:ir.ui.menu,name:account_asset.menu_action_account_asset_asset_form
+#: view:asset.asset.report:0
+#: field:asset.asset.report,asset_id:0
+#: model:ir.model,name:l10n_es_account_asset.model_account_asset_asset
 msgid "Asset"
 msgstr "Actiu"
 
-#. module: account_asset
-#: constraint:ir.actions.act_window:0
-msgid "Invalid model name in the action definition."
-msgstr "Nom de model invàlid en la definició de l'acció."
+#. module: l10n_es_account_asset
+#: help:account.asset.asset,prorata:0
+#: help:account.asset.category,prorata:0
+msgid "Indicates that the first depreciation entry for this asset have to be done from the purchase date instead of the first January"
+msgstr "Indica que la primera entrada d'amortització per aquest actiu té que fer-se des de la data de compra en compte del primer de gener"
 
-#. module: account_asset
-#: selection:account.asset.property,method:0
+#. module: l10n_es_account_asset
+#: selection:account.asset.asset,method:0
+#: selection:account.asset.category,method:0
 msgid "Linear"
 msgstr "Lineal"
 
-#. module: account_asset
-#: view:account.asset.asset:0
-msgid "Change duration"
-msgstr "Canvi de durada"
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,company_id:0
+#: field:account.asset.category,company_id:0
+#: view:asset.asset.report:0
+#: field:asset.asset.report,company_id:0
+msgid "Company"
+msgstr "Companyia"
 
-#. module: account_asset
-#: field:account.asset.asset,child_ids:0
-msgid "Child assets"
-msgstr "Actius fills"
+#. module: l10n_es_account_asset
+#: view:asset.modify:0
+msgid "Modify"
+msgstr "Modifica"
 
-#. module: account_asset
-#: field:account.asset.board,value_asset:0
-msgid "Asset Value"
-msgstr "Valor de l'actiu"
+#. module: l10n_es_account_asset
+#: selection:account.asset.asset,state:0
+#: view:asset.asset.report:0
+#: selection:asset.asset.report,state:0
+msgid "Running"
+msgstr "En execució"
 
-#. module: account_asset
-#: wizard_field:account.asset.modify,init,name:0
+#. module: l10n_es_account_asset
+#: field:account.asset.depreciation.line,amount:0
+msgid "Depreciation Amount"
+msgstr "Total amortitzat"
+
+#. module: l10n_es_account_asset
+#: view:asset.asset.report:0
+#: model:ir.actions.act_window,name:l10n_es_account_asset.action_asset_asset_report
+#: model:ir.model,name:l10n_es_account_asset.model_asset_asset_report
+#: model:ir.ui.menu,name:l10n_es_account_asset.menu_action_asset_asset_report
+msgid "Assets Analysis"
+msgstr "Anàlisi d'actius"
+
+#. module: l10n_es_account_asset
+#: field:asset.modify,name:0
 msgid "Reason"
 msgstr "Raó"
 
-#. module: account_asset
-#: view:account.asset.asset:0
-#: field:account.asset.asset,entry_ids:0
-#: wizard_field:account.asset.compute,asset_compute,move_ids:0
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,method_progress_factor:0
+#: field:account.asset.category,method_progress_factor:0
+msgid "Degressive Factor"
+msgstr "Factor decreixent"
+
+#. module: l10n_es_account_asset
+#: model:ir.actions.act_window,name:l10n_es_account_asset.action_account_asset_asset_list_normal
+#: model:ir.ui.menu,name:l10n_es_account_asset.menu_action_account_asset_asset_list_normal
+msgid "Asset Categories"
+msgstr "Categories d'actius fixes"
+
+#. module: l10n_es_account_asset
+#: view:asset.depreciation.confirmation.wizard:0
+msgid "This wizard will post the depreciation lines of running assets that belong to the selected period."
+msgstr "Aquest assistent aplicarà les línies d'amortització dels actius en marxa que pertanyin al període seleccionat."
+
+#. module: l10n_es_account_asset
+#: view:asset.asset.report:0
+msgid "This Year"
+msgstr "Aquest any"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,account_move_line_ids:0
+#: field:account.move.line,entry_ids:0
+#: model:ir.actions.act_window,name:l10n_es_account_asset.act_entries_open
 msgid "Entries"
-msgstr "Assentaments"
+msgstr "Entrades"
 
-#. module: account_asset
-#: wizard_view:account.asset.compute,asset_compute:0
-msgid "Generated entries"
-msgstr "Assentaments generats"
-
-#. module: account_asset
-#: wizard_field:account.asset.modify,init,method_delay:0
-#: field:account.asset.property,method_delay:0
-#: field:account.asset.property.history,method_delay:0
-msgid "Number of interval"
-msgstr "Número d'intervals"
-
-#. module: account_asset
-#: wizard_button:account.asset.compute,asset_compute,asset_open:0
-msgid "Open entries"
-msgstr "Obre assentaments"
-
-#. module: account_asset
+#. module: l10n_es_account_asset
 #: view:account.asset.asset:0
-#: model:ir.actions.act_window,name:account_asset.action_account_asset_asset_list
-#: model:ir.ui.menu,name:account_asset.menu_action_account_asset_asset_list
-#: model:ir.ui.menu,name:account_asset.menu_finance_Assets
-#: model:ir.ui.menu,name:account_asset.menu_finance_config_Assets
+#: field:account.asset.asset,depreciation_line_ids:0
+msgid "Depreciation Lines"
+msgstr "Línies d'amortització"
+
+#. module: l10n_es_account_asset
+#: help:account.asset.asset,salvage_value:0
+msgid "It is the amount you plan to have that you cannot depreciate."
+msgstr "Es el valor que teniu previst tenir que no es pot amortitzar."
+
+#. module: l10n_es_account_asset
+#: field:account.asset.depreciation.line,depreciation_date:0
+#: view:asset.asset.report:0
+#: field:asset.asset.report,depreciation_date:0
+msgid "Depreciation Date"
+msgstr "Data d'amortització"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.category,account_asset_id:0
+msgid "Asset Account"
+msgstr "Compte d'actiu"
+
+#. module: l10n_es_account_asset
+#: field:asset.asset.report,posted_value:0
+msgid "Posted Amount"
+msgstr "Quantitat fixada"
+
+#. module: l10n_es_account_asset
+#: view:account.asset.asset:0
+#: view:asset.asset.report:0
+#: model:ir.actions.act_window,name:l10n_es_account_asset.action_account_asset_asset_form
+#: model:ir.ui.menu,name:l10n_es_account_asset.menu_action_account_asset_asset_form
+#: model:ir.ui.menu,name:l10n_es_account_asset.menu_finance_assets
+#: model:ir.ui.menu,name:l10n_es_account_asset.menu_finance_config_assets
 msgid "Assets"
 msgstr "Actius"
 
-#. module: account_asset
-#: selection:account.asset.property,method:0
-msgid "Progressive"
-msgstr "Progressiu"
+#. module: l10n_es_account_asset
+#: field:account.asset.category,account_depreciation_id:0
+msgid "Depreciation Account"
+msgstr "Compte d'amortització"
 
-#. module: account_asset
-#: model:ir.actions.act_window,name:account_asset.action_account_asset_asset_list_draft
-#: model:ir.ui.menu,name:account_asset.menu_action_account_asset_asset_list_draft
-msgid "Draft Assets"
-msgstr "Actius en estat esborrany"
+#. module: l10n_es_account_asset
+#: constraint:account.move.line:0
+msgid "You can not create move line on closed account."
+msgstr "No podeu crear una línia de moviment en un compte tancat."
 
-#. module: account_asset
-#: wizard_view:account.asset.modify,init:0
-#: wizard_field:account.asset.modify,init,note:0
-#: view:account.asset.property.history:0
+#. module: l10n_es_account_asset
+#: view:account.asset.asset:0
+#: view:account.asset.category:0
+#: view:account.asset.history:0
+#: view:asset.modify:0
+#: field:asset.modify,note:0
 msgid "Notes"
 msgstr "Notes"
 
-#. module: account_asset
+#. module: l10n_es_account_asset
+#: field:account.asset.depreciation.line,move_id:0
+msgid "Depreciation Entry"
+msgstr "Entrada d'amortització"
+
+#. module: l10n_es_account_asset
+#: sql_constraint:account.move.line:0
+msgid "Wrong credit or debit value in accounting entry !"
+msgstr "Valor de crèdit o dèbit erroni en l'apunt comptable!"
+
+#. module: l10n_es_account_asset
+#: view:asset.asset.report:0
+#: field:asset.asset.report,nbr:0
+msgid "# of Depreciation Lines"
+msgstr "Núm. línies d'amortització"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,method_end:0
+#: selection:account.asset.asset,method_time:0
+#: selection:account.asset.category,method_time:0
+#: selection:account.asset.history,method_time:0
+msgid "Ending Date"
+msgstr "Data final"
+
+#. module: l10n_es_account_asset
+#: view:asset.asset.report:0
+msgid "Group By..."
+msgstr "Agrupa per..."
+
+#. module: l10n_es_account_asset
 #: view:account.asset.asset:0
-msgid "Change history"
-msgstr "Canvi històric"
+msgid "Account Asset"
+msgstr "Compte d'actius"
 
-#. module: account_asset
-#: view:account.asset.asset:0
-msgid "Depreciation entries"
-msgstr "Assentament de dotació a l'amortització"
+#. module: l10n_es_account_asset
+#: model:ir.actions.act_window,name:l10n_es_account_asset.action_asset_depreciation_confirmation_wizard
+#: model:ir.ui.menu,name:l10n_es_account_asset.menu_asset_depreciation_confirmation_wizard
+msgid "Compute Assets"
+msgstr "Calcula actius"
 
-#. module: account_asset
-#: view:account.asset.asset:0
-msgid "Methods"
-msgstr "Mètodes"
+#. module: l10n_es_account_asset
+#: field:account.asset.depreciation.line,sequence:0
+msgid "Sequence of the depreciation"
+msgstr "Seqüència de l'amortització"
 
-#. module: account_asset
-#: wizard_view:account.asset.modify,init:0
-msgid "Asset properties to modify"
-msgstr "Propietats de l'actiu a modificar"
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,method_period:0
+#: field:account.asset.category,method_period:0
+#: field:account.asset.history,method_period:0
+#: field:asset.modify,method_period:0
+msgid "Period Length"
+msgstr "Duració del període"
 
-#. module: account_asset
-#: field:account.asset.asset,partner_id:0
-msgid "Partner"
-msgstr "Empresa"
-
-#. module: account_asset
-#: wizard_field:account.asset.modify,init,method_period:0
-#: field:account.asset.property,method_period:0
-#: field:account.asset.property.history,method_period:0
-msgid "Period per interval"
-msgstr "Període per interval"
-
-#. module: account_asset
-#: view:account.asset.asset:0
-msgid "Depreciation duration"
-msgstr "termini d'amortització"
-
-#. module: account_asset
-#: field:account.asset.property,account_analytic_id:0
-msgid "Analytic account"
-msgstr "Compte analític"
-
-#. module: account_asset
-#: field:account.asset.property,state:0
-msgid "State"
-msgstr "Estat"
-
-#. module: account_asset
-#: view:account.asset.asset:0
-msgid "Depreciation methods"
-msgstr "Mètodes d'amortització"
-
-#. module: account_asset
-#: view:account.asset.asset:0
-msgid "Other information"
-msgstr "Altra informació"
-
-#. module: account_asset
-#: field:account.asset.board,value_asset_cumul:0
-msgid "Cumul. value"
-msgstr "Valor acumulat"
-
-#. module: account_asset
-#: view:account.asset.property:0
-msgid "Assets methods"
-msgstr "Mètodes d'actius"
-
-#. module: account_asset
-#: constraint:ir.ui.view:0
-msgid "Invalid XML for View Architecture!"
-msgstr "XML invàlid per a la definició de la vista!"
-
-#. module: account_asset
-#: model:ir.model,name:account_asset.model_account_asset_property
-msgid "Asset property"
-msgstr "Propietat de l'actiu"
-
-#. module: account_asset
-#: wizard_view:account.asset.compute,asset_compute:0
-#: wizard_view:account.asset.compute,init:0
-#: wizard_button:account.asset.compute,init,asset_compute:0
-#: model:ir.actions.wizard,name:account_asset.wizard_asset_compute
-#: model:ir.ui.menu,name:account_asset.menu_wizard_asset_compute
-msgid "Compute assets"
-msgstr "Calcula els actius"
-
-#. module: account_asset
-#: wizard_view:account.asset.modify,init:0
-#: wizard_button:account.asset.modify,init,asset_modify:0
-#: model:ir.actions.wizard,name:account_asset.wizard_asset_modify
-msgid "Modify asset"
-msgstr "Modifica l'actiu"
-
-#. module: account_asset
-#: view:account.asset.asset:0
-msgid "Confirm asset"
-msgstr "Confirma l'actiu"
-
-#. module: account_asset
-#: view:account.asset.property.history:0
-#: model:ir.model,name:account_asset.model_account_asset_property_history
-msgid "Asset history"
-msgstr "Històric de l'actiu"
-
-#. module: account_asset
-#: field:account.asset.property,date:0
-msgid "Date created"
-msgstr "Data de creació"
-
-#. module: account_asset
-#: model:ir.module.module,description:account_asset.module_meta_information
-msgid ""
-"Financial and accounting asset management.\n"
-"    Allows to define\n"
-"    * Asset category. \n"
-"    * Assets.\n"
-"    *Asset usage period and property.\n"
-"    "
-msgstr ""
-"Gestió financera i comptable d'actius.\n"
-"  Permet definir\n"
-"  * Categories d'actiu. \n"
-"  * Actius.\n"
-"  * Període i propietats de l'actiu utilitzat.\n"
-"    "
-
-#. module: account_asset
-#: field:account.asset.board,value_gross:0
-#: field:account.asset.property,value_total:0
-msgid "Gross value"
-msgstr "Valor brut"
-
-#. module: account_asset
-#: selection:account.asset.property,method_time:0
-msgid "Ending period"
-msgstr "Període final"
-
-#. module: account_asset
-#: field:account.asset.board,name:0
-msgid "Asset name"
-msgstr "Nom de l'actiu"
-
-#. module: account_asset
-#: view:account.asset.asset:0
-msgid "Accounts information"
-msgstr "Informació de comptes"
-
-#. module: account_asset
-#: field:account.asset.asset,note:0
-#: field:account.asset.category,note:0
-#: field:account.asset.property.history,note:0
-msgid "Note"
-msgstr "Nota"
-
-#. module: account_asset
+#. module: l10n_es_account_asset
 #: selection:account.asset.asset,state:0
-#: selection:account.asset.property,state:0
+#: view:asset.asset.report:0
+#: selection:asset.asset.report,state:0
 msgid "Draft"
 msgstr "Esborrany"
 
-#. module: account_asset
-#: field:account.asset.property,type:0
-msgid "Depr. method type"
-msgstr "Tipus de mètode d'amortització"
+#. module: l10n_es_account_asset
+#: help:account.asset.asset,method_number:0
+msgid "Calculates Depreciation within specified interval"
+msgstr "Calcula l'amortització dintre de l'interval especificat"
 
-#. module: account_asset
-#: field:account.asset.property,account_asset_id:0
-msgid "Asset account"
-msgstr "Compte d'actiu"
+#. module: l10n_es_account_asset
+#: view:account.asset.asset:0
+msgid "Change Duration"
+msgstr "Canvia durada"
 
-#. module: account_asset
-#: field:account.asset.property.history,asset_property_id:0
-msgid "Method"
-msgstr "Mètode"
+#. module: l10n_es_account_asset
+#: field:account.asset.category,account_analytic_id:0
+msgid "Analytic account"
+msgstr "Compte analític"
 
-#. module: account_asset
-#: selection:account.asset.asset,state:0
-msgid "Normal"
-msgstr "Normal"
-
-#. module: account_asset
-#: field:account.asset.property,method_progress_factor:0
-msgid "Progressif factor"
-msgstr "Factor de progressió"
-
-#. module: account_asset
-#: field:account.asset.asset,localisation:0
-msgid "Localisation"
-msgstr "Localització"
-
-#. module: account_asset
-#: field:account.asset.property,method:0
-msgid "Computation method"
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,method:0
+#: field:account.asset.category,method:0
+msgid "Computation Method"
 msgstr "Mètode de càlcul"
 
-#. module: account_asset
-#: field:account.asset.property,method_time:0
-msgid "Time method"
-msgstr "Mètode de temps"
+#. module: l10n_es_account_asset
+#: help:account.asset.asset,method_period:0
+msgid "State here the time during 2 depreciations, in months"
+msgstr "Indiqueu aquí el temps de durada de 2 amortitzacions, en mesos"
 
-#. module: account_asset
+#. module: l10n_es_account_asset
+#: constraint:account.asset.asset:0
+msgid "Prorata temporis can be applied only for time method \"number of depreciations\"."
+msgstr "Prorrata temporal només es pot aplicar per al mètode de temps \"número d'amortitzacions\"."
+
+#. module: l10n_es_account_asset
+#: help:account.asset.history,method_time:0
+msgid ""
+"The method to use to compute the dates and number of depreciation lines.\n"
+"Number of Depreciations: Fix the number of depreciation lines and the time between 2 depreciations.\n"
+"Ending Date: Choose the time between 2 depreciations and the date the depreciations won't go beyond."
+msgstr ""
+"El mètode a utilitzar per calcular les dates i nombre de línies d'amortització.\n"
+"Nombre d'amortitzacions: Fixa el nombre de línies d'amortització i el temps transcorregut entre dues amortitzacions.\n"
+"Data de finalització: Seleccioneu el temps que transcorre entre dues amortitzacions i la data en que les amortitzacions no continuaran."
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,purchase_value:0
+msgid "Gross value "
+msgstr "Valor brut"
+
+#. module: l10n_es_account_asset
+#: constraint:account.asset.asset:0
+msgid "Error ! You can not create recursive assets."
+msgstr "Error! No podeu crear actius recursius."
+
+#. module: l10n_es_account_asset
+#: help:account.asset.history,method_period:0
+msgid "Time in month between two depreciations"
+msgstr "Temps en mesos entre dues amortitzacions"
+
+#. module: l10n_es_account_asset
+#: view:asset.modify:0
+#: model:ir.actions.act_window,name:l10n_es_account_asset.action_asset_modify
+#: model:ir.model,name:l10n_es_account_asset.model_asset_modify
+msgid "Modify Asset"
+msgstr "Modifica l'actiu"
+
+#. module: l10n_es_account_asset
+#: view:account.asset.asset:0
+msgid "Other Information"
+msgstr "Altra informació"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,salvage_value:0
+msgid "Salvage Value"
+msgstr "Valor de rescat"
+
+#. module: l10n_es_account_asset
+#: field:account.invoice.line,asset_category_id:0
+#: view:asset.asset.report:0
+#: field:product.product,asset_category_id:0
+msgid "Asset Category"
+msgstr "Categoria d'actiu"
+
+#. module: l10n_es_account_asset
+#: view:account.asset.asset:0
+msgid "Set to Close"
+msgstr "Estableix a tancat"
+
+#. module: l10n_es_account_asset
+#: model:ir.actions.wizard,name:l10n_es_account_asset.wizard_asset_compute
+msgid "Compute assets"
+msgstr "Calcula els actius"
+
+#. module: l10n_es_account_asset
+#: model:ir.actions.wizard,name:l10n_es_account_asset.wizard_asset_modify
+msgid "Modify asset"
+msgstr "Modifica l'actiu"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,partner_id:0
+#: field:asset.asset.report,partner_id:0
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,parent_id:0
+msgid "Parent Asset"
+msgstr "Actiu pare"
+
+#. module: l10n_es_account_asset
+#: view:account.asset.history:0
+#: model:ir.model,name:l10n_es_account_asset.model_account_asset_history
+msgid "Asset history"
+msgstr "Històric de l'actiu"
+
+#. module: l10n_es_account_asset
+#: view:account.asset.category:0
+msgid "Search Asset Category"
+msgstr "Cerca categoria d'actiu"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,state:0
+#: field:asset.asset.report,state:0
+msgid "State"
+msgstr "Estat"
+
+#. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Línia de factura"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,currency_id:0
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_account_move_line
+msgid "Journal Items"
+msgstr "Apunts comptables"
+
+#. module: l10n_es_account_asset
+#: field:asset.asset.report,unposted_value:0
+msgid "Unposted Amount"
+msgstr "Valor no comptabilitzat"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,method_time:0
+#: field:account.asset.category,method_time:0
+#: field:account.asset.history,method_time:0
+msgid "Time Method"
+msgstr "Mètode temporal"
+
+#. module: l10n_es_account_asset
+#: view:account.asset.category:0
+msgid "Analytic information"
+msgstr "Informació analítica"
+
+#. module: l10n_es_account_asset
+#: view:asset.modify:0
+msgid "Asset durations to modify"
+msgstr "Durades d'actiu a modificar"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,compute_at_end_period:0
+msgid "Compute at the end of period"
+msgstr "Calcula al final del període"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,note:0
+#: field:account.asset.category,note:0
+#: field:account.asset.history,note:0
+msgid "Note"
+msgstr "Nota"
+
+#. module: l10n_es_account_asset
+#: help:account.asset.asset,method:0
+#: help:account.asset.category,method:0
+msgid ""
+"Choose the method to use to compute the amount of depreciation lines.\n"
+"  * Linear: Calculated on basis of: Gross Value / Number of Depreciations\n"
+"  * Degressive: Calculated on basis of: Remaining Value * Degressive Factor"
+msgstr ""
+"Seleccioneu el mètode a utilitzar per calcular les línies d'amortització.\n"
+"  * Linial: Calculat sobre la base de: Valor brut / Nombre d'amortització\n"
+"  * Decreixent: Calculat sobre la base de: Valor de rescat * Factor de decreixement"
+
+#. module: l10n_es_account_asset
+#: help:account.asset.asset,method_time:0
+#: help:account.asset.category,method_time:0
+msgid ""
+"Choose the method to use to compute the dates and number of depreciation lines.\n"
+"  * Number of Depreciations: Fix the number of depreciation lines and the time between 2 depreciations.\n"
+"  * Ending Date: Choose the time between 2 depreciations and the date the depreciations won't go beyond."
+msgstr ""
+"Seleccioneu el mètode a utilitzar per calcular les dates i nombre de línies d'amortització.\n"
+"  * Nombre de amortitzacions: Fixeu el nombre de línies d'amortitzacions i el temps entre dues amortitzacions.\n"
+"  * Data de finalització: Seleccioneu el temps entre dues amortitzacions i la data des de la que no hi haurà mes amortitzacions."
+
+#. module: l10n_es_account_asset
+#: view:account.asset.asset:0
+msgid "Closed"
+msgstr "Tancat"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,code:0
+msgid "Reference "
+msgstr "Referència"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,child_ids:0
+msgid "Children Assets"
+msgstr "Actius fills"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.history,user_id:0
+msgid "User"
+msgstr "Usuari"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.history,date:0
+msgid "Date"
+msgstr "Data"
+
+#. module: l10n_es_account_asset
+#: view:asset.asset.report:0
+msgid "Extended Filters..."
+msgstr "Filtres estesos..."
+
+#. module: l10n_es_account_asset
+#: constraint:account.move.line:0
+msgid "Company must be same for its related account and period."
+msgstr "La companyia ha de ser la mateixa pel compte i el període relacionats."
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,deprec_start_date:0
+msgid "Depreciation starting Date"
+msgstr "Data d'inici d'amortització"
+
+#. module: l10n_es_account_asset
+#: view:account.asset.asset:0
+#: view:asset.depreciation.confirmation.wizard:0
+msgid "Compute"
+msgstr "Calcula"
+
+#. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_asset_depreciation_confirmation_wizard
+msgid "asset.depreciation.confirmation.wizard"
+msgstr "asset.depreciation.confirmation.wizard"
+
+#. module: l10n_es_account_asset
 #: field:account.asset.asset,active:0
 msgid "Active"
 msgstr "Actiu"
 
-#. module: account_asset
-#: field:account.asset.property.history,user_id:0
-msgid "User"
-msgstr "Usuari"
-
-#. module: account_asset
-#: field:account.asset.asset,property_ids:0
-msgid "Asset method name"
-msgstr "Nom del mètode d'actiu"
-
-#. module: account_asset
-#: field:account.asset.asset,date:0
-#: field:account.asset.property.history,date:0
-msgid "Date"
-msgstr "Data"
-
-#. module: account_asset
-#: field:account.asset.board,value_net:0
-msgid "Net value"
-msgstr "Valor net"
-
-#. module: account_asset
-#: wizard_view:account.asset.close,init:0
-#: model:ir.actions.wizard,name:account_asset.wizard_asset_close
+#. module: l10n_es_account_asset
+#: model:ir.actions.wizard,name:l10n_es_account_asset.wizard_asset_close
 msgid "Close asset"
 msgstr "Tanca l'actiu"
 
-#. module: account_asset
-#: field:account.asset.property,history_ids:0
+#. module: l10n_es_account_asset
+#: field:account.asset.depreciation.line,parent_state:0
+msgid "State of Asset"
+msgstr "Estat de l'actiu"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.depreciation.line,name:0
+msgid "Depreciation Name"
+msgstr "Nom de l'amortització"
+
+#. module: l10n_es_account_asset
+#: view:account.asset.asset:0
+#: field:account.asset.asset,history_ids:0
 msgid "History"
 msgstr "Història"
 
-#. module: account_asset
-#: field:account.asset.property,account_actif_id:0
-msgid "Depreciation account"
-msgstr "Compte d'amortització"
+#. module: l10n_es_account_asset
+#: view:asset.depreciation.confirmation.wizard:0
+msgid "Compute Asset"
+msgstr "Calcula actiu"
 
-#. module: account_asset
-#: field:account.asset.asset,period_id:0
-#: wizard_field:account.asset.compute,init,period_id:0
+#. module: l10n_es_account_asset
+#: field:asset.depreciation.confirmation.wizard,period_id:0
 msgid "Period"
 msgstr "Període"
 
-#. module: account_asset
-#: model:ir.actions.act_window,name:account_asset.action_account_asset_category_form
-#: model:ir.ui.menu,name:account_asset.menu_action_account_asset_category_form
-msgid "Asset Category"
-msgstr "Categoria d'actiu"
+#. module: l10n_es_account_asset
+#: view:account.asset.asset:0
+msgid "General"
+msgstr "General"
 
-#. module: account_asset
-#: wizard_button:account.asset.close,init,end:0
-#: wizard_button:account.asset.compute,init,end:0
-#: wizard_button:account.asset.modify,init,end:0
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,prorata:0
+#: field:account.asset.category,prorata:0
+msgid "Prorata Temporis"
+msgstr "Prorrata temporal"
+
+#. module: l10n_es_account_asset
+#: view:account.asset.category:0
+msgid "Accounting information"
+msgstr "Informació comptable"
+
+#. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: l10n_es_account_asset
+#: model:ir.actions.act_window,name:l10n_es_account_asset.action_account_asset_asset_form_normal
+msgid "Review Asset Categories"
+msgstr "Revisa categories d'actius"
+
+#. module: l10n_es_account_asset
+#: view:asset.depreciation.confirmation.wizard:0
+#: view:asset.modify:0
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#. module: account_asset
+#. module: l10n_es_account_asset
 #: selection:account.asset.asset,state:0
-#: wizard_button:account.asset.compute,asset_compute,end:0
-#: selection:account.asset.property,state:0
+#: selection:asset.asset.report,state:0
 msgid "Close"
 msgstr "Tanca"
 
-#. module: account_asset
-#: selection:account.asset.property,state:0
-msgid "Open"
-msgstr "Obre"
+#. module: l10n_es_account_asset
+#: view:account.asset.asset:0
+#: view:account.asset.category:0
+msgid "Depreciation Method"
+msgstr "Mètode d'amortització"
 
-#. module: account_asset
-#: constraint:ir.model:0
-msgid ""
-"The Object name must start with x_ and not contain any special character !"
-msgstr ""
-"El nom de l'objecte ha de començar amb x_ i no contenir cap caràcter "
-"especial!"
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,purchase_date:0
+#: view:asset.asset.report:0
+#: field:asset.asset.report,purchase_date:0
+msgid "Purchase Date"
+msgstr "Data de compra"
 
-#. module: account_asset
-#: model:ir.module.module,shortdesc:account_asset.module_meta_information
-msgid "Asset management"
-msgstr "Gestió de l'actiu"
+#. module: l10n_es_account_asset
+#: selection:account.asset.asset,method:0
+#: selection:account.asset.category,method:0
+msgid "Degressive"
+msgstr "Decreixent"
 
-#. module: account_asset
-#: view:account.asset.board:0
-#: field:account.asset.property,board_ids:0
-#: model:ir.model,name:account_asset.model_account_asset_board
-msgid "Asset board"
-msgstr "Taulell d'actius"
+#. module: l10n_es_account_asset
+#: help:asset.depreciation.confirmation.wizard,period_id:0
+msgid "Choose the period for which you want to automatically post the depreciation lines of running assets"
+msgstr "Seleccioneu el període per al qual voleu enviar automàticament les línies d'amortització dels actius en execució"
 
-#. module: account_asset
-#: field:account.asset.asset,state:0
-msgid "Global state"
-msgstr "Estat global"
+#. module: l10n_es_account_asset
+#: view:account.asset.asset:0
+msgid "Current"
+msgstr "Actual"
 
-#. module: account_asset
-#: selection:account.asset.property,method_time:0
-msgid "Delay"
-msgstr "Retarda"
+#. module: l10n_es_account_asset
+#: field:account.asset.depreciation.line,remaining_value:0
+msgid "Amount to Depreciate"
+msgstr "Total a amortitzar"
 
-#. module: account_asset
-#: wizard_view:account.asset.close,init:0
-msgid "General information"
-msgstr "Informació general"
+#. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_product_product
+msgid "Product"
+msgstr "Producte"
 
-#. module: account_asset
-#: field:account.asset.property,journal_analytic_id:0
-msgid "Analytic journal"
-msgstr "Diari analític"
+#. module: l10n_es_account_asset
+#: field:account.asset.category,open_asset:0
+msgid "Skip Draft State"
+msgstr "Saltar estat esborrany"
 
-#. module: account_asset
-#: field:account.asset.property,name:0
-msgid "Method name"
-msgstr "Nom del mètode"
+#. module: l10n_es_account_asset
+#: view:account.asset.asset:0
+#: view:account.asset.category:0
+#: view:account.asset.history:0
+msgid "Depreciation Dates"
+msgstr "Dates d'amortització"
 
-#. module: account_asset
-#: field:account.asset.property,journal_id:0
+#. module: l10n_es_account_asset
+#: field:account.asset.category,journal_id:0
 msgid "Journal"
 msgstr "Diari"
 
-#. module: account_asset
-#: field:account.asset.property.history,name:0
+#. module: l10n_es_account_asset
+#: field:account.asset.history,name:0
 msgid "History name"
 msgstr "Nom històric"
 
-#. module: account_asset
-#: view:account.asset.asset:0
-msgid "Close method"
-msgstr "Tanca el mètode"
+#. module: l10n_es_account_asset
+#: field:account.asset.depreciation.line,depreciated_value:0
+msgid "Amount Already Depreciated"
+msgstr "Valor ja amortitzat"
 
-#. module: account_asset
-#: field:account.asset.property,entry_asset_ids:0
-msgid "Asset Entries"
-msgstr "Assentaments d'actiu"
+#. module: l10n_es_account_asset
+#: view:asset.asset.report:0
+msgid "This Month"
+msgstr "Aquest mes"
 
-#. module: account_asset
+#. module: l10n_es_account_asset
+#: field:account.asset.depreciation.line,move_check:0
+#: view:asset.asset.report:0
+#: field:asset.asset.report,move_check:0
+msgid "Posted"
+msgstr "Enviat"
+
+#. module: l10n_es_account_asset
+#: help:account.asset.asset,state:0
+msgid ""
+"When an asset is created, the state is 'Draft'.\n"
+"If the asset is confirmed, the state goes in 'Running' and the depreciation lines can be posted in the accounting.\n"
+"You can manually close an asset when the depreciation is over. If the last line of depreciation is posted, the asset automatically goes in that state."
+msgstr ""
+"Quan es crea l'actiu, el seu estat és 'Esborrany'.\n"
+"Si es confirma l'actiu, el seu estat canvia a 'En execució' i les línies d'amortització poden enviar-se a la comptabilitat.\n"
+"Podeu tancar manualment un actiu quan l'amortització finalitza. Si s'envia la darrera línia d'amortització, l'actiu canvia automàticament a aquest estat."
+
+#. module: l10n_es_account_asset
+#: field:account.asset.category,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: l10n_es_account_asset
+#: help:account.asset.category,open_asset:0
+msgid "Check this if you want to automatically confirm the assets of this category when created by invoices."
+msgstr "Seleccioneu aquesta casella si voleu confirmar automàticament els actius d'aquesta categoria quan es creen per factures."
+
+#. module: l10n_es_account_asset
+#: field:asset.asset.report,name:0
+msgid "Year"
+msgstr "Any"
+
+#. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_account_asset_depreciation_line
+msgid "Asset depreciation line"
+msgstr "Línia d'amortització d'actiu"
+
+#. module: l10n_es_account_asset
 #: field:account.asset.asset,category_id:0
 #: view:account.asset.category:0
-#: field:account.asset.category,name:0
-#: model:ir.model,name:account_asset.model_account_asset_category
+#: field:asset.asset.report,asset_category_id:0
+#: model:ir.model,name:l10n_es_account_asset.model_account_asset_category
 msgid "Asset category"
 msgstr "Categoria d'actiu"
 
-#. module: account_asset
+#. module: l10n_es_account_asset
+#: view:asset.asset.report:0
+#: field:asset.asset.report,depreciation_value:0
+msgid "Amount of Depreciation Lines"
+msgstr "Total de línies d'amortització"
+
+#. module: l10n_es_account_asset
+#: code:addons/l10n_es_account_asset/wizard/wizard_asset_compute.py:49
+#, python-format
+msgid "Created Asset Moves"
+msgstr "Moviments d'actius creats"
+
+#. module: l10n_es_account_asset
+#: model:ir.actions.act_window,help:l10n_es_account_asset.action_asset_asset_report
+msgid "From this report, you can have an overview on all depreciation. The tool search can also be used to personalise your Assets reports and so, match this analysis to your needs;"
+msgstr "A partir d'aquest informe, podeu tenir una visió general de les amortitzacions. Les eines de cerca també es poden utilitzar per personalitzar els informes dels actius i per tant, ajustar aquest anàlisi a les vostres necessitats;"
+
+#. module: l10n_es_account_asset
+#: help:account.asset.category,method_period:0
+msgid "State here the time between 2 depreciations, in months"
+msgstr "Establiu aquí el temps entre dues amortitzacions, en mesos"
+
+#. module: l10n_es_account_asset
+#: constraint:product.product:0
+msgid "Error: Invalid ean code"
+msgstr "Error: Codi EAN invàlid"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,method_number:0
+#: selection:account.asset.asset,method_time:0
+#: field:account.asset.category,method_number:0
+#: selection:account.asset.category,method_time:0
+#: field:account.asset.history,method_number:0
+#: selection:account.asset.history,method_time:0
+#: field:asset.modify,method_number:0
+msgid "Number of Depreciations"
+msgstr "Número d'amortitzacions"
+
+#. module: l10n_es_account_asset
+#: view:asset.depreciation.confirmation.wizard:0
+msgid "Post Depreciation Lines"
+msgstr "Envia línies d'amortització"
+
+#. module: l10n_es_account_asset
 #: view:account.asset.asset:0
-msgid "Depreciation"
-msgstr "Depreciació"
+msgid "Confirm Asset"
+msgstr "Confirma actiu"
 
-#. module: account_asset
-#: field:account.asset.asset,code:0
-#: field:account.asset.category,code:0
-msgid "Asset code"
-msgstr "Codi d'actiu"
-
-#. module: account_asset
-#: field:account.asset.asset,value_total:0
-msgid "Total value"
-msgstr "Valor total"
-
-#. module: account_asset
-#: selection:account.asset.asset,state:0
-msgid "View"
-msgstr "Vista"
-
-#. module: account_asset
-#: view:account.asset.asset:0
-msgid "General info"
-msgstr "Informació general"
-
-#. module: account_asset
-#: field:account.asset.asset,sequence:0
-msgid "Sequence"
-msgstr "Seqüència"
-
-#. module: account_asset
-#: field:account.asset.property,value_residual:0
-msgid "Residual value"
-msgstr "Valor residual"
-
-#. module: account_asset
-#: wizard_button:account.asset.close,init,asset_close:0
-msgid "End of asset"
-msgstr "Final d'actiu"
-
-#. module: account_asset
-#: selection:account.asset.property,type:0
-msgid "Direct"
-msgstr "Directe"
-
-#. module: account_asset
-#: selection:account.asset.property,type:0
-msgid "Indirect"
-msgstr "Indirecte"
-
-#. module: account_asset
-#: field:account.asset.asset,parent_id:0
-msgid "Parent asset"
-msgstr "Família d'actiu"
-
-#. module: account_asset
-#: model:ir.actions.act_window,name:account_asset.action_account_asset_asset_tree
-#: model:ir.ui.menu,name:account_asset.menu_action_account_asset_asset_tree
+#. module: l10n_es_account_asset
+#: model:ir.actions.act_window,name:l10n_es_account_asset.action_account_asset_asset_tree
+#: model:ir.ui.menu,name:l10n_es_account_asset.menu_action_account_asset_asset_tree
 msgid "Asset Hierarchy"
 msgstr "Jerarquia d'actius"
+
+#. module: l10n_es_account_asset
+#: constraint:account.move.line:0
+msgid "You can not create move line on view account."
+msgstr "No podeu crea un apunt a un compte de tipus vista."
+
+#~ msgid "Open Assets"
+#~ msgstr "Actius oberts"
+#~ msgid "Invalid model name in the action definition."
+#~ msgstr "Nom de model invàlid en la definició de l'acció."
+#~ msgid "Asset Value"
+#~ msgstr "Valor de l'actiu"
+#~ msgid "Generated entries"
+#~ msgstr "Assentaments generats"
+#~ msgid "Number of interval"
+#~ msgstr "Número d'intervals"
+#~ msgid "Open entries"
+#~ msgstr "Obre assentaments"
+#~ msgid "Change history"
+#~ msgstr "Canvi històric"
+#~ msgid "Methods"
+#~ msgstr "Mètodes"
+#~ msgid "Period per interval"
+#~ msgstr "Període per interval"
+#~ msgid "Depreciation duration"
+#~ msgstr "termini d'amortització"
+#~ msgid "Cumul. value"
+#~ msgstr "Valor acumulat"
+#~ msgid "Assets methods"
+#~ msgstr "Mètodes d'actius"
+#~ msgid "Invalid XML for View Architecture!"
+#~ msgstr "XML invàlid per a la definició de la vista!"
+#~ msgid "Asset property"
+#~ msgstr "Propietat de l'actiu"
+#~ msgid "Date created"
+#~ msgstr "Data de creació"
+#~ msgid ""
+#~ "Financial and accounting asset management.\n"
+#~ "    Allows to define\n"
+#~ "    * Asset category. \n"
+#~ "    * Assets.\n"
+#~ "    *Asset usage period and property.\n"
+#~ "    "
+#~ msgstr ""
+#~ "Gestió financera i comptable d'actius.\n"
+#~ "  Permet definir\n"
+#~ "  * Categories d'actiu. \n"
+#~ "  * Actius.\n"
+#~ "  * Període i propietats de l'actiu utilitzat.\n"
+#~ "    "
+#~ msgid "Ending period"
+#~ msgstr "Període final"
+#~ msgid "Asset name"
+#~ msgstr "Nom de l'actiu"
+#~ msgid "Depr. method type"
+#~ msgstr "Tipus de mètode d'amortització"
+#~ msgid "Method"
+#~ msgstr "Mètode"
+#~ msgid "Normal"
+#~ msgstr "Normal"
+#~ msgid "Localisation"
+#~ msgstr "Localització"
+#~ msgid "Asset method name"
+#~ msgstr "Nom del mètode d'actiu"
+#~ msgid "Net value"
+#~ msgstr "Valor net"
+#~ msgid "Open"
+#~ msgstr "Obre"
+#~ msgid ""
+#~ "The Object name must start with x_ and not contain any special character !"
+#~ msgstr ""
+#~ "El nom de l'objecte ha de començar amb x_ i no contenir cap caràcter "
+#~ "especial!"
+#~ msgid "Asset management"
+#~ msgstr "Gestió de l'actiu"
+#~ msgid "Asset board"
+#~ msgstr "Taulell d'actius"
+#~ msgid "Global state"
+#~ msgstr "Estat global"
+#~ msgid "Delay"
+#~ msgstr "Retarda"
+#~ msgid "Analytic journal"
+#~ msgstr "Diari analític"
+#~ msgid "Method name"
+#~ msgstr "Nom del mètode"
+#~ msgid "Close method"
+#~ msgstr "Tanca el mètode"
+#~ msgid "Asset code"
+#~ msgstr "Codi d'actiu"
+#~ msgid "Total value"
+#~ msgstr "Valor total"
+#~ msgid "View"
+#~ msgstr "Vista"
+#~ msgid "Sequence"
+#~ msgstr "Seqüència"
+#~ msgid "End of asset"
+#~ msgstr "Final d'actiu"
+#~ msgid "Direct"
+#~ msgstr "Directe"
+#~ msgid "Indirect"
+#~ msgstr "Indirecte"
+
