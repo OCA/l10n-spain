@@ -234,7 +234,7 @@ class l10n_es_aeat_mod347_report(osv.osv):
             if item.state not in ['draft', 'canceled']:
                 raise osv.except_osv(_('Error!'), _("Only reports in 'draft' or 'cancel' state can be removed"))
 
-        return super(l10n_es_aeat_report, self).unlink(cr, uid, ids, context)
+        return super(l10n_es_aeat_mod347_report, self).unlink(cr, uid, ids, context)
 
 
 l10n_es_aeat_mod347_report()
