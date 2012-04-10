@@ -53,6 +53,7 @@ ADVERTENCIA: Los periodos de la empresas deben coincidir con los peridos de pres
     "depends" : ["account",
                  "base_vat",
                  "l10n_es_aeat",
+                 "account_refund_original",
                  ],
     "init_xml" : [],
     "demo_xml" : [],
