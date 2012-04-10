@@ -2138,6 +2138,13 @@
             <field name="sign">1.0</field>
         </record>
 
+        <record id="irpf_base_20" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones practicadas Base Imponible 20%</field>
+            <field name="code">B.IRPF20</field>
+            <field name="parent_id" ref="irpf_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_base_21" model="account.tax.code.template">
             <field name="name">IRPF Retenciones practicadas Base Imponible 21%</field>
             <field name="code">B.IRPF21</field>
@@ -2191,6 +2198,13 @@
         <record id="irpf_cuota_19" model="account.tax.code.template">
             <field name="name">IRPF Retenciones practicadas Cuota 19%</field>
             <field name="code">IRPF19</field>
+            <field name="parent_id" ref="irpf_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="irpf_cuota_20" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones practicadas Cuota 20%</field>
+            <field name="code">IRPF20</field>
             <field name="parent_id" ref="irpf_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
@@ -2254,6 +2268,15 @@
             <field name="parent_id" ref="pgc_4751"/>
             <field name="type">other</field>
             <field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 19%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_475120" model="account.account.template">
+            <field name="code">475120</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_4751"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 20%</field>
             <field name="user_type" ref="tax"/>
         </record>
 
@@ -2375,6 +2398,24 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
+        <record id="irpf_20" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template"/>
+            <field name="name">Retenciones IRPF 20%</field>
+            <field eval="-0.20" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_475120"/>
+            <field name="account_paid_id" ref="pgc_475120"/>
+            <field name="base_code_id" ref="irpf_base_20"/>
+            <field name="tax_code_id" ref="irpf_cuota_20"/>
+            <field name="ref_base_code_id" ref="irpf_base_20"/>
+            <field name="ref_tax_code_id" ref="irpf_cuota_20"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
         <record id="irpf_21" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">Retenciones IRPF 21%</field>
@@ -2445,6 +2486,13 @@
             <field name="sign">1.0</field>
         </record>
 
+        <record id="irpf_base_sale_20" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones a cuenta Base Imponible 20%</field>
+            <field name="code">B.IRPF20 AC</field>
+            <field name="parent_id" ref="irpf_base_sale"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_base_sale_21" model="account.tax.code.template">
             <field name="name">IRPF Retenciones a cuenta Base Imponible 21%</field>
             <field name="code">B.IRPF21 AC</field>
@@ -2498,6 +2546,13 @@
         <record id="irpf_cuota_sale_19" model="account.tax.code.template">
             <field name="name">IRPF Retenciones a cuenta Cuota 19%</field>
             <field name="code">IRPF19 AC</field>
+            <field name="parent_id" ref="irpf_cuota_sale_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="irpf_cuota_sale_20" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones a cuenta Cuota 20%</field>
+            <field name="code">IRPF20 AC</field>
             <field name="parent_id" ref="irpf_cuota_sale_total"/>
             <field name="sign">1.0</field>
         </record>
@@ -2561,6 +2616,15 @@
             <field name="parent_id" ref="pgc_473"/>
             <field name="type">other</field>
             <field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 19%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_473020" model="account.account.template">
+            <field name="code">473020</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_473"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 20%</field>
             <field name="user_type" ref="tax"/>
         </record>
 
@@ -2675,6 +2739,24 @@
             <field name="tax_code_id" ref="irpf_cuota_sale_19"/>
             <field name="ref_base_code_id" ref="irpf_base_sale_19"/>
             <field name="ref_tax_code_id" ref="irpf_cuota_sale_19"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
+
+        <record id="irpf_sale_20" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template"/>
+            <field name="name">Retenciones a cuenta IRPF 20%</field>
+            <field eval="-0.20" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_473020"/>
+            <field name="account_paid_id" ref="pgc_473020"/>
+            <field name="base_code_id" ref="irpf_base_sale_20"/>
+            <field name="tax_code_id" ref="irpf_cuota_sale_20"/>
+            <field name="ref_base_code_id" ref="irpf_base_sale_20"/>
+            <field name="ref_tax_code_id" ref="irpf_cuota_sale_20"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
