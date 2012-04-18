@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.0-rc1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-12-14 10:05:39+0000\n"
-"PO-Revision-Date: 2011-03-23 15:36+0100\n"
+"POT-Creation-Date: 2012-03-20 17:21+0000\n"
+"PO-Revision-Date: 2012-03-20 18:43+0100\n"
 "Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,44 +16,10 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:135
+#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:157
 #, python-format
 msgid "The type 2-D record (partner) must be 502 characters long"
 msgstr "El tipus de registre 2-D (empresa) ha de ser de 502 caràcters de llargada"
-
-#. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/mod347.py:139
-#, python-format
-msgid "All real state records state code field must be filled."
-msgstr "El codi de província de tots els registres d'immobles han d'estar introduïts."
-
-#. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/mod347.py:133
-#, python-format
-msgid "All partner state code field must be filled."
-msgstr "El codi de província de tots els registres d'empreses han d'estar introduïts."
-
-#. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/mod347.py:135
-#, python-format
-msgid "All partner vat number field must be filled."
-msgstr "El CIF de totes les empreses han d'estar introduïts."
-
-#. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
-msgid "Origin fiscal year"
-msgstr "Exercici fiscal origen"
-
-#. module: l10n_es_aeat_mod347
-#: help:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
-msgid "Origin cash operation fiscal year"
-msgstr "Exercici fiscal origen de les operacions en efectiu."
-
-#. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:83
-#, python-format
-msgid "The type 1 record must be 502 characters long"
-msgstr "El tipus de registre 1 ha de ser de 502 caràcters de llargada"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_partner_record
@@ -62,14 +28,20 @@ msgid "Partner Record"
 msgstr "Registres d'empreses"
 
 #. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/mod347.py:142
+#, python-format
+msgid "All real state records state code field must be filled."
+msgstr "El codi de província de tots els registres d'immobles han d'estar introduïts."
+
+#. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Key Oper."
 msgstr "Clau op."
 
 #. module: l10n_es_aeat_mod347
-#: constraint:ir.actions.act_window:0
-msgid "Invalid model name in the action definition."
-msgstr "Nom de model no vàlid en la definició de l'acció."
+#: selection:account.period,quarter:0
+msgid "Fourth"
+msgstr "Quart"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -82,9 +54,22 @@ msgid "Include in 347 Report"
 msgstr "Incloure en la declaració 347"
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,situation:0
-msgid "Real state Situation"
-msgstr "Situació d'immobles"
+#: field:l10n.es.aeat.mod347.partner_record,real_state_record_ids:0
+#: view:l10n.es.aeat.mod347.real_state_record:0
+#: field:l10n.es.aeat.mod347.report,real_state_record_ids:0
+msgid "Real State Records"
+msgstr "Registres d'immobles"
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,fourth_quarter_real_state_transmission_amount:0
+msgid "Fourth Quarter Real State Transmossion Amount"
+msgstr "Import transmissió immoble (T4)"
+
+#. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.partner_record:0
+#: field:l10n.es.aeat.mod347.report,partner_record_ids:0
+msgid "Partner Records"
+msgstr "Registres d'empreses"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,township_code:0
@@ -93,19 +78,9 @@ msgstr "Codi de municipi"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
-msgid "In process"
-msgstr "En procés"
-
-#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,company_id:0
-#: view:l10n.es.aeat.mod347.report:0
 msgid "Company"
 msgstr "Companyia"
-
-#. module: l10n_es_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "Cancelled"
-msgstr "Cancel·lada"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_real_state_record
@@ -134,20 +109,14 @@ msgid "Cash Amount"
 msgstr "Import en metàl·lic"
 
 #. module: l10n_es_aeat_mod347
-#: selection:l10n.es.aeat.mod347.report,support_type:0
-msgid "DVD"
-msgstr "DVD"
+#: constraint:account.period:0
+msgid "Error ! The duration of the Period(s) is/are invalid. "
+msgstr "Error! La durada del període(s) no és válida. "
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,total_real_state_amount:0
 msgid "Real State Amount"
 msgstr "Import immobles"
-
-#. module: l10n_es_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-#: field:l10n.es.aeat.mod347.report,fiscalyear_id:0
-msgid "Fiscal Year"
-msgstr "Exercici fiscal"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,number_calification:0
@@ -170,6 +139,11 @@ msgid "AEAT 347 Reports"
 msgstr "Declaracions AEAT 347"
 
 #. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,group_by_cif:0
+msgid "Group by cif"
+msgstr "Agrupa per CIF"
+
+#. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,situation:0
 msgid "1 - Spain but Basque Country and Navarra"
 msgstr "1 - Espanya excepte País Basc i Navarra"
@@ -185,14 +159,23 @@ msgid "Partner records"
 msgstr "Registres d'empresa"
 
 #. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:88
+#, python-format
+msgid "The type 1 record must be 502 characters long"
+msgstr "El tipus de registre 1 ha de ser de 502 caràcters de llargada"
+
+#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,support_type:0
 msgid "Support Type"
 msgstr "Tipus de suport"
 
 #. module: l10n_es_aeat_mod347
-#: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
-msgid "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores al límite (1)"
-msgstr "E - Subvencions, auxilis i ajuts satisfets per Ad. Públiques superiors al límit (1)"
+#: code:addons/l10n_es_aeat_mod347/mod347.py:136
+#: code:addons/l10n_es_aeat_mod347/mod347.py:138
+#: code:addons/l10n_es_aeat_mod347/mod347.py:142
+#, python-format
+msgid "Error!"
+msgstr "Error!"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,amount:0
@@ -214,11 +197,14 @@ msgid "Invoice records"
 msgstr "Registres de factures"
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,real_state_record_ids:0
-#: view:l10n.es.aeat.mod347.real_state_record:0
-#: field:l10n.es.aeat.mod347.report,real_state_record_ids:0
-msgid "Real State Records"
-msgstr "Registres d'immobles"
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Cancelled"
+msgstr "Cancel·lada"
+
+#. module: l10n_es_aeat_mod347
+#: field:account.period,quarter:0
+msgid "Quarter"
+msgstr "Quart"
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
@@ -226,15 +212,20 @@ msgid "VAT"
 msgstr "NIF/CIF"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:210
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Calculation"
+msgstr "Càlcul"
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:232
 #, python-format
 msgid "The type 2-I record (real state) must be 502 characters long"
 msgstr "El tipus de registre 2-I (estat real) ha de ser de 502 caràcters de llargada"
 
 #. module: l10n_es_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "Calculation"
-msgstr "Càlcul"
+#: sql_constraint:account.journal:0
+msgid "The code of the journal must be unique per company !"
+msgstr "The code of the journal must be unique per company !"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -258,6 +249,11 @@ msgid "Confirm"
 msgstr "Confirma"
 
 #. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
+msgid "Origin fiscal year"
+msgstr "Exercici fiscal origen"
+
+#. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,charges_obtp_limit:0
 msgid "The declaration will include partners from which we received payments, on behalf of third parties, over this limit"
 msgstr "La declaració inclourà les empreses que la seva suma d'operacions superi aquest límit."
@@ -273,19 +269,39 @@ msgid "3 - Spain, without catastral reference"
 msgstr "3 - Espanya, sense referència cadastral"
 
 #. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/mod347.py:138
+#, python-format
+msgid ""
+"All partner vat number field must be filled.\n"
+"Partner: %s (%s)"
+msgstr ""
+"El número CIF/NIF de tots els registres d'empreses han d'estar introduïts.\n"
+"Empresa: %s (%s)"
+
+#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,bussiness_real_state_rent:0
 msgid "Bussiness Real State Rent"
 msgstr "Arrendament local negoci"
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,received_cash_limit:0
-msgid "Received cash Limit (2)"
-msgstr "Límit efectiu (2)"
+#: code:addons/l10n_es_aeat_mod347/mod347.py:136
+#, python-format
+msgid ""
+"All partner state code field must be filled.\n"
+"Partner: %s (%s)"
+msgstr ""
+"El codi de província de tots els registres d'empreses han d'estar introduïts.\n"
+"Empresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "F - Ventas agencia viaje"
 msgstr "F - Vendes agència viatge"
+
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
+msgid "Origin cash operation fiscal year"
+msgstr "Exercici fiscal origen de les operacions en efectiu."
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,representative_vat:0
@@ -294,14 +310,19 @@ msgid "Legal Representative VAT number"
 msgstr "NIF del representant legal."
 
 #. module: l10n_es_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "Recalculate"
-msgstr "Recalcula"
+#: field:l10n.es.aeat.mod347.partner_record,fourth_quarter:0
+msgid "Fourth Quarter"
+msgstr "Quart trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,door:0
 msgid "Door"
 msgstr "Porta"
+
+#. module: l10n_es_aeat_mod347
+#: selection:account.period,quarter:0
+msgid "Third"
+msgstr "Tercer"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,partner_record_id:0
@@ -366,11 +387,9 @@ msgid "Stairway"
 msgstr "Escala"
 
 #. module: l10n_es_aeat_mod347
-#: view:l10n.es.aeat.mod347.partner_record:0
-#: field:l10n.es.aeat.mod347.report,partner_record_ids:0
-#: field:l10n.es.aeat.mod347.report,partner_records:0
-msgid "Partner Records"
-msgstr "Registres d'empreses"
+#: field:l10n.es.aeat.mod347.partner_record,third_quarter:0
+msgid "Third Quarter"
+msgstr "Tercer trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.menu,name:l10n_es_aeat_mod347.menu_aeat_mod347_report
@@ -396,14 +415,24 @@ msgid "Partner"
 msgstr "Empresa"
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,contact_name:0
-msgid "Full Name"
-msgstr "Cognoms i nom"
+#: report:report_l10n_es_aeat_mod347.report:0
+msgid "Amount (Q1|Q2|Q3|Q4)"
+msgstr "Import (T1|T2|T3|T4)"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,block:0
 msgid "Block"
 msgstr "Bloc"
+
+#. module: l10n_es_aeat_mod347
+#: selection:account.period,quarter:0
+msgid "First"
+msgstr "Primer"
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.real_state_record,situation:0
+msgid "Real state Situation"
+msgstr "Situació d'immobles"
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
@@ -424,11 +453,6 @@ msgstr "Referència cadastral"
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Support type:"
 msgstr "Tipus de suport:"
-
-#. module: l10n_es_aeat_mod347
-#: selection:l10n.es.aeat.mod347.report,type:0
-msgid "Normal"
-msgstr "Normal"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,number:0
@@ -462,6 +486,11 @@ msgid "Real state info"
 msgstr "Informació Immobles"
 
 #. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,real_state_transmissions_amount:0
+msgid "Real State Transmisions amount"
+msgstr "Import transmissió immoble"
+
+#. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "A - Adquisiciones de bienes y servicios superiores al límite (1)"
 msgstr "A - Adquisicions de bens i serveis superiors al límit (1)"
@@ -472,9 +501,24 @@ msgid "AEAT Model 347 Wizard - Calculate Records"
 msgstr "Assistent model AEAT 347 - Calcular registres"
 
 #. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,second_quarter:0
+msgid "Second Quarter"
+msgstr "Segon trimestre"
+
+#. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "RS Rent"
 msgstr "Lloguer immoble negoci"
+
+#. module: l10n_es_aeat_mod347
+#: selection:l10n.es.aeat.mod347.report,support_type:0
+msgid "DVD"
+msgstr "DVD"
+
+#. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
+msgid "In process"
+msgstr "En procés"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -492,6 +536,11 @@ msgid "Number type"
 msgstr "Tipus de numeració"
 
 #. module: l10n_es_aeat_mod347
+#: selection:l10n.es.aeat.mod347.report,type:0
+msgid "Normal"
+msgstr "Normal"
+
+#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,complement:0
 msgid "Complement"
 msgstr "Complement"
@@ -500,6 +549,11 @@ msgstr "Complement"
 #: selection:l10n.es.aeat.mod347.report,state:0
 msgid "Processing"
 msgstr "Processant"
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,contact_name:0
+msgid "Full Name"
+msgstr "Cognoms i nom"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,contact_phone:0
@@ -568,6 +622,11 @@ msgid "Cash payments journal"
 msgstr "Diari de pagaments en efectiu"
 
 #. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.real_state_record,complement:0
+msgid "Complement (urbanization, industrial park...)"
+msgstr "Complement (urbanització, centre comercial, ...)"
+
+#. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,state:0
 msgid "Processed"
 msgstr "Processada"
@@ -600,6 +659,11 @@ msgid "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al 
 msgstr "D - Adquisicions efectuades per Entitats Públiques (...) superiors al límit (1)"
 
 #. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,third_quarter_real_state_transmission_amount:0
+msgid "Third Quarter Real State Transmission Amount"
+msgstr "Import transmissió immoble (T3)"
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod347.action_l10n_es_aeat_mod347_report
 msgid "Create and query AEAT Model 347 Reports"
 msgstr "Permet crear i consultar les declaracions sobre el model AEAT 347"
@@ -608,6 +672,11 @@ msgstr "Permet crear i consultar les declaracions sobre el model AEAT 347"
 #: field:l10n.es.aeat.mod347.report,type:0
 msgid "Statement Type"
 msgstr "Tipus declaració"
+
+#. module: l10n_es_aeat_mod347
+#: constraint:account.period:0
+msgid "Invalid period ! Some periods overlap or the date period is not in the scope of the fiscal year. "
+msgstr "Període no vàlid! Alguns períodes s'encavalquen o les dates del període no estan dins de l'exercici fiscal."
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,number:0
@@ -626,6 +695,11 @@ msgid "Ant"
 msgstr "Ant"
 
 #. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,first_quarter:0
+msgid "First Quarter"
+msgstr "Primer trimestre"
+
+#. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
 #: selection:l10n.es.aeat.mod347.report,state:0
 msgid "Done"
@@ -637,9 +711,19 @@ msgid "Invoice"
 msgstr "Factura"
 
 #. module: l10n_es_aeat_mod347
+#: report:report_l10n_es_aeat_mod347.report:0
+msgid "Real State Transmission (Q1|Q2|Q3|Q4)"
+msgstr "Import transmissió immoble (T1|T2|T3|T4)"
+
+#. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
 msgid "Cancel"
 msgstr "Cancel·la"
+
+#. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Recalculate"
+msgstr "Recalcula"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,insurance_operation:0
@@ -672,9 +756,9 @@ msgid "B - Entregas de bienes y servicios superiores al límite (1)"
 msgstr "B - Entregues de bens i serveis superiors al límit (1)"
 
 #. module: l10n_es_aeat_mod347
-#: help:l10n.es.aeat.mod347.real_state_record,complement:0
-msgid "Complement (urbanization, industrial park...)"
-msgstr "Complement (urbanització, centre comercial, ...)"
+#: view:l10n.es.aeat.mod347.report:0
+msgid "AEAT 347"
+msgstr "AEAT 347"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
@@ -698,7 +782,6 @@ msgstr "Detalls"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod347.action_l10n_es_aeat_mod347_report
-#: model:ir.module.module,shortdesc:l10n_es_aeat_mod347.module_meta_information
 msgid "AEAT Model 347"
 msgstr "Model AEAT 347"
 
@@ -718,9 +801,9 @@ msgid "Complementary"
 msgstr "Complementària"
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.model,name:l10n_es_aeat_mod347.model_account_journal
-msgid "Journal"
-msgstr "Diari"
+#: model:ir.model,name:l10n_es_aeat_mod347.model_account_period
+msgid "Account period"
+msgstr "Període comptable"
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
@@ -728,9 +811,9 @@ msgid "PARTNER RECORD LINES"
 msgstr "LÍNIES DE REGISTRE D'EMPRESA"
 
 #. module: l10n_es_aeat_mod347
-#: report:report_l10n_es_aeat_mod347.report:0
-msgid "Fiscal year:"
-msgstr "Exercici fiscal:"
+#: field:l10n.es.aeat.mod347.partner_record,first_quarter_real_state_transmission_amount:0
+msgid "First Quarter Real State Transmission Amount"
+msgstr "Import transmissió immoble (T1)"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,representative_vat:0
@@ -741,6 +824,11 @@ msgstr "NIF del representant legal."
 #: field:l10n.es.aeat.mod347.report,previous_number:0
 msgid "Previous Declaration Number"
 msgstr "Número declaració anterior"
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,second_quarter_real_state_transmission_amount:0
+msgid "Second Quarter Real State Transmission Amount"
+msgstr "Import transmissió immoble (T2)"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,address:0
@@ -763,16 +851,19 @@ msgid "Include in AEAT 347 Model report"
 msgstr "Incloure en la declaració del model 347 de l'AEAT."
 
 #. module: l10n_es_aeat_mod347
+#: report:report_l10n_es_aeat_mod347.report:0
+msgid "Fiscal year:"
+msgstr "Exercici fiscal:"
+
+#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,amount:0
 msgid "Operations amount"
 msgstr "Import operacions"
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,name:0
-#: field:l10n.es.aeat.mod347.real_state_record,name:0
-#: field:l10n.es.aeat.mod347.report,name:0
-msgid "Name"
-msgstr "Nom"
+#: field:l10n.es.aeat.mod347.report,total_real_state_transmissions_amount:0
+msgid "Real State Transmissions Amount"
+msgstr "Import transmissió immoble"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
@@ -786,9 +877,10 @@ msgid "RST amount"
 msgstr "Import T.I."
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,total_real_state_transmissions_amount:0
-msgid "Real State Transmissions Amount"
-msgstr "Import transmissió immoble"
+#: view:l10n.es.aeat.mod347.report:0
+#: field:l10n.es.aeat.mod347.report,fiscalyear_id:0
+msgid "Fiscal Year"
+msgstr "Exercici fiscal"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -806,7 +898,32 @@ msgid "Telematics"
 msgstr "Telemàtica"
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,real_state_transmissions_amount:0
-msgid "Real State Transmisions amount"
-msgstr "Import transmissió immoble"
+#: field:l10n.es.aeat.mod347.report,received_cash_limit:0
+msgid "Received cash Limit (2)"
+msgstr "Límit efectiu (2)"
+
+#. module: l10n_es_aeat_mod347
+#: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
+msgid "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores al límite (1)"
+msgstr "E - Subvencions, auxilis i ajuts satisfets per Ad. Públiques superiors al límit (1)"
+
+#. module: l10n_es_aeat_mod347
+#: sql_constraint:account.journal:0
+msgid "The name of the journal must be unique per company !"
+msgstr "The name of the journal must be unique per company !"
+
+#. module: l10n_es_aeat_mod347
+#: selection:account.period,quarter:0
+msgid "Second"
+msgstr "Segon"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model,name:l10n_es_aeat_mod347.model_account_journal
+msgid "Journal"
+msgstr "Diari"
+
+#~ msgid "Invalid model name in the action definition."
+#~ msgstr "Nom de model no vàlid en la definició de l'acció."
+#~ msgid "Name"
+#~ msgstr "Nom"
 
