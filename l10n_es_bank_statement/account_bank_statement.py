@@ -73,7 +73,7 @@ class account_bank_statement_line(osv.osv):
                     statement.currency.id, amount, context=ctx)
 
             context.update({'move_line_ids': [line.id]})
-            result = voucher_obj.onchange_partner_id(cr, uid, [], partner_id=line.partner_id.id, journal_id=statement.journal_id.id, price=abs(amount), currency_id= statement.currency.id, ttype=(amount < 0 and 'payment' or 'receipt'), date=line.date, context=context)
+            result = voucher_obj.onchange_partner_id(cr, uid, [], partner_id=line.partner_id.id, journal_id=statement.journal_id.id, amount=abs(amount), currency_id= statement.currency.id, ttype=(amount < 0 and 'payment' or 'receipt'), date=line.date, context=context)
             voucher_res = { 'type':(amount < 0 and 'payment' or 'receipt'),
                             'name': line.name,
                             'partner_id': line.partner_id.id,
