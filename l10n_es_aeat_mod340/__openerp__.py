@@ -26,7 +26,8 @@
 {
     "name" : "Generación de fichero modelo 340",
     "version" : "1.0",
-    "author" : "Acysos S.L., Francisco Pascual (Ting)",
+    "author" : "Acysos S.L., Francisco Pascual (Ting), Nan-tic",
+    "website" : "http://www.acysos.com, www.ting.es, www.nan-tic.com",
     "category" : "Localisation/Accounting",
     "description" : """
 Módulo para la presentación del modelo 340. Exportación a formato AEAT.
