@@ -5,6 +5,8 @@
 #        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
 #    Copyright (C) 2012
 #        NaN·tic  (http://www.nan-tic.com) All Rights Reserved
+#    Copyright (c) 2012 Acysos S.L. (http://acysos.com) All Rights Reserved
+#                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -41,6 +43,15 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
 
         wf_service = netsvc.LocalService("workflow")
         wf_service.trg_validate(uid, 'l10n.es.aeat.mod347.report', ids and ids[0], 'calculate', cr)
+
+    # Calculate total invoice without IRPF
+    def _calculate_total_invoice(self, cr, uid, ids, context=None):
+        invoice = self.pool.get('account.invoice').browse(cr,uid,ids,context)
+        amount = invoice.cc_amount_untaxed
+        for tax_line in invoice.tax_line:
+            if tax_line.name.find('IRPF') == -1:
+                amount += tax_line.tax_amount
+        return amount
 
     def _calculate_records(self, cr, uid, ids, context=None, recalculate=True):
         if context is None:
@@ -124,8 +135,15 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
 
                         ##
                         ## Calculate the invoiced amount
-                        invoice_amount = sum([invoice.cc_amount_total for invoice in invoices])
-                        refund_amount = sum([invoice.cc_amount_total for invoice in refunds])
+                        ## Remove IRPF tax for invoice amount
+                        invoice_amount = 0
+                        for invoice in invoices:
+                            invoice_amount += self._calculate_total_invoice(cr, uid, invoice.id, context)
+
+                        refund_amount = 0
+                        for invoice in refunds:
+                            refund_amount += self._calculate_total_invoice(cr, uid, invoice.id, context)
+
                         total_amount = invoice_amount - refund_amount
 
                         ##
@@ -176,18 +194,20 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                             # Add the invoices detail to the partner record
                             #
                             for invoice in invoices:
+                                amount = self._calculate_total_invoice(cr, uid, invoice.id, context)
                                 invoice_record_obj.create(cr, uid, {
                                     'partner_record_id' : partner_record,
                                     'invoice_id': invoice.id,
                                     'date': invoice.date_invoice,
-                                    'amount': invoice.cc_amount_total,
+                                    'amount': amount,
                                 })
                             for invoice in refunds:
+                                amount = self._calculate_total_invoice(cr, uid, invoice.id, context)
                                 invoice_record_obj.create(cr, uid, {
                                     'partner_record_id' : partner_record,
                                     'invoice_id': invoice.id,
                                     'date': invoice.date_invoice,
-                                    'amount': -invoice.cc_amount_total,
+                                    'amount': -amount,
                                 })
 
                     #
