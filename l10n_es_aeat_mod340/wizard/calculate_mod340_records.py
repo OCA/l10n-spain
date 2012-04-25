@@ -20,8 +20,6 @@
 #
 ##############################################################################
 
-__author__ = "Francisco Pascual González (Ting)"
-
 import threading
 import netsvc
 import time
