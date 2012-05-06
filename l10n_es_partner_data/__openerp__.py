@@ -34,6 +34,7 @@
     "license" : "AGPL-3",
     "depends" : [
         "base",
+        "crm",
         ],
     "init_xml" : [
         "data/data_partner_events.xml",     # Canales de comunicación
