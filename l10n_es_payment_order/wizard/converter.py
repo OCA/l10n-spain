@@ -62,8 +62,11 @@ class Log(Exception):
     def __str__(self):
         return self.content
 
-def convert_text(text, size):
-    return to_ascii(text)[:size].ljust(size)
+def convert_text(text, size, justified='left'):
+    if justified == 'left':
+        return to_ascii(text)[:size].ljust(size)
+    else:      
+        return to_ascii(text)[:size].rjust(size)
 
 def convert_float(cr, number, size, context):
     text = str( int( round( number * 100, 0 ) ) )
@@ -83,7 +86,7 @@ def convert_int(cr, number, size, context):
         })
     return text.zfill(size)
 
-def convert(cr, value, size, context):
+def convert(cr, value, size, context, justified='left'):
     if value == False:
         return convert_text('', size)
     elif isinstance(value, float):
@@ -91,7 +94,7 @@ def convert(cr, value, size, context):
     elif isinstance(value, int):
         return convert_int(cr, value, size, context)
     else:
-        return convert_text(value, size)
+        return convert_text(value, size, justified)
 
 def convert_bank_account(cr, value, partner_name, context):
     if not isinstance(value, basestring):
@@ -100,6 +103,18 @@ def convert_bank_account(cr, value, partner_name, context):
     if len(ccc) != 20:
         raise Log( _('User error:\n\nThe bank account number of %s does not have 20 digits.') % partner_name )
     return ccc
+
+def bank_account_parts(cr, value, partner_name, context):
+    if not isinstance(value, basestring):
+        raise Log( _('User error:\n\nThe bank account number of %s is not defined.') % partner_name )
+    ccc = digits_only(value)
+    if len(ccc) != 20:
+        raise Log( _('User error:\n\nThe bank account number of %s does not have 20 digits.') % partner_name )
+    return {'bank':ccc[:4],
+            'office': ccc[4:8],
+            'dc': ccc[8:10],
+            'account': ccc[10:]}
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 

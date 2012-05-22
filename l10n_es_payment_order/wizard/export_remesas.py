@@ -150,6 +150,8 @@ def _create_payment_file(self, cr, uid, data, context):
             csb = csb_32.csb_32()
         elif orden.mode.tipo == 'csb_34':
             csb = csb_34.csb_34()
+        elif orden.mode.tipo == '34_01':
+            csb = csb_34_01.csb_34_01()
         elif orden.mode.tipo == 'csb_58':
             csb = csb_58.csb_58()
         else:
