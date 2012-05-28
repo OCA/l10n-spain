@@ -58,8 +58,8 @@ class csb_34_01:
         text += 7*' '
         text += '001'
         text += today
-        if self.order.date_planned:
-            planned = datetime.strptime(self.order.date_planned, '%Y-%m-%d')
+        if self.order.date_scheduled:
+            planned = datetime.strptime(self.order.date_scheduled, '%Y-%m-%d')
             text += planned.strftime('%d%m%y')
         else:
             text += today
