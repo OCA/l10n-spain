@@ -114,6 +114,21 @@ class res_partner(osv.osv):
         'comercial': fields.char('Trade name', size=128, select=True), # Nombre Comercial del Partner
     }
 
+    def name_search(self, cr, uid, name, args=None, operator='ilike', context=None, limit=100):
+        if not args:
+            args=[]
+        if not context:
+            context={}
+
+        partners = super(res_partner, self).name_search(cr, uid, name, args,
+                                                    operator, context, limit)
+        ids = [x[0] for x in partners]
+        if name and len(ids) == 0:
+            ids = self.search(cr, uid, [('comercial', operator, name)] + args,
+                                                limit=limit, context=context)
+        return self.name_get(cr, uid, ids, context)
+      
+
     def vat_change(self, cr, uid, ids, value, context=None):
         result = super(res_partner,self).vat_change(cr, uid, ids, value, context = context)
         if value:
