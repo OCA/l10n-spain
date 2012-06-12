@@ -135,30 +135,32 @@ class csb_19:
         registry_counter = 1
         lenght = 0
         for invoice in recibo['ml_inv_ref']:
-            lenght += len(invoice.invoice_line)
+            if invoice:
+                lenght += len(invoice.invoice_line)
         for invoice in recibo['ml_inv_ref']:
-            for invoice_line in invoice.invoice_line:
-                if counter <= lenght:
-                    if counter <= 15:
-                        if (counter-1)%3 == 0:
-                            res['texto'] += '568'+str(registry_counter)
-                            res['texto'] += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
-                            res['texto'] += str(recibo['name']).zfill(12)
-                        price = ' %(#).2f ' % {'#' : invoice_line.price_subtotal}
-                        res['texto'] += to_ascii(invoice_line.name)[0:(40-len(price))].ljust(40-len(price))
-                        res['texto'] += to_ascii(price.replace('.',','))
-                        if counter % 3 == 0:
-                            res['texto'] += 14*' '+'\r\n'
-                            res['total_lines'] += 1
-                            if len(res['texto']) != registry_counter*164:
-                                raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 19', res['texto']), True)
-                            registry_counter += 1
-                        elif counter == lenght:
-                            res['texto'] += (3-(counter % 3))*40*' '+14*' '+'\r\n'
-                            res['total_lines'] += 1
-                            if len(res['texto']) != registry_counter*164:
-                                raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 19', res['texto']), True)
-                        counter += 1
+            if invoice:
+                for invoice_line in invoice.invoice_line:
+                    if counter <= lenght:
+                        if counter <= 15:
+                            if (counter-1)%3 == 0:
+                                res['texto'] += '568'+str(registry_counter)
+                                res['texto'] += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
+                                res['texto'] += str(recibo['name']).zfill(12)
+                            price = ' %(#).2f ' % {'#' : invoice_line.price_subtotal}
+                            res['texto'] += to_ascii(invoice_line.name)[0:(40-len(price))].ljust(40-len(price))
+                            res['texto'] += to_ascii(price.replace('.',','))
+                            if counter % 3 == 0:
+                                res['texto'] += 14*' '+'\r\n'
+                                res['total_lines'] += 1
+                                if len(res['texto']) != registry_counter*164:
+                                    raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 19', res['texto']), True)
+                                registry_counter += 1
+                            elif counter == lenght:
+                                res['texto'] += (3-(counter % 3))*40*' '+14*' '+'\r\n'
+                                res['total_lines'] += 1
+                                if len(res['texto']) != registry_counter*164:
+                                    raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 19', res['texto']), True)
+                            counter += 1
         return res
 
     def _total_ordenante_19(self):
