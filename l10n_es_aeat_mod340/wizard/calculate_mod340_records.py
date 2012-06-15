@@ -115,8 +115,9 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
             invoice_ids = self.pool.get('account.invoice').search(cr, uid, domain, context=context)
             for invoice in self.pool.get('account.invoice').browse(cr, uid, invoice_ids, context):
                 if (invoice.state in ['open','paid']):
-                    if not invoice.partner_id.vat:
-                        raise osv.except_osv(_('La siguiente empresa no tiene asignado nif:'), invoice.partner_id.name)
+                    if invoice.partner_id.vat_type == 1:
+                        if not invoice.partner_id.vat:
+                            raise osv.except_osv(_('La siguiente empresa no tiene asignado nif:'), invoice.partner_id.name)
                     
                     nif = invoice.partner_id.vat and re.match(r"([A-Z]{0,2})(.*)", invoice.partner_id.vat).groups()[1]
                     country_code = invoice.address_invoice_id.country_id.code
