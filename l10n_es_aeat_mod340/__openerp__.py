@@ -45,6 +45,7 @@ Facturas resumen de tiques
 
 Facturas bienes de inversión
 Facturas intracomunitarias. Operaciones a las que hace referencia el artículo 66 del RIVA.
+Asientos contables de resumen de tiques
 Exportación de asientos resumen de facturas
 
 ADVERTENCIA: Los periodos de la empresas deben coincidir con los peridos de presentación de IVA.
