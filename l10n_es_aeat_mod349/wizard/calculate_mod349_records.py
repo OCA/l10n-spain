@@ -38,7 +38,7 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
         """
         if partner_vat and \
             not vat_regex.match(partner_vat) and country_id:
-            partner_vat = pooler.get_pool(cr.dbname).get('res.country').browse(cr, uid, country_id[0][0]).code + partner_vat
+            partner_vat = self.pool.get('res.country').browse(cr, uid, country_id[0]).code + partner_vat
 
         return partner_vat
 
