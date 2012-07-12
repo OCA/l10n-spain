@@ -22,9 +22,23 @@
             <field name="parent_id" ref="igic_pymes_dev_base"/>
             <field name="sign">1.0</field>
         </record>
+        
+         <record id="igic_pymes_dev_03" model="account.tax.code.template">
+            <field name="name">Régimen general IGIC Devengado. Base Imponible 3%</field>
+            <field name="code">[02]</field>
+            <field name="parent_id" ref="igic_pymes_dev_base"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_dev_05" model="account.tax.code.template">
             <field name="name">Régimen general IGIC Devengado. Base Imponible 5%</field>
+            <field name="code">[03]</field>
+            <field name="parent_id" ref="igic_pymes_dev_base"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_dev_07" model="account.tax.code.template">
+            <field name="name">Régimen general IGIC Devengado. Base Imponible 7%</field>
             <field name="code">[03]</field>
             <field name="parent_id" ref="igic_pymes_dev_base"/>
             <field name="sign">1.0</field>
@@ -36,9 +50,23 @@
             <field name="parent_id" ref="igic_pymes_dev_base"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_dev_09_5" model="account.tax.code.template">
+            <field name="name">Régimen general IGIC Devengado. Base Imponible 9,5%</field>
+            <field name="code">[04]</field>
+            <field name="parent_id" ref="igic_pymes_dev_base"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_dev_13" model="account.tax.code.template">
             <field name="name">Régimen general IGIC Devengado. Base Imponible 13%</field>
+            <field name="code">[05]</field>
+            <field name="parent_id" ref="igic_pymes_dev_base"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_dev_13_5" model="account.tax.code.template">
+            <field name="name">Régimen general IGIC Devengado. Base Imponible 13,5%</field>
             <field name="code">[05]</field>
             <field name="parent_id" ref="igic_pymes_dev_base"/>
             <field name="sign">1.0</field>
@@ -50,6 +78,7 @@
             <field name="sign">1.0</field>
             <field name="parent_id" ref="l10n_es.vat_code_chart_pymes_root"/>
         </record>
+        
 
         <record id="igic_pymes_dev_21_00" model="account.tax.code.template">
             <field name="name">Régimen general IGIC Devengado. Cuota 0%</field>
@@ -64,9 +93,23 @@
             <field name="parent_id" ref="igic_pymes_dev_21"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_dev_21_03" model="account.tax.code.template">
+            <field name="name">Régimen general IGIC Devengado. Cuota 3%</field>
+            <field name="code">[08]</field>
+            <field name="parent_id" ref="igic_pymes_dev_21"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_dev_21_05" model="account.tax.code.template">
             <field name="name">Régimen general IGIC Devengado. Cuota 5%</field>
+            <field name="code">[09]</field>
+            <field name="parent_id" ref="igic_pymes_dev_21"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_dev_21_07" model="account.tax.code.template">
+            <field name="name">Régimen general IGIC Devengado. Cuota 7%</field>
             <field name="code">[09]</field>
             <field name="parent_id" ref="igic_pymes_dev_21"/>
             <field name="sign">1.0</field>
@@ -78,9 +121,23 @@
             <field name="parent_id" ref="igic_pymes_dev_21"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_dev_21_09_5" model="account.tax.code.template">
+            <field name="name">Régimen general IGIC Devengado. Cuota 9,5%</field>
+            <field name="code">[10]</field>
+            <field name="parent_id" ref="igic_pymes_dev_21"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_dev_21_13" model="account.tax.code.template">
             <field name="name">Régimen general IGIC Devengado. Cuota 13%</field>
+            <field name="code">[11]</field>
+            <field name="parent_id" ref="igic_pymes_dev_21"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_dev_21_13_5" model="account.tax.code.template">
+            <field name="name">Régimen general IGIC Devengado. Cuota 13,5%</field>
             <field name="code">[11]</field>
             <field name="parent_id" ref="igic_pymes_dev_21"/>
             <field name="sign">1.0</field>
@@ -92,6 +149,8 @@
             <field name="sign">1.0</field>
             <field name="parent_id" ref="l10n_es.vat_code_chart_pymes_root"/>
         </record>
+        
+        
 
         <record id="igic_pymes_ded_22" model="account.tax.code.template">
             <field name="name">Base operaciones interiores corrientes IGIC</field>
@@ -113,9 +172,23 @@
             <field name="parent_id" ref="igic_pymes_ded_22"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_22_03" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores corrientes IGIC (3%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_22"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_22_05" model="account.tax.code.template">
             <field name="name">Base operaciones interiores corrientes IGIC (5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_22"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_22_07" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores corrientes IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_22"/>
             <field name="sign">1.0</field>
@@ -127,9 +200,23 @@
             <field name="parent_id" ref="igic_pymes_ded_22"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_22_09_5" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores corrientes IGIC (9,5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_22"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_22_13" model="account.tax.code.template">
             <field name="name">Base operaciones interiores corrientes IGIC (13%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_22"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_22_13_5" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores corrientes IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_22"/>
             <field name="sign">1.0</field>
@@ -155,9 +242,23 @@
             <field name="parent_id" ref="igic_pymes_ded_24"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_24_03" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores bienes inversión IGIC (3%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_24"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_24_05" model="account.tax.code.template">
             <field name="name">Base operaciones interiores bienes inversión IGIC (5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_24"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_24_07" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores bienes inversión IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_24"/>
             <field name="sign">1.0</field>
@@ -169,9 +270,23 @@
             <field name="parent_id" ref="igic_pymes_ded_24"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_24_09_5" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores bienes inversión IGIC (9,5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_24"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_24_13" model="account.tax.code.template">
             <field name="name">Base operaciones interiores bienes inversión IGIC (13%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_24"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_24_13_5" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores bienes inversión IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_24"/>
             <field name="sign">1.0</field>
@@ -197,9 +312,23 @@
             <field name="parent_id" ref="igic_pymes_ded_26"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_26_03" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes corrientes IGIC (3%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_26"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_26_05" model="account.tax.code.template">
             <field name="name">Base importaciones bienes corrientes IGIC (5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_26"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_26_07" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes corrientes IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_26"/>
             <field name="sign">1.0</field>
@@ -211,9 +340,23 @@
             <field name="parent_id" ref="igic_pymes_ded_26"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_26_09_5" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes corrientes IGIC (9,5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_26"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_26_13" model="account.tax.code.template">
             <field name="name">Base importaciones bienes corrientes IGIC (13%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_26"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_26_13_5" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes corrientes IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_26"/>
             <field name="sign">1.0</field>
@@ -239,6 +382,13 @@
             <field name="parent_id" ref="igic_pymes_ded_28"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_28_03" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes inversión IGIC (3%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_28"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_28_05" model="account.tax.code.template">
             <field name="name">Base importaciones bienes inversión IGIC (5%)</field>
@@ -246,9 +396,23 @@
             <field name="parent_id" ref="igic_pymes_ded_28"/>
             <field name="sign">1.0</field>
         </record>
-
+        
+         <record id="igic_pymes_ded_28_07" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes inversión IGIC (7%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_28"/>
+            <field name="sign">1.0</field>
+        </record>
+        
         <record id="igic_pymes_ded_28_09" model="account.tax.code.template">
             <field name="name">Base importaciones bienes inversión IGIC (9%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_28"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_28_09_5" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes inversión IGIC (9,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_28"/>
             <field name="sign">1.0</field>
@@ -256,6 +420,13 @@
 
         <record id="igic_pymes_ded_28_13" model="account.tax.code.template">
             <field name="name">Base importaciones bienes inversión IGIC (13%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_28"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_28_13_5" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes inversión IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_28"/>
             <field name="sign">1.0</field>
@@ -281,9 +452,23 @@
             <field name="parent_id" ref="igic_pymes_ded_30"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_30_03" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes corrientes IGIC (3%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_30"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_30_05" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes corrientes IGIC (5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_30"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_30_07" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes corrientes IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_30"/>
             <field name="sign">1.0</field>
@@ -295,9 +480,23 @@
             <field name="parent_id" ref="igic_pymes_ded_30"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_30_09_5" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes corrientes IGIC (9,5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_30"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_30_13" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes corrientes IGIC (13%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_30"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_30_13_5" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes corrientes IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_30"/>
             <field name="sign">1.0</field>
@@ -323,9 +522,23 @@
             <field name="parent_id" ref="igic_pymes_ded_32"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_32_03" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes inversión IGIC (3%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_32"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_32_05" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes inversión IGIC (5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_32"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+         <record id="igic_pymes_ded_32_07" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes inversión IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_32"/>
             <field name="sign">1.0</field>
@@ -337,9 +550,23 @@
             <field name="parent_id" ref="igic_pymes_ded_32"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_32_09_5" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes inversión IGIC (9,5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_32"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_32_13" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes inversión IGIC (13%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_32"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_32_13_5" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes inversión IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_32"/>
             <field name="sign">1.0</field>
@@ -408,9 +635,23 @@
             <field name="parent_id" ref="igic_pymes_ded_23"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_23_03" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores corrientes IGIC (3%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_23"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_23_05" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores corrientes IGIC (5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_23"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_23_07" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores corrientes IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_23"/>
             <field name="sign">1.0</field>
@@ -422,9 +663,23 @@
             <field name="parent_id" ref="igic_pymes_ded_23"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_23_09_5" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores corrientes IGIC (9,5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_23"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_23_13" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores corrientes IGIC (13%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_23"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_23_13_5" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores corrientes IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_23"/>
             <field name="sign">1.0</field>
@@ -450,9 +705,23 @@
             <field name="parent_id" ref="igic_pymes_ded_25"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_25_03" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores bienes inversión IGIC (3%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_25"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_25_05" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores bienes inversión IGIC (5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_25"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_25_07" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores bienes inversión IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_25"/>
             <field name="sign">1.0</field>
@@ -464,9 +733,23 @@
             <field name="parent_id" ref="igic_pymes_ded_25"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_25_09_5" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores bienes inversión IGIC (9,5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_25"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_25_13" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores bienes inversión IGIC (13%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_25"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_25_13_5" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores bienes inversión IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_25"/>
             <field name="sign">1.0</field>
@@ -492,6 +775,12 @@
             <field name="parent_id" ref="igic_pymes_ded_27"/>
             <field name="sign">1.0</field>
         </record>
+        <record id="igic_pymes_ded_27_03" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes corrientes IGIC (3%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_27"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_27_05" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes corrientes IGIC (5%)</field>
@@ -499,9 +788,23 @@
             <field name="parent_id" ref="igic_pymes_ded_27"/>
             <field name="sign">1.0</field>
         </record>
-
+        
+         <record id="igic_pymes_ded_27_07" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes corrientes IGIC (7%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_27"/>
+            <field name="sign">1.0</field>
+        </record>
+        
         <record id="igic_pymes_ded_27_09" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes corrientes IGIC (9%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_27"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_27_09_5" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes corrientes IGIC (9,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_27"/>
             <field name="sign">1.0</field>
@@ -509,6 +812,13 @@
 
         <record id="igic_pymes_ded_27_13" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes corrientes IGIC (13%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_27"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_27_13_5" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes corrientes IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_27"/>
             <field name="sign">1.0</field>
@@ -534,9 +844,23 @@
             <field name="parent_id" ref="igic_pymes_ded_29"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_29_03" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes inversión IGIC (3%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_29"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_29_05" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes inversión IGIC (5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_29"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_29_07" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes inversión IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_29"/>
             <field name="sign">1.0</field>
@@ -548,9 +872,23 @@
             <field name="parent_id" ref="igic_pymes_ded_29"/>
             <field name="sign">1.0</field>
         </record>
+        
+         <record id="igic_pymes_ded_29_09_5" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes inversión IGIC (9,5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_29"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_29_13" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes inversión IGIC (13%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_29"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_29_13_5" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes inversión IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_29"/>
             <field name="sign">1.0</field>
@@ -576,9 +914,23 @@
             <field name="parent_id" ref="igic_pymes_ded_31"/>
             <field name="sign">1.0</field>
         </record>
+        
+         <record id="igic_pymes_ded_31_03" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes corrientes IGIC (3%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_31"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_31_05" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes corrientes IGIC (5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_31"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+         <record id="igic_pymes_ded_31_07" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes corrientes IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_31"/>
             <field name="sign">1.0</field>
@@ -590,9 +942,23 @@
             <field name="parent_id" ref="igic_pymes_ded_31"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_31_09_5" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes corrientes IGIC (9,5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_31"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_31_13" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes corrientes IGIC (13%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_31"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_31_13_5" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes corrientes IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_31"/>
             <field name="sign">1.0</field>
@@ -618,9 +984,23 @@
             <field name="parent_id" ref="igic_pymes_ded_33"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_33_03" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes inversión IGIC (3%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_33"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_33_05" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes inversión IGIC (5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_33"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="igic_pymes_ded_33_07" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes inversión IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_33"/>
             <field name="sign">1.0</field>
@@ -632,9 +1012,23 @@
             <field name="parent_id" ref="igic_pymes_ded_33"/>
             <field name="sign">1.0</field>
         </record>
+        
+        <record id="igic_pymes_ded_33_09_5" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes inversión IGIC (9,5%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_33"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <record id="igic_pymes_ded_33_13" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes inversión IGIC (13%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="igic_pymes_ded_33"/>
+            <field name="sign">1.0</field>
+        </record>
+        
+         <record id="igic_pymes_ded_33_13_5" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes inversión IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_pymes_ded_33"/>
             <field name="sign">1.0</field>
@@ -657,6 +1051,15 @@
             <field name="name">Hacienda Pública. IGIC soportado 2%</field>
             <field name="user_type" ref="l10n_es.tax"/>
         </record>
+        
+        <record id="pgc_pymes_472003" model="account.account.template">
+            <field name="code">472003</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="l10n_es.pgc_pymes_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IGIC soportado 3%</field>
+            <field name="user_type" ref="l10n_es.tax"/>
+        </record>
 
         <record id="pgc_pymes_472005" model="account.account.template">
             <field name="code">472005</field>
@@ -664,6 +1067,15 @@
             <field name="parent_id" ref="l10n_es.pgc_pymes_472"/>
             <field name="type">other</field>
             <field name="name">Hacienda Pública. IGIC soportado 5%</field>
+            <field name="user_type" ref="l10n_es.tax"/>
+        </record>
+        
+        <record id="pgc_pymes_472007" model="account.account.template">
+            <field name="code">472007</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="l10n_es.pgc_pymes_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IGIC soportado 7%</field>
             <field name="user_type" ref="l10n_es.tax"/>
         </record>
 
@@ -675,6 +1087,15 @@
             <field name="name">Hacienda Pública. IGIC soportado 9%</field>
             <field name="user_type" ref="l10n_es.tax"/>
         </record>
+        
+        <record id="pgc_pymes_472095" model="account.account.template">
+            <field name="code">472095</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="l10n_es.pgc_pymes_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IGIC soportado 9,5%</field>
+            <field name="user_type" ref="l10n_es.tax"/>
+        </record>
 
         <record id="pgc_pymes_472013" model="account.account.template">
             <field name="code">472013</field>
@@ -682,6 +1103,15 @@
             <field name="parent_id" ref="l10n_es.pgc_pymes_472"/>
             <field name="type">other</field>
             <field name="name">Hacienda Pública. IGIC soportado 13%</field>
+            <field name="user_type" ref="l10n_es.tax"/>
+        </record>
+        
+        <record id="pgc_pymes_472135" model="account.account.template">
+            <field name="code">472135</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="l10n_es.pgc_pymes_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IGIC soportado 13,5%</field>
             <field name="user_type" ref="l10n_es.tax"/>
         </record>
 
@@ -702,6 +1132,15 @@
             <field name="name">Hacienda Pública. IGIC repercutido 2%</field>
             <field name="user_type" ref="l10n_es.tax"/>
         </record>
+        
+         <record id="pgc_pymes_477003" model="account.account.template">
+            <field name="code">477003</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="l10n_es.pgc_pymes_477"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IGIC repercutido 3%</field>
+            <field name="user_type" ref="l10n_es.tax"/>
+        </record>
 
         <record id="pgc_pymes_477005" model="account.account.template">
             <field name="code">477005</field>
@@ -709,6 +1148,15 @@
             <field name="parent_id" ref="l10n_es.pgc_pymes_477"/>
             <field name="type">other</field>
             <field name="name">Hacienda Pública. IGIC repercutido 5%</field>
+            <field name="user_type" ref="l10n_es.tax"/>
+        </record>
+        
+         <record id="pgc_pymes_477007" model="account.account.template">
+            <field name="code">477007</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="l10n_es.pgc_pymes_477"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IGIC repercutido 7%</field>
             <field name="user_type" ref="l10n_es.tax"/>
         </record>
 
@@ -720,6 +1168,15 @@
             <field name="name">Hacienda Pública. IGIC repercutido 9%</field>
             <field name="user_type" ref="l10n_es.tax"/>
         </record>
+        
+        <record id="pgc_pymes_477095" model="account.account.template">
+            <field name="code">477095</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="l10n_es.pgc_pymes_477"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IGIC repercutido 9,5%</field>
+            <field name="user_type" ref="l10n_es.tax"/>
+        </record>
 
         <record id="pgc_pymes_477013" model="account.account.template">
             <field name="code">477013</field>
@@ -727,6 +1184,15 @@
             <field name="parent_id" ref="l10n_es.pgc_pymes_477"/>
             <field name="type">other</field>
             <field name="name">Hacienda Pública. IGIC repercutido 13%</field>
+            <field name="user_type" ref="l10n_es.tax"/>
+        </record>
+        
+        <record id="pgc_pymes_477135" model="account.account.template">
+            <field name="code">477135</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="l10n_es.pgc_pymes_477"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IGIC repercutido 13,5%</field>
             <field name="user_type" ref="l10n_es.tax"/>
         </record>
 
@@ -819,6 +1285,24 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
+        <record id="igic_pymes_sop_3" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">3% IGIC Soportado (operaciones corrientes)</field>
+            <field eval="0.03" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472003"/>
+            <field name="account_paid_id" ref="pgc_pymes_472003"/>
+            <field name="base_code_id" ref="igic_pymes_ded_22_03"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_23_03"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_22_03"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_23_03"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
 
         <record id="igic_pymes_sop_2_inv" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
@@ -837,6 +1321,24 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
+        <record id="igic_pymes_sop_3_inv" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">3% IGIC Soportado (bienes de inversión)</field>
+            <field eval="0.03" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472003"/>
+            <field name="account_paid_id" ref="pgc_pymes_472003"/>
+            <field name="base_code_id" ref="igic_pymes_ded_24_03"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_25_02"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_24_03"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_25_03"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
 
         <record id="igic_pymes_sop_5" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
@@ -849,6 +1351,24 @@
             <field name="tax_code_id" ref="igic_pymes_ded_23_05"/>
             <field name="ref_base_code_id" ref="igic_pymes_ded_22_05"/>
             <field name="ref_tax_code_id" ref="igic_pymes_ded_23_05"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+ 	<record id="igic_pymes_sop_7" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">7% IGIC Soportado (operaciones corrientes)</field>
+            <field eval="0.07" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472007"/>
+            <field name="account_paid_id" ref="pgc_pymes_472007"/>
+            <field name="base_code_id" ref="igic_pymes_ded_22_07"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_23_07"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_22_07"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_23_07"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
@@ -875,6 +1395,24 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
+	<record id="igic_pymes_sop_7_inv" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">7% IGIC Soportado (bienes de inversión)</field>
+            <field eval="0.07" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472007"/>
+            <field name="account_paid_id" ref="pgc_pymes_472007"/>
+            <field name="base_code_id" ref="igic_pymes_ded_24_07"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_25_07"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_24_07"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_25_07"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
         <record id="igic_pymes_sop_9" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="name">9% IGIC Soportado (operaciones corrientes)</field>
@@ -893,6 +1431,25 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
+	<record id="igic_pymes_sop_9_5" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">9,5% IGIC Soportado (operaciones corrientes)</field>
+            <field eval="0.095" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472095"/>
+            <field name="account_paid_id" ref="pgc_pymes_472095"/>
+            <field name="base_code_id" ref="igic_pymes_ded_22_09_5"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_23_09_5"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_22_09_5"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_23_09_5"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+
         <record id="igic_pymes_sop_9_inv" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="name">9% IGIC Soportado (bienes de inversión)</field>
@@ -904,6 +1461,24 @@
             <field name="tax_code_id" ref="igic_pymes_ded_25_09"/>
             <field name="ref_base_code_id" ref="igic_pymes_ded_24_09"/>
             <field name="ref_tax_code_id" ref="igic_pymes_ded_25_09"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+ 	<record id="igic_pymes_sop_9_5_inv" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">9,5% IGIC Soportado (bienes de inversión)</field>
+            <field eval="0.095" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472095"/>
+            <field name="account_paid_id" ref="pgc_pymes_472095"/>
+            <field name="base_code_id" ref="igic_pymes_ded_24_09_5"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_25_09_5"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_24_09_5"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_25_09_5"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
@@ -929,6 +1504,24 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
+ 	<record id="igic_pymes_sop_13_5" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">13,5% IGIC Soportado (operaciones corrientes)</field>
+            <field eval="0.135" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472135"/>
+            <field name="account_paid_id" ref="pgc_pymes_472135"/>
+            <field name="base_code_id" ref="igic_pymes_ded_22_13_5"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_23_13_5"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_22_13_5"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_23_13_5"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
         <record id="igic_pymes_sop_13_inv" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="name">13% IGIC Soportado (bienes de inversión)</field>
@@ -940,6 +1533,24 @@
             <field name="tax_code_id" ref="igic_pymes_ded_25_13"/>
             <field name="ref_base_code_id" ref="igic_pymes_ded_24_13"/>
             <field name="ref_tax_code_id" ref="igic_pymes_ded_25_13"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+	<record id="igic_pymes_sop_13_5_inv" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">13,5% IGIC Soportado (bienes de inversión)</field>
+            <field eval="0.135" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472135"/>
+            <field name="account_paid_id" ref="pgc_pymes_472135"/>
+            <field name="base_code_id" ref="igic_pymes_ded_24_13_5"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_25_13_5"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_24_13_5"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_25_13_5"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
@@ -995,6 +1606,26 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+
+ 	<record id="igic_pymes_X3_compras_bc" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 3% Importaciones bienes corrientes</field>
+            <field name="description">IGIC 3% Importaciones bienes corrientes</field>
+            <field eval="0.035" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472003"/>
+            <field name="account_paid_id" ref="pgc_pymes_472003"/>
+            <field name="base_code_id" ref="igic_pymes_ded_26_03"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_27_03"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_26_03"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_27_03"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
         <record id="igic_pymes_X2_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="name">IGIC 2% Importaciones bienes de inversión</field>
@@ -1007,6 +1638,25 @@
             <field name="tax_code_id" ref="igic_pymes_ded_29_02"/>
             <field name="ref_base_code_id" ref="igic_pymes_ded_28_02"/>
             <field name="ref_tax_code_id" ref="igic_pymes_ded_29_02"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+	<record id="igic_pymes_X3_compras_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 3% Importaciones bienes de inversión</field>
+            <field name="description">IGIC 3% Importaciones bienes de inversión</field>
+            <field eval="0.035" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472003"/>
+            <field name="account_paid_id" ref="pgc_pymes_472003"/>
+            <field name="base_code_id" ref="igic_pymes_ded_28_03"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_29_03"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_28_03"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_29_03"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
@@ -1032,6 +1682,26 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+
+	<record id="igic_pymes_X7_compras_bc" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 7% Importaciones bienes corrientes</field>
+            <field name="description">IGIC 7% Importaciones bienes corrientes</field>
+            <field eval="0.07" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472007"/>
+            <field name="account_paid_id" ref="pgc_pymes_472007"/>
+            <field name="base_code_id" ref="igic_pymes_ded_26_07"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_27_07"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_26_07"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_27_07"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
         <record id="igic_pymes_X5_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="name">IGIC 5% Importaciones bienes de inversión</field>
@@ -1044,6 +1714,25 @@
             <field name="tax_code_id" ref="igic_pymes_ded_29_05"/>
             <field name="ref_base_code_id" ref="igic_pymes_ded_28_05"/>
             <field name="ref_tax_code_id" ref="igic_pymes_ded_29_05"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+	 <record id="igic_pymes_X7_compras_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 7% Importaciones bienes de inversión</field>
+            <field name="description">IGIC 7% Importaciones bienes de inversión</field>
+            <field eval="0.07" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472007"/>
+            <field name="account_paid_id" ref="pgc_pymes_472007"/>
+            <field name="base_code_id" ref="igic_pymes_ded_28_07"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_29_07"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_28_07"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_29_07"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
@@ -1069,6 +1758,26 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+
+	<record id="igic_pymes_X9_5_compras_bc" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 9,5% Importaciones bienes corrientes</field>
+            <field name="description">IGIC 9,5% Importaciones bienes corrientes</field>
+            <field eval="0.095" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472095"/>
+            <field name="account_paid_id" ref="pgc_pymes_472095"/>
+            <field name="base_code_id" ref="igic_pymes_ded_26_09_5"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_27_09_5"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_26_09_5"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_27_09_5"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
         <record id="igic_pymes_X9_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="name">IGIC 9% Importaciones bienes de inversión</field>
@@ -1081,6 +1790,25 @@
             <field name="tax_code_id" ref="igic_pymes_ded_29_09"/>
             <field name="ref_base_code_id" ref="igic_pymes_ded_28_09"/>
             <field name="ref_tax_code_id" ref="igic_pymes_ded_29_09"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+	<record id="igic_pymes_X9_5_compras_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 9,5% Importaciones bienes de inversión</field>
+            <field name="description">IGIC 9,5% Importaciones bienes de inversión</field>
+            <field eval="0.095" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472095"/>
+            <field name="account_paid_id" ref="pgc_pymes_472095"/>
+            <field name="base_code_id" ref="igic_pymes_ded_28_09_5"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_29_09_5"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_28_09_5"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_29_09_5"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
@@ -1106,11 +1834,32 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+
+	<record id="igic_pymes_X13_5_compras_bc" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 13,5% Importaciones bienes corrientes</field>
+            <field name="description">IGIC 13,5% Importaciones bienes corrientes</field>
+            <field eval="0.135" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472135"/>
+            <field name="account_paid_id" ref="pgc_pymes_472135"/>
+            <field name="base_code_id" ref="igic_pymes_ded_26_13_5"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_27_13_5"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_26_13_5"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_27_13_5"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+
         <record id="igic_pymes_X13_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="name">IGIC 13% Importaciones bienes de inversión</field>
             <field name="description">IGIC 13% Importaciones bienes de inversión</field>
-            <field eval="0.16" name="amount"/>
+            <field eval="0.13" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_pymes_472013"/>
             <field name="account_paid_id" ref="pgc_pymes_472013"/>
@@ -1118,6 +1867,25 @@
             <field name="tax_code_id" ref="igic_pymes_ded_29_13"/>
             <field name="ref_base_code_id" ref="igic_pymes_ded_28_13"/>
             <field name="ref_tax_code_id" ref="igic_pymes_ded_29_13"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+ 	<record id="igic_pymes_X13_5_compras_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 13,5% Importaciones bienes de inversión</field>
+            <field name="description">IGIC 13,5% Importaciones bienes de inversión</field>
+            <field eval="0.135" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_472135"/>
+            <field name="account_paid_id" ref="pgc_pymes_472135"/>
+            <field name="base_code_id" ref="igic_pymes_ded_28_13_5"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_29_13_5"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_28_13_5"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_29_13_5"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
@@ -1150,7 +1918,8 @@
             <field name="ref_tax_sign" eval="-1.0"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        <record id="igic_pymes_ISP_compras_05_1" model="account.tax.template">
+
+	<record id="igic_pymes_ISP_compras_05_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="name">IGIC 5% Inversión del sujeto pasivo (1)</field>
             <field name="parent_id" ref="igic_pymes_ISP_compras_05"/>
@@ -1237,6 +2006,24 @@
             <field name="type_tax_use">sale</field>
         </record>
 
+	<record id="igic_pymes_rep_3" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 3%</field>
+            <field eval="0.03" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_477003"/>
+            <field name="account_paid_id" ref="pgc_pymes_477003"/>
+            <field name="base_code_id" ref="igic_pymes_dev_03"/>
+            <field name="tax_code_id" ref="igic_pymes_dev_21_03"/>
+            <field name="ref_base_code_id" ref="igic_pymes_dev_03"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_dev_21_03"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
+
         <record id="igic_pymes_rep_5" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="name">IGIC 5%</field>
@@ -1248,6 +2035,24 @@
             <field name="tax_code_id" ref="igic_pymes_dev_21_05"/>
             <field name="ref_base_code_id" ref="igic_pymes_dev_05"/>
             <field name="ref_tax_code_id" ref="igic_pymes_dev_21_05"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
+
+	<record id="igic_pymes_rep_7" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 7%</field>
+            <field eval="0.07" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_477007"/>
+            <field name="account_paid_id" ref="pgc_pymes_477007"/>
+            <field name="base_code_id" ref="igic_pymes_dev_07"/>
+            <field name="tax_code_id" ref="igic_pymes_dev_21_07"/>
+            <field name="ref_base_code_id" ref="igic_pymes_dev_07"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_dev_21_07"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
@@ -1274,6 +2079,24 @@
             <field name="type_tax_use">sale</field>
         </record>
 
+	<record id="igic_pymes_rep_9_5" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 9,5%</field>
+            <field eval="0.095" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_477095"/>
+            <field name="account_paid_id" ref="pgc_pymes_477095"/>
+            <field name="base_code_id" ref="igic_pymes_dev_09_5"/>
+            <field name="tax_code_id" ref="igic_pymes_dev_21_09_5"/>
+            <field name="ref_base_code_id" ref="igic_pymes_dev_09_5"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_dev_21_09_5"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
+
         <record id="igic_pymes_rep_13" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="name">IGIC 13%</field>
@@ -1285,6 +2108,24 @@
             <field name="tax_code_id" ref="igic_pymes_dev_21_13"/>
             <field name="ref_base_code_id" ref="igic_pymes_dev_13"/>
             <field name="ref_tax_code_id" ref="igic_pymes_dev_21_13"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
+
+	<record id="igic_pymes_rep_13_5" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 13,5%</field>
+            <field eval="0.135" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_477135"/>
+            <field name="account_paid_id" ref="pgc_pymes_477135"/>
+            <field name="base_code_id" ref="igic_pymes_dev_13_5"/>
+            <field name="tax_code_id" ref="igic_pymes_dev_21_13_5"/>
+            <field name="ref_base_code_id" ref="igic_pymes_dev_13_5"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_dev_21_13_5"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
@@ -1348,6 +2189,49 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
+ <record id="igic_pymes_IC_compras_07_bc" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 7% Intracomunitario. Bienes corrientes</field>
+            <field name="description">IGIC 7% Intracomunitario. Bienes corrientes</field>
+            <field eval="1" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="igic_pymes_IC_compras_07_bc_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_07_bc"/>
+            <field name="name">IGIC 7% Intracomunitario. Bienes corrientes (1)</field>
+            <field eval="0.07" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_472007"/>
+            <field name="account_collected_id" ref="pgc_pymes_472007"/>
+            <field name="base_code_id" ref="igic_pymes_ded_30_07"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_31_07"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_30_07"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_31_07"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="igic_pymes_IC_compras_07_bc_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_07_bc"/>
+            <field name="name">IGIC 7% Intracomunitario. Bienes corrientes (2)</field>
+            <field eval="-0.07" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_477007"/>
+            <field name="account_collected_id" ref="pgc_pymes_477007"/>
+            <field name="base_code_id" ref="igic_pymes_dev_19"/>
+            <field name="tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="igic_pymes_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
         <record id="igic_pymes_IC_compras_02_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="name">IGIC 2% Intracomunitario. Bienes corrientes</field>
@@ -1381,6 +2265,49 @@
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_pymes_477002"/>
             <field name="account_collected_id" ref="pgc_pymes_477002"/>
+            <field name="base_code_id" ref="igic_pymes_dev_19"/>
+            <field name="tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="igic_pymes_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+	<record id="igic_pymes_IC_compras_03_bc" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 3% Intracomunitario. Bienes corrientes</field>
+            <field name="description">IGIC 3% Intracomunitario. Bienes corrientes</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="igic_pymes_IC_compras_03_bc_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_03_bc"/>
+            <field name="name">IGIC 3% Intracomunitario. Bienes corrientes (1)</field>
+            <field eval="0.03" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_472002"/>
+            <field name="account_collected_id" ref="pgc_pymes_472003"/>
+            <field name="base_code_id" ref="igic_pymes_ded_30_03"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_31_03"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_30_03"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_31_03"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="igic_pymes_IC_compras_03_bc_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_03_bc"/>
+            <field name="name">IGIC 3% Intracomunitario. Bienes corrientes (2)</field>
+            <field eval="-0.03" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_477003"/>
+            <field name="account_collected_id" ref="pgc_pymes_477003"/>
             <field name="base_code_id" ref="igic_pymes_dev_19"/>
             <field name="tax_code_id" ref="igic_pymes_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -1434,6 +2361,49 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
+	<record id="igic_pymes_IC_compras_09_5_bc" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 9,5% Intracomunitario. Bienes corrientes</field>
+            <field name="description">IGIC 9,5% Intracomunitario. Bienes corrientes</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="igic_pymes_IC_compras_09_5_bc_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_09_5_bc"/>
+            <field name="name">IGIC 9,5% Intracomunitario. Bienes corrientes (1)</field>
+            <field eval="0.095" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_472095"/>
+            <field name="account_collected_id" ref="pgc_pymes_472095"/>
+            <field name="base_code_id" ref="igic_pymes_ded_30_09_5"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_31_09_5"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_30_09_5"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_31_09_5"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="igic_pymes_IC_compras_09_5_bc_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_09_bc"/>
+            <field name="name">IGIC 9,5% Intracomunitario. Bienes corrientes (2)</field>
+            <field eval="-0.095" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_477095"/>
+            <field name="account_collected_id" ref="pgc_pymes_477095"/>
+            <field name="base_code_id" ref="igic_pymes_dev_19"/>
+            <field name="tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="igic_pymes_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
         <record id="igic_pymes_IC_compras_13_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="name">IGIC 13% Intracomunitario. Bienes corrientes</field>
@@ -1477,6 +2447,49 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
+	<record id="igic_pymes_IC_compras_13_5_bc" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 13,5% Intracomunitario. Bienes corrientes</field>
+            <field name="description">IGIC 13,5% Intracomunitario. Bienes corrientes</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="igic_pymes_IC_compras_13_5_bc_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_13_5_bc"/>
+            <field name="name">IGIC 13,5% Intracomunitario. Bienes corrientes (1)</field>
+            <field eval="0.135" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_472135"/>
+            <field name="account_collected_id" ref="pgc_pymes_472135"/>
+            <field name="base_code_id" ref="igic_pymes_ded_30_13_5"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_31_13_5"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_30_13_5"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_31_13_5"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="igic_pymes_IC_compras_13_5_bc_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_13_5_bc"/>
+            <field name="name">IGIC 13,5% Intracomunitario. Bienes corrientes (2)</field>
+            <field eval="-0.135" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_477135"/>
+            <field name="account_collected_id" ref="pgc_pymes_477135"/>
+            <field name="base_code_id" ref="igic_pymes_dev_19"/>
+            <field name="tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="igic_pymes_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
         <record id="igic_pymes_IC_compras_02_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="name">IGIC 2% Intracomunitario. Bienes de inversión</field>
@@ -1486,6 +2499,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+
         <record id="igic_pymes_IC_compras_02_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="parent_id" ref="igic_pymes_IC_compras_02_bi"/>
@@ -1502,6 +2516,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+
         <record id="igic_pymes_IC_compras_02_bi_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="parent_id" ref="igic_pymes_IC_compras_02_bi"/>
@@ -1510,6 +2525,51 @@
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_pymes_477002"/>
             <field name="account_collected_id" ref="pgc_pymes_477002"/>
+            <field name="base_code_id" ref="igic_pymes_dev_19"/>
+            <field name="tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="igic_pymes_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+	 <record id="igic_pymes_IC_compras_03_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 3% Intracomunitario. Bienes de inversión</field>
+            <field name="description">IGIC 3% Intracomunitario. Bienes de inversión</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+	<record id="igic_pymes_IC_compras_03_bi_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_03_bi"/>
+            <field name="name">IGIC 3% Intracomunitario. Bienes de inversión (1)</field>
+            <field eval="0.03" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_472003"/>
+            <field name="account_collected_id" ref="pgc_pymes_472003"/>
+            <field name="base_code_id" ref="igic_pymes_ded_32_03"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_33_03"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_32_03"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_33_03"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="igic_pymes_IC_compras_03_bi_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_03_bi"/>
+            <field name="name">IGIC 3% Intracomunitario. Bienes de inversión (2)</field>
+            <field eval="-0.03" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_477003"/>
+            <field name="account_collected_id" ref="pgc_pymes_477003"/>
             <field name="base_code_id" ref="igic_pymes_dev_19"/>
             <field name="tax_code_id" ref="igic_pymes_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -1529,6 +2589,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+
         <record id="igic_pymes_IC_compras_05_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="parent_id" ref="igic_pymes_IC_compras_05_bi"/>
@@ -1562,6 +2623,52 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+
+<record id="igic_pymes_IC_compras_07_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 7% Intracomunitario. Bienes de inversión</field>
+            <field name="description">IGIC 7% Intracomunitario. Bienes de inversión</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="igic_pymes_IC_compras_07_bi_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_07_bi"/>
+            <field name="name">IGIC 7% Intracomunitario. Bienes de inversión (1)</field>
+            <field eval="0.07" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_472007"/>
+            <field name="account_collected_id" ref="pgc_pymes_472007"/>
+            <field name="base_code_id" ref="igic_pymes_ded_32_07"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_33_07"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_32_07"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_33_07"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="igic_pymes_IC_compras_07_bi_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_07_bi"/>
+            <field name="name">IGIC 7% Intracomunitario. Bienes de inversión (2)</field>
+            <field eval="-0.07" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_477007"/>
+            <field name="account_collected_id" ref="pgc_pymes_477007"/>
+            <field name="base_code_id" ref="igic_pymes_dev_19"/>
+            <field name="tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="igic_pymes_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
 
         <record id="igic_pymes_IC_compras_09_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
@@ -1606,6 +2713,49 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
+	<record id="igic_pymes_IC_compras_09_5_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 9,5% Intracomunitario. Bienes de inversión</field>
+            <field name="description">IGIC 9,5% Intracomunitario. Bienes de inversión</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="igic_pymes_IC_compras_09_5_bi_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_09_5_bi"/>
+            <field name="name">IGIC 9,5% Intracomunitario. Bienes de inversión (1)</field>
+            <field eval="0.095" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_472095"/>
+            <field name="account_collected_id" ref="pgc_pymes_472095"/>
+            <field name="base_code_id" ref="igic_pymes_ded_32_09_5"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_33_09_5"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_32_09_5"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_33_09_5"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="igic_pymes_IC_compras_09_5_bi_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_09_5_bi"/>
+            <field name="name">IGIC 9,5% Intracomunitario. Bienes de inversión (2)</field>
+            <field eval="-0.095" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_477095"/>
+            <field name="account_collected_id" ref="pgc_pymes_477095"/>
+            <field name="base_code_id" ref="igic_pymes_dev_19"/>
+            <field name="tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="igic_pymes_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
         <record id="igic_pymes_IC_compras_13_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="name">IGIC 13% Intracomunitario. Bienes de inversión</field>
@@ -1636,6 +2786,49 @@
             <field name="parent_id" ref="igic_pymes_IC_compras_13_bi"/>
             <field name="name">IGIC 13% Intracomunitario. Bienes de inversión (2)</field>
             <field eval="-0.13" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_477013"/>
+            <field name="account_collected_id" ref="pgc_pymes_477013"/>
+            <field name="base_code_id" ref="igic_pymes_dev_19"/>
+            <field name="tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="igic_pymes_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+<record id="igic_pymes_IC_compras_13_5_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="name">IGIC 13,5% Intracomunitario. Bienes de inversión</field>
+            <field name="description">IGIC 13,5% Intracomunitario. Bienes de inversión</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="igic_pymes_IC_compras_13_5_bi_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_13_5_bi"/>
+            <field name="name">IGIC 13,5% Intracomunitario. Bienes de inversión (1)</field>
+            <field eval="0.135" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_472013"/>
+            <field name="account_collected_id" ref="pgc_pymes_472013"/>
+            <field name="base_code_id" ref="igic_pymes_ded_32_13_5"/>
+            <field name="tax_code_id" ref="igic_pymes_ded_33_13_5"/>
+            <field name="ref_base_code_id" ref="igic_pymes_ded_32_13_5"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="igic_pymes_ded_33_13_5"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="igic_pymes_IC_compras_13_5_bi_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_13_5_bi"/>
+            <field name="name">IGIC 13,5% Intracomunitario. Bienes de inversión (2)</field>
+            <field eval="-0.135" name="amount"/>
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_pymes_477013"/>
             <field name="account_collected_id" ref="pgc_pymes_477013"/>

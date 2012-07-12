@@ -3,6 +3,7 @@
 #
 #    Copyright (C) 2004-2011 Pexego Sistemas Informáticos. All Rights Reserved
 #    $Omar Castiñeira Saavedra$
+#    $Susana Izquierdo$
 #
 #   This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -29,7 +30,7 @@
     Se usa el módulo account_chart_update para la actualización de las propias cuentas e impuestos-
     Instalación:
         - Ejecutar el asistente de actualización del plan contable para que cargue los impuestos y cuentas nuevas, desde: Contabilidad/Configuración/Contabilidad financiera/Plantillas/Actualizar plan contable a partir de una plantilla de plan conta.
-        - Por último si eres una empresa canaria, ejecuta el segundo asistente de configuración para poner como impuestos por defecto el IGIC 5% por ejemplo y quizás renombrar la posición fiscal de Régimen Nacional a Régimen Canario.""",
+        - Por último si eres una empresa canaria, ejecuta el segundo asistente de configuración para poner como impuestos por defecto el IGIC 7% por ejemplo y quizás renombrar la posición fiscal de Régimen Nacional a Régimen Canario.""",
     "license" : "AGPL-3",
     "depends" : ["base","l10n_es","account","account_chart_update"],
     "init_xml" : ['taxes_data.xml',
