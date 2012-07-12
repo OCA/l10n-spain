@@ -2388,7 +2388,7 @@
         </record>
         <record id="igic_pymes_IC_compras_09_5_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="igic_pymes_IC_compras_09_bc"/>
+            <field name="parent_id" ref="igic_pymes_IC_compras_09_5_bc"/>
             <field name="name">IGIC 9,5% Intracomunitario. Bienes corrientes (2)</field>
             <field eval="-0.095" name="amount"/>
             <field name="type">percent</field>
