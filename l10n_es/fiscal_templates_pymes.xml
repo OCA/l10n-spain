@@ -102,57 +102,86 @@
 	<!-- ************************************************************* -->
 
 	<!-- Extracomunitarios fiscal.position.tax.template-->
-
-        <record id="fptt_pymes_extra_16" model="account.fiscal.position.tax.template">
+		<record id="fptt_pymes_extra_4" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_extra"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_16" />
-            <field name="tax_dest_id" ref="iva_pymes_X16_compras_bc" />
+            <field name="tax_src_id" ref="iva_pymes_sop_4" />
+            <field name="tax_dest_id" ref="iva_pymes_X4_compras_bc" />
         </record>
-        <record id="fptt_pymes_extra_16_inv" model="account.fiscal.position.tax.template">
+        
+        <record id="fptt_pymes_extra_4_inv" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_extra"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_16_inv" />
-            <field name="tax_dest_id" ref="iva_pymes_X16_compras_bi" />
+            <field name="tax_src_id" ref="iva_pymes_sop_4_inv" />
+            <field name="tax_dest_id" ref="iva_pymes_X4_compras_bi" />
         </record>
-        <record id="fptt_pymes_extra_18" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_extra"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_18" />
-            <field name="tax_dest_id" ref="iva_pymes_X18_compras_bc" />
-        </record>
-        <record id="fptt_pymes_extra_18_inv" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_extra"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_18_inv" />
-            <field name="tax_dest_id" ref="iva_pymes_X18_compras_bi" />
-        </record>
-
+      
         <record id="fptt_pymes_extra_7" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_extra"  />
             <field name="tax_src_id" ref="iva_pymes_sop_7" />
             <field name="tax_dest_id" ref="iva_pymes_X7_compras_bc" />
         </record>
+        
         <record id="fptt_pymes_extra_7_inv" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_extra"  />
             <field name="tax_src_id" ref="iva_pymes_sop_7_inv" />
             <field name="tax_dest_id" ref="iva_pymes_X7_compras_bi" />
         </record>
+        
         <record id="fptt_pymes_extra_8" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_extra"  />
             <field name="tax_src_id" ref="iva_pymes_sop_8" />
             <field name="tax_dest_id" ref="iva_pymes_X8_compras_bc" />
         </record>
+        
         <record id="fptt_pymes_extra_8_inv" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_extra"  />
             <field name="tax_src_id" ref="iva_pymes_sop_8_inv" />
             <field name="tax_dest_id" ref="iva_pymes_X8_compras_bi" />
         </record>
-        <record id="fptt_pymes_extra_4" model="account.fiscal.position.tax.template">
+        
+        <record id="fptt_pymes_extra_10" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_extra"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_4" />
-            <field name="tax_dest_id" ref="iva_pymes_X4_compras_bc" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="iva_pymes_X10_compras_bc" />
         </record>
-        <record id="fptt_pymes_extra_4_inv" model="account.fiscal.position.tax.template">
+        <record id="fptt_pymes_extra_10_inv" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_extra"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_4_inv" />
-            <field name="tax_dest_id" ref="iva_pymes_X4_compras_bi" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10_inv" />
+            <field name="tax_dest_id" ref="iva_pymes_X10_compras_bi" />
+        </record>
+
+		<record id="fptt_pymes_extra_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_extra"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_16" />
+            <field name="tax_dest_id" ref="iva_pymes_X16_compras_bc" />
+        </record>
+        
+        <record id="fptt_pymes_extra_16_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_extra"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_16_inv" />
+            <field name="tax_dest_id" ref="iva_pymes_X16_compras_bi" />
+        </record>
+        
+        <record id="fptt_pymes_extra_18" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_extra"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_18" />
+            <field name="tax_dest_id" ref="iva_pymes_X18_compras_bc" />
+        </record>
+        
+        <record id="fptt_pymes_extra_18_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_extra"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_18_inv" />
+            <field name="tax_dest_id" ref="iva_pymes_X18_compras_bi" />
+        </record>
+        
+        <record id="fptt_pymes_extra_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_extra"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="iva_pymes_X21_compras_bc" />
+        </record>
+        <record id="fptt_pymes_extra_21_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_extra"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_21_inv" />
+            <field name="tax_dest_id" ref="iva_pymes_X21_compras_bi" />
         </record>
 
         <record id="fptt_pymes_extra_ventas_4" model="account.fiscal.position.tax.template">
@@ -171,6 +200,12 @@
             <field name="tax_src_id" ref="iva_pymes_rep_8" />
             <field name="tax_dest_id" ref="iva_pymes_X0" />
         </record>
+        
+        <record id="fptt_pymes_extra_ventas_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_extra"  />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
+            <field name="tax_dest_id" ref="iva_pymes_X0" />
+        </record>
 
         <record id="fptt_pymes_extra_ventas_16" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_extra"  />
@@ -182,10 +217,64 @@
             <field name="tax_src_id" ref="iva_pymes_rep_18" />
             <field name="tax_dest_id" ref="iva_pymes_X0" />
         </record>
+        
+        <record id="fptt_pymes_extra_ventas_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_extra"  />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="iva_pymes_X0" />
+        </record>
 
 	<!-- Intracomunitarios fiscal.position.tax.template-->
 
-        <record id="fptt_pymes_intra_16" model="account.fiscal.position.tax.template">
+        <record id="fptt_pymes_intra_4" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_intra"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_4" />
+            <field name="tax_dest_id" ref="iva_pymes_IC_compras_4_bc" />
+        </record>
+        
+        <record id="fptt_pymes_intra_4_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_intra"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_4_inv" />
+            <field name="tax_dest_id" ref="iva_pymes_IC_compras_4_bi" />
+        </record>
+        
+        <record id="fptt_pymes_intra_7" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_intra"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_7" />
+            <field name="tax_dest_id" ref="iva_pymes_IC_compras_7_bc" />
+        </record>
+        
+        <record id="fptt_pymes_intra_7_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_intra"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_7_inv" />
+            <field name="tax_dest_id" ref="iva_pymes_IC_compras_7_bi" />
+        </record>
+        
+        <record id="fptt_pymes_intra_8" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_intra"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_8" />
+            <field name="tax_dest_id" ref="iva_pymes_IC_compras_8_bc" />
+        </record>
+        
+        <record id="fptt_pymes_intra_8_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_intra"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_8_inv" />
+            <field name="tax_dest_id" ref="iva_pymes_IC_compras_8_bi" />
+        </record>
+        
+        <record id="fptt_pymes_intra_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_intra"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="iva_pymes_IC_compras_10_bc" />
+        </record>
+        
+        <record id="fptt_pymes_intra_10_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_intra"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_10_inv" />
+            <field name="tax_dest_id" ref="iva_pymes_IC_compras_10_bi" />
+        </record>
+		
+		<record id="fptt_pymes_intra_16" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_intra"  />
             <field name="tax_src_id" ref="iva_pymes_sop_16" />
             <field name="tax_dest_id" ref="iva_pymes_IC_compras_16_bc" />
@@ -205,36 +294,16 @@
             <field name="tax_src_id" ref="iva_pymes_sop_18_inv" />
             <field name="tax_dest_id" ref="iva_pymes_IC_compras_18_bi" />
         </record>
-
-        <record id="fptt_pymes_intra_7" model="account.fiscal.position.tax.template">
+        
+        <record id="fptt_pymes_intra_21" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_intra"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_7" />
-            <field name="tax_dest_id" ref="iva_pymes_IC_compras_7_bc" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="iva_pymes_IC_compras_21_bc" />
         </record>
-        <record id="fptt_pymes_intra_7_inv" model="account.fiscal.position.tax.template">
+        <record id="fptt_pymes_intra_21_inv" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_intra"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_7_inv" />
-            <field name="tax_dest_id" ref="iva_pymes_IC_compras_7_bi" />
-        </record>
-        <record id="fptt_pymes_intra_8" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_intra"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_8" />
-            <field name="tax_dest_id" ref="iva_pymes_IC_compras_8_bc" />
-        </record>
-        <record id="fptt_pymes_intra_8_inv" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_intra"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_8_inv" />
-            <field name="tax_dest_id" ref="iva_pymes_IC_compras_8_bi" />
-        </record>
-        <record id="fptt_pymes_intra_4" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_intra"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_4" />
-            <field name="tax_dest_id" ref="iva_pymes_IC_compras_4_bc" />
-        </record>
-        <record id="fptt_pymes_intra_4_inv" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_intra"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_4_inv" />
-            <field name="tax_dest_id" ref="iva_pymes_IC_compras_4_bi" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21_inv" />
+            <field name="tax_dest_id" ref="iva_pymes_IC_compras_21_bi" />
         </record>
 
         <record id="fptt_pymes_intra_ventas_4" model="account.fiscal.position.tax.template">
@@ -253,6 +322,12 @@
             <field name="tax_src_id" ref="iva_pymes_rep_8" />
             <field name="tax_dest_id" ref="iva_pymes_IO" />
         </record>
+        
+        <record id="fptt_pymes_intra_ventas_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_intra"  />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
+            <field name="tax_dest_id" ref="iva_pymes_IO" />
+        </record>
 
         <record id="fptt_pymes_intra_ventas_16" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_intra"  />
@@ -264,31 +339,25 @@
             <field name="tax_src_id" ref="iva_pymes_rep_18" />
             <field name="tax_dest_id" ref="iva_pymes_IO" />
         </record>
+        
+         <record id="fptt_pymes_intra_ventas_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_intra"  />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="iva_pymes_IO" />
+        </record>
 
 	<!-- Recargo de equivalencia fiscal.position.tax.template-->
 
-        <record id="fptt_pymes_recargo_16" model="account.fiscal.position.tax.template">
+        <record id="fptt_pymes_recargo_4" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_rep_16" />
-            <field name="tax_dest_id" ref="iva_pymes_rep_16" />
+            <field name="tax_src_id" ref="iva_pymes_rep_4" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_4" />
         </record>
 
-        <record id="fptt_pymes_recargo_16_2" model="account.fiscal.position.tax.template">
+        <record id="fptt_pymes_recargo_4_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_rep_16" />
-            <field name="tax_dest_id" ref="re_pymes_4" />
-        </record>
-	
-        <record id="fptt_pymes_recargo_18" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_rep_18" />
-            <field name="tax_dest_id" ref="iva_pymes_rep_18" />
-        </record>
-
-        <record id="fptt_pymes_recargo_18_2" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_rep_18" />
-            <field name="tax_dest_id" ref="re_pymes_4" />
+            <field name="tax_src_id" ref="iva_pymes_rep_4" />
+            <field name="tax_dest_id" ref="re_pymes_05" />
         </record>
 
         <record id="fptt_pymes_recargo_7" model="account.fiscal.position.tax.template">
@@ -315,42 +384,66 @@
             <field name="tax_dest_id" ref="re_pymes_1" />
         </record>
 
-        <record id="fptt_pymes_recargo_4" model="account.fiscal.position.tax.template">
+		<record id="fptt_pymes_recargo_10" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_rep_4" />
-            <field name="tax_dest_id" ref="iva_pymes_rep_4" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_10" />
         </record>
 
-        <record id="fptt_pymes_recargo_4_2" model="account.fiscal.position.tax.template">
+        <record id="fptt_pymes_recargo_10_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_rep_4" />
-            <field name="tax_dest_id" ref="re_pymes_05" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
+            <field name="tax_dest_id" ref="re_pymes_1" />
+        </record>
+        
+        <record id="fptt_pymes_recargo_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_rep_16" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_16" />
         </record>
 
-        <record id="fptt_pymes_recargo_buy_16" model="account.fiscal.position.tax.template">
+        <record id="fptt_pymes_recargo_16_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_16" />
-            <field name="tax_dest_id" ref="iva_pymes_sop_16" />
+            <field name="tax_src_id" ref="iva_pymes_rep_16" />
+            <field name="tax_dest_id" ref="re_pymes_4" />
+        </record>
+	
+        <record id="fptt_pymes_recargo_18" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_rep_18" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_18" />
         </record>
 
-        <record id="fptt_pymes_recargo_buy_16_2" model="account.fiscal.position.tax.template">
+        <record id="fptt_pymes_recargo_18_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_16" />
-            <field name="tax_dest_id" ref="re_pymes_buy_4" />
+            <field name="tax_src_id" ref="iva_pymes_rep_18" />
+            <field name="tax_dest_id" ref="re_pymes_4" />
+        </record>
+        
+        <record id="fptt_pymes_recargo_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_21" />
         </record>
 
-        <record id="fptt_pymes_recargo_buy_18" model="account.fiscal.position.tax.template">
+        <record id="fptt_pymes_recargo_21_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_18" />
-            <field name="tax_dest_id" ref="iva_pymes_sop_18" />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="re_pymes_4" />
+        </record>
+        
+        <record id="fptt_pymes_recargo_buy_4" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_4" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_4" />
         </record>
 
-        <record id="fptt_pymes_recargo_buy_18_2" model="account.fiscal.position.tax.template">
+        <record id="fptt_pymes_recargo_buy_4_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_18" />
-            <field name="tax_dest_id" ref="re_pymes_buy_4" />
+            <field name="tax_src_id" ref="iva_pymes_sop_4" />
+            <field name="tax_dest_id" ref="re_pymes_buy_05" />
         </record>
-
+        
         <record id="fptt_pymes_recargo_buy_7" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
             <field name="tax_src_id" ref="iva_pymes_sop_7" />
@@ -375,40 +468,64 @@
             <field name="tax_dest_id" ref="re_pymes_buy_1" />
         </record>
 
-        <record id="fptt_pymes_recargo_buy_4" model="account.fiscal.position.tax.template">
+		<record id="fptt_pymes_recargo_buy_10" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_4" />
-            <field name="tax_dest_id" ref="iva_pymes_sop_4" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_10" />
         </record>
 
-        <record id="fptt_pymes_recargo_buy_4_2" model="account.fiscal.position.tax.template">
+        <record id="fptt_pymes_recargo_buy_10_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_4" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="re_pymes_buy_1" />
+        </record>
+        
+        <record id="fptt_pymes_recargo_buy_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_16" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_16" />
+        </record>
+
+        <record id="fptt_pymes_recargo_buy_16_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_16" />
+            <field name="tax_dest_id" ref="re_pymes_buy_4" />
+        </record>
+
+        <record id="fptt_pymes_recargo_buy_18" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_18" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_18" />
+        </record>
+
+        <record id="fptt_pymes_recargo_buy_18_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_18" />
+            <field name="tax_dest_id" ref="re_pymes_buy_4" />
+        </record>
+        
+        <record id="fptt_pymes_recargo_buy_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_21" />
+        </record>
+
+        <record id="fptt_pymes_recargo_buy_21_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="re_pymes_buy_4" />
+        </record>
+
+ 		<record id="fptt_pymes_recargo_buy_4_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_4_inv" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_4_inv" />
+        </record>
+
+        <record id="fptt_pymes_recargo_buy_4_2_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_4_inv" />
             <field name="tax_dest_id" ref="re_pymes_buy_05" />
-        </record>
-
-        <record id="fptt_pymes_recargo_buy_16_inv" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_16_inv" />
-            <field name="tax_dest_id" ref="iva_pymes_sop_16_inv" />
-        </record>
-
-        <record id="fptt_pymes_recargo_buy_16_2_inv" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_16_inv" />
-            <field name="tax_dest_id" ref="re_pymes_buy_4" />
-        </record>
-
-        <record id="fptt_pymes_recargo_buy_18_inv" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_18_inv" />
-            <field name="tax_dest_id" ref="iva_pymes_sop_18_inv" />
-        </record>
-
-        <record id="fptt_pymes_recargo_buy_18_2_inv" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_18_inv" />
-            <field name="tax_dest_id" ref="re_pymes_buy_4" />
         </record>
 
         <record id="fptt_pymes_recargo_buy_7_inv" model="account.fiscal.position.tax.template">
@@ -434,17 +551,53 @@
             <field name="tax_src_id" ref="iva_pymes_sop_8_inv" />
             <field name="tax_dest_id" ref="re_pymes_buy_1" />
         </record>
-
-        <record id="fptt_pymes_recargo_buy_4_inv" model="account.fiscal.position.tax.template">
+		
+		 <record id="fptt_pymes_recargo_buy_10_inv" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_4_inv" />
-            <field name="tax_dest_id" ref="iva_pymes_sop_4_inv" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10_inv" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_10_inv" />
         </record>
 
-        <record id="fptt_pymes_recargo_buy_4_2_inv" model="account.fiscal.position.tax.template">
+        <record id="fptt_pymes_recargo_buy_10_2_inv" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
-            <field name="tax_src_id" ref="iva_pymes_sop_4_inv" />
-            <field name="tax_dest_id" ref="re_pymes_buy_05" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10_inv" />
+            <field name="tax_dest_id" ref="re_pymes_buy_1" />
+        </record>
+        
+        <record id="fptt_pymes_recargo_buy_16_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_16_inv" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_16_inv" />
+        </record>
+
+        <record id="fptt_pymes_recargo_buy_16_2_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_16_inv" />
+            <field name="tax_dest_id" ref="re_pymes_buy_4" />
+        </record>
+
+        <record id="fptt_pymes_recargo_buy_18_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_18_inv" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_18_inv" />
+        </record>
+
+        <record id="fptt_pymes_recargo_buy_18_2_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_18_inv" />
+            <field name="tax_dest_id" ref="re_pymes_buy_4" />
+        </record>
+        
+        <record id="fptt_pymes_recargo_buy_21_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_21_inv" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_21_inv" />
+        </record>
+
+        <record id="fptt_pymes_recargo_buy_21_2_inv" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recargo"  />
+            <field name="tax_src_id" ref="iva_pymes_sop_21_inv" />
+            <field name="tax_dest_id" ref="re_pymes_buy_4" />
         </record>
 
 	<!-- Extracomunitarios fiscal.position.account.template-->
@@ -525,7 +678,21 @@
 
         <!-- Retenciones IRPF 20% fiscal.position.tax.template-->
         
-        <record id="fptt_pymes_irpf20sale_18" model="account.fiscal.position.tax.template">
+       
+        
+        <record id="fptt_pymes_irpf20sale_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf20" />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_21" />
+        </record>
+        
+        <record id="fptt_pymes_irpf20sale_21_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf20" />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_20" />
+        </record>
+        
+         <record id="fptt_pymes_irpf20sale_18" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf20" />
             <field name="tax_src_id" ref="iva_pymes_rep_18" />
             <field name="tax_dest_id" ref="iva_pymes_rep_18" />
@@ -534,6 +701,18 @@
         <record id="fptt_pymes_irpf20sale_18_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf20" />
             <field name="tax_src_id" ref="iva_pymes_rep_18" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_20" />
+        </record>
+        
+        <record id="fptt_pymes_irpf20sale_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf20" />
+            <field name="tax_src_id" ref="iva_pymes_rep_16" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_16" />
+        </record>
+        
+        <record id="fptt_pymes_irpf20sale_16_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf20" />
+            <field name="tax_src_id" ref="iva_pymes_rep_16" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_20" />
         </record>
         
@@ -549,15 +728,15 @@
             <field name="tax_dest_id" ref="irpf_pymes_sale_20" />
         </record>
         
-        <record id="fptt_pymes_irpf20sale_16" model="account.fiscal.position.tax.template">
+        <record id="fptt_pymes_irpf20sale_10" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf20" />
-            <field name="tax_src_id" ref="iva_pymes_rep_16" />
-            <field name="tax_dest_id" ref="iva_pymes_rep_16" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_10" />
         </record>
         
-        <record id="fptt_pymes_irpf20sale_16_2" model="account.fiscal.position.tax.template">
+        <record id="fptt_pymes_irpf20sale_10_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf20" />
-            <field name="tax_src_id" ref="iva_pymes_rep_16" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_20" />
         </record>
         
@@ -585,6 +764,18 @@
             <field name="tax_dest_id" ref="irpf_pymes_sale_20" />
         </record>
         
+        <record id="fptt_pymes_irpf20_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf20" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_21" />
+        </record>
+        
+        <record id="fptt_pymes_irpf20_21_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf20" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="irpf_pymes_20" />
+        </record>
+        
         <record id="fptt_pymes_irpf20_18" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf20" />
             <field name="tax_src_id" ref="iva_pymes_sop_18" />
@@ -597,18 +788,6 @@
             <field name="tax_dest_id" ref="irpf_pymes_20" />
         </record>
         
-        <record id="fptt_pymes_irpf20_8" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf20" />
-            <field name="tax_src_id" ref="iva_pymes_sop_8" />
-            <field name="tax_dest_id" ref="iva_pymes_sop_8" />
-        </record>
-        
-        <record id="fptt_pymes_irpf20_8_2" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf20" />
-            <field name="tax_src_id" ref="iva_pymes_sop_8" />
-            <field name="tax_dest_id" ref="irpf_pymes_20" />
-        </record>
-        
         <record id="fptt_pymes_irpf20_16" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf20" />
             <field name="tax_src_id" ref="iva_pymes_sop_16" />
@@ -618,6 +797,30 @@
         <record id="fptt_pymes_irpf20_16_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf20" />
             <field name="tax_src_id" ref="iva_pymes_sop_16" />
+            <field name="tax_dest_id" ref="irpf_pymes_20" />
+        </record>
+        
+        <record id="fptt_pymes_irpf20_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf20" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_10" />
+        </record>
+        
+        <record id="fptt_pymes_irpf20_10_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf20" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="irpf_pymes_20" />
+        </record>
+        
+        <record id="fptt_pymes_irpf20_8" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf20" />
+            <field name="tax_src_id" ref="iva_pymes_sop_8" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_8" />
+        </record>
+        
+        <record id="fptt_pymes_irpf20_8_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf20" />
+            <field name="tax_src_id" ref="iva_pymes_sop_8" />
             <field name="tax_dest_id" ref="irpf_pymes_20" />
         </record>
         
@@ -647,6 +850,18 @@
 
 	<!-- Retenciones IRPF 19% fiscal.position.tax.template-->
 
+		<record id="fptt_pymes_irpf19sale_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf19" />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_21" />
+        </record>
+
+        <record id="fptt_pymes_irpf19sale_21_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf19" />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_19" />
+        </record>
+
         <record id="fptt_pymes_irpf19sale_18" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf19" />
             <field name="tax_src_id" ref="iva_pymes_rep_18" />
@@ -656,6 +871,30 @@
         <record id="fptt_pymes_irpf19sale_18_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf19" />
             <field name="tax_src_id" ref="iva_pymes_rep_18" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_19" />
+        </record>
+        
+        <record id="fptt_pymes_irpf19sale_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf19" />
+            <field name="tax_src_id" ref="iva_pymes_rep_16" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_16" />
+        </record>
+
+        <record id="fptt_pymes_irpf19sale_16_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf19" />
+            <field name="tax_src_id" ref="iva_pymes_rep_16" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_19" />
+        </record>
+         
+         <record id="fptt_pymes_irpf19sale_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf19" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_10" />
+        </record>
+
+        <record id="fptt_pymes_irpf19sale_10_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf19" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_19" />
         </record>
 
@@ -668,18 +907,6 @@
         <record id="fptt_pymes_irpf19sale_8_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf19" />
             <field name="tax_src_id" ref="iva_pymes_rep_8" />
-            <field name="tax_dest_id" ref="irpf_pymes_sale_19" />
-        </record>
-
-        <record id="fptt_pymes_irpf19sale_16" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf19" />
-            <field name="tax_src_id" ref="iva_pymes_rep_16" />
-            <field name="tax_dest_id" ref="iva_pymes_rep_16" />
-        </record>
-
-        <record id="fptt_pymes_irpf19sale_16_2" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf19" />
-            <field name="tax_src_id" ref="iva_pymes_rep_16" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_19" />
         </record>
 
@@ -706,6 +933,18 @@
             <field name="tax_src_id" ref="iva_pymes_rep_4" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_19" />
         </record>
+        
+        <record id="fptt_pymes_irpf19_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf19" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_21" />
+        </record>
+
+        <record id="fptt_pymes_irpf19_21_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf19" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="irpf_pymes_19" />
+        </record>
 
         <record id="fptt_pymes_irpf19_18" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf19" />
@@ -718,6 +957,30 @@
             <field name="tax_src_id" ref="iva_pymes_sop_18" />
             <field name="tax_dest_id" ref="irpf_pymes_19" />
         </record>
+        
+         <record id="fptt_pymes_irpf19_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf19" />
+            <field name="tax_src_id" ref="iva_pymes_sop_16" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_16" />
+        </record>
+
+        <record id="fptt_pymes_irpf19_16_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf19" />
+            <field name="tax_src_id" ref="iva_pymes_sop_16" />
+            <field name="tax_dest_id" ref="irpf_pymes_19" />
+        </record>
+
+		<record id="fptt_pymes_irpf19_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf19" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_10" />
+        </record>
+
+        <record id="fptt_pymes_irpf19_10_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf19" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="irpf_pymes_19" />
+        </record>
 
         <record id="fptt_pymes_irpf19_8" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf19" />
@@ -728,18 +991,6 @@
         <record id="fptt_pymes_irpf19_8_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf19" />
             <field name="tax_src_id" ref="iva_pymes_sop_8" />
-            <field name="tax_dest_id" ref="irpf_pymes_19" />
-        </record>
-
-        <record id="fptt_pymes_irpf19_16" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf19" />
-            <field name="tax_src_id" ref="iva_pymes_sop_16" />
-            <field name="tax_dest_id" ref="iva_pymes_sop_16" />
-        </record>
-
-        <record id="fptt_pymes_irpf19_16_2" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf19" />
-            <field name="tax_src_id" ref="iva_pymes_sop_16" />
             <field name="tax_dest_id" ref="irpf_pymes_19" />
         </record>
 
@@ -769,6 +1020,18 @@
 
 	<!-- Retenciones IRPF 18% fiscal.position.tax.template-->
 
+        <record id="fptt_pymes_irpf18sale_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf18" />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_21" />
+        </record>
+
+        <record id="fptt_pymes_irpf18sale_21_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf18" />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_18" />
+        </record>
+        
         <record id="fptt_pymes_irpf18sale_18" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf18" />
             <field name="tax_src_id" ref="iva_pymes_rep_18" />
@@ -778,6 +1041,30 @@
         <record id="fptt_pymes_irpf18sale_18_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf18" />
             <field name="tax_src_id" ref="iva_pymes_rep_18" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_18" />
+        </record>
+        
+        <record id="fptt_pymes_irpf18sale_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf18" />
+            <field name="tax_src_id" ref="iva_pymes_rep_16" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_16" />
+        </record>
+
+        <record id="fptt_pymes_irpf18sale_16_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf18" />
+            <field name="tax_src_id" ref="iva_pymes_rep_16" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_18" />
+        </record>
+
+		<record id="fptt_pymes_irpf18sale_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf18" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_10" />
+        </record>
+
+        <record id="fptt_pymes_irpf18sale_10_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf18" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_18" />
         </record>
 
@@ -790,18 +1077,6 @@
         <record id="fptt_pymes_irpf18sale_8_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf18" />
             <field name="tax_src_id" ref="iva_pymes_rep_8" />
-            <field name="tax_dest_id" ref="irpf_pymes_sale_18" />
-        </record>
-
-        <record id="fptt_pymes_irpf18sale_16" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf18" />
-            <field name="tax_src_id" ref="iva_pymes_rep_16" />
-            <field name="tax_dest_id" ref="iva_pymes_rep_16" />
-        </record>
-
-        <record id="fptt_pymes_irpf18sale_16_2" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf18" />
-            <field name="tax_src_id" ref="iva_pymes_rep_16" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_18" />
         </record>
 
@@ -828,6 +1103,18 @@
             <field name="tax_src_id" ref="iva_pymes_rep_4" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_18" />
         </record>
+        
+         <record id="fptt_pymes_irpf18_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf18" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_21" />
+        </record>
+
+        <record id="fptt_pymes_irpf18_21_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf18" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="irpf_pymes_18" />
+        </record>
 
         <record id="fptt_pymes_irpf18_18" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf18" />
@@ -840,19 +1127,7 @@
             <field name="tax_src_id" ref="iva_pymes_sop_18" />
             <field name="tax_dest_id" ref="irpf_pymes_18" />
         </record>
-
-        <record id="fptt_pymes_irpf18_8" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf18" />
-            <field name="tax_src_id" ref="iva_pymes_sop_8" />
-            <field name="tax_dest_id" ref="iva_pymes_sop_8" />
-        </record>
-
-        <record id="fptt_pymes_irpf18_8_2" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf18" />
-            <field name="tax_src_id" ref="iva_pymes_sop_8" />
-            <field name="tax_dest_id" ref="irpf_pymes_18" />
-        </record>
-
+        
         <record id="fptt_pymes_irpf18_16" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf18" />
             <field name="tax_src_id" ref="iva_pymes_sop_16" />
@@ -862,6 +1137,30 @@
         <record id="fptt_pymes_irpf18_16_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf18" />
             <field name="tax_src_id" ref="iva_pymes_sop_16" />
+            <field name="tax_dest_id" ref="irpf_pymes_18" />
+        </record>
+        
+        <record id="fptt_pymes_irpf18_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf18" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_10" />
+        </record>
+
+        <record id="fptt_pymes_irpf18_8_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf18" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="irpf_pymes_18" />
+        </record>
+        
+        <record id="fptt_pymes_irpf18_8" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf18" />
+            <field name="tax_src_id" ref="iva_pymes_sop_8" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_8" />
+        </record>
+
+        <record id="fptt_pymes_irpf18_8_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf18" />
+            <field name="tax_src_id" ref="iva_pymes_sop_8" />
             <field name="tax_dest_id" ref="irpf_pymes_18" />
         </record>
 
@@ -891,6 +1190,18 @@
 
 	<!-- Retenciones IRPF 15% fiscal.position.tax.template-->
 
+		<record id="fptt_pymes_irpf15sale_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf15" />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_21" />
+        </record>
+
+        <record id="fptt_pymes_irpf15sale_21_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf15" />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_15" />
+        </record>        
+        
         <record id="fptt_pymes_irpf15sale_18" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf15" />
             <field name="tax_src_id" ref="iva_pymes_rep_18" />
@@ -900,6 +1211,30 @@
         <record id="fptt_pymes_irpf15sale_18_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf15" />
             <field name="tax_src_id" ref="iva_pymes_rep_18" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_15" />
+        </record>
+        
+        <record id="fptt_pymes_irpf15sale_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf15" />
+            <field name="tax_src_id" ref="iva_pymes_rep_16" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_16" />
+        </record>
+
+        <record id="fptt_pymes_irpf15sale_16_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf15" />
+            <field name="tax_src_id" ref="iva_pymes_rep_16" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_15" />
+        </record>
+        
+        <record id="fptt_pymes_irpf15sale_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf15" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_10" />
+        </record>
+
+        <record id="fptt_pymes_irpf15sale_10_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf15" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_15" />
         </record>
 
@@ -912,18 +1247,6 @@
         <record id="fptt_pymes_irpf15sale_8_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf15" />
             <field name="tax_src_id" ref="iva_pymes_rep_8" />
-            <field name="tax_dest_id" ref="irpf_pymes_sale_15" />
-        </record>
-
-        <record id="fptt_pymes_irpf15sale_16" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf15" />
-            <field name="tax_src_id" ref="iva_pymes_rep_16" />
-            <field name="tax_dest_id" ref="iva_pymes_rep_16" />
-        </record>
-
-        <record id="fptt_pymes_irpf15sale_16_2" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf15" />
-            <field name="tax_src_id" ref="iva_pymes_rep_16" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_15" />
         </record>
 
@@ -950,6 +1273,18 @@
             <field name="tax_src_id" ref="iva_pymes_rep_4" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_15" />
         </record>
+        
+        <record id="fptt_pymes_irpf15_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf15" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_21" />
+        </record>
+
+        <record id="fptt_pymes_irpf15_21_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf15" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="irpf_pymes_15" />
+        </record>
 
         <record id="fptt_pymes_irpf15_18" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf15" />
@@ -962,19 +1297,7 @@
             <field name="tax_src_id" ref="iva_pymes_sop_18" />
             <field name="tax_dest_id" ref="irpf_pymes_15" />
         </record>
-
-        <record id="fptt_pymes_irpf15_8" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf15" />
-            <field name="tax_src_id" ref="iva_pymes_sop_8" />
-            <field name="tax_dest_id" ref="iva_pymes_sop_8" />
-        </record>
-
-        <record id="fptt_pymes_irpf15_8_2" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf15" />
-            <field name="tax_src_id" ref="iva_pymes_sop_8" />
-            <field name="tax_dest_id" ref="irpf_pymes_15" />
-        </record>
-
+        
         <record id="fptt_pymes_irpf15_16" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf15" />
             <field name="tax_src_id" ref="iva_pymes_sop_16" />
@@ -984,6 +1307,30 @@
         <record id="fptt_pymes_irpf15_16_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf15" />
             <field name="tax_src_id" ref="iva_pymes_sop_16" />
+            <field name="tax_dest_id" ref="irpf_pymes_15" />
+        </record>
+        
+        <record id="fptt_pymes_irpf15_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf15" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_10" />
+        </record>
+
+        <record id="fptt_pymes_irpf15_10_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf15" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="irpf_pymes_15" />
+        </record>
+        
+        <record id="fptt_pymes_irpf15_8" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf15" />
+            <field name="tax_src_id" ref="iva_pymes_sop_8" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_8" />
+        </record>
+
+        <record id="fptt_pymes_irpf15_8_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf15" />
+            <field name="tax_src_id" ref="iva_pymes_sop_8" />
             <field name="tax_dest_id" ref="irpf_pymes_15" />
         </record>
 
@@ -1013,6 +1360,18 @@
 
 	<!-- Retenciones IRPF 7% fiscal.position.tax.template-->
 
+        <record id="fptt_pymes_irpf7sale_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf7" />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_21" />
+        </record>
+
+        <record id="fptt_pymes_irpf7sale_21_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf7" />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_7" />
+        </record>
+        
         <record id="fptt_pymes_irpf7sale_18" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf7" />
             <field name="tax_src_id" ref="iva_pymes_rep_18" />
@@ -1022,6 +1381,30 @@
         <record id="fptt_pymes_irpf7sale_18_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf7" />
             <field name="tax_src_id" ref="iva_pymes_rep_18" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_7" />
+        </record>
+        
+        <record id="fptt_pymes_irpf7sale_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf7" />
+            <field name="tax_src_id" ref="iva_pymes_rep_16" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_16" />
+        </record>
+
+        <record id="fptt_pymes_irpf7sale_16_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf7" />
+            <field name="tax_src_id" ref="iva_pymes_rep_16" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_7" />
+        </record>
+        
+        <record id="fptt_pymes_irpf7sale_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf7" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_10" />
+        </record>
+
+        <record id="fptt_pymes_irpf7sale_10_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf7" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_7" />
         </record>
 
@@ -1034,18 +1417,6 @@
         <record id="fptt_pymes_irpf7sale_8_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf7" />
             <field name="tax_src_id" ref="iva_pymes_rep_8" />
-            <field name="tax_dest_id" ref="irpf_pymes_sale_7" />
-        </record>
-
-        <record id="fptt_pymes_irpf7sale_16" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf7" />
-            <field name="tax_src_id" ref="iva_pymes_rep_16" />
-            <field name="tax_dest_id" ref="iva_pymes_rep_16" />
-        </record>
-
-        <record id="fptt_pymes_irpf7sale_16_2" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf7" />
-            <field name="tax_src_id" ref="iva_pymes_rep_16" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_7" />
         </record>
 
@@ -1073,6 +1444,18 @@
             <field name="tax_dest_id" ref="irpf_pymes_sale_7" />
         </record>
 
+		<record id="fptt_pymes_irpf7_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf7" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_21" />
+        </record>
+
+        <record id="fptt_pymes_irpf7_21_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf7" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="irpf_pymes_7" />
+        </record>
+
         <record id="fptt_pymes_irpf7_18" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf7" />
             <field name="tax_src_id" ref="iva_pymes_sop_18" />
@@ -1084,7 +1467,31 @@
             <field name="tax_src_id" ref="iva_pymes_sop_18" />
             <field name="tax_dest_id" ref="irpf_pymes_7" />
         </record>
+        
+        <record id="fptt_pymes_irpf7_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf7" />
+            <field name="tax_src_id" ref="iva_pymes_sop_16" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_16" />
+        </record>
 
+        <record id="fptt_pymes_irpf7_16_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf7" />
+            <field name="tax_src_id" ref="iva_pymes_sop_16" />
+            <field name="tax_dest_id" ref="irpf_pymes_7" />
+        </record>
+        
+         <record id="fptt_pymes_irpf7_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf7" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_10" />
+        </record>
+
+        <record id="fptt_pymes_irpf7_10_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf7" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="irpf_pymes_7" />
+        </record>
+        
         <record id="fptt_pymes_irpf7_8" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf7" />
             <field name="tax_src_id" ref="iva_pymes_sop_8" />
@@ -1097,18 +1504,7 @@
             <field name="tax_dest_id" ref="irpf_pymes_7" />
         </record>
 
-        <record id="fptt_pymes_irpf7_16" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf7" />
-            <field name="tax_src_id" ref="iva_pymes_sop_16" />
-            <field name="tax_dest_id" ref="iva_pymes_sop_16" />
-        </record>
-
-        <record id="fptt_pymes_irpf7_16_2" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf7" />
-            <field name="tax_src_id" ref="iva_pymes_sop_16" />
-            <field name="tax_dest_id" ref="irpf_pymes_7" />
-        </record>
-
+        
         <record id="fptt_pymes_irpf7_7" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf7" />
             <field name="tax_src_id" ref="iva_pymes_sop_7" />
@@ -1134,6 +1530,18 @@
         </record>
 
 	<!-- Retenciones IRPF 2% fiscal.position.tax.template-->
+		
+		<record id="fptt_pymes_irpf2sale_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf2" />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_21" />
+        </record>
+
+        <record id="fptt_pymes_irpf2sale_21_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf2" />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_2" />
+        </record>
 
         <record id="fptt_pymes_irpf2sale_18" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf2" />
@@ -1146,19 +1554,7 @@
             <field name="tax_src_id" ref="iva_pymes_rep_18" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_2" />
         </record>
-
-        <record id="fptt_pymes_irpf2sale_8" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf2" />
-            <field name="tax_src_id" ref="iva_pymes_rep_8" />
-            <field name="tax_dest_id" ref="iva_pymes_rep_8" />
-        </record>
-
-        <record id="fptt_pymes_irpf2sale_8_2" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf2" />
-            <field name="tax_src_id" ref="iva_pymes_rep_8" />
-            <field name="tax_dest_id" ref="irpf_pymes_sale_2" />
-        </record>
-
+        
         <record id="fptt_pymes_irpf2sale_16" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf2" />
             <field name="tax_src_id" ref="iva_pymes_rep_16" />
@@ -1168,6 +1564,30 @@
         <record id="fptt_pymes_irpf2sale_16_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf2" />
             <field name="tax_src_id" ref="iva_pymes_rep_16" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_2" />
+        </record>
+
+        <record id="fptt_pymes_irpf2sale_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf2" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_10" />
+        </record>
+
+        <record id="fptt_pymes_irpf2sale_10_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf2" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_2" />
+        </record>
+        
+        <record id="fptt_pymes_irpf2sale_8" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf2" />
+            <field name="tax_src_id" ref="iva_pymes_rep_8" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_8" />
+        </record>
+
+        <record id="fptt_pymes_irpf2sale_8_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf2" />
+            <field name="tax_src_id" ref="iva_pymes_rep_8" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_2" />
         </record>
 
@@ -1195,6 +1615,18 @@
             <field name="tax_dest_id" ref="irpf_pymes_sale_2" />
         </record>
 
+		<record id="fptt_pymes_irpf2_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf2" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_21" />
+        </record>
+
+        <record id="fptt_pymes_irpf2_21_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf2" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="irpf_pymes_2" />
+        </record>
+
         <record id="fptt_pymes_irpf2_18" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf2" />
             <field name="tax_src_id" ref="iva_pymes_sop_18" />
@@ -1204,6 +1636,30 @@
         <record id="fptt_pymes_irpf2_18_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf2" />
             <field name="tax_src_id" ref="iva_pymes_sop_18" />
+            <field name="tax_dest_id" ref="irpf_pymes_2" />
+        </record>
+        
+        <record id="fptt_pymes_irpf2_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf2" />
+            <field name="tax_src_id" ref="iva_pymes_sop_16" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_16" />
+        </record>
+
+        <record id="fptt_pymes_irpf2_16_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf2" />
+            <field name="tax_src_id" ref="iva_pymes_sop_16" />
+            <field name="tax_dest_id" ref="irpf_pymes_2" />
+        </record>
+        
+        <record id="fptt_pymes_irpf2_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf2" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_10" />
+        </record>
+
+        <record id="fptt_pymes_irpf2_10_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf2" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
             <field name="tax_dest_id" ref="irpf_pymes_2" />
         </record>
 
@@ -1218,19 +1674,7 @@
             <field name="tax_src_id" ref="iva_pymes_sop_8" />
             <field name="tax_dest_id" ref="irpf_pymes_2" />
         </record>
-
-        <record id="fptt_pymes_irpf2_16" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf2" />
-            <field name="tax_src_id" ref="iva_pymes_sop_16" />
-            <field name="tax_dest_id" ref="iva_pymes_sop_16" />
-        </record>
-
-        <record id="fptt_pymes_irpf2_16_2" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf2" />
-            <field name="tax_src_id" ref="iva_pymes_sop_16" />
-            <field name="tax_dest_id" ref="irpf_pymes_2" />
-        </record>
-
+        
         <record id="fptt_pymes_irpf2_7" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf2" />
             <field name="tax_src_id" ref="iva_pymes_sop_7" />
@@ -1257,6 +1701,18 @@
 
 	<!-- Retenciones IRPF 1% fiscal.position.tax.template-->
 
+        <record id="fptt_pymes_irpf1sale_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf1" />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_21" />
+        </record>
+
+        <record id="fptt_pymes_irpf1sale_21_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf1" />
+            <field name="tax_src_id" ref="iva_pymes_rep_21" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_1" />
+        </record>
+        
         <record id="fptt_pymes_irpf1sale_18" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf1" />
             <field name="tax_src_id" ref="iva_pymes_rep_18" />
@@ -1266,6 +1722,30 @@
         <record id="fptt_pymes_irpf1sale_18_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf1" />
             <field name="tax_src_id" ref="iva_pymes_rep_18" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_1" />
+        </record>
+        
+        <record id="fptt_pymes_irpf1sale_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf1" />
+            <field name="tax_src_id" ref="iva_pymes_rep_16" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_16" />
+        </record>
+
+        <record id="fptt_pymes_irpf1sale_16_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf1" />
+            <field name="tax_src_id" ref="iva_pymes_rep_16" />
+            <field name="tax_dest_id" ref="irpf_pymes_sale_1" />
+        </record>
+        
+        <record id="fptt_pymes_irpf1sale_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf1" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
+            <field name="tax_dest_id" ref="iva_pymes_rep_10" />
+        </record>
+
+        <record id="fptt_pymes_irpf1sale_10_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf1" />
+            <field name="tax_src_id" ref="iva_pymes_rep_10" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_1" />
         </record>
 
@@ -1278,18 +1758,6 @@
         <record id="fptt_pymes_irpf1sale_8_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf1" />
             <field name="tax_src_id" ref="iva_pymes_rep_8" />
-            <field name="tax_dest_id" ref="irpf_pymes_sale_1" />
-        </record>
-
-        <record id="fptt_pymes_irpf1sale_16" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf1" />
-            <field name="tax_src_id" ref="iva_pymes_rep_16" />
-            <field name="tax_dest_id" ref="iva_pymes_rep_16" />
-        </record>
-
-        <record id="fptt_pymes_irpf1sale_16_2" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf1" />
-            <field name="tax_src_id" ref="iva_pymes_rep_16" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_1" />
         </record>
 
@@ -1316,6 +1784,18 @@
             <field name="tax_src_id" ref="iva_pymes_rep_4" />
             <field name="tax_dest_id" ref="irpf_pymes_sale_1" />
         </record>
+        
+        <record id="fptt_pymes_irpf1_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf1" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_21" />
+        </record>
+
+        <record id="fptt_pymes_irpf1_21_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf1" />
+            <field name="tax_src_id" ref="iva_pymes_sop_21" />
+            <field name="tax_dest_id" ref="irpf_pymes_1" />
+        </record>
 
         <record id="fptt_pymes_irpf1_18" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf1" />
@@ -1328,7 +1808,31 @@
             <field name="tax_src_id" ref="iva_pymes_sop_18" />
             <field name="tax_dest_id" ref="irpf_pymes_1" />
         </record>
+        
+         <record id="fptt_pymes_irpf1_16" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf1" />
+            <field name="tax_src_id" ref="iva_pymes_sop_16" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_16" />
+        </record>
 
+        <record id="fptt_pymes_irpf1_16_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf1" />
+            <field name="tax_src_id" ref="iva_pymes_sop_16" />
+            <field name="tax_dest_id" ref="irpf_pymes_1" />
+        </record>
+
+		<record id="fptt_pymes_irpf1_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf1" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_10" />
+        </record>
+
+        <record id="fptt_pymes_irpf1_10_2" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_irpf1" />
+            <field name="tax_src_id" ref="iva_pymes_sop_10" />
+            <field name="tax_dest_id" ref="irpf_pymes_1" />
+        </record>
+		
         <record id="fptt_pymes_irpf1_8" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf1" />
             <field name="tax_src_id" ref="iva_pymes_sop_8" />
@@ -1338,18 +1842,6 @@
         <record id="fptt_pymes_irpf1_8_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_irpf1" />
             <field name="tax_src_id" ref="iva_pymes_sop_8" />
-            <field name="tax_dest_id" ref="irpf_pymes_1" />
-        </record>
-
-        <record id="fptt_pymes_irpf1_16" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf1" />
-            <field name="tax_src_id" ref="iva_pymes_sop_16" />
-            <field name="tax_dest_id" ref="iva_pymes_sop_16" />
-        </record>
-
-        <record id="fptt_pymes_irpf1_16_2" model="account.fiscal.position.tax.template">
-            <field name="position_id" ref="fp_pymes_irpf1" />
-            <field name="tax_src_id" ref="iva_pymes_sop_16" />
             <field name="tax_dest_id" ref="irpf_pymes_1" />
         </record>
 
