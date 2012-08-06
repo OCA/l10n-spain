@@ -365,7 +365,30 @@ class wizard_run(wizard.interface):
                 # Check if the children account needs to (and can) be closed
                 # Note: We currently ignore the close_method (account.user_type.close_method)
                 #       and always do a balance close.
-                if account.type != 'view': 
+
+                #Avoid grouping ( losing partner_id values )  payable,receivable accounts.                 
+                if account.type in ('payable','receivable'):
+                    accounts_dict = pool.get('account.account').get_amount_by_partners(cr, uid, [account.id], ctx )
+                    for account_id, account_value in accounts_dict.iteritems():
+                        for partner_id,amounts in account_value.iteritems():
+                            balance = amounts.get('balance')                        
+                            if round(abs(balance), pool.get('decimal.precision').precision_get(cr, uid, 'Account')) > 0:                                
+                                move_lines.append({
+                                   'account_id': account_id,
+                                   'debit': balance<0 and -balance,
+                                   'credit': balance>0 and balance,
+                                   'name': description,
+                                   'date': date,
+                                    'period_id': period_id,
+                                    'journal_id': journal_id,
+                                    'partner_id': partner_id,                                
+                                })
+
+                                # Update the dest account total (with the inverse of the balance)
+                                if account_map.dest_account_id:
+                                    dest_accounts_totals[account_map.dest_account_id.id] -= balance                        
+                    
+                elif account.type != 'view': 
                     # Compute the balance for the account (uses the previous browse context filter)
                     balance = account.balance
                     # Check if the balance is greater than the limit
@@ -380,7 +403,7 @@ class wizard_run(wizard.interface):
                                 'name': description,
                                 'date': date,
                                 'period_id': period_id,
-                                'journal_id': journal_id,
+                                'journal_id': journal_id,                                
                             })
 
                         # Update the dest account total (with the inverse of the balance)
@@ -496,6 +519,7 @@ class wizard_run(wizard.interface):
                     'date': date,
                     'period_id': period_id,
                     'journal_id': journal_id,
+                    'partner_id': line.partner_id and line.partner_id.id or False,
                 })
             accounts_done += 1
             data['process_task_progress'] = (accounts_done * 90.0) / total_accounts
