@@ -211,7 +211,7 @@
                             <field name="period_selection" on_change="onchange_period_selection(period_selection, fiscalyear_id)"/>
                                 <newline/>
                             <group colspan="2" col="2" attrs="{'invisible':[('period_selection','not in',['1T','2T','3T','4T'])]}">
-                                <field name="period_id"  attrs="{'required':[('period_selection','in',['1T','2T','3T','4T'])]}" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
+                                <field name="period_ids"  attrs="{'required':[('period_selection','in',['1T','2T','3T','4T'])]}" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
                             </group>
                                 <newline/>
                             <group colspan="2" col="2" attrs="{'invisible':[('period_selection','!=','MO')]}">
