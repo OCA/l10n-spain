@@ -187,12 +187,12 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
                         operation_key=operation_key,
                         period_selection=reports.period_selection,
                         fiscalyear_id=reports.fiscalyear_id.id,
-                        period_id=reports.period_id.id,
+                        period_id=[x.id for x in reports.period_ids],
                         month=reports.month_selection)
 
                     # Separates normal invoices of restitutions
                     invoice_ids, refunds_ids = invoice_obj.clean_refund_invoices(cr, uid, invoice_ids, partner.id,
-                                    fiscalyear_id=reports.fiscalyear_id.id, period_id=reports.period_id.id,
+                                    fiscalyear_id=reports.fiscalyear_id.id, period_id=[x.id for x in reports.period_ids],
                                     month=reports.month_selection, period_selection=reports.period_selection)
 
                     ##

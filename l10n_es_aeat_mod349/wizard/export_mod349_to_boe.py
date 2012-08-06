@@ -38,7 +38,7 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
         """
         if company_obj.partner_id and \
             company_obj.partner_id.title:
-                return company_obj.name + ' ' + company_obj.partner_id.title.capitalize()
+                return company_obj.name + ' ' + company_obj.partner_id.title.name.capitalize()
 
         return company_obj.name
 
