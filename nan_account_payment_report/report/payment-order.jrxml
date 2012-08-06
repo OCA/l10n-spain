@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="payment-order" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="payment-order" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="OPENERP_RELATIONS" value="[&apos;line_ids&apos;]"/>
-	<property name="ireport.zoom" value="1.9487171000000014"/>
+	<property name="ireport.zoom" value="1.331000000000002"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="defecto" forecolor="#FFFFFF" fontSize="10" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
@@ -57,8 +57,7 @@
 		<fieldDescription><![CDATA[/data/record/mode/bank_id/street]]></fieldDescription>
 	</field>
 	<field name="payment_mode_bank_zip" class="java.lang.String">
-		<fieldDescription><![CDATA[/data/record/mode/bank_id/zip
-]]></fieldDescription>
+		<fieldDescription><![CDATA[/data/record/mode/bank_id/zip]]></fieldDescription>
 	</field>
 	<field name="payment_mode_bank_account" class="java.lang.String">
 		<fieldDescription><![CDATA[/data/record/mode/bank_id/acc_number]]></fieldDescription>
@@ -71,6 +70,15 @@
 	</field>
 	<field name="payment_mode_bank_iban" class="java.lang.String">
 		<fieldDescription><![CDATA[/data/record/mode/bank_id/iban]]></fieldDescription>
+	</field>
+	<field name="payment_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/line_ids/date]]></fieldDescription>
+	</field>
+	<field name="acc_number" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/line_ids/bank_id/acc_number]]></fieldDescription>
+	</field>
+	<field name="iban" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/line_ids/bank_id/iban]]></fieldDescription>
 	</field>
 	<variable name="L" class="java.util.Locale">
 		<variableExpression><![CDATA[$P{REPORT_LOCALE}]]></variableExpression>
@@ -88,14 +96,14 @@
 		<groupFooter>
 			<band height="26">
 				<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-					<reportElement style="textoscabecera" x="455" y="6" width="100" height="12"/>
+					<reportElement style="textoscabecera" x="700" y="6" width="100" height="12"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font size="9"/>
 					</textElement>
 					<textFieldExpression class="java.lang.Double"><![CDATA[$F{total}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="textoscabecera" x="319" y="6" width="132" height="12"/>
+					<reportElement style="textoscabecera" x="564" y="6" width="132" height="12"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font size="9" isBold="true"/>
 					</textElement>
@@ -117,38 +125,38 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[tr($V{L},"Reference:")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="textoscabecera" x="2" y="143" width="199" height="11"/>
+				<reportElement style="textoscabecera" x="1" y="143" width="240" height="11"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[tr($V{L},"Partner")]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="156" width="555" height="1"/>
+				<reportElement x="0" y="156" width="802" height="1"/>
 			</line>
 			<textField>
-				<reportElement style="textoscabecera" x="201" y="143" width="99" height="11"/>
+				<reportElement style="textoscabecera" x="376" y="143" width="89" height="11"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[tr($V{L},"Invoice")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="textoscabecera" x="378" y="143" width="72" height="11"/>
+				<reportElement style="textoscabecera" x="543" y="143" width="76" height="11"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[tr($V{L},"Date Due")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="textoscabecera" x="474" y="143" width="79" height="11"/>
+				<reportElement style="textoscabecera" x="719" y="143" width="79" height="11"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[tr($V{L},"Amount")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="textoscabecera" x="303" y="143" width="72" height="11"/>
+				<reportElement style="textoscabecera" x="466" y="143" width="76" height="11"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
@@ -161,8 +169,8 @@
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{order_number}]]></textFieldExpression>
 			</textField>
-			<subreport>
-				<reportElement x="2" y="0" width="551" height="40"/>
+			<subreport isUsingCache="true">
+				<reportElement x="2" y="0" width="800" height="40"/>
 				<subreportParameter name="DOCUMENT">
 					<subreportParameterExpression><![CDATA[$F{type} == "payable" ?
     tr($V{L},"Payment Order")
@@ -176,31 +184,31 @@
 					<subreportParameterExpression><![CDATA[$F{lang}]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[$P{HEADER_DS}]]></dataSourceExpression>
-				<subreportExpression class="java.lang.String"><![CDATA[$P{STANDARD_DIR} + "portrait_header.jasper"]]></subreportExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{STANDARD_DIR} + "landscape_header.jasper"]]></subreportExpression>
 			</subreport>
 			<textField isBlankWhenNull="true">
-				<reportElement x="302" y="55" width="235" height="12"/>
+				<reportElement x="563" y="55" width="235" height="12"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{payment_mode_bank_name}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="303" y="67" width="234" height="12"/>
+				<reportElement x="564" y="67" width="234" height="12"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{payment_mode_bank_street}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="303" y="79" width="44" height="12"/>
+				<reportElement x="564" y="79" width="44" height="12"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{payment_mode_bank_zip}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="347" y="79" width="190" height="12"/>
+				<reportElement x="608" y="79" width="190" height="12"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
@@ -237,65 +245,97 @@
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[tr($V{L},"Bank Account:")]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement style="textoscabecera" x="620" y="143" width="76" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[tr($V{L},"Payment Date")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="textoscabecera" x="244" y="143" width="130" height="11"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[tr($V{L},"Account Number")]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<detail>
 		<band height="17" splitType="Stretch">
 			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
-				<reportElement x="476" y="0" width="79" height="14"/>
+				<reportElement x="721" y="0" width="79" height="14"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{amount}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="1" y="1" width="210" height="14"/>
+				<reportElement x="1" y="0" width="240" height="15"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{partner_name}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="375" y="0" width="76" height="15"/>
+				<reportElement x="543" y="0" width="76" height="15"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.util.Date"><![CDATA[$F{due_date}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="211" y="2" width="89" height="13"/>
+				<reportElement x="376" y="0" width="89" height="15"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{invoice_number}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="300" y="0" width="75" height="16"/>
+				<reportElement x="466" y="0" width="76" height="15"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.util.Date"><![CDATA[$F{invoice_date}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="620" y="0" width="76" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{payment_date}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="244" y="0" width="130" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{acc_number} != ""
+?
+    $F{acc_number}
+:
+    $F{iban}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<pageFooter>
 		<band height="13" splitType="Stretch">
 			<textField>
-				<reportElement x="500" y="0" width="37" height="12"/>
+				<reportElement x="745" y="0" width="37" height="12"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$V{PAGE_NUMBER} + "/"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="537" y="0" width="18" height="12"/>
+				<reportElement x="782" y="0" width="18" height="12"/>
 				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="1" y="0" width="497" height="12"/>
+				<reportElement x="1" y="0" width="744" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="6"/>
 				</textElement>
