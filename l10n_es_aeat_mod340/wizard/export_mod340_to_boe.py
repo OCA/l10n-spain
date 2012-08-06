@@ -56,7 +56,7 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             138-146 	Número total de registros
             147-164 	Importe total de la base imponible
             165-182 	Importe Total de la cuota del impuesto
-            163-200 	Importe total de las facturas
+            183-200 	Importe total de las facturas
             201-390 	Blancos
             391-399 	NIF del representante legal
             400-415 	Sello electrónico
@@ -127,7 +127,12 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             326-365     Identificación de la factura rectificativa. TODO.
             366-370     Tipo recargo de equivalencia. TODO.
             371-384     Cuota recargo de equivalencia. TODO.
-            385-500     Blancos
+            385         Situación del Inmueble #TODO  2012
+            386-410     Referencia Catastral #TODO 2012
+            411-425     Importe Percibido en Metálico #TODO 2012
+            426-429     Ejercicio ( cifras del ejercicio en el que se hubieran declarado las operaciones que dan origen al cobro ) #TODO 2012
+            430-444     Importe percibido por transmisiones de Inmuebles sujetas a IVA. #TODO 2012
+            445-500     BLANCOS            
             
 
         """
@@ -182,9 +187,13 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             text +=  self._formatString( ",".join( [x.number for x in  invoice_issued.invoice_id.origin_invoices_ids]) , 40 )   # Identificación factura rectificativa
             text += self._formatNumber(0, 5)  # Tipo Recargo de equivalencia
             text += ' '+self._formatNumber(0, 11,2)  # Couta del recargo de equivalencia
-            text += 116*' '                                                     # Blancos
+            text += '0'  #Situación del Inmueble #TODO  2012
+            text += 25*' ' #Referencia Catastral #TODO 2012
+            text += 15*'0'  #Importe Percibido en Metálico #TODO 2012
+            text += 4*'0' #Ejercicio ( cifras del ejercicio en el que se hubieran declarado las operaciones que dan origen al cobro ) #TODO 2012
+            text += 15*'0' #Importe percibido por transmisiones de Inmuebles sujetas a IVA. #TODO 2012            
+            text += 56*' '                                                     # Blancos
             text += '\r\n'
-            
         assert len(text) == 502*len(invoice_issued.tax_line_ids), _("The type 2 issued record must be 500 characters long for each Vat registry")
         return text
     
