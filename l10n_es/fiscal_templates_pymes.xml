@@ -393,7 +393,7 @@
         <record id="fptt_pymes_recargo_10_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
             <field name="tax_src_id" ref="iva_pymes_rep_10" />
-            <field name="tax_dest_id" ref="re_pymes_1" />
+            <field name="tax_dest_id" ref="re_pymes_14" />
         </record>
         
         <record id="fptt_pymes_recargo_16" model="account.fiscal.position.tax.template">
@@ -429,7 +429,7 @@
         <record id="fptt_pymes_recargo_21_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
             <field name="tax_src_id" ref="iva_pymes_rep_21" />
-            <field name="tax_dest_id" ref="re_pymes_4" />
+            <field name="tax_dest_id" ref="re_pymes_52" />
         </record>
         
         <record id="fptt_pymes_recargo_buy_4" model="account.fiscal.position.tax.template">
@@ -477,7 +477,7 @@
         <record id="fptt_pymes_recargo_buy_10_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
             <field name="tax_src_id" ref="iva_pymes_sop_10" />
-            <field name="tax_dest_id" ref="re_pymes_buy_1" />
+            <field name="tax_dest_id" ref="re_pymes_buy_14" />
         </record>
         
         <record id="fptt_pymes_recargo_buy_16" model="account.fiscal.position.tax.template">
@@ -513,7 +513,7 @@
         <record id="fptt_pymes_recargo_buy_21_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
             <field name="tax_src_id" ref="iva_pymes_sop_21" />
-            <field name="tax_dest_id" ref="re_pymes_buy_4" />
+            <field name="tax_dest_id" ref="re_pymes_buy_52" />
         </record>
 
  		<record id="fptt_pymes_recargo_buy_4_inv" model="account.fiscal.position.tax.template">
@@ -561,7 +561,7 @@
         <record id="fptt_pymes_recargo_buy_10_2_inv" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
             <field name="tax_src_id" ref="iva_pymes_sop_10_inv" />
-            <field name="tax_dest_id" ref="re_pymes_buy_1" />
+            <field name="tax_dest_id" ref="re_pymes_buy_14" />
         </record>
         
         <record id="fptt_pymes_recargo_buy_16_inv" model="account.fiscal.position.tax.template">
@@ -597,7 +597,7 @@
         <record id="fptt_pymes_recargo_buy_21_2_inv" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_pymes_recargo"  />
             <field name="tax_src_id" ref="iva_pymes_sop_21_inv" />
-            <field name="tax_dest_id" ref="re_pymes_buy_4" />
+            <field name="tax_dest_id" ref="re_pymes_buy_52" />
         </record>
 
 	<!-- Extracomunitarios fiscal.position.account.template-->

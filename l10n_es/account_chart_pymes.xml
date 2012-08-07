@@ -4680,6 +4680,22 @@
             <field name="name">Hacienda Pública, IVA repercutido</field>
             <field name="user_type" ref="tax"/>
         </record>
+        <record id="pgc_pymes_4770" model="account.account.template">
+            <field name="code">4770</field>
+            <field name="reconcile" eval="False"/>
+            <field name="parent_id" ref="pgc_pymes_477"/>
+            <field name="type">view</field>
+            <field name="name">Hacienda Pública, IVA repercutido</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+        <record id="pgc_pymes_4771" model="account.account.template">
+            <field name="code">4771</field>
+            <field name="reconcile" eval="False"/>
+            <field name="parent_id" ref="pgc_pymes_477"/>
+            <field name="type">view</field>
+            <field name="name">Hacienda Pública, IVA repercutido, Recargo de Equivalencia</field>
+            <field name="user_type" ref="tax"/>
+        </record>
         <record id="pgc_pymes_479" model="account.account.template">
             <field name="code">479</field>
             <field name="reconcile" eval="False"/>
