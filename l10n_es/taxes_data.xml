@@ -18,8 +18,8 @@
 
       Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com (2011-08-29)
         Cambiado Recargos de equivalencia de "all" a "venta" (ya existen los de compra). Ahora quedan definidos de la misma forma que en taxes_data_pymes.xml
-   
-    
+
+
     -->
 
 
@@ -63,7 +63,7 @@
             <field name="parent_id" ref="iva_dev_base"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="iva_dev_04_10" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Base Imponible 10%</field>
             <field name="code">[04]</field>
@@ -148,15 +148,15 @@
 
 
     <!--Régimen general-->
- 
- 
+
+
         <record id="iva_dev_21" model="account.tax.code.template">
             <field name="name">IVA Cuota total devengada</field>
             <field name="code">[21]</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="vat_code_chart_root"/>
         </record>
- 
+
         <record id="iva_dev_03" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Cuota 4%</field>
             <field name="code">[03]</field>
@@ -177,7 +177,7 @@
             <field name="parent_id" ref="iva_dev_21"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="iva_dev_06_10" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Cuota 10%</field>
             <field name="code">[06]</field>
@@ -475,7 +475,7 @@
             <field name="parent_id" ref="iva_ded_28"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES CORRIENTES-->
         <record id="iva_ded_30" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes corrientes</field>
@@ -575,7 +575,7 @@
             <field name="parent_id" ref="iva_ded_32"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <!-- BASE RECARGO DE EQUIVALENCIA-->
         <record id="iva_ded_10" model="account.tax.code.template">
             <field name="name">Recargo Equivalencia Base Imponible 0.5%</field>
@@ -672,7 +672,7 @@
             <field name="parent_id" ref="iva_ded_23"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <!-- Cuotas en OPERACIONES INTERIORES CON BIENES DE INVERSIÓN-->
         <record id="iva_ded_25" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores bienes inversión</field>
@@ -722,7 +722,7 @@
             <field name="parent_id" ref="iva_ded_25"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <!-- Cuotas devengadas EN LAS IMPORTACIONES DE BIENES CORRIENTES-->
         <record id="iva_ded_27" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes corrientes</field>
@@ -772,7 +772,7 @@
             <field name="parent_id" ref="iva_ded_27"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <!-- Cuotas devengadas EN LAS IMPORTACIONES DE BIENES DE INVERSIÓN-->
         <record id="iva_ded_29" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes inversión</field>
@@ -920,7 +920,7 @@
             <field name="parent_id" ref="iva_ded_33"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <!--Otros Códigos de Impuestos-->
         <record id="base_intra_42" model="account.tax.code.template">
             <field name="name">Entregas Intracomunitarias</field>
@@ -1035,7 +1035,7 @@
             <field name="name">Hacienda Pública. IVA soportado 18%</field>
             <field name="user_type" ref="tax"/>
         </record>
-        
+
         <record id="pgc_472021" model="account.account.template">
             <field name="code">472021</field>
             <field name="reconcile" eval="True"/>
@@ -1071,7 +1071,7 @@
             <field name="name">Hacienda Pública. IVA repercutido 8%</field>
             <field name="user_type" ref="tax"/>
         </record>
-        
+
         <record id="pgc_477010" model="account.account.template">
             <field name="code">477010</field>
             <field name="reconcile" eval="True"/>
@@ -1098,7 +1098,7 @@
             <field name="name">Hacienda Pública. IVA repercutido 18%</field>
             <field name="user_type" ref="tax"/>
         </record>
-        
+
          <record id="pgc_477021" model="account.account.template">
             <field name="code">477021</field>
             <field name="reconcile" eval="True"/>
@@ -1394,7 +1394,7 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        
+
         <record id="iva_sop_21" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">21% IVA Soportado (operaciones corrientes)</field>
@@ -1499,7 +1499,7 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
- 
+
         <record id="iva_X7_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 7% Importaciones bienes corrientes</field>
@@ -1573,7 +1573,7 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        
+
         <record id="iva_X10_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 10% Importaciones bienes corrientes</field>
@@ -1610,7 +1610,7 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        
+
 
         <record id="iva_X16_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
@@ -1985,7 +1985,7 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
         </record>
-        
+
         <record id="iva_rep_10" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 10%</field>
@@ -2040,7 +2040,7 @@
             <field name="type_tax_use">sale</field>
             <field eval="0" name="sequence"/>
         </record>
-        
+
         <record id="iva_rep_21" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 21%</field>
@@ -2261,7 +2261,7 @@
 
 
         <!-- COMPRAS -->
-		
+
 		<record id="iva_IC_compras_4_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 4% Intracomunitario. Bienes corrientes</field>
@@ -2347,7 +2347,7 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        
+
          <record id="iva_IC_compras_7_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 7% Intracomunitario. Bienes corrientes</field>
@@ -2433,7 +2433,7 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        
+
         <record id="iva_IC_compras_8_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 8% Intracomunitario. Bienes corrientes</field>
@@ -2519,7 +2519,7 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        
+
         <record id="iva_IC_compras_10_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 10% Intracomunitario. Bienes corrientes</field>
@@ -2605,7 +2605,7 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-		
+
 		<record id="iva_IC_compras_16_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 16% Intracomunitario. Bienes corrientes</field>
@@ -2649,7 +2649,7 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        
+
 		<record id="iva_IC_compras_16_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 16% Intracomunitario. Bienes de inversión</field>
@@ -2692,7 +2692,7 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        
+
         <record id="iva_IC_compras_18_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 18% Intracomunitario. Bienes corrientes</field>
@@ -2747,7 +2747,7 @@
             <field name="type_tax_use">purchase</field>
         </record-->
 <!-- ES NECESARIO ESTE ÚLTIMO REGISTRO????-->
-        
+
          <record id="iva_IC_compras_18_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 18% Intracomunitario. Bienes de inversión</field>
@@ -2790,7 +2790,7 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        
+
 		<record id="iva_IC_compras_21_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 21% Intracomunitario. Bienes corrientes</field>
@@ -2834,7 +2834,7 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        
+
 		<record id="iva_IC_compras_21_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 21% Intracomunitario. Bienes de inversión</field>
@@ -2877,7 +2877,7 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        
+
 
         <!-- RETENCIONES DE IRPF -->
         <!--
@@ -2914,6 +2914,13 @@
         <record id="irpf_base_7" model="account.tax.code.template">
             <field name="name">IRPF Retenciones practicadas Base Imponible 7%</field>
             <field name="code">B.IRPF7</field>
+            <field name="parent_id" ref="irpf_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="irpf_base_9" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones practicadas Base Imponible 9%</field>
+            <field name="code">B.IRPF9</field>
             <field name="parent_id" ref="irpf_base"/>
             <field name="sign">1.0</field>
         </record>
@@ -2982,6 +2989,13 @@
             <field name="sign">1.0</field>
         </record>
 
+        <record id="irpf_cuota_9" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones practicadas Cuota 9%</field>
+            <field name="code">IRPF9</field>
+            <field name="parent_id" ref="irpf_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_cuota_15" model="account.tax.code.template">
             <field name="name">IRPF Retenciones practicadas Cuota 15%</field>
             <field name="code">IRPF15</field>
@@ -3042,6 +3056,15 @@
             <field name="parent_id" ref="pgc_4751"/>
             <field name="type">other</field>
             <field name="name">Hacienda Pública. Retenciones act. profesionales 7%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_475109" model="account.account.template">
+            <field name="code">475109</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_4751"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. Retenciones act. profesionales 9%</field>
             <field name="user_type" ref="tax"/>
         </record>
 
@@ -3138,6 +3161,24 @@
             <field name="tax_code_id" ref="irpf_cuota_7"/>
             <field name="ref_base_code_id" ref="irpf_base_7"/>
             <field name="ref_tax_code_id" ref="irpf_cuota_7"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="irpf_9" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template"/>
+            <field name="name">Retenciones IRPF 9%</field>
+            <field eval="-0.07" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_475109"/>
+            <field name="account_paid_id" ref="pgc_475109"/>
+            <field name="base_code_id" ref="irpf_base_9"/>
+            <field name="tax_code_id" ref="irpf_cuota_9"/>
+            <field name="ref_base_code_id" ref="irpf_base_9"/>
+            <field name="ref_tax_code_id" ref="irpf_cuota_9"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
@@ -3266,6 +3307,13 @@
             <field name="sign">1.0</field>
         </record>
 
+        <record id="irpf_base_sale_9" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones a cuenta Base Imponible 9%</field>
+            <field name="code">B.IRPF9 AC</field>
+            <field name="parent_id" ref="irpf_base_sale"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_base_sale_15" model="account.tax.code.template">
             <field name="name">IRPF Retenciones a cuenta Base Imponible 15%</field>
             <field name="code">B.IRPF15 AC</field>
@@ -3330,6 +3378,13 @@
             <field name="sign">1.0</field>
         </record>
 
+        <record id="irpf_cuota_sale_9" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones a cuenta Cuota 9%</field>
+            <field name="code">IRPF9 AC</field>
+            <field name="parent_id" ref="irpf_cuota_sale_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_cuota_sale_15" model="account.tax.code.template">
             <field name="name">IRPF Retenciones a cuenta Cuota 15%</field>
             <field name="code">IRPF15 AC</field>
@@ -3390,6 +3445,15 @@
             <field name="parent_id" ref="pgc_473"/>
             <field name="type">other</field>
             <field name="name">Hacienda Pública. Retenciones a cuenta act. profesionales 7%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_473009" model="account.account.template">
+            <field name="code">473009</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_473"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. Retenciones a cuenta act. profesionales 9%</field>
             <field name="user_type" ref="tax"/>
         </record>
 
@@ -3486,6 +3550,24 @@
             <field name="tax_code_id" ref="irpf_cuota_sale_7"/>
             <field name="ref_base_code_id" ref="irpf_base_sale_7"/>
             <field name="ref_tax_code_id" ref="irpf_cuota_sale_7"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
+
+        <record id="irpf_sale_9" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template"/>
+            <field name="name">Retenciones a cuenta IRPF 9%</field>
+            <field eval="-0.09" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_473009"/>
+            <field name="account_paid_id" ref="pgc_473009"/>
+            <field name="base_code_id" ref="irpf_base_sale_9"/>
+            <field name="tax_code_id" ref="irpf_cuota_sale_9"/>
+            <field name="ref_base_code_id" ref="irpf_base_sale_9"/>
+            <field name="ref_tax_code_id" ref="irpf_cuota_sale_9"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
