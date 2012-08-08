@@ -164,7 +164,7 @@ class product_product(osv.osv):
                     context['location'] = res2[0]
 
             if context.get('location', False):
-                location_ids = [context['location']]
+                location_ids = isinstance(context['location'], (int,long)) and [context['location']] or context['location']
             else:
                 #cr.execute('select lot_stock_id from stock_warehouse where id=%d', (int(context['warehouse']),))
                 cr.execute("select lot_stock_id from stock_warehouse")
