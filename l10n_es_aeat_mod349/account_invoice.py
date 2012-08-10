@@ -31,6 +31,8 @@ OPERATION_KEY = [
     ('T', 'T - Triangular operations'),
     ('S', 'S - Intra-Community services'),
     ('I', 'I - Intra-Community services acquisitions'),
+    ('M', 'M - Intra-Community supplies without taxes'),
+    ('H', 'H - Intra-Community supplies without taxes delivered by legal representative')
 ]
 
 MONTH_DATES_MAPPING = {

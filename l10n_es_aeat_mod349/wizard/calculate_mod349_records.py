@@ -180,7 +180,7 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
 
             for partner in partner_obj.browse(cr, uid, partner_ids):
                 
-                for operation_key in ['E', 'A', 'T', 'S', 'I']:
+                for operation_key in ['E', 'A', 'T', 'S', 'I', 'M', 'H']:
                     ##
                     ## Invoices
                     invoice_ids = invoice_obj._get_invoices_by_type(cr, uid, partner.id,
