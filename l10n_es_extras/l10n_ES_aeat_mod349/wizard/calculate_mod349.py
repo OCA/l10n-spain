@@ -248,7 +248,7 @@ class wizard_calculate_mod349(wizard.interface):
             total_partners = len(partner_ids)                          ## Number of partners
             
             for partner in partner_facade.browse(cr, uid, partner_ids):
-                for operation_key in ['E', 'A', 'T', 'S', 'I']:
+                for operation_key in ['E', 'A', 'T', 'S', 'I', 'M', 'H']:
                     ##
                     ## Invoices
                     invoice_ids = invoice_facade._get_invoices_by_type(cr, uid, partner.id,
