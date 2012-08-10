@@ -1,6 +1,6 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_aeat_mod349
+#       * l10n_es_aeat_mod349
 #
 msgid ""
 msgstr ""
@@ -159,6 +159,18 @@ msgstr "Sustitutiva"
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "E - Intra-Community supplies"
 msgstr "E - Entregas intracomunitarias"
+
+#. module: l10n_es_aeat_mod349
+#: selection:account.invoice,operation_key:0
+#: selection:l10n.es.aeat.mod349.partner_refund,operation_key:0
+msgid "M - Intra-Community supplies without taxes"
+msgstr "M - Entregas intracomunitarias con exención de tasas"
+
+#. module: l10n_es_aeat_mod349
+#: selection:account.invoice,operation_key:0
+#: selection:l10n.es.aeat.mod349.partner_refund,operation_key:0
+msgid "H - Intra-Community supplies without taxes delivered by legal representative"
+msgstr "H - Entregas intracomunitarias con exención de tasas por un representante fiscal oficial"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_record_detail:0
@@ -668,6 +680,19 @@ msgstr "CIF/NIF Repr. legal"
 #: selection:l10n.es.aeat.mod349.partner_refund,operation_key:0
 msgid "S - Intra-Community services"
 msgstr "S - Prestaciones de servicios intracomunitarias"
+
+
+#. module: l10n_es_aeat_mod349
+#: selection:account.invoice,operation_key:0
+#: selection:l10n.es.aeat.mod349.partner_refund,operation_key:0
+msgid "M - Intra-Community supplies without taxes"
+msgstr "M - Entregas intracomunitarias con exención de tasas"
+
+#. module: l10n_es_aeat_mod349
+#: selection:account.invoice,operation_key:0
+#: selection:l10n.es.aeat.mod349.partner_refund,operation_key:0
+msgid "H - Intra-Community supplies without taxes delivered by legal representative"
+msgstr "H - Entregas intracomunitarias con exención de tasas por un representante fiscal oficial"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,total_partner_records:0
