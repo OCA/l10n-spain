@@ -53,6 +53,13 @@
             <field name="sign">1.0</field>
             <field name="parent_id" ref="vat_code_chart_pymes_root"/>
         </record>
+        
+        <record id="iva_pymes_dev_21" model="account.tax.code.template">
+            <field name="name">IVA Cuota total devengada</field>
+            <field name="code">[21]</field>
+            <field name="sign">1.0</field>
+            <field name="parent_id" ref="vat_code_chart_pymes_root"/>
+        </record>
 
 
 
@@ -169,13 +176,6 @@
 
     <!--Régimen general-->
  
- 
-        <record id="iva_pymes_dev_21" model="account.tax.code.template">
-            <field name="name">IVA Cuota total devengada</field>
-            <field name="code">[21]</field>
-            <field name="sign">1.0</field>
-            <field name="parent_id" ref="vat_code_chart_pymes_root"/>
-        </record>
  
         <record id="iva_pymes_dev_03" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Cuota 4%</field>
@@ -2542,7 +2542,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-		<record id="iva_pymes_IC_compras_21_bi" model="account.tax.template">
+                <record id="iva_pymes_IC_compras_21_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">IVA 21% Intracomunitario. Bienes de inversión</field>
             <field name="description">IVA 21% Intracomunitario. Bienes de inversión</field>
