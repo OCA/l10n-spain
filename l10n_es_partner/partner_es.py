@@ -84,7 +84,7 @@ class res_partner_bank(osv.osv):
         if country.code.upper() in ('ES', 'CT'):
             number = checkBankAccount( account )
             if number == 'invalid-size':
-		        return { 'warning': { 'title': _('Warning'), 'message': _('Bank account should have 20 digits.') } }
+                        return { 'warning': { 'title': _('Warning'), 'message': _('Bank account should have 20 digits.') } }
             if number == 'invalid-dc':
                 return { 'warning': { 'title': _('Warning'), 'message': _('Invalid bank account.') } }
 
@@ -100,6 +100,7 @@ res_partner_bank()
 class Bank(osv.osv):
     _inherit = 'res.bank'
     _columns = {
+        'code': fields.char('Code', size=64),
         'lname': fields.char('Long name', size=128),
         'vat': fields.char('VAT code',size=32 ,help="Value Added Tax number"),
         'website': fields.char('Website',size=64),
