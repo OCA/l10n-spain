@@ -49,7 +49,7 @@ También se proporciona un informe para imprimir un listado de los pagos/cobros 
     "depends" : ["base", "account", "account_payment_extension",],
     "init_xml" : ["remesas_data.xml"],
     "demo_xml" : [],
-    "update_xml" : ["remesas_report.xml", "remesas_view.xml", "remesas_wizard.xml",],
+    "update_xml" : ["remesas_report.xml", "remesas_view.xml", "remesas_wizard.xml","wizard/export_remesas_view.xml"],
     "installable" : True,
     "active" : False,
 }

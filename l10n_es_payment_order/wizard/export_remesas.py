@@ -21,6 +21,9 @@
 # Añadidos conceptos extras del CSB 19: Acysos S.L. 2011
 #   Ignacio Ibeas <ignacio@acysos.com>
 #
+# Migración de wizard.interface para la 6.1: Pexego Sistemas Informáticos. 2012
+#   Marta Vázquez Rodríguez <marta@pexego.es>
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -36,8 +39,6 @@
 #
 ##############################################################################
 
-import pooler
-import wizard
 import base64
 from tools.translate import _
 from converter import *
@@ -46,166 +47,125 @@ import csb_32
 import csb_34
 import csb_58
 
-join_form = """<?xml version="1.0"?>
-<form string="Payment order export">
-    <field name="join"/>
-</form>"""
+from osv import osv, fields
 
-join_fields = {
-    'join' : {'string':'Join payment lines of the same partner and bank account', 'type':'boolean'},
-}
-
-export_form = """<?xml version="1.0"?>
-<form string="Payment order export">
-    <field name="pay" filename="pay_fname"/>
-    <field name="pay_fname" invisible="1"/>
-    <field name="note" colspan="4" nolabel="1"/>
-</form>"""
-
-export_fields = {
-    'pay' : {
-        'string':'Payment order file',
-        'type':'binary',
-        'required': False,
-        'readonly':True,
-    },
-    'pay_fname': {'string':'File name', 'type':'char', 'size':64},
-    'note' : {'string':'Log', 'type':'text'},
-}
-
-
-def _create_payment_file(self, cr, uid, data, context):
-
-    txt_remesa = ''
-    num_lineas_opc = 0
-
-    try:
-        pool = pooler.get_pool(cr.dbname)
-        orden = pool.get('payment.order').browse(cr, uid, data['id'], context)
-        if not orden.line_ids:
-            raise Log( _('User error:\n\nWizard can not generate export file, there are not payment lines.'), True )
-
-        # Comprobamos que exista número de C.C. y que tenga 20 dígitos
-        if not orden.mode.bank_id:
-            raise Log( _('User error:\n\nThe bank account of the company %s is not defined.') % (orden.mode.partner_id.name), True )
-        cc = digits_only(orden.mode.bank_id.acc_number)
-        if len(cc) != 20:
-            raise Log( _('User error:\n\nThe bank account number of the company %s has not 20 digits.') % (orden.mode.partner_id.name), True)
-
-        # Comprobamos que exista el CIF de la compañía asociada al C.C. del modo de pago
-        if not orden.mode.bank_id.partner_id.vat:
-            raise Log(_('User error:\n\nThe company VAT number related to the bank account of the payment mode is not defined.'), True)
-
-        recibos = []
-        if data['form']['join']:
-            # Lista con todos los partners+bancos diferentes de la remesa
-            partner_bank_l = reduce(lambda l, x: x not in l and l.append(x) or l,
-                                     [(recibo.partner_id,recibo.bank_id) for recibo in orden.line_ids], [])
-            # Cómputo de la lista de recibos agrupados por mismo partner+banco.
-            # Los importes se suman, los textos se concatenan con un espacio en blanco y las fechas se escoge el máximo
-            for partner,bank in partner_bank_l:
-                lineas = [recibo for recibo in orden.line_ids if recibo.partner_id==partner and recibo.bank_id==bank]
-                recibos.append({
-                    'partner_id': partner,
-                    'bank_id': bank,
-                    'name': partner.ref or '-',
-                    'amount': reduce(lambda x, y: x+y, [l.amount for l in lineas], 0),
-                    'communication': reduce(lambda x, y: x+' '+(y or ''), [l.name+' '+l.communication for l in lineas], ''),
-                    'communication2': reduce(lambda x, y: x+' '+(y or ''), [l.communication2 for l in lineas], ''),
-                    'date': max([l.date for l in lineas]),
-                    'ml_maturity_date': max([l.ml_maturity_date for l in lineas]),
-                    'create_date': max([l.create_date for l in lineas]),
-                    'ml_date_created': max([l.ml_date_created for l in lineas]),
-                    'ml_inv_ref': [l.ml_inv_ref for l in lineas]
-                })
-        else:
-            # Cada línea de pago es un recibo
-            for l in orden.line_ids:
-                recibos.append({
-                    'partner_id': l.partner_id,
-                    'bank_id': l.bank_id,
-                    'name': l.partner_id.ref or '-',
-                    'amount': l.amount,
-                    'communication': l.name+' '+l.communication,
-                    'communication2': l.communication2,
-                    'date': l.date,
-                    'ml_maturity_date': l.ml_maturity_date,
-                    'create_date': l.create_date,
-                    'ml_date_created': l.ml_date_created,
-                    'ml_inv_ref':[l.ml_inv_ref]
-                })
-
-        if orden.mode.require_bank_account:
-            for line in recibos:
-                ccc = line['bank_id'] and line['bank_id'].acc_number or False
-                if not ccc:
-                    raise Log(_('User error:\n\nThe bank account number of the customer %s is not defined and current payment mode enforces all lines to have a bank account.') % (line['partner_id'].name), True)
-                ccc = digits_only(ccc)
-                if len(ccc) != 20:
-                    raise Log(_('User error:\n\nThe bank account number of the customer %s has not 20 digits.') % (line['partner_id'].name), True)
-
-        if orden.mode.tipo == 'csb_19':
-            csb = csb_19.csb_19()
-        elif orden.mode.tipo == 'csb_32':
-            csb = csb_32.csb_32()
-        elif orden.mode.tipo == 'csb_34':
-            csb = csb_34.csb_34()
-        elif orden.mode.tipo == 'csb_58':
-            csb = csb_58.csb_58()
-        else:
-            raise Log(_('User error:\n\nThe payment mode is not CSB 19, CSB 32, CSB 34 or CSB 58'), True)
-        txt_remesa = csb.create_file(pool, cr, uid, orden, recibos, context)
-
-    except Log, log:
-        return {
-            'note': log(), 
-            'reference': orden.id, 
-            'pay': False, 
-            'state':'failed'
-        }
-    else:
-        # Ensure line breaks use MS-DOS (CRLF) format as standards require.
-        txt_remesa = txt_remesa.replace('\r\n','\n').replace('\n','\r\n')
-
-        file = base64.encodestring(txt_remesa.encode('utf-8'))
-        fname = (_('remesa') + '_' + orden.mode.tipo + '_' + orden.reference + '.txt').replace('/','-')
-        pool.get('ir.attachment').create(cr, uid, {
-            'name': _('Remesa ') + orden.mode.tipo + ' ' + orden.reference,
-            'datas': file,
-            'datas_fname': fname,
-            'res_model': 'payment.order',
-            'res_id': orden.id,
-            }, context=context)
-        log = _("Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n") % (orden.total, len(recibos))
-        pool.get('payment.order').set_done(cr, uid, [orden.id], context)
-        return {
-            'note': log, 
-            'reference': orden.id, 
-            'pay': file, 
-            'pay_fname': fname, 
-            'state': 'succeeded',
-        }
-
-
-class wizard_payment_file_spain(wizard.interface):
-    states = {
-        'init' : {
-            'actions' : [],
-            'result' : {'type' : 'form',
-                        'arch' : join_form,
-                        'fields' : join_fields,
-                        'state' : [('export', 'Ok','gtk-ok') ]}
-        },
-        'export': {
-            'actions' : [_create_payment_file],
-            'result' : {'type' : 'form',
-                        'arch' : export_form,
-                        'fields' : export_fields,
-                        'state' : [('end', 'Ok','gtk-ok') ]}
-        }
-
+class wizard_payment_file_spain(osv.osv_memory):
+    _name = 'wizard.payment.file.spain'
+    _columns = {
+        'join': fields.boolean('Join payment lines of the same partner and bank account'),
+        'pay': fields.binary('Payment order file', readonly=True),
+        'pay_fname': fields.char('File name', size=64),
+        'note': fields.text('Log')
     }
-wizard_payment_file_spain('export_payment_file_spain')
 
+    def create_payment_file(self, cr, uid, ids, context):
+
+        txt_remesa = ''
+        num_lineas_opc = 0
+
+        try:
+            orden = self.pool.get('payment.order').browse(cr, uid, context['active_id'], context)
+            if not orden.line_ids:
+                raise Log( _('User error:\n\nWizard can not generate export file, there are not payment lines.'), True )
+
+            # Comprobamos que exista número de C.C. y que tenga 20 dígitos
+            if not orden.mode.bank_id:
+                raise Log( _('User error:\n\nThe bank account of the company %s is not defined.') % (orden.mode.partner_id.name), True )
+            cc = digits_only(orden.mode.bank_id.acc_number)
+            if len(cc) != 20:
+                raise Log( _('User error:\n\nThe bank account number of the company %s has not 20 digits.') % (orden.mode.partner_id.name), True)
+
+            # Comprobamos que exista el CIF de la compañía asociada al C.C. del modo de pago
+            if not orden.mode.bank_id.partner_id.vat:
+                raise Log(_('User error:\n\nThe company VAT number related to the bank account of the payment mode is not defined.'), True)
+
+            recibos = []
+            form_obj = self.browse(cr, uid, ids)[0]
+            if form_obj.join:
+                # Lista con todos los partners+bancos diferentes de la remesa
+                partner_bank_l = reduce(lambda l, x: x not in l and l.append(x) or l,
+                                         [(recibo.partner_id,recibo.bank_id) for recibo in orden.line_ids], [])
+                # Cómputo de la lista de recibos agrupados por mismo partner+banco.
+                # Los importes se suman, los textos se concatenan con un espacio en blanco y las fechas se escoge el máximo
+                for partner,bank in partner_bank_l:
+                    lineas = [recibo for recibo in orden.line_ids if recibo.partner_id==partner and recibo.bank_id==bank]
+                    recibos.append({
+                        'partner_id': partner,
+                        'bank_id': bank,
+                        'name': partner.ref or '-',
+                        'amount': reduce(lambda x, y: x+y, [l.amount for l in lineas], 0),
+                        'communication': reduce(lambda x, y: x+' '+(y or ''), [l.name+' '+l.communication for l in lineas], ''),
+                        'communication2': reduce(lambda x, y: x+' '+(y or ''), [l.communication2 for l in lineas], ''),
+                        'date': max([l.date for l in lineas]),
+                        'ml_maturity_date': max([l.ml_maturity_date for l in lineas]),
+                        'create_date': max([l.create_date for l in lineas]),
+                        'ml_date_created': max([l.ml_date_created for l in lineas]),
+                        'ml_inv_ref': [l.ml_inv_ref for l in lineas]
+                    })
+            else:
+                # Cada línea de pago es un recibo
+                for l in orden.line_ids:
+                    recibos.append({
+                        'partner_id': l.partner_id,
+                        'bank_id': l.bank_id,
+                        'name': l.partner_id.ref or '-',
+                        'amount': l.amount,
+                        'communication': l.name+' '+l.communication,
+                        'communication2': l.communication2,
+                        'date': l.date,
+                        'ml_maturity_date': l.ml_maturity_date,
+                        'create_date': l.create_date,
+                        'ml_date_created': l.ml_date_created,
+                        'ml_inv_ref':[l.ml_inv_ref]
+                    })
+
+            if orden.mode.require_bank_account:
+                for line in recibos:
+                    ccc = line['bank_id'] and line['bank_id'].acc_number or False
+                    if not ccc:
+                        raise Log(_('User error:\n\nThe bank account number of the customer %s is not defined and current payment mode enforces all lines to have a bank account.') % (line['partner_id'].name), True)
+                    ccc = digits_only(ccc)
+                    if len(ccc) != 20:
+                        raise Log(_('User error:\n\nThe bank account number of the customer %s has not 20 digits.') % (line['partner_id'].name), True)
+
+            if orden.mode.tipo == 'csb_19':
+                csb = csb_19.csb_19()
+            elif orden.mode.tipo == 'csb_32':
+                csb = csb_32.csb_32()
+            elif orden.mode.tipo == 'csb_34':
+                csb = csb_34.csb_34()
+            elif orden.mode.tipo == 'csb_58':
+                csb = csb_58.csb_58()
+            else:
+                raise Log(_('User error:\n\nThe payment mode is not CSB 19, CSB 32, CSB 34 or CSB 58'), True)
+            txt_remesa = csb.create_file(self.pool, cr, uid, orden, recibos, context)
+
+        except Log, log:
+            form_obj.write({'note': log,'pay': False})
+            return True
+
+        else:
+            # Ensure line breaks use MS-DOS (CRLF) format as standards require.
+            txt_remesa = txt_remesa.replace('\r\n','\n').replace('\n','\r\n')
+
+            file = base64.encodestring(txt_remesa.encode('utf-8'))
+            fname = (_('remesa') + '_' + orden.mode.tipo + '_' + orden.reference + '.txt').replace('/','-')
+            self.pool.get('ir.attachment').create(cr, uid, {
+                'name': _('Remesa ') + orden.mode.tipo + ' ' + orden.reference,
+                'datas': file,
+                'datas_fname': fname,
+                'res_model': 'payment.order',
+                'res_id': orden.id,
+                }, context=context)
+            log = _("Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n") % (orden.total, len(recibos))
+            self.pool.get('payment.order').set_done(cr, uid, [orden.id], context)
+
+            form_obj.write({'note': log,'pay': file,'pay_fname': fname})
+
+            return True
+wizard_payment_file_spain()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+
+
 
