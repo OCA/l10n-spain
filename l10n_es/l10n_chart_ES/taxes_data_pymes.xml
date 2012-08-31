@@ -3451,7 +3451,7 @@
 		<record id="irpf_pymes_9" model="account.tax.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-			<field name="name">Retenciones IRPF 7%</field>
+			<field name="name">Retenciones IRPF 9%</field>
 			<field eval="-0.09" name="amount"/>
 			<field name="type">percent</field>
 			<field name="account_collected_id" ref="pgc_pymes_475109"/>
@@ -3887,7 +3887,7 @@
 		<record id="irpf_pymes_sale_9" model="account.tax.template">
 			<field name="template_name">PGCE PYMES</field>
 			<field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-			<field name="name">Retenciones a cuenta IRPF 7%</field>
+			<field name="name">Retenciones a cuenta IRPF 9%</field>
 			<field eval="-0.09" name="amount"/>
 			<field name="type">percent</field>
 			<field name="account_collected_id" ref="pgc_pymes_473009"/>
