@@ -2573,7 +2573,7 @@
         <record id="iva_pymes_IC_compras_21_bc_1" model="account.tax.template">
             <field name="template_name">PGCE PYMES</field>
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_18_bc"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_21_bc"/>
             <field name="name">IVA 21% Intracomunitario. Bienes corrientes (1)</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
