@@ -591,35 +591,35 @@
 
         <!-- BASE RECARGO DE EQUIVALENCIA-->
         <record id="iva_pymes_ded_10" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia Base Imponible 0.5%</field>
+            <field name="name">Recargo Equivalencia Ded. Base Imponible 0.5%</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_base_total"/>
             <field name="sign">1.0</field>
         </record>
 
         <record id="iva_pymes_ded_13" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia Base Imponible 1%</field>
+            <field name="name">Recargo Equivalencia Ded. Base Imponible 1%</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_base_total"/>
             <field name="sign">1.0</field>
         </record>
 
         <record id="iva_pymes_ded_13_14" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia Base Imponible 1.4%</field>
+            <field name="name">Recargo Equivalencia Ded. Base Imponible 1.4%</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_base_total"/>
             <field name="sign">1.0</field>
         </record>
 
         <record id="iva_pymes_ded_16" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia Base Imponible 4%</field>
+            <field name="name">Recargo Equivalencia Ded. Base Imponible 4%</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_base_total"/>
             <field name="sign">1.0</field>
         </record>
 
         <record id="iva_pymes_ded_16_52" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia Base Imponible 5.2%</field>
+            <field name="name">Recargo Equivalencia Ded. Base Imponible 5.2%</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_base_total"/>
             <field name="sign">1.0</field>
@@ -954,35 +954,35 @@
 
         <!--Cuota Recargo de Equivalencia-->
         <record id="iva_pymes_ded_12" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia. Cuota 0.5%</field>
+            <field name="name">Recargo Equivalencia Ded. Cuota 0.5%</field>
             <field name="code">[12]</field>
             <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
 
         <record id="iva_pymes_ded_15" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia. Cuota 1%</field>
+            <field name="name">Recargo Equivalencia Ded. Cuota 1%</field>
             <field name="code">[15]</field>
             <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
 
         <record id="iva_pymes_ded_15_14" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia. Cuota 1.4%</field>
+            <field name="name">Recargo Equivalencia Ded. Cuota 1.4%</field>
             <field name="code">[15]</field>
             <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
 
         <record id="iva_pymes_ded_18" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia. Cuota 4%</field>
+            <field name="name">Recargo Equivalencia Ded. Cuota 4%</field>
             <field name="code">[18]</field>
             <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
 
         <record id="iva_pymes_ded_18_52" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia. Cuota 5.2%</field>
+            <field name="name">Recargo Equivalencia Ded. Cuota 5.2%</field>
             <field name="code">[18]</field>
             <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
             <field name="sign">1.0</field>
