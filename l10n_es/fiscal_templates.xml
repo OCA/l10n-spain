@@ -12,7 +12,7 @@
            Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com 2010-02-18
 
         Añadido mapeo de cuentas del regimen de equivalencia para compras :
-        Ignacio Ibeas (Acysos) - ignacio@acysos.com 2011-02-22 -->
+           Ignacio Ibeas (Acysos) - ignacio@acysos.com 2011-02-22 -->
 
         <!-- Fiscal Position Templates -->
 
@@ -677,7 +677,7 @@
         <record id="fptt_irpf20sale_21_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf20" />
             <field name="tax_src_id" ref="iva_rep_21" />
-            <field name="tax_dest_id" ref="irpf_sale_21" />
+            <field name="tax_dest_id" ref="irpf_sale_20" />
         </record>
         <record id="fptt_irpf20sale_18" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf20" />
@@ -760,7 +760,7 @@
         <record id="fptt_irpf20_21_2" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf20" />
             <field name="tax_src_id" ref="iva_sop_21" />
-            <field name="tax_dest_id" ref="irpf_21" />
+            <field name="tax_dest_id" ref="irpf_20" />
         </record>
 
         <record id="fptt_irpf20_18" model="account.fiscal.position.tax.template">

@@ -2230,7 +2230,7 @@
         <record id="re_pymes_buy_52" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">5.2% Recargo Equivalencia Compras</field>
-            <field eval="0.04" name="amount"/>
+            <field eval="0.052" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_pymes_470001"/>
             <field name="account_paid_id" ref="pgc_pymes_470001"/>
