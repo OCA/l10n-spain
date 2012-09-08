@@ -40,6 +40,51 @@
         </record>
 
 
+    <!-- Exentas IVA -->
+	  	<record id="base_sop_ex" model="account.tax.code">
+            <field name="name">Base adquisiciones exentas</field>
+            <field name="company_id" model="res.company"  search="[]"/>
+            <field name="parent_id" ref="vat_code_chart_root"/>
+            <field name="code">--</field>
+            <field name="sign">1.0</field>
+        </record>
+        
+        <record id="base_rep_ex" model="account.tax.code">
+            <field name="name">Base ventas exentas</field>
+            <field name="code">--</field>
+            <field name="company_id" model="res.company"  search="[]"/>
+            <field name="parent_id" ref="vat_code_chart_root"/>
+            <field name="sign">1.0</field>
+        </record>         	
+        
+        <!-- IVA Soportado -->
+        <record id="iva_sop_ex" model="account.tax">
+            <field name="name">IVA Soportado exento (operaciones corrientes)</field>
+            <field eval="0.0" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field name="base_code_id" ref="base_sop_ex"/>
+            <field name="ref_base_code_id" ref="base_sop_ex"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+    	
+        <!-- IVA REPERCUTIDO-->
+
+        <record id="iva_rep_ex" model="account.tax">
+            <field name="name">IVA Exento</field>
+            <field eval="0.0" name="amount"/>
+            <field name="type">percent</field>
+            <field name="base_code_id" ref="base_rep_ex"/>
+            <field name="ref_base_code_id" ref="base_rep_ex"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
 
     <!--Régimen general-->
 
