@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_partner_vies_form" model="ir.ui.view">
+            <field name="name">res.partner.vies.form</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="property_account_payable" position="after">
+                    <group colspan="2" col="4">
+                    <button name="%(base_vat_vies.action_view_validate_vies)d"
+                                      string="Vies Validate Vat" type="action" colspan="2"/>
+                    <field name="valid_vies_vat" colspan="2" readonly="1"/>
+                    
+                    </group>
+                </field>
+            </field>
+        </record> 
+    </data>
+</openerp>

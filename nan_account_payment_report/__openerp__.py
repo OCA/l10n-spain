@@ -2,7 +2,7 @@
     "name" : "Account Payment Jasper Report", 
     "version" : "1.0",
     "description" : """This module replaces existing report in payment orders.""",
-    "author" : "NaN Projectes de Programaril Lliure, S.L.",
+    "author" : "NaN·tic",
     "website" : "http://www.NaN-tic.com",
     "depends" : [ 
         'l10n_es_payment_order',

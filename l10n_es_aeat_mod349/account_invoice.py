@@ -25,7 +25,7 @@ from tools.translate import _
 from osv import osv, fields
 
 OPERATION_KEY = [
-    ('', ''),
+    ('Nothing', ''),
     ('E', 'E - Intra-Community supplies'),
     ('A', 'A - Intra-Community acquisition'),
     ('T', 'T - Triangular operations'),
@@ -91,7 +91,7 @@ class account_invoice(osv.osv):
             if not period_id:
                 raise osv.except_osv(_('Error'), _('Cannot get invoices.\nThere is no period selected'))
 
-            search_dict.append(('period_id', '=', period_id))
+            search_dict.append(('period_id', 'in', period_id))
 
         ##
         ## Invoices by month
@@ -160,7 +160,7 @@ class account_invoice(osv.osv):
         if context is None:
             context = {}
 
-        res = {'value' : {'operation_key' : None}}
+        res = {'value' : {'operation_key' : 'Nothing'}}
         if fiscal_position and type:
             if self.pool.get('account.fiscal.position').browse(cr, uid, fiscal_position).intracommunity_operations:
                 if type == 'out_invoice':

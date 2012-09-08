@@ -45,6 +45,7 @@ from converter import *
 import csb_19
 import csb_32
 import csb_34
+import csb_34_01
 import csb_58
 
 from osv import osv, fields
@@ -92,7 +93,7 @@ class wizard_payment_file_spain(osv.osv_memory):
                     recibos.append({
                         'partner_id': partner,
                         'bank_id': bank,
-                        'name': partner.ref or '-',
+                        'name': partner.ref or str(l.partner_id.id),
                         'amount': reduce(lambda x, y: x+y, [l.amount for l in lineas], 0),
                         'communication': reduce(lambda x, y: x+' '+(y or ''), [l.name+' '+l.communication for l in lineas], ''),
                         'communication2': reduce(lambda x, y: x+' '+(y or ''), [l.communication2 for l in lineas], ''),
@@ -108,7 +109,7 @@ class wizard_payment_file_spain(osv.osv_memory):
                     recibos.append({
                         'partner_id': l.partner_id,
                         'bank_id': l.bank_id,
-                        'name': l.partner_id.ref or '-',
+                        'name': l.partner_id.ref or str(l.partner_id.id),
                         'amount': l.amount,
                         'communication': l.name+' '+l.communication,
                         'communication2': l.communication2,
@@ -134,6 +135,8 @@ class wizard_payment_file_spain(osv.osv_memory):
                 csb = csb_32.csb_32()
             elif orden.mode.tipo == 'csb_34':
                 csb = csb_34.csb_34()
+            elif orden.mode.tipo == '34_01':
+                csb = csb_34_01.csb_34_01()		
             elif orden.mode.tipo == 'csb_58':
                 csb = csb_58.csb_58()
             else:

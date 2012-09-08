@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+        <record id="config_fiscal_position_tree" model="ir.ui.view">
+            <field name="name">config.fiscal.position.tree</field>
+            <field name="model">config.fiscal.position</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Config Fiscal Positions">
+                    <field name="name"/>
+                    <field name="fpos"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="config_fiscal_position_form" model="ir.ui.view">
+            <field name="name">config.fiscal.position.form</field>
+            <field name="model">config.fiscal.position</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Config Fiscal Position">
+                    <group colspan="4" col="8">
+                        <field name="name"/>
+                        <field name="fpos"/>
+                        <field name="vat_subjected"/>
+                        <field name="vies_valid_vat"/>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="States">
+                            <field name="state_ids" nolabel="1"/>
+                        </page>
+                        <page string="Countries">
+                            <field name="country_ids" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_config_fiscal_position" model="ir.actions.act_window">
+            <field name="name">Config Fiscal Position</field>
+            <field name="res_model">config.fiscal.position</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem id="menu_config_fiscal_position" 
+            action="view_config_fiscal_position"
+            parent="base.menu_config_address_book"/>
+        
+        
+    </data>
+</openerp>

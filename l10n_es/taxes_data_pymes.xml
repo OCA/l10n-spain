@@ -33,8 +33,6 @@
       Ignacio Ibeas (Acysos) - ignacio@acysos.com (2011-05-06)
         Añadido Recargos de equivalencia para venta y compra
 
-    
-
     -->
 
 
@@ -50,13 +48,6 @@
         <record id="iva_pymes_dev_base" model="account.tax.code.template">
             <field name="name">IVA Devengado Base Imponible</field>
             <field name="code">--</field>
-            <field name="sign">1.0</field>
-            <field name="parent_id" ref="vat_code_chart_pymes_root"/>
-        </record>
-        
-        <record id="iva_pymes_dev_21" model="account.tax.code.template">
-            <field name="name">IVA Cuota total devengada</field>
-            <field name="code">[21]</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="vat_code_chart_pymes_root"/>
         </record>
@@ -86,7 +77,7 @@
             <field name="sign">1.0</field>
         </record>
 
-        <record id="iva_pymes_dev_04_10" model="account.tax.code.template">
+		 <record id="iva_pymes_dev_04_10" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Base Imponible 10%</field>
             <field name="code">[04]</field>
             <field name="parent_id" ref="iva_pymes_dev_base"/>
@@ -136,27 +127,23 @@
             <field name="sign">1.0</field>
         </record>
 
+        <record id="iva_pymes_dev_13_14" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Base Imponible 1.4%</field>
+            <field name="code">[13]</field>
+            <field name="parent_id" ref="iva_pymes_dev_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="iva_pymes_dev_16" model="account.tax.code.template">
             <field name="name">Recargo Equivalencia Base Imponible 4%</field>
             <field name="code">[16]</field>
             <field name="parent_id" ref="iva_pymes_dev_base"/>
             <field name="sign">1.0</field>
         </record>
+
         <record id="iva_pymes_dev_16_52" model="account.tax.code.template">
             <field name="name">Recargo Equivalencia Base Imponible 5.2%</field>
             <field name="code">[16]</field>
-            <field name="parent_id" ref="iva_pymes_dev_base"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_dev_18_52" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia. Cuota 5.2%</field>
-            <field name="code">[18]</field>
-            <field name="parent_id" ref="iva_pymes_dev_21"/>
-            <field name="sign">1.0</field>
-        </record>
-         <record id="iva_pymes_dev_13_14" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia Base Imponible 1.4%</field>
-            <field name="code">[13]</field>
             <field name="parent_id" ref="iva_pymes_dev_base"/>
             <field name="sign">1.0</field>
         </record>
@@ -175,8 +162,15 @@
 
 
     <!--Régimen general-->
- 
- 
+
+
+        <record id="iva_pymes_dev_21" model="account.tax.code.template">
+            <field name="name">IVA Cuota total devengada</field>
+            <field name="code">[21]</field>
+            <field name="sign">1.0</field>
+            <field name="parent_id" ref="vat_code_chart_pymes_root"/>
+        </record>
+
         <record id="iva_pymes_dev_03" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Cuota 4%</field>
             <field name="code">[03]</field>
@@ -198,7 +192,7 @@
             <field name="sign">1.0</field>
         </record>
 
-        <record id="iva_pymes_dev_06_10" model="account.tax.code.template">
+ 	<record id="iva_pymes_dev_06_10" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Cuota 10%</field>
             <field name="code">[06]</field>
             <field name="parent_id" ref="iva_pymes_dev_21"/>
@@ -219,7 +213,7 @@
             <field name="sign">1.0</field>
         </record>
 
-        <record id="iva_pymes_dev_09_21" model="account.tax.code.template">
+         <record id="iva_pymes_dev_09_21" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Cuota 21%</field>
             <field name="code">[09]</field>
             <field name="parent_id" ref="iva_pymes_dev_21"/>
@@ -248,15 +242,23 @@
             <field name="sign">1.0</field>
         </record>
 
+        <record id="iva_pymes_dev_15_14" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia. Cuota 1.4%</field>
+            <field name="code">[15]</field>
+            <field name="parent_id" ref="iva_pymes_dev_21"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="iva_pymes_dev_18" model="account.tax.code.template">
             <field name="name">Recargo Equivalencia. Cuota 4%</field>
             <field name="code">[18]</field>
             <field name="parent_id" ref="iva_pymes_dev_21"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_dev_15_14" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia. Cuota 1.4%</field>
-            <field name="code">[15]</field>
+
+        <record id="iva_pymes_dev_18_52" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia. Cuota 5.2%</field>
+            <field name="code">[18]</field>
             <field name="parent_id" ref="iva_pymes_dev_21"/>
             <field name="sign">1.0</field>
         </record>
@@ -296,13 +298,31 @@
             <field name="parent_id" ref="iva_pymes_ded_base_total"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_22_10" model="account.tax.code.template">
+         <record id="iva_pymes_ded_22_4" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores corrientes (4%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_22"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_22_7" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores corrientes (7%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_22"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_22_8" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores corrientes (8%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_22"/>
+            <field name="sign">1.0</field>
+        </record>
+       <record id="iva_pymes_ded_22_10" model="account.tax.code.template">
             <field name="name">Base operaciones interiores corrientes (10%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_22"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_22_16" model="account.tax.code.template">
+		<record id="iva_pymes_ded_22_16" model="account.tax.code.template">
             <field name="name">Base operaciones interiores corrientes (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_22"/>
@@ -320,24 +340,6 @@
             <field name="parent_id" ref="iva_pymes_ded_22"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_22_7" model="account.tax.code.template">
-            <field name="name">Base operaciones interiores corrientes (7%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_22"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_22_8" model="account.tax.code.template">
-            <field name="name">Base operaciones interiores corrientes (8%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_22"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_22_4" model="account.tax.code.template">
-            <field name="name">Base operaciones interiores corrientes (4%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_22"/>
-            <field name="sign">1.0</field>
-        </record>
 
         <!-- Base en OPERACIONES INTERIORES CON BIENES DE INVERSIÓN-->
         <record id="iva_pymes_ded_24" model="account.tax.code.template">
@@ -346,26 +348,8 @@
             <field name="parent_id" ref="iva_pymes_ded_base_total"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_24_21" model="account.tax.code.template">
-            <field name="name">Base operaciones interiores bienes inversión (21%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_24"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_24_16" model="account.tax.code.template">
-            <field name="name">Base operaciones interiores bienes inversión (16%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_24"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_24_18" model="account.tax.code.template">
-            <field name="name">Base operaciones interiores bienes inversión (18%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_24"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_24_10" model="account.tax.code.template">
-            <field name="name">Base operaciones interiores bienes inversión (10%)</field>
+        <record id="iva_pymes_ded_24_4" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores bienes inversión (4%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_24"/>
             <field name="sign">1.0</field>
@@ -382,13 +366,30 @@
             <field name="parent_id" ref="iva_pymes_ded_24"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_24_4" model="account.tax.code.template">
-            <field name="name">Base operaciones interiores bienes inversión (4%)</field>
+        <record id="iva_pymes_ded_24_10" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores bienes inversión (10%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_24"/>
             <field name="sign">1.0</field>
         </record>
-
+		<record id="iva_pymes_ded_24_16" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores bienes inversión (16%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_24"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_24_18" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores bienes inversión (18%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_24"/>
+            <field name="sign">1.0</field>
+        </record>
+         <record id="iva_pymes_ded_24_21" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores bienes inversión (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_24"/>
+            <field name="sign">1.0</field>
+        </record>
 
         <!-- Base EN LAS IMPORTACIONES DE BIENES CORRIENTES-->
         <record id="iva_pymes_ded_26" model="account.tax.code.template">
@@ -397,26 +398,8 @@
             <field name="parent_id" ref="iva_pymes_ded_base_total"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_26_21" model="account.tax.code.template">
-            <field name="name">Base importaciones bienes corrientes (21%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_26"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_26_16" model="account.tax.code.template">
-            <field name="name">Base importaciones bienes corrientes (16%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_26"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_26_18" model="account.tax.code.template">
-            <field name="name">Base importaciones bienes corrientes (18%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_26"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_26_10" model="account.tax.code.template">
-            <field name="name">Base importaciones bienes corrientes (10%)</field>
+         <record id="iva_pymes_ded_26_4" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes corrientes (4%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_26"/>
             <field name="sign">1.0</field>
@@ -433,8 +416,26 @@
             <field name="parent_id" ref="iva_pymes_ded_26"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_26_4" model="account.tax.code.template">
-            <field name="name">Base importaciones bienes corrientes (4%)</field>
+       <record id="iva_pymes_ded_26_10" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes corrientes (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_26"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_26_16" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes corrientes (16%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_26"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_26_18" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes corrientes (18%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_26"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_26_21" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes corrientes (21%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_26"/>
             <field name="sign">1.0</field>
@@ -447,26 +448,8 @@
             <field name="parent_id" ref="iva_pymes_ded_base_total"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_28_21" model="account.tax.code.template">
-            <field name="name">Base importaciones bienes inversión (21%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_28"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_28_16" model="account.tax.code.template">
-            <field name="name">Base importaciones bienes inversión (16%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_28"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_28_18" model="account.tax.code.template">
-            <field name="name">Base importaciones bienes inversión (18%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_28"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_28_10" model="account.tax.code.template">
-            <field name="name">Base importaciones bienes inversión (10%)</field>
+        <record id="iva_pymes_ded_28_4" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes inversión (4%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_28"/>
             <field name="sign">1.0</field>
@@ -483,13 +466,30 @@
             <field name="parent_id" ref="iva_pymes_ded_28"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_28_4" model="account.tax.code.template">
-            <field name="name">Base importaciones bienes inversión (4%)</field>
+        <record id="iva_pymes_ded_28_10" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes inversión (10%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_28"/>
             <field name="sign">1.0</field>
         </record>
-
+		<record id="iva_pymes_ded_28_16" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes inversión (16%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_28"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_28_18" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes inversión (18%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_28"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_28_21" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes inversión (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_28"/>
+            <field name="sign">1.0</field>
+        </record>
         <!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES CORRIENTES-->
         <record id="iva_pymes_ded_30" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes corrientes</field>
@@ -497,26 +497,8 @@
             <field name="parent_id" ref="iva_pymes_ded_base_total"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_30_16" model="account.tax.code.template">
-            <field name="name">Base adquisiciones intracomunitarias bienes corrientes (16%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_30"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_30_21" model="account.tax.code.template">
-            <field name="name">Base adquisiciones intracomunitarias bienes corrientes (21%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_30"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_30_18" model="account.tax.code.template">
-            <field name="name">Base adquisiciones intracomunitarias bienes corrientes (18%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_30"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_30_10" model="account.tax.code.template">
-            <field name="name">Base adquisiciones intracomunitarias bienes corrientes (10%)</field>
+         <record id="iva_pymes_ded_30_4" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes corrientes (4%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_30"/>
             <field name="sign">1.0</field>
@@ -533,13 +515,30 @@
             <field name="parent_id" ref="iva_pymes_ded_30"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_30_4" model="account.tax.code.template">
-            <field name="name">Base adquisiciones intracomunitarias bienes corrientes (4%)</field>
+        <record id="iva_pymes_ded_30_10" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes corrientes (10%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_30"/>
             <field name="sign">1.0</field>
         </record>
-
+		<record id="iva_pymes_ded_30_16" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes corrientes (16%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_30"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_30_18" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes corrientes (18%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_30"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_30_21" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes corrientes (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_30"/>
+            <field name="sign">1.0</field>
+        </record>
         <!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES DE INVERSIÓN-->
         <record id="iva_pymes_ded_32" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes inversión</field>
@@ -547,26 +546,8 @@
             <field name="parent_id" ref="iva_pymes_ded_base_total"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_32_21" model="account.tax.code.template">
-            <field name="name">Base adquisiciones intracomunitarias bienes inversión (21%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_32"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_32_16" model="account.tax.code.template">
-            <field name="name">Base adquisiciones intracomunitarias bienes inversión (16%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_32"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_32_18" model="account.tax.code.template">
-            <field name="name">Base adquisiciones intracomunitarias bienes inversión (18%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_32"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_32_10" model="account.tax.code.template">
-            <field name="name">Base adquisiciones intracomunitarias bienes inversión (10%)</field>
+        <record id="iva_pymes_ded_32_4" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes inversión (4%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_32"/>
             <field name="sign">1.0</field>
@@ -583,8 +564,26 @@
             <field name="parent_id" ref="iva_pymes_ded_32"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_32_4" model="account.tax.code.template">
-            <field name="name">Base adquisiciones intracomunitarias bienes inversión (4%)</field>
+        <record id="iva_pymes_ded_32_10" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes inversión (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_32"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_32_16" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes inversión (16%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_32"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_32_18" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes inversión (18%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_32"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_32_21" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes inversión (21%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_32"/>
             <field name="sign">1.0</field>
@@ -592,38 +591,39 @@
 
         <!-- BASE RECARGO DE EQUIVALENCIA-->
         <record id="iva_pymes_ded_10" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia Base Imponible 0.5%</field>
+            <field name="name">Recargo Equivalencia Ded. Base Imponible 0.5%</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_base_total"/>
             <field name="sign">1.0</field>
         </record>
 
         <record id="iva_pymes_ded_13" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia Base Imponible 1%</field>
+            <field name="name">Recargo Equivalencia Ded. Base Imponible 1%</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_base_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_pymes_ded_13_14" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Ded. Base Imponible 1.4%</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_base_total"/>
             <field name="sign">1.0</field>
         </record>
 
         <record id="iva_pymes_ded_16" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia Base Imponible 4%</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_base_total"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_16_52" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia Base Imponible 5.2%</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_base_total"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_13_14" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia Base Imponible 1.4%</field>
+            <field name="name">Recargo Equivalencia Ded. Base Imponible 4%</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_base_total"/>
             <field name="sign">1.0</field>
         </record>
 
+        <record id="iva_pymes_ded_16_52" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Ded. Base Imponible 5.2%</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_base_total"/>
+            <field name="sign">1.0</field>
+        </record>
 
 
     <!-- IVA DEDUCIBLE Cuotas-->
@@ -643,26 +643,8 @@
             <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_23_16" model="account.tax.code.template">
-            <field name="name">Cuotas soportadas operaciones interiores corrientes (16%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_23"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_23_21" model="account.tax.code.template">
-            <field name="name">Cuotas soportadas operaciones interiores corrientes (21%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_23"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_23_18" model="account.tax.code.template">
-            <field name="name">Cuotas soportadas operaciones interiores corrientes (18%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_23"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_23_10" model="account.tax.code.template">
-            <field name="name">Cuotas soportadas operaciones interiores corrientes (10%)</field>
+        <record id="iva_pymes_ded_23_4" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores corrientes (4%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_23"/>
             <field name="sign">1.0</field>
@@ -679,13 +661,30 @@
             <field name="parent_id" ref="iva_pymes_ded_23"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_23_4" model="account.tax.code.template">
-            <field name="name">Cuotas soportadas operaciones interiores corrientes (4%)</field>
+        <record id="iva_pymes_ded_23_10" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores corrientes (10%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_23"/>
             <field name="sign">1.0</field>
         </record>
-
+		<record id="iva_pymes_ded_23_16" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores corrientes (16%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_23"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_23_18" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores corrientes (18%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_23"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_23_21" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores corrientes (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_23"/>
+            <field name="sign">1.0</field>
+        </record>
         <!-- Cuotas en OPERACIONES INTERIORES CON BIENES DE INVERSIÓN-->
         <record id="iva_pymes_ded_25" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores bienes inversión</field>
@@ -693,26 +692,8 @@
             <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_25_21" model="account.tax.code.template">
-            <field name="name">Cuotas soportadas operaciones interiores bienes inversión (21%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_25"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_25_16" model="account.tax.code.template">
-            <field name="name">Cuotas soportadas operaciones interiores bienes inversión (16%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_25"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_25_18" model="account.tax.code.template">
-            <field name="name">Cuotas soportadas operaciones interiores bienes inversión (18%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_25"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_25_10" model="account.tax.code.template">
-            <field name="name">Cuotas soportadas operaciones interiores bienes inversión (10%)</field>
+        <record id="iva_pymes_ded_25_4" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores bienes inversión (4%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_25"/>
             <field name="sign">1.0</field>
@@ -729,44 +710,43 @@
             <field name="parent_id" ref="iva_pymes_ded_25"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_25_4" model="account.tax.code.template">
-            <field name="name">Cuotas soportadas operaciones interiores bienes inversión (4%)</field>
+        <record id="iva_pymes_ded_25_10" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores bienes inversión (10%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_25"/>
             <field name="sign">1.0</field>
         </record>
-
-        <!-- Cuotas devengadas EN LAS IMPORTACIONES DE BIENES CORRIENTES -->
+		<record id="iva_pymes_ded_25_16" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores bienes inversión (16%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_25"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_25_18" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores bienes inversión (18%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_25"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_25_21" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores bienes inversión (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_25"/>
+            <field name="sign">1.0</field>
+        </record>
+        <!-- Cuotas devengadas EN LAS IMPORTACIONES DE BIENES CORRIENTES-->
         <record id="iva_pymes_ded_27" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes corrientes</field>
             <field name="code">[27]</field>
             <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_27_16" model="account.tax.code.template">
-            <field name="name">Cuotas devengadas importaciones bienes corrientes (16%)</field>
+        <record id="iva_pymes_ded_27_4" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes corrientes (4%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_27"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_27_21" model="account.tax.code.template">
-            <field name="name">Cuotas devengadas importaciones bienes corrientes (21%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_27"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_27_18" model="account.tax.code.template">
-            <field name="name">Cuotas devengadas importaciones bienes corrientes (18%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_27"/>
-            <field name="sign">1.0</field>
-        </record>
-         <record id="iva_pymes_ded_27_10" model="account.tax.code.template">
-            <field name="name">Cuotas devengadas importaciones bienes corrientes (10%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_27"/>
-            <field name="sign">1.0</field>
-         </record>
         <record id="iva_pymes_ded_27_7" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes corrientes (7%)</field>
             <field name="code">--</field>
@@ -779,13 +759,30 @@
             <field name="parent_id" ref="iva_pymes_ded_27"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_27_4" model="account.tax.code.template">
-            <field name="name">Cuotas devengadas importaciones bienes corrientes (4%)</field>
+        <record id="iva_pymes_ded_27_10" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes corrientes (10%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_27"/>
             <field name="sign">1.0</field>
         </record>
-
+		<record id="iva_pymes_ded_27_16" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes corrientes (16%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_27"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_27_18" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes corrientes (18%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_27"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_27_21" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes corrientes (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_27"/>
+            <field name="sign">1.0</field>
+        </record>
         <!-- Cuotas devengadas EN LAS IMPORTACIONES DE BIENES DE INVERSIÓN-->
         <record id="iva_pymes_ded_29" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes inversión</field>
@@ -793,26 +790,8 @@
             <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_29_16" model="account.tax.code.template">
-            <field name="name">Cuotas devengadas importaciones bienes inversión (16%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_29"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_29_21" model="account.tax.code.template">
-            <field name="name">Cuotas devengadas importaciones bienes inversión (21%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_29"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_29_18" model="account.tax.code.template">
-            <field name="name">Cuotas devengadas importaciones bienes inversión (18%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_29"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_29_10" model="account.tax.code.template">
-            <field name="name">Cuotas devengadas importaciones bienes inversión (10%)</field>
+        <record id="iva_pymes_ded_29_4" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes inversión (4%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_29"/>
             <field name="sign">1.0</field>
@@ -829,13 +808,30 @@
             <field name="parent_id" ref="iva_pymes_ded_29"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_29_4" model="account.tax.code.template">
-            <field name="name">Cuotas devengadas importaciones bienes inversión (4%)</field>
+        <record id="iva_pymes_ded_29_10" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes inversión (10%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_29"/>
             <field name="sign">1.0</field>
         </record>
-
+		<record id="iva_pymes_ded_29_16" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes inversión (16%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_29"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_29_18" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes inversión (18%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_29"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_29_21" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes inversión (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_29"/>
+            <field name="sign">1.0</field>
+        </record>
         <!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES CORRIENTES-->
         <record id="iva_pymes_ded_31" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes corrientes</field>
@@ -843,26 +839,8 @@
             <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_31_21" model="account.tax.code.template">
-            <field name="name">En adquisiciones intracomunitarias bienes corrientes (21%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_31"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_31_16" model="account.tax.code.template">
-            <field name="name">En adquisiciones intracomunitarias bienes corrientes (16%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_31"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_31_18" model="account.tax.code.template">
-            <field name="name">En adquisiciones intracomunitarias bienes corrientes (18%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_31"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_31_10" model="account.tax.code.template">
-            <field name="name">En adquisiciones intracomunitarias bienes corrientes (10%)</field>
+        <record id="iva_pymes_ded_31_4" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes corrientes (4%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_31"/>
             <field name="sign">1.0</field>
@@ -879,13 +857,30 @@
             <field name="parent_id" ref="iva_pymes_ded_31"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_31_4" model="account.tax.code.template">
-            <field name="name">En adquisiciones intracomunitarias bienes corrientes (4%)</field>
+        <record id="iva_pymes_ded_31_10" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes corrientes (10%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_31"/>
             <field name="sign">1.0</field>
         </record>
-
+		<record id="iva_pymes_ded_31_16" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes corrientes (16%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_31"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_31_18" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes corrientes (18%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_31"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_31_21" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes corrientes (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_31"/>
+            <field name="sign">1.0</field>
+        </record>
         <!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES DE INVERSIÓN-->
         <record id="iva_pymes_ded_33" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes inversión</field>
@@ -893,26 +888,8 @@
             <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_33_16" model="account.tax.code.template">
-            <field name="name">En adquisiciones intracomunitarias bienes inversión (16%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_33"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_33_21" model="account.tax.code.template">
-            <field name="name">En adquisiciones intracomunitarias bienes inversión (21%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_33"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_33_18" model="account.tax.code.template">
-            <field name="name">En adquisiciones intracomunitarias bienes inversión (18%)</field>
-            <field name="code">--</field>
-            <field name="parent_id" ref="iva_pymes_ded_33"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_33_10" model="account.tax.code.template">
-            <field name="name">En adquisiciones intracomunitarias bienes inversión (10%)</field>
+        <record id="iva_pymes_ded_33_4" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes inversión (4%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_33"/>
             <field name="sign">1.0</field>
@@ -929,13 +906,30 @@
             <field name="parent_id" ref="iva_pymes_ded_33"/>
             <field name="sign">1.0</field>
         </record>
-        <record id="iva_pymes_ded_33_4" model="account.tax.code.template">
-            <field name="name">En adquisiciones intracomunitarias bienes inversión (4%)</field>
+        <record id="iva_pymes_ded_33_10" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes inversión (10%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_33"/>
             <field name="sign">1.0</field>
         </record>
-
+		<record id="iva_pymes_ded_33_16" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes inversión (16%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_33"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_33_18" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes inversión (18%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_33"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_ded_33_21" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes inversión (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_ded_33"/>
+            <field name="sign">1.0</field>
+        </record>
         <!--Otros Códigos de Impuestos-->
         <record id="base_pymes_intra_42" model="account.tax.code.template">
             <field name="name">Entregas Intracomunitarias</field>
@@ -960,35 +954,36 @@
 
         <!--Cuota Recargo de Equivalencia-->
         <record id="iva_pymes_ded_12" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia. Cuota 0.5%</field>
+            <field name="name">Recargo Equivalencia Ded. Cuota 0.5%</field>
             <field name="code">[12]</field>
             <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
 
-
         <record id="iva_pymes_ded_15" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia. Cuota 1%</field>
+            <field name="name">Recargo Equivalencia Ded. Cuota 1%</field>
+            <field name="code">[15]</field>
+            <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_pymes_ded_15_14" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Ded. Cuota 1.4%</field>
             <field name="code">[15]</field>
             <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
 
         <record id="iva_pymes_ded_18" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia. Cuota 4%</field>
+            <field name="name">Recargo Equivalencia Ded. Cuota 4%</field>
             <field name="code">[18]</field>
             <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
+
         <record id="iva_pymes_ded_18_52" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia. Cuota 5.2%</field>
+            <field name="name">Recargo Equivalencia Ded. Cuota 5.2%</field>
             <field name="code">[18]</field>
-            <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
-            <field name="sign">1.0</field>
-        </record>
-        <record id="iva_pymes_ded_15_14" model="account.tax.code.template">
-            <field name="name">Recargo Equivalencia. Cuota 1.4%</field>
-            <field name="code">[15]</field>
             <field name="parent_id" ref="iva_pymes_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
@@ -1023,7 +1018,8 @@
             <field name="name">Hacienda Pública. IVA soportado 8%</field>
             <field name="user_type" ref="tax"/>
         </record>
-        <record id="pgc_pymes_472010" model="account.account.template">
+
+		<record id="pgc_pymes_472010" model="account.account.template">
             <field name="code">472010</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="pgc_pymes_472"/>
@@ -1076,7 +1072,6 @@
             <field name="name">Hacienda Pública. IVA repercutido 7%</field>
             <field name="user_type" ref="tax"/>
         </record>
-        IV
 
         <record id="pgc_pymes_477008" model="account.account.template">
             <field name="code">477008</field>
@@ -1087,7 +1082,7 @@
             <field name="user_type" ref="tax"/>
         </record>
 
-        <record id="pgc_pymes_477010" model="account.account.template">
+		<record id="pgc_pymes_477010" model="account.account.template">
             <field name="code">477010</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="pgc_pymes_4770"/>
@@ -1095,7 +1090,6 @@
             <field name="name">Hacienda Pública. IVA repercutido 10%</field>
             <field name="user_type" ref="tax"/>
         </record>
-
         <record id="pgc_pymes_477016" model="account.account.template">
             <field name="code">477016</field>
             <field name="reconcile" eval="True"/>
@@ -1114,7 +1108,7 @@
             <field name="user_type" ref="tax"/>
         </record>
 
-         <record id="pgc_pymes_477021" model="account.account.template">
+        <record id="pgc_pymes_477021" model="account.account.template">
             <field name="code">477021</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="pgc_pymes_4770"/>
@@ -1122,7 +1116,8 @@
             <field name="name">Hacienda Pública. IVA repercutido 21%</field>
             <field name="user_type" ref="tax"/>
         </record>
-         <record id="pgc_pymes_477104" model="account.account.template">
+
+        <record id="pgc_pymes_477104" model="account.account.template">
             <field name="code">477104</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="pgc_pymes_4771"/>
@@ -1300,7 +1295,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-        <record id="iva_pymes_sop_10" model="account.tax.template">
+		<record id="iva_pymes_sop_10" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">10% IVA Soportado (operaciones corrientes)</field>
             <field eval="0.10" name="amount"/>
@@ -1388,6 +1383,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
+            <field eval="0" name="sequence"/>
         </record>
 
         <record id="iva_pymes_sop_18_inv" model="account.tax.template">
@@ -1408,7 +1404,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-        <record id="iva_pymes_sop_21" model="account.tax.template">
+ 		<record id="iva_pymes_sop_21" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">21% IVA Soportado (operaciones corrientes)</field>
             <field eval="0.21" name="amount"/>
@@ -1512,7 +1508,7 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
- 
+
         <record id="iva_pymes_X7_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">IVA 7% Importaciones bienes corrientes</field>
@@ -1605,7 +1601,6 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-
         <record id="iva_pymes_X10_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">IVA 10% Importaciones bienes de inversión</field>
@@ -1698,7 +1693,6 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-
         <record id="iva_pymes_X21_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">IVA 21% Importaciones bienes corrientes</field>
@@ -1877,7 +1871,7 @@
             <field name="ref_base_sign" eval="-1.0"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        <record id="iva_pymes_ISP_compras_21" model="account.tax.template">
+<record id="iva_pymes_ISP_compras_21" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">IVA 21% Inversión del sujeto pasivo</field>
             <field name="description">IVA 21% Inversión del sujeto pasivo</field>
@@ -2052,7 +2046,7 @@
             <field eval="0" name="sequence"/>
         </record>
 
-        <record id="iva_pymes_rep_21" model="account.tax.template">
+		<record id="iva_pymes_rep_21" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">IVA 21%</field>
             <field eval="0.21" name="amount"/>
@@ -2077,29 +2071,12 @@
             <field name="name">0.50% Recargo Equivalencia Ventas</field>
             <field eval="0.005" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_475001"/>
-            <field name="account_paid_id" ref="pgc_pymes_475001"/>
+            <field name="account_collected_id" ref="pgc_pymes_477104"/>
+            <field name="account_paid_id" ref="pgc_pymes_477104"/>
             <field name="base_code_id" ref="iva_pymes_dev_10"/>
             <field name="tax_code_id" ref="iva_pymes_dev_12"/>
             <field name="ref_base_code_id" ref="iva_pymes_dev_10"/>
             <field name="ref_tax_code_id" ref="iva_pymes_dev_12"/>
-            <field eval="1.0" name="tax_sign"/>
-            <field eval="1.0" name="base_sign"/>
-            <field eval="-1.0" name="ref_tax_sign"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <field name="type_tax_use">sale</field>
-        </record>
-        <record id="re_pymes_52" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="name">5.2% Recargo Equivalencia Ventas</field>
-            <field eval="0.052" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_477121"/>
-            <field name="account_paid_id" ref="pgc_pymes_477121"/>
-            <field name="base_code_id" ref="iva_pymes_dev_16_52"/>
-            <field name="tax_code_id" ref="iva_pymes_dev_18_52"/>
-            <field name="ref_base_code_id" ref="iva_pymes_dev_16_52"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_dev_18_52"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
@@ -2112,8 +2089,8 @@
             <field name="name">1% Recargo Equivalencia Ventas</field>
             <field eval="0.01" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_475001"/>
-            <field name="account_paid_id" ref="pgc_pymes_475001"/>
+            <field name="account_collected_id" ref="pgc_pymes_477108"/>
+            <field name="account_paid_id" ref="pgc_pymes_477108"/>
             <field name="base_code_id" ref="iva_pymes_dev_13"/>
             <field name="tax_code_id" ref="iva_pymes_dev_15"/>
             <field name="ref_base_code_id" ref="iva_pymes_dev_13"/>
@@ -2125,23 +2102,6 @@
             <field name="type_tax_use">sale</field>
         </record>
 
-        <record id="re_pymes_4" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="name">4% Recargo Equivalencia Ventas</field>
-            <field eval="0.04" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_475001"/>
-            <field name="account_paid_id" ref="pgc_pymes_475001"/>
-            <field name="base_code_id" ref="iva_pymes_dev_16"/>
-            <field name="tax_code_id" ref="iva_pymes_dev_18"/>
-            <field name="ref_base_code_id" ref="iva_pymes_dev_16"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_dev_18"/>
-            <field eval="1.0" name="tax_sign"/>
-            <field eval="1.0" name="base_sign"/>
-            <field eval="-1.0" name="ref_tax_sign"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <field name="type_tax_use">sale</field>
-        </record>
         <record id="re_pymes_14" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">1.4% Recargo Equivalencia Ventas</field>
@@ -2160,6 +2120,41 @@
             <field name="type_tax_use">sale</field>
         </record>
 
+        <record id="re_pymes_4" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">4% Recargo Equivalencia Ventas</field>
+            <field eval="0.04" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_477118"/>
+            <field name="account_paid_id" ref="pgc_pymes_477118"/>
+            <field name="base_code_id" ref="iva_pymes_dev_16"/>
+            <field name="tax_code_id" ref="iva_pymes_dev_18"/>
+            <field name="ref_base_code_id" ref="iva_pymes_dev_16"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_dev_18"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
+
+        <record id="re_pymes_52" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">5.2% Recargo Equivalencia Ventas</field>
+            <field eval="0.052" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_477121"/>
+            <field name="account_paid_id" ref="pgc_pymes_477121"/>
+            <field name="base_code_id" ref="iva_pymes_dev_16_52"/>
+            <field name="tax_code_id" ref="iva_pymes_dev_18_52"/>
+            <field name="ref_base_code_id" ref="iva_pymes_dev_16_52"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_dev_18_52"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
         <record id="re_pymes_buy_05" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">0.50% Recargo Equivalencia Compras</field>
@@ -2196,6 +2191,24 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
+        <record id="re_pymes_buy_14" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">1.4% Recargo Equivalencia Compras</field>
+            <field eval="0.014" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_470001"/>
+            <field name="account_paid_id" ref="pgc_pymes_470001"/>
+            <field name="base_code_id" ref="iva_pymes_ded_13_14"/>
+            <field name="tax_code_id" ref="iva_pymes_ded_15_14"/>
+            <field name="ref_base_code_id" ref="iva_pymes_ded_13_14"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_ded_15_14"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
         <record id="re_pymes_buy_4" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">4% Recargo Equivalencia Compras</field>
@@ -2213,10 +2226,11 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+
         <record id="re_pymes_buy_52" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">5.2% Recargo Equivalencia Compras</field>
-            <field eval="0.04" name="amount"/>
+            <field eval="0.052" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_pymes_470001"/>
             <field name="account_paid_id" ref="pgc_pymes_470001"/>
@@ -2230,24 +2244,6 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        <record id="re_pymes_buy_14" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="name">1.4% Recargo Equivalencia Compras</field>
-            <field eval="0.01" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_470001"/>
-            <field name="account_paid_id" ref="pgc_pymes_470001"/>
-            <field name="base_code_id" ref="iva_pymes_ded_13_14"/>
-            <field name="tax_code_id" ref="iva_pymes_ded_15_14"/>
-            <field name="ref_base_code_id" ref="iva_pymes_ded_13_14"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_ded_15_14"/>
-            <field eval="1.0" name="tax_sign"/>
-            <field eval="1.0" name="base_sign"/>
-            <field eval="-1.0" name="ref_tax_sign"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-
 
 
 <!-- OPERACIONES INTRACOMUNITARIAS -->
@@ -2268,140 +2264,40 @@
 
 
         <!-- COMPRAS -->
-        <record id="iva_pymes_IC_compras_16_bc" model="account.tax.template">
+
+        <record id="iva_pymes_IC_compras_4_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="name">IVA 16% Intracomunitario. Bienes corrientes</field>
-            <field name="description">IVA 16% Intracomunitario. Bienes corrientes</field>
+            <field name="name">IVA 4% Intracomunitario. Bienes corrientes</field>
+            <field name="description">IVA 4% Intracomunitario. Bienes corrientes</field>
             <field eval="1.00" name="amount"/>
             <field name="type">percent</field>
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        <record id="iva_pymes_IC_compras_16_bc_1" model="account.tax.template">
+        <record id="iva_pymes_IC_compras_4_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_16_bc"/>
-            <field name="name">IVA 16% Intracomunitario. Bienes corrientes (1)</field>
-            <field eval="0.16" name="amount"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_4_bc"/>
+            <field name="name">IVA 4% Intracomunitario. Bienes corrientes (1)</field>
+            <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_472016"/>
-            <field name="account_collected_id" ref="pgc_pymes_472016"/>
-            <field name="base_code_id" ref="iva_pymes_ded_30_16"/>
-            <field name="tax_code_id" ref="iva_pymes_ded_31_16"/>
-            <field name="ref_base_code_id" ref="iva_pymes_ded_30_16"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_ded_31_16"/>
+            <field name="account_paid_id" ref="pgc_pymes_472004"/>
+            <field name="account_collected_id" ref="pgc_pymes_472004"/>
+            <field name="base_code_id" ref="iva_pymes_ded_30_4"/>
+            <field name="tax_code_id" ref="iva_pymes_ded_31_4"/>
+            <field name="ref_base_code_id" ref="iva_pymes_ded_30_4"/>
             <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_ded_31_4"/>
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        <record id="iva_pymes_IC_compras_16_bc_2" model="account.tax.template">
+        <record id="iva_pymes_IC_compras_4_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_16_bc"/>
-            <field name="name">IVA 16% Intracomunitario. Bienes corrientes (2)</field>
-            <field eval="-0.16" name="amount"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_4_bc"/>
+            <field name="name">IVA 4% Intracomunitario. Bienes corrientes (2)</field>
+            <field eval="-0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_477016"/>
-            <field name="account_collected_id" ref="pgc_pymes_477016"/>
-            <field name="base_code_id" ref="iva_pymes_dev_19"/>
-            <field name="tax_code_id" ref="iva_pymes_dev_20"/>
-            <field eval="-1.0" name="tax_sign"/>
-            <field name="ref_base_code_id" ref="iva_pymes_dev_19"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <!--ATENCIÓN AQUÍ CON LOS SIGNOS. PENDIENTE DE PRUEBA EN PROFUNDIDAD-->
-            <field name="ref_tax_code_id" ref="iva_pymes_dev_20"/>
-            <field eval="1.0" name="ref_tax_sign"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-
-        <record id="iva_pymes_IC_compras_18_bc" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="name">IVA 18% Intracomunitario. Bienes corrientes</field>
-            <field name="description">IVA 18% Intracomunitario. Bienes corrientes</field>
-            <field eval="1.00" name="amount"/>
-            <field name="type">percent</field>
-            <field eval="1" name="child_depend"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-        <record id="iva_pymes_IC_compras_18_bc_1" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_18_bc"/>
-            <field name="name">IVA 18% Intracomunitario. Bienes corrientes (1)</field>
-            <field eval="0.18" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_472018"/>
-            <field name="account_collected_id" ref="pgc_pymes_472018"/>
-            <field name="base_code_id" ref="iva_pymes_ded_30_18"/>
-            <field name="tax_code_id" ref="iva_pymes_ded_31_18"/>
-            <field name="ref_base_code_id" ref="iva_pymes_ded_30_18"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_ded_31_18"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <field eval="-1.0" name="ref_tax_sign"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-        <record id="iva_pymes_IC_compras_18_bc_2" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_18_bc"/>
-            <field name="name">IVA 18% Intracomunitario. Bienes corrientes (2)</field>
-            <field eval="-0.18" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_477018"/>
-            <field name="account_collected_id" ref="pgc_pymes_477018"/>
-            <field name="base_code_id" ref="iva_pymes_dev_19"/>
-            <field name="tax_code_id" ref="iva_pymes_dev_20"/>
-            <field eval="-1.0" name="tax_sign"/>
-            <field name="ref_base_code_id" ref="iva_pymes_dev_19"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <!--ATENCIÓN AQUÍ CON LOS SIGNOS. PENDIENTE DE PRUEBA EN PROFUNDIDAD-->
-            <field name="ref_tax_code_id" ref="iva_pymes_dev_20"/>
-            <field eval="1.0" name="ref_tax_sign"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-
-
-        <!--record id="vat_IO_buy_21b_3" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="vat_IO_buy_21b"/>
-            <field name="name">Biens Déductibles 21% (3)</field>
-            <field eval="0.00" name="amount"/>
-            <field name="type">percent</field>
-            <field name="ref_base_code_id" ref="vat_code_a86"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <field name="type_tax_use">purchase</field>
-        </record-->
-<!-- ES NECESARIO ESTE ÚLTIMO REGISTRO????-->
-
-        <record id="iva_pymes_IC_compras_16_bi" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="name">IVA 16% Intracomunitario. Bienes de inversión</field>
-            <field name="description">IVA 16% Intracomunitario. Bienes de inversión</field>
-            <field eval="1.00" name="amount"/>
-            <field name="type">percent</field>
-            <field eval="1" name="child_depend"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-        <record id="iva_pymes_IC_compras_16_bi_1" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_16_bi"/>
-            <field name="name">IVA 16% Intracomunitario. Bienes de inversión (1)</field>
-            <field eval="0.16" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_472016"/>
-            <field name="account_collected_id" ref="pgc_pymes_472016"/>
-            <field name="base_code_id" ref="iva_pymes_ded_32_16"/>
-            <field name="tax_code_id" ref="iva_pymes_ded_33_16"/>
-            <field name="ref_base_code_id" ref="iva_pymes_ded_32_16"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_ded_33_16"/>
-            <field eval="-1.0" name="ref_tax_sign"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-        <record id="iva_pymes_IC_compras_16_bi_2" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_16_bi"/>
-            <field name="name">IVA 16% Intracomunitario. Bienes de inversión (2)</field>
-            <field eval="-0.16" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_477016"/>
-            <field name="account_collected_id" ref="pgc_pymes_477016"/>
+            <field name="account_paid_id" ref="pgc_pymes_477004"/>
+            <field name="account_collected_id" ref="pgc_pymes_477004"/>
             <field name="base_code_id" ref="iva_pymes_dev_19"/>
             <field name="tax_code_id" ref="iva_pymes_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2412,39 +2308,39 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-        <record id="iva_pymes_IC_compras_10_bc" model="account.tax.template">
+        <record id="iva_pymes_IC_compras_4_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="name">IVA 10% Intracomunitario. Bienes corrientes</field>
-            <field name="description">IVA 10% Intracomunitario. Bienes corrientes</field>
+            <field name="name">IVA 4% Intracomunitario. Bienes de inversión</field>
+            <field name="description">IVA 4% Intracomunitario. Bienes de inversión</field>
             <field eval="1.00" name="amount"/>
             <field name="type">percent</field>
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        <record id="iva_pymes_IC_compras_10_bc_1" model="account.tax.template">
+        <record id="iva_pymes_IC_compras_4_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_10_bc"/>
-            <field name="name">IVA 10% Intracomunitario. Bienes corrientes (1)</field>
-            <field eval="0.10" name="amount"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_4_bi"/>
+            <field name="name">IVA 4% Intracomunitario. Bienes de inversión (1)</field>
+            <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_472010"/>
-            <field name="account_collected_id" ref="pgc_pymes_472010"/>
-            <field name="base_code_id" ref="iva_pymes_ded_30_10"/>
-            <field name="tax_code_id" ref="iva_pymes_ded_31_10"/>
-            <field name="ref_base_code_id" ref="iva_pymes_ded_30_10"/>
+            <field name="account_paid_id" ref="pgc_pymes_472004"/>
+            <field name="account_collected_id" ref="pgc_pymes_472004"/>
+            <field name="base_code_id" ref="iva_pymes_ded_32_4"/>
+            <field name="tax_code_id" ref="iva_pymes_ded_33_4"/>
+            <field name="ref_base_code_id" ref="iva_pymes_ded_32_4"/>
             <field eval="-1.0" name="ref_base_sign"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_ded_31_8"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_ded_33_4"/>
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        <record id="iva_pymes_IC_compras_10_bc_2" model="account.tax.template">
+        <record id="iva_pymes_IC_compras_4_bi_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_10_bc"/>
-            <field name="name">IVA 10% Intracomunitario. Bienes corrientes (2)</field>
-            <field eval="-0.10" name="amount"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_4_bi"/>
+            <field name="name">IVA 4% Intracomunitario. Bienes de inversión (2)</field>
+            <field eval="-0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_477010"/>
-            <field name="account_collected_id" ref="pgc_pymes_477010"/>
+            <field name="account_paid_id" ref="pgc_pymes_477004"/>
+            <field name="account_collected_id" ref="pgc_pymes_477004"/>
             <field name="base_code_id" ref="iva_pymes_dev_19"/>
             <field name="tax_code_id" ref="iva_pymes_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2454,180 +2350,6 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-
-        <record id="iva_pymes_IC_compras_10_bi" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="name">IVA 10% Intracomunitario. Bienes de inversión</field>
-            <field name="description">IVA 10% Intracomunitario. Bienes de inversión</field>
-            <field eval="1.00" name="amount"/>
-            <field name="type">percent</field>
-            <field eval="1" name="child_depend"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-        <record id="iva_pymes_IC_compras_10_bi_1" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_10_bi"/>
-            <field name="name">IVA 10% Intracomunitario. Bienes de inversión (1)</field>
-            <field eval="0.10" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_472010"/>
-            <field name="account_collected_id" ref="pgc_pymes_472010"/>
-            <field name="base_code_id" ref="iva_pymes_ded_32_10"/>
-            <field name="tax_code_id" ref="iva_pymes_ded_33_10"/>
-            <field name="ref_base_code_id" ref="iva_pymes_ded_32_10"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_ded_33_10"/>
-            <field eval="-1.0" name="ref_tax_sign"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-        <record id="iva_pymes_IC_compras_10_bi_2" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_10_bi"/>
-            <field name="name">IVA 10% Intracomunitario. Bienes de inversión (2)</field>
-            <field eval="-0.10" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_477010"/>
-            <field name="account_collected_id" ref="pgc_pymes_477010"/>
-            <field name="base_code_id" ref="iva_pymes_dev_19"/>
-            <field name="tax_code_id" ref="iva_pymes_dev_20"/>
-            <field eval="-1.0" name="tax_sign"/>
-            <field name="ref_base_code_id" ref="iva_pymes_dev_19"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_dev_20"/>
-            <field eval="1.0" name="ref_tax_sign"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-
-        <record id="iva_pymes_IC_compras_21_bc" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="name">IVA 21% Intracomunitario. Bienes corrientes</field>
-            <field name="description">IVA 21% Intracomunitario. Bienes corrientes</field>
-            <field eval="1.00" name="amount"/>
-            <field name="type">percent</field>
-            <field eval="1" name="child_depend"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-        <record id="iva_pymes_IC_compras_21_bc_1" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_21_bc"/>
-            <field name="name">IVA 21% Intracomunitario. Bienes corrientes (1)</field>
-            <field eval="0.21" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_472021"/>
-            <field name="account_collected_id" ref="pgc_pymes_472021"/>
-            <field name="base_code_id" ref="iva_pymes_ded_30_21"/>
-            <field name="tax_code_id" ref="iva_pymes_ded_31_21"/>
-            <field name="ref_base_code_id" ref="iva_pymes_ded_30_21"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_ded_31_21"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <field eval="-1.0" name="ref_tax_sign"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-        <record id="iva_pymes_IC_compras_21_bc_2" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_21_bc"/>
-            <field name="name">IVA 21% Intracomunitario. Bienes corrientes (2)</field>
-            <field eval="-0.21" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_477021"/>
-            <field name="account_collected_id" ref="pgc_pymes_477021"/>
-            <field name="base_code_id" ref="iva_pymes_dev_19"/>
-            <field name="tax_code_id" ref="iva_pymes_dev_20"/>
-            <field eval="-1.0" name="tax_sign"/>
-            <field name="ref_base_code_id" ref="iva_pymes_dev_19"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <!--ATENCIÓN AQUÍ CON LOS SIGNOS. PENDIENTE DE PRUEBA EN PROFUNDIDAD-->
-            <field name="ref_tax_code_id" ref="iva_pymes_dev_20"/>
-            <field eval="1.0" name="ref_tax_sign"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-
-                <record id="iva_pymes_IC_compras_21_bi" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="name">IVA 21% Intracomunitario. Bienes de inversión</field>
-            <field name="description">IVA 21% Intracomunitario. Bienes de inversión</field>
-            <field eval="1.00" name="amount"/>
-            <field name="type">percent</field>
-            <field eval="1" name="child_depend"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-        <record id="iva_pymes_IC_compras_21_bi_1" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_21_bi"/>
-            <field name="name">IVA 21% Intracomunitario. Bienes de inversión (1)</field>
-            <field eval="0.21" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_472021"/>
-            <field name="account_collected_id" ref="pgc_pymes_472021"/>
-            <field name="base_code_id" ref="iva_pymes_ded_32_21"/>
-            <field name="tax_code_id" ref="iva_pymes_ded_33_21"/>
-            <field name="ref_base_code_id" ref="iva_pymes_ded_32_21"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_ded_33_21"/>
-            <field eval="-1.0" name="ref_tax_sign"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-        <record id="iva_pymes_IC_compras_21_bi_2" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_21_bi"/>
-            <field name="name">IVA 21% Intracomunitario. Bienes de inversión (2)</field>
-            <field eval="-0.21" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_477021"/>
-            <field name="account_collected_id" ref="pgc_pymes_477021"/>
-            <field name="base_code_id" ref="iva_pymes_dev_19"/>
-            <field name="tax_code_id" ref="iva_pymes_dev_20"/>
-            <field eval="-1.0" name="tax_sign"/>
-            <field name="ref_base_code_id" ref="iva_pymes_dev_19"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_dev_20"/>
-            <field eval="1.0" name="ref_tax_sign"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-
-        <record id="iva_pymes_IC_compras_18_bi" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="name">IVA 18% Intracomunitario. Bienes de inversión</field>
-            <field name="description">IVA 18% Intracomunitario. Bienes de inversión</field>
-            <field eval="1.00" name="amount"/>
-            <field name="type">percent</field>
-            <field eval="1" name="child_depend"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-        <record id="iva_pymes_IC_compras_18_bi_1" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_18_bi"/>
-            <field name="name">IVA 18% Intracomunitario. Bienes de inversión (1)</field>
-            <field eval="0.18" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_472018"/>
-            <field name="account_collected_id" ref="pgc_pymes_472018"/>
-            <field name="base_code_id" ref="iva_pymes_ded_32_18"/>
-            <field name="tax_code_id" ref="iva_pymes_ded_33_18"/>
-            <field name="ref_base_code_id" ref="iva_pymes_ded_32_18"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_ded_33_18"/>
-            <field eval="-1.0" name="ref_tax_sign"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-        <record id="iva_pymes_IC_compras_18_bi_2" model="account.tax.template">
-            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_18_bi"/>
-            <field name="name">IVA 18% Intracomunitario. Bienes de inversión (2)</field>
-            <field eval="-0.18" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_477018"/>
-            <field name="account_collected_id" ref="pgc_pymes_477018"/>
-            <field name="base_code_id" ref="iva_pymes_dev_19"/>
-            <field name="tax_code_id" ref="iva_pymes_dev_20"/>
-            <field eval="-1.0" name="tax_sign"/>
-            <field name="ref_base_code_id" ref="iva_pymes_dev_19"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_dev_20"/>
-            <field eval="1.0" name="ref_tax_sign"/>
-            <field name="type_tax_use">purchase</field>
-        </record>
-
         <record id="iva_pymes_IC_compras_7_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">IVA 7% Intracomunitario. Bienes corrientes</field>
@@ -2680,6 +2402,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+
         <record id="iva_pymes_IC_compras_7_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="parent_id" ref="iva_pymes_IC_compras_7_bi"/>
@@ -2696,6 +2419,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+
         <record id="iva_pymes_IC_compras_7_bi_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="parent_id" ref="iva_pymes_IC_compras_7_bi"/>
@@ -2800,39 +2524,39 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-        <record id="iva_pymes_IC_compras_4_bc" model="account.tax.template">
+        <record id="iva_pymes_IC_compras_10_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="name">IVA 4% Intracomunitario. Bienes corrientes</field>
-            <field name="description">IVA 4% Intracomunitario. Bienes corrientes</field>
+            <field name="name">IVA 10% Intracomunitario. Bienes corrientes</field>
+            <field name="description">IVA 10% Intracomunitario. Bienes corrientes</field>
             <field eval="1.00" name="amount"/>
             <field name="type">percent</field>
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        <record id="iva_pymes_IC_compras_4_bc_1" model="account.tax.template">
+        <record id="iva_pymes_IC_compras_10_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_4_bc"/>
-            <field name="name">IVA 4% Intracomunitario. Bienes corrientes (1)</field>
-            <field eval="0.04" name="amount"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_10_bc"/>
+            <field name="name">IVA 10% Intracomunitario. Bienes corrientes (1)</field>
+            <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_472004"/>
-            <field name="account_collected_id" ref="pgc_pymes_472004"/>
-            <field name="base_code_id" ref="iva_pymes_ded_30_4"/>
-            <field name="tax_code_id" ref="iva_pymes_ded_31_4"/>
-            <field name="ref_base_code_id" ref="iva_pymes_ded_30_4"/>
+            <field name="account_paid_id" ref="pgc_pymes_472010"/>
+            <field name="account_collected_id" ref="pgc_pymes_472010"/>
+            <field name="base_code_id" ref="iva_pymes_ded_30_10"/>
+            <field name="tax_code_id" ref="iva_pymes_ded_31_10"/>
+            <field name="ref_base_code_id" ref="iva_pymes_ded_30_10"/>
             <field eval="-1.0" name="ref_base_sign"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_ded_31_4"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_ded_31_8"/>
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        <record id="iva_pymes_IC_compras_4_bc_2" model="account.tax.template">
+        <record id="iva_pymes_IC_compras_10_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_4_bc"/>
-            <field name="name">IVA 4% Intracomunitario. Bienes corrientes (2)</field>
-            <field eval="-0.04" name="amount"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_10_bc"/>
+            <field name="name">IVA 10% Intracomunitario. Bienes corrientes (2)</field>
+            <field eval="-0.10" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_477004"/>
-            <field name="account_collected_id" ref="pgc_pymes_477004"/>
+            <field name="account_paid_id" ref="pgc_pymes_477010"/>
+            <field name="account_collected_id" ref="pgc_pymes_477010"/>
             <field name="base_code_id" ref="iva_pymes_dev_19"/>
             <field name="tax_code_id" ref="iva_pymes_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2843,39 +2567,312 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-        <record id="iva_pymes_IC_compras_4_bi" model="account.tax.template">
+        <record id="iva_pymes_IC_compras_10_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="name">IVA 4% Intracomunitario. Bienes de inversión</field>
-            <field name="description">IVA 4% Intracomunitario. Bienes de inversión</field>
+            <field name="name">IVA 10% Intracomunitario. Bienes de inversión</field>
+            <field name="description">IVA 10% Intracomunitario. Bienes de inversión</field>
             <field eval="1.00" name="amount"/>
             <field name="type">percent</field>
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        <record id="iva_pymes_IC_compras_4_bi_1" model="account.tax.template">
+        <record id="iva_pymes_IC_compras_10_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_4_bi"/>
-            <field name="name">IVA 4% Intracomunitario. Bienes de inversión (1)</field>
-            <field eval="0.04" name="amount"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_10_bi"/>
+            <field name="name">IVA 10% Intracomunitario. Bienes de inversión (1)</field>
+            <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_472004"/>
-            <field name="account_collected_id" ref="pgc_pymes_472004"/>
-            <field name="base_code_id" ref="iva_pymes_ded_32_4"/>
-            <field name="tax_code_id" ref="iva_pymes_ded_33_4"/>
-            <field name="ref_base_code_id" ref="iva_pymes_ded_32_4"/>
+            <field name="account_paid_id" ref="pgc_pymes_472010"/>
+            <field name="account_collected_id" ref="pgc_pymes_472010"/>
+            <field name="base_code_id" ref="iva_pymes_ded_32_10"/>
+            <field name="tax_code_id" ref="iva_pymes_ded_33_10"/>
+            <field name="ref_base_code_id" ref="iva_pymes_ded_32_10"/>
             <field eval="-1.0" name="ref_base_sign"/>
-            <field name="ref_tax_code_id" ref="iva_pymes_ded_33_4"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_ded_33_10"/>
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-        <record id="iva_pymes_IC_compras_4_bi_2" model="account.tax.template">
+        <record id="iva_pymes_IC_compras_10_bi_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
-            <field name="parent_id" ref="iva_pymes_IC_compras_4_bi"/>
-            <field name="name">IVA 4% Intracomunitario. Bienes de inversión (2)</field>
-            <field eval="-0.04" name="amount"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_10_bi"/>
+            <field name="name">IVA 10% Intracomunitario. Bienes de inversión (2)</field>
+            <field eval="-0.10" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_pymes_477004"/>
-            <field name="account_collected_id" ref="pgc_pymes_477004"/>
+            <field name="account_paid_id" ref="pgc_pymes_477010"/>
+            <field name="account_collected_id" ref="pgc_pymes_477010"/>
+            <field name="base_code_id" ref="iva_pymes_dev_19"/>
+            <field name="tax_code_id" ref="iva_pymes_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="iva_pymes_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="iva_pymes_IC_compras_16_bc" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">IVA 16% Intracomunitario. Bienes corrientes</field>
+            <field name="description">IVA 16% Intracomunitario. Bienes corrientes</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_pymes_IC_compras_16_bc_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_16_bc"/>
+            <field name="name">IVA 16% Intracomunitario. Bienes corrientes (1)</field>
+            <field eval="0.16" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_472016"/>
+            <field name="account_collected_id" ref="pgc_pymes_472016"/>
+            <field name="base_code_id" ref="iva_pymes_ded_30_16"/>
+            <field name="tax_code_id" ref="iva_pymes_ded_31_16"/>
+            <field name="ref_base_code_id" ref="iva_pymes_ded_30_16"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_ded_31_16"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_pymes_IC_compras_16_bc_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_16_bc"/>
+            <field name="name">IVA 16% Intracomunitario. Bienes corrientes (2)</field>
+            <field eval="-0.16" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_477016"/>
+            <field name="account_collected_id" ref="pgc_pymes_477016"/>
+            <field name="base_code_id" ref="iva_pymes_dev_19"/>
+            <field name="tax_code_id" ref="iva_pymes_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="iva_pymes_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <!--ATENCIÓN AQUÍ CON LOS SIGNOS. PENDIENTE DE PRUEBA EN PROFUNDIDAD-->
+            <field name="ref_tax_code_id" ref="iva_pymes_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="iva_pymes_IC_compras_16_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">IVA 16% Intracomunitario. Bienes de inversión</field>
+            <field name="description">IVA 16% Intracomunitario. Bienes de inversión</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_pymes_IC_compras_16_bi_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_16_bi"/>
+            <field name="name">IVA 16% Intracomunitario. Bienes de inversión (1)</field>
+            <field eval="0.16" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_472016"/>
+            <field name="account_collected_id" ref="pgc_pymes_472016"/>
+            <field name="base_code_id" ref="iva_pymes_ded_32_16"/>
+            <field name="tax_code_id" ref="iva_pymes_ded_33_16"/>
+            <field name="ref_base_code_id" ref="iva_pymes_ded_32_16"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_ded_33_16"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_pymes_IC_compras_16_bi_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_16_bi"/>
+            <field name="name">IVA 16% Intracomunitario. Bienes de inversión (2)</field>
+            <field eval="-0.16" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_477016"/>
+            <field name="account_collected_id" ref="pgc_pymes_477016"/>
+            <field name="base_code_id" ref="iva_pymes_dev_19"/>
+            <field name="tax_code_id" ref="iva_pymes_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="iva_pymes_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="iva_pymes_IC_compras_18_bc" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">IVA 18% Intracomunitario. Bienes corrientes</field>
+            <field name="description">IVA 18% Intracomunitario. Bienes corrientes</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_pymes_IC_compras_18_bc_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_18_bc"/>
+            <field name="name">IVA 18% Intracomunitario. Bienes corrientes (1)</field>
+            <field eval="0.18" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_472018"/>
+            <field name="account_collected_id" ref="pgc_pymes_472018"/>
+            <field name="base_code_id" ref="iva_pymes_ded_30_18"/>
+            <field name="tax_code_id" ref="iva_pymes_ded_31_18"/>
+            <field name="ref_base_code_id" ref="iva_pymes_ded_30_18"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_ded_31_18"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_pymes_IC_compras_18_bc_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_18_bc"/>
+            <field name="name">IVA 18% Intracomunitario. Bienes corrientes (2)</field>
+            <field eval="-0.18" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_477018"/>
+            <field name="account_collected_id" ref="pgc_pymes_477018"/>
+            <field name="base_code_id" ref="iva_pymes_dev_19"/>
+            <field name="tax_code_id" ref="iva_pymes_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="iva_pymes_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <!--ATENCIÓN AQUÍ CON LOS SIGNOS. PENDIENTE DE PRUEBA EN PROFUNDIDAD-->
+            <field name="ref_tax_code_id" ref="iva_pymes_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <!--record id="vat_IO_buy_21b_3" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="vat_IO_buy_21b"/>
+            <field name="name">Biens Déductibles 21% (3)</field>
+            <field eval="0.00" name="amount"/>
+            <field name="type">percent</field>
+            <field name="ref_base_code_id" ref="vat_code_a86"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record-->
+<!-- ES NECESARIO ESTE ÚLTIMO REGISTRO????-->
+
+		<record id="iva_pymes_IC_compras_18_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">IVA 18% Intracomunitario. Bienes de inversión</field>
+            <field name="description">IVA 18% Intracomunitario. Bienes de inversión</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_pymes_IC_compras_18_bi_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_18_bi"/>
+            <field name="name">IVA 18% Intracomunitario. Bienes de inversión (1)</field>
+            <field eval="0.18" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_472018"/>
+            <field name="account_collected_id" ref="pgc_pymes_472018"/>
+            <field name="base_code_id" ref="iva_pymes_ded_32_18"/>
+            <field name="tax_code_id" ref="iva_pymes_ded_33_18"/>
+            <field name="ref_base_code_id" ref="iva_pymes_ded_32_18"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_ded_33_18"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_pymes_IC_compras_18_bi_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_18_bi"/>
+            <field name="name">IVA 18% Intracomunitario. Bienes de inversión (2)</field>
+            <field eval="-0.18" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_477018"/>
+            <field name="account_collected_id" ref="pgc_pymes_477018"/>
+            <field name="base_code_id" ref="iva_pymes_dev_19"/>
+            <field name="tax_code_id" ref="iva_pymes_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="iva_pymes_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+
+		<record id="iva_pymes_IC_compras_21_bc" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">IVA 21% Intracomunitario. Bienes corrientes</field>
+            <field name="description">IVA 21% Intracomunitario. Bienes corrientes</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_pymes_IC_compras_21_bc_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_21_bc"/>
+            <field name="name">IVA 21% Intracomunitario. Bienes corrientes (1)</field>
+            <field eval="0.21" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_472021"/>
+            <field name="account_collected_id" ref="pgc_pymes_472021"/>
+            <field name="base_code_id" ref="iva_pymes_ded_30_21"/>
+            <field name="tax_code_id" ref="iva_pymes_ded_31_21"/>
+            <field name="ref_base_code_id" ref="iva_pymes_ded_30_21"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_ded_31_21"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_pymes_IC_compras_21_bc_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_21_bc"/>
+            <field name="name">IVA 21% Intracomunitario. Bienes corrientes (2)</field>
+            <field eval="-0.21" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_477021"/>
+            <field name="account_collected_id" ref="pgc_pymes_477021"/>
+            <field name="base_code_id" ref="iva_pymes_dev_19"/>
+            <field name="tax_code_id" ref="iva_pymes_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="iva_pymes_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <!--ATENCIÓN AQUÍ CON LOS SIGNOS. PENDIENTE DE PRUEBA EN PROFUNDIDAD-->
+            <field name="ref_tax_code_id" ref="iva_pymes_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+		<record id="iva_pymes_IC_compras_21_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">IVA 21% Intracomunitario. Bienes de inversión</field>
+            <field name="description">IVA 21% Intracomunitario. Bienes de inversión</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_pymes_IC_compras_21_bi_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_21_bi"/>
+            <field name="name">IVA 21% Intracomunitario. Bienes de inversión (1)</field>
+            <field eval="0.21" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_472021"/>
+            <field name="account_collected_id" ref="pgc_pymes_472021"/>
+            <field name="base_code_id" ref="iva_pymes_ded_32_21"/>
+            <field name="tax_code_id" ref="iva_pymes_ded_33_21"/>
+            <field name="ref_base_code_id" ref="iva_pymes_ded_32_21"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="iva_pymes_ded_33_21"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_pymes_IC_compras_21_bi_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="parent_id" ref="iva_pymes_IC_compras_21_bi"/>
+            <field name="name">IVA 21% Intracomunitario. Bienes de inversión (2)</field>
+            <field eval="-0.21" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_pymes_477021"/>
+            <field name="account_collected_id" ref="pgc_pymes_477021"/>
             <field name="base_code_id" ref="iva_pymes_dev_19"/>
             <field name="tax_code_id" ref="iva_pymes_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2921,6 +2918,13 @@
         <record id="irpf_pymes_base_7" model="account.tax.code.template">
             <field name="name">IRPF Retenciones practicadas Base Imponible 7%</field>
             <field name="code">B.IRPF7</field>
+            <field name="parent_id" ref="irpf_pymes_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="irpf_pymes_base_9" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones practicadas Base Imponible 9%</field>
+            <field name="code">B.IRPF9</field>
             <field name="parent_id" ref="irpf_pymes_base"/>
             <field name="sign">1.0</field>
         </record>
@@ -2989,6 +2993,13 @@
             <field name="sign">1.0</field>
         </record>
 
+        <record id="irpf_pymes_cuota_9" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones practicadas Cuota 9%</field>
+            <field name="code">IRPF9</field>
+            <field name="parent_id" ref="irpf_pymes_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_pymes_cuota_15" model="account.tax.code.template">
             <field name="name">IRPF Retenciones practicadas Cuota 15%</field>
             <field name="code">IRPF15</field>
@@ -3049,6 +3060,15 @@
             <field name="parent_id" ref="pgc_pymes_4751"/>
             <field name="type">other</field>
             <field name="name">Hacienda Pública. Retenciones act. profesionales 7%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_pymes_475109" model="account.account.template">
+            <field name="code">475109</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_pymes_4751"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. Retenciones act. profesionales 9%</field>
             <field name="user_type" ref="tax"/>
         </record>
 
@@ -3145,6 +3165,24 @@
             <field name="tax_code_id" ref="irpf_pymes_cuota_7"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_7"/>
             <field name="ref_tax_code_id" ref="irpf_pymes_cuota_7"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="irpf_pymes_9" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">Retenciones IRPF 9%</field>
+            <field eval="-0.09" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_475109"/>
+            <field name="account_paid_id" ref="pgc_pymes_475109"/>
+            <field name="base_code_id" ref="irpf_pymes_base_9"/>
+            <field name="tax_code_id" ref="irpf_pymes_cuota_9"/>
+            <field name="ref_base_code_id" ref="irpf_pymes_base_9"/>
+            <field name="ref_tax_code_id" ref="irpf_pymes_cuota_9"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
@@ -3273,6 +3311,13 @@
             <field name="sign">1.0</field>
         </record>
 
+        <record id="irpf_pymes_base_sale_9" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones a cuenta Base Imponible 9%</field>
+            <field name="code">B.IRPF9 AC</field>
+            <field name="parent_id" ref="irpf_pymes_base_sale"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_pymes_base_sale_15" model="account.tax.code.template">
             <field name="name">IRPF Retenciones a cuenta Base Imponible 15%</field>
             <field name="code">B.IRPF15 AC</field>
@@ -3337,6 +3382,13 @@
             <field name="sign">1.0</field>
         </record>
 
+        <record id="irpf_pymes_cuota_sale_9" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones a cuenta Cuota 9%</field>
+            <field name="code">IRPF9 AC</field>
+            <field name="parent_id" ref="irpf_pymes_cuota_sale_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_pymes_cuota_sale_15" model="account.tax.code.template">
             <field name="name">IRPF Retenciones a cuenta Cuota 15%</field>
             <field name="code">IRPF15 AC</field>
@@ -3397,6 +3449,15 @@
             <field name="parent_id" ref="pgc_pymes_473"/>
             <field name="type">other</field>
             <field name="name">Hacienda Pública. Retenciones a cuenta act. profesionales 7%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_pymes_473009" model="account.account.template">
+            <field name="code">473009</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_pymes_473"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. Retenciones a cuenta act. profesionales 9%</field>
             <field name="user_type" ref="tax"/>
         </record>
 
@@ -3493,6 +3554,24 @@
             <field name="tax_code_id" ref="irpf_pymes_cuota_sale_7"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_sale_7"/>
             <field name="ref_tax_code_id" ref="irpf_pymes_cuota_sale_7"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
+
+        <record id="irpf_pymes_sale_9" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
+            <field name="name">Retenciones a cuenta IRPF 9%</field>
+            <field eval="-0.09" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_pymes_473009"/>
+            <field name="account_paid_id" ref="pgc_pymes_473009"/>
+            <field name="base_code_id" ref="irpf_pymes_base_sale_9"/>
+            <field name="tax_code_id" ref="irpf_pymes_cuota_sale_9"/>
+            <field name="ref_base_code_id" ref="irpf_pymes_base_sale_9"/>
+            <field name="ref_tax_code_id" ref="irpf_pymes_cuota_sale_9"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>

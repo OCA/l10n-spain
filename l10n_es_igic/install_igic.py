@@ -21,6 +21,18 @@
 
 from osv import fields,osv
 
+class wizard_update_charts_accounts(osv.osv_memory):
+
+    _name = "wizard.update.charts.accounts.todo"
+    _inherit = ["res.config.installer","wizard.update.charts.accounts"]
+
+    def execute(self, cr, uid, ids, context=None):
+        if context is None: context = {}
+        self.action_find_records(cr, uid, ids, context=context)
+        self.action_update_records(cr, uid, ids, context=context)
+
+wizard_update_charts_accounts()
+
 class install_igic(osv.osv_memory):
 
     _name = "install.igic"

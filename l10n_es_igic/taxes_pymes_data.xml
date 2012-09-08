@@ -2370,6 +2370,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_pymes_IC_compras_09_5_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="parent_id" ref="igic_pymes_IC_compras_09_5_bc"/>
@@ -2386,6 +2387,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_pymes_IC_compras_09_5_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="parent_id" ref="igic_pymes_IC_compras_09_5_bc"/>
@@ -2413,6 +2415,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_pymes_IC_compras_13_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="parent_id" ref="igic_pymes_IC_compras_13_bc"/>
@@ -2456,6 +2459,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_pymes_IC_compras_13_5_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="parent_id" ref="igic_pymes_IC_compras_13_5_bc"/>
@@ -2472,6 +2476,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_pymes_IC_compras_13_5_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="parent_id" ref="igic_pymes_IC_compras_13_5_bc"/>
@@ -2713,7 +2718,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-	<record id="igic_pymes_IC_compras_09_5_bi" model="account.tax.template">
+        <record id="igic_pymes_IC_compras_09_5_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
             <field name="name">IGIC 9,5% Intracomunitario. Bienes de inversión</field>
             <field name="description">IGIC 9,5% Intracomunitario. Bienes de inversión</field>

@@ -62,7 +62,7 @@
           <para style="P1">Bank: [[o.mode.bank_id.bank.name]]</para>
           <para style="P1">Account: [[o.mode.bank_id.acc_number]]</para>
           <para style="P1">Created date: [[time.strftime('%d-%m-%Y', time.strptime(o.date_created, '%Y-%m-%d'))]]</para>
-          <para style="P1">Payment date: [[o.date_planned and time.strftime('%d-%m-%Y', time.strptime(o.date_planned, '%Y-%m-%d')) or '']]</para>
+          <para style="P1">Payment date: [[o.date_scheduled and time.strftime('%d-%m-%Y', time.strptime(o.date_scheduled, '%Y-%m-%d')) or '']]</para>
         </td>
         <td>
           <para style="P2">PAYMENT ORDER Num.: [[o.reference]]</para>

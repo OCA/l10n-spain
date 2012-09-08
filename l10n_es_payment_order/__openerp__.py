@@ -27,7 +27,7 @@
 {
     "name" : "Exportación de ficheros bancarios CSB 19, CSB 32, CSB 34 y CSB 58",
     "version" : "1.5",
-    "author" : "Acysos SL, Zikzakmedia SL, Pablo Rocandio, NaN",
+    "author" : "Acysos SL, Zikzakmedia SL, Pablo Rocandio, NaN·tic",
     "category" : "Localisation/Accounting",
     "description" : """Módulo para la exportación de ficheros bancarios según las normas CSB 19 (recibos domiciliados), CBS 32 (descuento comercial), CSB 58 (anticipos de créditos) y CSB 34 (emisión de transferencias, nóminas, cheques, pagarés y pagos certificados) para poder ser enviados a la entidad bancaria.
 

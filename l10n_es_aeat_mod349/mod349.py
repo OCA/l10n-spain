@@ -252,8 +252,7 @@ class l10n_es_aeat_mod349(osv.osv):
     _columns = {
         ## The name is just an alias
         'name' : fields.function(_get_report_alias, type="char", string="Name", method=True),
-
-        'period_id' : fields.many2one('account.period', u'Period'),
+        'period_ids': fields.many2many('account.period', 'mod349_mod349_period_rel', 'mod349_id', 'period_ids', 'Periods'),
         'period_selection' : fields.selection([
                 ('0A', '0A - Annual'),
                 ('MO', 'MO - Monthly'),

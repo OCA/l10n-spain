@@ -136,6 +136,7 @@ class create_accounts(osv.osv_memory):
                     len_ref = form.num_digits - len(form.parent_payable.code) # longitud del código que aprovechamos
                     if len_ref > 0:
                         link_account(ref[-len_ref:].zfill(len_ref), form.parent_payable, 'payable', acc_user_type_pay, 'property_account_payable')
-        return {}
+        return { 'type': 'ir.actions.act_window_close' }
+
 
 create_accounts()

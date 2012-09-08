@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data> 
+        <record model="ir.ui.view" id="view_validate_vies_vat_form">
+            <field name="name">validate.vies.vat.form</field>
+            <field name="model">validate.vies.vat</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Validate Vat in Vies">
+                    <group colspan="4" col="4">
+                        <label string="Vies Vat validation" colspan="4"/>
+                        <label string="The partner vat will be validated against vies webservice"
+                         colspan="4"/>                      
+                    </group>
+                    <group colspan="4">
+                        <button icon="gtk-cancel" special="cancel" string="Close"/>
+                        <button icon="gtk-ok" string="Validate" name="validate_vies"
+                            type="object"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_view_validate_vies" model="ir.actions.act_window">
+            <field name="name">Validate Vies</field>
+            <field name="res_model">validate.vies.vat</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_validate_vies_vat_form"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

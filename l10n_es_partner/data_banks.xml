@@ -2993,7 +2993,7 @@
 			<field name="state" ref="l10n_es_toponyms.ES28"/>
 			<field name="country" ref="base.es"/>
 		</record>
-	  <record id="res_bank_ingdirect" model="res.bank">
+        <record id="res_bank_ingdirect" model="res.bank">
             <field eval="&quot;&quot;&quot;ING DIRECT&quot;&quot;&quot;" name="name"/>
             <field eval="&quot;&quot;&quot;ING DIRECT, N.V. SUCURSAL EN ESPAÑA&quot;&quot;&quot;" name="lname"/>
             <field eval="&quot;&quot;&quot;1465&quot;&quot;&quot;" name="code"/>
