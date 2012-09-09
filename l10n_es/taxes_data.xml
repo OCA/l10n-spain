@@ -41,7 +41,7 @@
 
 
     <!-- Exentas IVA -->
-	  	<record id="base_sop_ex" model="account.tax.code">
+	  	<record id="base_sop_ex" model="account.tax.code.template">
             <field name="name">Base adquisiciones exentas</field>
             <field name="company_id" model="res.company"  search="[]"/>
             <field name="parent_id" ref="vat_code_chart_root"/>
@@ -49,7 +49,7 @@
             <field name="sign">1.0</field>
         </record>
         
-        <record id="base_rep_ex" model="account.tax.code">
+        <record id="base_rep_ex" model="account.tax.code.template">
             <field name="name">Base ventas exentas</field>
             <field name="code">--</field>
             <field name="company_id" model="res.company"  search="[]"/>
@@ -58,7 +58,8 @@
         </record>         	
         
         <!-- IVA Soportado -->
-        <record id="iva_sop_ex" model="account.tax">
+        <record id="iva_sop_ex" model="account.tax.template">
+		    <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA Soportado exento (operaciones corrientes)</field>
             <field eval="0.0" name="amount"/>
             <field name="type">percent</field>
@@ -73,7 +74,8 @@
     	
         <!-- IVA REPERCUTIDO-->
 
-        <record id="iva_rep_ex" model="account.tax">
+        <record id="iva_rep_ex" model="account.tax.template">
+		    <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA Exento</field>
             <field eval="0.0" name="amount"/>
             <field name="type">percent</field>
