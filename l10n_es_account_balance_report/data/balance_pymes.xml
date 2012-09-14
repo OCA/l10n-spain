@@ -24,7 +24,7 @@ BALANCE DE PYMES (según PGCE 2008)
 
 Basado en los modelos normalizados de depósito de cuentas anuales
 del registro mercantil (pymes):
-http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&blobheader=application%2Fpdf&blobkey=id&blobnocache=true&blobtable=Documento&blobwhere=1161679576359&ssbinary=true
+http://www.mjusticia.gob.es/cs/Satellite/1292342988358?blobheader=application%2Fpdf&blobheadername1=Content-Disposition&blobheadervalue1=attachment%3B+filename%3DPYMES_Castellano_Integrado_Editable.PDF
 
 TODO: Los desgloses sugeridos por las NECA están comentados (no se calculan).
 
@@ -65,7 +65,7 @@ En ningún caso podrá utilizar este modelo de PYMES las empresas que se encuent
 Autor: Borja López Soilán (Pexego) - borjals@pexego.es
 
 Basado en los modelos normalizados de depósito de cuentas anuales del registro mercantil (pymes):
-http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=application%2Fpdf&amp;blobkey=id&amp;blobnocache=true&amp;blobtable=Documento&amp;blobwhere=1161679576359&amp;ssbinary=true
+http://www.mjusticia.gob.es/cs/Satellite/1292342988358?blobheader=application%2Fpdf&amp;blobheadername1=Content-Disposition&amp;blobheadervalue1=attachment%3B+filename%3DPYMES_Castellano_Integrado_Editable.PDF
 			</field>
 		</record>
 
@@ -248,8 +248,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_pymes"/>
 			<field name="code">12390</field>
 			<field name="name">3. Otros deudores</field>
-			<field name="current_value">44,460,470,471,472,544</field>
-			<field name="previous_value">44,460,470,471,472,544</field>
+			<field name="current_value">44,460,470,471,472,473,544</field>
+			<field name="previous_value">44,460,470,471,472,473,544</field>
             <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_12300"/>
 			<field name="sequence">BP1/16</field>
@@ -273,8 +273,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_pymes"/>
 			<field name="code">12500</field>
 			<field name="name">IV. Inversiones financieras a corto plazo</field>
-			<field name="current_value">5305,5315,5325,5335,5345,5355,(5395),540,541,542,543,545,546,547,548,(549),debit(551),debit(5525),5590,565,566,(5935),(5945),(5955),(596),(597),(598)</field>
-			<field name="previous_value">5305,5315,5325,5335,5345,5355,(5395),540,541,542,543,545,546,547,548,(549),debit(551),debit(5525),5590,565,566,(5935),(5945),(5955),(596),(597),(598)</field>
+			<field name="current_value">5305,5315,5325,5335,5345,5355,(5395),540,541,542,543,545,546,547,548,(549),debit(550),debit(551),debit(554),debit(5525),5590,565,566,(5935),(5945),(5955),(596),(597),(598)</field>
+			<field name="previous_value">5305,5315,5325,5335,5345,5355,(5395),540,541,542,543,545,546,547,548,(549),debit(550),debit(551),debit(554),debit(5525),5590,565,566,(5935),(5945),(5955),(596),(597),(598)</field>
             <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_pymes_12000"/>
 			<field name="sequence">BP1/18</field>
@@ -452,8 +452,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_pymes"/>
 			<field name="code">22000</field>
 			<field name="name">A-2) Ajustes en patrimonio neto</field>
-			<field name="current_value">;NECA 5.a 9</field>
-			<field name="previous_value">;NECA 5.a 9</field>
+			<field name="current_value">137;NECA 5.a 9</field>
+			<field name="previous_value">137;NECA 5.a 9</field>
 			<field name="parent_id" ref="es_balance_pymes_20000"/>
 			<field name="sequence">BP2.1/13</field>
 			<field name="css_class">l2</field>
@@ -584,8 +584,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_pymes"/>
 			<field name="code">31700</field>
 			<field name="name">VII. Deuda con características especiales a largo plazo</field>
-			<field name="current_value">15;NECA 5.a 12</field>
-			<field name="previous_value">15;NECA 5.a 12</field>
+			<field name="current_value">15,(5585);NECA 5.a 12</field>
+			<field name="previous_value">15,(5585);NECA 5.a 12</field>
 			<field name="parent_id" ref="es_balance_pymes_31000"/>
 			<field name="sequence">BP2.1/25</field>
 			<field name="css_class">l3</field>
@@ -650,8 +650,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_pymes"/>
 			<field name="code">32390</field>
 			<field name="name">3. Otras deudas a corto plazo</field>
-			<field name="current_value">(1034),(1044),(190),(192),194,500,505,506,509,5115,5135,5145,521,522,523,525,526,528,credit(551),credit(5525),555,5565,5566,5595,560,561</field>
-			<field name="previous_value">(1034),(1044),(190),(192),194,500,505,506,509,5115,5135,5145,521,522,523,525,526,528,credit(551),credit(5525),555,5565,5566,5595,560,561</field>
+			<field name="current_value">(1034),(1044),(190),(192),194,500,505,506,509,5115,5135,5145,521,522,523,525,526,528,credit(550),credit(551),credit(554),credit(5525),555,5565,5566,5595,560,561</field>
+			<field name="previous_value">(1034),(1044),(190),(192),194,500,505,506,509,5115,5135,5145,521,522,523,525,526,528,credit(550),credit(551),credit(554),credit(5525),555,5565,5566,5595,560,561</field>
 			<field name="parent_id" ref="es_balance_pymes_32300"/>
 			<field name="sequence">BP2.2/06</field>
 			<field name="css_class">l4</field>
@@ -723,7 +723,7 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_pymes_32330">
+		<record model="account.balance.reporting.template.line" id="es_balance_pymes_32600">
 			<field name="report_id" ref="es_balance_pymes"/>
 			<field name="code">32600</field>
 			<field name="name">V. Periodificaciones a corto plazo</field>
@@ -738,8 +738,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_pymes"/>
 			<field name="code">32700</field>
 			<field name="name">VI. Deuda con características especiales a corto plazo</field>
-			<field name="current_value">502,507</field>
-			<field name="previous_value">502,507;NECA 5.a 12</field>
+			<field name="current_value">(195),(197),199,502,507;NECA 5.a 12</field>
+			<field name="previous_value">(195),(197),199,502,507;NECA 5.a 12</field>
 			<field name="parent_id" ref="es_balance_pymes_32000"/>
 			<field name="sequence">BP2.2/14</field>
 			<field name="css_class">l3</field>

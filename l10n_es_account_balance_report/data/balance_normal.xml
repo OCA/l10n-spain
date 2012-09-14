@@ -24,8 +24,8 @@
 DEPÓSITO DE CUENTAS ANUALES - MODELOS NORMALIZADOS (según PGCE 2008)
 
 Basado en los modelos normalizados de depósito de cuentas anuales
-del registro mercantil (pymes):
-http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&blobheader=application%2Fpdf&blobkey=id&blobnocache=true&blobtable=Documento&blobwhere=1161679576351&ssbinary=true
+del registro mercantil (normal):
+http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2Fpdf&blobheadername1=Content-Disposition&blobheadervalue1=attachment%3B+filename%3DNormal_Castellano_Integrado_Editable.PDF
 
 TODO: Los desgloses sugeridos por las NECA están comentados (no se calculan).
 
@@ -45,30 +45,14 @@ CUENTAS ANUALES - BALANCE DE SITUACIÓN NORMAL
 
 (NOTA: VERSIÓN BETA)
 
-Balance de Situación Normal al cierre del ejercicio, según Plan General Contable Español para Pequeñas Y Medianas Empresas, para el depósito de cuentas anuales en el registro mercantil.
-
-Existen limitaciones legales a su uso por empresas de gran tamaño, que deberán utilizar el modelo normal de cuentas anuales.
-
-Condiciones:
-Total activo (€)                &lt; RESTO
-Importe neto cifra negocios (€) &lt; RESTO
-N.o medio trabajadores          &lt; RESTO
-
-Este modelo no puede ser utilizado por las empresas que tengan un modelo específico por adaptación sectorial, ni por las empresas que
-deben utilizar modelos de cuentas anuales específicos, de acuerdo con las disposiciones dictadas por el Banco de España o por la Comisión Nacional
-del Mercado de Valores. Estos formularios tampoco sirven para la presentación de cuentas anuales consolidadas.
-
-En ningún caso podrá utilizar este modelo de PYMES las empresas que se encuentren en alguna de las siguientes circunstancias:
-– Que hayan emitido valores admitidos a negociación en mercados regulados o sistemas multilaterales de negociación, de cualquier Estado miembro de la Unión Europea.
-– Que formen parte de un grupo de sociedades que formulen o debieran haber formulado cuentas anuales consolidadas.
-– Que su moneda funcional sea distinta del euro.
+Balance de Situación Normal al cierre del ejercicio, según Plan General Contable Español para el depósito de cuentas anuales en el registro mercantil.
 
 
 Autor: Borja López Soilán (Pexego) - borjals@pexego.es
 Autor: Raimon Esteve (Zikzakmedia) - resteve@zikzakmedia.com
 
 Basado en los modelos normalizados de depósito de cuentas anuales del registro mercantil (normal):
-http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=application%2Fpdf&amp;blobkey=id&amp;blobnocache=true&amp;blobtable=Documento&amp;blobwhere=1161679576351&amp;ssbinary=true
+http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2Fpdf&amp;blobheadername1=Content-Disposition&amp;blobheadervalue1=attachment%3B+filename%3DNormal_Castellano_Integrado_Editable.PDF
 			</field>
 		</record>
 
@@ -158,8 +142,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_normal"/>
 			<field name="code">11160</field>
 			<field name="name">6. Investigación</field>
-			<field name="current_value">200,(2800); NECA 6.ª 4</field>
-			<field name="previous_value">200,(2800); NECA 6.ª 4</field>
+			<field name="current_value">200,(2800),(2900); NECA 6.ª 4</field>
+			<field name="previous_value">200,(2800),(2900); NECA 6.ª 4</field>
             <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_11100"/>
 			<field name="sequence">B1.1/07</field>
@@ -701,8 +685,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_normal"/>
 			<field name="code">12360</field>
 			<field name="name">6. Otros créditos con las Administraciones Públicas</field>
-			<field name="current_value">4700,4708,471,472</field>
-			<field name="previous_value">4700,4708,471,472</field>
+			<field name="current_value">4700,4708,471,472,473</field>
+			<field name="previous_value">4700,4708,471,472,473</field>
             <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12300"/>
 			<field name="sequence">B1.2/20</field>
@@ -866,8 +850,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_normal"/>
 			<field name="code">12550</field>
 			<field name="name">5. Otros activos financieros</field>
-			<field name="current_value">5355,545,548,debit(551),debit(5525),565,566</field>
-			<field name="previous_value">5355,545,548,debit(551),debit(5525),565,566</field>
+			<field name="current_value">5355,545,548,debit(550),debit(551),debit(554),debit(5525),565,566</field>
+			<field name="previous_value">5355,545,548,debit(550),debit(551),debit(554),debit(5525),565,566</field>
             <field name="negate" eval="True"/>
 			<field name="parent_id" ref="es_balance_normal_12500"/>
 			<field name="sequence">B1.3/06</field>
@@ -1157,8 +1141,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_normal"/>
 			<field name="code">22200</field>
 			<field name="name">II. Operaciones de cobertura</field>
-			<field name="current_value">1340</field>
-			<field name="previous_value">1340</field>
+			<field name="current_value">1340,1341</field>
+			<field name="previous_value">1340,1341</field>
 			<field name="parent_id" ref="es_balance_normal_22000"/> 
 			<field name="sequence">B2.1/20</field>
 			<field name="css_class">l3</field>
@@ -1388,8 +1372,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_normal"/>
 			<field name="code">31700</field>
 			<field name="name">VII. Deuda con características especiales a largo plazo</field>
-			<field name="current_value">15;(NECA 6.ª 17)</field>
-			<field name="previous_value">15;(NECA 6.ª 17)</field>
+			<field name="current_value">15,(5585);(NECA 6.ª 17)</field>
+			<field name="previous_value">15,(5585);(NECA 6.ª 17)</field>
 			<field name="parent_id" ref="es_balance_normal_31000"/> 
 			<field name="sequence">B2.2/11</field>
 			<field name="css_class">l3</field>
@@ -1487,8 +1471,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_normal"/>
 			<field name="code">32350</field>
 			<field name="name">5. Otros pasivos financieros</field>
-			<field name="current_value">(1034),(1044),(190),(192),194,509,5115,5135,5145,521,522,523,525,526,528,credit(551),credit(5525),5530,5532,555,5565,5566,560,561,569</field>
-			<field name="previous_value">(1034),(1044),(190),(192),194,509,5115,5135,5145,521,522,523,525,526,528,credit(551),credit(5525),5530,5532,555,5565,5566,560,561,569</field>
+			<field name="current_value">(1034),(1044),(190),(192),194,509,5115,5135,5145,521,522,523,525,526,528,credit(550),credit(551),credit(554),credit(5525),5530,5532,555,5565,5566,560,561,569</field>
+			<field name="previous_value">(1034),(1044),(190),(192),194,509,5115,5135,5145,521,522,523,525,526,528,credit(550),credit(551),credit(554),credit(5525),5530,5532,555,5565,5566,560,561,569</field>
 			<field name="parent_id" ref="es_balance_normal_32300"/> 
 			<field name="sequence">B2.2/20</field>
 			<field name="css_class">l4</field>
@@ -1630,8 +1614,8 @@ http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=applica
 			<field name="report_id" ref="es_balance_normal"/>
 			<field name="code">32700</field>
 			<field name="name">VII. Deuda con características especiales a corto plazo</field>
-			<field name="current_value">502,507;NECA 6.ª 17</field>
-			<field name="previous_value">502,507;NECA 6.ª 17</field>
+			<field name="current_value">(195),(197),199,502,507;NECA 6.ª 17</field>
+			<field name="previous_value">(195),(197),199,502,507;NECA 6.ª 17</field>
 			<field name="parent_id" ref="es_balance_normal_32000"/> 
 			<field name="sequence">B2.2/33</field>
 			<field name="css_class">l3</field>
