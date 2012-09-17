@@ -38,8 +38,8 @@ class config_es_toponyms(osv.osv_memory):
             return 'uninstalled'
 
     def _city_info_recover_default(self, cr, uid, context=None):
-        # City info can be selected if zip field exists in the database. That will happen only
-        # if module city wasn't installed by the initial profile.
+        """City info can be selected if zip field exists in the database. That will happen only 
+        if module city wasn't installed by the initial profile."""
         cr.execute("select * from information_schema.columns where table_name='res_partner_address' and table_schema='public' and column_name='zip'")
         if cr.fetchone():
             return 'yes'
@@ -62,20 +62,13 @@ class config_es_toponyms(osv.osv_memory):
     }
 
     def onchange_city_info(self, cr, uid, ids, city_info, city_module):
-        if city_module == 'uninstalled':
-            v = {'city_info_recover': 'no'}
-        elif city_info == 'yes':
-            v = {
-                'city_info_recover': self._city_info_recover_default(cr, uid)
-            }
-        return {'value':v}
-
-    def _onchange_city_info(self, cr, uid, ids, city_info, city_module):
-        """onchange_city_info alias for backwards compatibility"""
-        return self.onchange_city_info(cr, uid, ids, city_info, city_module)
+        v = { 'city_info_recover': 'no' }
+        if city_info == 'yes':
+            v = { 'city_info_recover': self._city_info_recover_default(cr, uid) }
+        return { 'value': v }
 
     def _create_defaults(self, cr, uid, context):
-        # Creates default values of state and city res.partner.address fields linked to zip codes
+        """Creates default values of state and city res.partner.address fields linked to zip codes."""
         from municipios_cpostal import cod_postales
         pool = pooler.get_pool(cr.dbname)
         idc = pool.get('res.country').search(cr, uid, [('code', '=', 'ES'),])
@@ -86,43 +79,29 @@ class config_es_toponyms(osv.osv_memory):
             ids = pool.get('res.country.state').search(cr, uid, [('country_id', '=', idc), ('code', '=', m[0][:2]),])
             ir_values_obj = pooler.get_pool(cr.dbname).get('ir.values')
             if ids:
-                res = ir_values_obj.set(
-                                cr, 
-                                uid, 
-                                 'default', 'zip='+m[0], 'state_id', [('res.partner.address', False)], ids[0])
-                #ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'state_id', [('res.partner.address', False)], ids[0])
-            res = ir_values_obj.set(
-                                cr, 
-                                uid, 
-                                 'default', 'zip='+m[0], 'city', [('res.partner.address', False)], m[1])
-            #ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'city', [('res.partner.address', False)], m[1])
+                res = ir_values_obj.set(cr, uid, 'default', 'zip='+m[0], 'state_id', [('res.partner.address', False)], ids[0])
+            res = ir_values_obj.set(cr, uid, 'default', 'zip='+m[0], 'city', [('res.partner.address', False)], m[1])
         return {}
 
     def _recover_zipcodes(self, cr, uid, context):
-        # Recovers the location data (city info) from the zip code there was in the partner addresses before installing the city module
-        #cr.execute("select id, zip from res_partner_address where location IS NULL")
-        #zipcodes = cr.dictfetchall()
+        """Recovers the location data (city info) from the zip code there was in the partner addresses before installing the city module
+        cr.execute("select id, zip from res_partner_address where location IS NULL")
+        addresses = cr.dictfetchall()"""
         address_obj = self.pool.get('res.partner.address')
         city_obj = self.pool.get('city.city')
-        zip_list = address_obj.search(cr,uid,[('location','=',False)])
-        zipcodes = address_obj.read(cr,uid,zip_list,['zip'])
+        addresses_ids = address_obj.search(cr, uid, [('city_id','=', False)])
+        addresses = address_obj.read(cr, uid, addresses_ids, ['zip'])
         cont = 0
-        for zipcode in zipcodes:
-            if zipcode['zip']:
-                #cr.execute("select id from city_city where zipcode = '%s'" %zipcode['zip'])
-                #city_id = cr.fetchall()
-                
-                city_id = city_obj.search(cr,uid,[('zipcode','=',zipcode['zip'])])
-                
-                if len(city_id) > 0:
-                    #cr.execute("update res_partner_address SET location = %i WHERE id = %i" %(city_id[0][0], zipcode['id']))
-                    address_obj.write(cr,uid,zipcode['id'],{'location' : city_id[0]})
+        for address in addresses:
+            if address['zip']:
+                city_id = city_obj.search(cr, uid, [('address', '=', address['zip'])])
+                if len(city_id):
+                    address_obj.write(cr, uid, address['id'], {'city_id' : city_id[0]})
                     cont += 1
         return cont
-    def create_zipcodes(self, db_name, uid, ids, res, context):
-        # Import Spanish cities and zip codes (15000 zip codes can take several minutes)
-        db, pool = pooler.get_db_and_pool(db_name)
-        cr = db.cursor()
+    
+    def create_zipcodes(self, cr, uid, ids, res, context):
+        """Import Spanish cities and zip codes (15000 zip codes can take several minutes)"""
         if res['city_module'] == 'uninstalled': # city module no installed
             self._create_defaults(cr, uid, context)
         else:                                   # city module installed
@@ -135,9 +114,7 @@ class config_es_toponyms(osv.osv_memory):
                 tools.convert_xml_import(cr, 'l10n_es_toponyms', fp,  idref, 'init', noupdate=True)
                 if res['city_info_recover'] == 'yes':
                     res= self._recover_zipcodes(cr, uid, context)
-                    #print res
         cr.commit()
-        cr.close()
         return {}
 
     def execute(self, cr, uid, ids, context=None):
@@ -156,10 +133,9 @@ class config_es_toponyms(osv.osv_memory):
             idref = {}
             tools.convert_xml_import(cr, 'l10n_es_toponyms', fp,  idref, 'init', noupdate=True)
 
-        # Import Spanish cities and zip codes in other thread (15000 zip codes can take several minutes)
+        # Import Spanish cities and zip codes (in 6.1, it can be executed in the same thread
         if res['city_info'] == 'yes':
             cr.commit()
-            thread1 = threading.Thread(target=self.create_zipcodes, args=(cr.dbname, uid, ids, res, context))
-            thread1.start()
+            self.create_zipcodes(cr, uid, ids, res, context)
 
 config_es_toponyms()
