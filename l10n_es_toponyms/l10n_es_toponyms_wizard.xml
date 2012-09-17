@@ -37,7 +37,7 @@
                                 <field name="city_info_recover" attrs="{'readonly':[('city_info','=','no'),('city_module','=','uninstalled')]}"/>
                                 <field name="city_module" invisible="1"/>
                                 <label colspan="2" string=""/>
-                                <label colspan="2" string="Warning! Adding more than 15000 zip codes can take several minutes and it will be done in a background process."/>
+                                <label colspan="2" string="Warning! Adding more than 15000 zip codes can take several minutes."/>
                             </group>
                         </group>
                     </group>
