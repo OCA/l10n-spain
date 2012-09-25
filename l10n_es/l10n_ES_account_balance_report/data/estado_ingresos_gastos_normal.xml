@@ -33,7 +33,7 @@ Author: Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com
 <openerp>
 	<data>
 
-		<record model="account.balance.reporting.template" id="es_eiyg_normal">
+		<record model="account.balance.report.template" id="es_eiyg_normal">
 			<field name="name">ESTADO DE INGRESOS Y GASTOS RECONOCIDOS NORMAL (PGCE 2008)</field>
 			<field name="type">system</field>
 			<field name="balance_mode">2</field>
@@ -53,7 +53,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_59100">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_59100">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">59100</field>
 			<field name="name">A) RESULTADO DE LA CUENTA DE PÉRDIDAS Y GANANCIAS</field>
@@ -64,7 +64,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			<field name="css_class">l1</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_59200">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_59200">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">59200</field>
 			<field name="name">B) Total ingresos y gastos imputados directamente en el patrimonio neto (I + II + III + IV + V + VI + VII)</field>
@@ -75,7 +75,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			<field name="css_class">l1</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50010">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50010">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50010</field>
 			<field name="name">I. Por valoración de instrumentos financieros</field>
@@ -87,7 +87,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 		</record>
 
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50011">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50011">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50011</field>
 			<field name="name">1. Activos financieros disponibles para la venta</field>
@@ -99,7 +99,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 		</record>
 
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50012">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50012">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50012</field>
 			<field name="name">2. Otros ingresos/gastos</field>
@@ -111,7 +111,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 		</record>
 
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50020">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50020">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50020</field>
 			<field name="name">II. Por coberturas de flujos de efectivo</field>
@@ -123,7 +123,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 		</record>
 
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50030">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50030">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50030</field>
 			<field name="name">III. Subvenciones, donaciones y legados recibidos</field>
@@ -134,7 +134,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50040">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50040">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50040</field>
 			<field name="name">IV. Por ganancias y pérdidas actuariales y otros ajustes</field>
@@ -145,7 +145,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50050">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50050">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50050</field>
 			<field name="name">V. Por activos no corrientes y pasivos vinculados, mantenidos para la venta</field>
@@ -156,7 +156,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50060">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50060">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50060</field>
 			<field name="name">VI. Diferencias de conversión</field>
@@ -167,7 +167,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50070">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50070">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50070</field>
 			<field name="name">VII. Efecto impositivo</field>
@@ -178,7 +178,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_59300">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_59300">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">59300</field>
 			<field name="name">C) Total transferencias a la cuenta de pérdidas y ganancias (VIII + IX + X + XI + XII + XIII)</field>
@@ -189,7 +189,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			<field name="css_class">l1</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50080">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50080">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50080</field>
 			<field name="name">VIII. Por valoración de instrumentos financieros</field>
@@ -200,7 +200,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50081">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50081">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50081</field>
 			<field name="name">1. Activos financieros disponibles para la venta</field>
@@ -211,7 +211,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			<field name="css_class">l5</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50082">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50082">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50082</field>
 			<field name="name">2. Otros ingresos/gastos</field>
@@ -222,7 +222,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			<field name="css_class">l5</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50090">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50090">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50090</field>
 			<field name="name">IX. Por coberturas de flujos de efectivo</field>
@@ -233,7 +233,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50100">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50100">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50100</field>
 			<field name="name">X. Subvenciones, donaciones y legados recibidos</field>
@@ -244,7 +244,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50110">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50110">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50110</field>
 			<field name="name">XI. Por activos no corrientes y pasivos vinculados, mantenidos para la venta</field>
@@ -255,7 +255,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50120">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50120">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50120</field>
 			<field name="name">XII. Diferencias de conversión</field>
@@ -266,7 +266,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 			<field name="css_class">l4</field>
 		</record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50130">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_50130">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">50130</field>
 			<field name="name">XIII. Efecto impositivo</field>
@@ -278,7 +278,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2F
 		</record>
 
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_">
+		<record model="account.balance.report.template.line" id="es_eiyg_normal_">
 			<field name="report_id" ref="es_eiyg_normal"/>
 			<field name="code">59400</field>
 			<field name="name">TOTAL DE INGRESOS Y GASTOS RECONOCIDOS (A + B + C)</field>
