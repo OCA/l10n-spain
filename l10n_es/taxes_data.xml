@@ -1090,6 +1090,51 @@
             <field name="user_type" ref="tax"/>
         </record>
 
+        <record id="pgc_472104" model="account.account.template">
+            <field name="code">472104</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA soportado. Recargo de Equivalencia 0.5%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_472108" model="account.account.template">
+            <field name="code">472108</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA soportado. Recargo de Equivalencia 1%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_472110" model="account.account.template">
+            <field name="code">472110</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA soportado. Recargo de Equivalencia 1.4%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_472118" model="account.account.template">
+            <field name="code">472118</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA soportado. Recargo de Equivalencia 4%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_472121" model="account.account.template">
+            <field name="code">472121</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA soportado. Recargo de Equivalencia 5.2%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
         <record id="pgc_477004" model="account.account.template">
             <field name="code">477004</field>
             <field name="reconcile" eval="True"/>
@@ -2202,8 +2247,8 @@
             <field name="name">0.50% Recargo Equivalencia Compras</field>
             <field eval="0.005" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_470001"/>
-            <field name="account_paid_id" ref="pgc_470001"/>
+            <field name="account_collected_id" ref="pgc_472104"/>
+            <field name="account_paid_id" ref="pgc_472104"/>
             <field name="base_code_id" ref="iva_ded_10"/>
             <field name="tax_code_id" ref="iva_ded_12"/>
             <field name="ref_base_code_id" ref="iva_ded_10"/>
@@ -2220,8 +2265,8 @@
             <field name="name">1% Recargo Equivalencia Compras</field>
             <field eval="0.01" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_470001"/>
-            <field name="account_paid_id" ref="pgc_470001"/>
+            <field name="account_collected_id" ref="pgc_472108"/>
+            <field name="account_paid_id" ref="pgc_472108"/>
             <field name="base_code_id" ref="iva_ded_13"/>
             <field name="tax_code_id" ref="iva_ded_15"/>
             <field name="ref_base_code_id" ref="iva_ded_13"/>
@@ -2238,8 +2283,8 @@
             <field name="name">1.4% Recargo Equivalencia Compras</field>
             <field eval="0.014" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_470001"/>
-            <field name="account_paid_id" ref="pgc_470001"/>
+            <field name="account_collected_id" ref="pgc_472110"/>
+            <field name="account_paid_id" ref="pgc_472110"/>
             <field name="base_code_id" ref="iva_ded_13_14"/>
             <field name="tax_code_id" ref="iva_ded_15_14"/>
             <field name="ref_base_code_id" ref="iva_ded_13_14"/>
@@ -2256,8 +2301,8 @@
             <field name="name">4% Recargo Equivalencia Compras</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_470001"/>
-            <field name="account_paid_id" ref="pgc_470001"/>
+            <field name="account_collected_id" ref="pgc_472118"/>
+            <field name="account_paid_id" ref="pgc_472118"/>
             <field name="base_code_id" ref="iva_ded_16"/>
             <field name="tax_code_id" ref="iva_ded_18"/>
             <field name="ref_base_code_id" ref="iva_ded_16"/>
@@ -2274,8 +2319,8 @@
             <field name="name">5.2% Recargo Equivalencia Compras</field>
             <field eval="0.052" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_470001"/>
-            <field name="account_paid_id" ref="pgc_470001"/>
+            <field name="account_collected_id" ref="pgc_472121"/>
+            <field name="account_paid_id" ref="pgc_472121"/>
             <field name="base_code_id" ref="iva_ded_16_52"/>
             <field name="tax_code_id" ref="iva_ded_18_52"/>
             <field name="ref_base_code_id" ref="iva_ded_16_52"/>
