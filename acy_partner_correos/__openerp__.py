@@ -27,7 +27,7 @@
     "author" : "Acysos S.L.",
     "website" : "www.acysos.com",
     "description": """Only 300 companies can be exported by file. All partners must have street, zip, city, state and country. Select the partners and click action.""",
-    "license" : "GPL-3",
+    "license" : "AGPL-3",
     "depends" : [
         "base",
         ],
