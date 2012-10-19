@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!--
+			Menús LOPD
+		-->
+		<menuitem icon="STOCK_DIALOG_AUTHENTICATION" id="menu_raiz_lopd" name="LOPD" web_icon="images/fichero.png" web_icon_hover="images/fichero_hover.png" action="accion_empresa" groups="lopd_admin,lopd_responsable,lopd_user" />
+		<!--<menuitem id="menu_dat_empresa" name="Datos de la empresa" parent="menu_raiz_lopd"/>-->
+		<menuitem id="menu_dec_activos" name="Declaración de activos" parent="menu_raiz_lopd" sequence="5" action="accion_locales_arbol" groups="lopd_admin,lopd_responsable,lopd_user" />
+		<!--<menuitem id="menu_rel_activos" name="Relacionar activos" parent="menu_raiz_lopd" sequence="6" />-->
+		<menuitem id="menu_ficheros" name="Ficheros" parent="menu_raiz_lopd" sequence="7" action="accion_fichero_arbol" groups="lopd_admin,lopd_responsable" />
+		<menuitem id="menu_mantenimientos" name="Mantenimientos" parent="menu_raiz_lopd" sequence="8" action="accion_incidencias_form" groups="lopd_admin,lopd_responsable,lopd_user" />
+		<menuitem id="menu_lopd_extra" name="Configuración Extra" parent="menu_raiz_lopd" sequence="9" icon="STOCK_PREFERENCES" groups="lopd_admin" action="accion_sos_tipos_arbol"/>
+
+		<!--
+			Menús de Declaración de Activos
+		-->
+		<menuitem action="accion_locales_arbol" id="menu_locales_arbol" parent="menu_dec_activos" sequence="51"/>
+		<menuitem action="accion_departamentos_arbol" id="menu_departamentos_arbol" parent="menu_dec_activos" sequence="52"/>
+		<menuitem action="accion_zar_arbol" id="menu_zar_arbol" parent="menu_dec_activos" sequence="53"/>
+		<menuitem action="accion_soportes_arbol" id="menu_soportes_arbol" parent="menu_dec_activos" sequence="54"/>
+		<menuitem action="accion_sos_arbol" id="menu_so_arbol" parent="menu_dec_activos" sequence="55"/>
+		<menuitem action="accion_programas_arbol" id="menu_programas_arbol" parent="menu_dec_activos" sequence="56"/>
+		<menuitem action="accion_equipos_arbol" id="menu_equipo_arbol" parent="menu_dec_activos" sequence="57"/>
+		<menuitem action="accion_recursos_arbol" id="menu_recurso_arbol" parent="menu_dec_activos" sequence="58"/>
+		<menuitem action="abrir_lista_empleados" id="menu_lista_empleados" parent="menu_dec_activos" sequence="59"/>
+
+		<!--
+			Menú de ficheros
+		-->
+		<menuitem action="accion_fichero_arbol" id="menu_fichero_arbol" parent="menu_ficheros" sequence="71"/>
+
+		<!--
+			Menús de Mantenimiento
+		-->
+		<menuitem action="abrir_lista_incidencias" id="menu_lista_incidencias" parent="menu_mantenimientos" sequence="81" />
+		<menuitem action="abrir_lista_copia_seguridad" id="menu_lista_copias" parent="menu_mantenimientos" sequence="83" />
+		<menuitem action="accion_responsable_arbol" id="menu_responsable_arbol" parent="menu_mantenimientos" sequence="84" />
+		<menuitem action="abrir_lista_entrada_soporte" id="menu_lista_entradas" parent="menu_mantenimientos" sequence="85" />
+		<menuitem action="abrir_lista_salida_soporte" id="menu_lista_salidas" parent="menu_mantenimientos" sequence="86" />
+
+		<!--
+			Menús de configuración extra
+		-->
+		<menuitem action="accion_sos_tipos_arbol" id="menu_sos_tipos_arbol" parent="menu_lopd_extra" sequence="91" />
+		<menuitem action="accion_programas_tipos_arbol" id="menu_programas_tipos_arbol" parent="menu_lopd_extra" sequence="92" />
+		<menuitem action="accion_equipos_tipos_arbol" id="menu_equipos_tipos_arbol" parent="menu_lopd_extra" sequence="93" />
+		<menuitem action="accion_recursos_tipos_arbol" id="menu_recursos_tipos_arbol" parent="menu_lopd_extra" sequence="94"/>
+
+		<!--
+			Menús partner
+		-->
+		<menuitem id="menu_datosemp" name="Datos de la compañía"
+            parent="menu_raiz_lopd" action="accion_empresa" sequence="2" />
+        <menuitem id="menu_encargados" name="Encargados de tratamiento"
+            parent="menu_mantenimientos" action="accion_encargados" sequence="82" />
+
+
+	</data>
+</openerp>
