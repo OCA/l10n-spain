@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+		<record model="lopd.actividades" id="1">
+			<field name="name">ACTIVIDADES POSTALES Y DE CORREO</field>
+			<field name="codigo">N28</field>
+		</record>
+		<record model="lopd.actividades" id="2">
+			<field name="name">ACTIVIDADES DE ORGANIZACIONES EMPRESARIALES, PROFESIONALES Y PATRONAL</field>
+			<field name="codigo">N21</field>
+		</record>
+		<record model="lopd.actividades" id="3">
+			<field name="name">ACTIVIDADES DE SERVICIOS SOCIALES</field>
+			<field name="codigo">N22</field>
+		</record>
+		<record model="lopd.actividades" id="4">
+			<field name="name">ACTIVIDADES DIVERSAS DE SERVICIOS PERSONALES</field>
+			<field name="codigo">N20</field>
+		</record>
+		<record model="lopd.actividades" id="5">
+			<field name="name">ACTIVIDADES INMOBILIARIAS</field>
+			<field name="codigo">N05</field>
+		</record>
+		<record model="lopd.actividades" id="6">
+			<field name="name">ACTIVIDADES JURIDICAS, NOTARIOS Y REGISTRADORES</field>
+			<field name="codigo">N19</field>
+		</record>
+		<record model="lopd.actividades" id="7">
+			<field name="name">ACTIVIDADES POLITICAS, SINDICALES Y RELIGIOSAS</field>
+			<field name="codigo">N30</field>
+		</record>
+		<record model="lopd.actividades" id="8">
+			<field name="name">ACTIVIDADES RELACIONADAS CON LOS PRODUCTOS ALIMENTICIOS, BEBIDAS Y TABACOS</field>
+			<field name="codigo">N14</field>
+		</record>
+		<record model="lopd.actividades" id="9">
+			<field name="name">ACTIVIDADES RELACIONADAS CON LOS JUEGOS DE AZAR Y APUESTAS</field>
+			<field name="codigo">N25</field>
+		</record>
+		<record model="lopd.actividades" id="10">
+			<field name="name">AGRICULTURA, GANADERÍA, EXPLOTACIÓN FORESTAL, CAZA, PESCA</field>
+			<field name="codigo">N15</field>
+		</record>
+		<record model="lopd.actividades" id="11">
+			<field name="name">ASOCIACIONES Y CLUBES</field>
+			<field name="codigo">N04</field>
+		</record>
+		<record model="lopd.actividades" id="12">
+			<field name="name">COMERCIO</field>
+			<field name="codigo">N01</field>
+		</record>
+		<record model="lopd.actividades" id="13">
+			<field name="name">COMERCIO Y SERVICIOS ELECTRÓNICOS</field>
+			<field name="codigo">N35</field>
+		</record>
+		<record model="lopd.actividades" id="14">
+			<field name="name">COMUNIDADES DE PROPIETARIOS</field>
+			<field name="codigo">N36</field>
+		</record>
+		<record model="lopd.actividades" id="15">
+			<field name="name">CONSTRUCCIÓN</field>
+			<field name="codigo">N07</field>
+		</record>
+		<record model="lopd.actividades" id="16">
+			<field name="name">CONTABILIDAD, AUDITORÍA Y ASESORIA FISCAL</field>
+			<field name="codigo">N03</field>
+		</record>
+		<record model="lopd.actividades" id="17">
+			<field name="name">EDUCACIÓN</field>
+			<field name="codigo">N10</field>
+		</record>
+		<record model="lopd.actividades" id="18">
+			<field name="name">ENTIDADES BANCARIAS Y FINANCIERAS</field>
+			<field name="codigo">N16</field>
+		</record>
+		<record model="lopd.actividades" id="19">
+			<field name="name">INDUSTRIA QUÍMICA Y FARMACÉUTICA</field>
+			<field name="codigo">N06</field>
+		</record>
+		<record model="lopd.actividades" id="20">
+			<field name="name">INSPECCIÓN TÉCNICA DE VEHÍCULOS Y OTROS ANÁLISIS TÉCNICOS</field>
+			<field name="codigo">N34</field>
+		</record>
+		<record model="lopd.actividades" id="21">
+			<field name="name">INVESTIGACIÓN Y DESARROLLO (I+D)</field>
+			<field name="codigo">N29</field>
+		</record>
+		<record model="lopd.actividades" id="22">
+			<field name="name">MAQUINARIA Y MEDIOS DE TRANSPORTE</field>
+			<field name="codigo">N09</field>
+		</record>
+		<record model="lopd.actividades" id="23">
+			<field name="name">MUTUALIDADES COLABORADORAS DE LOS ORGANISMOS DE LA SEGURIDAD SOCIAL</field>
+			<field name="codigo">N31</field>
+		</record>
+		<record model="lopd.actividades" id="24">
+			<field name="name">ORGANIZACIÓN DE FERIAS, EXHIBICIONES, CONGRESOS Y OTRAS ACTIVIDADES RELACIONADAS</field>
+			<field name="codigo">N32</field>
+		</record>
+		<record model="lopd.actividades" id="25">
+			<field name="name">PRODUCCIÓN DE BIENES DE CONSUMO</field>
+			<field name="codigo">N17</field>
+		</record>
+		<record model="lopd.actividades" id="26">
+			<field name="name">PUBLICIDAD DIRECTA</field>
+			<field name="codigo">N23</field>
+		</record>
+		<record model="lopd.actividades" id="27">
+			<field name="name">SANIDAD</field>
+			<field name="codigo">N02</field>
+		</record>
+		<record model="lopd.actividades" id="28">
+			<field name="name">SECTOR ENERGÉTICO</field>
+			<field name="codigo">N18</field>
+		</record>
+		<record model="lopd.actividades" id="29">
+			<field name="name">SEGURIDAD</field>
+			<field name="codigo">N26</field>
+		</record>
+		<record model="lopd.actividades" id="30">
+			<field name="name">SEGUROS PRIVADOS"</field>
+			<field name="codigo">N12</field>
+		</record>
+		<record model="lopd.actividades" id="31">
+			<field name="name">SELECCIÓN DE PERSONAL</field>
+			<field name="codigo">N27</field>
+		</record>
+		<record model="lopd.actividades" id="32">
+			<field name="name">SERVICIOS DE TELECOMUNICACIONES</field>
+			<field name="codigo">N24</field>
+		</record>
+		<record model="lopd.actividades" id="33">
+			<field name="name">SERVICIOS INFORMÁTICOS</field>
+			<field name="codigo">N13</field>
+		</record>
+		<record model="lopd.actividades" id="34">
+			<field name="name">SOLVENCIA PATRIMONIAL Y CRÉDITO</field>
+			<field name="codigo">N33</field>
+		</record>
+		<record model="lopd.actividades" id="35">
+			<field name="name">TRANSPORTE</field>
+			<field name="codigo">N11</field>
+		</record>
+		<record model="lopd.actividades" id="36">
+			<field name="name">TURISMO Y HOSTELERÍA</field>
+			<field name="codigo">N08</field>
+		</record>
+		<record model="lopd.actividades" id="37">
+			<field name="name">OTRAS ACTIVIDADES</field>
+			<field name="codigo">N99</field>
+		</record>
+	</data>
+</openerp>
+
+

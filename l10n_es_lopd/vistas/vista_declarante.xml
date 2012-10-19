@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+	<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- Vista del declarante -->
+	<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+
+	<record model="ir.ui.view" id="vista_declarante_form">
+	    <field name="name">lopd.declarante.form</field>
+	    <field name="model">lopd.declarante</field>
+	    <field name="priority" eval="1"/>
+	    <field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Declarantes">
+				<group col="4">
+					<separator string="Datos del declarante" colspan="4" />
+					<field name="name" />
+					<field name="apellido1" />
+					<field name="apellido2" />
+					<field name="nif" />
+					<field name="cargo" colspan="4"/>
+					<field name="denomina_p" colspan="4" />
+					<field name="dir_postal" colspan="4" />
+					<field name="pais" />
+					<field name="provincia" />
+					<field name="localidad" />
+					<field name="postal" />
+					<field name="telefono" />
+					<field name="fax" />
+					<field name="email" colspan="4"/>
+				</group>
+				<newline />
+			</form>
+		</field>
+	</record>
+	
+	<record id="vista_declarante_arbol" model="ir.ui.view">
+			<field name="name">lopd.declarante.tree</field>
+			<field name="model">lopd.declarante</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Declarantes">
+					<field name="name" />
+					<field name="apellido1" />
+					<field name="apellido2" />
+					<field name="nif" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="accion_declarante_arbol" model="ir.actions.act_window">
+			<field name="name">Declarantes</field>
+			<field name="res_model">lopd.declarante</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="help">
+			
+			</field>
+		</record>
+
+		<record id="accion_declarante_form" model="ir.actions.act_window">
+			<field name="name">Declarantes</field>
+			<field name="res_model">lopd.declarante</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+		</record>
+
+		<!--<menuitem action="accion_declarante_arbol" id="menu_declarante_arbol" parent="menu_ficheros" sequence="1"/>-->
+</data>
+</openerp>

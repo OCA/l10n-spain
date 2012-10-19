@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+	<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- Ficheros jurídicos -->
+	<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+	<act_window name="Solicitud de baja de fichero" res_model="lopd.wizard.baja" view_mode="form" target="new" id="ventana_wizard_baja"/>
+
+	<record model="ir.ui.view" id="vista_fichero_form">
+	    <field name="name">lopd.fichero.form</field>
+	    <field name="model">lopd.fichero</field>
+	    <field name="priority" eval="1"/>
+	    <field name="type">form</field>
+		<field name="arch" type="xml">
+		<form string="Ficheros">	
+			<group colspan="1" width="400">
+				<field name="name" colspan="2" attrs="{'readonly':[('estado','!=','est_null')]}" />
+				<newline />
+				<field name="pdf_solicitud" attrs="{'invisible':[('estado','=','est_null')]}" />
+			</group>
+			<group colspan="1" >
+				<field colspan="2" name="nivel" attrs="{'invisible':['|', ('f401','=',0), ('afiliacion','=',0), '|', ('f402','=',0), ('afiliacion','=',0), '|', ('f401','=',0), ('salud','=',0), '|', ('f402','=',0), ('salud','=',0)]}" />
+			</group>
+			<newline />
+			<group col="8" colspan="4">
+				<!-- TODO: Legalizar en papel, legalizar con firma digital -->
+				<button name="envio_nuevo" string="Legalizar vía XML sin firmar" type="object" icon="gtk-print" attrs="{'readonly':[('estado','!=','est_null'),('estado','!=','est_mod')]}"/>
+				<!--<button name="envio_nuevo" string="Legalizar fichero firmado digitalmente" type="object" icon="gtk-dialog-authentication" attrs="{'readonly':[('estado','!=','est_null')]}"/>-->
+				<button name="confirmar_legalizacion" string="Confirmar alta / modificación" type="object" icon="gtk-apply" attrs="{'readonly':[('check','=',0)]}" /> <!-- attrs="{'readonly':['|',('estado','!=','est_pen'),('estado','=','est_pmo')]}" />-->
+				<button name="%(l10n_es_lopd.ventana_wizard_baja)d" string="Dar de baja el fichero" type="action" icon="gtk-delete" attrs="{'readonly':['|',('estado','!=','est_leg'),('codigo_agencia','=','')]}" />
+			</group>
+			<newline />
+			<group colspan="4" attrs="{'readonly':[('estado','=','est_baja')]}">
+			<notebook colspan="4">
+				<page string="Gestión">
+					<label align="0.0" string="&#xD;Fichero: Todo conjunto organizado de datos de caracter personal, cualquiera que fuera la forma o modalidad de su creación, almacenamiento, organización y acceso.&#xD;&#xD;Tratamiento de datos: Operaciones y procedimientos técnicos de carácter automatizado o no, que permitan la recogida, grabación, conversación, elaboración, modificación, bloqueo y cancelación, así como las cesiones de datos que resulten de comunicaciones, consultas, interconexiones y transferencias.&#xD;" colspan="4" /><newline />
+					<group colspan="4" >
+						<label align="0.0" string="Descripción" />
+						<newline />
+						<field name="descripcion" nolabel="1" colspan="4" widget="text"/>
+					</group>
+					<newline />
+					<group col="4">
+						<field name="check" attrs="{'readonly':[('estado','=','est_leg')]}" /> <!--['|',('estado','=','est_leg'),('estado','=','est_null')]}"/>-->
+						<!--<label align="0.0" string="He recibido la carta, con el código de inscripción del fichero, de la Agencia de protección de datos" />-->
+						<field name="estado" invisible="1" />
+					</group>
+					<newline />
+					<group col="10">
+						<field name="codigo_agencia" attrs="{'invisible':[('check','=',False)]}" colspan="1"/><label align="0.0" colspan="8" />
+					</group>
+					<newline />
+					<group col="8">
+						<field name="id_declarante" />
+					</group>			
+				</page>
+
+				<page string="Responsables">
+					<notebook colspan="4">
+						<page string="Responsable de Fichero">
+							<label align="0.0" string="Se indicará en este apartado la persona física o jurídica, de naturaleza pública o privada, u organismo administrativo responsable del fichero, es decir, la que decida sobre su finalidad, contenido y uso del tratamiento.&#xD;&#xD;Se debe indicar su Actividad Principal&#xD;&#xD;Consigne el nombre del país, en caso de que este no sea España. Si la dirección del responsable se encuentra en un país que no pertenece a la Unión Europea deberá cumplimentar obligatoriamente los datos de su representante en España en el apartado Servicio o Unidad de Acceso.  
+&#xD;&#xD;El teléfono, fax y dirección e-mail son de cumplimentación voluntaria.&#xD;&#xD;Si está cumplimentando una notificación de modificación de este apartado, tenga en cuenta que para modificar el NIF/CIF o el nombre de la razón social, deberá acompañar documentación fehaciente que justifique el cambio.&#xD;" colspan="4" />
+							<newline />
+							<group>
+								<field name="id_responsable" select="1" />
+							</group>
+						</page>
+						<page string="Unidad de ejercicio de derechos">
+								<label align="0.0" string="Servicio o unidad concreto ante el que puedan ejercitarse los derechos de oposición, acceso, rectificación y cancelación.&#xd;&#xD;Este apartado únicamente deberá cumplimentarlo en el caso de que la dirección dónde se prevea atender al ciudadano que desee ejercitar sus derechos de oposición, acceso, rectificación y cancelación sea diferente a la indicada en el Apartado 'Responsable del fichero o tratamiento'.&#xd;&#xD;Cumplimente obligatoriamente el nombre de la dependencia u oficina y la dirección completa de la misma. Si existen varias o son determinables, indique la oficina principal o dependencia a la que se dirigirá el afectado para el ejercicio de sus derechos dentro el apartado 'Nombre o razón social'&#xD;&#xD;El teléfono, fax y dirección e-mail son de cumplimentación voluntaria.&#xD;" colspan="4" />
+							<newline />
+							<group>
+								<newline />
+								<field name="unidad_empresa" on_change="onchange_unidad(unidad_empresa)" />
+								<field name="id_unidad" attrs="{'invisible':[('unidad_empresa','=',True)]}" />
+							</group>
+						</page>
+						<page string="Encargado de tratamiento">
+							<label align="0.0" string="Este apartado únicamente habrá de cumplimentarse si el responsable del fichero, indicado en el apartado 'Responsable del fichero', encarga a un tercero el tratamiento de datos.&#xD;&#xD;La realización de tratamientos por cuenta de terceros deberá estar regulada en un contrato que deberá constar por escrito o en alguna otra forma que permita acreditar su celebración y contenido, estableciéndose expresamente que el encargado del tratamiento tratará los datos conforme a las instrucciones del responsable del tratamiento, que no los aplicará o utilizará con fin distinto al que figure en dicho contrato, ni los comunicará, ni siquiera para su conservación, a otras personas.&#xD;&#xD;Si la dirección se encuentra fuera del territorio español deberá cumplimentar obligatoriamente el apartado 'Transferencias internacionales'.&#xD;&#xD;El teléfono, fax y dirección e-mail son de cumplimentación voluntaria.&#xD;" colspan="4" />
+							<newline />
+							<!--<group>
+								<field name="encargado_empresa" on_change="onchange_encargado(1)" />
+								<newline />-->
+								<separator string="Encargados de tratamiento" colspan="4" /><newline />
+                                <!--
+								<field name="id_encargado" attrs="{'readonly':[('encargado_empresa','=',True)]}" domain="[('encargado','=',1)]" nolabel="1" colspan="4" />
+                                -->
+                                <field name="id_encargado" domain="[('encargado','=',1)]" nolabel="1" colspan="4" />
+							<!--</group>-->
+						</page>
+					</notebook>
+				</page>
+
+				<page string="Estructura">
+					<group col="4" colspan="3">
+						<separator string="Datos especialmente protegidos" colspan="4" />
+						<newline />
+						<label align="0.0" string="El tratamiento de datos especialmente protegidos de ideología, afiliación sindical, religión o creencias, sólo puede realizarse si se ha recabado el consentimiento expreso y por escrito del afectado.&#xD;&#xD;No obstante, la LOPD exceptúa de esta norma general a los ficheros mantenidos por los partidos políticos, sindicatos, iglesias, confesiones o comunidades religiosas y asociaciones, fundaciones y otras entidades sin ánimo de lucro, cuya finalidad sea política, filosófica, religiosa o sindical, en cuanto a los datos relativos a sus asociados o miembros, sin perjuicio de que la cesión de dichos datos precisará siempre el previo consentimiento del afectado.&#xD;" colspan="4" />
+						<newline />
+						<group col="4" colspan="4">
+							<field name="ideologia" on_change="onchange_datos_protegidos(ideologia)" />
+							<field name="afiliacion" on_change="onchange_datos_protegidos(afiliacion, finalidad, afiliacion, salud)" />
+							<field name="religion" on_change="onchange_datos_protegidos(religion)" />
+							<field name="creencias" on_change="onchange_datos_protegidos(creencias)" />
+						</group>
+						<separator string="Otros datos especialmente protegidos" />
+						<newline />
+						<label align="0.0" string="Para tratar datos especialmente protegidos de origen racial, salud o vida sexual, será obligatorio  recabar el consentimiento expreso del afectado o que, por razones de interés general, así lo disponga una Ley.&#xD;" colspan="4" />
+						<newline />
+						<group col="6" colspan="4">
+							<field name="raza" on_change="onchange_datos_protegidos(raza)" />
+							<field name="salud" on_change="onchange_datos_protegidos(salud, finalidad, afiliacion, salud)"/>
+							<field name="sexo" on_change="onchange_datos_protegidos(sexo)" />
+						</group>
+						<separator string="Otros tipos de datos" />
+						<newline />
+						<label align="0.0" string="Seleccione los tipos de datos de carácter personal incluidos en el fichero de la lista disponible en el formulario. En el caso de que los datos incluidos en el fichero no se encuentren identificados en la lista, señale la casilla correspondiente a «Otros tipos de datos» y descríbalos de forma  breve.&#xD;" colspan="4" />
+						<newline />
+						<group col="4" colspan="4">
+							<field name="otd01" on_change="onchange_otrostipos('01',otd01, n_otd, otros_tipos_datos)" attrs="{'readolny':[('n_otd','>=',6),('otd01','=',0)]}" />
+							<field name="otd02" on_change="onchange_otrostipos('02',otd02, n_otd, otros_tipos_datos)" attrs="{'readonly':[('n_otd','>=',6),('otd02','=',0)]}" />
+							<field name="otd03" on_change="onchange_otrostipos('03',otd03, n_otd, otros_tipos_datos)" attrs="{'readonly':[('n_otd','>=',6),('otd03','=',0)]}" />
+							<field name="otd04" on_change="onchange_otrostipos('04',otd04, n_otd, otros_tipos_datos)" attrs="{'readonly':[('n_otd','>=',6),('otd04','=',0)]}" />
+							<field name="otd05" on_change="onchange_otrostipos('05',otd05, n_otd, otros_tipos_datos)" attrs="{'readonly':[('n_otd','>=',6),('otd05','=',0)]}" />
+							<field name="otd06" on_change="onchange_otrostipos('06',otd06, n_otd, otros_tipos_datos)" attrs="{'readonly':[('n_otd','>=',6),('otd06','=',0)]}" />
+							<field name="otrostipos" colspan="3"/>
+							<newline />
+							<field name="otros_tipos_datos" invisible="1" />
+							<field name="n_otd" invisible="1" />
+						</group>
+					</group>
+
+					<group col="4" colspan="1">
+						<separator string="Datos de carácter identificativo" colspan="4" />
+						<newline />
+						<label align="0.0" string="Marque todos y cada uno de los tipos de datos contenidos o tratados en el fichero. En caso de tratarse de datos no descritos expresamente en los tipos indicados en el modelo de notificación, señale la casilla «Otros tipos de datos»  y especifíquelos de forma resumida. Cualquier fichero de datos de carácter personal debe contener al menos algún dato de carácter identificativo.&#xD;" colspan="4" />
+						<newline />
+						<group col="4" colspan="4" >
+							<field name="dci01" on_change="onchange_dci('01',dci01, n_dci, dci)" />
+							<field name="dci02" on_change="onchange_dci('02',dci02, n_dci, dci)" />
+							<field name="dci03" on_change="onchange_dci('03',dci03, n_dci, dci)" />
+							<field name="dci04" on_change="onchange_dci('04',dci04, n_dci, dci)" />
+							<field name="dci05" on_change="onchange_dci('05',dci05, n_dci, dci)" />
+							<field name="dci06" on_change="onchange_dci('06',dci06, n_dci, dci)" />
+							<field name="dci07" on_change="onchange_dci('07',dci07, n_dci, dci)" />
+							<field name="dci08" on_change="onchange_dci('08',dci08, n_dci, dci)" />
+							<field name="dci09" on_change="onchange_dci('09',dci09, n_dci, dci)" />
+							<field name="dci10" on_change="onchange_dci('10',dci10, n_dci, dci)" />
+							<label align="0.0" string="Otros datos de carácter sifnificativo:" colspan="4"/>
+							<field name="otrosdatos" nolabel="1" colspan="4" widget="text"/>
+							<field name="n_dci" invisible="1" />
+							<field name="dci" invisible="1" />
+						</group>
+					</group>
+				</page>
+				<page string="Finalidad">
+					<label align="0.0" string="Los datos de carácter personal sólo se podrán recoger para su tratamiento, así como someterlos a dichos tratamiento, cuando sean adecuados, pertinentes y no excesivos en relación con el ámbito y de las finalidades determinadas, explícitas y legítimas para las que se hayan obtenido.&#xA;Indique una descripción detallada de la finalidad y usos previstos determinados del fichero y seleccione la tipificación de finalidad que se corresponda con dicha descripción, marcando con la/s casilla/s correspondiente/s.&#xA;" colspan="6" /><!-- Se aconseja consultar toda la lista de finalidades con el fin de poder seleccionar aquellos valores definidos que mejor concreten la finalidad y usos del fichero automatizado.&#xD;En caso de que ningún valor refleje las finalidades y usos previstos, seleccione el valor 'OTROS'.&#xD;Los datos de carácter personal objeto de tratamiento no podrán usarse para finalidades incompatibles con aquellas para las que los datos hubieran sido recogidos.&#xD;" colspan="6" /> -->
+					<newline />
+					<field name="finalidad" invisible="1" />
+					<field name="n_fin" invisible="1" />
+					<group colspan="2">
+						<group col="2">
+							<field name="f400" on_change="onchange_finalidad('400',f400, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f400','=',0)]}" />
+							<!--<label align="0.0" string="Gestión de clientes contable, fiscal y administrativa" />-->
+							<field name="f401" on_change="onchange_finalidad('401',f401, n_fin, finalidad, afiliacion, salud)" attrs="{'readonly':[('n_fin','>=',6),('f401','=',0)]}" />
+							<!--<label align="0.0" string="Recursos humanos" />-->
+							<field name="f402" on_change="onchange_finalidad('402',f402, n_fin, finalidad, afiliacion, salud)" attrs="{'readonly':[('n_fin','>=',6),('f402','=',0)]}" />
+							<!--<label align="0.0" string="Gestión de nóminas" />-->
+							<field name="f403" on_change="onchange_finalidad('403',f403, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f403','=',0)]}" />
+							<!--<label align="0.0" string="Prevención de riesgos laborales" />-->
+							<field name="f404" on_change="onchange_finalidad('404',f404, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f404','=',0)]}" />
+							<!--<label align="0.0" string="Prestación de servicios de solvencia patrimonial y crédito" />-->
+							<field name="f405" on_change="onchange_finalidad('405',f405, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f405','=',0)]}" />
+							<!--<label align="0.0" string="Cumplimiento/incumplimiento de obligaciones dinerarias" />-->
+							<field name="f406" on_change="onchange_finalidad('406',f406, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f406','=',0)]}" />
+							<!--<label align="0.0" string="Servicios económico financieros y seguros" />-->
+							<field name="f407" on_change="onchange_finalidad('407',f407, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f407','=',0)]}" />
+							<!--<label align="0.0" string="Análisis de perfiles" />-->
+							<field name="f408" on_change="onchange_finalidad('408',f408, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f408','=',0)]}" />
+							<!--<label align="0.0" string="Publicidad y prospección comercial" />-->
+							<field name="f409" on_change="onchange_finalidad('409',f409, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f409','=',0)]}" />
+							<!--<label align="0.0" string="Prestación de servicios de comunicación electrónica" />-->
+							<field name="f410" on_change="onchange_finalidad('410',f410, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f410','=',0)]}" />
+							<!--<label align="0.0" string="Guías / repertorios de servicios de comunicaciones electrónicas" />-->
+							<field name="f411" on_change="onchange_finalidad('411',f411, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f411','=',0)]}" />
+							<!--<label align="0.0" string="Comercio electrónico" />-->
+							<field name="f412" on_change="onchange_finalidad('412',f412, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f412','=',0)]}" />
+							<!--<label align="0.0" string="Prestación de servicios de certificación electrónica" />-->
+						</group>
+					</group>
+					<group colspan="2">
+						<group col="2">
+							<field name="f413" on_change="onchange_finalidad('413',f413, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f413','=',False)]}" />
+							<!--<label align="0.0" string="Gestión de asociados o miembros de partidos políticos, sindicatos, iglesias, confesiones o comunidades religiosas y asociaciones, fundaciones y otras entidades sin ánimo de lucro, cuya finalidad sea política, filosófica, religiosa o sindical" />-->
+							<field name="f414" on_change="onchange_finalidad('414',f414, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f414','=',False)]}" />
+							<!--<label align="0.0" string="Gestión de actividades asociativas, culturales, recreativas, deportivas y sociales" />-->
+							<field name="f415" on_change="onchange_finalidad('415',f415, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f415','=',False)]}" />
+							<!--<label align="0.0" string="Gestión de asistencia social" />-->
+							<field name="f416" on_change="onchange_finalidad('416',f416, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f416','=',False)]}" />
+							<!--<label align="0.0" string="Educación" />-->
+							<field name="f417" on_change="onchange_finalidad('417',f417, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f417','=',False)]}" />
+							<!--<label align="0.0" string="Investigación epidemiológica y otras actividades análogas" />-->
+							<field name="f418" on_change="onchange_finalidad('418',f418, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f418','=',False)]}" />
+							<!--<label align="0.0" string="Gestión y control sanitario" />-->
+							<field name="f419" on_change="onchange_finalidad('419',f419, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f419','=',False)]}" />
+							<!--<label align="0.0" string="Historial clínico" />-->
+							<field name="f420" on_change="onchange_finalidad('420',f420, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f420','=',False)]}" />
+							<!--<label align="0.0" string="Seguridad privada" />-->
+							<field name="f421" on_change="onchange_finalidad('421',f421, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f421','=',False)]}" />
+							<!--<label align="0.0" string="Seguridad y control de acceso a edificios" />-->
+							<field name="f422" on_change="onchange_finalidad('422',f422, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f422','=',False)]}" />
+							<!--<label align="0.0" string="Videovigilancia" />-->
+							<field name="f423" on_change="onchange_finalidad('423',f423, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f423','=',False)]}" />
+							<!--<label align="0.0" string="Fines estadísticos, históricos o científicos" />-->
+							<field name="f499" on_change="onchange_finalidad('499',f499, n_fin, finalidad)" attrs="{'readonly':[('n_fin','>=',6),('f499','=',False)]}" />
+							<!--<label align="0.0" string="Otras finalidades" />-->
+							</group>
+					</group>
+					<!-- TODO: No requerido en las especificaciones de la LOPD
+					<newline />
+					<group col="2">
+						<field name="datoseval" />
+						<field name="evalperso" />
+						<field name="solvpatri" />
+						<field name="servfinan" />
+						<field name="seguactiv" />
+					</group>-->
+				
+				</page>
+				<page string="Origen y colectivo">
+					<group colspan="4" col="6">
+						<separator string="Origen" colspan="4" />
+						<newline />
+						<field name="interesado" />
+						<field name="reg_publico" /><newline />
+						<field name="ent_privada" />
+						<field name="fue_publica" /><newline />
+						<field name="adm_publica" />
+						<field name="otras" />
+					</group>
+					<newline />
+					<group col="6" colspan="4" >
+						<separator string="Colectivos o categorías de interesados" colspan="6"/>
+						<newline />
+						<field name="c01" on_change="onchange_colectivo('01',c01, n_col, colectivos)" attrs="{'readonly':[('n_col','>=',6),('c01','=',False)]}" widget="boolean" />
+						<field name="c02" on_change="onchange_colectivo('02',c02, n_col, colectivos)" attrs="{'readonly':[('n_col','>=',6),('c02','=',False)]}" widget="boolean" />
+						<field name="c03" on_change="onchange_colectivo('03',c03, n_col, colectivos)" attrs="{'readonly':[('n_col','>=',6),('c03','=',False)]}" widget="boolean" />
+						<field name="c04" on_change="onchange_colectivo('04',c04, n_col, colectivos)" attrs="{'readonly':[('n_col','>=',6),('c04','=',False)]}" widget="boolean" />
+						<field name="c05" on_change="onchange_colectivo('05',c05, n_col, colectivos)" attrs="{'readonly':[('n_col','>=',6),('c05','=',False)]}" widget="boolean" />
+						<field name="c06" on_change="onchange_colectivo('06',c06, n_col, colectivos)" attrs="{'readonly':[('n_col','>=',6),('c06','=',False)]}" widget="boolean" />
+						<field name="c07" on_change="onchange_colectivo('07',c07, n_col, colectivos)" attrs="{'readonly':[('n_col','>=',6),('c07','=',False)]}" widget="boolean" />
+						<field name="c08" on_change="onchange_colectivo('08',c08, n_col, colectivos)" attrs="{'readonly':[('n_col','>=',6),('c08','=',False)]}" widget="boolean" />
+						<field name="c09" on_change="onchange_colectivo('09',c09, n_col, colectivos)" attrs="{'readonly':[('n_col','>=',6),('c09','=',False)]}" widget="boolean" />
+						<field name="c10" on_change="onchange_colectivo('10',c10, n_col, colectivos)" attrs="{'readonly':[('n_col','>=',6),('c10','=',False)]}" widget="boolean" />
+						<field name="c11" on_change="onchange_colectivo('11',c11, n_col, colectivos)" attrs="{'readonly':[('n_col','>=',6),('c11','=',False)]}" widget="boolean" />
+						<field name="c12" on_change="onchange_colectivo('12',c12, n_col, colectivos)" attrs="{'readonly':[('n_col','>=',6),('c12','=',False)]}" widget="boolean" />
+						<field name="c13" on_change="onchange_colectivo('13',c13, n_col, colectivos)" attrs="{'readonly':[('n_col','>=',6),('c13','=',False)]}" widget="boolean" />
+						<newline />
+						<group  colspan="5" attrs="{'invisible':[('n_col','>=',1)]}">
+							<field name="otros_colectivos" colspan="5" />
+						</group>
+						<newline />
+						<field name="colectivos" invisible="1" />
+						<field name="n_col" invisible="1" />
+					</group>
+				</page>
+				<page string="Cesión o Comunicación de Datos">
+					<label align="0.0" string="&#xD;No se considerará cesión de datos la presentación de un servicio al responsable del fichero por parte del encargado de tratamiento.&#xD;" colspan="4" /><newline />
+<!--
+<label align="0.0" string="Este apartado únicamente ha de cumplimentarse en el caso de que se prevea realizar cesiones o comunicación de datos.&#xD;No se considerará cesión de datos la prestación de un servicio al responsable del fichero por parte del encargado del tratamiento.&#xD;La comunicación de los datos ha de ampararse en alguno de los supuestos legales relacionados en el modelo de notificación. Señale los supuestos en los que se ampara la cesión o comunicación de datos.&#xD;Si existe una ley que autoriza la cesión, indicar el número y año de publicación y la descripción de la misma.&#xD;En caso de destinatarios determinados de la cesión, es decir, totalmente identificados, indique su NIF/CIF, y su nombre o razón social.&#xD;En caso de existir más de cuatro destinatarios determinados de la cesión de los datos de carácter personal, recoja los datos identificativos de los mismos: NIF/CIF, nombre o razón social, separados por comas, en el campo de texto libre del apartado denominado otros destinatarios determinados.&#xD;A los únicos efectos de la notificación de ficheros, en caso de no disponer de espacio suficiente en los apartados anteriores para consignar todos los destinatarios de la cesión, indique en el apartado denominado destinatarios determinables o categorías de destinatarios las reglas que permiten su identificación inequívoca y específica.&#xD;" /><newline />-->
+					<group>
+						<field name="no_cesion" on_change="onchange_nocesion(no_cesion)" />
+						<!--<label align="0.0" string="No se realizan cesiones                                                 " colspan="3"/>-->
+
+					</group><newline />
+					<group attrs="{'invisible':[('no_cesion','=',True)]}">
+						<separator colspan="4" /><newline />
+						<field name="cc01" attrs="{'readonly':[('n_ces','>=',6),('cc01','=',False)]}" on_change="onchange_cesion('01',cc01, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Organizaciones o personas directamente relacionadas con el responsable" />-->
+						<field name="cc02" attrs="{'readonly':[('n_ces','>=',6),('cc02','=',False)]}" on_change="onchange_cesion('02',cc02, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Organismos de la seguridad social" />-->
+						<field name="cc03" attrs="{'readonly':[('n_ces','>=',6),('cc03','=',False)]}" on_change="onchange_cesion('03',cc03, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Registros públicos" />-->
+						<field name="cc04" attrs="{'readonly':[('n_ces','>=',6),('cc04','=',False)]}" on_change="onchange_cesion('04',cc04, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Colegios profesionales" />-->
+						<field name="cc05" attrs="{'readonly':[('n_ces','>=',6),('cc05','=',False)]}" on_change="onchange_cesion('05',cc05, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Administración tributaria" />-->
+						<field name="cc06" attrs="{'readonly':[('n_ces','>=',6),('cc06','=',False)]}" on_change="onchange_cesion('06',cc06, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Otros órganos de la administración pública" />-->
+						<field name="cc07" attrs="{'readonly':[('n_ces','>=',6),('cc07','=',False)]}" on_change="onchange_cesion('07',cc07, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Comisión nacional del mercado de valores" />-->
+						<field name="cc08" attrs="{'readonly':[('n_ces','>=',6),('cc08','=',False)]}" on_change="onchange_cesion('08',cc08, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Comisión nacional del juego" />-->
+						<field name="cc09" attrs="{'readonly':[('n_ces','>=',6),('cc09','=',False)]}" on_change="onchange_cesion('09',cc09, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Notarios y procuradores" />-->
+						<field name="cc10" attrs="{'readonly':[('n_ces','>=',6),('cc10','=',False)]}" on_change="onchange_cesion('10',cc10, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Fuerzas y cuerpos de seguridad" />-->
+						<field name="cc11" attrs="{'readonly':[('n_ces','>=',6),('cc11','=',False)]}" on_change="onchange_cesion('11',cc11, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Organismos de la unión europea" />-->
+						<field name="cc12" attrs="{'readonly':[('n_ces','>=',6),('cc12','=',False)]}" on_change="onchange_cesion('12',cc12, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Entidades dedicadas al cumplimiento / incumplimiento de obligaciones dinerarias" />-->
+						<field name="cc13" attrs="{'readonly':[('n_ces','>=',6),('cc13','=',False)]}" on_change="onchange_cesion('13',cc13, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Bancos, cajas de ahorros y cajas rurales" />-->
+						<field name="cc14" attrs="{'readonly':[('n_ces','>=',6),('cc14','=',False)]}" on_change="onchange_cesion('14',cc14, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Entidades aseguradoras" />-->
+						<field name="cc15" attrs="{'readonly':[('n_ces','>=',6),('cc15','=',False)]}" on_change="onchange_cesion('15',cc15, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Otras entidades financieras" />-->
+						<field name="cc16" attrs="{'readonly':[('n_ces','>=',6),('cc16','=',False)]}" on_change="onchange_cesion('16',cc16, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Entidades sanitarias" />-->
+						<field name="cc17" attrs="{'readonly':[('n_ces','>=',6),('cc17','=',False)]}" on_change="onchange_cesion('17',cc17, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Prestaciones de servicio de telecomunicaciones" />-->
+						<field name="cc18" attrs="{'readonly':[('n_ces','>=',6),('cc18','=',False)]}" on_change="onchange_cesion('18',cc18, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Empresas dedicadas a publicidad o marketing directo" />-->
+						<field name="cc19" attrs="{'readonly':[('n_ces','>=',6),('cc19','=',False)]}" on_change="onchange_cesion('19',cc19, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Asociaciones y organizaciones sin ánimo de lucro" />-->
+						<field name="cc20" attrs="{'readonly':[('n_ces','>=',6),('cc20','=',False)]}" on_change="onchange_cesion('20',cc20, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Sindicatos y juntas de personal" />-->
+						<field name="cc21" attrs="{'readonly':[('n_ces','>=',6),('cc21','=',False)]}" on_change="onchange_cesion('21',cc21, n_ces, cesiones)" />
+						<!--<label align="0.0" string="Administración pública con competencia en la materia" />-->
+
+					</group>
+					<newline />
+					<group>
+						<field name="otras_cesiones" attrs="{'invisible':[('no_cesion','=',True)]}"/>
+						<newline />
+						<field name="n_ces" invisible="1" />
+						<field name="cesiones" invisible="1" />
+					</group>
+				</page>
+				<page string="Transferencias Internacionales">
+					<label align="0.0" string="&#xD;En caso de que la transferencia tenga como destino un país que no preste un nivel de protección adecuado al que presta la LOPD, deberá tener en cuenta que la LOPD establece que las previsiones para realizar transferencias internacionales son diferentes, dependiendo que los paises destinatarios tenga un nivel de protección adecuado o no.&#xD;" colspan="4" />
+					<newline />
+					<group colspan="4">
+						<field name="no_transfer" on_change="onchange_notransfer(no_transfer)" />
+						<!--<label align="0.0" string="No se realizan transferencias                                        " colspan="5"/>-->
+					</group>
+					<newline />
+					<group col="6" attrs="{'invisible':[('no_transfer','=',True)]}">
+						<label align="0.0" string="Paises" /><label align="0.0" string="Categoría de destinatarios"/>
+						<newline />
+						<field name="pais1" nolabel="1" on_change="onchange_pais1(pais1)" />
+						<field name="categoria1" nolabel="1" widget="selection" attrs="{'invisible':[('pais1','=',0)]}" colspan="5" on_change="onchange_categoria1(categoria1)" />
+						<newline />
+						<field name="pais2" nolabel="1" attrs="{'invisible':[('categoria1','=',0)]}" on_change="onchange_pais2(pais2)" />
+						<field name="categoria2" nolabel="1" widget="selection" attrs="{'invisible':[('pais2','=',0)]}" colspan="5" on_change="onchange_categoria2(categoria2)" />
+						<newline />
+						<field name="pais3" nolabel="1" attrs="{'invisible':[('categoria2','=',0)]}" on_change="onchange_pais3(pais3)" />
+						<field name="categoria3" nolabel="1" widget="selection" attrs="{'invisible':[('pais3','=',0)]}" colspan="5" on_change="onchange_categoria3(categoria3)" />
+						<newline />
+						<field name="pais4" nolabel="1" attrs="{'invisible':[('categoria3','=',0)]}" on_change="onchange_pais4(pais4)" />
+						<field name="categoria4" nolabel="1" widget="selection" attrs="{'invisible':[('pais4','=',0)]}" colspan="5"/>
+						<separator colspan="6" />
+						<label align="0.0" string="País" /><label align="0.0" string="Otras categorías de destinatarios"/>
+						<newline />
+						<field name="pais5" nolabel="1" attrs="{'invisible':[('no_transfer','=',True)]}" on_change="onchange_pais5(pais5)" />
+						<field name="categoria5" nolabel="1" attrs="{'invisible':[('pais5','=',0)]}" colspan="5" />
+					</group>					
+				</page>
+				<!-- Relaciones con programas y soportes -->
+				<page string="Relaciones con programas y soportes">
+					<separator string="Programas que tratan datos de carácter personal relacionados con el fichero" /><newline />
+					<field name="id_programa" nolabel="1" colspan="4" />
+					<newline />
+					<separator string="Soportes que contengan datos de carácter personal relacionados con el fichero" /><newline />
+					<field name="id_soporte" nolabel="1" colspan="4" />
+				</page>
+				<page string="Historial de solicitudes">
+					<field name="solicitudes" nolabel="1" readonly="True" />
+				</page>
+			</notebook>
+			</group>
+		</form>
+        </field>
+	</record>
+
+	<record id="vista_fichero_arbol" model="ir.ui.view">
+		<field name="name">lopd.fichero.tree</field>
+		<field name="model">lopd.fichero</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Ficheros Jurídicos">
+				<field name="name" string ="Nombre" />
+				<field name="nivel" />
+				<field name="id_responsable" />
+				<field name="estado" />
+			</tree>
+		</field>
+	</record>
+	<record id="vista_filtro_fichero" model="ir.ui.view">
+		<field name="name">lopd.fichero.select</field>
+           <field name="model">lopd.fichero</field>
+           <field name="type">search</field>
+           <field name="arch" type="xml">
+	           <search string="Buscar fichero">
+	               <group col='10' colspan='4'>
+                        <field name="name" select="1" />
+						<field name="id_responsable" />
+						<field name="estado" />
+                   </group>
+	            </search>
+            </field>
+        </record>
+
+	<record id="accion_fichero_arbol" model="ir.actions.act_window">
+		<field name="name">Ficheros jurídicos</field>
+		<field name="res_model">lopd.fichero</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+		<field name="domain">[]</field>
+        <field name="view_id" ref="vista_fichero_arbol" />
+		<field name="help">
+			
+		</field>
+	</record>
+	<record id="accion_fichero_form" model="ir.actions.act_window">
+		<field name="name">Ficheros jurídicos</field>
+		<field name="res_model">lopd.fichero</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form,tree</field>
+        <field name="view_id" ref="vista_fichero_form" />
+	</record>
+
+</data>
+</openerp>
+
+

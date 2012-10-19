@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record id="lopd_admin" model="res.groups">
+	        <field name="name">Administrador LOPD</field>
+		</record>
+		<record id="lopd_responsable" model="res.groups">
+	        <field name="name">Responsable LOPD</field>
+		</record>
+		<record id="lopd_user" model="res.groups">
+	        <field name="name">Usuario LOPD</field>
+		</record>
+	</data>
+</openerp>
