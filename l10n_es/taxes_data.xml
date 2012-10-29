@@ -3261,7 +3261,7 @@
         <record id="irpf_9" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">Retenciones IRPF 9%</field>
-            <field eval="-0.07" name="amount"/>
+            <field eval="-0.09" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_475109"/>
             <field name="account_paid_id" ref="pgc_475109"/>
