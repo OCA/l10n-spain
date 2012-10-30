@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.3\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2011-11-25 11:11+0000\n"
-"PO-Revision-Date: 2012-10-29 20:19+0100\n"
+"PO-Revision-Date: 2012-10-29 20:28+0100\n"
 "Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,34 +18,34 @@ msgstr ""
 #. module: acy_partner_correos
 #: model:ir.module.module,description:acy_partner_correos.module_meta_information
 msgid "Only 300 companies can be exported by file. All partners must have street, zip, city, state and country. Select the partners and click action."
-msgstr "Sólo se puede exportar 300 empresas por archivo. Todas las empresas deben tener calle, código postal, provincia y país. Seleccione las empresas y haga clic en Acción"
+msgstr "Només es poden exportar 300 empreses per fitxer. Totes les empreses han de tenir carrer, codi postal, província i país. Seleccioneu les empreses i feu clic a Acció."
 
 #. module: acy_partner_correos
 #: model:ir.module.module,shortdesc:account.module_meta_information
 msgid "Export partners to a txt file compatible with the Correos Virtual Office"
-msgstr "Exportación de empresas a un archivo compatible con la Oficina Virtual de Correos"
+msgstr "Exportació d'empreses a un fitxer compatible amb l'Oficina Virtual de Correus"
 
 #. module: acy_partner_correos
 #: wizard_view:export_correos_file,export:0
 #: wizard_view:export_correos_file,init:0
 msgid "Export Correos File"
-msgstr "Exportar archivo de Correos"
+msgstr "Exporta fitxer de Correus"
 
 #. module: acy_partner_correos
 #: wizard_field:export_correos_file,init,color:0
 msgid "Color letters"
-msgstr "Cartas en color"
+msgstr "Cartes a color"
 
 #. module: acy_partner_correos
 #: wizard_field:export_correos_file,init,certificate:0
 msgid "Certificate letters"
-msgstr "Cartas certificadas"
+msgstr "Cartes certificades"
 
 #. module: acy_partner_correos
 #: wizard_field:export_correos_file,export,correos_fname:0
 #: wizard_field:export_correos_file,export,correos:0
 msgid "File name"
-msgstr "Archivo"
+msgstr "Fitxer"
 
 #. module: acy_partner_correos
 #: code:addons/acy_partner_correos/wizard/export_file.py:63
@@ -55,9 +55,9 @@ msgid ""
 "\n"
 " The Virtual Office of Correos only support 300 address. You have selected %s partners."
 msgstr ""
-"Error de usuario:\n"
+"Error d'usuari:\n"
 "\n"
-" La oficina virtual de Correos sólo soporta 300 direcciones. Ha seleccionado %s empresas."
+" L'oficina virtual de Correus només suporta 300 adreces. Heu seleccionat %s empreses."
 
 #. module: acy_partner_correos
 #: code:addons/acy_partner_correos/wizard/export_file.py:71
@@ -67,9 +67,9 @@ msgid ""
 "\n"
 " The partner %s hasn\'t address."
 msgstr ""
-"Error de usuario:\n"
+"Error d'usuari:\n"
 "\n"
-" La empresa %s no tiene dirección."
+" L'empresa %s no té adreça."
 
 #. module: acy_partner_correos
 #: code:addons/acy_partner_correos/wizard/export_file.py:78
@@ -79,9 +79,9 @@ msgid ""
 "\n"
 " The partner %s hasn\'t street."
 msgstr ""
-"Error de usuario:\n"
+"Error d'usuari:\n"
 "\n"
-" La empresa %s no tiene calle."
+" L'empresa %s no té carrer."
 
 #. module: acy_partner_correos
 #: code:addons/acy_partner_correos/wizard/export_file.py:80
@@ -91,9 +91,9 @@ msgid ""
 "\n"
 " The partner %s hasn\'t zip."
 msgstr ""
-"Error de usuario:\n"
+"Error d'usuari:\n"
 "\n"
-" La empresa %s no tiene código postal."
+" L'empresa %s no té codi postal."
 
 #. module: acy_partner_correos
 #: code:addons/acy_partner_correos/wizard/export_file.py:82
@@ -103,9 +103,9 @@ msgid ""
 "\n"
 " The partner %s hasn\'t city."
 msgstr ""
-"Error de usuario:\n"
+"Error d'usuari:\n"
 "\n"
-" La empresa %s no tiene ciudad."
+" L'empresa %s no té ciutat."
 
 #. module: acy_partner_correos
 #: code:addons/acy_partner_correos/wizard/export_file.py:84
@@ -115,9 +115,9 @@ msgid ""
 "\n"
 " The partner %s hasn\'t state."
 msgstr ""
-"Error de usuario:\n"
+"Error d'usuari:\n"
 "\n"
-" La empresa %s no tiene provincia."
+" L'empresa %s no té província."
 
 #. module: acy_partner_correos
 #: code:addons/acy_partner_correos/wizard/export_file.py:86
@@ -127,9 +127,9 @@ msgid ""
 "\n"
 " The partner %s hasn\'t country."
 msgstr ""
-"Error de usuario:\n"
+"Error d'usuari:\n"
 "\n"
-" La empresa %s no tiene país."
+" L'empresa %s no té país."
 
 #. module: acy_partner_correos
 #: code:addons/acy_partner_correos/wizard/export_file.py:100
@@ -140,10 +140,10 @@ msgid ""
 "Summary::\n"
 " Number of exported partners: %d\n"
 msgstr ""
-"Exportación realizada con éxito\n"
+"Exportació realitzada amb èxit\n"
 "\n"
-"Resumen::\n"
-" Número total de empresas exportadas: %d\n"
+"Resum::\n"
+" Número total d'empreses exportades: %d\n"
 
 #. module: acy_partner_correos
 #: code:addons/acy_partner_correos/wizard/converter.py:71
@@ -155,7 +155,7 @@ msgid ""
 msgstr ""
 "Error:\n"
 "\n"
-"No se puede convertir el número %(number).2f para que quepa en %(size)d caracteres."
+"No es pot convertir el número %(number).2f perquè hi càpiga en %(size)d caràcters."
 
 #. module: acy_partner_correos
 #: code:addons/acy_partner_correos/wizard/converter.py:98
@@ -165,9 +165,9 @@ msgid ""
 "\n"
 "The bank account number of %s is not defined."
 msgstr ""
-"Error del usuario:\n"
+"Error d'usuari:\n"
 "\n"
-"El número de C.C. del cliente %s no existe."
+"El número de C.C. del client %s no existeix."
 
 #. module: acy_partner_correos
 #: code:addons/acy_partner_correos/wizard/converter.py:101
@@ -177,9 +177,9 @@ msgid ""
 "\n"
 "The bank account number of %s does not have 20 digits."
 msgstr ""
-"Error del usuario:\n"
+"Error d'usuari:\n"
 "\n"
-"El número de C.C. de %s no tiene 20 dígitos."
+"El número de C.C. de %s no té 20 dígits."
 
 #. module: acy_partner_correos
 #: code:addons/acy_partner_correos/wizard/converter.py:80
@@ -191,5 +191,5 @@ msgid ""
 msgstr ""
 "Error:\n"
 "\n"
-"No se puede convertir el número entero %(number)d para que quepa en %(size)d caracteres."
+"No es pot convertir el número enter %(number)d  perquè hi càpiga en %(size)d caràcters."
 
