@@ -7,6 +7,8 @@
 #    Copyright (c) 2008 Acysos SL. All Rights Reserved.
 #                       Ignacio Ibeas <ignacio@acysos.com>
 #    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
+#    AvanzOSC, Advanced Open Source Consulting 
+#    Copyright (C) 2011-2012 Ainara Galdona (www.avanzosc.com). All Rights Reserved
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -49,7 +51,12 @@ También se proporciona un informe para imprimir un listado de los pagos/cobros 
     "depends" : ["base", "account", "account_payment_extension",],
     "init_xml" : ["remesas_data.xml"],
     "demo_xml" : [],
-    "update_xml" : ["remesas_report.xml", "remesas_view.xml", "remesas_wizard.xml","wizard/export_remesas_view.xml"],
+    "update_xml" : [
+		"remesas_report.xml", 
+		"remesas_view.xml", 
+		#"remesas_wizard.xml",
+		"wizard/export_remesas_view.xml"
+		],
     "installable" : True,
     "active" : False,
 }

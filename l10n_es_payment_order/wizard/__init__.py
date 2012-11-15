@@ -7,6 +7,8 @@
 #    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
 #    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
+#    AvanzOSC, Advanced Open Source Consulting 
+#    Copyright (C) 2011-2012 Ainara Galdona (www.avanzosc.com). All Rights Reserved
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
