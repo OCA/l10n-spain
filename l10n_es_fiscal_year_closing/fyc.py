@@ -101,73 +101,7 @@ _C_ACCOUNT_MAPPING = [
 ]
 
 
-#-------------------------------------------------------------------------------
-# needed function to get amount by partner.
-#-------------------------------------------------------------------------------
-class account_account(osv.osv):
-    _inherit = "account.account"
-    
-    def get_amount_by_partners(self, cr, uid, ids, context=None,
-        query='', query_params=()):
-        
-        if context is None:
-            context = {}
-            
-        field_names = ['balance','debit','credit']
-        mapping = {
-            'balance': "COALESCE(SUM(l.debit),0) - COALESCE(SUM(l.credit), 0) as balance",
-            'debit': "COALESCE(SUM(l.debit), 0) as debit",
-            'credit': "COALESCE(SUM(l.credit), 0) as credit"
-            }
-            
-        #get all the necessary accounts
-        children_and_consolidated = self._get_children_and_consol(cr, uid, ids, context=context)
-        #compute for each account the balance/debit/credit from the move lines
-        accounts = {}
-        sums = {}
-        if children_and_consolidated:
-            aml_query = self.pool.get('account.move.line')._query_get(cr, uid, context=context)
 
-            wheres = [""]
-            if query.strip():
-                wheres.append(query.strip())
-            if aml_query.strip():
-                wheres.append(aml_query.strip())
-            filters = " AND ".join(wheres)
-            self.logger.notifyChannel('addons.'+self._name, netsvc.LOG_DEBUG,
-                                    'Filters: %s'%filters)
-            # IN might not work ideally in case there are too many
-            # children_and_consolidated, in that case join on a
-            # values() e.g.:
-            # SELECT l.account_id as id FROM account_move_line l
-            # INNER JOIN (VALUES (id1), (id2), (id3), ...) AS tmp (id)
-            # ON l.account_id = tmp.id
-            # or make _get_children_and_consol return a query and join on that
-            request = ("SELECT l.account_id as id, " +\
-                        " l.partner_id ," + \
-                        ', '.join(map(mapping.__getitem__, field_names)) +
-                        " FROM account_move_line l" \
-                        " WHERE l.account_id IN %s " \
-                        + filters +
-                        " GROUP BY l.account_id, l.partner_id")
-                        
-            params = (tuple(children_and_consolidated),) + query_params
-            cr.execute(request, params)
-            
-            self.logger.notifyChannel('addons.'+self._name, netsvc.LOG_DEBUG,
-                                        'Status: %s'%cr.statusmessage)
-
-            for res in cr.dictfetchall():
-                if not accounts.get( res['id']):
-                    accounts[res['id']] = {}
-                accounts[res['id']][res['partner_id']] = {
-                    'balance': res['balance'],
-                    'credit':res['credit'],
-                    'debit':res['debit'],
-                    }
-            return accounts
-            
-account_account()
 #-------------------------------------------------------------------------------
 # Predeclaration of the FYC object
 #-------------------------------------------------------------------------------

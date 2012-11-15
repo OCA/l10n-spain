@@ -54,11 +54,12 @@ user can cancel and undo the operations easily.
                 ],
     "init_xml" : [],
     "update_xml" : [
+                    "wizard/wizard_run_view.xml",
                     "security/ir.model.access.csv",
                     "fyc_workflow.xml",
-                    "fyc_wizard.xml",
                     "fyc_view.xml",
                     "hide_account_wizards.xml",
+                    
                     ],
     "active": False,
     "installable": True

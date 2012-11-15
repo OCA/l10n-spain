@@ -87,13 +87,13 @@ Authors: Borja López Soilán (Pexego) - borja@kami.es
                                 </group>
                                 <group colspan="4" col="10">
                                     <field name="state" select="2" readonly="1"/>
-                                    <button name="%(wiz_l10n_es_fiscal_year_closing_run)d"
+                                    <button name="%(action_execute_fyc_view)d"
                                         type="action"
                                         string="Perform the operations"
                                         icon="gtk-execute"
                                         states="draft,in_progress"/>
                                     <button name="confirm" string="Confirm" states="in_progress" icon="gtk-apply"/>
-                                    <button name="%(wiz_l10n_es_fiscal_year_closing_cancel)d"
+                                    <button name="%(action_cancel_fyc_view)d"
                                         type="action"
                                         string="Cancel"
                                         icon="gtk-cancel"
