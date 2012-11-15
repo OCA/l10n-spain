@@ -3,6 +3,10 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>). All Rights Reserved
+#    Copyright (C) 2009 Ting! (<http://www.ting.es>). All Rights Reserved
+#    Copyright (c) 2010 Acysos S.L. (http://acysos.com) All Rights Reserved.
+#                       Update to OpenERP 6.0 Ignacio Ibeas <ignacio@acysos.com> 
+#    Copyright (C) 2011-2012 Iker Coranti (www.avanzosc.com). All Rights Reserved
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,70 +23,69 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from osv import osv, fields
 import wizard
 import time
 import datetime
 import pooler
 
-form_pagar = """<?xml version="1.0"?>
-<form string="Pagar Anticipos">
-   <field name="anticipos_ids" height="320" width="780" domain="[('state','=','confirmado')]"/>
-</form>"""
-
-form_confirmar = """<?xml version="1.0"?>
-<form string="Confirmar Anticipos">
-   <field name="anticipos_ids" height="320" width="780" domain="[('state','=','borrador')]"/>
-</form>"""
-
-fields = {
-    'anticipos_ids': {'string': 'Anticipos', 'type': 'many2many', 'relation': 'hr.anticipo', 'required': True},
-}
-
-class wizard_pagar_anticipo(wizard.interface):
-    def _get_defaults(self, cr, uid, data, context={}):
-        if data['model'] == 'hr.anticipo':
-            data['form']['anticipos_ids'] = data['ids']
-        return data['form']
-
-    def _pagar_anticipos(self, cr, uid, data, context):
+class wizard_pagar_anticipo(osv.osv_memory):
+    
+    _name = 'wizard.pagar.anticipo'
+    _description = 'Wizard para pagar anticipos'
+    
+    _columns={
+        #'anticipos_ids': {'string': 'Anticipos', 'type': 'many2many', 'relation': 'hr.anticipo', 'required': True},
+        'anticipos_ids': fields.many2many('hr.anticipo','rel_anticipos_p','nomina_id','anticipos_id')
+              }
+    
+    def pagar_anticipos(self, cr, uid, ids, context):
+        #########################################################################
+        # OBJETOS
+        #########################################################################
+        nominas_obj = self.pool.get ('hr.employee')
+        anticipos_obj = self.pool.get ('hr.anticipo')
+        #########################################################################
         pool = pooler.get_pool(cr.dbname)
-        for ant_id in data['form']['anticipos_ids'][0][2]:
-            anticipo = pool.get('hr.anticipo').browse(cr, uid, ant_id)
-            anticipo.pagar_anticipo(self, cr, uid, ant_id)
 
-    states = {
-        'init': {
-            'actions': [_get_defaults],
-            'result': {'type':'form', 'arch':form_pagar, 'fields':fields, 'state':[('end','Cancelar','gtk-no'),('pagar_anticipos','Pagar','gtk-yes')]}
-        },
-        'pagar_anticipos': {
-            'actions': [],
-            'result': {'type':'action', 'action':_pagar_anticipos, 'state':'end'}
-        }
-    }
-wizard_pagar_anticipo('wizard_pagar_anticipos')
+        anticipo_list = []
+        for ant_id in self.browse(cr, uid, ids[0], context).anticipos_ids:
+            anticipo_list.append(ant_id.id)
+            
+        anticipos_obj.pagar_anticipo(cr, uid, anticipo_list)
+            
+        return {'type': 'ir.actions.act_window_close'}
+    
+    def cerrar(self, cr, uid, ids, context): 
+        return {'type': 'ir.actions.act_window_close'} 
+            
+wizard_pagar_anticipo()
 
+class wizard_confirmar_anticipo(osv.osv_memory):
+    
+    _name = 'wizard.confirmar.anticipo'
+    _description = 'Wizard confirmar anticipos'
+    
+    _columns={
+        #'anticipos_ids': {'string': 'Anticipos', 'type': 'many2many', 'relation': 'hr.anticipo', 'required': True},
+        'anticipos_ids': fields.many2many('hr.anticipo','rel_anticipos_c','nomina_id','anticipos_id'),
+              }
 
-class wizard_confirmar_anticipo(wizard.interface):
-    def _get_defaults(self, cr, uid, data, context={}):
-        if data['model'] == 'hr.anticipo':
-            data['form']['anticipos_ids'] = data['ids']
-        return data['form']
+    def confirmar_anticipos(self, cr, uid, ids, context):
+        #########################################################################
+        # OBJETOS
+        #########################################################################
+        anticipos_obj = self.pool.get('hr.anticipo')
+        #########################################################################
+        anticipo_list = []
+        for ant_id in self.browse(cr, uid, ids[0], context).anticipos_ids:
+            anticipo_list.append(ant_id.id)
+            
+        anticipos_obj.confirmar_anticipo(cr, uid, anticipo_list, context)
+            
+        return {'type': 'ir.actions.act_window_close'}
+    
+    def cerrar(self, cr, uid, ids, context): 
+        return {'type': 'ir.actions.act_window_close'} 
 
-    def _confirmar_anticipos(self, cr, uid, data, context):
-        pool = pooler.get_pool(cr.dbname)
-        for ant_id in data['form']['anticipos_ids'][0][2]:
-            anticipo = pool.get('hr.anticipo').browse(cr, uid, ant_id)
-            anticipo.confirmar_anticipo(self, cr, uid, ant_id)
-
-    states = {
-        'init': {
-            'actions': [_get_defaults],
-            'result': {'type':'form', 'arch':form_confirmar, 'fields':fields, 'state':[('end','Cancelar','gtk-no'),('confirmar_anticipos','confirmar','gtk-yes')]}
-        },
-        'confirmar_anticipos': {
-            'actions': [],
-            'result': {'type':'action', 'action':_confirmar_anticipos, 'state':'end'}
-        }
-    }
-wizard_confirmar_anticipo('wizard_confirmar_anticipos')
+wizard_confirmar_anticipo()

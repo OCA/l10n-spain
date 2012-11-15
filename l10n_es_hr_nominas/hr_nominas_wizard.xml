@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-    
 	<wizard string="Generar Nóminas" model="hr.employee" name="wiz_crear_nominas" id="wizard_crea_nominas" />
 	<wizard string="Generar Pagas Extras" model="hr.employee" name="wiz_crear_extras" id="wizard_crea_extras"/>
 	<wizard string="Confirmar nóminas" model="hr.nomina" name="wizard_confirmar_nominas" id="wiz_confirmar_nominas" multi="True"/>

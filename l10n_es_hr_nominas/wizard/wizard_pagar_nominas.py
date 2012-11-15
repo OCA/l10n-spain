@@ -3,6 +3,10 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>). All Rights Reserved
+#    Copyright (C) 2009 Ting! (<http://www.ting.es>). All Rights Reserved
+#    Copyright (c) 2010 Acysos S.L. (http://acysos.com) All Rights Reserved.
+#                       Update to OpenERP 6.0 Ignacio Ibeas <ignacio@acysos.com> 
+#    Copyright (C) 2011-2012 Iker Coranti (www.avanzosc.com). All Rights Reserved
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,68 +23,64 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from osv import osv, fields
 import wizard
 import pooler
 
-form_confirmar = """<?xml version="1.0"?>
-<form string="Confirmar Nominas">
-    <field name="nominas_ids" height="320" width="780" domain="[('state','=','borrador')]"/>
-</form>"""
 
-form_pagar = """<?xml version="1.0"?>
-<form string="Pagar Nominas">
-   <field name="nominas_ids" height="320" width="780" domain="[('state','=','confirmada')]"/>
-</form>"""
+class wizard_confirmar_nominas(osv.osv_memory):
+    
+    _name = 'wizard.confirmar.nominas'
+    _description = 'Para confirmar nominas'
+    
+    _columns={
+        'nominas_ids': fields.many2many('hr.nomina','rel_nominas','antocipo_id','nomina_id',required = True),
+              }
 
-fields = {
-    'nominas_ids': {'string': 'Nominas', 'type': 'many2many', 'relation': 'hr.nomina', 'required': True},
-}
-
-class confirmar_nominas(wizard.interface):
-    def _get_defaults(self, cr, uid, data, context={}):
-        if data['model'] == 'hr.nomina':
-            data['form']['nominas_ids'] = data['ids']
-        return data['form']
-
-    def _confirma_nominas(self, cr, uid, data, context):
-        pool = pooler.get_pool(cr.dbname)
-        for nom_id in data['form']['nominas_ids'][0][2]:
-            nom = pool.get('hr.nomina').browse(cr, uid, nom_id)
-            nom.confirmar_nomina(self, cr, uid, nom_id)
-
-    states = {
-        'init': {
-            'actions': [_get_defaults],
-            'result': {'type':'form', 'arch':form_confirmar, 'fields':fields, 'state':[('end','Cancelar','gtk-no'),('confirmar_nominas','Confirmar','gtk-yes')]}
-        },
-        'confirmar_nominas': {
-            'actions': [],
-            'result': {'type':'action', 'action':_confirma_nominas, 'state':'end'}
-        }
-    }
-confirmar_nominas('wizard_confirmar_nominas')
+    def confirma_nominas(self, cr, uid, ids, context):
+        ###############################################
+        # OBJETOS
+        ###############################################
+        nomina_obj = self.pool.get('hr.nomina')
+        ###############################################
+        nom_list=[]
+        for nom_id in self.browse(cr, uid, ids[0], context).nominas_ids:
+            nom_list.append(nom_id.id)
+        nomina_obj.confirmar_nomina(cr, uid,  nom_list)
+        
+        return {'type': 'ir.actions.act_window_close'} 
+        
+    def cerrar(self, cr, uid, ids, context): 
+        return {'type': 'ir.actions.act_window_close'} 
+            
+wizard_confirmar_nominas()
 
 
-class pagar_nominas(wizard.interface):
-    def _get_defaults(self, cr, uid, data, context={}):
-        if data['model'] == 'hr.nomina':
-            data['form']['nominas_ids'] = data['ids']
-        return data['form']
+class wizard_pagar_nominas(osv.osv_memory):
+    
+    _name = 'wizard.pagar.nominas'
+    _description = 'Para pagar nominas'
+    
+    _columns={
+         'nominas_ids': fields.many2many('hr.nomina','rel_nominas','antocipo_id','nomina_id',required = True)
+              }
 
-    def _paga_nominas(self, cr, uid, data, context):
-        pool = pooler.get_pool(cr.dbname)
-        for nom_id in data['form']['nominas_ids'][0][2]:
-            nom = pool.get('hr.nomina').browse(cr, uid, nom_id)
-            nom.pagar_nomina(self, cr, uid, nom_id)
+    def paga_nominas(self, cr, uid, ids, context):
+        ###############################################
+        # OBJETOS
+        ###############################################
+        nomina_obj = self.pool.get('hr.nomina')
+        ###############################################
+        nom_list=[]
+        for nom_id in self.browse(cr, uid, ids[0], context).nominas_ids:
+            nom_list.append(nom_id.id)
+            
+        #nomina_obj.pagar_nomina(self, cr, uid, nom_list)
+        nomina_obj.pagar_nomina(cr, uid, nom_list)
+        
+        return {'type': 'ir.actions.act_window_close'}
+    
+    def cerrar(self, cr, uid, ids, context): 
+        return {'type': 'ir.actions.act_window_close'} 
 
-    states = {
-        'init': {
-            'actions': [_get_defaults],
-            'result': {'type':'form', 'arch':form_pagar, 'fields':fields, 'state':[('end','Cancelar','gtk-no'),('pagar_nominas','Pagar','gtk-yes')]}
-        },
-        'pagar_nominas': {
-            'actions': [],
-            'result': {'type':'action', 'action':_paga_nominas, 'state':'end'}
-        }
-    }
-pagar_nominas('wizard_pagar_nominas')
+wizard_pagar_nominas()
