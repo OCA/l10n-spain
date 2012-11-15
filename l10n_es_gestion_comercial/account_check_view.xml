@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <menuitem id="menu_treasury_root" name="Tesoreria"/>
+        <menuitem id="menu_treasury_check" name="Documentos" parent="menu_treasury_root"/>
+
+        <!--
+        =======================
+        Documentos Emitidos (view)
+        =======================
+        -->
+
+        <!--
+            Documentos Emitidos (tree)
+            payment.Documentos.emitidos
+        -->
+        <record model="ir.ui.view" id="view_account_issued_check_tree">
+            <field name="name">account.issued.check.tree</field>
+            <field name="model">account.issued.check</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Documentos Emitidos">
+                    <field name="number"/>
+                    <field name="receiving_partner_id"/>
+                    <field name="date_out"/>
+                    <field name="date"/>
+                    <field name="debit_date"/>
+                    <field name="bank_id"/>
+                    <field name="account_bank_id"/>
+                    <field name="issued"/>
+                    <field name="amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            Documentos Emitidos (form)
+            payment.Documentos.emitidos
+        -->
+        <record model="ir.ui.view" id="view_account_issued_check_form">
+            <field name="name">account.issued.check.form</field>
+            <field name="model">account.issued.check</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Documentos Emitidos">
+                    <field name="number"/>
+                    <field name="receiving_partner_id"/>
+                    <field name="date_out"/>
+                    <field name="date"/>
+                    <field name="debit_date"/>
+                    <field name="bank_id"/>
+                    <field name="account_bank_id"/>
+                    <field name="amount"/>
+					<field name="picture" colspan="4" img_width="500" img_height="250" width="500" height="250" widget="image" nolabel="1"/>
+                </form>
+            </field>
+        </record>
+
+        <!--
+            Tesorería/Documentos/Documentos Emitidos
+        -->
+        <record model="ir.actions.act_window" id="action_issued_check">
+            <field name="name">Documentos Emitidos</field>
+            <field name="res_model">account.issued.check</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem
+            action="action_issued_check"
+            id="menu_treasury_issued_check"
+            name="Documentos emitidos"
+            parent="menu_treasury_check"
+        />
+
+        <!--
+            Third Checks
+        -->
+
+        <record model="ir.ui.view" id="view_account_third_check_tree">
+            <field name="name">account.third.check.tree</field>
+            <field name="model">account.third.check</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Documentos de Terceros">
+                    <field name="number"/>
+                    <field name="source_partner_id"/>
+                    <field name="destiny_partner_id"/>
+                    <field name="reject_debit_note"/>
+                    <field name="amount"/>
+                    <field name="date_in"/>
+                    <field name="date"/>
+                    <field name="date_out"/>
+                    <field name="bank_id"/>
+                    <field name="clearing"/>
+                    <field name="account_bank_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--
+            Third Checks Form
+        -->
+        <record model="ir.ui.view" id="view_account_third_check_form">
+            <field name="name">account.third.check.form</field>
+            <field name="model">account.third.check</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Documentos de Terceros">
+                    <field name="number"/>
+                    <field name="source_partner_id"/>
+                    <field name="amount"/>
+                    <field name="date_in"/>
+                    <field name="date"/>
+                    <field name="date_out"/>
+                    <field name="bank_id"/>
+                    <field name="clearing"/>
+                    <field name="account_bank_id"/>
+					<field name="picture" colspan="4" img_width="500" img_height="250" width="500" height="250" widget="image" nolabel="1"/>
+                </form>
+            </field>
+        </record>
+
+       <record id="view_issued_checks_search" model="ir.ui.view">
+            <field name="name">issued.check.search</field>
+            <field name="model">account.issued.check</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Documentos Emitidos...">
+                 <group colspan='4'>
+                    <field name="number" select="1" string="Numero de Cheque"/>
+                </group>
+                  <group expand="0" string="Group By..." colspan="4" groups="base.group_extended">
+                    <filter string="Partner" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'receiving_partner_id'}"/>
+                    <filter string="Date" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'date'}"/>
+
+                </group>
+              </search>
+            </field>
+        </record>
+
+       <record id="view_third_checks_search" model="ir.ui.view">
+            <field name="name">third.check.search</field>
+            <field name="model">account.third.check</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Documentos de Terceros...">
+                 <group colspan='4'>
+                    <filter icon="terp-document-new" name="cartera" string="En Cartera" domain="[('state','=','C')]"/>
+                    <field name="number" select="1" string="Numero de Cheqye"/>
+                </group>
+                  <group expand="0" string="Group By..." colspan="4" groups="base.group_extended">
+                    <filter string="Source Partner" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'source_partner_id'}"/>
+                    <filter string="Destiny Partner" icon="terp-gtk-jump-to-rtl" domain="[]" context="{'group_by':'destiny_partner_id'}"/>
+
+                </group>
+              </search>
+            </field>
+        </record>
+
+        <!--
+            Tesorería/Documentos/Documentos Emitidos
+        -->
+        <record model="ir.actions.act_window" id="action_third_check">
+            <field name="name">Documentos de Terceros</field>
+            <field name="res_model">account.third.check</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem
+            action="action_third_check"
+            id="menu_treasury_third_check"
+            name="Documentos de Terceros"
+            parent="menu_treasury_check"
+        />
+
+    </data>
+</openerp>
