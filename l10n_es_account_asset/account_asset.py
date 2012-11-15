@@ -106,11 +106,11 @@ class account_asset_asset(osv.osv):
                 amount = amount_to_depr / (undone_dotation_number - len(posted_depreciation_line_ids))
                 if asset.prorata:
                     amount = amount_to_depr / asset.method_number
-                    days = total_days - float(depreciation_date.strftime('%j'))
+                    days = (total_days - float(depreciation_date.strftime('%j')))+1
                     if i == 1:
                         amount = (amount_to_depr / asset.method_number) / total_days * days
                     elif i == undone_dotation_number:
-                        amount = (amount_to_depr / asset.method_number) / total_days * (total_days - days)
+                        amount = (amount_to_depr / asset.method_number) / total_days * (total_days - days)                  
             elif asset.method == 'degressive':
                 amount = residual_amount * asset.method_progress_factor
                 if asset.prorata:
@@ -157,7 +157,8 @@ class account_asset_asset(osv.osv):
                 amount = self._compute_board_amount(cr, uid, asset, i, residual_amount, amount_to_depr, undone_dotation_number, posted_depreciation_line_ids, total_days, depreciation_date, context=context)
                 residual_amount -= amount
                 if asset.compute_at_end_period:
-                    if asset.prorata and asset.method_period == 12:
+                    #if asset.prorata and asset.method_period == 12:
+                    if asset.method_period == 12:
                         depreciation_date = depreciation_date.replace(year, 12, 31)
                     else:
                         last_month_day = calendar.monthrange(year,month)[1]
@@ -309,7 +310,18 @@ class account_asset_asset(osv.osv):
         asset_id = super(account_asset_asset, self).create(cr, uid, vals, context=context)
         self.compute_depreciation_board(cr, uid, [asset_id], context=context)
         return asset_id
-
+    def unlink(self, cr, uid, ids, context):
+        if not context:
+            context = {}
+        if not isinstance(ids,list):
+            ids = [ids]
+        for asset in self.browse(cr,uid,ids):
+            if asset.depreciation_line_ids:
+                line_list = self.pool.get('account.asset.depreciation.line').search(cr,uid,[('asset_id','=',asset.id)])
+                self.pool.get('account.asset.depreciation.line').unlink(cr,uid,line_list)
+                history_list = self.pool.get('account.asset.history').search(cr,uid,[('asset_id','=',asset.id)])
+                self.pool.get('account.asset.history').unlink(cr,uid,history_list)
+        return super(account_asset_asset, self).unlink(cr,uid,ids,context)
 account_asset_asset()
 
 class account_asset_depreciation_line(osv.osv):
