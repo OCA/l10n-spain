@@ -13,6 +13,7 @@
                 </field>
             </field>
         </record>
+        
         <record model="ir.ui.view" id="view_partner_address_region2">
             <field name="name">res.partner.address.region</field>
             <field name="model">res.partner.address</field>
@@ -24,6 +25,7 @@
                 </field>
             </field>
         </record>
+        
         <record model="ir.ui.view" id="view_partner_address_region3">
             <field name="name">res.partner.region</field>
             <field name="model">res.partner</field>
@@ -72,10 +74,7 @@
             <field name="view_id" ref="view_country_region_tree"/>
         </record>
 
-        <menuitem name="Regions"
-            parent="base.menu_localisation"
-            action="action_country_region"
-            id="menu_country_region"/>
+        <menuitem name="Regions" parent="base.menu_localisation" action="action_country_region" id="menu_country_region"/>
 
     </data>
 </openerp>

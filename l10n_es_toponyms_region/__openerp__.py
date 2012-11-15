@@ -39,9 +39,10 @@ Nota: No funciona con el módulo city instalado.""",
     "init_xml" : ["l10n_es_toponyms_region_data.xml"],
     "demo_xml" : [ ],
     "update_xml" : [
-        "l10n_es_toponyms_region_view.xml",
-        "l10n_es_toponyms_region_wizard.xml",
-        "security/ir.model.access.csv",
+                    "l10n_es_toponyms_region_view.xml",
+                    "wizard/l10n_es_toponyms_region_wizard.xml",
+                    #"l10n_es_toponyms_region_wizard.xml",
+                    "security/ir.model.access.csv",
     ],
     "active": False,
     "installable": True
