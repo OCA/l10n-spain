@@ -6,6 +6,9 @@
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
 #    Copyright (c) 2008 ACYSOS S.L. (http://acysos.com) All Rights Reserved.
 #                       Pedro Tarrafeta <pedro@acysos.com>
+#    Copyright (c) 2012 Servicios Tecnológicos Avanzados (http://www.serviciosbaeza.com)
+#                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
+#    Copyright (c) 2012 Avanzosc (http://www.avanzosc.com)
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -24,13 +27,13 @@
 ##############################################################################
 
 {
-    "name" : "Spanish Fiscal Year Closing",
-    "version" : "1.0",
-    "author" : "Pexego",
-    "website" : "",
+    "name" : "Spanish fiscal year closing",
+    "version" : "1.1",
+    "author" : "Pexego / Pedro M. Baeza",
+    "website" : "http://www.pexego.es / http://www.serviciosbaeza.com",
     "category" : "Localisation/Accounting",
     "description": """
-Spanish Fiscal Year Closing Wizard
+Spanish fiscal year closing wizard
     
 Replaces the default OpenERP end of year wizards (from account module)
 with a more advanced all-in-one wizard that will let the users:
@@ -41,10 +44,18 @@ with a more advanced all-in-one wizard that will let the users:
   - Create the Closing entry.
   - Create the Opening entry.
 
-It's hightly configurable, and comes preconfigured for the current Spanish chart of accounts.
+It's highly configurable, and comes preconfigured for the current Spanish chart of accounts.
+
+It takes in account deferral method set in account types:
+  - None: Nothing is done for this account.
+  - Balance: Create account move line with the balance of the year for the account.
+  - Detail: Create one account move line for each partner with balance for the account.
+  - Unreconciled: Not supported.
 
 Also is stateful, saving all the info about the fiscal year closing, so the
 user can cancel and undo the operations easily.
+
+##Serv. Tecnol. Baeza##: Modified for ignoring account moves in 'Other' journey.
     """,
     "license" : "AGPL-3",
     "depends" : [

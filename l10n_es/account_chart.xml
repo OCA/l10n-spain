@@ -17,7 +17,7 @@
             <field name="close_method">balance</field>
         </record>
         <record id="inmo" model="account.account.type">
-            <field name="name">Inmobilizado</field>
+            <field name="name">Inmovilizado</field>
             <field name="code">inmo</field>
             <field name="report_type">asset</field>
             <field name="close_method">balance</field>
