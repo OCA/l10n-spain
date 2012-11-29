@@ -5937,5 +5937,21 @@
 			<field name="state" ref="l10n_es_toponyms.ES29"/>
 			<field name="country" ref="base.es"/>
 		</record>
+        <record id="res_bank_lloydsbank" model="res.bank">
+            <field eval="&quot;&quot;&quot;LLOYDS BANK&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;LLOYDS BANK INTERNATIONAL, S.A.&quot;&quot;&quot;" name="lname"/>
+            <field eval="&quot;&quot;&quot;0236&quot;&quot;&quot;" name="code"/>
+            <field eval="&quot;&quot;&quot;A80481765&quot;&quot;&quot;" name="vat"/>
+            <field eval="&quot;&quot;&quot;LOYIESMMXXX&quot;&quot;&quot;" name="bic"/>
+            <field eval="&quot;&quot;&quot;CCL SERRANO, 90 PL. 5 &quot;&quot;&quot;" name="street"/>
+            <field eval="&quot;&quot;&quot;MADRID&quot;&quot;&quot;" name="city"/>
+            <field eval="&quot;&quot;&quot;28006&quot;&quot;&quot;" name="zip"/>
+            <field eval="&quot;&quot;&quot;http://www.lloydsbankinternational.es&quot;&quot;&quot;" name="website"/>
+            <field eval="&quot;&quot;&quot;915209893&quot;&quot;&quot;" name="phone"/>
+            <field eval="&quot;&quot;&quot;914848194&quot;&quot;&quot;" name="fax"/>
+            <field eval="1" name="active"/>
+            <field name="state" ref="l10n_es_toponyms.ES29"/>
+            <field name="country" ref="base.es"/>
+		</record>
 	</data>
 </openerp>
