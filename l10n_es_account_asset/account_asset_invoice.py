@@ -76,11 +76,11 @@ class account_invoice_line(osv.osv):
                     asset_obj.validate(cr, uid, [asset_id], context=context)
         return res
 		
-    def product_id_change(self, cr, uid, ids, product, uom, qty=0, name='', type='out_invoice', partner_id=False, fposition_id=False, price_unit=False, address_invoice_id=False, currency_id=False, company_id=None, context=None):
+    def product_id_change(self, cr, uid, ids, product, uom, qty=0, name='', type='out_invoice', partner_id=False, fposition_id=False, price_unit=False, address_invoice_id=False, currency_id=False, context=None, company_id=None):
         value={}
         product_obj = self.pool.get('product.product')
         if product:
-            res = super(account_invoice_line, self).product_id_change(cr, uid, ids, product, uom, qty, name, type, partner_id, fposition_id, price_unit, address_invoice_id, currency_id, company_id, context)
+            res = super(account_invoice_line, self).product_id_change(cr, uid, ids, product, uom, qty, name, type, partner_id, fposition_id, price_unit, address_invoice_id, currency_id, context, company_id)
             value = res['value']
             product_o = product_obj.browse(cr, uid, product)
             if product_o.asset_category_id :
