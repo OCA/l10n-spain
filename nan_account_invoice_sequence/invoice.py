@@ -42,6 +42,14 @@ class account_invoice(osv.osv):
             result[invoice.id] = invoice.invoice_number
         return result
 
+    def copy(self, cr, uid, id, default=None, context=None):
+        if not default:
+            default = {}
+        default.update({
+            'invoice_number' : False,            
+        })
+        return super(account_invoice, self).copy(cr, uid, id, default, context=context)   
+
     # TODO: Due to bug #704922 in OpenERP server we create a new 'invoice_number' field and make 'number' a function field.
     # The bug doesn't prevent inheritance of function fields (or related) to work (not 100% well, but they work) whereas
     # trying to make 'number' a char would crash when trying to validate the invoice. Even if a patch was provided, by 
@@ -51,7 +59,6 @@ class account_invoice(osv.osv):
         #'number': fields.char('Invoice Number', size=32, readonly=True, help="Unique number of the invoice, computed automatically when the invoice is created."),
         'invoice_number': fields.char('Invoice Number', size=32, readonly=True, help="Unique number of the invoice, computed automatically when the invoice is created."),
     }
-
     def action_number(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
