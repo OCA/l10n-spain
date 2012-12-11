@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+        <delete model="ir.ui.menu" id="account_invoicing.inv_main_menu"/>
+        <delete model="ir.ui.menu" id="account_invoicing.inv_config"/>
+        <delete model="ir.ui.menu" id="account_invoicing.agreement"/>
+        <delete model="ir.ui.menu" id="account_invoicing.methodology"/>
+        <delete model="ir.ui.menu" id="account_invoicing.service"/>
+        
+        <menuitem id="periodical_inv" name="Recurring Invoice" parent="account.menu_finance_periodical_processing"/>
+        <menuitem id="inv_config" name="Configuration" parent="periodical_inv" sequence="1"/>
+        <menuitem id="agreement" action="account_invoicing.inv_agreement_form" parent="periodical_inv"/>
+        
+        <menuitem id="methodology" action="account_invoicing.inv_config_method_form" parent="inv_config" />
+        <menuitem id="service" action="account_invoicing.inv_config_service_form" parent="inv_config" />
+	</data>
+</openerp>

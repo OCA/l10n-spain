@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+	
+		<record model="ir.ui.view" id="res_partner_agreement_form_inherit_view">
+        	<field name="name">res.partner.agreement.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                	<page string="Agreements">
+                		<field name="agreement_ids" nolabel="1"/>
+                	</page>
+                </notebook>
+        	</field>
+        </record>
+	
+	</data>
+</openerp>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    <!--
+    ===============================================================================================================
+        WIZAR.POPULATESTATEMENT
+    ===============================================================================================================
+     -->
+
+     <!-- FORM -->
+
+        <record model="ir.ui.view" id="wizard_populate_statement_order_form_view">
+            <field name="name">wizard.populate.statement.order.form.view</field>
+            <field name="model">wizard.populate.statement</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Buscar Lineas de Pago">
+                    <group colspan="4">
+                         <field name="lines" colspan="4" height="300" width="800" nolabel="1"/>
+                    </group>
+                    <group colspan="4">
+                        <button name ="cerrar" type="object" icon='gtk-no' string="Cancelar"/>
+                        <button name="populate_statement" icon='gtk-ok' type="object" string="Añadir a la orden de pago"/>
+                    </group>
+                </form>
+            </field>
+         </record>
+
+     <!-- ACCION -->
+
+        <record id="act_wizard_populate_statement" model="ir.actions.act_window">
+            <field name="name">populate statement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.populate.statement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>

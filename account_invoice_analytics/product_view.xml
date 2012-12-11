@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<!--  
+		==========================================================
+		Product Form Inherit
+		==========================================================
+		-->
+		<record id="product_invoicing_form_view" model="ir.ui.view">
+        	<field name="name">product.product.form.inh</field>
+			<field name="model">product.product</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="product.product_normal_form_view" />
+			<field name="arch" type="xml">
+			<data>
+				<group name="uos" position="after">
+					<group colspan="2" col="2" name="invoicing">
+	                	<separator string="Invoicing Type" colspan="2"/>
+	                    <field name="invoicing_mode"/>
+	                    <field name="recur_service" attrs="{'required': [('invoicing_mode','=', 'recur')], 'invisible': [('invoicing_mode','!=', 'recur')]}"/>
+	                </group>
+	            </group>
+	        </data>
+			</field>
+        </record>
+        
+        
+        
+	</data>
+</openerp>

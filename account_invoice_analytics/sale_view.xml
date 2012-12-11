@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+	
+		<!--
+		==========================================================
+		Sale Order Tree Inherit
+		==========================================================
+		-->
+		
+		<record model="ir.ui.view" id="sale_order_tree_invoicing_view">
+               <field name="name">sale.order.tree.invoicing</field>
+               <field name="model">sale.order</field>
+               <field name="type">tree</field>
+               <field name="inherit_id" ref="sale.view_order_tree"/>
+               <field name="arch" type="xml">
+                   <field name="date_order" position="after">
+                   		<field name="agreement_date" />
+                   </field>
+               </field>
+           </record>
+		
+		<!--
+		==========================================================
+		Sale Order Form Inherit
+		==========================================================
+		-->	
+	
+		<record id="sale_line_invoicing_form_view" model="ir.ui.view">
+        	<field name="name">sale.order.form.inh</field>
+			<field name="model">sale.order</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="arch" type="xml">
+<!-- 				<field name="date_order" position="attributes"> -->
+<!-- 					<attribute name="on_change">onchange_date_order(date_order)</attribute> -->
+<!-- 				</field> -->
+				<field name="client_order_ref" position="replace">
+					<field name="agreement_date" />
+				</field>
+				<field name="order_line" position="attributes">
+					<attribute name="context">{'default_invoice_date': date_order}</attribute>
+				</field>
+				<field name="shipped" position="after">
+					<field name="client_order_ref"/>
+				</field>
+				<xpath expr="/form//form//field[@name='product_id']" position="replace">
+					<field colspan="4"
+                           context="partner_id=parent.partner_id,quantity=product_uom_qty,pricelist=parent.pricelist_id,shop=parent.shop_id,uom=product_uom"
+                           name="product_id"
+                           on_change="product_id_change(parent.pricelist_id,product_id,product_uom_qty,product_uom,product_uos_qty,product_uos,name,parent.partner_id, 'lang' in context and context['lang'], True, parent.date_order, product_packaging, parent.fiscal_position, False)"
+                    />
+				</xpath>
+				<xpath expr="/form/notebook/page/field/form/notebook/page/field[@name='delay']" position="after">
+					<group colspan="5" col="4" attrs="{'invisible': [('invoice_mode','=', 'no')]}">
+						<separator colspan="5" string="Invoice Details"/>
+						<field name="invoice_mode" colspan="5"/>
+ 						<field name="invoice_date"/> 
+ 						<field name="expire_date" attrs="{'invisible': [('invoice_mode','!=', 'recur')]}"/>
+ 					</group>
+					<group colspan="5" col="6" attrs="{'invisible': [('invoice_mode','!=', 'installments')]}" >
+	 					<field name="installments"/>
+	 					<field name="installment_unit"/>
+ 					</group> 
+ 					<group colspan="5" col="4" attrs="{'invisible': [('invoice_mode','!=', 'recur')]}">
+ 						<field name="partner_signed_date"/>
+ 						<field name="payment"/>
+ 						<field name="interval"/>
+ 						<field name="interval_unit"/>
+ 						<field name="period"/>
+ 						<field name="period_unit"/>
+ 					</group>
+				</xpath>
+				<group col="13" colspan="10" position="attributes">
+					<attribute name="col">14</attribute>
+				</group>
+				<button string="Advance Invoice" position="after">
+					<button name="change_date_agree" states="waiting_install" string="Change Date" type="object" icon="gtk-execute"/>
+				</button>
+			</field>
+        </record>
+        
+        <!--
+		==========================================================
+		Sale Order Search Inherit
+		==========================================================
+		-->
+		
+		<record id="sale_invoicing_search_view" model="ir.ui.view">
+        	<field name="name">sale.order.invoicing.search.inh</field>
+			<field name="model">sale.order</field>
+			<field name="type">search</field>
+			<field name="inherit_id" ref="sale.view_sales_order_filter"/>
+			<field name="arch" type="xml">
+				<field name="user_id" position="after">
+					<field name="agreement_date"/>
+				</field>
+				<filter string="Order Date" position="after">
+					<filter string="Agreement Date" icon="terp-go-month" domain="[]" context="{'group_by':'agreement_date'}" />
+				</filter>
+			</field>
+		</record>
+           
+        <!--
+		==========================================================
+		Sale Order to Analytic Accouts Shorcut
+		==========================================================
+		-->
+              
+        <act_window name="Analytic Accounts"
+			domain="[('sale_id', '=', active_id)]"
+			res_model="account.analytic.line"
+			src_model="sale.order"
+			groups="base.group_extended"
+			id="act_sale_order_to_analytic"/>
+        
+	</data>
+</openerp>

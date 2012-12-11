@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    	# -----------------------------------------------------------
+		# Activities
+		# -----------------------------------------------------------
+     
+     	<record id="act_analytic" model="workflow.activity">
+            <field name="wkf_id" ref="sale.wkf_sale"/>
+            <field name="name">analytic</field>
+            <field name="kind">function</field>
+            <field name="action">action_create_analytic_lines()</field>
+        </record>    
+        
+        # -----------------------------------------------------------
+		# Transitions
+		# ----------------------------------------------------------- 
+     
+     	<record id="trans_wait_invoice_analytic" model="workflow.transition">
+            <field name="act_from" ref="sale.act_wait_invoice"/>
+            <field name="act_to" ref="act_analytic"/>
+            <field name="condition">(order_policy=='analytic')</field>
+        </record>
+    
+    	<record id="trans_analytic_done" model="workflow.transition">
+            <field name="act_from" ref="act_analytic"/>
+            <field name="act_to" ref="sale.act_invoice_end"/>
+        </record>
+        
+        
+    </data>    
+</openerp>
