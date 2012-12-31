@@ -172,7 +172,7 @@ class hr_nomina(osv.osv):
             else:
                 raise osv.except_osv(_('No existe un periodo para esa fecha de nomina!'), _('No se pueden generar nóminas cuya fecha esté en un periodo que no existe, \nsi desea generarla por favor cree el periodo contable correspondiente.'))
 
-            referencia = numero + ' : ' + nom.employee_id.name + ' - ' + fechaNomina
+            referencia = str(numero) + ' : ' + str(nom.employee_id.name) + ' - ' + str(fechaNomina)
             if nom.extra:
                 referencia = "Paga Extra: " + nom.employee_id.name + ' - ' + fechaNomina
             move_val = {
