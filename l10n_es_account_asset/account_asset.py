@@ -127,12 +127,16 @@ class account_asset_asset(osv.osv):
         if asset.method_time == 'end':
             end_date = datetime.strptime(asset.method_end, '%Y-%m-%d')
         else:
-            end_date = datetime.strptime(asset.deprec_start_date, '%Y-%m-%d') + relativedelta(years=asset.method_number)
+            end_date = datetime.strptime(asset.deprec_start_date, '%Y-%m-%d')
+            if asset.method_period == 12:
+                end_date = end_date + relativedelta(years=+asset.method_number)
+            else:
+                end_date = end_date + relativedelta(months=+asset.method_number)
         last_depreciation_date = asset._get_last_depreciation_date()
         if last_depreciation_date:
             last_depreciation_date = datetime.strptime(last_depreciation_date[asset.id], '%Y-%m-%d') 
         undone_dotation_number = 0
-        while depreciation_date <= end_date or (depreciation_date.year == end_date.year and asset.prorata):
+        while depreciation_date <= end_date or (depreciation_date.year == end_date.year and asset.prorata and asset.method_period == 12):
             depreciation_date = (datetime(depreciation_date.year, depreciation_date.month, depreciation_date.day) + relativedelta(months=+asset.method_period))
             if last_depreciation_date:
                 if depreciation_date > last_depreciation_date:
@@ -246,6 +250,7 @@ class account_asset_asset(osv.osv):
         'prorata':fields.boolean('Prorata Temporis', readonly=True, states={'draft':[('readonly',False)]}, help='Indicates that the first depreciation entry for this asset have to be done from the purchase date instead of the first January'),
         'history_ids': fields.one2many('account.asset.history', 'asset_id', 'History', readonly=True),
         'depreciation_line_ids': fields.one2many('account.asset.depreciation.line', 'asset_id', 'Depreciation Lines', readonly=True, states={'draft':[('readonly',False)],'open':[('readonly',False)]}),
+        'account_analytic_id': fields.many2one('account.analytic.account', 'Analytic account'),
         'salvage_value': fields.float('Salvage Value', digits_compute=dp.get_precision('Account'), help="It is the amount you plan to have that you cannot depreciate.", readonly=True, states={'draft':[('readonly',False)]}),
     }
     _defaults = {
@@ -289,6 +294,7 @@ class account_asset_asset(osv.osv):
                             'method_progress_factor': category_obj.method_progress_factor,
                             'method_end': category_obj.method_end,
                             'prorata': category_obj.prorata,
+                            'account_analytic_id': category_obj.account_analytic_id and category_obj.account_analytic_id.id or False
             }
         return res
 
@@ -303,7 +309,7 @@ class account_asset_asset(osv.osv):
             default = {}
         if context is None:
             context = {}
-        default.update({'depreciation_line_ids': [], 'state': 'draft'})
+        default.update({'depreciation_line_ids': [], 'state': 'draft', 'account_move_line_ids': []})
         return super(account_asset_asset, self).copy(cr, uid, id, default, context=context)
 
     def _compute_entries(self, cr, uid, ids, period_id, context={}):
@@ -403,7 +409,7 @@ class account_asset_depreciation_line(osv.osv):
                 'partner_id': partner_id,
                 'currency_id': company_currency <> current_currency and  current_currency or False,
                 'amount_currency': company_currency <> current_currency and sign * line.amount or 0.0,
-                'analytic_account_id': line.asset_id.category_id.account_analytic_id.id,
+                'analytic_account_id': line.asset_id.account_analytic_id and line.asset_id.account_analytic_id.id or False,
                 'date': depreciation_date,
                 'asset_id': line.asset_id.id
             })
