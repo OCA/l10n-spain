@@ -122,16 +122,24 @@ class account_asset_asset(osv.osv):
         return amount
 
     def _compute_board_undone_dotation_nb(self, cr, uid, asset, depreciation_date, total_days, context=None):
-        undone_dotation_number = asset.method_number
+        depreciation_lin_obj = self.pool.get('account.asset.depreciation.line')
+        posted_depreciation_line_ids = depreciation_lin_obj.search(cr, uid, [('asset_id', '=', asset.id), ('move_check', '=', True)])
         if asset.method_time == 'end':
             end_date = datetime.strptime(asset.method_end, '%Y-%m-%d')
-            undone_dotation_number = 0
-            while depreciation_date <= end_date:
-                depreciation_date = (datetime(depreciation_date.year, depreciation_date.month, depreciation_date.day) + relativedelta(months=+asset.method_period))
+        else:
+            end_date = datetime.strptime(asset.deprec_start_date, '%Y-%m-%d') + relativedelta(years=asset.method_number)
+        last_depreciation_date = asset._get_last_depreciation_date()
+        if last_depreciation_date:
+            last_depreciation_date = datetime.strptime(last_depreciation_date[asset.id], '%Y-%m-%d') 
+        undone_dotation_number = 0
+        while depreciation_date <= end_date or (depreciation_date.year == end_date.year and asset.prorata):
+            depreciation_date = (datetime(depreciation_date.year, depreciation_date.month, depreciation_date.day) + relativedelta(months=+asset.method_period))
+            if last_depreciation_date:
+                if depreciation_date > last_depreciation_date:
+                    undone_dotation_number += 1
+            else:
                 undone_dotation_number += 1
-        if asset.prorata:
-            undone_dotation_number += 1
-        return undone_dotation_number
+        return undone_dotation_number + len(posted_depreciation_line_ids)
     
     def compute_depreciation_board(self, cr, uid, ids, context=None):
         depreciation_lin_obj = self.pool.get('account.asset.depreciation.line')
@@ -143,15 +151,16 @@ class account_asset_asset(osv.osv):
             if old_depreciation_line_ids:
                 depreciation_lin_obj.unlink(cr, uid, old_depreciation_line_ids, context=context)
             
-            amount_to_depr = residual_amount = asset.value_residual
+            amount_to_depr = residual_amount = asset.purchase_value - asset.salvage_value
 
             depreciation_date = datetime.strptime(self._get_last_depreciation_date(cr, uid, [asset.id], context)[asset.id], '%Y-%m-%d')
             day = depreciation_date.day
             month = depreciation_date.month
             year = depreciation_date.year
-            total_days = (year % 4) and 365 or 366
+            total_days = ((year % 4 == 0 and year % 100 != 0) or year % 400 == 0) and 366 or 365
 
             undone_dotation_number = self._compute_board_undone_dotation_nb(cr, uid, asset, depreciation_date, total_days, context=context)
+            residual_amount = asset.value_residual
             for x in range(len(posted_depreciation_line_ids), undone_dotation_number):
                 i = x + 1
                 amount = self._compute_board_amount(cr, uid, asset, i, residual_amount, amount_to_depr, undone_dotation_number, posted_depreciation_line_ids, total_days, depreciation_date, context=context)
@@ -169,7 +178,7 @@ class account_asset_asset(osv.osv):
                      'sequence': i,
                      'name': str(asset.id) +'/' + str(i),
                      'remaining_value': residual_amount,
-                     'depreciated_value': (asset.purchase_value - asset.salvage_value) - (residual_amount + amount),
+                     'depreciated_value': round((asset.purchase_value - asset.salvage_value) - (residual_amount + amount),2),
                      'depreciation_date': depreciation_date.strftime('%Y-%m-%d'),
                 }
                 depreciation_lin_obj.create(cr, uid, vals, context=context)
@@ -190,7 +199,7 @@ class account_asset_asset(osv.osv):
 
     def _amount_residual(self, cr, uid, ids, name, args, context=None):
         cr.execute("""SELECT
-                l.asset_id as id, round(SUM(abs(l.debit-l.credit))) AS amount
+                l.asset_id as id, SUM(abs(l.debit-l.credit)) AS amount
             FROM
                 account_move_line l
             WHERE
