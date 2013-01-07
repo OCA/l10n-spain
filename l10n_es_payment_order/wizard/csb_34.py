@@ -46,6 +46,7 @@ import time
 
 class csb_34(osv.osv):
     _name = 'csb.34'
+    _auto = False
 
     def get_message(self, cr, uid, recibo, message=None):
         """

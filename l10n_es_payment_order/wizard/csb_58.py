@@ -43,6 +43,8 @@ from log import *
 
 class csb_58(osv.osv):
     _name = 'csb.58'
+    _auto = False
+    
     def _cabecera_presentador_58(self, cr, uid):
         converter = self.pool.get('payment.converter.spain')
         texto = '5170'
