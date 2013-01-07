@@ -43,6 +43,7 @@ from log import *
 
 class csb_32(osv.osv):
     _name = 'csb.32'
+    _auto = False
     def _cabecera_fichero_32(self, cr, uid):
         converter = self.pool.get('payment.converter.spain')
         texto = '0265'

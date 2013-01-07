@@ -48,6 +48,7 @@ from log import *
 
 class csb_34_01(osv.osv):
     _name = 'csb.3401'
+    _auto = False
     
     def _start_34(self, cr, uid, context):
         converter = self.pool.get('payment.converter.spain')
