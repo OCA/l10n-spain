@@ -10,6 +10,8 @@
 #    Copyright (c) 2009 NaN (http://www.nan-tic.com) All Rights Reserved.
 #                       Albert Cervera i Areny <albert@nan-tic.com>
 #    $Id$
+#    Refactorización. Acysos S.L. (http://www.acysos.com) 2012
+#        Ignacio Ibeas <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -26,95 +28,85 @@
 #
 ##############################################################################
 
+from osv import osv, fields
 from tools.translate import _
+from log import *
 
-def digits_only(cc_in):
-    """Discards non-numeric chars"""
+class payment_converter_spain(osv.osv):
+    _name= 'payment.converter.spain'
 
-    cc = ""
-    for i in cc_in or '':
-        try:
-            int(i)
-            cc += i
-        except ValueError:
-            pass
-    return cc
+    def digits_only(self, cr, uid, cc_in):
+        """Discards non-numeric chars"""
+    
+        cc = ""
+        for i in cc_in or '':
+            try:
+                int(i)
+                cc += i
+            except ValueError:
+                pass
+        return cc
 
-def to_ascii(text):
-    """Converts special characters such as those with accents to their ASCII equivalents"""
-    old_chars = ['á','é','í','ó','ú','à','è','ì','ò','ù','ä','ë','ï','ö','ü','â','ê','î','ô','û','Á','É','Í','Ú','Ó','À','È','Ì','Ò','Ù','Ä','Ë','Ï','Ö','Ü','Â','Ê','Î','Ô','Û','ñ','Ñ','ç','Ç','ª','º','·','\n']
-    new_chars = ['a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','A','E','I','O','U','A','E','I','O','U','A','E','I','O','U','A','E','I','O','U','n','N','c','C','a','o','.',' ']
-    for old, new in zip(old_chars, new_chars):
-        text = text.replace(unicode(old,'UTF-8'), new)
-    return text
-
-
-class Log(Exception):
-    def __init__(self, content = '', error = False):
-        self.content = content
-        self.error = error
-    def add(self, s, error=True):
-        self.content = self.content + s
-        if error:
-            self.error = error
-    def __call__(self):
-        return self.content
-    def __str__(self):
-        return self.content
-
-def convert_text(text, size, justified='left'):
-    if justified == 'left':
-        return to_ascii(text)[:size].ljust(size)
-    else:      
-        return to_ascii(text)[:size].rjust(size)
-
-def convert_float(cr, number, size, context):
-    text = str( int( round( number * 100, 0 ) ) )
-    if len(text) > size:
-        raise Log(_('Error:\n\nCan not convert float number %(number).2f to fit in %(size)d characters.') % {
-            'number': number, 
-            'size': size
-        })
-    return text.zfill(size)
-
-def convert_int(cr, number, size, context):
-    text = str( number )
-    if len(text) > size:
-        raise Log( _('Error:\n\nCan not convert integer number %(number)d to fit in %(size)d characters.') % {
-            'number': number, 
-            'size': size
-        })
-    return text.zfill(size)
-
-def convert(cr, value, size, context, justified='left'):
-    if value == False:
-        return convert_text('', size)
-    elif isinstance(value, float):
-        return convert_float(cr, value, size, context)
-    elif isinstance(value, int):
-        return convert_int(cr, value, size, context)
-    else:
-        return convert_text(value, size, justified)
-
-def convert_bank_account(cr, value, partner_name, context):
-    if not isinstance(value, basestring):
-        raise Log( _('User error:\n\nThe bank account number of %s is not defined.') % partner_name )
-    ccc = digits_only(value)
-    if len(ccc) != 20:
-        raise Log( _('User error:\n\nThe bank account number of %s does not have 20 digits.') % partner_name )
-    return ccc
-
-def bank_account_parts(cr, value, partner_name, context):
-    if not isinstance(value, basestring):
-        raise Log( _('User error:\n\nThe bank account number of %s is not defined.') % partner_name )
-    ccc = digits_only(value)
-    if len(ccc) != 20:
-        raise Log( _('User error:\n\nThe bank account number of %s does not have 20 digits.') % partner_name )
-    return {'bank':ccc[:4],
-            'office': ccc[4:8],
-            'dc': ccc[8:10],
-            'account': ccc[10:]}
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    def to_ascii(self, cr, uid, text):
+        """Converts special characters such as those with accents to their ASCII equivalents"""
+        old_chars = ['á','é','í','ó','ú','à','è','ì','ò','ù','ä','ë','ï','ö','ü','â','ê','î','ô','û','Á','É','Í','Ú','Ó','À','È','Ì','Ò','Ù','Ä','Ë','Ï','Ö','Ü','Â','Ê','Î','Ô','Û','ñ','Ñ','ç','Ç','ª','º','·','\n']
+        new_chars = ['a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','A','E','I','O','U','A','E','I','O','U','A','E','I','O','U','A','E','I','O','U','n','N','c','C','a','o','.',' ']
+        for old, new in zip(old_chars, new_chars):
+            text = text.replace(unicode(old,'UTF-8'), new)
+        return text
+        
+    def convert_text(self, cr, uid, text, size, justified='left'):
+        if justified == 'left':
+            return self.to_ascii(cr,uid,text)[:size].ljust(size)
+        else:      
+            return self.to_ascii(cr,uid,text)[:size].rjust(size)
+        
+    def convert_float(self, cr, uid, number, size, context):
+        text = str( int( round( number * 100, 0 ) ) )
+        if len(text) > size:
+            raise Log(_('Error:\n\nCan not convert float number %(number).2f to fit in %(size)d characters.') % {
+                'number': number, 
+                'size': size
+            })
+        return text.zfill(size)
+    
+    def convert_int(self, cr, uid, number, size, context):
+        text = str( number )
+        if len(text) > size:
+            raise Log( _('Error:\n\nCan not convert integer number %(number)d to fit in %(size)d characters.') % {
+                'number': number, 
+                'size': size
+            })
+        return text.zfill(size)
+    
+    def convert(self, cr, uid, value, size, context, justified='left'):
+        if value == False:
+            return self.convert_text(cr, uid, '', size)
+        elif isinstance(value, float):
+            return self.convert_float(cr, uid, value, size, context)
+        elif isinstance(value, int):
+            return self.convert_int(cr, uid, value, size, context)
+        else:
+            return self.convert_text(cr, uid, value, size, justified)
+    
+    def convert_bank_account(self, cr, uid, value, partner_name, context):
+        if not isinstance(value, basestring):
+            raise Log( _('User error:\n\nThe bank account number of %s is not defined.') % partner_name )
+        ccc = self.digits_only(cr, uid, value)
+        if len(ccc) != 20:
+            raise Log( _('User error:\n\nThe bank account number of %s does not have 20 digits.') % partner_name )
+        return ccc
+    
+    def bank_account_parts(self, cr, uid, value, partner_name, context):
+        if not isinstance(value, basestring):
+            raise Log( _('User error:\n\nThe bank account number of %s is not defined.') % partner_name )
+        ccc = self.digits_only(cr, uid, value)
+        if len(ccc) != 20:
+            raise Log( _('User error:\n\nThe bank account number of %s does not have 20 digits.') % partner_name )
+        return {'bank':ccc[:4],
+                'office': ccc[4:8],
+                'dc': ccc[8:10],
+                'account': ccc[10:]}
+        
+payment_converter_spain()
 

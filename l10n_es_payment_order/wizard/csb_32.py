@@ -18,6 +18,9 @@
 # Rehecho de nuevo para instalación OpenERP 5.0.0 sobre account_payment_extension: Zikzakmedia S.L. 2009
 #   Jordi Esteve <jesteve@zikzakmedia.com>
 #
+# Refactorización. Acysos S.L. (http://www.acysos.com) 2012
+#   Ignacio Ibeas <ignacio@acysos.com>
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -33,20 +36,21 @@
 #
 ##############################################################################
 
+from osv import osv, fields
 from datetime import datetime
 from tools.translate import _
-from converter import *
+from log import *
 
-
-class csb_32:
-
-    def _cabecera_fichero_32(self):
+class csb_32(osv.osv):
+    _name = 'csb.32'
+    def _cabecera_fichero_32(self, cr, uid):
+        converter = self.pool.get('payment.converter.spain')
         texto = '0265'
         texto += '  '
         texto += datetime.today().strftime('%d%m%y')
-        texto += digits_only( self.order.reference )[-4:]
+        texto += converter.digits_only(cr, uid, self.order.reference )[-4:]
         texto += ' '*35
-        texto += digits_only( self.order.mode.bank_id.acc_number )[:8]
+        texto += converter.digits_only(cr, uid, self.order.mode.bank_id.acc_number )[:8]
         texto += ' '*6
         texto += ' '*61
         texto += ' '*24
@@ -55,7 +59,8 @@ class csb_32:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 150 characters long:\n%s') % ('Cabecera fichero 32', texto), True)
         return texto
 
-    def _cabecera_remesa_32(self, cr, context):
+    def _cabecera_remesa_32(self, cr, uid, context):
+        converter = self.pool.get('payment.converter.spain')
         # A: 
         texto = '1165'
         texto += '  '
@@ -66,42 +71,43 @@ class csb_32:
         texto += ' '*12
 
         # C
-        texto += convert(cr, self.order.mode.cedente, 15, context) # TODO: Identificador del cedente. Qué es?
+        texto += converter.convert(cr, uid, self.order.mode.cedente, 15, context) # TODO: Identificador del cedente. Qué es?
         texto += '1' # Identificativo de efectos truncados
         texto += ' '*21
 
         # D
-        texto += digits_only( self.order.mode.bank_id.acc_number )
-        texto += digits_only( self.order.mode.bank_id.acc_number )
-        texto += digits_only( self.order.mode.bank_id.acc_number )
+        texto += converter.digits_only(cr, uid, self.order.mode.bank_id.acc_number )
+        texto += converter.digits_only(cr, uid, self.order.mode.bank_id.acc_number )
+        texto += converter.digits_only(cr, uid, self.order.mode.bank_id.acc_number )
         texto += ' ' + ' '*24
         texto += '\r\n'
         if len(texto) != 152:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 150 characters long:\n%s') % ('Cabecera remesa 32', texto), True)
         return texto
 
-    def _registro_individual_i_32(self, cr, recibo, context):
+    def _registro_individual_i_32(self, cr, uid, recibo, context):
+        converter = self.pool.get('payment.converter.spain')
         # A
         texto = '2565'
         texto += '  '
         # B
-        texto += convert(cr, self.num_recibos+1, 15, context)
+        texto += converter.convert(cr, uid, self.num_recibos+1, 15, context)
         texto += datetime.today().strftime('%d%m%y')
         texto += '0001'
  
         # C
         state = self.order.mode.bank_id.state_id and self.order.mode.bank_id.state_id.code or False
-        texto += convert(cr, state, 2, context)
+        texto += converter.convert(cr, uid, state, 2, context)
         texto += ' '*7
         texto += '  '
 
         # D
-        texto += convert(cr, self.order.mode.bank_id.city, 20, context)
+        texto += converter.convert(cr, uid, self.order.mode.bank_id.city, 20, context)
         texto += ' '
 
         # E
         texto += ' '*24
-        texto += convert(cr, abs(recibo['amount']), 9, context)
+        texto += converter.convert(cr, uid, abs(recibo['amount']), 9, context)
         texto += ' '*15
         texto += datetime.strptime( recibo['ml_maturity_date'], '%Y-%m-%d').strftime('%d%m%y') 
         texto += ' '*(6+6+1+4+16)
@@ -110,13 +116,14 @@ class csb_32:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 150 characters long:\n%s') % ('Registro individual I 32', texto), True)
         return texto
 
-    def _registro_individual_ii_32(self, cr, recibo, context):
+    def _registro_individual_ii_32(self, cr, uid, recibo, context):
+        converter = self.pool.get('payment.converter.spain')
         # A: Identificacion de la operacion
         texto = '2665'
         texto += '  '
 
         # B: Datos del efecto
-        texto += convert(cr, self.num_recibos+1, 15, context)
+        texto += converter.convert(cr, uid, self.num_recibos+1, 15, context)
         texto += '  '
         texto += '2' # Recibo
         texto += '000000'
@@ -132,42 +139,44 @@ class csb_32:
             texto += ' '*20
 
         # D: Datos del efecto
-        texto += convert(cr, self.order.mode.partner_id.name, 34, context)
-        texto += convert(cr, recibo['partner_id'].name, 34, context)
+        texto += converter.convert(cr, uid, self.order.mode.partner_id.name, 34, context)
+        texto += converter.convert(cr, uid, recibo['partner_id'].name, 34, context)
         texto += ' '*30
         texto += '\r\n'
         if len(texto) != 152:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 150 characters long:\n%s') % ('Registro individual II 32', texto), True)
         return texto
 
-    def _registro_individual_iii_32(self, cr, recibo, context):
+    def _registro_individual_iii_32(self, cr, uid, recibo, context):
+        converter = self.pool.get('payment.converter.spain')
         # A: Identificacion de la operacion
         texto = '2765'
         texto += '  '
         
         # B: Datos del efecto
-        texto += convert(cr, self.num_recibos+1, 15, context)
+        texto += converter.convert(cr, uid, self.num_recibos+1, 15, context)
         texto += '  '
-        addresses = self.pool.get('res.partner').address_get(self.cr, self.uid, [recibo['partner_id'].id] )
+        addresses = self.pool.get('res.partner').address_get(cr, uid, [recibo['partner_id'].id] )
         #if not addresses:
         #    print "NO ADDRESSES"
-        address = self.pool.get('res.partner.address').browse(self.cr, self.uid, addresses['default'], self.context)
-        texto += convert( cr, address.street, 34, context )
-        texto += convert( cr, address.zip, 5, context )
-        texto += convert( cr, address.city, 20, context )
-        texto += convert( cr, address.state_id and address.state_id.code or False, 2, context )
+        address = self.pool.get('res.partner.address').browse(cr, uid, addresses['default'], context)
+        texto += converter.convert( cr, uid, address.street, 34, context )
+        texto += converter.convert( cr, uid, address.zip, 5, context )
+        texto += converter.convert( cr, uid, address.city, 20, context )
+        texto += converter.convert( cr, uid, address.state_id and address.state_id.code or False, 2, context )
         texto += '0'*7
 
         # C: Datos del efecto
         vat = recibo['partner_id'].vat and recibo['partner_id'].vat[2:] or False
-        texto += convert(cr, vat, 9, context)
+        texto += converter.convert(cr, uid, vat, 9, context)
         texto += ' '*50
         texto += '\r\n'
         if len(texto) != 152:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 150 characters long:\n%s') % ('Registro individual III 32', texto), True)
         return texto
 
-    def _registro_fin_remesa_32(self, cr, context):
+    def _registro_fin_remesa_32(self, cr, uid, context):
+        converter = self.pool.get('payment.converter.spain')
         # A: Identificación de la operación
         texto = '7165'
         texto += '  '
@@ -182,20 +191,21 @@ class csb_32:
 
         # D: Acumuladores de importe
         texto += ' '*10
-        texto += convert( cr, abs(self.order.total), 10, context )
+        texto += converter.convert( cr, uid, abs(self.order.total), 10, context )
         texto += ' '*(10+6+7+6+6+6)
 
         # E: Controles de lectura de fichero
         texto += ' '*5
-        texto += convert(cr, (self.num_recibos*3) + 2, 7, context)
-        texto += convert(cr, self.num_recibos, 6, context)
+        texto += converter.convert(cr, uid, (self.num_recibos*3) + 2, 7, context)
+        texto += converter.convert(cr, uid, self.num_recibos, 6, context)
         texto += ' '*6
         texto += '\r\n'
         if len(texto) != 152:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 150 characters long:\n%s') % ('Fin remesa 32', texto), True)
         return texto
 
-    def _registro_fin_fichero_32(self, cr, context):
+    def _registro_fin_fichero_32(self, cr, uid, context):
+        converter = self.pool.get('payment.converter.spain')
         # A: Identificación de la operación
         texto = '9865'
         texto += '  '
@@ -208,40 +218,35 @@ class csb_32:
 
         # D: Acumuladores de importes
         texto += ' '*10
-        texto += convert( cr, abs(self.order.total), 10, context )
+        texto += converter.convert( cr, uid, abs(self.order.total), 10, context )
         texto += ' '*(10+6+7+6+6+6)
 
         # E: Controles de lectura del fichero
         texto += '00001'
-        texto += convert(cr, (self.num_recibos*3) + 3, 7, context)
-        texto += convert(cr, self.num_recibos, 6, context)
+        texto += converter.convert(cr, uid, (self.num_recibos*3) + 3, 7, context)
+        texto += converter.convert(cr, uid, self.num_recibos, 6, context)
         texto += ' '*6
         texto += '\r\n'
         if len(texto) != 152:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 150 characters long:\n%s') % ('Fin fichero 32', texto), True)
         return texto
  
-    def create_file(self, pool, cr, uid, order, lines, context):
-        self.pool = pool
-        self.cr = cr
-        self.uid = uid
+    def create_file(self, cr, uid, order, lines, context):
         self.order = order
-        self.context = context
 
         txt_remesa = ''
         self.num_recibos = 0
         self.num_lineas_opc = 0
 
-        txt_remesa += self._cabecera_fichero_32()
-        txt_remesa += self._cabecera_remesa_32(cr, context)
+        txt_remesa += self._cabecera_fichero_32(cr,uid)
+        txt_remesa += self._cabecera_remesa_32(cr, uid, context)
         for recibo in lines:
-            txt_remesa += self._registro_individual_i_32(cr, recibo, context)
-            txt_remesa += self._registro_individual_ii_32(cr, recibo, context)
-            txt_remesa += self._registro_individual_iii_32(cr, recibo, context)
+            txt_remesa += self._registro_individual_i_32(cr, uid, recibo, context)
+            txt_remesa += self._registro_individual_ii_32(cr, uid, recibo, context)
+            txt_remesa += self._registro_individual_iii_32(cr, uid, recibo, context)
             self.num_recibos = self.num_recibos + 1
-        txt_remesa += self._registro_fin_remesa_32(cr, context)
-        txt_remesa += self._registro_fin_fichero_32(cr, context)
+        txt_remesa += self._registro_fin_remesa_32(cr, uid, context)
+        txt_remesa += self._registro_fin_fichero_32(cr, uid, context)
         return txt_remesa
 
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+csb_32()
