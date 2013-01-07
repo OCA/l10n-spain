@@ -32,11 +32,11 @@
                     <field name="prorata"/>
                     <field name="open_asset"/>
                 </group>
-        	<group col="2" colspan="2" groups="analytic.group_analytic_accounting">
-        	    <separator string="Analytic information" colspan="4"/>
-        	    <newline/>
-        	    <field name="account_analytic_id"/>
-        	</group>
+                <group col="2" colspan="2" groups="analytic.group_analytic_accounting">
+                    <separator string="Analytic information" colspan="4"/>
+                    <newline/>
+                    <field name="account_analytic_id"/>
+                </group>
                 <separator string="Notes" colspan="4"/>
                 <field name="note" colspan="4" nolabel="1"/>
             </form>
@@ -97,7 +97,7 @@
                     <field name="parent_id"/>
                     <field name="partner_id"/>
                     <field name="purchase_date"/>
-					<field name="deprec_start_date"/>
+                                        <field name="deprec_start_date"/>
                     <newline/>
                     <group colspan="2" col="2">
                         <separator string="Depreciation Dates" colspan="2"/>
@@ -113,7 +113,12 @@
                         <field name="method"/>
                         <field name="method_progress_factor" attrs="{'invisible':[('method','=','linear')], 'required':[('method','=','degressive')]}"/>
                         <field name="prorata" attrs="{'invisible': [('method_time','=','end')]}"/>
-                        <field name="compute_at_end_period"/>				
+                        <field name="compute_at_end_period"/>
+                    </group>
+                    <group col="2" colspan="2" groups="analytic.group_analytic_accounting">
+                        <separator string="Analytic information" colspan="4"/>
+                        <newline/>
+                        <field name="account_analytic_id"/>
                     </group>
                     <newline/>
                     <separator string="" colspan="4"/>
