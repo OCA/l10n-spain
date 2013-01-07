@@ -18,6 +18,9 @@
 # Rehecho de nuevo para instalación OpenERP 5.0.0 sobre account_payment_extension: Zikzakmedia S.L. 2009
 #   Jordi Esteve <jesteve@zikzakmedia.com>
 #
+# Refactorización. Acysos S.L. (http://www.acysos.com) 2012
+#   Ignacio Ibeas <ignacio@acysos.com>
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -33,19 +36,22 @@
 #
 ##############################################################################
 
+from osv import osv, fields
 from datetime import datetime
 from tools.translate import _
-from converter import *
+from log import *
 
-class csb_58:
-    def _cabecera_presentador_58(self):
+class csb_58(osv.osv):
+    _name = 'csb.58'
+    def _cabecera_presentador_58(self, cr, uid):
+        converter = self.pool.get('payment.converter.spain')
         texto = '5170'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
         texto += datetime.today().strftime('%d%m%y')
         texto += 6*' '
-        texto += to_ascii(self.order.mode.nombre).ljust(40)
+        texto += converter.to_ascii(cr, uid, self.order.mode.nombre).ljust(40)
         texto += 20*' '
-        cc = digits_only(self.order.mode.bank_id.acc_number)
+        cc = converter.digits_only(cr, uid, self.order.mode.bank_id.acc_number)
         texto += cc[0:8]
         texto += 66*' '
         texto += '\r\n'
@@ -53,32 +59,34 @@ class csb_58:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Cabecera presentador 58', texto), True)
         return texto
 
-    def _cabecera_ordenante_58(self):
+    def _cabecera_ordenante_58(self, cr, uid):
+        converter = self.pool.get('payment.converter.spain')
         texto = '5370'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
         texto += datetime.today().strftime('%d%m%y')
         texto += 6*' '
-        texto += to_ascii(self.order.mode.nombre).ljust(40)
-        cc = digits_only(self.order.mode.bank_id.acc_number)
+        texto += converter.to_ascii(cr, uid, self.order.mode.nombre).ljust(40)
+        cc = converter.digits_only(cr, uid, self.order.mode.bank_id.acc_number)
         texto += cc[0:20]
         texto += 8*' '
         texto += '06'
         texto += 52*' '
-        texto += self.order.mode.ine and to_ascii(self.order.mode.ine)[:9].zfill(9) or 9*' '
+        texto += self.order.mode.ine and converter.to_ascii(cr, uid, self.order.mode.ine)[:9].zfill(9) or 9*' '
         texto += 3*' '
         texto += '\r\n'
         if len(texto) != 164:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Cabecera ordenante 58', texto), True)
         return texto
 
-    def _individual_obligatorio_58(self, recibo):
+    def _individual_obligatorio_58(self, cr, uid, recibo):
+        converter = self.pool.get('payment.converter.spain')
         texto = '5670'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
         texto += str(recibo['name'])[-12:].zfill(12)
-        nombre = to_ascii(recibo['partner_id'].name)
+        nombre = converter.to_ascii(cr, uid, recibo['partner_id'].name)
         texto += nombre[0:40].ljust(40)
         ccc = recibo['bank_id'] and recibo['bank_id'].acc_number or ''
-        ccc = digits_only(ccc)
+        ccc = converter.digits_only(cr, uid, ccc)
         texto += str(ccc)[0:20].zfill(20)
         importe = int(round(abs(recibo['amount'])*100,0))
         texto += str(importe).zfill(10)
@@ -86,7 +94,7 @@ class csb_58:
         concepto = ''
         if recibo['communication']:
             concepto = recibo['communication']
-        texto += to_ascii(concepto)[0:40].ljust(40)
+        texto += converter.to_ascii(cr, uid, concepto)[0:40].ljust(40)
         if recibo.get('date'):
             date_cargo = datetime.strptime(recibo['date'],'%Y-%m-%d')
         elif recibo.get('ml_maturity_date'):
@@ -100,19 +108,20 @@ class csb_58:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual obligatorio 58', texto), True)
         return texto
 
-    def _individual_opcional_58(self, recibo):
+    def _individual_opcional_58(self, cr, uid, recibo):
         """Para poner el segundo texto de comunicación"""
+        converter = self.pool.get('payment.converter.spain')
         texto = '5671'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
         texto += str(recibo['name'])[-12:].zfill(12)
-        texto += to_ascii(recibo['communication2'])[0:134].ljust(134)
+        texto += converter.to_ascii(cr, uid, recibo['communication2'])[0:134].ljust(134)
         texto += '\r\n'
         if len(texto) != 164:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 58', texto), True)
         return texto
 
 
-    def _registro_obligatorio_domicilio_58(self, recibo):
+    def _registro_obligatorio_domicilio_58(self, cr, uid, recibo):
         """
         Registro obligatorio domicilio 58 para no domiciliados.
         
@@ -134,7 +143,7 @@ class csb_58:
                (DDMMAA)
          F2    Libre                                         155     8        Alfanumérico
         """
-
+        converter = self.pool.get('payment.converter.spain')
         alt_format = self.order.mode.alt_domicile_format
 
         #
@@ -207,10 +216,10 @@ class csb_58:
         texto = '5676'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
         texto += str(recibo['name'])[-12:].zfill(12)
-        texto += to_ascii(st)[:40].ljust(40)          # Domicilio
-        texto += to_ascii(city)[:35].ljust(35)        # Plaza (ciudad)
-        texto += to_ascii(zip)[:5].zfill(5)           # CP
-        texto += to_ascii(ord_city)[:38].ljust(38)    # Localidad del ordenante (ciudad)
+        texto += converter.to_ascii(cr, uid, st)[:40].ljust(40)          # Domicilio
+        texto += converter.to_ascii(cr, uid, city)[:35].ljust(35)        # Plaza (ciudad)
+        texto += converter.to_ascii(cr, uid, zip)[:5].zfill(5)           # CP
+        texto += converter.to_ascii(cr, uid, ord_city)[:38].ljust(38)    # Localidad del ordenante (ciudad)
         if alt_format:
             #
             # Si usamos el formato alternativo (basado en FacturaPlus)
@@ -223,7 +232,7 @@ class csb_58:
             texto += date_ct.strftime('%d%m%y')                 # Fecha crédito
             texto += 2*' '
         else:
-            texto += to_ascii(ord_state_code)[:2].zfill(2)    # Cod prov del ordenante
+            texto += converter.to_ascii(cr, uid, ord_state_code)[:2].zfill(2)    # Cod prov del ordenante
             texto += date_ct.strftime('%d%m%y')                 # Fecha crédito
         texto += 8*' '                                  # Libre
         texto += '\r\n'
@@ -232,7 +241,7 @@ class csb_58:
         return texto
 
 
-    def _total_ordenante_58(self):
+    def _total_ordenante_58(self, cr, uid):
         texto = '5870'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
         texto += 72*' '
@@ -247,7 +256,7 @@ class csb_58:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Total ordenante 58', texto), True)
         return texto
 
-    def _total_general_58(self):
+    def _total_general_58(self, cr, uid):
         texto = '5970'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
         texto += 52*' '
@@ -264,39 +273,34 @@ class csb_58:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Total general 58', texto), True)
         return texto
 
-    def create_file(self, pool, cr, uid, order, lines, context):
-        self.pool = pool
-        self.cr = cr
-        self.uid = uid
+    def create_file(self, cr, uid, order, lines, context):
         self.order = order
-        self.context = context
 
         txt_remesa = ''
         self.num_recibos = 0
         self.num_lineas_opc = 0
 
-        txt_remesa += self._cabecera_presentador_58()
-        txt_remesa += self._cabecera_ordenante_58()
+        txt_remesa += self._cabecera_presentador_58(cr, uid)
+        txt_remesa += self._cabecera_ordenante_58(cr, uid)
 
         for recibo in lines:
-            txt_remesa += self._individual_obligatorio_58(recibo)
+            txt_remesa += self._individual_obligatorio_58(cr, uid, recibo)
             self.num_recibos = self.num_recibos + 1
             
             # Sólo emitimos el registro individual si communication2 contiene texto
             if recibo['communication2'] and len(recibo['communication2'].strip()) > 0:
-                txt_remesa += self._individual_opcional_58(recibo)
+                txt_remesa += self._individual_opcional_58(cr, uid, recibo)
                 self.num_lineas_opc = self.num_lineas_opc + 1
 
             # Para recibos no domiciliados, añadimos el registro obligatorio
             # de domicilio (necesario con algunos bancos/cajas).
             if self.order.mode.inc_domicile:
-                txt_remesa += self._registro_obligatorio_domicilio_58(recibo)
+                txt_remesa += self._registro_obligatorio_domicilio_58(cr, uid, recibo)
                 self.num_lineas_opc = self.num_lineas_opc + 1
 
-        txt_remesa += self._total_ordenante_58()
-        txt_remesa += self._total_general_58()
+        txt_remesa += self._total_ordenante_58(cr, uid)
+        txt_remesa += self._total_general_58(cr, uid)
 
         return txt_remesa
 
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+csb_58()
