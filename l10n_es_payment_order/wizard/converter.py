@@ -34,6 +34,7 @@ from log import *
 
 class payment_converter_spain(osv.osv):
     _name= 'payment.converter.spain'
+    _auto = False
 
     def digits_only(self, cr, uid, cc_in):
         """Discards non-numeric chars"""
