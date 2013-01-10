@@ -174,7 +174,7 @@ class hr_nomina(osv.osv):
 
             referencia = str(numero) + ' : ' + str(nom.employee_id.name) + ' - ' + str(fechaNomina)
             if nom.extra:
-                referencia = "Paga Extra: " + nom.employee_id.name + ' - ' + fechaNomina
+                referencia = "Paga Extra: " + str(nom.employee_id.name) + ' - ' + str(fechaNomina)
             move_val = {
                     'ref': referencia, 
                     'journal_id': journal_id, 
