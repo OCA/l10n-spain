@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_csb_19,csb.19,model_csb_19,account_payment.group_account_payment,1,1,1,1
+access_csb_19_user,csb.19.user,model_csb_19,base.group_user,1,0,0,0
+access_csb_32,csb.32,model_csb_32,account_payment.group_account_payment,1,1,1,1
+access_csb_32_user,csb.32.user,model_csb_32,base.group_user,1,0,0,0
+access_csb_34,csb.34,model_csb_34,account_payment.group_account_payment,1,1,1,1
+access_csb_34_user,csb.34.user,model_csb_34,base.group_user,1,0,0,0
+access_csb_3401,csb.3401,model_csb_3401,account_payment.group_account_payment,1,1,1,1
+access_csb_3401_user,csb.3401.user,model_csb_3401,base.group_user,1,0,0,0
+access_csb_58,csb.58,model_csb_58,account_payment.group_account_payment,1,1,1,1
+access_csb_58_user,csb.58.user,model_csb_58,base.group_user,1,0,0,0
+access_payment_converter_spain,payment.converter.spain,model_payment_converter_spain,account_payment.group_account_payment,1,1,1,1
+access_payment_converter_spain_user,payment.converter.spain,model_payment_converter_spain,base.group_user,1,0,0,0

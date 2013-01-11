@@ -23,6 +23,9 @@
 # Adaptacion de la norma 34-01 para emision de pagos. Validado para La Caixa: 2012
 #   Joan M. Grande <totaler@gmail.com>
 #
+# Refactorización. Acysos S.L. (http://www.acysos.com) 2012
+#   Ignacio Ibeas <ignacio@acysos.com>
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -38,22 +41,28 @@
 #
 ##############################################################################
 
+from osv import osv, fields
 from datetime import datetime
 from tools.translate import _
-from converter import *
+from log import *
 
-class csb_34_01:
-    def _start_34(self, cr, context):
-        return convert(cr, self.order.mode.bank_id.partner_id.vat[2:], 10, context, 'right')
+class csb_34_01(osv.osv):
+    _name = 'csb.3401'
+    _auto = False
+    
+    def _start_34(self, cr, uid, context):
+        converter = self.pool.get('payment.converter.spain')
+        return converter.convert(cr, uid, self.order.mode.bank_id.partner_id.vat[2:], 10, context, 'right')
 
     def _cabecera_ordenante_34(self, cr, uid, context):
+        converter = self.pool.get('payment.converter.spain')
         today = datetime.today().strftime('%d%m%y')
 
         text = ''
 
         # Primer tipo
         text += '0356'
-        text += self._start_34(cr, context)
+        text += self._start_34(cr, uid, context)
         text += '34016'
         text += 7*' '
         text += '001'
@@ -64,7 +73,7 @@ class csb_34_01:
         else:
             text += today
         #text += self.convert(self.order.mode.nombre, 40)
-        ccc = bank_account_parts(cr, self.order.mode.bank_id.acc_number, self.order.mode.partner_id.name, context)
+        ccc = converter.bank_account_parts(cr, uid, self.order.mode.bank_id.acc_number, self.order.mode.partner_id.name, context)
         text += ccc['bank']
         text += ccc['office']
         text += ccc['account']
@@ -77,17 +86,17 @@ class csb_34_01:
 
         # Segundo Tipo 
         text += '0356'
-        text += self._start_34(cr, context)
+        text += self._start_34(cr, uid, context)
         text += '34016'
         text += 7*' '
         text += '002'
-        text += convert(cr, self.order.mode.bank_id.partner_id.name, 36, context)
+        text += converter.convert(cr, uid, self.order.mode.bank_id.partner_id.name, 36, context)
         text += 7*' '
         text += '\n'
 
         # Tercer Tipo 
         text += '0356'
-        text += self._start_34(cr, context)
+        text += self._start_34(cr, uid, context)
         text += '34016'
         text += 7*' '
         text += '003'
@@ -97,35 +106,34 @@ class csb_34_01:
             raise Log( _('User error:\n\nCompany %s has no invoicing address.') % address_id )
 
         street = self.pool.get('res.partner.address').read(cr, uid, [address_id], ['street'], context)[0]['street']
-        text += convert(cr, street, 36, context)
+        text += converter.convert(cr, uid, street, 36, context)
         text += 7*' '
         text += '\n'
 
         # Cuarto Tipo 
         text += '0356'
-        text += self._start_34(cr, context)
+        text += self._start_34(cr, uid, context)
         text += '34016'
         text += 7*' '
         text += '004'
         city = self.pool.get('res.partner.address').read(cr, uid, [address_id], ['city'], context)[0]['city']
-        text += convert(cr, city, 36, context)
+        text += converter.convert(cr, uid, city, 36, context)
         text += 7*' '
         text += '\n'
         return text
 
     def _detalle_nacionales_34(self, cr, uid, recibo, context):
+        converter = self.pool.get('payment.converter.spain')
         # Primer Registro
         text = ''
         text += '0656'
-        text += self._start_34(cr, context)
+        text += self._start_34(cr, uid, context)
         if not recibo['partner_id'].vat:
             raise Log( _('User error:\n\nCompany %s has no vat.') % recibo['partner_id'].name )    
-        text += convert(cr, recibo['partner_id'].vat[2:], 12, context, 'right')
+        text += converter.convert(cr, uid, recibo['partner_id'].vat[2:], 12, context, 'right')
         text += '010'
-        text += convert(cr, recibo['amount'], 12, context)
-        #text += convert_bank_account(cr, recibo['bank_id'].acc_number, recibo['partner_id'].name, context)
-        #ccc = recibo['bank_id'] and recibo['bank_id'].acc_number or ''
-        ccc = bank_account_parts(cr, recibo['bank_id'].acc_number, recibo['partner_id'].name, context)
+        text += converter.convert(cr, uid, recibo['amount'], 12, context)
+        ccc = converter.bank_account_parts(cr, uid, recibo['bank_id'].acc_number, recibo['partner_id'].name, context)
         text += ccc['bank']
         text += ccc['office']
         text += ccc['account']
@@ -138,33 +146,32 @@ class csb_34_01:
 
         # Segundo Registro
         text += '0656'
-        text += self._start_34(cr, context)
+        text += self._start_34(cr, uid, context)
         if not recibo['partner_id'].vat:
             raise Log( _('User error:\n\nCompany %s has no vat.') % recibo['partner_id'].name ) 
-        text += convert(cr, recibo['partner_id'].vat[2:], 12, context, 'right')
+        text += converter.convert(cr, uid, recibo['partner_id'].vat[2:], 12, context, 'right')
         text += '011'
-        text += convert(cr, recibo['partner_id'].name, 36, context)
+        text += converter.convert(cr, uid, recibo['partner_id'].name, 36, context)
         text += 7*' '
         text += '\n'
         return text
 
     def _totales_nacionales_34(self, cr, uid, context):
+        converter = self.pool.get('payment.converter.spain')
         text = '0856'
-        text += self._start_34(cr, context)
+        text += self._start_34(cr, uid, context)
         text += 12*' '
         text += 3*' '
-        text += convert(cr, self.order.total, 12, context)
-        text += convert(cr, self.payment_line_count, 8, context)
-        text += convert(cr, self.record_count, 10, context)
+        text += converter.convert(cr, uid, self.order.total, 12, context)
+        text += converter.convert(cr, uid, self.payment_line_count, 8, context)
+        text += converter.convert(cr, uid, self.record_count, 10, context)
         text += 6*' '
         text += 7*' '
         text += '\n'
         return text
 
-    def create_file(self, pool, cr, uid, order, lines, context):
-        self.pool = pool
+    def create_file(self, cr, uid, order, lines, context):
         self.order = order
-        self.context = context
 
         self.payment_line_count = 0
         self.record_count = 0
@@ -181,4 +188,4 @@ class csb_34_01:
         
         return file
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+csb_34_01()
