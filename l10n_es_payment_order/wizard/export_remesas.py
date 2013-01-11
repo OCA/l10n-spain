@@ -63,7 +63,8 @@ class wizard_payment_file_spain(osv.osv_memory):
 
         txt_remesa = ''
         num_lineas_opc = 0
-
+        
+        form_obj = self.browse(cr, uid, ids)[0]
         try:
             orden = self.pool.get('payment.order').browse(cr, uid, context['active_id'], context)
             if not orden.line_ids:
@@ -80,8 +81,7 @@ class wizard_payment_file_spain(osv.osv_memory):
             if not orden.mode.bank_id.partner_id.vat:
                 raise Log(_('User error:\n\nThe company VAT number related to the bank account of the payment mode is not defined.'), True)
 
-            recibos = []
-            form_obj = self.browse(cr, uid, ids)[0]
+            recibos = []            
             if form_obj.join:
                 # Lista con todos los partners+bancos diferentes de la remesa
                 partner_bank_l = reduce(lambda l, x: x not in l and l.append(x) or l,
