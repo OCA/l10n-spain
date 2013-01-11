@@ -39,7 +39,8 @@
         </record> 
 
         <!-- menu -->
-        <menuitem id="menu_extractos_bancarios_concepto" name="Default accounts associated to C43 codes" parent="nan_account_bank_statement.menu_configuration_bank_statement" action="action_extractos_concepto"/>
+        <menuitem id="menu_extractos_bancarios" name="C43 bank statements" parent="account.menu_finance_accounting"/>
+        <menuitem id="menu_extractos_bancarios_concepto" name="Default accounts associated to C43 codes" parent="menu_extractos_bancarios" action="action_extractos_concepto"/>
 
     <!--************************** Redefinición on_change de las líneas de extracto bancario *******************************-->
         <record id="view_bank_statement_form_ES1" model="ir.ui.view">
@@ -115,7 +116,7 @@
             <field name="target">new</field>
         </record>
 
-        <menuitem id="menu_import_wizard" parent="nan_account_bank_statement.menu_configuration_bank_statement" action="action_extractos_import_wizard" groups="account.group_account_manager"/>
+        <menuitem id="menu_import_wizard" parent="menu_extractos_bancarios" action="action_extractos_import_wizard" groups="account.group_account_manager"/>
 
     </data>
 </openerp>

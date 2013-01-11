@@ -99,10 +99,10 @@ class account_bank_statement_line(osv.osv):
         return voucher_id
 
 
-    def onchange_partner_id(self, cr, uid, line_ids, context, partner_id, ptype, amount, voucher_id, form_date):
+    def onchange_partner_id(self, cr, uid, line_ids, context=None, partner_id=None, ptype=None, amount=None, voucher_id=None, form_date=None):
         """Elimina el precálculo del importe de la línea del extracto bancario
             y propone una conciliación automática si encuentra una."""
-
+        
         move_line_obj = self.pool.get('account.move.line')
         voucher_obj = self.pool.get('account.voucher')
         partner_obj = self.pool.get('res.partner')
