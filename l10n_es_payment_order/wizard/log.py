@@ -7,11 +7,11 @@
 #    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
 #    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    AvanzOSC, Advanced Open Source Consulting 
-#    Copyright (C) 2011-2012 Ainara Galdona (www.avanzosc.com). All Rights Reserved
+#    Copyright (c) 2009 NaN (http://www.nan-tic.com) All Rights Reserved.
+#                       Albert Cervera i Areny <albert@nan-tic.com>
 #    $Id$
-# Refactorización. Acysos S.L. (http://www.acysos.com) 2012
-#   Ignacio Ibeas <ignacio@acysos.com>
+#    Refactorización. Acysos S.L. (http://www.acysos.com) 2012
+#        Ignacio Ibeas <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -28,10 +28,18 @@
 #
 ##############################################################################
 
-import export_remesas
-import converter
-import csb_19
-import csb_32
-import csb_34
-import csb_34_01
-import csb_58
+from tools.translate import _
+
+class Log(Exception):
+    def __init__(self, content = '', error = False):
+        self.content = content
+        self.error = error
+    def add(self, s, error=True):
+        self.content = self.content + s
+        if error:
+            self.error = error
+    def __call__(self):
+        return self.content
+    def __str__(self):
+        return self.content
+

@@ -24,6 +24,9 @@
 # Migración de wizard.interface para la 6.1: Pexego Sistemas Informáticos. 2012
 #   Marta Vázquez Rodríguez <marta@pexego.es>
 #
+# Refactorización. Acysos S.L. (http://www.acysos.com) 2012
+#   Ignacio Ibeas <ignacio@acysos.com>
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -39,16 +42,12 @@
 #
 ##############################################################################
 
+from osv import osv, fields
 import base64
 from tools.translate import _
-from converter import *
-import csb_19
-import csb_32
-import csb_34
-import csb_34_01
-import csb_58
+from log import *
 
-from osv import osv, fields
+
 
 class wizard_payment_file_spain(osv.osv_memory):
     _name = 'wizard.payment.file.spain'
@@ -60,10 +59,11 @@ class wizard_payment_file_spain(osv.osv_memory):
     }
 
     def create_payment_file(self, cr, uid, ids, context):
-
+        converter = self.pool.get('payment.converter.spain')
         txt_remesa = ''
         num_lineas_opc = 0
 
+        form_obj = self.browse(cr, uid, ids)[0]
         try:
             orden = self.pool.get('payment.order').browse(cr, uid, context['active_id'], context)
             if not orden.line_ids:
@@ -72,7 +72,7 @@ class wizard_payment_file_spain(osv.osv_memory):
             # Comprobamos que exista número de C.C. y que tenga 20 dígitos
             if not orden.mode.bank_id:
                 raise Log( _('User error:\n\nThe bank account of the company %s is not defined.') % (orden.mode.partner_id.name), True )
-            cc = digits_only(orden.mode.bank_id.acc_number)
+            cc = converter.digits_only(cr,uid,orden.mode.bank_id.acc_number)
             if len(cc) != 20:
                 raise Log( _('User error:\n\nThe bank account number of the company %s has not 20 digits.') % (orden.mode.partner_id.name), True)
 
@@ -81,7 +81,6 @@ class wizard_payment_file_spain(osv.osv_memory):
                 raise Log(_('User error:\n\nThe company VAT number related to the bank account of the payment mode is not defined.'), True)
 
             recibos = []
-            form_obj = self.browse(cr, uid, ids)[0]
             if form_obj.join:
                 # Lista con todos los partners+bancos diferentes de la remesa
                 partner_bank_l = reduce(lambda l, x: x not in l and l.append(x) or l,
@@ -125,23 +124,23 @@ class wizard_payment_file_spain(osv.osv_memory):
                     ccc = line['bank_id'] and line['bank_id'].acc_number or False
                     if not ccc:
                         raise Log(_('User error:\n\nThe bank account number of the customer %s is not defined and current payment mode enforces all lines to have a bank account.') % (line['partner_id'].name), True)
-                    ccc = digits_only(ccc)
+                    ccc = converter.digits_only(cr,uid,ccc)
                     if len(ccc) != 20:
                         raise Log(_('User error:\n\nThe bank account number of the customer %s has not 20 digits.') % (line['partner_id'].name), True)
 
             if orden.mode.tipo == 'csb_19':
-                csb = csb_19.csb_19()
+                csb = self.pool.get('csb.19')
             elif orden.mode.tipo == 'csb_32':
-                csb = csb_32.csb_32()
+                csb = self.pool.get('csb.32')
             elif orden.mode.tipo == 'csb_34':
-                csb = csb_34.csb_34()
+                csb = self.pool.get('csb.34')
             elif orden.mode.tipo == '34_01':
-                csb = csb_34_01.csb_34_01()		
+                csb = self.pool.get('csb.3401')
             elif orden.mode.tipo == 'csb_58':
-                csb = csb_58.csb_58()
+                csb = self.pool.get('csb.58')
             else:
                 raise Log(_('User error:\n\nThe payment mode is not CSB 19, CSB 32, CSB 34 or CSB 58'), True)
-            txt_remesa = csb.create_file(self.pool, cr, uid, orden, recibos, context)
+            txt_remesa = csb.create_file(cr, uid, orden, recibos, context)
 
         except Log, log:
             form_obj.write({'note': log,'pay': False})
@@ -167,7 +166,6 @@ class wizard_payment_file_spain(osv.osv_memory):
 
             return True
 wizard_payment_file_spain()
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 
 
 
