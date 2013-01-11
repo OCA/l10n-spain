@@ -11,6 +11,9 @@
 #    Copyright (C) 2011-2012 Ainara Galdona (www.avanzosc.com). All Rights Reserved
 #    $Id$
 #
+# Refactorización. Acysos S.L. (http://www.acysos.com) 2012
+#   Ignacio Ibeas <ignacio@acysos.com>
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -28,7 +31,7 @@
 
 {
     "name" : "Exportación de ficheros bancarios CSB 19, CSB 32, CSB 34 y CSB 58",
-    "version" : "1.5",
+    "version" : "1.6",
     "author" : "Acysos SL, Zikzakmedia SL, Pablo Rocandio, NaN·tic",
     "category" : "Localisation/Accounting",
     "description" : """Módulo para la exportación de ficheros bancarios según las normas CSB 19 (recibos domiciliados), CBS 32 (descuento comercial), CSB 58 (anticipos de créditos) y CSB 34 (emisión de transferencias, nóminas, cheques, pagarés y pagos certificados) para poder ser enviados a la entidad bancaria.
@@ -54,8 +57,8 @@ También se proporciona un informe para imprimir un listado de los pagos/cobros 
     "update_xml" : [
 		"remesas_report.xml", 
 		"remesas_view.xml", 
-		#"remesas_wizard.xml",
-		"wizard/export_remesas_view.xml"
+		"wizard/export_remesas_view.xml",
+        "security/ir.model.access.csv"
 		],
     "installable" : True,
     "active" : False,
