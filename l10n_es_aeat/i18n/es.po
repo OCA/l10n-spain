@@ -6,14 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.0-rc1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-12-13 17:34:49+0000\n"
-"PO-Revision-Date: 2011-03-11 21:02+0100\n"
+"POT-Creation-Date: 2010-12-13 17:34+0000\n"
+"PO-Revision-Date: 2013-10-10 16:51+0000\n"
 "Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"X-Launchpad-Export-Date: 2013-10-14 05:33+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,type:0
@@ -95,7 +96,8 @@ msgstr "Tipo de soporte"
 #. module: l10n_es_aeat
 #: help:account.invoice,origin_invoices_ids:0
 msgid "Links to original invoice which is referred by current refund invoice"
-msgstr "Enlaza con la factura original a la que hace referencia la factura actual."
+msgstr ""
+"Enlaza con la factura original a la que hace referencia la factura actual."
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat
@@ -127,7 +129,8 @@ msgstr "CIF/NIF"
 #: code:addons/l10n_es_aeat/aeat_report.py:107
 #, python-format
 msgid "Only reports in 'draft' or 'cancel' state can be removed"
-msgstr "Sólo declaraciones en estado 'Borrador' o 'Cancelada' pueden ser eliminadas"
+msgstr ""
+"Sólo declaraciones en estado 'Borrador' o 'Cancelada' pueden ser eliminadas"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,support_type:0
@@ -190,4 +193,3 @@ msgstr "Factura"
 #: selection:l10n.es.aeat.report,state:0
 msgid "Processed"
 msgstr "Calculada"
-
