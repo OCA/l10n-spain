@@ -40,6 +40,6 @@ Successfully passes format and account validation tests from AEAT: http://www11.
         "account_wizard.xml",
         "account_invoice_view.xml",
         "country_view.xml",],
-    "installable" : True,
+    "installable" : False,
     "active" : False,
 }
