@@ -55,11 +55,11 @@ También se proporciona un informe para imprimir un listado de los pagos/cobros 
     "init_xml" : ["remesas_data.xml"],
     "demo_xml" : [],
     "update_xml" : [
-		"remesas_report.xml", 
-		"remesas_view.xml", 
-		"wizard/export_remesas_view.xml",
+                "remesas_report.xml", 
+                "remesas_view.xml", 
+                "wizard/export_remesas_view.xml",
         "security/ir.model.access.csv"
-		],
-    "installable" : True,
+                ],
+    "installable" : False,
     "active" : False,
 }

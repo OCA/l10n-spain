@@ -35,5 +35,5 @@
     "demo_xml" : [],
     "update_xml" :["wizard/partner_correos_view.xml"],
     "active": False,
-    "installable": True
+    "installable": False
 }

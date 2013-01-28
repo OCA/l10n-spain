@@ -68,6 +68,6 @@ Posteriormente podrá crear los bancos españoles mediante el menú "Ventas/Conf
         'account_installer.xml',
     ],
     "active": False,
-    "installable": True
+    "installable": False
 }
 

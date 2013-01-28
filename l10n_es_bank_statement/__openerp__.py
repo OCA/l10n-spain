@@ -65,7 +65,7 @@ Module for the importation of Spanish bank statements following the C43 normativ
         "security/ir.model.access.csv",
         "security/concepto_security.xml"
         ],
-    "installable" : True,
+    "installable" : False,
     "active" : False,
 }
 

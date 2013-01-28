@@ -45,5 +45,5 @@ Nota: No funciona con el módulo city instalado.""",
                     "security/ir.model.access.csv",
     ],
     "active": False,
-    "installable": True
+    "installable": False
 } 

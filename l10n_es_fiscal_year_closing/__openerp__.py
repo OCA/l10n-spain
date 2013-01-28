@@ -62,6 +62,6 @@ user can cancel and undo the operations easily.
                     
                     ],
     "active": False,
-    "installable": True
+    "installable": False
 }
 

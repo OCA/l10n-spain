@@ -47,5 +47,5 @@ It is highly recommended that once the wizard has been run, the module should be
         "update_xml" : [
                 'invoice_repair_wizard.xml',
             ],
-        "installable": True
+        "installable": False
 }

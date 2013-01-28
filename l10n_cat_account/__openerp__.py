@@ -38,5 +38,5 @@ After installation and changing the account template names, you can create the c
         "l10n_cat_account_view.xml",
     ],
     "active": False,
-    "installable": True
+    "installable": False
 } 

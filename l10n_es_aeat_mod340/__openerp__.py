@@ -60,6 +60,6 @@ ADVERTENCIA: Los periodos de la empresas deben coincidir con los peridos de pres
     "init_xml" : [],
     "demo_xml" : [],
     "update_xml" : ['report/report_view.xml',"mod340_view.xml","mod340_workflow.xml","security/ir.model.access.csv", "res_partner_view.xml","mod340_sequence.xml","account_invoice_view.xml"],
-    "installable" : True,
+    "installable" : False,
     "active" : False,
 }

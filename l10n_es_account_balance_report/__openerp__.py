@@ -62,5 +62,5 @@ PYMES: http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&blobheader=appl
                 'data/pyg_normal.xml',
                 'data/estado_ingresos_gastos_normal.xml',
             ],
-        "installable": True
+        "installable": False
 }

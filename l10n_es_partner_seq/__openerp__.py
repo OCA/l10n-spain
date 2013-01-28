@@ -42,7 +42,7 @@ La secuencia de empresa por defecto se inicia en NP00101 (prefijo NP y relleno d
         "wizard/create_accounts_view.xml"
         ],
     "active": False,
-    "installable": True
+    "installable": False
 }
 
 

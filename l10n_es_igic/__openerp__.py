@@ -38,5 +38,5 @@
     "demo_xml" : [],
     "update_xml" : ['install_igic_view.xml'],
     "active": False,
-    "installable": True
+    "installable": False
 }

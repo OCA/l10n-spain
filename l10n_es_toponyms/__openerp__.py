@@ -43,5 +43,5 @@ Los datos han sido obtenidos de los datos públicos del Instituto Nacional de Es
         "l10n_es_toponyms_wizard.xml",
     ],
     "active": False,
-    "installable": True
+    "installable": False
 } 

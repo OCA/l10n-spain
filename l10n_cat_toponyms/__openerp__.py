@@ -44,5 +44,5 @@ Nota: No funciona amb el mòdul city instal·lat.""",
         "security/ir.model.access.csv",
     ],
     "active": False,
-    "installable": True
+    "installable": False
 }
