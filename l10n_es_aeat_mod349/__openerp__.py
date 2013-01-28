@@ -85,7 +85,7 @@ Borja López Soilán y Jordi Esteve (Zikzakmedia, www.zikzakmedia.com)""",
         "security/ir.model.access.csv",
         "security/mod_349_security.xml"
     ],
-    'installable': True,
+    'installable': False,
     'active': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
