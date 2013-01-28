@@ -56,7 +56,7 @@ NOTA: Éste módulo añade un asistente en Empresas/Configuración/Bancos para l
         "partner_es_view.xml",
         ],
     "active": False,
-    "installable": True
+    "installable": False
 }
 
 
