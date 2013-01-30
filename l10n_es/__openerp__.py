@@ -40,7 +40,7 @@ for yearly account reporting (balance, profit & losses).
 """,
     "license" : "AGPL-3",
     "depends" : ["account", "base_vat", "base_iban"],
-    "init_xml" : [
+    "data" : [
         "account_chart.xml",
         "taxes_data.xml",
         "fiscal_templates.xml",
@@ -48,12 +48,9 @@ for yearly account reporting (balance, profit & losses).
         "taxes_data_pymes.xml",
         "fiscal_templates_pymes.xml",
         "l10n_es_wizard.xml",
-        'data/l10n_es_data.xml'
     ],
-    "demo_xml" : [],
-    "update_xml" : [
-    ],
-    "active": False,
-    "installable": False,
-    "certificate" : "00408828172062583229",
+    "demo" : [],
+    'auto_install': False,
+    "installable": True,
+    'images': ['images/config_chart_l10n_es.jpeg','images/l10n_es_chart.jpeg'],
 }

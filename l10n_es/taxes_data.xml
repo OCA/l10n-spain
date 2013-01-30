@@ -19,6 +19,8 @@
       Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com (2011-08-29)
         Cambiado Recargos de equivalencia de "all" a "venta" (ya existen los de compra). Ahora quedan definidos de la misma forma que en taxes_data_pymes.xml
 
+      Pedro M. Baeza (Serv. Tecnol. Avanzados) - pedro.baeza@serviciosbaeza.com (2013-01-29)
+        Limpieza de subcuentas de impuestos y corrección de inversión de sujeto pasivo
 
     -->
 
@@ -42,7 +44,6 @@
     <!-- Exentas IVA -->
         <record id="base_sop_ex" model="account.tax.code.template">
             <field name="name">Base adquisiciones exentas</field>
-            <field name="company_id" model="res.company"  search="[]"/>
             <field name="parent_id" ref="vat_code_chart_root"/>
             <field name="code">--</field>
             <field name="sign">1.0</field>
@@ -51,7 +52,6 @@
         <record id="base_rep_ex" model="account.tax.code.template">
             <field name="name">Base ventas exentas</field>
             <field name="code">--</field>
-            <field name="company_id" model="res.company"  search="[]"/>
             <field name="parent_id" ref="vat_code_chart_root"/>
             <field name="sign">1.0</field>
         </record>         	
@@ -1025,244 +1025,6 @@
         </record>
 
 <!-- ********************************* -->
-<!--Cuentas para IVA-->
-<!-- ********************************* -->
-
-        <record id="pgc_472004" model="account.account.template">
-            <field name="code">472004</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_472"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA soportado 4%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_472007" model="account.account.template">
-            <field name="code">472007</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_472"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA soportado 7%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_472008" model="account.account.template">
-            <field name="code">472008</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_472"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA soportado 8%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-		<record id="pgc_472010" model="account.account.template">
-            <field name="code">472010</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_472"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA soportado 10%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-        <record id="pgc_472016" model="account.account.template">
-            <field name="code">472016</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_472"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA soportado 16%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_472018" model="account.account.template">
-            <field name="code">472018</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_472"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA soportado 18%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_472021" model="account.account.template">
-            <field name="code">472021</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_472"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA soportado 21%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_472104" model="account.account.template">
-            <field name="code">472104</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_472"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA soportado. Recargo de Equivalencia 0.5%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_472108" model="account.account.template">
-            <field name="code">472108</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_472"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA soportado. Recargo de Equivalencia 1%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_472110" model="account.account.template">
-            <field name="code">472110</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_472"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA soportado. Recargo de Equivalencia 1.4%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_472118" model="account.account.template">
-            <field name="code">472118</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_472"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA soportado. Recargo de Equivalencia 4%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_472121" model="account.account.template">
-            <field name="code">472121</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_472"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA soportado. Recargo de Equivalencia 5.2%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_477004" model="account.account.template">
-            <field name="code">477004</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4770"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA repercutido 4%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_477007" model="account.account.template">
-            <field name="code">477007</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4770"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA repercutido 7%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_477008" model="account.account.template">
-            <field name="code">477008</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4770"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA repercutido 8%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_477010" model="account.account.template">
-            <field name="code">477010</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4770"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA repercutido 10%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_477016" model="account.account.template">
-            <field name="code">477016</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4770"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA repercutido 16%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_477018" model="account.account.template">
-            <field name="code">477018</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4770"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA repercutido 18%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-         <record id="pgc_477021" model="account.account.template">
-            <field name="code">477021</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4770"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA repercutido 21%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_477104" model="account.account.template">
-            <field name="code">477104</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4771"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA Recargo de Equivalencia 0.5%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_477108" model="account.account.template">
-            <field name="code">477108</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4771"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA Recargo de Equivalencia 1%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_477110" model="account.account.template">
-            <field name="code">477110</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4771"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA Recargo de Equivalencia 1.4%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_477118" model="account.account.template">
-            <field name="code">477118</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4771"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA Recargo de Equivalencia 4%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_477121" model="account.account.template">
-            <field name="code">477121</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4771"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. IVA Recargo de Equivalencia 5.2%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_475001" model="account.account.template">
-            <field name="code">475001</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4750"/>
-            <field name="type">payable</field>
-            <field name="name">Hacienda acreedora IVA</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_470001" model="account.account.template">
-            <field name="code">470001</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4700"/>
-            <field name="type">receivable</field>
-            <field name="name">Hacienda deudora IVA</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-
-<!-- ********************************* -->
 <!-- Plantillas de Impuestos IVA       -->
 <!-- ********************************* -->
 
@@ -1273,8 +1035,8 @@
             <field name="name">4% IVA Soportado (operaciones corrientes)</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472004"/>
-            <field name="account_paid_id" ref="pgc_472004"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_22_4"/>
             <field name="tax_code_id" ref="iva_ded_23_4"/>
             <field name="ref_base_code_id" ref="iva_ded_22_4"/>
@@ -1291,8 +1053,8 @@
             <field name="name">4% IVA Soportado (bienes de inversión)</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472004"/>
-            <field name="account_paid_id" ref="pgc_472004"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_24_4"/>
             <field name="tax_code_id" ref="iva_ded_25_4"/>
             <field name="ref_base_code_id" ref="iva_ded_24_4"/>
@@ -1309,8 +1071,8 @@
             <field name="name">7% IVA Soportado (operaciones corrientes)</field>
             <field eval="0.07" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472007"/>
-            <field name="account_paid_id" ref="pgc_472007"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_22_7"/>
             <field name="tax_code_id" ref="iva_ded_23_7"/>
             <field name="ref_base_code_id" ref="iva_ded_22_7"/>
@@ -1327,8 +1089,8 @@
             <field name="name">7% IVA Soportado (bienes de inversión)</field>
             <field eval="0.07" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472007"/>
-            <field name="account_paid_id" ref="pgc_472007"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_24_7"/>
             <field name="tax_code_id" ref="iva_ded_25_7"/>
             <field name="ref_base_code_id" ref="iva_ded_24_7"/>
@@ -1345,8 +1107,8 @@
             <field name="name">8% IVA Soportado (operaciones corrientes)</field>
             <field eval="0.08" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472008"/>
-            <field name="account_paid_id" ref="pgc_472008"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_22_8"/>
             <field name="tax_code_id" ref="iva_ded_23_8"/>
             <field name="ref_base_code_id" ref="iva_ded_22_8"/>
@@ -1363,8 +1125,8 @@
             <field name="name">8% IVA Soportado (bienes de inversión)</field>
             <field eval="0.08" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472008"/>
-            <field name="account_paid_id" ref="pgc_472008"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_24_8"/>
             <field name="tax_code_id" ref="iva_ded_25_8"/>
             <field name="ref_base_code_id" ref="iva_ded_24_8"/>
@@ -1381,8 +1143,8 @@
             <field name="name">10% IVA Soportado (operaciones corrientes)</field>
             <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472010"/>
-            <field name="account_paid_id" ref="pgc_472010"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_22_10"/>
             <field name="tax_code_id" ref="iva_ded_23_10"/>
             <field name="ref_base_code_id" ref="iva_ded_22_10"/>
@@ -1399,8 +1161,8 @@
             <field name="name">10% IVA Soportado (bienes de inversión)</field>
             <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472010"/>
-            <field name="account_paid_id" ref="pgc_472010"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_24_10"/>
             <field name="tax_code_id" ref="iva_ded_25_10"/>
             <field name="ref_base_code_id" ref="iva_ded_24_10"/>
@@ -1417,8 +1179,8 @@
             <field name="name">16% IVA Soportado (operaciones corrientes)</field>
             <field eval="0.16" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472016"/>
-            <field name="account_paid_id" ref="pgc_472016"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_22_16"/>
             <field name="tax_code_id" ref="iva_ded_23_16"/>
             <field name="ref_base_code_id" ref="iva_ded_22_16"/>
@@ -1435,8 +1197,8 @@
             <field name="name">16% IVA Soportado (bienes de inversión)</field>
             <field eval="0.16" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472016"/>
-            <field name="account_paid_id" ref="pgc_472016"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_24_16"/>
             <field name="tax_code_id" ref="iva_ded_25_16"/>
             <field name="ref_base_code_id" ref="iva_ded_24_16"/>
@@ -1453,8 +1215,8 @@
             <field name="name">18% IVA Soportado (operaciones corrientes)</field>
             <field eval="0.18" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472018"/>
-            <field name="account_paid_id" ref="pgc_472018"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_22_18"/>
             <field name="tax_code_id" ref="iva_ded_23_18"/>
             <field name="ref_base_code_id" ref="iva_ded_22_18"/>
@@ -1472,8 +1234,8 @@
             <field name="name">18% IVA Soportado (bienes de inversión)</field>
             <field eval="0.18" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472018"/>
-            <field name="account_paid_id" ref="pgc_472018"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_24_18"/>
             <field name="tax_code_id" ref="iva_ded_25_18"/>
             <field name="ref_base_code_id" ref="iva_ded_24_18"/>
@@ -1490,8 +1252,8 @@
             <field name="name">21% IVA Soportado (operaciones corrientes)</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472021"/>
-            <field name="account_paid_id" ref="pgc_472021"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_22_21"/>
             <field name="tax_code_id" ref="iva_ded_23_21"/>
             <field name="ref_base_code_id" ref="iva_ded_22_21"/>
@@ -1509,8 +1271,8 @@
             <field name="name">21% IVA Soportado (bienes de inversión)</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472021"/>
-            <field name="account_paid_id" ref="pgc_472021"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_24_21"/>
             <field name="tax_code_id" ref="iva_ded_25_21"/>
             <field name="ref_base_code_id" ref="iva_ded_24_21"/>
@@ -1559,8 +1321,8 @@
             <field name="description">IVA 4% Importaciones bienes corrientes</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472004"/>
-            <field name="account_paid_id" ref="pgc_472004"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_26_4"/>
             <field name="tax_code_id" ref="iva_ded_27_4"/>
             <field name="ref_base_code_id" ref="iva_ded_26_4"/>
@@ -1577,8 +1339,8 @@
             <field name="description">IVA 4% Importaciones bienes de inversión</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472004"/>
-            <field name="account_paid_id" ref="pgc_472004"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_28_4"/>
             <field name="tax_code_id" ref="iva_ded_29_4"/>
             <field name="ref_base_code_id" ref="iva_ded_28_4"/>
@@ -1596,8 +1358,8 @@
             <field name="description">IVA 7% Importaciones bienes corrientes</field>
             <field eval="0.07" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472007"/>
-            <field name="account_paid_id" ref="pgc_472007"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_26_7"/>
             <field name="tax_code_id" ref="iva_ded_27_7"/>
             <field name="ref_base_code_id" ref="iva_ded_26_7"/>
@@ -1614,8 +1376,8 @@
             <field name="description">IVA 7% Importaciones bienes de inversión</field>
             <field eval="0.07" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472007"/>
-            <field name="account_paid_id" ref="pgc_472007"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_28_7"/>
             <field name="tax_code_id" ref="iva_ded_29_7"/>
             <field name="ref_base_code_id" ref="iva_ded_28_7"/>
@@ -1633,8 +1395,8 @@
             <field name="description">IVA 8% Importaciones bienes corrientes</field>
             <field eval="0.08" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472008"/>
-            <field name="account_paid_id" ref="pgc_472008"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_26_8"/>
             <field name="tax_code_id" ref="iva_ded_27_8"/>
             <field name="ref_base_code_id" ref="iva_ded_26_8"/>
@@ -1651,8 +1413,8 @@
             <field name="description">IVA 8% Importaciones bienes de inversión</field>
             <field eval="0.08" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472008"/>
-            <field name="account_paid_id" ref="pgc_472008"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_28_8"/>
             <field name="tax_code_id" ref="iva_ded_29_8"/>
             <field name="ref_base_code_id" ref="iva_ded_28_8"/>
@@ -1670,8 +1432,8 @@
             <field name="description">IVA 10% Importaciones bienes corrientes</field>
             <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472010"/>
-            <field name="account_paid_id" ref="pgc_472010"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_26_10"/>
             <field name="tax_code_id" ref="iva_ded_27_10"/>
             <field name="ref_base_code_id" ref="iva_ded_26_10"/>
@@ -1688,8 +1450,8 @@
             <field name="description">IVA 10% Importaciones bienes de inversión</field>
             <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472010"/>
-            <field name="account_paid_id" ref="pgc_472010"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_28_10"/>
             <field name="tax_code_id" ref="iva_ded_29_10"/>
             <field name="ref_base_code_id" ref="iva_ded_28_10"/>
@@ -1708,8 +1470,8 @@
             <field name="description">IVA 16% Importaciones bienes corrientes</field>
             <field eval="0.16" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472016"/>
-            <field name="account_paid_id" ref="pgc_472016"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_26_16"/>
             <field name="tax_code_id" ref="iva_ded_27_16"/>
             <field name="ref_base_code_id" ref="iva_ded_26_16"/>
@@ -1726,8 +1488,8 @@
             <field name="description">IVA 16% Importaciones bienes de inversión</field>
             <field eval="0.16" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472016"/>
-            <field name="account_paid_id" ref="pgc_472016"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_28_16"/>
             <field name="tax_code_id" ref="iva_ded_29_16"/>
             <field name="ref_base_code_id" ref="iva_ded_28_16"/>
@@ -1745,8 +1507,8 @@
             <field name="description">IVA 18% Importaciones bienes corrientes</field>
             <field eval="0.18" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472018"/>
-            <field name="account_paid_id" ref="pgc_472018"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_26_18"/>
             <field name="tax_code_id" ref="iva_ded_27_18"/>
             <field name="ref_base_code_id" ref="iva_ded_26_18"/>
@@ -1763,8 +1525,8 @@
             <field name="description">IVA 18% Importaciones bienes de inversión</field>
             <field eval="0.18" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472018"/>
-            <field name="account_paid_id" ref="pgc_472018"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_28_18"/>
             <field name="tax_code_id" ref="iva_ded_29_18"/>
             <field name="ref_base_code_id" ref="iva_ded_28_18"/>
@@ -1782,8 +1544,8 @@
             <field name="description">IVA 21% Importaciones bienes corrientes</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472021"/>
-            <field name="account_paid_id" ref="pgc_472021"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_26_21"/>
             <field name="tax_code_id" ref="iva_ded_27_21"/>
             <field name="ref_base_code_id" ref="iva_ded_26_21"/>
@@ -1800,8 +1562,8 @@
             <field name="description">IVA 21% Importaciones bienes de inversión</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472021"/>
-            <field name="account_paid_id" ref="pgc_472021"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_28_21"/>
             <field name="tax_code_id" ref="iva_ded_29_21"/>
             <field name="ref_base_code_id" ref="iva_ded_28_21"/>
@@ -1860,16 +1622,16 @@
             <field name="parent_id" ref="iva_ISP_compras_16"/>
             <field name="amount" eval="-0.16"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_477016"/>
-            <field name="account_paid_id" ref="pgc_477016"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_07"/>
             <field name="tax_code_id" ref="iva_dev_09"/>
             <field name="ref_base_code_id" ref="iva_dev_07"/>
             <field name="ref_tax_code_id" ref="iva_dev_09"/>
             <field name="tax_sign" eval="-1.0"/>
-            <field name="base_sign" eval="-1.0"/>
+            <field name="base_sign" eval="1.0"/>
             <field name="ref_tax_sign" eval="1.0"/>
-            <field name="ref_base_sign" eval="1.0"/>
+            <field name="ref_base_sign" eval="-1.0"/>
             <field name="type_tax_use">purchase</field>
         </record>
         <record id="iva_ISP_compras_16_3" model="account.tax.template">
@@ -1878,8 +1640,8 @@
             <field name="parent_id" ref="iva_ISP_compras_16"/>
             <field name="amount" eval="0.16"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472016"/>
-            <field name="account_paid_id" ref="pgc_472016"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_22_16"/>
             <field name="tax_code_id" ref="iva_ded_23_16"/>
             <field name="ref_base_code_id" ref="iva_ded_22_16"/>
@@ -1924,16 +1686,16 @@
             <field name="parent_id" ref="iva_ISP_compras_18"/>
             <field name="amount" eval="-0.18"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_477018"/>
-            <field name="account_paid_id" ref="pgc_477018"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_07_18"/>
             <field name="tax_code_id" ref="iva_dev_09_18"/>
             <field name="ref_base_code_id" ref="iva_dev_07_18"/>
             <field name="ref_tax_code_id" ref="iva_dev_09_18"/>
             <field name="tax_sign" eval="-1.0"/>
-            <field name="base_sign" eval="-1.0"/>
+            <field name="base_sign" eval="1.0"/>
             <field name="ref_tax_sign" eval="1.0"/>
-            <field name="ref_base_sign" eval="1.0"/>
+            <field name="ref_base_sign" eval="-1.0"/>
             <field name="type_tax_use">purchase</field>
         </record>
         <record id="iva_ISP_compras_18_3" model="account.tax.template">
@@ -1942,8 +1704,8 @@
             <field name="parent_id" ref="iva_ISP_compras_18"/>
             <field name="amount" eval="0.18"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472018"/>
-            <field name="account_paid_id" ref="pgc_472018"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_22_18"/>
             <field name="tax_code_id" ref="iva_ded_23_18"/>
             <field name="ref_base_code_id" ref="iva_ded_22_18"/>
@@ -1989,16 +1751,16 @@
             <field name="parent_id" ref="iva_ISP_compras_21"/>
             <field name="amount" eval="-0.21"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_477021"/>
-            <field name="account_paid_id" ref="pgc_477021"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_07_21"/>
             <field name="tax_code_id" ref="iva_dev_09_21"/>
             <field name="ref_base_code_id" ref="iva_dev_07_21"/>
             <field name="ref_tax_code_id" ref="iva_dev_09_21"/>
             <field name="tax_sign" eval="-1.0"/>
-            <field name="base_sign" eval="-1.0"/>
+            <field name="base_sign" eval="1.0"/>
             <field name="ref_tax_sign" eval="1.0"/>
-            <field name="ref_base_sign" eval="1.0"/>
+            <field name="ref_base_sign" eval="-1.0"/>
             <field name="type_tax_use">purchase</field>
         </record>
         <record id="iva_ISP_compras_21_3" model="account.tax.template">
@@ -2007,8 +1769,8 @@
             <field name="parent_id" ref="iva_ISP_compras_21"/>
             <field name="amount" eval="0.21"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472021"/>
-            <field name="account_paid_id" ref="pgc_472021"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_22_21"/>
             <field name="tax_code_id" ref="iva_ded_23_21"/>
             <field name="ref_base_code_id" ref="iva_ded_22_21"/>
@@ -2027,8 +1789,8 @@
             <field name="name">IVA 4%</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_477004"/>
-            <field name="account_paid_id" ref="pgc_477004"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_01"/>
             <field name="tax_code_id" ref="iva_dev_03"/>
             <field name="ref_base_code_id" ref="iva_dev_01"/>
@@ -2045,8 +1807,8 @@
             <field name="name">IVA 7%</field>
             <field eval="0.07" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_477007"/>
-            <field name="account_paid_id" ref="pgc_477007"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_04"/>
             <field name="tax_code_id" ref="iva_dev_06"/>
             <field name="ref_base_code_id" ref="iva_dev_04"/>
@@ -2063,8 +1825,8 @@
             <field name="name">IVA 8%</field>
             <field eval="0.08" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_477008"/>
-            <field name="account_paid_id" ref="pgc_477008"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_04_8"/>
             <field name="tax_code_id" ref="iva_dev_06_8"/>
             <field name="ref_base_code_id" ref="iva_dev_04_8"/>
@@ -2081,8 +1843,8 @@
             <field name="name">IVA 10%</field>
             <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_477010"/>
-            <field name="account_paid_id" ref="pgc_477010"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_04_10"/>
             <field name="tax_code_id" ref="iva_dev_06_10"/>
             <field name="ref_base_code_id" ref="iva_dev_04_10"/>
@@ -2099,8 +1861,8 @@
             <field name="name">IVA 16%</field>
             <field eval="0.16" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_477016"/>
-            <field name="account_paid_id" ref="pgc_477016"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_07"/>
             <field name="tax_code_id" ref="iva_dev_09"/>
             <field name="ref_base_code_id" ref="iva_dev_07"/>
@@ -2117,8 +1879,8 @@
             <field name="name">IVA 18%</field>
             <field eval="0.18" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_477018"/>
-            <field name="account_paid_id" ref="pgc_477018"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_07_18"/>
             <field name="tax_code_id" ref="iva_dev_09_18"/>
             <field name="ref_base_code_id" ref="iva_dev_07_18"/>
@@ -2136,8 +1898,8 @@
             <field name="name">IVA 21%</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_477021"/>
-            <field name="account_paid_id" ref="pgc_477021"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_07_21"/>
             <field name="tax_code_id" ref="iva_dev_09_21"/>
             <field name="ref_base_code_id" ref="iva_dev_07_21"/>
@@ -2157,8 +1919,8 @@
             <field name="name">0.50% Recargo Equivalencia Ventas</field>
             <field eval="0.005" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_477104"/>
-            <field name="account_paid_id" ref="pgc_477104"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_10"/>
             <field name="tax_code_id" ref="iva_dev_12"/>
             <field name="ref_base_code_id" ref="iva_dev_10"/>
@@ -2175,8 +1937,8 @@
             <field name="name">1% Recargo Equivalencia Ventas</field>
             <field eval="0.01" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_477108"/>
-            <field name="account_paid_id" ref="pgc_477108"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_13"/>
             <field name="tax_code_id" ref="iva_dev_15"/>
             <field name="ref_base_code_id" ref="iva_dev_13"/>
@@ -2193,8 +1955,8 @@
             <field name="name">1.4% Recargo Equivalencia Ventas</field>
             <field eval="0.014" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_477110"/>
-            <field name="account_paid_id" ref="pgc_477110"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_13_14"/>
             <field name="tax_code_id" ref="iva_dev_15_14"/>
             <field name="ref_base_code_id" ref="iva_dev_13_14"/>
@@ -2211,8 +1973,8 @@
             <field name="name">4% Recargo Equivalencia Ventas</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_477118"/>
-            <field name="account_paid_id" ref="pgc_477118"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_16"/>
             <field name="tax_code_id" ref="iva_dev_18"/>
             <field name="ref_base_code_id" ref="iva_dev_16"/>
@@ -2229,8 +1991,8 @@
             <field name="name">5.2% Recargo Equivalencia Ventas</field>
             <field eval="0.052" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_477121"/>
-            <field name="account_paid_id" ref="pgc_477121"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_16_52"/>
             <field name="tax_code_id" ref="iva_dev_18_52"/>
             <field name="ref_base_code_id" ref="iva_dev_16_52"/>
@@ -2247,8 +2009,8 @@
             <field name="name">0.50% Recargo Equivalencia Compras</field>
             <field eval="0.005" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472104"/>
-            <field name="account_paid_id" ref="pgc_472104"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_10"/>
             <field name="tax_code_id" ref="iva_ded_12"/>
             <field name="ref_base_code_id" ref="iva_ded_10"/>
@@ -2265,8 +2027,8 @@
             <field name="name">1% Recargo Equivalencia Compras</field>
             <field eval="0.01" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472108"/>
-            <field name="account_paid_id" ref="pgc_472108"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_13"/>
             <field name="tax_code_id" ref="iva_ded_15"/>
             <field name="ref_base_code_id" ref="iva_ded_13"/>
@@ -2283,8 +2045,8 @@
             <field name="name">1.4% Recargo Equivalencia Compras</field>
             <field eval="0.014" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472110"/>
-            <field name="account_paid_id" ref="pgc_472110"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_13_14"/>
             <field name="tax_code_id" ref="iva_ded_15_14"/>
             <field name="ref_base_code_id" ref="iva_ded_13_14"/>
@@ -2301,8 +2063,8 @@
             <field name="name">4% Recargo Equivalencia Compras</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472118"/>
-            <field name="account_paid_id" ref="pgc_472118"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_16"/>
             <field name="tax_code_id" ref="iva_ded_18"/>
             <field name="ref_base_code_id" ref="iva_ded_16"/>
@@ -2319,8 +2081,8 @@
             <field name="name">5.2% Recargo Equivalencia Compras</field>
             <field eval="0.052" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_472121"/>
-            <field name="account_paid_id" ref="pgc_472121"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_16_52"/>
             <field name="tax_code_id" ref="iva_ded_18_52"/>
             <field name="ref_base_code_id" ref="iva_ded_16_52"/>
@@ -2367,8 +2129,8 @@
             <field name="name">IVA 4% Intracomunitario. Bienes corrientes (1)</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_472004"/>
-            <field name="account_collected_id" ref="pgc_472004"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_30_4"/>
             <field name="tax_code_id" ref="iva_ded_31_4"/>
             <field name="ref_base_code_id" ref="iva_ded_30_4"/>
@@ -2383,8 +2145,8 @@
             <field name="name">IVA 4% Intracomunitario. Bienes corrientes (2)</field>
             <field eval="-0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_477004"/>
-            <field name="account_collected_id" ref="pgc_477004"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_19"/>
             <field name="tax_code_id" ref="iva_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2410,8 +2172,8 @@
             <field name="name">IVA 4% Intracomunitario. Bienes de inversión (1)</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_472004"/>
-            <field name="account_collected_id" ref="pgc_472004"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_32_4"/>
             <field name="tax_code_id" ref="iva_ded_33_4"/>
             <field name="ref_base_code_id" ref="iva_ded_32_4"/>
@@ -2426,8 +2188,8 @@
             <field name="name">IVA 4% Intracomunitario. Bienes de inversión (2)</field>
             <field eval="-0.04" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_477004"/>
-            <field name="account_collected_id" ref="pgc_477004"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_19"/>
             <field name="tax_code_id" ref="iva_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2453,8 +2215,8 @@
             <field name="name">IVA 7% Intracomunitario. Bienes corrientes (1)</field>
             <field eval="0.07" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_472007"/>
-            <field name="account_collected_id" ref="pgc_472007"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_30_7"/>
             <field name="tax_code_id" ref="iva_ded_31_7"/>
             <field name="ref_base_code_id" ref="iva_ded_30_7"/>
@@ -2469,8 +2231,8 @@
             <field name="name">IVA 7% Intracomunitario. Bienes corrientes (2)</field>
             <field eval="-0.07" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_477007"/>
-            <field name="account_collected_id" ref="pgc_477007"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_19"/>
             <field name="tax_code_id" ref="iva_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2496,8 +2258,8 @@
             <field name="name">IVA 7% Intracomunitario. Bienes de inversión (1)</field>
             <field eval="0.07" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_472007"/>
-            <field name="account_collected_id" ref="pgc_472007"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_32_7"/>
             <field name="tax_code_id" ref="iva_ded_33_7"/>
             <field name="ref_base_code_id" ref="iva_ded_32_7"/>
@@ -2512,8 +2274,8 @@
             <field name="name">IVA 7% Intracomunitario. Bienes de inversión (2)</field>
             <field eval="-0.07" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_477007"/>
-            <field name="account_collected_id" ref="pgc_477007"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_19"/>
             <field name="tax_code_id" ref="iva_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2539,8 +2301,8 @@
             <field name="name">IVA 8% Intracomunitario. Bienes corrientes (1)</field>
             <field eval="0.08" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_472008"/>
-            <field name="account_collected_id" ref="pgc_472008"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_30_8"/>
             <field name="tax_code_id" ref="iva_ded_31_8"/>
             <field name="ref_base_code_id" ref="iva_ded_30_8"/>
@@ -2555,8 +2317,8 @@
             <field name="name">IVA 8% Intracomunitario. Bienes corrientes (2)</field>
             <field eval="-0.08" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_477008"/>
-            <field name="account_collected_id" ref="pgc_477008"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_19"/>
             <field name="tax_code_id" ref="iva_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2582,8 +2344,8 @@
             <field name="name">IVA 8% Intracomunitario. Bienes de inversión (1)</field>
             <field eval="0.08" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_472008"/>
-            <field name="account_collected_id" ref="pgc_472008"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_32_8"/>
             <field name="tax_code_id" ref="iva_ded_33_8"/>
             <field name="ref_base_code_id" ref="iva_ded_32_8"/>
@@ -2598,8 +2360,8 @@
             <field name="name">IVA 8% Intracomunitario. Bienes de inversión (2)</field>
             <field eval="-0.08" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_477008"/>
-            <field name="account_collected_id" ref="pgc_477008"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_19"/>
             <field name="tax_code_id" ref="iva_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2625,8 +2387,8 @@
             <field name="name">IVA 10% Intracomunitario. Bienes corrientes (1)</field>
             <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_472010"/>
-            <field name="account_collected_id" ref="pgc_472010"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_30_10"/>
             <field name="tax_code_id" ref="iva_ded_31_10"/>
             <field name="ref_base_code_id" ref="iva_ded_30_10"/>
@@ -2641,8 +2403,8 @@
             <field name="name">IVA 10% Intracomunitario. Bienes corrientes (2)</field>
             <field eval="-0.10" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_477010"/>
-            <field name="account_collected_id" ref="pgc_477010"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_19"/>
             <field name="tax_code_id" ref="iva_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2668,8 +2430,8 @@
             <field name="name">IVA 10% Intracomunitario. Bienes de inversión (1)</field>
             <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_472010"/>
-            <field name="account_collected_id" ref="pgc_472010"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_32_10"/>
             <field name="tax_code_id" ref="iva_ded_33_10"/>
             <field name="ref_base_code_id" ref="iva_ded_32_10"/>
@@ -2684,8 +2446,8 @@
             <field name="name">IVA 10% Intracomunitario. Bienes de inversión (2)</field>
             <field eval="-0.10" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_477010"/>
-            <field name="account_collected_id" ref="pgc_477010"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_19"/>
             <field name="tax_code_id" ref="iva_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2711,8 +2473,8 @@
             <field name="name">IVA 16% Intracomunitario. Bienes corrientes (1)</field>
             <field eval="0.16" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_472016"/>
-            <field name="account_collected_id" ref="pgc_472016"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_30_16"/>
             <field name="tax_code_id" ref="iva_ded_31_16"/>
             <field name="ref_base_code_id" ref="iva_ded_30_16"/>
@@ -2727,8 +2489,8 @@
             <field name="name">IVA 16% Intracomunitario. Bienes corrientes (2)</field>
             <field eval="-0.16" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_477016"/>
-            <field name="account_collected_id" ref="pgc_477016"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_19"/>
             <field name="tax_code_id" ref="iva_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2755,8 +2517,8 @@
             <field name="name">IVA 16% Intracomunitario. Bienes de inversión (1)</field>
             <field eval="0.16" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_472016"/>
-            <field name="account_collected_id" ref="pgc_472016"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_32_16"/>
             <field name="tax_code_id" ref="iva_ded_33_16"/>
             <field name="ref_base_code_id" ref="iva_ded_32_16"/>
@@ -2771,8 +2533,8 @@
             <field name="name">IVA 16% Intracomunitario. Bienes de inversión (2)</field>
             <field eval="-0.16" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_477016"/>
-            <field name="account_collected_id" ref="pgc_477016"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_19"/>
             <field name="tax_code_id" ref="iva_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2798,8 +2560,8 @@
             <field name="name">IVA 18% Intracomunitario. Bienes corrientes (1)</field>
             <field eval="0.18" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_472018"/>
-            <field name="account_collected_id" ref="pgc_472018"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_30_18"/>
             <field name="tax_code_id" ref="iva_ded_31_18"/>
             <field name="ref_base_code_id" ref="iva_ded_30_18"/>
@@ -2814,8 +2576,8 @@
             <field name="name">IVA 18% Intracomunitario. Bienes corrientes (2)</field>
             <field eval="-0.18" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_477018"/>
-            <field name="account_collected_id" ref="pgc_477018"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_19"/>
             <field name="tax_code_id" ref="iva_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2853,8 +2615,8 @@
             <field name="name">IVA 18% Intracomunitario. Bienes de inversión (1)</field>
             <field eval="0.18" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_472018"/>
-            <field name="account_collected_id" ref="pgc_472018"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_32_18"/>
             <field name="tax_code_id" ref="iva_ded_33_18"/>
             <field name="ref_base_code_id" ref="iva_ded_32_18"/>
@@ -2869,8 +2631,8 @@
             <field name="name">IVA 18% Intracomunitario. Bienes de inversión (2)</field>
             <field eval="-0.18" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_477018"/>
-            <field name="account_collected_id" ref="pgc_477018"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_19"/>
             <field name="tax_code_id" ref="iva_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2896,8 +2658,8 @@
             <field name="name">IVA 21% Intracomunitario. Bienes corrientes (1)</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_472021"/>
-            <field name="account_collected_id" ref="pgc_472021"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_30_21"/>
             <field name="tax_code_id" ref="iva_ded_31_21"/>
             <field name="ref_base_code_id" ref="iva_ded_30_21"/>
@@ -2912,8 +2674,8 @@
             <field name="name">IVA 21% Intracomunitario. Bienes corrientes (2)</field>
             <field eval="-0.21" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_477021"/>
-            <field name="account_collected_id" ref="pgc_477021"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_19"/>
             <field name="tax_code_id" ref="iva_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -2940,8 +2702,8 @@
             <field name="name">IVA 21% Intracomunitario. Bienes de inversión (1)</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_472021"/>
-            <field name="account_collected_id" ref="pgc_472021"/>
+            <field name="account_paid_id" ref="pgc_472000"/>
+            <field name="account_collected_id" ref="pgc_472000"/>
             <field name="base_code_id" ref="iva_ded_32_21"/>
             <field name="tax_code_id" ref="iva_ded_33_21"/>
             <field name="ref_base_code_id" ref="iva_ded_32_21"/>
@@ -2956,8 +2718,8 @@
             <field name="name">IVA 21% Intracomunitario. Bienes de inversión (2)</field>
             <field eval="-0.21" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_paid_id" ref="pgc_477021"/>
-            <field name="account_collected_id" ref="pgc_477021"/>
+            <field name="account_paid_id" ref="pgc_477000"/>
+            <field name="account_collected_id" ref="pgc_477000"/>
             <field name="base_code_id" ref="iva_dev_19"/>
             <field name="tax_code_id" ref="iva_dev_20"/>
             <field eval="-1.0" name="tax_sign"/>
@@ -3121,96 +2883,14 @@
             <field name="sign">1.0</field>
         </record>
 
-        <!--Cuentas para Retenciones-->
-        <record id="pgc_475101" model="account.account.template">
-            <field name="code">475101</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones empresarios módulos 1%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_475102" model="account.account.template">
-            <field name="code">475102</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones act. agrícolas, ganaderas, forestales 2%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_475107" model="account.account.template">
-            <field name="code">475107</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones act. profesionales 7%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_475109" model="account.account.template">
-            <field name="code">475109</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones act. profesionales 9%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_475115" model="account.account.template">
-            <field name="code">475115</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones act. profesionales 15%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_475118" model="account.account.template">
-            <field name="code">475118</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 18%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_475119" model="account.account.template">
-            <field name="code">475119</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 19%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_475120" model="account.account.template">
-            <field name="code">475120</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 20%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_475121" model="account.account.template">
-            <field name="code">475121</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 21%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
         <!-- Plantillas de retenciones-->
         <record id="irpf_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">Retenciones IRPF 1%</field>
             <field eval="-0.01" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_475101"/>
-            <field name="account_paid_id" ref="pgc_475101"/>
+            <field name="account_collected_id" ref="pgc_475100"/>
+            <field name="account_paid_id" ref="pgc_475100"/>
             <field name="base_code_id" ref="irpf_base_1"/>
             <field name="tax_code_id" ref="irpf_cuota_1"/>
             <field name="ref_base_code_id" ref="irpf_base_1"/>
@@ -3227,8 +2907,8 @@
             <field name="name">Retenciones IRPF 2%</field>
             <field eval="-0.02" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_475102"/>
-            <field name="account_paid_id" ref="pgc_475102"/>
+            <field name="account_collected_id" ref="pgc_475100"/>
+            <field name="account_paid_id" ref="pgc_475100"/>
             <field name="base_code_id" ref="irpf_base_2"/>
             <field name="tax_code_id" ref="irpf_cuota_2"/>
             <field name="ref_base_code_id" ref="irpf_base_2"/>
@@ -3245,8 +2925,8 @@
             <field name="name">Retenciones IRPF 7%</field>
             <field eval="-0.07" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_475107"/>
-            <field name="account_paid_id" ref="pgc_475107"/>
+            <field name="account_collected_id" ref="pgc_475100"/>
+            <field name="account_paid_id" ref="pgc_475100"/>
             <field name="base_code_id" ref="irpf_base_7"/>
             <field name="tax_code_id" ref="irpf_cuota_7"/>
             <field name="ref_base_code_id" ref="irpf_base_7"/>
@@ -3263,8 +2943,8 @@
             <field name="name">Retenciones IRPF 9%</field>
             <field eval="-0.09" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_475109"/>
-            <field name="account_paid_id" ref="pgc_475109"/>
+            <field name="account_collected_id" ref="pgc_475100"/>
+            <field name="account_paid_id" ref="pgc_475100"/>
             <field name="base_code_id" ref="irpf_base_9"/>
             <field name="tax_code_id" ref="irpf_cuota_9"/>
             <field name="ref_base_code_id" ref="irpf_base_9"/>
@@ -3281,8 +2961,8 @@
             <field name="name">Retenciones IRPF 15%</field>
             <field eval="-0.15" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_475115"/>
-            <field name="account_paid_id" ref="pgc_475115"/>
+            <field name="account_collected_id" ref="pgc_475100"/>
+            <field name="account_paid_id" ref="pgc_475100"/>
             <field name="base_code_id" ref="irpf_base_15"/>
             <field name="tax_code_id" ref="irpf_cuota_15"/>
             <field name="ref_base_code_id" ref="irpf_base_15"/>
@@ -3299,8 +2979,8 @@
             <field name="name">Retenciones IRPF 18%</field>
             <field eval="-0.18" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_475118"/>
-            <field name="account_paid_id" ref="pgc_475118"/>
+            <field name="account_collected_id" ref="pgc_475100"/>
+            <field name="account_paid_id" ref="pgc_475100"/>
             <field name="base_code_id" ref="irpf_base_18"/>
             <field name="tax_code_id" ref="irpf_cuota_18"/>
             <field name="ref_base_code_id" ref="irpf_base_18"/>
@@ -3317,8 +2997,8 @@
             <field name="name">Retenciones IRPF 19%</field>
             <field eval="-0.19" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_475119"/>
-            <field name="account_paid_id" ref="pgc_475119"/>
+            <field name="account_collected_id" ref="pgc_475100"/>
+            <field name="account_paid_id" ref="pgc_475100"/>
             <field name="base_code_id" ref="irpf_base_19"/>
             <field name="tax_code_id" ref="irpf_cuota_19"/>
             <field name="ref_base_code_id" ref="irpf_base_19"/>
@@ -3335,8 +3015,8 @@
             <field name="name">Retenciones IRPF 20%</field>
             <field eval="-0.20" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_475120"/>
-            <field name="account_paid_id" ref="pgc_475120"/>
+            <field name="account_collected_id" ref="pgc_475100"/>
+            <field name="account_paid_id" ref="pgc_475100"/>
             <field name="base_code_id" ref="irpf_base_20"/>
             <field name="tax_code_id" ref="irpf_cuota_20"/>
             <field name="ref_base_code_id" ref="irpf_base_20"/>
@@ -3353,8 +3033,8 @@
             <field name="name">Retenciones IRPF 21%</field>
             <field eval="-0.21" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_475121"/>
-            <field name="account_paid_id" ref="pgc_475121"/>
+            <field name="account_collected_id" ref="pgc_475100"/>
+            <field name="account_paid_id" ref="pgc_475100"/>
             <field name="base_code_id" ref="irpf_base_21"/>
             <field name="tax_code_id" ref="irpf_cuota_21"/>
             <field name="ref_base_code_id" ref="irpf_base_21"/>
@@ -3510,96 +3190,14 @@
             <field name="sign">1.0</field>
         </record>
 
-        <!--Cuentas para Retenciones-->
-        <record id="pgc_473001" model="account.account.template">
-            <field name="code">473001</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta empresarios módulos 1%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_473002" model="account.account.template">
-            <field name="code">473002</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta act. agrícolas, ganaderas, forestales 2%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_473007" model="account.account.template">
-            <field name="code">473007</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta act. profesionales 7%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_473009" model="account.account.template">
-            <field name="code">473009</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta act. profesionales 9%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_473015" model="account.account.template">
-            <field name="code">473015</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta act. profesionales 15%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_473018" model="account.account.template">
-            <field name="code">473018</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 18%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_473019" model="account.account.template">
-            <field name="code">473019</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 19%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_473020" model="account.account.template">
-            <field name="code">473020</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 20%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_473021" model="account.account.template">
-            <field name="code">473021</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 21%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
         <!-- Plantillas de retenciones-->
         <record id="irpf_sale_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">Retenciones a cuenta IRPF 1%</field>
             <field eval="-0.01" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_473001"/>
-            <field name="account_paid_id" ref="pgc_473001"/>
+            <field name="account_collected_id" ref="pgc_473000"/>
+            <field name="account_paid_id" ref="pgc_473000"/>
             <field name="base_code_id" ref="irpf_base_sale_1"/>
             <field name="tax_code_id" ref="irpf_cuota_sale_1"/>
             <field name="ref_base_code_id" ref="irpf_base_sale_1"/>
@@ -3616,8 +3214,8 @@
             <field name="name">Retenciones a cuenta IRPF 2%</field>
             <field eval="-0.02" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_473002"/>
-            <field name="account_paid_id" ref="pgc_473002"/>
+            <field name="account_collected_id" ref="pgc_473000"/>
+            <field name="account_paid_id" ref="pgc_473000"/>
             <field name="base_code_id" ref="irpf_base_sale_2"/>
             <field name="tax_code_id" ref="irpf_cuota_sale_2"/>
             <field name="ref_base_code_id" ref="irpf_base_sale_2"/>
@@ -3634,8 +3232,8 @@
             <field name="name">Retenciones a cuenta IRPF 7%</field>
             <field eval="-0.07" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_473007"/>
-            <field name="account_paid_id" ref="pgc_473007"/>
+            <field name="account_collected_id" ref="pgc_473000"/>
+            <field name="account_paid_id" ref="pgc_473000"/>
             <field name="base_code_id" ref="irpf_base_sale_7"/>
             <field name="tax_code_id" ref="irpf_cuota_sale_7"/>
             <field name="ref_base_code_id" ref="irpf_base_sale_7"/>
@@ -3652,8 +3250,8 @@
             <field name="name">Retenciones a cuenta IRPF 9%</field>
             <field eval="-0.09" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_473009"/>
-            <field name="account_paid_id" ref="pgc_473009"/>
+            <field name="account_collected_id" ref="pgc_473000"/>
+            <field name="account_paid_id" ref="pgc_473000"/>
             <field name="base_code_id" ref="irpf_base_sale_9"/>
             <field name="tax_code_id" ref="irpf_cuota_sale_9"/>
             <field name="ref_base_code_id" ref="irpf_base_sale_9"/>
@@ -3670,8 +3268,8 @@
             <field name="name">Retenciones a cuenta IRPF 15%</field>
             <field eval="-0.15" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_473015"/>
-            <field name="account_paid_id" ref="pgc_473015"/>
+            <field name="account_collected_id" ref="pgc_473000"/>
+            <field name="account_paid_id" ref="pgc_473000"/>
             <field name="base_code_id" ref="irpf_base_sale_15"/>
             <field name="tax_code_id" ref="irpf_cuota_sale_15"/>
             <field name="ref_base_code_id" ref="irpf_base_sale_15"/>
@@ -3688,8 +3286,8 @@
             <field name="name">Retenciones a cuenta IRPF 18%</field>
             <field eval="-0.18" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_473018"/>
-            <field name="account_paid_id" ref="pgc_473018"/>
+            <field name="account_collected_id" ref="pgc_473000"/>
+            <field name="account_paid_id" ref="pgc_473000"/>
             <field name="base_code_id" ref="irpf_base_sale_18"/>
             <field name="tax_code_id" ref="irpf_cuota_sale_18"/>
             <field name="ref_base_code_id" ref="irpf_base_sale_18"/>
@@ -3706,8 +3304,8 @@
             <field name="name">Retenciones a cuenta IRPF 19%</field>
             <field eval="-0.19" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_473019"/>
-            <field name="account_paid_id" ref="pgc_473019"/>
+            <field name="account_collected_id" ref="pgc_473000"/>
+            <field name="account_paid_id" ref="pgc_473000"/>
             <field name="base_code_id" ref="irpf_base_sale_19"/>
             <field name="tax_code_id" ref="irpf_cuota_sale_19"/>
             <field name="ref_base_code_id" ref="irpf_base_sale_19"/>
@@ -3724,8 +3322,8 @@
             <field name="name">Retenciones a cuenta IRPF 20%</field>
             <field eval="-0.20" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_473020"/>
-            <field name="account_paid_id" ref="pgc_473020"/>
+            <field name="account_collected_id" ref="pgc_473000"/>
+            <field name="account_paid_id" ref="pgc_473000"/>
             <field name="base_code_id" ref="irpf_base_sale_20"/>
             <field name="tax_code_id" ref="irpf_cuota_sale_20"/>
             <field name="ref_base_code_id" ref="irpf_base_sale_20"/>
@@ -3742,8 +3340,8 @@
             <field name="name">Retenciones a cuenta IRPF 21%</field>
             <field eval="-0.21" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_473021"/>
-            <field name="account_paid_id" ref="pgc_473021"/>
+            <field name="account_collected_id" ref="pgc_473000"/>
+            <field name="account_paid_id" ref="pgc_473000"/>
             <field name="base_code_id" ref="irpf_base_sale_21"/>
             <field name="tax_code_id" ref="irpf_cuota_sale_21"/>
             <field name="ref_base_code_id" ref="irpf_base_sale_21"/>

@@ -4456,8 +4456,8 @@
             <field name="name">Hacienda Pública, deudora por IVA</field>
             <field name="user_type" ref="tax"/>
         </record>
-        <record id="pgc_pymes_4700_child" model="account.account.template">
-            <field name="code">4700</field>
+        <record id="pgc_pymes_470000" model="account.account.template">
+            <field name="code">470000</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="pgc_pymes_4700"/>
             <field name="type">receivable</field>
@@ -4518,6 +4518,14 @@
             <field name="parent_id" ref="pgc_pymes_47"/>
             <field name="type">view</field>
             <field name="name">Hacienda Pública, IVA soportado</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+        <record id="pgc_pymes_472000" model="account.account.template">
+            <field name="code">472000</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA soportado</field>
             <field name="user_type" ref="tax"/>
         </record>
         <record id="pgc_pymes_473" model="account.account.template">
@@ -4600,8 +4608,8 @@
             <field name="name">Hacienda Pública, acreedora por IVA</field>
             <field name="user_type" ref="tax"/>
         </record>
-        <record id="pgc_pymes_4750_child" model="account.account.template">
-            <field name="code">4750</field>
+        <record id="pgc_pymes_475000" model="account.account.template">
+            <field name="code">475000</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="pgc_pymes_4750"/>
             <field name="type">payable</field>
@@ -4680,20 +4688,12 @@
             <field name="name">Hacienda Pública, IVA repercutido</field>
             <field name="user_type" ref="tax"/>
         </record>
-        <record id="pgc_pymes_4770" model="account.account.template">
-            <field name="code">4770</field>
+        <record id="pgc_pymes_477000" model="account.account.template">
+            <field name="code">477000</field>
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_pymes_477"/>
-            <field name="type">view</field>
+            <field name="type">other</field>
             <field name="name">Hacienda Pública, IVA repercutido</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-        <record id="pgc_pymes_4771" model="account.account.template">
-            <field name="code">4771</field>
-            <field name="reconcile" eval="False"/>
-            <field name="parent_id" ref="pgc_pymes_477"/>
-            <field name="type">view</field>
-            <field name="name">Hacienda Pública, IVA repercutido, Recargo de Equivalencia</field>
             <field name="user_type" ref="tax"/>
         </record>
         <record id="pgc_pymes_479" model="account.account.template">
