@@ -33,6 +33,9 @@
       Ignacio Ibeas (Acysos) - ignacio@acysos.com (2011-05-06)
         Añadido Recargos de equivalencia para venta y compra
 
+      Pedro M. Baeza (Serv. Tecnol. Avanzados) - pedro.baeza@serviciosbaeza.com (2013-01-29)
+        Corrección de inversión de sujeto pasivo
+
     -->
 
 
@@ -1874,9 +1877,9 @@
             <field name="ref_base_code_id" ref="iva_pymes_dev_07"/>
             <field name="ref_tax_code_id" ref="iva_pymes_dev_09"/>
             <field name="tax_sign" eval="-1.0"/>
-            <field name="base_sign" eval="-1.0"/>
+            <field name="base_sign" eval="1.0"/>
             <field name="ref_tax_sign" eval="1.0"/>
-            <field name="ref_base_sign" eval="1.0"/>
+            <field name="ref_base_sign" eval="-1.0"/>
             <field name="type_tax_use">purchase</field>
         </record>
         <record id="iva_pymes_ISP_compras_16_3" model="account.tax.template">
@@ -1938,9 +1941,9 @@
             <field name="ref_base_code_id" ref="iva_pymes_dev_07_18"/>
             <field name="ref_tax_code_id" ref="iva_pymes_dev_09_18"/>
             <field name="tax_sign" eval="-1.0"/>
-            <field name="base_sign" eval="-1.0"/>
+            <field name="base_sign" eval="1.0"/>
             <field name="ref_tax_sign" eval="1.0"/>
-            <field name="ref_base_sign" eval="1.0"/>
+            <field name="ref_base_sign" eval="-1.0"/>
             <field name="type_tax_use">purchase</field>
         </record>
         <record id="iva_pymes_ISP_compras_18_3" model="account.tax.template">
@@ -2001,9 +2004,9 @@
             <field name="ref_base_code_id" ref="iva_pymes_dev_07_21"/>
             <field name="ref_tax_code_id" ref="iva_pymes_dev_09_21"/>
             <field name="tax_sign" eval="-1.0"/>
-            <field name="base_sign" eval="-1.0"/>
+            <field name="base_sign" eval="1.0"/>
             <field name="ref_tax_sign" eval="1.0"/>
-            <field name="ref_base_sign" eval="1.0"/>
+            <field name="ref_base_sign" eval="-1.0"/>
             <field name="type_tax_use">purchase</field>
         </record>
         <record id="iva_pymes_ISP_compras_21_3" model="account.tax.template">
