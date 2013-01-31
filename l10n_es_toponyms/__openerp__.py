@@ -4,6 +4,8 @@
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
+#    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com) All Rights Reserved.
+#                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -24,24 +26,21 @@
 {
     "name" : "Topónimos del Estado español",
     "version" : "1.0",
-    "author" : "Zikzakmedia SL",
-    "website" : "www.zikzakmedia.com",
+    "author" : "Spanish Localization Team",
+    "website" : "https://launchpad.net/openerp-spain",
     "category" : "Localisation/Europe",
-    "description": """Provincias, municipios y códigos postales del Estado Español
+    "description": """Provincias, municipios y códigos postales del Estado español
 
-  * Traduce el país Spain por España
-  * Añade las 52 provincias actuales del Estado Español con posibilidad de escoger versión oficial, castellana o ambas
-  * Proporciona un asistente para dar de alta los municipios y provincias por defecto asociados a los 15839 códigos postales del Estado Español. Permite rellenar automáticamente los campos ciudad y provincia del formulario de empresa y contacto a partir del código postal.
-  * Nuevo asistente de configuración que permite crear los valores por defecto según módulo city esté instalado (se crean entidades city.city) o no (se crean valores por defecto de los campos ciudad y provincia asociados al código postal).
+  * Añade las 52 provincias actuales del Estado Español con posibilidad de escoger versión oficial, castellana o ambas.
+  * Proporciona un asistente para dar de alta los municipios y provincias por defecto asociados a los 15839 códigos postales del Estado español. Permite rellenar automáticamente los campos ciudad y provincia del formulario de empresa y contacto a partir del código postal.
 
 Los datos han sido obtenidos de los datos públicos del Instituto Nacional de Estadística (INE).""",
     "depends" : ["base"],
     "license" : "AGPL-3",
-    "init_xml" : ["l10n_es_toponyms_country.xml", ],
-    "demo_xml" : [ ],
-    "update_xml" : [
-        "l10n_es_toponyms_wizard.xml",
-    ],
+    "data" : [
+		"wizard/l10n_es_toponyms_wizard.xml",
+	],
+    "demo" : [ ],
     "active": False,
-    "installable": False
+    "installable": True
 } 

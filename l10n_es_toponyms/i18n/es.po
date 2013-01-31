@@ -4,11 +4,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.1-20121029-003136\n"
+"Project-Id-Version: OpenERP Server 7.0-20130127-000101\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-30 17:02+0000\n"
-"PO-Revision-Date: 2012-10-30 17:02+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>\n"
+"POT-Creation-Date: 2013-01-31 11:31+0000\n"
+"PO-Revision-Date: 2013-01-31 11:31+0000\n"
+"Last-Translator: Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,45 +16,24 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_toponyms
-#: help:config.es.toponyms,city_module:0
-msgid "City module is optional and groups state, city and zip code in one entity."
-msgstr "El módulo 'city' es opcional y agrupa provincia, ciudad y código postal en una única entidad."
+#: view:config.es.toponyms:0
+msgid "WARNING: Adding more than 15000 zip codes can take several minutes."
+msgstr "AVISO: Añadir más de 15000 códigos postales puede llevar varios minutos."
+
+#. module: l10n_es_toponyms
+#: selection:config.es.toponyms,city_info:0
+msgid "No"
+msgstr "No"
 
 #. module: l10n_es_toponyms
 #: view:config.es.toponyms:0
-msgid "Warning! Adding more than 15000 zip codes can take several minutes."
-msgstr "¡Aviso! Añadir más de 15000 códigos postales puede tardar varios minutos."
+msgid "'State' and 'City' fields can be filled automatically in partner screen when you enter a zip code if this information is associated. Do you want to associate this data?"
+msgstr "Los campos 'Provincia' y 'Ciudad' del formulario de las empresas (clientes y/o proveedores) pueden ser rellenados automáticamente cuando introduce el código postal si esta información se asocia. ¿Desea asociar los datos de ciudad y provincia a los código postales?"
 
 #. module: l10n_es_toponyms
-#: view:config.es.toponyms:0
-msgid "Configure the Spanish toponyms"
-msgstr "Configuración de los topónimos españoles"
-
-#. module: l10n_es_toponyms
-#: view:config.es.toponyms:0
-#: model:ir.actions.todo,note:l10n_es_toponyms.config_wizard_toponyms_es
-msgid "You can select the toponym version of the Spanish states and add the Spanish cities associated to the zip codes."
-msgstr "Puede seleccionar la versión de los topónimos de las provincias españolas y añadir las ciudades españolas asociadas a los códigos postales."
-
-#. module: l10n_es_toponyms
-#: selection:config.es.toponyms,city_module:0
-msgid "Uninstalled"
-msgstr "Desinstalado"
-
-#. module: l10n_es_toponyms
-#: selection:config.es.toponyms,city_module:0
-msgid "Installed"
-msgstr "Instalado"
-
-#. module: l10n_es_toponyms
-#: field:config.es.toponyms,city_module:0
-msgid "City module"
-msgstr "Módulo city"
-
-#. module: l10n_es_toponyms
-#: field:config.es.toponyms,name:0
-msgid "Name"
-msgstr "Nombre"
+#: help:config.es.toponyms,city_info:0
+msgid "Do you want to add city and state information associated to the zip codes for all the spanish cities? This allows to fill automatically the city and states fields of partner and contact forms from the zip code."
+msgstr "¿Quiere asociar municipios y provincias a códigos postales de todos los municipios del Estado español? Permite rellenar automáticamente los campos 'Ciudad' y 'Provincia' del formulario de empresa a partir del código postal."
 
 #. module: l10n_es_toponyms
 #: view:config.es.toponyms:0
@@ -67,30 +46,29 @@ msgid "title"
 msgstr "título"
 
 #. module: l10n_es_toponyms
-#: selection:config.es.toponyms,city_info:0
-#: selection:config.es.toponyms,city_info_recover:0
-msgid "No"
-msgstr "No"
+#: view:config.es.toponyms:0
+msgid "Spanish states and cities configuration"
+msgstr "Configuración de las provincias y ciudades españolas"
 
 #. module: l10n_es_toponyms
 #: model:ir.model,name:l10n_es_toponyms.model_config_es_toponyms
 msgid "config.es.toponyms"
-msgstr "config.es.toponyms"
+msgstr "Asistente de configuración de los topónimos españoles"
 
 #. module: l10n_es_toponyms
 #: field:config.es.toponyms,state:0
 msgid "State names"
-msgstr "Nombres de las provincias"
+msgstr "Nombre de las provincias"
 
 #. module: l10n_es_toponyms
-#: help:config.es.toponyms,city_info:0
-msgid "Do you want to add city and state information associated to the zip codes for all the Spanish cities? This allows to fill automatically the city and states fields of partner and contact forms from the zip code."
-msgstr "¿Quiere asociar municipios y provincias a códigos postales de todos los municipios del Estado Español? Permite rellenar automáticamente los campos ciudad y provincia del formulario de empresa y contacto a partir del código postal."
+#: view:config.es.toponyms:0
+msgid "Associate city and state information to zip codes"
+msgstr "Asociar la información de ciudad y provincia a los códigos postales"
 
 #. module: l10n_es_toponyms
 #: model:ir.actions.act_window,name:l10n_es_toponyms.action_config_toponyms_es_form
 msgid "Spanish toponyms configuration"
-msgstr "Configuración de los topónimos del Estado Español"
+msgstr "Configuración de los topónimos del Estado español"
 
 #. module: l10n_es_toponyms
 #: selection:config.es.toponyms,state:0
@@ -98,9 +76,14 @@ msgid "Both"
 msgstr "Ambos"
 
 #. module: l10n_es_toponyms
+#: field:config.es.toponyms,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_es_toponyms
 #: view:config.es.toponyms:0
-msgid "Select the toponym version of the Spanish states"
-msgstr "Seleccione la versión de los topónimos de las provincias del Estado Español"
+msgid "NOTE: If you are planning to install 'city' and 'l10n_es_toponyms_city' modules, this operation is not needed."
+msgstr "NOTA: Si planea instalar los módulos 'city' y 'l10n_es_toponyms_city', esta operación no es necesaria."
 
 #. module: l10n_es_toponyms
 #: selection:config.es.toponyms,state:0
@@ -118,29 +101,19 @@ msgid "City information"
 msgstr "Información de ciudad"
 
 #. module: l10n_es_toponyms
-#: view:config.es.toponyms:0
-msgid "Add city and state information associated to the zip codes for all the Spanish cities"
-msgstr "Asociar municipios y provincias a códigos postales de todos los municipios del Estado Español"
-
-#. module: l10n_es_toponyms
-#: field:config.es.toponyms,city_info_recover:0
-msgid "City information recover"
-msgstr "Recuperación de información de ciudades"
+#: model:ir.actions.todo,note:l10n_es_toponyms.config_wizard_toponyms_es
+msgid "You can select the toponym version of the spanish states and add the spanish cities associated to the zip codes."
+msgstr "Puede seleccionar la versión de los topónimos de las provincias españolas y añadir las ciudades españolas asociadas a los códigos postales."
 
 #. module: l10n_es_toponyms
 #: help:config.es.toponyms,state:0
-msgid "Toponym version of the Spanish states. For example: Official (Girona), Spanish (Gerona), Both (Gerona / Girona)"
-msgstr "Versión de los topónimos de las provincias del Estado Español. Por ejemplo: Oficial (Lleida), Castellano (Lérida), Ambos (Lérida / Lleida)"
-
-#. module: l10n_es_toponyms
-#: field:config.es.toponyms,config_logo:0
-msgid "Image"
-msgstr "Imagen"
+msgid "Toponym version of the spanish states. For example: Official (Girona), Spanish (Gerona), Both (Gerona / Girona)"
+msgstr "Versión de los topónimos de las provincias del Estado español. Por ejemplo: Oficial (Lleida), Castellano (Lérida), Ambos (Lérida / Lleida)"
 
 #. module: l10n_es_toponyms
 #: view:config.es.toponyms:0
-msgid "State and city configuration"
-msgstr "Configuración de provincia y ciudad"
+msgid "Select the toponym version of the spanish states"
+msgstr "Seleccione la versión de los topónimos de las provincias del Estado español"
 
 #. module: l10n_es_toponyms
 #: selection:config.es.toponyms,state:0
@@ -149,12 +122,6 @@ msgstr "Español"
 
 #. module: l10n_es_toponyms
 #: selection:config.es.toponyms,city_info:0
-#: selection:config.es.toponyms,city_info_recover:0
 msgid "Yes"
 msgstr "Sí"
-
-#. module: l10n_es_toponyms
-#: help:config.es.toponyms,city_info_recover:0
-msgid "If the city module has been installed, do you want to recover the location data (city information) from the zip code there was in the partner addresses before installing the city module?"
-msgstr "Si el módulo 'city' ha sido instalado, ¿Quiere recuperar los datos de ubicación (ciudad) a partir del código postal que había en los contactos de empresas antes de instalar el módulo 'city'?"
 
