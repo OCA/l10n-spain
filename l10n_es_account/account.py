@@ -94,12 +94,13 @@ class account_account_template(osv.osv):
         """If 'account_root_id' is changed from a chart template, we must
            recompute all accounts that are children"""
         chart_obj = self.pool.get('account.chart.template')
+        acc_tmpl_obj = self.pool.get('account.account.template')
         if context is None:
             context = {}
         templates = chart_obj.browse(cr, uid, ids, context=context)
         account_root_ids = [t.account_root_id.id for t in templates]
         search_params = [('parent_id', 'child_of', account_root_ids)]
-        res = chart_obj.search(cr, uid, search_params, context=context)
+        res = acc_tmpl_obj.search(cr, uid, search_params, context=context)
         return res
 
     def _get_account_from_account(self, cr, uid, ids, context=None):
