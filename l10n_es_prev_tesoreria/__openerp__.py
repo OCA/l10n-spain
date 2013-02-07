@@ -34,7 +34,8 @@
         Formularios para realizar las previsiones de tesoreria
     """,
     "init_xml": [],
-    'update_xml': [
+    'update_xml': ["security/l10n_es_tesoreria_security.xml",
+                   "security/ir.model.access.csv",
                    "wizard/wiz_crear_factura_view.xml",
                    "prev_tesoreria_view.xml",
                    "prev_tesoreria_plantilla_view.xml",

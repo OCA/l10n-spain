@@ -167,8 +167,8 @@
 			==========================================
 		-->
 		
-		<menuitem id="menu_finance_tesoreria_pla" name="Plantillas de Previsión de Tesorería" parent="menu_finance_tesoreria" sequence="8"/>
-		<menuitem action="action_account_pla_tesoreria_form" id="menu_action_account_tesoreria_pla_form" parent="menu_finance_tesoreria_pla"/>
+		<menuitem id="menu_finance_tesoreria_pla" name="Plantillas de Previsión de Tesorería" parent="menu_finance_tesoreria" sequence="8" groups="tesoreria_manager"/>
+		<menuitem action="action_account_pla_tesoreria_form" id="menu_action_account_tesoreria_pla_form" parent="menu_finance_tesoreria_pla" groups="tesoreria_manager"/>
 
 	</data>
 </openerp>
