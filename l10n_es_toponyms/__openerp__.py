@@ -34,12 +34,15 @@
   * Añade las 52 provincias actuales del Estado Español con posibilidad de escoger versión oficial, castellana o ambas.
   * Proporciona un asistente para dar de alta los municipios y provincias por defecto asociados a los 15839 códigos postales del Estado español. Permite rellenar automáticamente los campos ciudad y provincia del formulario de empresa y contacto a partir del código postal.
 
-Los datos han sido obtenidos de los datos públicos del Instituto Nacional de Estadística (INE).""",
+Los datos han sido obtenidos de los datos públicos del Instituto Nacional de Estadística (INE).
+
+AVISO: El asistente sólo funciona ejecutándose desde el usuario 'admin'.""",
     "depends" : ["base"],
     "license" : "AGPL-3",
     "data" : [
 		"wizard/l10n_es_toponyms_wizard.xml",
 	],
+    'images': ['images/l10n_es_toponyms_config.png',],
     "demo" : [ ],
     "active": False,
     "installable": True
