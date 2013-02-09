@@ -46,7 +46,7 @@ class config_es_toponyms(osv.osv_memory):
 		"""It imports spanish states information trough an XML file."""
 		file_name = 'l10n_es_toponyms_states_%s.xml' %state_type
 		try:
-			fp = tools.file_open(os.path.join('l10n_es_toponyms', file_name))
+			fp = tools.file_open(os.path.join('l10n_es_toponyms', os.path.join('wizard', file_name)))
 		except IOError, e:
 			fp = None
 		if fp:
