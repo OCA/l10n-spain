@@ -4523,7 +4523,7 @@
         <record id="pgc_pymes_472000" model="account.account.template">
             <field name="code">472000</field>
             <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_472"/>
+            <field name="parent_id" ref="pgc_pymes_472"/>
             <field name="type">other</field>
             <field name="name">Hacienda Pública. IVA soportado</field>
             <field name="user_type" ref="tax"/>
