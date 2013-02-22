@@ -143,7 +143,7 @@ class wizard_payment_file_spain(osv.osv_memory):
             txt_remesa = csb.create_file(cr, uid, orden, recibos, context)
 
         except Log, log:
-            form_obj.write({'note': log,'pay': False})
+            form_obj.write({'note': log(),'pay': False})
             return True
 
         else:
