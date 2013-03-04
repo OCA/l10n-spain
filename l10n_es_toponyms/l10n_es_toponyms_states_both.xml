@@ -4,262 +4,272 @@
         <record model='res.country.state' id='ES01'>
             <field name='name'>Alava / Araba</field>
             <field name='code'>01</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES02'>
             <field name='name'>Albacete</field>
             <field name='code'>02</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES03'>
             <field name='name'>Alicante / Alacant</field>
             <field name='code'>03</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES04'>
             <field name='name'>Almería</field>
             <field name='code'>04</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES33'>
             <field name='name'>Asturias</field>
             <field name='code'>33</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES05'>
             <field name='name'>Avila</field>
             <field name='code'>05</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES06'>
             <field name='name'>Badajoz</field>
             <field name='code'>06</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES07'>
             <field name='name'>Baleares / Illes Balears</field>
             <field name='code'>07</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES08'>
             <field name='name'>Barcelona</field>
             <field name='code'>08</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES09'>
             <field name='name'>Burgos</field>
             <field name='code'>09</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES10'>
             <field name='name'>Cáceres</field>
             <field name='code'>10</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES11'>
             <field name='name'>Cádiz</field>
             <field name='code'>11</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES39'>
             <field name='name'>Cantabria</field>
             <field name='code'>39</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES12'>
             <field name='name'>Castellón / Castelló</field>
             <field name='code'>12</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES51'>
             <field name='name'>Ceuta</field>
             <field name='code'>51</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES13'>
             <field name='name'>Ciudad Real</field>
             <field name='code'>13</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES14'>
             <field name='name'>Córdoba</field>
             <field name='code'>14</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES15'>
             <field name='name'>La Coruña / A Coruña</field>
             <field name='code'>15</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES16'>
             <field name='name'>Cuenca</field>
             <field name='code'>16</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES17'>
             <field name='name'>Gerona / Girona</field>
             <field name='code'>17</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES18'>
             <field name='name'>Granada</field>
             <field name='code'>18</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES19'>
             <field name='name'>Guadalajara</field>
             <field name='code'>19</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES20'>
             <field name='name'>Guipuzcoa / Gipuzkoa</field>
             <field name='code'>20</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES21'>
             <field name='name'>Huelva</field>
             <field name='code'>21</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES22'>
             <field name='name'>Huesca</field>
             <field name='code'>22</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES23'>
             <field name='name'>Jaen</field>
             <field name='code'>23</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES24'>
             <field name='name'>León</field>
             <field name='code'>24</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES25'>
             <field name='name'>Lérida / Lleida</field>
             <field name='code'>25</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES27'>
             <field name='name'>Lugo</field>
             <field name='code'>27</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES28'>
             <field name='name'>Madrid</field>
             <field name='code'>28</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES29'>
             <field name='name'>Málaga</field>
             <field name='code'>29</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES52'>
             <field name='name'>Melilla</field>
             <field name='code'>52</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES30'>
             <field name='name'>Murcia</field>
             <field name='code'>30</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES31'>
             <field name='name'>Navarra / Nafarroa</field>
             <field name='code'>31</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES32'>
             <field name='name'>Orense / Ourense</field>
             <field name='code'>32</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES34'>
             <field name='name'>Palencia</field>
             <field name='code'>34</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES35'>
             <field name='name'>Las Palmas</field>
             <field name='code'>35</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES36'>
             <field name='name'>Pontevedra</field>
             <field name='code'>36</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES26'>
             <field name='name'>La Rioja</field>
             <field name='code'>26</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES37'>
             <field name='name'>Salamanca</field>
             <field name='code'>37</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES38'>
             <field name='name'>Santa Cruz de Tenerife</field>
             <field name='code'>38</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES40'>
             <field name='name'>Segovia</field>
             <field name='code'>40</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES41'>
             <field name='name'>Sevilla</field>
             <field name='code'>41</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES42'>
             <field name='name'>Soria</field>
             <field name='code'>42</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES43'>
             <field name='name'>Tarragona</field>
             <field name='code'>43</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES44'>
             <field name='name'>Teruel</field>
             <field name='code'>44</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES45'>
             <field name='name'>Toledo</field>
             <field name='code'>45</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES46'>
             <field name='name'>Valencia / València</field>
             <field name='code'>46</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES47'>
             <field name='name'>Valladolid</field>
             <field name='code'>47</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES48'>
             <field name='name'>Vizcaya / Bizkaia</field>
             <field name='code'>48</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES49'>
             <field name='name'>Zamora</field>
             <field name='code'>49</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
         </record>
         <record model='res.country.state' id='ES50'>
             <field name='name'>Zaragoza</field>
             <field name='code'>50</field>
-            <field search="[('code','=','ES')]" model='res.country' name='country_id'/>
+            <field name="country_id" ref="base.es"/>
+        </record>
+        <record model='res.country.state' id='ES51'>
+            <field name='name'>Ceuta</field>
+            <field name='code'>51</field>
+            <field name="country_id" ref="base.es"/>
+        </record>
+        <record model='res.country.state' id='ES52'>
+            <field name='name'>Melilla</field>
+            <field name='code'>52</field>
+            <field name="country_id" ref="base.es"/>
         </record>
     </data>
 </openerp>
