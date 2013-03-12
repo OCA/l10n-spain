@@ -151,9 +151,15 @@ class wizard_payment_file_spain(osv.osv_memory):
             txt_remesa = txt_remesa.replace('\r\n','\n').replace('\n','\r\n')
 
             file = base64.encodestring(txt_remesa.encode('utf-8'))
-            fname = (_('remesa') + '_' + orden.mode.tipo + '_' + orden.reference + '.txt').replace('/','-')
-            self.pool.get('ir.attachment').create(cr, uid, {
-                'name': _('Remesa ') + orden.mode.tipo + ' ' + orden.reference,
+            fname = (_('Remittance_%s_%s.txt') %(orden.mode.tipo, orden.reference)).replace('/','-')
+            # Borrar posible anterior adjunto de la exportación
+            obj_attachment = self.pool.get('ir.attachment')
+            attachment_ids = obj_attachment.search(cr, uid, [('name', '=', fname), ('res_model', '=', 'payment.order')])
+            if len(attachment_ids):
+                obj_attachment.unlink(cr, uid, attachment_ids)
+            # Adjuntar nuevo archivo de remesa
+            obj_attachment.create(cr, uid, {
+                'name': fname,
                 'datas': file,
                 'datas_fname': fname,
                 'res_model': 'payment.order',

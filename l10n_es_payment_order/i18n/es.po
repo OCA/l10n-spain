@@ -316,12 +316,6 @@ msgid "CSB 19 Options"
 msgstr "Opciones CSB 19"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:152
-#, python-format
-msgid "remesa"
-msgstr "remesa"
-
-#. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:69
 #, python-format
 msgid "User error:\n"
@@ -395,8 +389,8 @@ msgstr "Gastos por cuenta del ordenante"
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:154
 #, python-format
-msgid "Remesa "
-msgstr "Remesa "
+msgid "Remittance_%s_%s.txt"
+msgstr "Remesa_%s_%s.txt"
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,cost_key:0
