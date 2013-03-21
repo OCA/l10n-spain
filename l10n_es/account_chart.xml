@@ -59,25 +59,25 @@
             <field name="name">Gastos</field>
             <field name="code">gastos</field>
             <field name="report_type">expense</field>
-            <field name="close_method">none</field>
+            <field name="close_method">balance</field>
         </record>
         <record id="ingresos" model="account.account.type">
             <field name="name">Ingresos</field>
             <field name="code">ingresos</field>
             <field name="report_type">income</field>
-            <field name="close_method">none</field>
+            <field name="close_method">balance</field>
         </record>
         <record id="gastos_neto" model="account.account.type">
             <field name="name">Gastos patrimonio neto</field>
             <field name="code">gastos_neto</field>
             <field name="report_type">expense</field>
-            <field name="close_method">none</field>
+            <field name="close_method">balance</field>
         </record>
         <record id="ingresos_neto" model="account.account.type">
             <field name="name">Ingresos patrimonio neto</field>
             <field name="code">ingresos_neto</field>
             <field name="report_type">income</field>
-            <field name="close_method">none</field>
+            <field name="close_method">balance</field>
         </record>
 
 
