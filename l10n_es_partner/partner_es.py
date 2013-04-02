@@ -141,8 +141,9 @@ res_partner()
 
 class l10n_es_partner_import_wizard(osv.osv_memory):
     _name = 'l10n.es.partner.import.wizard'
+    _inherit = 'res.config.installer'
 
-    def action_import(self, cr, uid, ids, context=None):
+    def execute(self, cr, uid, ids, context=None):
         try:
             fp = tools.file_open(os.path.join('l10n_es_partner', 'data_banks.xml'))
         except IOError, e:
@@ -150,6 +151,7 @@ class l10n_es_partner_import_wizard(osv.osv_memory):
         idref = {}
         tools.convert_xml_import(cr, 'l10n_es_partner', fp,  idref, 'init', noupdate=True)
         return {}
+        
 l10n_es_partner_import_wizard()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

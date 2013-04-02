@@ -1,13 +1,13 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* l10n_ES_partner
+#	* l10n_es_partner
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.6\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2009-09-23 01:31:24+0000\n"
-"PO-Revision-Date: 2009-09-23 01:31:24+0000\n"
+"Project-Id-Version: OpenERP Server 6.1-20121024-233156\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-02 12:25+0000\n"
+"PO-Revision-Date: 2013-04-02 12:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,74 +15,57 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: l10n_ES_partner
-#: field:res.bank,website:0
-msgid "Website"
+#. module: l10n_es_partner
+#: model:ir.actions.todo,note:l10n_es_partner.config_wizard_toponyms_es
+msgid "Import Spanish bank data."
 msgstr ""
 
-#. module: l10n_ES_partner
-#: field:res.partner,comercial:0
-msgid "Trade name"
-msgstr ""
-
-#. module: l10n_ES_partner
-#: constraint:ir.ui.view:0
-msgid "Invalid XML for View Architecture!"
-msgstr ""
-
-#. module: l10n_ES_partner
-#: code:addons/l10n_ES_partner/partner_es.py:0
-#, python-format
-msgid "Bank account should have 20 digits."
-msgstr ""
-
-#. module: l10n_ES_partner
-#: constraint:ir.model:0
-msgid "The Object name must start with x_ and not contain any special character !"
-msgstr ""
-
-#. module: l10n_ES_partner
-#: view:l10n.es.partner.import.wizard:0
-msgid "This wizard will import Spanish bank data."
-msgstr ""
-
-#. module: l10n_ES_partner
-#: field:res.partner.bank,acc_country_id:0
-msgid "Bank country"
-msgstr ""
-
-#. module: l10n_ES_partner
-#: model:ir.module.module,description:l10n_ES_partner.module_meta_information
-msgid "Funcionalidades:\n"
-"    * Añade el campo *Nombre Comercial* a las empresas\n"
-"    * Añades campos nombre largo, CIF y web a los bancos\n"
-"    * Añade datos de 191 bancos y cajas españolas extraídos del registro oficial del Banco de España\n"
-"    * Permite validar las cuentas bancarias, para ello añade un campo de país a los bancos de las empresas\n"
-"\n"
-"Funcionamiento de la validación de la cuenta bancaria:\n"
-"    * Se descartan todos los caracteres que no sean dígitos del campo número de cuenta.\n"
-"    * Si los dígitos son 18 calcula los dos dígitos de control\n"
-"    * Si los dígitos son 20 calcula los dos dígitos de control e ignora los actuales\n"
-"        Presenta el resultado con el formato \"1234 5678 06 1234567890\"\n"
-"    * Si el número de dígitos es diferente de 18 0 20 deja el valor inalterado\n"
-"NOTA\n"
-"Se ha eliminado la validación de CIF/NIF españoles, pues el módulo base_vat de OpenERP 5.0 añade un campo CIF/NIF en la pestaña de contabilidad de las empresas y la validación automática de los CIF de 27 paises europeos. Los CIFs deben introducirse añadiendo al principio los 2 caracteres que identifican cada país en mayúsculas (ES para España), por ejemplo ESB64425879\n"
-"\n"
-"NOTA: Éste módulo añade un asistente en Empresas/Configuración/Bancos para la importación de todos los bancos y cajas de España. Antes de ejecutar éste asistente deberá tener importadas las provincias disponibles en el módulo l10n_ES_toponyms.\n"
-""
-msgstr ""
-
-#. module: l10n_ES_partner
+#. module: l10n_es_partner
 #: field:res.bank,lname:0
 msgid "Long name"
 msgstr ""
 
-#. module: l10n_ES_partner
-#: help:res.bank,vat:0
-msgid "Value Added Tax number"
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:0
+msgid "This wizard will import Spanish bank data."
 msgstr ""
 
-#. module: l10n_ES_partner
+#. module: l10n_es_partner
+#: field:res.bank,vat:0
+msgid "VAT code"
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:0
+msgid "Import"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.actions.act_window,name:l10n_es_partner.action_partner_import_wizard
+msgid "Import bank data wizard"
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:res.bank,website:0
+msgid "Website"
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:0
+msgid "title"
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:0
+msgid "This wizard imports all Spanish bank entities names and their associated data."
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:0
+msgid "Spanish bank data."
+msgstr ""
+
+#. module: l10n_es_partner
 #: help:res.partner.bank,acc_country_id:0
 msgid "If the country of the bank is Spain, it validates the bank code. It only reads the digit characters of the bank code:\n"
 "- If the number of digits is 18, computes the two digits of control.\n"
@@ -91,60 +74,72 @@ msgid "If the country of the bank is Spain, it validates the bank code. It only 
 "The result is shown in the '1234 5678 06 1234567890' format."
 msgstr ""
 
-#. module: l10n_ES_partner
-#: model:ir.actions.act_window,name:l10n_ES_partner.action_partner_import_wizard
-#: model:ir.ui.menu,name:l10n_ES_partner.menu_import_wizard
-msgid "Import Bank Data Wizard "
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_bank
+msgid "Bank"
 msgstr ""
 
-#. module: l10n_ES_partner
-#: code:addons/l10n_ES_partner/partner_es.py:0
+#. module: l10n_es_partner
+#: constraint:res.partner.bank:0
+msgid "\n"
+"Please define BIC/Swift code on bank for bank type IBAN Account to make valid payments"
+msgstr ""
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/partner_es.py:87
+#, python-format
+msgid "Bank account should have 20 digits."
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:res.partner.bank,acc_country_id:0
+msgid "Bank country"
+msgstr ""
+
+#. module: l10n_es_partner
+#: help:res.bank,vat:0
+msgid "Value Added Tax number"
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:res.partner,comercial:0
+msgid "Trade name"
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:res.bank,code:0
+msgid "Code"
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:l10n.es.partner.import.wizard,config_logo:0
+msgid "Image"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr ""
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/partner_es.py:87
+#: code:addons/l10n_es_partner/partner_es.py:89
 #, python-format
 msgid "Warning"
 msgstr ""
 
-#. module: l10n_ES_partner
-#: field:res.bank,vat:0
-msgid "VAT code"
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_partner
+msgid "Partner"
 msgstr ""
 
-#. module: l10n_ES_partner
-#: view:l10n.es.partner.import.wizard:0
-msgid "Import Wizard"
-msgstr ""
-
-#. module: l10n_ES_partner
-#: constraint:ir.actions.act_window:0
-msgid "Invalid model name in the action definition."
-msgstr ""
-
-#. module: l10n_ES_partner
-#: view:l10n.es.partner.import.wizard:0
-msgid "Import"
-msgstr ""
-
-#. module: l10n_ES_partner
-#: view:l10n.es.partner.import.wizard:0
-msgid "Cancel"
-msgstr ""
-
-#. module: l10n_ES_partner
-#: model:ir.module.module,shortdesc:l10n_ES_partner.module_meta_information
-msgid "Adaptación de partner para Estado Español"
-msgstr ""
-
-#. module: l10n_ES_partner
-#: code:addons/l10n_ES_partner/partner_es.py:0
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/partner_es.py:89
 #, python-format
 msgid "Invalid bank account."
 msgstr ""
 
-#. module: l10n_ES_partner
-#: model:ir.model,name:l10n_ES_partner.model_l10n_es_partner_import_wizard
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_l10n_es_partner_import_wizard
 msgid "l10n.es.partner.import.wizard"
-msgstr ""
-
-#. module: l10n_ES_partner
-#: field:res.bank,code:0
-msgid "Code"
 msgstr ""
