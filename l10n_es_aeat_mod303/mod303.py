@@ -172,8 +172,6 @@ class l10n_es_aeat_mod303_report(osv.osv):
                 
             ordered_lines = sorted(lines, key=lambda k: k['code'])
             
-#            for line in ordered_lines:
-#                print line
             
             for code in dict_code_values.keys():
                 for line in ordered_lines:

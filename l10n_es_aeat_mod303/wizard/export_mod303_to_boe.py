@@ -50,9 +50,10 @@ class l10n_es_aeat_mod303_export_to_boe(osv.osv_memory):
         
         file_contents += ' '                        ## pos  9
         
-        ## pos 10, tipo de declaración - " "
+        ## pos 10 
+        ## tipo de declaración - "Para impresión, cualquier caracter Alfanumerico o 'N' si la autoliquidación se declara SIN ACTIVIDAD"
         
-        file_contents += self._formatString(" ",1)  ## pos 10
+        file_contents += self._formatString("N" if report.sin_actividad else " ",1)  ## pos 10
 
         ## identificación (1)
         
@@ -115,8 +116,6 @@ class l10n_es_aeat_mod303_export_to_boe(osv.osv_memory):
         
         for i in range(22,34):
             file_contents += self._formatNumber(lines.get("[%s]" % i), 15,2)
-            print "[%s]" % i
-
             
         # -- 
         

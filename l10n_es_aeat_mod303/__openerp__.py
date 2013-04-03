@@ -39,7 +39,10 @@ Módulo para la presentación del modelo 303. Exportación a formato AEAT.
         "l10n_es_aeat","l10n_es_aeat_mod347"
     ],
     "update_xml" : [
-            "mod303_view.xml","mod303_workflow.xml"
+            "mod303_view.xml",
+            "mod303_workflow.xml",
+            "security/ir.model.access.csv",
+            
     ],
     "demo_xml" : [],
     "test" : [],
