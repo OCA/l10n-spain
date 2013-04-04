@@ -4,12 +4,9 @@
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2008-2010 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                            Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2010-2013, OPENTIA Group (<http://opentia.com>)
-#
+#    Copyright (c) 2012-2013, Grupo OPENTIA (<http://opentia.com>) Registered EU Trademark.
+#                            Dpto. Consultoría <consultoria@opentia.es>
 #    $Id$
-#
-#    The word "OPENTIA" is an European Community Trademark property of the Opentia Group
-#             "(adaptación a plan contable de asociaciones y ONGs españolas)"
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
