@@ -73,10 +73,12 @@
         <field name="model">res.bank</field>
         <field name="type">search</field>
         <field name="arch" type="xml">
-            <field name="code" />
-            <field name="name"/>
-            <field name="bic"/>
-            <field name="country"/>
+            <search>
+                <field name="code" />
+                <field name="name"/>
+                <field name="bic"/>
+                <field name="country"/>
+            </search>
         </field>
     </record>
     <!-- Añadimos el campo nombre comercial a empresa -->
@@ -93,28 +95,50 @@
 
     <!-- Import wizard -->
     <record model="ir.ui.view" id="partner_import_wizard">
-        <field name="name">l10n.es.partner.import.form</field>
+        <field name="name">l10n_es.bank_import.form</field>
         <field name="model">l10n.es.partner.import.wizard</field>
+        <field name="inherit_id" ref="base.res_config_installer"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <form string="Import Wizard">
-                <label colspan="4" string="This wizard will import Spanish bank data."/>
-                <button icon="gtk-cancel" special="cancel" string="Cancel" type="object"/>
-                <button icon="gtk-ok" name="action_import" string="Import" type="object"/>
-            </form>
+            <data>
+                <separator string="title" position="attributes">
+                     <attribute name="string">This wizard will import Spanish bank data.</attribute>
+                </separator>
+                <xpath expr="//label[@string='description']" position="attributes">
+                    <attribute name="string">Spanish bank data.</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_next']" position="attributes">
+                    <attribute name="string">Import</attribute>
+                </xpath>
+                <xpath expr='//separator[@string="vsep"]' position='attributes'>
+                    <attribute name='rowspan'>23</attribute>
+                    <attribute name='string'></attribute>
+                </xpath>
+                <group colspan="8">
+                    <label colspan="8" string="This wizard imports all Spanish bank entities names and their associated data."/>
+                </group>
+            </data>
         </field>
     </record>
 
     <record id="action_partner_import_wizard" model="ir.actions.act_window">
-        <field name="name">Import Bank Data Wizard </field>
+        <field name="name">Import bank data wizard</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">l10n.es.partner.import.wizard</field>
+        <field name="view_id" ref="partner_import_wizard"/>
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
 
-    <menuitem parent="base.menu_action_res_bank_form" action="action_partner_import_wizard" id="menu_import_wizard"/>
+    <!-- register on configuration -->
+    <record id="config_wizard_toponyms_es" model="ir.actions.todo">
+        <field name="name">Import bank data</field>
+        <field name="note">Import Spanish bank data.</field>
+        <field name="action_id" ref="action_partner_import_wizard"/>
+        <field name="sequence">25</field>
+        <field name="restart">onskip</field>
+    </record>
 
   </data>
 </openerp>
