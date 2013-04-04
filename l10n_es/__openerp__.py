@@ -53,8 +53,8 @@ for yearly account reporting (balance, profit & losses).
         "l10n_es_wizard.xml",
         'data/l10n_es_data.xml',
         'account_chart_assoc.xml',
-        'fiscal_templates_assoc.xml',
         'taxes_data_assoc.xml',
+        'fiscal_templates_assoc.xml',
     ],
     "demo_xml" : [],
     "update_xml" : [
