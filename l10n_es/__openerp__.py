@@ -4,6 +4,8 @@
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2008-2010 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                            Jordi Esteve <jesteve@zikzakmedia.com>
+#    Copyright (c) 2012-2013, Grupo OPENTIA (<http://opentia.com>) Registered EU Trademark.
+#                            Dpto. Consultoría <consultoria@opentia.es>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -23,7 +25,7 @@
 
 {
     "name" : "Spanish Charts of Accounts (PGCE 2008)",
-    "version" : "3.0",
+    "version" : "3.1",
     "author" : "Spanish Localization Team",
     'website' : 'https://launchpad.net/openerp-spain',
     "category" : "Localization/Account Charts",
@@ -32,6 +34,7 @@
 * Defines the following chart of account templates:
         * Spanish General Chart of Accounts 2008.
         * Spanish General Chart of Accounts 2008 for small and medium companies.
+        * Spanish General Chart of Accounts 2008 for associations.
 * Defines templates for sale and purchase VAT.
 * Defines tax code templates.
 
@@ -48,7 +51,10 @@ for yearly account reporting (balance, profit & losses).
         "taxes_data_pymes.xml",
         "fiscal_templates_pymes.xml",
         "l10n_es_wizard.xml",
-        'data/l10n_es_data.xml'
+        'data/l10n_es_data.xml',
+        'account_chart_assoc.xml',
+        'taxes_data_assoc.xml',
+        'fiscal_templates_assoc.xml',
     ],
     "demo_xml" : [],
     "update_xml" : [

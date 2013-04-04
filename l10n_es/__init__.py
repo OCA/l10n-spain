@@ -6,6 +6,8 @@
 #                       Pedro Tarrafeta (pedro@acysos.com)
 #    Copyright (c) 2008-2010 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                            Jordi Esteve <jesteve@zikzakmedia.com>
+#    Copyright (c) 2012-2013, Grupo OPENTIA (<http://opentia.com>) Registered EU Trademark.
+#                            Dpto. Consultoría <consultoria@opentia.es>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
