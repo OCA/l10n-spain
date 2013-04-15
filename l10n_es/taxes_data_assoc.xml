@@ -40,6 +40,53 @@
             <field name="sign">1.0</field>
             <field name="parent_id" ref="vat_code_chart_assoc_root"/>
         </record>
+
+	<!-- Exentas IVA -->
+        <record id="base_assoc_sop_ex" model="account.tax.code.template">
+            <field name="name">Base adquisiciones exentas</field>
+            <field name="company_id" model="res.company"  search="[]"/>
+            <field name="parent_id" ref="vat_code_chart_assoc_root"/>
+            <field name="code">--</field>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="base_assoc_rep_ex" model="account.tax.code.template">
+            <field name="name">Base ventas exentas</field>
+            <field name="code">--</field>
+            <field name="company_id" model="res.company"  search="[]"/>
+            <field name="parent_id" ref="vat_code_chart_assoc_root"/>
+            <field name="sign">1.0</field>
+        </record>         	
+
+        <!-- IVA Soportado -->
+        <record id="iva_assoc_sop_ex" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA Soportado exento (operaciones corrientes)</field>
+            <field eval="0.0" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field name="base_code_id" ref="base_assoc_sop_ex"/>
+            <field name="ref_base_code_id" ref="base_assoc_sop_ex"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <!-- IVA REPERCUTIDO-->
+        <record id="iva_assoc_rep_ex" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA Exento</field>
+            <field eval="0.0" name="amount"/>
+            <field name="type">percent</field>
+            <field name="base_code_id" ref="base_assoc_rep_ex"/>
+            <field name="ref_base_code_id" ref="base_assoc_rep_ex"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
 		
 		
 	
@@ -64,6 +111,13 @@
             <field name="parent_id" ref="iva_assoc_dev_base"/>
             <field name="sign">1.0</field>
         </record>
+
+		<record id="iva_assoc_dev_04_10" model="account.tax.code.template">
+            <field name="name">Régimen general IVA Devengado. Base Imponible 10%</field>
+            <field name="code">[04]</field>
+            <field name="parent_id" ref="iva_assoc_dev_base"/>
+            <field name="sign">1.0</field>
+        </record>
 		
         <record id="iva_assoc_dev_07" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Base Imponible 16%</field>
@@ -73,6 +127,13 @@
         </record>
         <record id="iva_assoc_dev_07_18" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Base Imponible 18%</field>
+            <field name="code">[07]</field>
+            <field name="parent_id" ref="iva_assoc_dev_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
+		<record id="iva_assoc_dev_07_21" model="account.tax.code.template">
+            <field name="name">Régimen general IVA Devengado. Base Imponible 21%</field>
             <field name="code">[07]</field>
             <field name="parent_id" ref="iva_assoc_dev_base"/>
             <field name="sign">1.0</field>
@@ -99,9 +160,23 @@
             <field name="parent_id" ref="iva_assoc_dev_base"/>
             <field name="sign">1.0</field>
         </record>
+
+		<record id="iva_assoc_dev_13_14" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Base Imponible 1.4%</field>
+            <field name="code">[13]</field>
+            <field name="parent_id" ref="iva_assoc_dev_base"/>
+            <field name="sign">1.0</field>
+        </record>
 		
         <record id="iva_assoc_dev_16" model="account.tax.code.template">
             <field name="name">Recargo Equivalencia Base Imponible 4%</field>
+            <field name="code">[16]</field>
+            <field name="parent_id" ref="iva_assoc_dev_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
+		<record id="iva_assoc_dev_16_52" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Base Imponible 5.2%</field>
             <field name="code">[16]</field>
             <field name="parent_id" ref="iva_assoc_dev_base"/>
             <field name="sign">1.0</field>
@@ -151,6 +226,13 @@
             <field name="parent_id" ref="iva_assoc_dev_21"/>
             <field name="sign">1.0</field>
         </record>
+
+		<record id="iva_assoc_dev_06_10" model="account.tax.code.template">
+            <field name="name">Régimen general IVA Devengado. Cuota 10%</field>
+            <field name="code">[06]</field>
+            <field name="parent_id" ref="iva_assoc_dev_21"/>
+            <field name="sign">1.0</field>
+        </record>
 		
         <record id="iva_assoc_dev_09" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Cuota 16%</field>
@@ -161,6 +243,13 @@
 
         <record id="iva_assoc_dev_09_18" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Cuota 18%</field>
+            <field name="code">[09]</field>
+            <field name="parent_id" ref="iva_assoc_dev_21"/>
+            <field name="sign">1.0</field>
+        </record>
+
+		<record id="iva_assoc_dev_09_21" model="account.tax.code.template">
+            <field name="name">Régimen general IVA Devengado. Cuota 21%</field>
             <field name="code">[09]</field>
             <field name="parent_id" ref="iva_assoc_dev_21"/>
             <field name="sign">1.0</field>
@@ -187,9 +276,23 @@
             <field name="parent_id" ref="iva_assoc_dev_21"/>
             <field name="sign">1.0</field>
         </record>
+
+		<record id="iva_assoc_dev_15_14" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia. Cuota 1.4%</field>
+            <field name="code">[15]</field>
+            <field name="parent_id" ref="iva_assoc_dev_21"/>
+            <field name="sign">1.0</field>
+        </record>
 		
         <record id="iva_assoc_dev_18" model="account.tax.code.template">
             <field name="name">Recargo Equivalencia. Cuota 4%</field>
+            <field name="code">[18]</field>
+            <field name="parent_id" ref="iva_assoc_dev_21"/>
+            <field name="sign">1.0</field>
+        </record>
+
+		<record id="iva_assoc_dev_18_52" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia. Cuota 5.2%</field>
             <field name="code">[18]</field>
             <field name="parent_id" ref="iva_assoc_dev_21"/>
             <field name="sign">1.0</field>
@@ -261,6 +364,20 @@
             <field name="parent_id" ref="iva_assoc_ded_22"/>
             <field name="sign">1.0</field>
         </record>
+
+		<record id="iva_assoc_ded_22_10" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores corrientes (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_22"/>
+            <field name="sign">1.0</field>
+        </record>
+
+		<record id="iva_assoc_ded_22_21" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores corrientes (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_22"/>
+            <field name="sign">1.0</field>
+        </record>
 		
 		<!-- Base en OPERACIONES INTERIORES CON BIENES DE INVERSIÓN-->
         <record id="iva_assoc_ded_24" model="account.tax.code.template">
@@ -299,6 +416,20 @@
 		
         <record id="iva_assoc_ded_24_4" model="account.tax.code.template">
             <field name="name">Base operaciones interiores bienes inversión (4%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_24"/>
+            <field name="sign">1.0</field>
+        </record>
+
+		<record id="iva_assoc_ded_24_10" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores bienes inversión (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_24"/>
+            <field name="sign">1.0</field>
+        </record>
+
+		<record id="iva_assoc_ded_24_21" model="account.tax.code.template">
+            <field name="name">Base operaciones interiores bienes inversión (21%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_assoc_ded_24"/>
             <field name="sign">1.0</field>
@@ -343,6 +474,19 @@
             <field name="parent_id" ref="iva_assoc_ded_26"/>
             <field name="sign">1.0</field>
         </record>
+
+		<record id="iva_assoc_ded_26_10" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes corrientes (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_26"/>
+            <field name="sign">1.0</field>
+        </record>
+		<record id="iva_assoc_ded_26_21" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes corrientes (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_26"/>
+            <field name="sign">1.0</field>
+        </record>
 		
 		<!-- Base EN LAS IMPORTACIONES DE BIENES DE INVERSIÓN-->
         <record id="iva_assoc_ded_28" model="account.tax.code.template">
@@ -378,6 +522,18 @@
         </record>
         <record id="iva_assoc_ded_28_4" model="account.tax.code.template">
             <field name="name">Base importaciones bienes inversión (4%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_28"/>
+            <field name="sign">1.0</field>
+        </record>
+		<record id="iva_assoc_ded_28_10" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes inversión (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_28"/>
+            <field name="sign">1.0</field>
+        </record>
+		<record id="iva_assoc_ded_28_21" model="account.tax.code.template">
+            <field name="name">Base importaciones bienes inversión (21%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_assoc_ded_28"/>
             <field name="sign">1.0</field>
@@ -421,6 +577,18 @@
             <field name="parent_id" ref="iva_assoc_ded_30"/>
             <field name="sign">1.0</field>
         </record>
+		<record id="iva_assoc_ded_30_10" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes corrientes (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_30"/>
+            <field name="sign">1.0</field>
+        </record>
+		<record id="iva_assoc_ded_30_21" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes corrientes (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_30"/>
+            <field name="sign">1.0</field>
+        </record>
 		
 		<!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES DE INVERSIÓN-->
         <record id="iva_assoc_ded_32" model="account.tax.code.template">
@@ -460,7 +628,54 @@
             <field name="parent_id" ref="iva_assoc_ded_32"/>
             <field name="sign">1.0</field>
         </record>
+		<record id="iva_assoc_ded_32_10" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes inversión (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_32"/>
+            <field name="sign">1.0</field>
+        </record>
+		<record id="iva_assoc_ded_32_21" model="account.tax.code.template">
+            <field name="name">Base adquisiciones intracomunitarias bienes inversión (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_32"/>
+            <field name="sign">1.0</field>
+        </record>
 
+		<!-- BASE RECARGO DE EQUIVALENCIA-->
+        <record id="iva_assoc_ded_10" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Ded. Base Imponible 0.5%</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_base_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_assoc_ded_13" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Ded. Base Imponible 1%</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_base_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_assoc_ded_13_14" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Ded. Base Imponible 1.4%</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_base_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_assoc_ded_16" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Ded. Base Imponible 4%</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_base_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_assoc_ded_16_52" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Ded. Base Imponible 5.2%</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_base_total"/>
+            <field name="sign">1.0</field>
+        </record>
 		
 		
 	<!-- IVA DEDUCIBLE Cuotas-->
@@ -505,8 +720,20 @@
             <field name="parent_id" ref="iva_assoc_ded_23"/>
             <field name="sign">1.0</field>
         </record>
+		<record id="iva_assoc_ded_23_10" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores corrientes (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_23"/>
+            <field name="sign">1.0</field>
+        </record>
         <record id="iva_assoc_ded_23_4" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores corrientes (4%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_23"/>
+            <field name="sign">1.0</field>
+        </record>
+		<record id="iva_assoc_ded_23_21" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores corrientes (21%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_assoc_ded_23"/>
             <field name="sign">1.0</field>
@@ -550,6 +777,18 @@
             <field name="parent_id" ref="iva_assoc_ded_25"/>
             <field name="sign">1.0</field>
         </record>
+		<record id="iva_assoc_ded_25_10" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores bienes inversión (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_25"/>
+            <field name="sign">1.0</field>
+        </record>
+		<record id="iva_assoc_ded_25_21" model="account.tax.code.template">
+            <field name="name">Cuotas soportadas operaciones interiores bienes inversión (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_25"/>
+            <field name="sign">1.0</field>
+        </record>
 		
 		<!-- Cuotas devengadas EN LAS IMPORTACIONES DE BIENES CORRIENTES-->
         <record id="iva_assoc_ded_27" model="account.tax.code.template">
@@ -585,6 +824,18 @@
         </record>
         <record id="iva_assoc_ded_27_4" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes corrientes (4%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_27"/>
+            <field name="sign">1.0</field>
+        </record>
+		<record id="iva_assoc_ded_27_10" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes corrientes (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_27"/>
+            <field name="sign">1.0</field>
+        </record>
+		<record id="iva_assoc_ded_27_21" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes corrientes (21%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_assoc_ded_27"/>
             <field name="sign">1.0</field>
@@ -628,7 +879,18 @@
             <field name="parent_id" ref="iva_assoc_ded_29"/>
             <field name="sign">1.0</field>
         </record>
-		
+		<record id="iva_assoc_ded_29_10" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes inversión (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_29"/>
+            <field name="sign">1.0</field>
+        </record>
+		<record id="iva_assoc_ded_29_21" model="account.tax.code.template">
+            <field name="name">Cuotas devengadas importaciones bienes inversión (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_29"/>
+            <field name="sign">1.0</field>
+        </record>
 		<!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES CORRIENTES-->
         <record id="iva_assoc_ded_31" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes corrientes</field>
@@ -667,7 +929,18 @@
             <field name="parent_id" ref="iva_assoc_ded_31"/>
             <field name="sign">1.0</field>
         </record>
-		
+		<record id="iva_assoc_ded_31_10" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes corrientes (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_31"/>
+            <field name="sign">1.0</field>
+        </record>
+		<record id="iva_assoc_ded_31_21" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes corrientes (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_31"/>
+            <field name="sign">1.0</field>
+        </record>
 		<!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES DE INVERSIÓN-->
         <record id="iva_assoc_ded_33" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes inversión</field>
@@ -706,6 +979,18 @@
             <field name="parent_id" ref="iva_assoc_ded_33"/>
             <field name="sign">1.0</field>
         </record>
+		<record id="iva_assoc_ded_33_10" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes inversión (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_33"/>
+            <field name="sign">1.0</field>
+        </record>
+		<record id="iva_assoc_ded_33_21" model="account.tax.code.template">
+            <field name="name">En adquisiciones intracomunitarias bienes inversión (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_assoc_ded_33"/>
+            <field name="sign">1.0</field>
+        </record>
 
 		<!--Otros Códigos de Impuestos-->
         <record id="base_assoc_intra_42" model="account.tax.code.template">
@@ -726,6 +1011,42 @@
             <field name="name">Inversión del sujeto pasivo</field>
             <field name="code">[44]</field>
             <field name="parent_id" ref="vat_code_chart_assoc_root"/>
+            <field name="sign">1.0</field>
+        </record>
+
+		<!--Cuota Recargo de Equivalencia-->
+        <record id="iva_assoc_ded_12" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Ded. Cuota 0.5%</field>
+            <field name="code">[12]</field>
+            <field name="parent_id" ref="iva_assoc_ded_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_assoc_ded_15" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Ded. Cuota 1%</field>
+            <field name="code">[15]</field>
+            <field name="parent_id" ref="iva_assoc_ded_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_assoc_ded_15_14" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Ded. Cuota 1.4%</field>
+            <field name="code">[15]</field>
+            <field name="parent_id" ref="iva_assoc_ded_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_assoc_ded_18" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Ded. Cuota 4%</field>
+            <field name="code">[18]</field>
+            <field name="parent_id" ref="iva_assoc_ded_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_assoc_ded_18_52" model="account.tax.code.template">
+            <field name="name">Recargo Equivalencia Ded. Cuota 5.2%</field>
+            <field name="code">[18]</field>
+            <field name="parent_id" ref="iva_assoc_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
 
@@ -759,6 +1080,14 @@
             <field name="name">Hacienda Pública. IVA soportado 8%</field>
             <field name="user_type" ref="tax"/>
         </record>
+		<record id="pgc_assoc_472010" model="account.account.template">
+            <field name="code">472010</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA soportado 10%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
 		
         <record id="pgc_assoc_472016" model="account.account.template">
             <field name="code">472016</field>
@@ -775,6 +1104,60 @@
             <field name="parent_id" ref="pgc_assoc_472"/>
             <field name="type">other</field>
             <field name="name">Hacienda Pública. IVA soportado 18%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+	<record id="pgc_assoc_472021" model="account.account.template">
+            <field name="code">472021</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA soportado 21%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+		<record id="pgc_assoc_472104" model="account.account.template">
+            <field name="code">472104</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA soportado. Recargo de Equivalencia 0.5%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_assoc_472108" model="account.account.template">
+            <field name="code">472108</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA soportado. Recargo de Equivalencia 1%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_assoc_472110" model="account.account.template">
+            <field name="code">472110</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA soportado. Recargo de Equivalencia 1.4%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_assoc_472118" model="account.account.template">
+            <field name="code">472118</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA soportado. Recargo de Equivalencia 4%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_assoc_472121" model="account.account.template">
+            <field name="code">472121</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA soportado. Recargo de Equivalencia 5.2%</field>
             <field name="user_type" ref="tax"/>
         </record>
 		
@@ -803,7 +1186,14 @@
             <field name="name">Hacienda Pública. IVA repercutido 8%</field>
             <field name="user_type" ref="tax"/>
         </record>
-		
+		<record id="pgc_assoc_477010" model="account.account.template">
+            <field name="code">477010</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_477"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA repercutido 10%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
         <record id="pgc_assoc_477016" model="account.account.template">
             <field name="code">477016</field>
             <field name="reconcile" eval="True"/>
@@ -821,13 +1211,66 @@
             <field name="name">Hacienda Pública. IVA repercutido 18%</field>
             <field name="user_type" ref="tax"/>
         </record>
-		
+		<record id="pgc_assoc_477021" model="account.account.template">
+            <field name="code">477021</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_477"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA repercutido 21%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
         <record id="pgc_assoc_475001" model="account.account.template">
             <field name="code">475001</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="pgc_assoc_4750"/>
             <field name="type">payable</field>
             <field name="name">Hacienda acreedora IVA</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+		<record id="pgc_assoc_477104" model="account.account.template">
+            <field name="code">477104</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_4771"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA Recargo de Equivalencia 0.5%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_assoc_477108" model="account.account.template">
+            <field name="code">477108</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_4771"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA Recargo de Equivalencia 1%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_assoc_477110" model="account.account.template">
+            <field name="code">477110</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_4771"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA Recargo de Equivalencia 1.4%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_assoc_477118" model="account.account.template">
+            <field name="code">477118</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_4771"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA Recargo de Equivalencia 4%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
+        <record id="pgc_assoc_477121" model="account.account.template">
+            <field name="code">477121</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_4771"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA Recargo de Equivalencia 5.2%</field>
             <field name="user_type" ref="tax"/>
         </record>
 		
@@ -945,6 +1388,42 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+
+		<record id="iva_assoc_sop_10" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">10% IVA Soportado (operaciones corrientes)</field>
+            <field eval="0.10" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_472010"/>
+            <field name="account_paid_id" ref="pgc_assoc_472010"/>
+            <field name="base_code_id" ref="iva_assoc_ded_22_10"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_23_10"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_22_10"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_23_10"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="iva_assoc_sop_10_inv" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">10% IVA Soportado (bienes de inversión)</field>
+            <field eval="0.10" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_472010"/>
+            <field name="account_paid_id" ref="pgc_assoc_472010"/>
+            <field name="base_code_id" ref="iva_assoc_ded_24_10"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_25_10"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_24_10"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_25_10"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
 		
         <record id="iva_assoc_sop_16" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
@@ -1011,6 +1490,43 @@
             <field name="tax_code_id" ref="iva_assoc_ded_25_18"/>
             <field name="ref_base_code_id" ref="iva_assoc_ded_24_18"/>
             <field name="ref_tax_code_id" ref="iva_assoc_ded_25_18"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+		<record id="iva_assoc_sop_21" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">21% IVA Soportado (operaciones corrientes)</field>
+            <field eval="0.21" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_472021"/>
+            <field name="account_paid_id" ref="pgc_assoc_472021"/>
+            <field name="base_code_id" ref="iva_assoc_ded_22_21"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_23_21"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_22_21"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_23_21"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+            <field eval="0" name="sequence"/>
+        </record>
+
+        <record id="iva_assoc_sop_21_inv" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">21% IVA Soportado (bienes de inversión)</field>
+            <field eval="0.21" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_472021"/>
+            <field name="account_paid_id" ref="pgc_assoc_472021"/>
+            <field name="base_code_id" ref="iva_assoc_ded_24_21"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_25_21"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_24_21"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_25_21"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
@@ -1159,6 +1675,43 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+
+		<record id="iva_assoc_X10_compras_bc" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA 10% Importaciones bienes corrientes</field>
+            <field name="description">IVA 10% Importaciones bienes corrientes</field>
+            <field eval="0.10" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_472010"/>
+            <field name="account_paid_id" ref="pgc_assoc_472010"/>
+            <field name="base_code_id" ref="iva_assoc_ded_26_10"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_27_10"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_26_10"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_27_10"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_assoc_X10_compras_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA 10% Importaciones bienes de inversión</field>
+            <field name="description">IVA 10% Importaciones bienes de inversión</field>
+            <field eval="0.10" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_472010"/>
+            <field name="account_paid_id" ref="pgc_assoc_472010"/>
+            <field name="base_code_id" ref="iva_assoc_ded_28_10"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_29_10"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_28_10"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_29_10"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
 		
         <record id="iva_assoc_X16_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
@@ -1227,6 +1780,43 @@
             <field name="tax_code_id" ref="iva_assoc_ded_29_18"/>
             <field name="ref_base_code_id" ref="iva_assoc_ded_28_18"/>
             <field name="ref_tax_code_id" ref="iva_assoc_ded_29_18"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+		<record id="iva_assoc_X21_compras_bc" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA 21% Importaciones bienes corrientes</field>
+            <field name="description">IVA 21% Importaciones bienes corrientes</field>
+            <field eval="0.21" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_472021"/>
+            <field name="account_paid_id" ref="pgc_assoc_472021"/>
+            <field name="base_code_id" ref="iva_assoc_ded_26_21"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_27_21"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_26_21"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_27_21"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_assoc_X21_compras_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA 21% Importaciones bienes de inversión</field>
+            <field name="description">IVA 21% Importaciones bienes de inversión</field>
+            <field eval="0.21" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_472021"/>
+            <field name="account_paid_id" ref="pgc_assoc_472021"/>
+            <field name="base_code_id" ref="iva_assoc_ded_28_21"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_29_21"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_28_21"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_29_21"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
@@ -1376,6 +1966,70 @@
             <field name="ref_base_sign" eval="-1.0"/>
             <field name="type_tax_use">purchase</field>
         </record>
+
+<record id="iva_assoc_ISP_compras_21" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA 21% Inversión del sujeto pasivo</field>
+            <field name="description">IVA 21% Inversión del sujeto pasivo</field>
+            <field name="amount" eval="1.00"/>
+            <field name="type">percent</field>
+            <field name="child_depend" eval="1"/>
+            <field name="base_sign" eval="1.0"/>
+            <field name="tax_sign" eval="1.0"/>
+            <field name="ref_base_sign" eval="-1.0"/>
+            <field name="ref_tax_sign" eval="-1.0"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_assoc_ISP_compras_21_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA 21% Inversión del sujeto pasivo (1)</field>
+            <field name="parent_id" ref="iva_assoc_ISP_compras_21"/>
+            <field name="amount" eval="0.00"/>
+            <field name="type">percent</field>
+            <field name="base_code_id" ref="base_assoc_extra_44"/>
+            <field name="ref_base_code_id" ref="base_assoc_extra_44"/>
+            <field name="base_sign" eval="1.0"/>
+            <field name="tax_sign" eval="1.0"/>
+            <field name="ref_base_sign" eval="-1.0"/>
+            <field name="ref_tax_sign" eval="-1.0"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_assoc_ISP_compras_21_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA 21% Inversión del sujeto pasivo (2)</field>
+            <field name="parent_id" ref="iva_assoc_ISP_compras_21"/>
+            <field name="amount" eval="-0.21"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_477021"/>
+            <field name="account_paid_id" ref="pgc_assoc_477021"/>
+            <field name="base_code_id" ref="iva_assoc_dev_07_21"/>
+            <field name="tax_code_id" ref="iva_assoc_dev_09_21"/>
+            <field name="ref_base_code_id" ref="iva_assoc_dev_07_21"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_dev_09_21"/>
+            <field name="tax_sign" eval="-1.0"/>
+            <field name="base_sign" eval="1.0"/>
+            <field name="ref_tax_sign" eval="1.0"/>
+            <field name="ref_base_sign" eval="-1.0"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_assoc_ISP_compras_21_3" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA 21% Inversión del sujeto pasivo (3)</field>
+            <field name="parent_id" ref="iva_assoc_ISP_compras_21"/>
+            <field name="amount" eval="0.21"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_472021"/>
+            <field name="account_paid_id" ref="pgc_assoc_472021"/>
+            <field name="base_code_id" ref="iva_assoc_ded_22_21"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_23_21"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_22_21"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_23_21"/>
+            <field name="tax_sign" eval="1.0"/>
+            <field name="base_sign" eval="1.0"/>
+            <field name="ref_tax_sign" eval="-1.0"/>
+            <field name="ref_base_sign" eval="-1.0"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
 		
 		<!-- IVA REPERCUTIDO-->
         <record id="iva_assoc_rep_4" model="account.tax.template">
@@ -1431,6 +2085,24 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
         </record>
+
+		<record id="iva_assoc_rep_10" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA 10%</field>
+            <field eval="0.10" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_477010"/>
+            <field name="account_paid_id" ref="pgc_assoc_477010"/>
+            <field name="base_code_id" ref="iva_assoc_dev_04_10"/>
+            <field name="tax_code_id" ref="iva_assoc_dev_06_10"/>
+            <field name="ref_base_code_id" ref="iva_assoc_dev_04_10"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_dev_06_10"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
 		
         <record id="iva_assoc_rep_16" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
@@ -1466,6 +2138,25 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
+        </record>
+
+		<record id="iva_assoc_rep_21" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA 21%</field>
+            <field eval="0.21" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_477021"/>
+            <field name="account_paid_id" ref="pgc_assoc_477021"/>
+            <field name="base_code_id" ref="iva_assoc_dev_07_21"/>
+            <field name="tax_code_id" ref="iva_assoc_dev_09_21"/>
+            <field name="ref_base_code_id" ref="iva_assoc_dev_07_21"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_dev_09_21"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+            <field eval="0" name="sequence"/>
         </record>
 		
 		
@@ -1506,6 +2197,24 @@
             <field name="type_tax_use">sale</field>
         </record>
 		
+		<record id="re_assoc_14" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">1.4% Recargo Equivalencia</field>
+            <field eval="0.014" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_477110"/>
+            <field name="account_paid_id" ref="pgc_assoc_477110"/>
+            <field name="base_code_id" ref="iva_assoc_dev_13_14"/>
+            <field name="tax_code_id" ref="iva_assoc_dev_15_14"/>
+            <field name="ref_base_code_id" ref="iva_assoc_dev_13_14"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_dev_15_14"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
+
         <record id="re_assoc_4" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
             <field name="name">4% Recargo Equivalencia</field>
@@ -1522,6 +2231,114 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
+        </record>
+
+		<record id="re_assoc_52" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">5.2% Recargo Equivalencia</field>
+            <field eval="0.052" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_477121"/>
+            <field name="account_paid_id" ref="pgc_assoc_477121"/>
+            <field name="base_code_id" ref="iva_assoc_dev_16_52"/>
+            <field name="tax_code_id" ref="iva_assoc_dev_18_52"/>
+            <field name="ref_base_code_id" ref="iva_assoc_dev_16_52"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_dev_18_52"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
+
+		<record id="re_assoc_buy_05" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">0.50% Recargo Equivalencia Compras</field>
+            <field eval="0.005" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_472104"/>
+            <field name="account_paid_id" ref="pgc_assoc_472104"/>
+            <field name="base_code_id" ref="iva_assoc_ded_10"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_12"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_10"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_12"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="re_assoc_buy_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">1% Recargo Equivalencia Compras</field>
+            <field eval="0.01" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_472108"/>
+            <field name="account_paid_id" ref="pgc_assoc_472108"/>
+            <field name="base_code_id" ref="iva_assoc_ded_13"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_15"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_13"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_15"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="re_assoc_buy_14" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">1.4% Recargo Equivalencia Compras</field>
+            <field eval="0.014" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_472110"/>
+            <field name="account_paid_id" ref="pgc_assoc_472110"/>
+            <field name="base_code_id" ref="iva_assoc_ded_13_14"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_15_14"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_13_14"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_15_14"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="re_assoc_buy_4" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">4% Recargo Equivalencia Compras</field>
+            <field eval="0.04" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_472118"/>
+            <field name="account_paid_id" ref="pgc_assoc_472118"/>
+            <field name="base_code_id" ref="iva_assoc_ded_16"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_18"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_16"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_18"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="re_assoc_buy_52" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">5.2% Recargo Equivalencia Compras</field>
+            <field eval="0.052" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_472121"/>
+            <field name="account_paid_id" ref="pgc_assoc_472121"/>
+            <field name="base_code_id" ref="iva_assoc_ded_16_52"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_18_52"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_16_52"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_18_52"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
         </record>
 		
 		
@@ -1985,6 +2802,179 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+
+		 <record id="iva_assoc_IC_compras_10_bc" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA 10% Intracomunitario. Bienes corrientes</field>
+            <field name="description">IVA 10% Intracomunitario. Bienes corrientes</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_assoc_IC_compras_10_bc_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="parent_id" ref="iva_assoc_IC_compras_10_bc"/>
+            <field name="name">IVA 10% Intracomunitario. Bienes corrientes (1)</field>
+            <field eval="0.10" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_assoc_472010"/>
+            <field name="account_collected_id" ref="pgc_assoc_472010"/>
+            <field name="base_code_id" ref="iva_assoc_ded_30_10"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_31_10"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_30_10"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_31_8"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_assoc_IC_compras_10_bc_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="parent_id" ref="iva_assoc_IC_compras_10_bc"/>
+            <field name="name">IVA 10% Intracomunitario. Bienes corrientes (2)</field>
+            <field eval="-0.10" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_assoc_477010"/>
+            <field name="account_collected_id" ref="pgc_assoc_477010"/>
+            <field name="base_code_id" ref="iva_assoc_dev_19"/>
+            <field name="tax_code_id" ref="iva_assoc_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="iva_assoc_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="iva_assoc_IC_compras_10_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA 10% Intracomunitario. Bienes de inversión</field>
+            <field name="description">IVA 10% Intracomunitario. Bienes de inversión</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_assoc_IC_compras_10_bi_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="parent_id" ref="iva_assoc_IC_compras_10_bi"/>
+            <field name="name">IVA 10% Intracomunitario. Bienes de inversión (1)</field>
+            <field eval="0.10" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_assoc_472010"/>
+            <field name="account_collected_id" ref="pgc_assoc_472010"/>
+            <field name="base_code_id" ref="iva_assoc_ded_32_10"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_33_10"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_32_10"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_33_10"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_assoc_IC_compras_10_bi_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="parent_id" ref="iva_assoc_IC_compras_10_bi"/>
+            <field name="name">IVA 10% Intracomunitario. Bienes de inversión (2)</field>
+            <field eval="-0.10" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_assoc_477010"/>
+            <field name="account_collected_id" ref="pgc_assoc_477010"/>
+            <field name="base_code_id" ref="iva_assoc_dev_19"/>
+            <field name="tax_code_id" ref="iva_assoc_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="iva_assoc_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+		<record id="iva_assoc_IC_compras_21_bc" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA 21% Intracomunitario. Bienes corrientes</field>
+            <field name="description">IVA 21% Intracomunitario. Bienes corrientes</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_assoc_IC_compras_21_bc_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="parent_id" ref="iva_assoc_IC_compras_21_bc"/>
+            <field name="name">IVA 21% Intracomunitario. Bienes corrientes (1)</field>
+            <field eval="0.21" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_assoc_472021"/>
+            <field name="account_collected_id" ref="pgc_assoc_472021"/>
+            <field name="base_code_id" ref="iva_assoc_ded_30_21"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_31_21"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_30_21"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_31_21"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_assoc_IC_compras_21_bc_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="parent_id" ref="iva_assoc_IC_compras_21_bc"/>
+            <field name="name">IVA 21% Intracomunitario. Bienes corrientes (2)</field>
+            <field eval="-0.21" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_assoc_477021"/>
+            <field name="account_collected_id" ref="pgc_assoc_477021"/>
+            <field name="base_code_id" ref="iva_assoc_dev_19"/>
+            <field name="tax_code_id" ref="iva_assoc_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="iva_assoc_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <!--ATENCIÓN AQUÍ CON LOS SIGNOS. PENDIENTE DE PRUEBA EN PROFUNDIDAD-->
+            <field name="ref_tax_code_id" ref="iva_assoc_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+		<record id="iva_assoc_IC_compras_21_bi" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">IVA 21% Intracomunitario. Bienes de inversión</field>
+            <field name="description">IVA 21% Intracomunitario. Bienes de inversión</field>
+            <field eval="1.00" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1" name="child_depend"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_assoc_IC_compras_21_bi_1" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="parent_id" ref="iva_assoc_IC_compras_21_bi"/>
+            <field name="name">IVA 21% Intracomunitario. Bienes de inversión (1)</field>
+            <field eval="0.21" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_assoc_472021"/>
+            <field name="account_collected_id" ref="pgc_assoc_472021"/>
+            <field name="base_code_id" ref="iva_assoc_ded_32_21"/>
+            <field name="tax_code_id" ref="iva_assoc_ded_33_21"/>
+            <field name="ref_base_code_id" ref="iva_assoc_ded_32_21"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_ded_33_21"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_assoc_IC_compras_21_bi_2" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="parent_id" ref="iva_assoc_IC_compras_21_bi"/>
+            <field name="name">IVA 21% Intracomunitario. Bienes de inversión (2)</field>
+            <field eval="-0.21" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_assoc_477021"/>
+            <field name="account_collected_id" ref="pgc_assoc_477021"/>
+            <field name="base_code_id" ref="iva_assoc_dev_19"/>
+            <field name="tax_code_id" ref="iva_assoc_dev_20"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="iva_assoc_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="iva_assoc_dev_20"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
 		
 		<!-- RETENCIONES DE IRPF -->
 		<!--
@@ -2024,7 +3014,14 @@
             <field name="parent_id" ref="irpf_assoc_base"/>
             <field name="sign">1.0</field>
         </record>
-		
+
+        <record id="irpf_assoc_base_9" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones practicadas Base Imponible 9%</field>
+            <field name="code">B.IRPF9</field>
+            <field name="parent_id" ref="irpf_assoc_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_assoc_base_15" model="account.tax.code.template">
             <field name="name">IRPF Retenciones practicadas Base Imponible 15%</field>
             <field name="code">B.IRPF15</field>
@@ -2045,7 +3042,14 @@
             <field name="parent_id" ref="irpf_assoc_base"/>
             <field name="sign">1.0</field>
         </record>
-		
+
+        <record id="irpf_assoc_base_20" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones practicadas Base Imponible 20%</field>
+            <field name="code">B.IRPF20</field>
+            <field name="parent_id" ref="irpf_assoc_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_assoc_base_21" model="account.tax.code.template">
             <field name="name">IRPF Retenciones practicadas Base Imponible 21%</field>
             <field name="code">B.IRPF21</field>
@@ -2081,7 +3085,14 @@
             <field name="parent_id" ref="irpf_assoc_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
-		
+
+        <record id="irpf_assoc_cuota_9" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones practicadas Cuota 9%</field>
+            <field name="code">IRPF9</field>
+            <field name="parent_id" ref="irpf_assoc_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_assoc_cuota_15" model="account.tax.code.template">
             <field name="name">IRPF Retenciones practicadas Cuota 15%</field>
             <field name="code">IRPF15</field>
@@ -2102,7 +3113,14 @@
             <field name="parent_id" ref="irpf_assoc_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
-		
+
+        <record id="irpf_assoc_cuota_20" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones practicadas Cuota 20%</field>
+            <field name="code">IRPF20</field>
+            <field name="parent_id" ref="irpf_assoc_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_assoc_cuota_21" model="account.tax.code.template">
             <field name="name">IRPF Retenciones practicadas Cuota 21%</field>
             <field name="code">IRPF21</field>
@@ -2137,7 +3155,16 @@
             <field name="name">Hacienda Pública. Retenciones act. profesionales 7%</field>
             <field name="user_type" ref="tax"/>
         </record>
-		
+
+        <record id="pgc_assoc_475109" model="account.account.template">
+            <field name="code">475109</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_4751"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. Retenciones act. profesionales 9%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
         <record id="pgc_assoc_475115" model="account.account.template">
             <field name="code">475115</field>
             <field name="reconcile" eval="True"/>
@@ -2164,7 +3191,16 @@
             <field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 19%</field>
             <field name="user_type" ref="tax"/>
         </record>
-		
+
+        <record id="pgc_assoc_475120" model="account.account.template">
+            <field name="code">475120</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_4751"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 20%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
         <record id="pgc_assoc_475121" model="account.account.template">
             <field name="code">475121</field>
             <field name="reconcile" eval="True"/>
@@ -2228,7 +3264,25 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-		
+
+        <record id="irpf_assoc_9" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">Retenciones IRPF 9%</field>
+            <field eval="-0.09" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_475109"/>
+            <field name="account_paid_id" ref="pgc_assoc_475109"/>
+            <field name="base_code_id" ref="irpf_assoc_base_9"/>
+            <field name="tax_code_id" ref="irpf_assoc_cuota_9"/>
+            <field name="ref_base_code_id" ref="irpf_assoc_base_9"/>
+            <field name="ref_tax_code_id" ref="irpf_assoc_cuota_9"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
         <record id="irpf_assoc_15" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
             <field name="name">Retenciones IRPF 15%</field>
@@ -2276,6 +3330,24 @@
             <field name="tax_code_id" ref="irpf_assoc_cuota_19"/>
             <field name="ref_base_code_id" ref="irpf_assoc_base_19"/>
             <field name="ref_tax_code_id" ref="irpf_assoc_cuota_19"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="irpf_assoc_20" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">Retenciones IRPF 20%</field>
+            <field eval="-0.20" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_475120"/>
+            <field name="account_paid_id" ref="pgc_assoc_475120"/>
+            <field name="base_code_id" ref="irpf_assoc_base_20"/>
+            <field name="tax_code_id" ref="irpf_assoc_cuota_20"/>
+            <field name="ref_base_code_id" ref="irpf_assoc_base_20"/>
+            <field name="ref_tax_code_id" ref="irpf_assoc_cuota_20"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>
@@ -2331,7 +3403,14 @@
             <field name="parent_id" ref="irpf_assoc_base_sale"/>
             <field name="sign">1.0</field>
         </record>
-		
+
+        <record id="irpf_assoc_base_sale_9" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones a cuenta Base Imponible 9%</field>
+            <field name="code">B.IRPF9 AC</field>
+            <field name="parent_id" ref="irpf_assoc_base_sale"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_assoc_base_sale_15" model="account.tax.code.template">
             <field name="name">IRPF Retenciones a cuenta Base Imponible 15%</field>
             <field name="code">B.IRPF15 AC</field>
@@ -2352,7 +3431,14 @@
             <field name="parent_id" ref="irpf_assoc_base_sale"/>
             <field name="sign">1.0</field>
         </record>
-		
+
+        <record id="irpf_assoc_base_sale_20" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones a cuenta Base Imponible 20%</field>
+            <field name="code">B.IRPF20 AC</field>
+            <field name="parent_id" ref="irpf_assoc_base_sale"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_assoc_base_sale_21" model="account.tax.code.template">
             <field name="name">IRPF Retenciones a cuenta Base Imponible 21%</field>
             <field name="code">B.IRPF21 AC</field>
@@ -2388,7 +3474,14 @@
             <field name="parent_id" ref="irpf_assoc_cuota_sale_total"/>
             <field name="sign">1.0</field>
         </record>
-		
+
+        <record id="irpf_assoc_cuota_sale_9" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones a cuenta Cuota 9%</field>
+            <field name="code">IRPF9 AC</field>
+            <field name="parent_id" ref="irpf_assoc_cuota_sale_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_assoc_cuota_sale_15" model="account.tax.code.template">
             <field name="name">IRPF Retenciones a cuenta Cuota 15%</field>
             <field name="code">IRPF15 AC</field>
@@ -2409,7 +3502,14 @@
             <field name="parent_id" ref="irpf_assoc_cuota_sale_total"/>
             <field name="sign">1.0</field>
         </record>
-		
+
+        <record id="irpf_assoc_cuota_sale_20" model="account.tax.code.template">
+            <field name="name">IRPF Retenciones a cuenta Cuota 20%</field>
+            <field name="code">IRPF20 AC</field>
+            <field name="parent_id" ref="irpf_assoc_cuota_sale_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <record id="irpf_assoc_cuota_sale_21" model="account.tax.code.template">
             <field name="name">IRPF Retenciones a cuenta Cuota 21%</field>
             <field name="code">IRPF21 AC</field>
@@ -2444,7 +3544,16 @@
             <field name="name">Hacienda Pública. Retenciones a cuenta act. profesionales 7%</field>
             <field name="user_type" ref="tax"/>
         </record>
-		
+
+        <record id="pgc_assoc_473009" model="account.account.template">
+            <field name="code">473009</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_473"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. Retenciones a cuenta act. profesionales 9%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
         <record id="pgc_assoc_473015" model="account.account.template">
             <field name="code">473015</field>
             <field name="reconcile" eval="True"/>
@@ -2471,7 +3580,16 @@
             <field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 19%</field>
             <field name="user_type" ref="tax"/>
         </record>
-		
+
+        <record id="pgc_assoc_473020" model="account.account.template">
+            <field name="code">473020</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_assoc_473"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 20%</field>
+            <field name="user_type" ref="tax"/>
+        </record>
+
         <record id="pgc_assoc_473021" model="account.account.template">
             <field name="code">473021</field>
             <field name="reconcile" eval="True"/>
@@ -2535,7 +3653,25 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
         </record>
-		
+
+        <record id="irpf_assoc_sale_9" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">Retenciones a cuenta IRPF 9%</field>
+            <field eval="-0.09" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_473009"/>
+            <field name="account_paid_id" ref="pgc_assoc_473009"/>
+            <field name="base_code_id" ref="irpf_assoc_base_sale_9"/>
+            <field name="tax_code_id" ref="irpf_assoc_cuota_sale_9"/>
+            <field name="ref_base_code_id" ref="irpf_assoc_base_sale_9"/>
+            <field name="ref_tax_code_id" ref="irpf_assoc_cuota_sale_9"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
+
         <record id="irpf_assoc_sale_15" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
             <field name="name">Retenciones a cuenta IRPF 15%</field>
@@ -2589,7 +3725,25 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
         </record>
-		
+
+        <record id="irpf_assoc_sale_20" model="account.tax.template">
+            <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
+            <field name="name">Retenciones a cuenta IRPF 20%</field>
+            <field eval="-0.20" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_assoc_473020"/>
+            <field name="account_paid_id" ref="pgc_assoc_473020"/>
+            <field name="base_code_id" ref="irpf_assoc_base_sale_20"/>
+            <field name="tax_code_id" ref="irpf_assoc_cuota_sale_20"/>
+            <field name="ref_base_code_id" ref="irpf_assoc_base_sale_20"/>
+            <field name="ref_tax_code_id" ref="irpf_assoc_cuota_sale_20"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
+
         <record id="irpf_assoc_sale_21" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_assoc"/>
             <field name="name">Retenciones a cuenta IRPF 21%</field>
