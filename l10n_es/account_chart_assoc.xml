@@ -5232,7 +5232,7 @@
 	<record id="pgc_assoc_4771" model="account.account.template">
             <field name="code">4771</field>
             <field name="reconcile" eval="False"/>
-            <field name="parent_id" ref="pgc_477"/>
+            <field name="parent_id" ref="pgc_assoc_477"/>
             <field name="type">view</field>
             <field name="name">Hacienda Pública, IVA repercutido, Recargo de Equivalencia</field>
             <field name="user_type" ref="tax"/>
