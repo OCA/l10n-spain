@@ -4,6 +4,10 @@
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
+#    Copyright (c) 2013 Servicios Baeza (http://www.serviciosbaeza.com/) All Rights Reserved.
+#                       Pedro Manuel Baeza <pedro.baeza@gmail.com>
+#    Copyright (c) 2013 Acysos S.L. (http://acysos.com) All Rights Reserved.
+#                       Ignacio Ibeas <ignacio@acysos.com>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -93,15 +97,16 @@ class config_ES_toponyms(osv.osv_memory):
 
     def _recover_zipcodes(self, cr, uid, context):
         # Recovers the location data (city info) from the zip code there was in the partner addresses before installing the city module
-        cr.execute("select id, zip from res_partner_address where location IS NULL")
-        zipcodes = cr.dictfetchall()
+        address_obj = self.pool.get('res.partner.address')
+        city_obj = self.pool.get('city.city')
+        addresses_ids = address_obj.search(cr, uid, [('city_id','=', False)])
+        addresses = address_obj.read(cr, uid, addresses_ids, ['zip'])
         cont = 0
-        for zipcode in zipcodes:
-            if zipcode['zip']:
-                cr.execute("select id from city_city where zipcode = '%s'" %zipcode['zip'])
-                city_id = cr.fetchall()
-                if len(city_id) > 0:
-                    cr.execute("update res_partner_address SET location = %i WHERE id = %i" %(city_id[0][0], zipcode['id']))
+        for address in addresses:
+            if address['zip']:
+                city_id = city_obj.search(cr, uid, [('zip', '=', address['zip'])])
+                if len(city_id):
+                    address_obj.write(cr, uid, address['id'], {'city_id' : city_id[0]})
                     cont += 1
         return cont
 
@@ -121,9 +126,7 @@ class config_ES_toponyms(osv.osv_memory):
                 tools.convert_xml_import(cr, 'l10n_es_toponyms', fp,  idref, 'init', noupdate=True)
                 if res['city_info_recover'] == 'yes':
                     res= self._recover_zipcodes(cr, uid, context)
-                    #print res
         cr.commit()
-        cr.close()
         return {}
 
     def execute(self, cr, uid, ids, context=None):

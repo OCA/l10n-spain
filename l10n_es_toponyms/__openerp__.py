@@ -4,6 +4,10 @@
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
+#    Copyright (c) 2013 Servicios Baeza (http://www.serviciosbaeza.com/) All Rights Reserved.
+#                       Pedro Manuel Baeza <pedro.baeza@gmail.com>
+#    Copyright (c) 2013 Acysos S.L. (http://acysos.com) All Rights Reserved.
+#                       Ignacio Ibeas <ignacio@acysos.com>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -24,8 +28,8 @@
 {
     "name" : "Topónimos del Estado español",
     "version" : "1.0",
-    "author" : "Zikzakmedia SL",
-    "website" : "www.zikzakmedia.com",
+    "author" : "Zikzakmedia SL, Servicios Baeza, Acysos S.L.",
+    "website" : "www.zikzakmedia.com, www.serviciosbaeza.com, www.acysos.com ",
     "category" : "Localisation/Europe",
     "description": """Provincias, municipios y códigos postales del Estado Español
 
