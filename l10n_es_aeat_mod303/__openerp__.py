@@ -36,7 +36,7 @@ Módulo para la presentación del modelo 303. Exportación a formato AEAT.
         
     "init_xml" : [],
     "depends" : [
-        "l10n_es_aeat","l10n_es_aeat_mod347"
+        "l10n_es_aeat",
     ],
     "update_xml" : [
             "mod303_view.xml",
