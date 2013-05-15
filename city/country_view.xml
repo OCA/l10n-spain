@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <!-- Add cities to the State form -->
+        <record model="ir.ui.view" id="view_country_state_form2">
+            <field name="name">view_country_state_form2</field>
+            <field name="model">res.country.state</field>
+            <field name="inherit_id" ref="base.view_country_state_form"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="city_ids" colspan="4" nolabel="1" widget="one2many_list"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
