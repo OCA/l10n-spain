@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <!-- Add city_id to the Partner form -->
+        <record model="ir.ui.view" id="view_partner_form_city">
+            <field name="name">res.partner.form.city</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='address']//field[@name='street2']" position="after">
+                        <field name="city_id" colspan="4" on_change="on_change_city(city_id)" />
+                    </xpath>
+                </data>
+            </field>
+        </record>
+        
+        <!-- Add city_id to the Partner Address form 1 -->
+        <record model="ir.ui.view" id="view_partner_address_form1_city">
+            <field name="name">res.partner.address.form1.city</field>
+            <field name="model">res.partner.address</field>
+            <field name="inherit_id" ref="base.view_partner_address_form1"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='street2']" position="after">
+                        <field name="city_id" on_change="on_change_city(city_id)" />
+                    </xpath>
+                </data>
+            </field>
+        </record>
+        
+        <!-- Add city_id to the Partner Address form 2 -->
+        <record model="ir.ui.view" id="view_partner_address_form2_city">
+            <field name="name">res.partner.address.form2.city</field>
+            <field name="model">res.partner.address</field>
+            <field name="inherit_id" ref="base.view_partner_address_form2"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='street2']" position="after">
+                        <field name="city_id" on_change="on_change_city(city_id)" />
+                    </xpath>
+                </data>
+            </field>
+        </record>
+        
+    </data>
+</openerp>
