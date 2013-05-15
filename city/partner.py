@@ -35,7 +35,7 @@ class res_partner_address(osv.osv):
         if location:
             city = self.pool.get('city.city').browse(cr, uid, location)
             result = {'value': {
-                        'zip': city.zipcode,
+                        'zip': city.zip,
                         'country_id': city.country_id.id,
                         'city': city.name,
                         'state_id': city.state_id.id
