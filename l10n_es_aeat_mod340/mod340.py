@@ -34,9 +34,6 @@ import math
 from tools.translate import _
 import pooler
 
-
-
-
 class l10n_es_aeat_mod340(osv.osv):
    
     def button_calculate(self, cr, uid, ids,  args, context=None):
@@ -60,15 +57,16 @@ class l10n_es_aeat_mod340(osv.osv):
         return True
 
     def button_export(self, cr, uid, ids, context=None):
-        #FUNCION CALCADA DEL MODELO 347, inoperativa de momento
-        
-        #raise osv.except_osv(_('No disponible:'), _('En desarrollo'))
         
         if context is None:
             context = {}
 
         export_obj = self.pool.get("l10n.es.aeat.mod340.export_to_boe")
-        export_obj._export_boe_file(cr, uid, ids, self.browse(cr, uid, ids and ids[0]))
+        report = self.browse(cr, uid, ids and ids[0])
+        if report.period_from == report.period_to:
+            export_obj._export_boe_file(cr, uid, ids, report)
+        else:
+            raise osv.except_osv( "ERROR", _('To export to BOE you need that the start period and end period was the same'))
 
         return True
         
@@ -102,8 +100,15 @@ class l10n_es_aeat_mod340(osv.osv):
                     result[model.id]['total'] +=issue.base_tax + issue.amount_tax
 
         return result
-
-
+            
+    def on_change_name_contact(self, cr, uid, ids, name_contact):
+        return  { 'value': { 'presenter_name': name_contact,'presenter_name_contact': name_contact } }
+    
+    def on_change_phone_contact(self, cr, uid, ids, phone_contact):
+        return  { 'value': { 'presenter_phone_contact': phone_contact } }
+    
+    def on_change_representative_vat(self, cr, uid, ids, representative_vat):
+        return  { 'value': { 'presenter_vat': representative_vat } }
 
     _inherit = "l10n.es.aeat.report"
     _name = 'l10n.es.aeat.mod340'
@@ -113,12 +118,8 @@ class l10n_es_aeat_mod340(osv.osv):
         'contact_phone': fields.char("Phone", size=9),
         'phone_contact' : fields.char('Phone Contact',size=9),
         'name_contact' : fields.char('Name And Surname Contact',size=40),
-        'period': fields.selection([
-            ('1T','First quarter'),('2T','Second quarter'),('3T','Third quarter'),
-            ('4T','Fourth quarter'),('01','January'),('02','February'),('03','March'),('04','April'),
-            ('05','May'),('06','June'),('07','July'),('08','August'),('09','September'),('10','October'),
-            ('11','November'),('12','December')
-            ], 'Period'),
+        'period_from': fields.many2one('account.period', 'Start period',states={'done': [('readonly', True)]}),
+        'period_to': fields.many2one('account.period', 'End period',states={'done': [('readonly', True)]}),
         'issued': fields.one2many('l10n.es.aeat.mod340.issued','mod340_id','Invoices Issued'),
         'received': fields.one2many('l10n.es.aeat.mod340.received','mod340_id','Invoices Received'),
         'investment': fields.one2many(
@@ -130,8 +131,23 @@ class l10n_es_aeat_mod340(osv.osv):
         'total_taxable':  fields.function( _get_number_records, method=True, type='float',   string='Total Taxable',    multi='recalc', help="The declaration will include partners with the total of operations over this limit"),
         'total_sharetax': fields.function( _get_number_records, method=True, type='float',   string='Total Share Tax',  multi='recalc', help="The declaration will include partners with the total of operations over this limit"),
         'number_records': fields.function( _get_number_records, method=True, type='integer', string='Records',          multi='recalc', help="The declaration will include partners with the total of operations over this limit"),
-        'total':          fields.function( _get_number_records, method=True, type='float',   string="Total" ,           multi='recalc', help="The declaration will include partners with the total of operations over this limit"),
+        'total': fields.function( _get_number_records, method=True, type='float',   string="Total" ,           multi='recalc', help="The declaration will include partners with the total of operations over this limit"),
         'calculation_date': fields.date('Calculation date', readonly=True),
+        # Data for type 0 register
+        'presenter_vat': fields.char('VAT number', size=9,
+            states={'confirmed':[('readonly',True)]}),
+        'presenter_name' : fields.char('Name And Surname',size=40),
+        'presenter_address_acronym' : fields.char('Address Acronym',size=2,
+            help='Acronyms of the type of public roadway, example St.'),
+        'presenter_address_name': fields.char('Street Name',size=52),
+        'presenter_address_number': fields.integer('Number',size=5),
+        'presenter_address_stair': fields.char('Stair', size=2),
+        'presenter_address_floor': fields.char('Floor', size=2),
+        'presenter_address_door': fields.char('Door', size=2),
+        'presenter_city_id': fields.many2one('city.city', 'Location', select=1,
+            help='Use the name or the zip to search the location'),
+        'presenter_phone_contact' : fields.char('Phone Contact',size=9),
+        'presenter_name_contact' : fields.char('Name And Surname Contact',size=40),
     }
     _defaults = {
         'support_type' : lambda *a: 'Telemático',
@@ -206,10 +222,10 @@ class l10n_es_aeat_mod340_issued(osv.osv):
         'representative_vat': fields.char('L.R. VAT number', size=9, help="Legal Representative VAT number"),
         'partner_country_code': fields.char('Country Code', size=2),
         'invoice_id':fields.many2one('account.invoice','Invoice',ondelete="cascade"),
-        'base_tax':fields.float('base tax bill',digits=(13,2)),
-        'amount_tax':fields.float('amount of the tax',digits=(13,2)),
-        'total':fields.float('total',digits=(13,2)),
-        'tax_line_ids': fields.one2many('l10n.es.aeat.mod340.tax_line_issued', 'invoice_record_id', 'tax lines', states = {'done': [('readonly', True)]}),
+        'base_tax':fields.float('Base tax bill',digits=(13,2)),
+        'amount_tax':fields.float('Total tax',digits=(13,2)),
+        'total':fields.float('Total',digits=(13,2)),
+        'tax_line_ids': fields.one2many('l10n.es.aeat.mod340.tax_line_issued', 'invoice_record_id', 'Tax lines', states = {'done': [('readonly', True)]}),
     }
 l10n_es_aeat_mod340_issued()
 

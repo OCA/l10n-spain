@@ -27,4 +27,5 @@ import wizard
 import mod340
 import res_partner
 import account_invoice
+import account
 

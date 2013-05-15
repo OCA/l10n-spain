@@ -3,9 +3,8 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2011 Ting (http://www.ting.es) All Rights Reserved.
-#    Copyright (c) 2011 Acysos S.L. (http://acysos.com) All Rights Reserved
+#    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com) All Rights Reserved
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
-#                       
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -24,22 +23,25 @@
 ##############################################################################
 
 {
-    "name" : "Generación de fichero modelo 340",
-    "version" : "1.0",
-    "author" : "Acysos S.L., Francisco Pascual (Ting), Nan-tic",
-    "website" : "http://www.acysos.com, www.ting.es, www.nan-tic.com",
-    "category" : "Localisation/Accounting",
-    "description" : """
-Módulo para la presentación del modelo 340. Exportación a formato AEAT.
+    'name' : 'Generación de fichero modelo 340 y libro de IVA',
+    'version' : '2.0',
+    'author' : 'Acysos S.L., Francisco Pascual (Ting), Nan-tic',
+    'website' : 'www.acysos.com, www.ting.es, www.nan-tic.com',
+    'category' : 'Localisation/Accounting',
+    'description' : '''
+Módulo para la presentación del modelo 340. Exportación a formato AEAT. Libro de IVA
 
---- ESTADO ACTUAL -------------------------------------------------------------
+Los impuestos incluidos en este modelo se indican en el Código base cuenta. Por defecto actualiza todos los código base que deban incluirse.
+Si el plan contable esta instalado recuerde utilizar account_chart_update para actualizar los códigos. Contabilidad y Finanzas -> Configuración -> Contabilidad Financiera -> Actualizar plan contable a partir de una plantila de plan contable
 
-Búsqueda de facturas emitidas y recibidas. Excluidas lineas de impuestos con IRPF.
+Búsqueda de facturas emitidas y recibidas.
 Exportación a formato de AEAT de facturas emitidas y recibidas.
-Exportación de facturas con varios tipos impositivos. Clave de operación C
-Facturas intracomunitarias excepto las operaciones a las que hace referencia el artículo 66 del RIVA que tienen un tratamiento especial
-Facturas rectificativas
-Facturas resumen de tiques
+Exportación de facturas con varios tipos impositivos. Clave de operación C.
+Facturas intracomunitarias excepto las operaciones a las que hace referencia el artículo 66 del RIVA que tienen un tratamiento especial.
+Facturas rectificativas.
+Facturas resumen de tiques.
+Permite imprimir el libro de IVA, basado en la misma legislación.
+Exporta el registro de tipo 0, para la Comunidad Foral de Navarra.
 
 --- COSAS PENDIENTES (TODO LIST) ----------------------------------------------
 
@@ -47,19 +49,28 @@ Facturas bienes de inversión
 Facturas intracomunitarias. Operaciones a las que hace referencia el artículo 66 del RIVA.
 Asientos contables de resumen de tiques
 Exportación de asientos resumen de facturas
-
-ADVERTENCIA: Los periodos de la empresas deben coincidir con los peridos de presentación de IVA.
-""",
-    "website" : "www.acysos.com, www.ting.es",
-    "license" : "AGPL-3",
-    "depends" : ["account",
-                 "base_vat",
-                 "l10n_es_aeat",
-                 "account_refund_original",
+''',
+    'license' : 'AGPL-3',
+    'depends' : ['account',
+                 'base_vat',
+                 'l10n_es_aeat',
+                 'account_refund_original',
+                 'account_chart_update',
+                 'city',
                  ],
-    "init_xml" : [],
-    "demo_xml" : [],
-    "update_xml" : ['report/report_view.xml',"mod340_view.xml","mod340_workflow.xml","security/ir.model.access.csv", "res_partner_view.xml","mod340_sequence.xml","account_invoice_view.xml"],
-    "installable" : True,
-    "active" : False,
+    'init_xml' : [],
+    'demo_xml' : [],
+    'update_xml' : [
+        'report/report_view.xml',
+        'mod340_view.xml',
+        'mod340_workflow.xml',
+        'security/ir.model.access.csv',
+        'res_partner_view.xml',
+        'mod340_sequence.xml',
+        'account_invoice_view.xml',
+        'account_view.xml',
+        'taxes_data.xml',
+        'taxes_data_pymes.xml'],
+    'installable' : True,
+    'active' : False,
 }
