@@ -33,11 +33,10 @@
                             </group>
                             <label colspan="4" string=""/>
                             <group col="2" colspan="4" string="Add city and state information associated to the zip codes for all the Spanish cities">
-                                <field name="city_info" on_change="onchange_city_info(city_info, city_module)"/>
-                                <field name="city_info_recover" attrs="{'readonly':[('city_info','=','no'),('city_module','=','uninstalled')]}"/>
-                                <field name="city_module" invisible="1"/>
+                                <field name="city_info" on_change="onchange_city_info(city_info)"/>
+                                <field name="city_info_recover"/>
                                 <label colspan="2" string=""/>
-                                <label colspan="2" string="Warning! Adding more than 15000 zip codes can take several minutes."/>
+                                <label colspan="2" string="Warning! Adding more than 56000 records can take a lot of time. If you are behind a SSL proxy, check your timeout."/>
                             </group>
                         </group>
                     </group>

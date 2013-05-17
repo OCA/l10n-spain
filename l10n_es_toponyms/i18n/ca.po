@@ -27,8 +27,8 @@ msgstr "El mòdul Ciutat és opcional i agrupa província, ciutat i codi postal 
 
 #. module: l10n_es_toponyms
 #: view:config.ES.toponyms:0
-msgid "Warning! Adding more than 15000 zip codes can take several minutes and it will be done in a background process."
-msgstr "Avís! Afegir més de 15000 codis postals pot tardar varis minuts i serà realitzat per un procés en segon pla."
+msgid "Warning! Adding more than 56000 records can take a lot of time. If you are behind a SSL proxy, check your timeout."
+msgstr "Avís! Afegir més de 56000 codis postals pot tardar varis minuts."
 
 #. module: l10n_es_toponyms
 #: constraint:ir.actions.act_window:0

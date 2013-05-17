@@ -25,25 +25,31 @@
 
 {
     "name" : "Topónimos del Estado español",
-    "version" : "1.1",
-    "author" : "Spanish Localization Team",
+    "version" : "1.2",
+    "author" : "Localización española",
     "website" : "https://launchpad.net/openerp-spain",
-    "category" : "Localisation/Europe",
-    "description": """Provincias, municipios y códigos postales del Estado Español
+    "category" : "Localisation/Spain",
+    "description": """
+Provincias, municipios y códigos postales del Estado español.
 
-  * Traduce el país Spain por España
-  * Añade las 52 provincias actuales del Estado Español con posibilidad de escoger versión oficial, castellana o ambas
-  * Proporciona un asistente para dar de alta los municipios y provincias por defecto asociados a los 15839 códigos postales del Estado Español. Permite rellenar automáticamente los campos ciudad y provincia del formulario de empresa y contacto a partir del código postal.
-  * Nuevo asistente de configuración que permite crear los valores por defecto según módulo city esté instalado (se crean entidades city.city) o no (se crean valores por defecto de los campos ciudad y provincia asociados al código postal).
+  * Añade las 52 provincias actuales del Estado español con posibilidad de 
+escoger versión oficial, castellana o ambas
+  * Proporciona un asistente para dar de alta los municipios asociados a los 
+códigos postales del Estado español mediante registros city.city.
 
-Los datos han sido obtenidos de los datos públicos del Instituto Nacional de Estadística (INE).""",
-    "depends" : ["base"],
+Los datos han sido obtenidos de GeoNames.
+
+AVISO: Para aquellos que actualicen el módulo desde una versión 1.1 o anterior, 
+tendrán que instalar con anterioridad manualmente el módulo city, incluido
+también en la localización española.
+""",
+    "depends" : ["base","city"],
     "license" : "AGPL-3",
-    "init_xml" : ["l10n_es_toponyms_country.xml", ],
-    "demo_xml" : [ ],
+    "init_xml" : [],
+    "demo_xml" : [],
     "update_xml" : [
-        "l10n_es_toponyms_wizard.xml",
+        "wizard/l10n_es_toponyms_wizard.xml",
     ],
     "active": False,
     "installable": True
-} 
+}
