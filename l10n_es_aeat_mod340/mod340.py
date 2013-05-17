@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2011 Ting (http://www.ting.es) All Rights Reserved.
-#    Copyright (c) 2011 Acysos S.L. (http://acysos.com) All Rights Reserved
+#    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com) All Rights Reserved
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 #    Copyright (c) 2011 NaN Projectes de Programari Lliure, S.L.
 #                       http://www.NaN-tic.com
@@ -63,10 +63,7 @@ class l10n_es_aeat_mod340(osv.osv):
 
         export_obj = self.pool.get("l10n.es.aeat.mod340.export_to_boe")
         report = self.browse(cr, uid, ids and ids[0])
-        if report.period_from == report.period_to:
-            export_obj._export_boe_file(cr, uid, ids, report)
-        else:
-            raise osv.except_osv( "ERROR", _('To export to BOE you need that the start period and end period was the same'))
+        export_obj._export_boe_file(cr, uid, ids, report)
 
         return True
         
@@ -100,15 +97,6 @@ class l10n_es_aeat_mod340(osv.osv):
                     result[model.id]['total'] +=issue.base_tax + issue.amount_tax
 
         return result
-            
-    def on_change_name_contact(self, cr, uid, ids, name_contact):
-        return  { 'value': { 'presenter_name': name_contact,'presenter_name_contact': name_contact } }
-    
-    def on_change_phone_contact(self, cr, uid, ids, phone_contact):
-        return  { 'value': { 'presenter_phone_contact': phone_contact } }
-    
-    def on_change_representative_vat(self, cr, uid, ids, representative_vat):
-        return  { 'value': { 'presenter_vat': representative_vat } }
 
     _inherit = "l10n.es.aeat.report"
     _name = 'l10n.es.aeat.mod340'
@@ -133,21 +121,6 @@ class l10n_es_aeat_mod340(osv.osv):
         'number_records': fields.function( _get_number_records, method=True, type='integer', string='Records',          multi='recalc', help="The declaration will include partners with the total of operations over this limit"),
         'total': fields.function( _get_number_records, method=True, type='float',   string="Total" ,           multi='recalc', help="The declaration will include partners with the total of operations over this limit"),
         'calculation_date': fields.date('Calculation date', readonly=True),
-        # Data for type 0 register
-        'presenter_vat': fields.char('VAT number', size=9,
-            states={'confirmed':[('readonly',True)]}),
-        'presenter_name' : fields.char('Name And Surname',size=40),
-        'presenter_address_acronym' : fields.char('Address Acronym',size=2,
-            help='Acronyms of the type of public roadway, example St.'),
-        'presenter_address_name': fields.char('Street Name',size=52),
-        'presenter_address_number': fields.integer('Number',size=5),
-        'presenter_address_stair': fields.char('Stair', size=2),
-        'presenter_address_floor': fields.char('Floor', size=2),
-        'presenter_address_door': fields.char('Door', size=2),
-        'presenter_city_id': fields.many2one('city.city', 'Location', select=1,
-            help='Use the name or the zip to search the location'),
-        'presenter_phone_contact' : fields.char('Phone Contact',size=9),
-        'presenter_name_contact' : fields.char('Name And Surname Contact',size=40),
     }
     _defaults = {
         'support_type' : lambda *a: 'Telemático',
@@ -159,32 +132,6 @@ class l10n_es_aeat_mod340(osv.osv):
         self.write(cr,uid,id,{'calculation_date': time.strftime('%Y-%m-%d'),'state': 'done',})
         wf_service = netsvc.LocalService("workflow")
         wf_service.trg_validate(uid, 'l10n.es.aeat.mod340', id, 'done', cr)
-        return True
-    
-    def _check_report_lines(self, cr, uid, ids, context=None):
-        """checks report lines"""
-#                if context is None: context = {}
-
-#        for item in self.browse(cr, uid, ids, context):
-#            ## Browse partner record lines to check if all are correct (all fields filled)
-#            for partner_record in item.partner_record_ids:
-#                if not partner_record.partner_state_code:
-#                    raise osv.except_osv(_('Error!'), _("All partner state code field must be filled."))
-#                if not partner_record.partner_vat:
-#                    raise osv.except_osv(_('Error!'), _("All partner vat number field must be filled."))
-#
-#            for real_state_record in item.real_state_record_ids:
-#                if not real_state_record.state_code:
-#                    raise osv.except_osv(_('Error!'), _("All real state records state code field must be filled."))
-
-        return True
-    
-    def check_report(self, cr, uid, ids, context=None):
-        """Different check out in report"""
-        if context is None: context = {}
-
-        self._check_report_lines(cr, uid, ids, context)
-
         return True
 
     def action_confirm(self, cr, uid, ids, context=None):

@@ -41,7 +41,6 @@ Facturas intracomunitarias excepto las operaciones a las que hace referencia el 
 Facturas rectificativas.
 Facturas resumen de tiques.
 Permite imprimir el libro de IVA, basado en la misma legislación.
-Exporta el registro de tipo 0, para la Comunidad Foral de Navarra.
 
 --- COSAS PENDIENTES (TODO LIST) ----------------------------------------------
 

@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Copyright (C) 2011 Ting. All Rights Reserved
-#    Copyright (c) 2011 Acysos S.L. (http://acysos.com) All Rights Reserved
+#    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com) All Rights Reserved
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify

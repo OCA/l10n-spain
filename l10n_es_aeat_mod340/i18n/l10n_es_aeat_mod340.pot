@@ -16,16 +16,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_aeat_mod340
-#: help:l10n.es.aeat.mod340,presenter_city_id:0
-msgid "Use the name or the zip to search the location"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,presenter_address_stair:0
-msgid "Stair"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.issued:0
 msgid "Issued invoices"
 msgstr ""
@@ -89,13 +79,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340,phone_contact:0
-#: field:l10n.es.aeat.mod340,presenter_phone_contact:0
 msgid "Phone Contact"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,presenter_address_acronym:0
-msgid "Address Acronym"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
@@ -263,17 +247,6 @@ msgid "State"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,presenter_city_id:0
-msgid "Location"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/mod340.py:69
-#, python-format
-msgid "To export to BOE you need that the start period and end period was the same"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
 #: model:ir.ui.menu,name:l10n_es_aeat_mod340.menu_aeat_mod340_report
 msgid "AEAT 340 Model"
 msgstr ""
@@ -301,7 +274,6 @@ msgid "\n"
 "Facturas rectificativas.\n"
 "Facturas resumen de tiques.\n"
 "Permite imprimir el libro de IVA, basado en la misma legislación.\n"
-"Exporta el registro de tipo 0, para la Comunidad Foral de Navarra.\n"
 "\n"
 "--- COSAS PENDIENTES (TODO LIST) ----------------------------------------------\n"
 "\n"
@@ -310,16 +282,6 @@ msgid "\n"
 "Asientos contables de resumen de tiques\n"
 "Exportación de asientos resumen de facturas\n"
 ""
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,presenter_address_door:0
-msgid "Door"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
-msgid "This information is only for the company that have to present registry type 0. For the moment, only in Comunidad Foral de Navarra"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
@@ -361,7 +323,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340,company_vat:0
-#: field:l10n.es.aeat.mod340,presenter_vat:0
 msgid "VAT number"
 msgstr ""
 
@@ -515,11 +476,6 @@ msgid "First ticket"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: help:l10n.es.aeat.mod340,presenter_address_acronym:0
-msgid "Acronyms of the type of public roadway, example St."
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
 #: help:account.invoice,is_ticket_summary:0
 msgid "Check if this invoice is a ticket summary"
 msgstr ""
@@ -618,11 +574,6 @@ msgid "Statement Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,presenter_address_number:0
-msgid "Number"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340:0
 msgid "General"
 msgstr ""
@@ -655,11 +606,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340:0
 msgid "Recalculate"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,presenter_address_floor:0
-msgid "Floor"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
@@ -732,11 +678,6 @@ msgid "Previous Declaration Number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
-msgid "Address"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340_investment
 #: field:l10n.es.aeat.mod340,investment:0
 msgid "Property Investment"
@@ -744,7 +685,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340,name_contact:0
-#: field:l10n.es.aeat.mod340,presenter_name_contact:0
 msgid "Name And Surname Contact"
 msgstr ""
 
@@ -775,11 +715,6 @@ msgid "Fiscal Year"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,presenter_name:0
-msgid "Name And Surname"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340_received
 #: field:l10n.es.aeat.mod340,received:0
 msgid "Invoices Received"
@@ -800,11 +735,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: field:res.partner,vat_type:0
 msgid "Clave tipo de NIF"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,presenter_address_name:0
-msgid "Street Name"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
