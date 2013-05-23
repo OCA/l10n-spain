@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2011 Acysos S.L. (http://acysos.com) All Rights Reserved.
+#    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com) All Rights Reserved.
 #                       Ignacio Ibeas <ignacio@acysos.com>
 #    Copyright (c) 2011 NaN Projectes de Programari Lliure, S.L.
 #                       http://www.NaN-tic.com
@@ -78,7 +78,23 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
         if (report.type == 'S'): text += 'S'                       # Declaración substitutiva
         else: text += ' '
         text += self._formatNumber(report.previous_number, 13)     # Número identificativo de la declaración anterior
-        text += self._formatString(report.period,2)     # Periodo
+        period_stop = report.period_to.date_stop[5:7]
+        period_start = report.period_to.date_start[5:7]
+        if period_start == period_stop:
+            period = period_stop
+        else:
+            if period_stop == '03':
+                period = '1T'
+            elif period_stop == '06':
+                period = '2T'
+            elif period_stop == '09':
+                period = '3T'
+            elif period_stop == '12':
+                period = '4T'
+            else:
+                raise osv.except_osv( "ERROR", _("The period hasn't a valid Mod340 period" ))
+
+        text += self._formatString(period,2)     # Periodo
         text += self._formatNumber(report.number_records, 9)          # Número total de registros
         text += self._formatNumber(report.total_taxable, 15, 2,True)       # Importe total de la base imponible
         text += self._formatNumber(report.total_sharetax, 15, 2,True)      # Importe Total de la cuota del impuesto

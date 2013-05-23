@@ -6,14 +6,14 @@
 		<field name="name">l10n.es.aeat.mod340.tree</field>
 		<field name="model">l10n.es.aeat.mod340</field>
 		<field name="type">tree</field>
-		<!--<field name="priority" eval="5"/>-->
 		<field name="arch" type="xml">
-			<tree string="Model 340">
-                <field name="period"/>
-			    <field name="fiscalyear_id"/>
-                <field name="number"/>
-			    <field name="type"/>
-			</tree>
+                    <tree string="Model 340">
+                        <field name="fiscalyear_id"/>
+                        <field name="period_from"/>
+                        <field name="period_to"/>
+                        <field name="number"/>
+                        <field name="type"/>
+                    </tree>
 		</field>
 	</record>
 
@@ -26,9 +26,10 @@
 		    <form string="Model 340">
                         <group col="6" colspan="4">
                         	<field name="company_id" on_change="on_change_company_id(company_id)" required="1" select="1" readonly="1"/>
+                            <field name="fiscalyear_id" select="1"/>
                         	<newline/>
-                        	<field name="fiscalyear_id" select="1"/>
-                        	<field name="period" select="1" required="1"/>
+                            <field name="period_from" select="1" required="1" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
+                            <field name="period_to" select="1" required="1" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
                         	<newline />
                         	<field name="number"/>
                         	<field name="support_type"/>
@@ -37,9 +38,9 @@
                         <page string="General">
                             <group string="Identification" colspan="4">
                                 <field name="company_vat" required="1" />
-                                <field name="contact_phone"/>
-                                <field name="name_contact" colspan="4"/>
-                                <field name="representative_vat"/>
+                                <field name="phone_contact" />
+                                <field name="name_contact" colspan="4" />
+                                <field name="representative_vat" />
                             </group>
                             <group string="Susbtitutive/complementary declaration" colspan="4">
                                 <field name="type"/>
@@ -66,7 +67,7 @@
                                         string="Calculate"
                                         states="draft"	
                                         icon="terp-stock_format-scientific"
-                                        />                                        
+                                        />
                                 <button name="button_recalculate"
                                         type="object"
                                         string="Recalculate"
@@ -76,23 +77,23 @@
                                         type="object"
                                         string="Export to BOE"
                                         states="done"
-                                        icon="gtk-execute"/>
+                                        icon="gtk-execute"
+                                        />
                                 <button name="confirm" string="Confirm" type="object" states="calculated" icon="gtk-ok"/>
                                 <button name="cancel" string="Cancel" type="object" states="calculated,done" icon="gtk-cancel"/>
                                 <button name="action_recover" string="Draft" type="object" states="canceled" icon="gtk-undo"/>
                             
                             </group>
-                                </page>
-                                <page string="Issued invoice" >
-                               	 <field name="issued" nolabel="1" />
-                                </page>
-                                <page string="Received invoice" >
-                               	 <field name="received" nolabel="1" /> 
-                                </page>
-                                
-                        </notebook>
-		    </form>
-		</field>
+                        </page>
+                        <page string="Issued invoice" >
+                            <field name="issued" nolabel="1" />
+                        </page>
+                        <page string="Received invoice" >
+                            <field name="received" nolabel="1" /> 
+                        </page>
+                    </notebook>
+                </form>
+            </field>
 	</record>
 	<!-- FIN Modelo 340 -->
 
@@ -228,7 +229,8 @@
                         <filter string="Company" icon="terp-personal" domain="[]" context="{'group_by':'company_id'}"/>
                     </group>
                     <newline/>
-                    <field name="period"/>
+                    <field name="period_from"/>
+                    <field name="period_to" />
                     <field name="fiscalyear_id"/>
                     <field name="number"/>
                     <field name="type"/>
