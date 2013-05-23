@@ -5,6 +5,8 @@
 #    Copyright (c) 2008 Spanish Localization Team
 #    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
+#    Copyright (c) 2013 Acysos S.L. (http://acysos.com) All Rights Reserved.
+#                       Ignacio Ibeas <ignacio@acysos.com>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -56,7 +58,7 @@ NOTA: Éste módulo añade un asistente en Empresas/Configuración/Bancos para l
         "partner_es_view.xml",
         ],
     "active": False,
-    "installable": False
+    "installable": True
 }
 
 
