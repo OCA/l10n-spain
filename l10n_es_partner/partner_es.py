@@ -5,7 +5,7 @@
 #    Copyright (c) 2008 Spanish Localization Team
 #    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2012 Acysos S.L. (http://acysos.com) All Rights Reserved.
+#    Copyright (c) 2012-2013 Acysos S.L. (http://acysos.com) All Rights Reserved.
 #                       Ignacio Ibeas <ignacio@acysos.com>
 #    $Id$
 #
@@ -76,7 +76,6 @@ class res_partner_bank(osv.osv):
         # la función onchange_banco se ejecuta con el valor account=False
         # dando el error: TypeError: 'bool' object is not iterable
         # El problema se resuelve con las tres siguientes líneas
-
         if type(account) <> str or type(country_id) <> int:
             #print "¿Por qué account es <type 'bool'>?"
             return {'value':{}}
@@ -89,6 +88,7 @@ class res_partner_bank(osv.osv):
                 return { 'warning': { 'title': _('Warning'), 'message': _('Invalid bank account.') } }
 
             bank_ids = self.pool.get('res.bank').search(cr, uid, [('code','=',number[:4])], context=context)
+            print bank_ids
             if bank_ids:
                 return {'value':{'acc_number': number, 'bank': bank_ids[0]}}
             else:
