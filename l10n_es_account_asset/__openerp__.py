@@ -20,35 +20,27 @@
 ##############################################################################
 
 {
-    "name" : "Assets Management",
+    "name" : "Gestión de activos fijos para España",
     "version" : "1.0",
-    "depends" : ["account"],
-    "author" : "OpenERP S.A.",
-    "description": """Financial and accounting asset management.
-    This Module manages the assets owned by a company or an individual. It will keep track of depreciation's occurred on
-    those assets. And it allows to create Move's of the depreciation lines.
-    """,
-    "website" : "http://www.openerp.com",
-    "category" : "Accounting & Finance",
-    "init_xml" : [
-    ],
-    "demo_xml" : [ 
-    ],
-    'test': ['test/account_asset.yml',
-             ],
-    "update_xml" : [
-        "security/account_asset_security.xml",
-        "security/ir.model.access.csv",
-        "account_asset_wizard.xml",
-        "wizard/account_asset_change_duration_view.xml",
-        "wizard/wizard_asset_compute_view.xml",
-        "account_asset_view.xml",
-        "account_asset_invoice_view.xml",
-        "report/account_asset_report_view.xml",
+    "depends" : ["account_asset"],
+    "author" : "Serv. Tecnol. Avanzados - Pedro M. Baeza",
+    "description": """
+Gestión de activos fijos española
+=================================
 
+Cambia la gestión estándar de activos fijos de OpenERP para acomodarla a las 
+regulaciones españolas:
+    
+    * Cambia el método de cálculo para el prorrateo temporal.
+    * Añade la opción de trasladar la depreciación al final del año.
+    """,
+    "website" : "http://www.serviciosbaeza.com",
+    "category" : "Accounting & Finance",
+    "data" : [
+        "account_asset_view.xml",
     ],
     "active": False,
-    "installable": False,
+    "installable": True,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
 
