@@ -32,7 +32,7 @@ Cambia la gestión estándar de activos fijos de OpenERP para acomodarla a las
 regulaciones españolas:
     
     * Cambia el método de cálculo para el prorrateo temporal.
-    * Añade la opción de trasladar la depreciación al final del año.
+    * Añade la opción de trasladar la depreciación al final del periodo.
     """,
     "website" : "http://www.serviciosbaeza.com",
     "category" : "Accounting & Finance",
