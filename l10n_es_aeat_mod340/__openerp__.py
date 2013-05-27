@@ -55,7 +55,6 @@ Exportación de asientos resumen de facturas
                  'l10n_es_aeat',
                  'account_refund_original',
                  'account_chart_update',
-                 'city',
                  ],
     'init_xml' : [],
     'demo_xml' : [],
