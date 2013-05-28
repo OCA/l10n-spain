@@ -22,33 +22,105 @@
 import datetime
 from osv import osv, fields
 
+class account_asset_category(osv.osv):
+    _inherit = 'account.asset.category'
+    _name = 'account.asset.category'
+
+    _columns = {
+        'ext_method_time': fields.selection([('number','Number of Depreciations'),('end','Ending Date'),('percentage','Fixed percentage')], 'Time Method', required=True,
+                                  help="Choose the method to use to compute the dates and number of depreciation lines.\n"\
+                                       "  * Number of Depreciations: Fix the number of depreciation lines and the time between 2 depreciations.\n" \
+                                       "  * Ending Date: Choose the time between 2 depreciations and the date the depreciations won't go beyond.\n" \
+                                       "  * Fixed percentage: Choose the time between 2 depreciations and the percentage to depreciate."),
+        'method_percentage': fields.integer('Depreciation percentage'),
+    }
+
+    _defaults = {
+        'method_percentage': 100,
+    }
+    
+    _sql_constraints = [
+        ('method_percentage', ' CHECK (method_percentage > 0 and method_percentage <= 100)', 'Wrong percentage!'),
+    ]
+
+    def onchange_ext_method_time(self, cr, uid, ids, ext_method_time, context=None):
+        res = {'value':{}}
+        res['value']['method_time'] = 'end' if ext_method_time == 'end' else 'number'
+        return res
+    
+
 class account_asset_asset(osv.osv):
     _inherit = 'account.asset.asset'
     _name = 'account.asset.asset'
-    _description = 'Asset'
 
     _columns = {
         'move_end_period': fields.boolean("At the end of the period", help='Move the depreciation entry at the end of the period. If the period are 12 months, it is put on 31st of December, and in the end of the month in other case.'),
+        # Hay que definir un nuevo campo y jugar con los valores del antiguo (method_time) para pasar el constraint _check_prorata y no tener que modificar mucho código base
+        'ext_method_time': fields.selection([('number','Number of Depreciations'),('end','Ending Date'),('percentage','Fixed percentage')], 'Time Method', required=True,
+                                  help="Choose the method to use to compute the dates and number of depreciation lines.\n"\
+                                       "  * Number of Depreciations: Fix the number of depreciation lines and the time between 2 depreciations.\n" \
+                                       "  * Ending Date: Choose the time between 2 depreciations and the date the depreciations won't go beyond.\n" \
+                                       "  * Fixed percentage: Choose the time between 2 depreciations and the percentage to depreciate."),
+        'method_percentage': fields.integer('Depreciation percentage'),
     }
     
     _defaults = {
+        'method_percentage': 100,
         'move_end_period': True,
     }
 
+    _sql_constraints = [
+        ('method_percentage', ' CHECK (method_percentage > 0 and method_percentage <= 100)', 'Wrong percentage!'),
+    ]
+
+    def onchange_ext_method_time(self, cr, uid, ids, ext_method_time, context=None):
+        res = {'value':{}}
+        res['value']['method_time'] = 'end' if ext_method_time == 'end' else 'number'
+        return res
+
+    def onchange_category_id(self, cr, uid, ids, category_id, context=None):
+        res = super(account_asset_asset, self).onchange_category_id(cr, uid, ids, category_id, context=context)
+        if category_id:
+            category_obj = self.pool.get('account.asset.category').browse(cr, uid, category_id, context=context)
+            res['value']['ext_method_time'] = category_obj.ext_method_time
+            res['value']['method_percentage'] = category_obj.method_percentage
+        return res
+
     def _compute_board_undone_dotation_nb(self, cr, uid, asset, depreciation_date, total_days, context=None):
-        val = super(account_asset_asset, self)._compute_board_undone_dotation_nb(cr, uid, asset, depreciation_date, total_days, context=context)
-        if depreciation_date.day == 1 and depreciation_date.month == 1:
-            # Quitar una depreciación del nº total si el activo se compró el 1 de enero,
-            # ya que ese año sería completo  
-            val -= 1
-        return val
+        if asset.ext_method_time == 'percentage':
+            number = 0
+            percentage = 100.0
+            while percentage > 0:
+                if number == 0 and asset.prorata:
+                    days = (total_days - float(depreciation_date.strftime('%j'))) + 1
+                    percentage -= asset.method_percentage * days / total_days
+                else:
+                    percentage -= asset.method_percentage
+                number += 1
+            return number
+        else:
+            val = super(account_asset_asset, self)._compute_board_undone_dotation_nb(cr, uid, asset, depreciation_date, total_days, context=context)
+            if depreciation_date.day == 1 and depreciation_date.month == 1:
+                # Quitar una depreciación del nº total si el activo se compró el 1 de enero, ya que ese año sería completo  
+                val -= 1
+            return val
     
     def _compute_board_amount(self, cr, uid, asset, i, residual_amount, amount_to_depr, undone_dotation_number, posted_depreciation_line_ids, total_days, depreciation_date, context=None):
-        if asset.method == 'linear' and asset.prorata and i != undone_dotation_number:
+        if asset.ext_method_time == 'percentage':
+            # Nuevo tipo de cálculo
+            if i == undone_dotation_number:
+                return residual_amount
+            else:
+                if i == 1 and asset.prorata:
+                    days = (total_days - float(depreciation_date.strftime('%j'))) + 1
+                    percentage = asset.method_percentage * days / total_days
+                else:
+                    percentage = asset.method_percentage
+                return amount_to_depr * percentage / 100
+        elif asset.method == 'linear' and asset.prorata and i != undone_dotation_number:
             # Caso especial de cálculo que cambia
             amount = amount_to_depr / asset.method_number
             if i == 1:
-                year = depreciation_date.year
                 days = (total_days - float(depreciation_date.strftime('%j'))) + 1
                 amount *= days / total_days
             return amount
