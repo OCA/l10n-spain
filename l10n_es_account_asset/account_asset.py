@@ -32,11 +32,11 @@ class account_asset_category(osv.osv):
                                        "  * Number of Depreciations: Fix the number of depreciation lines and the time between 2 depreciations.\n" \
                                        "  * Ending Date: Choose the time between 2 depreciations and the date the depreciations won't go beyond.\n" \
                                        "  * Fixed percentage: Choose the time between 2 depreciations and the percentage to depreciate."),
-        'method_percentage': fields.integer('Depreciation percentage'),
+        'method_percentage': fields.float('Depreciation percentage', digits=(3,2)),
     }
 
     _defaults = {
-        'method_percentage': 100,
+        'method_percentage': 100.0,
     }
     
     _sql_constraints = [
@@ -61,11 +61,11 @@ class account_asset_asset(osv.osv):
                                        "  * Number of Depreciations: Fix the number of depreciation lines and the time between 2 depreciations.\n" \
                                        "  * Ending Date: Choose the time between 2 depreciations and the date the depreciations won't go beyond.\n" \
                                        "  * Fixed percentage: Choose the time between 2 depreciations and the percentage to depreciate."),
-        'method_percentage': fields.integer('Depreciation percentage'),
+        'method_percentage': fields.float('Depreciation percentage', digits=(3,2)),
     }
     
     _defaults = {
-        'method_percentage': 100,
+        'method_percentage': 100.0,
         'move_end_period': True,
     }
 
