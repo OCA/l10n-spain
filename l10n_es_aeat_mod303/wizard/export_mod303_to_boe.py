@@ -224,7 +224,7 @@ class l10n_es_aeat_mod303_export_to_boe(osv.osv_memory):
         
         ## firma (9)
         
-        file_contents += self._formatString(report.company_id.city,16)       ## Localidad
+        file_contents += self._formatString(report.company_id.partner_id.city,16)       ## Localidad
         
 
         calculation_date = datetime.strptime(report.calculation_date,"%Y-%m-%d %H:%M:%S")
