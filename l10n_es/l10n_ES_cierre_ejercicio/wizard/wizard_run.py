@@ -413,7 +413,7 @@ class wizard_run(wizard.interface):
                             'period_id': period_id,
                             'journal_id': journal_id,
                         }, context=context)
-            for i, move in enumerate(move_lines):
+            for move in move_lines:
                 move['move_id'] = move_id
                 pool.get('account.move.line').create(cr, uid, move,
                                                      context=context,
@@ -516,7 +516,7 @@ class wizard_run(wizard.interface):
                             'period_id': period_id,
                             'journal_id': journal_id,
                         }, context=context)
-            for i, move in enumerate(move_lines):
+            for move in move_lines:
                 move['move_id'] = move_id
                 pool.get('account.move.line').create(cr, uid, move,
                                                      context=context,
