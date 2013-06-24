@@ -2,11 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2008 Spanish Localization Team
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
-#                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
+#    Copyright (c) 2013 Servicios Tecnológicos Avanzados (http://www.serviciosbaeza.com)
+#                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -23,7 +20,24 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from osv import orm, fields
+import tools
+import os
 
-import l10n_es_partner
-import wizard
+class l10n_es_partner_import_wizard(orm.TransientModel):
+    _name = 'l10n.es.partner.import.wizard'
+    _inherit = 'res.config.installer'
 
+    def execute(self, cr, uid, ids, context=None):
+        if context is None: context = {}
+        super(l10n_es_partner_import_wizard, self).execute(cr, uid, ids, context=context)
+        try:
+            fp = tools.file_open(os.path.join(os.path.join('l10n_es_partner', 'wizard'), 'data_banks.xml'))
+        except IOError, e:
+            return {}
+        idref = {}
+        tools.convert_xml_import(cr, 'l10n_es_partner', fp,  idref, 'init', noupdate=True)
+        fp.close()
+        return {}
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
