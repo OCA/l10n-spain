@@ -61,13 +61,15 @@ class wizard_payment_file_spain(osv.osv_memory):
     def create_payment_file(self, cr, uid, ids, context):
         converter = self.pool.get('payment.converter.spain')
         txt_remesa = ''
-        num_lineas_opc = 0
 
         form_obj = self.browse(cr, uid, ids)[0]
         try:
             orden = self.pool.get('payment.order').browse(cr, uid, context['active_id'], context)
             if not orden.line_ids:
                 raise Log( _('User error:\n\nWizard can not generate export file, there are not payment lines.'), True )
+            if orden.create_account_moves == 'direct-paymt' and orden.state != 'open':
+                raise Log( _('User error:\n\nIf direct payment is selected to create the account moves, you should confirm payments befores. Creating the files will make the payments.'), True )
+
 
             # Comprobamos que exista número de C.C. y que tenga 20 dígitos
             if not orden.mode.bank_id:
@@ -150,7 +152,7 @@ class wizard_payment_file_spain(osv.osv_memory):
             # Ensure line breaks use MS-DOS (CRLF) format as standards require.
             txt_remesa = txt_remesa.replace('\r\n','\n').replace('\n','\r\n')
 
-            file = base64.encodestring(txt_remesa.encode('utf-8'))
+            file_remesa = base64.encodestring(txt_remesa.encode('utf-8'))
             fname = (_('Remittance_%s_%s.txt') %(orden.mode.tipo, orden.reference)).replace('/','-')
             # Borrar posible anterior adjunto de la exportación
             obj_attachment = self.pool.get('ir.attachment')
@@ -160,19 +162,16 @@ class wizard_payment_file_spain(osv.osv_memory):
             # Adjuntar nuevo archivo de remesa
             obj_attachment.create(cr, uid, {
                 'name': fname,
-                'datas': file,
+                'datas': file_remesa,
                 'datas_fname': fname,
                 'res_model': 'payment.order',
                 'res_id': orden.id,
                 }, context=context)
             log = _("Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n") % (orden.total, len(recibos))
-            self.pool.get('payment.order').set_done(cr, uid, [orden.id], context)
+            if orden.state != 'done':
+                self.pool.get('payment.order').set_done(cr, uid, [orden.id], context)
 
-            form_obj.write({'note': log,'pay': file,'pay_fname': fname})
+            form_obj.write({'note': log,'pay': file_remesa,'pay_fname': fname})
 
             return True
 wizard_payment_file_spain()
-
-
-
-
