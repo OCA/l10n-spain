@@ -44,7 +44,7 @@ USO DEL SCRIPT PARA GEONAMES
 ==============================================================================
 Esta utilidad consulta al webservice de GeoNames por cada uno de los posibles
 códigos postales entre 1000 y 53000, volcando los resultados en el archivo 
-municipios_cpostal.py, necesario para el funcionamiento del módulo 
+'l10n_es_toponyms_zipcodes.xml', necesario para el funcionamiento del módulo 
 l10n_es_toponyms. Al ser un gran número de consultas web, el proceso puede 
 tardar bastante, y el propio servidor establece un límite máximo de consultas 
 (en el momento de escribir esto, el límite era de 2000 por hora). Por eso, 
@@ -60,18 +60,18 @@ desde ese punto.
 		python gen_toponyms_geonames.py --start número
 4. Repetir el paso 3 tantas veces como sea necesario hasta que el script
    indique "Proceso terminado".
-5. Copiar el archivo municipios_cpostal.py generado a la carpeta wizard del
-   módulo, sobreescribiendo el anterior.
+5. Copiar el archivo 'l10n_es_toponyms_zipcodes.xml' generado a la carpeta 
+   'wizard' del módulo, sobreescribiendo el anterior.
 
 USO DEL SCRIPT PARA WWW.CODIGOSPOSTALES.COM
 ==============================================================================
 Esta utilidad convierte el archivo descargado de www.codigospostales.com
-en el archivo municipios_cpostal.py, necesario para el funcionamiento del 
-módulo l10n_es_toponyms.
+en el archivo l10n_es_toponyms_zipcodes.xml, necesario para el funcionamiento 
+del módulo l10n_es_toponyms.
 
 1. Descargar archivo de www.codigospostales.com
 2. Descomprimir el archivo .zip en una carpeta.
 3. Ejecutar:
 		python gen_toponyms_www_codigospostales_com.py <ruta_de_la_carpeta_descomprimida>
-4. Copiar el archivo municipios_cpostal.py generado a la carpeta wizard del
-   módulo, sobreescribiendo el anterior.
+4. Copiar el archivo 'l10n_es_toponyms_zipcodes.xml' generado a la carpeta 
+   'wizard' del módulo, sobreescribiendo el anterior.

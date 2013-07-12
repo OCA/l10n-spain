@@ -75,12 +75,14 @@ if __name__ == "__main__":
     start = args.start
     # Preparar archivo en el que escribir
     if start == 1000:
-        output = open("municipios_cpostal.py", 'w')
-        output.write("# -*- encoding: utf-8 -*-\n")
-        output.write("cod_postales = [\n")
+        output = open("l10n_es_toponyms_zipcodes.xml", 'w')
+        output.write("<?xml version='1.0' encoding='UTF-8'?>\n")
+        output.write("<openerp>\n")
+        output.write("    <data noupdate='1'>\n")
     else:
-        output = open("municipios_cpostal.py", 'a')
+        output = open("l10n_es_toponyms_zipcodes.xml", 'a')
     # Iterar por el rango de CPs
+    cont = 0
     for cp in range (start, 53000):
         try:
             xml_string = urllib2.urlopen("http://ws.geonames.org/postalCodeSearch?postalcode=%05d&country=ES" %cp).read()
@@ -90,14 +92,23 @@ if __name__ == "__main__":
             print "Ha ocurrido un error inesperado. Pruebe a lanzar de nuevo el script con el parámetro --start y el número %s." %cp
             sys.exit()            
         if handler.isServiceOk:
+            cp_str = "%05d" %cp
             print "%05d: %s" %(cp, handler.citys)
             for city in handler.citys:
-                output.writelines('    ["%05d", "%s"],\n' %(cp, filterCity(city).encode('utf-8')))
+                cont += 1
+                output.write('        <record id="city_ES_%s" model="city.city">\n' %cont)
+                output.write('            <field name="state_id" ref="l10n_es_toponyms.ES%s"/>\n' %cp_str[:2])
+                output.write('            <field name="name">%s</field>\n' %filterCity(city).encode('utf-8'))
+                output.write('            <field name="zip">%s</field>\n' %cp_str)
+                output.write('            <field name="country_id" ref="base.es"/>\n')
+                output.write('        </record>\n')
         else:
             print "No se puede continuar la extracción de datos.\n%s\nContinúe después del tiempo indicado utilizando el parámetro --start con el número %s." %(handler.message.encode('utf-8'), cp)
             output.close()
             sys.exit()
-    output.write("]")
+    # Se ha terminado ya con todos los códigos postales
+    output.write("    </data>\n")
+    output.write("</openerp>\n")
     # Cerrar archivo
     output.close()
     print "Proceso terminado"

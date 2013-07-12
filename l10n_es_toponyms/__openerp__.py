@@ -24,20 +24,29 @@
 ##############################################################################
 
 {
-    "name" : "Topónimos del Estado español",
+    "name" : "Topónimos españoles",
     "version" : "1.0",
     "author" : "Spanish Localization Team",
     "website" : "https://launchpad.net/openerp-spain",
     "category" : "Localisation/Europe",
-    "description": """Provincias, municipios y códigos postales del Estado español
+    "description": """
+Provincias, municipios y códigos postales de España.
 
-  * Añade las 52 provincias actuales del Estado español con posibilidad de escoger versión oficial, castellana o ambas.
-  * Proporciona un asistente para dar de alta los municipios y provincias por defecto asociados a los códigos postales del Estado español. Permite rellenar automáticamente los campos ciudad y provincia del formulario de empresa y contacto a partir del código postal.
+  * Añade las 52 provincias actuales de España con posibilidad de escoger 
+    entre versión oficial, española o ambas.
+  * Proporciona un asistente para dar de alta los municipios y provincias por 
+    defecto asociados a los códigos postales españoles. 
+  * Utilizando el módulo base_location, permite rellenar automáticamente los 
+    campos ciudad y provincia del formulario de empresa, de contacto y de 
+    compañía a partir del código postal o el nombre de la ciudad.
 
-Los datos han sido obtenidos de GeoNames (www.geonames.org).
+Los datos han sido obtenidos de GeoNames (http://www.geonames.org).
 
-AVISO: El asistente sólo funciona ejecutándose desde el usuario 'admin'.""",
-    "depends" : ["base"],
+**AVISO:** Este módulo requiere el módulo *base_location*, disponible en:
+
+https://launchpad.net/partner-contact-management
+""",
+    "depends" : ["base", "base_location"],
     "license" : "AGPL-3",
     "data" : [
 		"wizard/l10n_es_toponyms_wizard.xml",
