@@ -49,8 +49,11 @@ if __name__ == "__main__":
     fIndex = open(os.path.join(sys.argv[1], "codciu.txt"), 'r')
     # Preparar archivo en el que escribir
     output = open("municipios_cpostal.py", 'w')
-    output.write("cod_postales = [\n")
+    output.write("<?xml version='1.0' encoding='UTF-8'?>\n")
+    output.write("<openerp>\n")
+    output.write("    <data noupdate='1'>\n")
     # Leer líneas con los archivos de CPs
+    cont = 0
     for line in fIndex:
         pos = 0
         while line[pos].isdigit() or line[pos].islower():
@@ -61,10 +64,17 @@ if __name__ == "__main__":
             if line[pos-1] == 'x':
                 # Códigos postales de municipios
                 for lineCP in fCPs:
+                    cont += 1
                     cp, ciudad = lineCP.split(':')
-                    output.writelines('    ["%s", "%s"],\n' %(cp, capitalizeSpanishCity(ciudad[:-1])))
+                    output.write('        <record id="city_ES_%s" model="city.city">\n' %cont)
+                    output.write('            <field name="state_id" ref="l10n_es_toponyms.ES%s"/>\n' %cp[:2])
+                    output.write('            <field name="name">%s</field>\n' %ciudad)
+                    output.write('            <field name="zip">%s</field>\n' %cp)
+                    output.write('            <field name="country_id" ref="base.es"/>\n')
+                    output.write('        </record>\n')
             fCPs.close()
-    output.write("]")
+    output.write("    </data>\n")
+    output.write("</openerp>\n")
     # Cerrar archivos
     fIndex.close()
     output.close()
