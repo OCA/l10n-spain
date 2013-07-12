@@ -33,8 +33,8 @@ class config_es_toponyms(osv.osv_memory):
 
     _columns = {
         'name':fields.char('Name', size=64),
-        'state': fields.selection([('official','Official'),('spanish','Spanish'),('both','Both')], 'State names', required=True, help="Toponym version of the spanish states. For example: Official (Girona), Spanish (Gerona), Both (Gerona / Girona)"),
-        'city_info': fields.selection([('yes','Yes'),('no','No')], 'City information', required=True, help="Do you want to add city and state information associated to the zip codes for all the spanish cities? This allows to fill automatically the city and states fields of partner and contact forms from the zip code."),
+        'state': fields.selection([('official','Official'),('spanish','Spanish'),('both','Both')], 'State names', required=True),
+        'city_info': fields.selection([('yes','Yes'),('no','No')], 'City information', required=True),
     }
 
     _defaults={
@@ -43,7 +43,7 @@ class config_es_toponyms(osv.osv_memory):
     }
     
     def create_states(self, cr, uid, state_type, context=None):
-		"""It imports spanish states information trough an XML file."""
+		"""Import spanish states information through an XML file."""
 		file_name = 'l10n_es_toponyms_states_%s.xml' %state_type
 		try:
 			fp = tools.file_open(os.path.join('l10n_es_toponyms', os.path.join('wizard', file_name)))
@@ -57,19 +57,18 @@ class config_es_toponyms(osv.osv_memory):
 		return False
 	
     def create_zipcodes(self, cr, uid, context=None):
-		"""It creates default values for state and city fields in res.partner model linked to zip codes (>15000 zip codes can take several minutes)."""
-		from municipios_cpostal import cod_postales
-		
-		country_id = self.pool.get('res.country').search(cr, uid, [('code', '=', 'ES'),])[0]
-		if country_id:
-			ir_values_obj = self.pool.get('ir.values')
-			for city in cod_postales:
-				state_id = self.pool.get('res.country.state').search(cr, uid, [('country_id', '=', country_id), ('code', '=', city[0][:2]),])[0]
-				if state_id:
-					ir_values_obj.set(cr, uid, 'default', 'zip=' + city[0], 'state_id', [('res.partner', False)], state_id)
-				ir_values_obj.set(cr, uid, 'default', 'zip=' + city[0], 'city', [('res.partner', False)], city[1])
-			cr.commit()
-		return {}
+        """Import spanish zipcodes information through an XML file."""
+        file_name = 'l10n_es_toponyms_zipcodes.xml'
+        try:
+            fp = tools.file_open(os.path.join('l10n_es_toponyms', os.path.join('wizard', file_name)))
+        except IOError, e:
+            fp = None
+        if fp:
+            idref = {}
+            tools.convert_xml_import(cr, 'l10n_es_toponyms', fp,  idref, 'init', noupdate=True)
+            cr.commit()
+            return True
+        return False
 
     def execute(self, cr, uid, ids, context=None):
 		if context is None: context = {}
