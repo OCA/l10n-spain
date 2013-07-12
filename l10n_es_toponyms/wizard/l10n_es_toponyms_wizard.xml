@@ -19,10 +19,9 @@
                         </group>
                         <label colspan="4" string=""/>
                         <group col="2" colspan="4" string="Associate city and state information to zip codes">
-							<label colspan="2" string="'State' and 'City' fields can be filled automatically in partner screen when you enter a zip code if this information is associated. Do you want to associate this data?"/>
-							<p colspan="2">NOTE: If you are planning to install 'city' and 'l10n_es_toponyms_city' modules, this operation is not needed.</p>
+							<label colspan="2" string="'State', 'City', 'ZIP' and 'Country' fields can be filled automatically in partner, contact and company screens when you enter a zip code or the city name if this information is associated. Do you want to associate this data?"/>
                             <field name="city_info"/>
-							<label colspan="2" string="WARNING: Adding more than 15000 zip codes can take several minutes."/>
+							<label colspan="2" string="Warning! Adding more than 56000 records can take a lot of time. If you are behind a SSL proxy, check your timeout."/>
                         </group>
 	                </separator>
 
