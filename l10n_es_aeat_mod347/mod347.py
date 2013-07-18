@@ -28,15 +28,6 @@ import re
 from osv import osv, fields
 from tools.translate import _
 
-class account_period(osv.osv):
-    _inherit = "account.period"
-
-    _columns = {
-        'quarter':fields.selection( [('first','First'),('second','Second'),('third','Third'),('fourth','Fourth')], 'Quarter'),
-    }
-account_period()
-
-
 class l10n_es_aeat_mod347_report(osv.osv):
 
     _inherit = "l10n.es.aeat.report"

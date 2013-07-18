@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+        ######################
+        ### AEAT MODEL 303 ###
+        ######################
+        
+        <!-- Tree view -->
+        <record id="view_l10n_es_aeat_mod303_report_tree" model="ir.ui.view">
+            <field name="name">AEAT Model 303 (tree)</field>
+            <field name="model">l10n.es.aeat.mod303.report</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="AEAT 303 Reports">
+                    <field name="number"/>
+                    <field name="company_id"/>
+                    <field name="fiscalyear_id"/>
+                    <field name="period" />
+                    <field name="state" />
+                    <!-- <field name="type"/> -->
+                    <!-- <field name="previous_number"/> -->
+                    <!-- <field name="support_type"/> -->
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form view -->
+        <record id="view_l10n_es_aeat_mod303_report_form" model="ir.ui.view">
+            <field name="name">AEAT Model 303 (form)</field>
+            <field name="model">l10n.es.aeat.mod303.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="AEAT 303 Report" >
+                
+                    <group string="Declaracion" colspan="4" >
+                        <field name="company_id" on_change="on_change_company_id(company_id)" required="1" select="1"/>
+                        <field name="company_vat" required="1"/>
+                        <field name="fiscalyear_id" select="1"/>
+                        <field name="period" required="True"/>
+                        <!-- <field name="type"  selection="1"/> -->
+                        <group colspan="6" col="6">
+                        <field name="devolucion_mensual" />
+                        <field name="complementaria" />
+                        <field name="sin_actividad" />
+                        </group>                       
+                    </group>
+                    <notebook>
+                    <page string ="General">
+                    <group string="Complementaria" attrs="{'invisible':[('complementaria','=',False)]}" colspan="4">
+                        <field name="previus_result" attrs="{'required':[('complementaria','=',True)]}" />
+                        <field name="previous_number" attrs="{'required':[('complementaria','=',True)]}"/>
+                    </group>  
+                    <group string="Resultado" colspan="4" col="4">
+                        <group colspan="6" col="6">
+	                         <field name="total_devengado"/>
+	                         <field name="total_deducir" />
+	                         <field name="diferencia" />
+	                         <group colspan="2" ></group>
+	                         <field name="porcentaje_atribuible_estado" />
+	                         <field name="atribuible_estado"/>
+	                         <field name="cuota_compensar" />
+	                         <field name="regularizacion_anual" />
+	                         <field name="resultado_casilla_46" />
+	                         <group colspan="4" ></group>
+	                         <field name="resultado_liquidacion" />
+                        </group>
+                    </group>
+                    <group attrs="{'invisible':[('resultado_liquidacion','=',0)]}">
+                    <group colspan="6" col="6" attrs="{'invisible':['|',('resultado_liquidacion','&gt;',0),('state','=','draft')]}" >
+                    <group colspan="2" string="Compensación">
+                        <field name="compensar" string="Importe"></field>
+                    </group>
+                    <group string="Devolución" >
+                        
+                        <field name="devolver" colspan="2" string="Importe"/>
+                        <field name="cuenta_devolucion_id" colspan="2" 
+                               attrs="{'required':[('devolver','&gt;',0)]}"/>
+                    </group>
+                    </group>
+                    <group string="Ingreso" attrs="{'invisible':['|',('resultado_liquidacion','&lt;',0),('state','=','draft')]}">
+                        <field name="ingresar" colspan="2" string="Importe"/>                                   
+                        <field name="cuenta_ingreso_id" colspan="2" 
+                               attrs="{'required':[('ingresar','&gt;',0)]}"/>
+                    </group>
+                    </group>
+                    <group colspan="4" >
+                        <group>
+                            <field name="state" select="2" readonly="1" />
+                            <field name="calculation_date" readonly="1"/>
+                        </group>
+                        <group colspan="4" col="10">
+                            <button name="button_calculate"
+                                    type="object"
+                                    string="Calculate"
+                                    states="draft"  
+                                    icon="terp-stock_format-scientific"
+                                    />                                        
+                            <button name="button_recalculate"
+                                    type="object"
+                                    string="Recalculate"
+                                    states="calculating,calculated"
+                                    icon="gtk-execute"/>
+                            <button name="button_export"
+                                    type="object"
+                                    string="Export to BOE"
+                                    states="done"
+                                    icon="gtk-execute"/>
+                            <button name="confirm" string="Confirm" type="object" states="calculated" icon="gtk-ok"/>
+                            <button name="cancel" string="Cancel" type="object" states="calculated,done" icon="gtk-cancel"/>
+                            <button name="action_recover" string="Draft" type="object" states="canceled" icon="gtk-undo"/>
+                        </group>
+                    </group>  
+                    </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_l10n_es_aeat_mod303_report_search" model="ir.ui.view">
+            <field name="name">AEAT Model 303 (search)</field>
+            <field name="model">l10n.es.aeat.mod303.report</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="AEAT 303">
+                    <group col="8" colspan="4">
+                        <filter icon="terp-gtk-media-pause" string="Draft" domain="[('state','=','draft')]" help="Draft models"/>
+                        <filter icon="gtk-execute" string="In process" domain="[('state','in',('calculating', 'calculated'))]" help="In process models"/>
+                        <filter icon="terp-camera_test" string="Done" domain="[('state','=','done')]" help="Confirmed models"/>
+                        <filter icon="gtk-cancel" string="Cancelled" domain="[('state', '=', 'canceled')]" help="Cancelled models"/>
+                        <separator orientation="vertical"/>
+                        <filter string="Fiscal Year" icon="terp-folder-orange" domain="[]" context="{'group_by':'fiscalyear_id'}"/>
+                        <separator orientation="vertical"/>
+                        <filter string="Company" icon="terp-personal" domain="[]" context="{'group_by':'company_id'}"/>
+                    </group>
+                    <newline/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Window action -->
+        <record id="action_l10n_es_aeat_mod303_report" model="ir.actions.act_window">
+            <field name="name">AEAT Model 303</field>
+            <field name="res_model">l10n.es.aeat.mod303.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help">Create and query AEAT Model 303 Reports</field>
+        </record>
+        
+
+
+        
+        <!-- ### MENU ACCESS ### -->
+       
+        <menuitem
+            id="menu_aeat_mod303_report"
+            parent="l10n_es_aeat.menu_root_aeat"
+            action="action_l10n_es_aeat_mod303_report"
+            sequence="50"
+            name="AEAT 303 Model"/>
+                
+    </data>
+</openerp>
