@@ -77,7 +77,7 @@ class res_partner_bank(osv.osv):
         # dando el error: TypeError: 'bool' object is not iterable
         # El problema se resuelve con las tres siguientes líneas
 
-        if type(account) <> str or type(country_id) <> int:
+        if type(account) <> unicode or type(country_id) <> int:
             #print "¿Por qué account es <type 'bool'>?"
             return {'value':{}}
         country = self.pool.get('res.country').browse(cr, uid, country_id, context)
