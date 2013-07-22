@@ -345,9 +345,9 @@ msgstr "Remesa_%s_%s.txt"
 msgid "User error:\n"
 "\n"
 "Company %s has no vat."
-msgstr "User error:\n"
+msgstr "Error de usuario:\n"
 "\n"
-"Company %s has no vat."
+"La compañía %s no tienes cif/nif."
 
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
@@ -418,7 +418,7 @@ msgid "User error:\n"
 "Wizard can not generate export file, there are not payment lines."
 msgstr "Error del usuario:\n"
 "\n"
-"El asistente no puede generar el archivo de remesas, no existen recibos."
+"El asistente no puede generar el archivo de remesas. No existen recibos."
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,cost_key:0
@@ -655,7 +655,7 @@ msgid "User error:\n"
 "Company %s has no invoicing address."
 msgstr "Error de usuario:\n"
 "\n"
-"La empresa %s No tienes dirección de facturación."
+"La empresa %s no tiene dirección de facturación."
 
 #. module: l10n_es_payment_order
 #: model:ir.model,name:l10n_es_payment_order.model_payment_converter_spain
@@ -670,7 +670,7 @@ msgid "User error:\n"
 "If direct payment is selected to create the account moves, you should confirm payments befores. Creating the files will make the payments."
 msgstr "Error de usuario:\n"
 "\n"
-"Si la opción elegida para crear asientos contables es por pago directo, primero tendrá que confirmar los pagos. Al crear el fichero los pagos se formailizarán de forma automática."
+"Si la opción elegida para crear asientos contables es por pago directo, primero tendrá que confirmar los pagos. Al crear el fichero los pagos se formalizarán de forma automática."
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_19.py:63
