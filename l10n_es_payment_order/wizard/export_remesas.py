@@ -67,7 +67,7 @@ class wizard_payment_file_spain(osv.osv_memory):
             orden = self.pool.get('payment.order').browse(cr, uid, context['active_id'], context)
             if not orden.line_ids:
                 raise Log( _('User error:\n\nWizard can not generate export file, there are not payment lines.'), True )
-            if orden.create_account_moves == 'direct-payment' and orden.state != 'open':
+            if orden.create_account_moves == 'direct-payment' and (orden.state != 'open' and orden.state != 'done'):
                 raise Log( _('User error:\n\nIf direct payment is selected to create the account moves, you should confirm payments befores. Creating the files will make the payments.'), True )
 
 
