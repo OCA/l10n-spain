@@ -9,6 +9,8 @@
 #    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
 #    AvanzOSC, Advanced Open Source Consulting 
 #    Copyright (C) 2011-2012 Ainara Galdona (www.avanzosc.com). All Rights Reserved
+#    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
+#                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com> 
 #    $Id$
 #
 # Refactorización. Acysos S.L. (http://www.acysos.com) 2012
@@ -30,24 +32,37 @@
 ##############################################################################
 
 {
-    "name" : "Exportación de ficheros bancarios CSB 19, CSB 32, CSB 34 y CSB 58",
+    "name" : "Exportación de archivos bancarios CSB 19, CSB 32, CSB 34 y CSB 58",
     "version" : "1.6",
     "author" : "Acysos SL, Zikzakmedia SL, Pablo Rocandio, NaN·tic",
     "category" : "Localisation/Accounting",
-    "description" : """Módulo para la exportación de ficheros bancarios según las normas CSB 19 (recibos domiciliados), CBS 32 (descuento comercial), CSB 58 (anticipos de créditos) y CSB 34 (emisión de transferencias, nóminas, cheques, pagarés y pagos certificados) para poder ser enviados a la entidad bancaria.
+    "description" : """Módulo para la exportación de archivos bancarios según 
+las normas CSB 19 (recibos domiciliados), CBS 32 (descuento comercial), CSB 58 
+(anticipos de créditos) y CSB 34 (emisión de transferencias, nóminas, cheques, 
+pagarés y pagos certificados) para poder ser enviados a la entidad bancaria.
 
-Crea un tipo de pago "Recibo domiciliado" con el código RECIBO_CSB. Este código es importante pues permite ejecutar el asistente de creación del fichero de remesas cuando se presiona el botón "Realizar pagos" en la orden de pagos o remesa.
+Crea un tipo de pago "Recibo domiciliado" con el código RECIBO_CSB. Este código 
+es importante, pues permite ejecutar el asistente de creación del fichero de 
+remesas cuando se presiona el botón "Realizar pagos" en la orden de pagos o 
+remesa.
 
-También crea los tipos de pago "Transferencia" (TRANSFERENCIA_CSB), "Pagaré" (PAGARE_CSB), "Cheque" (CHEQUE_CSB), "Pago certificado" (PAGO_CERTIFICADO_CSB).
+También crea los tipos de pago "Transferencia" (TRANSFERENCIA_CSB), "Pagaré" 
+(PAGARE_CSB), "Cheque" (CHEQUE_CSB), "Pago certificado" (PAGO_CERTIFICADO_CSB).
 
-Antes de generar un fichero bancario CSB habrá que definir un modo de pago que use el tipo de pago anterior y donde se defina la forma de pago (CSB 19, CSB 32, CSB 34 o CSB 58), la compañía que emite el fichero y el sufijo y nombre de compañia a incluir en el fichero.
+Antes de generar un fichero bancario CSB habrá que definir un modo de pago que 
+use el tipo de pago anterior y donde se defina la forma de pago (CSB 19, CSB 
+32, CSB 34 o CSB 58), la compañía que emite el fichero y el sufijo y nombre de 
+compañia a incluir en el fichero.
 
 Al crear el fichero bancario CSB:
 
-  * Se pueden agrupar o no los pagos de una misma empresa y cuenta bancaria
-  * El fichero creado se guarda como adjunto de la orden de pagos. Se puede volver a crear el fichero de remesas siempre que sea necesario (puede tener que renombrar el anterior fichero adjunto si tienen el mismo nombre).
+  * Se pueden agrupar o no los pagos de una misma empresa y cuenta bancaria.
+  * El fichero creado se guarda como adjunto de la orden de pagos. Se puede 
+    volver a crear el fichero de remesas siempre que sea necesario (puede tener 
+    que renombrar el anterior fichero adjunto si tienen el mismo nombre).
 
-También se proporciona un informe para imprimir un listado de los pagos/cobros de la orden de pago/cobro (remesa).
+También se proporciona un informe para imprimir un listado de los pagos/cobros 
+de la orden de pago/cobro (remesa).
 """,
     "website" : "www.zikzakmedia.com,www.acysos.com",
     "license" : "AGPL-3",

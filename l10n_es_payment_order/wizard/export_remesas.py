@@ -168,8 +168,6 @@ class wizard_payment_file_spain(osv.osv_memory):
                 'res_id': orden.id,
                 }, context=context)
             log = _("Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n") % (orden.total, len(recibos))
-            if orden.state != 'done':
-                self.pool.get('payment.order').set_done(cr, uid, [orden.id], context)
 
             form_obj.write({'note': log,'pay': file_remesa,'pay_fname': fname})
 
