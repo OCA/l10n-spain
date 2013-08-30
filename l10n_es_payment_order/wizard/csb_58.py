@@ -96,7 +96,7 @@ class csb_58(osv.osv):
         texto += str(importe).zfill(10)
         ###### Referencia para devolución (sólo válida si no se agrupa) ######
         if len(recibo['ml_inv_ref']) == 1:
-            texto += str(recibo['ml_inv_ref'][0])[-16:].zfill(16)
+            texto += str(recibo['ml_inv_ref'][0].id)[-16:].zfill(16)
         else:
             texto += 16*' '
         ######################################################################
