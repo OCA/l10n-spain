@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_account_mod340_form_type0">
+            <field name="name">l10n.es.aeat.mod340.form.type0</field>
+            <field name="model">l10n.es.aeat.mod340</field>
+            <field name="type">form</field>
+            <field name="priority" eval="5"/>
+            <field name="inherit_id" ref="l10n_es_aeat_mod340.view_account_mod340_form"/>
+            <field name="arch" type="xml">
+                <field name="phone_contact" position="replace">
+                    <field name="phone_contact" on_change="on_change_phone_contact(phone_contact)"/>
+                </field>
+                <field name="name_contact" position="replace">
+                    <field name="name_contact" colspan="4" on_change="on_change_name_contact(name_contact)"/>
+                </field>
+                <field name="representative_vat" position="replace">
+                    <field name="representative_vat" on_change="on_change_representative_vat(representative_vat)"/>
+                </field>
+                <notebook position="inside">
+                    <page string="Presenter">
+                        <separator string="This information is only for the company that have to present registry type 0. For the moment, only in Comunidad Foral de Navarra" colspan="4"/>
+                        <field name="presenter_vat" />
+                        <field name="presenter_name" />
+                        <field name="presenter_phone_contact" />
+                        <field name="presenter_name_contact" />
+                        <group string="Address" colspan="4" col="14">
+                            <field name="presenter_address_acronym" />
+                            <field name="presenter_address_name" colspan="4"/>
+                            <field name="presenter_address_number" />
+                            <field name="presenter_address_stair" />
+                            <field name="presenter_address_floor" />
+                            <field name="presenter_address_door" />
+                            <field name="presenter_city_id" colspan="8" />
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</openerp>
