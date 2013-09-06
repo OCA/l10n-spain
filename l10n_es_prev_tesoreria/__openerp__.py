@@ -25,13 +25,19 @@
     "depends": [
                 "account",
                 "account_payment",
+                "account_payment_extension",
                 ],
     "author": "Avanzosc S.L.",
     "website": "http://www.avanzosc.com",
     "category": "Accounting",
     "description": """
-    Este modulo contiene :
-        Formularios para realizar las previsiones de tesoreria
+    Este módulo contiene:
+        * Formularios para realizar las previsiones de tesorería.
+    
+    **AVISO:** Este módulo requiere el módulo *account_payment_extension*, 
+    disponible en:
+    
+    https://launchpad.net/account-payment/6.1
     """,
     "init_xml": [],
     'update_xml': ["security/l10n_es_tesoreria_security.xml",
