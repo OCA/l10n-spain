@@ -11,29 +11,25 @@
                     	<field name="delete_net_pyg" invisible="1"/>
                     	<field name="delete_close" invisible="1"/>
                     	<field name="delete_open" invisible="1"/>
-                        <label string="This wizard will cancel the selected operations." colspan="4"/>
+                        <label string="This wizard will cancel the selected operations. It will remove:" colspan="4"/>
         				<label string="" colspan="4"/>
-        				<label string="" colspan="4"/>
-        				<label string="It will remove:" colspan="4"/>
         				<group attrs="{'invisible':[('delete_pyg','=',False)]}" colspan="4">
-        					<label string="    * Profit and Loss Account Move" colspan="4"/>
+        					<label string="    * Profit and Loss account move" colspan="4"/>
         				</group>
         				<group attrs="{'invisible':[('delete_net_pyg','=',False)]}" colspan="4">
-        					<label string="    * Net Profit and Loss Account Move" colspan="4"/>
+        					<label string="    * Net Profit and Loss account move" colspan="4"/>
         				</group>
         				<group attrs="{'invisible':[('delete_close','=',False)]}" colspan="4">
-        					<label string="    * Closing Account Move" colspan="4"/>
+        					<label string="    * Closing account move" colspan="4"/>
         				</group>
         				<group attrs="{'invisible':[('delete_open','=',False)]}" colspan="4">
-        					<label string="    * Opening Account Move" colspan="4"/>
+        					<label string="    * Opening account move" colspan="4"/>
         				</group>
-        				<label string="" colspan="4"/>
         				<label string="" colspan="4"/>
         				<label string="Closed periods, and the fiscal year, will be reopened." colspan="4"/>
         				<label string="" colspan="4"/>
-        				<label string="" colspan="4"/>
         				<group colspan="4">
-        				<button name="action_cancel" string="Cancel" type="object" icon="gtk-cancel"/>
+        				<button special="cancel" string="Cancel" icon="gtk-cancel"/>
         				<button name="cancel_run" string="Ok" type="object" icon="gtk-ok"/>
         				</group>
                     </form>
@@ -66,46 +62,44 @@
                     	<field name="check_draft" invisible="1"/>
                     	<field name="check_invalid" invisible="1"/>
                     	<field name="check_unbalanced" invisible="1"/>
-                        <label string="This wizard will execute the selected operations." colspan="4"/>
-        				<label string="" colspan="4"/>
+                        <label string="This wizard will execute the following operations:" colspan="4"/>
         				<label string="" colspan="4"/>
         				<group attrs="{'invisible':[('check_draft','=',False)]}" colspan="4">
-        					<label string="    * Check Draft Moves" colspan="4"/>
+        					<label string="    * Check draft account moves" colspan="4"/>
         				</group>
         				<group attrs="{'invisible':[('check_unbalanced','=',False)]}" colspan="4">
-        					<label string="    * Check Unbalanced Moves" colspan="4"/>
+        					<label string="    * Check unbalanced account moves" colspan="4"/>
         				</group>
         				<group attrs="{'invisible':[('check_invalid','=',False)]}" colspan="4">
-        					<label string="    * Check Invalid Period Or Date Moves" colspan="4"/>
+        					<label string="    * Check invalid period or date account moves" colspan="4"/>
         				</group>
         				<group attrs="{'invisible':[('delete_pyg','=',False)]}" colspan="4">
-        					<label string="    * Delete Profit and Loss Account Move" colspan="4"/>
+        					<label string="    * Delete Profit and Loss account move" colspan="4"/>
         				</group>
         				<group attrs="{'invisible':[('create_pyg','=',False)]}" colspan="4">
-        					<label string="    * Create Profit and Loss Account Move" colspan="4"/>
+        					<label string="    * Create Profit and Loss account move" colspan="4"/>
         				</group>
         				<group attrs="{'invisible':[('delete_net_pyg','=',False)]}" colspan="4">
-        					<label string="    * Delete Net Profit and Loss Account Move" colspan="4"/>
+        					<label string="    * Delete Net Profit and Loss account move" colspan="4"/>
         				</group>
         				<group attrs="{'invisible':[('create_net_pyg','=',False)]}" colspan="4">
-        					<label string="    * Create Net Profit and Loss Account Move" colspan="4"/>
+        					<label string="    * Create Net Profit and Loss account move" colspan="4"/>
         				</group>
         				<group attrs="{'invisible':[('delete_close','=',False)]}" colspan="4">
-        					<label string="    * Delete Closing Account Move" colspan="4"/>
+        					<label string="    * Delete Closing account move" colspan="4"/>
         				</group>
         				<group attrs="{'invisible':[('create_close','=',False)]}" colspan="4">
-        					<label string="    * Create Closing Account Move" colspan="4"/>
+        					<label string="    * Create Closing account move" colspan="4"/>
         				</group>
         				<group attrs="{'invisible':[('delete_open','=',False)]}" colspan="4">
-        					<label string="    * Delete Opening Account Move" colspan="4"/>
+        					<label string="    * Delete Opening account move" colspan="4"/>
         				</group>
         				<group attrs="{'invisible':[('create_open','=',False)]}" colspan="4">
-        					<label string="    * Create Opening Account Move" colspan="4"/>
+        					<label string="    * Create Opening account move" colspan="4"/>
         				</group>
         				<label string="" colspan="4"/>
-        				<label string="" colspan="4"/>
         				<group colspan="4">
-        				<button name="action_cancel" string="Cancel" type="object" icon="gtk-cancel"/>
+        				<button special="cancel" string="Cancel" icon="gtk-cancel"/>
         				<button name="execute_run" string="Ok" type="object" icon="gtk-ok"/>
         				</group>
                     </form>

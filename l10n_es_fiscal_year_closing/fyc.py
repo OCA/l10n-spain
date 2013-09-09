@@ -487,7 +487,7 @@ class fiscal_year_closing(osv.osv):
         # Make sure the lang is defined on the context
         #
         user = self.pool.get('res.users').browse(cr, uid, uid, context)
-        context['lang'] = context.get('lang') or user.context_lang
+        context['lang'] = context.get('lang') or user.lang
 
         for fyc in self.browse(cr, uid, ids, context):
             #
@@ -496,7 +496,7 @@ class fiscal_year_closing(osv.osv):
             fyc_ids = self.search(cr, uid, [('name', '=', fyc.name)])
             if len(fyc_ids) > 1:
                 raise osv.except_osv(_('Error'), _('There is already a fiscal year closing with this name.'))
-
+            
             assert fyc.closing_fiscalyear_id and fyc.closing_fiscalyear_id.id
             fyc_ids = self.search(cr, uid, [('closing_fiscalyear_id', '=', fyc.closing_fiscalyear_id.id)])
             if len(fyc_ids) > 1:
@@ -692,7 +692,7 @@ class fiscal_year_closing(osv.osv):
         # Make sure the lang is defined on the context
         #
         user = self.pool.get('res.users').browse(cr, uid, uid, context)
-        context['lang'] = context.get('lang') or user.context_lang
+        context['lang'] = context.get('lang') or user.lang
 
         #
         # Uncheck all the operations
