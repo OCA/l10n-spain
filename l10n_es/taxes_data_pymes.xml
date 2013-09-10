@@ -123,7 +123,7 @@
             <field name="sign">1.0</field>
         </record>
 
-		 <record id="iva_pymes_dev_04_10" model="account.tax.code.template">
+         <record id="iva_pymes_dev_04_10" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Base Imponible 10%</field>
             <field name="code">[04]</field>
             <field name="parent_id" ref="iva_pymes_dev_base"/>
@@ -238,7 +238,7 @@
             <field name="sign">1.0</field>
         </record>
 
- 	<record id="iva_pymes_dev_06_10" model="account.tax.code.template">
+     <record id="iva_pymes_dev_06_10" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Cuota 10%</field>
             <field name="code">[06]</field>
             <field name="parent_id" ref="iva_pymes_dev_21"/>
@@ -368,7 +368,7 @@
             <field name="parent_id" ref="iva_pymes_ded_22"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_pymes_ded_22_16" model="account.tax.code.template">
+        <record id="iva_pymes_ded_22_16" model="account.tax.code.template">
             <field name="name">Base operaciones interiores corrientes (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_22"/>
@@ -418,7 +418,7 @@
             <field name="parent_id" ref="iva_pymes_ded_24"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_pymes_ded_24_16" model="account.tax.code.template">
+        <record id="iva_pymes_ded_24_16" model="account.tax.code.template">
             <field name="name">Base operaciones interiores bienes inversión (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_24"/>
@@ -518,7 +518,7 @@
             <field name="parent_id" ref="iva_pymes_ded_28"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_pymes_ded_28_16" model="account.tax.code.template">
+        <record id="iva_pymes_ded_28_16" model="account.tax.code.template">
             <field name="name">Base importaciones bienes inversión (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_28"/>
@@ -567,7 +567,7 @@
             <field name="parent_id" ref="iva_pymes_ded_30"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_pymes_ded_30_16" model="account.tax.code.template">
+        <record id="iva_pymes_ded_30_16" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes corrientes (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_30"/>
@@ -713,7 +713,7 @@
             <field name="parent_id" ref="iva_pymes_ded_23"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_pymes_ded_23_16" model="account.tax.code.template">
+        <record id="iva_pymes_ded_23_16" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores corrientes (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_23"/>
@@ -762,7 +762,7 @@
             <field name="parent_id" ref="iva_pymes_ded_25"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_pymes_ded_25_16" model="account.tax.code.template">
+        <record id="iva_pymes_ded_25_16" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores bienes inversión (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_25"/>
@@ -811,7 +811,7 @@
             <field name="parent_id" ref="iva_pymes_ded_27"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_pymes_ded_27_16" model="account.tax.code.template">
+        <record id="iva_pymes_ded_27_16" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes corrientes (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_27"/>
@@ -860,7 +860,7 @@
             <field name="parent_id" ref="iva_pymes_ded_29"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_pymes_ded_29_16" model="account.tax.code.template">
+        <record id="iva_pymes_ded_29_16" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes inversión (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_29"/>
@@ -909,7 +909,7 @@
             <field name="parent_id" ref="iva_pymes_ded_31"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_pymes_ded_31_16" model="account.tax.code.template">
+        <record id="iva_pymes_ded_31_16" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes corrientes (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_31"/>
@@ -958,7 +958,7 @@
             <field name="parent_id" ref="iva_pymes_ded_33"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_pymes_ded_33_16" model="account.tax.code.template">
+        <record id="iva_pymes_ded_33_16" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes inversión (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_pymes_ded_33"/>
@@ -1148,7 +1148,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-		<record id="iva_pymes_sop_10" model="account.tax.template">
+        <record id="iva_pymes_sop_10" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">10% IVA Soportado (operaciones corrientes)</field>
             <field eval="0.10" name="amount"/>
@@ -1257,7 +1257,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
- 		<record id="iva_pymes_sop_21" model="account.tax.template">
+         <record id="iva_pymes_sop_21" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">21% IVA Soportado (operaciones corrientes)</field>
             <field eval="0.21" name="amount"/>
@@ -1899,7 +1899,7 @@
             <field eval="0" name="sequence"/>
         </record>
 
-		<record id="iva_pymes_rep_21" model="account.tax.template">
+        <record id="iva_pymes_rep_21" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">IVA 21%</field>
             <field eval="0.21" name="amount"/>
@@ -2605,7 +2605,7 @@
         </record-->
 <!-- ES NECESARIO ESTE ÚLTIMO REGISTRO????-->
 
-		<record id="iva_pymes_IC_compras_18_bi" model="account.tax.template">
+        <record id="iva_pymes_IC_compras_18_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">IVA 18% Intracomunitario. Bienes de inversión</field>
             <field name="description">IVA 18% Intracomunitario. Bienes de inversión</field>
@@ -2649,7 +2649,7 @@
         </record>
 
 
-		<record id="iva_pymes_IC_compras_21_bc" model="account.tax.template">
+        <record id="iva_pymes_IC_compras_21_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">IVA 21% Intracomunitario. Bienes corrientes</field>
             <field name="description">IVA 21% Intracomunitario. Bienes corrientes</field>
@@ -2693,7 +2693,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-		<record id="iva_pymes_IC_compras_21_bi" model="account.tax.template">
+        <record id="iva_pymes_IC_compras_21_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">IVA 21% Intracomunitario. Bienes de inversión</field>
             <field name="description">IVA 21% Intracomunitario. Bienes de inversión</field>
@@ -2888,96 +2888,14 @@
             <field name="sign">1.0</field>
         </record>
 
-        <!--Cuentas para Retenciones-->
-        <record id="pgc_pymes_475101" model="account.account.template">
-            <field name="code">475101</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones empresarios módulos 1%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_475102" model="account.account.template">
-            <field name="code">475102</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones act. agrícolas, ganaderas, forestales 2%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_475107" model="account.account.template">
-            <field name="code">475107</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones act. profesionales 7%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_475109" model="account.account.template">
-            <field name="code">475109</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones act. profesionales 9%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_475115" model="account.account.template">
-            <field name="code">475115</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones act. profesionales 15%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_475118" model="account.account.template">
-            <field name="code">475118</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 18%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_475119" model="account.account.template">
-            <field name="code">475119</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 19%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_475120" model="account.account.template">
-            <field name="code">475120</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 20%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_475121" model="account.account.template">
-            <field name="code">475121</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_4751"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones arrendamientos, cap. mobiliario 21%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
         <!-- Plantillas de retenciones-->
         <record id="irpf_pymes_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">Retenciones IRPF 1%</field>
             <field eval="-0.01" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_475101"/>
-            <field name="account_paid_id" ref="pgc_pymes_475101"/>
+            <field name="account_collected_id" ref="pgc_pymes_475100"/>
+            <field name="account_paid_id" ref="pgc_pymes_475100"/>
             <field name="base_code_id" ref="irpf_pymes_base_1"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_1"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_1"/>
@@ -2994,8 +2912,8 @@
             <field name="name">Retenciones IRPF 2%</field>
             <field eval="-0.02" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_475102"/>
-            <field name="account_paid_id" ref="pgc_pymes_475102"/>
+            <field name="account_collected_id" ref="pgc_pymes_475100"/>
+            <field name="account_paid_id" ref="pgc_pymes_475100"/>
             <field name="base_code_id" ref="irpf_pymes_base_2"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_2"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_2"/>
@@ -3012,8 +2930,8 @@
             <field name="name">Retenciones IRPF 7%</field>
             <field eval="-0.07" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_475107"/>
-            <field name="account_paid_id" ref="pgc_pymes_475107"/>
+            <field name="account_collected_id" ref="pgc_pymes_475100"/>
+            <field name="account_paid_id" ref="pgc_pymes_475100"/>
             <field name="base_code_id" ref="irpf_pymes_base_7"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_7"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_7"/>
@@ -3030,8 +2948,8 @@
             <field name="name">Retenciones IRPF 9%</field>
             <field eval="-0.09" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_475109"/>
-            <field name="account_paid_id" ref="pgc_pymes_475109"/>
+            <field name="account_collected_id" ref="pgc_pymes_475100"/>
+            <field name="account_paid_id" ref="pgc_pymes_475100"/>
             <field name="base_code_id" ref="irpf_pymes_base_9"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_9"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_9"/>
@@ -3048,8 +2966,8 @@
             <field name="name">Retenciones IRPF 15%</field>
             <field eval="-0.15" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_475115"/>
-            <field name="account_paid_id" ref="pgc_pymes_475115"/>
+            <field name="account_collected_id" ref="pgc_pymes_475100"/>
+            <field name="account_paid_id" ref="pgc_pymes_475100"/>
             <field name="base_code_id" ref="irpf_pymes_base_15"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_15"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_15"/>
@@ -3066,8 +2984,8 @@
             <field name="name">Retenciones IRPF 18%</field>
             <field eval="-0.18" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_475118"/>
-            <field name="account_paid_id" ref="pgc_pymes_475118"/>
+            <field name="account_collected_id" ref="pgc_pymes_475100"/>
+            <field name="account_paid_id" ref="pgc_pymes_475100"/>
             <field name="base_code_id" ref="irpf_pymes_base_18"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_18"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_18"/>
@@ -3084,8 +3002,8 @@
             <field name="name">Retenciones IRPF 19%</field>
             <field eval="-0.19" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_475119"/>
-            <field name="account_paid_id" ref="pgc_pymes_475119"/>
+            <field name="account_collected_id" ref="pgc_pymes_475100"/>
+            <field name="account_paid_id" ref="pgc_pymes_475100"/>
             <field name="base_code_id" ref="irpf_pymes_base_19"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_19"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_19"/>
@@ -3102,8 +3020,8 @@
             <field name="name">Retenciones IRPF 20%</field>
             <field eval="-0.20" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_475120"/>
-            <field name="account_paid_id" ref="pgc_pymes_475120"/>
+            <field name="account_collected_id" ref="pgc_pymes_475100"/>
+            <field name="account_paid_id" ref="pgc_pymes_475100"/>
             <field name="base_code_id" ref="irpf_pymes_base_20"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_20"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_20"/>
@@ -3120,8 +3038,8 @@
             <field name="name">Retenciones IRPF 21%</field>
             <field eval="-0.21" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_475121"/>
-            <field name="account_paid_id" ref="pgc_pymes_475121"/>
+            <field name="account_collected_id" ref="pgc_pymes_475100"/>
+            <field name="account_paid_id" ref="pgc_pymes_475100"/>
             <field name="base_code_id" ref="irpf_pymes_base_21"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_21"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_21"/>
@@ -3277,96 +3195,14 @@
             <field name="sign">1.0</field>
         </record>
 
-        <!--Cuentas para Retenciones-->
-        <record id="pgc_pymes_473001" model="account.account.template">
-            <field name="code">473001</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta empresarios módulos 1%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_473002" model="account.account.template">
-            <field name="code">473002</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta act. agrícolas, ganaderas, forestales 2%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_473007" model="account.account.template">
-            <field name="code">473007</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta act. profesionales 7%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_473009" model="account.account.template">
-            <field name="code">473009</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta act. profesionales 9%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_473015" model="account.account.template">
-            <field name="code">473015</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta act. profesionales 15%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_473018" model="account.account.template">
-            <field name="code">473018</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 18%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_473019" model="account.account.template">
-            <field name="code">473019</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 19%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_473020" model="account.account.template">
-            <field name="code">473020</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 20%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
-        <record id="pgc_pymes_473021" model="account.account.template">
-            <field name="code">473021</field>
-            <field name="reconcile" eval="True"/>
-            <field name="parent_id" ref="pgc_pymes_473"/>
-            <field name="type">other</field>
-            <field name="name">Hacienda Pública. Retenciones a cuenta arrendamientos, cap. mobiliario 21%</field>
-            <field name="user_type" ref="tax"/>
-        </record>
-
         <!-- Plantillas de retenciones-->
         <record id="irpf_pymes_sale_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template_pymes"/>
             <field name="name">Retenciones a cuenta IRPF 1%</field>
             <field eval="-0.01" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_473001"/>
-            <field name="account_paid_id" ref="pgc_pymes_473001"/>
+            <field name="account_collected_id" ref="pgc_pymes_473000"/>
+            <field name="account_paid_id" ref="pgc_pymes_473000"/>
             <field name="base_code_id" ref="irpf_pymes_base_sale_1"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_sale_1"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_sale_1"/>
@@ -3383,8 +3219,8 @@
             <field name="name">Retenciones a cuenta IRPF 2%</field>
             <field eval="-0.02" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_473002"/>
-            <field name="account_paid_id" ref="pgc_pymes_473002"/>
+            <field name="account_collected_id" ref="pgc_pymes_473000"/>
+            <field name="account_paid_id" ref="pgc_pymes_473000"/>
             <field name="base_code_id" ref="irpf_pymes_base_sale_2"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_sale_2"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_sale_2"/>
@@ -3401,8 +3237,8 @@
             <field name="name">Retenciones a cuenta IRPF 7%</field>
             <field eval="-0.07" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_473007"/>
-            <field name="account_paid_id" ref="pgc_pymes_473007"/>
+            <field name="account_collected_id" ref="pgc_pymes_473000"/>
+            <field name="account_paid_id" ref="pgc_pymes_473000"/>
             <field name="base_code_id" ref="irpf_pymes_base_sale_7"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_sale_7"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_sale_7"/>
@@ -3419,8 +3255,8 @@
             <field name="name">Retenciones a cuenta IRPF 9%</field>
             <field eval="-0.09" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_473009"/>
-            <field name="account_paid_id" ref="pgc_pymes_473009"/>
+            <field name="account_collected_id" ref="pgc_pymes_473000"/>
+            <field name="account_paid_id" ref="pgc_pymes_473000"/>
             <field name="base_code_id" ref="irpf_pymes_base_sale_9"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_sale_9"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_sale_9"/>
@@ -3437,8 +3273,8 @@
             <field name="name">Retenciones a cuenta IRPF 15%</field>
             <field eval="-0.15" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_473015"/>
-            <field name="account_paid_id" ref="pgc_pymes_473015"/>
+            <field name="account_collected_id" ref="pgc_pymes_473000"/>
+            <field name="account_paid_id" ref="pgc_pymes_473000"/>
             <field name="base_code_id" ref="irpf_pymes_base_sale_15"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_sale_15"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_sale_15"/>
@@ -3455,8 +3291,8 @@
             <field name="name">Retenciones a cuenta IRPF 18%</field>
             <field eval="-0.18" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_473018"/>
-            <field name="account_paid_id" ref="pgc_pymes_473018"/>
+            <field name="account_collected_id" ref="pgc_pymes_473000"/>
+            <field name="account_paid_id" ref="pgc_pymes_473000"/>
             <field name="base_code_id" ref="irpf_pymes_base_sale_18"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_sale_18"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_sale_18"/>
@@ -3473,8 +3309,8 @@
             <field name="name">Retenciones a cuenta IRPF 19%</field>
             <field eval="-0.19" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_473019"/>
-            <field name="account_paid_id" ref="pgc_pymes_473019"/>
+            <field name="account_collected_id" ref="pgc_pymes_473000"/>
+            <field name="account_paid_id" ref="pgc_pymes_473000"/>
             <field name="base_code_id" ref="irpf_pymes_base_sale_19"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_sale_19"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_sale_19"/>
@@ -3491,8 +3327,8 @@
             <field name="name">Retenciones a cuenta IRPF 20%</field>
             <field eval="-0.20" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_473020"/>
-            <field name="account_paid_id" ref="pgc_pymes_473020"/>
+            <field name="account_collected_id" ref="pgc_pymes_473000"/>
+            <field name="account_paid_id" ref="pgc_pymes_473000"/>
             <field name="base_code_id" ref="irpf_pymes_base_sale_20"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_sale_20"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_sale_20"/>
@@ -3509,8 +3345,8 @@
             <field name="name">Retenciones a cuenta IRPF 21%</field>
             <field eval="-0.21" name="amount"/>
             <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_pymes_473021"/>
-            <field name="account_paid_id" ref="pgc_pymes_473021"/>
+            <field name="account_collected_id" ref="pgc_pymes_473000"/>
+            <field name="account_paid_id" ref="pgc_pymes_473000"/>
             <field name="base_code_id" ref="irpf_pymes_base_sale_21"/>
             <field name="tax_code_id" ref="irpf_pymes_cuota_sale_21"/>
             <field name="ref_base_code_id" ref="irpf_pymes_base_sale_21"/>

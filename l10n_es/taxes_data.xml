@@ -129,7 +129,7 @@
             <field name="parent_id" ref="iva_dev_base"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_dev_07_21" model="account.tax.code.template">
+        <record id="iva_dev_07_21" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Base Imponible 21%</field>
             <field name="code">[07]</field>
             <field name="parent_id" ref="iva_dev_base"/>
@@ -244,7 +244,7 @@
             <field name="sign">1.0</field>
         </record>
 
-		<record id="iva_dev_09_21" model="account.tax.code.template">
+        <record id="iva_dev_09_21" model="account.tax.code.template">
             <field name="name">Régimen general IVA Devengado. Cuota 21%</field>
             <field name="code">[09]</field>
             <field name="parent_id" ref="iva_dev_21"/>
@@ -353,7 +353,7 @@
             <field name="parent_id" ref="iva_ded_22"/>
             <field name="sign">1.0</field>
         </record>
- 		<record id="iva_ded_22_16" model="account.tax.code.template">
+         <record id="iva_ded_22_16" model="account.tax.code.template">
             <field name="name">Base operaciones interiores corrientes (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_22"/>
@@ -402,7 +402,7 @@
             <field name="parent_id" ref="iva_ded_24"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_ded_24_16" model="account.tax.code.template">
+        <record id="iva_ded_24_16" model="account.tax.code.template">
             <field name="name">Base operaciones interiores bienes inversión (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_24"/>
@@ -502,7 +502,7 @@
             <field name="parent_id" ref="iva_ded_28"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_ded_28_16" model="account.tax.code.template">
+        <record id="iva_ded_28_16" model="account.tax.code.template">
             <field name="name">Base importaciones bienes inversión (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_28"/>
@@ -602,7 +602,7 @@
             <field name="parent_id" ref="iva_ded_32"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_ded_32_16" model="account.tax.code.template">
+        <record id="iva_ded_32_16" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes inversión (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_32"/>
@@ -699,7 +699,7 @@
             <field name="parent_id" ref="iva_ded_23"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_ded_23_16" model="account.tax.code.template">
+        <record id="iva_ded_23_16" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores corrientes (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_23"/>
@@ -749,7 +749,7 @@
             <field name="parent_id" ref="iva_ded_25"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_ded_25_16" model="account.tax.code.template">
+        <record id="iva_ded_25_16" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores bienes inversión (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_25"/>
@@ -799,7 +799,7 @@
             <field name="parent_id" ref="iva_ded_27"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_ded_27_16" model="account.tax.code.template">
+        <record id="iva_ded_27_16" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes corrientes (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_27"/>
@@ -849,7 +849,7 @@
             <field name="parent_id" ref="iva_ded_29"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_ded_29_16" model="account.tax.code.template">
+        <record id="iva_ded_29_16" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes inversión (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_29"/>
@@ -947,7 +947,7 @@
             <field name="parent_id" ref="iva_ded_33"/>
             <field name="sign">1.0</field>
         </record>
-		<record id="iva_ded_33_16" model="account.tax.code.template">
+        <record id="iva_ded_33_16" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes inversión (16%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_33"/>
@@ -1138,7 +1138,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-		<record id="iva_sop_10" model="account.tax.template">
+        <record id="iva_sop_10" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">10% IVA Soportado (operaciones corrientes)</field>
             <field eval="0.10" name="amount"/>
@@ -1538,7 +1538,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-		<record id="iva_X21_compras_bc" model="account.tax.template">
+        <record id="iva_X21_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 21% Importaciones bienes corrientes</field>
             <field name="description">IVA 21% Importaciones bienes corrientes</field>
@@ -1718,7 +1718,7 @@
         </record>
 
 
-		<record id="iva_ISP_compras_21" model="account.tax.template">
+        <record id="iva_ISP_compras_21" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 21% Inversión del sujeto pasivo</field>
             <field name="description">IVA 21% Inversión del sujeto pasivo</field>
@@ -2114,7 +2114,7 @@
 
         <!-- COMPRAS -->
 
-		<record id="iva_IC_compras_4_bc" model="account.tax.template">
+        <record id="iva_IC_compras_4_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 4% Intracomunitario. Bienes corrientes</field>
             <field name="description">IVA 4% Intracomunitario. Bienes corrientes</field>
@@ -2458,7 +2458,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-		<record id="iva_IC_compras_16_bc" model="account.tax.template">
+        <record id="iva_IC_compras_16_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 16% Intracomunitario. Bienes corrientes</field>
             <field name="description">IVA 16% Intracomunitario. Bienes corrientes</field>
@@ -2502,7 +2502,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-		<record id="iva_IC_compras_16_bi" model="account.tax.template">
+        <record id="iva_IC_compras_16_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 16% Intracomunitario. Bienes de inversión</field>
             <field name="description">IVA 16% Intracomunitario. Bienes de inversión</field>
@@ -2643,7 +2643,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-		<record id="iva_IC_compras_21_bc" model="account.tax.template">
+        <record id="iva_IC_compras_21_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 21% Intracomunitario. Bienes corrientes</field>
             <field name="description">IVA 21% Intracomunitario. Bienes corrientes</field>
@@ -2687,7 +2687,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-		<record id="iva_IC_compras_21_bi" model="account.tax.template">
+        <record id="iva_IC_compras_21_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10nES_chart_template"/>
             <field name="name">IVA 21% Intracomunitario. Bienes de inversión</field>
             <field name="description">IVA 21% Intracomunitario. Bienes de inversión</field>

@@ -45,6 +45,7 @@ Spanish Charts of Accounts (PGCE 2008).
     "license" : "AGPL-3",
     "depends" : ["account", "base_vat", "base_iban"],
     "data" : [
+        "account_type.xml",
         "account_chart.xml",
         "taxes_data.xml",
         "fiscal_templates.xml",
