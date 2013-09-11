@@ -25,59 +25,64 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+#    2013/09/08 - Joaquín Gutierrez: Adaptación a la versión 7
+#    2013/09/09 - Pedro M. Baeza: Refactorización general
+#
 ##############################################################################
 
 {
-    'name' : "Spanish fiscal year closing",
+    'name' : "Cierre de ejercicio fiscal para España",
     'version' : "1.0",
-    'author' : "Pexego / Pedro M. Baeza / Joaquin Gutierrez",
-    'website' : "http://www.pexego.es / http://www.serviciosbaeza.com / http://www.gutierrezweb.es",
+    'author' : "Pexego",
+    'website' : "http://www.pexego.es",
+    'contributors' : ['Pedro M. Baeza', 'Joaquín Gutierrez'],
     'category' : "Localisation/Accounting",
     'description': """
-Spanish fiscal year closing wizard
-====================================
+Cierre contable del ejercicio fiscal español 
+============================================
     
-Replaces the default OpenERP end of year wizards (from account module)
-with a more advanced all-in-one wizard that will let the users:
-  - Check for unbalanced moves, moves with invalid dates
-    or period or draft moves on the fiscal year to be closed.
-  - Create the Loss and Profit entry.
-  - Create the Net Loss and Profit entry.
-  - Create the Closing entry.
-  - Create the Opening entry.
+Reemplaza el asistente por defecto de OpenERP para el cierre contable (del 
+módulo *account*) por un asistente todo en uno más avanzado que permite:
 
-It's highly configurable, and comes preconfigured for the current Spanish chart of accounts.
+ * Comprobar asientos descuadrados.
+ * Comprobar fechas y periodos incorrectos de los apuntes.
+ * Comprobar si hay asientos sin asentar en el ejercicio a cerrar.
+ * Crear el asiento de pérdidas y ganancias.
+ * Crear el asiento de pérdidas y ganancias de patrimonio neto.
+ * Crear el asiento de cierre.
+ * Crear el asiento de apertura.
 
-It takes in account deferral method set in account types:
-  - None: Nothing is done for this account.
-  - Balance: Create account move line with the balance of the year for the account.
-  - Detail: Create one account move line for each partner with balance for the account.
-  - Unreconciled: Not supported.
+Permite configurar todos los parámetros para la realización de los asientos, 
+aunque viene preconfigurado para el actual plan de cuentas español. 
 
-Also is stateful, saving all the info about the fiscal year closing, so the
-user can cancel and undo the operations easily.
+Para la creación de los asientos, se tiene en cuenta el método de cierre 
+definido en los tipos de cuenta (siempre que la cuenta no sea de tipo view):
 
-##Serv. Tecnol. Baeza##: Modified for ignoring account moves in 'Other' journey.
+ * Ninguno: No se realiza ningún cierre para esa cuenta.
+ * Saldo: Crea un apunte para la cuenta con el saldo del ejercicio.
+ * No conciliados: Crea un apunte por cada empresa con saldo para la cuenta.
+ * Detalle: No soportado.
 
-##Joaquin Gutierrrez##: Migration module to version 7 of OpenERP
+También conserva el estado del cierre, por lo que el usuario puede cancelar y 
+deshacer las operaciones fácilmente.
     """,
     "license" : "AGPL-3",
     "depends" : [
-                    "base",
-                    "account",
-                    "l10n_es",
-                ],
-    "init_xml" : [],
-    "update_xml" : [
-                    "wizard/wizard_run_view.xml",
-                    "security/ir.model.access.csv",
-                    "fyc_workflow.xml",
-                    "fyc_view.xml",
-                    "hide_account_wizards.xml",
-                    
-                    ],
+        "base",
+        "account",
+        "l10n_es",
+    ],
+    "data" : [
+        "wizard/wizard_run_view.xml",
+        "security/ir.model.access.csv",
+        "fiscalyear_closing_workflow.xml",
+        "fiscalyear_closing_view.xml",
+        "hide_account_wizards.xml",
+    ],
     "active": False,
     "installable": True,
-    'images': ['images/l10n_es_fiscal_year_closing.jpeg'],
+    'images': [
+        'images/l10n_es_fiscal_year_closing.png',
+    ],
 }
 
