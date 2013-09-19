@@ -29,9 +29,10 @@ from osv import fields
 class l10n_es_tesoreria_facturas(osv.osv):
     _name = 'l10n.es.tesoreria.facturas'
     _description = 'Facturas para la tesorería'
-    
+    _rec_name = 'factura_name'
     _columns = {
         'factura_id': fields.many2one('account.invoice', 'Factura'),
+        'factura_name':fields.related('factura_id','number', type='char', size=32, string='Nombre Factura'),
         'fecha_vencimiento': fields.date('Fecha Vencimiento'),
         'partner_id': fields.many2one('res.partner', 'Empresa'),
         'diario': fields.many2one('account.journal', 'Diario'),

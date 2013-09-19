@@ -24,7 +24,6 @@
 				</tree>
 			</field>
 		</record>
-
 		<!-- ====================================== Árbol de pagos periodicos de 
 			tesorería ====================================== -->
 
@@ -41,7 +40,19 @@
 				</tree>
 			</field>
 		</record>
-
+		<record model="ir.ui.view" id="l10n_es_tesoreria_pagos_period_form_view">
+			<field name="name">l10n.es.tesoreria.pagos.period.form</field>
+			<field name="model">l10n.es.tesoreria.pagos.period</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Pagos Periodicos">
+					<field name="name" />
+					<field name="partner_id" />
+					<field name="fecha" />
+					<field name="importe"/>
+				</form>
+			</field>
+		</record>
 		<!-- ========================================== Formulario de pagos variables 
 			de tesorería ========================================== -->
 
@@ -56,6 +67,19 @@
 					<field name="partner_id" />
 					<field name="importe" sum="Total Importe" />
 				</tree>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="l10n_es_tesoreria_pagos_var_form_view">
+			<field name="name">l10n.es.tesoreria.pagos.var.form</field>
+			<field name="model">l10n.es.tesoreria.pagos.var</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Pagos Variables">
+					<field name="name" />
+					<field name="partner_id" />
+					<field name="fecha" />
+					<field name="importe"/>
+				</form>
 			</field>
 		</record>
 
@@ -87,7 +111,17 @@
 				</tree>
 			</field>
 		</record>
-
+		<record model="ir.ui.view" id="l10n_es_tesoreria_saldos_form_view">
+			<field name="name">l10n.es.tesoreria.saldos.form</field>
+			<field name="model">l10n.es.tesoreria.saldos</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Saldos por Tipo de Pago">
+					<field name="name" />
+					<field name="saldo" />
+				</form>
+			</field>
+		</record>
 		<!-- ========================================== Árbol de tesorería ========================================== -->
 
 		<record model="ir.ui.view" id="l10n_es_tesoreria_tree_view">
