@@ -136,6 +136,7 @@
         <field name="name">Import bank data</field>
         <field name="note">Import Spanish bank data.</field>
         <field name="action_id" ref="action_partner_import_wizard"/>
+        <field name="type">automatic</field>
         <field name="sequence">25</field>
         <field name="restart">onskip</field>
     </record>
