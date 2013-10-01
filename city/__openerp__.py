@@ -21,15 +21,20 @@
 #
 ##############################################################################
 {
-    "name" : "City-Helps to keep Homogeneous address data in the Database",
-    "version" : "2.0",
+    "name" : "City information",
+    "version" : "2.1",
     "author" : "Acysos S.L., Pedro Manuel Baeza, Pablo Rocandio",
     "website" : "www.acysos.com, www.serviciosbaeza.com",
     "license" : "AGPL-3",
     "category" : "Hidden",
-    "description": """Creates a model for storing cities
-Zip code, city, state and country fields are replaced with a location field in partner and partner contact forms.
-This module helps to keep homogeneous address data in the database.""",
+    "description": """
+    Helps to keep homogeneous address data in the Database
+    ------------------------------------------------------
+    Creates a model for storing cities and all their information.
+    
+    Zip code, city, state and country fields can be filled automatically when
+    a location field is completed.
+    """,
     "depends" : ["base"],
     "init_xml" : [],
     "update_xml" : [
