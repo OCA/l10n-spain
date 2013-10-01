@@ -49,6 +49,8 @@ class wiz_crear_factura(osv.osv_memory):
         for pago in obj.browse(cr, uid, context['active_ids']):
             if pago.factura_id:
                 raise osv.except_osv(_('Error!'),_('Este pago ya tiene una factura asignado!!'))
+            if not pago.partner_id:
+                raise osv.except_osv(_('Error!'),_('Este pago no tiene un proveedor asignado!!'))
             values = {
                 'partner_id': pago.partner_id.id,
                 'journal_id': pago.diario.id,
@@ -73,7 +75,7 @@ class wiz_crear_factura(osv.osv_memory):
                     'journal_id': wiz.journal_id.id,
                     'address_invoice_id': address[0],
                     'type': 'in_invoice',
-                    'account_id': wiz.partner_id.property_account_receivable.id,
+                    'account_id': wiz.partner_id.property_account_payable.id,
                 }
                 if wiz.partner_id.property_payment_term:
                     values.update({'payment_term': wiz.partner_id.property_payment_term.id})
