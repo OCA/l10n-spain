@@ -434,10 +434,10 @@ msgid "Cheque"
 msgstr "Cheque"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:168
+#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:154
 #, python-format
-msgid "Remesa "
-msgstr "Remesa "
+msgid "Remittance_%s_%s.txt"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,cost_key:0

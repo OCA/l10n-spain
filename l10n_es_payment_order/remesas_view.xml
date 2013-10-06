@@ -79,5 +79,17 @@
                 </field>
         </record>
 
+		 <record model="ir.ui.view" id="view_payment_order_form_export">
+                <field name="name">view.payment.order.form.export</field>
+                <field name="model">payment.order</field>
+                <field name="type">form</field>
+                <field name="inherit_id" ref="account_payment_extension.view_payment_order_form_cancel"/>
+                <field name="arch" type="xml">
+		            <button name="cancel_from_done" position="after">
+		            	<button name='%(action_wizard_payment_file_spain)d' type='action' string='Create payments file' states='done' icon="gtk-file"/>
+		            </button>
+                </field>
+            </record>
+
     </data>
 </openerp>

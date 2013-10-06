@@ -7,6 +7,8 @@
 #    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
 #    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
+#    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
+#                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com> 
 #    $Id$
 #
 # Corregido para instalación TinyERP estándar 4.2.0: Zikzakmedia S.L. 2008
@@ -92,7 +94,12 @@ class csb_58(osv.osv):
         texto += str(ccc)[0:20].zfill(20)
         importe = int(round(abs(recibo['amount'])*100,0))
         texto += str(importe).zfill(10)
-        texto += 16*' '
+        ###### Referencia para devolución (sólo válida si no se agrupa) ######
+        if len(recibo['ml_inv_ref']) == 1:
+            texto += str(recibo['ml_inv_ref'][0].id)[-16:].zfill(16)
+        else:
+            texto += 16*' '
+        ######################################################################
         concepto = ''
         if recibo['communication']:
             concepto = recibo['communication']

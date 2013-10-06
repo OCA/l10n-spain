@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-03 00:18+0000\n"
-"PO-Revision-Date: 2012-09-03 00:18+0000\n"
+"POT-Creation-Date: 2013-07-09 21:43+0000\n"
+"PO-Revision-Date: 2013-07-09 21:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,6 +36,11 @@ msgid "Additional data for CSB 34 type of payment file."
 msgstr "Datos adicionales para el archivo de tipo de remesa CSB 34."
 
 #. module: l10n_es_payment_order
+#: model:ir.model,name:l10n_es_payment_order.model_csb_19
+msgid "csb.19"
+msgstr "csb.19"
+
+#. module: l10n_es_payment_order
 #: field:payment.mode,cif:0
 msgid "VAT code"
 msgstr "CIF"
@@ -46,7 +51,7 @@ msgid "_Export"
 msgstr "_Exportar"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/converter.py:71
+#: code:addons/l10n_es_payment_order/wizard/converter.py:68
 #, python-format
 msgid "Error:\n"
 "\n"
@@ -64,6 +69,11 @@ msgstr "Sufijo"
 #: field:payment.mode,csb34_type:0
 msgid "Type of CSB 34 payment"
 msgstr "Tipos de pago CSB 34"
+
+#. module: l10n_es_payment_order
+#: model:ir.model,name:l10n_es_payment_order.model_csb_3401
+msgid "csb.3401"
+msgstr "csb.3401"
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,inc_domicile:0
@@ -91,7 +101,7 @@ msgid "Not to the Order"
 msgstr "No a la orden"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:129
+#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:131
 #, python-format
 msgid "User error:\n"
 "\n"
@@ -111,6 +121,11 @@ msgid "Concept of the Order."
 msgstr "Concepto de la orden."
 
 #. module: l10n_es_payment_order
+#: selection:payment.mode,tipo:0
+msgid "CSB 34-01"
+msgstr "CSB 34-01"
+
+#. module: l10n_es_payment_order
 #: field:payment.mode,barred:0
 msgid "Barred"
 msgstr "Barrado"
@@ -126,7 +141,7 @@ msgid "By default 'Not'."
 msgstr "Por defecto 'No'."
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:126
+#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:128
 #, python-format
 msgid "User error:\n"
 "\n"
@@ -141,7 +156,8 @@ msgid "Include domicile"
 msgstr "Incluir domicilio"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/converter.py:98
+#: code:addons/l10n_es_payment_order/wizard/converter.py:95
+#: code:addons/l10n_es_payment_order/wizard/converter.py:103
 #, python-format
 msgid "User error:\n"
 "\n"
@@ -151,12 +167,7 @@ msgstr "Error del usuario:\n"
 "El número de C.C. del cliente %s no existe."
 
 #. module: l10n_es_payment_order
-#: model:payment.type,name:l10n_es_payment_order.payment_type_pagare0
-msgid "Pagaré"
-msgstr "Pagaré"
-
-#. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:73
+#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:76
 #, python-format
 msgid "User error:\n"
 "\n"
@@ -206,6 +217,11 @@ msgid "Presenter data"
 msgstr "Datos del presentador"
 
 #. module: l10n_es_payment_order
+#: model:ir.model,name:l10n_es_payment_order.model_csb_58
+msgid "csb.58"
+msgstr "csb.58"
+
+#. module: l10n_es_payment_order
 #: field:payment.mode,csb19_extra_concepts:0
 msgid "Extra Concepts"
 msgstr "Conceptos Extra"
@@ -219,10 +235,11 @@ msgstr "Ninguno"
 #: model:payment.type,name:l10n_es_payment_order.payment_type_recibodomiciliado0
 #: model:payment.type,note:l10n_es_payment_order.payment_type_recibodomiciliado0
 msgid "Recibo domiciliado"
-msgstr "Recibo domiciliado"
+msgstr "Recibo"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/converter.py:101
+#: code:addons/l10n_es_payment_order/wizard/converter.py:98
+#: code:addons/l10n_es_payment_order/wizard/converter.py:106
 #, python-format
 msgid "User error:\n"
 "\n"
@@ -243,13 +260,13 @@ msgid "Pension"
 msgstr "Pensión"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/csb_32.py:55
-#: code:addons/l10n_es_payment_order/wizard/csb_32.py:80
-#: code:addons/l10n_es_payment_order/wizard/csb_32.py:110
-#: code:addons/l10n_es_payment_order/wizard/csb_32.py:140
-#: code:addons/l10n_es_payment_order/wizard/csb_32.py:167
-#: code:addons/l10n_es_payment_order/wizard/csb_32.py:195
-#: code:addons/l10n_es_payment_order/wizard/csb_32.py:221
+#: code:addons/l10n_es_payment_order/wizard/csb_32.py:60
+#: code:addons/l10n_es_payment_order/wizard/csb_32.py:86
+#: code:addons/l10n_es_payment_order/wizard/csb_32.py:117
+#: code:addons/l10n_es_payment_order/wizard/csb_32.py:148
+#: code:addons/l10n_es_payment_order/wizard/csb_32.py:176
+#: code:addons/l10n_es_payment_order/wizard/csb_32.py:205
+#: code:addons/l10n_es_payment_order/wizard/csb_32.py:232
 #, python-format
 msgid "Configuration error:\n"
 "\n"
@@ -262,8 +279,8 @@ msgstr "Error de configuración:\n"
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:154
-#: code:addons/l10n_es_payment_order/wizard/csb_34.py:356
-#: code:addons/l10n_es_payment_order/wizard/csb_34.py:371
+#: code:addons/l10n_es_payment_order/wizard/csb_34.py:362
+#: code:addons/l10n_es_payment_order/wizard/csb_34.py:378
 #, python-format
 msgid "Configuration error:\n"
 "\n"
@@ -275,7 +292,7 @@ msgstr "Error de configuración:\n"
 "%s"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:160
+#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:170
 #, python-format
 msgid "Successfully Exported\n"
 "\n"
@@ -296,7 +313,7 @@ msgid "Line 3"
 msgstr "Línea 3"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/csb_19.py:77
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:84
 #, python-format
 msgid "User error:\n"
 "\n"
@@ -316,20 +333,21 @@ msgid "CSB 19 Options"
 msgstr "Opciones CSB 19"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:152
+#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:156
 #, python-format
-msgid "remesa"
-msgstr "remesa"
+msgid "Remittance_%s_%s.txt"
+msgstr "Remesa_%s_%s.txt"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:69
+#: code:addons/l10n_es_payment_order/wizard/csb_34_01.py:132
+#: code:addons/l10n_es_payment_order/wizard/csb_34_01.py:151
 #, python-format
 msgid "User error:\n"
 "\n"
-"Wizard can not generate export file, there are not payment lines."
-msgstr "Error del usuario:\n"
+"Company %s has no vat."
+msgstr "Error de usuario:\n"
 "\n"
-"El asistente no puede generar el archivo de remesas, no existen recibos."
+"La compañía %s no tienes cif/nif."
 
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
@@ -337,7 +355,7 @@ msgid "CSB 32 Options"
 msgstr "Opciones CSB 32"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/converter.py:80
+#: code:addons/l10n_es_payment_order/wizard/converter.py:77
 #, python-format
 msgid "Error:\n"
 "\n"
@@ -352,7 +370,7 @@ msgid "Log"
 msgstr "Log"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:140
+#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:144
 #, python-format
 msgid "User error:\n"
 "\n"
@@ -393,10 +411,14 @@ msgid "Expense of the Payer"
 msgstr "Gastos por cuenta del ordenante"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:154
+#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:69
 #, python-format
-msgid "Remesa "
-msgstr "Remesa "
+msgid "User error:\n"
+"\n"
+"Wizard can not generate export file, there are not payment lines."
+msgstr "Error del usuario:\n"
+"\n"
+"El asistente no puede generar el archivo de remesas. No existen recibos."
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,cost_key:0
@@ -419,11 +441,6 @@ msgstr "Transferencia"
 #: model:payment.type,note:l10n_es_payment_order.payment_type_cheque0
 msgid "Cheque"
 msgstr "Cheque"
-
-#. module: l10n_es_payment_order
-#: model:payment.type,note:l10n_es_payment_order.payment_type_pagare0
-msgid "Pagare"
-msgstr "Pagaré"
 
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
@@ -456,7 +473,7 @@ msgid "Direct Pay Order"
 msgstr "Orden de abono directo"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:80
+#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:83
 #, python-format
 msgid "User error:\n"
 "\n"
@@ -464,6 +481,11 @@ msgid "User error:\n"
 msgstr "Error del usuario:\n"
 "\n"
 "No se ha definido el CIF de la compañía asociada al C.C. del modo de pago."
+
+#. module: l10n_es_payment_order
+#: model:ir.model,name:l10n_es_payment_order.model_csb_32
+msgid "csb.32"
+msgstr "csb.32"
 
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
@@ -508,7 +530,7 @@ msgstr "Transferencia"
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:143
-#: code:addons/l10n_es_payment_order/wizard/csb_34.py:341
+#: code:addons/l10n_es_payment_order/wizard/csb_34.py:346
 #, python-format
 msgid "Configuration error:\n"
 "\n"
@@ -541,6 +563,17 @@ msgid "Check it if you want to add the 910 data type in the file to include the 
 msgstr "Actívelo si desea añadir el tipo de dato 910 con la fecha de pago en el archivo."
 
 #. module: l10n_es_payment_order
+#: model:ir.model,name:l10n_es_payment_order.model_csb_34
+msgid "csb.34"
+msgstr "csb.34"
+
+#. module: l10n_es_payment_order
+#: model:payment.type,name:l10n_es_payment_order.payment_type_pagare0
+#: model:payment.type,note:l10n_es_payment_order.payment_type_pagare0
+msgid "Pagaré CSB"
+msgstr "Pagaré CSB"
+
+#. module: l10n_es_payment_order
 #: field:payment.mode,payroll_check:0
 msgid "Payroll Check"
 msgstr "Cheque nómina"
@@ -567,7 +600,7 @@ msgid "Payroll"
 msgstr "Nómina"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:76
+#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:79
 #, python-format
 msgid "User error:\n"
 "\n"
@@ -582,7 +615,7 @@ msgid "Type of payment file"
 msgstr "Tipo de remesa"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/csb_34.py:166
+#: code:addons/l10n_es_payment_order/wizard/csb_34.py:172
 #, python-format
 msgid "User error:\n"
 "\n"
@@ -615,21 +648,46 @@ msgid "Enter text and/or select a field of the invoice to include as a descripti
 msgstr "Introduzca un texto y/o seleccione un campo de la factura para incluirlo como descripción en la carta. Los posibles valores son: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/csb_19.py:57
-#: code:addons/l10n_es_payment_order/wizard/csb_19.py:89
-#: code:addons/l10n_es_payment_order/wizard/csb_19.py:113
-#: code:addons/l10n_es_payment_order/wizard/csb_19.py:126
-#: code:addons/l10n_es_payment_order/wizard/csb_19.py:156
-#: code:addons/l10n_es_payment_order/wizard/csb_19.py:162
-#: code:addons/l10n_es_payment_order/wizard/csb_19.py:178
-#: code:addons/l10n_es_payment_order/wizard/csb_19.py:205
-#: code:addons/l10n_es_payment_order/wizard/csb_58.py:53
-#: code:addons/l10n_es_payment_order/wizard/csb_58.py:71
-#: code:addons/l10n_es_payment_order/wizard/csb_58.py:100
-#: code:addons/l10n_es_payment_order/wizard/csb_58.py:111
-#: code:addons/l10n_es_payment_order/wizard/csb_58.py:231
-#: code:addons/l10n_es_payment_order/wizard/csb_58.py:247
-#: code:addons/l10n_es_payment_order/wizard/csb_58.py:264
+#: code:addons/l10n_es_payment_order/wizard/csb_34_01.py:106
+#, python-format
+msgid "User error:\n"
+"\n"
+"Company %s has no invoicing address."
+msgstr "Error de usuario:\n"
+"\n"
+"La empresa %s no tiene dirección de facturación."
+
+#. module: l10n_es_payment_order
+#: model:ir.model,name:l10n_es_payment_order.model_payment_converter_spain
+msgid "payment.converter.spain"
+msgstr "payment.converter.spain"
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/export_remesas.py:71
+#, python-format
+msgid "User error:\n"
+"\n"
+"If direct payment is selected to create the account moves, you should confirm payments befores. Creating the files will make the payments."
+msgstr "Error de usuario:\n"
+"\n"
+"Si la opción elegida para crear asientos contables es por pago directo, primero tendrá que confirmar los pagos. Al crear el fichero, los pagos se formalizarán de forma automática."
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:63
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:96
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:118
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:132
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:163
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:169
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:185
+#: code:addons/l10n_es_payment_order/wizard/csb_19.py:212
+#: code:addons/l10n_es_payment_order/wizard/csb_58.py:61
+#: code:addons/l10n_es_payment_order/wizard/csb_58.py:80
+#: code:addons/l10n_es_payment_order/wizard/csb_58.py:110
+#: code:addons/l10n_es_payment_order/wizard/csb_58.py:122
+#: code:addons/l10n_es_payment_order/wizard/csb_58.py:242
+#: code:addons/l10n_es_payment_order/wizard/csb_58.py:258
+#: code:addons/l10n_es_payment_order/wizard/csb_58.py:275
 #, python-format
 msgid "Configuration error:\n"
 "\n"
@@ -655,3 +713,4 @@ msgstr "Convenido"
 #: help:payment.mode,csb19_extra_concepts:0
 msgid "Check it if you want to add the invoice lines to the extra concepts (Max. 15 lines)"
 msgstr "Chequear si se quiere añadir a las líneas de factura conceptos extra (Máx. 15 líneas)"
+

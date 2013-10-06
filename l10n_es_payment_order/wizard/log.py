@@ -32,7 +32,7 @@ from tools.translate import _
 
 class Log(Exception):
     def __init__(self, content = '', error = False):
-        self.content = content
+        self.content = unicode(content)
         self.error = error
     def add(self, s, error=True):
         self.content = self.content + s
