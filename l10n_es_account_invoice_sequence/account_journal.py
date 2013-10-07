@@ -29,15 +29,25 @@ class account_journal(osv.osv):
     _inherit = 'account.journal'
 
     _columns = {
-        'invoice_sequence_id': fields.many2one('ir.sequence', 'Invoice sequence', domain="[('company_id','=',company_id)]", help="The sequence used for invoice numbers in this journal."),
+        'invoice_sequence_id': fields.many2one('ir.sequence',
+                'Invoice sequence',
+                domain="[('company_id','=',company_id)]",
+                help="The sequence used for invoice numbers in this journal.",
+                ondelete='restrict'),
     }
 
     def _check_company(self, cr, uid, ids):
         for journal in self.browse(cr, uid, ids):
-            if journal.invoice_sequence_id and journal.invoice_sequence_id.company_id != journal.company_id:
+            if (journal.invoice_sequence_id and
+                    journal.invoice_sequence_id.company_id !=
+                    journal.company_id):
                 return False
         return True
 
-    _constraints = [ (_check_company, 'Journal company and invoice sequence company do not match.', ['company_id','invoice_sequence_id']) ]
+    _constraints = [
+        (_check_company,
+        'Journal company and invoice sequence company do not match.',
+        ['company_id','invoice_sequence_id'])
+    ]
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
