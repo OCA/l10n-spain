@@ -35,7 +35,7 @@
 ##############################################################################
 
 {
-    "name" : "Exportación de ficheros bancarios CSB 19, CSB 32, CSB 34 y CSB 58",
+    "name" : "Exportación de ficheros bancarios CSB 19, 32, 34 y 58",
     "version" : "1.6",
     "author" : "Acysos SL, Zikzakmedia SL, Pablo Rocandio, NaN·tic",
     "category" : "Localisation/Accounting",
@@ -53,6 +53,11 @@ Al crear el fichero bancario CSB:
   * El fichero creado se guarda como adjunto de la orden de pagos. Se puede volver a crear el fichero de remesas siempre que sea necesario (puede tener que renombrar el anterior fichero adjunto si tienen el mismo nombre).
 
 También se proporciona un informe para imprimir un listado de los pagos/cobros de la orden de pago/cobro (remesa).
+
+**AVISO:** Si está realizando la instalación de forma local (no desde Aplicaciones), este módulo requiere el módulo *account_payment_extension*, disponible en:
+
+https://launchpad.net/account-payment
+
 """,
     "website" : "www.zikzakmedia.com,www.acysos.com",
     "license" : "AGPL-3",
@@ -60,10 +65,10 @@ También se proporciona un informe para imprimir un listado de los pagos/cobros 
     "init_xml" : ["remesas_data.xml"],
     "demo_xml" : [],
     "update_xml" : [
-                "remesas_report.xml", 
-                "remesas_view.xml", 
                 "wizard/export_remesas_view.xml",
-        "security/ir.model.access.csv"
+                "remesas_report.xml", 
+                "remesas_view.xml",
+                "security/ir.model.access.csv"
                 ],
     "installable" : True,
     "active" : False,
