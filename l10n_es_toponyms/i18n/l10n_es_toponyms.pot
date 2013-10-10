@@ -1,0 +1,28 @@
+module,type,name,res_id,src,value
+l10n_es_toponyms,view,config.es.toponyms,0,Add city and state information associated to the zip codes for all the Spanish cities,Add city and state information associated to the zip codes for all the Spanish cities
+l10n_es_toponyms,selection,"config.es.toponyms,state",0,Both,Both
+l10n_es_toponyms,field,"config.es.toponyms,city_info",0,City information,City information
+l10n_es_toponyms,field,"config.es.toponyms,city_info_recover",0,City information recover,City information recover
+l10n_es_toponyms,view,config.es.toponyms,0,Configure,Configure
+l10n_es_toponyms,view,config.es.toponyms,0,Configure the Spanish toponyms,Configure the Spanish toponyms
+l10n_es_toponyms,help,"config.es.toponyms,city_info",0,Do you want to add city and state information associated to the zip codes for all the Spanish cities? This allows to fill automatically the city and states fields of partner and contact forms from the zip code.,Do you want to add city and state information associated to the zip codes for all the Spanish cities? This allows to fill automatically the city and states fields of partner and contact forms from the zip code.
+l10n_es_toponyms,help,"config.es.toponyms,city_info_recover",0,Do you want to recover the location data (city information) from the zip code that was in the partner addresses before installing this module?,Do you want to recover the location data (city information) from the zip code that was in the partner addresses before installing this module?
+l10n_es_toponyms,view,config.es.toponyms,0,"For example: Official (Girona), Spanish (Gerona), Both (Gerona / Girona)","For example: Official (Girona), Spanish (Gerona), Both (Gerona / Girona)"
+l10n_es_toponyms,field,"config.es.toponyms,config_logo",0,Image,Image
+l10n_es_toponyms,field,"config.es.toponyms,name",0,Name,Name
+l10n_es_toponyms,selection,"config.es.toponyms,city_info",0,No,No
+l10n_es_toponyms,selection,"config.es.toponyms,city_info_recover",0,No,No
+l10n_es_toponyms,selection,"config.es.toponyms,state",0,Official,Official
+l10n_es_toponyms,view,config.es.toponyms,0,Select the toponym version of the Spanish states,Select the toponym version of the Spanish states
+l10n_es_toponyms,selection,"config.es.toponyms,state",0,Spanish,Spanish
+l10n_es_toponyms,model,"ir.actions.act_window,name",l10n_es_toponyms.action_config_toponyms_es_form,Spanish toponyms configuration,Spanish toponyms configuration
+l10n_es_toponyms,view,config.es.toponyms,0,State and city configuration,State and city configuration
+l10n_es_toponyms,field,"config.es.toponyms,state",0,State names,State names
+l10n_es_toponyms,help,"config.es.toponyms,state",0,"Toponym version of the Spanish states. For example: Official (Girona), Spanish (Gerona), Both (Gerona / Girona)","Toponym version of the Spanish states. For example: Official (Girona), Spanish (Gerona), Both (Gerona / Girona)"
+l10n_es_toponyms,view,config.es.toponyms,0,"Warning! Adding more than 56000 records can take a lot of time. If you are behind a SSL proxy, check your timeout.","Warning! Adding more than 56000 records can take a lot of time. If you are behind a SSL proxy, check your timeout."
+l10n_es_toponyms,selection,"config.es.toponyms,city_info",0,Yes,Yes
+l10n_es_toponyms,selection,"config.es.toponyms,city_info_recover",0,Yes,Yes
+l10n_es_toponyms,view,config.es.toponyms,0,You can select the toponym version of the Spanish states and add the Spanish cities associated to the zip codes.,You can select the toponym version of the Spanish states and add the Spanish cities associated to the zip codes.
+l10n_es_toponyms,model,"ir.actions.todo,note",l10n_es_toponyms.config_wizard_toponyms_es,You can select the toponym version of the Spanish states and add the Spanish cities associated to the zip codes.,You can select the toponym version of the Spanish states and add the Spanish cities associated to the zip codes.
+l10n_es_toponyms,model,"ir.model,name",l10n_es_toponyms.model_config_es_toponyms,config.es.toponyms,config.es.toponyms
+l10n_es_toponyms,view,config.es.toponyms,0,title,title
