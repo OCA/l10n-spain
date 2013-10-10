@@ -283,6 +283,7 @@ msgstr "El nombre del contacto (Nombre completo) debe contener nombre y apellido
 
 #. module: l10n_es_aeat_mod349
 #: help:l10n.es.aeat.mod349.partner_refund,total_origin_amount:0
+#: field:l10n.es.aeat.mod349.partner_refund,total_origin_amount:0
 msgid "Refund original amount"
 msgstr "Importe operación original"
 
@@ -446,11 +447,6 @@ msgstr "A - Adquisición intracomunitaria"
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Operation key help"
 msgstr "Leyenda llave de operación"
-
-#. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.partner_refund,total_origin_amount:0
-msgid "Refund original amount"
-msgstr "Importe operación original"
 
 #. module: l10n_es_aeat_mod349
 #: selection:account.invoice,operation_key:0

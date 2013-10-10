@@ -271,11 +271,9 @@ msgstr "L'assistent realitzarà les operacions seleccionades."
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
 #, python-format
-msgid ""
-"One or more draft moves found: \n"
+msgid "One or more draft moves found: \n"
 "%s"
-msgstr ""
-"S'han trobat un o més assentaments esborrany: \n"
+msgstr "S'han trobat un o més assentaments esborrany: \n"
 "%s"
 
 #. module: l10n_es_fiscal_year_closing
@@ -775,16 +773,6 @@ msgstr "Pèrdues i Guanys"
 #, python-format
 msgid "There is already a fiscal year closing with this name."
 msgstr "Ja existeix un tancament d'exercici amb aquest nom."
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
-#, python-format
-msgid ""
-"One or more draft moves found: \n"
-"%s"
-msgstr ""
-"Un o més assentaments esborrany trobats: \n"
-"%s"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
