@@ -8,8 +8,8 @@
             <field name="arch" type="xml">
                 <form string="Payment order export">
                     <field name="join"/>
-                    <field name="pay" filename="pay_fname"/>
-                    <field name="pay_fname" invisible="1"/>
+                    <newline />
+                    <field name="attach_id" colspan="4" />
                     <field name="note" colspan="4" nolabel="1"/>
                     <separator string="" colspan="4" />
                     <group colspan="4" col="6">

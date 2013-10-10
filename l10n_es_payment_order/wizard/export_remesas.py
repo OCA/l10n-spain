@@ -69,9 +69,8 @@ class wizard_payment_file_spain(osv.osv_memory):
     _name = 'wizard.payment.file.spain'
     _columns = {
         'join': fields.boolean('Join payment lines of the same partner and bank account'),
-        'pay': fields.binary('Payment order file', readonly=True),
-        'pay_fname': fields.char('File name', size=64),
-        'note': fields.text('Log')
+        'note': fields.text('Log'),
+        'attach_id':fields.many2one('ir.attachment', 'Payment order file', readonly=True), 
     }
 
     def create_payment_file(self, cr, uid, ids, context):
@@ -176,7 +175,7 @@ class wizard_payment_file_spain(osv.osv_memory):
             if len(attachment_ids):
                 obj_attachment.unlink(cr, uid, attachment_ids)
             # Adjuntar nuevo archivo de remesa
-            obj_attachment.create(cr, uid, {
+            attach_id = obj_attachment.create(cr, uid, {
                 'name': fname,
                 'datas': file_remesa,
                 'datas_fname': fname,
@@ -186,7 +185,7 @@ class wizard_payment_file_spain(osv.osv_memory):
             log = _("Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n") % (orden.total, len(recibos))
             self.pool.get('payment.order').set_done(cr, uid, [orden.id], context)
 
-            form_obj.write({'note': log,'pay': file,'pay_fname': fname})
+            form_obj.write({'note': log,'attach_id':attach_id})
 
             return _reopen(self, form_obj.id, 'wizard.payment.file.spain')
 wizard_payment_file_spain()
