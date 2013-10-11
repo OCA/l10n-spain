@@ -27,6 +27,9 @@
 # Refactorización. Acysos S.L. (http://www.acysos.com) 2012
 #   Ignacio Ibeas <ignacio@acysos.com>
 #
+# Migración OpenERP 7.0. Acysos S.L. (http://www.acysos.com) 2013
+#   Ignacio Ibeas <ignacio@acysos.com>
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -47,15 +50,27 @@ import base64
 from tools.translate import _
 from log import *
 
+def _reopen(self, res_id, model):
+    return {'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'view_type': 'form',
+            'res_id': res_id,
+            'res_model': self._name,
+            'target': 'new',
+            # save original model in context, because selecting the list of available
+            # templates requires a model in context
+            'context': {
+                'default_model': model,
+            },
+    }
 
 
 class wizard_payment_file_spain(osv.osv_memory):
     _name = 'wizard.payment.file.spain'
     _columns = {
         'join': fields.boolean('Join payment lines of the same partner and bank account'),
-        'pay': fields.binary('Payment order file', readonly=True),
-        'pay_fname': fields.char('File name', size=64),
-        'note': fields.text('Log')
+        'note': fields.text('Log'),
+        'attach_id':fields.many2one('ir.attachment', 'Payment order file', readonly=True), 
     }
 
     def create_payment_file(self, cr, uid, ids, context):
@@ -68,6 +83,9 @@ class wizard_payment_file_spain(osv.osv_memory):
             orden = self.pool.get('payment.order').browse(cr, uid, context['active_id'], context)
             if not orden.line_ids:
                 raise Log( _('User error:\n\nWizard can not generate export file, there are not payment lines.'), True )
+            if orden.create_account_moves == 'direct-payment' and (orden.state != 'open' and orden.state != 'done'):
+                raise Log( _('User error:\n\nIf direct payment is selected to create the account moves, you should confirm payments befores. Creating the files will make the payments.'), True )
+
 
             # Comprobamos que exista número de C.C. y que tenga 20 dígitos
             if not orden.mode.bank_id:
@@ -92,7 +110,7 @@ class wizard_payment_file_spain(osv.osv_memory):
                     recibos.append({
                         'partner_id': partner,
                         'bank_id': bank,
-                        'name': partner.ref or str(l.partner_id.id),
+                        'name': partner.ref or str(partner.id),
                         'amount': reduce(lambda x, y: x+y, [l.amount for l in lineas], 0),
                         'communication': reduce(lambda x, y: x+' '+(y or ''), [l.name+' '+l.communication for l in lineas], ''),
                         'communication2': reduce(lambda x, y: x+' '+(y or ''), [l.communication2 for l in lineas], ''),
@@ -143,18 +161,23 @@ class wizard_payment_file_spain(osv.osv_memory):
             txt_remesa = csb.create_file(cr, uid, orden, recibos, context)
 
         except Log, log:
-            form_obj.write({'note': log,'pay': False})
-            return True
-
+            form_obj.write({'note': unicode(log),'pay': False})
+            return _reopen(self, form_obj.id, 'wizard.payment.file.spain')
         else:
             # Ensure line breaks use MS-DOS (CRLF) format as standards require.
             txt_remesa = txt_remesa.replace('\r\n','\n').replace('\n','\r\n')
 
-            file = base64.encodestring(txt_remesa.encode('utf-8'))
-            fname = (_('remesa') + '_' + orden.mode.tipo + '_' + orden.reference + '.txt').replace('/','-')
-            self.pool.get('ir.attachment').create(cr, uid, {
-                'name': _('Remesa ') + orden.mode.tipo + ' ' + orden.reference,
-                'datas': file,
+            file_remesa = base64.encodestring(txt_remesa.encode('utf-8'))
+            fname = (_('Remittance_%s_%s.txt') %(orden.mode.tipo, orden.reference)).replace('/','-')
+            # Borrar posible anterior adjunto de la exportación
+            obj_attachment = self.pool.get('ir.attachment')
+            attachment_ids = obj_attachment.search(cr, uid, [('name', '=', fname), ('res_model', '=', 'payment.order')])
+            if len(attachment_ids):
+                obj_attachment.unlink(cr, uid, attachment_ids)
+            # Adjuntar nuevo archivo de remesa
+            attach_id = obj_attachment.create(cr, uid, {
+                'name': fname,
+                'datas': file_remesa,
                 'datas_fname': fname,
                 'res_model': 'payment.order',
                 'res_id': orden.id,
@@ -162,9 +185,9 @@ class wizard_payment_file_spain(osv.osv_memory):
             log = _("Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n") % (orden.total, len(recibos))
             self.pool.get('payment.order').set_done(cr, uid, [orden.id], context)
 
-            form_obj.write({'note': log,'pay': file,'pay_fname': fname})
+            form_obj.write({'note': log,'attach_id':attach_id})
 
-            return True
+            return _reopen(self, form_obj.id, 'wizard.payment.file.spain')
 wizard_payment_file_spain()
 
 
