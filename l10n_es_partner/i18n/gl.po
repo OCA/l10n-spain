@@ -1,15 +1,16 @@
-# Translation of OpenERP Server.
-# This file contains the translation of the following modules:
-#	* l10n_es_partner
+# Galician translation for openerp-spain
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the openerp-spain package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: openerp-spain\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-06-24 13:15+0000\n"
-"PO-Revision-Date: 2013-10-11 22:56+0000\n"
-"Last-Translator: Ignacio Ibeas (www.acysos.com) <ignacio@acysos.com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2013-11-12 12:00+0000\n"
+"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
+"Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,73 +20,73 @@ msgstr ""
 #. module: l10n_es_partner
 #: field:res.bank,website:0
 msgid "Website"
-msgstr "Lloc web"
+msgstr "Páxina web"
 
 #. module: l10n_es_partner
 #: view:res.partner:0
 #: field:res.partner,comercial:0
 msgid "Trade name"
-msgstr "Nom comercial"
+msgstr "Nome comercial"
 
 #. module: l10n_es_partner
 #: field:res.bank,lname:0
 msgid "Long name"
-msgstr "Nom complert"
+msgstr "Nombre completo"
 
 #. module: l10n_es_partner
 #: field:res.bank,code:0
 msgid "Code"
-msgstr "Codi"
+msgstr "Código"
 
 #. module: l10n_es_partner
 #: model:ir.actions.act_window,name:l10n_es_partner.action_l10n_es_partner_import
 #: view:l10n.es.partner.import.wizard:0
 msgid "Import spanish bank data"
-msgstr ""
+msgstr "Importa-los datos dos bancos españois"
 
 #. module: l10n_es_partner
 #: code:addons/l10n_es_partner/l10n_es_partner.py:83
 #: code:addons/l10n_es_partner/l10n_es_partner.py:85
 #, python-format
 msgid "Warning"
-msgstr "Warning"
+msgstr "Aviso"
 
 #. module: l10n_es_partner
 #: model:ir.actions.todo,note:l10n_es_partner.config_wizard_l10n_es_partner
 #: view:l10n.es.partner.import.wizard:0
 msgid "This wizard will import spanish bank data."
-msgstr ""
+msgstr "Este asistente importará os datos dos bancos españois."
 
 #. module: l10n_es_partner
 #: view:l10n.es.partner.import.wizard:0
 msgid "title"
-msgstr ""
+msgstr "título"
 
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_partner_bank
 msgid "Bank Accounts"
-msgstr "Comptes bancaris"
+msgstr "Contas bancarias"
 
 #. module: l10n_es_partner
 #: field:res.partner.bank,acc_country_id:0
 msgid "Bank country"
-msgstr "País del compte"
+msgstr "País do banco"
 
 #. module: l10n_es_partner
 #: help:res.bank,vat:0
 msgid "Value Added Tax number"
-msgstr "Codi d'Indentificació Fiscal"
+msgstr "Nº de identificación fiscal"
 
 #. module: l10n_es_partner
 #: code:addons/l10n_es_partner/l10n_es_partner.py:83
 #, python-format
 msgid "Bank account should have 20 digits."
-msgstr "Bank account should have 20 digits."
+msgstr "A conta bancaria debe ter 20 díxitos."
 
 #. module: l10n_es_partner
 #: field:res.bank,vat:0
 msgid "VAT code"
-msgstr "CIF"
+msgstr "NIF"
 
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_l10n_es_partner_import_wizard
@@ -109,26 +110,27 @@ msgid ""
 "code unaltered.\n"
 "The result is shown in the '1234 5678 06 1234567890' format."
 msgstr ""
-"Si el país del compte bancari és Espanya, valida el número del compte. Només "
-"mira els caràcters del compte que siguin dígits:\n"
-"- Si el nombre de dígits és 18, calcula els dos dígits de control.\n"
-"- Si el nombre de dígits és 20, calcula els dos dígits de control i ignora "
-"els actuals.\n"
-"- Si el número de dígits és diferent de 18 o 20, deixa el valor inalterat.\n"
-"Presenta el resultat amb el format '1234 5678 06 1234567890'."
+"Se o país da conta bancaria é España, valídase o número da conta. Só "
+"comproba os díxitos da conta:\n"
+"- Se o número de díxitos é 18, calcula os dous díxitos de control.\n"
+"- Se o número de díxitos é 20, calcula os dous díxitos de control e ignora "
+"os actuais.\n"
+"- Se o número de díxitos é diferente de 18 ou 20, deixa o código sen "
+"cambios.\n"
+"O resultado móstrase no formato '1234 5678 06 1234567890'."
 
 #. module: l10n_es_partner
 #: view:l10n.es.partner.import.wizard:0
 msgid "Import"
-msgstr "Importa"
+msgstr "Importar"
 
 #. module: l10n_es_partner
 #: code:addons/l10n_es_partner/l10n_es_partner.py:85
 #, python-format
 msgid "Invalid bank account."
-msgstr "Invalid bank account."
+msgstr "Conta bancaria non válida."
 
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_bank
 msgid "Bank"
-msgstr "Banc"
+msgstr "Banco"
