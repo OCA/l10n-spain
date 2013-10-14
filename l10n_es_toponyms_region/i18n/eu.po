@@ -1,15 +1,16 @@
-# Translation of OpenERP Server.
-# This file containt the translation of the following modules:
-#	* l10n_ES_toponyms_region
+# Basque translation for openerp-spain
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the openerp-spain package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.0-alpha\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
+"Project-Id-Version: openerp-spain\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-12-11 23:03+0000\n"
 "PO-Revision-Date: 2013-10-10 15:00+0000\n"
-"Last-Translator: Jordi Esteve <jesteve@zikzakmedia.com>\n"
-"Language-Team: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,35 +23,33 @@ msgid ""
 "This allows to fill automatically the region field of partner and contact "
 "forms from the zip code."
 msgstr ""
-"Permite rellenar automáticamente el campo de Comunidad Autónoma del "
-"formulario de empresa y contacto a partir del código postal."
+"Honek, zip kodearen bidez enpresa eta kontaktuen formularioko probintzien "
+"eremua automatikoki betzea ahalbidetzen du."
 
 #. module: l10n_ES_toponyms_region
 #: field:res.country.region,code:0
 msgid "Code"
-msgstr "Código"
+msgstr "Kodea"
 
 #. module: l10n_ES_toponyms_region
 #: wizard_button:l10n_ES_toponyms_region.create_zipcode,init,end:0
 msgid "Ok"
-msgstr "Aceptar"
+msgstr "Ados"
 
 #. module: l10n_ES_toponyms_region
 #: field:res.country.region,name:0
 msgid "Name"
-msgstr "Nombre"
+msgstr "Izena"
 
 #. module: l10n_ES_toponyms_region
 #: wizard_view:l10n_ES_toponyms_region.create_zipcode,init:0
 msgid "The regions has been associated to the Spanish zip codes."
-msgstr ""
-"Se han asociado las Comunidades Autónomas a los códigos postales del Estado "
-"Español."
+msgstr "Probintziak Espainiako posta kodeei lotuak izan dira."
 
 #. module: l10n_ES_toponyms_region
 #: field:res.country.region,country_id:0
 msgid "Country"
-msgstr "País"
+msgstr "Herrialdea"
 
 #. module: l10n_ES_toponyms_region
 #: model:ir.actions.act_window,name:l10n_ES_toponyms_region.action_country_region
@@ -58,42 +57,41 @@ msgstr "País"
 #: field:res.partner.address,region:0
 #: view:res.country.region:0
 msgid "Region"
-msgstr "Com. Autónoma"
+msgstr "Probintzia"
 
 #. module: l10n_ES_toponyms_region
 #: constraint:ir.model:0
 msgid ""
 "The Object name must start with x_ and not contain any special character !"
 msgstr ""
-"¡El nombre del objeto debe empezar con x_ y no contener ningún carácter "
-"especial!"
+"Objetuaren izena x_ -z hasi behar da eta ezin du karaktere berezirik izan!"
 
 #. module: l10n_ES_toponyms_region
 #: constraint:ir.ui.view:0
 msgid "Invalid XML for View Architecture!"
-msgstr "¡XML inválido para la definición de la vista!"
+msgstr "XML ezegokia Arkitektura Ikuspegirako!"
 
 #. module: l10n_ES_toponyms_region
 #: model:ir.ui.menu,name:l10n_ES_toponyms_region.menu_country_region
 msgid "Regions"
-msgstr "Comunidades Autónomas"
+msgstr "Probintziak"
 
 #. module: l10n_ES_toponyms_region
 #: model:ir.actions.wizard,name:l10n_ES_toponyms_region.wizard_create_zipcode_region
 msgid "Create zip codes"
-msgstr "Crear códigos postales"
+msgstr "Zip kodeak sortu"
 
 #. module: l10n_ES_toponyms_region
 #: wizard_view:l10n_ES_toponyms_region.create_zipcode,init:0
 msgid "Zip codes"
-msgstr "Códigos postales"
+msgstr "Zip kodeak"
 
 #. module: l10n_ES_toponyms_region
 #: model:ir.ui.menu,name:l10n_ES_toponyms_region.l10n_ES_toponyms_region_create_zipcode_region
 msgid "Associate regions to Spanish zip codes"
-msgstr "Asociar las Comunidades Autónomas a los códigos postales"
+msgstr "Probintziak Espainiako posta kodeei lotu"
 
 #. module: l10n_ES_toponyms_region
 #: wizard_view:l10n_ES_toponyms_region.create_zipcode,init:0
 msgid "Result:"
-msgstr "Resultado:"
+msgstr "Emaitza:"

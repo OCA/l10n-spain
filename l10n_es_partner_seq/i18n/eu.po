@@ -1,15 +1,16 @@
-# Translation of OpenERP Server.
-# This file containt the translation of the following modules:
-# 	* l10n_ES_partner_seq
+# Basque translation for openerp-spain
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the openerp-spain package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.0-rc1\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
+"Project-Id-Version: openerp-spain\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2010-11-12 20:28+0000\n"
 "PO-Revision-Date: 2013-10-10 15:00+0000\n"
-"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
-"Language-Team: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,59 +24,54 @@ msgid ""
 "... It also will be used as the code prefix of the created account.\n"
 "Tip: Save the most used parent account as the default value."
 msgstr ""
-"Pare per al compte a cobrar, per exemple 4300 per a clients, 4400 per "
-"deutors, ... També s'utilitza com a prefix del codi del compte creat.\n"
-"Truc: Deseu el compte pare més utilitzat com el valor per defecte."
 
 #. module: l10n_es_partner_seq
 #: constraint:ir.ui.view:0
 msgid "Invalid XML for View Architecture!"
-msgstr "XML no vàlid per a l'estructura de la vista!"
+msgstr ""
 
 #. module: l10n_es_partner_seq
 #: view:account.create.accounts:0
 msgid "Do you want to create accounts for the selected partners?"
-msgstr "Voleu crear els comptes comptables per a les empreses seleccionades?"
+msgstr "Nahi al duzu aukeratutako enpresentzat kontu bat sortzea?"
 
 #. module: l10n_es_partner_seq
 #: code:addons/l10n_es_partner_seq/wizard/create_accounts.py:0
 #, python-format
 msgid "Error !"
-msgstr "Error!"
+msgstr ""
 
 #. module: l10n_es_partner_seq
 #: view:account.create.accounts:0
 msgid "Create"
-msgstr "Crea"
+msgstr ""
 
 #. module: l10n_es_partner_seq
 #: help:account.create.accounts,num_digits:0
 msgid "Number of digits of the account codes."
-msgstr "Nombre de dígits dels codis de comptes."
+msgstr "Kontuko kodeen digitu kopurua"
 
 #. module: l10n_es_partner_seq
 #: field:account.create.accounts,num_digits:0
 msgid "Number of digits"
-msgstr "Nombre de dígits"
+msgstr "Digitu kopurua"
 
 #. module: l10n_es_partner_seq
 #: field:account.create.accounts,parent_receivable:0
 msgid "Parent Receivable Account"
-msgstr "Compte a cobrar pare"
+msgstr ""
 
 #. module: l10n_es_partner_seq
 #: view:account.create.accounts:0
 #: model:ir.actions.act_window,name:l10n_es_partner_seq.action_account_create_accounts
 msgid "Create accounts"
-msgstr "Crea comptes"
+msgstr "Sortu kontuak"
 
 #. module: l10n_es_partner_seq
 #: constraint:ir.model:0
 msgid ""
 "The Object name must start with x_ and not contain any special character !"
 msgstr ""
-"El nom de l'objecte ha de començar amb x_ i no contenir cap caràcter "
-"especial!"
 
 #. module: l10n_es_partner_seq
 #: help:account.create.accounts,parent_payable:0
@@ -84,34 +80,31 @@ msgid ""
 "... It also will be used as the code prefix of the created account.\n"
 "Tip: Save the most used parent account as the default value."
 msgstr ""
-"Pare per al compte a pagar, per exemple 4000 per proveïdors, 4100 per "
-"creditors, ... També s'utilitza com a prefix del codi del compte creat.\n"
-"Truc: Deseu el compte pare més utilitzat com el valor per defecte."
 
 #. module: l10n_es_partner_seq
 #: field:account.create.accounts,parent_payable:0
 msgid "Parent Payable Account"
-msgstr "Compte a pagar pare"
+msgstr ""
 
 #. module: l10n_es_partner_seq
 #: constraint:ir.actions.act_window:0
 msgid "Invalid model name in the action definition."
-msgstr "Nom de model no vàlid en la definició d'acció."
+msgstr ""
 
 #. module: l10n_es_partner_seq
 #: view:account.create.accounts:0
 msgid "Cancel"
-msgstr "Cancel·la"
+msgstr "Utzi"
 
 #. module: l10n_es_partner_seq
 #: model:ir.model,name:l10n_es_partner_seq.model_res_partner
 msgid "Partner"
-msgstr "Empresa"
+msgstr ""
 
 #. module: l10n_es_partner_seq
 #: model:ir.model,name:l10n_es_partner_seq.model_account_create_accounts
 msgid "create accounts wizard"
-msgstr "assistent crea comptes"
+msgstr ""
 
 #. module: l10n_es_partner_seq
 #: code:addons/l10n_es_partner_seq/wizard/create_accounts.py:0
@@ -120,8 +113,6 @@ msgid ""
 "Account types with codes 'terceros - rec' and 'terceros - pay' have not been "
 "defined!"
 msgstr ""
-"No s'han definit tipus de compte amb codis 'terceros - rec' i 'terceros - "
-"pay'!"
 
 #. module: l10n_ES_partner_seq
 #: model:ir.module.module,description:l10n_ES_partner_seq.module_meta_information
@@ -147,26 +138,8 @@ msgid ""
 "últimos dígitos del código de empresa: 4300 + 0101 = 43000101.\n"
 "    "
 msgstr ""
-"Aquest mòdul:\n"
-"  * Vincula una seqüència al camp de codi d'empresa per generar el codi de "
-"forma automàtica (només en crear noves empreses clients o proveïdors).\n"
-"  * Afegeix un assistent per crear els comptes a pagar i a cobrar de "
-"l'empresa segons el seu codi (si no tingués codi es crea un segons la "
-"seqüència) el prefix serà el compte comptable pare indicat (per exemple, per "
-"comptes a cobrar usaríem 4300 per clients o 4400 per deutors, per comptes a "
-"pagar usaríem 4000 per proveïdors o 4100 per creditors).\n"
-"\n"
-"La seqüència d'empresa per defecte s'inicia en NP00101 (prefix NP i omplenat "
-"de 5 dígits) i pot modificar-se posteriorment en Administració / "
-"Personalització / Seqüències. Els codis dels comptes a pagar/cobrar es "
-"crearan usant els últims dígits necessaris del codi d'empresa per que, "
-"juntament amb el prefix indicat, tinguin el nombre total de dígits "
-"estipulat. Si, per exemple, els comptes són de 8 dígits, el prefix és 4300 i "
-"el codi d'empresa és NP00101 només es faran servir els 4 últims dígits del "
-"codi d'empresa: 4300 + 0101 = 43000101.\n"
-"    "
 
 #. module: l10n_ES_partner_seq
 #: model:ir.module.module,shortdesc:l10n_ES_partner_seq.module_meta_information
 msgid "Secuencia empresa"
-msgstr "Seqüència empresa"
+msgstr "Enpresa sekuentzia"

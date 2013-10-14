@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 5.0.0-rc1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2011-03-27 02:13+0000\n"
-"PO-Revision-Date: 2011-03-27 03:57+0200\n"
-"Last-Translator: Albert Cervera i Areny <albert@nan-tic.com>\n"
+"PO-Revision-Date: 2013-10-11 22:39+0000\n"
+"Last-Translator: Albert Cervera i Areny - http://www.NaN-tic.com <albert@nan-"
+"tic.com>\n"
 "Language-Team: American English <kde-i18n-ca@kde.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Lokalize 1.0\n"
+"X-Launchpad-Export-Date: 2013-10-14 05:33+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
+"Language: \n"
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:109
@@ -308,7 +309,8 @@ msgstr "Regles de línies d'extracte"
 
 #. module: l10n_es_bank_statement
 #: help:l10n.es.extractos.concepto,code:0
-msgid "2 digits code of the concept defined in the file of C43 bank statements"
+msgid ""
+"2 digits code of the concept defined in the file of C43 bank statements"
 msgstr ""
 "Codi de 2 dígits del concepte definit al fitxer d'extractes bancaris C43"
 
@@ -453,7 +455,6 @@ msgstr "Concilia ordres de pagament per total"
 
 #. module: l10n_es_bank_statement
 #: model:ir.module.module,description:l10n_es_bank_statement.module_meta_information
-#, fuzzy
 msgid ""
 "\n"
 "Module for the importation of Spanish bank statements following the C43 "
@@ -484,35 +485,6 @@ msgid ""
 "after creating the spanish chart of accounts (l10n_es module).\n"
 "    "
 msgstr ""
-"Modulo para la importación de extractos bancarios españoles según la norma "
-"C43 de la 'Asociación Española de la Banca'.\n"
-"    \n"
-"    Añade un asistente a los extractos bancarios para realizar la "
-"importación. El fichero importado se queda como fichero adjunto al extracto "
-"en cuestión.\n"
-"    Permite definir cuentas contables por defecto para los conceptos "
-"definidos en el archivo de extracto C43.\n"
-"\n"
-"    La búsqueda de los apuntes a conciliar (y empresa) se realiza de la "
-"siguiente forma:\n"
-"        1) Apuntes no conciliados con la referencia y cantidad dadas. La "
-"referencia se toma de los campos 'conceptos' o 'referencia2' del extracto.\n"
-"        2) Apuntes no conciliados con (una empresa con) el NIF y cantidad "
-"dados.\n"
-"           Se comprueban estos campos para encontrar un NIF válido:\n"
-"              - Los primeros 9 carácteres de 'referencia1' (Banc Sabadell)\n"
-"              - Los primeros 9 carácteres de 'conceptos' (La Caixa)\n"
-"              - Carácteres [21:30] de 'conceptos' (Caja Rural del Jalón)\n"
-"        3) Apuntes no conciliadas con la cantidad dada.\n"
-"\n"
-"    Si no se encuentra la empresa, se usará la cuenta por defecto definida "
-"para el concepto.\n"
-"\n"
-"    El modulo también añade un asistente en Gestión financiera/Configuración/"
-"Extractos bancarios C43 para importar los conceptos de extractos por "
-"defecto, que se debe ejecutar una vez creado el plan de cuentas español "
-"(módulo l10n_es).\n"
-"    "
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:110
@@ -573,33 +545,3 @@ msgstr "Cancel·la"
 #, python-format
 msgid "Company"
 msgstr "Companyia"
-
-#~ msgid ""
-#~ "The Object name must start with x_ and not contain any special character !"
-#~ msgstr ""
-#~ "El nom de l'objecte ha de començar amb x_ i no contenir cap caràcter "
-#~ "especial!"
-
-#~ msgid "Invalid model name in the action definition."
-#~ msgstr "Nom de model incorrecte en la definició de l'acció."
-
-#~ msgid "C43 bank statements"
-#~ msgstr "Extractes bancaris C43"
-
-#~ msgid "Importación de extractos bancarios C43"
-#~ msgstr "Importació d'extractes bancaris C43"
-
-#~ msgid "Archivo a importar codificado en ISO-8859-1"
-#~ msgstr "Fitxer a importar codificat en ISO-8859-1"
-
-#~ msgid "Invalid XML for View Architecture!"
-#~ msgstr "XML invàlid per a la definició de la vista!"
-
-#~ msgid "Not valid record type."
-#~ msgstr "Tipus de registre no vàlid."
-
-#~ msgid "Import bank stat."
-#~ msgstr "Importa ext. bancari"
-
-#~ msgid "Fichero extracto"
-#~ msgstr "Fitxer extracte"

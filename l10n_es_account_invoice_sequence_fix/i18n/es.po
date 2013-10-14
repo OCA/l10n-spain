@@ -7,13 +7,14 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.3\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2012-09-27 21:46+0000\n"
-"PO-Revision-Date: 2012-09-27 23:49+0100\n"
+"PO-Revision-Date: 2013-10-10 16:50+0000\n"
 "Last-Translator: Jordi Ballester <jordi.ballester@eficent.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"X-Launchpad-Export-Date: 2013-10-14 05:33+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
 
 #. module: l10n_es_account_invoice_sequence_fix
 #: wizard_button:l10n_es_account_invoice_sequence_fix.repair_wizard,init,repair:0
@@ -72,8 +73,12 @@ msgstr "Los números de factura han sido reparador correctamente."
 
 #. module: l10n_es_account_invoice_sequence_fix
 #: wizard_view:l10n_es_account_invoice_sequence_fix.repair_wizard,init:0
-msgid "Attention! This wizard should only be run once, and only if invoices were created before installing module nan_account_invoice_sequence."
-msgstr "Atención! Este asistente debería ser usado solamente una vez, y sólo si se han creado facturas antes de instalar el módulo nan_account_invoice_sequence."
+msgid ""
+"Attention! This wizard should only be run once, and only if invoices were "
+"created before installing module nan_account_invoice_sequence."
+msgstr ""
+"Atención! Este asistente debería ser usado solamente una vez, y sólo si se "
+"han creado facturas antes de instalar el módulo nan_account_invoice_sequence."
 
 #. module: l10n_es_account_invoice_sequence_fix
 #: wizard_button:l10n_es_account_invoice_sequence_fix.repair_wizard,repair,end:0
@@ -82,6 +87,11 @@ msgstr "Cerrar"
 
 #. module: l10n_es_account_invoice_sequence_fix
 #: wizard_view:l10n_es_account_invoice_sequence_fix.repair_wizard,init:0
-msgid "This wizard will help you copy the move number of an invoice to the invoice number field. Invoices should have an invoice number different to the move number."
-msgstr "Este asistente te permitirá copiar el número de asiento asociado a una factura hacia el número de factura. Las facturas deben tener un número de factura diferente al número de asiento."
-
+msgid ""
+"This wizard will help you copy the move number of an invoice to the invoice "
+"number field. Invoices should have an invoice number different to the move "
+"number."
+msgstr ""
+"Este asistente te permitirá copiar el número de asiento asociado a una "
+"factura hacia el número de factura. Las facturas deben tener un número de "
+"factura diferente al número de asiento."

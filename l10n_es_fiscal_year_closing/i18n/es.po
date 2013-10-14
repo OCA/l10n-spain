@@ -6,56 +6,104 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.4\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2012-08-05 01:36+0000\n"
-"PO-Revision-Date: 2012-08-05 01:36+0000\n"
-"Last-Translator: Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>\n"
+"POT-Creation-Date: 2010-03-23 18:01+0000\n"
+"PO-Revision-Date: 2013-10-11 00:33+0000\n"
+"Last-Translator: Pedro Manuel Baeza <Unknown>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"X-Launchpad-Export-Date: 2013-10-14 05:33+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:459
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:564
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
 #, python-format
-msgid "The Net L&P period must be defined"
-msgstr "El periodo de pérdidas y ganancias patr. neto debe estar definido"
+msgid "UserError"
+msgstr "Error"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:628
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
+#, python-format
+msgid "No destination account %s found for account %s."
+msgstr "Sin cuenta destino %s para la cuenta %s."
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The Net L&P account mappings are not properly configured: %s"
+msgstr ""
+"El mapeo de cuentas de pérdidas y ganancias neto no está configurado "
+"correctamente: %s"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The L&P account mappings are not properly configured: %s"
+msgstr ""
+"El mapeo de cuentas de pérdidas y ganancias no está configurado "
+"correctamente: %s"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid ""
+"One or more draft moves found: \n"
+"%s"
+msgstr ""
+"Uno o más asientos borrador encontrados: \n"
+"%s"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid ""
+"One or more moves with invalid period or date found on the fiscal year: \n"
+"%s"
+msgstr ""
+"Se encontraron uno o más asientos con periodo o fecha inválidos en el "
+"ejercicio: \n"
+"%s"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid ""
+"One or more unbalanced moves found: \n"
+"%s"
+msgstr ""
+"Se encontraron uno o más asientos descuadrados: \n"
+"%s"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
 #, python-format
 msgid "You have to review and confirm each of the moves before continuing"
 msgstr "Debe revisar y confirmar cada uno de los asientos antes de continuar"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:484
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:593
-#, python-format
-msgid "The closing journal must be defined"
-msgstr "El diario de cierre debe estar definido"
-
-#. module: l10n_es_fiscal_year_closing
-#: view:execute.fyc:0
-msgid "    * Delete Opening account move"
-msgstr "    * Borrar el asiento de apertura"
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:555
-#: view:cancel.fyc:0
-#: view:execute.fyc:0
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
 #: field:l10n_es_fiscal_year_closing.fyc_c_account_map,fyc_id:0
 #: field:l10n_es_fiscal_year_closing.fyc_lp_account_map,fyc_id:0
 #: field:l10n_es_fiscal_year_closing.fyc_nlp_account_map,fyc_id:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_run,init_cancel:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_cancel,init_cancel:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_run,init_run:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_cancel,init_run:0
 #, python-format
 msgid "Fiscal Year Closing"
 msgstr "Cierre de ejercicio fiscal"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:637
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
 #, python-format
 msgid "All the moves should be balanced before continuing"
 msgstr "Todos los asientos deben estar cuadrados antes de continuar"
+
+#. module: l10n_es_fiscal_year_closing
+#: constraint:ir.actions.act_window:0
+msgid "Invalid model name in the action definition."
+msgstr "Nombre de modelo no válido en la definición de la acción."
 
 #. module: l10n_es_fiscal_year_closing
 #: model:ir.ui.menu,name:l10n_es_fiscal_year_closing.menu_account_end_year_treatments_old
@@ -63,16 +111,9 @@ msgid "Other operations (for non Spanish charts of accounts)"
 msgstr "Otras operaciones (para planes contables no españoles)"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:452
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:555
-#, python-format
-msgid "The Net L&P account mappings are not properly configured: %s"
-msgstr "El mapeo de cuentas de pérdidas y ganancias neto no está configurado correctamente: %s"
-
-#. module: l10n_es_fiscal_year_closing
-#: view:l10n_es_fiscal_year_closing.fyc:0
-msgid "Move created by the operation"
-msgstr "Asiento creado por la operación"
+#: model:ir.model,name:l10n_es_fiscal_year_closing.model_l10n_es_fiscal_year_closing_fyc_c_account_map
+msgid "SFYC Closing Account Mapping"
+msgstr "Mapeo cuentas cierre CEFE"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:l10n_es_fiscal_year_closing.fyc,check_invalid_period_moves:0
@@ -90,7 +131,13 @@ msgid "Operation to perform"
 msgstr "Operación a realizar"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:325
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_run,show_exception:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_cancel,show_exception:0
+msgid "Fiscal Year Closing - Error!"
+msgstr "Cierre ejercicio fiscal - ¡Error!"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
 #, python-format
 msgid "%s Fiscal Year Closing"
 msgstr "Cierre ejercicio fiscal %s"
@@ -101,25 +148,21 @@ msgid "Close fiscal year"
 msgstr "Cerrar ejercicio fiscal"
 
 #. module: l10n_es_fiscal_year_closing
-#: view:l10n_es_fiscal_year_closing.fyc:0
-msgid "Operations"
-msgstr "Operaciones"
-
-#. module: l10n_es_fiscal_year_closing
 #: field:l10n_es_fiscal_year_closing.fyc_c_account_map,source_account_id:0
 msgid "Account"
 msgstr "Cuenta"
 
 #. module: l10n_es_fiscal_year_closing
-#: view:cancel.fyc:0
-#: view:execute.fyc:0
-msgid "Ok"
-msgstr "Aceptar"
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_run,progress:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_cancel,progress:0
+msgid "The process may take a while."
+msgstr "El proceso podría tardar un poco."
 
 #. module: l10n_es_fiscal_year_closing
-#: view:cancel.fyc:0
-msgid "This wizard will cancel the selected operations. It will remove:"
-msgstr "Este asistente cancelará las operaciones anteriores. Se eliminarán:"
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_run,show_exception:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_cancel,show_exception:0
+msgid "Error: One of the selected operations has failed!"
+msgstr "Error: ¡Una de las operaciones seleccionadas ha fallado!"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:l10n_es_fiscal_year_closing.fyc:0
@@ -127,35 +170,14 @@ msgid "Closing"
 msgstr "Cierre"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:437
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:535
-#, python-format
-msgid "The L&P journal must be defined"
-msgstr "El diario de pérdidas y ganancias debe estar definido"
-
-#. module: l10n_es_fiscal_year_closing
-#: model:ir.actions.act_window,name:l10n_es_fiscal_year_closing.action_execute_fyc_view
-msgid "Execute FYC"
-msgstr "Ejecutar cierre de año fiscal"
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:478
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:587
-#, python-format
-msgid "The closing description must be defined"
-msgstr "La descripción de cierre debe estar definida"
-
-#. module: l10n_es_fiscal_year_closing
-#: model:ir.module.module,shortdesc:l10n_es_fiscal_year_closing.module_meta_information
 #: view:l10n_es_fiscal_year_closing.fyc:0
-msgid "Spanish fiscal year closing"
-msgstr "Cierre de ejercicio fiscal español"
+msgid "Operations"
+msgstr "Operaciones"
 
 #. module: l10n_es_fiscal_year_closing
-#: field:cancel.fyc,delete_net_pyg:0
-#: field:execute.fyc,delete_net_pyg:0
-msgid "Delete Net P&L"
-msgstr "Borrar pérdidas y ganancias neto"
+#: field:l10n_es_fiscal_year_closing.fyc,c_account_mapping_ids:0
+msgid "Accounts"
+msgstr "Cuentas"
 
 #. module: l10n_es_fiscal_year_closing
 #: model:ir.model,name:l10n_es_fiscal_year_closing.model_l10n_es_fiscal_year_closing_fyc_nlp_account_map
@@ -163,46 +185,14 @@ msgid "SFYC Net Loss & Profit Account Mapping"
 msgstr "Mapeado de cuentas de pérdidas y ganancias patr. neto CECE"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:469
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:574
-#, python-format
-msgid "The L&P move must exist before creating the closing one"
-msgstr "El asiento de pérdidas y ganancias debe existir antes de crear el de cierre"
-
-#. module: l10n_es_fiscal_year_closing
-#: view:execute.fyc:0
-msgid "    * Check invalid period or date account moves"
-msgstr "    * Comprobar periodos o fechas inválidos en los asientos contables"
-
-#. module: l10n_es_fiscal_year_closing
 #: view:l10n_es_fiscal_year_closing.fyc:0
 msgid "Confirm"
 msgstr "Confirmar"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:471
-#, python-format
-msgid "No destination account %s found for account %s."
-msgstr "Sin cuenta destino %s para la cuenta %s."
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:455
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:560
-#, python-format
-msgid "The Net L&P description must be defined"
-msgstr "La descripción de pérdidas y ganancias patr. neto debe estar definida"
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:435
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:533
-#, python-format
-msgid "The L&P period must be defined"
-msgstr "El periodo de pérdidas y ganancias debe estar definido"
-
-#. module: l10n_es_fiscal_year_closing
-#: view:execute.fyc:0
-msgid "    * Create Profit and Loss account move"
-msgstr "    * Crear asiento de pérdidas y ganancias"
+#: selection:l10n_es_fiscal_year_closing.fyc,state:0
+msgid "New"
+msgstr "Nuevo"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:l10n_es_fiscal_year_closing.fyc,opening_fiscalyear_id:0
@@ -210,7 +200,7 @@ msgid "Fiscal year to open"
 msgstr "Ejercicio fiscal a abrir"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:607
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
 #, python-format
 msgid "The Opening move is required"
 msgstr "El asiento de apertura es obligatorio"
@@ -226,9 +216,13 @@ msgid "Check unbalanced moves"
 msgstr "Comprobar asientos descuadrados"
 
 #. module: l10n_es_fiscal_year_closing
-#: model:ir.model,name:l10n_es_fiscal_year_closing.model_cancel_fyc
-msgid "Cancel the Fiscal Year Closing"
-msgstr "Cancelar el cierre de año fiscal"
+#: model:ir.actions.wizard,name:l10n_es_fiscal_year_closing.wiz_l10n_es_fiscal_year_closing_run
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_run,init_cancel,run:0
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_cancel,init_cancel,run:0
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_run,init_run,run:0
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_cancel,init_run,run:0
+msgid "Run"
+msgstr "Ejecutar"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:l10n_es_fiscal_year_closing.fyc,net_loss_and_profit_move_id:0
@@ -241,9 +235,10 @@ msgid "Closing Move"
 msgstr "Asiento de cierre"
 
 #. module: l10n_es_fiscal_year_closing
-#: field:l10n_es_fiscal_year_closing.fyc,c_account_mapping_ids:0
-msgid "Accounts"
-msgstr "Cuentas"
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_run,progress,end:0
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_cancel,progress,end:0
+msgid "Close (continues in background)"
+msgstr "Cerrar (continua en segundo plano)"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:l10n_es_fiscal_year_closing.fyc:0
@@ -264,82 +259,47 @@ msgid "Dest account"
 msgstr "Cuenta destino"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:428
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:431
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:433
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:435
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:437
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:452
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:455
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:457
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:459
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:461
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:469
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:478
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:480
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:482
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:484
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:523
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:529
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:531
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:533
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:535
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:555
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:560
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:562
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:564
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:566
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:567
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:574
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:587
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:589
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:591
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:593
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:624
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:626
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:629
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:631
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:633
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:635
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:714
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:716
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:721
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:723
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:725
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:727
-#, python-format
-msgid "UserError"
-msgstr "Error"
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr "¡XML inválido para la definición de la vista!"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:603
-#, python-format
-msgid "The Loss & Profit move is required"
-msgstr "El asiento de pérdidas y ganancias es obligatorio"
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_run,init_cancel:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_cancel,init_cancel:0
+msgid "It will remove the previously generated account moves."
+msgstr "Eliminará los asientos generados anteriormente."
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:428
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:523
-#, python-format
-msgid "The L&P account mappings are not properly configured: %s"
-msgstr "El mapeo de cuentas de pérdidas y ganancias no está configurado correctamente: %s"
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_run,done:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_cancel,done:0
+msgid "The selected operations have been performed sucessfuly."
+msgstr "Las operaciones seleccionadas han sido realizadas con éxito."
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:457
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:562
-#, python-format
-msgid "The Net L&P date must be defined"
-msgstr "La fecha de pérdidas y ganancias de patrimonio neto debe estar definida"
+#: view:l10n_es_fiscal_year_closing.fyc:0
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_run,init_cancel,end:0
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_cancel,init_cancel,end:0
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_run,init_run,end:0
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_cancel,init_run,end:0
+msgid "Cancel"
+msgstr "Cancelar"
 
 #. module: l10n_es_fiscal_year_closing
-#: model:ir.model,name:l10n_es_fiscal_year_closing.model_l10n_es_fiscal_year_closing_fyc_c_account_map
-msgid "SFYC Closing Account Mapping"
-msgstr "Mapeo cuentas cierre CEFE"
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_run,init_cancel:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_cancel,init_cancel:0
+msgid "This wizard will cancel the selected operations."
+msgstr "Este asistente cancelará las operaciones seleccionadas."
 
 #. module: l10n_es_fiscal_year_closing
-#: field:execute.fyc,check_unbalanced:0
-msgid "Check Unbalanced Moves"
-msgstr "Comprobar asientos descuadrados"
+#: wizard_field:l10n_es_fiscal_year_closing.wizard_run,progress,task_progress:0
+#: wizard_field:l10n_es_fiscal_year_closing.wizard_cancel,progress,task_progress:0
+msgid "Task Progress"
+msgstr "Progreso tarea"
+
+#. module: l10n_es_fiscal_year_closing
+#: view:l10n_es_fiscal_year_closing.fyc:0
+msgid "Move created by the operation"
+msgstr "Asiento creado por la operación"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:l10n_es_fiscal_year_closing.fyc,create_opening:0
@@ -348,8 +308,11 @@ msgstr "Abrir ejercicio fiscal siguiente"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:l10n_es_fiscal_year_closing.fyc:0
-msgid "Please, select the company, fiscal year to close and fiscal year to open."
-msgstr "Por favor, seleccione la compañía, ejercicio fiscal a cerrar y ejercicio fiscal a abrir."
+msgid ""
+"Please, select the company, fiscal year to close and fiscal year to open."
+msgstr ""
+"Por favor, seleccione la compañía, ejercicio fiscal a cerrar y ejercicio "
+"fiscal a abrir."
 
 #. module: l10n_es_fiscal_year_closing
 #: selection:l10n_es_fiscal_year_closing.fyc,state:0
@@ -357,36 +320,16 @@ msgid "Canceled"
 msgstr "Cancelado"
 
 #. module: l10n_es_fiscal_year_closing
-#: view:l10n_es_fiscal_year_closing.fyc:0
-msgid "Continue"
-msgstr "Continuar"
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:431
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:529
-#, python-format
-msgid "The L&P description must be defined"
-msgstr "La descripción de pérdidas y ganancias debe estar definida"
-
-#. module: l10n_es_fiscal_year_closing
-#: view:cancel.fyc:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_run,init_cancel:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_cancel,init_cancel:0
 msgid "Closed periods, and the fiscal year, will be reopened."
 msgstr "Los periodos cerrados y el año fiscal se reabrirán."
 
 #. module: l10n_es_fiscal_year_closing
-#: field:execute.fyc,check_invalid:0
-msgid "Check Invalid Periods or Date Moves"
-msgstr "Comprobar periodos o fechas inválidas"
-
-#. module: l10n_es_fiscal_year_closing
-#: field:execute.fyc,create_close:0
-msgid "Create Close"
-msgstr "Crear cierre"
-
-#. module: l10n_es_fiscal_year_closing
-#: view:cancel.fyc:0
-msgid "    * Closing account move"
-msgstr "    * Asiento de cierre"
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_run,init_run:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_cancel,init_run:0
+msgid "This wizard will perform the selected operations."
+msgstr "El asistente realizará las operaciones seleccionadas."
 
 #. module: l10n_es_fiscal_year_closing
 #: field:l10n_es_fiscal_year_closing.fyc_lp_account_map,source_account_id:0
@@ -395,14 +338,7 @@ msgid "Source account"
 msgstr "Cuenta origen"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:480
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:589
-#, python-format
-msgid "The closing date must be defined"
-msgstr "La fecha de cierre debe estar definida"
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:546
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
 #, python-format
 msgid "Net Loss & Profit"
 msgstr "Pérdidas y ganancias patr. neto"
@@ -414,17 +350,17 @@ msgid "Draft"
 msgstr "Borrador"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:629
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:721
-#, python-format
-msgid "The opening description must be defined"
-msgstr "La descripción de apertura debe estar definida"
+#: view:l10n_es_fiscal_year_closing.fyc:0
+msgid "Spanish Fiscal Year Closings"
+msgstr "Cierres de ejercicio fiscal españoles"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:498
-#, python-format
-msgid "There is already a fiscal year closing with this name."
-msgstr "Ya existe un cierre de ejercicio con este nombre."
+#: constraint:ir.model:0
+msgid ""
+"The Object name must start with x_ and not contain any special character !"
+msgstr ""
+"¡El nombre del objeto debe empezar con x_ y no contener ningún carácter "
+"especial!"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:l10n_es_fiscal_year_closing.fyc:0
@@ -442,34 +378,13 @@ msgid "Status"
 msgstr "Estado"
 
 #. module: l10n_es_fiscal_year_closing
-#: model:ir.model,name:l10n_es_fiscal_year_closing.model_execute_fyc
-msgid "Execute the Fiscal Year Closing"
-msgstr "Ejecutar el cierre de año fiscal"
-
-#. module: l10n_es_fiscal_year_closing
-#: field:cancel.fyc,delete_open:0
-#: field:execute.fyc,delete_open:0
-msgid "Delete Open"
-msgstr "Borrar apertura"
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:393
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:480
-#, python-format
-msgid "One or more unbalanced moves found: \n"
-"%s"
-msgstr "Se encontraron uno o más asientos descuadrados: \n"
-"%s"
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:603
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:605
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:607
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
 #, python-format
 msgid "Not all the operations have been performed!"
 msgstr "¡No se han realizado todas las operaciones!"
 
 #. module: l10n_es_fiscal_year_closing
+#: model:ir.module.module,shortdesc:l10n_es_fiscal_year_closing.module_meta_information
 #: view:l10n_es_fiscal_year_closing.fyc:0
 msgid "Spanish Fiscal Year Closing"
 msgstr "Cierre de ejercicio fiscal español"
@@ -483,38 +398,33 @@ msgid "Date"
 msgstr "Fecha"
 
 #. module: l10n_es_fiscal_year_closing
-#: model:ir.actions.act_window,name:l10n_es_fiscal_year_closing.action_cancel_fyc_view
-msgid "Cancel FYC"
-msgstr "Cancelar cierre de ejercicio"
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_run,done:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_cancel,done:0
+msgid "Fiscal Year Closing - Done"
+msgstr "Cierre de ejercicio fiscal - Realizado"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:567
-#, python-format
-msgid "Account type closing method is not supported"
-msgstr "El cierre del tipo de cuenta no está soportado"
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_run,init_run:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_cancel,init_run:0
+msgid "Non-selected operations will be canceled."
+msgstr "Las operaciones no seleccionadas serán canceladas."
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:482
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:591
-#, python-format
-msgid "The closing period must be defined"
-msgstr "El peridodo de cierre debe estar definido"
-
-#. module: l10n_es_fiscal_year_closing
-#: view:cancel.fyc:0
-msgid "    * Profit and Loss account move"
-msgstr "    * Asiento de pérdidas y ganancias"
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:503
-#, python-format
-msgid "There is already a fiscal year closing for the fiscal year to close."
-msgstr "Ya existe un cierre de ejercicio para el ejercicio a cerrar."
+#: wizard_field:l10n_es_fiscal_year_closing.wizard_run,show_exception,exception_text:0
+#: wizard_field:l10n_es_fiscal_year_closing.wizard_cancel,show_exception,exception_text:0
+msgid "Exception"
+msgstr "Excepción"
 
 #. module: l10n_es_fiscal_year_closing
 #: help:l10n_es_fiscal_year_closing.fyc,check_draft_moves:0
-msgid "Checks that there are no draft moves on the fiscal year that is being closed. Non-confirmed moves won't be taken in account on the closing operations."
-msgstr "Comprueba que no existan asientos borrador en el ejercicio fiscal que se está cerrando. Los asientos no confirmados no se tendrán en cuenta en las operaciones de cierre."
+msgid ""
+"Checks that there are no draft moves on the fiscal year that is being "
+"closed. Non-confirmed moves won't be taken in account on the closing "
+"operations."
+msgstr ""
+"Comprueba que no existan asientos borrador en el ejercicio fiscal que se "
+"está cerrando. Los asientos no confirmados no se tendrán en cuenta en las "
+"operaciones de cierre."
 
 #. module: l10n_es_fiscal_year_closing
 #: model:ir.model,name:l10n_es_fiscal_year_closing.model_l10n_es_fiscal_year_closing_fyc_lp_account_map
@@ -522,44 +432,16 @@ msgid "SFYC Loss & Profit Account Mapping"
 msgstr "Mapeado de cuentas de pérdidas y ganancias CECE"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:498
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:503
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:508
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:319
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:349
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:393
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:403
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:434
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:480
-#, python-format
-msgid "Error"
-msgstr "Error"
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:626
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:716
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
 #, python-format
 msgid "The closing move shouldn't be empty"
 msgstr "El asiento de cierre no debería estar vacío"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:508
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
 #, python-format
-msgid "There is already a fiscal year closing for the fiscal year to open."
-msgstr "Ya existe un cierre de ejercicio para el ejercicio a abrir."
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:433
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:531
-#, python-format
-msgid "The L&P date must be defined"
-msgstr "La fecha de pérdidas y ganancias debe estar definida"
-
-#. module: l10n_es_fiscal_year_closing
-#: field:cancel.fyc,delete_close:0
-#: field:execute.fyc,delete_close:0
-msgid "Delete Close"
-msgstr "Eliminar cierre"
+msgid "The Loss & Profit move is required"
+msgstr "El asiento de pérdidas y ganancias es obligatorio"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:l10n_es_fiscal_year_closing.fyc,c_period_id:0
@@ -570,7 +452,7 @@ msgid "Period"
 msgstr "Periodo"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:628
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
 #, python-format
 msgid "Some moves are in draft state!"
 msgstr "¡Algunos asientos están en estado borrador!"
@@ -587,37 +469,27 @@ msgstr "Pérdidas y ganancias patr. neto"
 
 #. module: l10n_es_fiscal_year_closing
 #: selection:l10n_es_fiscal_year_closing.fyc,state:0
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_run,done,end:0
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_cancel,done,end:0
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_run,show_exception,end:0
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_cancel,show_exception,end:0
 msgid "Done"
 msgstr "Hecho"
 
 #. module: l10n_es_fiscal_year_closing
 #: help:l10n_es_fiscal_year_closing.fyc,check_invalid_period_moves:0
-msgid "Checks that there are no moves, on the fiscal year that is being closed, with dates or periods outside that fiscal year."
-msgstr "Comprueba que no existan asientos, en el ejercicio fiscal que se está cerrando, con fechas o periodos fuera de ese ejercicio fiscal."
+msgid ""
+"Checks that there are no moves, on the fiscal year that is being closed, "
+"with dates or periods outside that fiscal year."
+msgstr ""
+"Comprueba que no existan asientos, en el ejercicio fiscal que se está "
+"cerrando, con fechas o periodos fuera de ese ejercicio fiscal."
 
 #. module: l10n_es_fiscal_year_closing
-#: view:cancel.fyc:0
-#: view:execute.fyc:0
-#: view:l10n_es_fiscal_year_closing.fyc:0
-msgid "Cancel"
-msgstr "Cancelar"
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:635
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:727
-#, python-format
-msgid "The opening journal must be defined"
-msgstr "El diario de apertura debe estar definido"
-
-#. module: l10n_es_fiscal_year_closing
-#: view:execute.fyc:0
-msgid "    * Check draft account moves"
-msgstr "    * Comprobar asientos en estado borrador"
-
-#. module: l10n_es_fiscal_year_closing
-#: view:execute.fyc:0
-msgid "This wizard will execute the following operations:"
-msgstr "Este asistente realizará las siguientes operaciones:"
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_run,progress,run:0
+#: wizard_button:l10n_es_fiscal_year_closing.wizard_cancel,progress,run:0
+msgid "Keep waiting"
+msgstr "Seguir esperando"
 
 #. module: l10n_es_fiscal_year_closing
 #: selection:l10n_es_fiscal_year_closing.fyc,state:0
@@ -625,37 +497,32 @@ msgid "In Progress"
 msgstr "En progreso"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:637
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
 #, python-format
 msgid "Some moves are unbalanced!"
 msgstr "¡Algunos asientos están descuadrados!"
 
 #. module: l10n_es_fiscal_year_closing
-#: view:execute.fyc:0
-msgid "    * Delete Profit and Loss account move"
-msgstr "    * Borrar asiento de pérdidas y ganancias"
-
-#. module: l10n_es_fiscal_year_closing
-#: field:execute.fyc,create_open:0
-msgid "Create Open"
-msgstr "Crear apertura"
-
-#. module: l10n_es_fiscal_year_closing
-#: view:execute.fyc:0
-msgid "    * Delete Closing account move"
-msgstr "    * Borrar asiento de cierre"
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:631
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:723
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
 #, python-format
-msgid "The opening date must be defined"
-msgstr "La fecha de apertura debe estar definida"
+msgid "The operation must be a supported one"
+msgstr "La operación debe ser una soportada"
 
 #. module: l10n_es_fiscal_year_closing
-#: selection:l10n_es_fiscal_year_closing.fyc,state:0
-msgid "New"
-msgstr "Nuevo"
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_run,show_exception:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_cancel,show_exception:0
+msgid "Details"
+msgstr "Detalles"
+
+#. module: l10n_es_fiscal_year_closing
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_run,init_run:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_cancel,init_run:0
+msgid ""
+"It will create account moves for the operations you selected, skipping those "
+"already created."
+msgstr ""
+"Creará asientos para las operaciones seleccionadas, ignorando aquellos ya "
+"creados."
 
 #. module: l10n_es_fiscal_year_closing
 #: model:ir.actions.act_window,name:l10n_es_fiscal_year_closing.action_view_fyc_tree
@@ -664,12 +531,7 @@ msgid "Fiscal Years Closings"
 msgstr "Cierres de ejercicios fiscales"
 
 #. module: l10n_es_fiscal_year_closing
-#: view:cancel.fyc:0
-msgid "    * Net Profit and Loss account move"
-msgstr "    * Asiento de pérdidas y ganancias"
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:605
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
 #, python-format
 msgid "The Closing move is required"
 msgstr "El asiento de cierre es obligatorio"
@@ -702,11 +564,6 @@ msgid "Account to close"
 msgstr "Cuenta a cerrar"
 
 #. module: l10n_es_fiscal_year_closing
-#: field:execute.fyc,create_net_pyg:0
-msgid "Create Net P&L"
-msgstr "Crear pérdidas y.Crear pérdidas y ganancias patr. neto"
-
-#. module: l10n_es_fiscal_year_closing
 #: field:l10n_es_fiscal_year_closing.fyc,c_journal_id:0
 #: field:l10n_es_fiscal_year_closing.fyc,lp_journal_id:0
 #: field:l10n_es_fiscal_year_closing.fyc,nlp_journal_id:0
@@ -737,57 +594,21 @@ msgid "Fiscal Years"
 msgstr "Ejercicios fiscales"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:461
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:566
-#, python-format
-msgid "The Net L&P journal must be defined"
-msgstr "El diario de pérdidas y ganancias patr. neto debe estar definido"
-
-#. module: l10n_es_fiscal_year_closing
 #: field:l10n_es_fiscal_year_closing.fyc,closing_fiscalyear_id:0
 msgid "Fiscal year to close"
 msgstr "Ejercicio fiscal a cerrar"
 
 #. module: l10n_es_fiscal_year_closing
-#: field:cancel.fyc,delete_pyg:0
-#: field:execute.fyc,delete_pyg:0
-msgid "Delete P&L"
-msgstr "Borrar pérdidas y ganancias"
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:624
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:714
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
 #, python-format
-msgid "The closing move must exist to create the opening one"
-msgstr "El asiento de cierre debe existir para crear el de apertura"
+msgid "The closing move must exist"
+msgstr "El asiento de cierre debe existir"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:319
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:403
-#, python-format
-msgid "One or more moves with invalid period or date found on the fiscal year: \n"
-"%s"
-msgstr "Se encontraron uno o más asientos con periodo o fecha inválidos en el ejercicio: \n"
-"%s"
-
-#. module: l10n_es_fiscal_year_closing
-#: view:execute.fyc:0
-msgid "    * Create Closing account move"
-msgstr "    * Crear asiento de cierre"
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:349
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:434
-#, python-format
-msgid "One or more draft moves found: \n"
-"%s"
-msgstr "Uno o más asientos borrador encontrados: \n"
-"%s"
-
-#. module: l10n_es_fiscal_year_closing
-#: view:execute.fyc:0
-msgid "    * Create Net Profit and Loss account move"
-msgstr "    * Crear asiento de pérdidas y ganancias patr. neto"
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_run,progress:0
+#: wizard_view:l10n_es_fiscal_year_closing.wizard_cancel,progress:0
+msgid "Fiscal Year Closing - Working"
+msgstr "Cierre de ejercicio fiscal - Trabajando"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:l10n_es_fiscal_year_closing.fyc:0
@@ -795,19 +616,61 @@ msgid "Perform the operations"
 msgstr "Ejecutar las operaciones"
 
 #. module: l10n_es_fiscal_year_closing
-#: field:execute.fyc,create_pyg:0
-msgid "Create P&L"
-msgstr "Crear pérdidas y ganancias"
+#: view:l10n_es_fiscal_year_closing.fyc:0
+msgid "Continue"
+msgstr "Continuar"
 
 #. module: l10n_es_fiscal_year_closing
-#: view:execute.fyc:0
-msgid "    * Create Opening account move"
-msgstr "    * Crear asiento de apertura"
+#: wizard_field:l10n_es_fiscal_year_closing.wizard_run,progress,progress:0
+#: wizard_field:l10n_es_fiscal_year_closing.wizard_cancel,progress,progress:0
+msgid "Total Progress"
+msgstr "Progreso total"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:l10n_es_fiscal_year_closing.fyc:0
 msgid "Accounts to close"
 msgstr "Cuentas a cerrar"
+
+#. module: l10n_es_fiscal_year_closing
+#: model:ir.module.module,description:l10n_es_fiscal_year_closing.module_meta_information
+msgid ""
+"Spanish Fiscal Year Closing Wizard\n"
+"    \n"
+"Replaces the default OpenERP end of year wizards (from account module)\n"
+"with a more advanced all-in-one wizard that will let the users:\n"
+"  - Check for unbalanced moves, moves with invalid dates\n"
+"    or period or draft moves on the fiscal year to be closed.\n"
+"  - Create the Loss and Profit entry.\n"
+"  - Create the Net Loss and Profit entry.\n"
+"  - Create the Closing entry.\n"
+"  - Create the Opening entry.\n"
+"\n"
+"It's hightly configurable, and comes preconfigured for the current Spanish "
+"chart of accounts.\n"
+"\n"
+"Also is stateful, saving all the info about the fiscal year closing, so the\n"
+"user can cancel and undo the operations easily.\n"
+"    "
+msgstr ""
+"Asistente de cierre de ejercicio fiscal español\n"
+"    \n"
+"Substituye los asistentes de fin de año predeterminados de OpenERP (del "
+"módulo account)\n"
+"con un asistente todo-en-uno más avanzado que permitirá a los usuarios:\n"
+"  - Comprobar los asientos descuadrados, con fechas y periodos\n"
+"    inválidos o asientos borrador en el ejercicio fiscal a cerrar.\n"
+"  - Crear el asiento de Pérdidas y Ganancias.\n"
+"  - Crear el asiento de Pérdidas y Ganancias de Patrimonio Neto.\n"
+"  - Crear el asiento de Cierre.\n"
+"  - Crear el asiento de Apertura.\n"
+"\n"
+"Es altamente configurable, y viene preconfigurado para el plan de cuentas "
+"español actual.\n"
+"\n"
+"También conserva el estado, guardando toda la información sobre el cierre "
+"del ejercicio fiscal,\n"
+"para que el usuario pueda cancelar y deshacer las operaciones fácilmente.\n"
+"    "
 
 #. module: l10n_es_fiscal_year_closing
 #: field:l10n_es_fiscal_year_closing.fyc,loss_and_profit_move_id:0
@@ -820,103 +683,168 @@ msgid "Create Net Loss & Profit"
 msgstr "Crear asiento de pérdidas y ganancias patr. neto"
 
 #. module: l10n_es_fiscal_year_closing
-#: field:execute.fyc,check_draft:0
-msgid "Check Draft"
-msgstr "Comprobar borrador"
-
-#. module: l10n_es_fiscal_year_closing
 #: model:ir.model,name:l10n_es_fiscal_year_closing.model_l10n_es_fiscal_year_closing_fyc
 msgid "Spanish Fiscal Year Closing Wizard"
 msgstr "Asistente de cierre de ejercicio fiscal español"
 
 #. module: l10n_es_fiscal_year_closing
-#: view:execute.fyc:0
-msgid "    * Check unbalanced account moves"
-msgstr "    * Comprobar asientos descuadrados"
-
-#. module: l10n_es_fiscal_year_closing
 #: help:l10n_es_fiscal_year_closing.fyc,check_unbalanced_moves:0
-msgid "Checks that there are no unbalanced moves on the fiscal year that is being closed."
-msgstr "Comprueba que no existan asientos descuadrados en el ejercicio fiscal que se está cerrando."
+msgid ""
+"Checks that there are no unbalanced moves on the fiscal year that is being "
+"closed."
+msgstr ""
+"Comprueba que no existan asientos descuadrados en el ejercicio fiscal que se "
+"está cerrando."
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:633
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:725
-#, python-format
-msgid "The opening period must be defined"
-msgstr "El periodo de apertura debe estar definido"
-
-#. module: l10n_es_fiscal_year_closing
-#: view:execute.fyc:0
-msgid "    * Delete Net Profit and Loss account move"
-msgstr "    * Borrar asiento de pérdidas y ganancias patr. neto"
-
-#. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:564
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
 #, python-format
 msgid "Fiscal Year Opening"
 msgstr "Apertura de ejercicio fiscal"
 
 #. module: l10n_es_fiscal_year_closing
-#: view:cancel.fyc:0
-msgid "    * Opening account move"
-msgstr "    * Asiento de apertura"
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
+#, python-format
+msgid "The name must be unique"
+msgstr "El nombre debe ser único"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/fyc.py:537
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
+#, python-format
+msgid "Error"
+msgstr "Error"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The closing move must exist to create the opening one"
+msgstr "El asiento de cierre debe existir para crear el de apertura"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The L&P move must exist before creating the closing one"
+msgstr ""
+"El asiento de pérdidas y ganancias debe existir antes de crear el de cierre"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The L&P description must be defined"
+msgstr "La descripción de pérdidas y ganancias debe estar definida"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The L&P date must be defined"
+msgstr "La fecha de pérdidas y ganancias debe estar definida"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The L&P period must be defined"
+msgstr "El periodo de pérdidas y ganancias debe estar definido"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The L&P journal must be defined"
+msgstr "El diario de pérdidas y ganancias debe estar definido"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The Net L&P description must be defined"
+msgstr ""
+"La descripción de pérdidas y ganancias patr. neto debe estar definida"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The Net L&P date must be defined"
+msgstr ""
+"La fecha de pérdidas y ganancias de patrimonio neto debe estar definida"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The Net L&P period must be defined"
+msgstr "El periodo de pérdidas y ganancias patr. neto debe estar definido"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The Net L&P journal must be defined"
+msgstr "El diario de pérdidas y ganancias patr. neto debe estar definido"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The closing description must be defined"
+msgstr "La descripción de cierre debe estar definida"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The closing date must be defined"
+msgstr "La fecha de cierre debe estar definida"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The closing period must be defined"
+msgstr "El peridodo de cierre debe estar definido"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The closing journal must be defined"
+msgstr "El diario de cierre debe estar definido"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The opening description must be defined"
+msgstr "La descripción de apertura debe estar definida"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The opening date must be defined"
+msgstr "La fecha de apertura debe estar definida"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The opening period must be defined"
+msgstr "El periodo de apertura debe estar definido"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:0
+#, python-format
+msgid "The opening journal must be defined"
+msgstr "El diario de apertura debe estar definido"
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
 #, python-format
 msgid "Loss & Profit"
 msgstr "Pérdidas y ganancias"
 
 #. module: l10n_es_fiscal_year_closing
-#: model:ir.module.module,description:l10n_es_fiscal_year_closing.module_meta_information
-msgid ""
-"\n"
-"Spanish fiscal year closing wizard\n"
-"    \n"
-"Replaces the default OpenERP end of year wizards (from account module)\n"
-"with a more advanced all-in-one wizard that will let the users:\n"
-"  - Check for unbalanced moves, moves with invalid dates\n"
-"    or period or draft moves on the fiscal year to be closed.\n"
-"  - Create the Loss and Profit entry.\n"
-"  - Create the Net Loss and Profit entry.\n"
-"  - Create the Closing entry.\n"
-"  - Create the Opening entry.\n"
-"\n"
-"It's hightly configurable, and comes preconfigured for the current Spanish chart of accounts.\n"
-"\n"
-"It takes in account deferral method set in account types:\n"
-"  - None: Nothing is done for this account.\n"
-"  - Balance: Create account move line with the balance of the year for the account.\n"
-"  - Detail: Create one account move line for each partner with balance for the account.\n"
-"  - Unreconciled: Not supported.\n"
-"\n"
-"Also is stateful, saving all the info about the fiscal year closing, so the\n"
-"user can cancel and undo the operations easily.\n"
-"    "
-msgstr ""
-"\n"
-"Asistente de cierre de año fiscal español\n"
-"    \n"
-"Reemplaza el asistente por defecto de OpenERP (del módulo account)\n"
-"con un asistente todo-en-uno más avanzado que permite a los usuarios:\n"
-"  - Comprobar asientos descuadrados, con fechas o periodos\n"
-"    invalidos, o en estado borrador para el año fiscal a cerrar.\n"
-"  - Crear el asiento de pérdidas y ganancias.\n"
-"  - Crear el asiento de pérdidas y ganancias de patrimonio neto.\n"
-"  - Crear el asiento de cierre.\n"
-"  - Crear el asiento de apertura.\n"
-"\n"
-"Es altamente configurable, y viene preconfigurado para el plan de cuentas español actual.\n"
-"\n"
-"Tiene en cuenta el método de cierre establecido en los tipos de cuenta:\n"
-"  - Ninguno: No se realiza nada en la cuenta.\n"
-"  - Saldo pendiente: Crea un apunte contable con el saldo del año para la cuenta.\n"
-"  - Detalle: Crea un apunte contable para cada empresa con saldo para la cuenta.\n"
-"  - No conciliado: No soportado.\n"
-"\n"
-"También conserva el estado, guardando toda la información sobre el cierre del ejercicio fiscal,\n"
-"para que el usuario pueda cancelar y deshacer las operaciones fácilmente.\n"
-"    "
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
+#, python-format
+msgid "There is already a fiscal year closing with this name."
+msgstr "Ya existe un cierre de ejercicio con este nombre."
 
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
+#, python-format
+msgid "There is already a fiscal year closing for the fiscal year to close."
+msgstr "Ya existe un cierre de ejercicio para el ejercicio a cerrar."
 
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/fyc.py:0
+#, python-format
+msgid "There is already a fiscal year closing for the fiscal year to open."
+msgstr "Ya existe un cierre de ejercicio para el ejercicio a abrir."

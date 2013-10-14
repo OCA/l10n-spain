@@ -1,16 +1,16 @@
-# Translation of OpenERP Server.
-# This file contains the translation of the following modules:
-# 	* l10n_ES_facturae
+# Basque translation for openerp-spain
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the openerp-spain package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
-# Albert Cervera i Areny <albert@nan-tic.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.5-bzr\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
+"Project-Id-Version: openerp-spain\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2010-02-27 12:21+0000\n"
 "PO-Revision-Date: 2013-10-10 15:00+0000\n"
-"Last-Translator: Albert Cervera i Areny <albert@nan-tic.com>\n"
-"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,14 +25,14 @@ msgid ""
 "\n"
 "Can not create Factura-E file if invoice has no number."
 msgstr ""
-"Error de usuario:\n"
+"Erabiltzaile errorea:\n"
 "\n"
-"No se puede crear el fichero Factura-e si la factura no tiene número."
+"Ezin da Faktura-E fitxategia sortu fakturak zenbakirik ez badu."
 
 #. module: l10n_ES_facturae
 #: wizard_field:create_facturae_file,export,note:0
 msgid "Log"
-msgstr "Información"
+msgstr "Log-a"
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
@@ -42,14 +42,14 @@ msgid ""
 "\n"
 "Partner %s does not have a VAT number."
 msgstr ""
-"Error de usuario:\n"
+"Erabiltzaile errorea:\n"
 "\n"
-"La empresa %s no tiene NIF/CIF."
+"%s bazkideak ez dauka BEZ zenbakia."
 
 #. module: l10n_ES_facturae
 #: wizard_field:create_facturae_file,export,facturae:0
 msgid "Factura-E file"
-msgstr "Fichero Factura-e"
+msgstr "Faktura-E fitxategia"
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
@@ -59,9 +59,9 @@ msgid ""
 "\n"
 "Partner %s has no city."
 msgstr ""
-"Error de usuario:\n"
+"Erabiltzaile errorea:\n"
 "\n"
-"La empresa %s no tiene ciudad."
+"%s bazkideak ez dauka hiririk."
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
@@ -72,15 +72,15 @@ msgid ""
 "Summary:\n"
 "Invoice number: %s\n"
 msgstr ""
-"La exportación se ha realizado correctamente\n"
+"Esportazio arrakastatsua\n"
 "\n"
-"Resumen:\n"
-"Número de factura: %s\n"
+"Laburpena:\n"
+"Faktura zenbakia: %s\n"
 
 #. module: l10n_ES_facturae
 #: model:ir.module.module,shortdesc:l10n_ES_facturae.module_meta_information
 msgid "Factura-e File Creation"
-msgstr "Creación de ficheros Factura-e"
+msgstr "Faktura-E Fitxategiaren Sorkuntza"
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
@@ -90,25 +90,25 @@ msgid ""
 "\n"
 "Company %s has no VAT number."
 msgstr ""
-"Error de usuario:\n"
+"Erabiltzaile errorea:\n"
 "\n"
-"La compañía %s no tiene CIF/NIF."
+"%s enpresak ez dauka BEZ zenbakia."
 
 #. module: l10n_ES_facturae
 #: help:res.country,code_3166:0
 msgid "The ISO 3166 country code in three chars."
-msgstr "El código de país ISO 3166 en tres carácteres."
+msgstr "ISO 3166 herrialde kodea hiru karakteretan."
 
 #. module: l10n_ES_facturae
 #: wizard_view:create_facturae_file,init:0
 msgid "Do you want to Create Factura-E?"
-msgstr "¿Desea crear la Factura-E?"
+msgstr "Nahi al duzu Faktura-E sortzea?"
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
 msgid "facturae"
-msgstr "facturae"
+msgstr "Faktura-E"
 
 #. module: l10n_ES_facturae
 #: model:ir.module.module,description:l10n_ES_facturae.module_meta_information
@@ -118,20 +118,20 @@ msgid ""
 "Successfully passes format and account validation tests from AEAT: "
 "http://www11.mityc.es/FacturaE/ValidarCompleto\n"
 msgstr ""
-"Este módulo crea ficheros Factura-e de las facturas.\n"
-"******* Módulo en desarrollo *******\n"
-"Supera con éxito los tests de formato y validación contable de la AEAT: "
+"Modulu honek fakturetatik Faktura-E fitxategiak sortzen ditu.\n"
+"******* Garapenean dagoen modulua *******\n"
+"AEAT-tik arrakastaz igaro ditu formatu eta kontu egiaztapen probak: "
 "http://www11.mityc.es/FacturaE/ValidarCompleto\n"
 
 #. module: l10n_ES_facturae
 #: constraint:ir.ui.view:0
 msgid "Invalid XML for View Architecture!"
-msgstr "XML inválido en la arquitectura de la vista!"
+msgstr "XML ezegokia Arkitektura Ikuspegirako!"
 
 #. module: l10n_ES_facturae
 #: wizard_button:create_facturae_file,export,end:0
 msgid "Ok"
-msgstr "Aceptar"
+msgstr "Ados"
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
@@ -141,19 +141,19 @@ msgid ""
 "\n"
 "Company %s has no country."
 msgstr ""
-"Error de usuario:\n"
+"Erabiltzaile errorea:\n"
 "\n"
-"La compañía %s no tiene país."
+"%s enpresak ez du herrialderik."
 
 #. module: l10n_ES_facturae
 #: view:res.country:0
 msgid "Country"
-msgstr "País"
+msgstr "Herrialdea"
 
 #. module: l10n_ES_facturae
 #: wizard_field:create_facturae_file,export,facturae_fname:0
 msgid "File name"
-msgstr "Nombre del fichero"
+msgstr "Fitxategi izena"
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
@@ -163,24 +163,24 @@ msgid ""
 "\n"
 "Partner %s has no street."
 msgstr ""
-"Error de usuario:\n"
+"Erabiltzaile errorea:\n"
 "\n"
-"La empresa %s no tiene calle."
+"%s bazkideak ez dauka kalerik."
 
 #. module: l10n_ES_facturae
 #: field:res.country,code_3166:0
 msgid "Country Code"
-msgstr "Código de país"
+msgstr "Herrialde Kodea"
 
 #. module: l10n_ES_facturae
 #: wizard_view:create_facturae_file,init:0
 msgid "Create Factura-E"
-msgstr "Crear Factura-e"
+msgstr "Sortu Faktura-E"
 
 #. module: l10n_ES_facturae
 #: wizard_view:create_facturae_file,export:0
 msgid "Payment order export"
-msgstr "Exportar orden de pago"
+msgstr "Ordainketa eskaeraren esportazioa"
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
@@ -190,9 +190,9 @@ msgid ""
 "\n"
 "Company %s has no street."
 msgstr ""
-"Error de usuario:\n"
+"Erabiltzaile errorea:\n"
 "\n"
-"La compañía %s no tiene calle."
+"%s enpresak ez dauka kalerik."
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
@@ -202,9 +202,9 @@ msgid ""
 "\n"
 "Company %s has no city."
 msgstr ""
-"Error de usuario:\n"
+"Erabiltzaile errorea:\n"
 "\n"
-"La compañía %s no tiene ciudad."
+"%s enpresak ez dauka hiririk."
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
@@ -214,9 +214,9 @@ msgid ""
 "\n"
 "Partner %s has no province."
 msgstr ""
-"Error de usuario:\n"
+"Erabiltzaile errorea:\n"
 "\n"
-"La empresa %s no tiene provincia."
+"%s bazkideak ez dauka probintziarik."
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
@@ -226,9 +226,9 @@ msgid ""
 "\n"
 "Company %s has no province."
 msgstr ""
-"Error de usuario:\n"
+"Erabiltzaile errorea:\n"
 "\n"
-"La compañía %s no tiene provincia."
+"%s enpresak ez dauka probintziarik."
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
@@ -238,14 +238,14 @@ msgid ""
 "\n"
 "Company %s does not have an invoicing address."
 msgstr ""
-"Error de usuario:\n"
+"Erabiltzaile errorea:\n"
 "\n"
-"La compañía %s no tiene dirección de facturación."
+"%s enpresak ez dauka fakturazio helbiderik."
 
 #. module: l10n_ES_facturae
 #: view:account.invoice:0
 msgid "Tax amount"
-msgstr "Total impuestos"
+msgstr "Zerga zenbatekoa"
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
@@ -255,25 +255,25 @@ msgid ""
 "\n"
 "Partner %s has no zip code."
 msgstr ""
-"Error de usuario:\n"
+"Erabiltzaile errorea:\n"
 "\n"
-"La empresa %s no tiene código postal."
+"%s bazkideak ez dauka zip koderik."
 
 #. module: l10n_ES_facturae
 #: wizard_button:create_facturae_file,init,export:0
 msgid "Export"
-msgstr "Exportar"
+msgstr "Esportatu"
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
 #, python-format
 msgid "FacturaE"
-msgstr "factura-e"
+msgstr "Faktura-E"
 
 #. module: l10n_ES_facturae
 #: wizard_button:create_facturae_file,init,end:0
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Utzi"
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
@@ -283,9 +283,9 @@ msgid ""
 "\n"
 "Partner %s has no country."
 msgstr ""
-"Error de usuario:\n"
+"Erabiltzaile errorea:\n"
 "\n"
-"La empresa %s no tiene país."
+"%s bazkideak ez dauka herrialderik."
 
 #. module: l10n_ES_facturae
 #: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
@@ -295,11 +295,11 @@ msgid ""
 "\n"
 "Company %s has no zip code."
 msgstr ""
-"Error de usuario:\n"
+"Erabiltzaile errorea:\n"
 "\n"
-"La compañía %s no tiene código postal."
+"%s enpresak ez dauka zip koderik."
 
 #. module: l10n_ES_facturae
 #: model:ir.actions.wizard,name:l10n_ES_facturae.wizard_create_facturae_file
 msgid "Create Factura-E file "
-msgstr "Crear fichero Factura-E "
+msgstr "Sortu Faktura-E fitxategia "
