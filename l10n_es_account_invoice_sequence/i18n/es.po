@@ -6,14 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-03 13:49+0000\n"
-"PO-Revision-Date: 2013-07-03 15:50+0100\n"
-"Last-Translator: Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>\n"
+"POT-Creation-Date: 2013-07-03 13:52+0000\n"
+"PO-Revision-Date: 2013-10-10 19:22+0000\n"
+"Last-Translator: Pedro Manuel Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"X-Launchpad-Export-Date: 2014-06-22 05:56+0000\n"
+"X-Generator: Launchpad (build 17058)\n"
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/account_invoice.py:64
@@ -24,7 +25,8 @@ msgstr "El diario %s no tiene una secuencia definida para las facturas."
 #. module: l10n_es_account_invoice_sequence
 #: constraint:account.journal:0
 msgid "Journal company and invoice sequence company do not match."
-msgstr "La compañía del diario no es la misma que la de la secuencia de factura."
+msgstr ""
+"La compañía del diario no es la misma que la de la secuencia de factura."
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_journal
@@ -51,4 +53,3 @@ msgstr "Secuencia de la factura"
 #: help:account.journal,invoice_sequence_id:0
 msgid "The sequence used for invoice numbers in this journal."
 msgstr "La secuencia utilizada para los números de factura en este diario."
-

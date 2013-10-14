@@ -1,15 +1,16 @@
-# Translation of OpenERP Server.
-# This file contains the translation of the following modules:
-#	* l10n_es_account_invoice_sequence
+# Galician translation for openerp-spain
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the openerp-spain package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: openerp-spain\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-07-03 13:52+0000\n"
-"PO-Revision-Date: 2013-10-10 19:22+0000\n"
-"Last-Translator: Pedro Manuel Baeza <pedro.baeza@gmail.com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2013-10-25 03:17+0000\n"
+"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
+"Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,24 +21,23 @@ msgstr ""
 #: code:addons/l10n_es_account_invoice_sequence/account_invoice.py:64
 #, python-format
 msgid "Journal %s has no sequence defined for invoices."
-msgstr "El diari% s no té una seqüència definida per les factures."
+msgstr "O diario %s non ten unha secuencia definida para as facturas."
 
 #. module: l10n_es_account_invoice_sequence
 #: constraint:account.journal:0
 msgid "Journal company and invoice sequence company do not match."
-msgstr ""
-"La companyia del diari no és la mateixa que la de la seqüència de factura."
+msgstr "A compañía do diario non é a mesma que a da secuencia de factura."
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_journal
 msgid "Journal"
-msgstr "Diari"
+msgstr "Diario"
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/account_invoice.py:64
 #, python-format
 msgid "Error!"
-msgstr "¡Error!"
+msgstr "¡Erro!"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_invoice
@@ -47,9 +47,9 @@ msgstr "Factura"
 #. module: l10n_es_account_invoice_sequence
 #: field:account.journal,invoice_sequence_id:0
 msgid "Invoice sequence"
-msgstr "Seqüència de la factura"
+msgstr "Secuencia de factura"
 
 #. module: l10n_es_account_invoice_sequence
 #: help:account.journal,invoice_sequence_id:0
 msgid "The sequence used for invoice numbers in this journal."
-msgstr "La seqüència utilitzada per als números de factura en aquest diari."
+msgstr "A secuencia empregada para os números de factura neste diario."
