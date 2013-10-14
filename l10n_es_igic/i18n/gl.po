@@ -1,15 +1,16 @@
-# Translation of OpenERP Server.
-# This file contains the translation of the following modules:
-#	* l10n_es_igic
+# Galician translation for openerp-spain
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the openerp-spain package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.2\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
+"Project-Id-Version: openerp-spain\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-03-01 09:51+0000\n"
-"PO-Revision-Date: 2013-11-15 02:36+0000\n"
+"PO-Revision-Date: 2013-11-15 02:44+0000\n"
 "Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
-"Language-Team: \n"
+"Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,22 +20,22 @@ msgstr ""
 #. module: l10n_es_igic
 #: field:install.igic,rename_fiscal_position:0
 msgid "Rename fiscal position"
-msgstr "Renombrar posicion fiscal"
+msgstr "Renomear posición fiscal"
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,updated_tax_codes:0
 msgid "Updated tax codes"
-msgstr "Actualizar códigos impuestos"
+msgstr "Actualizar códigos de impostos"
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,updated_accounts:0
 msgid "Updated accounts"
-msgstr "Cuentas actualizadas"
+msgstr "Contas actualizadas"
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,log:0
 msgid "Messages and Errors"
-msgstr "Mensajes y errores"
+msgstr "Mensaxes e erros"
 
 #. module: l10n_es_igic
 #: model:ir.module.module,shortdesc:l10n_es_igic.module_meta_information
@@ -45,7 +46,7 @@ msgstr "IGIC"
 #: model:ir.actions.act_window,name:l10n_es_igic.action_wizard_update_chart_todo
 #: view:wizard.update.charts.accounts.todo:0
 msgid "Update Chart of Accounts from a Chart Template"
-msgstr "Actualizar plan contable a partir de una plantilla de plan contable"
+msgstr "Actualiza-lo plan contable a partires dun padrón de plan contable"
 
 #. module: l10n_es_igic
 #: model:ir.module.module,description:l10n_es_igic.module_meta_information
@@ -62,34 +63,33 @@ msgid ""
 "renombrar la posición fiscal de Régimen Nacional a Régimen Canario.\n"
 "        Sino saltad para seguir conservando por defecto el IVA 18%."
 msgstr ""
-"Añade las cuentas y impuestos del IGIC a las plantillas.\n"
-"    Se usa el módulo account_chart_update para la actualización de las "
-"propias cuentas e impuestos-\n"
+"Engade as contas e impostos do IGIC ós padróns.\n"
+"    Úsase o módulo account_chart_update para actualiza-las propias contas e "
+"impostos.\n"
 "    Instalación:\n"
-"        - Ejecute el primer asistente de configuración para que actualice "
-"los impuestos y cuentas en nuestro plan contable y nuestra tabla de "
-"impuestos.\n"
-"        - Si es una empresa canaria, ejecute el segundo asistente de "
-"configuración para poner como impuestos por defecto IGIC 5% y quizás "
-"renombrar la posición fiscal de \"Régimen nacional\" a \"Régimen canario\".\n"
-"        - Si no es una empresa canaria, evite el segundo asistente para "
-"seguir conservando por defecto el IVA nacional."
+"        - Executa-lo primeiro asistente de configuración para que actualice "
+"os impostos e contas no noso plan de contas e nosa tabla de impostos.\n"
+"        - Se é unha empresa canaria, execute o segundo asistente de "
+"configuración para por como impostos por defecto IGIC 5% e quizáis renomea-"
+"la posición fiscal de \"Réxime nacional\" a \"Réxima canario\".\n"
+"        - Se non é unha empresa canaria, evite o segundo asistente para "
+"conserva-lo IVA nacional por defecto."
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,tax_code_ids:0
 msgid "Tax codes"
-msgstr "Códigos impuestos"
+msgstr "Códigos de impostos"
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,update_children_accounts_parent:0
 msgid "Update children accounts parent"
-msgstr "Actualizar cuentas hijas padre"
+msgstr "Actualiza-lo pai das contas fillas"
 
 #. module: l10n_es_igic
 #: field:install.igic,chart_template_id:0
 #: field:wizard.update.charts.accounts.todo,chart_template_id:0
 msgid "Chart Template"
-msgstr "Plantilla plan contable"
+msgstr "Padrón de plan contable"
 
 #. module: l10n_es_igic
 #: view:wizard.update.charts.accounts.todo:0
@@ -97,20 +97,20 @@ msgid ""
 "If you leave these options set, the wizard will not just create new records, "
 "but also update records with changes (i.e. different tax amount)."
 msgstr ""
-"Si deja marcadas estas opciones, el asistente no sólo creará nuevos "
-"registros, sino que también actualizará registros con cambios (p.ej. "
-"diferente importe de impuesto)"
+"Se deixa marcadas estas opcións, o asistente non só creará novos registros, "
+"senón que tamén actualizará rexistros con cambios (p.ex. diferente importe "
+"de imposto)"
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,updated_taxes:0
 msgid "Updated taxes"
-msgstr "Impuestos actualizados"
+msgstr "Impostos actualizados"
 
 #. module: l10n_es_igic
 #: view:install.igic:0
 #: view:wizard.update.charts.accounts.todo:0
 msgid "Chart of Accounts"
-msgstr "Plan de cuentas"
+msgstr "Plan contable"
 
 #. module: l10n_es_igic
 #: help:install.igic,rename_fiscal_position:0
@@ -118,8 +118,8 @@ msgid ""
 "Rename National Fiscal Position to Canary Fiscal Position, if you doesn't "
 "mark this checkbox it will create new fiscal position for Canary."
 msgstr ""
-"Renombra la posición fiscal \"Régimen nacional\" a \"Régimen canario\", si "
-"no marca esta opción creará una nueva posición fiscal para Canarias."
+"Renomea a posición fiscal \"Réxime nacional\" a \"Réximen canario\". Se non "
+"marca esta opción creará unha nova posición fiscal para Canarias."
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,state:0
@@ -129,14 +129,13 @@ msgstr "Estado"
 #. module: l10n_es_igic
 #: view:wizard.update.charts.accounts.todo:0
 msgid "Note: Not all the fields are tested for changes, just the main ones."
-msgstr ""
-"Nota: No se buscan cambios en todos los campos, sólo en los principales."
+msgstr "Nota: Non se procuran cambios en tódolos campos, só nos principais."
 
 #. module: l10n_es_igic
 #: field:install.igic,progress:0
 #: field:wizard.update.charts.accounts.todo,progress:0
 msgid "Configuration Progress"
-msgstr "Progreso configuración"
+msgstr "Progreso da configuración"
 
 #. module: l10n_es_igic
 #: view:install.igic:0
@@ -152,7 +151,7 @@ msgstr "Configuración IGIC"
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,new_fps:0
 msgid "New fiscal positions"
-msgstr "Nuevas posiciones fiscales"
+msgstr "Novas posicións fiscais"
 
 #. module: l10n_es_igic
 #: field:install.igic,company_id:0
@@ -167,8 +166,8 @@ msgid ""
 "No. of Digits to use for account code. Make sure it is the same number as "
 "existing accounts."
 msgstr ""
-"Número de dígitos para utilizar en el código de cuenta. Asegúrese que sea el "
-"mismo número de dígitos que el de las cuentas existentes."
+"Número de díxitos para utilizar no código de conta. Asegúrese que sexa o "
+"mesmo número de díxitos que o das contas existentes."
 
 #. module: l10n_es_igic
 #: model:ir.model,name:l10n_es_igic.model_wizard_update_charts_accounts_todo
@@ -184,7 +183,7 @@ msgstr "Paso 1"
 #: help:wizard.update.charts.accounts.todo,update_account:0
 msgid "Existing accounts are updated. Accounts are searched by code."
 msgstr ""
-"Las cuentas contables existentes serán actualizadas. Las cuentas se buscarán "
+"As contas contables existentes serán actualizadas. As contas procuraranse "
 "por código."
 
 #. module: l10n_es_igic
@@ -192,8 +191,8 @@ msgstr ""
 msgid ""
 "Existing fiscal positions are updated. Fiscal positions are searched by name."
 msgstr ""
-"Las posiciones fiscales existentes serán actualizadas. Las posiciones "
-"fiscales se buscarán por nombre."
+"As posicións fiscais existentes serán actualizadas. As posicións fiscais "
+"procuraranse por nombre."
 
 #. module: l10n_es_igic
 #: model:ir.model,name:l10n_es_igic.model_install_igic
@@ -203,7 +202,7 @@ msgstr "install.igic"
 #. module: l10n_es_igic
 #: field:install.igic,purchase_tax:0
 msgid "Default Supplier Tax"
-msgstr "Impuesto por defecto proveedores"
+msgstr "Imposto por defecto proveedores"
 
 #. module: l10n_es_igic
 #: selection:wizard.update.charts.accounts.todo,state:0
@@ -213,27 +212,27 @@ msgstr "Paso 2"
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,update_tax:0
 msgid "Update taxes"
-msgstr "Actualizar impuestos"
+msgstr "Actualizar impostos"
 
 #. module: l10n_es_igic
 #: view:wizard.update.charts.accounts.todo:0
 msgid "Update Chart of Accounts"
-msgstr "Actualizar plan de cuentas"
+msgstr "Actualizar plan contable"
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,continue_on_errors:0
 msgid "Continue on errors"
-msgstr "Continuar tras errores"
+msgstr "Continuar tras erros"
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,update_fiscal_position:0
 msgid "Update fiscal positions"
-msgstr "Actualizar posiciones fiscales"
+msgstr "Actualizar posicións fiscais"
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,update_tax_code:0
 msgid "Update tax codes"
-msgstr "Actualizar códigos de impuestos"
+msgstr "Actualizar códigos de impostos"
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,lang:0
@@ -247,40 +246,40 @@ msgid ""
 "Load all igic taxes and accounts to current chart of accounts, it allows "
 "change default product taxes and rename national fiscal position too."
 msgstr ""
-"Carga todos los impuestos IGIC y las cuentas en el plan de cuentas activo, "
-"permite cambiar los impuestos por defecto de los productos, y renombrar la "
-"posición fiscal nacional."
+"Carga tódolos impostos IGIC e as contas no plan contable activo, permite "
+"cambia-los impostos por defecto dos productos e renombra-la posición fiscal "
+"nacional."
 
 #. module: l10n_es_igic
 #: view:wizard.update.charts.accounts.todo:0
 msgid "Other options"
-msgstr "Otras opciones"
+msgstr "Outras opcións"
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,tax_ids:0
 msgid "Taxes"
-msgstr "Impuestos"
+msgstr "Impostos"
 
 #. module: l10n_es_igic
 #: field:install.igic,code_digits:0
 #: field:wizard.update.charts.accounts.todo,code_digits:0
 msgid "# of Digits"
-msgstr "# de dígitos"
+msgstr "# de díxitos"
 
 #. module: l10n_es_igic
 #: selection:wizard.update.charts.accounts.todo,state:0
 msgid "Wizard Complete"
-msgstr "Asistente completado"
+msgstr "Asistente completo"
 
 #. module: l10n_es_igic
 #: model:ir.actions.todo,note:l10n_es_igic.chart_update_todo_es
 msgid "Update charts from templates"
-msgstr "Actualiza planes desde plantillas"
+msgstr "Actualiza plans dende padróns"
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,update_account:0
 msgid "Update accounts"
-msgstr "Actualizar cuentas"
+msgstr "Actualizar contas"
 
 #. module: l10n_es_igic
 #: view:install.igic:0
@@ -295,12 +294,12 @@ msgstr "Configurar"
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,new_taxes:0
 msgid "New taxes"
-msgstr "Nuevos impuestos"
+msgstr "Novos impostos"
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,new_tax_codes:0
 msgid "New tax codes"
-msgstr "Nuevos códigos de impuestos"
+msgstr "Novos códigos de impostos"
 
 #. module: l10n_es_igic
 #: view:wizard.update.charts.accounts.todo:0
@@ -311,12 +310,12 @@ msgstr "Actualizar"
 #: field:install.igic,config_logo:0
 #: field:wizard.update.charts.accounts.todo,config_logo:0
 msgid "Image"
-msgstr "Imagen"
+msgstr "Imaxe"
 
 #. module: l10n_es_igic
 #: field:install.igic,sale_tax:0
 msgid "Default Sale Tax"
-msgstr "Impuesto venta por defecto"
+msgstr "Imposto de venta por defecto"
 
 #. module: l10n_es_igic
 #: model:ir.actions.act_window,name:l10n_es_igic.action_install_igic_form
@@ -326,7 +325,7 @@ msgstr "Instalación IGIC"
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,updated_fps:0
 msgid "Updated fiscal positions"
-msgstr "Actualizar posiciones fiscales"
+msgstr "Posicións fiscais actualizadas"
 
 #. module: l10n_es_igic
 #: help:wizard.update.charts.accounts.todo,lang:0
@@ -334,24 +333,23 @@ msgid ""
 "For records searched by name (taxes, tax codes, fiscal positions), the "
 "template name will be matched against the record name on this language."
 msgstr ""
-"Para los registros buscados por nombre (impuestos, códigos de impuestos, "
-"posiciones fiscales), el nombre de la plantilla se comparará con el nombre "
-"del registro en este idioma."
+"Para os rexistros de impostos,  códigos de impostos e posicións fiscais, os "
+"seus nomes comparanse cos do padrón seleccionado."
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,fiscal_position_ids:0
 msgid "Fiscal positions"
-msgstr "Posiciones fiscales"
+msgstr "Posicións fiscais"
 
 #. module: l10n_es_igic
 #: view:wizard.update.charts.accounts.todo:0
 msgid "Update records?"
-msgstr "¿Actualizar registros?"
+msgstr "¿Actualiza-los rexistros?"
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,account_ids:0
 msgid "Accounts"
-msgstr "Cuentas"
+msgstr "Contas"
 
 #. module: l10n_es_igic
 #: help:wizard.update.charts.accounts.todo,update_children_accounts_parent:0
@@ -360,10 +358,9 @@ msgid ""
 "of the newly created ones. If you had an account 430 with a child 4300000, "
 "and a 4300 account is created, the 4300000 parent will be set to 4300."
 msgstr ""
-"Actualizar el padre de las cuentas que parecen (basándose en el código) ser "
-"hijas de las cuentas recién creadas. Si tiene una cuenta 430 con una hija "
-"4300000, y se crea una cuenta 4300, se establecerá la cuenta 4300 como padre "
-"de la cuenta 4300000."
+"Actualiza-lo pai das contas que semellan (baseándose no código) ser fillas "
+"das contas recén creadas. Se ten unha conta 430 cunha filla 4300000, e se "
+"crea unha conta 4300, estableceráse a conta 4300 como pai da conta 4300000."
 
 #. module: l10n_es_igic
 #: view:wizard.update.charts.accounts.todo:0
@@ -371,15 +368,15 @@ msgid ""
 "This wizard will update your accounts, taxes and fiscal positions according "
 "to the selected chart template."
 msgstr ""
-"Este asistente actualizará sus cuentas, impuestos y posiciones fiscales de "
-"acuerdo a la plantilla de plan contable seleccionada."
+"Este asistente actualizará as sus contas, impostos e posicións fiscais de "
+"acordo ó padrón de plan contable seleccionado."
 
 #. module: l10n_es_igic
 #: help:wizard.update.charts.accounts.todo,update_tax_code:0
 msgid "Existing tax codes are updated. Tax codes are searched by name."
 msgstr ""
-"Los códigos de impuestos existentes serán actualizados. Los códigos de "
-"impuestos se buscarán por nombre."
+"Actualizaranse os códigos de impostos existentes. Os códigos de impostos "
+"procuraranse por nombre."
 
 #. module: l10n_es_igic
 #: help:wizard.update.charts.accounts.todo,continue_on_errors:0
@@ -387,18 +384,16 @@ msgid ""
 "If set, the wizard will continue to the next step even if there are minor "
 "errors (for example the parent account of a new account couldn't be set)."
 msgstr ""
-"Si marcado, el asistente continuará al paso siguiente incluso si hay errores "
-"menores (por ejemplo no se pudo establecer la cuenta padre de una nueva "
-"cuenta)."
+"Se está marcado, o asistente continuará ó paso seguinte incluso se hai erros "
+"menores (por exemplo, non se puido establece-la conta pai dunha nova conta)."
 
 #. module: l10n_es_igic
 #: field:wizard.update.charts.accounts.todo,new_accounts:0
 msgid "New accounts"
-msgstr "Nuevas cuentas"
+msgstr "Novas contas"
 
 #. module: l10n_es_igic
 #: help:wizard.update.charts.accounts.todo,update_tax:0
 msgid "Existing taxes are updated. Taxes are searched by name."
 msgstr ""
-"Los impuestos existentes serán actualizados. Los impuestos se buscarán por "
-"nombre."
+"Actualizaranse os impuestos existentes. Os impostos procuraranse por nome."
