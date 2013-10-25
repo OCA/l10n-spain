@@ -1,0 +1,136 @@
+# Galician translation for openerp-spain
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the openerp-spain package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: openerp-spain\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-06-24 13:15+0000\n"
+"PO-Revision-Date: 2013-10-25 03:10+0000\n"
+"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
+"Language-Team: Galician <gl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-10-25 06:01+0000\n"
+"X-Generator: Launchpad (build 16810)\n"
+
+#. module: l10n_es_partner
+#: field:res.bank,website:0
+msgid "Website"
+msgstr "Páxina web"
+
+#. module: l10n_es_partner
+#: view:res.partner:0
+#: field:res.partner,comercial:0
+msgid "Trade name"
+msgstr "Nome comercial"
+
+#. module: l10n_es_partner
+#: field:res.bank,lname:0
+msgid "Long name"
+msgstr "Nombre completo"
+
+#. module: l10n_es_partner
+#: field:res.bank,code:0
+msgid "Code"
+msgstr "Código"
+
+#. module: l10n_es_partner
+#: model:ir.actions.act_window,name:l10n_es_partner.action_l10n_es_partner_import
+#: view:l10n.es.partner.import.wizard:0
+msgid "Import spanish bank data"
+msgstr "Importa-los datos dos bancos españois"
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/l10n_es_partner.py:83
+#: code:addons/l10n_es_partner/l10n_es_partner.py:85
+#, python-format
+msgid "Warning"
+msgstr "Aviso"
+
+#. module: l10n_es_partner
+#: model:ir.actions.todo,note:l10n_es_partner.config_wizard_l10n_es_partner
+#: view:l10n.es.partner.import.wizard:0
+msgid "This wizard will import spanish bank data."
+msgstr "Este asistente importará os datos dos bancos españois."
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:0
+msgid "title"
+msgstr "título"
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr "Contas bancarias"
+
+#. module: l10n_es_partner
+#: field:res.partner.bank,acc_country_id:0
+msgid "Bank country"
+msgstr "País do banco"
+
+#. module: l10n_es_partner
+#: help:res.bank,vat:0
+msgid "Value Added Tax number"
+msgstr "Nº de identificación fiscal"
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/l10n_es_partner.py:83
+#, python-format
+msgid "Bank account should have 20 digits."
+msgstr "A conta bancaria debe ter 20 díxitos."
+
+#. module: l10n_es_partner
+#: field:res.bank,vat:0
+msgid "VAT code"
+msgstr "NIF"
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_l10n_es_partner_import_wizard
+msgid "l10n.es.partner.import.wizard"
+msgstr "l10n.es.partner.import.wizard"
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: l10n_es_partner
+#: help:res.partner.bank,acc_country_id:0
+msgid ""
+"If the country of the bank is Spain, it validates the bank code. It only "
+"reads the digit characters of the bank code:\n"
+"- If the number of digits is 18, computes the two digits of control.\n"
+"- If the number of digits is 20, computes the two digits of control and "
+"ignores the current ones.\n"
+"- If the number of digits is different from 18 or 20, it leaves the bank "
+"code unaltered.\n"
+"The result is shown in the '1234 5678 06 1234567890' format."
+msgstr ""
+"Se o país da conta bancaria é España, valídase o número da conta. Só "
+"comproba os díxitos da conta:\n"
+"- Se o número de díxitos é 18, calcula os dous díxitos de control.\n"
+"- Se o número de díxitos é 20, calcula os dous díxitos de control e ignora "
+"os actuais.\n"
+"- Se o número de díxitos é diferente de 18 ou 20, deixa o código sen "
+"cambios.\n"
+"O resultado móstrase no formato '1234 5678 06 1234567890'."
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:0
+msgid "Import"
+msgstr "Importar"
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/l10n_es_partner.py:85
+#, python-format
+msgid "Invalid bank account."
+msgstr "Conta bancaria non válida."
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_bank
+msgid "Bank"
+msgstr "Banco"
