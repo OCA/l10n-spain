@@ -20,7 +20,7 @@
 ##############################################################################
 
 {
-    "name" : "AEAT Model 349-pruebaBranch",
+    "name" : "AEAT Model 349",
     "version" : "1.0",
     "author" : "Pexego",
     "license" : "AGPL-3",
