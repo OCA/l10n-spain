@@ -22,8 +22,9 @@
 __author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
 
-from osv import osv
-from tools.translate import _
+from openerp.osv import osv
+from openerp.tools.translate import _
+
 
 class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
 
@@ -31,17 +32,16 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
     _name = "l10n.es.aeat.mod349.export_to_boe"
     _description = "Export AEAT Model 349 to BOE format"
 
-
     def _get_company_name_with_title(self, company_obj):
         """
         Returns company name with title
         """
         if company_obj.partner_id and \
             company_obj.partner_id.title:
-                return company_obj.name + ' ' + company_obj.partner_id.title.name.capitalize()
+                return company_obj.name + ' ' + \
+                    company_obj.partner_id.title.name.capitalize()
 
         return company_obj.name
-
 
     def _get_formated_declaration_record(self, report):
         """
@@ -49,11 +49,13 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
 
             · All amounts must be positives
             · Numeric fields with no data must be filled with zeros
-            · Alfanumeric/Alfabetic fields with no data must be filled with empty spaces
-            · Numeric fields must be right aligned and filled with zeros on the left
+            · Alfanumeric/Alfabetic fields with no data must be filled with
+              empty spaces
+            · Numeric fields must be right aligned and filled with zeros on
+              the left
             · Alfanumeric/Alfabetic fields must be uppercase left aligned,
-              filled with empty spaces on right side. No special characters allowed
-              unless specified in field description
+              filled with empty spaces on right side. No special characters
+              allowed unless specified in field description
 
         Format of the record:
             Tipo registro 1 – Registro de declarante:
@@ -66,9 +68,9 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
             58          Alfabético      Tipo de soporte
             59-67       Numérico (9)    Teléfono contacto
             68-107      Alfabético      Apellidos y nombre contacto
-            108-120 	Numérico        Número identificativo de la declaración
-            121-122 	Alfabético      Declaración complementaria o substitutiva
-            123-135 	Numérico        Número identificativo de la declaración anterior
+            108-120     Numérico        Número identificativo de la declaración
+            121-122     Alfabético      Declaración complementaria o substitutiva
+            123-135     Numérico        Número identificativo de la declaración anterior
             136-137     Alfanumérico    Período
             138-146     Numérico        Número total de operadores intracomunitarios
             147-161     Numérico        Importe de las operaciones intracomunitarias
@@ -82,7 +84,7 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
             187-390     Blancos         ----------------------------------------
             391-399     Alfanumérico    NIF del representante legal
             400-487     Blancos         ----------------------------------------
-            488-500 	Sello electrónico
+            488-500     Sello electrónico
         """
 
         assert report, 'No Report defined'
@@ -90,12 +92,16 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
         try:
             fiscal_year = int((report.fiscalyear_id.code or '')[:4])
         except:
-            raise osv.except_osv(_('Fiscal year code'), _('First four characters of fiscal year code must be numeric and contain the fiscal year number. Please, fix it and try again.'))
+            raise osv.except_osv(_('Fiscal year code'),
+                                 _('First four characters of fiscal year \
+                                 code must be numeric and contain the fiscal \
+                                 year number. Please, fix it and try again.'))
 
         company_name = self._get_company_name_with_title(report.company_id)
-        period = report.period_selection == 'MO' and report.month_selection or report.period_selection
+        period = report.period_selection == 'MO' and report.month_selection \
+                                                 or report.period_selection
 
-        text = ''                                                               ## Empty text
+        text = ''                                                               # Empty text
 
         text += '1'                                                             # Tipo de Registro
         text += '349'                                                           # Modelo Declaración
@@ -114,15 +120,15 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
         text += self._formatNumber(report.total_partner_refunds, 9)             # Número total de operadores intracomunitarios con rectificaciones
         text += self._formatNumber(report.total_partner_refunds_amount, 13, 2)  # Importe total de las rectificaciones
         text += self._formatBoolean(report.frequency_change)                    # Indicador cambio periodicidad en la obligación a declarar
-        text += 204*' '                                                         # Blancos
+        text += 204 * ' '                                                         # Blancos
         text += self._formatString(report.representative_vat, 9)                # NIF del representante legal
-        text += 88*' '                                                          # Blancos
-        text += 13*' '                                                          # Sello electrónico
+        #text += 9*' '
+        text += 88 * ' '                                                          # Blancos
+        text += 13 * ' '                                                          # Sello electrónico
         text += '\r\n'                                                          # Retorno de carro + Salto de línea
 
         assert len(text) == 502, _("The type 1 record must be 502 characters long")
         return text
-
 
     def _get_formated_partner_record(self, report, partner_record):
         """
@@ -155,7 +161,10 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
         try:
             fiscal_year = int((report.fiscalyear_id.code or '')[:4])
         except:
-            raise osv.except_osv(_('Fiscal year code'), _('First four characters of fiscal year code must be numeric and contain the fiscal year number. Please, fix it and try again.'))
+            raise osv.except_osv(_('Fiscal year code'),
+                                 _('First four characters of fiscal year \
+                                 code must be numeric and contain the fiscal \
+                                 year number. Please, fix it and try again.'))
 
         ## Formateo de algunos campos (debido a que pueden no ser correctos)
         ## NIF : Se comprueba que no se incluya el código de pais
@@ -167,18 +176,17 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
         text += '349'                                                               # Modelo de declaración
         text += self._formatNumber(fiscal_year, 4)                                  # Ejercicio
         text += self._formatString(company_vat, 9)                                  # NIF del declarante
-        text += 58*' '                                                              # Blancos
+        text += 58 * ' '                                                              # Blancos
         text += self._formatString(partner_record.partner_vat, 17)                  # NIF del operador intracomunitario
         text += self._formatString(partner_record.partner_id.name, 40)              # Apellidos y nombre o razón social del operador intracomunitario
         text += self._formatString(partner_record.operation_key, 1)                 # Clave de operación
         text += self._formatNumber(partner_record.total_operation_amount, 11, 2)    # Base imponible (parte entera)
 
-        text += 354*' '                                                             # Blancos
-        text +='\r\n'                                                               # Retorno de carro + Salto de línea
+        text += 354 * ' '                                                             # Blancos
+        text += '\r\n'                                                               # Retorno de carro + Salto de línea
 
         assert len(text) == 502, _("The type 2 record must be 502 characters long")
         return text
-
 
     def _get_formatted_partner_refund(self, report, refund_record):
         """
@@ -220,31 +228,36 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
         text += '349'                                                           # Modelo de declaración
         text += self._formatNumber(report.fiscalyear_id.code[:4], 4)                # Ejercicio
         text += self._formatString(report.company_vat, 9)                       # NIF del declarante
-        text += 58*' '                                                          # Blancos        
+        text += 58 * ' '                                                        # Blancos
         text += self._formatString(refund_record.partner_id.vat, 17)            # NIF del operador intracomunitario
         text += self._formatString(refund_record.partner_id.name, 40)           # Apellidos y nombre o razón social del operador intracomunitario
         text += self._formatString(refund_record.operation_key, 1)              # Clave de operación
-        text += 13*' '                                                          # Blancos
-        text += self._formatNumber(refund_record.fiscalyear_id.code[:4], 4)         # Ejercicio (de la rectificación)
+        text += 13 * ' '                                                        # Blancos
+        text += self._formatNumber(refund_record.fiscalyear_id.code[:4], 4)       # Ejercicio (de la rectificación)
         text += self._formatString(period, 2)                                   # Periodo (de la rectificación)
-        text += self._formatNumber(refund_record.total_operation_amount, 11, 2) # Base imponible de la rectificación
+        text += self._formatNumber(refund_record.total_operation_amount, 11, 2)  # Base imponible de la rectificación
         text += self._formatNumber(refund_record.total_origin_amount, 11, 2)    # Base imponible declarada anteriormente
-        text += 322*' '                                                         # Blancos
-        text +='\r\n'                                                           # Retorno de carro + Salto de línea
+        text += 322 * ' '                                                         # Blancos
+        text += '\r\n'                                                           # Retorno de carro + Salto de línea
 
         assert len(text) == 502, _("The type 2 record must be 502 characters long")
         return text
 
-
     def _get_formated_other_records(self, report):
         file_contents = ''
         for refund_record in report.partner_refund_ids:
-            file_contents += self._get_formatted_partner_refund(report, refund_record)
-        
-        return file_contents
-    
+            file_contents += self._get_formatted_partner_refund(report,
+                                                                refund_record)
 
-    def _export_boe_file(self, cr, uid, ids, object_to_export, model=None, context=None):
-        return super(l10n_es_aeat_mod349_export_to_boe, self)._export_boe_file(cr, uid, ids, object_to_export, model='349')
+        return file_contents
+
+    def _export_boe_file(self, cr, uid, ids, object_to_export,
+                         model=None, context=None):
+        return super(l10n_es_aeat_mod349_export_to_boe,
+                     self)._export_boe_file(cr,
+                                            uid,
+                                            ids,
+                                            object_to_export,
+                                            model='349')
 
 l10n_es_aeat_mod349_export_to_boe()
