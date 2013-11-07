@@ -197,7 +197,28 @@
             <field name="model">l10n.es.aeat.mod349.report</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="AEAT 349">
+                <form string="AEAT 349" version="7.0">
+                	<header>
+                		<button name="button_calculate"
+                                type="object"
+                                string="Calculate"
+                                states="draft"
+                                icon="gtk-execute"/>
+                        <button name="button_recalculate"
+                                type="object"
+                                string="Recalculate"
+                                states="calculating,calculated"
+                                icon="gtk-execute"/>
+                        <button name="button_export"
+                                type="object"
+                                string="Export to BOE"
+                                states="calculated,done"
+                                icon="gtk-execute"/>
+                        <button name="confirm" string="Confirm" type="workflow" states="calculated" icon="gtk-ok"/>
+                        <button name="cancel" string="Cancel" type="workflow" states="calculated,done" icon="gtk-cancel"/>
+                        <button name="action_recover" string="Draft" type="object" states="canceled" icon="gtk-undo"/>
+                	</header>
+                	<sheet>
                     <group colspan="4" col="6" string="Declaration">
                         <field name="company_id" on_change="on_change_company_id(company_id)" required="1" select="1"/>
                         <field name="number"/>
@@ -219,7 +240,7 @@
                             </group>
                         </group>
                     </group>
-
+                    <sheet>
                     <notebook colspan="4">
                         <page string="General">
                             <group string="Identification" colspan="4">
@@ -251,30 +272,14 @@
                             <field name="partner_refund_ids" nolabel="1"/>
                         </page>
                     </notebook>
+                    </sheet>
+                    <footer>
                     <group colspan="4">
                         <field name="state" select="2" readonly="1"/>
                         <field name="calculation_date" select="2" readonly="1"/>
                     </group>
-                    <group colspan="4" col="8">
-                        <button name="button_calculate"
-                                type="object"
-                                string="Calculate"
-                                states="draft"
-                                icon="gtk-execute"/>
-                        <button name="button_recalculate"
-                                type="object"
-                                string="Recalculate"
-                                states="calculating,calculated"
-                                icon="gtk-execute"/>
-                        <button name="button_export"
-                                type="object"
-                                string="Export to BOE"
-                                states="calculated,done"
-                                icon="gtk-execute"/>
-                        <button name="confirm" string="Confirm" type="workflow" states="calculated" icon="gtk-ok"/>
-                        <button name="cancel" string="Cancel" type="workflow" states="calculated,done" icon="gtk-cancel"/>
-                        <button name="action_recover" string="Draft" type="object" states="canceled" icon="gtk-undo"/>
-                    </group>
+                    </footer>
+                    </sheet>
                 </form>
             </field>
         </record>
