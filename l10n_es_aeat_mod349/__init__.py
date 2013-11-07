@@ -4,6 +4,9 @@
 #    Copyright (C) 2004-2011
 #        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
 #
+#    Migración OpenERP 7.0. Top Consultant Software Creations S.L. (http://www.topconsultant.es/) 2013
+#        Ignacio Martínez y Miguel López.
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -22,9 +25,9 @@
 __author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
 
-import account_fiscal_position
-import account_invoice
-import mod349
+from . import account_fiscal_position
+from . import account_invoice
+from . import mod349
 
-import wizard
+from . import wizard
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
