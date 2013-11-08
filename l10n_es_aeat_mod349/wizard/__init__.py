@@ -21,5 +21,5 @@
 
 __author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
-import calculate_mod349_records
-import export_mod349_to_boe
+from . import calculate_mod349_records
+from . import export_mod349_to_boe

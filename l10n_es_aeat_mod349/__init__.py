@@ -22,9 +22,9 @@
 __author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
 
-import account_fiscal_position
-import account_invoice
-import mod349
+from . import account_fiscal_position
+from . import account_invoice
+from . import mod349
 
-import wizard
+from . import wizard
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
