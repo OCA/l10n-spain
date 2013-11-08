@@ -4,6 +4,9 @@
 #    Copyright (C) 2004-2011
 #        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
 #
+#    Migración OpenERP 7.0. Top Consultant Software Creations S.L. (http://www.topconsultant.es/) 2013
+#        Ignacio Martínez y Miguel López.
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -24,8 +27,8 @@
     "version": "1.0",
     "author": "Pexego",
     "license": "AGPL-3",
-    'contributors': ['Miguel López[Top Consultant]',
-                      'Ignacio Martínez[Top Consultant]'],
+    'contributors': ['Miguel López(Top Consultant)',
+                      'Ignacio Martínez(Top Consultant)'],
     "category": 'Localisation/Accounting',
     "description": """
 Módulo para la presentación del Modelo AEAT 349 (Declaración Recapitulativa
@@ -87,7 +90,7 @@ obligados a presentar el modelo 349:
 Desarrollado por Pexego (www.pexego.es) en colaboración con \
 Borja López Soilán y Jordi Esteve (Zikzakmedia, www.zikzakmedia.com)""",
     'website': 'http://www.pexego.es',
-    'init_xml': [],
+    'data': [],
     "depends": [
         "account",
         "account_invoice_currency",
