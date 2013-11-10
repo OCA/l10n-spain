@@ -4,6 +4,10 @@
 #    Copyright (C) 2004-2011
 #        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
 #
+#    Copyright (C) 2013
+#        Ignacio Ibeas - Acysos S.L. (http://acysos.com) All Rights Reserved
+#        Migración a OpenERP 7.0
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -193,6 +197,13 @@ class l10n_es_aeat_report_export_to_boe(osv.osv_memory):
         file = base64.encodestring(file_contents)
 
         file_name = _("%s_report_%s.txt") % (model, time.strftime(_("%Y-%m-%d")))
+        
+        # Delete old files
+        obj_attachment = self.pool.get('ir.attachment')
+        attachment_ids = obj_attachment.search(cr, uid, [('name', '=', file_name), ('res_model', '=', report._model._name)])
+        if len(attachment_ids):
+            obj_attachment.unlink(cr, uid, attachment_ids)
+            
         self.pool.get("ir.attachment").create(cr, uid, {
             "name" : file_name,
             "datas" : file,
@@ -200,5 +211,10 @@ class l10n_es_aeat_report_export_to_boe(osv.osv_memory):
             "res_model" : "l10n.es.aeat.mod%s.report" % model,
             "res_id" : ids and ids[0]
         }, context=context)
+        
+        mod_obj = self.pool.get(report._model._name)
+        mod_obj.write(cr,uid,[report.id],{'attach_id':attach_id},context)
+        
+        return True
 
 l10n_es_aeat_report_export_to_boe()
