@@ -4,6 +4,10 @@
 #    Copyright (C) 2004-2011
 #        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
 #
+#    Copyright (C) 2013
+#        Ignacio Ibeas - Acysos S.L. (http://acysos.com) All Rights Reserved
+#        Migración a OpenERP 7.0
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -24,19 +28,22 @@
     'version' : "1.0",
     'author' : "Pexego",
     'license' : "AGPL-3",
-    'website' : "http://www.pexego.es",
+    'contributors': ['Ignacio Ibeas (Acysos S.L.)'],
+    'website' : "http://www.pexego.es, http://www.acysos.com",
     'category' : "Localisation/Accounting",
     'init_xml' : [
         ],
-    'depends' : ["account"],
+    'depends' : [
+        "account",
+        ],
     'update_xml' : [
+        'security/aeat_security.xml',
+        'security/ir.model.access.csv',
         'aeat_menuitem.xml',
-        'security/ir.model.access.csv'
         ],
     'demo_xml' : [],
     'test' : [],
-    'installable' : False,
-    'active' : False,
+    'auto_install': False,
+    'installable': True,
+    'application': False,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
