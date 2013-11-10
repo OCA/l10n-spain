@@ -1,20 +1,19 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-# 	* l10n_es_aeat
+#	* l10n_es_aeat
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.0.0-rc1\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-12-13 17:34+0000\n"
-"PO-Revision-Date: 2013-10-10 16:51+0000\n"
-"Last-Translator: Jordi Esteve (Zikzakmedia) <jesteve@zikzakmedia.com>\n"
+"Project-Id-Version: OpenERP Server 7.0-20130519-231019\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-11 15:27+0000\n"
+"PO-Revision-Date: 2013-10-11 15:27+0000\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-10-14 05:33+0000\n"
-"X-Generator: Launchpad (build 16799)\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,type:0
@@ -22,21 +21,9 @@ msgid "Statement Type"
 msgstr "Tipus declaració"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:104
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:144
-#, python-format
-msgid "The formated string must match the given length"
-msgstr "La cadena formatejada ha de satisfer la llargada donada."
-
-#. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,support_type:0
 msgid "DVD"
 msgstr "DVD"
-
-#. module: l10n_es_aeat
-#: field:account.invoice,refund_invoices_description:0
-msgid "Refund invoices description"
-msgstr "Descripció de factures rectificatives."
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,state:0
@@ -50,8 +37,8 @@ msgstr "Esborrany"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
-msgid "Normal"
-msgstr "Normal"
+msgid "Complementary"
+msgstr "Complementària"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,company_id:0
@@ -69,9 +56,9 @@ msgid "Substitutive"
 msgstr "Substitutiva"
 
 #. module: l10n_es_aeat
-#: field:l10n.es.aeat.report,fiscalyear_id:0
-msgid "Fical Year"
-msgstr "Exercici fiscal"
+#: help:l10n.es.aeat.report,representative_vat:0
+msgid "Legal Representative VAT number."
+msgstr "NIF del representant legal."
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,previous_number:0
@@ -79,14 +66,28 @@ msgid "Previous Declaration Number"
 msgstr "Número declaració anterior"
 
 #. module: l10n_es_aeat
-#: field:account.invoice,origin_invoices_ids:0
-msgid "Refund invoice"
-msgstr "Factura rectificativa"
+#: field:l10n.es.aeat.report,company_vat:0
+msgid "VAT number"
+msgstr "NIF / CIF"
 
 #. module: l10n_es_aeat
-#: help:l10n.es.aeat.report,representative_vat:0
-msgid "Legal Representative VAT number."
-msgstr "NIF del representant legal."
+#: code:addons/l10n_es_aeat/aeat_report.py:109
+#, python-format
+msgid "Only reports in 'draft' or 'cancel' state can be removed"
+msgstr "Només declaracions en estat 'Esborrany' o 'Cancel·lada' poden ser eliminades"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:199
+#, python-format
+msgid "%Y-%m-%d"
+msgstr "%Y-%m-%d"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:109
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:147
+#, python-format
+msgid "The formated string must match the given length"
+msgstr "La cadena formatejada ha de satisfer la llargada donada."
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,support_type:0
@@ -94,51 +95,12 @@ msgid "Support Type"
 msgstr "Tipus de suport"
 
 #. module: l10n_es_aeat
-#: help:account.invoice,origin_invoices_ids:0
-msgid "Links to original invoice which is referred by current refund invoice"
-msgstr ""
-"Enllaça amb la factura original a la qual fa referència la factura actual."
+#: field:l10n.es.aeat.report,attach_id:0
+msgid "BOE file"
+msgstr "Fitxer BOE"
 
 #. module: l10n_es_aeat
-#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat
-#: model:ir.module.module,shortdesc:l10n_es_aeat.module_meta_information
-msgid "AEAT Base"
-msgstr "AEAT Base"
-
-#. module: l10n_es_aeat
-#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report
-msgid "AEAT Report base module"
-msgstr "Mòdul base per les declaracions de l'Agència Tributària"
-
-#. module: l10n_es_aeat
-#: field:l10n.es.aeat.report,calculation_date:0
-msgid "Calculation date"
-msgstr "Data del càlcul"
-
-#. module: l10n_es_aeat
-#: field:l10n.es.aeat.report,representative_vat:0
-msgid "L.R. VAT number"
-msgstr "NIF R.L."
-
-#. module: l10n_es_aeat
-#: field:l10n.es.aeat.report,company_vat:0
-msgid "VAT number"
-msgstr "NIF / CIF"
-
-#. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/aeat_report.py:107
-#, python-format
-msgid "Only reports in 'draft' or 'cancel' state can be removed"
-msgstr ""
-"Només declaracions en estat 'Esborrany' o 'Cancel·lada' poden ser eliminades"
-
-#. module: l10n_es_aeat
-#: selection:l10n.es.aeat.report,support_type:0
-msgid "Telematics"
-msgstr "Telemàtica"
-
-#. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/aeat_report.py:107
+#: code:addons/l10n_es_aeat/aeat_report.py:109
 #, python-format
 msgid "Error!"
 msgstr "Error!"
@@ -149,15 +111,24 @@ msgid "Fiscal Year"
 msgstr "Exercici fiscal"
 
 #. module: l10n_es_aeat
-#: field:l10n.es.aeat.report,number:0
-msgid "Declaration Number"
-msgstr "Número declaració"
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report
+msgid "AEAT Report base module"
+msgstr "Mòdul base per les declaracions de l'Agència Tributària"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:100
-#, python-format
-msgid "Wrong aling option. It should be < or >"
-msgstr "Opció d'alineament errònia. Hauria de ser < o >"
+#: selection:l10n.es.aeat.report,state:0
+msgid "Processed"
+msgstr "Calculada"
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,representative_vat:0
+msgid "L.R. VAT number"
+msgstr "NIF R.L."
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.report,support_type:0
+msgid "Telematics"
+msgstr "Telemàtica"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
@@ -171,8 +142,13 @@ msgstr "Exporta a fitxer BOE"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
-msgid "Complementary"
-msgstr "Complementària"
+msgid "Normal"
+msgstr "Normal"
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,number:0
+msgid "Declaration Number"
+msgstr "Número declaració"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,state:0
@@ -180,16 +156,24 @@ msgid "Canceled"
 msgstr "Cancel·lada"
 
 #. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:105
+#, python-format
+msgid "Wrong aling option. It should be < or >"
+msgstr "Opció d'alineament errònia. Hauria de ser < o >"
+
+#. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,state:0
 msgid "Done"
 msgstr "Realitzada"
 
 #. module: l10n_es_aeat
-#: model:ir.model,name:l10n_es_aeat.model_account_invoice
-msgid "Invoice"
-msgstr "Factura"
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:199
+#, python-format
+msgid "%s_report_%s.txt"
+msgstr "%s_report_%s.txt"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.report,state:0
-msgid "Processed"
-msgstr "Calculada"
+#: field:l10n.es.aeat.report,calculation_date:0
+msgid "Calculation date"
+msgstr "Data del càlcul"
+
