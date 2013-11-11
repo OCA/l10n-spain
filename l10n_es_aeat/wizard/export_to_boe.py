@@ -3,6 +3,7 @@
 #
 #    Copyright (C) 2004-2011
 #        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
+#        Luis Manuel Angueira Blanco (Pexego)
 #
 #    Copyright (C) 2013
 #        Ignacio Ibeas - Acysos S.L. (http://acysos.com) All Rights Reserved
@@ -23,19 +24,19 @@
 #
 ##############################################################################
 
-__author__ = "Luis Manuel Angueira Blanco (Pexego)"
-
 
 import base64
 import time
 
-from tools.translate import _
-from osv import osv
+from openerp.osv import orm, fields
+from openerp.tools.translate import _
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT 
 
 
-class l10n_es_aeat_report_export_to_boe(osv.osv_memory):
+class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
     _name = "l10n.es.aeat.report.export_to_boe"
     _description = "Export Report to BOE Format"
+    
     
     ########################
     ### HELPER FUNCTIONS ###
@@ -45,11 +46,13 @@ class l10n_es_aeat_report_export_to_boe(osv.osv_memory):
         Formats the string into a fixed length ASCII (iso-8859-1) record.
 
         Note:
-            'Todos los campos alfanuméricos y alfabéticos se presentarán alineados a la izquierda y
-            rellenos de blancos por la derecha, en mayúsculas sin caracteres especiales, y sin vocales acentuadas.
-            Para los caracteres específicos del idioma se utilizará la codificación ISO-8859-1. De esta
-            forma la letra “Ñ” tendrá el valor ASCII 209 (Hex. D1) y la “Ç”(cedilla mayúscula) el valor ASCII
-            199 (Hex. C7).'
+            'Todos los campos alfanuméricos y alfabéticos se presentarán 
+            alineados a la izquierda y rellenos de blancos por la derecha,
+            en mayúsculas sin caracteres especiales, y sin vocales acentuadas.
+            Para los caracteres específicos del idioma se utilizará la
+            codificación ISO-8859-1. De esta forma la letra “Ñ” tendrá el
+            valor ASCII 209 (Hex. D1) y la “Ç”(cedilla mayúscula) el valor
+            ASCII 199 (Hex. C7).'
         """
 
         if not text:
@@ -96,22 +99,26 @@ class l10n_es_aeat_report_export_to_boe(osv.osv_memory):
         if len(ascii_string) > length:
             ascii_string = ascii_string[:length]
         # Format the string
-        #ascii_string = '{0:{1}{2}{3}s}'.format(ascii_string, fill, align, length) #for python >= 2.6
+        #ascii_string = '{0:{1}{2}{3}s}'.format(ascii_string, fill, align,
+        # length) #for python >= 2.6
         if align == '<':
-            ascii_string = str(ascii_string) + (length-len(str(ascii_string)))*fill
+            ascii_string = str(ascii_string) + \
+            (length-len(str(ascii_string)))*fill
         elif align == '>':
-            ascii_string = (length-len(str(ascii_string)))*fill + str(ascii_string)
+            ascii_string = (length-len(str(ascii_string)))* \
+            fill + str(ascii_string)
         else:
             assert False, _('Wrong aling option. It should be < or >')
 
         # Sanity-check
         assert len(ascii_string) == length, \
-                            _("The formated string must match the given length")
+            _("The formated string must match the given length")
         # Return string
         return ascii_string
 
 
-    def _formatNumber(self, number, int_length, dec_length=0, include_sign=False):
+    def _formatNumber(self, number, int_length, dec_length=0,
+                      include_sign=False):
         """
         Formats the number into a fixed length ASCII (iso-8859-1) record.
         Note:
@@ -120,7 +127,8 @@ class l10n_es_aeat_report_export_to_boe(osv.osv_memory):
             (http://www.boe.es/boe/dias/2008/10/23/pdfs/A42154-42190.pdf)
         """
         #
-        # Separate the number parts (-55.23 => int_part=55, dec_part=0.23, sign='N')
+        # Separate the number parts (-55.23 => int_part=55,
+        # dec_part=0.23, sign='N')
         #
         if number == '':
             number = 0.0
@@ -137,14 +145,15 @@ class l10n_es_aeat_report_export_to_boe(osv.osv_memory):
             ascii_string += sign
             
         if dec_length > 0:
-            ascii_string += '%0*.*f' % (int_length+dec_length+1,dec_length, number)
+            ascii_string += '%0*.*f' % (int_length+ \
+                                        dec_length+1,dec_length, number)
             ascii_string = ascii_string.replace('.','')
         elif int_length > 0:
             ascii_string += '%.*d' % (int_length, int_part)
             
         # Sanity-check
-        assert len(ascii_string) == (include_sign and 1 or 0) + int_length + dec_length, \
-                            _("The formated string must match the given length")
+        assert len(ascii_string) == (include_sign and 1 or 0) + int_length + \
+            dec_length, _("The formated string must match the given length")
         # Return the string
         return ascii_string
 
@@ -186,7 +195,8 @@ class l10n_es_aeat_report_export_to_boe(osv.osv_memory):
         ##
         ## Add the partner records
         for partner_record in report.partner_record_ids:
-            file_contents += self._get_formated_partner_record(report, partner_record)
+            file_contents += self._get_formated_partner_record(report,
+                                                               partner_record)
 
         ##
         ## Adds other fields
@@ -196,11 +206,15 @@ class l10n_es_aeat_report_export_to_boe(osv.osv_memory):
         ## Generate the file and save as attachment
         file = base64.encodestring(file_contents)
 
-        file_name = _("%s_report_%s.txt") % (model, time.strftime(_("%Y-%m-%d")))
+        file_name = _("%s_report_%s.txt") % \
+            (model,time.strftime(_(DEFAULT_SERVER_DATE_FORMAT)))
         
         # Delete old files
         obj_attachment = self.pool.get('ir.attachment')
-        attachment_ids = obj_attachment.search(cr, uid, [('name', '=', file_name), ('res_model', '=', report._model._name)])
+        attachment_ids = obj_attachment.search(
+           cr, uid, [('name', '=', file_name),
+                     ('res_model', '=', report._model._name)]
+           )
         if len(attachment_ids):
             obj_attachment.unlink(cr, uid, attachment_ids)
             
