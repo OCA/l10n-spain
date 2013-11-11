@@ -3,6 +3,10 @@
 #
 #    Copyright (C) 2004-2011
 #        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
+#        Luis Manuel Angueira Blanco (Pexego)
+#    Copyright (C) 2013
+#        Ignacio Ibeas - Acysos S.L. (http://acysos.com) All Rights Reserved
+#        Migración a OpenERP 7.0
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,16 +23,13 @@
 #
 ##############################################################################
 
-__author__ = "Luis Manuel Angueira Blanco (Pexego)"
-
 
 import netsvc
 import re
-from tools.translate import _
+from openerp.tools.translate import _
+from openerp.osv import orm, fields
 
-from osv import osv, fields
-
-class l10n_es_aeat_report(osv.osv):
+class l10n_es_aeat_report(orm.Model):
     _name = "l10n.es.aeat.report"
     _description = "AEAT Report base module"
 
@@ -42,35 +43,55 @@ class l10n_es_aeat_report(osv.osv):
         if company_id:
             company = self.pool.get('res.company').browse(cr, uid, company_id)
             if company.partner_id and company.partner_id.vat:
-                # Remove the ES part from spanish vat numbers (ES12345678Z => 12345678Z)
-                company_vat = re.match("(ES){0,1}(.*)", company.partner_id.vat).groups()[1]
+                # Remove the ES part from spanish vat numbers 
+                # (ES12345678Z => 12345678Z)
+                company_vat = re.match("(ES){0,1}(.*)",
+                                       company.partner_id.vat).groups()[1]
         return  { 'value': { 'company_vat': company_vat } }
 
 
     _columns = {
-        'company_id': fields.many2one('res.company', 'Company', required=True, states={'done':[('readonly',True)]}),
-
-        'number': fields.char('Declaration Number', size=13, states={'calculated':[('required',True)],'done':[('readonly',True)]}),
-        'previous_number' : fields.char('Previous Declaration Number', size=13, states={'done':[('readonly',True)]}),
-
-        'representative_vat': fields.char('L.R. VAT number', size=9, help="Legal Representative VAT number.",
-            states={'calculated':[('required',True)],'confirmed':[('readonly',True)]}),
-
-        'fiscalyear_id': fields.many2one('account.fiscalyear', 'Fiscal Year', required=True, states={'done': [('readonly', True)]}),
-
-        'company_vat': fields.char('VAT number', size=9, states={'calculated':[('required',True)],'done':[('readonly',True)]}),
-
-        'type': fields.selection([
-            ('N','Normal'),
+        'company_id': fields.many2one(
+            'res.company', 'Company',
+            required=True, states={'done':[('readonly',True)]}
+            ),
+        'number': fields.char(
+            'Declaration Number', size=13,
+            states={'calculated':[('required',True)],
+                    'done':[('readonly',True)]}
+            ),
+        'previous_number' : fields.char(
+            'Previous Declaration Number',
+            size=13, states={'done':[('readonly',True)]}
+            ),
+        'representative_vat': fields.char(
+            'L.R. VAT number', size=9,
+            help="Legal Representative VAT number.",
+            states={'calculated':[('required',True)],
+                    'confirmed':[('readonly',True)]}
+            ),
+        'fiscalyear_id': fields.many2one(
+            'account.fiscalyear', 'Fiscal Year', required=True,
+            states={'done': [('readonly', True)]}
+            ),
+        'company_vat': fields.char(
+            'VAT number', size=9,
+            states={'calculated':[('required',True)],
+                    'done':[('readonly',True)]}
+            ),
+        'type': fields.selection(
+            [('N','Normal'),
             ('C','Complementary'),
-            ('S','Substitutive')], 'Statement Type',
-            states={'calculated':[('required',True)],'done':[('readonly',True)]}),
-            
+            ('S','Substitutive')],
+            'Statement Type',
+            states={'calculated':[('required',True)],
+                    'done':[('readonly',True)]}
+            ),
         'support_type': fields.selection([
             ('C','DVD'),
             ('T','Telematics')], 'Support Type',
-            states={'calculated':[('required',True)],'done':[('readonly',True)]}),
-
+            states={'calculated':[('required',True)],
+                    'done':[('readonly',True)]}),
         'calculation_date': fields.datetime("Calculation date"),
         'state' : fields.selection([
             ('draft', 'Draft'),
@@ -79,12 +100,17 @@ class l10n_es_aeat_report(osv.osv):
             ('done', 'Done'),
             ('canceled', 'Canceled')
             ], 'State', readonly=True),
+        'attach_id':fields.many2one(
+            'ir.attachment', 'BOE file', readonly=True
+            ), 
     }
 
     _defaults = {
         'company_id' : lambda self, cr, uid, context:
-            self.pool.get('res.users').browse(cr, uid, uid, context).company_id and
-            self.pool.get('res.users').browse(cr, uid, uid, context).company_id.id,
+            self.pool.get('res.users').browse(cr, uid,
+                                              uid, context).company_id and
+            self.pool.get('res.users').browse(cr, uid,
+                                              uid, context).company_id.id,
         'type' : lambda *a: 'N',
         'support_type' : lambda *a: 'T',
         'state' : lambda *a: 'draft',
@@ -105,7 +131,11 @@ class l10n_es_aeat_report(osv.osv):
 
         for item in self.browse(cr, uid, ids):
             if item.state not in ['draft', 'canceled']:
-                raise osv.except_osv(_('Error!'), _("Only reports in 'draft' or 'cancel' state can be removed"))
+                raise orm.orm_exception(
+                    _('Error!'),
+                    _("Only reports in 'draft' or 'cancel'" + \
+                      "state can be removed")
+                    )
 
         return super(l10n_es_aeat_report, self).unlink(cr, uid, ids, context)
 
