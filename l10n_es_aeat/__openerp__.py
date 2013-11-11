@@ -26,8 +26,9 @@
 {
     'name' : "AEAT Base",
     'version' : "1.0",
-    'author' : "Pexego, Acysos S.L.",
+    'author' : "Pexego",
     'license' : "AGPL-3",
+    'contributors': ['Ignacio Ibeas (Acysos S.L.)'],
     'website' : "http://www.pexego.es, http://www.acysos.com",
     'category' : "Localisation/Accounting",
     'init_xml' : [
