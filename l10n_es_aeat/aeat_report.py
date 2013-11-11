@@ -27,9 +27,9 @@
 import netsvc
 import re
 from openerp.tools.translate import _
-from openerp.osv import fields, osv
+from openerp.osv import orm, fields
 
-class l10n_es_aeat_report(osv.osv):
+class l10n_es_aeat_report(orm.Model):
     _name = "l10n.es.aeat.report"
     _description = "AEAT Report base module"
 
@@ -131,7 +131,7 @@ class l10n_es_aeat_report(osv.osv):
 
         for item in self.browse(cr, uid, ids):
             if item.state not in ['draft', 'canceled']:
-                raise osv.except_osv(
+                raise orm.orm_exception(
                     _('Error!'),
                     _("Only reports in 'draft' or 'cancel'" + \
                       "state can be removed")
