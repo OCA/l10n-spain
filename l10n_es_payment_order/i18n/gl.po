@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: openerp-spain\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-10-10 09:39+0000\n"
-"PO-Revision-Date: 2013-10-27 01:20+0000\n"
+"PO-Revision-Date: 2013-11-12 12:04+0000\n"
 "Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-10-28 05:42+0000\n"
-"X-Generator: Launchpad (build 16810)\n"
+"X-Launchpad-Export-Date: 2013-11-13 06:09+0000\n"
+"X-Generator: Launchpad (build 16820)\n"
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,tipo:0
@@ -126,7 +126,7 @@ msgstr "CSB 34-01"
 #. module: l10n_es_payment_order
 #: field:payment.mode,barred:0
 msgid "Barred"
-msgstr ""
+msgstr "Barrado"
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,send_type:0
@@ -211,7 +211,7 @@ msgstr "Recibo domiciliado"
 #. module: l10n_es_payment_order
 #: help:payment.mode,alt_domicile_format:0
 msgid "Alternative domicile record format"
-msgstr ""
+msgstr "Formato de rexistro de domicilio alternativo"
 
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
@@ -477,7 +477,7 @@ msgstr "Exportar ficheiro de pagamentos"
 #. module: l10n_es_payment_order
 #: field:payment.mode,payroll_check:0
 msgid "Payroll Check"
-msgstr ""
+msgstr "Cheque de nómina"
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,alt_domicile_format:0
