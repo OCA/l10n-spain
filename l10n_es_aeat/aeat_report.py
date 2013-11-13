@@ -131,7 +131,7 @@ class l10n_es_aeat_report(orm.Model):
 
         for item in self.browse(cr, uid, ids):
             if item.state not in ['draft', 'canceled']:
-                raise orm.orm_exception(
+                raise orm.except_orm(
                     _('Error!'),
                     _("Only reports in 'draft' or 'cancel'" + \
                       "state can be removed")
