@@ -160,7 +160,7 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
 
     def _get_formated_real_state_record(self, report, partner_record):
         """
-        Returns a type 2, real state, formated record
+        Returns a type 2, real estate, formated record
 
         Format of the record:
             Tipo de Registro 2 – Registro de inmueble
@@ -229,7 +229,7 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
         text += 167*' '                                                 # Blancos
         text += '\r\n'                                                  # Sello electrónico
 
-        assert len(text) == 502, _("The type 2-I record (real state) must be 502 characters long")
+        assert len(text) == 502, _("The type 2-I record (real estate) must be 502 characters long")
         return text
 
 
