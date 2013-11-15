@@ -64,7 +64,7 @@
                                 <field name="bussiness_real_state_rent"/>
                             </group>
                         </page>
-                        <page string="Real state info" attrs="{'invisible': [('bussiness_real_state_rent','=',False)]}">
+                        <page string="Real estate info" attrs="{'invisible': [('bussiness_real_state_rent','=',False)]}">
                             <field name="real_state_record_ids" nolabel="1" context="{'report_id': report_id, 'partner_id': partner_id, 'partner_vat': partner_vat, 'representative_vat': representative_vat}"/>
                         </page>
                         <page string="Details">
@@ -135,13 +135,13 @@
                         <field name="partner_vat" select="1"/>
                         <field name="representative_vat" select="2"/>
                     </group>
-                    <group string="Real state info" colspan="4">
+                    <group string="Real estate info" colspan="4">
                         <field name="amount"/>
                         <newline/>
                         <field name="situation" colspan="4"/>
                         <field name="reference"/>
                     </group>
-                    <group string="Real state address" colspan="4">
+                    <group string="Real estate address" colspan="4">
                         <group colspan="4" col="6">
                             <field name="address_type"/>
                             <field name="address"/>
