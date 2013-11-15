@@ -64,7 +64,7 @@
                                 <field name="bussiness_real_state_rent"/>
                             </group>
                         </page>
-                        <page string="Real state info" attrs="{'invisible': [('bussiness_real_state_rent','=',False)]}">
+                        <page string="Real estate info" attrs="{'invisible': [('bussiness_real_state_rent','=',False)]}">
                             <field name="real_state_record_ids" nolabel="1" context="{'report_id': report_id, 'partner_id': partner_id, 'partner_vat': partner_vat, 'representative_vat': representative_vat}"/>
                         </page>
                         <page string="Details">
@@ -109,7 +109,7 @@
             <field name="model">l10n.es.aeat.mod347.real_state_record</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="Real State Records" colors="">
+                <tree string="Real Estate Records" colors="">
                     <field name="partner_vat" select="1"/>
                     <field name="partner_id" select="1"/>
                     <field name="reference" select="2"/>
@@ -128,20 +128,20 @@
             <field name="model">l10n.es.aeat.mod347.real_state_record</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Real State Record">
+                <form string="Real Estate Record">
                     <field name="report_id" invisible="1"/>
                     <group string="Partner info" colspan="4">
                         <field name="partner_id" on_change="on_change_partner_id(partner_id)" required="1" select="1" colspan="4"/>
                         <field name="partner_vat" select="1"/>
                         <field name="representative_vat" select="2"/>
                     </group>
-                    <group string="Real state info" colspan="4">
+                    <group string="Real estate info" colspan="4">
                         <field name="amount"/>
                         <newline/>
                         <field name="situation" colspan="4"/>
                         <field name="reference"/>
                     </group>
-                    <group string="Real state address" colspan="4">
+                    <group string="Real estate address" colspan="4">
                         <group colspan="4" col="6">
                             <field name="address_type"/>
                             <field name="address"/>
@@ -260,7 +260,7 @@
                         <page string="Partner records">
                             <field name="partner_record_ids" nolabel="1" context="{'report_id': active_id}"/>
                         </page>
-                        <page string="Real State records">
+                        <page string="Real Estate records">
                             <field name="real_state_record_ids" nolabel="1" context="{'report_id': active_id}"/>
                         </page>
                     </notebook>
