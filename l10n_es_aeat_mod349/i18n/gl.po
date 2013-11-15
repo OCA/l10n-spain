@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: openerp-spain\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2010-12-13 17:53+0000\n"
-"PO-Revision-Date: 2013-11-12 19:18+0000\n"
+"PO-Revision-Date: 2013-11-15 01:35+0000\n"
 "Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-11-13 06:09+0000\n"
-"X-Generator: Launchpad (build 16820)\n"
+"X-Launchpad-Export-Date: 2013-11-15 06:32+0000\n"
+"X-Generator: Launchpad (build 16831)\n"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,total_partner_refunds:0
 msgid "Partners refunds"
-msgstr "Facturas de abono"
+msgstr "Facturas rectificativas"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,period_selection:0
@@ -46,7 +46,7 @@ msgstr "Período"
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
 msgstr ""
-"Tódolos campos das facturas de abono (país, NIF) deben estar cubertos."
+"Tódolos campos das facturas rectificativas (país, NIF) deben estar cubertos."
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/mod349.py:149
@@ -100,12 +100,12 @@ msgstr "Marcado se o rexistro de empresa é correcto."
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,partner_refund_ids:0
 msgid "Partner refund IDS"
-msgstr "IDs de facturas de abono"
+msgstr "IDs de facturas rectificativas"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,total_partner_refunds_amount:0
 msgid "Partners refunds amount"
-msgstr "Importe de facturas de abono"
+msgstr "Importe de facturas rectificativas"
 
 #. module: l10n_es_aeat_mod349
 #: help:l10n.es.aeat.mod349.report,contact_name:0
@@ -146,12 +146,12 @@ msgstr "Realizado"
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "In process"
-msgstr ""
+msgstr "En proceso"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,type:0
 msgid "Substitutive"
-msgstr ""
+msgstr "Substitutiva"
 
 #. module: l10n_es_aeat_mod349
 #: selection:account.invoice,operation_key:0
@@ -159,68 +159,68 @@ msgstr ""
 #: selection:l10n.es.aeat.mod349.partner_refund,operation_key:0
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "E - Intra-Community supplies"
-msgstr ""
+msgstr "E - Entregas intracomunitarias"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_record_detail:0
 msgid "AEAT 349 Partner record detail"
-msgstr ""
+msgstr "Detalle do rexistro de empresa AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,fiscalyear_id:0
 #: view:l10n.es.aeat.mod349.report:0
 msgid "Fiscal Year"
-msgstr ""
+msgstr "Exercicio fiscal"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,previous_number:0
 msgid "Previous Declaration Number"
-msgstr ""
+msgstr "Número da declaración anterior"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 #: field:l10n.es.aeat.mod349.report,partner_record_ids:0
 msgid "Partner records"
-msgstr ""
+msgstr "Rexistros da empresa"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record,report_id:0
 #: field:l10n.es.aeat.mod349.partner_refund,report_id:0
 msgid "AEAT 349 Report ID"
-msgstr ""
+msgstr "ID declaración modelo 349"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,type:0
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.menu,name:l10n_es_aeat_mod349.menu_aeat_mod349_report
 msgid "AEAT 349 Model"
-msgstr ""
+msgstr "Modelo AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_partner_refund_detail
 msgid "AEAT 349 Model - Partner refund detail"
-msgstr ""
+msgstr "Modelo 349  - Detalle de factura rectificativa"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,month_selection:0
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
 msgid "July"
-msgstr ""
+msgstr "xullo"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record,partner_vat:0
 #: field:l10n.es.aeat.mod349.partner_refund,partner_vat:0
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "VAT"
-msgstr ""
+msgstr "IVE"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_refund_detail,refund_id:0
 msgid "Partner refund ID"
-msgstr ""
+msgstr "ID Factura rectificativa"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/account_invoice.py:94
@@ -229,6 +229,8 @@ msgid ""
 "Cannot get invoices.\n"
 "There is no period selected"
 msgstr ""
+"Non se poden obte-las facturas.\n"
+"Non hai un período seleccionado."
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/account_invoice.py:86
@@ -237,6 +239,8 @@ msgid ""
 "Cannot get invoices.\n"
 "There is no fiscalyear selected"
 msgstr ""
+"Non se poden obte-las facturas.\n"
+"Non hai un exercicio fiscal seleccionado."
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/account_invoice.py:102
@@ -245,30 +249,32 @@ msgid ""
 "Cannot get invoices.\n"
 "There is no month and/or fiscalyear selected"
 msgstr ""
+"Non se poden obte-las facturas.\n"
+"Non hai mes e/ou exercicio fiscal seleccionados."
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:117
 #, python-format
 msgid "The type 1 record must be 502 characters long"
-msgstr ""
+msgstr "O tipo de rexistro 1 debe ter 502 caracteres de longo"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/mod349.py:171
 #, python-format
 msgid "Company without Title"
-msgstr ""
+msgstr "Compañía sen título"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/mod349.py:179
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
-msgstr ""
+msgstr "O nome do contacto (Nome completo) debe conter nome e apelidos"
 
 #. module: l10n_es_aeat_mod349
 #: help:l10n.es.aeat.mod349.partner_refund,total_origin_amount:0
 #: field:l10n.es.aeat.mod349.partner_refund,total_origin_amount:0
 msgid "Refund original amount"
-msgstr ""
+msgstr "Importe orixinal da factura rectificativa"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/mod349.py:172
@@ -277,6 +283,9 @@ msgid ""
 "Company has no company title.\n"
 "This may cause some problems when trying to import on AEAT help program"
 msgstr ""
+"A compañía non ten un título definido.\n"
+"Isto podería causar algúns problemas tentando importar dende o programa de "
+"axuda da AEAT."
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/mod349.py:206
@@ -284,6 +293,8 @@ msgstr ""
 msgid ""
 "Partner name '%s' in refund lines is not valid due to incorrect characters"
 msgstr ""
+"O nome da empresa '%s' nas liñas da factura rectificativa non é válido por "
+"conter caracteres incorrectos."
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/mod349.py:199
@@ -291,21 +302,23 @@ msgstr ""
 msgid ""
 "Partner name '%s' in partner records is not valid due to incorrect characters"
 msgstr ""
+"O nome da empresa '%s' nos rexistros de empresas non é válido por conter "
+"caracteres incorrectos."
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "Recalculate"
-msgstr ""
+msgstr "Volver a calcular"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "Declaration"
-msgstr ""
+msgstr "Declaración"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_report
 msgid "AEAT Model 349 Report"
-msgstr ""
+msgstr "Declaración modelo AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: selection:account.invoice,operation_key:0
@@ -313,110 +326,110 @@ msgstr ""
 #: selection:l10n.es.aeat.mod349.partner_refund,operation_key:0
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "T - Triangular operations"
-msgstr ""
+msgstr "T - Operacións triangulares"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record_detail,amount_untaxed:0
 #: field:l10n.es.aeat.mod349.partner_refund_detail,amount_untaxed:0
 msgid "Amount untaxed"
-msgstr ""
+msgstr "Importe sen impostos"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record,record_detail_ids:0
 msgid "Partner record detail IDS"
-msgstr ""
+msgstr "IDs Detalle de rexistro de empresa"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "Identification"
-msgstr ""
+msgstr "Identificación"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,type:0
 msgid "Statement Type"
-msgstr ""
+msgstr "Tipo de declaración"
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Op. Amount"
-msgstr ""
+msgstr "Importe op."
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_refund_detail:0
 msgid "AEAT 349 Partner refund"
-msgstr ""
+msgstr "Facturas de abono modelo 349"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,state:0
 msgid "State"
-msgstr ""
+msgstr "Provincia"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
 msgid "Create and query AEAT Model 349 Reports"
-msgstr ""
+msgstr "Permite crear e consulta-las declaracións do modelo AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Fiscal year:"
-msgstr ""
+msgstr "Exercicio fiscal:"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record,partner_record_ok:0
 msgid "Partner Record OK"
-msgstr ""
+msgstr "Rexistro de empresa correcto"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,period_selection:0
 #: selection:l10n.es.aeat.mod349.partner_refund,period_selection:0
 msgid "MO - Monthly"
-msgstr ""
+msgstr "MO - Mensual"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record_detail,partner_record_id:0
 msgid "Partner record"
-msgstr ""
+msgstr "Rexistro da empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_calculate_records
 msgid "AEAT Model 349 Wizard - Calculate Records"
-msgstr ""
+msgstr "Asistente modelo AEAT 349 - Calcular rexistros"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_partner_refund
 msgid "AEAT 349 Model - Partner refund"
-msgstr ""
+msgstr "Modelo AEAT 349 - Facturas rectificativas"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,support_type:0
 msgid "Support Type"
-msgstr ""
+msgstr "Tipo de soporte"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "Export to BOE"
-msgstr ""
+msgstr "Exportar ó formato BOE"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_refund_detail:0
 msgid "AEAT 349 Partner refund detail"
-msgstr ""
+msgstr "Detalle de factura rectificativa modelo AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_record:0
 #: view:l10n.es.aeat.mod349.partner_refund:0
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "PARTNER REFUND LINES"
-msgstr ""
+msgstr "LIÑAS DE FACTURAS RECTIFICATIVAS"
 
 #. module: l10n_es_aeat_mod349
 #: selection:account.invoice,operation_key:0
@@ -424,400 +437,400 @@ msgstr ""
 #: selection:l10n.es.aeat.mod349.partner_refund,operation_key:0
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "A - Intra-Community acquisition"
-msgstr ""
+msgstr "A - Adquisición intracomunitaria"
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Operation key help"
-msgstr ""
+msgstr "Lenda da clave de operación"
 
 #. module: l10n_es_aeat_mod349
 #: selection:account.invoice,operation_key:0
 #: selection:l10n.es.aeat.mod349.partner_record,operation_key:0
 #: selection:l10n.es.aeat.mod349.partner_refund,operation_key:0
 msgid "I - Intra-Community services acquisitions"
-msgstr ""
+msgstr "I - Adqusicións intracomunitarias de servicios"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_record_detail:0
 msgid "AEAT 349 Partner record"
-msgstr ""
+msgstr "Rexistro de empresa modelo AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_refund:0
 msgid "AEAT 349 Partner refunds"
-msgstr ""
+msgstr "Facturas rectificativas modelo AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,calculation_date:0
 msgid "Calculation date"
-msgstr ""
+msgstr "Data de cálculo"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_record:0
 msgid "Detail lines"
-msgstr ""
+msgstr "Líneas de detalle"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record,partner_id:0
 #: field:l10n.es.aeat.mod349.partner_refund,partner_id:0
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Partner"
-msgstr ""
+msgstr "Empresa"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,contact_name:0
 msgid "Full Name"
-msgstr ""
+msgstr "Nome completo"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,month_selection:0
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
 msgid "September"
-msgstr ""
+msgstr "setembro"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,month_selection:0
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
 msgid "December"
-msgstr ""
+msgstr "decembro"
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Support type:"
-msgstr ""
+msgstr "Tipo de soporte:"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_record:0
 msgid "AEAT 349 Partner records"
-msgstr ""
+msgstr "Rexistros de empresa modelo AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,number:0
 msgid "Declaration Number"
-msgstr ""
+msgstr "Número de declaración"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,month_selection:0
 #: field:l10n.es.aeat.mod349.partner_refund,month_selection:0
 msgid "Month"
-msgstr ""
+msgstr "Mes"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
 msgid "Canceled"
-msgstr ""
+msgstr "Cancelado"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_partner_record_detail
 msgid "AEAT 349 Model - Partner record detail"
-msgstr ""
+msgstr "Modelo AEAT 349 - Detalle de rexistro de empresa"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,period_selection:0
 #: selection:l10n.es.aeat.mod349.partner_refund,period_selection:0
 msgid "3T - Third Quarter"
-msgstr ""
+msgstr "3T - Terceiro trimestre"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "Calculate"
-msgstr ""
+msgstr "Calcular"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,support_type:0
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "AEAT 349 MODEL"
-msgstr ""
+msgstr "MODELO AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_export_to_boe
 msgid "Export AEAT Model 349 to BOE format"
-msgstr ""
+msgstr "Exportar modelo AEAT 349 ó formato BOE"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 #: selection:l10n.es.aeat.mod349.report,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Borrador"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,company_vat:0
 msgid "VAT number"
-msgstr ""
+msgstr "NIF"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_refund,refund_detail_ids:0
 msgid "Partner refund detail IDS"
-msgstr ""
+msgstr "IDs Detalles das facturas rectificativas"
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Orig. Amount"
-msgstr ""
+msgstr "Importe orix."
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_refund,fiscalyear_id:0
 msgid "Fiscalyear"
-msgstr ""
+msgstr "Exercicio fiscal"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_refund_detail,total_origin_amount:0
 msgid "Origin total amount"
-msgstr ""
+msgstr "Total orixinal"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,month_selection:0
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
 msgid "August"
-msgstr ""
+msgstr "agosto"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
 msgid "Processing"
-msgstr ""
+msgstr "Procesando"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,month_selection:0
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
 msgid "June"
-msgstr ""
+msgstr "xuño"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "Options"
-msgstr ""
+msgstr "Opcións"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,contact_phone:0
 msgid "Phone"
-msgstr ""
+msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record_detail,date:0
 #: field:l10n.es.aeat.mod349.partner_refund_detail,date:0
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,month_selection:0
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
 msgid "November"
-msgstr ""
+msgstr "novembro"
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Number:"
-msgstr ""
+msgstr "Número:"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record,total_operation_amount:0
 #: field:l10n.es.aeat.mod349.partner_refund,total_operation_amount:0
 msgid "Total operation amount"
-msgstr ""
+msgstr "Importe total da operación"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,month_selection:0
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
 msgid "October"
-msgstr ""
+msgstr "outubro"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,period_selection:0
 #: selection:l10n.es.aeat.mod349.partner_refund,period_selection:0
 msgid "2T - Second Quarter"
-msgstr ""
+msgstr "2T - Segundo trimestre"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,month_selection:0
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
 msgid "January"
-msgstr ""
+msgstr "xaneiro"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "Summary"
-msgstr ""
+msgstr "Resumo"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
 msgid "Processed"
-msgstr ""
+msgstr "Procesado"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,representative_vat:0
 msgid "L.R. VAT number"
-msgstr ""
+msgstr "NIF repr. legal"
 
 #. module: l10n_es_aeat_mod349
 #: selection:account.invoice,operation_key:0
 #: selection:l10n.es.aeat.mod349.partner_record,operation_key:0
 #: selection:l10n.es.aeat.mod349.partner_refund,operation_key:0
 msgid "S - Intra-Community services"
-msgstr ""
+msgstr "S - Prestacións de servicios intracomunitarias"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,total_partner_records:0
 msgid "Partners records"
-msgstr ""
+msgstr "Rexistros de empresas"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.actions.report.xml,name:l10n_es_aeat_mod349.report_l10n_es_aeat_mod349
 msgid "AEAT 349 Model report"
-msgstr ""
+msgstr "Declaración modelo AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "General"
-msgstr ""
+msgstr "Xeral"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_invoice
 #: field:l10n.es.aeat.mod349.partner_record_detail,invoice_id:0
 msgid "Invoice"
-msgstr ""
+msgstr "Factura"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "AEAT 349"
-msgstr ""
+msgstr "AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "Complementary/Substitutive declaration"
-msgstr ""
+msgstr "Declaración complementaria / substitutiva"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_refund:0
 msgid "Details"
-msgstr ""
+msgstr "Detalles"
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Op.Key"
-msgstr ""
+msgstr "Clave op."
 
 #. module: l10n_es_aeat_mod349
 #: field:account.invoice,operation_key:0
 #: field:l10n.es.aeat.mod349.partner_record,operation_key:0
 #: field:l10n.es.aeat.mod349.partner_refund,operation_key:0
 msgid "Operation key"
-msgstr ""
+msgstr "Clave da operación"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,type:0
 msgid "Complementary"
-msgstr ""
+msgstr "Complementaria"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,month_selection:0
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
 msgid "May"
-msgstr ""
+msgstr "maio"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,frequency_change:0
 msgid "Frequency change"
-msgstr ""
+msgstr "Cambio de frecuencia"
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "PARTNER RECORD LINES"
-msgstr ""
+msgstr "LIÑAS DE REXISTRO DE EMPRESA"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,total_partner_records_amount:0
 msgid "Partners records amount"
-msgstr ""
+msgstr "Importe de rexistros de empresas"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349
 #: model:ir.module.module,shortdesc:l10n_es_aeat_mod349.module_meta_information
 msgid "AEAT Model 349"
-msgstr ""
+msgstr "Modelo AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_partner_record
 msgid "AEAT 349 Model - Partner record"
-msgstr ""
+msgstr "Modelo 349 - Rexistro da empresa"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,period_selection:0
 #: selection:l10n.es.aeat.mod349.partner_refund,period_selection:0
 msgid "0A - Annual"
-msgstr ""
+msgstr "0A - Anual"
 
 #. module: l10n_es_aeat_mod349
 #: help:l10n.es.aeat.mod349.report,representative_vat:0
 msgid "Legal Representative VAT number."
-msgstr ""
+msgstr "NIF do representante legal."
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,month_selection:0
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
 msgid "February"
-msgstr ""
+msgstr "febreiro"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record,name:0
 #: field:l10n.es.aeat.mod349.report,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "Refunds"
-msgstr ""
+msgstr "Facturas rectificativas"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record,country_id:0
 #: field:l10n.es.aeat.mod349.partner_refund,country_id:0
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Country"
-msgstr ""
+msgstr "País"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,month_selection:0
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
 msgid "April"
-msgstr ""
+msgstr "abril"
 
 #. module: l10n_es_aeat_mod349
 #: help:l10n.es.aeat.mod349.partner_refund,partner_refund_ok:0
 msgid "Checked if Refund record is OK"
-msgstr ""
+msgstr "Marcado se o rexistro de facturas rectificativas é correcto."
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Op.Amount"
-msgstr ""
+msgstr "Importe op."
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,support_type:0
 msgid "Telematics"
-msgstr ""
+msgstr "Telemática"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_refund,partner_refund_ok:0
 msgid "Partner refund OK"
-msgstr ""
+msgstr "Factura rectificativa correcta"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_refund:0
 msgid "Refund data"
-msgstr ""
+msgstr "Datos da factura rectificativa"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_refund_detail,invoice_id:0
 msgid "Invoice ID"
-msgstr ""
+msgstr "ID factura"
