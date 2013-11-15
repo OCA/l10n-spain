@@ -33,7 +33,7 @@ msgstr "Registres d'empreses"
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/mod347.py:142
 #, python-format
-msgid "All real state records state code field must be filled."
+msgid "All real estate records state code field must be filled."
 msgstr ""
 "El codi de província de tots els registres d'immobles han d'estar introduïts."
 
@@ -227,7 +227,7 @@ msgstr "Càlcul"
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:232
 #, python-format
-msgid "The type 2-I record (real state) must be 502 characters long"
+msgid "The type 2-I record (real estate) must be 502 characters long"
 msgstr ""
 "El tipus de registre 2-I (estat real) ha de ser de 502 caràcters de llargada"
 
@@ -445,7 +445,7 @@ msgstr "Primer"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,situation:0
-msgid "Real state Situation"
+msgid "Real estate Situation"
 msgstr "Situació d'immobles"
 
 #. module: l10n_es_aeat_mod347
@@ -496,7 +496,7 @@ msgstr "Registre d'efectiu"
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
 #: view:l10n.es.aeat.mod347.real_state_record:0
-msgid "Real state info"
+msgid "Real estate info"
 msgstr "Informació Immobles"
 
 #. module: l10n_es_aeat_mod347
@@ -582,8 +582,8 @@ msgstr "Portal"
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,bussiness_real_state_rent:0
 msgid ""
-"Set to identify real state rent operations aside from the rest. You'll need "
-"to fill in the real state info only when you are the one that receives the "
+"Set to identify real estate rent operations aside from the rest. You'll need "
+"to fill in the real estate info only when you are the one that receives the "
 "money."
 msgstr ""
 "(Només arrendadors i arrendataris de Locals de Negoci). Marcaran aquesta "
@@ -830,7 +830,7 @@ msgstr "Model AEAT 347"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.real_state_record:0
-msgid "Real state address"
+msgid "Real estate address"
 msgstr "Adreça de l'immoble"
 
 #. module: l10n_es_aeat_mod347
@@ -932,7 +932,7 @@ msgstr "Resum"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,total_real_state_records:0
-msgid "Real state records"
+msgid "Real estate records"
 msgstr "Registres d'immobles"
 
 #. module: l10n_es_aeat_mod347
