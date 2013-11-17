@@ -218,7 +218,7 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
         if len(attachment_ids):
             obj_attachment.unlink(cr, uid, attachment_ids)
             
-        self.pool.get("ir.attachment").create(cr, uid, {
+        attach_id = self.pool.get("ir.attachment").create(cr, uid, {
             "name" : file_name,
             "datas" : file,
             "datas_fname" : file_name,
