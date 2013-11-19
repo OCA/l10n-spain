@@ -51,7 +51,7 @@ class payment_converter_spain(osv.osv):
     def to_ascii(self, cr, uid, text):
         """Converts special characters such as those with accents to their ASCII equivalents"""
         old_chars = ['á','é','í','ó','ú','à','è','ì','ò','ù','ä','ë','ï','ö','ü','â','ê','î','ô','û','Á','É','Í','Ú','Ó','À','È','Ì','Ò','Ù','Ä','Ë','Ï','Ö','Ü','Â','Ê','Î','Ô','Û','ñ','Ñ','ç','Ç','ª','º','·','\n']
-        new_chars = ['a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','A','E','I','O','U','A','E','I','O','U','A','E','I','O','U','A','E','I','O','U','n','N','c','C','a','o','.',' ']
+        new_chars = ['a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','a','e','i','o','u','A','E','I','U','O','A','E','I','O','U','A','E','I','O','U','A','E','I','O','U','n','N','c','C','a','o','.',' ']
         for old, new in zip(old_chars, new_chars):
             text = text.replace(unicode(old,'UTF-8'), new)
         return text
