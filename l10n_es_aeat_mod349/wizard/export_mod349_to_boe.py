@@ -25,7 +25,7 @@
 __author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
 
-from openerp.orm import orm
+from openerp.osv import orm
 from openerp.tools.translate import _
 
 

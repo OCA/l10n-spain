@@ -26,7 +26,7 @@ import threading
 import time
 import netsvc
 import re
-from openerp.orm import orm
+from openerp.osv import orm
 
 vat_regex = re.compile(u"[a-zA-Z]{2}.*", re.UNICODE | re.X)
 
@@ -92,7 +92,7 @@ class l10n_es_aeat_mod349_calculate_records(orm.TransientModel):
 
     def _create_refund_records_for_report(self, cr, uid, ids, report_id,\
                                           partner_obj, operation_key,
-                                          context=context):
+                                          context=None):
         """creates restitution records in 349"""
         refunds = self.pool.get('account.invoice').browse(cr, uid, ids)
         refundpol = self.pool.get('l10n.es.aeat.mod349.partner_record_detail')
@@ -180,8 +180,7 @@ class l10n_es_aeat_mod349_calculate_records(orm.TransientModel):
         if context is None:
             context = {}
 
-        self._calculate_records(cr, uid, ids, context, recalculate=False,
-                                context=context)
+        self._calculate_records(cr, uid, ids, context, recalculate=False)
 
         ##
         ## Advance current report status in workflow
