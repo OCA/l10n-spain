@@ -36,7 +36,7 @@ OPERATION_KEY = [
     ('S', 'S - Intra-Community services'),
     ('I', 'I - Intra-Community services acquisitions'),
     ('M', 'M - Intra-Community supplies without taxes'),
-    ('H', 'H - Intra-Community supplies without taxes ' +
+    ('H', 'H - Intra-Community supplies without taxes '
      'delivered by legal representative')
 ]
 
@@ -67,7 +67,7 @@ class account_invoice(orm.Model):
     ### FUNCTIONS ###
     #################
     def _get_invoices_by_type(self, cr, uid, partner_id, operation_key,
-        fiscalyear_id=None, period_id=None, month=None, period_selection=None):
+        fiscalyear_id=None, period_id=None, month=None, period_selection=None, context=None):
         """
         Returns invoices ids by type (supplier/customer)
         for a fiscalyear/period/month
@@ -78,7 +78,7 @@ class account_invoice(orm.Model):
         type = ['in_invoice', 'out_invoice', 'in_refund', 'out_refund']
 
         fiscal_y_obj = self.pool.get('account.fiscalyear')
-        fiscalyear_obj = fiscal_y_obj.browse(cr, uid, fiscalyear_id)
+        fiscalyear_brw = fiscal_y_obj.browse(cr, uid, fiscalyear_id, context)
         search_dict = [
             ('partner_id', '=', partner_id),
             ('state', 'in', ['open', 'paid']),
@@ -89,19 +89,19 @@ class account_invoice(orm.Model):
         ## Invoices by fiscalyear (Annual)
         if period_selection == '0A':
             if not fiscalyear_id:
-                raise osv.except_osv(_('Error'),
+                raise orm.except_orm(_('Error'),
                                      _('Cannot get invoices.\nThere is no\
                                      fiscalyear selected'))
 
             search_dict.append(('period_id', 'in', [period.id for period in
-                                                    fiscalyear_obj.period_ids
+                                                    fiscalyear_brw.period_ids
                                                     if not period.special]))
 
         ##
         ## Invoices by period
         elif period_selection in ['1T', '2T', '3T', '4T']:
             if not period_id:
-                raise osv.except_osv(_('Error'),
+                raise orm.except_orm(_('Error'),
                                      _('Cannot get invoices.\nThere is no \
                                      period selected'))
 
@@ -110,9 +110,9 @@ class account_invoice(orm.Model):
         ##
         ## Invoices by month
         else:
-            year = fiscalyear_obj.code[:4]
+            year = fiscalyear_brw.code[:4]
             if not month and not fiscalyear_id:
-                raise osv.except_osv(_('Error'),
+                raise orm.except_orm(_('Error'),
                                      _('Cannot get invoices.\nThere is \
                                      no month and/or fiscalyear selected'))
 
@@ -140,18 +140,18 @@ class account_invoice(orm.Model):
                                     MONTH_DATES_MAPPING[month]['date_stop']
                                     % year))
 
-        return self.search(cr, uid, search_dict)
+        return self.search(cr, uid, search_dict, context)
 
     def clean_refund_invoices(self, cr, uid, ids, partner_id,
                               fiscalyear_id=None, period_id=None,
-                              month=None, period_selection=None):
+                              month=None, period_selection=None, context=None):
         """separates restitution invoices"""
         invoice_lines = []
         restitution_lines = []
         fiscal_y_obj = self.pool.get('account.fiscalyear')
-        fiscalyear_obj = fiscal_y_obj.browse(cr, uid, fiscalyear_id)
+        fiscalyear_brw = fiscal_y_obj.browse(cr, uid, fiscalyear_id, context)
 
-        for refund in self.browse(cr, uid, ids):
+        for refund in self.browse(cr, uid, ids, context):
             if refund.type in ['in_refund', 'out_refund']:
                 if not refund.origin_invoices_ids:
                     invoice_lines.append(refund.id)
@@ -162,7 +162,7 @@ class account_invoice(orm.Model):
                         if period_selection == '0A':
                             if origin_line.period_id.id not in \
                                         [period.id for period in
-                                        fiscalyear_obj.period_ids if not \
+                                        fiscalyear_brw.period_ids if not \
                                         period.special]:
                                 restitution_lines.append(refund.id)
                                 break
@@ -179,7 +179,7 @@ class account_invoice(orm.Model):
                         else:
                             if origin_line.date_invoice < \
                                     MONTH_DATES_MAPPING[month]['date_start'] \
-                                    % fiscalyear_obj.code[:4]:
+                                    % fiscalyear_brw.code[:4]:
                                 restitution_lines.append(refund.id)
                                 break
                             else:
@@ -201,7 +201,7 @@ class account_invoice(orm.Model):
         res = {'value': {'operation_key': 'Nothing'}}
         if fiscal_position and type:
             obj = self.pool.get('account.fiscal.position')
-            if obj.browse(cr, uid, fiscal_position).intracommunity_operations:
+            if obj.browse(cr, uid, fiscal_position, context).intracommunity_operations:
                 if type == 'out_invoice':
                     # Set to supplies when type is
                     #'out_invoice' (Customer invoice)
@@ -216,7 +216,7 @@ class account_invoice(orm.Model):
     def onchange_partner_id(self, cr, uid, ids,
                             type, partner_id, date_invoice=False,
                             payment_term=False, partner_bank_id=False,
-                            company_id=False):
+                            company_id=False, context=None):
         """
         Inheritance to extend method and return operation key
         """
@@ -231,12 +231,14 @@ class account_invoice(orm.Model):
                                               date_invoice=date_invoice,
                                               payment_term=payment_term,
                                               partner_bank_id=partner_bank_id,
-                                              company_id=company_id)
+                                              company_id=company_id,
+                                              context)
 
         ##
         ## Get operation key for current record
         operation_key_dict = self.on_change_fiscal_position(cr, uid, ids,
-            fiscal_position=res['value']['fiscal_position'], type=type)
+            fiscal_position=res['value']['fiscal_position'], type=type,
+            context)
 
         ##
         ## Add operation key to result
@@ -259,7 +261,7 @@ class account_invoice(orm.Model):
             vals.get('type') and not vals.get('operation_key'):
             obj = self.pool.get('account.fiscal.position')
             if obj.browse(cr, uid,
-                          vals.get('fiscal_position')
+                          vals.get('fiscal_position'), context
                           ).intracommunity_operations:
                 if vals.get('type') == 'out_invoice':
                     vals['operation_key'] = 'E'
@@ -272,4 +274,3 @@ class account_invoice(orm.Model):
         'operation_key': fields.selection(OPERATION_KEY, 'Operation key')
     }
 
-account_invoice()

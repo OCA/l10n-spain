@@ -25,17 +25,17 @@
 __author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
 
-from openerp.osv import osv
+from openerp.orm import orm
 from openerp.tools.translate import _
 
 
-class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
+class l10n_es_aeat_mod349_export_to_boe(orm.TransientModel):
 
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = "l10n.es.aeat.mod349.export_to_boe"
     _description = "Export AEAT Model 349 to BOE format"
 
-    def _get_company_name_with_title(self, company_obj):
+    def _get_company_name_with_title(self, company_obj, context=None):
         """
         Returns company name with title
         """
@@ -46,7 +46,7 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
 
         return company_obj.name
 
-    def _get_formated_declaration_record(self, report):
+    def _get_formated_declaration_record(self, report, context=None):
         """
         Returns a type 1, declaration/company, formated record.
 
@@ -95,12 +95,13 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
         try:
             fiscal_year = int((report.fiscalyear_id.code or '')[:4])
         except:
-            raise osv.except_osv(_('Fiscal year code'),
+            raise orm.except_orm(_('Fiscal year code'),
                                  _('First four characters of fiscal year \
                                  code must be numeric and contain the fiscal \
                                  year number. Please, fix it and try again.'))
 
-        company_name = self._get_company_name_with_title(report.company_id)
+        company_name = self._get_company_name_with_title(report.company_id,
+                                                         context=context)
         period = report.period_selection == 'MO' and report.month_selection \
                                                  or report.period_selection
 
@@ -133,7 +134,8 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
         assert len(text) == 502, _("The type 1 record must be 502 characters long")
         return text
 
-    def _get_formated_partner_record(self, report, partner_record):
+    def _get_formated_partner_record(self, report, partner_record,
+                                     context=None):
         """
         Returns a type 2, partner record
 
@@ -191,7 +193,8 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
         assert len(text) == 502, _("The type 2 record must be 502 characters long")
         return text
 
-    def _get_formatted_partner_refund(self, report, refund_record):
+    def _get_formatted_partner_refund(self, report, refund_record,
+                                      context=None):
         """
         Returns a type 2, refund record
 
@@ -246,11 +249,12 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
         assert len(text) == 502, _("The type 2 record must be 502 characters long")
         return text
 
-    def _get_formated_other_records(self, report):
+    def _get_formated_other_records(self, report, context=None):
         file_contents = ''
         for refund_record in report.partner_refund_ids:
             file_contents += self._get_formatted_partner_refund(report,
-                                                                refund_record)
+                                                                refund_record,
+                                                                context=context)
 
         return file_contents
 
@@ -261,6 +265,5 @@ class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
                                             uid,
                                             ids,
                                             object_to_export,
-                                            model='349')
+                                            model='349', context=context)
 
-l10n_es_aeat_mod349_export_to_boe()

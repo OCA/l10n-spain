@@ -26,30 +26,33 @@ import threading
 import time
 import netsvc
 import re
-from openerp.osv import osv
+from openerp.orm import orm
 
 vat_regex = re.compile(u"[a-zA-Z]{2}.*", re.UNICODE | re.X)
 
 
-class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
+class l10n_es_aeat_mod349_calculate_records(orm.TransientModel):
     _name = "l10n.es.aeat.mod349.calculate_records"
     _description = u"AEAT Model 349 Wizard - Calculate Records"
 
-    def _formatPartnerVAT(self, cr, uid, partner_vat=None, country_id=None):
+    def _formatPartnerVAT(self, cr, uid, partner_vat=None, country_id=None,
+                          context=None):
         """
         Formats VAT to match XXVATNUMBER (where XX is country code)
         """
         if partner_vat and \
             not vat_regex.match(partner_vat) and country_id:
             partner_vat = self.pool.get('res.country').\
-            browse(cr, uid, country_id).code + partner_vat
+            browse(cr, uid, country_id, context=context).code + partner_vat
 
         return partner_vat
 
     def _create_partner_records_for_report(self, cr, uid, ids, report_id,\
-                                           partner_obj, operation_key):
+                                           partner_obj, operation_key,
+                                           context=None):
         """creates partner records in 349"""
-        invoices_ids = self.pool.get('account.invoice').browse(cr, uid, ids)
+        invoices_ids = self.pool.get('account.invoice').browse(cr, uid, ids,
+                                                               context=context)
 
         obj = self.pool.get('l10n.es.aeat.mod349.partner_record')
 
@@ -88,7 +91,8 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
         return invoice_created
 
     def _create_refund_records_for_report(self, cr, uid, ids, report_id,\
-                                          partner_obj, operation_key):
+                                          partner_obj, operation_key,
+                                          context=context):
         """creates restitution records in 349"""
         refunds = self.pool.get('account.invoice').browse(cr, uid, ids)
         refundpol = self.pool.get('l10n.es.aeat.mod349.partner_record_detail')
@@ -149,7 +153,8 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
                            self._formatPartnerVAT(cr,
                                                   uid,
                                                   partner_vat=partner_obj.vat,
-                                                  country_id=partner_country),
+                                                  country_id=partner_country,
+                                                  context=context),
                 'operation_key': operation_key,
                 'country_id': partner_country and partner_country[0] or False,
                 'total_operation_amount':  partner_rec.total_operation_amount\
@@ -158,7 +163,7 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
                 'period_selection': partner_rec.report_id.period_selection,
                 'month_selection': partner_rec.report_id.month_selection,
                 'fiscalyear_id': partner_rec.report_id.fiscalyear_id.id
-            })
+            }, context=context)
 
             ### Creation of partner detail lines
             for invoice in record[line]:
@@ -166,7 +171,7 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
                     'refund_id': record_created,
                     'invoice_id': invoice.id,
                     'amount_untaxed': invoice.cc_amount_untaxed
-                })
+                }, context=context)
 
         return True
 
@@ -175,7 +180,8 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
         if context is None:
             context = {}
 
-        self._calculate_records(cr, uid, ids, context, recalculate=False)
+        self._calculate_records(cr, uid, ids, context, recalculate=False,
+                                context=context)
 
         ##
         ## Advance current report status in workflow
@@ -194,9 +200,9 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
 
             report_obj = self.pool.get('l10n.es.aeat.mod349.report')
             partner_record_obj =\
-            self.pool.get('l10n.es.aeat.mod349.partner_record')
+                self.pool.get('l10n.es.aeat.mod349.partner_record')
             partner_refund_obj =\
-            self.pool.get('l10n.es.aeat.mod349.partner_refund')
+                self.pool.get('l10n.es.aeat.mod349.partner_refund')
 
             ##
             ## Remove previous partner records and parter refunds in 349 report
@@ -206,20 +212,23 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
             report_obj.write(cr, uid, ids, {
                 'state': 'calculating',
                 'calculation_date': time.strftime('%Y-%m-%d %H:%M:%S')
-            })
+            }, context=context)
 
             ##
             ## Remove previous partner records and partner refunds in report
             ##
             partner_record_obj.unlink(cr, uid, [record.id for record in
-                                                reports.partner_record_ids])
+                                                reports.partner_record_ids],
+                                      context=context)
             partner_refund_obj.unlink(cr, uid, [refund.id for refund in
-                                                reports.partner_refund_ids])
+                                                reports.partner_refund_ids],
+                                      context=context)
 
             # Returns all partners
-            partner_ids = partner_obj.search(cr, uid, [])
+            partner_ids = partner_obj.search(cr, uid, [], context=context)
 
-            for partner in partner_obj.browse(cr, uid, partner_ids):
+            for partner in partner_obj.browse(cr, uid, partner_ids,
+                                              context=context):
 
                 for operation_key in ['E', 'A', 'T', 'S', 'I', 'M', 'H']:
                     ##
@@ -230,7 +239,7 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
                         period_selection=reports.period_selection,
                         fiscalyear_id=reports.fiscalyear_id.id,
                         period_id=[x.id for x in reports.period_ids],
-                        month=reports.month_selection)
+                        month=reports.month_selection, context=context)
 
                     # Separates normal invoices of restitutions
                     invoice_ids, refunds_ids = invoice_obj.\
@@ -238,7 +247,7 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
                     fiscalyear_id=reports.fiscalyear_id.id,
                     period_id=[x.id for x in reports.period_ids],
                     month=reports.month_selection,
-                    period_selection=reports.period_selection)
+                    period_selection=reports.period_selection, context=context)
 
                     ##
                     ## Partner records and partner records detail lines
@@ -248,7 +257,8 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
                                                                 invoice_ids,
                                                                 reports.id,
                                                                 partner,
-                                                                operation_key)
+                                                                operation_key,
+                                                                context=context)
 
                     ##
                     ## Refunds records and refunds detail lines
@@ -258,13 +268,14 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
                                                                refunds_ids,
                                                                reports.id,
                                                                partner,
-                                                               operation_key)
+                                                               operation_key,
+                                                               context=context)
 
             if recalculate:
                 report_obj.write(cr, uid, ids, {
                     'state': 'calculated',
                     'calculation_date': time.strftime('%Y-%m-%d %H:%M:%S')
-                })
+                }, context=context)
 
         except Exception, ex:
             raise
@@ -283,4 +294,3 @@ class l10n_es_aeat_mod349_calculate_records(osv.osv_memory):
 
         return {}
 
-l10n_es_aeat_mod349_calculate_records()
