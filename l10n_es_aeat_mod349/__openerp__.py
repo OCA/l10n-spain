@@ -86,11 +86,9 @@ obligados a presentar el modelo 349:
     35.000 € y el importe total de las entregas de bienes a otro Estado
     Miembro (salvo medios de transporte nuevos) exentas de IVA no sea superior
     a 15.000 €.
-
-Desarrollado por Pexego (www.pexego.es) en colaboración con \
-Borja López Soilán y Jordi Esteve (Zikzakmedia, www.zikzakmedia.com)""",
+    """,
+    
     'website': 'http://www.pexego.es',
-    'data': [],
     "depends": [
         "account",
         "account_invoice_currency",

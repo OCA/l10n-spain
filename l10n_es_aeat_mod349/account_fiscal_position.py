@@ -41,4 +41,3 @@ class account_fiscal_position(orm.Model):
         fields.boolean('Intra-Community operations'),
     }
 
-account_fiscal_position()

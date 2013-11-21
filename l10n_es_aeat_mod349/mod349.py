@@ -53,7 +53,7 @@ OPERATION_KEY = [
     ('S', 'S - Intra-Community services'),
     ('I', 'I - Intra-Community services acquisitions'),
     ('M', 'M - Intra-Community supplies without taxes'),
-    ('H', 'H - Intra-Community supplies without taxes delivered by legal' + \
+    ('H', 'H - Intra-Community supplies without taxes delivered by legal'
      ' representative'),
 ]
 
@@ -108,7 +108,7 @@ class l10n_es_aeat_mod349(orm.Model):
             context = {}
         res = {}
 
-        for item in self.browse(cr, uid, ids):
+        for item in self.browse(cr, uid, ids, context=context):
             res[item.id] = '%s - %s/%s' % (
                 item.company_id and item.company_id.name or '',
                 item.fiscalyear_id and item.fiscalyear_id.name or '',
@@ -139,8 +139,8 @@ class l10n_es_aeat_mod349(orm.Model):
             context = {}
 
         export_obj = self.pool.get("l10n.es.aeat.mod349.export_to_boe")
-        self_brw = self.browse(cr, uid, ids and ids[0])
-        export_obj._export_boe_file(cr, uid, ids, self_brw)
+        self_brw = self.browse(cr, uid, ids and ids[0], context=context)
+        export_obj._export_boe_file(cr, uid, ids, self_brw, context=context)
 
         return True
 
@@ -157,18 +157,18 @@ class l10n_es_aeat_mod349(orm.Model):
             ## all are correct (all fields filled)
             for partner_record in item.partner_record_ids:
                 if not partner_record.partner_record_ok:
-                    raise osv.except_osv(
+                    raise orm.except_orm(
                                          _('Error!'),
                                          _("All partner records fields " +
                                            "(country, VAT number) must " +
                                            "be filled."))
                 if partner_record.total_operation_amount < 0:
-                    raise osv.except_osv(_('Error!'),
+                    raise orm.except_orm(_('Error!'),
                                          _("All amounts must be positives"))
 
             for partner_record in item.partner_refund_ids:
                 if not partner_record.partner_refund_ok:
-                    raise osv.except_osv(
+                    raise orm.except_orm(
                                          _('Error!'),
                                          _("All partner refunds fields " +
                                            "(country, VAT number) must " +
@@ -187,7 +187,7 @@ class l10n_es_aeat_mod349(orm.Model):
         if context is None:
             context = {}
 
-        for item in self.browse(cr, uid, ids):
+        for item in self.browse(cr, uid, ids, context=context):
             ## Check company name and title
             if not item.company_id.partner_id or \
                 not item.company_id.partner_id.title:
@@ -203,7 +203,7 @@ class l10n_es_aeat_mod349(orm.Model):
             ## Check Full name (contact_name)
             if not item.contact_name or \
                 len(item.contact_name.split(' ')) < 2:
-                raise osv.except_osv(_('Error!'),
+                raise orm.except_orm(_('Error!'),
                                      _('Contact name (Full name) must have ' +
                                        'name and surname'))
 
@@ -217,7 +217,7 @@ class l10n_es_aeat_mod349(orm.Model):
         mod349_obj = self.browse(cr, uid, ids and ids[0], context)
         if not _check_valid_string(mod349_obj.contact_name):
             raise osv.except_osv(_('Error!'),
-                _("Name '%s' have not allowed characters.\nPlease, fix it " +
+                _("Name '%s' have not allowed characters.\nPlease, fix it "
                   "before confirm the report") % mod349_obj.contact_name)
 
         ##
@@ -225,7 +225,7 @@ class l10n_es_aeat_mod349(orm.Model):
         for partner_record in mod349_obj.partner_record_ids:
             if not _check_valid_string(partner_record.partner_id.name):
                 raise osv.except_osv(_("Error!"),
-                    _("Partner name '%s' in partner records is not valid " +
+                    _("Partner name '%s' in partner records is not valid "
                       "due to incorrect characters") %
                                      partner_record.partner_id.name)
 
@@ -234,7 +234,7 @@ class l10n_es_aeat_mod349(orm.Model):
         for partner_refund in mod349_obj.partner_refund_ids:
             if not _check_valid_string(partner_refund.partner_id.name):
                 raise osv.except_osv(_("Error!"),
-                    _("Partner name '%s' in refund lines is not valid due " +
+                    _("Partner name '%s' in refund lines is not valid due "
                       "to incorrect characters") %
                                      partner_refund.partner_id.name)
 
@@ -244,7 +244,7 @@ class l10n_es_aeat_mod349(orm.Model):
             context = {}
 
         self._check_report(cr, uid, ids, context)
-        self.write(cr, uid, ids, {'state': 'done'})
+        self.write(cr, uid, ids, {'state': 'done'}, context=context)
         return True
 
     def _check_report(self, cr, uid, ids, context):
@@ -268,7 +268,7 @@ class l10n_es_aeat_mod349(orm.Model):
             if period_selection in ['1T', '2T', '3T', '4T']:
                 period_id = self.pool.get('account.period').search(cr, uid, [
                     ('name', 'like', period_selection),
-                    ('fiscalyear_id', '=', fiscalyear_id)])
+                    ('fiscalyear_id', '=', fiscalyear_id)], context=context)
 
         return {'value': {'period_id': period_id and period_id[0] or False}}
 
@@ -356,7 +356,6 @@ class l10n_es_aeat_mod349(orm.Model):
         'number': lambda *a: '349'
     }
 
-l10n_es_aeat_mod349()
 
 
 class l10n_es_aeat_mod349_partner_record(orm.Model):
@@ -386,7 +385,7 @@ class l10n_es_aeat_mod349_partner_record(orm.Model):
             context = {}
 
         res = {}
-        for item in self.browse(cr, uid, ids):
+        for item in self.browse(cr, uid, ids, context=context):
             if item.partner_vat and \
                 item.country_id and \
                 item.total_operation_amount:
@@ -397,13 +396,14 @@ class l10n_es_aeat_mod349_partner_record(orm.Model):
         return res
 
     def onchange_format_partner_vat(self, cr, uid, ids,
-                                    partner_vat, country_id):
+                                    partner_vat, country_id, context=None):
         """
         Formats VAT to match XXVATNUMBER (where XX is country code)
         """
         if country_id:
             country_obj = self.pool.get('res.country')
-            country_code = country_obj.browse(cr, uid, country_id).code
+            country_code = country_obj.browse(cr, uid, country_id,
+                                              context=context).code
             country_pattern = "[" + country_code + \
                             country_code.lower() + "]{2}.*"
             vat_regex = re.compile(country_pattern, re.UNICODE | re.X)
@@ -439,7 +439,6 @@ class l10n_es_aeat_mod349_partner_record(orm.Model):
                                                   ' Partner record is OK'),
     }
 
-l10n_es_aeat_mod349_partner_record()
 
 
 class l10n_es_aeat_mod349_report_add_partner_records(orm.Model):
@@ -458,7 +457,6 @@ class l10n_es_aeat_mod349_report_add_partner_records(orm.Model):
                                 states={'confirmed': [('readonly', True)]}),
     }
 
-l10n_es_aeat_mod349_report_add_partner_records()
 
 
 class l10n_es_aeat_mod349_partner_record_detail(orm.Model):
@@ -493,7 +491,6 @@ class l10n_es_aeat_mod349_partner_record_detail(orm.Model):
                              context: context.get('partner_record_id', None),
     }
 
-l10n_es_aeat_mod349_partner_record_detail()
 
 
 class l10n_es_aeat_mod349_partner_record_add_partner_record_details(orm.Model):
@@ -512,7 +509,6 @@ class l10n_es_aeat_mod349_partner_record_add_partner_record_details(orm.Model):
                                 ondelete='cascade'),
     }
 
-l10n_es_aeat_mod349_partner_record_add_partner_record_details()
 
 
 class l10n_es_aeat_mod349_partner_refund(orm.Model):
@@ -581,13 +577,14 @@ class l10n_es_aeat_mod349_partner_refund(orm.Model):
     }
 
     def onchange_format_partner_vat(self, cr, uid, ids,
-                                    partner_vat, country_id):
+                                    partner_vat, country_id, context=None):
         """
         Formats VAT to match XXVATNUMBER (where XX is country code)
         """
         if country_id:
             country_obj = self.pool.get('res.country')
-            country_code = country_obj.browse(cr, uid, country_id).code
+            country_code = country_obj.browse(cr, uid, country_id,
+                                              context=context).code
             country_pattern = "[" + country_code + \
                               country_code.lower() + "]{2}.*"
             vat_regex = re.compile(country_pattern, re.UNICODE | re.X)
@@ -597,7 +594,6 @@ class l10n_es_aeat_mod349_partner_refund(orm.Model):
 
         return {'value': {'partner_vat': partner_vat}}
 
-l10n_es_aeat_mod349_partner_refund()
 
 
 class l10n_es_aeat_mod349_partner_record_add_partner_refund(orm.Model):
@@ -617,7 +613,6 @@ class l10n_es_aeat_mod349_partner_record_add_partner_refund(orm.Model):
                                                                True)]}),
     }
 
-l10n_es_aeat_mod349_partner_record_add_partner_refund()
 
 
 class l10n_es_aeat_mod349_partner_refund_detail(orm.Model):
@@ -635,7 +630,6 @@ class l10n_es_aeat_mod349_partner_refund_detail(orm.Model):
                                type="date", string="Date", readonly=True)
     }
 
-l10n_es_aeat_mod349_partner_refund_detail()
 
 
 class l10n_es_aeat_mod349_partner_refund_add_partner_refund_detail(orm.Model):
@@ -653,4 +647,3 @@ class l10n_es_aeat_mod349_partner_refund_add_partner_refund_detail(orm.Model):
                                 ondelete='cascade'),
     }
 
-l10n_es_aeat_mod349_partner_refund_add_partner_refund_detail()
