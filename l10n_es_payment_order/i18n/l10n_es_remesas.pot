@@ -18,12 +18,12 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
 msgid "Matur. date"
-msgstr "Matur. date"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,tipo:0
 msgid "CSB 19"
-msgstr "CSB 19"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: model:ir.module.module,description:l10n_es_payment_order.module_meta_information
@@ -42,7 +42,7 @@ msgid "Módulo para la exportación de ficheros bancarios según las normas CSB 
 "\n"
 "También se proporciona un informe para imprimir un listado de los pagos/cobros de la orden de pago/cobro (remesa).\n"
 ""
-msgstr "Módulo para la exportación de ficheros bancarios según las normas CSB 19 (recibos domiciliados), CBS 32 (descuento comercial), CSB 58 (anticipos de créditos) y CSB 34 (emisión de transferencias, nóminas, cheques, pagarés y pagos certificados) para poder ser enviados a la entidad bancaria.\n"
+msgstr ""
 "\n"
 "Crea un tipo de pago \"Recibo domiciliado\" con el código RECIBO_CSB. Este código es importante pues permite ejecutar el asistente de creación del fichero de remesas cuando se presiona el botón \"Realizar pagos\" en la orden de pagos o remesa.\n"
 "\n"
@@ -61,22 +61,22 @@ msgstr "Módulo para la exportación de ficheros bancarios según las normas CSB
 #. module: l10n_es_payment_order
 #: help:payment.mode,send_type:0
 msgid "The sending type of the payment file"
-msgstr "The sending type of the payment file"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,add_date:0
 msgid "Add Date"
-msgstr "Add Date"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
 msgid "Additional data for CSB 34 type of payment file."
-msgstr "Additional data for CSB 34 type of payment file."
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,cif:0
 msgid "VAT code"
-msgstr "VAT code"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/converter.py:71
@@ -84,29 +84,29 @@ msgstr "VAT code"
 msgid "Error:\n"
 "\n"
 "Can not convert float number %(number).2f to fit in %(size)d characters."
-msgstr "Error:\n"
+msgstr ""
 "\n"
 "Can not convert float number %(number).2f to fit in %(size)d characters."
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,sufijo:0
 msgid "suffix"
-msgstr "suffix"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb34_type:0
 msgid "Type of CSB 34 payment"
-msgstr "Type of CSB 34 payment"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,inc_domicile:0
 msgid "Add partner domicile records to the exported file (CSB 58)"
-msgstr "Add partner domicile records to the exported file (CSB 58)"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,cedente:0
 msgid "Cedente"
-msgstr "Cedente"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:151
@@ -114,25 +114,25 @@ msgstr "Cedente"
 msgid "User error:\n"
 "\n"
 "The payment mode is not CSB 19, CSB 32, CSB 34 or CSB 58"
-msgstr "User error:\n"
+msgstr ""
 "\n"
 "The payment mode is not CSB 19, CSB 32, CSB 34 or CSB 58"
 
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
 msgid "Account:"
-msgstr "Account:"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,cost_key:0
 msgid "Expense of the Recipient"
-msgstr "Expense of the Recipient"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: wizard_button:export_payment_file_spain,export,end:0
 #: wizard_button:export_payment_file_spain,init,export:0
 msgid "Ok"
-msgstr "Ok"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:140
@@ -140,39 +140,39 @@ msgstr "Ok"
 msgid "User error:\n"
 "\n"
 "The bank account number of the customer %s has not 20 digits."
-msgstr "User error:\n"
+msgstr ""
 "\n"
 "The bank account number of the customer %s has not 20 digits."
 
 #. module: l10n_es_payment_order
 #: wizard_field:export_payment_file_spain,export,pay_fname:0
 msgid "File name"
-msgstr "File name"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,concept:0
 msgid "Concept of the Order."
-msgstr "Concept of the Order."
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: model:ir.actions.report.xml,name:l10n_es_payment_order.remesas_report
 msgid "Remesa"
-msgstr "Remesa"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,barred:0
 msgid "Barred"
-msgstr "Barred"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,send_type:0
 msgid "Send Type"
-msgstr "Send Type"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,direct_pay_order:0
 msgid "By default 'Not'."
-msgstr "By default 'Not'."
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:137
@@ -180,14 +180,14 @@ msgstr "By default 'Not'."
 msgid "User error:\n"
 "\n"
 "The bank account number of the customer %s is not defined and current payment mode enforces all lines to have a bank account."
-msgstr "User error:\n"
+msgstr ""
 "\n"
 "The bank account number of the customer %s is not defined and current payment mode enforces all lines to have a bank account."
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,inc_domicile:0
 msgid "Include domicile"
-msgstr "Include domicile"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/converter.py:98
@@ -195,19 +195,19 @@ msgstr "Include domicile"
 msgid "User error:\n"
 "\n"
 "The bank account number of %s is not defined."
-msgstr "User error:\n"
+msgstr ""
 "\n"
 "The bank account number of %s is not defined."
 
 #. module: l10n_es_payment_order
 #: model:payment.type,name:l10n_es_payment_order.payment_type_pagare0
 msgid "Pagaré"
-msgstr "Pagaré"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
 msgid "Payment date:"
-msgstr "Payment date:"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:87
@@ -215,55 +215,55 @@ msgstr "Payment date:"
 msgid "User error:\n"
 "\n"
 "The bank account of the company %s is not defined."
-msgstr "User error:\n"
+msgstr ""
 "\n"
 "The bank account of the company %s is not defined."
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,csb34_type:0
 msgid "Transfer"
-msgstr "Transfer"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,ine:0
 msgid "INE code"
-msgstr "INE code"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,tipo:0
 msgid "CSB 32"
-msgstr "CSB 32"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,tipo:0
 msgid "CSB 34"
-msgstr "CSB 34"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: model:ir.model,name:l10n_es_payment_order.model_payment_mode
 msgid "Payment Mode"
-msgstr "Payment Mode"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: model:payment.type,name:l10n_es_payment_order.payment_type_recibodomiciliado0
 #: model:payment.type,note:l10n_es_payment_order.payment_type_recibodomiciliado0
 msgid "Recibo domiciliado"
-msgstr "Recibo domiciliado"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,alt_domicile_format:0
 msgid "Alternative domicile record format"
-msgstr "Alternative domicile record format"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
 msgid "Presenter data"
-msgstr "Presenter data"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,tipo:0
 msgid "None"
-msgstr "None"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/converter.py:101
@@ -271,7 +271,7 @@ msgstr "None"
 msgid "User error:\n"
 "\n"
 "The bank account number of %s does not have 20 digits."
-msgstr "User error:\n"
+msgstr ""
 "\n"
 "The bank account number of %s does not have 20 digits."
 
@@ -279,12 +279,12 @@ msgstr "User error:\n"
 #: model:payment.type,name:l10n_es_payment_order.payment_type_pago_certificado0
 #: model:payment.type,note:l10n_es_payment_order.payment_type_pago_certificado0
 msgid "Pago certificado"
-msgstr "Pago certificado"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,concept:0
 msgid "Pension"
-msgstr "Pension"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_32.py:55
@@ -299,7 +299,7 @@ msgid "Configuration error:\n"
 "\n"
 "The line \"%s\" is not 150 characters long:\n"
 "%s"
-msgstr "Configuration error:\n"
+msgstr ""
 "\n"
 "The line \"%s\" is not 150 characters long:\n"
 "%s"
@@ -308,7 +308,7 @@ msgstr "Configuration error:\n"
 #: field:payment.mode,partner_id:0
 #: report:remesas.report:0
 msgid "Partner"
-msgstr "Partner"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:154
@@ -319,7 +319,7 @@ msgid "Configuration error:\n"
 "\n"
 "The line \"%s\" is not 72 characters long:\n"
 "%s"
-msgstr "Configuration error:\n"
+msgstr ""
 "\n"
 "The line \"%s\" is not 72 characters long:\n"
 "%s"
@@ -333,7 +333,7 @@ msgid "Successfully Exported\n"
 " Total amount paid: %.2f\n"
 " Total Number of Payments: %d\n"
 ""
-msgstr "Successfully Exported\n"
+msgstr ""
 "\n"
 "Summary:\n"
 " Total amount paid: %.2f\n"
@@ -343,7 +343,7 @@ msgstr "Successfully Exported\n"
 #. module: l10n_es_payment_order
 #: field:payment.mode,text3:0
 msgid "Line 3"
-msgstr "Line 3"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_19.py:74
@@ -351,20 +351,20 @@ msgstr "Line 3"
 msgid "User error:\n"
 "\n"
 "Fixed date of charge has not been defined."
-msgstr "User error:\n"
+msgstr ""
 "\n"
 "Fixed date of charge has not been defined."
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,nombre:0
 msgid "Company name in file"
-msgstr "Company name in file"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:166
 #, python-format
 msgid "remesa"
-msgstr "remesa"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:83
@@ -372,7 +372,7 @@ msgstr "remesa"
 msgid "User error:\n"
 "\n"
 "Wizard can not generate export file, there are not payment lines."
-msgstr "User error:\n"
+msgstr ""
 "\n"
 "Wizard can not generate export file, there are not payment lines."
 
@@ -382,40 +382,40 @@ msgstr "User error:\n"
 msgid "Error:\n"
 "\n"
 "Can not convert integer number %(number)d to fit in %(size)d characters."
-msgstr "Error:\n"
+msgstr ""
 "\n"
 "Can not convert integer number %(number)d to fit in %(size)d characters."
 
 #. module: l10n_es_payment_order
 #: wizard_field:export_payment_file_spain,export,note:0
 msgid "Log"
-msgstr "Log"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
 msgid "PAYMENT ORDER Num.:"
-msgstr "PAYMENT ORDER Num.:"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,tipo:0
 msgid "CSB 58"
-msgstr "CSB 58"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/remesas.py:107
 #, python-format
 msgid "Dear Sir"
-msgstr "Dear Sir"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
 msgid "........."
-msgstr "........."
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: model:ir.module.module,shortdesc:l10n_es_payment_order.module_meta_information
 msgid "Exportación de ficheros bancarios CSB 19, CSB 32, CSB 34 y CSB 58"
-msgstr "Exportación de ficheros bancarios CSB 19, CSB 32, CSB 34 y CSB 58"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:128
@@ -423,7 +423,7 @@ msgstr "Exportación de ficheros bancarios CSB 19, CSB 32, CSB 34 y CSB 58"
 msgid "User error:\n"
 "\n"
 "Company %s has no invoicing or default address."
-msgstr "User error:\n"
+msgstr ""
 "\n"
 "Company %s has no invoicing or default address."
 
@@ -431,7 +431,7 @@ msgstr "User error:\n"
 #: model:payment.type,name:l10n_es_payment_order.payment_type_cheque0
 #: model:payment.type,note:l10n_es_payment_order.payment_type_cheque0
 msgid "Cheque"
-msgstr "Cheque"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:154
@@ -442,69 +442,69 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:payment.mode,cost_key:0
 msgid "Cost Key"
-msgstr "Cost Key"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: model:ir.model,name:l10n_es_payment_order.model_payment_order
 msgid "Payment Order"
-msgstr "Payment Order"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,concept:0
 msgid "Concept of the Order"
-msgstr "Concept of the Order"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: model:payment.type,name:l10n_es_payment_order.payment_type_transferencia0
 #: model:payment.type,note:l10n_es_payment_order.payment_type_transferencia0
 msgid "Transferencia"
-msgstr "Transferencia"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: model:payment.type,note:l10n_es_payment_order.payment_type_pagare0
 msgid "Pagare"
-msgstr "Pagare"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
 msgid "CSB 34 Options"
-msgstr "CSB 34 Options"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: wizard_view:export_payment_file_spain,export:0
 #: wizard_view:export_payment_file_spain,init:0
 msgid "Payment order export"
-msgstr "Payment order export"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
 msgid "Total payment order:"
-msgstr "Total payment order:"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,payroll_check:0
 msgid "Payroll Check"
-msgstr "Payroll Check"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: wizard_field:export_payment_file_spain,init,join:0
 msgid "Join payment lines of the same partner and bank account"
-msgstr "Join payment lines of the same partner and bank account"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,alt_domicile_format:0
 msgid "Alt. domicile format"
-msgstr "Alt. domicile format"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,payroll_check:0
 msgid "Check it if you want to add the 018 data type in the file (the vat of the recipient is added in the 018 data type)."
-msgstr "Check it if you want to add the 018 data type in the file (the vat of the recipient is added in the 018 data type)."
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,direct_pay_order:0
 msgid "Direct Pay Order"
-msgstr "Direct Pay Order"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:94
@@ -512,54 +512,54 @@ msgstr "Direct Pay Order"
 msgid "User error:\n"
 "\n"
 "The company VAT number related to the bank account of the payment mode is not defined."
-msgstr "User error:\n"
+msgstr ""
 "\n"
 "The company VAT number related to the bank account of the payment mode is not defined."
 
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
 msgid "Additional data for promissory notes, checks, and certified payments."
-msgstr "Additional data for promissory notes, checks, and certified payments."
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
 msgid "Invoice"
-msgstr "Invoice"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,text1:0
 msgid "Line 1"
-msgstr "Line 1"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,text2:0
 msgid "Line 2"
-msgstr "Line 2"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,not_to_the_order:0
 msgid "Not to the Order"
-msgstr "Not to the Order"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
 msgid "CSB 32 Options"
-msgstr "CSB 32 Options"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: wizard_field:export_payment_file_spain,export,pay:0
 msgid "Payment order file"
-msgstr "Payment order file"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
 msgid "Created date:"
-msgstr "Created date:"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,cost_key:0
 msgid "Expense of the Payer"
-msgstr "Expense of the Payer"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:143
@@ -569,7 +569,7 @@ msgid "Configuration error:\n"
 "\n"
 "A line in \"%s\" is not 72 characters long:\n"
 "%s"
-msgstr "Configuration error:\n"
+msgstr ""
 "\n"
 "A line in \"%s\" is not 72 characters long:\n"
 "%s"
@@ -577,7 +577,7 @@ msgstr "Configuration error:\n"
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
 msgid "CSB 58 Options"
-msgstr "CSB 58 Options"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_19.py:54
@@ -598,7 +598,7 @@ msgid "Configuration error:\n"
 "\n"
 "The line \"%s\" is not 162 characters long:\n"
 "%s"
-msgstr "Configuration error:\n"
+msgstr ""
 "\n"
 "The line \"%s\" is not 162 characters long:\n"
 "%s"
@@ -606,49 +606,49 @@ msgstr "Configuration error:\n"
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
 msgid "Bank:"
-msgstr "Bank:"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,csb34_type:0
 msgid "Promissory Note"
-msgstr "Promissory Note"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,concept:0
 #: selection:payment.mode,send_type:0
 msgid "Other"
-msgstr "Other"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,add_date:0
 msgid "Check it if you want to add the 910 data type in the file to include the payment date."
-msgstr "Check it if you want to add the 910 data type in the file to include the payment date."
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,csb34_type:0
 msgid "Certified Payments"
-msgstr "Certified Payments"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/remesas.py:109
 #, python-format
 msgid "Total:"
-msgstr "Total:"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,csb34_type:0
 msgid "Cheques"
-msgstr "Cheques"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
 msgid "Optional Text for the Letter (adds 101, 102, 103, data tipes in the file)"
-msgstr "Optional Text for the Letter (adds 101, 102, 103, data tipes in the file)"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,concept:0
 msgid "Payroll"
-msgstr "Payroll"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:90
@@ -656,14 +656,14 @@ msgstr "Payroll"
 msgid "User error:\n"
 "\n"
 "The bank account number of the company %s has not 20 digits."
-msgstr "User error:\n"
+msgstr ""
 "\n"
 "The bank account number of the company %s has not 20 digits."
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,tipo:0
 msgid "Type of payment file"
-msgstr "Type of payment file"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:166
@@ -671,7 +671,7 @@ msgstr "Type of payment file"
 msgid "User error:\n"
 "\n"
 "Partner %s has no invoicing or default address."
-msgstr "User error:\n"
+msgstr ""
 "\n"
 "Partner %s has no invoicing or default address."
 
@@ -679,51 +679,51 @@ msgstr "User error:\n"
 #: code:addons/l10n_es_payment_order/remesas.py:108
 #, python-format
 msgid "Payment ref."
-msgstr "Payment ref."
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,send_type:0
 msgid "Ordinary Mail"
-msgstr "Ordinary Mail"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,text1:0
 #: help:payment.mode,text2:0
 #: help:payment.mode,text3:0
 msgid "Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}"
-msgstr "Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: model:ir.actions.wizard,name:l10n_es_payment_order.wizard_create_payment_file_spain
 msgid "Create payment file"
-msgstr "Create payment file"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
 msgid "Amount"
-msgstr "Amount"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
 msgid "Company:"
-msgstr "Company:"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,send_type:0
 msgid "Certified Mail"
-msgstr "Certified Mail"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: report:remesas.report:0
 msgid "Type:"
-msgstr "Type:"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
 msgid "CSB 19 Options"
-msgstr "CSB 19 Options"
+msgstr ""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb19_extra_concepts:0
 msgid "Extra Concepts"
-msgstr "Extra Concepts"
+msgstr ""
