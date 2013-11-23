@@ -57,12 +57,12 @@ msgstr "Incluir en declaración 347"
 #: field:l10n.es.aeat.mod347.partner_record,real_state_record_ids:0
 #: view:l10n.es.aeat.mod347.real_state_record:0
 #: field:l10n.es.aeat.mod347.report,real_state_record_ids:0
-msgid "Real State Records"
+msgid "Real Estate Records"
 msgstr "Registros de inmuebles"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,fourth_quarter_real_state_transmission_amount:0
-msgid "Fourth Quarter Real State Transmossion Amount"
+msgid "Fourth Quarter Real Estate Transmossion Amount"
 msgstr "Importe transmisión inmueble (T4)"
 
 #. module: l10n_es_aeat_mod347
@@ -85,7 +85,7 @@ msgstr "Compañía"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_real_state_record
 #: view:l10n.es.aeat.mod347.real_state_record:0
-msgid "Real State Record"
+msgid "Real Estate Record"
 msgstr "Registros de inmuebles"
 
 #. module: l10n_es_aeat_mod347
@@ -115,7 +115,7 @@ msgstr "¡Error! La duración del periodo(s) no es válida."
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,total_real_state_amount:0
-msgid "Real State Amount"
+msgid "Real Estate Amount"
 msgstr "Importe inmuebles"
 
 #. module: l10n_es_aeat_mod347
@@ -235,7 +235,7 @@ msgstr "Borrador"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
-msgid "Real State records"
+msgid "Real Estate records"
 msgstr "Registros de inmuebles"
 
 #. module: l10n_es_aeat_mod347
@@ -280,7 +280,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,bussiness_real_state_rent:0
-msgid "Bussiness Real State Rent"
+msgid "Bussiness Real Estate Rent"
 msgstr "Arrendamiento local negocio"
 
 #. module: l10n_es_aeat_mod347
@@ -487,7 +487,7 @@ msgstr "Información de inmuebles"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,real_state_transmissions_amount:0
-msgid "Real State Transmisions amount"
+msgid "Real Estate Transmisions amount"
 msgstr "Importe transmisión inmueble"
 
 #. module: l10n_es_aeat_mod347
@@ -660,7 +660,7 @@ msgstr "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,third_quarter_real_state_transmission_amount:0
-msgid "Third Quarter Real State Transmission Amount"
+msgid "Third Quarter Real Estate Transmission Amount"
 msgstr "Importe transmisión inmueble (T3)"
 
 #. module: l10n_es_aeat_mod347
@@ -712,7 +712,7 @@ msgstr "Factura"
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
-msgid "Real State Transmission (Q1|Q2|Q3|Q4)"
+msgid "Real Estate Transmission (Q1|Q2|Q3|Q4)"
 msgstr "Importe transmisión inmueble (T1|T2|T3|T4)"
 
 #. module: l10n_es_aeat_mod347
@@ -812,7 +812,7 @@ msgstr "LÍNEAS DE REGISTRO DE EMPRESA"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,first_quarter_real_state_transmission_amount:0
-msgid "First Quarter Real State Transmission Amount"
+msgid "First Quarter Real Estate Transmission Amount"
 msgstr "Importe transmisión inmueble (T1)"
 
 #. module: l10n_es_aeat_mod347
@@ -827,7 +827,7 @@ msgstr "Número declaración anterior"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,second_quarter_real_state_transmission_amount:0
-msgid "Second Quarter Real State Transmission Amount"
+msgid "Second Quarter Real Estate Transmission Amount"
 msgstr "Importe transmisión inmueble (T2)"
 
 #. module: l10n_es_aeat_mod347
@@ -862,7 +862,7 @@ msgstr "Importe operaciones"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,total_real_state_transmissions_amount:0
-msgid "Real State Transmissions Amount"
+msgid "Real Estate Transmissions Amount"
 msgstr "Importe transmisión inmueble"
 
 #. module: l10n_es_aeat_mod347
