@@ -109,7 +109,7 @@
             <field name="model">l10n.es.aeat.mod347.real_state_record</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="Real State Records" colors="">
+                <tree string="Real Estate Records" colors="">
                     <field name="partner_vat" select="1"/>
                     <field name="partner_id" select="1"/>
                     <field name="reference" select="2"/>
@@ -128,7 +128,7 @@
             <field name="model">l10n.es.aeat.mod347.real_state_record</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Real State Record">
+                <form string="Real Estate Record">
                     <field name="report_id" invisible="1"/>
                     <group string="Partner info" colspan="4">
                         <field name="partner_id" on_change="on_change_partner_id(partner_id)" required="1" select="1" colspan="4"/>
@@ -260,7 +260,7 @@
                         <page string="Partner records">
                             <field name="partner_record_ids" nolabel="1" context="{'report_id': active_id}"/>
                         </page>
-                        <page string="Real State records">
+                        <page string="Real Estate records">
                             <field name="real_state_record_ids" nolabel="1" context="{'report_id': active_id}"/>
                         </page>
                     </notebook>
