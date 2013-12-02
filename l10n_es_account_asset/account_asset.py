@@ -20,11 +20,11 @@
 #
 ##############################################################################
 import datetime
-from osv import osv, fields
+import calendar
+from openerp.osv import orm, fields
 
-class account_asset_category(osv.osv):
+class account_asset_category(orm.Model):
     _inherit = 'account.asset.category'
-    _name = 'account.asset.category'
 
     _columns = {
         'ext_method_time': fields.selection([('number','Number of Depreciations'),('end','Ending Date'),('percentage','Fixed percentage')], 'Time Method', required=True,
@@ -49,9 +49,8 @@ class account_asset_category(osv.osv):
         return res
     
 
-class account_asset_asset(osv.osv):
+class account_asset_asset(orm.Model):
     _inherit = 'account.asset.asset'
-    _name = 'account.asset.asset'
 
     _columns = {
         'move_end_period': fields.boolean("At the end of the period", help='Move the depreciation entry at the end of the period. If the period are 12 months, it is put on 31st of December, and in the end of the month in other case.'),
@@ -104,7 +103,7 @@ class account_asset_asset(osv.osv):
                 # Quitar una depreciación del nº total si el activo se compró el 1 de enero, ya que ese año sería completo  
                 val -= 1
             return val
-    
+
     def _compute_board_amount(self, cr, uid, asset, i, residual_amount, amount_to_depr, undone_dotation_number, posted_depreciation_line_ids, total_days, depreciation_date, context=None):
         if asset.ext_method_time == 'percentage':
             # Nuevo tipo de cálculo
@@ -142,9 +141,6 @@ class account_asset_asset(osv.osv):
                         last_month_day = calendar.monthrange(depreciation_date.year, depreciation_date.month)[1]
                         depreciation_date = depreciation_date.replace(depreciation_date.year, depreciation_date.month, last_month_day)
                     depreciation_lin_obj.write(cr, uid, depreciation_line.id, {'depreciation_date': depreciation_date.strftime('%Y-%m-%d') })
-        
         return True
-        
-account_asset_asset()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
