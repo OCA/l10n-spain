@@ -38,7 +38,7 @@ def capitalizeSpanishCity(originalName):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print "USO: $s <ruta_de_la_carpeta>" $sargv[0]
+        print "USO: %s <ruta_de_la_carpeta>" %sys.argv[0]
         sys.exit(1)
     if not os.path.isdir(sys.argv[1]):
         print "Carpeta de datos no válida."
@@ -48,7 +48,7 @@ if __name__ == "__main__":
         sys.exit(1)
     fIndex = open(os.path.join(sys.argv[1], "codciu.txt"), 'r')
     # Preparar archivo en el que escribir
-    output = open("municipios_cpostal.py", 'w')
+    output = open("l10n_es_toponyms_zipcodes.xml", 'w')
     output.write("<?xml version='1.0' encoding='UTF-8'?>\n")
     output.write("<openerp>\n")
     output.write("    <data noupdate='1'>\n")
