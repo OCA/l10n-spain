@@ -22,7 +22,7 @@
 {
 	"name" : "LOPD",
 	"version" : "1.0.1",
-	"category" : "Generic Modules/Protección de datos",
+	"category" : "Localisation/Spain",
 	"description": """
 	Módulo de implentación de la Ley Orgánica de Proteccion de Datos en OpenERP.
         Serán necesarias las siguientes dependencias en el sistema (servidor):
