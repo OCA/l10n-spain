@@ -159,7 +159,7 @@ class l10n_es_aeat_mod340(osv.osv):
 #
 #            for real_state_record in item.real_state_record_ids:
 #                if not real_state_record.state_code:
-#                    raise osv.except_osv(_('Error!'), _("All real state records state code field must be filled."))
+#                    raise osv.except_osv(_('Error!'), _("All real estate records state code field must be filled."))
 
         return True
     
