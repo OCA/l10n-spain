@@ -18,58 +18,58 @@ msgstr ""
 #. module: l10n_es_pyme_account
 #: constraint:account.fiscalyear:0
 msgid "Error! You cannot define overlapping fiscal years"
-msgstr "¡Error! No puede definir ejercicios fiscales que se superpongan"
+msgstr ""
 
 #. module: l10n_es_pyme_account
 #: model:payment.type,note:l10n_es_pyme_account.payment_type_tarjeta0
 msgid "Tarjeta de crédito/débito"
-msgstr "Tarjeta de crédito/débito"
+msgstr ""
 
 #. module: l10n_es_pyme_account
 #: model:ir.model,name:l10n_es_pyme_account.model_account_installer
 msgid "account.installer"
-msgstr "account.instalador"
+msgstr ""
 
 #. module: l10n_es_pyme_account
 #: view:account.fiscalyear:0
 msgid "Create Open, Close and PyG Periods"
-msgstr "Create Open, Close and PyG Periods"
+msgstr ""
 
 #. module: l10n_es_pyme_account
 #: model:payment.type,name:l10n_es_pyme_account.payment_type_transferencia0
 msgid "Transferencia"
-msgstr "Transferencia"
+msgstr ""
 
 #. module: l10n_es_pyme_account
 #: field:account.installer,open_close_periods:0
 msgid "Create Open/Close and PyG Periods"
-msgstr "Create Open/Close and PyG Periods"
+msgstr ""
 
 #. module: l10n_es_pyme_account
 #: model:payment.type,name:l10n_es_pyme_account.payment_type_pagare0
 #: model:payment.type,note:l10n_es_pyme_account.payment_type_pagare0
 msgid "Pagaré"
-msgstr "Pagaré"
+msgstr ""
 
 #. module: l10n_es_pyme_account
 #: model:ir.module.module,shortdesc:l10n_es_pyme_account.module_meta_information
 msgid "Instalación PYME estándar sólo contabilidad"
-msgstr "Instalación PYME estándar sólo contabilidad"
+msgstr ""
 
 #. module: l10n_es_pyme_account
 #: model:payment.type,name:l10n_es_pyme_account.payment_type_tarjeta0
 msgid "Tarjeta"
-msgstr "Tarjeta"
+msgstr ""
 
 #. module: l10n_es_pyme_account
 #: model:ir.model,name:l10n_es_pyme_account.model_account_fiscalyear
 msgid "Fiscal Year"
-msgstr "Ejercicio fiscal"
+msgstr ""
 
 #. module: l10n_es_pyme_account
 #: constraint:account.fiscalyear:0
 msgid "Error! The duration of the Fiscal Year is invalid. "
-msgstr "¡Error! La duración del ejercicio fiscal no es válido. "
+msgstr ""
 
 #. module: l10n_es_pyme_account
 #: model:ir.module.module,description:l10n_es_pyme_account.module_meta_information
@@ -84,7 +84,7 @@ msgid "\n"
 "\n"
 "Posteriormente podrá crear los bancos españoles mediante el menú \"Ventas/Configuración/Libreta de direcciones/Bancos/Asistente de importación de todos los bancos del Estado Español\" y los conceptos de extractos bancarios mediante el menú \"Contabilidad/Configuración/Varios/Extractos bancarios C43/Asistente de importación de conceptos de extractos\".\n"
 ""
-msgstr "\n"
+msgstr ""
 "Instalación de los módulos contables de OpenERP para una PYME estándar incluyendo los módulos de localización española y algunos datos de configuración iniciales.\n"
 "\n"
 "Instala los módulos habituales para la gestión contable de una PYME del Estado Español: contabilidad y facturación, pagos, remesas de recibos, plan contable 2008, topónimos, datos de bancos españoles y su validación, importación de extractos bancarios, cierre de ejercicio, informes contables, ...\n"
@@ -99,21 +99,21 @@ msgstr "\n"
 #. module: l10n_es_pyme_account
 #: model:payment.type,name:l10n_es_pyme_account.payment_type_cheque0
 msgid "Cheque"
-msgstr "Cheque"
+msgstr ""
 
 #. module: l10n_es_pyme_account
 #: model:payment.type,note:l10n_es_pyme_account.payment_type_cheque0
 msgid "Talón o cheque"
-msgstr "Talón o cheque"
+msgstr ""
 
 #. module: l10n_es_pyme_account
 #: model:payment.type,name:l10n_es_pyme_account.payment_type_efectivo0
 #: model:payment.type,note:l10n_es_pyme_account.payment_type_efectivo0
 msgid "Efectivo"
-msgstr "Efectivo"
+msgstr ""
 
 #. module: l10n_es_pyme_account
 #: model:payment.type,note:l10n_es_pyme_account.payment_type_transferencia0
 msgid "Transferencia bancaria"
-msgstr "Transferencia bancaria"
+msgstr ""
 

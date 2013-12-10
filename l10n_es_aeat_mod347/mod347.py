@@ -99,9 +99,9 @@ class l10n_es_aeat_mod347_report(osv.osv):
         'total_partner_records': fields.function(_get_totals, string="Partners records", method=True, type='integer', multi="totals_multi"),
         'total_amount': fields.function(_get_totals, string="Amount", method=True, type='float', multi="totals_multi"),
         'total_cash_amount': fields.function(_get_totals, string="Cash Amount", method=True, type='float', multi="totals_multi"),
-        'total_real_state_transmissions_amount': fields.function(_get_totals, string="Real State Transmissions Amount", method=True, type='float', multi="totals_multi"),
-        'total_real_state_records': fields.function(_get_totals, string="Real state records", method=True, type='integer', multi="totals_multi"),
-        'total_real_state_amount': fields.function(_get_totals, string="Real State Amount", method=True, type='float', multi="totals_multi"),
+        'total_real_state_transmissions_amount': fields.function(_get_totals, string="Real Estate Transmissions Amount", method=True, type='float', multi="totals_multi"),
+        'total_real_state_records': fields.function(_get_totals, string="Real estate records", method=True, type='integer', multi="totals_multi"),
+        'total_real_state_amount': fields.function(_get_totals, string="Real Estate Amount", method=True, type='float', multi="totals_multi"),
 
     }
     _defaults = {
@@ -130,7 +130,7 @@ class l10n_es_aeat_mod347_report(osv.osv):
 
             for real_state_record in item.real_state_record_ids:
                 if not real_state_record.state_code:
-                    raise osv.except_osv(_('Error!'), _("All real state records state code field must be filled."))
+                    raise osv.except_osv(_('Error!'), _("All real estate records state code field must be filled."))
 
         return True
 
@@ -221,7 +221,7 @@ class l10n_es_aeat_mod347_partner_record(osv.osv):
                 store= { 
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
                 }),
-        'first_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="First Quarter Real State Transmission Amount",
+        'first_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="First Quarter Real Estate Transmission Amount",
                 method=True, type='float', multi="quarter_multi" ,digits=(13,2),
                 store= { 
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
@@ -232,7 +232,7 @@ class l10n_es_aeat_mod347_partner_record(osv.osv):
                 store= { 
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
                 }),
-        'second_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="Second Quarter Real State Transmission Amount",
+        'second_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="Second Quarter Real Estate Transmission Amount",
                 method=True, type='float', multi="quarter_multi",digits=(13,2), store= { 
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
                 }),
@@ -240,7 +240,7 @@ class l10n_es_aeat_mod347_partner_record(osv.osv):
                 multi="quarter_multi",digits=(13,2), store= { 
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
                 }),
-        'third_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="Third Quarter Real State Transmission Amount",
+        'third_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="Third Quarter Real Estate Transmission Amount",
                 method=True, type='float', multi="quarter_multi",digits=(13,2), store= { 
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
                 } ),
@@ -248,16 +248,16 @@ class l10n_es_aeat_mod347_partner_record(osv.osv):
                 method=True, type='float', multi="quarter_multi",digits=(13,2), store= { 
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
                 }),
-        'fourth_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="Fourth Quarter Real State Transmossion Amount",
+        'fourth_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="Fourth Quarter Real Estate Transmossion Amount",
                 method=True, type='float', multi="quarter_multi",digits=(13,2), store= { 
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
                 }),        
         'amount': fields.float('Operations amount', digits=(13,2)),
         'cash_amount': fields.float('Received cash amount', digits=(13,2)),
-        'real_state_transmissions_amount': fields.float('Real State Transmisions amount', digits=(13,2)),
+        'real_state_transmissions_amount': fields.float('Real Estate Transmisions amount', digits=(13,2)),
 
         'insurance_operation': fields.boolean('Insurance Operation', help="Only for insurance companies. Set to identify insurance operations aside from the rest."),
-        'bussiness_real_state_rent': fields.boolean('Bussiness Real State Rent', help="Set to identify real state rent operations aside from the rest. You'll need to fill in the real state info only when you are the one that receives the money."),
+        'bussiness_real_state_rent': fields.boolean('Bussiness Real Estate Rent', help="Set to identify real estate rent operations aside from the rest. You'll need to fill in the real estate info only when you are the one that receives the money."),
         'origin_fiscalyear_id': fields.many2one('account.fiscalyear', 'Origin fiscal year', help="Origin cash operation fiscal year"),
         'invoice_record_ids': fields.one2many('l10n.es.aeat.mod347.invoice_record', 'partner_record_id', 'Invoice records',
                                                       states = {'done': [('readonly', True)]}),
@@ -315,10 +315,10 @@ l10n_es_aeat_mod347_report_add_partner_records()
 
 class l10n_es_aeat_mod347_real_state_record(osv.osv):
     """
-    Represents a real state record for the 347 model.
+    Represents a real estate record for the 347 model.
     """
     _name = 'l10n.es.aeat.mod347.real_state_record'
-    _description = 'Real State Record'
+    _description = 'Real Estate Record'
     _rec_name = "reference"
 
     _columns = {
@@ -334,7 +334,7 @@ class l10n_es_aeat_mod347_real_state_record(osv.osv):
                     ('2', '2 - Basque Country and Navarra'),
                     ('3', '3 - Spain, without catastral reference'),
                     ('4', '4 - Foreign'),
-                ], 'Real state Situation'),
+                ], 'Real estate Situation'),
         'reference': fields.char('Catastral Reference', size=25),
         # 'address_id': fields.many2one('res.partner.address', 'Address'),
         'address_type': fields.char('Address type', size=5),
@@ -389,11 +389,11 @@ l10n_es_aeat_mod347_real_state_record()
 
 class l10n_es_aeat_mod347_report_add_real_state_records(osv.osv):
     """
-    Extends the report to add the real state records.
+    Extends the report to add the real estate records.
     """
     _inherit = 'l10n.es.aeat.mod347.report'
     _columns = {
-        'real_state_record_ids': fields.one2many('l10n.es.aeat.mod347.real_state_record', 'report_id', 'Real State Records',
+        'real_state_record_ids': fields.one2many('l10n.es.aeat.mod347.real_state_record', 'report_id', 'Real Estate Records',
                             states = {'done': [('readonly', True)]}),
     }
 l10n_es_aeat_mod347_report_add_real_state_records()
@@ -401,14 +401,14 @@ l10n_es_aeat_mod347_report_add_real_state_records()
 
 class l10n_es_aeat_mod347_partner_record_add_real_state_records(osv.osv):
     """
-    Extends the partner_records to add the real state records.
+    Extends the partner_records to add the real estate records.
     """
     _inherit = 'l10n.es.aeat.mod347.partner_record'
 
 
     def _get_real_state_record_ids(self, cr, uid, ids, field_name, args, context=None):
         """
-        Get the real state records from this record parent report for this partner.
+        Get the real estate records from this record parent report for this partner.
         """
         if context is None:
             context = {}
@@ -425,7 +425,7 @@ class l10n_es_aeat_mod347_partner_record_add_real_state_records(osv.osv):
 
     def _set_real_state_record_ids(self, cr, uid, id, field_name, values, args=None, context=None):
         """
-        Set the real state records from this record parent report for this partner.
+        Set the real estate records from this record parent report for this partner.
         """
         if context is None:
             context = {}
@@ -445,7 +445,7 @@ class l10n_es_aeat_mod347_partner_record_add_real_state_records(osv.osv):
         'real_state_record_ids': fields.function(_get_real_state_record_ids,
                     fnct_inv=_set_real_state_record_ids, method=True,
                     obj="l10n.es.aeat.mod347.real_state_record",
-                    type="one2many", string='Real State Records', store=False),
+                    type="one2many", string='Real Estate Records', store=False),
     }
 l10n_es_aeat_mod347_partner_record_add_real_state_records()
 

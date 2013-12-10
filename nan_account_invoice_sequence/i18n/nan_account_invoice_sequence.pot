@@ -18,57 +18,57 @@ msgstr ""
 #. module: nan_account_invoice_sequence
 #: constraint:account.invoice:0
 msgid "Invoice date is previous to an existing invoice."
-msgstr "Invoice date is previous to an existing invoice."
+msgstr ""
 
 #. module: nan_account_invoice_sequence
 #: code:addons/nan_account_invoice_sequence/invoice.py:61
 #, python-format
 msgid "Journal %s has no sequence defined for invoices."
-msgstr "Journal %s has no sequence defined for invoices."
+msgstr ""
 
 #. module: nan_account_invoice_sequence
 #: model:ir.model,name:nan_account_invoice_sequence.model_account_journal
 msgid "Journal"
-msgstr "Journal"
+msgstr ""
 
 #. module: nan_account_invoice_sequence
 #: sql_constraint:account.journal:0
 msgid "The name of the journal must be unique per company !"
-msgstr "The name of the journal must be unique per company !"
+msgstr ""
 
 #. module: nan_account_invoice_sequence
 #: code:addons/nan_account_invoice_sequence/invoice.py:61
 #, python-format
 msgid "Error!"
-msgstr "Error!"
+msgstr ""
 
 #. module: nan_account_invoice_sequence
 #: field:account.invoice,invoice_number:0
 msgid "Invoice Number"
-msgstr "Invoice Number"
+msgstr ""
 
 #. module: nan_account_invoice_sequence
 #: sql_constraint:account.journal:0
 msgid "The code of the journal must be unique per company !"
-msgstr "The code of the journal must be unique per company !"
+msgstr ""
 
 #. module: nan_account_invoice_sequence
 #: model:ir.model,name:nan_account_invoice_sequence.model_account_invoice
 msgid "Invoice"
-msgstr "Invoice"
+msgstr ""
 
 #. module: nan_account_invoice_sequence
 #: help:account.invoice,invoice_number:0
 msgid "Unique number of the invoice, computed automatically when the invoice is created."
-msgstr "Unique number of the invoice, computed automatically when the invoice is created."
+msgstr ""
 
 #. module: nan_account_invoice_sequence
 #: field:account.journal,invoice_sequence_id:0
 msgid "Invoice Sequence"
-msgstr "Invoice Sequence"
+msgstr ""
 
 #. module: nan_account_invoice_sequence
 #: help:account.journal,invoice_sequence_id:0
 msgid "The sequence used for invoice numbers in this journal."
-msgstr "The sequence used for invoice numbers in this journal."
+msgstr ""
 
