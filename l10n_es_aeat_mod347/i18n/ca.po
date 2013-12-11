@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 6.0.0-rc1\n"
 "Report-Msgid-Bugs-To: support@openerp.com\n"
 "POT-Creation-Date: 2012-03-20 17:21+0000\n"
-"PO-Revision-Date: 2013-10-12 00:00+0000\n"
+"PO-Revision-Date: 2013-12-10 16:44+0000\n"
 "Last-Translator: Jordi Esteve (www.zikzakmedia.com) "
 "<jesteve@zikzakmedia.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-11-25 06:01+0000\n"
-"X-Generator: Launchpad (build 16831)\n"
+"X-Launchpad-Export-Date: 2013-12-11 06:28+0000\n"
+"X-Generator: Launchpad (build 16869)\n"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:157
@@ -968,3 +968,74 @@ msgstr "Segon"
 #: model:ir.model,name:l10n_es_aeat_mod347.model_account_journal
 msgid "Journal"
 msgstr "Diari"
+
+#~ msgid "Real State Record"
+#~ msgstr "Registre d'immoble"
+
+#~ msgid "Real State Records"
+#~ msgstr "Registres d'immobles"
+
+#~ msgid "Real State records"
+#~ msgstr "Registres d'immobles"
+
+#~ msgid "Bussiness Real State Rent"
+#~ msgstr "Arrendament local negoci"
+
+#~ msgid "Real state info"
+#~ msgstr "Informació Immobles"
+
+#~ msgid "Real State Transmisions amount"
+#~ msgstr "Import transmissió immoble"
+
+#~ msgid ""
+#~ "Set to identify real state rent operations aside from the rest. You'll need "
+#~ "to fill in the real state info only when you are the one that receives the "
+#~ "money."
+#~ msgstr ""
+#~ "(Només arrendadors i arrendataris de Locals de Negoci). Marcaran aquesta "
+#~ "casella per identificar les operacions d'arrendament de locals de negoci, i "
+#~ "s'han de consignar separadament de la resta. A més a més els arrendadors han "
+#~ "d'emplenar els camps que componen el REGISTRE D'IMMOBLE, consignant l'Import "
+#~ "Total de cada arrendament corresponent a l'any natural al qual es refereix "
+#~ "la declaració, amb independència que aquest ja hagi estat inclòs en la clau "
+#~ "'B' (vendes)."
+
+#~ msgid "Real state address"
+#~ msgstr "Adreça de l'immoble"
+
+#~ msgid "Real State Transmissions Amount"
+#~ msgstr "Import transmissió immoble"
+
+#~ msgid "Real State Amount"
+#~ msgstr "Import immobles"
+
+#~ msgid "Real state records"
+#~ msgstr "Registres d'immobles"
+
+#, python-format
+#~ msgid "All real state records state code field must be filled."
+#~ msgstr ""
+#~ "El codi de província de tots els registres d'immobles han d'estar introduïts."
+
+#~ msgid "Fourth Quarter Real State Transmossion Amount"
+#~ msgstr "Import transmissió immoble (T4)"
+
+#, python-format
+#~ msgid "The type 2-I record (real state) must be 502 characters long"
+#~ msgstr ""
+#~ "El tipus de registre 2-I (estat real) ha de ser de 502 caràcters de llargada"
+
+#~ msgid "Real state Situation"
+#~ msgstr "Situació d'immobles"
+
+#~ msgid "Third Quarter Real State Transmission Amount"
+#~ msgstr "Import transmissió immoble (T3)"
+
+#~ msgid "Real State Transmission (Q1|Q2|Q3|Q4)"
+#~ msgstr "Import transmissió immoble (T1|T2|T3|T4)"
+
+#~ msgid "First Quarter Real State Transmission Amount"
+#~ msgstr "Import transmissió immoble (T1)"
+
+#~ msgid "Second Quarter Real State Transmission Amount"
+#~ msgstr "Import transmissió immoble (T2)"

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: openerp-spain\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-03-20 17:21+0000\n"
-"PO-Revision-Date: 2013-11-15 02:08+0000\n"
+"PO-Revision-Date: 2013-12-10 16:44+0000\n"
 "Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-11-25 06:01+0000\n"
-"X-Generator: Launchpad (build 16831)\n"
+"X-Launchpad-Export-Date: 2013-12-11 06:28+0000\n"
+"X-Generator: Launchpad (build 16869)\n"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:157
@@ -964,3 +964,73 @@ msgstr "Segundo"
 #: model:ir.model,name:l10n_es_aeat_mod347.model_account_journal
 msgid "Journal"
 msgstr "Diario"
+
+#~ msgid "Fourth Quarter Real State Transmossion Amount"
+#~ msgstr "Importe de transmisión do inmoble (T4)"
+
+#, python-format
+#~ msgid "All real state records state code field must be filled."
+#~ msgstr ""
+#~ "Os registros de propiedades inmobiliarias débense encher manualmente."
+
+#~ msgid "Real State Records"
+#~ msgstr "Rexistros de inmobles"
+
+#~ msgid "Real State Amount"
+#~ msgstr "Importe inmobles"
+
+#~ msgid "Real State Record"
+#~ msgstr "Rexistros de inmobles"
+
+#, python-format
+#~ msgid "The type 2-I record (real state) must be 502 characters long"
+#~ msgstr "O tipo de rexistro 2-I (inmoble) debe ter 502 caracteres de longo"
+
+#~ msgid "Bussiness Real State Rent"
+#~ msgstr "Empresa de aluguer de bens raíces"
+
+#~ msgid "Real State records"
+#~ msgstr "Rexistros de inmobles"
+
+#~ msgid "Real state Situation"
+#~ msgstr "Situación de inmobles"
+
+#~ msgid "Real State Transmisions amount"
+#~ msgstr "Importe de transmisións de inmobles"
+
+#~ msgid "Real state info"
+#~ msgstr "Información de inmobles"
+
+#~ msgid ""
+#~ "Set to identify real state rent operations aside from the rest. You'll need "
+#~ "to fill in the real state info only when you are the one that receives the "
+#~ "money."
+#~ msgstr ""
+#~ "(Só arrendadores e arrendatarios de locais de negocio). Marcarán esta opción "
+#~ "para identifica-las operacións de arrendamento de locais de negocio, debendo "
+#~ "consignalas separadamente do resto. Ademáis os arrendadores deberán "
+#~ "cumplimenta-los campos que compoñen o REXISTRO DE INMOBLE, consignando o "
+#~ "Importe Total de cada arrendamento correspondente ó ano natural ó que se "
+#~ "refire a declaración, independentemente de que este xa teña sido incluído na "
+#~ "clave 'B' (ventas)."
+
+#~ msgid "Third Quarter Real State Transmission Amount"
+#~ msgstr "Importe transmisión inmoble (T3)"
+
+#~ msgid "Real State Transmission (Q1|Q2|Q3|Q4)"
+#~ msgstr "Importe transmisión inmoble (T1|T2|T3|T4)"
+
+#~ msgid "Real state address"
+#~ msgstr "Enderezo do inmoble"
+
+#~ msgid "Second Quarter Real State Transmission Amount"
+#~ msgstr "Importe transmisión inmoble (T2)"
+
+#~ msgid "First Quarter Real State Transmission Amount"
+#~ msgstr "Importe transmisión inmoble (T1)"
+
+#~ msgid "Real state records"
+#~ msgstr "Rexistros de inmobles"
+
+#~ msgid "Real State Transmissions Amount"
+#~ msgstr "Importe de transmisións de inmobles"
