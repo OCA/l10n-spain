@@ -8,7 +8,6 @@
 #                            Dpto. Consultoría <consultoria@opentia.es>
 #    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -24,41 +23,35 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+__name__ = ("Delete old account chart template data")
 
-{
-    "name" : "Spanish Charts of Accounts (PGCE 2008)",
-    "version" : "3.1",
-    "author" : "Spanish Localization Team",
-    'website' : 'https://launchpad.net/openerp-spain',
-    "category" : "Localization/Account Charts",
-    "description": """
-Spanish Charts of Accounts (PGCE 2008).
-=======================================
-
-    * Defines the following chart of account templates:
-        * Spanish General Chart of Accounts 2008
-        * Spanish General Chart of Accounts 2008 for small and medium companies
-        * Spanish General Chart of Accounts 2008 for associations
-    * Defines templates for sale and purchase VAT
-    * Defines tax code templates
-""",
-    "license" : "AGPL-3",
-    "depends" : ["account", "base_vat", "base_iban"],
-    "data" : [
-        "account_type.xml",
-        "account_chart.xml",
-        "taxes_data.xml",
-        "fiscal_templates.xml",
-        "account_chart_pymes.xml",
-        "taxes_data_pymes.xml",
-        "fiscal_templates_pymes.xml",
-        "account_chart_assoc.xml",
-        "taxes_data_assoc.xml",
-        "fiscal_templates_assoc.xml",
-        "l10n_es_wizard.xml",
-    ],
-    "demo" : [],
-    'auto_install': False,
-    "installable": True,
-    'images': ['images/config_chart_l10n_es.jpeg','images/l10n_es_chart.jpeg'],
-}
+def migrate(cr, version):
+    # This needs to be in this order to avoid null errors on required fields
+    # because "ON DELETE set null" are set on some tables
+    models = [
+        "ir.sequence",
+        "ir.actions.todo",
+        "account.fiscal.position.account.template",
+        "account.fiscal.position.tax.template",
+        "account.fiscal.position.template",
+        "account.account.template",
+        # Not possible because it's also linked to account.account
+        #"account.account.type",
+        "account.tax.template",
+        "account.tax.code.template",
+        "account.chart.template",
+    ]
+    # Delete data
+    for model in models:
+        cr.execute("""DELETE FROM 
+                          %(table)s
+                      WHERE
+                          id
+                      IN
+                          (SELECT res_id FROM ir_model_data AS imd 
+                           WHERE imd.module='l10n_es'
+                           AND imd.model='%(model)s')
+                   """
+                   %({'table': model.replace('.', '_'), 'model': model}))
+    # Delete XML IDs
+    cr.execute("DELETE FROM ir_model_data WHERE module='l10n_es'")
