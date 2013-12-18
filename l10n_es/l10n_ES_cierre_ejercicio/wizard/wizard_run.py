@@ -129,8 +129,8 @@ class wizard_run(wizard.interface):
         # If one or more moves where found, raise an exception
         #
         if len(account_move_ids):
-            invalid_period_moves = pool.get('account.move').browse(cr, uid, account_move_ids, context)
-            str_invalid_period_moves = '\n'.join(['id: %s, date: %s, number: %s, ref: %s' % (move.id, move.date, move.name, move.ref) for move in invalid_period_moves])
+            invalid_period_moves = pool.get('account.move').read(cr, uid, account_move_ids, ['id', 'date', 'name', 'ref'], context)
+            str_invalid_period_moves = '\n'.join(['id: %s, date: %s, number: %s, ref: %s' % (move['id'], move['date'], move['name'], move['ref']) for move in invalid_period_moves])
             raise wizard.except_wizard(_('Error'), _('One or more moves with invalid period or date found on the fiscal year: \n%s') % str_invalid_period_moves)
 
         data['process_task_progress'] = 100.0
@@ -164,8 +164,8 @@ class wizard_run(wizard.interface):
         # If one or more draft moves where found, raise an exception
         #
         if len(account_move_ids):
-            draft_moves = pool.get('account.move').browse(cr, uid, account_move_ids, context)
-            str_draft_moves = '\n'.join(['id: %s, date: %s, number: %s, ref: %s' % (move.id, move.date, move.name, move.ref) for move in draft_moves])
+            draft_moves = pool.get('account.move').read(cr, uid, account_move_ids, ['id', 'date', 'name', 'ref'], context)
+            str_draft_moves = '\n'.join(['id: %s, date: %s, number: %s, ref: %s' % (move['id'], move['date'], move['name'], move['ref']) for move in draft_moves])
             raise wizard.except_wizard(_('Error'), _('One or more draft moves found: \n%s') % str_draft_moves)
 
         data['process_task_progress'] = 100.0
@@ -201,10 +201,10 @@ class wizard_run(wizard.interface):
         unbalanced_moves = []
         total_accounts = len(account_move_ids)
         accounts_done = 0
-        for move in pool.get('account.move').browse(cr, uid, account_move_ids, context):
+        for move in pool.get('account.move').read(cr, uid, account_move_ids, ['line_id'], context):
             amount = 0
-            for line in move.line_id:
-                amount += (line.debit - line.credit)
+            for line in pool.get('account.move.line').read(cr, uid, move['line_id'], ['debit', 'credit'], context):
+                amount += (line['debit'] - line['credit'])
 
             if abs(amount) > 0.5 * 10 ** -int(config['price_accuracy']):
                 unbalanced_moves.append(move)
@@ -358,20 +358,20 @@ class wizard_run(wizard.interface):
             child_ids = pool.get('account.account')._get_children_and_consol(cr, uid, [account_map.source_account_id.id], context)
 
             # For each children account. (Notice the context filter! the computed balanced is based on this filter)
-            for account in pool.get('account.account').browse(cr, uid, child_ids, context={'fiscalyear': fiscalyear_id, 'periods': period_ids}):
+            for account in pool.get('account.account').read(cr, uid, child_ids, ['id', 'type', 'balance'], context={'fiscalyear': fiscalyear_id, 'periods': period_ids}):
                 # Check if the children account needs to (and can) be closed
                 # Note: We currently ignore the close_method (account.user_type.close_method)
                 #       and always do a balance close.
-                if account.type != 'view': 
+                if account['type'] != 'view':
                     # Compute the balance for the account (uses the previous browse context filter)
-                    balance = account.balance
+                    balance = account['balance']
                     # Check if the balance is greater than the limit
                     if abs(balance) >= 0.5 * 10 ** -int(config['price_accuracy']):
                         #
                         # Add a new line to the move
                         #
                         move_lines.append({
-                                'account_id': account.id,
+                                'account_id': account['id'],
                                 'debit': balance<0 and -balance,
                                 'credit': balance>0 and balance,
                                 'name': description,
@@ -389,7 +389,7 @@ class wizard_run(wizard.interface):
         #
         # Add the dest lines
         #
-        for dest_account_id in dest_accounts_totals.keys():
+        for dest_account_id in dest_accounts_totals:
             balance = dest_accounts_totals[dest_account_id]
             move_lines.append({
                     'account_id': dest_account_id,
@@ -405,14 +405,22 @@ class wizard_run(wizard.interface):
         #
         # Finally create the account move with all the lines (if needed)
         #
-        if len(move_lines):
+        if move_lines:
+            # Firstly we create the move
             move_id = pool.get('account.move').create(cr, uid, {
                             'ref': description,
                             'date': date,
                             'period_id': period_id,
                             'journal_id': journal_id,
-                            'line_id': [(0,0,line) for line in move_lines],
                         }, context=context)
+            for move in move_lines:
+                move['move_id'] = move_id
+                pool.get('account.move.line').create(cr, uid, move,
+                                                     context=context,
+                                                     check=False)
+            journal = pool.get('account.journal').read(cr, uid, journal_id, ['name', 'entry_posted'])
+            if journal['entry_posted']:
+                pool.get('account.move').button_validate(cr,uid, [move_id],context)
         else:
             move_id = None
         data['process_task_progress'] = 99.0
@@ -500,14 +508,22 @@ class wizard_run(wizard.interface):
         #
         # Finally create the account move with all the lines (if needed)
         #
-        if len(move_lines):
+        if move_lines:
+            # Firstly we create the move
             move_id = pool.get('account.move').create(cr, uid, {
                             'ref': description,
                             'date': date,
                             'period_id': period_id,
                             'journal_id': journal_id,
-                            'line_id': [(0,0,line) for line in move_lines],
                         }, context=context)
+            for move in move_lines:
+                move['move_id'] = move_id
+                pool.get('account.move.line').create(cr, uid, move,
+                                                     context=context,
+                                                     check=False)
+            journal = pool.get('account.journal').read(cr, uid, journal_id, ['name', 'entry_posted'])
+            if journal['entry_posted']:
+                pool.get('account.move').button_validate(cr,uid, [move_id],context)
         else:
             move_id = None
         data['process_task_progress'] = 99.0
