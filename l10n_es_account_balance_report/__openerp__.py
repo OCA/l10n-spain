@@ -5,6 +5,11 @@
 #        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
 #        Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #
+#    Adaptado a la versión 7.0 por:
+#        Juanjo Algaz <juanjoa@malagatic.com>   www.malagatic.com
+#        Joaquín Gutierrez <joaquing.pedrosa@gmail.com>   gutierrezweb.es
+#        Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>   serviciosbaeza.com
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -21,46 +26,52 @@
 ##############################################################################
 
 {
-        "name" : "Spanish account balance reports",
-        "version" : "0.1",
-        "author" : "Pexego, Zikzakmedia",
-        "license" : "AGPL-3",
-        "website" : "http://www.pexego.es",
-        "category" : "Localisation/Accounting",
-        "description": """Spanish official account balance reports:
+    "name" : "Informes de cuentas anuales españoles",
+    "version" : "0.1",
+    "author" : "Pexego, Zikzakmedia",
+    "contributors": [
+        "Juanjo Algaz <juanjoa@malagatic.com>",
+        "Joaquín Gutierrez <joaquing.pedrosa@gmail.com>",
+        "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
+    ],
+    "license" : "AGPL-3",
+    "website" : "http://www.pexego.es",
+    "category" : "Localisation/Accounting",
+    "description": """
+Informes de cuentas anuales oficiales españoles.
+================================================
 
-- BALANCE PYMES (PGCE 2008)
-- CUENTA DE PÉRDIDAS Y GANANCIAS PYMES (PGCE 2008)
-- BALANCE ABREVIADO (PGCE 2008)
-- CUENTA DE PÉRDIDAS Y GANANCIAS ABREVIADO (PGCE 2008)
-- BALANCE NORMAL (PGCE 2008)
-- CUENTA DE PÉRDIDAS Y GANANCIAS NORMAL (PGCE 2008)
+Incluye las siguientes plantillas para el motor de informes de cuentas provisto
+por el módulo *account_balance_reporting*:
 
-Based on the annual accounts deposit models for the "Registro Mercantil":
+    * Balance PYMEs (PGCE 2008)
+    * Cuenta de pérdidas y ganancias PYMEs (PGCE 2008)
+    * Balance abreviado (PGCE 2008)
+    * Cuenta de pérdidas y ganancias abreviado (PGCE 2008)
+    * Balance normal (PGCE 2008)
+    * Cuenta de pérdidas y ganancias completo (PGCE 2008)
+    * Estado de ingresos y gastos reconocidos (PGCE 2008)
 
-NORMAL: http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&blobheader=application%2Fpdf&blobkey=id&blobnocache=true&blobtable=Documento&blobwhere=1161679576351&ssbinary=true
+Las plantillas están basadas en los modelos para el depósito de cuentas anuales
+del Registro Mercantil:
 
-ABREVIADO: http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&blobheader=application%2Fpdf&blobkey=id&blobnocache=true&blobtable=Documento&blobwhere=1161679576346&ssbinary=true
-
-PYMES: http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&blobheader=application%2Fpdf&blobkey=id&blobnocache=true&blobtable=Documento&blobwhere=1161679576359&ssbinary=true
-            """,
-        "depends" : [
-                'base',
-                'account',
-                'l10n_es',
-                'account_balance_reporting',
-            ],
-        "init_xml" : [
-            ],
-        "demo_xml" : [ ],
-        "update_xml" : [
-                'data/balance_pymes.xml',
-                'data/pyg_pymes.xml',
-                'data/balance_abreviado.xml',
-                'data/pyg_abreviado.xml',
-                'data/balance_normal.xml',
-                'data/pyg_normal.xml',
-                'data/estado_ingresos_gastos_normal.xml',
-            ],
-        "installable": False
+    * *Normal*: http://www.mjusticia.gob.es/cs/Satellite/1292342988403
+    * *Abreviado*: http://www.mjusticia.gob.es/cs/Satellite/1292342988373
+    * *PYMEs*: http://www.mjusticia.gob.es/cs/Satellite/1292342988358
+    """,
+    "depends": [
+        'l10n_es',
+        'account_balance_reporting',
+    ],
+    "demo" : [ ],
+    "data" : [
+        'data/balance_pymes.xml',
+        'data/pyg_pymes.xml',
+        'data/balance_abreviado.xml',
+        'data/pyg_abreviado.xml',
+        'data/balance_normal.xml',
+        'data/pyg_normal.xml',
+        'data/estado_ingresos_gastos_normal.xml',
+    ],
+    "installable": True,
 }

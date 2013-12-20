@@ -25,7 +25,7 @@ DEPÓSITO DE CUENTAS ANUALES - MODELOS NORMALIZADOS (según PGCE 2008)
 
 Basado en los modelos normalizados de depósito de cuentas anuales
 del registro mercantil (pymes):
-http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&blobheader=application%2Fpdf&blobkey=id&blobnocache=true&blobtable=Documento&blobwhere=1161679576346&ssbinary=true
+http://www.mjusticia.gob.es/cs/Satellite/1292342988373
 
 TODO: Los desgloses sugeridos por las NECA están comentados (no se calculan).
 
@@ -33,14 +33,14 @@ Autor: Borja López Soilán (Pexego) - borjals@pexego.es
 Author: Raimon Esteve (Zikzakmedia) - resteve@zikzakmedia.com
 -->
 <openerp>
-	<data>
+    <data>
 
-		<record model="account.balance.reporting.template" id="es_balance_abreviado">
-			<field name="name">BALANCE ABREVIADO (PGCE 2008)</field>
-			<field name="type">system</field>
-			<field name="balance_mode">2</field>
-			<field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
-			<field name="description">
+        <record model="account.balance.reporting.template" id="es_balance_abreviado">
+            <field name="name">Balance abreviado (PGCE 2008)</field>
+            <field name="type">system</field>
+            <field name="balance_mode">2</field>
+            <field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
+            <field name="description">
 CUENTAS ANUALES - BALANCE DE SITUACIÓN ABREVIADO
 
 (NOTA: VERSIÓN BETA)
@@ -68,731 +68,649 @@ Autor: Borja López Soilán (Pexego) - borjals@pexego.es
 Autor: Raimon Esteve (Zikzakmedia) - resteve@zikzakmedia.com
 
 Basado en los modelos normalizados de depósito de cuentas anuales del registro mercantil (abreviado):
-http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&amp;blobheader=application%2Fpdf&amp;blobkey=id&amp;blobnocache=true&amp;blobtable=Documento&amp;blobwhere=1161679576346&amp;ssbinary=true
-			</field>
-		</record>
+http://www.mjusticia.gob.es/cs/Satellite/1292342988373
+            </field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11000">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">11000</field>
-			<field name="name">A) ACTIVO NO CORRIENTE</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">BA1/01</field>
-			<field name="css_class">l1</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_11000">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">11000</field>
+            <field name="name">A) ACTIVO NO CORRIENTE</field>
+            <field name="sequence">1</field>
+            <field name="css_class">l1</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11100">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">11100</field>
-			<field name="name">I. Inmovilizado intangible</field>
-			<field name="current_value">20,(280),(290)</field>
-			<field name="previous_value">20,(280),(290)</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_11100">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">11100</field>
+            <field name="name">I. Inmovilizado intangible</field>
+            <field name="current_value">20, 280, 290</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_11000"/>
-			<field name="sequence">BA1/02</field>
-			<field name="css_class">l3</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_11000"/>
+            <field name="sequence">2</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11200">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">11200</field>
-			<field name="name">II. Inmovilizado material </field>
-			<field name="current_value">21,(281),(291),23</field>
-			<field name="previous_value">21,(281),(291),23</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_11200">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">11200</field>
+            <field name="name">II. Inmovilizado material </field>
+            <field name="current_value">21, 281, 291, 23</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_11000"/>
-			<field name="sequence">BA1/03</field>
-			<field name="css_class">l3</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_11000"/>
+            <field name="sequence">3</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11300">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">11300</field>
-			<field name="name">III. Inversiones inmobiliarias</field>
-			<field name="current_value">22,(282),(292)</field>
-			<field name="previous_value">22,(282),(292)</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_11300">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">11300</field>
+            <field name="name">III. Inversiones inmobiliarias</field>
+            <field name="current_value">22, 282, 292</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_11000"/>
-			<field name="sequence">BA1/04</field>
-			<field name="css_class">l3</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_11000"/>
+            <field name="sequence">4</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11400">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">11400</field>
-			<field name="name">IV. Inversiones en empresas del grupo y asociadas a largo plazo</field>
-			<field name="current_value">2403,2404,2413,2414,2423,2424,(2493),(2494),(293),(2943),(2944),(2953),(2954)</field>
-			<field name="previous_value">2403,2404,2413,2414,2423,2424,(2493),(2494),(293),(2943),(2944),(2953),(2954)</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_11400">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">11400</field>
+            <field name="name">IV. Inversiones en empresas del grupo y asociadas a largo plazo</field>
+            <field name="current_value">2403, 2404, 2413, 2414, 2423, 2424, 2493, 2494, 293, 2943, 2944, 2953, 2954</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_11000"/>
-			<field name="sequence">BA1/05</field>
-			<field name="css_class">l3</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_11000"/>
+            <field name="sequence">5</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11500">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">11500</field>
-			<field name="name">V. Inversiones financieras a largo plazo</field>
-			<field name="current_value">2405,2415,2425,(2495),250,251,252,253,254,255,257,258,(259),26,(2945),(2955),(297),(298)</field>
-			<field name="previous_value">2405,2415,2425,(2495),250,251,252,253,254,255,257,258,(259),26,(2945),(2955),(297),(298)</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_11500">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">11500</field>
+            <field name="name">V. Inversiones financieras a largo plazo</field>
+            <field name="current_value">2405, 2415, 2425, 2495, 250, 251, 252, 253, 254, 255, 257, 258, 259, 26, 2945, 2955, 297, 298</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_11000"/>
-			<field name="sequence">BA1/06</field>
-			<field name="css_class">l3</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_11000"/>
+            <field name="sequence">6</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11600">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">11600</field>
-			<field name="name">VI. Activos por impuesto diferido</field>
-			<field name="current_value">474</field>
-			<field name="previous_value">474</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_11600">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">11600</field>
+            <field name="name">VI. Activos por impuesto diferido</field>
+            <field name="current_value">474</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_11000"/>
-			<field name="sequence">BA1/07</field>
-			<field name="css_class">l3</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_11000"/>
+            <field name="sequence">7</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_11700">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">11700</field>
-			<field name="name">VII. Deudores comerciales no corrientes</field>
-			<field name="current_value">;NECA 6.ª 8</field>
-			<field name="previous_value">;NECA 6.ª 8</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_11700">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">11700</field>
+            <field name="name">VII. Deudores comerciales no corrientes</field>
+            <field name="current_value">;NECA 6.ª 8</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_11000"/>
-			<field name="sequence">BA1/08</field>
-			<field name="css_class">l3</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_11000"/>
+            <field name="sequence">8</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12000">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">12000</field>
-			<field name="name">B) ACTIVO CORRIENTE</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">BA1/09</field>
-			<field name="css_class">l1</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_12000">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">12000</field>
+            <field name="name">B) ACTIVO CORRIENTE</field>
+            <field name="sequence">9</field>
+            <field name="css_class">l1</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12100">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">12100</field>
-			<field name="name">I. Activos no corrientes mantenidos para la venta</field>
-			<field name="current_value">580,581,582,583,584,(599)</field>
-			<field name="previous_value">580,581,582,583,584,(599)</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_12100">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">12100</field>
+            <field name="name">I. Activos no corrientes mantenidos para la venta</field>
+            <field name="current_value">580, 581, 582, 583, 584, 599</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_12000"/>
-			<field name="sequence">BA1/10</field>
-			<field name="css_class">l3</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_12000"/>
+            <field name="sequence">10</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12200">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">12200</field>
-			<field name="name">II. Existencias</field>
-			<field name="current_value">30,31,32,33,34,35,36,(39),407</field>
-			<field name="previous_value">30,31,32,33,34,35,36,(39),407</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_12200">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">12200</field>
+            <field name="name">II. Existencias</field>
+            <field name="current_value">30, 31, 32, 33, 34, 35, 36, 39, 407</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_12000"/>
-			<field name="sequence">BA1/11</field>
-			<field name="css_class">l3</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_12000"/>
+            <field name="sequence">11</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12300">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">12300</field>
-			<field name="name">III. Deudores comerciales y otras cuentas a cobrar</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref="es_balance_abreviado_12000"/>
-			<field name="sequence">BA1/12</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_12300">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">12300</field>
+            <field name="name">III. Deudores comerciales y otras cuentas a cobrar</field>
+            <field name="parent_id" ref="es_balance_abreviado_12000"/>
+            <field name="sequence">12</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12380">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">12380</field>
-			<field name="name">1. Clientes por ventas y prestaciones de servicios</field>
-			<field name="current_value">430,431,432,433,434,435,436,(437),(490),(493)</field>
-			<field name="previous_value">430,431,432,433,434,435,436,(437),(490),(493)</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_12380">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">12380</field>
+            <field name="name">1. Clientes por ventas y prestaciones de servicios</field>
+            <field name="current_value">430, 431, 432, 433, 434, 435, 436, 437, 490, 493</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_12300"/>
-			<field name="sequence">BA1/13</field>
-			<field name="css_class">l4</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_12300"/>
+            <field name="sequence">13</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12381">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">12381</field>
-			<field name="name">a) Clientes por ventas y prestaciones de servicios a largo plazo</field>
-			<field name="current_value">;NECA 6.ª 8</field>
-			<field name="previous_value">;NECA 6.ª 8</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_12381">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">12381</field>
+            <field name="name">a) Clientes por ventas y prestaciones de servicios a largo plazo</field>
+            <field name="current_value">;NECA 6.ª 8</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_12380"/>
-			<field name="sequence">BA1/14</field>
-			<field name="css_class">l5</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_12380"/>
+            <field name="sequence">14</field>
+            <field name="css_class">l5</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12382">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">12382</field>
-			<field name="name">b) Clientes por ventas y prestaciones de servicios a corto plazo</field>
-			<field name="current_value">;NECA 6.ª 8</field>
-			<field name="previous_value">;NECA 6.ª 8</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_12382">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">12382</field>
+            <field name="name">b) Clientes por ventas y prestaciones de servicios a corto plazo</field>
+            <field name="current_value">;NECA 6.ª 8</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_12380"/>
-			<field name="sequence">BA1/15</field>
-			<field name="css_class">l5</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_12380"/>
+            <field name="sequence">15</field>
+            <field name="css_class">l5</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12370">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">12370</field>
-			<field name="name">2. Accionistas (socios) por desembolsos exigidos</field>
-			<field name="current_value">5580</field>
-			<field name="previous_value">5580</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_12370">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">12370</field>
+            <field name="name">2. Accionistas (socios) por desembolsos exigidos</field>
+            <field name="current_value">5580</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_12300"/>
-			<field name="sequence">BA1/16</field>
-			<field name="css_class">l4</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_12300"/>
+            <field name="sequence">16</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12390">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">12390</field>
-			<field name="name">3. Otros deudores</field>
-			<field name="current_value">44,460,470,471,472,5531,5533,544</field>
-			<field name="previous_value">44,460,470,471,472,5531,5533,544</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_12390">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">12390</field>
+            <field name="name">3. Otros deudores</field>
+            <field name="current_value">44, 460, 470, 471, 472, 5531, 5533, 544</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_12300"/>
-			<field name="sequence">BA1/17</field>
-			<field name="css_class">l4</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_12300"/>
+            <field name="sequence">17</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12400">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">12400</field>
-			<field name="name">IV. Inversiones en empresas del grupo y asociadas a corto plazo</field>
-			<field name="current_value">5303,5304,5313,5314,5323,5324,5333,5334,5343,5344,5353,5354,(5393),(5394),debit(5523),debit(5524),(593),(5943),(5944),(5953),(5954)</field>
-			<field name="previous_value">5303,5304,5313,5314,5323,5324,5333,5334,5343,5344,5353,5354,(5393),(5394),debit(5523),debit(5524),(593),(5943),(5944),(5953),(5954)</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_12400">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">12400</field>
+            <field name="name">IV. Inversiones en empresas del grupo y asociadas a corto plazo</field>
+            <field name="current_value">5303, 5304, 5313, 5314, 5323, 5324, 5333, 5334, 5343, 5344, 5353, 5354, 5393, 5394, debit(5523), debit(5524), 593, 5943, 5944, 5953, 5954</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_12000"/>
-			<field name="sequence">BA1/18</field>
-			<field name="css_class">l3</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_12000"/>
+            <field name="sequence">18</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12500">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">12500</field>
-			<field name="name">V. Inversiones financieras a corto plazo</field>
-			<field name="current_value">5305,5315,5325,5335,5345,5355,(5395),540,541,542,543,545,546,547,548,(549),debit(551),debit(5525),5590,5593,565,566,(5945),(5955),(597),(598)</field>
-			<field name="previous_value">5305,5315,5325,5335,5345,5355,(5395),540,541,542,543,545,546,547,548,(549),debit(551),debit(5525),5590,5593,565,566,(5945),(5955),(597),(598)</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_12500">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">12500</field>
+            <field name="name">V. Inversiones financieras a corto plazo</field>
+            <field name="current_value">5305, 5315, 5325, 5335, 5345, 5355, 5395, 540, 541, 542, 543, 545, 546, 547, 548, 549, debit(551), debit(5525), 5590, 5593, 565, 566, 5945, 5955, 597, 598</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_12000"/>
-			<field name="sequence">BA1/19</field>
-			<field name="css_class">l3</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_12000"/>
+            <field name="sequence">19</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12600">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">12600</field>
-			<field name="name">VI. Periodificaciones a corto plazo</field>
-			<field name="current_value">480,567</field>
-			<field name="previous_value">480,567</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_12600">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">12600</field>
+            <field name="name">VI. Periodificaciones a corto plazo</field>
+            <field name="current_value">480, 567</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_12000"/>
-			<field name="sequence">BA1/20</field>
-			<field name="css_class">l3</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_12000"/>
+            <field name="sequence">20</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_12700">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">12700</field>
-			<field name="name">VII. Efectivo y otros activos líquidos equivalentes</field>
-			<field name="current_value">57</field>
-			<field name="previous_value">57</field>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_12700">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">12700</field>
+            <field name="name">VII. Efectivo y otros activos líquidos equivalentes</field>
+            <field name="current_value">57</field>
             <field name="negate" eval="True"/>
-			<field name="parent_id" ref="es_balance_abreviado_12000"/>
-			<field name="sequence">BA1/21</field>
-			<field name="css_class">l3</field>
-		</record>
+            <field name="parent_id" ref="es_balance_abreviado_12000"/>
+            <field name="sequence">21</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_10000">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">10000</field>
-			<field name="name">TOTAL ACTIVO (A + B)</field>
-			<field name="current_value">11000+12000</field>
-			<field name="previous_value">11000+12000</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">BA1/22</field>
-			<field name="css_class">l1</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_10000">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">10000</field>
+            <field name="name">TOTAL ACTIVO (A + B)</field>
+            <field name="current_value">11000 + 12000</field>
+            <field name="sequence">22</field>
+            <field name="css_class">l1</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_20000">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">20000</field>
-			<field name="name">A) PATRIMONIO NETO</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">BA2.1/01</field>
-			<field name="css_class">l1</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_20000">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">20000</field>
+            <field name="name">A) PATRIMONIO NETO</field>
+            <field name="sequence">23</field>
+            <field name="css_class">l1</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21000">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">21000</field>
-			<field name="name">A-1) Fondos propios</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref="es_balance_abreviado_20000"/>
-			<field name="sequence">BA2.1/02</field>
-			<field name="css_class">l2</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_21000">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">21000</field>
+            <field name="name">A-1) Fondos propios</field>
+            <field name="parent_id" ref="es_balance_abreviado_20000"/>
+            <field name="sequence">24</field>
+            <field name="css_class">l2</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21100">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">21100</field>
-			<field name="name">I. Capital</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref="es_balance_abreviado_21000"/>
-			<field name="sequence">BA2.1/03</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_21100">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">21100</field>
+            <field name="name">I. Capital</field>
+            <field name="parent_id" ref="es_balance_abreviado_21000"/>
+            <field name="sequence">25</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21110">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">21110</field>
-			<field name="name">1. Capital escriturado</field>
-			<field name="current_value">100,101,102</field>
-			<field name="previous_value">100,101,102</field>
-			<field name="parent_id" ref="es_balance_abreviado_21100"/>
-			<field name="sequence">BA2.1/04</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_21110">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">21110</field>
+            <field name="name">1. Capital escriturado</field>
+            <field name="current_value">100, 101, 102</field>
+            <field name="parent_id" ref="es_balance_abreviado_21100"/>
+            <field name="sequence">26</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21120">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">21120</field>
-			<field name="name">2. (Capital no exigido) </field>
-			<field name="current_value">(1030),(1040)</field>
-			<field name="previous_value">(1030),(1040)</field>
-			<field name="parent_id" ref="es_balance_abreviado_21100"/>
-			<field name="sequence">BA2.1/05</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_21120">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">21120</field>
+            <field name="name">2. (Capital no exigido) </field>
+            <field name="current_value">1030, 1040</field>
+            <field name="parent_id" ref="es_balance_abreviado_21100"/>
+            <field name="sequence">27</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21200">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">21200</field>
-			<field name="name">II. Prima de emisión</field>
-			<field name="current_value">110</field>
-			<field name="previous_value">110</field>
-			<field name="parent_id" ref="es_balance_abreviado_21000"/>
-			<field name="sequence">BA2.1/06</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_21200">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">21200</field>
+            <field name="name">II. Prima de emisión</field>
+            <field name="current_value">110</field>
+            <field name="parent_id" ref="es_balance_abreviado_21000"/>
+            <field name="sequence">28</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21300">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">21300</field>
-			<field name="name">III. Reservas</field>
-			<field name="current_value">112,113,114,115,119</field>
-			<field name="previous_value">112,113,114,115,119</field>
-			<field name="parent_id" ref="es_balance_abreviado_21000"/>
-			<field name="sequence">BA2.1/07</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_21300">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">21300</field>
+            <field name="name">III. Reservas</field>
+            <field name="current_value">112, 113, 114, 115, 119</field>
+            <field name="parent_id" ref="es_balance_abreviado_21000"/>
+            <field name="sequence">29</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21400">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">21400</field>
-			<field name="name">IV. (Acciones y participaciones en patrimonio propias)</field>
-			<field name="current_value">(108),(109)</field>
-			<field name="previous_value">(108),(109)</field>
-			<field name="parent_id" ref="es_balance_abreviado_21000"/>
-			<field name="sequence">BA2.1/08</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_21400">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">21400</field>
+            <field name="name">IV. (Acciones y participaciones en patrimonio propias)</field>
+            <field name="current_value">108, 109</field>
+            <field name="parent_id" ref="es_balance_abreviado_21000"/>
+            <field name="sequence">30</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21500">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">21500</field>
-			<field name="name">V. Resultados de ejercicios anteriores </field>
-			<field name="current_value">120,(121)</field>
-			<field name="previous_value">120,(121)</field>
-			<field name="parent_id" ref="es_balance_abreviado_21000"/>
-			<field name="sequence">BA2.1/09</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_21500">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">21500</field>
+            <field name="name">V. Resultados de ejercicios anteriores </field>
+            <field name="current_value">120, 121</field>
+            <field name="parent_id" ref="es_balance_abreviado_21000"/>
+            <field name="sequence">31</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21600">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">21600</field>
-			<field name="name">VI. Otras aportaciones de socios</field>
-			<field name="current_value">118</field>
-			<field name="previous_value">118</field>
-			<field name="parent_id" ref="es_balance_abreviado_21000"/>
-			<field name="sequence">BA2.1/10</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_21600">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">21600</field>
+            <field name="name">VI. Otras aportaciones de socios</field>
+            <field name="current_value">118</field>
+            <field name="parent_id" ref="es_balance_abreviado_21000"/>
+            <field name="sequence">32</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21700">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">21700</field>
-			<field name="name">VII. Resultado del ejercicio</field>
-			<field name="current_value">129</field>
-			<field name="previous_value">129</field>
-			<field name="parent_id" ref="es_balance_abreviado_21000"/>
-			<field name="sequence">BA2.1/11</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_21700">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">21700</field>
+            <field name="name">VII. Resultado del ejercicio</field>
+            <field name="current_value">129</field>
+            <field name="parent_id" ref="es_balance_abreviado_21000"/>
+            <field name="sequence">33</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21800">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">21800</field>
-			<field name="name">VIII. (Dividendo a cuenta)</field>
-			<field name="current_value">(557)</field>
-			<field name="previous_value">(557)</field>
-			<field name="parent_id" ref="es_balance_abreviado_21000"/>
-			<field name="sequence">BA2.1/12</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_21800">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">21800</field>
+            <field name="name">VIII. (Dividendo a cuenta)</field>
+            <field name="current_value">557</field>
+            <field name="parent_id" ref="es_balance_abreviado_21000"/>
+            <field name="sequence">34</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_21900">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">21900</field>
-			<field name="name">IX. Otros instrumentos de patrimonio neto</field>
-			<field name="current_value">111</field>
-			<field name="previous_value">111</field>
-			<field name="parent_id" ref="es_balance_abreviado_21000"/>
-			<field name="sequence">BA2.1/13</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_21900">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">21900</field>
+            <field name="name">IX. Otros instrumentos de patrimonio neto</field>
+            <field name="current_value">111</field>
+            <field name="parent_id" ref="es_balance_abreviado_21000"/>
+            <field name="sequence">35</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_22000">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">22000</field>
-			<field name="name">A-2) Ajustes por cambios de valor</field>
-			<field name="current_value">133,1340,137</field>
-			<field name="previous_value">133,1340,137</field>
-			<field name="parent_id" ref="es_balance_abreviado_20000"/>
-			<field name="sequence">BA2.1/14</field>
-			<field name="css_class">l2</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_22000">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">22000</field>
+            <field name="name">A-2) Ajustes por cambios de valor</field>
+            <field name="current_value">133, 1340, 137</field>
+            <field name="parent_id" ref="es_balance_abreviado_20000"/>
+            <field name="sequence">36</field>
+            <field name="css_class">l2</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_23000">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">23000</field>
-			<field name="name">A-3) Subvenciones, donaciones y legados recibidos</field>
-			<field name="current_value">130,131,132</field>
-			<field name="previous_value">130,131,132</field>
-			<field name="parent_id" ref="es_balance_abreviado_20000"/>
-			<field name="sequence">BA2.1/15</field>
-			<field name="css_class">l2</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_23000">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">23000</field>
+            <field name="name">A-3) Subvenciones, donaciones y legados recibidos</field>
+            <field name="current_value">130, 131, 132</field>
+            <field name="parent_id" ref="es_balance_abreviado_20000"/>
+            <field name="sequence">37</field>
+            <field name="css_class">l2</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31000">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">31000</field>
-			<field name="name">B) PASIVO NO CORRIENTE</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">BA2.1/16</field>
-			<field name="css_class">l1</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_31000">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">31000</field>
+            <field name="name">B) PASIVO NO CORRIENTE</field>
+            <field name="sequence">38</field>
+            <field name="css_class">l1</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31100">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">31100</field>
-			<field name="name">I. Provisiones a largo plazo</field>
-			<field name="current_value">14</field>
-			<field name="previous_value">14</field>
-			<field name="parent_id" ref="es_balance_abreviado_31000"/>
-			<field name="sequence">BA2.1/17</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_31100">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">31100</field>
+            <field name="name">I. Provisiones a largo plazo</field>
+            <field name="current_value">14</field>
+            <field name="parent_id" ref="es_balance_abreviado_31000"/>
+            <field name="sequence">39</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31200">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">31200</field>
-			<field name="name">II. Deudas a largo plazo</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref="es_balance_abreviado_31000"/>
-			<field name="sequence">BA2.1/18</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_31200">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">31200</field>
+            <field name="name">II. Deudas a largo plazo</field>
+            <field name="parent_id" ref="es_balance_abreviado_31000"/>
+            <field name="sequence">40</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31220">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">31220</field>
-			<field name="name">1. Deudas con entidades de crédito</field>
-			<field name="current_value">1605,170</field>
-			<field name="previous_value">1605,170</field>
-			<field name="parent_id" ref="es_balance_abreviado_31200"/>
-			<field name="sequence">BA2.1/19</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_31220">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">31220</field>
+            <field name="name">1. Deudas con entidades de crédito</field>
+            <field name="current_value">1605, 170</field>
+            <field name="parent_id" ref="es_balance_abreviado_31200"/>
+            <field name="sequence">41</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31230">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">31230</field>
-			<field name="name">2. Acreedores por arrendamiento financiero</field>
-			<field name="current_value">1625,174</field>
-			<field name="previous_value">1625,174</field>
-			<field name="parent_id" ref="es_balance_abreviado_31200"/>
-			<field name="sequence">BA2.1/20</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_31230">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">31230</field>
+            <field name="name">2. Acreedores por arrendamiento financiero</field>
+            <field name="current_value">1625, 174</field>
+            <field name="parent_id" ref="es_balance_abreviado_31200"/>
+            <field name="sequence">42</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31290">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">31290</field>
-			<field name="name">3. Otras deudas a largo plazo</field>
-			<field name="current_value">1615,1635,171,172,173,175,176,177,178,179,180,185,189</field>
-			<field name="previous_value">1615,1635,171,172,173,175,176,177,178,179,180,185,189</field>
-			<field name="parent_id" ref="es_balance_abreviado_31200"/>
-			<field name="sequence">BA2.1/21</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_31290">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">31290</field>
+            <field name="name">3. Otras deudas a largo plazo</field>
+            <field name="current_value">1615, 1635, 171, 172, 173, 175, 176, 177, 178, 179, 180, 185, 189</field>
+            <field name="parent_id" ref="es_balance_abreviado_31200"/>
+            <field name="sequence">43</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31300">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">31300</field>
-			<field name="name">III. Deudas con empresas del grupo y asociadas a largo plazo</field>
-			<field name="current_value">1603,1604,1613,1614,1623,1624,1633,1634</field>
-			<field name="previous_value">1603,1604,1613,1614,1623,1624,1633,1634</field>
-			<field name="parent_id" ref="es_balance_abreviado_31000"/>
-			<field name="sequence">BA2.1/22</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_31300">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">31300</field>
+            <field name="name">III. Deudas con empresas del grupo y asociadas a largo plazo</field>
+            <field name="current_value">1603, 1604, 1613, 1614, 1623, 1624, 1633, 1634</field>
+            <field name="parent_id" ref="es_balance_abreviado_31000"/>
+            <field name="sequence">44</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31400">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">31400</field>
-			<field name="name">IV. Pasivos por impuesto diferido</field>
-			<field name="current_value">479</field>
-			<field name="previous_value">479</field>
-			<field name="parent_id" ref="es_balance_abreviado_31000"/>
-			<field name="sequence">BA2.1/23</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_31400">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">31400</field>
+            <field name="name">IV. Pasivos por impuesto diferido</field>
+            <field name="current_value">479</field>
+            <field name="parent_id" ref="es_balance_abreviado_31000"/>
+            <field name="sequence">45</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31500">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">31500</field>
-			<field name="name">V. Periodificaciones a largo plazo</field>
-			<field name="current_value">181</field>
-			<field name="previous_value">181</field>
-			<field name="parent_id" ref="es_balance_abreviado_31000"/>
-			<field name="sequence">BA2.1/24</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_31500">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">31500</field>
+            <field name="name">V. Periodificaciones a largo plazo</field>
+            <field name="current_value">181</field>
+            <field name="parent_id" ref="es_balance_abreviado_31000"/>
+            <field name="sequence">46</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31600">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">31600</field>
-			<field name="name">VI. Acreedores comerciales no corrientes</field>
-			<field name="current_value">;NECA 6.ª 16</field>
-			<field name="previous_value">;NECA 6.ª 16</field>
-			<field name="parent_id" ref="es_balance_abreviado_31000"/>
-			<field name="sequence">BA2.1/25</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_31600">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">31600</field>
+            <field name="name">VI. Acreedores comerciales no corrientes</field>
+            <field name="current_value">;NECA 6.ª 16</field>
+            <field name="parent_id" ref="es_balance_abreviado_31000"/>
+            <field name="sequence">47</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_31700">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">31700</field>
-			<field name="name">VII. Deuda con características especiales a largo plazo</field>
-			<field name="current_value">15; (NECA 6.ª 17)</field>
-			<field name="previous_value">15; (NECA 6.ª 17)</field>
-			<field name="parent_id" ref="es_balance_abreviado_31000"/>
-			<field name="sequence">BA2.1/26</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_31700">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">31700</field>
+            <field name="name">VII. Deuda con características especiales a largo plazo</field>
+            <field name="current_value">15;NECA 6.ª 17</field>
+            <field name="parent_id" ref="es_balance_abreviado_31000"/>
+            <field name="sequence">48</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32000">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">32000</field>
-			<field name="name">C) PASIVO CORRIENTE</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">BA2.2/01</field>
-			<field name="css_class">l1</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_32000">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">32000</field>
+            <field name="name">C) PASIVO CORRIENTE</field>
+            <field name="sequence">49</field>
+            <field name="css_class">l1</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32100">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">32100</field>
-			<field name="name">I. Pasivos vinculados con activos no corrientes mantenidos para la venta</field>
-			<field name="current_value">585,586,587,588,589</field>
-			<field name="previous_value">585,586,587,588,589</field>
-			<field name="parent_id" ref="es_balance_abreviado_32000"/>
-			<field name="sequence">BA2.2/02</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_32100">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">32100</field>
+            <field name="name">I. Pasivos vinculados con activos no corrientes mantenidos para la venta</field>
+            <field name="current_value">585, 586, 587, 588, 589</field>
+            <field name="parent_id" ref="es_balance_abreviado_32000"/>
+            <field name="sequence">50</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32200">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">32200</field>
-			<field name="name">II. Provisiones a corto plazo</field>
-			<field name="current_value">499,529</field>
-			<field name="previous_value">499,529</field>
-			<field name="parent_id" ref="es_balance_abreviado_32000"/>
-			<field name="sequence">BA2.2/03</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_32200">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">32200</field>
+            <field name="name">II. Provisiones a corto plazo</field>
+            <field name="current_value">499, 529</field>
+            <field name="parent_id" ref="es_balance_abreviado_32000"/>
+            <field name="sequence">51</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32300">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">32300</field>
-			<field name="name">III. Deudas a corto plazo</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref="es_balance_abreviado_32000"/>
-			<field name="sequence">BA2.2/04</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_32300">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">32300</field>
+            <field name="name">III. Deudas a corto plazo</field>
+            <field name="parent_id" ref="es_balance_abreviado_32000"/>
+            <field name="sequence">52</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32320">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">32320</field>
-			<field name="name">1. Deudas con entidades de crédito</field>
-			<field name="current_value">5105,520,527</field>
-			<field name="previous_value">5105,520,527</field>
-			<field name="parent_id" ref="es_balance_abreviado_32300"/>
-			<field name="sequence">BA2.2/05</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_32320">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">32320</field>
+            <field name="name">1. Deudas con entidades de crédito</field>
+            <field name="current_value">5105, 520, 527</field>
+            <field name="parent_id" ref="es_balance_abreviado_32300"/>
+            <field name="sequence">53</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32330">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">32330</field>
-			<field name="name">2. Acreedores por arrendamiento financiero</field>
-			<field name="current_value">5125,524</field>
-			<field name="previous_value">5125,524</field>
-			<field name="parent_id" ref="es_balance_abreviado_32300"/>
-			<field name="sequence">BA2.2/06</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_32330">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">32330</field>
+            <field name="name">2. Acreedores por arrendamiento financiero</field>
+            <field name="current_value">5125, 524</field>
+            <field name="parent_id" ref="es_balance_abreviado_32300"/>
+            <field name="sequence">54</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32390">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">32390</field>
-			<field name="name">3. Otras deudas a corto plazo</field>
-			<field name="current_value">(1034),(1044),(190),(192),194,500,501,505,506,509,5115,5135,5145,521,522,523,525,526,528,credit(551),credit(5525),5530,5532,555,5565,5566,5595,5598,560,561,569</field>
-			<field name="previous_value">(1034),(1044),(190),(192),194,500,501,505,506,509,5115,5135,5145,521,522,523,525,526,528,credit(551),credit(5525),5530,5532,555,5565,5566,5595,5598,560,561,569</field>
-			<field name="parent_id" ref="es_balance_abreviado_32300"/>
-			<field name="sequence">BA2.2/07</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_32390">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">32390</field>
+            <field name="name">3. Otras deudas a corto plazo</field>
+            <field name="current_value">1034, 1044, 190, 192, 194, 500, 501, 505, 506, 509, 5115, 5135, 5145, 521, 522, 523, 525, 526, 528, credit(551), credit(5525), 5530, 5532, 555, 5565, 5566, 5595, 5598, 560, 561, 569</field>
+            <field name="parent_id" ref="es_balance_abreviado_32300"/>
+            <field name="sequence">55</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32400">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">32400</field>
-			<field name="name">IV. Deudas con empresas del grupo y asociadas a corto plazo</field>
-			<field name="current_value">5103,5104,5113,5114,5123,5124,5133,5134,5143,5144,credit(5523),credit(5524),5563,5564</field>
-			<field name="previous_value">5103,5104,5113,5114,5123,5124,5133,5134,5143,5144,credit(5523),credit(5524),5563,5564</field>
-			<field name="parent_id" ref="es_balance_abreviado_32000"/>
-			<field name="sequence">BA2.2/08</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_32400">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">32400</field>
+            <field name="name">IV. Deudas con empresas del grupo y asociadas a corto plazo</field>
+            <field name="current_value">5103, 5104, 5113, 5114, 5123, 5124, 5133, 5134, 5143, 5144, credit(5523), credit(5524), 5563, 5564</field>
+            <field name="parent_id" ref="es_balance_abreviado_32000"/>
+            <field name="sequence">56</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32500">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">32500</field>
-			<field name="name">V. Acreedores comerciales y otras cuentas a pagar</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref="es_balance_abreviado_32000"/>
-			<field name="sequence">BA2.2/09</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_32500">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">32500</field>
+            <field name="name">V. Acreedores comerciales y otras cuentas a pagar</field>
+            <field name="parent_id" ref="es_balance_abreviado_32000"/>
+            <field name="sequence">57</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32580">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">32580</field>
-			<field name="name">1. Proveedores</field>
-			<field name="current_value">400,401,403,404,405,(406)</field>
-			<field name="previous_value">400,401,403,404,405,(406)</field>
-			<field name="parent_id" ref="es_balance_abreviado_32500"/>
-			<field name="sequence">BA2.2/10</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_32580">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">32580</field>
+            <field name="name">1. Proveedores</field>
+            <field name="current_value">400, 401, 403, 404, 405, 406</field>
+            <field name="parent_id" ref="es_balance_abreviado_32500"/>
+            <field name="sequence">58</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32581">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">32581</field>
-			<field name="name">a) Proveedores a largo plazo</field>
-			<field name="current_value">;NECA 6.ª 16</field>
-			<field name="previous_value">;NECA 6.ª 16</field>
-			<field name="parent_id" ref="es_balance_abreviado_32580"/>
-			<field name="sequence">BA2.2/11</field>
-			<field name="css_class">l5</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_32581">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">32581</field>
+            <field name="name">a) Proveedores a largo plazo</field>
+            <field name="current_value">;NECA 6.ª 16</field>
+            <field name="parent_id" ref="es_balance_abreviado_32580"/>
+            <field name="sequence">59</field>
+            <field name="css_class">l5</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32582">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">32582</field>
-			<field name="name">b) Proveedores a corto plazo</field>
-			<field name="current_value">;NECA 6.ª 16</field>
-			<field name="previous_value">;NECA 6.ª 16</field>
-			<field name="parent_id" ref="es_balance_abreviado_32580"/>
-			<field name="sequence">BA2.2/12</field>
-			<field name="css_class">l5</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_32582">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">32582</field>
+            <field name="name">b) Proveedores a corto plazo</field>
+            <field name="current_value">;NECA 6.ª 16</field>
+            <field name="parent_id" ref="es_balance_abreviado_32580"/>
+            <field name="sequence">60</field>
+            <field name="css_class">l5</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32590">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">32590</field>
-			<field name="name">2. Otros acreedores</field>
-			<field name="current_value">41,438,465,466,475,476,477</field>
-			<field name="previous_value">41,438,465,466,475,476,477</field>
-			<field name="parent_id" ref="es_balance_abreviado_32500"/>
-			<field name="sequence">BA2.2/13</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_32590">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">32590</field>
+            <field name="name">2. Otros acreedores</field>
+            <field name="current_value">41, 438, 465, 466, 475, 476, 477</field>
+            <field name="parent_id" ref="es_balance_abreviado_32500"/>
+            <field name="sequence">61</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32600">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">32600</field>
-			<field name="name">VI. Periodificaciones a corto plazo</field>
-			<field name="current_value">485,568</field>
-			<field name="previous_value">485,568</field>
-			<field name="parent_id" ref="es_balance_abreviado_32000"/>
-			<field name="sequence">BA2.2/14</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_32600">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">32600</field>
+            <field name="name">VI. Periodificaciones a corto plazo</field>
+            <field name="current_value">485, 568</field>
+            <field name="parent_id" ref="es_balance_abreviado_32000"/>
+            <field name="sequence">62</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_32700">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">32700</field>
-			<field name="name">VII. Deuda con características especiales a corto plazo</field>
-			<field name="current_value">502,507; NECA 6.ª 17</field>
-			<field name="previous_value">502,507; NECA 6.ª 17</field>
-			<field name="parent_id" ref="es_balance_abreviado_32000"/>
-			<field name="sequence">BA2.2/15</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_32700">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">32700</field>
+            <field name="name">VII. Deuda con características especiales a corto plazo</field>
+            <field name="current_value">502, 507; NECA 6.ª 17</field>
+            <field name="parent_id" ref="es_balance_abreviado_32000"/>
+            <field name="sequence">63</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_balance_abreviado_30000">
-			<field name="report_id" ref="es_balance_abreviado"/>
-			<field name="code">30000</field>
-			<field name="name">TOTAL PATRIMONIO NETO Y PASIVO (A + B + C)</field>
-			<field name="current_value">20000+31000+32000</field>
-			<field name="previous_value">20000+31000+32000</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">BA2.2/16</field>
-			<field name="css_class">l1</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_balance_abreviado_30000">
+            <field name="template_id" ref="es_balance_abreviado"/>
+            <field name="code">30000</field>
+            <field name="name">TOTAL PATRIMONIO NETO Y PASIVO (A + B + C)</field>
+            <field name="current_value">20000 + 31000 + 32000</field>
+            <field name="sequence">64</field>
+            <field name="css_class">l1</field>
+        </record>
 
-	</data>
+    </data>
 </openerp>

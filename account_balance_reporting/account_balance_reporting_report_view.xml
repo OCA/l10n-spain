@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!-- # # OpenERP - Account balance reporting engine # Copyright (C) 2009 
+    Pexego Sistemas Informáticos. All Rights Reserved # $Id$ # # This program 
+    is free software: you can redistribute it and/or modify # it under the terms 
+    of the GNU General Public License as published by # the Free Software Foundation, 
+    either version 3 of the License, or # (at your option) any later version. 
+    # # This program is distributed in the hope that it will be useful, # but 
+    WITHOUT ANY WARRANTY; without even the implied warranty of # MERCHANTABILITY 
+    or FITNESS FOR A PARTICULAR PURPOSE. See the # GNU General Public License 
+    for more details. # # You should have received a copy of the GNU General 
+    Public License # along with this program. If not, see <http://www.gnu.org/licenses/>. 
+    # -->
+<!-- Views for the account balance reports and its lines. Author: Borja López 
+    Soilán (Pexego) - borjals@pexego.es -->
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_account_balance_reporting_form">
+            <field name="name">account.balance.reporting.form</field>
+            <field name="model">account.balance.reporting</field>
+            <field name="arch" type="xml">
+                <form string="Account balance report" version="7.0">
+                    <header>
+                        <button name="calculate_action" type="object" string="Calculate" states="draft" class="oe_highlight"/>
+                        <button name="confirm" string="Confirm" class="oe_highlight" states="calc_done"/>
+                        <button name="cancel" string="Cancel" states="calc_done,done"/>
+                        <button name="action_recover" string="Draft" type="object" class="oe_highlight" states="canceled"/>
+                        <field name="state" select="2" widget="statusbar" statusbar_visible="calc_done,done" statusbar_colors='{"calc_done":"blue","done":"blue","canceled":"red"}'/>
+                    </header>
+                    <label for="name" class="oe_edit_only"/>
+                    <h1>
+                        <field name="name" nolabel="1"/>
+                    </h1>
+                    <notebook>
+                        <page string="Configuration">
+                            <group col="6">
+                                <field name="template_id"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="calc_date" states="calc_done,done"/>
+                            </group>
+                            <group>
+                                <group col="1">
+                                    <separator string="Fiscal year 1"/>
+                                    <field name="current_fiscalyear_id" nolabel="1"/>
+                                    <field name="current_period_ids" domain="[('fiscalyear_id','=',current_fiscalyear_id)]" nolabel="1"/>
+                                </group>
+                                <group col="1">
+                                    <separator string="Fiscal year 2"/>
+                                    <field name="previous_fiscalyear_id" nolabel="1"/>
+                                    <field name="previous_period_ids" domain="[('fiscalyear_id','=',previous_fiscalyear_id)]" nolabel="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Report lines">
+                            <field name="line_ids" nolabel="1">
+                                <tree string="Report lines" editable="bottom" colors="blue:css_class in ('l1')" version="7.0">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="notes"/>
+                                    <field name="current_value"/>
+                                    <field name="previous_value"/>
+                                    <field name="css_class"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <!-- Report tree view -->
+        <record model="ir.ui.view" id="view_account_balance_reporting_tree">
+            <field name="name">account.balance.reporting.tree</field>
+            <field name="model">account.balance.reporting</field>
+            <field name="arch" type="xml">
+                <tree string="Account balance reports">
+                    <field name="name" select="1"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="template_id" select="2" colspan="4"/>
+                    <field name="current_fiscalyear_id" select="1"/>
+                    <field name="previous_fiscalyear_id" select="2"/>
+                    <field name="state" colspan="4" select="2"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--*** window action ******************************************* -->
+
+        <record model="ir.actions.act_window" id="action_view_account_balance_reporting">
+            <field name="name">Account balance reports</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.balance.reporting</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_account_balance_reporting_tree"/>
+        </record>
+
+    </data>
+</openerp>

@@ -24,21 +24,21 @@ DEPÓSITO DE CUENTAS ANUALES - MODELOS NORMALIZADOS (según PGCE 2008)
 
 Basado en los modelos normalizados de depósito de cuentas anuales
 del registro mercantil (normal):
-http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2Fpdf&blobheadername1=Content-Disposition&blobheadervalue1=attachment%3B+filename%3DNormal_Castellano_Integrado_Editable.PDF
+http://www.mjusticia.gob.es/cs/Satellite/1292342988403
 
 TODO: Los desgloses sugeridos por las NECA están comentados (no se calculan).
 
 Author: Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com
 -->
 <openerp>
-	<data>
+    <data>
 
-		<record model="account.balance.reporting.template" id="es_eiyg_normal">
-			<field name="name">ESTADO DE INGRESOS Y GASTOS RECONOCIDOS NORMAL (PGCE 2008)</field>
-			<field name="type">system</field>
-			<field name="balance_mode">2</field>
-			<field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
-			<field name="description">
+        <record model="account.balance.reporting.template" id="es_eiyg_normal">
+            <field name="name">Estado de ingresos y gastos reconocidos (PGCE 2008)</field>
+            <field name="type">system</field>
+            <field name="balance_mode">2</field>
+            <field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
+            <field name="description">
 CUENTAS ANUALES - ESTADO DE INGRESOS Y GASTOS RECONOCIDOS NORMAL (PGCE 2008)
 
 (NOTA: VERSIÓN BETA)
@@ -49,245 +49,215 @@ Estado de Ingresos y Gastos Reconocidos Normal al cierre del ejercicio, según P
 Autor: Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com
 
 Basado en los modelos normalizados de depósito de cuentas anuales del registro mercantil (normal):
-http://www.mjusticia.gob.es/cs/Satellite/1292342988403?blobheader=application%2Fpdf&amp;blobheadername1=Content-Disposition&amp;blobheadervalue1=attachment%3B+filename%3DNormal_Castellano_Integrado_Editable.PDF
-			</field>
-		</record>
+http://www.mjusticia.gob.es/cs/Satellite/1292342988403
+            </field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_59100">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">59100</field>
-			<field name="name">A) RESULTADO DE LA CUENTA DE PÉRDIDAS Y GANANCIAS</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">E1.1/01</field>
-			<field name="css_class">l1</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_59100">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">59100</field>
+            <field name="name">A) RESULTADO DE LA CUENTA DE PÉRDIDAS Y GANANCIAS</field>
+            <field name="sequence">1</field>
+            <field name="css_class">l1</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_59200">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">59200</field>
-			<field name="name">B) Total ingresos y gastos imputados directamente en el patrimonio neto (I + II + III + IV + V + VI + VII)</field>
-			<field name="current_value">50010+50020+50030+50040+50050+50060+50070</field>
-			<field name="previous_value">50010+50020+50030+50040+50050+50060+50070</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">E1.2/01</field>
-			<field name="css_class">l1</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_59200">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">59200</field>
+            <field name="name">B) Total ingresos y gastos imputados directamente en el patrimonio neto (I + II + III + IV + V + VI + VII)</field>
+            <field name="current_value">50010 + 50020 + 50030 + 50040 + 50050 + 50060 + 50070</field>
+            <field name="sequence">2</field>
+            <field name="css_class">l1</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50010">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50010</field>
-			<field name="name">I. Por valoración de instrumentos financieros</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref="es_eiyg_normal_59200"/>
-			<field name="sequence">E1.2/02</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50010">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50010</field>
+            <field name="name">I. Por valoración de instrumentos financieros</field>
+            <field name="parent_id" ref="es_eiyg_normal_59200"/>
+            <field name="sequence">3</field>
+            <field name="css_class">l4</field>
+        </record>
 
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50011">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50011</field>
-			<field name="name">1. Activos financieros disponibles para la venta</field>
-			<field name="current_value">(800),(89),900,991,992</field>
-			<field name="previous_value">(800),(89),900,991,992</field>
-			<field name="parent_id" ref="es_eiyg_normal_50010"/>
-			<field name="sequence">E1.2/03</field>
-			<field name="css_class">l5</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50011">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50011</field>
+            <field name="name">1. Activos financieros disponibles para la venta</field>
+            <field name="current_value">800, 89, 900, 991, 992</field>
+            <field name="parent_id" ref="es_eiyg_normal_50010"/>
+            <field name="sequence">4</field>
+            <field name="css_class">l5</field>
+        </record>
 
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50012">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50012</field>
-			<field name="name">2. Otros ingresos/gastos</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref="es_eiyg_normal_50010"/>
-			<field name="sequence">E1.2/04</field>
-			<field name="css_class">l5</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50012">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50012</field>
+            <field name="name">2. Otros ingresos/gastos</field>
+            <field name="parent_id" ref="es_eiyg_normal_50010"/>
+            <field name="sequence">5</field>
+            <field name="css_class">l5</field>
+        </record>
 
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50020">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50020</field>
-			<field name="name">II. Por coberturas de flujos de efectivo</field>
-			<field name="current_value">(810),910</field>
-			<field name="previous_value">(810),910</field>
-			<field name="parent_id" ref="es_eiyg_normal_59200"/>
-			<field name="sequence">E1.2/05</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50020">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50020</field>
+            <field name="name">II. Por coberturas de flujos de efectivo</field>
+            <field name="current_value">810, 910</field>
+            <field name="parent_id" ref="es_eiyg_normal_59200"/>
+            <field name="sequence">6</field>
+            <field name="css_class">l4</field>
+        </record>
 
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50030">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50030</field>
-			<field name="name">III. Subvenciones, donaciones y legados recibidos</field>
-			<field name="current_value">94</field>
-			<field name="previous_value">94</field>
-			<field name="parent_id" ref="es_eiyg_normal_59200"/>
-			<field name="sequence">E1.2/06</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50030">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50030</field>
+            <field name="name">III. Subvenciones, donaciones y legados recibidos</field>
+            <field name="current_value">94</field>
+            <field name="parent_id" ref="es_eiyg_normal_59200"/>
+            <field name="sequence">7</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50040">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50040</field>
-			<field name="name">IV. Por ganancias y pérdidas actuariales y otros ajustes</field>
-			<field name="current_value">(85),95</field>
-			<field name="previous_value">(85),95</field>
-			<field name="parent_id" ref="es_eiyg_normal_59200"/>
-			<field name="sequence">E1.2/07</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50040">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50040</field>
+            <field name="name">IV. Por ganancias y pérdidas actuariales y otros ajustes</field>
+            <field name="current_value">85, 95</field>
+            <field name="parent_id" ref="es_eiyg_normal_59200"/>
+            <field name="sequence">8</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50050">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50050</field>
-			<field name="name">V. Por activos no corrientes y pasivos vinculados, mantenidos para la venta</field>
-			<field name="current_value">(860),960;(NECA 8.ª 1.2)</field>
-			<field name="previous_value">(860),960;(NECA 8.ª 1.2)</field>
-			<field name="parent_id" ref="es_eiyg_normal_59200"/>
-			<field name="sequence">E1.2/08</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50050">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50050</field>
+            <field name="name">V. Por activos no corrientes y pasivos vinculados, mantenidos para la venta</field>
+            <field name="current_value">860, 960; NECA 8.ª 1.2</field>
+            <field name="parent_id" ref="es_eiyg_normal_59200"/>
+            <field name="sequence">9</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50060">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50060</field>
-			<field name="name">VI. Diferencias de conversión</field>
-			<field name="current_value">(811),(820),911,920;(NECA 8.ª 1.3)</field>
-			<field name="previous_value">(811),(820),911,920;(NECA 8.ª 1.3)</field>
-			<field name="parent_id" ref="es_eiyg_normal_59200"/>
-			<field name="sequence">E1.2/09</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50060">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50060</field>
+            <field name="name">VI. Diferencias de conversión</field>
+            <field name="current_value">811, 820, 911, 920; NECA 8.ª 1.3</field>
+            <field name="parent_id" ref="es_eiyg_normal_59200"/>
+            <field name="sequence">10</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50070">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50070</field>
-			<field name="name">VII. Efecto impositivo</field>
-			<field name="current_value">(8300),8301,(833),834,835,838</field>
-			<field name="previous_value">(8300),8301,(833),834,835,838</field>
-			<field name="parent_id" ref="es_eiyg_normal_59200"/>
-			<field name="sequence">E1.2/10</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50070">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50070</field>
+            <field name="name">VII. Efecto impositivo</field>
+            <field name="current_value">8300, 8301, 833, 834, 835, 838</field>
+            <field name="parent_id" ref="es_eiyg_normal_59200"/>
+            <field name="sequence">11</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_59300">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">59300</field>
-			<field name="name">C) Total transferencias a la cuenta de pérdidas y ganancias (VIII + IX + X + XI + XII + XIII)</field>
-			<field name="current_value">50080+50090+50100+50110+50120+50130</field>
-			<field name="previous_value">50080+50090+50100+50110+50120+50130</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">E1.3/01</field>
-			<field name="css_class">l1</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_59300">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">59300</field>
+            <field name="name">C) Total transferencias a la cuenta de pérdidas y ganancias (VIII + IX + X + XI + XII + XIII)</field>
+            <field name="current_value">50080 + 50090 + 50100 + 50110 + 50120 + 50130</field>
+            <field name="sequence">12</field>
+            <field name="css_class">l1</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50080">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50080</field>
-			<field name="name">VIII. Por valoración de instrumentos financieros</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref="es_eiyg_normal_59300"/>
-			<field name="sequence">E1.3/02</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50080">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50080</field>
+            <field name="name">VIII. Por valoración de instrumentos financieros</field>
+            <field name="parent_id" ref="es_eiyg_normal_59300"/>
+            <field name="sequence">13</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50081">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50081</field>
-			<field name="name">1. Activos financieros disponibles para la venta</field>
-			<field name="current_value">(802),902,993,994</field>
-			<field name="previous_value">(802),902,993,994</field>
-			<field name="parent_id" ref="es_eiyg_normal_50080"/>
-			<field name="sequence">E1.3/03</field>
-			<field name="css_class">l5</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50081">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50081</field>
+            <field name="name">1. Activos financieros disponibles para la venta</field>
+            <field name="current_value">802, 902, 993, 994</field>
+            <field name="parent_id" ref="es_eiyg_normal_50080"/>
+            <field name="sequence">14</field>
+            <field name="css_class">l5</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50082">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50082</field>
-			<field name="name">2. Otros ingresos/gastos</field>
-			<field name="current_value"></field>
-			<field name="previous_value"></field>
-			<field name="parent_id" ref="es_eiyg_normal_50080"/>
-			<field name="sequence">E1.3/04</field>
-			<field name="css_class">l5</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50082">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50082</field>
+            <field name="name">2. Otros ingresos/gastos</field>
+            <field name="parent_id" ref="es_eiyg_normal_50080"/>
+            <field name="sequence">15</field>
+            <field name="css_class">l5</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50090">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50090</field>
-			<field name="name">IX. Por coberturas de flujos de efectivo</field>
-			<field name="current_value">(812),912</field>
-			<field name="previous_value">(812),912</field>
-			<field name="parent_id" ref="es_eiyg_normal_59300"/>
-			<field name="sequence">E1.3/05</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50090">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50090</field>
+            <field name="name">IX. Por coberturas de flujos de efectivo</field>
+            <field name="current_value">812, 912</field>
+            <field name="parent_id" ref="es_eiyg_normal_59300"/>
+            <field name="sequence">16</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50100">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50100</field>
-			<field name="name">X. Subvenciones, donaciones y legados recibidos</field>
-			<field name="current_value">(84)</field>
-			<field name="previous_value">(84)</field>
-			<field name="parent_id" ref="es_eiyg_normal_59300"/>
-			<field name="sequence">E1.3/06</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50100">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50100</field>
+            <field name="name">X. Subvenciones, donaciones y legados recibidos</field>
+            <field name="current_value">84</field>
+            <field name="parent_id" ref="es_eiyg_normal_59300"/>
+            <field name="sequence">17</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50110">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50110</field>
-			<field name="name">XI. Por activos no corrientes y pasivos vinculados, mantenidos para la venta</field>
-			<field name="current_value">(862),962;(NECA 8.ª 1.2)</field>
-			<field name="previous_value">(862),962;(NECA 8.ª 1.2)</field>
-			<field name="parent_id" ref="es_eiyg_normal_59300"/>
-			<field name="sequence">E1.3/07</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50110">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50110</field>
+            <field name="name">XI. Por activos no corrientes y pasivos vinculados, mantenidos para la venta</field>
+            <field name="current_value">862, 962; NECA 8.ª 1.2</field>
+            <field name="parent_id" ref="es_eiyg_normal_59300"/>
+            <field name="sequence">18</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50120">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50120</field>
-			<field name="name">XII. Diferencias de conversión</field>
-			<field name="current_value">(813),(821),913,921;(NECA 8.ª 1.3)</field>
-			<field name="previous_value">(813),(821),913,921;(NECA 8.ª 1.3)</field>
-			<field name="parent_id" ref="es_eiyg_normal_59300"/>
-			<field name="sequence">E1.3/08</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50120">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50120</field>
+            <field name="name">XII. Diferencias de conversión</field>
+            <field name="current_value">813, 821, 913, 921; NECA 8.ª 1.3</field>
+            <field name="parent_id" ref="es_eiyg_normal_59300"/>
+            <field name="sequence">19</field>
+            <field name="css_class">l4</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_50130">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">50130</field>
-			<field name="name">XIII. Efecto impositivo</field>
-			<field name="current_value">8301,(836),(837)</field>
-			<field name="previous_value">8301,(836),(837)</field>
-			<field name="parent_id" ref="es_eiyg_normal_59300"/>
-			<field name="sequence">E1.3/09</field>
-			<field name="css_class">l4</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_50130">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">50130</field>
+            <field name="name">XIII. Efecto impositivo</field>
+            <field name="current_value">8301, 836, 837</field>
+            <field name="parent_id" ref="es_eiyg_normal_59300"/>
+            <field name="sequence">20</field>
+            <field name="css_class">l4</field>
+        </record>
 
 
-		<record model="account.balance.reporting.template.line" id="es_eiyg_normal_">
-			<field name="report_id" ref="es_eiyg_normal"/>
-			<field name="code">59400</field>
-			<field name="name">TOTAL DE INGRESOS Y GASTOS RECONOCIDOS (A + B + C)</field>
-			<field name="current_value">59100+59200+59300</field>
-			<field name="previous_value">59100+59200+59300</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">E1.4/01</field>
-			<field name="css_class">l1</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_eiyg_normal_">
+            <field name="template_id" ref="es_eiyg_normal"/>
+            <field name="code">59400</field>
+            <field name="name">TOTAL DE INGRESOS Y GASTOS RECONOCIDOS (A + B + C)</field>
+            <field name="current_value">59100 + 59200 + 59300</field>
+            <field name="sequence">21</field>
+            <field name="css_class">l1</field>
+        </record>
 
-	</data>
+    </data>
 </openerp>
