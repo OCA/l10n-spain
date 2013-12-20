@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!--
+#
+#    OpenERP - Account balance reporting engine
+#    Copyright (C) 2009 Pexego Sistemas Informáticos. All Rights Reserved
+#    $Id$
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+-->
+<!--
+Account balance report workflow.
+
+Author: Borja López Soilán (Pexego) - borjals@pexego.es
+-->
+<openerp>
+    <data>
+        <!-- *** Nodes ***************************************************** -->
+
+        <record model="workflow" id="wkf_account_balance_reporting">
+            <field name="name">Account balance report workflow</field>
+            <field name="osv">account.balance.reporting</field>
+            <field name="on_create">True</field>
+        </record>
+
+
+        <record model="workflow.activity" id="act_draft">
+            <field name="wkf_id" ref="wkf_account_balance_reporting"/>
+            <field name="flow_start">True</field>
+            <field name="name">draft</field>
+        </record>
+
+        <record model="workflow.activity" id="act_calculate">
+            <field name="wkf_id" ref="wkf_account_balance_reporting"/>
+            <field name="name">calculated</field>
+            <field name="action">action_calculate()</field>
+            <field name="kind">function</field>
+        </record>
+
+        <record model="workflow.activity" id="act_confirm">
+            <field name="wkf_id" ref="wkf_account_balance_reporting"/>
+            <field name="name">confirmed</field>
+            <field name="action">action_confirm()</field>
+            <field name="kind">function</field>
+        </record>
+
+        <record model="workflow.activity" id="act_cancel">
+            <field name="wkf_id" ref="wkf_account_balance_reporting"/>
+            <field name="name">canceled</field>
+            <field name="flow_stop">True</field>
+            <field name="action">action_cancel()</field>
+            <field name="kind">function</field>
+        </record>
+
+
+        <!-- *** Transitions *********************************************** -->
+		
+        <record model="workflow.transition" id="trans_draft_calculate">
+            <field name="act_from" ref="act_draft"/>
+            <field name="act_to" ref="act_calculate"/>
+            <field name="signal">calculate</field>
+        </record>
+
+        <record model="workflow.transition" id="trans_calculate_confirm">
+            <field name="act_from" ref="act_calculate"/>
+            <field name="act_to" ref="act_confirm"/>
+            <field name="signal">confirm</field>
+        </record>
+
+        <record model="workflow.transition" id="trans_calculate_draft">
+            <field name="act_from" ref="act_calculate"/>
+            <field name="act_to" ref="act_cancel"/>
+            <field name="signal">cancel</field>
+        </record>
+
+        <record model="workflow.transition" id="trans_confirm_cancel">
+            <field name="act_from" ref="act_confirm"/>
+            <field name="act_to" ref="act_cancel"/>
+            <field name="signal">cancel</field>
+        </record>
+
+    </data>
+</openerp>

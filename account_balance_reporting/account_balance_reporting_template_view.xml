@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!--
+#
+#    OpenERP - Account balance reporting engine
+#    Copyright (C) 2009 Pexego Sistemas Informáticos. All Rights Reserved
+#    $Id$
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+-->
+<!--
+Views for the account balance reporting templates and its lines.
+
+Author: Borja López Soilán (Pexego) - borjals@pexego.es
+-->
+<openerp>
+    <data>
+
+        <!-- Template form view -->
+        <record model="ir.ui.view" id="view_account_balance_reporting_template_form">
+            <field name="name">account.balance.reporting.template.form</field>
+            <field name="model">account.balance.reporting.template</field>
+            <field name="arch" type="xml">
+                <form string="Account balance report template" version="7.0">
+                    <label for="name" class="oe_edit_only"/>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group col="4">
+                        <field name="report_xml_id" domain="[('model','=','account.balance.reporting')]"/>
+                        <field name="balance_mode"/>
+                    </group>
+                    <notebook>
+                        <page string="Information">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                        <page string="Lines">
+                            <field name="line_ids" nolabel="1" context="{'template_id':active_id}">
+                                <tree string="Template lines" colors="blue:css_class in ('l1')" version="7.0" editable="top">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="current_value"/>
+                                    <field name="previous_value"/>
+                                    <field name="negate"/>
+                                    <field name="template_id" invisible="1"/>
+                                    <field name="parent_id" domain="[('template_id', '=', template_id)]"/>
+                                    <field name="css_class"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <!-- Template tree view -->
+        <record model="ir.ui.view" id="view_account_balance_reporting_template_tree">
+            <field name="name">account.balance.reporting.template.tree</field>
+            <field name="model">account.balance.reporting.template</field>
+            <field name="arch" type="xml">
+                <tree string="Account balance report templates" version="7.0">
+                    <field name="name"/>
+                    <field name="report_xml_id"/>
+                    <field name="balance_mode"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--*** Window action *******************************************-->
+
+        <record model="ir.actions.act_window" id="action_view_account_balance_reporting_template">
+            <field name="name">Account balance templates</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.balance.reporting.template</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_account_balance_reporting_template_tree"/>
+        </record>
+
+    </data>
+</openerp>
