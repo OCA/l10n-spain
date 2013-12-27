@@ -19,27 +19,21 @@
 #
 ##############################################################################
 
-__author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
-"""
-Extends the account journals to add fields used by the 347 report.
-"""
+from openerp.osv import fields
+from openerp.osv import orm
 
-from osv import osv, fields
 
-class res_partner(osv.osv):
-    """
-    Extends the partners to add the include_in_mod347 field
-    """
+class res_partner(orm.Model):
     _inherit = "res.partner"
-    
     _columns = {
-        'include_in_mod347' : fields.boolean(u"Include in 347 Report",
+        'include_in_mod347': fields.boolean(u"Include in 347 Report",
             help="Include in AEAT 347 Model report"),
-    }
-
+        }
     _defaults = {
-        'include_in_mod347' : lambda *a: True,
-    }
+        'include_in_mod347': lambda *a: True,
+        }
 
 res_partner()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
