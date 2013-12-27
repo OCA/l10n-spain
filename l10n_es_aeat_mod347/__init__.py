@@ -19,11 +19,10 @@
 #
 ##############################################################################
 
-__author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
 import account_journal
 import res_partner
 import mod347
-
 import wizard
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

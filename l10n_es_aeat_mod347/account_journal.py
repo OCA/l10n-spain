@@ -19,27 +19,23 @@
 #
 ##############################################################################
 
-__author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
-"""
-Extends the account journals to add fields used by the 347 report.
-"""
+from openerp.osv import fields
+from openerp.osv import orm
 
-from osv import osv, fields
 
-class account_journal(osv.osv):
-    """
-    Extends the account journals to add the cash_journal field.
-    """
+class account_journal(orm.Model):
     _inherit = 'account.journal'
-
     _columns = {
         'cash_journal': fields.boolean('Cash payments journal',
-            help="Payments of this journal will be considered as cash (used on the 347 report)"),
-    }
+            help="Payments of this journal will be considered as cash" \
+                 "(used on the 347 report)"),
+            }
 
     _defaults = {
-        'cash_journal': lambda *a : False
-    }
-    
+        'cash_journal': lambda *a: False
+        }
+
 account_journal()
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -23,15 +23,16 @@
 #
 ##############################################################################
 
-__author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
 import threading
 import netsvc
 import time
 import re
-from osv import osv
+from openerp.osv import orm
+from openerp.osv import fields
 
-class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
+
+class l10n_es_aeat_mod347_calculate_records(orm.AbstractModel):
     _name = "l10n.es.aeat.mod347.calculate_records"
     _description = u"AEAT Model 347 Wizard - Calculate Records"
 
@@ -42,11 +43,18 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
         self._calculate_records(cr, uid, ids, context, recalculate=False)
 
         wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(uid, 'l10n.es.aeat.mod347.report', ids and ids[0], 'calculate', cr)
+        wf_service.trg_validate(uid,
+                                'l10n.es.aeat.mod347.report',
+                                ids and ids[0],
+                                'calculate',
+                                cr)
 
     # Calculate total invoice without IRPF
     def _calculate_total_invoice(self, cr, uid, ids, context=None):
-        invoice = self.pool.get('account.invoice').browse(cr,uid,ids,context)
+        invoice = self.pool.get('account.invoice').browse(cr,
+                                                          uid,
+                                                          ids,
+                                                          context)
         amount = invoice.cc_amount_untaxed
         for tax_line in invoice.tax_line:
             if tax_line.name.find('IRPF') == -1:
@@ -60,64 +68,94 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
         try:
 
             partner_obj = self.pool.get('res.partner')
-            partner_address_obj = self.pool.get('res.partner.address')
-            
+            partner_address_obj = self.pool.get('res.partner')
+
             invoice_obj = self.pool.get('account.invoice')
 
             report_obj = self.pool.get('l10n.es.aeat.mod347.report')
-            partner_record_obj = self.pool.get('l10n.es.aeat.mod347.partner_record')
-            invoice_record_obj = self.pool.get('l10n.es.aeat.mod347.invoice_record')
+            partner_record_obj = self.pool.get(
+                                        'l10n.es.aeat.mod347.partner_record'
+                                        )
+            invoice_record_obj = self.pool.get(
+                                        'l10n.es.aeat.mod347.invoice_record'
+                                        )
 
             report_obj = report_obj.browse(cr, uid, ids and ids[0])
 
-            ##
             ## Change status to 'calculated' and set current calculate date
             report_obj.write({
-                'state' : 'calculating',
-                'calculation_date' : time.strftime('%Y-%m-%d %H:%M:%S')
+                'state': 'calculating',
+                'calculation_date': time.strftime('%Y-%m-%d %H:%M:%S')
             })
 
-            ##
-            ## Delete previous partner records
-            partner_record_obj.unlink(cr, uid, [r.id for r in report_obj.partner_record_ids])
-    
-            ##
-            ## Get the cash journals (moves on this journals will be considered cash)
-            cash_journal_ids = self.pool.get('account.journal').search(cr, uid, [('cash_journal', '=', True)])
+            # Delete previous partner records
+            partner_record_obj.unlink(cr, uid, [r.id for
+                                                r in
+                                                report_obj.partner_record_ids])
 
-            ## Get the fiscal year period ids of the non-special periods
-            ## (to ignore closing/opening entries)
-            period_ids = [period.id for period in report_obj.fiscalyear_id.period_ids if not period.special]
+            # Get the cash journals(moves on this journals will be considered cash)
+            cash_journal_ids = self.pool.get(
+                                    'account.journal'
+                                    ).search(cr, uid, [('cash_journal',
+                                                        '=',
+                                                        True)])
 
-            ##
-            ## We will check every partner with include_in_mod347
+            # Get the fiscal year period ids of the non-special periods
+            # (to ignore closing/opening entries)
+            period_ids = [period.id for
+                          period in
+                          report_obj.fiscalyear_id.period_ids if not
+                          period.special]
+
+            # We will check every partner with include_in_mod347
             visited_partners = []
-            partner_ids = partner_obj.search(cr, uid, [('include_in_mod347', '=', True)])
+            if report_obj.only_supplier == True:
+                partner_ids = partner_obj.search(
+                                            cr,
+                                            uid,
+                                            [('include_in_mod347', '=', True),
+                                            ('supplier', '=', True)
+                                            ])
+            else:
+                partner_ids = partner_obj.search(
+                                            cr,
+                                            uid,
+                                            [('include_in_mod347', '=', True)])
             for partner in partner_obj.browse(cr, uid, partner_ids):
                 if partner.id not in visited_partners:
                     receivable_partner_record = False
                     partner_grouped_cif = []
 
                     if partner.vat and report_obj.group_by_cif:
-                        partner_grouped_cif = partner_obj.search(cr, uid, [('vat','=',partner.vat),('include_in_mod347', '=', True)])
+                        if report_obj.only_supplier == True:
+                            partner_grouped_cif = partner_obj.search(
+                                                cr,
+                                                uid,
+                                                [('vat', '=', partner.vat),
+                                                ('include_in_mod347', '=', True),
+                                                ('supplier', '=', True)
+                                                ])
+                        else:
+                            partner_grouped_cif = partner_obj.search(
+                                                cr,
+                                                uid,
+                                                [('vat', '=', partner.vat),
+                                                ('include_in_mod347', '=', True)])
                     else:
                         partner_grouped_cif.append(partner.id)
 
                     visited_partners.extend(partner_grouped_cif)
 
-                    ##
                     ## Search for invoices
-                    #
                     # We will repeat the process for sales and purchases:
-                    for invoice_type, refund_type in zip(('out_invoice', 'in_invoice'), ('out_refund', 'in_refund')):
+                    for invoice_type, refund_type in zip(('out_invoice',
+                                                          'in_invoice'),
+                                                         ('out_refund', 'in_refund')):
                         #
-                        # CHECK THE SALE/PURCHASES INVOICE LIMIT -------------------
+                        # CHECK THE SALE/PURCHASES INVOICE LIMIT -------------
                         # (A and B operation keys)
-                        #
 
-                        #
                         # Search for invoices to this partner (with account moves).
-                        #
                         invoice_ids = invoice_obj.search(cr, uid, [
                                     ('partner_id', 'in', partner_grouped_cif),
                                     ('type', '=', invoice_type),
@@ -133,16 +171,21 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                         invoices = invoice_obj.browse(cr, uid, invoice_ids)
                         refunds = invoice_obj.browse(cr, uid, refund_ids)
 
-                        ##
                         ## Calculate the invoiced amount
                         ## Remove IRPF tax for invoice amount
                         invoice_amount = 0
                         for invoice in invoices:
-                            invoice_amount += self._calculate_total_invoice(cr, uid, invoice.id, context)
+                            invoice_amount += self._calculate_total_invoice(cr,
+                                                                            uid,
+                                                                            invoice.id,
+                                                                            context)
 
                         refund_amount = 0
                         for invoice in refunds:
-                            refund_amount += self._calculate_total_invoice(cr, uid, invoice.id, context)
+                            refund_amount += self._calculate_total_invoice(cr,
+                                                                           uid,
+                                                                           invoice.id,
+                                                                           context)
 
                         total_amount = invoice_amount - refund_amount
 
@@ -151,24 +194,25 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                         ## we will add an partner record to the report.
                         if total_amount > report_obj.operations_limit:
                             if invoice_type == 'out_invoice':
-                                operation_key = 'B' # Note: B = Sale operations
+                                operation_key = 'B'  # Note: B = Sale operations
                             else:
                                 assert invoice_type == 'in_invoice'
-                                operation_key = 'A' # Note: A = Purchase operations
-
-                            #
+                                operation_key = 'A'  # Note: A = Purchase operations
                             # Get the default invoice address of the partner
-                            #
                             address = None
-                            address_ids = partner_obj.address_get(cr, uid, [partner.id], ['invoice', 'default'])
+                            address_ids = partner_obj.address_get(cr,
+                                                                  uid,
+                                                                  [partner.id],
+                                                                  ['invoice',
+                                                                   'default'])
                             if address_ids.get('invoice'):
                                 address = partner_address_obj.browse(cr, uid, address_ids.get('invoice'))
                             elif address_ids.get('default'):
-                                address = partner_address_obj.browse(cr, uid, address_ids.get('default'))
+                                address = partner_address_obj.browse(cr,
+                                                                     uid,
+                                                                     address_ids.get('default'))
 
-                            #
                             # Get the partner data
-                            #
                             partner_vat = partner.vat and re.match(r"([A-Z]{0,2})(.*)", partner.vat).groups()[1]
                             partner_state_code = address.state_id and address.state_id.code or ''
                             partner_country_code = address.country_id and address.country_id.code or ''
@@ -177,44 +221,50 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
 
                             # Create the partner record
                             partner_record = partner_record_obj.create(cr, uid, {
-                                    'report_id': report_obj.id ,
-                                    'operation_key' : operation_key,
+                                    'report_id': report_obj.id,
+                                    'operation_key': operation_key,
                                     'partner_id': partner.id,
                                     'partner_vat': partner_vat,
                                     'representative_vat': '',
                                     'partner_state_code': partner_state_code,
-                                    'partner_country_code' : partner_country_code,
+                                    'partner_country_code': partner_country_code,
                                     'amount': total_amount,
                                 })
 
                             if invoice_type == 'out_invoice':
                                 receivable_partner_record = partner_record
 
-                            #
                             # Add the invoices detail to the partner record
-                            #
                             for invoice in invoices:
-                                amount = self._calculate_total_invoice(cr, uid, invoice.id, context)
+                                amount = self._calculate_total_invoice(cr,
+                                                                       uid,
+                                                                       invoice.id,
+                                                                       context)
                                 invoice_record_obj.create(cr, uid, {
-                                    'partner_record_id' : partner_record,
+                                    'partner_record_id': partner_record,
                                     'invoice_id': invoice.id,
                                     'date': invoice.date_invoice,
                                     'amount': amount,
                                 })
                             for invoice in refunds:
-                                amount = self._calculate_total_invoice(cr, uid, invoice.id, context)
+                                amount = self._calculate_total_invoice(
+                                                                    cr,
+                                                                    uid,
+                                                                    invoice.id,
+                                                                    context)
                                 invoice_record_obj.create(cr, uid, {
-                                    'partner_record_id' : partner_record,
+                                    'partner_record_id': partner_record,
                                     'invoice_id': invoice.id,
                                     'date': invoice.date_invoice,
                                     'amount': -amount,
                                 })
 
-                    #
                     # Search for payments received in cash from this partner.
-                    #
                     if cash_journal_ids:
-                        cash_account_move_line_ids = self.pool.get('account.move.line').search(cr, uid, [
+                        cash_account_move_line_ids = self.pool.get('account.move.line').search(
+                                                                    cr,
+                                                                    uid,
+                                    [
                                     ('partner_id', 'in', partner_grouped_cif),
                                     ('account_id', '=', partner.property_account_receivable.id),
                                     ('journal_id', 'in', cash_journal_ids),
@@ -228,9 +278,7 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                         cash_account_move_lines = []
                         received_cash_amount = 0.0
 
-                    #
                     # Add the cash detail to the partner record if over limit
-                    #
                     if received_cash_amount > report_obj.received_cash_limit:
                         cash_moves = {}
 
@@ -289,32 +337,35 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
 
                                     for line in cash_moves[record]:
                                         self.pool.get('l10n.es.aeat.mod347.cash_record').create(cr, uid, {
-                                            'partner_record_id' : partner_rec,
-                                            'move_line_id' : line.id,
+                                            'partner_record_id': partner_rec,
+                                            'move_line_id': line.id,
                                             'date': line.date,
                                             'amount': line.credit,
                                         })
 
             if recalculate:
                 report_obj.write({
-                    'state' : 'calculated',
-                    'calculation_date' : time.strftime('%Y-%m-%d %H:%M:%S')
+                    'state': 'calculated',
+                    'calculation_date': time.strftime('%Y-%m-%d %H:%M:%S')
                 })
-        
+
         except Exception, ex:
             raise
 
         return True
 
-
     def calculation_threading(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
 
-        threaded_calculation = threading.Thread(target=self._calculate_records, args=(cr, uid, ids, context))
+        threaded_calculation = threading.Thread(target=self._calculate_records, args=(cr,
+                                                                                      uid,
+                                                                                      ids,
+                                                                                      context))
         threaded_calculation.start()
 
         return {}
 
 l10n_es_aeat_mod347_calculate_records()
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
