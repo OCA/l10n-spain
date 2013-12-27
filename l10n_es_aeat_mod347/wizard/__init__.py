@@ -19,8 +19,6 @@
 #
 ##############################################################################
 
-__author__ = "Luis Manuel Angueira Blanco (Pexego)"
-
 
 import calculate_mod347_records
 import export_mod347_to_boe
