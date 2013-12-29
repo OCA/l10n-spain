@@ -50,6 +50,7 @@ NOTA: Éste módulo añade un asistente en Empresas/Configuración/Bancos para l
         "base",
         "base_iban",
         "l10n_es_toponyms",
+        "account",
         ],
     "init_xml" : [],
     "update_xml" : [
