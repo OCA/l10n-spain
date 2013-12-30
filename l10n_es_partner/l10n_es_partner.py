@@ -23,16 +23,21 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 from osv import orm, fields
-from tools.translate import _
-import tools
-import os
+from openerp.tools.translate import _
 
 class res_partner_bank(orm.Model):
     _inherit = 'res.partner.bank'
     _columns = {
-        'acc_country_id': fields.many2one("res.country", 'Bank country', help="If the country of the bank is Spain, it validates the bank code. It only reads the digit characters of the bank code:\n- If the number of digits is 18, computes the two digits of control.\n- If the number of digits is 20, computes the two digits of control and ignores the current ones.\n- If the number of digits is different from 18 or 20, it leaves the bank code unaltered.\nThe result is shown in the '1234 5678 06 1234567890' format."),
+        'acc_country_id': fields.many2one("res.country", 'Bank country',
+            help="If the country of the bank is Spain, it validates the bank "
+                 "code. It only reads the digit characters of the bank code:\n"
+                 "- If the number of digits is 18, computes the two digits of "
+                 "control.\n- If the number of digits is 20, computes the two "
+                 "digits of control and ignores the current ones.\n- If the "
+                 "number of digits is different from 18 or 20, it leaves the "
+                 "bank code unaltered.\nThe result is shown in the '1234 5678 "
+                 "06 1234567890' format."),
     }
 
     def _crc(self, cTexto):
@@ -50,7 +55,7 @@ class res_partner_bank(orm.Model):
         elif nValor == 11: 
             nValor = 0
         return nValor
-    
+
     def calcCC(self, cBanco, cSucursal, cCuenta):
         """Cálculo del código de control bancario"""
         cTexto = "00%04d%04d" % (int(cBanco), int(cSucursal))
@@ -58,7 +63,7 @@ class res_partner_bank(orm.Model):
         cTexto = "%010d" % long(cCuenta)
         dc2 = self._crc(cTexto)
         return "%1d%1d" % (dc1, dc2)
-    
+
     def checkBankAccount(self, account):
         number = ""
         for i in account:
@@ -73,18 +78,29 @@ class res_partner_bank(orm.Model):
         if dc != self.calcCC(bank, office, account):
             return 'invalid-dc'
         return '%s %s %s %s' % (bank, office, dc, account)
-    
-    def onchange_banco(self, cr, uid, ids, account, country_id, context):
+
+    def onchange_banco(self, cr, uid, ids, account, country_id, context=None):
         if account and country_id:
-            country = self.pool.get('res.country').browse(cr, uid, country_id, context)
+            country = self.pool.get('res.country').browse(cr, uid, country_id,
+                                                          context=context)
             if country.code.upper() == 'ES':
                 number = self.checkBankAccount(account)
                 if number == 'invalid-size':
-                    return { 'warning': { 'title': _('Warning'), 'message': _('Bank account should have 20 digits.') } }
+                    return {
+                        'warning': {
+                            'title': _('Warning'),
+                            'message': _('Bank account should have 20 digits.')
+                        }
+                    }
                 if number == 'invalid-dc':
-                    return { 'warning': { 'title': _('Warning'), 'message': _('Invalid bank account.') } }
-    
-                bank_ids = self.pool.get('res.bank').search(cr, uid, [('code', '=', number[:4])], context=context)
+                    return {
+                        'warning': {
+                            'title': _('Warning'),
+                            'message': _('Invalid bank account.')
+                        }
+                    }
+                bank_ids = self.pool.get('res.bank').search(cr, uid,
+                                [('code', '=', number[:4])], context=context)
                 if bank_ids:
                     return {'value':{'acc_number': number, 'bank': bank_ids[0]}}
                 else:
@@ -106,10 +122,11 @@ class res_bank(orm.Model):
 class res_partner(orm.Model):
     _inherit = 'res.partner'
     _columns = {
-        'comercial': fields.char('Trade name', size=128, select=True), # Nombre Comercial del Partner
+        'comercial': fields.char('Trade name', size=128, select=True),
     }
 
-    def name_search(self, cr, uid, name, args=None, operator='ilike', context=None, limit=100):
+    def name_search(self, cr, uid, name, args=None, operator='ilike',
+                    context=None, limit=100):
         if not args:
             args=[]
         if not context:
@@ -124,7 +141,8 @@ class res_partner(orm.Model):
         return self.name_get(cr, uid, ids, context)
 
     def vat_change(self, cr, uid, ids, value, context=None):
-        result = super(res_partner,self).vat_change(cr, uid, ids, value, context = context)
+        result = super(res_partner,self).vat_change(cr, uid, ids, value,
+                                                    context=context)
         if value:
             result['value']['vat'] = value.upper()
         return result
