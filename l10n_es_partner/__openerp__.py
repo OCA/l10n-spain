@@ -31,6 +31,11 @@
     "version" : "1.0",
     "author" : "Spanish localization team",
     "website" : "https://launchpad.net/openerp-spain",
+    "contributors": [
+        'Jordi Esteve <jesteve@zikzakmedia.com>',
+        'Ignacio Ibeas <ignacio@acysos.com>',
+        'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com',
+    ]
     "category" : "Localisation/Europe",
     "description": """
 Funcionalidades:
@@ -52,11 +57,11 @@ Funcionamiento de la validación de la cuenta bancaria:
         "base",
         "base_iban",
         "l10n_es_toponyms",
-        ],
+    ],
     "data" : [
         "l10n_es_partner_view.xml",
         "wizard/l10n_es_partner_wizard.xml"
-        ],
+    ],
     "active": False,
     "installable": True
 }
