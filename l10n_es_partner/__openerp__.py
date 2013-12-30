@@ -35,7 +35,7 @@
         'Jordi Esteve <jesteve@zikzakmedia.com>',
         'Ignacio Ibeas <ignacio@acysos.com>',
         'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com',
-    ]
+    ],
     "category" : "Localisation/Europe",
     "description": """
 Funcionalidades:
