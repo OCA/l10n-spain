@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="pgc_pymes_4729" model="account.account.template">
+            <field name="code">4729</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="l10n_es.pgc_pymes_472"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA soportado pendiente de pagar</field>
+            <field name="user_type" ref="l10n_es.tax"/>
+        </record>
+
+        <record id="pgc_pymes_4779" model="account.account.template">
+            <field name="code">4779</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="l10n_es.pgc_pymes_477"/>
+            <field name="type">view</field>
+            <field name="name">Hacienda Pública. IVA repercutido pendiente de cobrar</field>
+            <field name="user_type" ref="l10n_es.tax"/>
+        </record>
+
+        <record id="pgc_pymes_4779_child" model="account.account.template">
+            <field name="code">4779</field>
+            <field name="reconcile" eval="True"/>
+            <field name="parent_id" ref="pgc_pymes_4779"/>
+            <field name="type">other</field>
+            <field name="name">Hacienda Pública. IVA repercutido pendiente de cobrar</field>
+            <field name="user_type" ref="l10n_es.tax"/>
+        </record>
+
+    </data>
+</openerp>
