@@ -34,9 +34,7 @@
 Implementación del Régimen Especial del Criterio de Caja (RECC) español
 =======================================================================
 
-La implementación sólo contempla el plan contable para PYMEs (de hecho, las
-empresas que utilicen el plan contable completo no pueden acogerse a este
-régimen especial, ya que su facturación es mayor de 2 M de euros).
+La implementación actual sólo contempla el plan contable para PYMEs.
 
 Define los impuestos, códigos de impuestos y las cuentas necesarias para
 manejar por separado el IVA pendiente de cobrar y de pagar. Para ello, utiliza
@@ -60,10 +58,10 @@ que establecer por defecto para todos los clientes que la posición fiscal sea
 la anteriormente dicha. *AVISO*: Si esta norma se incumple, el sistema creará
 asientos incorrectos que pueden derivar en la ilegalidad.
 
-El módulo también modifica el comportamiento del voucher para que al realizar
-el pago, se lleven los saldos contables a sus cuentas correspondientes,
-constando ya en los informes de impuestos en los apartados adecuados para su
-presentación a Hacienda (NO ESTÁ IMPLEMENTADO AÚN).
+El módulo también modifica el comportamiento de la conciliación para que al
+realizar un pago, se lleven los saldos contables a sus cuentas
+correspondientes, constando ya en los informes de impuestos en los apartados
+adecuados para su presentación a Hacienda (NO ESTÁ IMPLEMENTADO AÚN).
 
 *ADVERTENCIA*: Este módulo no gestiona la condición de que el IVA se debe
 repercutir o soportar forzosamente, aunque no se haya cobrado/pagado, el día
