@@ -8,10 +8,10 @@
         <field name="inherit_id" ref="base.view_partner_bank_form"/>
         <field name="arch" type="xml">
             <field name="acc_number" position="before">
-                <field name="acc_country_id" on_change="onchange_banco(acc_number, acc_country_id)"/>
+                <field name="acc_country_id" on_change="onchange_banco(acc_number, acc_country_id, state)"/>
             </field>
             <field name="acc_number" position="attributes">
-                <attribute name="on_change">onchange_banco(acc_number, acc_country_id)</attribute>
+                <attribute name="on_change">onchange_banco(acc_number, acc_country_id, state)</attribute>
             </field>
         </field>
     </record>
