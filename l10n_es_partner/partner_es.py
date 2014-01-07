@@ -5,7 +5,7 @@
 #    Copyright (c) 2008 Spanish Localization Team
 #    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2012 Acysos S.L. (http://acysos.com) All Rights Reserved.
+#    Copyright (c) 2012-2014 Acysos S.L. (http://acysos.com) All Rights Reserved.
 #                       Ignacio Ibeas <ignacio@acysos.com>
 #    $Id$
 #
@@ -66,26 +66,58 @@ def checkBankAccount(account):
         return 'invalid-dc'
     return '%s %s %s %s' % (bank, office, dc, account)
 
+def _pretty_iban(iban_str):
+    "return iban_str in groups of four characters separated by a single space"
+    res = []
+    while iban_str:
+        res.append(iban_str[:4])
+        iban_str = iban_str[4:]
+    return ' '.join(res)
+
 class res_partner_bank(osv.osv):
     _inherit = 'res.partner.bank'
     _columns = {
         'acc_country_id': fields.many2one("res.country", 'Bank country', help="If the country of the bank is Spain, it validates the bank code. It only reads the digit characters of the bank code:\n- If the number of digits is 18, computes the two digits of control.\n- If the number of digits is 20, computes the two digits of control and ignores the current ones.\n- If the number of digits is different from 18 or 20, it leaves the bank code unaltered.\nThe result is shown in the '1234 5678 06 1234567890' format."),
     }
 
-    def onchange_banco(self, cr, uid, ids, account, country_id, context=None):
+    def onchange_banco(self, cr, uid, ids, account, country_id, state, context=None):
         if account and country_id:
             country = self.pool.get('res.country').browse(cr, uid, country_id, context)
-            if country.code.upper() in ('ES', 'CT'):
-                number = checkBankAccount(account)
-                if number == 'invalid-size':
-                    return { 'warning': { 'title': _('Warning'), 'message': _('Bank account should have 20 digits.') } }
-                if number == 'invalid-dc':
-                    return { 'warning': { 'title': _('Warning'), 'message': _('Invalid bank account.') } }
-                bank_ids = self.pool.get('res.bank').search(cr, uid, [('code','=',number[:4])], context=context)
-                if bank_ids:
-                    return {'value':{'acc_number': number, 'bank': bank_ids[0]}}
-                else:
-                    return {'value':{'acc_number': number}}
+            if country.code.upper() in ('ES'):
+                bank_obj = self.pool.get('res.bank')
+                if state == 'bank':
+                    number = checkBankAccount( account )
+                    if number == 'invalid-size':
+                        return { 'warning': { 'title': _('Warning'), 
+                                 'message': _('Bank account should have 20 digits.') } }
+                    if number == 'invalid-dc':
+                        return { 'warning': { 'title': _('Warning'), 
+                                     'message': _('Invalid bank account.') } }
+
+                    bank_ids = bank_obj.search(cr, uid, 
+                                               [('code','=',number[:4])], 
+                                               context=context)
+                    if bank_ids:
+                        return {'value':{'acc_number': number, 
+                                         'bank': bank_ids[0]}}
+                    else:
+                        return {'value':{'acc_number': number}}
+                elif state =='iban':
+                    partner_bank_obj = self.pool.get('res.partner.bank')
+                    if partner_bank_obj.is_iban_valid(cr,uid,account,context):
+                        number = _pretty_iban(account.replace(" ", ""))
+                        
+                        bank_ids = bank_obj.search(cr, uid, 
+                                                   [('code','=',number[5:9])], 
+                                                   context=context)
+                        if bank_ids:
+                            return {'value':{'acc_number': number, 
+                                             'bank': bank_ids[0]}}
+                        else:
+                            return {'value':{'acc_number': number}}
+                    else:
+                       return { 'warning': { 'title': _('Warning'), 
+                                'message': _('IBAN account is not valid') } } 
         return {'value':{}}
 
 res_partner_bank()
