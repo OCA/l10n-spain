@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: OpenERP Server 7.0-20131224-002412\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 13:15+0000\n"
-"PO-Revision-Date: 2013-06-24 13:15+0000\n"
+"POT-Creation-Date: 2014-01-07 10:52+0000\n"
+"PO-Revision-Date: 2014-01-07 10:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -43,10 +43,9 @@ msgid "Import spanish bank data"
 msgstr ""
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/l10n_es_partner.py:83
-#: code:addons/l10n_es_partner/l10n_es_partner.py:85
+#: code:addons/l10n_es_partner/l10n_es_partner.py:135
 #, python-format
-msgid "Warning"
+msgid "IBAN account is not valid"
 msgstr ""
 
 #. module: l10n_es_partner
@@ -76,7 +75,7 @@ msgid "Value Added Tax number"
 msgstr ""
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/l10n_es_partner.py:83
+#: code:addons/l10n_es_partner/l10n_es_partner.py:104
 #, python-format
 msgid "Bank account should have 20 digits."
 msgstr ""
@@ -111,9 +110,22 @@ msgid "Import"
 msgstr ""
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/l10n_es_partner.py:85
+#: code:addons/l10n_es_partner/l10n_es_partner.py:103
+#: code:addons/l10n_es_partner/l10n_es_partner.py:110
+#: code:addons/l10n_es_partner/l10n_es_partner.py:134
+#, python-format
+msgid "Warning"
+msgstr ""
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/l10n_es_partner.py:111
 #, python-format
 msgid "Invalid bank account."
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:res.partner.bank:0
+msgid "onchange_banco(acc_number, acc_country_id, state)"
 msgstr ""
 
 #. module: l10n_es_partner
