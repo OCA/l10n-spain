@@ -431,7 +431,7 @@ class account_balance_reporting_line(orm.Model):
                 for account in acc_obj.browse(cr, uid, account_ids,
                                               context=context):
                     if mode == 'debit':
-                        res += account.debit * sign
+                        res -= account.debit * sign
                     elif mode == 'credit':
                         res += account.credit * sign
                     else:
