@@ -218,6 +218,7 @@ class account_balance_reporting_line(orm.Model):
     _defaults = {
         'report_id': lambda self, cr, uid, context: context.get('report_id', None),
         'css_class': 'default',
+        'sequence': 10,
     }
 
     _order = "sequence, code"

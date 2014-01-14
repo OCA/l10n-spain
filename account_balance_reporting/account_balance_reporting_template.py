@@ -174,7 +174,9 @@ class account_balance_reporting_template_line(orm.Model):
                                                         'template_id', None),
         'negate': False,
         'css_class': 'default',
+        'sequence': 10,
     }
+
 
     _order = "sequence, code"
 
