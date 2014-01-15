@@ -22,17 +22,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-
-import netsvc
-import re
 from openerp.tools.translate import _
 from openerp.osv import orm, fields
+import netsvc
+import re
 
 class l10n_es_aeat_report(orm.Model):
     _name = "l10n.es.aeat.report"
     _description = "AEAT Report base module"
-
 
     def on_change_company_id(self, cr, uid, ids, company_id):
         """
@@ -41,14 +38,13 @@ class l10n_es_aeat_report(orm.Model):
         """
         company_vat = ''
         if company_id:
-            company = self.pool.get('res.company').browse(cr, uid, company_id)
+            company = self.pool['res.company'].browse(cr, uid, company_id)
             if company.partner_id and company.partner_id.vat:
                 # Remove the ES part from spanish vat numbers 
                 # (ES12345678Z => 12345678Z)
                 company_vat = re.match("(ES){0,1}(.*)",
                                        company.partner_id.vat).groups()[1]
         return  { 'value': { 'company_vat': company_vat } }
-
 
     _columns = {
         'company_id': fields.many2one(
@@ -80,16 +76,16 @@ class l10n_es_aeat_report(orm.Model):
                     'done':[('readonly',True)]}
             ),
         'type': fields.selection(
-            [('N','Normal'),
-            ('C','Complementary'),
-            ('S','Substitutive')],
+            [('N', 'Normal'),
+            ('C', 'Complementary'),
+            ('S', 'Substitutive')],
             'Statement Type',
             states={'calculated':[('required',True)],
                     'done':[('readonly',True)]}
             ),
         'support_type': fields.selection([
-            ('C','DVD'),
-            ('T','Telematics')], 'Support Type',
+            ('C', 'DVD'),
+            ('T', 'Telematics')], 'Support Type',
             states={'calculated':[('required',True)],
                     'done':[('readonly',True)]}),
         'calculation_date': fields.datetime("Calculation date"),
@@ -106,37 +102,27 @@ class l10n_es_aeat_report(orm.Model):
     }
 
     _defaults = {
-        'company_id' : lambda self, cr, uid, context:
-            self.pool.get('res.users').browse(cr, uid,
-                                              uid, context).company_id and
-            self.pool.get('res.users').browse(cr, uid,
-                                              uid, context).company_id.id,
-        'type' : lambda *a: 'N',
-        'support_type' : lambda *a: 'T',
-        'state' : lambda *a: 'draft',
+        'company_id': lambda self, cr, uid, c: (
+            self.pool['res.company']._company_default_get(cr, uid,
+                                                          'l10n.es.aeat.report',
+                                                          context=c)),
+        'type': 'N',
+        'support_type': 'T',
+        'state': 'draft',
     }
 
-
     def action_recover(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {'state': 'draft', 'calculation_date': None}) 
+        self.write(cr, uid, ids, {'state': 'draft', 'calculation_date': None})
         wf_service = netsvc.LocalService("workflow")
         for item_id in ids:
             wf_service.trg_create(uid, self._name, item_id, cr)
         return True
 
-
     def unlink(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-
         for item in self.browse(cr, uid, ids):
             if item.state not in ['draft', 'canceled']:
-                raise orm.except_orm(
-                    _('Error!'),
-                    _("Only reports in 'draft' or 'cancel'" + \
-                      "state can be removed")
-                    )
-
-        return super(l10n_es_aeat_report, self).unlink(cr, uid, ids, context)
-
-l10n_es_aeat_report()
+                raise orm.except_orm(_('Error!'),
+                                     _("Only reports in 'draft' or 'cancel' "
+                                       "state can be removed"))
+        return super(l10n_es_aeat_report, self).unlink(cr, uid, ids,
+                                                       context=context)
