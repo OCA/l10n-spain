@@ -36,8 +36,7 @@ from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
     _name = "l10n.es.aeat.report.export_to_boe"
     _description = "Export Report to BOE Format"
-    
-    
+
     ########################
     ### HELPER FUNCTIONS ###
     ########################
@@ -116,7 +115,6 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
         # Return string
         return ascii_string
 
-
     def _formatNumber(self, number, int_length, dec_length=0,
                       include_sign=False):
         """
@@ -157,13 +155,11 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
         # Return the string
         return ascii_string
 
-
     def _formatBoolean(self, value, yes='X', no=' '):
         """
         Formats a boolean value into a fixed length ASCII (iso-8859-1) record.
         """
         return value and yes or no
-
 
     #########################
     ### RECORDS FUNCTIONS ###
@@ -177,38 +173,25 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
     def _get_formated_other_records(self, report):
         return ''
 
-    def _export_boe_file(self, cr, uid, ids, report, model=None, context=None):
+    def _export_boe_file(self, cr, uid, ids, report, model=None,
+                         context=None):
         """
         Action that exports the data into a BOE formated text file
         """
-        if context is None:
-            context = {}
-
         assert model , u"AEAT Model is necessary"
-
         file_contents = ''
-
-        ##
         ## Add header record
         file_contents += self._get_formated_declaration_record(report)
-
-        ##
         ## Add the partner records
         for partner_record in report.partner_record_ids:
             file_contents += self._get_formated_partner_record(report,
                                                                partner_record)
-
-        ##
         ## Adds other fields
         file_contents += self._get_formated_other_records(report)
-
-        ##
         ## Generate the file and save as attachment
         file = base64.encodestring(file_contents)
-
         file_name = _("%s_report_%s.txt") % \
             (model,time.strftime(_(DEFAULT_SERVER_DATE_FORMAT)))
-        
         # Delete old files
         obj_attachment = self.pool.get('ir.attachment')
         attachment_ids = obj_attachment.search(
@@ -217,18 +200,15 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
            )
         if len(attachment_ids):
             obj_attachment.unlink(cr, uid, attachment_ids)
-            
-        attach_id = self.pool.get("ir.attachment").create(cr, uid, {
+        attach_id = self.pool["ir.attachment"].create(cr, uid, {
             "name" : file_name,
             "datas" : file,
             "datas_fname" : file_name,
             "res_model" : "l10n.es.aeat.mod%s.report" % model,
             "res_id" : ids and ids[0]
         }, context=context)
-        
-        mod_obj = self.pool.get(report._model._name)
-        mod_obj.write(cr,uid,[report.id],{'attach_id':attach_id},context)
+        mod_obj = self.pool[report._model._name]
+        mod_obj.write(cr, uid, [report.id], {'attach_id': attach_id},
+                      context=context)
         
         return True
-
-l10n_es_aeat_report_export_to_boe()
