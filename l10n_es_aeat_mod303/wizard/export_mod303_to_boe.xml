@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.actions.act_window" id="action_wizard_aeat_mod303_export">
+            <field name="name">Export AEAT 303 BOE file</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">l10n.es.aeat.mod303.export_to_boe</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_wizard_aeat_mod303_export_form">
+            <field name="act_window_id" ref="action_wizard_aeat_mod303_export"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="l10n_es_aeat.wizard_aeat_export"/>
+        </record>
+    </data>
+</openerp>
