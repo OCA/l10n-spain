@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Tree view -->
+        <record id="view_l10n_es_aeat_report_tree" model="ir.ui.view">
+            <field name="name">l10n_es.aeat.report.tree</field>
+            <field name="model">l10n.es.aeat.report</field>
+            <field name="arch" type="xml">
+                <tree string="AEAT report">
+                    <field name="fiscalyear_id"/>
+                    <field name="state"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form view -->
+        <record id="view_l10n_es_aeat_report_form" model="ir.ui.view">
+            <field name="name">l10n_es.aeat.report.form</field>
+            <field name="model">l10n.es.aeat.report</field>
+            <field name="arch" type="xml">
+                <form string="AEAT report" version="7.0">
+                    <header>
+                        <button name="button_calculate" type="object" string="Calculate" states="draft" icon="terp-stock_format-scientific"/>
+                        <button name="button_recalculate" type="object" string="Recalculate" states="calculated" icon="gtk-execute"/>
+                        <button name="button_confirm" string="Confirm" type="object" states="calculated" icon="gtk-ok"/>
+                        <button name="%(action_wizard_aeat_export)d" type="action" string="Export to BOE" states="done" icon="gtk-execute"/>
+                        <button name="button_recover" string="Draft" type="object" states="cancelled" icon="gtk-undo"/>
+                        <button name="button_cancel" string="Cancel" type="object" states="calculated,done" icon="gtk-cancel"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group string="Declaración" colspan="4">
+                            <group>
+                                <field name="company_vat" required="1"/>
+                                <field name="fiscalyear_id" select="1"/>
+                            </group>
+                            <group>
+                                <field name="calculation_date" readonly="1"/>
+                                <field name="company_id" on_change="on_change_company_id(company_id)" required="1" select="1" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_l10n_es_aeat_report_search" model="ir.ui.view">
+            <field name="name">AEAT Model (search)</field>
+            <field name="model">l10n.es.aeat.report</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="AEAT">
+                    <filter string="Draft" domain="[('state','=','draft')]" help="Draft models"/>
+                    <filter string="In process" domain="[('state', '=', 'calculated')]" help="In process models"/>
+                    <filter string="Done" domain="[('state', '=', 'done')]" help="Confirmed models"/>
+                    <filter string="Cancelled" domain="[('state', '=', 'cancelled')]" help="Cancelled models"/>
+                    <filter string="Fiscal year" domain="[]" context="{'group_by':'fiscalyear_id'}"/>
+                    <filter string="Company" domain="[]" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                </search>
+            </field>
+        </record>
+
+    </data>
+</openerp>
