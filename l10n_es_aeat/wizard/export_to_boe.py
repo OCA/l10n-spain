@@ -23,11 +23,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-
 import base64
 import time
-
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT 
@@ -37,9 +34,17 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
     _name = "l10n.es.aeat.report.export_to_boe"
     _description = "Export Report to BOE Format"
 
-    ########################
-    ### HELPER FUNCTIONS ###
-    ########################
+    _columns = {
+        'name': fields.char('File name', readonly=True),
+        'data': fields.binary('File', readonly=True),
+        'state': fields.selection([('open', 'open'),   # open wizard
+                                   ('get', 'get')]),    # get file
+    }
+
+    _defaults = {
+        'state': 'open',
+    }
+
     def _formatString(self, text, length, fill=' ', align='<'):
         """
         Formats the string into a fixed length ASCII (iso-8859-1) record.
@@ -161,54 +166,68 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
         """
         return value and yes or no
 
-    #########################
-    ### RECORDS FUNCTIONS ###
-    #########################
-    def _get_formated_declaration_record(self, report):
+    def _get_formatted_declaration_record(self, report, context=None):
         return ''
 
-    def _get_formated_partner_record(self, report, partner_record):
+    def _get_formatted_main_record(self, report, context=None):
         return ''
 
-    def _get_formated_other_records(self, report):
+    def _get_formatted_other_records(self, report, context=None):
         return ''
 
-    def _export_boe_file(self, cr, uid, ids, report, model=None,
-                         context=None):
+    def _do_global_checks(self, report, contents, context=None):
+        return True
+
+    def action_get_file(self, cr, uid, ids, context=None):
         """
-        Action that exports the data into a BOE formated text file
+        Action that exports the data into a BOE formatted text file.
+        @return: Action dictionary for showing exported file.
         """
-        assert model , u"AEAT Model is necessary"
-        file_contents = ''
+        if not context.get('active_id') or not context.get('active_model'):
+            return False
+        report = self.pool[context['active_model']].browse(cr, uid,
+                                        context['active_id'], context=context)
+        contents = ''
         ## Add header record
-        file_contents += self._get_formated_declaration_record(report)
-        ## Add the partner records
-        for partner_record in report.partner_record_ids:
-            file_contents += self._get_formated_partner_record(report,
-                                                               partner_record)
+        contents += self._get_formatted_declaration_record(report,
+                                                          context=context)
+        ## Add main record
+        contents += self._get_formatted_main_record(report, context=context)
         ## Adds other fields
-        file_contents += self._get_formated_other_records(report)
+        contents += self._get_formatted_other_records(report, context=context)
         ## Generate the file and save as attachment
-        file = base64.encodestring(file_contents)
-        file_name = _("%s_report_%s.txt") % \
-            (model,time.strftime(_(DEFAULT_SERVER_DATE_FORMAT)))
+        file = base64.encodestring(contents)
+        file_name = _("%s_report_%s.txt") % (report.number,
+                                time.strftime(_(DEFAULT_SERVER_DATE_FORMAT)))
         # Delete old files
-        obj_attachment = self.pool.get('ir.attachment')
-        attachment_ids = obj_attachment.search(
-           cr, uid, [('name', '=', file_name),
-                     ('res_model', '=', report._model._name)]
-           )
-        if len(attachment_ids):
-            obj_attachment.unlink(cr, uid, attachment_ids)
-        attach_id = self.pool["ir.attachment"].create(cr, uid, {
+        attachment_obj = self.pool['ir.attachment']
+        attachment_ids = attachment_obj.search(cr, uid,
+                    [('name', '=', file_name),
+                     ('res_model', '=', report._model._name)], context=context)
+        if attachment_ids:
+            attachment_obj.unlink(cr, uid, attachment_ids, context=context)
+        attach_id = attachment_obj.create(cr, uid, {
             "name" : file_name,
             "datas" : file,
             "datas_fname" : file_name,
-            "res_model" : "l10n.es.aeat.mod%s.report" % model,
-            "res_id" : ids and ids[0]
+            "res_model" : "l10n.es.aeat.mod%s.report" % report.number,
+            "res_id" : report.id,
         }, context=context)
-        mod_obj = self.pool[report._model._name]
-        mod_obj.write(cr, uid, [report.id], {'attach_id': attach_id},
-                      context=context)
-        
-        return True
+        self.write(cr, uid, ids,
+                   {'state': 'get', 'data': file, 'name': file_name},
+                   context=context)
+        # Force view to be the parent one
+        data_obj = self.pool['ir.model.data']
+        result = data_obj._get_id(cr, uid, 'l10n_es_aeat',
+                                  'wizard_aeat_export')
+        view_id = data_obj.browse(cr, uid, result, context=context).res_id
+        # TODO: Permitir si se quiere heredar la vista padre
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': self._name,
+            'view_mode': 'form',
+            'view_type': 'form',
+            'view_id': [view_id],
+            'res_id': ids[0],
+            'target': 'new',
+        }
