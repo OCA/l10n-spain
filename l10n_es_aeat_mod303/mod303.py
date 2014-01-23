@@ -20,28 +20,11 @@ from dateutil.relativedelta import relativedelta
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 from openerp.addons.account.report.account_tax_report import tax_report 
-import re
-import time
 
 class l10n_es_aeat_mod303_report(orm.Model):
     _inherit = "l10n.es.aeat.report"
     _name = "l10n.es.aeat.mod303.report"
     _description = "AEAT 303 Report"
-    _rec_name = "number"
-
-    def button_calculate(self, cr, uid, ids, context=None):
-        self.action_confirm(cr, uid, ids, context=context)
-        return True
-
-    def button_recalculate(self, cr, uid, ids, context=None):
-        self.action_confirm(cr, uid, ids, context=context)
-        return True
-
-    def button_export(self, cr, uid, ids, context=None):
-        export_obj = self.pool.get("l10n.es.aeat.mod303.export_to_boe")
-        for report in self.browse(cr, uid, ids, context=context):
-            export_obj._export_boe_file(cr, uid, ids, report, '303')
-        return True
 
     _columns = {
         'company_partner_id': fields.related('company_id', 'partner_id',
@@ -55,15 +38,15 @@ class l10n_es_aeat_mod303_report(orm.Model):
                  ('07', 'July'), ('08', 'August'), ('09', 'September'),
                  ('10', 'October'), ('11', 'November'), ('12', 'December')],
                 'Period', states={'done':[('readonly',True)]}),
-        'devolucion_mensual' : fields.boolean("Devolución Mensual",
+        'devolucion_mensual': fields.boolean("Devolución Mensual",
                 help="Inscrito en el Registro de Devolución Mensual",
                 states={'done':[('readonly',True)]}),
-        'complementaria' : fields.boolean("Autoliquidación complementaria",
+        'complementaria': fields.boolean("Autoliquidación complementaria",
                 states={'done':[('readonly',True)]}),
         'contact_name': fields.char("Full name", size=40),
-        'total_devengado' : fields.float("IVA devengado", readonly=True), # 21
-        'total_deducir' : fields.float("IVA a deducir", readonly=True), # 37
-        'diferencia' : fields.float("Diferencia", readonly=True,
+        'total_devengado': fields.float("IVA devengado", readonly=True), # 21
+        'total_deducir': fields.float("IVA a deducir", readonly=True), # 37
+        'diferencia': fields.float("Diferencia", readonly=True,
                 help="( IVA devengado - IVA deducible )"), # 38
         'porcentaje_atribuible_estado' : fields.float("%",
                 help="Los sujetos pasivos que tributen conjuntamente a la "
@@ -73,12 +56,12 @@ class l10n_es_aeat_mod303_report(orm.Model):
                      "de operaciones en territorio común. Los demás sujetos "
                      "pasivos consignarán en esta casilla el 100%",
                 states={'done':[('readonly',True)]}), ## 39
-        'atribuible_estado' : fields.float("Atribuible a la Administración",
+        'atribuible_estado': fields.float("Atribuible a la Administración",
                                            readonly=True), ## 40
-        'cuota_compensar' : fields.float("Cuotas a compensar",
+        'cuota_compensar': fields.float("Cuotas a compensar",
                 help="Cuota a compensar de periodos anteriores",
                 states={'done':[('readonly',True)]}), ## 41
-        'regularizacion_anual' : fields.float("Regularización anual",
+        'regularizacion_anual': fields.float("Regularización anual",
                 help="En la última autoliquidación del  año (la del período "
                      "4T o mes 12) se hará constar, con el signo que "
                      "corresponda, el resultado de la regularización anual "
@@ -87,27 +70,27 @@ class l10n_es_aeat_mod303_report(orm.Model):
                      "Autónoma del País Vasco y el Convenio Económico entre "
                      "el Estado y la Comunidad Foral de Navarra.""",
                 states={'done':[('readonly',True)]}), ## 45
-        'resultado_casilla_46' : fields.float("Resultado",
+        'resultado_casilla_46': fields.float("Resultado",
                 help="Atribuible a la Administración [40] - Cuotas a compensar "
                      "[41] + Regularización anual [45]""", readonly=True), # 46
-        'previus_result' : fields.float("A deducir",
+        'previus_result': fields.float("A deducir",
                 help="Resultado de la anterior o anteriores del mismo "
                      "concepto, ejercicio y periodo",
                 states={'done':[('readonly',True)]}), # 47
-        'resultado_liquidacion' : fields.float("Resultado liquidación",
+        'resultado_liquidacion': fields.float("Resultado liquidación",
                                                readonly=True), # 48
-        'compensar' : fields.float("Compensar",
-                                   states={'done':[('readonly',True)]}), # 49
-        "devolver" : fields.float("Devolver",
-                                  states={'done':[('readonly',True)]}),
-        "ingresar" : fields.float("Ingresar",
-                                  states={'done':[('readonly',True)]}),
-        'cuenta_devolucion_id' : fields.many2one("res.partner.bank",
+        'compensar': fields.float("Compensar",
+                                  states={'done':[('readonly',True)]}), # 49
+        "devolver": fields.float("Devolver",
+                                 states={'done':[('readonly',True)]}),
+        "ingresar": fields.float("Ingresar",
+                                 states={'done':[('readonly',True)]}),
+        'cuenta_devolucion_id': fields.many2one("res.partner.bank",
                 "CCC devolución", states={'done':[('readonly',True)]}),
-        'cuenta_ingreso_id' : fields.many2one("res.partner.bank",
+        'cuenta_ingreso_id': fields.many2one("res.partner.bank",
                 "CCC Ingreso", states={'done':[('readonly',True)]}),
-        'sin_actividad' : fields.boolean("Sin actividad",
-                                         states={'done':[('readonly',True)]}),
+        'sin_actividad': fields.boolean("Sin actividad",
+                                        states={'done':[('readonly',True)]}),
     }
 
     _defaults = {
@@ -154,7 +137,11 @@ class l10n_es_aeat_mod303_report(orm.Model):
                         'con los periodos del ejercicio fiscal: '), dec_year)
         return account_period_id
 
-    def _get_report_lines(self, cr, uid, id, context=None):
+    def _get_report_lines(self, cr, uid, ids, context=None):
+        if isinstance(ids, list):
+            id = ids[0]
+        else:
+            id = ids
         dict_code_values = {}
         for i in range(1, 51):
             dict_code_values["[%.2d]" %i] = 0
@@ -180,9 +167,10 @@ class l10n_es_aeat_mod303_report(orm.Model):
                     dict_code_values[code] += line["tax_amount"]
         return dict_code_values
 
-    def action_confirm(self, cr, uid, ids, context=None):
+    def calculate(self, cr, uid, ids, context=None):
         for mod303 in self.browse(cr, uid, ids, context=context):
-            report_lines = self._get_report_lines(cr, uid, mod303.id, context)
+            report_lines = self._get_report_lines(cr, uid, mod303.id,
+                                                  context=context)
             regularizacion_anual = (mod303.regularizacion_anual if
                                     (mod303.period == "4T" or
                                      mod303.period == "12") else 0)
@@ -195,8 +183,6 @@ class l10n_es_aeat_mod303_report(orm.Model):
             previus_result = mod303.previus_result if mod303.complementaria else 0
             resultado_liquidacion = casilla_46 - previus_result
             vals = {
-                'state': 'calculated',
-                'calculation_date': time.strftime('%Y-%m-%d'),
                 'total_devengado': total_devengado,
                 'total_deducir': total_deducir,
                 'diferencia': total_devengado - total_deducir,
@@ -215,8 +201,8 @@ class l10n_es_aeat_mod303_report(orm.Model):
             self.write(cr, uid, mod303.id, vals, context=context)
         return True
 
-    def confirm(self, cr, uid, ids, context=None):
-        """Set report status to done and check its records"""
+    def button_confirm(self, cr, uid, ids, context=None):
+        """Check its records"""
         msg = ""
         for mod303 in self.browse(cr, uid, ids, context=context):
             if mod303.ingresar > 0 and not mod303.cuenta_ingreso_id:
@@ -228,10 +214,5 @@ class l10n_es_aeat_mod303_report(orm.Model):
                         "Marque la casilla correspondinte")
         if msg:
             raise orm.except_orm("", msg)
-        self.write(cr, uid, ids, {'state': 'done'})
-        return True
-
-    def cancel(self, cr, uid, ids, context=None):
-        """Set report status to cancelled."""
-        self.write(cr, uid, ids, {'state': 'canceled'}, context=context)
-        return True
+        return super(l10n_es_aeat_mod303_report, self).button_confirm(cr, uid,
+                                                        ids, context=context)
