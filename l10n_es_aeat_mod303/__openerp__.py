@@ -25,21 +25,26 @@
 
 {
     "name" : "AEAT modelo 303",
-    "version" : "1.0",
+    "version" : "1.1",
     "author" : "GuadalTech",
     "license" : "AGPL-3",
     "website" : "http://www.guadaltech.es",
     'contributors': ["Pedro M. Baeza <pedro.baeza@serviciosbaeza.com"],
     "category" : "Localisation/Accounting",
     "description" : """
-Módulo para la presentación del modelo 303. Exportación a formato AEAT.
+Módulo para la presentación del modelo 303 (IVA - Autodeclaración) de la
+Agencia Española de Administración Tributaria.
+
+Instrucciones del modelo: http://goo.gl/pgVbXH
+
+Incluye la exportación al formato BOE para su uso telemático.
         """,
     "depends" : [
         "l10n_es_aeat",
     ],
     "data" : [
+        "wizard/export_mod303_to_boe.xml",
         "mod303_view.xml",
-        "mod303_workflow.xml",
         "security/ir.model.access.csv",
     ],
     "installable" : True,
