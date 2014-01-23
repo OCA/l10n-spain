@@ -23,10 +23,9 @@ import time
 
 class l10n_es_aeat_mod303_export_to_boe(orm.TransientModel):
     _inherit = "l10n.es.aeat.report.export_to_boe"
-    _name = "l10n.es.aeat.mod303.export_to_boe"
-    _description = "Export AEAT Model 303 to BOE format"
+    _name = 'l10n.es.aeat.mod303.export_to_boe'
 
-    def _get_formated_declaration(self,report):
+    def _get_formatted_declaration_record(self, report, context=None):
         res = ''
         ## cabecera 
         res += "<T30301> "
@@ -45,7 +44,8 @@ class l10n_es_aeat_mod303_export_to_boe(orm.TransientModel):
                                  "be 72 characters long")
         return res
 
-    def _get_formated_vat(self, cr, uid, report, lines):
+    def _get_formatted_main_record(self, report, context=None):
+        lines = report._get_report_lines(context=context)
         res = ''
         ## IVA devengado
         # -- Regimen General y Recargo de Equivalencia - code_pair [1~18]
@@ -115,7 +115,7 @@ class l10n_es_aeat_mod303_export_to_boe(orm.TransientModel):
         assert len(res) == 822 - 72, _("The vat records must be 749 characters long and are %s") % len(res)
         return res
 
-    def _get_formated_last_info(self, report):
+    def _get_formatted_other_records(self, report, context=None):
         res = ''
         ## devolucion (6)
         res += self._formatNumber(report.devolver, 15, 2) ## devolucion [50]
@@ -166,36 +166,8 @@ class l10n_es_aeat_mod303_export_to_boe(orm.TransientModel):
         res += "\r\n".encode("ascii")
         return res
 
-    def _export_boe_file(self, cr, uid, ids, report, model=None,
-                         context=None):
-        """ Action that exports the data into a BOE formated text file """
-        # TODO: Integrar mejor con el módulo base, pero para ello hace falta
-        # cambiar l10n_es_aeat para que admita parámetros. Hacer también
-        # heredable las comprobaciones finales.
-        assert model , _("AEAT Model is necessary")
-        model_report_obj = self.pool.get("l10n.es.aeat.mod303.report")
-        for id in ids:
-            lines = model_report_obj._get_report_lines(cr, uid, id,
-                                                       context=context)
-            res = ''
-            ## IDENTIFICACION (1) y DEVENGO (2)
-            res += self._get_formated_declaration(report)
-            ## LIQUIDACIÓN (3) y COMPENSACION(4)
-            res += self._get_formated_vat(cr, uid, report, lines)
-            ## DEVOLUCION (6), INGRESO (7), COMPLEMENTARIA (8) Y FIRMA (9)
-            res += self._get_formated_last_info(report)
-            assert len(res) == 1353, _("The 303 report must be 1353 "
-                                       "characters long and are %s") %len(res)
-            ## Generate the file and save as attachment
-            file = base64.encodestring(res)
-            # TODO: Utilizar formato de fecha del usuario
-            file_name = _("%s_report_%s.txt") %(
-                                    model, time.strftime(_("%Y-%m-%d")))
-            self.pool["ir.attachment"].create(cr, uid, {
-                "name" : file_name,
-                "datas" : file,
-                "datas_fname" : file_name,
-                "res_model" : "l10n.es.aeat.mod%s.report" %model,
-                "res_id" : id,
-            }, context=context)
+    def _do_global_checks(self, report, contents, context=None):
+        assert len(contents) == 1353, \
+                _("The 303 report must be 1353 characters long and are %s"
+                  ) %len(contents)
         return True
