@@ -198,21 +198,27 @@ class execute_fyc(orm.TransientModel):
         Checks for draft moves on the fiscal year that is being closed
         """
         move_obj = self.pool.get('account.move')
-        # Consider all the periods of the fiscal year *BUT* the L&P, Net L&P and the Closing one.
+        # Consider all the periods of the fiscal year *BUT* the L&P, Net L&P
+        # and the closing one.
         period_ids = []
         for period in fyc.closing_fiscalyear_id.period_ids:
             if period.id != fyc.lp_period_id.id \
                     and period.id != fyc.nlp_period_id.id \
                     and period.id != fyc.c_period_id.id:
                 period_ids.append(period.id)
-        account_move_ids = move_obj.search(cr, uid, [
-                                ('period_id', 'in', period_ids),
-                                ('state', '=', 'draft')], context=context)
+        draft_move_ids = move_obj.search(cr, uid, 
+                                         [('period_id', 'in', period_ids),
+                                          ('state', '=', 'draft')],
+                                         context=context)
         # If one or more draft moves where found, raise an exception
-        if len(account_move_ids):
-            move_obj.browse(cr, uid, account_move_ids, context)
-            str_draft_moves = '\n'.join(['id: %s, date: %s, number: %s, ref: %s' % (move.id, move.date, move.name, move.ref) for move in draft_moves])
-            raise orm.except_orm(_('Error'), _('One or more draft moves found: \n%s') % str_draft_moves)
+        if draft_move_ids:
+            str_draft_moves = ''
+            for move in move_obj.browse(cr, uid, draft_move_ids,
+                                        context=context):
+                str_draft_moves += ('id: %s, date: %s, number: %s, ref: %s\n'
+                                    %(move.id, move.date, move.name, move.ref))
+            raise orm.except_orm(_('Error'),
+                    _('One or more draft moves found: \n%s') %str_draft_moves)
 
     def _check_unbalanced_moves(self, cr, uid, fyc, context):
         """

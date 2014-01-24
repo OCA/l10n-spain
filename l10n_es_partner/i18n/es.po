@@ -4,17 +4,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: OpenERP Server 7.0-20131224-002412\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-24 13:15+0000\n"
-"PO-Revision-Date: 2013-10-13 11:13+0000\n"
-"Last-Translator: Richy <Unknown>\n"
+"POT-Creation-Date: 2014-01-07 10:52+0000\n"
+"PO-Revision-Date: 2014-01-08 00:39+0000\n"
+"Last-Translator: Ignacio Ibeas (www.acysos.com) <ignacio@acysos.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-11-25 06:02+0000\n"
-"X-Generator: Launchpad (build 16831)\n"
+"X-Launchpad-Export-Date: 2014-01-09 05:38+0000\n"
+"X-Generator: Launchpad (build 16884)\n"
 
 #. module: l10n_es_partner
 #: field:res.bank,website:0
@@ -44,11 +44,10 @@ msgid "Import spanish bank data"
 msgstr "Importar los datos de los bancos españoles"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/l10n_es_partner.py:83
-#: code:addons/l10n_es_partner/l10n_es_partner.py:85
+#: code:addons/l10n_es_partner/l10n_es_partner.py:135
 #, python-format
-msgid "Warning"
-msgstr "Aviso"
+msgid "IBAN account is not valid"
+msgstr "Cuenta IBAN no válida"
 
 #. module: l10n_es_partner
 #: model:ir.actions.todo,note:l10n_es_partner.config_wizard_l10n_es_partner
@@ -77,7 +76,7 @@ msgid "Value Added Tax number"
 msgstr "Nº de identificación fiscal"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/l10n_es_partner.py:83
+#: code:addons/l10n_es_partner/l10n_es_partner.py:104
 #, python-format
 msgid "Bank account should have 20 digits."
 msgstr "La cuenta bancaria debe tener 20 dígitos."
@@ -124,10 +123,23 @@ msgid "Import"
 msgstr "Importar"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/l10n_es_partner.py:85
+#: code:addons/l10n_es_partner/l10n_es_partner.py:103
+#: code:addons/l10n_es_partner/l10n_es_partner.py:110
+#: code:addons/l10n_es_partner/l10n_es_partner.py:134
+#, python-format
+msgid "Warning"
+msgstr "Aviso"
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/l10n_es_partner.py:111
 #, python-format
 msgid "Invalid bank account."
 msgstr "Cuenta bancaria no válida."
+
+#. module: l10n_es_partner
+#: view:res.partner.bank:0
+msgid "onchange_banco(acc_number, acc_country_id, state)"
+msgstr "onchange_banco(acc_number, acc_country_id, state)"
 
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_bank

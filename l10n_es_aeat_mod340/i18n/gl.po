@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: openerp-spain\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-01-30 10:57+0000\n"
-"PO-Revision-Date: 2013-11-15 01:42+0000\n"
+"PO-Revision-Date: 2013-12-10 16:44+0000\n"
 "Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-11-25 06:01+0000\n"
-"X-Generator: Launchpad (build 16831)\n"
+"X-Launchpad-Export-Date: 2014-01-07 05:30+0000\n"
+"X-Generator: Launchpad (build 16877)\n"
 
 #. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340,period:0
@@ -28,9 +28,9 @@ msgid "Issued invoices"
 msgstr "Facturas emitidas"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/mod340.py:162
+#: code:addons/l10n_es_aeat_mod340/mod340.py:178
 #, python-format
-msgid "All real state records state code field must be filled."
+msgid "All real estate records state code field must be filled."
 msgstr ""
 "Os registros de propiedades inmobiliarias débense encher manualmente."
 
@@ -70,7 +70,7 @@ msgid "Records"
 msgstr "Rexistros"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:270
+#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:361
 #, python-format
 msgid ""
 "The type 2 received record must be 500 characters long for each Vat registry"
@@ -89,6 +89,10 @@ msgid "Phone Contact"
 msgstr "Teléfono de contacto"
 
 #. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.intracomunitarias,base_tax:0
+#: field:l10n.es.aeat.mod340.investment,base_tax:0
+#: field:l10n.es.aeat.mod340.issued,base_tax:0
+#: field:l10n.es.aeat.mod340.received,base_tax:0
 #: field:l10n.es.aeat.mod340.tax_line_issued,base_amount:0
 #: field:l10n.es.aeat.mod340.tax_line_received,base_amount:0
 msgid "Base tax bill"
@@ -111,14 +115,17 @@ msgid "In process"
 msgstr "En proceso"
 
 #. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.intracomunitarias,tax_line_ids:0
+#: field:l10n.es.aeat.mod340.investment,tax_line_ids:0
+#: field:l10n.es.aeat.mod340.issued,tax_line_ids:0
 #: field:l10n.es.aeat.mod340.received,tax_line_ids:0
 msgid "Tax lines"
 msgstr "Liñas de impostos"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/mod340.py:156
-#: code:addons/l10n_es_aeat_mod340/mod340.py:158
-#: code:addons/l10n_es_aeat_mod340/mod340.py:162
+#: code:addons/l10n_es_aeat_mod340/mod340.py:172
+#: code:addons/l10n_es_aeat_mod340/mod340.py:174
+#: code:addons/l10n_es_aeat_mod340/mod340.py:178
 #, python-format
 msgid "Error!"
 msgstr "¡Erro!"
@@ -139,7 +146,7 @@ msgid "VAT number"
 msgstr "NIF"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:184
+#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:275
 #, python-format
 msgid ""
 "The type 2 issued record must be 500 characters long for each Vat registry"
@@ -181,7 +188,7 @@ msgid "Invoices invoice"
 msgstr "Facturas"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:65
+#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:64
 #, python-format
 msgid "This company dont have NIF"
 msgstr "Esta compañía non ten NIF"
@@ -197,7 +204,7 @@ msgid "2 - Se consigna el NIF/IVA (NIF OPERADOR INTRACOMUNITARIO)"
 msgstr "2 - Consígnase o NIF/IVE (NIF OPERADOR INTRACOMUNITARIO)"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:306
+#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:406
 #, python-format
 msgid "340_report_%s.txt"
 msgstr "340_report_%s.txt"
@@ -241,7 +248,7 @@ msgid "Support Type"
 msgstr "Tipo de soporte"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:306
+#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:406
 #, python-format
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
@@ -267,7 +274,7 @@ msgid "Export AEAT Model 340 to BOE format"
 msgstr "Exportar Modelo AEAT 340 ó formato do BOE"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:92
+#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:170
 #, python-format
 msgid "The type 1 record must be 500 characters long"
 msgstr "O registro de tipo 1 debe ter 500 caracteres de lonxitude"
@@ -351,13 +358,12 @@ msgid "No disponible:"
 msgstr "Non dispoñible:"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/mod340.py:156
+#: code:addons/l10n_es_aeat_mod340/mod340.py:172
 #, python-format
 msgid "All partner state code field must be filled."
 msgstr "Toda-las empresas deben ter código de provincia."
 
 #. module: l10n_es_aeat_mod340
-#: model:ir.actions.act_window,name:l10n_es_aeat_mod340.action_account_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340:0
 #: field:l10n.es.aeat.mod340.intracomunitarias,mod340_id:0
@@ -379,7 +385,7 @@ msgid "3 - Pasaporte"
 msgstr "3 - Pasaporte"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/mod340.py:158
+#: code:addons/l10n_es_aeat_mod340/mod340.py:174
 #, python-format
 msgid "All partner vat number field must be filled."
 msgstr "Toda-las empresas deben ter NIF."
@@ -511,6 +517,7 @@ msgid "4 - Documento oficial de identificación expedido por el país"
 msgstr "4 - Documento oficial de identificación expedido polo país"
 
 #. module: l10n_es_aeat_mod340
+#: model:ir.model,name:l10n_es_aeat_mod340.model_account_invoice
 #: field:l10n.es.aeat.mod340.intracomunitarias,invoice_id:0
 #: field:l10n.es.aeat.mod340.investment,invoice_id:0
 #: field:l10n.es.aeat.mod340.issued,invoice_id:0
@@ -539,6 +546,7 @@ msgid "5 - Certificado de residencia fiscal"
 msgstr "5 - Certificado de residencia fiscal"
 
 #. module: l10n_es_aeat_mod340
+#: view:account.invoice:0
 #: view:l10n.es.aeat.mod340:0
 msgid "AEAT 340"
 msgstr "AEAT 340"
@@ -678,6 +686,12 @@ msgstr "liñas de impostos"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340,total:0
+#: field:l10n.es.aeat.mod340.intracomunitarias,total:0
+#: field:l10n.es.aeat.mod340.investment,total:0
+#: view:l10n.es.aeat.mod340.issued:0
+#: field:l10n.es.aeat.mod340.issued,total:0
+#: view:l10n.es.aeat.mod340.received:0
+#: field:l10n.es.aeat.mod340.received,total:0
 msgid "Total"
 msgstr "Total"
 
@@ -710,3 +724,8 @@ msgstr "Resumo de tiques"
 #: view:account.invoice:0
 msgid "Tickets"
 msgstr "Tiques"
+
+#, python-format
+#~ msgid "All real state records state code field must be filled."
+#~ msgstr ""
+#~ "Os registros de propiedades inmobiliarias débense encher manualmente."

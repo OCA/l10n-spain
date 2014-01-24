@@ -18,31 +18,31 @@ msgstr ""
 #. module: l10n_es_account
 #: model:ir.model,name:l10n_es_account.model_account_account
 msgid "Account"
-msgstr "Account"
+msgstr ""
 
 #. module: l10n_es_account
 #: constraint:ir.model:0
 msgid "The Object name must start with x_ and not contain any special character !"
-msgstr "The Object name must start with x_ and not contain any special character !"
+msgstr ""
 
 #. module: l10n_es_account
 #: constraint:ir.ui.view:0
 msgid "Invalid XML for View Architecture!"
-msgstr "Invalid XML for View Architecture!"
+msgstr ""
 
 #. module: l10n_es_account
 #: model:ir.model,name:l10n_es_account.model_account_account_template
 msgid "Templates for Accounts"
-msgstr "Templates for Accounts"
+msgstr ""
 
 #. module: l10n_es_account
 #: field:account.account.template,chart_template_id:0
 #: field:account.tax.code.template,chart_template_id:0
 msgid "Chart Template"
-msgstr "Chart Template"
+msgstr ""
 
 #. module: l10n_es_account
 #: model:ir.model,name:l10n_es_account.model_account_tax_code_template
 msgid "Tax Code Template"
-msgstr "Tax Code Template"
+msgstr ""
 

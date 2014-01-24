@@ -19,103 +19,103 @@ msgstr ""
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:109
 #, python-format
 msgid "Intereses/Comisión/Gastos/Custodia"
-msgstr "Intereses/Comisión/Gastos/Custodia"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:101
 #, python-format
 msgid "Compra/Venta valores"
-msgstr "Compra/Venta valores"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: model:ir.model,name:l10n_es_bank_statement.model_l10n_es_extractos_concepto
 msgid "C43 codes"
-msgstr "C43 codes"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.bank.statement.import.c43.wizard,reco_amount:0
 msgid "Reconcile by amount"
-msgstr "Reconcile by amount"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:469
 #, python-format
 msgid "bank-statement.txt"
-msgstr "bank-statement.txt"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:107
 #, python-format
 msgid "Nómina/Seg. social"
-msgstr "Nómina/Seg. social"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.bank.statement.import.c43.wizard,reco_vat_and_amount:0
 msgid "Reconcile by VAT number and amount"
-msgstr "Reconcile by VAT number and amount"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:94
 #, python-format
 msgid "Ingreso/Abonaré"
-msgstr "Ingreso/Abonaré"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.extractos.concepto,account_id:0
 msgid "Account associated to the concept"
-msgstr "Account associated to the concept"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:97
 #, python-format
 msgid "Amortización préstamo"
-msgstr "Amortización préstamo"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/account_bank_statement.py:168
 #, python-format
 msgid "Search by references"
-msgstr "Search by references"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: model:ir.module.module,shortdesc:l10n_es_bank_statement.module_meta_information
 msgid "Spanish Bank Statements Importation"
-msgstr "Spanish Bank Statements Importation"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.bank.statement.import.c43.wizard,file:0
 #: field:l10n.es.bank.statement.import.c43.wizard,file_name:0
 msgid "Bank Statements File"
-msgstr "Bank Statements File"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: model:ir.actions.act_window,name:l10n_es_bank_statement.action_c43_file_import_wizard
 msgid "Import Bank Statement"
-msgstr "Import Bank Statement"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: view:l10n.es.bank.statement.import.c43.wizard:0
 #: view:l10n.es.extractos.import.wizard:0
 msgid "Import"
-msgstr "Import"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:106
 #, python-format
 msgid "Devolución/Impagado"
-msgstr "Devolución/Impagado"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/account_bank_statement.py:182
 #, python-format
 msgid "Search by VAT error"
-msgstr "Search by VAT error"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:319
 #, python-format
 msgid "Record type %s is not valid."
-msgstr "Record type %s is not valid."
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:195
@@ -127,267 +127,267 @@ msgstr "Record type %s is not valid."
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:319
 #, python-format
 msgid "Error in C43 file"
-msgstr "Error in C43 file"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: help:l10n.es.extractos.concepto,account_id:0
 msgid "Default account to be associated with the concept when the file of C43 bank statements is imported"
-msgstr "Default account to be associated with the concept when the file of C43 bank statements is imported"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: view:l10n.es.bank.statement.import.c43.wizard:0
 msgid "Bank statements import according to norm C43"
-msgstr "Bank statements import according to norm C43"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: model:ir.model,name:l10n_es_bank_statement.model_l10n_es_extractos_import_wizard
 msgid "l10n.es.extractos.import.wizard"
-msgstr "l10n.es.extractos.import.wizard"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:100
 #, python-format
 msgid "Amortización"
-msgstr "Amortización"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/account_bank_statement.py:182
 #, python-format
 msgid "You cannot search by VAT because it seems this line has not been imported from a bank statement file. The system expected \"referencia1\" and \"conceptos\" keys in line of amount %(amount).2f in statement %(statement)s."
-msgstr "You cannot search by VAT because it seems this line has not been imported from a bank statement file. The system expected \"referencia1\" and \"conceptos\" keys in line of amount %(amount).2f in statement %(statement)s."
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:195
 #, python-format
 msgid "Number of debit records does not agree with the defined in the last record of account."
-msgstr "Number of debit records does not agree with the defined in the last record of account."
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:99
 #, python-format
 msgid "Subscripción/Canje"
-msgstr "Subscripción/Canje"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: view:l10n.es.bank.statement.import.c43.wizard:0
 msgid "Bank Statements File:"
-msgstr "Bank Statements File:"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: view:l10n.es.bank.statement.import.c43.wizard:0
 msgid "Automatic reconciliation options"
-msgstr "Automatic reconciliation options"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/account_bank_statement.py:157
 #, python-format
 msgid "%s moves (%s) found for this date and partner. You'll have to concile this line manually..."
-msgstr "%s moves (%s) found for this date and partner. You'll have to concile this line manually..."
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.bank.statement.import.c43.wizard,reco_max_days:0
 msgid "Max. days from statement date"
-msgstr "Max. days from statement date"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: help:l10n.es.bank.statement.import.c43.wizard,reco_max_days:0
 msgid "Maximum difference in days, between the maturity date of the entry to reconcile and the bank statement entry"
-msgstr "Maximum difference in days, between the maturity date of the entry to reconcile and the bank statement entry"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:197
 #, python-format
 msgid "Number of credit records does not agree with the defined in the last record of account."
-msgstr "Number of credit records does not agree with the defined in the last record of account."
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:207
 #, python-format
 msgid "Final balance amount = (initial balance + credit - debit) does not agree with the defined in the last record of account."
-msgstr "Final balance amount = (initial balance + credit - debit) does not agree with the defined in the last record of account."
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: model:ir.ui.menu,name:l10n_es_bank_statement.menu_extractos_bancarios_concepto
 msgid "Default accounts associated to C43 codes"
-msgstr "Default accounts associated to C43 codes"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:104
 #, python-format
 msgid "Tarjeta crédito/débito"
-msgstr "Tarjeta crédito/débito"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:419
 #, python-format
 msgid "A default account has not been defined for the C43 concept "
-msgstr "A default account has not been defined for the C43 concept "
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: model:ir.model,name:l10n_es_bank_statement.model_l10n_es_bank_statement_import_c43_wizard
 msgid "l10n.es.bank.statement.import.c43.wizard"
-msgstr "l10n.es.bank.statement.import.c43.wizard"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:93
 #, python-format
 msgid "Reintegro/Talón"
-msgstr "Reintegro/Talón"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:60
 #, python-format
 msgid "Concepts for this company already imported..."
-msgstr "Concepts for this company already imported..."
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:96
 #, python-format
 msgid "Transf./Giro/Cheque"
-msgstr "Transf./Giro/Cheque"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:108
 #, python-format
 msgid "Timbre/Corretaje/Póliza"
-msgstr "Timbre/Corretaje/Póliza"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:111
 #, python-format
 msgid "Varios"
-msgstr "Varios"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:121
 #, python-format
 msgid "Could not import concept %(concept)s because no matching account was found for expression %(expression)s."
-msgstr "Could not import concept %(concept)s because no matching account was found for expression %(expression)s."
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.bank.statement.import.c43.wizard,reco_rules:0
 msgid "Statement Line Rules"
-msgstr "Statement Line Rules"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: help:l10n.es.extractos.concepto,code:0
 msgid "2 digits code of the concept defined in the file of C43 bank statements"
-msgstr "2 digits code of the concept defined in the file of C43 bank statements"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:199
 #, python-format
 msgid "Debit amount does not agree with the defined in the last record of account."
-msgstr "Debit amount does not agree with the defined in the last record of account."
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.extractos.concepto,code:0
 msgid "Concept code"
-msgstr "Concept code"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:231
 #, python-format
 msgid "Number of records does not agree with the defined in the last record."
-msgstr "Number of records does not agree with the defined in the last record."
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/account_bank_statement.py:157
 #, python-format
 msgid "Beware!"
-msgstr "Beware!"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:80
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:139
 #, python-format
 msgid "C43 Created Concepts"
-msgstr "C43 Created Concepts"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:344
 #, python-format
 msgid "Error!"
-msgstr "Error!"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:105
 #, python-format
 msgid "Operaciones extranjero"
-msgstr "Operaciones extranjero"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:344
 #, python-format
 msgid "The bank statement is alredy confirmed. It can not be imported from file."
-msgstr "The bank statement is alredy confirmed. It can not be imported from file."
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:419
 #, python-format
 msgid "Error"
-msgstr "Error"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/account_bank_statement.py:168
 #, python-format
 msgid "You cannot search by reference because it seems this line has not been imported from a bank statement file. The system expected \"conceptos\" and \"referencia2\" keys in line of amount %(amount).2f in statement %(statement)s."
-msgstr "You cannot search by reference because it seems this line has not been imported from a bank statement file. The system expected \"conceptos\" and \"referencia2\" keys in line of amount %(amount).2f in statement %(statement)s."
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.extractos.concepto,name:0
 msgid "Concept name"
-msgstr "Concept name"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: constraint:account.bank.statement.line:0
 msgid "The amount of the voucher must be the same amount as the one on the statement line"
-msgstr "The amount of the voucher must be the same amount as the one on the statement line"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:103
 #, python-format
 msgid "Cajero automático"
-msgstr "Cajero automático"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:95
 #, python-format
 msgid "Recibo/Letra domiciliado"
-msgstr "Recibo/Letra domiciliado"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:201
 #, python-format
 msgid "Credit amount does not agree with the defined in the last record of account."
-msgstr "Credit amount does not agree with the defined in the last record of account."
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: view:l10n.es.extractos.import.wizard:0
 msgid "This wizard will import default concepts related to standard accounts of spanish charts."
-msgstr "This wizard will import default concepts related to standard accounts of spanish charts."
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:121
 #, python-format
 msgid "Import Error"
-msgstr "Import Error"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: model:ir.model,name:l10n_es_bank_statement.model_account_bank_statement_line
 msgid "Bank Statement Line"
-msgstr "Bank Statement Line"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: model:ir.actions.act_window,name:l10n_es_bank_statement.action_extractos_import_wizard
 #: model:ir.ui.menu,name:l10n_es_bank_statement.menu_import_wizard
 msgid "Import Statement Concepts Wizard"
-msgstr "Import Statement Concepts Wizard"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.bank.statement.import.c43.wizard,reco_payment_order:0
 msgid "Reconcile payment orders by total amount"
-msgstr "Reconcile payment orders by total amount"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: model:ir.module.module,description:l10n_es_bank_statement.module_meta_information
@@ -410,7 +410,7 @@ msgid "\n"
 "\n"
 "    The module also adds a wizard in Financial Management/Configuration/C43 bank statements to import the default statement concepts, that must be run after creating the spanish chart of accounts (l10n_es module).\n"
 "    "
-msgstr "\n"
+msgstr ""
 "Module for the importation of Spanish bank statements following the C43 normative of the 'Asociación Española de la Banca'.\n"
 "    \n"
 "    Adds a wizard to the bank statements to perform the importation. The imported file gets attached to the given bank statement.\n"
@@ -434,53 +434,53 @@ msgstr "\n"
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:110
 #, python-format
 msgid "Anulación/Corrección"
-msgstr "Anulación/Corrección"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_c43_file.py:469
 #, python-format
 msgid "Bank Statement"
-msgstr "Bank Statement"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:102
 #, python-format
 msgid "Cheque gasolina"
-msgstr "Cheque gasolina"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:60
 #, python-format
 msgid "Info:"
-msgstr "Info:"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: field:l10n.es.bank.statement.import.c43.wizard,reco_reference_and_amount:0
 msgid "Reconcile by reference and amount"
-msgstr "Reconcile by reference and amount"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: view:l10n.es.extractos.import.wizard:0
 msgid "Import Wizard"
-msgstr "Import Wizard"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:98
 #, python-format
 msgid "Remesa efectos"
-msgstr "Remesa efectos"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: model:ir.actions.act_window,name:l10n_es_bank_statement.action_extractos_concepto
 #: view:l10n.es.extractos.concepto:0
 msgid "C43 default accounts"
-msgstr "C43 default accounts"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: view:l10n.es.bank.statement.import.c43.wizard:0
 #: view:l10n.es.extractos.import.wizard:0
 msgid "Cancel"
-msgstr "Cancel"
+msgstr ""
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/import_conceptos.py:152
@@ -488,5 +488,5 @@ msgstr "Cancel"
 #: field:l10n.es.extractos.import.wizard,company_id:0
 #, python-format
 msgid "Company"
-msgstr "Company"
+msgstr ""
 
