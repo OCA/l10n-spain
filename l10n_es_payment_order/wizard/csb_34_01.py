@@ -105,7 +105,7 @@ class csb_34_01(osv.osv):
         if not address_id:
             raise Log( _('User error:\n\nCompany %s has no invoicing address.') % address_id )
 
-        street = self.pool.get('res.partner.address').read(cr, uid, [address_id], ['street'], context)[0]['street']
+        street = self.pool.get('res.partner').read(cr, uid, [address_id], ['street'], context)[0]['street']
         text += converter.convert(cr, uid, street, 36, context)
         text += 7*' '
         text += '\n'
@@ -116,7 +116,7 @@ class csb_34_01(osv.osv):
         text += '34016'
         text += 7*' '
         text += '004'
-        city = self.pool.get('res.partner.address').read(cr, uid, [address_id], ['city'], context)[0]['city']
+        city = self.pool.get('res.partner').read(cr, uid, [address_id], ['city'], context)[0]['city']
         text += converter.convert(cr, uid, city, 36, context)
         text += 7*' '
         text += '\n'

@@ -121,9 +121,9 @@ class csb_34(osv.osv):
         address = None
         address_ids = self.pool.get('res.partner').address_get(cr, uid, [self.order.mode.bank_id.partner_id.id], ['invoice', 'default'])
         if address_ids.get('invoice'):
-            address = self.pool.get('res.partner.address').read(cr, uid, [address_ids.get('invoice')], ['street','zip','city'], context)[0]
+            address = self.pool.get('res.partner').read(cr, uid, [address_ids.get('invoice')], ['street','zip','city'], context)[0]
         elif address_ids.get('default'):
-            address = self.pool.get('res.partner.address').read(cr, uid, [address_ids.get('default')], ['street','zip','city'], context)[0]
+            address = self.pool.get('res.partner').read(cr, uid, [address_ids.get('default')], ['street','zip','city'], context)[0]
         else:
             raise Log( _('User error:\n\nCompany %s has no invoicing or default address.') % self.order.mode.bank_id.partner_id.name )
         text += converter.convert(cr, uid, address['street'], 36, context)
@@ -165,9 +165,9 @@ class csb_34(osv.osv):
         address = None
         address_ids = self.pool.get('res.partner').address_get(cr, uid, [recibo['partner_id'].id], ['invoice', 'default'])
         if address_ids.get('invoice'):
-            address = self.pool.get('res.partner.address').browse(cr, uid, address_ids.get('invoice'), context)
+            address = self.pool.get('res.partner').browse(cr, uid, address_ids.get('invoice'), context)
         elif address_ids.get('default'):
-            address = self.pool.get('res.partner.address').browse(cr, uid, address_ids.get('default'), context)
+            address = self.pool.get('res.partner').browse(cr, uid, address_ids.get('default'), context)
         else:
             raise Log( _('User error:\n\nPartner %s has no invoicing or default address.') % recibo['partner_id'].name )
 
