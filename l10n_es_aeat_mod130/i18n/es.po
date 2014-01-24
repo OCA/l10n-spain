@@ -1,0 +1,513 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_es_aeat_mod130
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-24 10:17+0000\n"
+"PO-Revision-Date: 2014-01-24 11:19+0100\n"
+"Last-Translator: Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_aeat_mod130
+#: help:l10n.es.aeat.mod130.report,previous_number:0
+msgid "Número de justificante de la declaración anterior (si se presentó en papel. A cumplimentar sólo en el caso de declaración complementaria"
+msgstr "Número de justificante de la declaración anterior (si se presentó en papel. A cumplimentar sólo en el caso de declaración complementaria"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.actions.act_window,help:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
+msgid "Create and query AEAT Model 130 reports"
+msgstr "Crea y consulta declaración AEAT del modelo 130"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[08] Volumen de ingresos"
+msgstr "[08] Volumen de ingresos"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "Declaración"
+msgstr "Declaración"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,activity_type:0
+msgid "Actividad agrícola, ganadera, forestal o pesquera"
+msgstr "Actividad agrícola, ganadera, forestal o pesquera"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_14:0
+msgid "Casilla [14]"
+msgstr "Casilla [14]"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_13:0
+msgid "Casilla [13] - Deducción art. 80 bis"
+msgstr "Casilla [13] - Deducción art. 80 bis"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,company_id:0
+msgid "Company"
+msgstr "Compañía"
+
+#. module: l10n_es_aeat_mod130
+#: help:l10n.es.aeat.mod130.report,previous_electronic_code:0
+msgid "Código electrónico de la declaración anterior (si se presentó telemáticamente). A cumplimentar sólo en el caso de declaración complementaria"
+msgstr "Código electrónico de la declaración anterior (si se presentó telemáticamente). A cumplimentar sólo en el caso de declaración complementaria"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_06:0
+msgid "Casilla [06]"
+msgstr "Casilla [06]"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,type:0
+msgid "Substitutive"
+msgstr "Sustitutiva"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.ui.menu,name:l10n_es_aeat_mod130.menu_aeat_mod130_report
+msgid "AEAT 130 model"
+msgstr "Declaración AEAT 130"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_09:0
+msgid "Casilla [09] - IRPF primario"
+msgstr "Casilla [09] - IRPF primario"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,previous_number:0
+msgid "Nº declaración anterior"
+msgstr "Nº declaración anterior"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.export_to_boe,name:0
+msgid "File name"
+msgstr "Nombre de archivo"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,number:0
+msgid "Declaration number"
+msgstr "Nº declaración"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_12:0
+msgid "Casilla [12]"
+msgstr "Casilla [12]"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,state:0
+msgid "Cancelled"
+msgstr "Cancelada"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_15:0
+msgid "Casilla [15]"
+msgstr "Casilla [15]"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_16:0
+msgid "Casilla [16] - Deducción por pago de hipoteca"
+msgstr "Casilla [16] - Deducción por pago de hipoteca"
+
+#. module: l10n_es_aeat_mod130
+#: help:l10n.es.aeat.mod130.report,comments:0
+msgid "Observaciones que se adjuntarán con el modelo"
+msgstr "Observaciones que se adjuntarán con el modelo"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "413"
+msgstr "413"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,company_partner_id:0
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_03:0
+msgid "Casilla [03] - Rendimiento"
+msgstr "Casilla [03] - Rendimiento"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,tipo_declaracion:0
+msgid "Negativa"
+msgstr "Negativa"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_11:0
+msgid "Casilla [11]"
+msgstr "Casilla [11]"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,state:0
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,period:0
+msgid "First quarter"
+msgstr "1er trimestre"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_01:0
+msgid "Casilla [01] - Ingresos"
+msgstr "Casilla [01] - Ingresos"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_05:0
+msgid "Casilla [05]"
+msgstr "Casilla [05]"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,tipo_declaracion:0
+msgid "Tipo declaración"
+msgstr "Tipo declaración"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
+msgid "AEAT model 130"
+msgstr "Modelo AEAT 130"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[15] A deducir - Resultados negativos de trimestres anteriores"
+msgstr "[15] A deducir - Resultados negativos de trimestres anteriores"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,support_type:0
+msgid "Support Type"
+msgstr "Tipo de soporte"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[09] 2% de la casilla [08]"
+msgstr "[09] 2% de la casilla [08]"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,company_vat:0
+msgid "VAT number"
+msgstr "NIF"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,tipo_declaracion:0
+msgid "A deducir (se consignará como 0)"
+msgstr "A deducir (se consignará como 0)"
+
+#. module: l10n_es_aeat_mod130
+#: code:addons/l10n_es_aeat_mod130/wizard/export_mod130_to_boe.py:141
+#, python-format
+msgid "The 130 report must be 880 characters long and are %s"
+msgstr "The 130 report must be 880 characters long and are %s"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,calculation_date:0
+msgid "Calculation date"
+msgstr "Fecha de cálculo"
+
+#. module: l10n_es_aeat_mod130
+#: constraint:l10n.es.aeat.mod130.report:0
+msgid "Si se marca la casilla de liquidación complementaria, debe rellenar el código electrónico o el nº de justifacnte de la declaración anterior."
+msgstr "Si se marca la casilla de liquidación complementaria, debe rellenar el código electrónico o el nº de justifacnte de la declaración anterior."
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_17:0
+msgid "Casilla [17]"
+msgstr "Casilla [17]"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_07:0
+msgid "Casilla [07]"
+msgstr "Casilla [07]"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,currency_id:0
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[13] Minoración por aplicación de la deducción. Artículo 80 bis"
+msgstr "[13] Minoración por aplicación de la deducción. Artículo 80 bis"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,has_deduccion_80:0
+msgid "¿Deducción por art. 80 bis?"
+msgstr "¿Deducción por art. 80 bis?"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[17] Total (14) - (15)"
+msgstr "[17] Total (14) - (15)"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[18] A deducir - Resultado de las anteriores declaraciones"
+msgstr "[18] A deducir - Resultado de las anteriores declaraciones"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model,name:l10n_es_aeat_mod130.model_l10n_es_aeat_mod130_report
+msgid "AEAT 130 report"
+msgstr "Modelo AEAT 130"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,support_type:0
+msgid "DVD"
+msgstr "DVD"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,has_prestamo:0
+msgid "¿Préstamo para vivienda habitual?"
+msgstr "¿Préstamo para vivienda habitual?"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.export_to_boe,state:0
+msgid "open"
+msgstr "abierto"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[01] Ingresos computables"
+msgstr "[01] Ingresos computables"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_02:0
+msgid "Casilla [02] - Gastos"
+msgstr "Casilla [02] - Gastos"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,type:0
+msgid "Normal"
+msgstr "Normal"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.export_to_boe,state:0
+msgid "unknown"
+msgstr "desconocido"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+#: field:l10n.es.aeat.mod130.report,comments:0
+msgid "Observaciones"
+msgstr "Observaciones"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_10:0
+msgid "Casilla [10]"
+msgstr "Casilla [10]"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "AEAT 130 reports"
+msgstr "Modelos AEAT 130"
+
+#. module: l10n_es_aeat_mod130
+#: help:l10n.es.aeat.mod130.report,has_prestamo:0
+msgid ""
+"Permite indicar si destina cantidades al pago de préstamos para la adquisición o rehabilitación de la vivienda habitual. Si marca la casilla, se podrá realiza un 2% de deducción sobre el importe de la casilla [03], con un máximo de 660,14 € por trimestre, o del 2% de la casilla [08], con un máximo de 660,14 euros anuales. \n"
+"Debe consultar las excepciones para las que no se computaría la deducción a pesar del préstamo."
+msgstr ""
+"Permite indicar si destina cantidades al pago de préstamos para la adquisición o rehabilitación de la vivienda habitual. Si marca la casilla, se podrá realiza un 2% de deducción sobre el importe de la casilla [03], con un máximo de 660,14 € por trimestre, o del 2% de la casilla [08], con un máximo de 660,14 euros anuales. \n"
+"Debe consultar las excepciones para las que no se computaría la deducción a pesar del préstamo."
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[03] Rendimiento neto"
+msgstr "[03] Rendimiento neto"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[02] Gastos fiscalmente deducibles"
+msgstr "[02] Gastos fiscalmente deducibles"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[05] A deducir - De los trimestres anteriores"
+msgstr "[05] A deducir - De los trimestres anteriores"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,activity_type:0
+msgid "Actividad distinta a las anteriores"
+msgstr "Actividad distinta a las anteriores"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,state:0
+msgid "Processed"
+msgstr "Procesada"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,period:0
+msgid "Third quarter"
+msgstr "3er trimestre"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,representative_vat:0
+msgid "L.R. VAT number"
+msgstr "Nombre del representante legal"
+
+#. module: l10n_es_aeat_mod130
+#: help:l10n.es.aeat.mod130.report,has_deduccion_80:0
+msgid ""
+"Permite indicar si puede beneficiarse de la deducción por obtención de rendimientos de actividades económicas a efectos del pago fraccionado por cumplir el siguiente requisito:\n"
+"Que, en el primer trimestre del ejercicio o en el primer trimestre de inicio de actividades, la suma del resultado de elevar al año el importe de la casilla 03 y/o, en su caso, el resultado de elevar al año el 25 por 100 de la casilla 08, sea igual o inferior a 12.000 euros. En los supuestos de inicio de la actividad a lo largo del ejercicio en la elevación al año se tendrán en consideración los días que resten hasta el final del año."
+msgstr ""
+"Permite indicar si puede beneficiarse de la deducción por obtención de rendimientos de actividades económicas a efectos del pago fraccionado por cumplir el siguiente requisito:\n"
+"Que, en el primer trimestre del ejercicio o en el primer trimestre de inicio de actividades, la suma del resultado de elevar al año el importe de la casilla 03 y/o, en su caso, el resultado de elevar al año el 25 por 100 de la casilla 08, sea igual o inferior a 12.000 euros. En los supuestos de inicio de la actividad a lo largo del ejercicio en la elevación al año se tendrán en consideración los días que resten hasta el final del año."
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[07] Pago fraccionado previo del trimestre"
+msgstr "[07] Pago fraccionado previo del trimestre"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,type:0
+msgid "Statement Type"
+msgstr "Tipo de declaración"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,period:0
+msgid "Period"
+msgstr "Periodo"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,fiscalyear_id:0
+msgid "Fiscal year"
+msgstr "Ejercicio fiscal"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,state:0
+msgid "Done"
+msgstr "Realizado"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[04] 20% de la casilla [03]"
+msgstr "[04] 20% de la casilla [03]"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,period:0
+msgid "Fourth quarter"
+msgstr "4to trimestre"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,tipo_declaracion:0
+msgid "A ingresar"
+msgstr "A ingresar"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,previous_electronic_code:0
+msgid "Cód. electr. declaración anterior"
+msgstr "Cód. electr. declaración anterior"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,type:0
+msgid "Complementary"
+msgstr "Complementaria"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.export_to_boe,state:0
+msgid "get"
+msgstr "resultados"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[12] Suma de pagos fraccionados previos del trimestre"
+msgstr "[12] Suma de pagos fraccionados previos del trimestre"
+
+#. module: l10n_es_aeat_mod130
+#: help:l10n.es.aeat.mod130.report,representative_vat:0
+msgid "Legal Representative VAT number."
+msgstr "Nombre del representante legal."
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[14] Diferencia (12) - (13)"
+msgstr "[14] Diferencia (12) - (13)"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "Datos a completar"
+msgstr "Datos a completar"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+#: field:l10n.es.aeat.mod130.report,result:0
+msgid "Resultado"
+msgstr "Resultado"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_18:0
+msgid "Casilla [18]"
+msgstr "Casilla [18]"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,complementary:0
+msgid "Presentación complementaria"
+msgstr "Presentación complementaria"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_08:0
+msgid "Casilla [08] - Ingresos primario"
+msgstr "Casilla [08] - Ingresos primario"
+
+#. module: l10n_es_aeat_mod130
+#: help:l10n.es.aeat.mod130.report,complementary:0
+msgid "Se marcará si esta declaración es complementaria de otra u otras declaraciones presentadas anteriormente por el mismo concepto y correspondientes al mismo ejercicio y período."
+msgstr "Se marcará si esta declaración es complementaria de otra u otras declaraciones presentadas anteriormente por el mismo concepto y correspondientes al mismo ejercicio y período."
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,casilla_04:0
+msgid "Casilla [04] - IRPF"
+msgstr "Casilla [04] - IRPF"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[06] A deducir - Retenciones e ingr. a cuenta"
+msgstr "[06] A deducir - Retenciones e ingr. a cuenta"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,support_type:0
+msgid "Telematics"
+msgstr "Telemática"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod130.action_wizard_aeat_mod130_export
+msgid "Export AEAT 130 BOE file"
+msgstr "Exportar archivo BOE AEAT 130"
+
+#. module: l10n_es_aeat_mod130
+#: view:l10n.es.aeat.mod130.report:0
+msgid "[16] Pago de préstamos para la adquisición de vivienda habitual"
+msgstr "[16] Pago de préstamos para la adquisición de vivienda habitual"
+
+#. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,period:0
+msgid "Second quarter"
+msgstr "2do trimestre"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model,name:l10n_es_aeat_mod130.model_l10n_es_aeat_mod130_export_to_boe
+msgid "Export Report to BOE Format"
+msgstr "Exportar a formato BOE"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,activity_type:0
+msgid "Tipo de actividad"
+msgstr "Tipo de actividad"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.export_to_boe,data:0
+msgid "File"
+msgstr "Archivo"
+
