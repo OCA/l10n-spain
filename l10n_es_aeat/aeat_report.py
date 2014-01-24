@@ -24,7 +24,7 @@
 ##############################################################################
 from openerp.tools.translate import _
 from openerp.osv import orm, fields
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 import time
 import re
 
@@ -49,10 +49,9 @@ class l10n_es_aeat_report(orm.Model):
 
     _columns = {
         'company_id': fields.many2one('res.company', 'Company', required=True,
-                                      states={'done':[('readonly',True)]}),
-        'number': fields.char('Declaration number', size=13,
-                              states={'calculated':[('required',True)],
-                                      'done':[('readonly',True)]}),
+                    readonly=True, states={'draft': [('readonly', False)]}),
+        'number': fields.char('Declaration number', size=13, required=True,
+                              readonly=True),
         'previous_number' : fields.char('Previous declaration number',
                                 size=13, states={'done':[('readonly',True)]}),
         'representative_vat': fields.char('L.R. VAT number', size=9,
@@ -60,11 +59,10 @@ class l10n_es_aeat_report(orm.Model):
                                     states={'calculated':[('required',True)],
                                             'confirmed':[('readonly',True)]}),
         'fiscalyear_id': fields.many2one('account.fiscalyear', 'Fiscal year',
-                                     required=True,
-                                     states={'done': [('readonly', True)]}),
-        'company_vat': fields.char('VAT number', size=9,
-                                    states={'calculated':[('required',True)],
-                                            'done':[('readonly',True)]}),
+                                    required=True, readonly=True,
+                                    states={'draft': [('readonly', False)]}),
+        'company_vat': fields.char('VAT number', size=9, required=True,
+                    readonly=True, states={'draft': [('readonly', False)]}),
         'type': fields.selection([('N', 'Normal'),
                                   ('C', 'Complementary'),
                                   ('S', 'Substitutive')],  'Statement Type',
@@ -96,12 +94,12 @@ class l10n_es_aeat_report(orm.Model):
         res = self.calculate(cr, uid, ids, context=context)
         self.write(cr, uid, ids,
                {'state': 'calculated',
-                'calculation_date': time.strftime(DEFAULT_SERVER_DATE_FORMAT)})
+                'calculation_date': time.strftime(DEFAULT_SERVER_DATETIME_FORMAT)})
         return res
 
     def button_recalculate(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids,
-            {'calculation_date': time.strftime(DEFAULT_SERVER_DATE_FORMAT)})
+            {'calculation_date': time.strftime(DEFAULT_SERVER_DATETIME_FORMAT)})
         return self.calculate(cr, uid, ids, context=context)
 
     def calculate(self, cr, uid, ids, context=None):
