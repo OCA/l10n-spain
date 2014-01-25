@@ -160,7 +160,7 @@ class csb_32(osv.osv):
         addresses = self.pool.get('res.partner').address_get(cr, uid, [recibo['partner_id'].id] )
         #if not addresses:
         #    print "NO ADDRESSES"
-        address = self.pool.get('res.partner.address').browse(cr, uid, addresses['default'], context)
+        address = self.pool.get('res.partner').browse(cr, uid, addresses['default'], context)
         texto += converter.convert( cr, uid, address.street, 34, context )
         texto += converter.convert( cr, uid, address.zip, 5, context )
         texto += converter.convert( cr, uid, address.city, 20, context )
