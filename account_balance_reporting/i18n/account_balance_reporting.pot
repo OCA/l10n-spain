@@ -439,6 +439,7 @@ msgstr ""
 
 #. module: account_balance_reporting
 #: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_templates
+#: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_reports
 msgid "Financial Reports"
 msgstr ""
 
@@ -466,11 +467,6 @@ msgstr ""
 #: view:account.balance.reporting.template:0
 #: field:account.balance.reporting.template,line_ids:0
 msgid "Lines"
-msgstr ""
-
-#. module: account_balance_reporting
-#: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_reports
-msgid "Financial Reports"
 msgstr ""
 
 #. module: account_balance_reporting
