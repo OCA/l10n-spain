@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="account_general_ledger_cumulative_report_view_xls" model="ir.ui.view">
+            <field name="name">account general ledger cumulative report XLS</field>
+            <field name="model">fl.account.general.ledger.cumulative.report</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account_financial_report_web.account_general_ledger_cumulative_report_form2" />
+            <field name="arch" type="xml">
+            <data>
+
+            <field name="initial_balance" position="after">
+                <newline/>
+               <separator string="XLS" colspan="4"/>
+                    <field name="name" invisible="1"/>
+                    <field name="export_file" filename="name" />
+                    <button icon="gtk-print" name="get_report_file_xls" string="Export XLS" type="object" colspan="2" default_focus="1"/>
+
+            </field>
+            </data>
+            </field>
+        </record>
+
+    </data>
+</openerp>

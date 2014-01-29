@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data >
+        <record id="account_balance_full_report_form3" model="ir.ui.view">
+            <field name="name">account.balance.full.report.form3</field>
+            <field name="model">fl.account.balance.full.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Full Account Balance2">
+                    <field name="company_id" on_change="onchange_company_id(company_id)"/>
+                    <newline/>
+                    <group colspan="4">
+                    <separator string="Accounts to include" colspan="4"/>
+                        <field name="account_list" nolabel="1" colspan="4" domain="[('company_id','=',company_id)]"/>
+                        <field name="display_account" required="True"/>
+                        <field name="display_account_level" required="True" />
+                    </group>
+                    <group colspan="4">
+                        <separator string="Period" colspan="4"/>
+                        <field name="fiscalyear"/>
+                        <newline/>
+                        <field name="state" required="True"/>
+                        <newline/>
+                        <group attrs="{'invisible':[('state','=','none')]}" colspan="4">
+                            <group attrs="{'invisible':[('state','=','byperiod')]}" colspan="4">
+                                <separator string="Date Filter" colspan="4"/>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                            </group>
+                            <group attrs="{'invisible':[('state','=','bydate')]}" colspan="4">
+                                <separator string="Filter on Periods" colspan="4"/>
+                                <field name="periods" colspan="4" nolabel="1" domain="[('fiscalyear_id','=',fiscalyear)]"/>
+                            </group>
+                        </group>
+                    </group>
+                    <button special="cancel" string="Cancel" icon="gtk-cancel"/>
+                    <button name="print_report" string="Get Balance" type="object" icon="gtk-ok"/>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_balance_full_xml_report3" model="ir.actions.act_window">
+            <field name="name">**Full account balance3</field>
+            <field name="res_model">fl.account.balance.full.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account_balance_full_report_form3"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="account_financial_report.menu_account_balance_full_report" action="action_balance_full_xml_report3"
+            parent="account.menu_finance_generic_reporting" icon="STOCK_PRINT"
+            name="**Full account balance" sequence="100"/>
+        
+        <record id="account_general_ledger_cumulative_report_form2" model="ir.ui.view">
+            <field name="name">account.general.ledger.cumulative.report.form2</field>
+            <field name="model">fl.account.general.ledger.cumulative.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+               <form string="General ledger">
+                    <field name="states" invisible="1"/>
+                    <newline/>
+                    <group string="Select parent account" attrs="{'invisible':[('states','!=','account_selection')]}"  width="700">
+                        <field name="account_list" colspan="4" nolabel="1" attrs="{'required':[('states','=','account_selection')]}"/>
+                        <newline/>
+                        <button special="cancel" colspan="2" string="Cancel" icon="gtk-cancel"/>
+                        <button name="step1" colspan="2" string="Next" type="object" icon="gtk-go-forward"/>
+                    </group>
+                    <newline/>
+                    <group string="Select Date-Period" attrs="{'invisible':[('states','!=','checktype')]}"  width="700" >
+                        <field name="company_id" colspan="4" attrs="{'required':[('states','=','checktype')]}"/>
+                        <newline/>
+                        <field name="fiscalyear"/>
+                        <label colspan="2" string="(Keep empty for all open fiscal years)" align="0.0"/>
+                        <newline/>
+
+                        <field name="display_account" attrs="{'required':[('states','=','checktype')]}"/>
+                        <field name="sortbydate" attrs="{'required':[('states','=','checktype')]}"/>
+                        <field name="landscape"/>
+                        <field name="amount_currency"/>
+                        <field name="initial_balance"/>  
+                        <newline/>
+                        <separator string="Filters" colspan="4"/>
+                        <field name="state" required="True"/>
+                        <newline/>
+                        <group attrs="{'invisible':[('state','=','none')]}" colspan="4">
+                            <group attrs="{'invisible':[('state','=','byperiod')]}" colspan="4">
+                                <separator string="Date Filter" colspan="4"/>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                            </group>
+                            <group attrs="{'invisible':[('state','=','bydate')]}" colspan="4">
+                                <separator string="Filter on Periods" colspan="4"/>
+                                <field name="periods" colspan="4" nolabel="1"/>
+                            </group>
+                        </group>
+                        <button special="cancel" colspan="2" string="Cancel" icon="gtk-cancel"/>
+                        <button name="prints" colspan="2" string="Print Report" type="object" icon="gtk-print"/> 
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_general_ledger_cumulative_xml_report2" model="ir.actions.act_window">
+            <field name="name">**Cumulative general ledger</field>
+            <field name="res_model">fl.account.general.ledger.cumulative.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account_general_ledger_cumulative_report_form2"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="account_financial_report.menu_account_general_ledger_cumulative_report" action="action_general_ledger_cumulative_xml_report2"
+            parent="account.menu_finance_generic_reporting" icon="STOCK_PRINT"
+            name="**Cumulative general ledger" sequence="100"/>
+  </data>
+</openerp>
