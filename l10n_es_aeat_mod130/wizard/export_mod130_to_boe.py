@@ -51,34 +51,28 @@ class l10n_es_aeat_mod130_export_to_boe(orm.TransientModel):
 
     def _get_formatted_main_record(self, report, context=None):
         res = ''
-        if report.activity_type == 'primary':
-            # Datos vacíos para actividad económica
-            res += self._formatString('', 91)
-            # II. Activ. agrícola. estimac. directa - Volumen de ingresos [08]
-            res += self._formatNumber(report.casilla_08, 11, 2)
-            # II. Activ. agrícola. estimac. directa - 2% de la casilla 08 [09]
-            res += self._formatNumber(report.casilla_09, 11, 2)
-            # II. Activ. agrícola. estimac. directa - A deducir- Retenciones e ingr. a cuenta [10]
-            res += self._formatNumber(report.casilla_10, 11, 2)
-            # II. Activ. agrícola estimac. directa - Pago fraccionado previo del trimestre [11]
-            res += self._formatNumber(report.casilla_11, 11, 2)
-        else:
-            # I. Activ. económicas estimac. Directa - Ingresos computables [01]
-            res += self._formatNumber(report.casilla_01, 11, 2)
-            # I. Activ. económicas estimac. Directa - Gastos fiscalmente deducibles [02]
-            res += self._formatNumber(report.casilla_02, 11, 2)
-            # I. Activ. económicas estimac. Directa - Rendimiento neto [03]
-            res += self._formatNumber(report.casilla_03, 11, 2)
-            # I. Activ. económicas estimac. Directa - 20% de la casilla 03 [04]
-            res += self._formatNumber(report.casilla_04, 11, 2)
-            # I. Activ. económicas estimac. Directa - A deducir - De los trimestres anteriores [05]
-            res += self._formatNumber(report.casilla_05, 11, 2)
-            # I. Activ. económicas estimac. Directa - A deducir - Retenciones e ingr. a cuenta [06]
-            res += self._formatNumber(report.casilla_06, 11, 2)
-            # I. Activ. económicas estimac. Directa - Pago fraccionado previo del trimestre [07]
-            res += self._formatNumber(report.casilla_07, 11, 2)
-            # Datos vacíos para actividad agrícola
-            res += self._formatString('', 52)
+        # I. Activ. económicas estimac. Directa - Ingresos computables [01]
+        res += self._formatNumber(report.casilla_01, 11, 2)
+        # I. Activ. económicas estimac. Directa - Gastos fiscalmente deducibles [02]
+        res += self._formatNumber(report.casilla_02, 11, 2)
+        # I. Activ. económicas estimac. Directa - Rendimiento neto [03]
+        res += self._formatNumber(report.casilla_03, 11, 2)
+        # I. Activ. económicas estimac. Directa - 20% de la casilla 03 [04]
+        res += self._formatNumber(report.casilla_04, 11, 2)
+        # I. Activ. económicas estimac. Directa - A deducir - De los trimestres anteriores [05]
+        res += self._formatNumber(report.casilla_05, 11, 2)
+        # I. Activ. económicas estimac. Directa - A deducir - Retenciones e ingr. a cuenta [06]
+        res += self._formatNumber(report.casilla_06, 11, 2)
+        # I. Activ. económicas estimac. Directa - Pago fraccionado previo del trimestre [07]
+        res += self._formatNumber(report.casilla_07, 11, 2)
+        # II. Activ. agrícola. estimac. directa - Volumen de ingresos [08]
+        res += self._formatNumber(report.casilla_08, 11, 2)
+        # II. Activ. agrícola. estimac. directa - 2% de la casilla 08 [09]
+        res += self._formatNumber(report.casilla_09, 11, 2)
+        # II. Activ. agrícola. estimac. directa - A deducir- Retenciones e ingr. a cuenta [10]
+        res += self._formatNumber(report.casilla_10, 11, 2)
+        # II. Activ. agrícola estimac. directa - Pago fraccionado previo del trimestre [11]
+        res += self._formatNumber(report.casilla_11, 11, 2)
         # III. Total liquidación - Suma de pagos fraccionados previos del trimestre [12]
         res += self._formatNumber(report.casilla_12, 11, 2)
         # III. Total liquidación -Minoración por aplicación de la deducción. Artículo 80 bis [13]
