@@ -166,13 +166,13 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
         """
         return value and yes or no
 
-    def _get_formatted_declaration_record(self, report, context=None):
+    def _get_formatted_declaration_record(self, cr, uid, report, context=None):
         return ''
 
-    def _get_formatted_main_record(self, report, context=None):
+    def _get_formatted_main_record(self, cr, uid, report, context=None):
         return ''
 
-    def _get_formatted_other_records(self, report, context=None):
+    def _get_formatted_other_records(self, cr, uid, report, context=None):
         return ''
 
     def _do_global_checks(self, report, contents, context=None):
@@ -189,12 +189,14 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
                                         context['active_id'], context=context)
         contents = ''
         ## Add header record
-        contents += self._get_formatted_declaration_record(report,
+        contents += self._get_formatted_declaration_record(cr, uid, report,
                                                           context=context)
         ## Add main record
-        contents += self._get_formatted_main_record(report, context=context)
+        contents += self._get_formatted_main_record(cr, uid, report, 
+                                                    context=context)
         ## Adds other fields
-        contents += self._get_formatted_other_records(report, context=context)
+        contents += self._get_formatted_other_records(cr, uid, report, 
+                                                      context=context)
         ## Generate the file and save as attachment
         file = base64.encodestring(contents)
         file_name = _("%s_report_%s.txt") % (report.number,
