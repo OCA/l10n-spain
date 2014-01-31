@@ -25,7 +25,7 @@ class l10n_es_aeat_mod303_export_to_boe(orm.TransientModel):
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = 'l10n.es.aeat.mod303.export_to_boe'
 
-    def _get_formatted_declaration_record(self, report, context=None):
+    def _get_formatted_declaration_record(self, cr, uid, report, context=None):
         res = ''
         ## cabecera 
         res += "<T30301> "
@@ -44,7 +44,7 @@ class l10n_es_aeat_mod303_export_to_boe(orm.TransientModel):
                                  "be 72 characters long")
         return res
 
-    def _get_formatted_main_record(self, report, context=None):
+    def _get_formatted_main_record(self, cr, uid, report, context=None):
         lines = report._get_report_lines(context=context)
         res = ''
         ## IVA devengado
@@ -115,7 +115,7 @@ class l10n_es_aeat_mod303_export_to_boe(orm.TransientModel):
         assert len(res) == 822 - 72, _("The vat records must be 749 characters long and are %s") % len(res)
         return res
 
-    def _get_formatted_other_records(self, report, context=None):
+    def _get_formatted_other_records(self, cr, uid, report, context=None):
         res = ''
         ## devolucion (6)
         res += self._formatNumber(report.devolver, 15, 2) ## devolucion [50]
