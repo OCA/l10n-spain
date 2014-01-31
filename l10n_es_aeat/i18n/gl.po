@@ -8,35 +8,35 @@ msgstr ""
 "Project-Id-Version: openerp-spain\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-01-23 16:16+0000\n"
-"PO-Revision-Date: 2014-01-17 07:22+0000\n"
-"Last-Translator: Pedro Manuel Baeza <pedro.baeza@gmail.com>\n"
+"PO-Revision-Date: 2014-01-31 03:43+0000\n"
+"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-24 06:25+0000\n"
-"X-Generator: Launchpad (build 16914)\n"
+"X-Launchpad-Export-Date: 2014-01-31 06:24+0000\n"
+"X-Generator: Launchpad (build 16916)\n"
 
 #. module: l10n_es_aeat
 #: model:ir.actions.act_window,name:l10n_es_aeat.action_wizard_aeat_export
 #: view:l10n.es.aeat.report.export_to_boe:0
 msgid "Export AEAT BOE file"
-msgstr ""
+msgstr "Exportar a ficheiro AEAT BOE"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
 msgid "Confirmed models"
-msgstr ""
+msgstr "Declaracións confirmadas"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
 msgid "Calculate"
-msgstr ""
+msgstr "Calcular"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #. module: l10n_es_aeat
 #: model:res.groups,name:l10n_es_aeat.group_account_aeat
@@ -51,12 +51,12 @@ msgstr "DVD"
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
 msgid "In process"
-msgstr ""
+msgstr "En proceso"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
 msgid "Cancelled models"
-msgstr ""
+msgstr "Declaracións canceladas"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,state:0
@@ -72,12 +72,12 @@ msgstr "Borrador"
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
 msgid "Declaración"
-msgstr ""
+msgstr "Declaración"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report.export_to_boe,state:0
 msgid "open"
-msgstr ""
+msgstr "aberto"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:114
@@ -86,12 +86,12 @@ msgstr ""
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:159
 #, python-format
 msgid "The formated string must match the given length"
-msgstr "A cadea formateada debe satisfacer o tamaño dado."
+msgstr "A cadea formateada debe satisface-lo tamaño dado."
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
 msgid "AEAT report"
-msgstr ""
+msgstr "Modelo AEAT"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
@@ -101,7 +101,7 @@ msgstr "Complementaria"
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
 msgid "AEAT"
-msgstr ""
+msgstr "AEAT"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
@@ -112,7 +112,7 @@ msgstr "Compañía"
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:0
 msgid "Export completed"
-msgstr ""
+msgstr "Exportación completada"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:110
@@ -124,7 +124,7 @@ msgstr "Opción de aliñamento errada. Debería ser < ou >"
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report
 msgid "AEAT report base module"
-msgstr ""
+msgstr "Módulo base modelos AEAT"
 
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,representative_vat:0
@@ -134,16 +134,16 @@ msgstr "NIF do representante legal."
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,previous_number:0
 msgid "Previous declaration number"
-msgstr ""
+msgstr "Nº da declaración anterior"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
 msgid "Export to BOE"
-msgstr ""
+msgstr "Exportar ó formato BOE"
 
 #: view:l10n.es.aeat.report.export_to_boe:0
 msgid "Export"
-msgstr ""
+msgstr "Exportar"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,company_vat:0
@@ -165,27 +165,27 @@ msgstr "Substitutiva"
 #. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
 msgid "AEAT reports"
-msgstr ""
+msgstr "Declaracións AEAT"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report.export_to_boe,data:0
 msgid "File"
-msgstr ""
+msgstr "Ficheiro"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report.export_to_boe,state:0
 msgid "get"
-msgstr ""
+msgstr "obter"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report.export_to_boe,name:0
 msgid "File name"
-msgstr ""
+msgstr "Nome do ficheiro"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,number:0
 msgid "Declaration number"
-msgstr ""
+msgstr "Nº declaración"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,support_type:0
@@ -195,7 +195,7 @@ msgstr "Tipo de soporte"
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
 msgid "Draft models"
-msgstr ""
+msgstr "Declaracións borrador"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,calculation_date:0
@@ -206,12 +206,12 @@ msgstr "Data de cálculo"
 #: view:l10n.es.aeat.report:0
 #: selection:l10n.es.aeat.report,state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancelada"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,representative_vat:0
 msgid "L.R. VAT number"
-msgstr "NIF Repr. legal"
+msgstr "NIF repr. legal"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,support_type:0
@@ -223,6 +223,7 @@ msgstr "Telemática"
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
+"Só se poden elimina-las declaracións en estado 'borrador' ou 'cancelada'"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/aeat_report.py:124
@@ -244,13 +245,13 @@ msgstr "Normal"
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
 msgid "In process models"
-msgstr ""
+msgstr "Declaracións en proceso"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
 #: field:l10n.es.aeat.report,fiscalyear_id:0
 msgid "Fiscal year"
-msgstr ""
+msgstr "Exercicio fiscal"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
@@ -268,23 +269,23 @@ msgstr "%s_report_%s.txt"
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report.export_to_boe,state:0
 msgid "unknown"
-msgstr ""
+msgstr "descoñecido"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
 #: view:l10n.es.aeat.report.export_to_boe:0
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:0
 msgid "Close"
-msgstr ""
+msgstr "Pechar"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:0
 msgid "Recalculate"
-msgstr ""
+msgstr "Recalcular"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,type:0
@@ -294,7 +295,7 @@ msgstr "Tipo de declaración"
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:0
 msgid "or"
-msgstr ""
+msgstr "ou"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,state:0
