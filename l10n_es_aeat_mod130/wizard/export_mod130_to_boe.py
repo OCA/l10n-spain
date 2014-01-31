@@ -27,7 +27,7 @@ class l10n_es_aeat_mod130_export_to_boe(orm.TransientModel):
     def _cleanString(self, string):
         return string.replace("-", "").replace(" ", "").replace("/", "")
 
-    def _get_formatted_declaration_record(self, report, context=None):
+    def _get_formatted_declaration_record(self, cr, uid, report, context=None):
         res = ''
         ## cabecera 
         res += "13001 "
@@ -49,7 +49,7 @@ class l10n_es_aeat_mod130_export_to_boe(orm.TransientModel):
         res += self._formatString(report.period, 2)
         return res
 
-    def _get_formatted_main_record(self, report, context=None):
+    def _get_formatted_main_record(self, cr, uid, report, context=None):
         res = ''
         # I. Activ. económicas estimac. Directa - Ingresos computables [01]
         res += self._formatNumber(report.casilla_01, 11, 2)
@@ -91,7 +91,7 @@ class l10n_es_aeat_mod130_export_to_boe(orm.TransientModel):
         res += self._formatNumber(report.result, 11, 2)
         return res
 
-    def _get_formatted_other_records(self, report, context=None):
+    def _get_formatted_other_records(self, cr, uid, report, context=None):
         res = ''
         # Ingreso (4) Importe del ingreso
         res += self._formatNumber(report.result if report.result > 0 else 0,
