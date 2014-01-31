@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
-#                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2010 Pexego Sistemas Informáticos. All Rights Reserved
-#                       Borja López Soilán <borjals@pexego.es>
-#    Copyright (c) 2011 Pexego Sistemas Informáticos. All Rights Reserved
-#                       Alberto Luengo Cabanillas <alberto@pexego.es>
-#    $Id$
+#    Copyright (c) All rights reserved:
+#        2009      Zikzakmedia S.L. (http://zikzakmedia.com)
+#                  Jordi Esteve <jesteve@zikzakmedia.com>
+#        2010-2013 Pexego Sistemas Informáticos
+#                  Borja López Soilán <borjals@pexego.es>
+#                  Alberto Luengo Cabanillas <alberto@pexego.es>
+#        2013-2014 Servicios Tecnológicos Avanzados (http://serviciosbaeza.com)
+#                  Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -26,13 +26,23 @@
 ##############################################################################
 
 {
-    "name" : "Spanish Bank Statements Importation",
-    "version" : "2.0",
-    "author" : "Zikzakmedia, Pexego, Acysos, NaN·tic",
+    "name" : "Extractos bancarios españoles",
+    "version" : "3.0",
+    "author" : "Spanish localization team",
+    "website" : "https://launchpad.net/openerp-spain",
     "category" : "Localisation/Accounting",
     "description" : """
-Module for the importation of Spanish bank statements following the C43 normative of the 'Asociación Española de la Banca'.
-    
+Importación y tratamiento de los extractos bancarios españoles que siguen la
+normativa C43 de la 'Asociación Española de la Banca'. Puede consultarse el
+formato completo aquí:
+
+https://docs.bankinter.com/stf/plataformas/empresas/gestion/ficheros/formatos_fichero/norma_43_castellano.pdf
+
+**AVISO:** Este módulo requiere de varios módulos del repositorio de código:
+
+https://code.launchpad.net/~banking-addons-team/banking-addons/bank-statement-reconcile-70
+
+-- Old description --
     Adds a wizard to the bank statements to perform the importation. The imported file gets attached to the given bank statement.
     It allows to define default accounting codes for the concepts defined in the C43 bank statement file.
 
@@ -49,24 +59,19 @@ Module for the importation of Spanish bank statements following the C43 normativ
 
     The module also adds a wizard in Financial Management/Configuration/C43 bank statements to import the default statement concepts, that must be run after creating the spanish chart of accounts (l10n_es module).
     """,
-    "website" : "www.zikzakmedia.com / www.pexego.es / www.acysos.com / www.nan-tic.com",
     "license" : "AGPL-3",
     "depends" : [
-        "account",
-        "account_voucher",
         "l10n_es",
-        "nan_account_bank_statement",
-        ],
-    "init_xml" : [],
-    "demo_xml" : [],
-    "update_xml" : [
-        "extractos_view.xml",
-        "import_c43_file_view.xml",
-        "security/ir.model.access.csv",
-        "security/concepto_security.xml"
-        ],
-    "installable" : False,
-    "active" : False,
+        'account_statement_base_import',
+    ],
+    "demo" : [],
+    "data" : [
+        #"extractos_view.xml",
+        #"import_c43_file_view.xml",
+        #"security/ir.model.access.csv",
+        #"security/concepto_security.xml"
+    ],
+    "installable" : True,
 }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

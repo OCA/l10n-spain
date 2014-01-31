@@ -15,11 +15,27 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import c43_account_statement_profile
-import c43_parser
-#import concepto
-#import account_bank_statement
-#import import_conceptos
+from openerp.tools.translate import _
+from openerp.osv import fields, orm
 
+class AccountStatementProfil(orm.Model):
+    _inherit = "account.statement.profile"
 
+    def get_import_type_selection(self, cr, uid, context=None):
+        """
+        Inherited from parent to add parser.
+        """
+        selection = super(AccountStatementProfil, self
+                          ).get_import_type_selection(cr, uid,
+                                                      context=context)
+        selection.append(('aeb_c43', _('AEB C43 standard')))
+        return selection
+
+    _columns = {
+        'import_type': fields.selection(get_import_type_selection,
+            'Type of import', required=True,
+            help="Choose here the method by which you want to import bank"
+                 "statement for this profile."),
+
+    }
 
