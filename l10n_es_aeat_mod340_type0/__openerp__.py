@@ -2,10 +2,9 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 20011 Ting (http://www.ting.es) All Rights Reserved.
+#    Copyright (c) 2011 Ting (http://www.ting.es) All Rights Reserved.
 #    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com) All Rights Reserved
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
-#                      
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,10 +21,25 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import report
-import wizard
-import mod340
-import res_partner
-import account_invoice
-import account
 
+{
+    'name' : 'Generación de fichero modelo 340. Registro tipo 0',
+    'version' : '1.0',
+    'author' : 'Acysos S.L.',
+    'website' : 'www.acysos.com',
+    'category' : 'Localisation/Accounting',
+    'description' : '''
+        Exporta el registro de tipo 0 del Modelo 340. 
+        Actualmente solo obligatorio para la Comunidad Foral de Navarra.
+        ''',
+    'license' : 'AGPL-3',
+    'depends' : ['l10n_es_aeat_mod340',
+                 'city',
+                 ],
+    'init_xml' : [],
+    'demo_xml' : [],
+    'update_xml' : [
+        'mod340_view.xml'],
+    'installable' : True,
+    'active' : False,
+}

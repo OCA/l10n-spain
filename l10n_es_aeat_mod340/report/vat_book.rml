@@ -120,7 +120,8 @@
     <paraStyle name="P9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER"/>
     <paraStyle name="P10" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER"/>
     <paraStyle name="P11" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER"/>
-    <paraStyle name="P12" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER"/>
+    <paraStyle name="P12" fontName="Helvetica"/>
+    <paraStyle name="P13" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER"/>
     <paraStyle name="Standard" fontName="Helvetica"/>
     <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
     <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
@@ -137,20 +138,16 @@
   <story>
     <para style="Standard">[[repeatIn(objects, 'o')]]</para>
     <para style="terp_default_8">[[ setLang(o.company_id.partner_id.lang) ]]</para>
-    <para style="P4">MODELO AEAT 340</para>
+    <para style="P4">LIBRO DE IVA</para>
     <blockTable colWidths="117.0,219.0" style="Taula2">
       <tr>
         <td>
           <para style="P3">Compañía: </para>
           <para style="P3">Ejercicio fiscal: </para>
-          <para style="P3">Número: </para>
-          <para style="P3">Tipo de soporte: </para>
         </td>
         <td>
-          <para style="P2">[[ o.company_id.name or '']] </para>
+          <para style="P2">[[o.company_id.name or '']] </para>
           <para style="P2">[[o.fiscalyear_id.name or '']] </para>
-          <para style="P2">[[o.number or '']] </para>
-          <para style="P2">[[o.support_type]]</para>
         </td>
       </tr>
     </blockTable>
@@ -166,19 +163,11 @@
           <para style="P3">CIF/NIF: </para>
           <para style="P3">Teléfono de contacto: </para>
           <para style="P3">Apellidos y nombre de contacto: </para>
-          <para style="P3">CIF/NIF del representante legal: </para>
-          <para style="P3">Tipo de declaración </para>
-          <para style="P3">Número de la declaración anterior: </para>
-          <para style="P3">Código electrónico autoliquidación IVA: </para>
         </td>
         <td>
           <para style="P2">[[o.company_vat or '']] </para>
           <para style="P2">[[o.contact_phone or '']] </para>
           <para style="P2">[[o.name_contact or '']] </para>
-          <para style="P2">[[o.representative_vat or '']] </para>
-          <para style="P2">[[o.type or '']] </para>
-          <para style="P2">[[o.previous_number or '']] </para>
-          <para style="P2">[[o.ean13 or '']]</para>
         </td>
       </tr>
     </blockTable>
@@ -189,7 +178,7 @@
     <para style="P7">
       <font color="white"> </font>
     </para>
-    <blockTable colWidths="75.0,101.0,60.0,62.0,61.0,59.0,64.0" repeatRows="1" style="Taula3">
+    <blockTable colWidths="73.0,103.0,60.0,62.0,61.0,59.0,64.0" repeatRows="1" style="Taula3">
       <tr>
         <td>
           <para style="Table Heading">Fecha</para>
@@ -219,7 +208,7 @@
     </para>
     <section>
       <para style="P6">[[repeatIn(o.issued,'r')]]</para>
-      <blockTable colWidths="75.0,101.0,60.0,62.0,61.0,59.0,64.0" repeatRows="1" style="Taula4">
+      <blockTable colWidths="74.0,102.0,60.0,62.0,61.0,59.0,64.0" repeatRows="1" style="Taula4">
         <tr>
           <td>
             <para style="P11">[[ formatLang(r.invoice_id.date_invoice,date=True) ]]</para>
@@ -267,7 +256,7 @@
           <para style="Table Heading">CIF/NIF</para>
         </td>
         <td>
-          <para style="Table Heading">Número de factura</para>
+          <para style="Table Heading">Nº de factura</para>
         </td>
         <td>
           <para style="Table Heading">Base imponible</para>
@@ -285,7 +274,7 @@
     </para>
     <section>
       <para style="P6">[[repeatIn(o.received,'r')]]</para>
-      <blockTable colWidths="75.0,101.0,60.0,62.0,61.0,59.0,64.0" repeatRows="1" style="Taula6">
+      <blockTable colWidths="74.0,102.0,60.0,62.0,61.0,59.0,64.0" repeatRows="1" style="Taula6">
         <tr>
           <td>
             <para style="P11">[[ formatLang(r.invoice_id.date_invoice,date=True) ]]</para>
