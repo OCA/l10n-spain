@@ -24,8 +24,8 @@
             <field name="type">form</field>
             <field name="inherit_id" ref="account.view_account_period_form"/>
             <field name="arch" type="xml">
-                    <field name="date_stop" position="after">
-                      <field name="quarter"/>
+                    <field name="company_id" position="after">
+                    	<field name="quarter"/>
                     </field>
             </field>
         </record>
@@ -36,9 +36,9 @@
             <field name="type">tree</field>
             <field name="inherit_id" ref="account.view_account_period_tree"/>
             <field name="arch" type="xml">
-                    <field name="date_stop" position="after">
-                      <field name="quarter" />
-                    </field>                        
+                    <field name="company_id" position="after">
+                      	<field name="quarter" />
+                      </field>                        
             </field>
         </record>
 
