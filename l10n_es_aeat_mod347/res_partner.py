@@ -18,10 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-
-from openerp.osv import fields
-from openerp.osv import orm
+from openerp.osv import fields, orm
 
 
 class res_partner(orm.Model):
@@ -29,11 +26,10 @@ class res_partner(orm.Model):
     _columns = {
         'include_in_mod347': fields.boolean(u"Include in 347 Report",
             help="Include in AEAT 347 Model report"),
-        }
-    _defaults = {
-        'include_in_mod347': lambda *a: True,
-        }
+    }
 
-res_partner()
+    _defaults = {
+        'include_in_mod347': True,
+    }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -8,8 +8,8 @@
             <field name="inherit_id" ref="base_vat.view_partner_form"/>
             <field name="arch" type="xml">
                 <field name="vat_subjected" position="after">
-                	<label for="include_in_mod347"/>
-                    	<field name="include_in_mod347"/>
+                    <label for="include_in_mod347"/>
+                    <field name="include_in_mod347"/>
                 </field>
             </field>
         </record>

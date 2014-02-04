@@ -24,7 +24,7 @@
     'version': "1.0",
     'author': "Pexego, ASR-OSS, NaN·tic, Acysos",
     'website': "http://www.pexego.es, www.asr-oss.com, www.nan-tic.com, www.acysos.com",
-    'contributors': ['Pedro M. Baeza', 'Joaquín Gutierrez'],
+    'contributors': ['Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>', 'Joaquín Gutierrez'],
     'category': "Localisation/Accounting",
     'description': """
 Presentación del Modelo AEAT 347 
@@ -35,12 +35,14 @@ Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban los d
 
 De acuerdo con la normativa de la Hacienda Española, están obligados a presentar el modelo 347:
 -----------------------------------------------------------------------------------------------
-* Todas aquellas personas físicas o jurídicas que no esten acogidas al regimen de módulos en el IRPF,
-  de naturaleza pública o privada que desarrollen actividades empresariales o profesionales,
-  siempre y cuando hayan realizado operaciones que, en su conjunto, respecto de otra persona
-  o Entidad, cualquiera que sea su naturaleza o carácter, hayan superado la cifra de 3.005,06€ 
-  durante el año natural al que se refiere la declaración. Para el cálculo de la cifra de 3.005,06 €
-  se computan de forma separada las entregas de biene y servicios y las adquisiciones de los mismos.
+* Todas aquellas personas físicas o jurídicas que no esten acogidas al regimen
+  de módulos en el IRPF, de naturaleza pública o privada que desarrollen
+  actividades empresariales o profesionales, siempre y cuando hayan realizado
+  operaciones que, en su conjunto, respecto de otra persona o Entidad,
+  cualquiera que sea su naturaleza o carácter, hayan superado la cifra de
+  3.005,06 € durante el año natural al que se refiere la declaración. Para el
+  cálculo de la cifra de 3.005,06 € se computan de forma separada las entregas
+  de biene y servicios y las adquisiciones de los mismos.
 * En el caso de Sociedades Irregulares, Sociedades Civiles y Comunidad de Bienes
   no acogidas el regimen de módulos en el IRPF, deben incluir las facturas sin
   incluir la cuantía del IRPF.
@@ -60,7 +62,7 @@ De acuerdo con la normativa no están obligados a presentar el modelo 347:
   y pesca o recargo de equivalencia, salvo las operaciones que estén
   excluidas de la aplicación de los expresados regímenes.
 * Los obligados tributarios que no hayan realizado operaciones que en su
-  conjunto superen la cifra de 3.005,06€
+  conjunto superen la cifra de 3.005,06 €.
 * Los obligados tributarios que hayan realizado exclusivamente operaciones
   no declarables.
 * Los obligados tributarios que deban informar sobre las operaciones
@@ -68,24 +70,33 @@ De acuerdo con la normativa no están obligados a presentar el modelo 347:
   operaciones que expresamente deban incluirse en el modelo 347.
 
 (http://www.boe.es/boe/dias/2008/10/23/pdfs/A42154-42190.pdf)
+
+**AVISO:** Si instala este módulo tras haber introducido clientes o
+proveedores, y los mismos deben constar en la declaración, debe ir a la ficha
+correspondiente y marcar la casilla 'Incluir en declaración 347'. Todos los
+nuevos partners que introduzca a partir de este momento, llevarán esa casilla
+marcada por defecto.
+
+**AVISO:** Este módulo requiere el módulo *account_invoice_currency*,
+disponible en:
+
+https://launchpad.net/account-financial-tools
     """,
     'license': "AGPL-3",
-    'init_xml': [],
     'depends': [
-                "base_vat",
-                "l10n_es_aeat",
-                "account_invoice_currency",
-                "document",
-                ],
+        "base_vat",
+        "l10n_es_aeat",
+        "account_invoice_currency",
+    ],
     'data': [
-             "account_journal_view.xml",
-             "res_partner_view.xml",
-             "mod347_view.xml",
-             "mod347_workflow.xml",
-             "mod347_report.xml",
-             "security/ir.model.access.csv",
-             "security/mod_347_security.xml"
-             ],
+         "account_journal_view.xml",
+         "res_partner_view.xml",
+         "wizard/export_mod347_to_boe.xml",
+         "report/mod347_report.xml",
+         "security/ir.model.access.csv",
+         "security/mod_347_security.xml",
+         "mod347_view.xml",
+    ],
     'installable': True,
     'active': False,
     'images': [

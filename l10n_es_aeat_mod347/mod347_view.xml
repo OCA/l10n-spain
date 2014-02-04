@@ -9,7 +9,6 @@
         <record model="ir.ui.view" id="view_l10n_es_aeat_mod347_partner_record_tree">
             <field name="name">l10n.es.aeat.mod347.partner_record.tree</field>
             <field name="model">l10n.es.aeat.mod347.partner_record</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Partner Records" colors="">
                     <field name="operation_key" select="1"/>
@@ -28,7 +27,6 @@
         <record model="ir.ui.view" id="view_l10n_es_aeat_mod347_partner_record_form">
             <field name="name">l10n.es.aeat.mod347.partner_record.form</field>
             <field name="model">l10n.es.aeat.mod347.partner_record</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Partner Record" version="7.0">
                     <field name="report_id" invisible="1"/>
@@ -36,47 +34,47 @@
                         <page string="Partner info">
                             <group>
                                 <group>
-                                	<field name="partner_id" on_change="on_change_partner_id(partner_id)" required="1" select="1"/>
-                                	<field name="partner_vat" select="1"/>
-                                	<field name="representative_vat" select="2"/>
+                                    <field name="partner_id" on_change="on_change_partner_id(partner_id)" required="1" select="1"/>
+                                    <field name="partner_vat" select="1"/>
+                                    <field name="representative_vat" select="2"/>
                                 </group>
                                 <group>
-                                	<field name="partner_state_code"/>
-                                	<field name="partner_country_code"/>
-                                	<field name="operation_key" select="2"/>
+                                    <field name="partner_state_code"/>
+                                    <field name="partner_country_code"/>
+                                    <field name="operation_key" select="2"/>
                                 </group>
                             </group>
                             <group>
-                            	<group>
-                                	<field name="origin_fiscalyear_id"/>
-                                	<field name="amount"/>
+                                <group>
+                                    <field name="origin_fiscalyear_id"/>
+                                    <field name="amount"/>
                                 </group>
                                 <group>
-                                	<field name="cash_amount"/>
-                                	<field name="real_state_transmissions_amount"/>
+                                    <field name="cash_amount"/>
+                                    <field name="real_state_transmissions_amount"/>
                                 </group>
                             </group>
                             <group >
-                            	<group>
-                                	<field name="first_quarter"/>
-                                	<field name="second_quarter"/>
-                                	<field name="third_quarter"/>
-                                	<field name="fourth_quarter"/>
+                                <group>
+                                    <field name="first_quarter"/>
+                                    <field name="second_quarter"/>
+                                    <field name="third_quarter"/>
+                                    <field name="fourth_quarter"/>
                                 </group>
                                 <group>
-                                	<field name="first_quarter_real_state_transmission_amount"/>
-                                	<field name="second_quarter_real_state_transmission_amount"/>
-                                	<field name="third_quarter_real_state_transmission_amount"/>
-                                	<field name="fourth_quarter_real_state_transmission_amount"/>
+                                    <field name="first_quarter_real_state_transmission_amount"/>
+                                    <field name="second_quarter_real_state_transmission_amount"/>
+                                    <field name="third_quarter_real_state_transmission_amount"/>
+                                    <field name="fourth_quarter_real_state_transmission_amount"/>
                                 </group>
                             </group>
 
                             <group>
-                            	<group>
-                                	<field name="insurance_operation"/>
+                                <group>
+                                    <field name="insurance_operation"/>
                                 </group>
                                 <group>
-                                	<field name="bussiness_real_state_rent"/>
+                                    <field name="bussiness_real_state_rent"/>
                                 </group>
                             </group>
                         </page>
@@ -91,12 +89,12 @@
                                     <field name="amount" select="1"/>
                                 </tree>
                                 <form string="Invoice record" version="7.0">
-                                	<group>
-                                    	<field name="invoice_id" select="1" readonly="True"/>
-                                    	<field name="date" select="1" readonly="True"/>
+                                    <group>
+                                        <field name="invoice_id" select="1" readonly="True"/>
+                                        <field name="date" select="1" readonly="True"/>
                                     </group>
                                     <group>
-                                    	<field name="amount" select="1" readonly="True"/>
+                                        <field name="amount" select="1" readonly="True"/>
                                     </group>
                                 </form>
                             </field>
@@ -107,12 +105,12 @@
                                     <field name="amount" select="1"/>
                                 </tree>
                                 <form string="Cash record" version="7.0">
-                                	<group>
-                                    	<field name="move_line_id" select="1" readonly="True"/>
-                                    	<field name="date" select="1" readonly="True"/>
+                                    <group>
+                                        <field name="move_line_id" select="1" readonly="True"/>
+                                        <field name="date" select="1" readonly="True"/>
                                     </group>
                                     <group>
-                                    	<field name="amount" select="1" readonly="True"/>
+                                        <field name="amount" select="1" readonly="True"/>
                                     </group>
                                 </form>
                             </field>
@@ -122,8 +120,6 @@
             </field>
         </record>
 
-
-
         <!-- ############################################
         ### AEAT MODEL 347 PARTNER REAL STATE RECORDS ###
         ############################################# -->
@@ -131,7 +127,6 @@
         <record id="view_l10n_es_aeat_mod347_real_state_record_tree" model="ir.ui.view">
             <field name="name">l10n.es.aeat.mod347.real_state_record.tree</field>
             <field name="model">l10n.es.aeat.mod347.real_state_record</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Real State Records" colors="">
                     <field name="partner_vat" select="1"/>
@@ -150,26 +145,25 @@
         <record id="view_l10n_es_aeat_mod347_real_state_record_form" model="ir.ui.view">
             <field name="name">l10n.es.aeat.mod347.real_state_record.form</field>
             <field name="model">l10n.es.aeat.mod347.real_state_record</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Real State Record" version="7.0">
                     <field name="report_id" invisible="1"/>
                     <group string="Partner info">
-                    	<group>
-                        	<field name="partner_id" on_change="on_change_partner_id(partner_id)" required="1" select="1"/>
+                        <group>
+                            <field name="partner_id" on_change="on_change_partner_id(partner_id)" required="1" select="1"/>
                         </group>
                         <group>
-                        	<field name="partner_vat" select="1"/>
-                        	<field name="representative_vat" select="2"/>
+                            <field name="partner_vat" select="1"/>
+                            <field name="representative_vat" select="2"/>
                         </group>
                     </group>
                     <group string="Real state info">
-                    	<group>
-                        	<field name="situation"/>
-                        	<field name="reference"/>
+                        <group>
+                            <field name="situation"/>
+                            <field name="reference"/>
                         </group>
                         <group>
-                        	<field name="amount"/>
+                            <field name="amount"/>
                         </group>
                     </group>
                     <group string="Real state address">
@@ -183,14 +177,14 @@
                             <field name="number_calification"/>
                         </group>
                         <group>
-                        	<group>
-                            	<field name="block"/>
-                            	<field name="floor"/>
-                            	<field name="stairway"/>
+                            <group>
+                                <field name="block"/>
+                                <field name="floor"/>
+                                <field name="stairway"/>
                             </group>
                             <group>
-                            	<field name="portal"/>
-                            	<field name="door"/>
+                                <field name="portal"/>
+                                <field name="door"/>
                             </group>
                            
                         </group>
@@ -198,150 +192,89 @@
                             <field name="complement"/>
                             <field name="postal_code"/>
                         </group>
-                        	<group>
-                            	<field name="city"/>
-                            	<field name="state_code"/>
-                            	
+                            <group>
+                                <field name="city"/>
+                                <field name="state_code"/>
+                                
                             </group>
                             <group>
-                            	<field name="township"/>
-                            	<field name="township_code"/>
+                                <field name="township"/>
+                                <field name="township_code"/>
                             </group>
                         </group>
                 </form>
             </field>
         </record>
-
-
 
         <!-- #################
         ### AEAT MODEL 347 ###
         ################## -->
         <!-- Tree view -->
-
-
         <record id="view_l10n_es_aeat_mod347_report_tree" model="ir.ui.view">
-            <field name="name">AEAT Model 347 (tree)</field>
+            <field name="name">l10n_es.aeat.mod347.report.tree</field>
             <field name="model">l10n.es.aeat.mod347.report</field>
-            <field name="type">tree</field>
+            <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree"/>
             <field name="arch" type="xml">
-                <tree string="AEAT 347 Reports">
-                	<field name="number"/>
-                    <field name="company_id"/>
-                    <field name="fiscalyear_id"/>
-                    <field name="type"/>
-                    <field name="previous_number"/>
-                    <field name="support_type"/>
-                    <field name="state"/>
-                    
-                </tree>
+                <field name="fiscalyear_id" position="after">
+                    <field name="total_partner_records"/>
+                    <field name="total_amount"/>
+                    <field name="total_cash_amount"/>
+                    <field name="total_real_state_transmissions_amount"/>
+                    <field name="total_real_state_records"/>
+                    <field name="total_real_state_amount"/>
+                </field>
             </field>
         </record>
         <!-- Form view -->
         <record id="view_l10n_es_aeat_mod347_report_form" model="ir.ui.view">
-            <field name="name">AEAT Model 347 (form)</field>
+            <field name="name">l10n_es.aeat.mod347.report.form</field>
             <field name="model">l10n.es.aeat.mod347.report</field>
-            <field name="type">form</field>
+            <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
             <field name="arch" type="xml">
-                <form string="AEAT 347 Report" version="7.0">
-                    <header>
-                    	<button name="button_calculate" type="object" string="Calculate" states="draft"/>
-                        <button name="button_recalculate" type="object" string="Recalculate" states="calculating,calculated"/>
-                        <button name="button_export" type="object" string="Export to BOE" states="done"/>
-                        <button name="confirm" string="Confirm" type="workflow" states="calculated" />
-                        <button name="cancel" string="Cancel" type="workflow" states="calculated,done" />
-                        <button name="action_recover" string="Draft" type="object" states="canceled" />
-                        <field name="state" select="2" widget="statusbar"
-                            statusbar_visible="draft,calculated,done" statusbar_colors='{"canceled":"red","draft,calculated":"blue"}' />
-                     </header>
-                   <sheet> 
-                    <group string="Declaration">
-                    	<group>
-                        	<group>
-                        		<field name="company_id" on_change="on_change_company_id(company_id)" required="1" select="1"/>
-                        		<field name="fiscalyear_id" select="1"/>
-                        	</group>
-                        	<group>
-                        		<field name="number"/>
-                        		<field name="support_type"/>
-                        	</group>
-                        </group>
-                    </group>
+                <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
+                    <attribute name="name">%(action_wizard_aeat_mod347_export)d</attribute>
+                </button>
+                <field name="fiscalyear_id" position="before">
+                    <field name="contact_name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="contact_phone" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="representative_vat" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                </field>
+                <field name="calculation_date" position="before">
+                    <field name="type" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="previous_number" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                </field>
+                <group string="Declaración" position="after">
                     <notebook>
                         <page string="General">
                             <group>
-                            	<group string="Identification" >
-                                	<field name="company_vat" required="1"/>
-                                	<field name="contact_phone"/>
-                                	<field name="contact_name" />
-                                	<field name="representative_vat"/>
-                            	</group>
-                            	<group string="Calculation" >
-                                	<field name="operations_limit" attrs="{'readonly':[('state','!=','draft')]}"/>
-                                	<field name="received_cash_limit" attrs="{'readonly':[('state','!=','draft')]}"/>
-                                	<field name="charges_obtp_limit" attrs="{'readonly':[('state','!=','draft')]}"/>
-                                	<field name="group_by_cif" attrs="{'readonly':[('state','!=','draft')]}" />
-                                	<field name="only_supplier" attrs="{'readonly':[('state','!=','draft')]}" />
-                            	</group>
-
-                            </group>
-                                <group>	
-                                <group string="Susbtitutive/complementary declaration">
-                                	<field name="type"/>
-                                	<field name="previous_number"/>
-                            	</group>
-                            
-                            	<group string="Summary">
-                                	<field name="total_partner_records"/>
-                                	<field name="total_amount"/>
-                                	<field name="total_real_state_records"/>
-                                	<field name="total_real_state_amount"/>
-                            	</group>
-
-                            </group>
-                            
-                            <group>
-                                <field name="calculation_date" select="2" readonly="1"/>
+                                <group string="Calculation parameters">
+                                    <field name="operations_limit" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    <field name="received_cash_limit" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    <field name="charges_obtp_limit" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                    <field name="group_by_cif" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                                    <field name="only_supplier" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                                </group>
+                                <group string="Summary">
+                                    <field name="total_partner_records"/>
+                                    <field name="total_amount"/>
+                                    <field name="total_real_state_records"/>
+                                    <field name="total_real_state_amount"/>
+                                </group>
                             </group>
                         </page>
                         <page string="Partner records">
                             <field name="partner_record_ids" nolabel="1" context="{'report_id': active_id}"
-                            	   attrs="{'readonly':[('state','!=','draft')]}"/>
+                                   attrs="{'readonly': [('state', '!=', 'calculated')]}"/>
                         </page>
                         <page string="Real State records">
                             <field name="real_state_record_ids" nolabel="1" context="{'report_id': active_id}"
-                                   attrs="{'readonly':[('state','!=','draft')]}"/>
+                                   attrs="{'readonly': [('state', '!=', 'calculated')]}"/>
                         </page>
                     </notebook>
-                   </sheet>
-                </form>
+                </group>
             </field>
         </record>
 
- 
-        <record id="view_l10n_es_aeat_mod347_report_search" model="ir.ui.view">
-            <field name="name">AEAT Model 347 (search)</field>
-            <field name="model">l10n.es.aeat.mod347.report</field>
-            <field name="type">search</field>
-            <field name="arch" type="xml">
-                <search string="AEAT 347">
-                	<field name="number"/>
-                    <field name="type"/>
-                    <field name="support_type"/>
-                    <field name="fiscalyear_id"/>
-                    <filter string="Draft" domain="[('state','=','draft')]" help="Draft models"/>
-                    <filter string="In process" domain="[('state','in',('calculating', 'calculated'))]" help="In process models"/>
-                    <filter string="Done" domain="[('state','=','done')]" help="Confirmed models"/>
-                    <filter string="Cancelled" domain="[('state', '=', 'canceled')]" help="Cancelled models"/>
-                    <group expand="0" string="Group By...">
-                    	<filter string="Fiscal Year" domain="[]" context="{'group_by':'fiscalyear_id'}"/>
-                        <filter string="Company" domain="[]" context="{'group_by':'company_id'}"/>
-                    </group>
-                    
-                    <newline/>
-                </search>
-            </field>
-        </record>
         <!-- Window action -->
         <record id="action_l10n_es_aeat_mod347_report" model="ir.actions.act_window">
             <field name="name">AEAT Model 347</field>
@@ -351,25 +284,32 @@
             <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Click to create a AEAT Model 347 Reports.
-                
               </p><p>
                 Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban 
                 los diseños físicos y lógicos del 347.
               </p>
               </field>
         </record>
-        
+        <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod347_report_tree">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_l10n_es_aeat_mod347_report_tree"/>
+            <field name="act_window_id" ref="action_l10n_es_aeat_mod347_report"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod347_report_form">
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_l10n_es_aeat_mod347_report_form"/>
+            <field name="act_window_id" ref="action_l10n_es_aeat_mod347_report"/>
+        </record>
 
-
-        <!--
-        ### MENU ACCESS ###
-        -->
+        <!-- ### MENU ACCESS ### -->
         <menuitem
             id="menu_aeat_mod347_report"
             parent="l10n_es_aeat.menu_root_aeat"
             action="action_l10n_es_aeat_mod347_report"
-            sequence="50"
-            name="AEAT 347 Model"/>
-                
+            sequence="347"
+            name="AEAT 347 model"/>
+
     </data>
 </openerp>

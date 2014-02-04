@@ -20,20 +20,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-
-from openerp.osv import orm
-from openerp.osv import fields
+from openerp.osv import orm, fields
 from openerp.tools.translate import _
 
-
 class l10n_es_aeat_mod347_export_to_boe(orm.AbstractModel):
-
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = "l10n.es.aeat.mod347.export_to_boe"
-    _description = "Export AEAT Model 347 to BOE format"
 
-    def _get_formated_declaration_record(self, report):
+    def _get_formatted_declaration_record(self, cr, uid, report,
+                                          context=None):
         """
         Returns a type 1, declaration/company, formated record.
 
@@ -62,7 +57,6 @@ class l10n_es_aeat_mod347_export_to_boe(orm.AbstractModel):
             488-500 	Sello electrónico
         """
         text = ''
-
         # Tipo de Registro
         text += '1'
         # Modelo Declaración
@@ -102,7 +96,6 @@ class l10n_es_aeat_mod347_export_to_boe(orm.AbstractModel):
         # Sello electrónico
         text += 13 * ' '
         text += '\r\n'
-
         assert len(text) == 502, _(
                     "The type 1 record must be 502 characters long")
         return text
@@ -198,7 +191,6 @@ class l10n_es_aeat_mod347_export_to_boe(orm.AbstractModel):
         text += 237 * ' '
         # Sello electrónico
         text += '\r\n'
-
         assert len(text) == 502, _(
                 "The type 2-D record (partner) must be 502 characters long")
         return text
@@ -302,25 +294,15 @@ class l10n_es_aeat_mod347_export_to_boe(orm.AbstractModel):
         text += 167 * ' '
         # Sello electrónico
         text += '\r\n'
-
         assert len(text) == 502, _(
                 "The type 2-I record (real state) must be 502 characters long")
         return text
 
-    def _get_formated_other_records(self, report):
-        file_contents = ''
-
+    def _get_formatted_main_record(self, cr, uid, report, context=None):
+        res = ''
+        for partner_record in report.partner_record_ids:
+            res += self._get_formated_partner_record(report, partner_record)
         for real_state_record in report.real_state_record_ids:
-            file_contents += self._get_formated_real_state_record(report,
-                                                                  real_state_record)
-
-        return file_contents
-
-    def _export_boe_file(self, cr, uid, ids, object_to_export, model=None, context=None):
-        return super(l10n_es_aeat_mod347_export_to_boe, self)._export_boe_file(cr,
-                                                                               uid,
-                                                                               ids,
-                                                                               object_to_export,
-                                                                               model='347')
-
-l10n_es_aeat_mod347_export_to_boe()
+            res += self._get_formated_real_state_record(report,
+                                                        real_state_record)
+        return res

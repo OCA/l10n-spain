@@ -18,24 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-
-from openerp.osv import fields
-from openerp.osv import orm
-
+from openerp.osv import fields, orm
 
 class account_journal(orm.Model):
     _inherit = 'account.journal'
     _columns = {
         'cash_journal': fields.boolean('Cash payments journal',
-            help="Payments of this journal will be considered as cash" \
-                 "(used on the 347 report)"),
-            }
+            help="Payments of this journal will be considered as cash (used "
+                 "on the 347 report)"),
+    }
 
     _defaults = {
-        'cash_journal': lambda *a: False
-        }
-
-account_journal()
+        'cash_journal': False
+    }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
