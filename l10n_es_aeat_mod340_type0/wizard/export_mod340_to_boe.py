@@ -18,19 +18,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-import base64
-import time
-
-from osv import osv
+from openerp.osv import orm
 from tools.translate import _
 
-
-class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
-
+class l10n_es_aeat_mod340_export_to_boe(orm.TransientModel):
     _inherit = "l10n.es.aeat.mod340.export_to_boe"
 
-    def _get_formated_presenter_record(self, report):
+    def _get_formatted_declaration_record(self, cr, uid, report, context=None):
         """
         Returns a type 0, declaration/presenter, formated record.
         Only for Comunidad Foral de Navarra
@@ -60,71 +54,31 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             174-487     Relleno a blanco
             488-500     Sello electrónico
         """
-        
         text = ''
-        
-        text += '0'                                           # Tipo de Registro
-        text += '340'                                         # Modelo Declaración
-        text += self._formatString(report.fiscalyear_id.code, 4)   # Ejercicio
-        text += self._formatString(report.presenter_vat or '', 9)          # NIF del presentador
-        text += self._formatString(report.presenter_name or '', 40)     # Apellidos y nombre del presentador
-        text += self._formatString(report.presenter_address_acronym or '', 2)   # Siglas de la vía pública
-        text += self._formatString(report.presenter_address_name or '', 20)   # Nombre de la vía pública
-        text += self._formatNumber(report.presenter_address_number or 0, 5)  # Número de la casa
-        text += self._formatString(report.presenter_address_stair or '', 2)   # Escalera
-        text += self._formatString(report.presenter_address_floor or '', 2)   # Piso
-        text += self._formatString(report.presenter_address_door or '', 2)   # Puerta
+        text += '0' # Tipo de Registro
+        text += '340' # Modelo Declaración
+        text += self._formatString(report.fiscalyear_id.code, 4) # Ejercicio
+        text += self._formatString(report.presenter_vat or '', 9) # NIF del presentador
+        text += self._formatString(report.presenter_name or '', 40) # Apellidos y nombre del presentador
+        text += self._formatString(report.presenter_address_acronym or '', 2) # Siglas de la vía pública
+        text += self._formatString(report.presenter_address_name or '', 20) # Nombre de la vía pública
+        text += self._formatNumber(report.presenter_address_number or 0, 5) # Número de la casa
+        text += self._formatString(report.presenter_address_stair or '', 2) # Escalera
+        text += self._formatString(report.presenter_address_floor or '', 2) # Piso
+        text += self._formatString(report.presenter_address_door or '', 2) # Puerta
         text += self._formatNumber(int(report.presenter_city_id.zip or 0), 5)  # Código postal
-        text += self._formatString(report.presenter_city_id.name or '', 12)  # Municipio
+        text += self._formatString(report.presenter_city_id.name or '', 12) # Municipio
         if report.presenter_city_id:
-            text += self._formatNumber(int(report.presenter_city_id.state_id.code), 2)  # Código postal
+            text += self._formatNumber(int(report.presenter_city_id.state_id.code), 2) # Código postal
         else:
-            text += 2*' '
+            text += 2 * ' '
         text += '00001'      # Numero total de declarantes, actualmente solo 1
-        text += self._formatNumber(report.number_records, 9)   # Número total de registros
-        text += self._formatString(report.support_type, 1)   # Tipo de soporte
-        text += self._formatString(report.presenter_phone_contact or '', 9) # Persona de contacto (Teléfono)
-        text += self._formatString(report.presenter_name_contact or '', 40) # Persona de contacto (Apellidos y nombre)
-        text += 314*' '   # Blancos
-        text += 13*' '   # Firma digital opcional, no implementado
+        text += self._formatNumber(report.number_records, 9) # Número total de registros
+        text += self._formatString(report.support_type, 1) # Tipo de soporte
+        text += self._formatString(report.presenter_phone_contact or '',  9) # Persona de contacto (Teléfono)
+        text += self._formatString(report.presenter_name_contact or '',  40) # Persona de contacto (Apellidos y nombre)
+        text += 314 * ' ' # Blancos
+        text += 13 * ' ' # Firma digital opcional, no implementado
         text += '\r\n'
-        
         assert len(text) == 502, _("The type 0 record must be 500 characters long")
         return text
-    
-
-    def _export_boe_file(self, cr, uid, ids, report, model=None, context=None):
-        """
-        Action that exports the data into a BOE formated text file
-        """
-        if context is None:
-            context = {}
-        
-        file_contents = ''
-        
-        ##
-        ## Add record type 0, if company is in Comunidad Foral de Navarra
-        file_contents += self._get_formated_presenter_record(report)
-
-        ##
-        ## Add header record
-        file_contents += self._get_formated_declaration_record(report)
-
-        ##
-        ## Adds other fields
-        file_contents += self._get_formated_other_records(cr,uid,report)
-
-        ##
-        ## Generate the file and save as attachment
-        file = base64.encodestring(file_contents)
-
-        file_name = _("340_report_%s.txt") % (time.strftime(_("%Y-%m-%d")))
-        self.pool.get("ir.attachment").create(cr, uid, {
-            "name" : file_name,
-            "datas" : file,
-            "datas_fname" : file_name,
-            "res_model" : "l10n.es.aeat.mod340",
-            "res_id" : ids and ids[0]
-        }, context=context)
-
-l10n_es_aeat_mod340_export_to_boe()

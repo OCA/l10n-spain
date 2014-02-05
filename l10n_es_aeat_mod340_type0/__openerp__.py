@@ -29,17 +29,21 @@
     'website' : 'www.acysos.com',
     'category' : 'Localisation/Accounting',
     'description' : '''
-        Exporta el registro de tipo 0 del Modelo 340. 
-        Actualmente solo obligatorio para la Comunidad Foral de Navarra.
+Registro tipo 0 en el modelo AEAT 340
+=====================================
+
+Modificación para la declaración del modelo 340 de la AEAT que exporta
+el registro de tipo 0.
+
+Actualmente sólo es obligatorio para la Comunidad Foral de Navarra.
         ''',
     'license' : 'AGPL-3',
-    'depends' : ['l10n_es_aeat_mod340',
-                 'city',
-                 ],
-    'init_xml' : [],
-    'demo_xml' : [],
-    'update_xml' : [
-        'mod340_view.xml'],
+    'depends' : [
+        'l10n_es_aeat_mod340',
+        'base_location',
+    ],
+    'data' : [
+        'mod340_view.xml'
+    ],
     'installable' : True,
-    'active' : False,
 }

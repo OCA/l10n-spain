@@ -163,17 +163,17 @@
     <blockTable colWidths="237.0,244.0" style="Taula1">
       <tr>
         <td>
-          <para style="P3">CIF/NIF: </para>
+          <para style="P3">NIF: </para>
           <para style="P3">Teléfono de contacto: </para>
           <para style="P3">Apellidos y nombre de contacto: </para>
-          <para style="P3">CIF/NIF del representante legal: </para>
+          <para style="P3">NIF del representante legal: </para>
           <para style="P3">Tipo de declaración </para>
           <para style="P3">Número de la declaración anterior: </para>
           <para style="P3">Código electrónico autoliquidación IVA: </para>
         </td>
         <td>
           <para style="P2">[[o.company_vat or '']] </para>
-          <para style="P2">[[o.contact_phone or '']] </para>
+          <para style="P2">[[o.phone_contact or '']] </para>
           <para style="P2">[[o.name_contact or '']] </para>
           <para style="P2">[[o.representative_vat or '']] </para>
           <para style="P2">[[o.type or '']] </para>
@@ -198,7 +198,7 @@
           <para style="Table Heading">Empresa</para>
         </td>
         <td>
-          <para style="Table Heading">CIF/NIF</para>
+          <para style="Table Heading">NIF</para>
         </td>
         <td>
           <para style="Table Heading">Número de factura</para>
@@ -264,7 +264,7 @@
           <para style="Table Heading">Empresa</para>
         </td>
         <td>
-          <para style="Table Heading">CIF/NIF</para>
+          <para style="Table Heading">NIF</para>
         </td>
         <td>
           <para style="Table Heading">Número de factura</para>

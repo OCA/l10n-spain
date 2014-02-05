@@ -6,8 +6,6 @@
 #    Copyright (c) 2011 Acysos S.L. (http://acysos.com) All Rights Reserved
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 #                      
-#    $Id$
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -22,5 +20,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import calculate_mod340_records
-import export_mod340_to_boe
+from . import export_mod340_to_boe

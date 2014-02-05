@@ -21,26 +21,9 @@ msgid "Presenter"
 msgstr "Presentador"
 
 #. module: l10n_es_aeat_mod340_type0
-#: model:ir.model,name:l10n_es_aeat_mod340_type0.model_l10n_es_aeat_mod340_export_to_boe
-msgid "Export AEAT Model 340 to BOE format"
-msgstr "Exportar Modelo AEAT 340 al formato del BOE"
-
-#. module: l10n_es_aeat_mod340_type0
-#: code:addons/l10n_es_aeat_mod340_type0/wizard/export_mod340_to_boe.py:121
-#, python-format
-msgid "340_report_%s.txt"
-msgstr "340_report_%s.txt"
-
-#. module: l10n_es_aeat_mod340_type0
 #: model:ir.model,name:l10n_es_aeat_mod340_type0.model_l10n_es_aeat_mod340
 msgid "Model 340"
 msgstr "Modelo 340"
-
-#. module: l10n_es_aeat_mod340_type0
-#: code:addons/l10n_es_aeat_mod340_type0/wizard/export_mod340_to_boe.py:121
-#, python-format
-msgid "%Y-%m-%d"
-msgstr "%Y-%m-%d"
 
 #. module: l10n_es_aeat_mod340_type0
 #: code:addons/l10n_es_aeat_mod340_type0/wizard/export_mod340_to_boe.py:92
@@ -55,7 +38,7 @@ msgstr "Dirección"
 
 #. module: l10n_es_aeat_mod340_type0
 #: view:l10n.es.aeat.mod340:0
-msgid "This information is only for the company that have to present registry type 0. For the moment, only in Comunidad Foral de Navarra"
+msgid "This information is only for the company that has to present registry type 0. For the moment, only in Comunidad Foral de Navarra"
 msgstr "Esta información es solo para las compañías que deben presentar el registro de tipo 0. Actualmente, solo en la Comunidad Foral de Navarra."
 
 #. module: l10n_es_aeat_mod340
@@ -91,7 +74,7 @@ msgstr "Puerta"
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340,presenter_vat:0
 msgid "VAT number"
-msgstr "CIF/NIF"
+msgstr "NIF"
 
 #. module: l10n_es_aeat_mod340
 #: help:l10n.es.aeat.mod340,presenter_address_acronym:0

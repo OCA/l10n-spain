@@ -19,5 +19,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-import export_mod340_to_boe
+from . import export_mod340_to_boe

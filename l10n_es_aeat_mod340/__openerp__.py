@@ -5,7 +5,6 @@
 #    Copyright (c) 2011 Ting (http://www.ting.es) All Rights Reserved.
 #    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com) All Rights Reserved
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -27,42 +26,61 @@
     'version' : '2.0',
     'author' : 'Acysos S.L., Francisco Pascual (Ting), Nan-tic',
     'website' : 'www.acysos.com, www.ting.es, www.nan-tic.com',
+    'contributors': [
+        'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>'
+    ],
     'category' : 'Localisation/Accounting',
     'description' : '''
 Módulo para la presentación del modelo 340. Exportación a formato AEAT. Libro de IVA
+====================================================================================
 
-Los impuestos incluidos en este modelo se indican en el Código base cuenta. Por defecto actualiza todos los código base que deban incluirse.
-Si el plan contable esta instalado recuerde utilizar account_chart_update para actualizar los códigos. Contabilidad y Finanzas -> Configuración -> Contabilidad Financiera -> Actualizar plan contable a partir de una plantila de plan contable
+Los impuestos incluidos en este modelo se indican en el Código base cuenta.
+Por defecto actualiza todos los código base que deban incluirse.
+Si el plan contable esta instalado recuerde utilizar account_chart_update para
+actualizar los códigos. Contabilidad y Finanzas -> Configuración ->
+Contabilidad Financiera -> Actualizar plan contable a partir de una plantila
+de plan contable
 
-Búsqueda de facturas emitidas y recibidas.
-Exportación a formato de AEAT de facturas emitidas y recibidas.
-Exportación de facturas con varios tipos impositivos. Clave de operación C.
-Facturas intracomunitarias excepto las operaciones a las que hace referencia el artículo 66 del RIVA que tienen un tratamiento especial.
-Facturas rectificativas.
-Facturas resumen de tiques.
+* Búsqueda de facturas emitidas y recibidas.
+* Exportación a formato de AEAT de facturas emitidas y recibidas.
+* Exportación de facturas con varios tipos impositivos. Clave de operación C.
+* Facturas intracomunitarias excepto las operaciones a las que hace referencia
+  el artículo 66 del RIVA que tienen un tratamiento especial.
+* Facturas rectificativas.
+* Facturas resumen de tiques.
+
 Permite imprimir el libro de IVA, basado en la misma legislación.
 
---- COSAS PENDIENTES (TODO LIST) ----------------------------------------------
+COSAS PENDIENTES (TODO LIST)
+----------------------------
 
-Facturas bienes de inversión
-Facturas intracomunitarias. Operaciones a las que hace referencia el artículo 66 del RIVA.
-Asientos contables de resumen de tiques
-Exportación de asientos resumen de facturas
+* Facturas bienes de inversión
+* Facturas intracomunitarias. Operaciones a las que hace referencia el
+  artículo 66 del RIVA.
+* Asientos contables de resumen de tiques
+* Exportación de asientos resumen de facturas
+
+**AVISO:** Este módulo requiere el módulo *account_chart_update*,
+disponible en:
+
+https://launchpad.net/account-financial-tools
+
+y el módulo *account_refund_original*, disponible en:
+
+https://launchpad.net/acysos
 ''',
     'license' : 'AGPL-3',
-    'depends' : ['account',
-                 'base_vat',
-                 'l10n_es_aeat',
-                 'account_refund_original',
-                 'account_chart_update',
-                 ],
-    'init_xml' : [],
-    'demo_xml' : [],
-    'update_xml' : [
+    'depends' : [
+        'account',
+        'base_vat',
+        'l10n_es_aeat',
+        'account_refund_original',
+        'account_chart_update',
+    ],
+    'data' : [
         'report/report_view.xml',
         'wizard/export_mod340_to_boe.xml',
         'mod340_view.xml',
-        'mod340_workflow.xml',
         'security/ir.model.access.csv',
         'res_partner_view.xml',
         'mod340_sequence.xml',
@@ -70,7 +88,7 @@ Exportación de asientos resumen de facturas
         'account_view.xml',
         'taxes_data.xml',
         'taxes_data_pymes.xml',
-        'taxes_data_assoc.xml'],
+        'taxes_data_assoc.xml'
+    ],
     'installable' : True,
-    'active' : False,
 }
