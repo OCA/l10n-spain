@@ -7,9 +7,8 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base_vat.view_partner_form"/>
             <field name="arch" type="xml">
-                <field name="vat_subjected" position="after">
-                    <label for="include_in_mod347"/>
-                    <field name="include_in_mod347"/>
+                <field name="last_reconciliation_date" position="after">
+                    <field name="not_in_mod347"/>
                 </field>
             </field>
         </record>

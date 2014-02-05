@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
+#    Copyright (C) All Rights Reserved
+#        2004-2011:  Pexego Sistemas Informáticos. (http://pexego.es)
+#        2012:       NaN·Tic  (http://www.nan-tic.com)
+#        2013:       Acysos (http://www.acysos.com)
+#                    Joaquín Pedrosa Gutierrez (http://gutierrezweb.es)
+#        2014:       Serv. Tecnol. Avanzados - Pedro M. Baeza
+#                    (http://www.serviciosbaeza.com)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,17 +23,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 {
     'name': "AEAT Model 347",
-    'version': "1.0",
-    'author': "Pexego, ASR-OSS, NaN·tic, Acysos",
-    'website': "http://www.pexego.es, www.asr-oss.com, www.nan-tic.com, www.acysos.com",
-    'contributors': ['Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>', 'Joaquín Gutierrez'],
+    'version': "1.1",
+    'author': "Spanish Localization Team",
+    'website': "https://launchpad.net/openerp-spain",
+    'contributors': [
+        'Pexego (http://www.pexego.es)',
+        'ASR-OSS (http://www.asr-oss.com)',
+        'NaN·tic (http://www.nan-tic.com)',
+        'Acysos (http://www.acysos.com)',
+        'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
+        'Joaquín Gutierrez (http://gutierrezweb.es)',
+    ],
     'category': "Localisation/Accounting",
     'description': """
-Presentación del Modelo AEAT 347 
-============================================
+Presentación del Modelo AEAT 347
+================================
 
 (Declaración Anual de Operaciones con Terceros)
 Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban los diseños físicos y lógicos del 347.
@@ -71,12 +82,6 @@ De acuerdo con la normativa no están obligados a presentar el modelo 347:
 
 (http://www.boe.es/boe/dias/2008/10/23/pdfs/A42154-42190.pdf)
 
-**AVISO:** Si instala este módulo tras haber introducido clientes o
-proveedores, y los mismos deben constar en la declaración, debe ir a la ficha
-correspondiente y marcar la casilla 'Incluir en declaración 347'. Todos los
-nuevos partners que introduzca a partir de este momento, llevarán esa casilla
-marcada por defecto.
-
 **AVISO:** Este módulo requiere el módulo *account_invoice_currency*,
 disponible en:
 
@@ -89,7 +94,7 @@ https://launchpad.net/account-financial-tools
         "account_invoice_currency",
     ],
     'data': [
-         "account_journal_view.xml",
+         "account_period_view.xml",
          "res_partner_view.xml",
          "wizard/export_mod347_to_boe.xml",
          "report/mod347_report.xml",
@@ -102,7 +107,6 @@ https://launchpad.net/account-financial-tools
     'images': [
         'images/l10n_es_aeat_mod347.png',
     ],
-
 }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

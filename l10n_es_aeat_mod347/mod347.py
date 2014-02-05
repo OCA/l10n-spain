@@ -1,12 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
-#
-#    Copyright (C) 2012
-#        NaN·Tic  (http://www.nan-tic.com) All Rights Reserved
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -25,24 +19,11 @@ from openerp.osv import fields, orm
 from openerp.tools.translate import _
 import re
 
-class account_period(orm.Model):
-    _inherit = "account.period"
-
-    _columns = {
-        'quarter': fields.selection([
-                                    ('first', 'First'),
-                                    ('second', 'Second'),
-                                    ('third', 'Third'),
-                                    ('fourth', 'Fourth')
-                                    ], 'Quarter'),
-    }
-
 
 class l10n_es_aeat_mod347_report(orm.Model):
     _inherit = "l10n.es.aeat.report"
     _name = "l10n.es.aeat.mod347.report"
     _description = "AEAT 347 Report"
-    _rec_name = "number"
 
     def _calc_total_invoice(self, cr, uid, invoice, context=None):
         amount = invoice.cc_amount_untaxed
@@ -254,15 +235,15 @@ class l10n_es_aeat_mod347_report(orm.Model):
             period_ids = [period.id for period in
                           report.fiscalyear_id.period_ids if not
                           period.special]
-            # We will check every partner with include_in_mod347 flag
+            # We will check every partner with not_in_mod347 flag unchecked
             visited_partners = []
             if report.only_supplier:
                 partner_ids = partner_obj.search(cr, uid,
-                                            [('include_in_mod347', '=', True),
+                                            [('not_in_mod347', '=', False),
                                             ('supplier', '=', True)])
             else:
                 partner_ids = partner_obj.search(cr, uid,
-                                            [('include_in_mod347', '=', True),
+                                            [('not_in_mod347', '=', False),
                                              '|',
                                              ('customer', '=', True),
                                              ('supplier', '=', True)])
@@ -274,13 +255,13 @@ class l10n_es_aeat_mod347_report(orm.Model):
                         if report.only_supplier:
                             partners_grouped = partner_obj.search(cr, uid,
                                             [('vat', '=', partner.vat),
-                                            ('include_in_mod347', '=', True),
+                                            ('not_in_mod347', '=', False),
                                             ('supplier', '=', True)
                                             ])
                         else:
                             partners_grouped = partner_obj.search(cr, uid,
                                             [('vat', '=', partner.vat),
-                                            ('include_in_mod347', '=', True)])
+                                            ('not_in_mod347', '=', False)])
                     else:
                         partners_grouped = [partner.id]
                     visited_partners.extend(partners_grouped)
@@ -408,7 +389,8 @@ class l10n_es_aeat_mod347_partner_record(orm.Model):
     _description = 'Partner Record'
     _rec_name = "partner_vat"
 
-    def _get_quarter_totals(self, cr, uid, ids, field_name, arg, context=None):
+    def _get_quarter_totals(self, cr, uid, ids, field_name, arg,
+                            context=None):
         result = {}
         for record  in self.browse(cr, uid, ids, context=context):
             result[record.id] = {

@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -20,16 +17,14 @@
 ##############################################################################
 from openerp.osv import fields, orm
 
-class account_journal(orm.Model):
-    _inherit = 'account.journal'
+class account_period(orm.Model):
+    _inherit = "account.period"
+
     _columns = {
-        'cash_journal': fields.boolean('Cash payments journal',
-            help="Payments of this journal will be considered as cash (used "
-                 "on the 347 report)"),
+        'quarter': fields.selection([
+                                    ('first', 'First'),
+                                    ('second', 'Second'),
+                                    ('third', 'Third'),
+                                    ('fourth', 'Fourth')
+                                    ], 'Quarter'),
     }
-
-    _defaults = {
-        'cash_journal': False
-    }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
