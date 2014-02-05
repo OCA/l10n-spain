@@ -1,12 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
-#
-#    Copyright (C) 2012
-#        NaN·Tic  (http://www.nan-tic.com) All Rights Reserved
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -29,53 +23,259 @@ from openerp.tools.translate import _
 import re
 
 
-class account_period(orm.Model):
-    _inherit = "account.period"
-
-    _columns = {
-        'quarter': fields.selection([
-                                    ('first', 'First'),
-                                    ('second', 'Second'),
-                                    ('third', 'Third'),
-                                    ('fourth', 'Fourth')
-                                    ], 'Quarter'),
-    }
-account_period()
-
-
 class l10n_es_aeat_mod347_report(orm.Model):
 
     _inherit = "l10n.es.aeat.report"
     _name = "l10n.es.aeat.mod347.report"
     _description = "AEAT 347 Report"
-    _rec_name = "number"
 
-    def button_calculate(self, cr, uid, ids, context=None):
-        if not context:
-            context = {}
+    def _calc_total_invoice(self, cr, uid, invoice, context=None):
+        amount = invoice.cc_amount_untaxed
+        for tax_line in invoice.tax_line:
+            if tax_line.name.find('IRPF') == -1:
+                amount += tax_line.tax_amount
+        return amount
 
-        calculate_obj = self. pool.get('l10n.es.aeat.mod347.calculate_records')
-        calculate_obj._wkf_calculate_records(cr, uid, ids, context)
+    def _get_default_address(self, cr, uid, partner, context=None):
+        """Get the default invoice address of the partner"""
+        partner_obj = self.pool['res.partner']
+        address_ids = partner_obj.address_get(cr, uid, [partner.id],
+                                              ['invoice', 'default'])
+        if address_ids.get('invoice'):
+            return partner_obj.browse(cr, uid, address_ids['invoice'],
+                                      context=context)
+        elif address_ids.get('default'):
+            return partner_obj.browse(cr, uid, address_ids['default'],
+                                      context=context)
+        else:
+            return None
 
-        return True
+    def _calculate_partner_records(self, cr, uid, partner, partner_ids,
+                                  period_ids, report, context=None):
+        """Search for invoices for the given partners, and check if exceeds
+        the limit. If so, it creates the partner record."""
+        invoice_obj = self.pool['account.invoice']
+        partner_record_obj = self.pool['l10n.es.aeat.mod347.partner_record']
+        invoice_record_obj = self.pool['l10n.es.aeat.mod347.invoice_record']
+        receivable_partner_record_id = False
+        # We will repeat the process for sales and purchases:
+        for invoice_type, refund_type in zip(('out_invoice', 'in_invoice'),
+                                             ('out_refund', 'in_refund')):
+            # CHECK THE SALE/PURCHASES INVOICE LIMIT
+            # (A and B operation keys)
+            # Search for invoices to this partner (with account moves).
+            invoice_ids = invoice_obj.search(cr, uid, [
+                        ('partner_id', 'in', partner_ids),
+                        ('type', '=', invoice_type),
+                        ('period_id', 'in', period_ids),
+                        ('state', '!=', 'draft')])
+            refund_ids = invoice_obj.search(cr, uid, [
+                        ('partner_id', 'in', partner_ids),
+                        ('type', '=', refund_type),
+                        ('period_id', 'in', period_ids),
+                        ('state', '!=', 'draft')])
+            invoices = invoice_obj.browse(cr, uid, invoice_ids,
+                                          context=context)
+            refunds = invoice_obj.browse(cr, uid, refund_ids, context=context)
+            ## Calculate the invoiced amount
+            ## Remove IRPF tax for invoice amount
+            invoice_amount = 0
+            for invoice in invoices:
+                invoice_amount += self._calc_total_invoice(cr, uid,
+                                        invoice, context=context)
+            refund_amount = 0
+            for refund in refunds:
+                refund_amount += self._calc_total_invoice(cr, uid,
+                                        refund, context=context)
+            total_amount = invoice_amount - refund_amount
+            ## If the invoiced amount is greater than the limit
+            ## we will add an partner record to the report.
+            if total_amount > report.operations_limit:
+                if invoice_type == 'out_invoice':
+                    operation_key = 'B'  # Note: B = Sale operations
+                else:
+                    assert invoice_type == 'in_invoice'
+                    operation_key = 'A'  # Note: A = Purchase operations
+                address = self._get_default_address(cr, uid, partner,
+                                               context=context)
+                # Get the partner data
+                partner_vat = partner.vat and re.match(r"([A-Z]{0,2})(.*)",
+                                                       partner.vat).groups()[1]
+                partner_country_code = address.country_id and address.country_id.code or ''
+                if partner.vat:
+                    partner_country_code, partner_vat = re.match("(ES){0,1}(.*)", partner.vat).groups()
+                # Create the partner record
+                partner_record_id = partner_record_obj.create(cr, uid, {
+                        'report_id': report.id,
+                        'operation_key': operation_key,
+                        'partner_id': partner.id,
+                        'partner_vat': partner_vat,
+                        'representative_vat': '',
+                        'partner_state_code': (address.state_id and
+                                               address.state_id.code or ''),
+                        'partner_country_code': partner_country_code,
+                        'amount': total_amount,
+                    })
+                if invoice_type == 'out_invoice':
+                    receivable_partner_record_id = partner_record_id
+                # Add invoices detail to the partner record
+                for invoice in invoices:
+                    amount = self._calc_total_invoice(cr, uid,
+                                        invoice, context=context)
+                    invoice_record_obj.create(cr, uid, {
+                        'partner_record_id': partner_record_id,
+                        'invoice_id': invoice.id,
+                        'date': invoice.date_invoice,
+                        'amount': amount,
+                    })
+                for refund in refunds:
+                    amount = self._calc_total_invoice(cr, uid,
+                                    refund, context=context)
+                    invoice_record_obj.create(cr, uid, {
+                        'partner_record_id': partner_record_id,
+                        'invoice_id': refund.id,
+                        'date': refund.date_invoice,
+                        'amount': -amount,
+                    })
+        return receivable_partner_record_id
 
-    def button_recalculate(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
+    def _calculate_cash_records(self, cr, uid, partner, partner_ids,
+                        partner_record_id, period_ids, report, context=None):
+        """Search for payments received in cash from the given partners."""
+        partner_record_obj = self.pool['l10n.es.aeat.mod347.partner_record']
+        cash_record_obj = self.pool['l10n.es.aeat.mod347.cash_record']
+        move_line_obj = self.pool['account.move.line']
+        # Get the cash journals (moves on this journals are considered cash)
+        cash_journal_ids = self.pool['account.journal'].search(cr, uid,
+                            [('type', '=', 'cash')])
+        if not cash_journal_ids:
+            return
+        cash_account_move_line_ids = move_line_obj.search(cr, uid,
+            [('partner_id', 'in', partner_ids),
+             # TODO: Esto no es correcto del todo. Cada partner puede tener una cuenta distinta
+             ('account_id', '=', partner.property_account_receivable.id),
+             ('journal_id', 'in', cash_journal_ids),
+             ('period_id', 'in', period_ids)],
+            context=context)
+        cash_account_move_lines = move_line_obj.browse(cr, uid,
+                    cash_account_move_line_ids, context=context)
+        # Calculate the cash amount in report fiscalyear
+        received_cash_amount = sum([line.credit for line in cash_account_move_lines])
+        # Add the cash detail to the partner cash_move_fy_id if over limit
+        if received_cash_amount > report.received_cash_limit:
+            address = self._get_default_address(cr, uid, partner,
+                                                context=context)
+            # Get the partner data
+            partner_vat = partner.vat and re.match(r"([A-Z]{0,2})(.*)",
+                                                   partner.vat).groups()[1]
+            partner_country_code = address.country_id and address.country_id.code or ''
+            if partner.vat:
+                partner_country_code, partner_vat = re.match("(ES){0,1}(.*)", partner.vat).groups()
+            cash_moves = {}
+            # Group cash move lines by origin operation fiscalyear
+            for move_line in cash_account_move_lines:
+                #FIXME: ugly group by reconciliation invoices, because there isn't any direct relationship between payments and invoice
+                invoices = []
+                if move_line.reconcile_id:
+                    for line in move_line.reconcile_id.line_id:
+                        if line.invoice:
+                            invoices.append(line.invoice)
+                elif move_line.reconcile_partial_id:
+                    for line in move_line.reconcile_partial_id.line_partial_ids:
+                        if line.invoice:
+                            invoices.append(line.invoice)
+                invoices = list(set(invoices))
+                if invoices:
+                    invoice = invoices[0]
+                    cash_move_fy_id = invoice.period_id.fiscalyear_id.id
+                    if cash_move_fy_id not in cash_moves:
+                        cash_moves[cash_move_fy_id] = [move_line]
+                    else:
+                        cash_moves[cash_move_fy_id].append(move_line)
+            for cash_move_fy_id in cash_moves.keys():
+                receivable_amount = sum([line.credit for line in cash_moves[cash_move_fy_id]])
+                if receivable_amount > report.received_cash_limit:
+                    if cash_move_fy_id != report.fiscalyear_id.id or not partner_record_id:
+                        #create partner cash_move_fy_id for cash operation in different year to currently
+                        cash_partner_record_id = partner_record_obj.create(cr, uid, {
+                            'report_id': report.id ,
+                            # TODO: Ver este valor de dónde sale
+                            'operation_key' : 'B',
+                            'partner_id': partner.id,
+                            'partner_vat': partner_vat,
+                            'representative_vat': '',
+                            'partner_state_code': (address.state_id and
+                                                   address.state_id.code or ''),
+                            'partner_country_code': partner_country_code,
+                            'amount': 0.0,
+                            'cash_amount': sum([line.credit for line in cash_moves[cash_move_fy_id]]),
+                            'origin_fiscalyear_id': cash_move_fy_id,
+                        })
+                    else:
+                        partner_record_obj.write(cr, uid,
+                            partner_record_id,
+                            {'cash_amount': sum([line.credit for line in cash_moves[cash_move_fy_id]]),
+                             'origin_fiscalyear_id': int(cash_move_fy_id)},
+                            context=context)
+                        cash_partner_record_id = partner_record_id
+                    for line in cash_moves[cash_move_fy_id]:
+                        cash_record_obj.create(cr, uid, {
+                            'partner_record_id': cash_partner_record_id,
+                            'move_line_id': line.id,
+                            'date': line.date,
+                            'amount': line.credit,
+                        })
 
-        calculate_obj = self. pool.get('l10n.es.aeat.mod347.calculate_records')
-        calculate_obj._calculate_records(cr, uid, ids, context)
-
-        return True
-
-    def button_export(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-
-        export_obj = self.pool.get("l10n.es.aeat.mod347.export_to_boe")
-        export_obj._export_boe_file(cr, uid, ids, self.browse(cr,
-                                                              uid,
-                                                              ids and ids[0]))
+    def calculate(self, cr, uid, ids, context=None):
+        partner_obj = self.pool['res.partner']
+        partner_record_obj = self.pool['l10n.es.aeat.mod347.partner_record']
+        for report in self.browse(cr, uid, ids, context):
+            # Delete previous partner records
+            partner_record_obj.unlink(cr, uid, [r.id for
+                                                r in
+                                                report.partner_record_ids])
+            # Get the fiscal year period ids of the non-special periods
+            # (to ignore closing/opening entries)
+            period_ids = [period.id for period in
+                          report.fiscalyear_id.period_ids if not
+                          period.special]
+            # We will check every partner with not_in_mod347 flag unchecked
+            visited_partners = []
+            if report.only_supplier:
+                partner_ids = partner_obj.search(cr, uid,
+                                            [('not_in_mod347', '=', False),
+                                            ('supplier', '=', True)])
+            else:
+                partner_ids = partner_obj.search(cr, uid,
+                                            [('not_in_mod347', '=', False),
+                                             '|',
+                                             ('customer', '=', True),
+                                             ('supplier', '=', True)])
+            for partner in partner_obj.browse(cr, uid, partner_ids,
+                                              context=context):
+                if partner.id not in visited_partners:
+                    receivable_partner_record = False
+                    if partner.vat and report.group_by_cif:
+                        if report.only_supplier:
+                            partners_grouped = partner_obj.search(cr, uid,
+                                            [('vat', '=', partner.vat),
+                                            ('not_in_mod347', '=', False),
+                                            ('supplier', '=', True)
+                                            ])
+                        else:
+                            partners_grouped = partner_obj.search(cr, uid,
+                                            [('vat', '=', partner.vat),
+                                            ('not_in_mod347', '=', False)])
+                    else:
+                        partners_grouped = [partner.id]
+                    visited_partners.extend(partners_grouped)
+                    partner_record_id = self._calculate_partner_records(cr,
+                            uid, partner, partners_grouped, period_ids, report,
+                            context=context)
+                    if partner.customer:
+                        self._calculate_cash_records(cr, uid, partner,
+                            partners_grouped, partner_record_id, period_ids,
+                            report, context=context)
         return True
 
     def _get_totals(self, cr, uid, ids, name, args, context=None):
@@ -181,13 +381,13 @@ class l10n_es_aeat_mod347_report(orm.Model):
             for partner_record in item.partner_record_ids:
                 if not partner_record.partner_state_code:
                     raise orm.except_orm(
-                                         _('Error!'), 
+                                         _('Error!'),
                                          _("All partner state code field must be filled.\nPartner: %s (%s)") %
                                          (partner_record.partner_id.name,
                                            partner_record.partner_id.id))
                 if not partner_record.partner_vat:
                     raise orm.except_orm(
-                                         _('Error!'), 
+                                         _('Error!'),
                                          _("All partner vat number field must be filled.\nPartner: %s (%s)") %
                                          (partner_record.partner_id.name,
                                           partner_record.partner_id.id))
@@ -195,7 +395,7 @@ class l10n_es_aeat_mod347_report(orm.Model):
             for real_state_record in item.real_state_record_ids:
                 if not real_state_record.state_code:
                     raise orm.except_orm(
-                                         _('Error!'), 
+                                         _('Error!'),
                                          _("All real state records state code field must be filled."))
 
         return True
@@ -230,10 +430,8 @@ class l10n_es_aeat_mod347_partner_record(orm.Model):
     _description = 'Partner Record'
     _rec_name = "partner_vat"
 
-    def _get_quarter_totals(self, cr, uid, ids, field_name, arg, context=None):
-
-        if context is None:
-            context = {}
+    def _get_quarter_totals(self, cr, uid, ids, field_name, arg,
+                            context=None):
         result = {}
         for record  in self.browse(cr, uid, ids, context):
             result[record.id] = {
@@ -287,7 +485,7 @@ class l10n_es_aeat_mod347_partner_record(orm.Model):
         'partner_state_code': fields.char('State Code', size=2),
         'first_quarter': fields.function(_get_quarter_totals,
                 string="First Quarter",
-                method=True, type='float', 
+                method=True, type='float',
                 multi="quarter_multi", digits=(13, 2),
                 store={
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'], 10)
@@ -539,7 +737,7 @@ class l10n_es_aeat_mod347_partner_record_add_real_state_records(orm.Model):
     def _set_real_state_record_ids(self, cr, uid, field_name, values,
                                    args=None, context=None):
         """
-        Set the real state records from this record 
+        Set the real state records from this record
         parent report for this partner.
         """
         if context is None:
