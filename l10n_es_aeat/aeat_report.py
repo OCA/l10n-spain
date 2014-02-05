@@ -56,8 +56,7 @@ class l10n_es_aeat_report(orm.Model):
                                 size=13, states={'done':[('readonly',True)]}),
         'representative_vat': fields.char('L.R. VAT number', size=9,
                                     help="Legal Representative VAT number.",
-                                    states={'calculated':[('required',True)],
-                                            'confirmed':[('readonly',True)]}),
+                                    states={'confirmed': [('readonly',True)]}),
         'fiscalyear_id': fields.many2one('account.fiscalyear', 'Fiscal year',
                                     required=True, readonly=True,
                                     states={'draft': [('readonly', False)]}),
@@ -67,7 +66,7 @@ class l10n_es_aeat_report(orm.Model):
                                   ('C', 'Complementary'),
                                   ('S', 'Substitutive')],  'Statement Type',
                                  states={'calculated':[('required',True)],
-                                         'done':[('readonly',True)]}),
+                                         'done':[('readonly', True)]}),
         'support_type': fields.selection(
                                      [('C', 'DVD'),
                                       ('T', 'Telematics')], 'Support Type',
