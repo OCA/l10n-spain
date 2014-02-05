@@ -2,21 +2,6 @@
 <openerp>
     <data>
 
-        <!-- ##################
-        ### ACCOUNT JOURNAL ###
-        ################### -->
-        <record id="view_account_journal_form__add_cash_journal" model="ir.ui.view">
-            <field name="name">Account journal - Add cash journal (form)</field>
-            <field name="model">account.journal</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="account.view_account_journal_form"/>
-            <field name="arch" type="xml">
-                <field name="entry_posted" position="after">
-                    <field name="cash_journal"/>
-                </field>
-            </field>
-        </record>
-
         <!-- Add quarter configuration on periods  -->
         <record id="view_account_period_quarter_form" model="ir.ui.view">
             <field name="name">account.period.quarter.form</field>
@@ -25,7 +10,7 @@
             <field name="inherit_id" ref="account.view_account_period_form"/>
             <field name="arch" type="xml">
                     <field name="company_id" position="after">
-                    	<field name="quarter"/>
+                        <field name="quarter"/>
                     </field>
             </field>
         </record>
@@ -36,9 +21,9 @@
             <field name="type">tree</field>
             <field name="inherit_id" ref="account.view_account_period_tree"/>
             <field name="arch" type="xml">
-                    <field name="company_id" position="after">
-                      	<field name="quarter" />
-                      </field>                        
+                <field name="company_id" position="after">
+                    <field name="quarter"/>
+                </field>
             </field>
         </record>
 
