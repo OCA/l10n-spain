@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
-#    Copyright (C) 2012
-#        NaN·tic  (http://www.nan-tic.com) All Rights Reserved
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -26,9 +21,13 @@ from openerp.osv import orm
 from openerp.osv import fields
 from openerp.tools.translate import _
 
+<<<<<<< HEAD
 
 class l10n_es_aeat_mod347_export_to_boe(orm.AbstractModel):
 
+=======
+class l10n_es_aeat_mod347_export_to_boe(orm.TransientModel):
+>>>>>>> [IMP] l10n_es_aeat_mod347:
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = "l10n.es.aeat.mod347.export_to_boe"
     _description = "Export AEAT Model 347 to BOE format"
