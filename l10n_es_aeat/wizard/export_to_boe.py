@@ -212,7 +212,7 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
             "name" : file_name,
             "datas" : file,
             "datas_fname" : file_name,
-            "res_model" : "l10n.es.aeat.mod%s.report" % report.number,
+            "res_model" : report._model._name,
             "res_id" : report.id,
         }, context=context)
         self.write(cr, uid, ids,
