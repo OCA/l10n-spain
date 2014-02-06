@@ -6,14 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-05 01:01+0000\n"
-"PO-Revision-Date: 2014-02-05 02:02+0100\n"
-"Last-Translator: Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>\n"
+"POT-Creation-Date: 2014-02-05 00:54+0000\n"
+"PO-Revision-Date: 2014-02-05 01:33+0000\n"
+"Last-Translator: Pedro Manuel Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"X-Launchpad-Export-Date: 2014-02-06 06:25+0000\n"
+"X-Generator: Launchpad (build 16916)\n"
 
 #. module: l10n_es_aeat_mod340
 #: report:report
@@ -96,8 +97,11 @@ msgstr "Registros"
 #. module: l10n_es_aeat_mod340
 #: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:349
 #, python-format
-msgid "The type 2 received record must be 500 characters long for each Vat registry"
-msgstr "El registro de tipo 2 debe tener una longitud de 500 caracteres por cada registro de IVA"
+msgid ""
+"The type 2 received record must be 500 characters long for each Vat registry"
+msgstr ""
+"El registro de tipo 2 debe tener una longitud de 500 caracteres por cada "
+"registro de IVA"
 
 #. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340,type:0
@@ -184,8 +188,11 @@ msgstr "6 - Otro documento probatorio"
 #. module: l10n_es_aeat_mod340
 #: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:267
 #, python-format
-msgid "The type 2 issued record must be 500 characters long for each Vat registry"
-msgstr "El registro de tipo 2 debe tener una longitud de 500 caracteres por cada registro de IVA"
+msgid ""
+"The type 2 issued record must be 500 characters long for each Vat registry"
+msgstr ""
+"El registro de tipo 2 debe tener una longitud de 500 caracteres por cada "
+"registro de IVA"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340,period_from:0
@@ -261,6 +268,12 @@ msgstr "LIBRO DE IVA"
 #: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340_issued
 msgid "Invoices invoice"
 msgstr "Facturas"
+
+#. module: l10n_es_aeat_mod340
+#: code:addons/l10n_es_aeat_mod340/mod340.py:38
+#, python-format
+msgid "This company dont have NIF"
+msgstr "Esta compañía no tiene CIF/NIF"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340,ean13:0
@@ -358,7 +371,7 @@ msgid "Mod340 vat lines issued"
 msgstr "Líneas de impuestos emitidos"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/mod340.py:42
+#: code:addons/l10n_es_aeat_mod340/mod340.py:45
 #, python-format
 msgid "The periods selected don't belong to the fiscal year %s"
 msgstr "The periods selected don't belong to the fiscal year %s"
@@ -576,10 +589,10 @@ msgstr "Procesado"
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.tax_line_issued,invoice_record_id:0
 msgid "Invoice issued"
-msgstr "Factudas emitidas"
+msgstr "Facturas emitidas"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/mod340.py:41
+#: code:addons/l10n_es_aeat_mod340/mod340.py:44
 #, python-format
 msgid "Error"
 msgstr "Error"
@@ -710,10 +723,14 @@ msgid "Complementary"
 msgstr "Complementaria"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/mod340.py:136
+#: code:addons/l10n_es_aeat_mod340/mod340.py:139
 #, python-format
-msgid "Invoice  %s, Amount untaxed Lines %.2f do not correspond to AmountUntaxed on Invoice %.2f"
-msgstr "Invoice  %s, Amount untaxed Lines %.2f do not correspond to AmountUntaxed on Invoice %.2f"
+msgid ""
+"Invoice  %s, Amount untaxed Lines %.2f do not correspond to AmountUntaxed on "
+"Invoice %.2f"
+msgstr ""
+"Invoice  %s, Amount untaxed Lines %.2f do not correspond to AmountUntaxed on "
+"Invoice %.2f"
 
 #. module: l10n_es_aeat_mod340
 #: help:res.partner,vat_type:0
@@ -886,8 +903,142 @@ msgid "Tax Code Template"
 msgstr "Plantilla códigos de impuestos"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/mod340.py:71
+#: code:addons/l10n_es_aeat_mod340/mod340.py:74
 #, python-format
 msgid "La siguiente empresa no tiene asignado nif:"
 msgstr "La siguiente empresa no tiene asignado nif:"
 
+#~ msgid "Phone"
+#~ msgstr "Teléfono"
+
+#~ msgid "May"
+#~ msgstr "Mayo"
+
+#~ msgid "June"
+#~ msgstr "Junio"
+
+#~ msgid "First quarter"
+#~ msgstr "Primer trimestre"
+
+#~ msgid "Third quarter"
+#~ msgstr "Tercer trimestre"
+
+#~ msgid "Second quarter"
+#~ msgstr "Segundo trimestre"
+
+#~ msgid "January"
+#~ msgstr "Enero"
+
+#~ msgid "Fourth quarter"
+#~ msgstr "Cuarto trimestre"
+
+#~ msgid "March"
+#~ msgstr "Marzo"
+
+#~ msgid "February"
+#~ msgstr "Febrero"
+
+#~ msgid "April"
+#~ msgstr "Abril"
+
+#~ msgid "August"
+#~ msgstr "Agosto"
+
+#~ msgid "September"
+#~ msgstr "Septiembre"
+
+#~ msgid "October"
+#~ msgstr "Octubre"
+
+#~ msgid "November"
+#~ msgstr "Noviembre"
+
+#~ msgid "December"
+#~ msgstr "Diciembre"
+
+#~ msgid "July"
+#~ msgstr "Julio"
+
+#, python-format
+#~ msgid "All real state records state code field must be filled."
+#~ msgstr ""
+#~ "Los registros de propiedades inmobiliarias deben ser rellenados manualmente."
+
+#~ msgid "Susbtitutive/complementary declaration"
+#~ msgstr "Declaración sustitutiva/complementaría"
+
+#~ msgid "Create and query AEAT Model 340 Reports"
+#~ msgstr "Crear informe del Model AEAT 340"
+
+#, python-format
+#~ msgid "Error!"
+#~ msgstr "Error!"
+
+#~ msgid "Identification"
+#~ msgstr "Identificación"
+
+#~ msgid "Confirm"
+#~ msgstr "Confirmar"
+
+#, python-format
+#~ msgid "340_report_%s.txt"
+#~ msgstr "340_report_%s.txt"
+
+#, python-format
+#~ msgid "%Y-%m-%d"
+#~ msgstr "%d-%m-%Y"
+
+#~ msgid "Export to BOE"
+#~ msgstr "Exportar al BOE"
+
+#, python-format
+#~ msgid "The periods selected don't belong to the fiscal year  %s"
+#~ msgstr "Los periodos seleccionados no pertenecen al año fiscal  %s"
+
+#~ msgid "Declaration Number"
+#~ msgstr "Número de declaración"
+
+#~ msgid "Canceled"
+#~ msgstr "Cancelado"
+
+#~ msgid "Calculate"
+#~ msgstr "Calcular"
+
+#, python-format
+#~ msgid "All partner state code field must be filled."
+#~ msgstr "Todos las empresas deben tener provincia."
+
+#, python-format
+#~ msgid "All partner vat number field must be filled."
+#~ msgstr "Todas las empresas deben tener CIF/NIF."
+
+#~ msgid "Processing"
+#~ msgstr "Procesando"
+
+#~ msgid "AEAT Model 340 Wizard - Calculate Records"
+#~ msgstr "Modelo 340 - Calcular registros"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
+
+#~ msgid "Recalculate"
+#~ msgstr "Recalcular"
+
+#~ msgid "AEAT Model 340"
+#~ msgstr "Modelo AEAT 340"
+
+#~ msgid ""
+#~ "The declaration will include partners with the total of operations over this "
+#~ "limit"
+#~ msgstr "La declaración incluye las empresas que no superen este limite"
+
+#~ msgid "Previous Declaration Number"
+#~ msgstr "Número de la declaración anterior"
+
+#~ msgid "Period"
+#~ msgstr "Periodo"
+
+#, python-format
+#~ msgid "All real estate records state code field must be filled."
+#~ msgstr ""
+#~ "Los registros de propiedades inmobiliarias deben ser rellenados manualmente."
