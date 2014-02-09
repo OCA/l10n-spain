@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2011 Ting (http://www.ting.es) All Rights Reserved.
-#    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com) All Rights Reserved
+#    Copyright (c) 2011-2013 Acysos S.L.(http://acysos.com) All Rights Reserved
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 #    Copyright (c) 2011 NaN Projectes de Programari Lliure, S.L.
 #                       http://www.NaN-tic.com
@@ -11,8 +11,8 @@
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -43,7 +43,6 @@ class l10n_es_aeat_mod340(osv.osv):
 
         calculate_obj = self.pool.get('l10n.es.aeat.mod340.calculate_records')
         calculate_obj._wkf_calculate_records(cr, uid, ids, context)   
-        
         
         return True
     
@@ -80,21 +79,23 @@ class l10n_es_aeat_mod340(osv.osv):
         
         result = {} 
         for id in ids:
-            result[id] = {}.fromkeys(['number_records','total_taxable','total_sharetax','total'], 0.0)
+            result[id] = {}.fromkeys(
+               ['number_records','total_taxable','total_sharetax','total'],
+               0.0)
     
         for model in self.browse(cr, uid, ids,context):
 
             for issue in model.issued:
-                    result[model.id]['number_records'] += len( issue.tax_line_ids )
-                    result[model.id]['total_taxable'] +=issue.base_tax
-                    result[model.id]['total_sharetax'] +=issue.amount_tax
-                    result[model.id]['total'] +=issue.base_tax + issue.amount_tax
+                result[model.id]['number_records'] += len( issue.tax_line_ids )
+                result[model.id]['total_taxable'] +=issue.base_tax
+                result[model.id]['total_sharetax'] +=issue.amount_tax
+                result[model.id]['total'] +=issue.base_tax + issue.amount_tax
 
             for issue in model.received:
-                    result[model.id]['number_records'] += len( issue.tax_line_ids )
-                    result[model.id]['total_taxable'] +=issue.base_tax
-                    result[model.id]['total_sharetax'] +=issue.amount_tax
-                    result[model.id]['total'] +=issue.base_tax + issue.amount_tax
+                result[model.id]['number_records'] += len( issue.tax_line_ids )
+                result[model.id]['total_taxable'] +=issue.base_tax
+                result[model.id]['total_sharetax'] +=issue.amount_tax
+                result[model.id]['total'] +=issue.base_tax + issue.amount_tax
 
         return result
 
@@ -102,24 +103,45 @@ class l10n_es_aeat_mod340(osv.osv):
     _name = 'l10n.es.aeat.mod340'
     _description = 'Model 340'
     _columns = {
-        'name': fields.function(_name_get, method=True, type="char", size="64", string="Name"),
+        'name': fields.function(_name_get, method=True, type="char", 
+                                size="64", string="Name"),
         'contact_phone': fields.char("Phone", size=9),
         'phone_contact' : fields.char('Phone Contact',size=9),
         'name_contact' : fields.char('Name And Surname Contact',size=40),
-        'period_from': fields.many2one('account.period', 'Start period',states={'done': [('readonly', True)]}),
-        'period_to': fields.many2one('account.period', 'End period',states={'done': [('readonly', True)]}),
-        'issued': fields.one2many('l10n.es.aeat.mod340.issued','mod340_id','Invoices Issued'),
-        'received': fields.one2many('l10n.es.aeat.mod340.received','mod340_id','Invoices Received'),
-        'investment': fields.one2many(
-                                      'l10n.es.aeat.mod340.investment','mod340_id','Property Investment'),
-        'intracomunitarias': fields.one2many('l10n.es.aeat.mod340.intracomunitarias','mod340_id','Operations Intracomunitarias'),
+        'period_from': fields.many2one('account.period', 'Start period',
+                                       states={'done': [('readonly', True)]}),
+        'period_to': fields.many2one('account.period', 'End period',
+                                     states={'done': [('readonly', True)]}),
+        'issued': fields.one2many('l10n.es.aeat.mod340.issued','mod340_id',
+                                  'Invoices Issued',
+                                  states={'done': [('readonly', True)]}),
+        'received': fields.one2many('l10n.es.aeat.mod340.received',
+                                    'mod340_id','Invoices Received',
+                                    states={'done': [('readonly', True)]}),
+        'investment': fields.one2many('l10n.es.aeat.mod340.investment',
+                                      'mod340_id','Property Investment'),
+        'intracomunitarias': fields.one2many(
+                             'l10n.es.aeat.mod340.intracomunitarias',
+                             'mod340_id','Operations Intracomunitarias'),
         
         'ean13': fields.char('Electronic Code VAT reverse charge', size=16),
 
-        'total_taxable':  fields.function( _get_number_records, method=True, type='float',   string='Total Taxable',    multi='recalc', help="The declaration will include partners with the total of operations over this limit"),
-        'total_sharetax': fields.function( _get_number_records, method=True, type='float',   string='Total Share Tax',  multi='recalc', help="The declaration will include partners with the total of operations over this limit"),
-        'number_records': fields.function( _get_number_records, method=True, type='integer', string='Records',          multi='recalc', help="The declaration will include partners with the total of operations over this limit"),
-        'total': fields.function( _get_number_records, method=True, type='float',   string="Total" ,           multi='recalc', help="The declaration will include partners with the total of operations over this limit"),
+        'total_taxable':  fields.function(_get_number_records, method=True,
+            type='float', string='Total Taxable', multi='recalc',
+            help="""The declaration will include partners with the total 
+                of operations over this limit"""),
+        'total_sharetax': fields.function(_get_number_records, method=True,
+            type='float', string='Total Share Tax', multi='recalc',
+            help="""The declaration will include partners with the total 
+                of operations over this limit"""),
+        'number_records': fields.function(_get_number_records, method=True,
+            type='integer', string='Records', multi='recalc',
+            help="""The declaration will include partners with the total 
+                of operations over this limit"""),
+        'total': fields.function(_get_number_records, method=True,
+            type='float', string="Total", multi='recalc',
+            help="""The declaration will include partners with the total 
+                of operations over this limit"""),
         'calculation_date': fields.date('Calculation date', readonly=True),
     }
     _defaults = {
@@ -127,7 +149,8 @@ class l10n_es_aeat_mod340(osv.osv):
                }
 
     def set_done(self, cr, uid, id, *args):
-        self.write(cr,uid,id,{'calculation_date': time.strftime('%Y-%m-%d'),'state': 'done',})
+        self.write(cr,uid,id,{'calculation_date': time.strftime('%Y-%m-%d'),
+                              'state': 'done',})
         wf_service = netsvc.LocalService("workflow")
         wf_service.trg_validate(uid, 'l10n.es.aeat.mod340', id, 'done', cr)
         return True
@@ -161,17 +184,25 @@ class l10n_es_aeat_mod340_issued(osv.osv):
     _name = 'l10n.es.aeat.mod340.issued'
     _description = 'Invoices invoice'
     _columns = {                        
-        'mod340_id': fields.many2one('l10n.es.aeat.mod340','Model 340',ondelete="cascade"),
-        'partner_id':fields.many2one('res.partner','Partner',ondelete="cascade"),
+        'mod340_id': fields.many2one('l10n.es.aeat.mod340','Model 340',
+                                     ondelete="cascade"),
+        'partner_id':fields.many2one('res.partner','Partner',
+                                     ondelete="cascade"),
         'partner_vat':fields.char('Company CIF/NIF',size=12),
-        'representative_vat': fields.char('L.R. VAT number', size=9, help="Legal Representative VAT number"),
+        'representative_vat': fields.char('L.R. VAT number', size=9,
+                                      help="Legal Representative VAT number"),
         'partner_country_code': fields.char('Country Code', size=2),
-        'invoice_id':fields.many2one('account.invoice','Invoice',ondelete="cascade"),
+        'invoice_id':fields.many2one('account.invoice','Invoice',
+                                     ondelete="cascade"),
         'base_tax':fields.float('Base tax bill',digits=(13,2)),
         'amount_tax':fields.float('Total tax',digits=(13,2)),
         'total':fields.float('Total',digits=(13,2)),
-        'tax_line_ids': fields.one2many('l10n.es.aeat.mod340.tax_line_issued', 'invoice_record_id', 'Tax lines', states = {'done': [('readonly', True)]}),
+        'tax_line_ids': fields.one2many('l10n.es.aeat.mod340.tax_line_issued',
+                                        'invoice_record_id', 'Tax lines'),
+        'date_invoice': fields.date('Date Invoice', readonly=True),
     }
+    
+    _order = 'date_invoice asc, invoice_id asc'
 l10n_es_aeat_mod340_issued()
 
 class l10n_es_aeat_mod340_received(osv.osv):
@@ -179,7 +210,8 @@ class l10n_es_aeat_mod340_received(osv.osv):
     _description = 'Invoices Received'
     _inherit = 'l10n.es.aeat.mod340.issued'
     _columns = {
-        'tax_line_ids': fields.one2many('l10n.es.aeat.mod340.tax_line_received', 'invoice_record_id', 'Tax lines', states = {'done': [('readonly', True)]}),
+        'tax_line_ids':fields.one2many('l10n.es.aeat.mod340.tax_line_received',
+                                       'invoice_record_id', 'Tax lines'),
     }
 l10n_es_aeat_mod340_received()
 
@@ -203,7 +235,8 @@ class l10n_es_aeat_mod340_tax_line_issued(osv.osv):
         'tax_percentage': fields.float('Tax percentage',digits=(0,2)),
         'tax_amount': fields.float('Tax amount',digits=(13,2)),
         'base_amount': fields.float('Base tax bill',digits=(13,2)),
-        'invoice_record_id': fields.many2one('l10n.es.aeat.mod340.issued', 'Invoice issued', required=True, ondelete="cascade", select=1),
+        'invoice_record_id': fields.many2one('l10n.es.aeat.mod340.issued',
+             'Invoice issued', required=True, ondelete="cascade", select=1),
     }
 l10n_es_aeat_mod340_tax_line_issued()
 
@@ -212,6 +245,7 @@ class l10n_es_aeat_mod340_tax_line_received(osv.osv):
     _description = 'Mod340 vat lines received'
     _inherit = 'l10n.es.aeat.mod340.tax_line_issued'
     _columns = {
-        'invoice_record_id': fields.many2one('l10n.es.aeat.mod340.received', 'Invoice received', required=True, ondelete="cascade", select=1),
+        'invoice_record_id': fields.many2one('l10n.es.aeat.mod340.received',
+             'Invoice received', required=True, ondelete="cascade", select=1),
     }
 l10n_es_aeat_mod340_tax_line_received()

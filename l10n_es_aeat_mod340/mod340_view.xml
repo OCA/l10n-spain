@@ -13,6 +13,7 @@
                         <field name="period_to"/>
                         <field name="number"/>
                         <field name="type"/>
+                        <field name="state" invisible="1"/>
                     </tree>
 		</field>
 	</record>
@@ -24,76 +25,85 @@
 		<field name="priority" eval="5"/>
 		<field name="arch" type="xml">
 		    <form string="Model 340">
-                        <group col="6" colspan="4">
-                        	<field name="company_id" on_change="on_change_company_id(company_id)" required="1" select="1" readonly="1"/>
-                            <field name="fiscalyear_id" select="1"/>
-                        	<newline/>
-                            <field name="period_from" select="1" required="1" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
-                            <field name="period_to" select="1" required="1" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
-                        	<newline />
-                        	<field name="number"/>
-                        	<field name="support_type"/>
-                    </group>
-                    <notebook colspan="4">
-                        <page string="General">
-                            <group string="Identification" colspan="4">
-                                <field name="company_vat" required="1" />
-                                <field name="phone_contact" />
-                                <field name="name_contact" colspan="4" />
-                                <field name="representative_vat" />
-                            </group>
-                            <group string="Susbtitutive/complementary declaration" colspan="4">
-                                <field name="type"/>
-                                <field name="previous_number"/>
-                            </group>
-                            <group string="Electronic Code VAT reverse charge" colspan="4">
-                                <field name="ean13" nolabel="1"/>
-                            </group>
-                            <group string="Summary" colspan="4">
-                        			<field name="number_records" select ="2" readonly="1"/>
-                        			<newline/>
-                        			<field name="total_taxable" select ="2" readonly="1"/>
-                        			<field name="total_sharetax" select ="2" readonly="1"/>
-                        			<field name="total" select="2" readonly="1"/>
-                        			<newline/>
-                        			<field name="calculation_date" select ="2" readonly="1"/>
-                        		</group>
-                        		<group colspan="4" col="10">                                
-                                <field name="state" select="2" readonly="1"/>
-                            </group>
-                            <group colspan="4" col="10">
-                                <button name="button_calculate"
-                                        type="object"
-                                        string="Calculate"
-                                        states="draft"	
-                                        icon="terp-stock_format-scientific"
-                                        />
-                                <button name="button_recalculate"
-                                        type="object"
-                                        string="Recalculate"
-                                        states="calculating,calculated"
-                                        icon="gtk-execute"/>
-                                <button name="button_export"
-                                        type="object"
-                                        string="Export to BOE"
-                                        states="done"
-                                        icon="gtk-execute"
-                                        />
-                                <button name="confirm" string="Confirm" type="object" states="calculated" icon="gtk-ok"/>
-                                <button name="cancel" string="Cancel" type="object" states="calculated,done" icon="gtk-cancel"/>
-                                <button name="action_recover" string="Draft" type="object" states="canceled" icon="gtk-undo"/>
-                            
-                            </group>
-                        </page>
-                        <page string="Issued invoice" >
-                            <field name="issued" nolabel="1" />
-                        </page>
-                        <page string="Received invoice" >
-                            <field name="received" nolabel="1" /> 
-                        </page>
-                    </notebook>
-                </form>
-            </field>
+	                <group col="4" colspan="4">
+	                    	<field name="company_id" on_change="on_change_company_id(company_id)" required="1" select="1" readonly="1"/>
+	                        <field name="fiscalyear_id" select="1"/>
+	                    	<newline/>
+	                        <field name="period_from" select="1" required="1" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
+	                        <field name="period_to" select="1" required="1" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
+	                    	<newline />
+	                    	<field name="number"/>
+	                    	<field name="support_type"/>
+	                </group>
+	                <notebook colspan="4">
+	                    <page string="General">
+	                        <group string="Identification" colspan="4">
+	                            <field name="company_vat" required="1" />
+	                            <field name="phone_contact" />
+	                            <field name="name_contact" />
+	                            <field name="representative_vat" />
+	                        </group>
+	                        <group string="Susbtitutive/complementary declaration" colspan="4">
+	                            <field name="type"/>
+	                            <field name="previous_number"/>
+	                        </group>
+	                        <group string="Electronic Code VAT reverse charge" colspan="4">
+	                            <field name="ean13" nolabel="1"/>
+	                        </group>
+	                        <group string="Summary" colspan="4">
+	                    			<field name="number_records" select ="2" readonly="1"/>
+	                    			<newline/>
+	                    			<field name="total_taxable" select ="2" readonly="1"/>
+	                    			<field name="total_sharetax" select ="2" readonly="1"/>
+	                    			<field name="total" select="2" readonly="1"/>
+	                    			<newline/>
+	                    			<field name="calculation_date" select ="2" readonly="1"/>
+	                    		</group>
+	                    		<group colspan="4" col="10">                                
+				                   <button name="button_calculate"
+					                       type="object"
+					                       string="Calculate"
+					                       states="draft"	
+					                       icon="terp-stock_format-scientific"
+					                       />
+					               <button name="button_recalculate"
+					                       type="object"
+					                       string="Recalculate"
+					                       states="calculating,calculated"
+					                       icon="gtk-execute"/>
+					               <button name="button_export"
+					                       type="object"
+					                       string="Export to BOE"
+					                       states="done"
+					                       icon="gtk-execute"
+					                       />
+					               <button name="confirm" 
+					               		   string="Confirm" 
+					               		   type="object" 
+					               		   states="calculated" 
+					               		   icon="gtk-ok"/>
+					               <button name="cancel" 
+					                       string="Cancel" 
+					                       type="object" 
+					                       states="calculated,done" 
+					                       icon="gtk-cancel"/>
+					               <button name="action_recover" 
+					                       string="Draft" 
+					                       type="object" 
+					                       states="canceled" 
+					                       icon="gtk-undo"/>
+			                       <field name="state" />
+		                   	   </group>
+	                    </page>
+	                    <page string="Issued invoice" >
+	                        <field name="issued" nolabel="1" />
+	                    </page>
+	                    <page string="Received invoice" >
+	                        <field name="received" nolabel="1" /> 
+	                    </page>
+	                </notebook>
+             </form>
+         </field>
 	</record>
 	<!-- FIN Modelo 340 -->
 
@@ -106,6 +116,7 @@
         <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Issued invoices">
+            	<field name="date_invoice"/>
                 <field name="partner_id"/>
                 <field name="partner_country_code"/>
                 <field name="partner_vat"/>
