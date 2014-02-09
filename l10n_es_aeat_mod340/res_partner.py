@@ -24,6 +24,7 @@ Extends partnet to add fields used by the 340 report.
 """
 
 from osv import osv, fields
+from tools.translate import _
 
 class res_partner(osv.osv):
     """

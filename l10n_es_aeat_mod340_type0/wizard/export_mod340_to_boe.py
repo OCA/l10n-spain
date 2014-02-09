@@ -117,6 +117,14 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
         ##
         ## Generate the file and save as attachment
         file = base64.encodestring(file_contents)
+        
+        # Delete old files
+        obj_attachment = self.pool.get('ir.attachment')
+        attachment_ids = obj_attachment.search(cr, uid, 
+                                               [('name', '=', file_name), 
+                                                ('res_model', '=', 'l10n.es.aeat.mod340')])
+        if len(attachment_ids):
+            obj_attachment.unlink(cr, uid, attachment_ids)
 
         file_name = _("340_report_%s.txt") % (time.strftime(_("%Y-%m-%d")))
         self.pool.get("ir.attachment").create(cr, uid, {

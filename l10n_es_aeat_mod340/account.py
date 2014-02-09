@@ -164,7 +164,7 @@ class wizard_update_charts_accounts(osv.osv_memory):
                 #
                 tax_code_id = wiz_tax_code.update_tax_code_id.id
                 tax_code_obj.write(cr, uid, [tax_code_id], vals)
-                log.add(_("Updated tax code %s.\n") % tax_code_name)
+                log.add(_("Updated tax code %s.\n") % (tax_code_name))
                 updated_tax_codes += 1
                 modified = True
             else:
