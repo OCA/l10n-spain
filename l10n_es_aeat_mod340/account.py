@@ -19,30 +19,26 @@
 #
 ##############################################################################
 
-from osv import osv, fields
-from tools.translate import _
+from openerp.osv import orm, fields
+from openerp.tools.translate import _
 
-class account_tax_code_template(osv.osv):
+class account_tax_code_template(orm.Model):
 
     _inherit = 'account.tax.code.template'
     
     _columns = {
         'mod340':fields.boolean("Include in mod340"),
     }
-    
-account_tax_code_template()
 
-class account_tax_code(osv.osv):
+class account_tax_code(orm.Model):
 
     _inherit = 'account.tax.code'
     
     _columns = {
         'mod340':fields.boolean("Include in mod340"),
     }
-    
-account_tax_code()
 
-class wizard_update_charts_accounts(osv.osv_memory):
+class wizard_update_charts_accounts(orm.TransientModel):
     _inherit = 'wizard.update.charts.accounts'
     
     def _find_tax_codes(self, cr, uid, wizard, context=None):
@@ -64,10 +60,14 @@ class wizard_update_charts_accounts(osv.osv_memory):
         # Search for new / updated tax codes
         #
         root_tax_code_id = wizard.chart_template_id.tax_code_root_id.id
-        children_tax_code_template = tax_code_templ_obj.search(cr, uid, [('parent_id', 'child_of', [root_tax_code_id])], order='id')
-        for tax_code_template in tax_code_templ_obj.browse(cr, uid, children_tax_code_template):
+        children_tax_code_template = tax_code_templ_obj.search(cr, uid, 
+                   [('parent_id', 'child_of', [root_tax_code_id])], order='id')
+        for tax_code_template in tax_code_templ_obj.browse(cr, uid, 
+                                                   children_tax_code_template):
             # Ensure the tax code template is on the map (search for the mapped tax code id).
-            self._map_tax_code_template(cr, uid, wizard, tax_code_template_mapping, tax_code_template, context)
+            self._map_tax_code_template(cr, uid, wizard, 
+                                        tax_code_template_mapping, 
+                                        tax_code_template, context)
 
             tax_code_id = tax_code_template_mapping.get(tax_code_template.id)
             if not tax_code_id:
@@ -113,7 +113,8 @@ class wizard_update_charts_accounts(osv.osv_memory):
                             'notes': notes,
                         }, context)
 
-        return { 'new': new_tax_codes, 'updated': updated_tax_codes, 'mapping': tax_code_template_mapping }
+        return { 'new': new_tax_codes, 'updated': updated_tax_codes, 
+                'mapping': tax_code_template_mapping }
                 
     def _update_tax_codes(self, cr, uid, wizard, log, context=None):
         """
@@ -132,7 +133,9 @@ class wizard_update_charts_accounts(osv.osv_memory):
             tax_code_name = (root_tax_code_id == tax_code_template.id) and wizard.company_id.name or tax_code_template.name
 
             # Ensure the parent tax code template is on the map.
-            self._map_tax_code_template(cr, uid, wizard, tax_code_template_mapping, tax_code_template.parent_id, context)
+            self._map_tax_code_template(cr, uid, wizard, 
+                                        tax_code_template_mapping, 
+                                        tax_code_template.parent_id, context)
 
             #
             # Values
@@ -186,5 +189,3 @@ class wizard_update_charts_accounts(osv.osv_memory):
             'updated': updated_tax_codes,
             'mapping': tax_code_template_mapping
         }
-    
-wizard_update_charts_accounts()

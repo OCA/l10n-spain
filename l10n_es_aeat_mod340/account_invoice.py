@@ -19,17 +19,16 @@
 #
 ##############################################################################
 
-from tools.translate import _
-from osv import osv, fields
+from openerp.osv import orm, fields
+from openerp.tools.translate import _
 
-class account_invoice(osv.osv):
+class account_invoice(orm.Model):
     _inherit = 'account.invoice'
     
     _columns = {
-        'is_ticket_summary': fields.boolean('Ticket Summary', help='Check if this invoice is a ticket summary'),
+        'is_ticket_summary': fields.boolean('Ticket Summary', 
+                            help='Check if this invoice is a ticket summary'),
         'number_tickets': fields.integer('Number of tickets', digits=(12,0)),
         'first_ticket': fields.char('First ticket', size=40),
         'last_ticket': fields.char('Last ticket', size=40)
     }
-    
-account_invoice()

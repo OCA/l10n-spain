@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2011 Acysos S.L. (http://acysos.com) All Rights Reserved
+#    Copyright (c) 2011-2014 Acysos S.L. (http://acysos.com) All Rights Reserved
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,35 +19,37 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import fields, orm
 
-class l10n_es_aeat_mod340(orm.Model):
-    _inherit = 'l10n.es.aeat.mod340'
+from openerp.osv import orm, fields
+from openerp.tools.translate import _
+
+class l10n_es_aeat_mod340_report(orm.Model):
+    _inherit = 'l10n.es.aeat.mod340.report'
     
     def on_change_name_contact(self, cr, uid, ids, name_contact):
-        return  {'value': {'presenter_name': name_contact,
-                           'presenter_name_contact': name_contact}}
+        return  { 'value': { 'presenter_name': name_contact,
+                            'presenter_name_contact': name_contact } }
     
     def on_change_phone_contact(self, cr, uid, ids, phone_contact):
-        return  {'value': {'presenter_phone_contact': phone_contact}}
+        return  { 'value': { 'presenter_phone_contact': phone_contact } }
     
     def on_change_representative_vat(self, cr, uid, ids, representative_vat):
-        return  {'value': {'presenter_vat': representative_vat}}
+        return  { 'value': { 'presenter_vat': representative_vat } }
     
     _columns = {
         'presenter_vat': fields.char('VAT number', size=9,
             states={'confirmed':[('readonly',True)]}),
-        'presenter_name': fields.char('Name And Surname', size=40),
-        'presenter_address_acronym': fields.char('Address Acronym', size=2,
+        'presenter_name' : fields.char('Name And Surname',size=40),
+        'presenter_address_acronym' : fields.char('Address Acronym',size=2,
             help='Acronyms of the type of public roadway, example St.'),
-        'presenter_address_name': fields.char('Street Name', size=52),
-        'presenter_address_number': fields.integer('Number', size=5),
+        'presenter_address_name': fields.char('Street Name',size=52),
+        'presenter_address_number': fields.integer('Number',size=5),
         'presenter_address_stair': fields.char('Stair', size=2),
         'presenter_address_floor': fields.char('Floor', size=2),
         'presenter_address_door': fields.char('Door', size=2),
-        'presenter_city_id': fields.many2one('res.better.zip', 'Location',
+        'presenter_city_id': fields.many2one('res.better.zip', 'Location', select=1,
             help='Use the name or the zip to search the location'),
-        'presenter_phone_contact': fields.char('Phone Contact',size=9),
-        'presenter_name_contact': fields.char('Name And Surname Contact',
-                                              size=40),
+        'presenter_phone_contact' : fields.char('Phone Contact',size=9),
+        'presenter_name_contact' : fields.char('Name And Surname Contact',
+                                               size=40),
     }
