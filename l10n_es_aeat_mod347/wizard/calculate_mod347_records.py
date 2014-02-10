@@ -50,7 +50,7 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
         amount = invoice.cc_amount_untaxed
         for tax_line in invoice.tax_line:
             if tax_line.name.find('IRPF') == -1:
-                amount += tax_line.tax_amount
+                amount += tax_line.amount
         return amount
 
     def _calculate_records(self, cr, uid, ids, context=None, recalculate=True):
