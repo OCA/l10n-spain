@@ -7,13 +7,13 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-02 18:10+0000\n"
-"PO-Revision-Date: 2014-02-05 01:33+0000\n"
+"PO-Revision-Date: 2014-02-10 21:15+0000\n"
 "Last-Translator: Pedro Manuel Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-02-10 05:53+0000\n"
+"X-Launchpad-Export-Date: 2014-02-11 06:41+0000\n"
 "X-Generator: Launchpad (build 16916)\n"
 
 #. module: l10n_es_aeat_mod340
@@ -38,7 +38,7 @@ msgstr "Compañía:"
 #. module: l10n_es_aeat_mod340
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod340.action_l10n_es_aeat_mod340_report
 msgid "AEAT model 340"
-msgstr "Modelo AEAT 340"
+msgstr "Declaración AEAT 340"
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.issued:0
@@ -48,7 +48,7 @@ msgstr "Facturas emitidas"
 #. module: l10n_es_aeat_mod340
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod340.action_wizard_aeat_mod340_export
 msgid "Export AEAT 340 BOE file"
-msgstr "Export AEAT 340 BOE file"
+msgstr "Exportar Modelo AEAT 340 al formato del BOE"
 
 #. module: l10n_es_aeat_mod340
 #: code:addons/l10n_es_aeat_mod340/account.py:89
@@ -147,13 +147,13 @@ msgstr "Incluir en el modelo 340"
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.export_to_boe,name:0
 msgid "File name"
-msgstr "File name"
+msgstr "Nombre de archivo"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,declaration_number:0
 #: field:l10n.es.aeat.mod340.report,number:0
 msgid "Declaration number"
-msgstr "Declaration number"
+msgstr "Número de declaración"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.intracomunitarias,tax_line_ids:0
@@ -230,7 +230,7 @@ msgstr "Identificación"
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:0
 msgid "295"
-msgstr ""
+msgstr "295"
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.issued:0
@@ -347,7 +347,7 @@ msgstr "El registro de tipo 1 tiene que tener 500 caracteres de longitud"
 #: report:report_mod340:0
 #: report:vat_book:0
 msgid "CIF/NIF:"
-msgstr ""
+msgstr "CIF/NIF:"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340_tax_line_issued
@@ -358,7 +358,7 @@ msgstr "Líneas de impuestos emitidos"
 #: report:report mod340:0
 #: report:report_mod340:0
 msgid "CIF/NIF del representante legal:"
-msgstr ""
+msgstr "CIF/NIF del representante legal:"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_res_partner
@@ -373,12 +373,12 @@ msgstr "Empresa"
 #: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:80
 #, python-format
 msgid "The periods selected don't belong to the fiscal year %s"
-msgstr "The periods selected don't belong to the fiscal year %s"
+msgstr "Los periodos seleccionados no pertenecen al año fiscal %s"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod340.action_l10n_es_aeat_mod340_report
 msgid "Create and query AEAT Model 340 reports"
-msgstr "Create and query AEAT Model 340 reports"
+msgstr "Crear informe del Modelo AEAT 340"
 
 #. module: l10n_es_aeat_mod340
 #: report:report mod340:0
@@ -518,7 +518,7 @@ msgstr "Último tique"
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,previous_number:0
 msgid "Previous declaration number"
-msgstr "Previous declaration number"
+msgstr "Número de la declaración anterior"
 
 #. module: l10n_es_aeat_mod340
 #: field:account.invoice,is_ticket_summary:0
@@ -613,7 +613,7 @@ msgstr "Modelos en proceso"
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,fiscalyear_id:0
 msgid "Fiscal year"
-msgstr "Fiscal year"
+msgstr "Año fiscal"
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340:0
@@ -677,9 +677,7 @@ msgstr "Facturas recibidas"
 msgid ""
 "The declaration will include partners with the total \n"
 "                of operations over this limit"
-msgstr ""
-"The declaration will include partners with the total \n"
-"                of operations over this limit"
+msgstr "La declaración incluye las empresas que no superen este limite"
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.tax_line_issued:0
@@ -690,7 +688,7 @@ msgstr "Línea de impuesto emitido"
 #: report:report mod340:0
 #: report:vat_book:0
 msgid "CIF/NIF"
-msgstr ""
+msgstr "CIF/NIF"
 
 #. module: l10n_es_aeat_mod340
 #: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:178
@@ -837,7 +835,7 @@ msgstr "Total factura"
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.export_to_boe,data:0
 msgid "File"
-msgstr "File"
+msgstr "Archivo"
 
 #. module: l10n_es_aeat_mod340
 #: report:report mod340:0
