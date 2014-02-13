@@ -52,6 +52,7 @@ Exportación de asientos resumen de facturas
     'license' : 'AGPL-3',
     'depends' : ['account',
                  'base_vat',
+                 'l10n_es',
                  'l10n_es_aeat',
                  'account_refund_original',
                  'account_chart_update',
