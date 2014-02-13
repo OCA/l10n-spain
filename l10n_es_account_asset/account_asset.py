@@ -196,7 +196,7 @@ class account_asset_asset(orm.Model):
                                                       depr_date.month,
                                                       last_month_day)
                     depr_lin_obj.write(cr, uid, depr_line.id,
-                                {'depr_date': depr_date.strftime(DSDF) })
+                            {'depreciation_date': depr_date.strftime(DSDF)})
         return True
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
