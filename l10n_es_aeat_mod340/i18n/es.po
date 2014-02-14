@@ -25,7 +25,7 @@ msgid "FACTURAS DE SALIDA"
 msgstr "FACTURAS DE SALIDA"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
+#: view:l10n.es.aeat.mod340.report:0
 msgid "Confirmed models"
 msgstr "Modelos confirmados"
 
@@ -62,7 +62,7 @@ msgid "Declaración"
 msgstr "Declaración"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,total_taxable:0
+#: field:l10n.es.aeat.mod340.report,total_taxable:0
 msgid "Total Taxable"
 msgstr "Total"
 
@@ -73,23 +73,23 @@ msgid "Created tax code %s.\n"
 msgstr "Código de impuesto %s creado.\n"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
+#: view:l10n.es.aeat.mod340.report:0
 msgid "Susbtitutive/complementary declaration"
 msgstr "Declaración sustitutiva/complementaría"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
-#: field:l10n.es.aeat.mod340,company_id:0
+#: view:l10n.es.aeat.mod340.report:0
+#: field:l10n.es.aeat.mod340.report,company_id:0
 msgid "Company"
 msgstr "Compañia"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,total_sharetax:0
+#: field:l10n.es.aeat.mod340.report,total_sharetax:0
 msgid "Total Share Tax"
 msgstr "Total impuestos"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,number_records:0
+#: field:l10n.es.aeat.mod340.report,number_records:0
 msgid "Records"
 msgstr "Registros"
 
@@ -103,12 +103,12 @@ msgstr ""
 "registro de IVA"
 
 #. module: l10n_es_aeat_mod340
-#: selection:l10n.es.aeat.mod340,type:0
+#: selection:l10n.es.aeat.mod340.report,type:0
 msgid "Substitutive"
 msgstr "Sustitutiva"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,phone_contact:0
+#: field:l10n.es.aeat.mod340.report,phone_contact:0
 msgid "Phone Contact"
 msgstr "Teléfono de contacto"
 
@@ -164,7 +164,7 @@ msgid "Tax lines"
 msgstr "Lineas de impuestos"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
+#: view:l10n.es.aeat.mod340.report:0
 msgid "Cancelled"
 msgstr "Cancelado"
 
@@ -183,7 +183,7 @@ msgstr ""
 "registro de IVA"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,period_from:0
+#: field:l10n.es.aeat.mod340.report,period_from:0
 msgid "Start period"
 msgstr "Periodo inicial"
 
@@ -195,7 +195,7 @@ msgstr "Código de impuesto %s actualizado.\n"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340_intracomunitarias
-#: field:l10n.es.aeat.mod340,intracomunitarias:0
+#: field:l10n.es.aeat.mod340.report,intracomunitarias:0
 msgid "Operations Intracomunitarias"
 msgstr "Operaciones intracomunitarias"
 
@@ -206,13 +206,13 @@ msgid "Tax amount"
 msgstr "Impuestos"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
-#: field:l10n.es.aeat.mod340,ean13:0
+#: view:l10n.es.aeat.mod340.report:0
+#: field:l10n.es.aeat.mod340.report,ean13:0
 msgid "Electronic Code VAT reverse charge"
 msgstr "Código electrónico del modelo 340"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,period_to:0
+#: field:l10n.es.aeat.mod340.report,period_to:0
 msgid "End period"
 msgstr "Periodo final"
 
@@ -223,7 +223,7 @@ msgid "The Mod 340 field is different.\n"
 msgstr "El campo Mod 340 es diferente.\n"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
+#: view:l10n.es.aeat.mod340.report:0
 msgid "Identification"
 msgstr "Identificación"
 
@@ -265,12 +265,12 @@ msgid "2 - Se consigna el NIF/IVA (NIF OPERADOR INTRACOMUNITARIO)"
 msgstr "2 - Se consigna el NIF/IVA (NIF OPERADOR INTRACOMUNITARIO)"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
+#: view:l10n.es.aeat.mod340.report:0
 msgid "Cancelled models"
 msgstr "Cancelled models"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,state:0
+#: field:l10n.es.aeat.mod340.report,state:0
 msgid "State"
 msgstr "Estado"
 
@@ -311,7 +311,7 @@ msgid "Mod340 vat lines received"
 msgstr "Línea de impuestos recibidas"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,support_type:0
+#: field:l10n.es.aeat.mod340.report,support_type:0
 msgid "Support Type"
 msgstr "Tipo de soporte"
 
@@ -322,7 +322,7 @@ msgid "The period hasn't a valid Mod340 period"
 msgstr "El periodo no es válido para el Módelo 340"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,company_vat:0
+#: field:l10n.es.aeat.mod340.report,company_vat:0
 msgid "VAT number"
 msgstr "NIF"
 
@@ -410,7 +410,7 @@ msgid "Tipo de declaración"
 msgstr "Tipo de declaración"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,calculation_date:0
+#: field:l10n.es.aeat.mod340.report,calculation_date:0
 msgid "Calculation date"
 msgstr "Fecha de calculo"
 
@@ -432,7 +432,7 @@ msgid "Tax code %s: The parent tax code %s can not be set.\n"
 msgstr "Código de impuesto %s: el padre de %s no puede ser guardado.\n"
 
 #. module: l10n_es_aeat_mod340
-#: selection:l10n.es.aeat.mod340,support_type:0
+#: selection:l10n.es.aeat.mod340.report,support_type:0
 msgid "DVD"
 msgstr "DVD"
 
@@ -443,13 +443,13 @@ msgid "Fecha"
 msgstr "Fecha"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
+#: view:l10n.es.aeat.mod340.report:0
 msgid "In process"
 msgstr "En processo"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
+#: view:l10n.es.aeat.mod340.report:0
 #: field:l10n.es.aeat.mod340.intracomunitarias,mod340_id:0
 #: field:l10n.es.aeat.mod340.investment,mod340_id:0
 #: field:l10n.es.aeat.mod340.issued,mod340_id:0
@@ -458,8 +458,8 @@ msgid "Model 340"
 msgstr "Modelo 340"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
-#: selection:l10n.es.aeat.mod340,state:0
+#: view:l10n.es.aeat.mod340.report:0
+#: selection:l10n.es.aeat.mod340.report,state:0
 msgid "Draft"
 msgstr "Borrador"
 
@@ -491,7 +491,7 @@ msgid "First ticket"
 msgstr "Primer tique"
 
 #. module: l10n_es_aeat_mod340
-#: selection:l10n.es.aeat.mod340,type:0
+#: selection:l10n.es.aeat.mod340.report,type:0
 msgid "Normal"
 msgstr "Normal"
 
@@ -506,7 +506,7 @@ msgid "unknown"
 msgstr "unknown"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,contact_phone:0
+#: field:l10n.es.aeat.mod340.report,contact_phone:0
 msgid "Phone"
 msgstr "Teléfono"
 
@@ -540,7 +540,7 @@ msgid "Country Code"
 msgstr "Código del país"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
+#: view:l10n.es.aeat.mod340.report:0
 msgid "Summary"
 msgstr "Resumen"
 
@@ -550,7 +550,7 @@ msgid "AEAT Model 340 Wizard - Calculate Records"
 msgstr "Modelo 340 - Calcular registros"
 
 #. module: l10n_es_aeat_mod340
-#: selection:l10n.es.aeat.mod340,state:0
+#: selection:l10n.es.aeat.mod340.report,state:0
 msgid "Processed"
 msgstr "Procesado"
 
@@ -566,7 +566,7 @@ msgid "Error"
 msgstr "Error"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,representative_vat:0
+#: field:l10n.es.aeat.mod340.report,representative_vat:0
 #: field:l10n.es.aeat.mod340.intracomunitarias,representative_vat:0
 #: field:l10n.es.aeat.mod340.investment,representative_vat:0
 #: field:l10n.es.aeat.mod340.issued,representative_vat:0
@@ -575,12 +575,12 @@ msgid "L.R. VAT number"
 msgstr "NIF Representante legal"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
+#: view:l10n.es.aeat.mod340.report:0
 msgid "Issued invoice"
 msgstr "Facturas emitidas"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,issued:0
+#: field:l10n.es.aeat.mod340.report,issued:0
 msgid "Invoices Issued"
 msgstr "Facturas emitidas"
 
@@ -596,17 +596,17 @@ msgid "Invoice received"
 msgstr "Facturas recibidas"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,type:0
+#: field:l10n.es.aeat.mod340.report,type:0
 msgid "Statement Type"
 msgstr "Tipo de documento"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
+#: view:l10n.es.aeat.mod340.report:0
 msgid "General"
 msgstr "General"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
+#: view:l10n.es.aeat.mod340.report:0
 msgid "In process models"
 msgstr "Modelos en proceso"
 
@@ -616,8 +616,8 @@ msgid "Fiscal year"
 msgstr "Año fiscal"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
-#: selection:l10n.es.aeat.mod340,state:0
+#: view:l10n.es.aeat.mod340.report:0
+#: selection:l10n.es.aeat.mod340.report,state:0
 msgid "Done"
 msgstr "Realizado"
 
@@ -654,7 +654,7 @@ msgstr "5 - Certificado de residencia fiscal"
 
 #. module: l10n_es_aeat_mod340
 #: view:account.invoice:0
-#: view:l10n.es.aeat.mod340:0
+#: view:l10n.es.aeat.mod340.report:0
 msgid "AEAT 340"
 msgstr "AEAT 340"
 
@@ -665,7 +665,7 @@ msgid "Tax percentage"
 msgstr "Impuesto"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
+#: view:l10n.es.aeat.mod340.report:0
 msgid "Received invoice"
 msgstr "Facturas recibidas"
 
@@ -726,12 +726,12 @@ msgstr "NIF del representante legal."
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340_investment
-#: field:l10n.es.aeat.mod340,investment:0
+#: field:l10n.es.aeat.mod340.report,investment:0
 msgid "Property Investment"
 msgstr "Inmovilizado"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,name_contact:0
+#: field:l10n.es.aeat.mod340.report,name_contact:0
 msgid "Name And Surname Contact"
 msgstr "Nombre y apellido de contacto"
 
@@ -742,7 +742,7 @@ msgid "Número:"
 msgstr "Número:"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,name:0
+#: field:l10n.es.aeat.mod340.report,name:0
 #: field:l10n.es.aeat.mod340.tax_line_issued,name:0
 #: field:l10n.es.aeat.mod340.tax_line_received,name:0
 msgid "Name"
@@ -773,13 +773,13 @@ msgid "BOE file"
 msgstr "Archivo BOE"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
+#: view:l10n.es.aeat.mod340.report:0
 msgid "Draft models"
 msgstr "Modelos en borrador"
 
 #. module: l10n_es_aeat_mod340
-#: view:l10n.es.aeat.mod340:0
-#: field:l10n.es.aeat.mod340,fiscalyear_id:0
+#: view:l10n.es.aeat.mod340.report:0
+#: field:l10n.es.aeat.mod340.report,fiscalyear_id:0
 msgid "Fiscal Year"
 msgstr "Año fiscal"
 
@@ -790,7 +790,7 @@ msgstr "Pagos"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340_received
-#: field:l10n.es.aeat.mod340,received:0
+#: field:l10n.es.aeat.mod340.report,received:0
 msgid "Invoices Received"
 msgstr "Facturas recibidas"
 
@@ -801,7 +801,7 @@ msgid "The info field is different.\n"
 msgstr "El campo descripción es diferente.\n"
 
 #. module: l10n_es_aeat_mod340
-#: selection:l10n.es.aeat.mod340,support_type:0
+#: selection:l10n.es.aeat.mod340.report,support_type:0
 msgid "Telematics"
 msgstr "Telemática"
 
@@ -817,7 +817,7 @@ msgid "Empresa"
 msgstr "Empresa"
 
 #. module: l10n_es_aeat_mod340
-#: selection:l10n.es.aeat.mod340,type:0
+#: selection:l10n.es.aeat.mod340.report,type:0
 msgid "Complementary"
 msgstr "Complementaria"
 
@@ -844,7 +844,7 @@ msgid "FACTURAS DE ENTRADA"
 msgstr "FACTURAS DE ENTRADA"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340,total:0
+#: field:l10n.es.aeat.mod340.report,total:0
 #: field:l10n.es.aeat.mod340.intracomunitarias,total:0
 #: field:l10n.es.aeat.mod340.investment,total:0
 #: view:l10n.es.aeat.mod340.issued:0
