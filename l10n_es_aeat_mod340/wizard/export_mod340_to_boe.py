@@ -273,8 +273,10 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             text += 8*'0'
             #Importes cobrado #TODO
             text += 13*'0'
+            # Medio de pago utilizado #TODO
+            text += ' '
             # Cuenta Bancaria o medio de cobro utilizado #TODO
-            text += 35*' ' 
+            text += 34*' ' 
             text += '\r\n'
         assert len(text) == 502*len(invoice_issued.tax_line_ids), _("The type 2 issued record must be 500 characters long for each Vat registry")
         return text
@@ -356,8 +358,16 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             text += self._formatNumber(1, 18) # Número de facturas
             text += self._formatNumber(len(invoice_received.tax_line_ids), 2)  # Número de registros (Desglose)
             text += 80*' '  # Intervalo de identificación de la acumulación
-            text += ' '+self._formatNumber(0, 11,2)  # Cuota deducible
-            text += 151*' '                                                     # Blancos
+            text += ' '+self._formatNumber(0, 11,2)  # Cuota deducible          
+            #Fecha de Pago #TODO 
+            text += 8*'0'
+            #Importes pagados #TODO
+            text += 13*'0'
+            # Medio de pago utilizado
+            text += ' '
+            # Cuenta Bancaria o medio de cobro utilizado #TODO
+            text += 34*' ' 
+            text += 95*' '                                                     # Blancos
             text += '\r\n'
         
         assert len(text) == 502*len(invoice_received.tax_line_ids), _("The type 2 received record must be 500 characters long for each Vat registry")
