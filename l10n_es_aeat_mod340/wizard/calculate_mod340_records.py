@@ -152,8 +152,8 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                     
                     # Add the invoices detail to the partner record
                     for tax_line in invoice.tax_line:
-                        if tax_line.base_code_id:
-                            if tax_line.base_code_id and tax_line.base:
+                        if tax_line.base_code_id and tax_line.base:
+                            if tax_line.base_code_id.mod340 == True:
                                 tax_percentage = tax_line.amount/tax_line.base
         
                                 values = {

@@ -358,7 +358,7 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             text += self._formatNumber(1, 18) # Número de facturas
             text += self._formatNumber(len(invoice_received.tax_line_ids), 2)  # Número de registros (Desglose)
             text += 80*' '  # Intervalo de identificación de la acumulación
-            text += ' '+self._formatNumber(0, 11,2)  # Cuota deducible          
+            text += ' '+self._formatNumber(0, 11,2)  # Cuota deducible
             #Fecha de Pago #TODO 
             text += 8*'0'
             #Importes pagados #TODO
@@ -410,7 +410,7 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
         
         # Delete old files
         obj_attachment = self.pool.get('ir.attachment')
-        attachment_ids = obj_attachment.search(cr, uid, [('name', '=', file_name), ('res_model', '=', 'l10n.es.aeat.mod340')])
+        attachment_ids = obj_attachment.search(cr, uid, [('name', '=', file_name), ('res_model', '=', report._model._name)])
         if len(attachment_ids):
             obj_attachment.unlink(cr, uid, attachment_ids)
             
@@ -421,6 +421,9 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             "res_model" : "l10n.es.aeat.mod340",
             "res_id" : ids and ids[0]
         }, context=context)
+
+        mod_obj = self.pool.get(report._model._name)
+        mod_obj.write(cr,uid,[report.id],{'attach_id':attach_id},context)
         
         return True
 
