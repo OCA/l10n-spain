@@ -137,7 +137,12 @@ class l10n_es_aeat_mod347_report(orm.Model):
 
     def _calculate_cash_records(self, cr, uid, partner, partner_ids,
                         partner_record_id, period_ids, report, context=None):
-        """Search for payments received in cash from the given partners."""
+        """Search for payments received in cash from the given partners.
+        @param partner: Partner for generating cash records.
+        @param partner_ids: List of ids that corresponds to the same partner.
+        @param partner_record_id: Possible previously created 347 record for
+            the same partner.
+        """
         partner_record_obj = self.pool['l10n.es.aeat.mod347.partner_record']
         cash_record_obj = self.pool['l10n.es.aeat.mod347.cash_record']
         move_line_obj = self.pool['account.move.line']
@@ -148,7 +153,6 @@ class l10n_es_aeat_mod347_report(orm.Model):
             return
         cash_account_move_line_ids = move_line_obj.search(cr, uid,
             [('partner_id', 'in', partner_ids),
-             # TODO: Esto no es correcto del todo. Cada partner puede tener una cuenta distinta
              ('account_id', '=', partner.property_account_receivable.id),
              ('journal_id', 'in', cash_journal_ids),
              ('period_id', 'in', period_ids)],
@@ -194,8 +198,7 @@ class l10n_es_aeat_mod347_report(orm.Model):
                     if cash_move_fy_id != report.fiscalyear_id.id or not partner_record_id:
                         #create partner cash_move_fy_id for cash operation in different year to currently
                         cash_partner_record_id = partner_record_obj.create(cr, uid, {
-                            'report_id': report.id ,
-                            # TODO: Ver este valor de dónde sale
+                            'report_id': report.id,
                             'operation_key' : 'B',
                             'partner_id': partner.id,
                             'partner_vat': partner_vat,
@@ -211,7 +214,7 @@ class l10n_es_aeat_mod347_report(orm.Model):
                         partner_record_obj.write(cr, uid,
                             partner_record_id,
                             {'cash_amount': sum([line.credit for line in cash_moves[cash_move_fy_id]]),
-                             'origin_fiscalyear_id': int(cash_move_fy_id)},
+                             'origin_fiscalyear_id': cash_move_fy_id},
                             context=context)
                         cash_partner_record_id = partner_record_id
                     for line in cash_moves[cash_move_fy_id]:
