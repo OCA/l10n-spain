@@ -255,14 +255,26 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
             else: text += 80*' '
             # Identificación factura rectificativa
             text +=  self._formatString( ",".join( [x.number for x in  invoice_issued.invoice_id.origin_invoices_ids]) , 40 )
-            text += self._formatNumber(0, 5)  # Tipo Recargo de equivalencia
-            text += ' '+self._formatNumber(0, 11,2)  # Couta del recargo de equivalencia
-            text += '0'  #Situación del Inmueble #TODO  2012
-            text += 25*' ' #Referencia Catastral #TODO 2012
-            text += 15*'0'  #Importe Percibido en Metálico #TODO 2012
-            text += 4*'0' #Ejercicio ( cifras del ejercicio en el que se hubieran declarado las operaciones que dan origen al cobro ) #TODO 2012
-            text += 15*'0' #Importe percibido por transmisiones de Inmuebles sujetas a IVA. #TODO 2012            
-            text += 56*' '                                                     # Blancos
+            # Tipo Recargo de equivalencia
+            text += self._formatNumber(0, 5)
+            # Couta del recargo de equivalencia
+            text += ' '+self._formatNumber(0, 11,2)  
+            #Situación del Inmueble #TODO
+            text += '0'  
+            #Referencia Catastral #TODO
+            text += 25*' ' 
+            #Importe Percibido en Metálico #TODO
+            text += 15*'0'
+            #Ejercicio ( cifras del ejercicio en el que se hubieran declarado las operaciones que dan origen al cobro ) #TODO
+            text += 4*'0' 
+            #Importe percibido por transmisiones de Inmuebles sujetas a IVA. #TODO
+            text += 15*'0'            
+            #Fecha de Cobro #TODO 
+            text += 8*'0'
+            #Importes cobrado #TODO
+            text += 13*'0'
+            # Cuenta Bancaria o medio de cobro utilizado #TODO
+            text += 35*' ' 
             text += '\r\n'
         assert len(text) == 502*len(invoice_issued.tax_line_ids), _("The type 2 issued record must be 500 characters long for each Vat registry")
         return text
