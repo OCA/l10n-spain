@@ -263,7 +263,7 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                                 receivable_amount = 0.0
                                 receivable_amount = sum([line.credit for line in cash_moves[record]])
                                 if receivable_amount > report_obj.received_cash_limit:
-                                    if record != str(report_obj.fiscalyear_id.id) and receivable_partner_record:
+                                    if record != str(report_obj.fiscalyear_id.id) or not receivable_partner_record:
                                         #create partner record for cash operation in different year to currently
                                         cash_partner_record = self.pool.get('l10n.es.aeat.mod347.partner_record').create(cr, uid, {
                                                 'report_id': report_obj.id ,
