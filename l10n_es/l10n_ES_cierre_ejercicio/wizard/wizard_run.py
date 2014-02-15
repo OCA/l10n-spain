@@ -201,7 +201,7 @@ class wizard_run(wizard.interface):
         unbalanced_moves = []
         total_accounts = len(account_move_ids)
         accounts_done = 0
-        for move in pool.get('account.move').read(cr, uid, account_move_ids, ['line_id'], context):
+        for move in pool.get('account.move').read(cr, uid, account_move_ids, ['line_id', 'date', 'name', 'ref'], context):
             amount = 0
             for line in pool.get('account.move.line').read(cr, uid, move['line_id'], ['debit', 'credit'], context):
                 amount += (line['debit'] - line['credit'])
@@ -216,7 +216,7 @@ class wizard_run(wizard.interface):
         # If one or more unbalanced moves where found, raise an exception
         #
         if len(unbalanced_moves):
-            str_unbalanced_moves = '\n'.join(['id: %s, date: %s, number: %s, ref: %s' % (move.id, move.date, move.name, move.ref) for move in unbalanced_moves])
+            str_unbalanced_moves = '\n'.join(['id: %s, date: %s, number: %s, ref: %s' % (move['id'], move['date'], move['name'], move['ref']) for move in unbalanced_moves])
             raise wizard.except_wizard(_('Error'), _('One or more unbalanced moves found: \n%s') % str_unbalanced_moves)
 
         data['process_task_progress'] = 100.0
