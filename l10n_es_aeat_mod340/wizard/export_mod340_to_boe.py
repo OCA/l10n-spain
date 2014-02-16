@@ -267,18 +267,22 @@ class l10n_es_aeat_mod340_export_to_boe(orm.TransientModel):
             text += ' '+self._formatNumber(0, 11, 2)  
             #Situación del Inmueble #TODO
             text += '0'
-            #Referencia Catastral #TODO 
-            text += 25 *' '
-            #Importe Percibido en Metálico #TODO 
-            text += 15 * '0'  
-            # Ejercicio ( cifras del ejercicio en el que se hubieran declarado 
-            # las operaciones que dan origen al cobro ) #TODO
-            text += 4 * '0' 
-            #Importe percibido por transmisiones de Inmuebles sujetas a IVA. 
-            #TODO
-            text += 15 * '0'  
-            # Blancos          
-            text += 56 * ' '                                                     
+            #Referencia Catastral #TODO
+            text += 25*' ' 
+            #Importe Percibido en Metálico #TODO
+            text += 15*'0'
+            #Ejercicio ( cifras del ejercicio en el que se hubieran declarado las operaciones que dan origen al cobro ) #TODO
+            text += 4*'0' 
+            #Importe percibido por transmisiones de Inmuebles sujetas a IVA. #TODO
+            text += 15*'0'            
+            #Fecha de Cobro #TODO 
+            text += 8*'0'
+            #Importes cobrado #TODO
+            text += 13*'0'
+            # Medio de pago utilizado #TODO
+            text += ' '
+            # Cuenta Bancaria o medio de cobro utilizado #TODO
+            text += 34*' ' 
             text += '\r\n'
         assert len(text) == 502 * len(invoice_issued.tax_line_ids), _("The type 2 issued record must be 500 characters long for each Vat registry")
         return text
@@ -380,11 +384,24 @@ class l10n_es_aeat_mod340_export_to_boe(orm.TransientModel):
             # Número de registro 
             sequence_obj = self.pool.get('ir.sequence')
             text += self._formatString(sequence_obj.get(cr, uid, 'mod340'), 18)  
-            text += self._formatNumber(1, 18) # Número de facturas
-            text += self._formatNumber(len(invoice_received.tax_line_ids), 2)  # Número de registros (Desglose)
-            text += 80*' '  # Intervalo de identificación de la acumulación
-            text += ' '+self._formatNumber(0, 11, 2)  # Cuota deducible
-            text += 151*' '                                                     # Blancos
+            # Número de facturas
+            text += self._formatNumber(1, 18) 
+            # Número de registros (Desglose)
+            text += self._formatNumber(len(invoice_received.tax_line_ids), 2)  
+            # Intervalo de identificación de la acumulación
+            text += 80*' '  
+            # Cuota deducible
+            text += ' '+self._formatNumber(0, 11, 2)  
+            #Fecha de Pago #TODO 
+            text += 8*'0'
+            #Importes pagados #TODO
+            text += 13*'0'
+            # Medio de pago utilizado
+            text += ' '
+            # Cuenta Bancaria o medio de cobro utilizado #TODO
+            text += 34*' ' 
+            # Blancos
+            text += 95*' '                                                     
             text += '\r\n'
         
         assert len(text) == 502*len(invoice_received.tax_line_ids), _("The type 2 received record must be 500 characters long for each Vat registry")
