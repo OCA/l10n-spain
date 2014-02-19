@@ -1,42 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
-        <record id="report_mod340_action" model="ir.actions.report.xml">
-            <field name="name">mod340 report</field>
-            <field name="type">ir.actions.report.xml</field>
-            <field name="model">l10n.es.aeat.mod340</field>
-            <field name="report_name">report_mod340</field>
-            <field name="report_type">pdf</field>
-            <field name="report_rml">l10n_es_aeat_mod340/report/mod340_report.rml</field>
-            <field name="auto" eval="True"/>
-            <field name="header" eval="False"/>
-        </record>
-
         <report
             id="report_mod340"
             string="Modelo 340"
-            model="l10n.es.aeat.mod340"
+            model="l10n.es.aeat.mod340.report"
             name="report mod340"
             rml="l10n_es_aeat_mod340/report/mod340_report.rml"
             auto="True"
             header="False" />
-            
-        <record id="report_vat_book_action" model="ir.actions.report.xml">
-            <field name="name">Vat Book</field>
-            <field name="type">ir.actions.report.xml</field>
-            <field name="model">l10n.es.aeat.mod340</field>
-            <field name="report_name">vat_book</field>
-            <field name="report_type">pdf</field>
-            <field name="report_rml">l10n_es_aeat_mod340/report/vat_book.rml</field>
-            <field name="auto" eval="True"/>
-            <field name="header" eval="False"/>
-        </record>
 
         <report
             id="vat_book"
             string="Vat Book"
-            model="l10n.es.aeat.mod340"
+            model="l10n.es.aeat.mod340.report"
             name="vat book"
             rml="l10n_es_aeat_mod340/report/vat_book.rml"
             auto="True"
