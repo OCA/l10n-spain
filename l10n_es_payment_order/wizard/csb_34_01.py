@@ -43,7 +43,7 @@
 
 from osv import osv, fields
 from datetime import datetime
-from tools.translate import _
+from openerp.tools.translate import _
 from log import *
 
 class csb_34_01(osv.osv):

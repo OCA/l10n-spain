@@ -29,11 +29,11 @@ C43 file importation wizard for bank statements.
 """
 from osv import fields,osv
 import wizard
-import pooler
+from openerp import pooler
 import base64
 import time
 import re
-from tools.translate import _
+from openerp.tools.translate import _
 
 class l10n_es_bank_statement_import_c43_wizard(osv.osv_memory):
     """

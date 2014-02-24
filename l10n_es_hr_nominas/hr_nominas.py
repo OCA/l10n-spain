@@ -29,8 +29,8 @@ from osv import osv
 from osv import fields
 import time
 import datetime
-import pooler
-from tools.translate import _
+from openerp import pooler
+from openerp.tools.translate import _
 
 class res_company(osv.osv):
     _name = 'res.company'

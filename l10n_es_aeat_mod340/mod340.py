@@ -28,11 +28,11 @@
 from openerp.osv import orm, fields
 import time
 from datetime import datetime
-import netsvc
-import tools
+from openerp import netsvc
+from openerp import tools
 import math
 from openerp.tools.translate import _
-import pooler
+from openerp import pooler
 
 class l10n_es_aeat_mod340_report(orm.Model):
    

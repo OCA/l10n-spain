@@ -23,7 +23,7 @@ __author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
 
 from osv import osv
-from tools.translate import _
+from openerp.tools.translate import _
 
 class l10n_es_aeat_mod349_export_to_boe(osv.osv_memory):
 

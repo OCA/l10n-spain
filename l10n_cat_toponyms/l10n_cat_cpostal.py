@@ -23,7 +23,7 @@
 
 import ir
 import wizard
-import pooler
+from openerp import pooler
 from osv import osv, fields
 
 cpostal_end_form = '''<?xml version="1.0" encoding="utf-8"?>

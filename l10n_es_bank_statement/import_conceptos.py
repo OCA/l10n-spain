@@ -28,9 +28,9 @@ C43 format concepts and extension of the bank statement lines.
 """
 
 from osv import osv, fields
-import tools
+from openerp import tools
 import os
-from tools.translate import _
+from openerp.tools.translate import _
 from xml.dom import minidom
 
 

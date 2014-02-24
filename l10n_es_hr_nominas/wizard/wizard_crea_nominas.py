@@ -24,11 +24,11 @@
 #
 ##############################################################################
 from osv import osv, fields
-from tools.translate import _
+from openerp.tools.translate import _
 import wizard
 import time
 import datetime
-import pooler
+from openerp import pooler
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 

@@ -21,10 +21,10 @@
 #
 ##############################################################################
 from osv import fields,osv
-import pooler
+from openerp import pooler
 import wizard
 import base64
-from tools.translate import _
+from openerp.tools.translate import _
 from converter import *
 
 join_form = """<?xml version="1.0"?>

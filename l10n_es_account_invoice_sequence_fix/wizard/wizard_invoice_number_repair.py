@@ -25,9 +25,9 @@ __author__ = "www.eficent.com"
 
 
 import wizard
-import netsvc
-import pooler
-from tools.translate import _
+from openerp import netsvc
+from openerp import pooler
+from openerp.tools.translate import _
 import time
 from datetime import datetime
 

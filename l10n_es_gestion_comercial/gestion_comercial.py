@@ -20,8 +20,8 @@
 
 
 from osv import fields, osv
-import netsvc
-from tools import config
+from openerp import netsvc
+from openerp.tools import config
 import account_check
 
 #

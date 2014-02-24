@@ -21,7 +21,7 @@
 ##############################################################################
 
 import threading
-import netsvc
+from openerp import netsvc
 import time
 import re
 from openerp.tools.translate import _

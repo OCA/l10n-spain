@@ -26,7 +26,7 @@
 #
 ##############################################################################
 
-from tools.translate import _
+from openerp.tools.translate import _
 
 def digits_only(cc_in):
     """Discards non-numeric chars"""

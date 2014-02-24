@@ -30,7 +30,7 @@ from openerp.osv import orm,fields
 from openerp.tools.translate import _
 import re
 import time
-import netsvc
+from openerp import netsvc
 import logging
 
 # CSS classes for the account line templates

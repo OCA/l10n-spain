@@ -22,7 +22,7 @@
 ##############################################################################
 
 from osv import fields, osv
-from tools.translate import _
+from openerp.tools.translate import _
 import string
 
 def strip0d(cadena):

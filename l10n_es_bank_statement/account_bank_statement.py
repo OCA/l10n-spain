@@ -32,7 +32,7 @@ C43 format concepts and extension of the bank statement lines.
 """
 
 from osv import osv
-from tools.translate import _
+from openerp.tools.translate import _
 
 class account_bank_statement_line(osv.osv):
     """

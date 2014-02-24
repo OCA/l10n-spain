@@ -27,6 +27,6 @@
 ##############################################################################
 
 import remesas
-import report
+from openerp import report
 import wizard
 

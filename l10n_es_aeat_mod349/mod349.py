@@ -23,7 +23,7 @@ __author__ = "Luis Manuel Angueira Blanco (Pexego), Omar Castiñeira Saavedra (o
 
 
 import re
-from tools.translate import _
+from openerp.tools.translate import _
 from osv import osv, fields
 
 

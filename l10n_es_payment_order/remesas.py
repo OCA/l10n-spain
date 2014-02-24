@@ -39,8 +39,8 @@
 ##############################################################################
 
 from osv import osv, fields
-import pooler
-from tools.translate import _
+from openerp import pooler
+from openerp.tools.translate import _
 
 
 

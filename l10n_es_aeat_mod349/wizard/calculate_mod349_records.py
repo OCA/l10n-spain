@@ -21,7 +21,7 @@
 
 import threading
 import time
-import netsvc
+from openerp import netsvc
 import re
 from osv import osv
 

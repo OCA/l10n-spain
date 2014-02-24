@@ -27,7 +27,7 @@ from osv import osv, fields
 import wizard
 import time
 import datetime
-import pooler
+from openerp import pooler
 
 class wizard_pagar_anticipo(osv.osv_memory):
     

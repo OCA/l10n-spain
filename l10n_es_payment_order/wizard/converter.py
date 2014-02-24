@@ -29,7 +29,7 @@
 ##############################################################################
 
 from osv import osv, fields
-from tools.translate import _
+from openerp.tools.translate import _
 from log import *
 
 class payment_converter_spain(osv.osv):

@@ -20,7 +20,7 @@
 #
 ##############################################################################
 from osv import osv, fields
-import pooler
+from openerp import pooler
 
 
 class wizard_create_zipcode_region(osv.osv_memory):

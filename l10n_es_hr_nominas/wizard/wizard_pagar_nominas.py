@@ -25,7 +25,7 @@
 ##############################################################################
 from osv import osv, fields
 import wizard
-import pooler
+from openerp import pooler
 
 
 class wizard_confirmar_nominas(osv.osv_memory):
