@@ -21,11 +21,11 @@
 #
 ##############################################################################
 
-import pooler
+from openerp import pooler
 import wizard
 import base64
-import netsvc
-from tools.translate import _
+from openerp import netsvc
+from openerp.tools.translate import _
 
 logger = netsvc.Logger()
 
