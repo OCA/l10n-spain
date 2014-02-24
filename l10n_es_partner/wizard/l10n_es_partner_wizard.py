@@ -21,7 +21,7 @@
 #
 ##############################################################################
 from osv import orm, fields
-import tools
+from openerp import tools
 import os
 
 class l10n_es_partner_import_wizard(orm.TransientModel):
