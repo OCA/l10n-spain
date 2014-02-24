@@ -28,7 +28,6 @@ __author__ = "Luis Manuel Angueira Blanco (Pexego)"
 from openerp.osv import orm
 from openerp.tools.translate import _
 
-
 class l10n_es_aeat_mod349_export_to_boe(orm.TransientModel):
 
     _inherit = "l10n.es.aeat.report.export_to_boe"
