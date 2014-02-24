@@ -22,7 +22,7 @@
 ##############################################################################
 
 from osv import osv
-import netsvc
+from openerp import netsvc
 
 class account_invoce(osv.osv):
     _name = 'account.invoice'
