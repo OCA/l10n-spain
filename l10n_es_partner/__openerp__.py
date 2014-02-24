@@ -27,8 +27,8 @@
 ##############################################################################
 
 {
-    "name" : "Adaptación de los terceros para España",
-    "version" : "1.0",
+    "name" : "Adaptación de los clientes, proveedores y bancos para España",
+    "version" : "1.1",
     "author" : "Spanish localization team",
     "website" : "https://launchpad.net/openerp-spain",
     "contributors": [
@@ -38,19 +38,36 @@
     ],
     "category" : "Localisation/Europe",
     "description": """
-Funcionalidades:
-    * Añade el campo *Nombre comercial* a las empresas y permite buscar por él.
-    * Convierte el NIF a mayúsculas.
-    * Añade los campos nombre largo, NIF y web a los bancos.
-    * Añade datos de 191 bancos y cajas españolas extraídos del registro oficial del Banco de España.
-    * Permite validar las cuentas bancarias, para ello añade un campo de país a los bancos de las empresas.
+Funcionalidad:
+--------------
 
-Funcionamiento de la validación de la cuenta bancaria:
-    * Se descartan todos los caracteres que no sean dígitos del campo número de cuenta.
-    * Si los dígitos son 18, calcula los dos dígitos de control.
-    * Si los dígitos son 20, calcula los dos dígitos de control e ignora los actuales.
-    * Presenta el resultado con el formato "1234 5678 06 1234567890"
-    * Si el número de dígitos es diferente de 18 0 20, deja el valor inalterado.
+ * Añade el campo *Nombre comercial* a las empresas y permite buscar por él.
+ * Convierte el NIF a mayúsculas.
+ * Añade los campos nombre largo, NIF y web a los bancos.
+ * Añade los datos de los bancos españoles extraídos del registro oficial del
+   Banco de España (http://goo.gl/mtx6ic). Ult. actualización: 2013.
+ * Permite validar las cuentas bancarias españolas. Para ello, se añade un
+   campo de país a las cuentas bancarias de las empresas y se realizan
+   validaciones cuando el país es España.
+
+
+Funcionamiento de la validación de la cuenta bancaria para cuentas españolas:
+-----------------------------------------------------------------------------
+
+ * Se comprueba si la cuenta consta de 20 dígitos (con o sin espacios).
+ * Si no los tiene, se devuelve un error de longitud incorrecta.
+ * Si los dígitos son 20, se calculan los dos dígitos de control (DC) y se
+   comprueba que coinciden con los introducidos.
+ * Si el DC no coincide, se devuelve un error de que la cuenta es incorrecta.
+ * Si el DC es correcto, presenta el resultado con el formato
+   "1234 5678 06 1234567890"
+
+
+Funcionamiento de la validación de la cuenta bancaria para cuentas IBAN:
+------------------------------------------------------------------------
+
+ * Se limpia la cuenta de espacios.
+ * Se divide lo introducido en bloques de 4 caracteres.
 """,
     "license" : "AGPL-3",
     "depends" : [
