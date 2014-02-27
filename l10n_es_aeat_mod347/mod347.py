@@ -64,12 +64,12 @@ class l10n_es_aeat_mod347_report(orm.Model):
                         ('partner_id', 'in', partner_ids),
                         ('type', '=', invoice_type),
                         ('period_id', 'in', period_ids),
-                        ('state', '!=', 'draft')])
+                        ('state', 'not in', ['draft','cancel'])])
             refund_ids = invoice_obj.search(cr, uid, [
                         ('partner_id', 'in', partner_ids),
                         ('type', '=', refund_type),
                         ('period_id', 'in', period_ids),
-                        ('state', '!=', 'draft')])
+                        ('state', 'not in', ['draft','cancel'])])
             invoices = invoice_obj.browse(cr, uid, invoice_ids,
                                           context=context)
             refunds = invoice_obj.browse(cr, uid, refund_ids, context=context)
