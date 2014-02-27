@@ -123,12 +123,14 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                                     ('type', '=', invoice_type),
                                     ('period_id', 'in', period_ids),
                                     ('move_id', '!=', None),
+				    ('state', 'not in', ['draft','cancel']),
                                 ])
                         refund_ids = invoice_obj.search(cr, uid, [
                                     ('partner_id', 'in', partner_grouped_cif),
                                     ('type', '=', refund_type),
                                     ('period_id', 'in', period_ids),
                                     ('move_id', '!=', None),
+				    ('state', 'not in', ['draft','cancel']),
                                 ])
                         invoices = invoice_obj.browse(cr, uid, invoice_ids)
                         refunds = invoice_obj.browse(cr, uid, refund_ids)
