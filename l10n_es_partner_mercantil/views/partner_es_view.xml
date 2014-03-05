@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_partner_form_mercantil">
+            <field name="name">view.partner.form.mercantil</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <page string="Internal Notes" position="after">
+                    <page string="Commercial Info" attrs="{'invisible': [('is_company','=',False)]}">
+                        <group>
+                            <group>
+                                <field name="es_libro" />
+                                <field name="es_registro_mercantil" />
+                                <field name="es_hoja" />
+                            </group>
+                            <group>
+                                <field name="es_folio" />
+                                <field name="es_seccion" />
+                                <field name="es_tomo" />
+                            </group>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+    </data>
+</openerp>
