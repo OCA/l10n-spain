@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Spanish Localization Team. All Rights Reserved.
+#    Copyright (c) 2009 Spanish Localization Team
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -20,28 +20,4 @@
 #
 ##############################################################################
 
-{
-    "name": "Partner Mercantil",
-    "version": "1.0",
-    "author": "Spanish Localization Team",
-    "website": "https://launchpad.net/openerp-spain",
-    "category": "Localisation/Europe",
-    "description": """
-    Añade los siguientes campos en la ficha de Empresa:
-        * Libro
-        * Registro Mercantil
-        * Hoja
-        * Folio
-        * Seccion
-        * Tomo
-    """,
-    "license": "AGPL-3",
-    "depends": [
-        "base",
-    ],
-    "data": [
-        "views/partner_es_view.xml",
-    ],
-    "active": True,
-    "installable": True
-}
+from . import partner_es
