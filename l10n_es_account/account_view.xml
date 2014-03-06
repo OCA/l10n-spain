@@ -12,7 +12,6 @@
         <record id="view_account_template_search" model="ir.ui.view">
             <field name="name">account.account.template.search</field>
             <field name="model">account.account.template</field>
-            <field name="type">search</field>
             <field name="inherit_id" ref="account.view_account_template_search"/>
             <field name="arch" type="xml">
                 <field name="user_type" position="after">
@@ -24,7 +23,6 @@
         <record id="view_account_template_tree" model="ir.ui.view">
             <field name="name">account.account.template.tree</field>
             <field name="model">account.account.template</field>
-            <field name="type">tree</field>
             <field name="inherit_id" ref="account.view_account_template_tree"/>
             <field name="arch" type="xml">
                 <field name="name" position="after">
@@ -38,7 +36,6 @@
         <record id="view_account_tax_template_tree" model="ir.ui.view">
             <field name="name">account.tax.template.tree</field>
             <field name="model">account.tax.template</field>
-            <field name="type">tree</field>
             <field name="inherit_id" ref="account.view_account_tax_template_tree"/>
             <field name="arch" type="xml">
                 <field name="description" position="after">
@@ -52,7 +49,6 @@
         <record id="view_tax_code_template_search" model="ir.ui.view">
             <field name="name">account.tax.code.template.search</field>
             <field name="model">account.tax.code.template</field>
-            <field name="type">search</field>
             <field name="inherit_id" ref="account.view_tax_code_template_search"/>
             <field name="arch" type="xml">
                 <field name="parent_id" position="after">
@@ -64,7 +60,6 @@
         <record id="view_tax_code_template_tree" model="ir.ui.view">
             <field name="name">account.tax.code.template.tree</field>
             <field name="model">account.tax.code.template</field>
-            <field name="type">tree</field>
             <field name="inherit_id" ref="account.view_tax_code_template_tree"/>
             <field name="arch" type="xml">
                 <field name="code" position="after">
@@ -76,7 +71,6 @@
         <record id="view_tax_code_template_form" model="ir.ui.view">
             <field name="name">account.tax.code.template.form</field>
             <field name="model">account.tax.code.template</field>
-            <field name="type">form</field>
             <field name="inherit_id" ref="account.view_tax_code_template_form"/>
             <field name="arch" type="xml">
                 <field name="name" position="before">
@@ -91,7 +85,6 @@
         <record id="view_account_position_template_search" model="ir.ui.view">
             <field name="name">account.fiscal.position.template.search</field>
             <field name="model">account.fiscal.position.template</field>
-            <field name="type">search</field>
             <field name="inherit_id" ref="account.view_account_position_template_search"/>
             <field name="arch" type="xml">
                 <field name="name" position="after">
@@ -103,7 +96,6 @@
         <record id="view_account_position_template_tree" model="ir.ui.view">
             <field name="name">account.fiscal.position.template.tree</field>
             <field name="model">account.fiscal.position.template</field>
-            <field name="type">tree</field>
             <field name="inherit_id" ref="account.view_account_position_template_tree"/>
             <field name="arch" type="xml">
                 <field name="name" position="after">
