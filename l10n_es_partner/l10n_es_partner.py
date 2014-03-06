@@ -31,13 +31,7 @@ class res_partner_bank(orm.Model):
     _columns = {
         'acc_country_id': fields.many2one("res.country", 'Bank country',
             help="If the country of the bank is Spain, it validates the bank "
-                 "code. It only reads the digit characters of the bank code:\n"
-                 "- If the number of digits is 18, computes the two digits of "
-                 "control.\n- If the number of digits is 20, computes the two "
-                 "digits of control and ignores the current ones.\n- If the "
-                 "number of digits is different from 18 or 20, it leaves the "
-                 "bank code unaltered.\nThe result is shown in the '1234 5678 "
-                 "06 1234567890' format."),
+                 "code or IBAN, formatting it accordingly."),
     }
 
     def _crc(self, cTexto):
@@ -96,6 +90,7 @@ class res_partner_bank(orm.Model):
             if country.code.upper() == 'ES':
                 bank_obj = self.pool.get('res.bank')
                 if state == 'bank':
+                    account = account.replace(' ', '')
                     number = self.checkBankAccount(account)
                     if number == 'invalid-size':
                         return {
