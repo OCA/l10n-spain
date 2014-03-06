@@ -26,6 +26,8 @@
 __name__ = ("Delete old account chart template data")
 
 def migrate(cr, version):
+    if not version:
+        return
     # This needs to be in this order to avoid null errors on required fields
     # because "ON DELETE set null" are set on some tables
     models = [
