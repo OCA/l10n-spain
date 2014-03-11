@@ -26,7 +26,7 @@
 #
 ##############################################################################
 
-import remesas
-from openerp import report
-import wizard
+from . import remesas
+from . import report
+from . import wizard
 
