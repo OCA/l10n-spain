@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data >
+
+	# Report full account balance
+    <report
+            id="account_balance_full3"
+            string="**Full account balance"
+            model="account.account"
+            name="account.balance.full3"
+            rml="fl_account_financial_report/report/account_balance_full.rml"
+			header="False"
+			auto="False"
+			menu="False"/>
+
+  </data>
+</openerp>
