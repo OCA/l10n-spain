@@ -1,0 +1,98 @@
+# Galician translation for openerp-spain
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the openerp-spain package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: openerp-spain\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2012-09-27 21:46+0000\n"
+"PO-Revision-Date: 2013-11-15 02:04+0000\n"
+"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
+"Language-Team: Galician <gl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2014-03-13 07:16+0000\n"
+"X-Generator: Launchpad (build 16963)\n"
+
+#. module: l10n_es_account_invoice_sequence_fix
+#: wizard_button:l10n_es_account_invoice_sequence_fix.repair_wizard,init,repair:0
+msgid "Repair"
+msgstr "Reparar"
+
+#. module: l10n_es_account_invoice_sequence_fix
+#: wizard_view:l10n_es_account_invoice_sequence_fix.repair_wizard,repair:0
+msgid "Repair invoice numbers - Done"
+msgstr "Reparar números de factura - Realizado"
+
+#. module: l10n_es_account_invoice_sequence_fix
+#: code:addons/l10n_es_account_invoice_sequence_fix/wizard/wizard_invoice_number_repair.py:82
+#, python-format
+msgid "No Data Available"
+msgstr "Non hai datos dispoñibles"
+
+#. module: l10n_es_account_invoice_sequence_fix
+#: wizard_view:l10n_es_account_invoice_sequence_fix.repair_wizard,repair:0
+msgid "You may now review them using the show results button."
+msgstr "Agora pode revisalos usando o botón \"Amosar resultados\"."
+
+#. module: l10n_es_account_invoice_sequence_fix
+#: code:addons/l10n_es_account_invoice_sequence_fix/wizard/wizard_invoice_number_repair.py:82
+#, python-format
+msgid "No records found for your selection!"
+msgstr "¡Non se atoparon rexistros para a súa selección!"
+
+#. module: l10n_es_account_invoice_sequence_fix
+#: code:addons/l10n_es_account_invoice_sequence_fix/wizard/wizard_invoice_number_repair.py:111
+#, python-format
+msgid "Repaired invoices"
+msgstr "Facturas reparadas"
+
+#. module: l10n_es_account_invoice_sequence_fix
+#: wizard_button:l10n_es_account_invoice_sequence_fix.repair_wizard,repair,show_results:0
+msgid "Show results"
+msgstr "Amosar resultados"
+
+#. module: l10n_es_account_invoice_sequence_fix
+#: wizard_button:l10n_es_account_invoice_sequence_fix.repair_wizard,init,end:0
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_es_account_invoice_sequence_fix
+#: model:ir.actions.wizard,name:l10n_es_account_invoice_sequence_fix.wiz_invoice_number_repair
+#: model:ir.ui.menu,name:l10n_es_account_invoice_sequence_fix.menu_invoice_number_repair
+#: wizard_view:l10n_es_account_invoice_sequence_fix.repair_wizard,init:0
+msgid "Repair invoice numbers"
+msgstr "Reparar números de factura"
+
+#. module: l10n_es_account_invoice_sequence_fix
+#: wizard_view:l10n_es_account_invoice_sequence_fix.repair_wizard,repair:0
+msgid "The invoice numbers have been converted successfully."
+msgstr "Os números de factura foron reparados correctamente."
+
+#. module: l10n_es_account_invoice_sequence_fix
+#: wizard_view:l10n_es_account_invoice_sequence_fix.repair_wizard,init:0
+msgid ""
+"Attention! This wizard should only be run once, and only if invoices were "
+"created before installing module nan_account_invoice_sequence."
+msgstr ""
+"¡Atención! Este asistente deberíase usar somentes unha vez, e só se se "
+"crearon as facturas antes de instala-lo módulo nan_account_invoice_sequence."
+
+#. module: l10n_es_account_invoice_sequence_fix
+#: wizard_button:l10n_es_account_invoice_sequence_fix.repair_wizard,repair,end:0
+msgid "Close"
+msgstr "Pechar"
+
+#. module: l10n_es_account_invoice_sequence_fix
+#: wizard_view:l10n_es_account_invoice_sequence_fix.repair_wizard,init:0
+msgid ""
+"This wizard will help you copy the move number of an invoice to the invoice "
+"number field. Invoices should have an invoice number different to the move "
+"number."
+msgstr ""
+"Este asistente permitirá copia-lo número de asento asociado a unha factura ó "
+"campo de número de factura. As facturas deberían ter un número de factura "
+"diferente ó número de asento."
