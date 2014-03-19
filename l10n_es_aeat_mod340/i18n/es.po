@@ -7,13 +7,13 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-02 18:10+0000\n"
-"PO-Revision-Date: 2014-02-21 00:40+0000\n"
+"PO-Revision-Date: 2014-03-18 22:33+0000\n"
 "Last-Translator: Ignacio Ibeas (www.acysos.com) <ignacio@acysos.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-03-13 07:16+0000\n"
+"X-Launchpad-Export-Date: 2014-03-19 06:30+0000\n"
 "X-Generator: Launchpad (build 16963)\n"
 
 #. module: l10n_es_aeat_mod340
@@ -271,7 +271,7 @@ msgstr "2 - Se consigna el NIF/IVA (NIF OPERADOR INTRACOMUNITARIO)"
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:0
 msgid "Cancelled models"
-msgstr "Cancelled models"
+msgstr "Modelos cancelados"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,state:0
@@ -420,7 +420,7 @@ msgstr "Tipo de declaración"
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,calculation_date:0
 msgid "Calculation date"
-msgstr "Fecha de calculo"
+msgstr "Fecha de cálculo"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.actions.report.xml,name:l10n_es_aeat_mod340.report_vat_book_action
