@@ -46,6 +46,7 @@ class account_asset_category(orm.Model):
 
     _defaults = {
         'method_percentage': 100.0,
+        'ext_method_time': 'percentage',
     }
 
     _sql_constraints = [
