@@ -36,6 +36,12 @@
     'depends' : [
         "account",
         ],
+    'external_dependencies': {
+        'python': ['unidecode'],
+    },
+    'description': """
+Módulo base para declaraciones de la AEAT.
+    """,
     'data' : [
         'security/aeat_security.xml',
         'security/ir.model.access.csv',
