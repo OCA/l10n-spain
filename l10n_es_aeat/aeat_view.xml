@@ -48,7 +48,6 @@
         <record id="view_l10n_es_aeat_report_search" model="ir.ui.view">
             <field name="name">AEAT Model (search)</field>
             <field name="model">l10n.es.aeat.report</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="AEAT">
                     <filter string="Draft" domain="[('state','=','draft')]" help="Draft models"/>
