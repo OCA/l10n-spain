@@ -25,7 +25,7 @@
 
         Pedro M. Baeza (Serv. Tecnol. Avanzados) - pedro.baeza@serviciosbaeza.com (2014-02-23)
         Eliminación IVAs obsoletos 7%, 8%, 16% y 18%
-        Eliminación IRPFs obsoletos 7%, 15%, 18%, 19% y 20%
+        Eliminación IRPFs obsoletos 18% y 19%
         Eliminación recargos de equivalencia obsoletos 1% y 4%
 
         -->
@@ -934,6 +934,63 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
+        <record id="irpf_7" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_common"/>
+            <field name="description">Retenciones IRPF 7%</field>
+            <field name="name">S_IRPF7</field>
+            <field eval="-0.07" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_4751_child"/>
+            <field name="account_paid_id" ref="pgc_4751_child"/>
+            <field name="base_code_id" ref="irpf_base_7"/>
+            <field name="tax_code_id" ref="irpf_cuota_7"/>
+            <field name="ref_base_code_id" ref="irpf_base_7"/>
+            <field name="ref_tax_code_id" ref="irpf_cuota_7"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="irpf_15" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_common"/>
+            <field name="description">Retenciones IRPF 15%</field>
+            <field name="name">S_IRPF15</field>
+            <field eval="-0.15" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_4751_child"/>
+            <field name="account_paid_id" ref="pgc_4751_child"/>
+            <field name="base_code_id" ref="irpf_base_15"/>
+            <field name="tax_code_id" ref="irpf_cuota_15"/>
+            <field name="ref_base_code_id" ref="irpf_base_15"/>
+            <field name="ref_tax_code_id" ref="irpf_cuota_15"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <record id="irpf_20" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_common"/>
+            <field name="description">Retenciones IRPF 20%</field>
+            <field name="name">S_IRPF20</field>
+            <field eval="-0.20" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_4751_child"/>
+            <field name="account_paid_id" ref="pgc_4751_child"/>
+            <field name="base_code_id" ref="irpf_base_20"/>
+            <field name="tax_code_id" ref="irpf_cuota_20"/>
+            <field name="ref_base_code_id" ref="irpf_base_20"/>
+            <field name="ref_tax_code_id" ref="irpf_cuota_20"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
         <record id="irpf_21" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">Retenciones IRPF 21%</field>
@@ -994,6 +1051,25 @@
             <field name="type_tax_use">sale</field>
         </record>
 
+        <record id="irpf_sale_7" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_common"/>
+            <field name="description">Retenciones a cuenta IRPF 7%</field>
+            <field name="name">S_IRPF7_C</field>
+            <field eval="-0.07" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_473_child"/>
+            <field name="account_paid_id" ref="pgc_473_child"/>
+            <field name="base_code_id" ref="irpf_base_sale_7"/>
+            <field name="tax_code_id" ref="irpf_cuota_sale_7"/>
+            <field name="ref_base_code_id" ref="irpf_base_sale_7"/>
+            <field name="ref_tax_code_id" ref="irpf_cuota_sale_7"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
+
         <record id="irpf_sale_9" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">Retenciones a cuenta IRPF 9%</field>
@@ -1006,6 +1082,44 @@
             <field name="tax_code_id" ref="irpf_cuota_sale_9"/>
             <field name="ref_base_code_id" ref="irpf_base_sale_9"/>
             <field name="ref_tax_code_id" ref="irpf_cuota_sale_9"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
+
+        <record id="irpf_sale_15" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_common"/>
+            <field name="description">Retenciones a cuenta IRPF 15%</field>
+            <field name="name">S_IRPF15_C</field>
+            <field eval="-0.15" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_473_child"/>
+            <field name="account_paid_id" ref="pgc_473_child"/>
+            <field name="base_code_id" ref="irpf_base_sale_15"/>
+            <field name="tax_code_id" ref="irpf_cuota_sale_15"/>
+            <field name="ref_base_code_id" ref="irpf_base_sale_15"/>
+            <field name="ref_tax_code_id" ref="irpf_cuota_sale_15"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">sale</field>
+        </record>
+
+        <record id="irpf_sale_20" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_common"/>
+            <field name="description">Retenciones a cuenta IRPF 20%</field>
+            <field name="name">S_IRPF20_C</field>
+            <field eval="-0.20" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_473_child"/>
+            <field name="account_paid_id" ref="pgc_473_child"/>
+            <field name="base_code_id" ref="irpf_base_sale_20"/>
+            <field name="tax_code_id" ref="irpf_cuota_sale_20"/>
+            <field name="ref_base_code_id" ref="irpf_base_sale_20"/>
+            <field name="ref_tax_code_id" ref="irpf_cuota_sale_20"/>
             <field eval="1.0" name="tax_sign"/>
             <field eval="1.0" name="base_sign"/>
             <field eval="-1.0" name="ref_tax_sign"/>

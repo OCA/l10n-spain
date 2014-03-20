@@ -9,7 +9,7 @@
 
         Pedro M. Baeza (Serv. Tecnol. Avanzados) - pedro.baeza@serviciosbaeza.com (2014-03-20)
         Eliminación IVAs obsoletos 7%, 8%, 16% y 18%
-        Eliminación IRPFs obsoletos 7%, 15%, 18%, 19% y 20%
+        Eliminación IRPFs obsoletos 18% y 19%
         Eliminación recargos de equivalencia obsoletos 1% y 4%
 
         -->
@@ -564,9 +564,27 @@
             <field name="parent_id" ref="irpf_base_sale"/>
             <field name="sign">1.0</field>
         </record>
+        <record id="irpf_base_sale_7" model="account.tax.code.template">
+            <field name="name">IRPF retenciones a cuenta. Base imponible 7%</field>
+            <field name="code">B.IRPF7 AC</field>
+            <field name="parent_id" ref="irpf_base_sale"/>
+            <field name="sign">1.0</field>
+        </record>
         <record id="irpf_base_sale_9" model="account.tax.code.template">
             <field name="name">IRPF retenciones a cuenta. Base imponible 9%</field>
             <field name="code">B.IRPF9 AC</field>
+            <field name="parent_id" ref="irpf_base_sale"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="irpf_base_sale_15" model="account.tax.code.template">
+            <field name="name">IRPF retenciones a cuenta. Base imponible 15%</field>
+            <field name="code">B.IRPF15 AC</field>
+            <field name="parent_id" ref="irpf_base_sale"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="irpf_base_sale_20" model="account.tax.code.template">
+            <field name="name">IRPF retenciones a cuenta. Base imponible 20%</field>
+            <field name="code">B.IRPF20 AC</field>
             <field name="parent_id" ref="irpf_base_sale"/>
             <field name="sign">1.0</field>
         </record>
@@ -596,9 +614,27 @@
             <field name="parent_id" ref="irpf_cuota_sale_total"/>
             <field name="sign">1.0</field>
         </record>
+        <record id="irpf_cuota_sale_7" model="account.tax.code.template">
+            <field name="name">IRPF retenciones a cuenta. Cuota 7%</field>
+            <field name="code">IRPF7 AC</field>
+            <field name="parent_id" ref="irpf_cuota_sale_total"/>
+            <field name="sign">1.0</field>
+        </record>
         <record id="irpf_cuota_sale_9" model="account.tax.code.template">
             <field name="name">IRPF retenciones a cuenta. Cuota 9%</field>
             <field name="code">IRPF9 AC</field>
+            <field name="parent_id" ref="irpf_cuota_sale_total"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="irpf_cuota_sale_15" model="account.tax.code.template">
+            <field name="name">IRPF retenciones a cuenta. Cuota 15%</field>
+            <field name="code">IRPF15 AC</field>
+            <field name="parent_id" ref="irpf_cuota_sale_total"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="irpf_cuota_sale_20" model="account.tax.code.template">
+            <field name="name">IRPF retenciones a cuenta. Cuota 20%</field>
+            <field name="code">IRPF20 AC</field>
             <field name="parent_id" ref="irpf_cuota_sale_total"/>
             <field name="sign">1.0</field>
         </record>
@@ -633,9 +669,27 @@
             <field name="parent_id" ref="irpf_base"/>
             <field name="sign">1.0</field>
         </record>
+        <record id="irpf_base_7" model="account.tax.code.template">
+            <field name="name">IRPF retenciones practicadas. Base imponible 7%</field>
+            <field name="code">B.IRPF7</field>
+            <field name="parent_id" ref="irpf_base"/>
+            <field name="sign">1.0</field>
+        </record>
         <record id="irpf_base_9" model="account.tax.code.template">
             <field name="name">IRPF retenciones practicadas. Base imponible 9%</field>
             <field name="code">B.IRPF9</field>
+            <field name="parent_id" ref="irpf_base"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="irpf_base_15" model="account.tax.code.template">
+            <field name="name">IRPF retenciones practicadas. Base imponible 15%</field>
+            <field name="code">B.IRPF15</field>
+            <field name="parent_id" ref="irpf_base"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="irpf_base_20" model="account.tax.code.template">
+            <field name="name">IRPF retenciones practicadas. Base imponible 20%</field>
+            <field name="code">B.IRPF20</field>
             <field name="parent_id" ref="irpf_base"/>
             <field name="sign">1.0</field>
         </record>
@@ -665,9 +719,27 @@
             <field name="parent_id" ref="irpf_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
+        <record id="irpf_cuota_7" model="account.tax.code.template">
+            <field name="name">IRPF retenciones practicadas. Cuota 7%</field>
+            <field name="code">IRPF7</field>
+            <field name="parent_id" ref="irpf_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
         <record id="irpf_cuota_9" model="account.tax.code.template">
             <field name="name">IRPF retenciones practicadas. Cuota 9%</field>
             <field name="code">IRPF9</field>
+            <field name="parent_id" ref="irpf_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="irpf_cuota_15" model="account.tax.code.template">
+            <field name="name">IRPF retenciones practicadas. Cuota 15%</field>
+            <field name="code">IRPF15</field>
+            <field name="parent_id" ref="irpf_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="irpf_cuota_20" model="account.tax.code.template">
+            <field name="name">IRPF retenciones practicadas. Cuota 20%</field>
+            <field name="code">IRPF20</field>
             <field name="parent_id" ref="irpf_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
