@@ -4,7 +4,6 @@
        <record id="view_wizard_payment_file_spain_form" model="ir.ui.view">
             <field name="name">wizard.payment.file.spain.form</field>
             <field name="model">wizard.payment.file.spain</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Payment order export">
                     <field name="join"/>

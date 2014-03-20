@@ -4,7 +4,6 @@
         <record model="ir.ui.view" id="view_account_mod340_form_type0">
             <field name="name">l10n.es.aeat.mod340.form.type0</field>
             <field name="model">l10n.es.aeat.mod340.report</field>
-            <field name="type">form</field>
             <field name="priority" eval="5"/>
             <field name="inherit_id" ref="l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_form"/>
             <field name="arch" type="xml">

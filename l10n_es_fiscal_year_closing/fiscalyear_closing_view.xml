@@ -6,7 +6,6 @@
         <record model="ir.ui.view" id="view_fyc_tree">
             <field name="name">account.fiscalyear.closing.tree</field>
             <field name="model">account.fiscalyear.closing</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Fiscal year closings"
                     colors="red:state=='new';blue:state=='draft';green:state=='in_progress';red:state=='cancelled'">
@@ -23,7 +22,6 @@
         <record model="ir.ui.view" id="view_fyc_form">
             <field name="name">account.fiscalyear.closing.form</field>
             <field name="model">account.fiscalyear.closing</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Fiscal year closing" version="7.0">
                     <header>
