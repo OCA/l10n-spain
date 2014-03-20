@@ -28,7 +28,6 @@
             <field name="target">new</field>
         </record>
         <record id="action_wizard_payment_file_spain2" model="ir.values">
-            <field name="object" eval="1" />
             <field name="name">Create payments file</field>
             <field name="key2">client_action_multi</field>
             <field name="value" eval="'ir.actions.act_window,' + str(ref('action_wizard_payment_file_spain'))"/>
