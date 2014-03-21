@@ -34,22 +34,22 @@
         <!-- ************************************************************* -->
 
         <record id="fp_nacional" model="account.fiscal.position.template">
-            <field name="name">Régimen nacional</field>
+            <field name="name">Régimen Nacional</field>
             <field name="chart_template_id" ref="account_chart_template_common"/>
         </record>
 
         <record id="fp_recargo" model="account.fiscal.position.template">
-            <field name="name">Recargo de equivalencia</field>
+            <field name="name">Recargo de Equivalencia</field>
             <field name="chart_template_id" ref="account_chart_template_common"/>
         </record>
 
         <record id="fp_extra" model="account.fiscal.position.template">
-            <field name="name">Régimen extracomunitario</field>
+            <field name="name">Régimen Extracomunitario</field>
             <field name="chart_template_id" ref="account_chart_template_common"/>
         </record>
 
         <record id="fp_intra" model="account.fiscal.position.template">
-            <field name="name">Régimen intracomunitario</field>
+            <field name="name">Régimen Intracomunitario</field>
             <field name="chart_template_id" ref="account_chart_template_common"/>
         </record>
 
@@ -63,13 +63,13 @@
             <field name="chart_template_id" ref="account_chart_template_common"/>
         </record>
 
-        <record id="fp_irpf9" model="account.fiscal.position.template">
-            <field name="name">Retención IRPF 9%</field>
+        <record id="fp_irpf15" model="account.fiscal.position.template">
+            <field name="name">Retención IRPF 15%</field>
             <field name="chart_template_id" ref="account_chart_template_common"/>
         </record>
 
-        <record id="fp_irpf15" model="account.fiscal.position.template">
-            <field name="name">Retención IRPF 15%</field>
+        <record id="fp_irpf9" model="account.fiscal.position.template">
+            <field name="name">Retención IRPF 9%</field>
             <field name="chart_template_id" ref="account_chart_template_common"/>
         </record>
 
