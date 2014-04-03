@@ -215,9 +215,10 @@ class fl_account_general_ledger_cumulative_report(osv.osv_memory):
             context = {}
             
         data = {}
+        data['form'] = self.read(cr, uid, ids, [])[0]
         data['ids'] = context.get('active_ids', [])
         data['model'] = context.get('active_model', 'ir.ui.menu')
-        data['form'] = self.read(cr, uid, ids[0])
+        
         if data['form']['state'] == 'bydate':
             sql = """SELECT f.id, f.date_start, f.date_stop
                 FROM account_fiscalyear f

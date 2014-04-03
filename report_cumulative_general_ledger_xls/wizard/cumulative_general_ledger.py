@@ -62,8 +62,8 @@ class fl_account_general_ledger_cumulative_report(osv.osv_memory):
         result=''
         if form.has_key('periods') and form['periods']:
             period_ids = ",".join([str(x) for x in form['periods'] if x])
-            self.cr.execute("SELECT name FROM account_period WHERE id in (%s)" % (period_ids))
-            res = self.cr.fetchall()
+            cr.execute("SELECT name FROM account_period WHERE id in (%s)" % (period_ids))
+            res = cr.fetchall()
             len_res = len(res) 
             for r in res:
                 if (r == res[len_res-1]):
