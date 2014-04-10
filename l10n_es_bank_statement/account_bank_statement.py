@@ -229,7 +229,7 @@ class account_bank_statement(osv.osv):
                         raise osv.except_osv(_('No Analytic Journal !'),_("You have to define an analytic journal on the '%s' journal!") % (st.journal_id.name,))
                 if not st_line.amount:
                     continue
-                c = {'fiscalyear_id': st.period_id.fiscalyear_id.id}
+                c = {'fiscalyear_id': st.period_id and st.period_id.fiscalyear_id.id or False}
                 st_line_number = obj_seq.get_id(cr, uid, st.journal_id.sequence_id.id, context=c)
                 self.create_move_from_st_line(cr, uid, st_line.id, company_currency_id, st_line_number, context)
 
