@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-14 17:49+0000\n"
-"PO-Revision-Date: 2014-04-14 19:54+0100\n"
+"POT-Creation-Date: 2014-04-14 18:38+0000\n"
+"PO-Revision-Date: 2014-04-14 20:38+0100\n"
 "Last-Translator: Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,8 +41,8 @@ msgstr "3T - Tercer trimestre"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
-msgid "416"
-msgstr "416"
+msgid "413"
+msgstr "413"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.partner_refund,period_selection:0
@@ -155,20 +155,20 @@ msgid "AEAT Model 349 Report"
 msgstr "Declaración modelo AEAT 349"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/mod349.py:279
-#: code:addons/l10n_es_aeat_mod349/mod349.py:288
+#: code:addons/l10n_es_aeat_mod349/mod349.py:142
+#: code:addons/l10n_es_aeat_mod349/mod349.py:153
 #, python-format
 msgid "All amounts must be positives"
 msgstr "All amounts must be positives"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/mod349.py:275
+#: code:addons/l10n_es_aeat_mod349/mod349.py:137
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
 msgstr "Todos los campos de los registros de empresas (país, número CIF/NIF) deben estar rellenados."
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/mod349.py:283
+#: code:addons/l10n_es_aeat_mod349/mod349.py:147
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
 msgstr "Todos los campos de las rectificaciones (país, número CIF/NIF) deben estar rellenados."
@@ -202,7 +202,7 @@ msgid "Cancelled"
 msgstr "Cancelled"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/account_invoice.py:103
+#: code:addons/l10n_es_aeat_mod349/account_invoice.py:107
 #, python-format
 msgid ""
 "Cannot get invoices.\n"
@@ -212,7 +212,7 @@ msgstr ""
 "There is                                      no month and/or fiscalyear selected"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/account_invoice.py:95
+#: code:addons/l10n_es_aeat_mod349/account_invoice.py:99
 #, python-format
 msgid ""
 "Cannot get invoices.\n"
@@ -222,14 +222,14 @@ msgstr ""
 "There is no                                      period selected"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/account_invoice.py:86
+#: code:addons/l10n_es_aeat_mod349/account_invoice.py:90
 #, python-format
 msgid ""
 "Cannot get invoices.\n"
-"There is no fiscal year selected"
+"There is no                                     fiscalyear selected"
 msgstr ""
-"No se pueden obtener facturas.\n"
-"No se ha seleccionado un ejercicio fiscal"
+"Cannot get invoices.\n"
+"There is no                                     fiscalyear selected"
 
 #. module: l10n_es_aeat_mod349
 #: help:l10n.es.aeat.mod349.partner_record,partner_record_ok:0
@@ -247,7 +247,7 @@ msgid "Company"
 msgstr "Compañía"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/mod349.py:302
+#: code:addons/l10n_es_aeat_mod349/mod349.py:167
 #, python-format
 msgid ""
 "Company has no company title.\n"
@@ -257,7 +257,7 @@ msgstr ""
 "Esto podría causar algunos problemas intentando importar en el programa de ayuda de la AEAT."
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/mod349.py:301
+#: code:addons/l10n_es_aeat_mod349/mod349.py:166
 #, python-format
 msgid "Company without Title"
 msgstr "Compañía sin título"
@@ -273,7 +273,7 @@ msgid "Complementary"
 msgstr "Complementaria"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/mod349.py:311
+#: code:addons/l10n_es_aeat_mod349/mod349.py:176
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
 msgstr "El nombre del contacto (Nombre completo) debe contener nombre y apellidos"
@@ -346,22 +346,22 @@ msgid "E - Intra-Community supplies"
 msgstr "E - Entregas intracomunitarias"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/account_invoice.py:85
-#: code:addons/l10n_es_aeat_mod349/account_invoice.py:94
-#: code:addons/l10n_es_aeat_mod349/account_invoice.py:102
+#: code:addons/l10n_es_aeat_mod349/account_invoice.py:89
+#: code:addons/l10n_es_aeat_mod349/account_invoice.py:98
+#: code:addons/l10n_es_aeat_mod349/account_invoice.py:106
 #, python-format
 msgid "Error"
 msgstr "Error"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/mod349.py:274
-#: code:addons/l10n_es_aeat_mod349/mod349.py:278
-#: code:addons/l10n_es_aeat_mod349/mod349.py:282
-#: code:addons/l10n_es_aeat_mod349/mod349.py:287
-#: code:addons/l10n_es_aeat_mod349/mod349.py:310
-#: code:addons/l10n_es_aeat_mod349/mod349.py:320
-#: code:addons/l10n_es_aeat_mod349/mod349.py:326
-#: code:addons/l10n_es_aeat_mod349/mod349.py:333
+#: code:addons/l10n_es_aeat_mod349/mod349.py:136
+#: code:addons/l10n_es_aeat_mod349/mod349.py:141
+#: code:addons/l10n_es_aeat_mod349/mod349.py:146
+#: code:addons/l10n_es_aeat_mod349/mod349.py:152
+#: code:addons/l10n_es_aeat_mod349/mod349.py:175
+#: code:addons/l10n_es_aeat_mod349/mod349.py:185
+#: code:addons/l10n_es_aeat_mod349/mod349.py:191
+#: code:addons/l10n_es_aeat_mod349/mod349.py:198
 #, python-format
 msgid "Error!"
 msgstr "¡Error!"
@@ -369,7 +369,7 @@ msgstr "¡Error!"
 #. module: l10n_es_aeat_mod349
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_wizard_aeat_mod349_export
 msgid "Export AEAT 349 BOE file"
-msgstr "Exportar AEAT 349 BOE file"
+msgstr "Exportar archivo BOE de la AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: code:_description:0
@@ -395,8 +395,8 @@ msgid "File name"
 msgstr "Nombre de archivo"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:93
-#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:168
+#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:91
+#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:155
 #, python-format
 msgid "First four characters of fiscal year                                  code must be numeric and contain the fiscal                                  year number. Please, fix it and try again."
 msgstr "First four characters of fiscal year                                  code must be numeric and contain the fiscal                                  year number. Please, fix it and try again."
@@ -415,8 +415,8 @@ msgid "Fiscal year"
 msgstr "Ejercicio fiscal"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:92
-#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:167
+#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:90
+#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:154
 #, python-format
 msgid "Fiscal year code"
 msgstr "Fiscal year code"
@@ -550,7 +550,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/mod349.py:321
+#: code:addons/l10n_es_aeat_mod349/mod349.py:186
 #, python-format
 msgid ""
 "Name '%s' have not allowed characters.\n"
@@ -646,13 +646,13 @@ msgid "Partner Record OK"
 msgstr "Registro de empresa correcto"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/mod349.py:327
+#: code:addons/l10n_es_aeat_mod349/mod349.py:192
 #, python-format
 msgid "Partner name '%s' in partner records is not valid due to incorrect characters"
 msgstr "El nombre de la empresa '%s' en los registros de empresas no es válido debido a caracteres incorrectos."
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/mod349.py:334
+#: code:addons/l10n_es_aeat_mod349/mod349.py:199
 #, python-format
 msgid "Partner name '%s' in refund lines is not valid due to incorrect characters"
 msgstr "El nombre de la empresa '%s' en las líneas de rectificaciones no es válido por contener caracteres incorrectos."
@@ -812,14 +812,14 @@ msgid "Telematics"
 msgstr "Telemática"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:125
+#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:122
 #, python-format
 msgid "The type 1 record must be 502 characters long"
 msgstr "El tipo de registro 1 debe ser de 502 caracteres de largo"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:193
-#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:245
+#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:175
+#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:227
 #, python-format
 msgid "The type 2 record must be 502 characters long"
 msgstr "El tipo de registro 2 debe ser de 502 caracteres de largo"
