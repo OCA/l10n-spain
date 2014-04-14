@@ -31,7 +31,6 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
         <record id="wizard_account_balance_reporting_print" model="ir.ui.view">
             <field name="name">account.balance.reporting.print.wizard.form</field>
             <field name="model">account.balance.reporting.print.wizard</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Print report" version="7.0">
                     <group>

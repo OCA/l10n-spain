@@ -1,198 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-		<!-- Modelo 340 -->
-		<record model="ir.ui.view" id="view_l10n_es_aeat_mod340_tree">
-			<field name="name">l10n.es.aeat.mod340.tree</field>
-			<field name="model">l10n.es.aeat.mod340.report</field>
-			<field name="type">tree</field>
-			<field name="arch" type="xml">
-	            <tree string="Model 340">
-	                <field name="fiscalyear_id"/>
-	                <field name="period_from"/>
-	                <field name="period_to"/>
-	                <field name="number"/>
-	                <field name="type"/>
-	                <field name="state" invisible="1"/>
-	            </tree>
-			</field>
-		</record>
-	
+        <!-- Modelo 340 -->
+        <record model="ir.ui.view" id="view_l10n_es_aeat_mod340_tree">
+            <field name="name">l10n.es.aeat.mod340.tree</field>
+            <field name="model">l10n.es.aeat.mod340.report</field>
+            <field name="arch" type="xml">
+                <tree string="Model 340">
+                    <field name="fiscalyear_id"/>
+                    <field name="period_from"/>
+                    <field name="period_to"/>
+                    <field name="number"/>
+                    <field name="type"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+    
         <record id="view_l10n_es_aeat_mod340_form" model="ir.ui.view">
             <field name="name">l10n_es.aeat.mod340.form</field>
             <field name="model">l10n.es.aeat.mod340.report</field>
             <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
             <field name="arch" type="xml">
-		        <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
-		            <attribute name="name">%(action_wizard_aeat_mod340_export)d</attribute>
-		        </button>
-	            <field name="fiscalyear_id" position="after">
-					<field name="period_from" select="1" required="1" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
-					<field name="period_to" select="1" required="1" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
-	            </field>
-	            <field name="calculation_date" position="after">
-	              	<field name="declaration_number"/>
-	               	<field name="support_type"/>
-	            </field>
-				<group string="Declaración" position="after">
-	                <notebook colspan="4">
-	                    <page string="General">
-	                        <group string="Identification" colspan="4">
-	                            <field name="phone_contact" />
-	                            <field name="name_contact" />
-	                            <field name="representative_vat" />
-	                        </group>
-	                        <group string="Susbtitutive/complementary declaration" colspan="4">
-	                            <field name="type"/>
-	                            <field name="previous_number"/>
-	                        </group>
-	                        <group string="Electronic Code VAT reverse charge" colspan="4">
-	                            <field name="ean13" nolabel="1"/>
-	                        </group>
-	                        <group string="Summary" colspan="4">
-	                    			<field name="number_records" select ="2" readonly="1"/>
-	                    			<newline/>
-	                    			<field name="total_taxable" select ="2" readonly="1"/>
-	                    			<field name="total_sharetax" select ="2" readonly="1"/>
-	                    			<field name="total" select="2" readonly="1"/>
-	                    			<newline/>
-	                    			<field name="calculation_date" select ="2" readonly="1"/>
-	                    		</group>
-	                    		<group colspan="4" col="10">                                
-	                        </group>
-	                    </page>
-	                    <page string="Issued invoice" >
-	                        <field name="issued" nolabel="1" />
-	                    </page>
-	                    <page string="Received invoice" >
-	                        <field name="received" nolabel="1" /> 
-	                    </page>
-	                </notebook>
-				</group>
-	         </field>
-		</record>
-		<!-- FIN Modelo 340 -->
-	
-	
-	    <!--Invoice Issued-->
-	    
-	    <record id="view_l10n_es_aeat_mod340_invoice_issued_tree" model="ir.ui.view">
-	        <field name="name">l10n.es.aeat.mod340.issued.tree</field>
-	        <field name="model">l10n.es.aeat.mod340.issued</field>
-	        <field name="type">tree</field>
-	        <field name="arch" type="xml">
-	            <tree string="Issued invoices">
-	            	<field name="date_invoice"/>
-	                <field name="partner_id"/>
-	                <field name="partner_country_code"/>
-	                <field name="partner_vat"/>
-	                <field name="invoice_id"/>
-	                <field name="base_tax" sum="Total Base" />
-	                <field name="amount_tax" sum="Total Tax" />
-	                <field name="total" sum="Total"/>
-	            </tree>   
-	        </field>
-	    </record>
-	    
-	    <record id="view_l10n_es_aeat_mod340_invoice_issued_form" model="ir.ui.view">
-	        <field name="name">l10n.es.aeat.mod340.issued.form</field>
-	        <field name="model">l10n.es.aeat.mod340.issued</field>
-	        <field name="type">form</field>
-	        <field name="arch" type="xml">
-	            <form string="Issued invoices">
-	                <field name="invoice_id"/>
-	                <newline/>
-	                <field name="partner_id"/>
-	                <field name="partner_vat"/>
-	                <field name="representative_vat"/>
-	                <field name="partner_country_code"/>
-	                <newline/>
-	                <field name="base_tax" />
-	                <field name="amount_tax" />
-	                <newline/>
-	                <field name="total"/>
-	                <newline />
-	                <field name="tax_line_ids" />
-	            </form>   
-	        </field>
-	    </record>
-	
-	    <!--Invoice Received-->
-	    
-	    <record id="view_l10n_es_aeat_mod340_invoice_received_tree" model="ir.ui.view">
-	        <field name="name">l10n.es.aeat.mod340.received.tree</field>
-	        <field name="model">l10n.es.aeat.mod340.received</field>
-	        <field name="type">tree</field>
-	        <field name="arch" type="xml">
-	            <tree string="Received invoices">
-	                <field name="partner_id"/>
-	                <field name="partner_country_code"/>
-	                <field name="partner_vat"/>
-	                <field name="invoice_id"/>
-	                <field name="base_tax" sum="Total Base"/>
-	                <field name="amount_tax" sum="Total Tax"/>
-	                <field name="total" sum="Total"/>
-	            </tree>   
-	        </field>
-	    </record>
-	    
-	    <record id="view_l10n_es_aeat_mod340_invoice_received_form" model="ir.ui.view">
-	        <field name="name">l10n.es.aeat.mod340.received.form</field>
-	        <field name="model">l10n.es.aeat.mod340.received</field>
-	        <field name="type">form</field>
-	        <field name="arch" type="xml">
-	            <form string="Received invoices">
-	                <field name="invoice_id"/>
-	                <newline/>
-	                <field name="partner_id"/>
-	                <field name="partner_vat"/>
-	                <field name="representative_vat"/>
-	                <field name="partner_country_code"/>
-	                <newline/>
-	                <field name="base_tax"/>
-	                <field name="amount_tax"/>
-	                <newline/>
-	                <field name="total"/>
-	                <newline />
-	                <field name="tax_line_ids" />
-	            </form>   
-	        </field>
-	    </record>
-	    
-	    <!--Vat Lines-->
-	    
-	    <record id="view_l10n_es_aeat_mod340_tax_line_issued_form" model="ir.ui.view">
-	        <field name="name">l10n.es.aeat.mod340.tax_line_issued.form</field>
-	        <field name="model">l10n.es.aeat.mod340.tax_line_issued</field>
-	        <field name="type">form</field>
-	        <field name="arch" type="xml">
-	            <form string="Tax line issued">
-	                <field name="name"/>
-	                <field name="tax_percentage"/>
-	                <field name="tax_amount"/>
-	                <field name="base_amount"/>
-	            </form>
-	        </field>
-	    </record>
-	    
-	    <record id="view_l10n_es_aeat_mod340_tax_line_received_form" model="ir.ui.view">
-	        <field name="name">l10n.es.aeat.mod340.tax_line_received.form</field>
-	        <field name="model">l10n.es.aeat.mod340.tax_line_received</field>
-	        <field name="type">form</field>
-	        <field name="arch" type="xml">
-	            <form string="Tax line received">
-	                <field name="name"/>
-	                <field name="tax_percentage"/>
-	                <field name="tax_amount"/>
-	                <field name="base_amount"/>
-	            </form>
-	        </field>
-	    </record>
-	
-		<record id="view_l10n_es_aeat_mod340_report_search" model="ir.ui.view">
+                <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
+                    <attribute name="name">%(action_wizard_aeat_mod340_export)d</attribute>
+                </button>
+                <field name="fiscalyear_id" position="after">
+                    <field name="period_from" select="1" required="1" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
+                    <field name="period_to" select="1" required="1" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
+                </field>
+                <field name="calculation_date" position="after">
+                      <field name="declaration_number"/>
+                       <field name="support_type"/>
+                </field>
+                <group string="Declaración" position="after">
+                    <notebook colspan="4">
+                        <page string="General">
+                            <group string="Identification" colspan="4">
+                                <field name="phone_contact" />
+                                <field name="name_contact" />
+                                <field name="representative_vat" />
+                            </group>
+                            <group string="Susbtitutive/complementary declaration" colspan="4">
+                                <field name="type"/>
+                                <field name="previous_number"/>
+                            </group>
+                            <group string="Electronic Code VAT reverse charge" colspan="4">
+                                <field name="ean13" nolabel="1"/>
+                            </group>
+                            <group string="Summary" colspan="4">
+                                    <field name="number_records" select ="2" readonly="1"/>
+                                    <newline/>
+                                    <field name="total_taxable" select ="2" readonly="1"/>
+                                    <field name="total_sharetax" select ="2" readonly="1"/>
+                                    <field name="total" select="2" readonly="1"/>
+                                    <newline/>
+                                    <field name="calculation_date" select ="2" readonly="1"/>
+                                </group>
+                                <group colspan="4" col="10">                                
+                            </group>
+                        </page>
+                        <page string="Issued invoice" >
+                            <field name="issued" nolabel="1" />
+                        </page>
+                        <page string="Received invoice" >
+                            <field name="received" nolabel="1" /> 
+                        </page>
+                    </notebook>
+                </group>
+             </field>
+        </record>
+        <!-- FIN Modelo 340 -->
+    
+    
+        <!--Invoice Issued-->
+        
+        <record id="view_l10n_es_aeat_mod340_invoice_issued_tree" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.mod340.issued.tree</field>
+            <field name="model">l10n.es.aeat.mod340.issued</field>
+            <field name="arch" type="xml">
+                <tree string="Issued invoices">
+                    <field name="date_invoice"/>
+                    <field name="partner_id"/>
+                    <field name="partner_country_code"/>
+                    <field name="partner_vat"/>
+                    <field name="invoice_id"/>
+                    <field name="base_tax" sum="Total Base" />
+                    <field name="amount_tax" sum="Total Tax" />
+                    <field name="total" sum="Total"/>
+                </tree>   
+            </field>
+        </record>
+        
+        <record id="view_l10n_es_aeat_mod340_invoice_issued_form" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.mod340.issued.form</field>
+            <field name="model">l10n.es.aeat.mod340.issued</field>
+            <field name="arch" type="xml">
+                <form string="Issued invoices">
+                    <field name="invoice_id"/>
+                    <newline/>
+                    <field name="partner_id"/>
+                    <field name="partner_vat"/>
+                    <field name="representative_vat"/>
+                    <field name="partner_country_code"/>
+                    <newline/>
+                    <field name="base_tax" />
+                    <field name="amount_tax" />
+                    <newline/>
+                    <field name="total"/>
+                    <newline />
+                    <field name="tax_line_ids" />
+                </form>   
+            </field>
+        </record>
+    
+        <!--Invoice Received-->
+        
+        <record id="view_l10n_es_aeat_mod340_invoice_received_tree" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.mod340.received.tree</field>
+            <field name="model">l10n.es.aeat.mod340.received</field>
+            <field name="arch" type="xml">
+                <tree string="Received invoices">
+                    <field name="partner_id"/>
+                    <field name="partner_country_code"/>
+                    <field name="partner_vat"/>
+                    <field name="invoice_id"/>
+                    <field name="base_tax" sum="Total Base"/>
+                    <field name="amount_tax" sum="Total Tax"/>
+                    <field name="total" sum="Total"/>
+                </tree>   
+            </field>
+        </record>
+        
+        <record id="view_l10n_es_aeat_mod340_invoice_received_form" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.mod340.received.form</field>
+            <field name="model">l10n.es.aeat.mod340.received</field>
+            <field name="arch" type="xml">
+                <form string="Received invoices">
+                    <field name="invoice_id"/>
+                    <newline/>
+                    <field name="partner_id"/>
+                    <field name="partner_vat"/>
+                    <field name="representative_vat"/>
+                    <field name="partner_country_code"/>
+                    <newline/>
+                    <field name="base_tax"/>
+                    <field name="amount_tax"/>
+                    <newline/>
+                    <field name="total"/>
+                    <newline />
+                    <field name="tax_line_ids" />
+                </form>   
+            </field>
+        </record>
+        
+        <!--Vat Lines-->
+        
+        <record id="view_l10n_es_aeat_mod340_tax_line_issued_form" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.mod340.tax_line_issued.form</field>
+            <field name="model">l10n.es.aeat.mod340.tax_line_issued</field>
+            <field name="arch" type="xml">
+                <form string="Tax line issued">
+                    <field name="name"/>
+                    <field name="tax_percentage"/>
+                    <field name="tax_amount"/>
+                    <field name="base_amount"/>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_l10n_es_aeat_mod340_tax_line_received_form" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.mod340.tax_line_received.form</field>
+            <field name="model">l10n.es.aeat.mod340.tax_line_received</field>
+            <field name="arch" type="xml">
+                <form string="Tax line received">
+                    <field name="name"/>
+                    <field name="tax_percentage"/>
+                    <field name="tax_amount"/>
+                    <field name="base_amount"/>
+                </form>
+            </field>
+        </record>
+    
+        <record id="view_l10n_es_aeat_mod340_report_search" model="ir.ui.view">
             <field name="name">AEAT Model 340 (search)</field>
             <field name="model">l10n.es.aeat.mod340.report</field>
-            <field name="type">search</field>
             <field name="arch" type="xml">
                 <search string="AEAT 340">
                     <group col="8" colspan="4">

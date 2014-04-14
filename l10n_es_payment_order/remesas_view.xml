@@ -5,7 +5,6 @@
         <record id="view_payment_mode_tree_remesas" model="ir.ui.view">
             <field name="name">payment.mode.tree</field>
             <field name="model">payment.mode</field>
-            <field name="type">tree</field>
             <field name="inherit_id" ref="account_payment.view_payment_mode_tree"/>
             <field name="arch" type="xml">
                 <field name="journal" position="after">
@@ -19,7 +18,6 @@
         <record id="view_payment_mode_form_remesas" model="ir.ui.view">
             <field name="name">payment.mode.form</field>
             <field name="model">payment.mode</field>
-            <field name="type">form</field>
             <field name="inherit_id" ref="account_payment.view_payment_mode_form"/>
             <field name="arch" type="xml">
                 <field name="bank_id" position="replace"/>
@@ -79,15 +77,14 @@
                 </field>
         </record>
 
-		 <record model="ir.ui.view" id="view_payment_order_form_ext1_export">
+         <record model="ir.ui.view" id="view_payment_order_form_ext1_export">
                 <field name="name">view.payment.order.form.ext1.export</field>
                 <field name="model">payment.order</field>
-                <field name="type">form</field>
                 <field name="inherit_id" ref="account_payment_extension.view_payment_order_form_ext1"/>
                 <field name="arch" type="xml">
-		            <button name="cancel_from_done" position="after">
-		            	<button name='%(action_wizard_payment_file_spain)d' type='action' string='Create payments file' states='done' icon="gtk-file"/>
-		            </button>
+                    <button name="cancel_from_done" position="after">
+                        <button name='%(action_wizard_payment_file_spain)d' type='action' string='Create payments file' states='done' icon="gtk-file"/>
+                    </button>
                 </field>
             </record>
 

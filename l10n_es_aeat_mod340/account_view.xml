@@ -5,7 +5,6 @@
             <field name="name">account.tax.code.template.form.mod340</field>
             <field name="model">account.tax.code.template</field>
             <field name="inherit_id" ref="account.view_tax_code_template_form"/>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <field name="sign" position="after">
                     <field name="mod340"/>
@@ -17,7 +16,6 @@
             <field name="name">account.tax.code.form.mod340</field>
             <field name="model">account.tax.code</field>
             <field name="inherit_id" ref="account.view_tax_code_form"/>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <field name="sign" position="after">
                     <field name="mod340"/>

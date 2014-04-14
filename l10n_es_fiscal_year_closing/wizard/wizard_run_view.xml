@@ -4,7 +4,6 @@
         <record model="ir.ui.view" id="cancel_fyc_form_view">
             <field name="name">account.fiscalyear.closing.cancel_wizard.form</field>
             <field name="model">account.fiscalyear.closing.cancel_wizard</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Fiscal Year Closing" version="7.0">
                     <label string="This wizard will cancel the fiscal year closing. It will perform:"/>
@@ -42,7 +41,6 @@
         <record model="ir.ui.view" id="execute_fyc_form_view">
             <field name="name">account.fiscalyear.closing.execute_wizard.form</field>
             <field name="model">account.fiscalyear.closing.execute_wizard</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Fiscal Year Closing" version="7.0">
                     <label string="This wizard will execute the following operations:"/>
