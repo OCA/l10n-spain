@@ -12,8 +12,8 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                <field name="fiscal_position" position="replace">
-                    <field name="fiscal_position" on_change="on_change_fiscal_position(fiscal_position, type)"/>
+                <field name="fiscal_position" position="attributes">
+                    <attribute name="on_change">on_change_fiscal_position(fiscal_position, type)</attribute>
                 </field>
             </field>
         </record>
@@ -38,8 +38,8 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
-                <field name="fiscal_position" position="replace">
-                    <field name="fiscal_position" on_change="on_change_fiscal_position(fiscal_position, type)"/>
+                <field name="fiscal_position" position="attributes">
+                    <attribute name="on_change">on_change_fiscal_position(fiscal_position, type)</attribute>
                 </field>
             </field>
         </record>
