@@ -27,7 +27,7 @@
 
 {
     "name": "AEAT modelo 349",
-    "version": "1.0",
+    "version": "2.0",
     "author": "Pexego",
     "license": "AGPL-3",
     'contributors': [
@@ -98,6 +98,7 @@ presentar el modelo 349:
         "account",
         "account_invoice_currency",
         "account_refund_original",
+        "l10n_es",
         "l10n_es_aeat",
     ],
     'data': [
@@ -107,7 +108,8 @@ presentar el modelo 349:
         "mod349_view.xml",
         "report/mod349_report.xml",
         "security/ir.model.access.csv",
-        "security/mod_349_security.xml"
+        "security/mod_349_security.xml",
+        "data/assign_invoices_op_keys.xml",
     ],
     'installable': True,
 }

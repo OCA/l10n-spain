@@ -51,6 +51,39 @@ class account_invoice(orm.Model):
     """
     _inherit = 'account.invoice'
     ### FUNCTIONS ###
+    def _assign_invoice_operation_keys(self, cr, uid, ids=None,
+                                       context=None):
+        """On first install of the module, this method is called to
+        assign a default value to invoices and fiscal position"""
+        # Marcar la posición fiscal intracomunitaria
+        fp_obj = self.pool['account.fiscal.position']
+        fp_ids = fp_obj.search(cr, uid, [('name', '=',
+                                          "Régimen Intracomunitario")],
+                                          context=context)
+        if not fp_ids:
+            return
+        fp_obj.write(cr, uid, fp_ids, {'intracommunity_operations': True},
+                     context=context)
+        invoice_ids = self.search(cr, uid, [], context=context)
+        for invoice in self.browse(cr, uid, invoice_ids, context=context):
+            if invoice.fiscal_position:
+                op_key = self._get_operation_key(invoice.fiscal_position,
+                                                 invoice.type)
+                self.write(cr, uid, invoice.id, {'operation_key': op_key},
+                           context=context)
+
+    def _get_operation_key(self, fp, type):
+        if not fp.intracommunity_operations:
+            return False
+        else:
+            # TODO: Ver cómo discernir si son prestación de servicios
+            if type == 'out_invoice' or type == 'out_refund':
+                # Establecer a entrega si es de venta
+                return 'E'
+            else:
+                # Establecer a adquisición si es de compra
+                return 'A'
+
     def _get_year_from_fy_month(self, fy, month):
         fy_start = datetime.strptime(fy.date_start,
                                      DEFAULT_SERVER_DATETIME_FORMAT)
@@ -162,40 +195,8 @@ class account_invoice(orm.Model):
         if fiscal_position and type:
             fp_obj = self.pool['account.fiscal.position']
             fp = fp_obj.browse(cr, uid, fiscal_position, context=context)
-            if fp.intracommunity_operations:
-                if type == 'out_invoice':
-                    # Set to supplies when type is customer invoice
-                    res['operation_key'] = 'E'
-                else:
-                    # Set to acquisition when type is supplier invoice
-                    res['operation_key'] = 'A'
+            res['operation_key'] = self._get_operation_key(fp, type)
         return {'value': res}
-
-    def onchange_partner_id(self, cr, uid, ids,
-                            type, partner_id, date_invoice=False,
-                            payment_term=False, partner_bank_id=False,
-                            company_id=False, context=None):
-        """Inheritance to extend method and return operation key."""
-        ## Get original data from onchange method
-        res = super(account_invoice,
-                    self).onchange_partner_id(cr, uid, ids, type, partner_id,
-                                              date_invoice=date_invoice,
-                                              payment_term=payment_term,
-                                              partner_bank_id=partner_bank_id,
-                                              company_id=company_id,
-                                              context=context)
-        ## Get operation key for current record
-        operation_key_dict = self.on_change_fiscal_position(cr, uid, ids,
-            fiscal_position=res['value']['fiscal_position'], type=type,
-            context=context)
-        ## Add operation key to result
-        if operation_key_dict['value'] and \
-                operation_key_dict['value']['operation_key']:
-            res['value']['operation_key'] = (
-                                operation_key_dict['value']['operation_key'])
-        else:
-            res['value']['operation_key'] = False
-        return res
 
     def create(self, cr, uid, vals, context=None):
         """Writes operation key value, if invoice is created in
@@ -205,10 +206,9 @@ class account_invoice(orm.Model):
             fp_obj = self.pool['account.fiscal.position']
             if fp_obj.browse(cr, uid, vals.get('fiscal_position'),
                           context=context).intracommunity_operations:
-                if vals.get('type') == 'out_invoice':
-                    vals['operation_key'] = 'E'
-                else:
-                    vals['operation_key'] = 'A'
+                vals['operation_key'] = self._get_operation_key(
+                                                    vals['fiscal_position'],
+                                                    vals['type'])
         return super(account_invoice, self).create(cr, uid, vals,
                                                    context=context)
 
