@@ -213,11 +213,15 @@
                     </group>
                     <notebook colspan="4">
                         <page string="General">
-                            <group string="Resultado" colspan="4" col="6">
-                                <field name="total_partner_records"/>
-                                <field name="total_partner_records_amount"/>
-                                <field name="total_partner_refunds"/>
-                                <field name="total_partner_refunds_amount"/>
+                            <group string="Resultado">
+                                <group>
+                                    <field name="total_partner_records"/>
+                                    <field name="total_partner_records_amount"/>
+                                </group>
+                                <group>
+                                    <field name="total_partner_refunds"/>
+                                    <field name="total_partner_refunds_amount"/>
+                                </group>
                             </group>
                             <group string="Options" colspan="4">
                                 <field name="support_type"/>

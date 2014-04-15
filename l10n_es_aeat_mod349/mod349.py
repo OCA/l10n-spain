@@ -59,6 +59,16 @@ def _check_valid_string(text_to_check):
         return True
     return False
 
+def _format_partner_vat(cr, uid, partner_vat=None, country=None,
+                      context=None):
+    """Formats VAT to match XXVATNUMBER (where XX is country code)."""
+    if country:
+        country_pattern = "[" + country.code + country.code.lower() + "]{2}.*"
+        vat_regex = re.compile(country_pattern, re.UNICODE | re.X)
+        if partner_vat and not vat_regex.match(partner_vat):
+            partner_vat = country.code + partner_vat
+    return partner_vat
+
 
 class Mod349(orm.Model):
     _inherit = "l10n.es.aeat.report"
@@ -92,15 +102,6 @@ class Mod349(orm.Model):
                 item.period_selection or '')
         return res
 
-    def _formatPartnerVAT(self, cr, uid, partner_vat=None, country_id=None,
-                          context=None):
-        """Formats VAT to match XXVATNUMBER (where XX is country code)."""
-        if partner_vat and not vat_regex.match(partner_vat) and country_id:
-            country_obj = self.pool['res.country']
-            country = country_obj.browse(cr, uid, country_id, context=context)
-            partner_vat = country.code + partner_vat
-        return partner_vat
-
     def _create_349_partner_records(self, cr, uid, ids, report_id,
                                            partner_obj, operation_key,
                                            context=None):
@@ -112,9 +113,9 @@ class Mod349(orm.Model):
         invoice_created = obj.create(cr, uid, {
             'report_id': report_id,
             'partner_id': partner_obj.id,
-            'partner_vat': self._formatPartnerVAT(cr, uid,
-                                                partner_vat=partner_obj.vat,
-                                                country_id=partner_country.id),
+            'partner_vat': _format_partner_vat(cr, uid,
+                                               partner_vat=partner_obj.vat,
+                                               country=partner_country),
             'operation_key': operation_key,
             'country_id': partner_country.id or False,
             'total_operation_amount': sum([invoice.cc_amount_untaxed for
@@ -144,14 +145,15 @@ class Mod349(orm.Model):
         refund_obj = self.pool['l10n.es.aeat.mod349.partner_record']
         obj = self.pool['l10n.es.aeat.mod349.partner_refund']
         obj_detail = self.pool['l10n.es.aeat.mod349.partner_refund_detail']
-        partner_country = [address.country_id.id for address in
+        partner_country = [address.country_id for address in
                            partner_obj.address if address.type ==
                            'invoice' and address.country_id]
-        if not len(partner_country):
-            partner_country = [address.country_id.id for
+        if not partner_country:
+            partner_country = [address.country_id for
                                address in partner_obj.address
                                if address.type == 'default' and
                                address.country_id]
+        partner_country = partner_country and partner_country[0] or False
         record = {}
         for invoice in refunds:
             #goes around all refunded invoices
@@ -189,13 +191,12 @@ class Mod349(orm.Model):
             record_created = obj.create(cr, uid, {
                 'report_id': report_id,
                 'partner_id': partner_obj.id,
-                'partner_vat':
-                           self._formatPartnerVAT(cr, uid,
-                                                  partner_vat=partner_obj.vat,
-                                                  country_id=partner_country,
-                                                  context=context),
+                'partner_vat': _format_partner_vat(cr, uid,
+                                                   partner_vat=partner_obj.vat,
+                                                   country=partner_country,
+                                                   context=context),
                 'operation_key': operation_key,
-                'country_id': partner_country and partner_country[0] or False,
+                'country_id': partner_country and partner_country.id or False,
                 'total_operation_amount':  partner_rec.total_operation_amount \
                     - sum([x.cc_amount_untaxed for x in record[line]]),
                 'total_origin_amount': partner_rec.total_operation_amount,
@@ -446,13 +447,9 @@ class Mod349PartnerRecord(orm.Model):
         """
         if country_id:
             country_obj = self.pool['res.country']
-            country_code = country_obj.browse(cr, uid, country_id,
-                                              context=context).code
-            country_pattern = "[" + country_code + \
-                            country_code.lower() + "]{2}.*"
-            vat_regex = re.compile(country_pattern, re.UNICODE | re.X)
-            if partner_vat and not vat_regex.match(partner_vat):
-                partner_vat = country_code + partner_vat
+            country = country_obj.browse(cr, uid, country_id, context=context)
+            partner_vat = _format_partner_vat(cr, uid, partner_vat=partner_vat,
+                                              country=country)
         return {'value': {'partner_vat': partner_vat}}
 
     _columns = {
@@ -560,13 +557,9 @@ class Mod349PartnerRefund(orm.Model):
         """Formats VAT to match XXVATNUMBER (where XX is country code)"""
         if country_id:
             country_obj = self.pool['res.country']
-            country_code = country_obj.browse(cr, uid, country_id,
-                                              context=context).code
-            country_pattern = "[" + country_code + \
-                              country_code.lower() + "]{2}.*"
-            vat_regex = re.compile(country_pattern, re.UNICODE | re.X)
-            if partner_vat and not vat_regex.match(partner_vat):
-                partner_vat = country_code + partner_vat
+            country = country_obj.browse(cr, uid, country_id, context=context)
+            partner_vat = _format_partner_vat(cr, uid, partner_vat=partner_vat,
+                                              country=country)
         return {'value': {'partner_vat': partner_vat}}
 
 
