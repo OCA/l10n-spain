@@ -1,0 +1,367 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* fl_account_financial_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-18 10:38+0000\n"
+"PO-Revision-Date: 2013-06-18 10:38+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: fl_account_financial_report
+#: selection:fl.account.balance.full.report,state:0
+#: selection:fl.account.general.ledger.cumulative.report,state:0
+msgid "By Period"
+msgstr "Por periodo"
+
+#. module: fl_account_financial_report
+#: view:fl.account.balance.full.report:0
+msgid "Full Account Balance2"
+msgstr "Balance de sumas y saldos"
+
+#. module: fl_account_financial_report
+#: view:fl.account.general.ledger.cumulative.report:0
+msgid "Select parent account"
+msgstr "Seleccione cuenta"
+
+#. module: fl_account_financial_report
+#: field:fl.account.general.ledger.cumulative.report,sortbydate:0
+msgid "Sort by"
+msgstr "Ordenar por"
+
+#. module: fl_account_financial_report
+#: model:ir.model,name:fl_account_financial_report.model_fl_account_balance_full_report
+msgid "fl.account.balance.full.report"
+msgstr "fl.account.balance.full.report"
+
+#. module: fl_account_financial_report
+#: code:addons/fl_account_financial_report/report/general_ledger.py:344
+#: code:addons/fl_account_financial_report/report/general_ledger_landscape.py:348
+#, python-format
+msgid "Initial balance"
+msgstr "Balance inicial"
+
+#. module: fl_account_financial_report
+#: field:fl.account.general.ledger.cumulative.report,initial_balance:0
+msgid "Show initial balances"
+msgstr "Mostrar balance inicial"
+
+#. module: fl_account_financial_report
+#: view:fl.account.balance.full.report:0
+#: view:fl.account.general.ledger.cumulative.report:0
+msgid "Date Filter"
+msgstr "Filtro por fecha"
+
+#. module: fl_account_financial_report
+#: field:fl.account.general.ledger.cumulative.report,states:0
+msgid "State"
+msgstr "Estado"
+
+#. module: fl_account_financial_report
+#: field:fl.account.balance.full.report,display_account:0
+msgid "Display accounts "
+msgstr "Mostrar cuentas "
+
+#. module: fl_account_financial_report
+#: view:fl.account.general.ledger.cumulative.report:0
+msgid "Print Report"
+msgstr "Imprimir informe"
+
+#. module: fl_account_financial_report
+#: code:addons/fl_account_financial_report/wizard/wizard_account_balance_report.py:227
+#, python-format
+msgid "Date to must be set between %s and %s"
+msgstr "La fecha debe ser entre %s y %s"
+
+#. module: fl_account_financial_report
+#: code:addons/fl_account_financial_report/report/general_ledger.py:283
+#: code:addons/fl_account_financial_report/report/general_ledger_landscape.py:287
+#, python-format
+msgid "SI: "
+msgstr "SI: "
+
+#. module: fl_account_financial_report
+#: field:fl.account.balance.full.report,date_from:0
+#: field:fl.account.general.ledger.cumulative.report,date_from:0
+msgid "Start date"
+msgstr "Fecha de inicio"
+
+#. module: fl_account_financial_report
+#: view:fl.account.balance.full.report:0
+#: view:fl.account.general.ledger.cumulative.report:0
+msgid "Filter on Periods"
+msgstr "Filtro por periodos"
+
+#. module: fl_account_financial_report
+#: selection:fl.account.general.ledger.cumulative.report,sortbydate:0
+msgid "Movement"
+msgstr "movimiento"
+
+#. module: fl_account_financial_report
+#: model:ir.model,name:fl_account_financial_report.model_fl_account_balance_full_report2
+msgid "fl.account.balance.full.report2"
+msgstr "fl.account.balance.full.report2"
+
+#. module: fl_account_financial_report
+#: code:addons/fl_account_financial_report/wizard/wizard_account_balance_report.py:102
+#: code:addons/fl_account_financial_report/wizard/wizard_account_balance_report.py:165
+#, python-format
+msgid "Error !"
+msgstr "Error !"
+
+#. module: fl_account_financial_report
+#: field:fl.account.balance.full.report,periods:0
+#: field:fl.account.general.ledger.cumulative.report,periods:0
+msgid "Periods"
+msgstr "Periodos"
+
+#. module: fl_account_financial_report
+#: field:fl.account.balance.full.report,company_id:0
+#: field:fl.account.general.ledger.cumulative.report,company_id:0
+msgid "Company"
+msgstr "Compañia"
+
+#. module: fl_account_financial_report
+#: view:fl.account.general.ledger.cumulative.report:0
+msgid "(Keep empty for all open fiscal years)"
+msgstr "(Mantener vacio para mostrar todos los ejercicios fiscales abiertos)"
+
+#. module: fl_account_financial_report
+#: selection:fl.account.balance.full.report,state:0
+#: selection:fl.account.general.ledger.cumulative.report,state:0
+msgid "No Filter"
+msgstr "Sin filtro"
+
+#. module: fl_account_financial_report
+#: selection:fl.account.general.ledger.cumulative.report,display_account:0
+msgid "With balance is not equal to 0"
+msgstr "Con balance diferente a 0"
+
+#. module: fl_account_financial_report
+#: model:ir.model,name:fl_account_financial_report.model_account_balance_full_report
+msgid "account.balance.full.report"
+msgstr "account.balance.full.report"
+
+#. module: fl_account_financial_report
+#: selection:fl.account.general.ledger.cumulative.report,sortbydate:0
+msgid "Date"
+msgstr "Fecha"
+
+#. module: fl_account_financial_report
+#: field:fl.account.general.ledger.cumulative.report,amount_currency:0
+msgid "With Currency"
+msgstr "Mostrar divisa"
+
+#. module: fl_account_financial_report
+#: view:fl.account.balance.full.report:0
+msgid "Accounts to include"
+msgstr "Cuentas a incluir"
+
+#. module: fl_account_financial_report
+#: view:fl.account.general.ledger.cumulative.report:0
+msgid "General ledger"
+msgstr "Libro mayor"
+
+#. module: fl_account_financial_report
+#: help:fl.account.balance.full.report,display_account_level:0
+msgid "Display accounts up to this level (0 to show all)"
+msgstr "Mostrar cuentas hasta este nivel de profundidad (0 para mostrar todas)"
+
+#. module: fl_account_financial_report
+#: selection:fl.account.balance.full.report,display_account:0
+#: selection:fl.account.general.ledger.cumulative.report,display_account:0
+msgid "With movements"
+msgstr "Con movimientos"
+
+#. module: fl_account_financial_report
+#: field:fl.account.general.ledger.cumulative.report,account_list:0
+msgid "Account"
+msgstr "Cuenta"
+
+#. module: fl_account_financial_report
+#: model:ir.actions.report.xml,name:fl_account_financial_report.account_balance_full3
+msgid "**Full account balance"
+msgstr "**Balance de sumas y saldos"
+
+#. module: fl_account_financial_report
+#: view:fl.account.general.ledger.cumulative.report:0
+msgid "Filters"
+msgstr "Filtros"
+
+#. module: fl_account_financial_report
+#: selection:fl.account.balance.full.report,state:0
+#: selection:fl.account.general.ledger.cumulative.report,state:0
+msgid "By Date and Period"
+msgstr "Por fecha y periodo"
+
+#. module: fl_account_financial_report
+#: field:fl.account.balance.full.report,account_list:0
+msgid "Root accounts"
+msgstr "Cuentas raiz"
+
+#. module: fl_account_financial_report
+#: code:addons/fl_account_financial_report/report/general_ledger.py:282
+#: code:addons/fl_account_financial_report/report/general_ledger_landscape.py:286
+#, python-format
+msgid "CI: "
+msgstr "CI: "
+
+#. module: fl_account_financial_report
+#: view:fl.account.general.ledger.cumulative.report:0
+msgid "Select Date-Period"
+msgstr "Seleccionar fecha y periodo"
+
+#. module: fl_account_financial_report
+#: help:fl.account.general.ledger.cumulative.report,fiscalyear:0
+msgid "Keep empty for all open fiscal year"
+msgstr "Mantener vacio para mostrar todos los ejercicios fiscales abiertos"
+
+#. module: fl_account_financial_report
+#: help:fl.account.balance.full.report,periods:0
+#: help:fl.account.general.ledger.cumulative.report,periods:0
+msgid "All periods in the fiscal year if empty"
+msgstr "Todos los periodos del ejercicio fiscal si no tiene contenido"
+
+#. module: fl_account_financial_report
+#: model:ir.actions.act_window,name:fl_account_financial_report.action_balance_full_xml_report3
+msgid "**Full account balance3"
+msgstr "**Balance sumas y saldos"
+
+#. module: fl_account_financial_report
+#: view:fl.account.balance.full.report:0
+msgid "Get Balance"
+msgstr "Obtener Balance"
+
+#. module: fl_account_financial_report
+#: code:addons/fl_account_financial_report/report/general_ledger.py:285
+#: code:addons/fl_account_financial_report/report/general_ledger_landscape.py:289
+#, python-format
+msgid "SR: "
+msgstr "SR: "
+
+#. module: fl_account_financial_report
+#: selection:fl.account.balance.full.report,state:0
+#: selection:fl.account.general.ledger.cumulative.report,state:0
+msgid "By Date"
+msgstr "By Date"
+
+#. module: fl_account_financial_report
+#: code:addons/fl_account_financial_report/wizard/wizard_account_balance_report.py:165
+#, python-format
+msgid "La interseccion entre el periodo y fecha es vacio"
+msgstr "La interseccion entre el periodo y fecha es vacio"
+
+#. module: fl_account_financial_report
+#: selection:fl.account.balance.full.report,display_account:0
+msgid "With balance"
+msgstr "Con balance"
+
+#. module: fl_account_financial_report
+#: selection:fl.account.general.ledger.cumulative.report,states:0
+msgid "Check Type"
+msgstr "Check Type"
+
+#. module: fl_account_financial_report
+#: view:fl.account.general.ledger.cumulative.report:0
+msgid "Next"
+msgstr "Next"
+
+#. module: fl_account_financial_report
+#: code:addons/fl_account_financial_report/wizard/wizard_account_balance_report.py:112
+#: code:addons/fl_account_financial_report/wizard/wizard_account_balance_report.py:116
+#: code:addons/fl_account_financial_report/wizard/wizard_account_balance_report.py:227
+#: code:addons/fl_account_financial_report/wizard/wizard_account_balance_report.py:229
+#, python-format
+msgid "UserError"
+msgstr "UserError"
+
+#. module: fl_account_financial_report
+#: field:fl.account.balance.full.report,date_to:0
+#: field:fl.account.general.ledger.cumulative.report,date_to:0
+msgid "End date"
+msgstr "Fecha de fin"
+
+#. module: fl_account_financial_report
+#: selection:fl.account.balance.full.report,display_account:0
+#: selection:fl.account.general.ledger.cumulative.report,display_account:0
+msgid "All"
+msgstr "Todo"
+
+#. module: fl_account_financial_report
+#: code:addons/fl_account_financial_report/wizard/wizard_account_balance_report.py:229
+#, python-format
+msgid "Date not in a defined fiscal year"
+msgstr "La fecha no se encuentra en un ejercicio fiscal definido"
+
+#. module: fl_account_financial_report
+#: model:ir.actions.act_window,name:fl_account_financial_report.action_general_ledger_cumulative_xml_report2
+msgid "**Cumulative general ledger"
+msgstr "**Libro mayor acumulado"
+
+#. module: fl_account_financial_report
+#: field:fl.account.balance.full.report,state:0
+#: field:fl.account.general.ledger.cumulative.report,state:0
+msgid "Date/Period Filter"
+msgstr "Filtro fecha/periodo"
+
+#. module: fl_account_financial_report
+#: view:fl.account.balance.full.report:0
+msgid "Period"
+msgstr "Periodo"
+
+#. module: fl_account_financial_report
+#: model:ir.model,name:fl_account_financial_report.model_fl_account_general_ledger_cumulative_report
+msgid "fl.account.general.ledger.cumulative.report"
+msgstr "fl.account.general.ledger.cumulative.report"
+
+#. module: fl_account_financial_report
+#: code:addons/fl_account_financial_report/report/general_ledger.py:284
+#: code:addons/fl_account_financial_report/report/general_ledger_landscape.py:288
+#, python-format
+msgid "OR: "
+msgstr "OR: "
+
+#. module: fl_account_financial_report
+#: field:fl.account.balance.full.report,fiscalyear:0
+#: field:fl.account.general.ledger.cumulative.report,fiscalyear:0
+msgid "Fiscal year"
+msgstr "Ejercicio fiscal"
+
+#. module: fl_account_financial_report
+#: field:fl.account.general.ledger.cumulative.report,landscape:0
+msgid "Landscape Mode"
+msgstr "Modo apaisado"
+
+#. module: fl_account_financial_report
+#: field:fl.account.general.ledger.cumulative.report,display_account:0
+msgid "Display accounts"
+msgstr "Mostrar cuentas"
+
+#. module: fl_account_financial_report
+#: field:fl.account.balance.full.report,display_account_level:0
+msgid "Up to level"
+msgstr "Hasta el nivel"
+
+#. module: fl_account_financial_report
+#: view:fl.account.balance.full.report:0
+#: view:fl.account.general.ledger.cumulative.report:0
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: fl_account_financial_report
+#: help:fl.account.balance.full.report,fiscalyear:0
+msgid "Keep empty to use all open fiscal years to compute the balance"
+msgstr "Dejarlo vacio para usar todos los ejercicios fiscales abiertos para calcular el balance"
+
+#. module: fl_account_financial_report
+#: selection:fl.account.general.ledger.cumulative.report,states:0
+msgid "Account Selection"
+msgstr "Selección de cuenta"
+

@@ -1,0 +1,72 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* report_cumulative_general_ledger_xls
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 6.1-20130627-233424\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-29 10:42+0000\n"
+"PO-Revision-Date: 2014-01-29 11:44+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: report_cumulative_general_ledger_xls
+#: field:fl.account.general.ledger.cumulative.report,export_file:0
+msgid "Export File"
+msgstr "Fichero generado"
+
+#. module: report_cumulative_general_ledger_xls
+#: code:addons/report_cumulative_general_ledger_xls/wizard/cumulative_general_ledger.py:231
+#, python-format
+msgid "CI: "
+msgstr "CI: "
+
+#. module: report_cumulative_general_ledger_xls
+#: model:ir.model,name:report_cumulative_general_ledger_xls.model_fl_account_general_ledger_cumulative_report
+msgid "fl.account.general.ledger.cumulative.report"
+msgstr "fl.account.general.ledger.cumulative.report"
+
+#. module: report_cumulative_general_ledger_xls
+#: field:fl.account.general.ledger.cumulative.report,name:0
+msgid "Filename"
+msgstr "Nombre de Fichero"
+
+#. module: report_cumulative_general_ledger_xls
+#: code:addons/report_cumulative_general_ledger_xls/wizard/cumulative_general_ledger.py:233
+#, python-format
+msgid "OR: "
+msgstr "OR: "
+
+#. module: report_cumulative_general_ledger_xls
+#: code:addons/report_cumulative_general_ledger_xls/wizard/cumulative_general_ledger.py:234
+#, python-format
+msgid "SR: "
+msgstr "SR: "
+
+#. module: report_cumulative_general_ledger_xls
+#: code:addons/report_cumulative_general_ledger_xls/wizard/cumulative_general_ledger.py:232
+#, python-format
+msgid "SI: "
+msgstr "SI: "
+
+#. module: report_cumulative_general_ledger_xls
+#: code:addons/report_cumulative_general_ledger_xls/wizard/cumulative_general_ledger.py:293
+#, python-format
+msgid "Initial balance"
+msgstr "Balance Inicial"
+
+#. module: report_cumulative_general_ledger_xls
+#: view:fl.account.general.ledger.cumulative.report:0
+msgid "XLS"
+msgstr "XLS"
+
+#. module: report_cumulative_general_ledger_xls
+#: view:fl.account.general.ledger.cumulative.report:0
+msgid "Export XLS"
+msgstr "Generar XLS"
