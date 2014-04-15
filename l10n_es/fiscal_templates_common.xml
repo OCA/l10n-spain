@@ -893,38 +893,38 @@
         <record id="fpat_extra_acc_1"
             model="account.fiscal.position.account.template">
             <field name="position_id" ref="fp_extra"/>
-            <field name="account_src_id" ref="pgc_7000"/>
-            <field name="account_dest_id" ref="pgc_7002"/>
+            <field name="account_src_id" ref="pgc_7000_child"/>
+            <field name="account_dest_id" ref="pgc_7002_child"/>
         </record>
         <record id="fpat_extra_acc_2"
             model="account.fiscal.position.account.template">
             <field name="position_id" ref="fp_extra"/>
-            <field name="account_src_id" ref="pgc_7010"/>
-            <field name="account_dest_id" ref="pgc_7012"/>
+            <field name="account_src_id" ref="pgc_7010_child"/>
+            <field name="account_dest_id" ref="pgc_7012_child"/>
         </record>
         <record id="fpat_extra_acc_3"
             model="account.fiscal.position.account.template">
             <field name="position_id" ref="fp_extra"/>
-            <field name="account_src_id" ref="pgc_7020"/>
-            <field name="account_dest_id" ref="pgc_7022"/>
+            <field name="account_src_id" ref="pgc_7020_child"/>
+            <field name="account_dest_id" ref="pgc_7022_child"/>
         </record>
         <record id="fpat_extra_acc_4"
             model="account.fiscal.position.account.template">
             <field name="position_id" ref="fp_extra"/>
-            <field name="account_src_id" ref="pgc_7030"/>
-            <field name="account_dest_id" ref="pgc_7032"/>
+            <field name="account_src_id" ref="pgc_7030_child"/>
+            <field name="account_dest_id" ref="pgc_7032_child"/>
         </record>
         <record id="fpat_extra_acc_5"
             model="account.fiscal.position.account.template">
             <field name="position_id" ref="fp_extra"/>
-            <field name="account_src_id" ref="pgc_7040"/>
-            <field name="account_dest_id" ref="pgc_7042"/>
+            <field name="account_src_id" ref="pgc_7040_child"/>
+            <field name="account_dest_id" ref="pgc_7042_child"/>
         </record>
         <record id="fpat_extra_acc_6"
             model="account.fiscal.position.account.template">
             <field name="position_id" ref="fp_extra"/>
-            <field name="account_src_id" ref="pgc_7050"/>
-            <field name="account_dest_id" ref="pgc_7052"/>
+            <field name="account_src_id" ref="pgc_7050_child"/>
+            <field name="account_dest_id" ref="pgc_7052_child"/>
         </record>
 
         <!-- Intracomunitarios -->
@@ -932,38 +932,38 @@
         <record id="fpat_intra_acc_1"
             model="account.fiscal.position.account.template">
             <field name="position_id" ref="fp_intra"/>
-            <field name="account_src_id" ref="pgc_7000"/>
-            <field name="account_dest_id" ref="pgc_7001"/>
+            <field name="account_src_id" ref="pgc_7000_child"/>
+            <field name="account_dest_id" ref="pgc_7001_child"/>
         </record>
         <record id="fpat_intra_acc_2"
             model="account.fiscal.position.account.template">
             <field name="position_id" ref="fp_intra"/>
-            <field name="account_src_id" ref="pgc_7010"/>
-            <field name="account_dest_id" ref="pgc_7011"/>
+            <field name="account_src_id" ref="pgc_7010_child"/>
+            <field name="account_dest_id" ref="pgc_7011_child"/>
         </record>
         <record id="fpat_intra_acc_3"
             model="account.fiscal.position.account.template">
             <field name="position_id" ref="fp_intra"/>
-            <field name="account_src_id" ref="pgc_7020"/>
-            <field name="account_dest_id" ref="pgc_7021"/>
+            <field name="account_src_id" ref="pgc_7020_child"/>
+            <field name="account_dest_id" ref="pgc_7021_child"/>
         </record>
         <record id="fpat_intra_acc_4"
             model="account.fiscal.position.account.template">
             <field name="position_id" ref="fp_intra"/>
-            <field name="account_src_id" ref="pgc_7030"/>
-            <field name="account_dest_id" ref="pgc_7031"/>
+            <field name="account_src_id" ref="pgc_7030_child"/>
+            <field name="account_dest_id" ref="pgc_7031_child"/>
         </record>
         <record id="fpat_intra_acc_5"
             model="account.fiscal.position.account.template">
             <field name="position_id" ref="fp_intra"/>
-            <field name="account_src_id" ref="pgc_7040"/>
-            <field name="account_dest_id" ref="pgc_7041"/>
+            <field name="account_src_id" ref="pgc_7040_child"/>
+            <field name="account_dest_id" ref="pgc_7041_child"/>
         </record>
         <record id="fpat_intra_acc_6"
             model="account.fiscal.position.account.template">
             <field name="position_id" ref="fp_intra"/>
-            <field name="account_src_id" ref="pgc_7050"/>
-            <field name="account_dest_id" ref="pgc_7051"/>
+            <field name="account_src_id" ref="pgc_7050_child"/>
+            <field name="account_dest_id" ref="pgc_7051_child"/>
         </record>
 
     </data>
