@@ -60,41 +60,23 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
         """
 
         if not text:
-            return fill*length
-
-        #
-        # Replace accents
-        #
+            return fill * length
+        # Replace accents and convert to upper
         replacements = [
-            (u'Á', 'A'),(u'á', 'A'),
-            (u'É', 'E'),(u'é', 'E'),
-            (u'Í', 'I'),(u'í', 'I'),
-            (u'Ó', 'O'),(u'ó', 'O'),
-            (u'Ú', 'U'),(u'ú', 'U'),
-            (u'Ä', 'A'),(u'ä', 'A'),
-            (u'Ë', 'E'),(u'ë', 'E'),
-            (u'Ï', 'I'),(u'ï', 'I'),
-            (u'Ö', 'O'),(u'ö', 'O'),
-            (u'Ü', 'U'),(u'ü', 'U'),
-            (u'À', 'A'),(u'à', 'A'),
-            (u'È', 'E'),(u'è', 'E'),
-            (u'Ì', 'I'),(u'ì', 'I'),
-            (u'Ò', 'O'),(u'ò', 'O'),
-            (u'Ù', 'U'),(u'ù', 'U'),
-            (u'Â', 'A'),(u'â', 'A'),
-            (u'Ê', 'E'),(u'ê', 'E'),
-            (u'Î', 'I'),(u'î', 'I'),
-            (u'Ô', 'O'),(u'ô', 'O'),
-            (u'Û', 'U'),(u'û', 'U')]
-
-        #
-        # String uppercase
-        #
+            (u'Á', 'A'), (u'á', 'A'), (u'É', 'E'), (u'é', 'E'), (u'Í', 'I'),
+            (u'í', 'I'), (u'Ó', 'O'), (u'ó', 'O'), (u'Ú', 'U'), (u'ú', 'U'),
+            (u'Ä', 'A'), (u'ä', 'A'), (u'Ë', 'E'), (u'ë', 'E'), (u'Ï', 'I'),
+            (u'ï', 'I'), (u'Ö', 'O'), (u'ö', 'O'), (u'Ü', 'U'), (u'ü', 'U'),
+            (u'À', 'A'), (u'à', 'A'), (u'È', 'E'), (u'è', 'E'), (u'Ì', 'I'),
+            (u'ì', 'I'), (u'Ò', 'O'), (u'ò', 'O'), (u'Ù', 'U'), (u'ù', 'U'),
+            (u'Â', 'A'), (u'â', 'A'), (u'Ê', 'E'), (u'ê', 'E'), (u'Î', 'I'),
+            (u'î', 'I'), (u'Ô', 'O'), (u'ô', 'O'), (u'Û', 'U'), (u'û', 'U'),
+            (u'Ñ', 'N'), (u'Ç', 'C')
+        ]
+        for rep in replacements:
+            text = text.replace(rep[0], rep[1])
         text = text.upper()
-
-        #
         # Turn text (probably unicode) into an ASCII (iso-8859-1) string
-        #
         if isinstance(text, (unicode)):
             ascii_string = text.encode('iso-8859-1', 'ignore')
         else:
@@ -103,17 +85,12 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
         if len(ascii_string) > length:
             ascii_string = ascii_string[:length]
         # Format the string
-        #ascii_string = '{0:{1}{2}{3}s}'.format(ascii_string, fill, align,
-        # length) #for python >= 2.6
         if align == '<':
-            ascii_string = str(ascii_string) + \
-            (length-len(str(ascii_string)))*fill
+            ascii_string = ascii_string.ljust(length, fill)
         elif align == '>':
-            ascii_string = (length-len(str(ascii_string)))* \
-            fill + str(ascii_string)
+            ascii_string = ascii_string.rjust(length, fill)
         else:
             assert False, _('Wrong aling option. It should be < or >')
-
         # Sanity-check
         assert len(ascii_string) == length, \
             _("The formated string must match the given length")
