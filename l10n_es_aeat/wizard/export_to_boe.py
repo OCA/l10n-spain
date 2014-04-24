@@ -71,7 +71,7 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
             (u'ì', 'I'), (u'Ò', 'O'), (u'ò', 'O'), (u'Ù', 'U'), (u'ù', 'U'),
             (u'Â', 'A'), (u'â', 'A'), (u'Ê', 'E'), (u'ê', 'E'), (u'Î', 'I'),
             (u'î', 'I'), (u'Ô', 'O'), (u'ô', 'O'), (u'Û', 'U'), (u'û', 'U'),
-            (u'Ñ', 'N'), (u'Ç', 'C')
+            (u'Ñ', 'N'), (u'Ç', 'C'), (u'ñ', 'N'), (u'ç', 'C'),
         ]
         for rep in replacements:
             text = text.replace(rep[0], rep[1])
