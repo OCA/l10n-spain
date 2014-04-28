@@ -27,7 +27,8 @@ import base64
 import time
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT 
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+from unidecode import unidecode
 
 
 class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
@@ -62,25 +63,9 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
         if not text:
             return fill * length
         # Replace accents and convert to upper
-        replacements = [
-            (u'Á', 'A'), (u'á', 'A'), (u'É', 'E'), (u'é', 'E'), (u'Í', 'I'),
-            (u'í', 'I'), (u'Ó', 'O'), (u'ó', 'O'), (u'Ú', 'U'), (u'ú', 'U'),
-            (u'Ä', 'A'), (u'ä', 'A'), (u'Ë', 'E'), (u'ë', 'E'), (u'Ï', 'I'),
-            (u'ï', 'I'), (u'Ö', 'O'), (u'ö', 'O'), (u'Ü', 'U'), (u'ü', 'U'),
-            (u'À', 'A'), (u'à', 'A'), (u'È', 'E'), (u'è', 'E'), (u'Ì', 'I'),
-            (u'ì', 'I'), (u'Ò', 'O'), (u'ò', 'O'), (u'Ù', 'U'), (u'ù', 'U'),
-            (u'Â', 'A'), (u'â', 'A'), (u'Ê', 'E'), (u'ê', 'E'), (u'Î', 'I'),
-            (u'î', 'I'), (u'Ô', 'O'), (u'ô', 'O'), (u'Û', 'U'), (u'û', 'U'),
-            (u'Ñ', 'N'), (u'Ç', 'C'), (u'ñ', 'N'), (u'ç', 'C'),
-        ]
-        for rep in replacements:
-            text = text.replace(rep[0], rep[1])
+        text = unidecode(unicode(text))
         text = text.upper()
-        # Turn text (probably unicode) into an ASCII (iso-8859-1) string
-        if isinstance(text, (unicode)):
-            ascii_string = text.encode('iso-8859-1', 'ignore')
-        else:
-            ascii_string = str(text or '')
+        ascii_string = text.encode('iso-8859-1')
         # Cut the string if it is too long
         if len(ascii_string) > length:
             ascii_string = ascii_string[:length]

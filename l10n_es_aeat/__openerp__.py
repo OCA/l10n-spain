@@ -36,6 +36,9 @@
     'depends' : [
         "account",
         ],
+    'external_dependencies': {
+        'python': ['unidecode'],
+    },
     'description': """
 Módulo base para declaraciones de la AEAT.
     """,
