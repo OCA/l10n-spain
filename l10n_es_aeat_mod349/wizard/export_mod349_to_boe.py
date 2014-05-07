@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
+#    Copyright (C)
+#        2004-2011: Pexego Sistemas Informáticos. (http://pexego.es)
+#        2013:      Top Consultant Software Creations S.L.
+#                   (http://www.topconsultant.es/)
+#        2014:      Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
+#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com> 
 #
-#    Migración OpenERP 7.0. Top Consultant Software Creations S.L. (http://www.topconsultant.es/) 2013
-#        Ignacio Martínez y Miguel López.
+#    Autores originales: Luis Manuel Angueira Blanco (Pexego)
+#                        Omar Castiñeira Saavedra(omar@pexego.es)
+#    Migración OpenERP 7.0: Ignacio Martínez y Miguel López.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,14 +26,10 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-__author__ = "Luis Manuel Angueira Blanco (Pexego)"
-
-
 from openerp.osv import orm
 from openerp.tools.translate import _
 
-class l10n_es_aeat_mod349_export_to_boe(orm.TransientModel):
+class Mod349ExportToBoe(orm.TransientModel):
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = "l10n.es.aeat.mod349.export_to_boe"
     _description = "Export AEAT Model 349 to BOE format"
@@ -40,7 +41,8 @@ class l10n_es_aeat_mod349_export_to_boe(orm.TransientModel):
                 company_obj.partner_id.title.name.capitalize()
         return company_obj.name
 
-    def _get_formated_declaration_record(self, report, context=None):
+    def _get_formatted_declaration_record(self, cr, uid, report,
+                                         context=None):
         """
         Returns a type 1, declaration/company, formated record.
 
@@ -119,8 +121,19 @@ class l10n_es_aeat_mod349_export_to_boe(orm.TransientModel):
         text += 88 * ' '                                                          # Blancos
         text += 13 * ' '                                                          # Sello electrónico
         text += '\r\n'                                                          # Retorno de carro + Salto de línea
-        assert len(text) == 502, _("The type 1 record must be 502 characters long")
+        assert len(text) == 502, \
+                _("The type 1 record must be 502 characters long")
         return text
+
+    def _get_formatted_main_record(self, cr, uid, report, context=None):
+        file_contents = ''
+        for partner_record in report.partner_record_ids:
+            file_contents += self._get_formated_partner_record(report,
+                                            partner_record, context=context)
+        for refund_record in report.partner_refund_ids:
+            file_contents += self._get_formatted_partner_refund(report,
+                                                refund_record, context=context)
+        return file_contents
 
     def _get_formated_partner_record(self, report, partner_record,
                                      context=None):
@@ -161,18 +174,23 @@ class l10n_es_aeat_mod349_export_to_boe(orm.TransientModel):
         company_vat = report.company_vat
         if len(report.company_vat) > 9:
             company_vat = report.company_vat[2:]
-        text += '2'                                                                 # Tipo de registro
-        text += '349'                                                               # Modelo de declaración
-        text += self._formatNumber(fiscal_year, 4)                                  # Ejercicio
-        text += self._formatString(company_vat, 9)                                  # NIF del declarante
-        text += 58 * ' '                                                              # Blancos
-        text += self._formatString(partner_record.partner_vat, 17)                  # NIF del operador intracomunitario
-        text += self._formatString(partner_record.partner_id.name, 40)              # Apellidos y nombre o razón social del operador intracomunitario
-        text += self._formatString(partner_record.operation_key, 1)                 # Clave de operación
-        text += self._formatNumber(partner_record.total_operation_amount, 11, 2)    # Base imponible (parte entera)
-        text += 354 * ' '                                                             # Blancos
-        text += '\r\n'                                                               # Retorno de carro + Salto de línea
-        assert len(text) == 502, _("The type 2 record must be 502 characters long")
+        text += '2' # Tipo de registro
+        text += '349' # Modelo de declaración
+        text += self._formatNumber(fiscal_year, 4) # Ejercicio
+        text += self._formatString(company_vat, 9) # NIF del declarante
+        text += 58 * ' ' # Blancos
+        # NIF del operador intracomunitario
+        text += self._formatString(partner_record.partner_vat, 17)
+        # Apellidos y nombre o razón social del operador intracomunitario
+        text += self._formatString(partner_record.partner_id.name, 40)
+        # Clave de operación
+        text += self._formatString(partner_record.operation_key, 1)
+        # Base imponible (parte entera)
+        text += self._formatNumber(partner_record.total_operation_amount, 11, 2)
+        text += 354 * ' ' # Blancos
+        text += '\r\n' # Retorno de carro + Salto de línea
+        assert len(text) == 502, \
+                _("The type 2 record must be 502 characters long")
         return text
 
     def _get_formatted_partner_refund(self, report, refund_record,
@@ -226,16 +244,3 @@ class l10n_es_aeat_mod349_export_to_boe(orm.TransientModel):
         text += '\r\n'                                                           # Retorno de carro + Salto de línea
         assert len(text) == 502, _("The type 2 record must be 502 characters long")
         return text
-
-    def _get_formated_other_records(self, report, context=None):
-        file_contents = ''
-        for refund_record in report.partner_refund_ids:
-            file_contents += self._get_formatted_partner_refund(report,
-                                                refund_record, context=context)
-        return file_contents
-
-    def _export_boe_file(self, cr, uid, ids, object_to_export,
-                         model=None, context=None):
-        return super(l10n_es_aeat_mod349_export_to_boe,
-                     self)._export_boe_file(cr, uid, ids, object_to_export,
-                                            model='349', context=context)
