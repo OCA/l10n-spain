@@ -36,13 +36,12 @@ La secuencia de empresa por defecto se inicia en NP00101 (prefijo NP y relleno d
     """,
     "license" : "AGPL-3",
     "depends" : ["base","account","l10n_es",],
-    "init_xml" : [],
-    "update_xml" : [
+    "data" : [
         "partner_seq_sequence.xml",
         "wizard/create_accounts_view.xml"
         ],
     "active": False,
-    "installable": False
+    "installable": True,
 }
 
 

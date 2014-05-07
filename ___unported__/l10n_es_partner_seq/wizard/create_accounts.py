@@ -21,7 +21,7 @@
 #
 ##############################################################################
 
-from osv import fields, osv
+from openerp.osv import orm, fields
 from openerp.tools.translate import _
 import string
 
@@ -33,7 +33,7 @@ def strip0i(cadena):
     # Elimina los ceros de la izquierda en una cadena de texto de dígitos
     return str(int(cadena))
 
-class create_accounts(osv.osv_memory):
+class create_accounts(orm.TransientModel):
     """Wizard to create accounts for partners"""
     _name = "account.create.accounts"
     _description = "create accounts wizard"
@@ -71,7 +71,7 @@ class create_accounts(osv.osv_memory):
         if property_ids:
             prop = property_obj.browse(cr, uid, property_ids[0], context)
             if prop.value_reference:
-                code = account_obj.read(cr, uid, prop.value_reference.id, ['code'], context)['code']
+                code = account_obj.read(cr, uid, int(prop.value_reference.split(',')[1]), ['code'], context)['code']
                 num_digits = len(code)
         return num_digits
 
@@ -87,9 +87,9 @@ class create_accounts(osv.osv_memory):
         sequence_obj = self.pool.get('ir.sequence')
 
         account_type_obj = self.pool.get('account.account.type')
-        res_ids = account_type_obj.search(cr, uid, [('code', '=', 'terceros - rec')]) # Busca tipo cuenta de usuario rec
+        res_ids = account_type_obj.search(cr, uid, [('code', '=', 'receivable')]) # Busca tipo cuenta de usuario rec
         acc_user_type_rec = res_ids and res_ids[0]
-        res_ids = account_type_obj.search(cr, uid, [('code', '=', 'terceros - pay')]) # Busca tipo cuenta de usuario pay
+        res_ids = account_type_obj.search(cr, uid, [('code', '=', 'payable')]) # Busca tipo cuenta de usuario pay
         acc_user_type_pay = res_ids and res_ids[0]
         if not acc_user_type_rec or not acc_user_type_pay:
             raise osv.except_osv(_('Error !'), _("Account types with codes 'terceros - rec' and 'terceros - pay' have not been defined!"))

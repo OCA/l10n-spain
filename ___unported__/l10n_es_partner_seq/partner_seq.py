@@ -21,12 +21,12 @@
 #
 ##############################################################################
 
-from osv import osv
+from openerp.osv import orm, fields
 
-class res_partner(osv.osv):
+class res_partner(orm.Model):
     _inherit = 'res.partner'
 
-    def create(self, cr, uid, vals, context={}):
+    def create(self, cr, uid, vals, context=None):
         """Sequence only assigned to customer or supplier partners"""
         try:
             if (not vals['ref'] or not vals['ref'].strip()) and (vals['customer'] or vals['supplier']):
@@ -42,5 +42,3 @@ class res_partner(osv.osv):
             'ref': '',                        
         })
         return super(res_partner, self).copy(cr, uid, ids, default, context=context)
-
-res_partner()
