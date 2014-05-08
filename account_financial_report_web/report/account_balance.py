@@ -72,10 +72,11 @@ class account_balance(report_sxw.rml_parse):
         fiscalyear_obj = self.pool.get('account.fiscalyear')
         fiscalyear = None
 
-        if form.get('fiscalyear'):
-
-            fiscalyear = fiscalyear_obj.browse(self.cr, self.uid, form['fiscalyear'][0])
-
+        if 'fiscalyear' in form:
+            if isinstance(form['fiscalyear'], int):
+                fiscalyear = fiscalyear_obj.browse(self.cr, self.uid, form['fiscalyear'])
+            else:
+                fiscalyear = fiscalyear_obj.browse(self.cr, self.uid, form['fiscalyear'][0])
             return fiscalyear.name or fiscalyear.code
         else:
             fiscalyear = fiscalyear_obj.browse(self.cr, self.uid, fiscalyear_obj.find(self.cr, self.uid))
@@ -89,7 +90,9 @@ class account_balance(report_sxw.rml_parse):
         period_obj = self.pool.get('account.period')
         periods_str = None
         fiscalyear_id = form['fiscalyear'] or fiscalyear_obj.find(self.cr, self.uid)
-        period_ids = period_obj.search(self.cr, self.uid, [('fiscalyear_id','=',fiscalyear_id[0]),('special','=',False)])
+        if isinstance(fiscalyear_id, list):
+            fiscalyear_id = fiscalyear_id[0]
+        period_ids = period_obj.search(self.cr, self.uid, [('fiscalyear_id','=',fiscalyear_id),('special','=',False)])
         if form['state'] in ['byperiod', 'all']:
             period_ids = form['periods']
         periods_str = ', '.join([period.name or period.code for period in period_obj.browse(self.cr, self.uid, period_ids)])
@@ -133,8 +136,11 @@ class account_balance(report_sxw.rml_parse):
 
         # Get the fiscal year
         fiscalyear = None
-        if form.get('fiscalyear'):
-            fiscalyear = fiscalyear_obj.browse(self.cr, self.uid, form['fiscalyear'][0])
+        if 'fiscalyear' in form:
+            if isinstance(form['fiscalyear'], int):
+                fiscalyear = fiscalyear_obj.browse(self.cr, self.uid, form['fiscalyear'])
+            else:
+                fiscalyear = fiscalyear_obj.browse(self.cr, self.uid, form['fiscalyear'][0])
         else:
             fiscalyear = fiscalyear_obj.browse(self.cr, self.uid, fiscalyear_obj.find(self.cr, self.uid))
 
