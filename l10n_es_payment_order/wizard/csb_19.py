@@ -41,12 +41,12 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import orm, fields
 from datetime import datetime
 from openerp.tools.translate import _
 from log import *
 
-class csb_19(osv.osv):
+class csb_19(orm.Model):
     _name = 'csb.19'
     _auto = False
     def _cabecera_presentador_19(self,cr,uid):
@@ -281,4 +281,3 @@ class csb_19(osv.osv):
 
         txt_remesa += self._total_general_19(cr,uid)
         return txt_remesa
-csb_19()

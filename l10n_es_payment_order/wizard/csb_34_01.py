@@ -41,12 +41,12 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import orm, fields
 from datetime import datetime
 from openerp.tools.translate import _
 from log import *
 
-class csb_34_01(osv.osv):
+class csb_34_01(orm.Model):
     _name = 'csb.3401'
     _auto = False
     
@@ -187,5 +187,3 @@ class csb_34_01(osv.osv):
         file += self._totales_nacionales_34(cr, uid, context)
         
         return file
-
-csb_34_01()

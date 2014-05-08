@@ -38,13 +38,13 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import orm, fields
 from datetime import datetime
 from openerp.tools.translate import _
 from log import *
 import time
 
-class csb_34(osv.osv):
+class csb_34(orm.Model):
     _name = 'csb.34'
     _auto = False
 
@@ -398,5 +398,3 @@ class csb_34(osv.osv):
         values = (payment_line_count, record_count)
         file += self._total_general_34(cr, uid, values, context)
         return file
-
-csb_34()

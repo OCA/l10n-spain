@@ -28,11 +28,11 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import orm, fields
 from openerp.tools.translate import _
 from log import *
 
-class payment_converter_spain(osv.osv):
+class payment_converter_spain(orm.Model):
     _name= 'payment.converter.spain'
     _auto = False
 
@@ -108,6 +108,3 @@ class payment_converter_spain(osv.osv):
                 'office': ccc[4:8],
                 'dc': ccc[8:10],
                 'account': ccc[10:]}
-        
-payment_converter_spain()
-

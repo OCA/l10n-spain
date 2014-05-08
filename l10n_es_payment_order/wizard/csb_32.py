@@ -36,12 +36,12 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import orm, fields
 from datetime import datetime
 from openerp.tools.translate import _
 from log import *
 
-class csb_32(osv.osv):
+class csb_32(orm.Model):
     _name = 'csb.32'
     _auto = False
     def _cabecera_fichero_32(self, cr, uid):
@@ -249,5 +249,3 @@ class csb_32(osv.osv):
         txt_remesa += self._registro_fin_remesa_32(cr, uid, context)
         txt_remesa += self._registro_fin_fichero_32(cr, uid, context)
         return txt_remesa
-
-csb_32()

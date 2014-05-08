@@ -7,7 +7,6 @@
 #    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
 #    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    $Id$
 #
 # Corregido para instalación TinyERP estándar 4.2.0: Zikzakmedia S.L. 2008
 #   Jordi Esteve <jesteve@zikzakmedia.com>
@@ -45,7 +44,7 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import orm, fields
 import base64
 from openerp.tools.translate import _
 from log import *
@@ -65,7 +64,7 @@ def _reopen(self, res_id, model):
     }
 
 
-class wizard_payment_file_spain(osv.osv_memory):
+class wizard_payment_file_spain(orm.TransientModel):
     _name = 'wizard.payment.file.spain'
     _columns = {
         'join': fields.boolean('Join payment lines of the same partner and bank account'),
@@ -188,8 +187,3 @@ class wizard_payment_file_spain(osv.osv_memory):
             form_obj.write({'note': log,'attach_id':attach_id})
 
             return _reopen(self, form_obj.id, 'wizard.payment.file.spain')
-wizard_payment_file_spain()
-
-
-
-
