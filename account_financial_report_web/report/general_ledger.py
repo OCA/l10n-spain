@@ -73,8 +73,11 @@ class general_ledger(rml_parse.rml_parse):
 
     def get_fiscalyear(self, form):
         res=[]
-        if form.has_key('fiscalyear'):
-            fisc_id = form['fiscalyear'][0]
+        if 'fiscalyear' in form:
+            if isinstance(form['fiscalyear'], int):
+                fisc_id = form['fiscalyear']
+            else:
+                fisc_id = form['fiscalyear'][0]
             if not (fisc_id):
                 return ''
             self.cr.execute("SELECT name FROM account_fiscalyear WHERE id = %s" , (int(fisc_id),))
@@ -148,7 +151,10 @@ class general_ledger(rml_parse.rml_parse):
         # ctx: Context for the given date or period
         ctx = self.context.copy()
         if 'fiscalyear' in form and form['fiscalyear']:
-            ctx['fiscalyear'] = form['fiscalyear'][0]
+            if isinstance(form['fiscalyear'], int):
+                ctx['fiscalyear'] = form['fiscalyear']
+            else:
+                ctx['fiscalyear'] = form['fiscalyear'][0]
         if form['state'] in ['byperiod', 'all']:
             ctx['periods'] = form['periods']
         if form['state'] in ['bydate', 'all']:
