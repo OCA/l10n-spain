@@ -9,7 +9,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_record_detail_tree" model="ir.ui.view">
             <field name="name">AEAT 349 Partner record detail (tree)</field>
             <field name="model">l10n.es.aeat.mod349.partner_record_detail</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="AEAT 349 Partner record detail">
                     <field name="invoice_id"/>
@@ -23,7 +22,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_record_detail_form" model="ir.ui.view">
             <field name="name">AEAT 349 Partner record detail (form)</field>
             <field name="model">l10n.es.aeat.mod349.partner_record_detail</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="AEAT 349 Partner record">
                     <field name="invoice_id"/>
@@ -40,7 +38,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_record_tree" model="ir.ui.view">
             <field name="name">AEAT 349 Partner record (tree)</field>
             <field name="model">l10n.es.aeat.mod349.partner_record</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="AEAT 349 Partner records" colors="red:partner_record_ok==False">
                     <field name="partner_record_ok" invisible="1"/>
@@ -57,7 +54,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_record_form" model="ir.ui.view">
             <field name="name">AEAT 349 Partner record (form)</field>
             <field name="model">l10n.es.aeat.mod349.partner_record</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="AEAT 349 Partner records">
                     <notebook colspan="4">
@@ -83,7 +79,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_refund_detail_tree" model="ir.ui.view">
             <field name="name">AEAT 349 Partner refund detail (tree)</field>
             <field name="model">l10n.es.aeat.mod349.partner_refund_detail</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="AEAT 349 Partner refund detail">
                     <field name="invoice_id"/>
@@ -97,7 +92,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_refund_detail_form" model="ir.ui.view">
             <field name="name">AEAT 349 Partner refund detail (form)</field>
             <field name="model">l10n.es.aeat.mod349.partner_refund_detail</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="AEAT 349 Partner refund">
                     <field name="invoice_id"/>
@@ -114,7 +108,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_refund_tree" model="ir.ui.view">
             <field name="name">AEAT 349 Partner refund (tree)</field>
             <field name="model">l10n.es.aeat.mod349.partner_refund</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="AEAT 349 Partner refunds" colors="red:partner_refund_ok==False">
                     <field name="partner_refund_ok" invisible="1"/>
@@ -134,7 +127,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_refund_form" model="ir.ui.view">
             <field name="name">AEAT 349 Partner refund (form)</field>
             <field name="model">l10n.es.aeat.mod349.partner_refund</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="AEAT 349 Partner refunds">
                     <notebook>
