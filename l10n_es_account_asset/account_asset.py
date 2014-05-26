@@ -317,8 +317,13 @@ class account_asset_asset(osv.osv):
         period_obj = self.pool.get('account.period')
         depreciation_obj = self.pool.get('account.asset.depreciation.line')
         period = period_obj.browse(cr, uid, period_id, context=context) 
-        depreciation_ids = depreciation_obj.search(cr, uid, [('asset_id', 'in', ids), ('depreciation_date', '>=', period.date_start), ('depreciation_date', '<=', period.date_stop), ('move_check', '=', False)], context=context)
-        return depreciation_obj.create_move(cr, uid, depreciation_ids, context=context)
+        depreciation_ids = depreciation_obj.search(cr, uid, [
+                                ('asset_id', 'in', ids), 
+                                ('depreciation_date', '>=', period.date_start), 
+                                ('depreciation_date', '<=', period.date_stop), 
+                                ('move_check', '=', False)], context=context)
+        return depreciation_obj.create_move(cr, uid, depreciation_ids, 
+                                            context=context)
         
     def create(self, cr, uid, vals, context=None):
         asset_id = super(account_asset_asset, self).create(cr, uid, vals, context=context)
@@ -351,7 +356,6 @@ class account_asset_depreciation_line(osv.osv):
     }
 
     def create_move(self, cr, uid, ids, context=None):
-        can_close = False
         if context is None:
             context = {}
         asset_obj = self.pool.get('account.asset.asset')
@@ -361,6 +365,7 @@ class account_asset_depreciation_line(osv.osv):
         currency_obj = self.pool.get('res.currency')
         created_move_ids = []
         for line in self.browse(cr, uid, ids, context=context):
+            can_close = False
             if currency_obj.is_zero(cr, uid, line.asset_id.currency_id, line.remaining_value):
                 can_close = True
             depreciation_date = line.depreciation_date
