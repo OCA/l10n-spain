@@ -644,11 +644,14 @@ class fiscal_year_closing(osv.osv):
                 #       reconcile option of an account in the future)
                 #
                 netsvc.Logger().notifyChannel('fyc', netsvc.LOG_DEBUG, "Reconcile %s" % move.ref)
-                tmp_context = context.copy()
-                tmp_context['fy_closing'] = True # Fiscal year closing = reconcile everything
                 line_ids = [line.id for line in move.line_id]
-                self.pool.get('account.move.line').reconcile(cr, uid, line_ids, context=tmp_context)
-
+                r_id = self.pool['account.move.reconcile'].create(cr, uid,
+                                            {'type': 'auto', 
+                                             'opening_reconciliation': True})
+                cr.execute("""UPDATE account_move_line 
+                              SET reconcile_id = %s 
+                              WHERE id in %s""",
+                              (r_id, tuple(line_ids),))
             #
             # Close the fiscal year and it's periods
             #
