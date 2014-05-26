@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 #
-#	OpenERP - Account balance reports
-#	Copyright (C) 2009 Pexego Sistemas Informáticos. All Rights Reserved
-#	$Id$
+#   OpenERP - Account balance reports
+#   Copyright (C) 2009 Pexego Sistemas Informáticos. All Rights Reserved
+#   $Id$
 #
-#	This program is free software: you can redistribute it and/or modify
-#	it under the terms of the GNU General Public License as published by
-#	the Free Software Foundation, either version 3 of the License, or
-#	(at your option) any later version.
+#   This program is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
 #
-#	This program is distributed in the hope that it will be useful,
-#	but WITHOUT ANY WARRANTY; without even the implied warranty of
-#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#	GNU General Public License for more details.
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
 #
-#	You should have received a copy of the GNU General Public License
-#	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#   You should have received a copy of the GNU General Public License
+#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 -->
 <!--
@@ -31,14 +31,14 @@ TODO: Los desgloses sugeridos por las NECA están comentados (no se calculan).
 Author: Borja López Soilán (Pexego) - borjals@pexego.es
 -->
 <openerp>
-	<data>
+    <data>
 
-		<record model="account.balance.reporting.template" id="es_pyg_pymes">
-			<field name="name">PÉRDIDAS Y GANANCIAS DE PYMES (PGCE 2008)</field>
-			<field name="type">system</field>
-			<field name="balance_mode">2</field>
-			<field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
-			<field name="description">
+        <record model="account.balance.reporting.template" id="es_pyg_pymes">
+            <field name="name">PÉRDIDAS Y GANANCIAS DE PYMES (PGCE 2008)</field>
+            <field name="type">system</field>
+            <field name="balance_mode">2</field>
+            <field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
+            <field name="description">
 CUENTAS ANUALES - CUENTA DE PÉRDIDAS Y GANANCIAS DE PYMES
 
 Perdidas y Ganancias de PYMES al cierre del ejercicio, según Plan General Contable Español para Pequeñas Y Medianas Empresas, para el depósito de cuentas anuales en el registro mercantil.
@@ -66,248 +66,248 @@ Autor: Borja López Soilán (Pexego) - borjals@pexego.es
 
 Basado en los modelos normalizados de depósito de cuentas anuales del registro mercantil (pymes):
 http://www.mjusticia.gob.es/cs/Satellite/1292342988358?blobheader=application%2Fpdf&amp;blobheadername1=Content-Disposition&amp;blobheadervalue1=attachment%3B+filename%3DPYMES_Castellano_Integrado_Editable.PDF
-			</field>
-		</record>
+            </field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_40100">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">40100</field>
-			<field name="name">1. Importe neto de la cifra de negocios</field>
-			<field name="current_value">700,701,702,703,704,705,(706),(708),(709)</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/01</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_40100">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">40100</field>
+            <field name="name">1. Importe neto de la cifra de negocios</field>
+            <field name="current_value">700,701,702,703,704,705,(706),(708),(709)</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/01</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_40200">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">40200</field>
-			<field name="name">2. Variación de existencias de productos terminados y en curso de fabricación</field>
-			<field name="current_value">(6930),71*,7930</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/02</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_40200">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">40200</field>
+            <field name="name">2. Variación de existencias de productos terminados y en curso de fabricación</field>
+            <field name="current_value">(6930),71*,7930</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/02</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_40300">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">40300</field>
-			<field name="name">3. Trabajos realizados por la empresa para su activo</field>
-			<field name="current_value">73</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/03</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_40300">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">40300</field>
+            <field name="name">3. Trabajos realizados por la empresa para su activo</field>
+            <field name="current_value">73</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/03</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_40400">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">40400</field>
-			<field name="name">4. Aprovisionamientos</field>
-			<field name="current_value">(600),(601),(602),606,(607),608,609,61*,(6931),(6932),(6933),7931,7932,7933</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/04</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_40400">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">40400</field>
+            <field name="name">4. Aprovisionamientos</field>
+            <field name="current_value">(600),(601),(602),606,(607),608,609,61*,(6931),(6932),(6933),7931,7932,7933</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/04</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_40500">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">40500</field>
-			<field name="name">5. Otros ingresos de explotación</field>
-			<field name="current_value">740,747,75</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/05</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_40500">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">40500</field>
+            <field name="name">5. Otros ingresos de explotación</field>
+            <field name="current_value">740,747,75</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/05</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_40600">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">40600</field>
-			<field name="name">6. Gastos de personal</field>
-			<field name="current_value">(64)</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/06</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_40600">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">40600</field>
+            <field name="name">6. Gastos de personal</field>
+            <field name="current_value">(64)</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/06</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_40700">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">40700</field>
-			<field name="name">7. Otros gastos de explotación </field>
-			<field name="current_value">(62),(631),(634),636,639,(65),(694),(695),794,7954</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/07</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_40700">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">40700</field>
+            <field name="name">7. Otros gastos de explotación </field>
+            <field name="current_value">(62),(631),(634),636,639,(65),(694),(695),794,7954</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/07</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_40800">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">40800</field>
-			<field name="name">8. Amortización del inmovilizado</field>
-			<field name="current_value">(68)</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/08</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_40800">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">40800</field>
+            <field name="name">8. Amortización del inmovilizado</field>
+            <field name="current_value">(68)</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/08</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_40900">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">40900</field>
-			<field name="name">9. Imputación de subvenciones de inmovilizado no financiero y otras</field>
-			<field name="current_value">746</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/09</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_40900">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">40900</field>
+            <field name="name">9. Imputación de subvenciones de inmovilizado no financiero y otras</field>
+            <field name="current_value">746</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/09</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_41000">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">41000</field>
-			<field name="name">10. Excesos de provisiones</field>
-			<field name="current_value">7951,7952,7955</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/10</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_41000">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">41000</field>
+            <field name="name">10. Excesos de provisiones</field>
+            <field name="current_value">7951,7952,7955</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/10</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_41100">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">41100</field>
-			<field name="name">11. Deterioro y resultado por enajenaciones del inmovilizado</field>
-			<field name="current_value">(670),(671),(672),(690),(691),(692),770,771,772,790,791,792</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/11</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_41100">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">41100</field>
+            <field name="name">11. Deterioro y resultado por enajenaciones del inmovilizado</field>
+            <field name="current_value">(670),(671),(672),(690),(691),(692),770,771,772,790,791,792</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/11</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_41300">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">41300</field>
-			<field name="name">12. Otros resultados</field>
-			<field name="current_value">(678),778;NECA 6.a 6</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/12</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_41300">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">41300</field>
+            <field name="name">12. Otros resultados</field>
+            <field name="current_value">(678),778;NECA 6.a 6</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/12</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_49100">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">49100</field>
-			<field name="name">A) RESULTADO DE EXPLOTACIÓN (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12)</field>
-			<field name="current_value">40100+40200+40300+40400+40500+40600+40700+40800+40900+40000+41100+41300</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/13</field>
-			<field name="css_class">l1</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_49100">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">49100</field>
+            <field name="name">A) RESULTADO DE EXPLOTACIÓN (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12)</field>
+            <field name="current_value">40100+40200+40300+40400+40500+40600+40700+40800+40900+40000+41000+41100+41300</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/13</field>
+            <field name="css_class">l1</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_41400">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">41400</field>
-			<field name="name">13. Ingresos financieros</field>
-			<field name="current_value"></field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/14</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_41400">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">41400</field>
+            <field name="name">13. Ingresos financieros</field>
+            <field name="current_value"></field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/14</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_41430">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">41430</field>
-			<field name="name">a) Imputación de subvenciones, donaciones y legados de carácter financiero</field>
-			<field name="current_value">746;NECA 6.a 4</field>
-			<field name="parent_id" ref="es_pyg_pymes_41400"/>
-			<field name="sequence">PP/15</field>
-			<field name="css_class">l5</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_41430">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">41430</field>
+            <field name="name">a) Imputación de subvenciones, donaciones y legados de carácter financiero</field>
+            <field name="current_value">746;NECA 6.a 4</field>
+            <field name="parent_id" ref="es_pyg_pymes_41400"/>
+            <field name="sequence">PP/15</field>
+            <field name="css_class">l5</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_41490">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">41490</field>
-			<field name="name">b) Otros ingresos financieros</field>
-			<field name="current_value">760,761,762,769</field>
-			<field name="parent_id" ref="es_pyg_pymes_41400"/>
-			<field name="sequence">PP/16</field>
-			<field name="css_class">l5</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_41490">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">41490</field>
+            <field name="name">b) Otros ingresos financieros</field>
+            <field name="current_value">760,761,762,769</field>
+            <field name="parent_id" ref="es_pyg_pymes_41400"/>
+            <field name="sequence">PP/16</field>
+            <field name="css_class">l5</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_41500">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">41500</field>
-			<field name="name">14. Gastos financieros</field>
-			<field name="current_value">(660),(661),(662),(664),(665),(669)</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/17</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_41500">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">41500</field>
+            <field name="name">14. Gastos financieros</field>
+            <field name="current_value">(660),(661),(662),(664),(665),(669)</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/17</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_41600">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">41600</field>
-			<field name="name">15. Variación de valor razonable en instrumentos financieros</field>
-			<field name="current_value">(663),763</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/18</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_41600">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">41600</field>
+            <field name="name">15. Variación de valor razonable en instrumentos financieros</field>
+            <field name="current_value">(663),763</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/18</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_41700">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">41700</field>
-			<field name="name">16. Diferencias de cambio</field>
-			<field name="current_value">(668),768</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/19</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_41700">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">41700</field>
+            <field name="name">16. Diferencias de cambio</field>
+            <field name="current_value">(668),768</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/19</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_41800">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">41800</field>
-			<field name="name">17. Deterioro y resultado por enajenaciones de instrumentos financieros</field>
-			<field name="current_value">(666),(667),(673),(675),(696),(697),(698),(699),766,773,775,796,797,798,799</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/20</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_41800">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">41800</field>
+            <field name="name">17. Deterioro y resultado por enajenaciones de instrumentos financieros</field>
+            <field name="current_value">(666),(667),(673),(675),(696),(697),(698),(699),766,773,775,796,797,798,799</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/20</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_49200">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">49200</field>
-			<field name="name">B) RESULTADO FINANCIERO (13 + 14 + 15 + 16 + 17)</field>
-			<field name="current_value">41400+41500+41600+41700+41800</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/21</field>
-			<field name="css_class">l1</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_49200">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">49200</field>
+            <field name="name">B) RESULTADO FINANCIERO (13 + 14 + 15 + 16 + 17)</field>
+            <field name="current_value">41400+41500+41600+41700+41800</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/21</field>
+            <field name="css_class">l1</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_49300">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">49300</field>
-			<field name="name">C) RESULTADO ANTES DE IMPUESTOS (A + B)</field>
-			<field name="current_value">49100+49200</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/22</field>
-			<field name="css_class">l1</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_49300">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">49300</field>
+            <field name="name">C) RESULTADO ANTES DE IMPUESTOS (A + B)</field>
+            <field name="current_value">49100+49200</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/22</field>
+            <field name="css_class">l1</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_41900">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">41900</field>
-			<field name="name">18. Impuestos sobre beneficios</field>
-			<field name="current_value">(6300)*,6301*,(633),638</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/23</field>
-			<field name="css_class">l3</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_41900">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">41900</field>
+            <field name="name">18. Impuestos sobre beneficios</field>
+            <field name="current_value">(6300)*,6301*,(633),638</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/23</field>
+            <field name="css_class">l3</field>
+        </record>
 
-		<record model="account.balance.reporting.template.line" id="es_pyg_pymes_49500">
-			<field name="report_id" ref="es_pyg_pymes"/>
-			<field name="code">49500</field>
-			<field name="name">D) RESULTADO DEL EJERCICIO (C + 18)</field>
-			<field name="current_value">49300+41900</field>
-			<field name="parent_id" ref=""/>
-			<field name="sequence">PP/24</field>
-			<field name="css_class">l1</field>
-		</record>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymes_49500">
+            <field name="report_id" ref="es_pyg_pymes"/>
+            <field name="code">49500</field>
+            <field name="name">D) RESULTADO DEL EJERCICIO (C + 18)</field>
+            <field name="current_value">49300+41900</field>
+            <field name="parent_id" ref=""/>
+            <field name="sequence">PP/24</field>
+            <field name="css_class">l1</field>
+        </record>
 
-	</data>
+    </data>
 </openerp>
