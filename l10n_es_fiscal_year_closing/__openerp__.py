@@ -67,6 +67,7 @@ user can cancel and undo the operations easily.
     "update_xml" : [
                     "wizard/wizard_run_view.xml",
                     "security/ir.model.access.csv",
+                    "security/security.xml",
                     "fyc_workflow.xml",
                     "fyc_view.xml",
                     "hide_account_wizards.xml",
