@@ -19,7 +19,10 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
-from openerp.addons.account.report.account_tax_report import tax_report 
+try:
+    from openerp.addons.account.report.report_vat import tax_report
+except:
+    from openerp.addons.account.report.account_tax_report import tax_report
 
 class l10n_es_aeat_mod303_report(orm.Model):
     _inherit = "l10n.es.aeat.report"
