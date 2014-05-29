@@ -57,9 +57,7 @@ Exportación de asientos resumen de facturas
                  'account_refund_original',
                  'account_chart_update',
                  ],
-    'init_xml' : [],
-    'demo_xml' : [],
-    'update_xml' : [
+    'data' : [
         'report/report_view.xml',
         'wizard/export_mod340_to_boe.xml',
         'mod340_view.xml',
@@ -70,8 +68,7 @@ Exportación de asientos resumen de facturas
         'account_invoice_view.xml',
         'account_view.xml',
         'taxes_data.xml',
-        'taxes_data_pymes.xml',
-        'taxes_data_assoc.xml'],
+    ],
     'installable' : True,
     'active' : False,
 }

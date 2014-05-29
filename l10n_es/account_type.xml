@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
+    
+    <!-- Actualizar método de cierre de tipos de cuenta estándar -->
+    
     <data noupdate="1">
-        <record id="account.data_account_type_income" model="account.account.type">
+        <record id="account.data_account_type_income"
+            model="account.account.type">
             <field name="name">Income</field>
             <field name="close_method">balance</field>
         </record>
-        <record id="account.data_account_type_expense" model="account.account.type">
+        <record id="account.data_account_type_expense"
+            model="account.account.type">
             <field name="name">Expense</field>
             <field name="close_method">balance</field>
         </record>
-        <!-- Tipos de cuenta para PGCE y PGCE PYMES -->
+    </data>
+    
+    <!-- Tipos de cuenta nuevos -->
+    
+    <data noupdate="0">
         <record id="account_type_capital" model="account.account.type">
             <field name="name">Capital</field>
             <field name="code">capital</field>
@@ -33,11 +42,6 @@
             <field name="code">terceros</field>
             <field name="close_method">balance</field>
         </record>
-        <record id="account_type_tax" model="account.account.type">
-            <field name="name">Impuestos</field>
-            <field name="code">tax</field>
-            <field name="close_method">unreconciled</field>
-        </record>
         <record id="account_type_financieras" model="account.account.type">
             <field name="name">Financieras</field>
             <field name="code">financieras</field>
@@ -55,6 +59,6 @@
             <field name="report_type">income</field>
             <field name="close_method">balance</field>
         </record>
-
     </data>
+    
 </openerp>
