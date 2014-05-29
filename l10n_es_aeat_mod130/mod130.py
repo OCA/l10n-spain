@@ -19,7 +19,6 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
-from openerp.addons.account.report.account_tax_report import tax_report 
 
 def trunc(f, n):
     slen = len('%.*f' % (n, f))
