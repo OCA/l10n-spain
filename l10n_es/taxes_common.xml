@@ -28,9 +28,15 @@
         Eliminación IRPFs obsoletos 18% y 19%
         Eliminación recargos de equivalencia obsoletos 1% y 4%
 
+        Pablo Cayuela (Aserti Global Solutions) - soporte@aserti.com (2014-04-01)
+        Añadido 12% IVA Soportado régimen agricultura
+        Añadidos impuestos de importación intracomunitaria de servicios
+        Aumentada la secuencia del IRPF 2% para que en caso de acompañar al
+        IVA agrario se compute incluyendo en la base el IVA
+
         -->
 
-        <!-- IVA soportado -->
+        <!-- IVA SOPORTADO -->
 
         <record id="iva_sop_4" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
@@ -108,6 +114,26 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
+        <record id="iva_sop_12_agr" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_common"/>
+            <field name="description">12% IVA Soportado régimen agricultura</field>
+            <field name="name">P_IVA12_AGR</field>
+            <field eval="0.12" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_472_child"/>
+            <field name="account_paid_id" ref="pgc_472_child"/>
+            <field name="base_code_id" ref="base_sop_agr"/>
+            <field name="tax_code_id" ref="iva_ded_34"/>
+            <field name="ref_base_code_id" ref="base_sop_agr"/>
+            <field name="ref_tax_code_id" ref="iva_ded_34"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+            <field eval="1" name="include_base_amount"/>
+        </record>
+
         <record id="iva_sop_21" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">21% IVA Soportado (operaciones corrientes)</field>
@@ -147,8 +173,9 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-        <!-- Plantillas para Extracomunitario-->
-        <!-- IVA compras -->
+        <!-- EXTRACOMUNITARIO-->
+        
+        <!-- Compras -->
         <record id="iva_X0_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">IVA 0% Importaciones bienes corrientes</field>
@@ -289,7 +316,8 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-        <!-- IVA EXPORTACIONES (VENTAS )-->
+        <!-- Ventas -->
+
         <record id="iva_X0" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">IVA 0% Exportaciones</field>
@@ -302,11 +330,12 @@
             <field name="type_tax_use">sale</field>
         </record>
 
-        <!-- Inversión del sujeto pasivo -->
+        <!-- INVERSIÓN DEL SUJETO PASIVO -->
+
         <record id="iva_ISP_compras_21" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">IVA 21% Inversión del sujeto pasivo</field>
-            <field name="name">S_IVA21_SP</field>
+            <field name="name">P_IVA21_SP</field>
             <field name="amount" eval="1.00"/>
             <field name="type">percent</field>
             <field name="child_depend" eval="1"/>
@@ -319,7 +348,7 @@
         <record id="iva_ISP_compras_21_1" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">IVA 21% Inversión del sujeto pasivo (1)</field>
-            <field name="name">S_IVA21_SP_1</field>
+            <field name="name">P_IVA21_SP_1</field>
             <field name="parent_id" ref="iva_ISP_compras_21"/>
             <field name="amount" eval="0.00"/>
             <field name="type">percent</field>
@@ -334,7 +363,7 @@
         <record id="iva_ISP_compras_21_2" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">IVA 21% Inversión del sujeto pasivo (2)</field>
-            <field name="name">S_IVA21_SP_2</field>
+            <field name="name">P_IVA21_SP_2</field>
             <field name="parent_id" ref="iva_ISP_compras_21"/>
             <field name="amount" eval="-0.21"/>
             <field name="type">percent</field>
@@ -353,7 +382,7 @@
         <record id="iva_ISP_compras_21_3" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">IVA 21% Inversión del sujeto pasivo (3)</field>
-            <field name="name">S_IVA21_SP_3</field>
+            <field name="name">P_IVA21_SP_3</field>
             <field name="parent_id" ref="iva_ISP_compras_21"/>
             <field name="amount" eval="0.21"/>
             <field name="type">percent</field>
@@ -371,6 +400,7 @@
         </record>
 
         <!-- IVA REPERCUTIDO-->
+
         <record id="iva_rep_4" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">IVA 4%</field>
@@ -429,7 +459,8 @@
             <field eval="0" name="sequence"/>
         </record>
 
-        <!-- Plantillas para recargo de equivalencia-->
+        <!-- RECARGO DE EQUIVALENCIA -->
+
         <record id="re_05" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">0.50% Recargo Equivalencia Ventas</field>
@@ -546,7 +577,8 @@
 
         <!-- OPERACIONES INTRACOMUNITARIAS -->
 
-        <!-- VENTAS -->
+        <!-- Ventas -->
+
         <record id="iva_IO" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">IVA 0% Intracomunitario</field>
@@ -560,7 +592,7 @@
             <field name="type_tax_use">sale</field>
         </record>
 
-        <!-- COMPRAS -->
+        <!-- Compras -->
 
         <record id="iva_IC_compras_4_bc" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
@@ -832,20 +864,54 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-        <record id="iva_sop_ex" model="account.tax.template">
+        <record id="iva_IC_compras_21_sv" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA Soportado exento (operaciones corrientes)</field>
-            <field name="name">P_IVA0_BC</field>
-            <field eval="0.0" name="amount"/>
+            <field name="description">IVA 21% Intracomunitario. Servicios</field>
+            <field name="name">P_IVA21_IC_SV</field>
+            <field eval="1.00" name="amount"/>
             <field name="type">percent</field>
-            <field eval="1.0" name="tax_sign"/>
-            <field eval="1.0" name="base_sign"/>
-            <field name="base_code_id" ref="base_sop_ex"/>
-            <field name="ref_base_code_id" ref="base_sop_ex"/>
-            <field eval="-1.0" name="ref_tax_sign"/>
-            <field eval="-1.0" name="ref_base_sign"/>
+            <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        <record id="iva_IC_compras_21_sv_1" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_common"/>
+            <field name="parent_id" ref="iva_IC_compras_21_sv"/>
+            <field name="description">IVA 21% Intracomunitario. Servicios (1)</field>
+            <field name="name">P_IVA21_IC_SV_1</field>
+            <field eval="0.21" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_472_child"/>
+            <field name="account_collected_id" ref="pgc_472_child"/>
+            <field name="base_code_id" ref="iva_ded_30_21"/>
+            <field name="tax_code_id" ref="iva_dev_20"/>
+            <field name="ref_base_code_id" ref="iva_ded_30_21"/>
+            <field name="ref_tax_code_id" ref="iva_dev_20"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+        <record id="iva_IC_compras_21_sv_2" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_common"/>
+            <field name="parent_id" ref="iva_IC_compras_21_sv"/>
+            <field name="description">IVA 21% Intracomunitario. Servicios (2)</field>
+            <field name="name">P_IVA21_IC_SV_2</field>
+            <field eval="-0.21" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_paid_id" ref="pgc_477_child"/>
+            <field name="account_collected_id" ref="pgc_477_child"/>
+            <field name="base_code_id" ref="iva_dev_19"/>
+            <field name="tax_code_id" ref="iva_ded_31_21"/>
+            <field eval="-1.0" name="tax_sign"/>
+            <field name="ref_base_code_id" ref="iva_dev_19"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="ref_tax_code_id" ref="iva_ded_31_21"/>
+            <field eval="1.0" name="ref_tax_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
+        <!-- OPERACIONES EXENTAS -->
+
+        <!-- Ventas -->
 
         <record id="iva_rep_ex" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
@@ -860,6 +926,23 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
+        </record>
+
+        <!-- Compras -->
+
+        <record id="iva_sop_ex" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_common"/>
+            <field name="description">IVA Soportado exento (operaciones corrientes)</field>
+            <field name="name">P_IVA0_BC</field>
+            <field eval="0.0" name="amount"/>
+            <field name="type">percent</field>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field name="base_code_id" ref="base_sop_ex"/>
+            <field name="ref_base_code_id" ref="base_sop_ex"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
         </record>
 
         <!-- RETENCIONES DE IRPF -->
@@ -880,7 +963,7 @@
         <record id="irpf_1" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">Retenciones IRPF 1%</field>
-            <field name="name">S_IRPF1</field>
+            <field name="name">P_IRPF1</field>
             <field eval="-0.01" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_4751_child"/>
@@ -899,7 +982,7 @@
         <record id="irpf_2" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">Retenciones IRPF 2%</field>
-            <field name="name">S_IRPF2</field>
+            <field name="name">P_IRPF2</field>
             <field eval="-0.02" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_4751_child"/>
@@ -913,31 +996,13 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
-        </record>
-
-        <record id="irpf_9" model="account.tax.template">
-            <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">Retenciones IRPF 9%</field>
-            <field name="name">S_IRPF9</field>
-            <field eval="-0.09" name="amount"/>
-            <field name="type">percent</field>
-            <field name="account_collected_id" ref="pgc_4751_child"/>
-            <field name="account_paid_id" ref="pgc_4751_child"/>
-            <field name="base_code_id" ref="irpf_base_9"/>
-            <field name="tax_code_id" ref="irpf_cuota_9"/>
-            <field name="ref_base_code_id" ref="irpf_base_9"/>
-            <field name="ref_tax_code_id" ref="irpf_cuota_9"/>
-            <field eval="1.0" name="tax_sign"/>
-            <field eval="1.0" name="base_sign"/>
-            <field eval="-1.0" name="ref_tax_sign"/>
-            <field eval="-1.0" name="ref_base_sign"/>
-            <field name="type_tax_use">purchase</field>
+            <field eval="50" name="sequence"/>
         </record>
 
         <record id="irpf_7" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">Retenciones IRPF 7%</field>
-            <field name="name">S_IRPF7</field>
+            <field name="name">P_IRPF7</field>
             <field eval="-0.07" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_4751_child"/>
@@ -953,10 +1018,29 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
+        <record id="irpf_9" model="account.tax.template">
+            <field name="chart_template_id" ref="account_chart_template_common"/>
+            <field name="description">Retenciones IRPF 9%</field>
+            <field name="name">P_IRPF9</field>
+            <field eval="-0.09" name="amount"/>
+            <field name="type">percent</field>
+            <field name="account_collected_id" ref="pgc_4751_child"/>
+            <field name="account_paid_id" ref="pgc_4751_child"/>
+            <field name="base_code_id" ref="irpf_base_9"/>
+            <field name="tax_code_id" ref="irpf_cuota_9"/>
+            <field name="ref_base_code_id" ref="irpf_base_9"/>
+            <field name="ref_tax_code_id" ref="irpf_cuota_9"/>
+            <field eval="1.0" name="tax_sign"/>
+            <field eval="1.0" name="base_sign"/>
+            <field eval="-1.0" name="ref_tax_sign"/>
+            <field eval="-1.0" name="ref_base_sign"/>
+            <field name="type_tax_use">purchase</field>
+        </record>
+
         <record id="irpf_15" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">Retenciones IRPF 15%</field>
-            <field name="name">S_IRPF15</field>
+            <field name="name">P_IRPF15</field>
             <field eval="-0.15" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_4751_child"/>
@@ -975,7 +1059,7 @@
         <record id="irpf_20" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">Retenciones IRPF 20%</field>
-            <field name="name">S_IRPF20</field>
+            <field name="name">P_IRPF20</field>
             <field eval="-0.20" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_4751_child"/>
@@ -994,7 +1078,7 @@
         <record id="irpf_21" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">Retenciones IRPF 21%</field>
-            <field name="name">S_IRPF21</field>
+            <field name="name">P_IRPF21</field>
             <field eval="-0.21" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_4751_child"/>
@@ -1016,7 +1100,7 @@
         <record id="irpf_sale_1" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">Retenciones a cuenta IRPF 1%</field>
-            <field name="name">S_IRPF1_C</field>
+            <field name="name">S_IRPF1</field>
             <field eval="-0.01" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_473_child"/>
@@ -1035,7 +1119,7 @@
         <record id="irpf_sale_2" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">Retenciones a cuenta IRPF 2%</field>
-            <field name="name">S_IRPF2_C</field>
+            <field name="name">S_IRPF2</field>
             <field eval="-0.02" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_473_child"/>
@@ -1054,7 +1138,7 @@
         <record id="irpf_sale_7" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">Retenciones a cuenta IRPF 7%</field>
-            <field name="name">S_IRPF7_C</field>
+            <field name="name">S_IRPF7</field>
             <field eval="-0.07" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_473_child"/>
@@ -1073,7 +1157,7 @@
         <record id="irpf_sale_9" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">Retenciones a cuenta IRPF 9%</field>
-            <field name="name">S_IRPF9_C</field>
+            <field name="name">S_IRPF9</field>
             <field eval="-0.09" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_473_child"/>
@@ -1092,7 +1176,7 @@
         <record id="irpf_sale_15" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">Retenciones a cuenta IRPF 15%</field>
-            <field name="name">S_IRPF15_C</field>
+            <field name="name">S_IRPF15</field>
             <field eval="-0.15" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_473_child"/>
@@ -1111,7 +1195,7 @@
         <record id="irpf_sale_20" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">Retenciones a cuenta IRPF 20%</field>
-            <field name="name">S_IRPF20_C</field>
+            <field name="name">S_IRPF20</field>
             <field eval="-0.20" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_473_child"/>
@@ -1130,7 +1214,7 @@
         <record id="irpf_sale_21" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="description">Retenciones a cuenta IRPF 21%</field>
-            <field name="name">S_IRPF21_C</field>
+            <field name="name">S_IRPF21</field>
             <field eval="-0.21" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_473_child"/>

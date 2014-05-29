@@ -12,6 +12,11 @@
         Eliminación IRPFs obsoletos 18% y 19%
         Eliminación recargos de equivalencia obsoletos 1% y 4%
 
+        Pablo Cayuela (Aserti Global Solutions) - soporte@aserti.com (2014-04-01)
+        Añadidos códigos para el IVA agrario
+        Cambio en los nombres para reflejar que los antiguos códigos de
+        adquisiciones intracomunitarias de bienes incluyen también servicios
+
         -->
 
         <record id="vat_code_chart_root" model="account.tax.code.template">
@@ -160,6 +165,14 @@
             <field name="parent_id" ref="vat_code_chart_root"/>
         </record>
 
+        <!-- Base en REGIMEN ESPECIAL A., G. y P. -->
+        <record id="base_sop_agr" model="account.tax.code.template">
+            <field name="name">Base de compensaciones Régimen Especial A., G. y P. 12%</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_ded_base_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <!-- Base en OPERACIONES INTERIORES CORRIENTES-->
         <record id="iva_ded_22" model="account.tax.code.template">
             <field name="name">Base operaciones interiores corrientes</field>
@@ -214,25 +227,25 @@
 
         <!-- Base EN LAS IMPORTACIONES DE BIENES CORRIENTES-->
         <record id="iva_ded_26" model="account.tax.code.template">
-            <field name="name">Base importaciones bienes corrientes</field>
+            <field name="name">Base importaciones bienes y servicios corrientes</field>
             <field name="code">[26]</field>
             <field name="parent_id" ref="iva_ded_base_total"/>
             <field name="sign">1.0</field>
         </record>
         <record id="iva_ded_26_4" model="account.tax.code.template">
-            <field name="name">Base importaciones bienes corrientes (4%)</field>
+            <field name="name">Base importaciones bienes y servicios corrientes (4%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_26"/>
             <field name="sign">1.0</field>
         </record>
         <record id="iva_ded_26_10" model="account.tax.code.template">
-            <field name="name">Base importaciones bienes corrientes (10%)</field>
+            <field name="name">Base importaciones bienes y servicios corrientes (10%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_26"/>
             <field name="sign">1.0</field>
         </record>
         <record id="iva_ded_26_21" model="account.tax.code.template">
-            <field name="name">Base importaciones bienes corrientes (21%)</field>
+            <field name="name">Base importaciones bienes y servicios corrientes (21%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_26"/>
             <field name="sign">1.0</field>
@@ -266,25 +279,25 @@
 
         <!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES CORRIENTES-->
         <record id="iva_ded_30" model="account.tax.code.template">
-            <field name="name">Base adquisiciones intracomunitarias bienes corrientes</field>
+            <field name="name">Base adquisiciones intracomunitarias bienes y servicios corrientes</field>
             <field name="code">[30]</field>
             <field name="parent_id" ref="iva_ded_base_total"/>
             <field name="sign">1.0</field>
         </record>
         <record id="iva_ded_30_4" model="account.tax.code.template">
-            <field name="name">Base adquisiciones intracomunitarias bienes corrientes (4%)</field>
+            <field name="name">Base adquisiciones intracomunitarias bienes y servicios corrientes (4%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_30"/>
             <field name="sign">1.0</field>
         </record>
         <record id="iva_ded_30_10" model="account.tax.code.template">
-            <field name="name">Base adquisiciones intracomunitarias bienes corrientes (10%)</field>
+            <field name="name">Base adquisiciones intracomunitarias bienes y servicios corrientes (10%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_30"/>
             <field name="sign">1.0</field>
         </record>
         <record id="iva_ded_30_21" model="account.tax.code.template">
-            <field name="name">Base adquisiciones intracomunitarias bienes corrientes (21%)</field>
+            <field name="name">Base adquisiciones intracomunitarias bienes y servicios corrientes (21%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_30"/>
             <field name="sign">1.0</field>
@@ -346,6 +359,14 @@
             <field name="sign">1.0</field>
         </record>
 
+        <!-- Cuotas en REGIMEN ESPECIAL A., G. y P. -->
+        <record id="iva_ded_34" model="account.tax.code.template">
+            <field name="name">Compensaciones Régimen Especial A., G. y P. 12%</field>
+            <field name="code">34</field>
+            <field name="parent_id" ref="iva_ded_cuota_total"/>
+            <field name="sign">1.0</field>
+        </record>
+
         <!-- Cuotas en OPERACIONES INTERIORES CORRIENTES-->
         <record id="iva_ded_23" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores corrientes</field>
@@ -400,25 +421,25 @@
 
         <!-- Cuotas devengadas EN LAS IMPORTACIONES DE BIENES CORRIENTES-->
         <record id="iva_ded_27" model="account.tax.code.template">
-            <field name="name">Cuotas devengadas importaciones bienes corrientes</field>
+            <field name="name">Cuotas devengadas importaciones bienes y servicios corrientes</field>
             <field name="code">[27]</field>
             <field name="parent_id" ref="iva_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
         <record id="iva_ded_27_4" model="account.tax.code.template">
-            <field name="name">Cuotas devengadas importaciones bienes corrientes (4%)</field>
+            <field name="name">Cuotas devengadas importaciones bienes y servicios corrientes (4%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_27"/>
             <field name="sign">1.0</field>
         </record>
         <record id="iva_ded_27_10" model="account.tax.code.template">
-            <field name="name">Cuotas devengadas importaciones bienes corrientes (10%)</field>
+            <field name="name">Cuotas devengadas importaciones bienes y servicios corrientes (10%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_27"/>
             <field name="sign">1.0</field>
         </record>
         <record id="iva_ded_27_21" model="account.tax.code.template">
-            <field name="name">Cuotas devengadas importaciones bienes corrientes (21%)</field>
+            <field name="name">Cuotas devengadas importaciones bienes y servicios corrientes (21%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_27"/>
             <field name="sign">1.0</field>
@@ -451,25 +472,25 @@
         </record>
         <!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES CORRIENTES-->
         <record id="iva_ded_31" model="account.tax.code.template">
-            <field name="name">En adquisiciones intracomunitarias bienes corrientes</field>
+            <field name="name">En adquisiciones intracomunitarias bienes y servicios corrientes</field>
             <field name="code">[31]</field>
             <field name="parent_id" ref="iva_ded_cuota_total"/>
             <field name="sign">1.0</field>
         </record>
         <record id="iva_ded_31_4" model="account.tax.code.template">
-            <field name="name">En adquisiciones intracomunitarias bienes corrientes (4%)</field>
+            <field name="name">En adquisiciones intracomunitarias bienes y servicios corrientes (4%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_31"/>
             <field name="sign">1.0</field>
         </record>
         <record id="iva_ded_31_10" model="account.tax.code.template">
-            <field name="name">En adquisiciones intracomunitarias bienes corrientes (10%)</field>
+            <field name="name">En adquisiciones intracomunitarias bienes y servicios corrientes (10%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_31"/>
             <field name="sign">1.0</field>
         </record>
         <record id="iva_ded_31_21" model="account.tax.code.template">
-            <field name="name">En adquisiciones intracomunitarias bienes corrientes (21%)</field>
+            <field name="name">En adquisiciones intracomunitarias bienes y servicios corrientes (21%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="iva_ded_31"/>
             <field name="sign">1.0</field>

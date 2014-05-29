@@ -3272,7 +3272,7 @@
             <field name="code">401</field>
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_401"/>
-            <field name="type">other</field>
+            <field name="type">payable</field>
             <field name="name">Proveedores, efectos comerciales a pagar</field>
             <field name="user_type" ref="account.data_account_type_payable"/>
         </record>
@@ -5058,15 +5058,15 @@
             <field name="parent_id" ref="pgc_52"/>
             <field name="type">view</field>
             <field name="name">Proveedores de inmovilizado a corto plazo</field>
-            <field name="user_type" ref="l10n_es.account_type_financieras"/>
+            <field name="user_type" ref="account.data_account_type_payable"/>
         </record>
         <record id="pgc_523_child" model="account.account.template">
             <field name="code">523</field>
-            <field name="reconcile" eval="False"/>
+            <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="pgc_523"/>
-            <field name="type">other</field>
+            <field name="type">payable</field>
             <field name="name">Proveedores de inmovilizado a corto plazo</field>
-            <field name="user_type" ref="l10n_es.account_type_financieras"/>
+            <field name="user_type" ref="account.data_account_type_payable"/>
         </record>
         <record id="pgc_524" model="account.account.template">
             <field name="code">524</field>
