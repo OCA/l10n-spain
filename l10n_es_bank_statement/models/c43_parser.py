@@ -1,6 +1,15 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
+#    Copyright (c) All rights reserved:
+#        2009      Zikzakmedia S.L. (http://zikzakmedia.com)
+#                       Jordi Esteve <jesteve@zikzakmedia.com>
+#        2010      Pexego Sistemas Informáticos
+#                       Borja López Soilán <borjals@pexego.es>
+#                       Alberto Luengo Cabanillas <alberto@pexego.es>
+#        2013-2014 Servicios Tecnológicos Avanzados (http://serviciosbaeza.com)
+#                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
 #    by the Free Software Foundation, either version 3 of the License, or
@@ -8,7 +17,7 @@
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
@@ -19,6 +28,7 @@ from openerp.osv import orm
 from openerp.tools.translate import _
 from account_statement_base_import.parser import BankStatementImportParser
 from datetime import datetime
+
 
 class c43_parser(BankStatementImportParser):
     """Class for defining parser for AEB C43 file format."""
@@ -65,10 +75,12 @@ class c43_parser(BankStatementImportParser):
         return st_line
 
     def _process_record_23(self, st_line, line):
-        """23 - Registros complementarios de concepto (opcionales y hasta un 
+        """23 - Registros complementarios de concepto (opcionales y hasta un
         máximo de 5)"""
-        # Se han unido los dos conceptos line[4:42]+line[42:] en uno
-        st_line['conceptos'] += line[4:].strip()
+        if not st_line.get('conceptos'):
+            st_line['conceptos'] = {}
+        st_line['conceptos'][line[2:4]] = (line[4:39].strip(),
+                                           line[39:].strip())
         return st_line
 
     def _process_record_24(self, st_line, line):
@@ -145,10 +157,12 @@ class c43_parser(BankStatementImportParser):
         """
         return parser_name == 'aeb_c43'
 
+    def _pre(self, *args, **kwargs):
+        """Decode and re-encode to avoid pg errors on string codification."""
+        self.filebuffer = self.filebuffer.decode('iso-8859-1').encode('utf-8')
+
     def _parse(self, *args, **kwargs):
-        """
-        Launch the parsing itself.
-        """
+        """Launch the parsing itself."""
         # st_data will contain data read from the file
         st_data = {
             '_num_records': 0, # Number of records really counted
@@ -176,7 +190,8 @@ class c43_parser(BankStatementImportParser):
                  # CTRL-Z (^Z), is often used as an end-of-file marker in DOS
                 continue
             else:
-                raise orm.except_orm(_('Error in C43 file'),
+                raise orm.except_orm(
+                            _('Error in C43 file'),
                             _('Record type %s is not valid.') % raw_line[0:2])
             # Update the record counter
             st_data['_num_records'] += 1
@@ -200,107 +215,27 @@ class c43_parser(BankStatementImportParser):
             :return: dict of values to give to the create method of statement
                 line
         """
-        return {
-            'name': line['conceptos'].strip(),
+        vals = {
+            'name': line['conceptos'],
             'date': line['fecha_operación'],
             'amount': line['importe'],
-            'ref': line['referencia2'],
-            'label': line['concepto_c'],
+            'label': line['concepto_p'],
+            'c43_concept': line['concepto_c'],
         }
-
-    def old_reconcile_method(self, cr, uid, ids, context=None):
-        st_obj = pool.get('account.bank.statement')
-        st_line_obj = pool.get('account.bank.statement.line')
-        concepto_obj = pool.get('l10n.es.extractos.concepto')
-        reconciled_move_lines_ids = []
-        for st_line in st_data['lines']:
-            # Search the 'concepto' for this line
-            concepto_ids = concepto_obj.search(cr, uid, [
-                                ('code', '=', st_line['concepto_c']),
-                                ('company_id', '=',statement.company_id.id),
-                            ], context=context)
-            concepto = None
-            if concepto_ids:
-                concepto = concepto_obj.browse(cr, uid, concepto_ids[0], context=context)
-            # Basic statement line values
-            values = {
-                'statement_id': statement_id,
-                'name': concepto and concepto.name or '-',
-                'date': st_line['fecha_operación'],
-                'amount': st_line['importe'],
-                'ref': ' '.join([st_line['referencia1'].strip(),
-                                st_line['referencia2'].strip()]),
-                'note': st_line['conceptos'].strip(),
-            }
-            if st_line['concepto_c'] in ['03']: # Recibo/Letra domiciliado
-                values['type'] = 'supplier'
-            elif st_line['concepto_c'] in ['14']: # Devolución/Impagado
-                values['type'] = 'customer'
-            elif st_line['concepto_c'] in ['05', '06', '07', '08', '09', '10', '11', '12', '13', '15', '16', '17', '98', '99']:
-                values['type'] = 'general'
-            else:
-                values['type'] = (st_line['importe'] >= 0 and 'customer') or 'supplier'
-            # Search for lines or payment orders to reconcile against this line
-            line2reconcile = None
-            maturity_date = st_line['fecha_valor']
-            max_date_diff = c43_wizard.reco_max_days * 3600*24
-            account_id = concepto and concepto.account_id.id
-            partner = None
-            if values['type'] in ['customer', 'supplier']:
-                # Use partner accounts
-                partner = st_line_obj._find_partner_by_line_vat_number(cr, uid, st_line['referencia1'][:9], context) or \
-                          st_line_obj._find_partner_by_line_vat_number(cr, uid, st_line['referencia1'][-9:], context) or \
-                          st_line_obj._find_partner_by_line_vat_number(cr, uid, st_line['referencia2'][:9], context) or \
-                          st_line_obj._find_partner_by_line_vat_number(cr, uid, st_line['referencia2'][-9:], context)
-                if partner:
-                    # Use the partner accounts
-                    if values['type'] == 'customer':
-                        account_id = partner.property_account_receivable and partner.property_account_receivable.id or account_id
-                    else:
-                        account_id = partner.property_account_payable and partner.property_account_payable.id or account_id
-                else:
-                    # Use the generic partner accounts
-                    default_account_receivable_id, default_account_payable_id = st_line_obj._get_default_partner_account_ids(cr, uid, context)
-                    if values['type'] == 'customer':
-                        account_id = default_account_receivable_id or account_id
-                    else:
-                        account_id = default_account_payable_id or account_id
-            if not account_id:
-                raise osv.except_osv(_('Error'), _('A default account has not been defined for the C43 concept ') + st_line['concepto_c'] )
-            values.update({
-                'account_id': account_id,
-                'partner_id': partner and partner.id or None,
-                'voucher_id': None,
-            })
-            line_id = st_line_obj.create(cr, uid, values, context=context)
-            # Store extra information needed to search possible move lines to reconcile
-            info = {}
-            for key in ('conceptos', 'referencia1', 'referencia2'):
-                info[key] = st_line[key]
-            pool.get('account.bank.statement.line.data').create_from_dictionary(cr, uid, line_id, info, context)
-            # It's a bit slow doing this process by storing 'search_by' in the database each time
-            # but simplifies the API and at the same time makes 'search_by' to be stored as the 
-            # last search type. The one that found the move line to reconcile.
-            found = False
-            for search_by in ('reference_and_amount','vat_and_amount','amount','payment_order','rules'):
-                # Check if the 'search_by' type of search should be applied.
-                if not getattr(c43_wizard, 'reco_%s' % search_by):
-                    continue
-                pool.get('account.bank.statement.line').write(cr, uid, [line_id], {
-                    'search_by': search_by,
-                }, context)
-                result = pool.get('account.bank.statement.line').reconcile_search(cr, uid, [line_id], context, maturity_date, max_date_diff)
-                if result[line_id] or search_by == 'payment_order':
-                    found = True
-                    break
-            if not found:
-                # If no move line was found, set 'search_by' field to 'none'
-                pool.get('account.bank.statement.line').write(cr, uid, [line_id], {
-                    'search_by': 'none',
-                }, context)
-        # Update the statement
-        st_obj.write(cr, uid, [statement_id], {
-                                'date': st_data['fecha_fin'],
-                                'balance_start': st_data['saldo_ini'],
-                                'balance_end_real': st_data['saldo_fin'],
-                            }, context=context)
+        # Discard references like '00000000'
+        try:
+            ref1 = int(line['referencia1'])
+        except:
+            ref1 = line['referencia1']
+        try:
+            ref2 = int(line['referencia2'])
+        except:
+            ref2 = line['referencia2']
+        if not ref1:
+            vals['ref'] = line['referencia2'] or '/'
+        elif not ref2:
+            vals['ref'] = line['referencia1'] or '/'
+        else:
+            vals['ref'] = "%s / %s" % (line['referencia1'],
+                                       line['referencia2'])
+        return vals

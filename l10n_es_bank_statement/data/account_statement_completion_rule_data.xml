@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="1">
+
+    <record id="bank_statement_completion_rule_caixabank" model="account.statement.completion.rule">
+         <field name="name">Match according CaixaBank C43 rules</field>
+         <field name="sequence">10</field>
+         <field name="function_to_call">get_from_caixabank_rules</field>
+     </record>
+
+</data>
+</openerp>
