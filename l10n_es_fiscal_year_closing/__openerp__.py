@@ -74,6 +74,7 @@ deshacer las operaciones fácilmente.
     ],
     "data" : [
         "wizard/wizard_run_view.xml",
+        "security/security.xml",
         "security/ir.model.access.csv",
         "fiscalyear_closing_workflow.xml",
         "fiscalyear_closing_view.xml",
