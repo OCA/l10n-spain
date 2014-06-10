@@ -62,20 +62,14 @@ msgstr "Compra/Venta valores"
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/models/c43_parser.py:128
 #, python-format
-msgid ""
-"Credit amount doesn't match with the defined in the last record of account."
-msgstr ""
-"El importe del haber no casa con el definido con el definido en el último "
-"registro de la cuenta."
+msgid "Credit amount doesn't match with the defined in the last record of account."
+msgstr "El importe del haber no casa con el definido con el definido en el último registro de la cuenta."
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/models/c43_parser.py:124
 #, python-format
-msgid ""
-"Debit amount doesn't match with the defined in the last record of account."
-msgstr ""
-"El importe del debe no casa con el definido con el definido en el último "
-"registro de la cuenta."
+msgid "Debit amount doesn't match with the defined in the last record of account."
+msgstr "El importe del debe no casa con el definido con el definido en el último registro de la cuenta."
 
 #. module: l10n_es_bank_statement
 #: selection:account.bank.statement.line,c43_concept:0
@@ -107,12 +101,20 @@ msgstr "Error en archivo C43"
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/models/c43_parser.py:137
 #, python-format
-msgid ""
-"Final balance amount = (initial balance + credit - debit) doesn't match with "
-"the defined in the last record of account."
-msgstr ""
-"Saldo final = (saldo inicial + haber - debe) no cuadra con el definido en el "
-"último registro de la cuenta."
+msgid "Final balance amount = (initial balance + credit - debit) doesn't match with the defined in the last record of account."
+msgstr "Saldo final = (saldo inicial + haber - debe) no cuadra con el definido en el último registro de la cuenta."
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/models/account_statement_completion_rule.py:33
+#, python-format
+msgid "From CaixaBank C43 rules"
+msgstr "Desde las reglas C43 de CaixaBank"
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/models/account_statement_completion_rule.py:34
+#, python-format
+msgid "From generic C43 rules"
+msgstr "Desde las reglas genéricas C43"
 
 #. module: l10n_es_bank_statement
 #: selection:account.bank.statement.line,c43_concept:0
@@ -130,52 +132,34 @@ msgid "Intereses/Comisión/Custodia/Gastos/Impuestos"
 msgstr "Intereses/Comisión/Custodia/Gastos/Impuestos"
 
 #. module: l10n_es_bank_statement
-#: code:addons/l10n_es_bank_statement/models/account_statement_completion_rule.py:67
+#: code:addons/l10n_es_bank_statement/models/account_statement_completion_rule.py:68
 #, python-format
-msgid ""
-"Line named \"%s\" (Ref: %s) was matched by more than one partner for VAT "
-"number \"%s\"."
-msgstr ""
-"La línea llamada \"%s\" (Ref: %s) se casó con más de una empresa para el NIF "
-"\"%s\"."
+msgid "Line named \"%s\" (Ref: %s) was matched by more than one partner for VAT number \"%s\"."
+msgstr "La línea llamada \"%s\" (Ref: %s) se casó con más de una empresa para el NIF \"%s\"."
 
 #. module: l10n_es_bank_statement
-#: code:addons/l10n_es_bank_statement/models/account_statement_completion_rule.py:93
+#: code:addons/l10n_es_bank_statement/models/account_statement_completion_rule.py:123
 #, python-format
-msgid ""
-"Line named \"%s\" (Ref: %s) was matched by more than one partner for invoice "
-"amount \"%s\"."
-msgstr ""
-"La línea llamada \"%s\" (Ref: %s) se casó con más de una empresa para el "
-"importe de la factura \"%s\"."
+msgid "Line named \"%s\" (Ref: %s) was matched by more than one partner for invoice amount \"%s\"."
+msgstr "La línea llamada \"%s\" (Ref: %s) se casó con más de una empresa para el importe de la factura \"%s\"."
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/models/c43_parser.py:120
 #, python-format
-msgid ""
-"Number of credit records doesn't match with the defined in the last record "
-"of account."
-msgstr ""
-"El número de registros del haber no casa con el definido en el último "
-"registro de la cuenta."
+msgid "Number of credit records doesn't match with the defined in the last record of account."
+msgstr "El número de registros del haber no casa con el definido en el último registro de la cuenta."
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/models/c43_parser.py:116
 #, python-format
-msgid ""
-"Number of debit records doesn't match with the defined in the last record of "
-"account."
-msgstr ""
-"El número de registros del debe no casa con el definido en el último "
-"registro de la cuenta."
+msgid "Number of debit records doesn't match with the defined in the last record of account."
+msgstr "El número de registros del debe no casa con el definido en el último registro de la cuenta."
 
 #. module: l10n_es_bank_statement
 #: code:addons/l10n_es_bank_statement/models/c43_parser.py:148
 #, python-format
 msgid "Number of records doesn't match with the defined in the last record."
-msgstr ""
-"El número de registros no casa con el definido en el último registro de la "
-"cuenta."
+msgstr "El número de registros no casa con el definido en el último registro de la cuenta."
 
 #. module: l10n_es_bank_statement
 #: selection:account.bank.statement.line,c43_concept:0

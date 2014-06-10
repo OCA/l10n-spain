@@ -21,6 +21,7 @@
 ##############################################################################
 from openerp.osv import orm, fields
 from openerp.addons.account_statement_base_completion.statement import ErrorTooManyPartner
+from openerp.tools.translate import _
 
 
 class AccountStatementCompletionRule(orm.Model):
@@ -29,7 +30,8 @@ class AccountStatementCompletionRule(orm.Model):
     def _get_functions(self, cr, uid, context=None):
         res = super(AccountStatementCompletionRule, self)._get_functions(
             cr, uid, context=context)
-        res.append(('get_from_caixabank_rules', 'From CaixaBank C43 rules'))
+        res.append(('get_from_caixabank_rules', _('From CaixaBank C43 rules')))
+        res.append(('get_from_generic_c43_rules', _('From generic C43 rules')))
         return res
 
     _columns = {
@@ -53,7 +55,6 @@ class AccountStatementCompletionRule(orm.Model):
         """
         partner_obj = self.pool['res.partner']
         st_line_obj = self.pool['account.bank.statement.line']
-        invoice_obj = self.pool['account.invoice']
         conceptos = eval(st_line['name'])
         ids = []
         res = {}
@@ -73,26 +74,55 @@ class AccountStatementCompletionRule(orm.Model):
                 name = conceptos['01'][0][4:] + conceptos['01'][1]
                 ids = partner_obj.search(cr, uid, [('name', 'ilike', name)],
                                          context=context)
-            if not ids:
-                # Finally, try to match from invoice amount
-                if st_line['amount'] > 0.0:
-                    domain = [('type', 'in', ['out_invoice', 'in_refund'])]
-                else:
-                    domain = [('type', 'in', ['in_invoice', 'out_refund'])]
-                domain.append(('amount_total', '=', abs(st_line['amount'])))
-                domain.append(('state', '=', 'open'))
-                invoice_ids = invoice_obj.search(cr, uid, domain,
-                                                 context=context)
-                if invoice_ids:
-                    invoices = invoice_obj.read(cr, uid, invoice_ids,
-                                                ['partner_id'], context=context)
-                    ids = [x['partner_id'][0] for x in invoices]
-                    ids = list(set(ids))
-                if len(ids) > 1:
-                    raise ErrorTooManyPartner(
-                        _('Line named "%s" (Ref: %s) was matched by more than '
-                          'one partner for invoice amount "%s".') % \
-                        (st_line['name'], st_line['ref'], st_line['amount']))
+        if ids:
+            res['partner_id'] = ids[0]
+        st_vals = st_line_obj.get_values_for_line(
+                        cr, uid, profile_id=st_line['profile_id'],
+                        master_account_id=st_line['master_account_id'],
+                        partner_id=res.get('partner_id', False),
+                        line_type=st_line['type'],
+                        amount=st_line['amount'] or 0.0,
+                        context=context)
+        res.update(st_vals)
+        return res
+
+    def get_from_generic_c43_rules(self, cr, uid, st_line, context=None):
+        """
+        Match the partner based on invoice amount..
+        
+        If more than one partner is matched, raise the ErrorTooManyPartner
+        error.
+        :param dict st_line: read of the concerned account.bank.statement.line
+        :return:
+            A dict of value that can be passed directly to the write method of
+            the statement line or {}
+           {'partner_id': value,
+            'account_id' : value,
+            ...}
+        """
+        st_line_obj = self.pool['account.bank.statement.line']
+        invoice_obj = self.pool['account.invoice']
+        ids = []
+        res = {}
+        # Finally, try to match from invoice amount
+        if st_line['amount'] > 0.0:
+            domain = [('type', 'in', ['out_invoice', 'in_refund'])]
+        else:
+            domain = [('type', 'in', ['in_invoice', 'out_refund'])]
+        domain.append(('amount_total', '=', abs(st_line['amount'])))
+        domain.append(('state', '=', 'open'))
+        invoice_ids = invoice_obj.search(cr, uid, domain,
+                                         context=context)
+        if invoice_ids:
+            invoices = invoice_obj.read(cr, uid, invoice_ids,
+                                        ['partner_id'], context=context)
+            ids = [x['partner_id'][0] for x in invoices]
+            ids = list(set(ids))
+        if len(ids) > 1:
+            raise ErrorTooManyPartner(
+                _('Line named "%s" (Ref: %s) was matched by more than '
+                  'one partner for invoice amount "%s".') % \
+                (st_line['name'], st_line['ref'], st_line['amount']))
         if ids:
             res['partner_id'] = ids[0]
         st_vals = st_line_obj.get_values_for_line(

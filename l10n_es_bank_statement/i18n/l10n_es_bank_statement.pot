@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-09 22:42+0000\n"
-"PO-Revision-Date: 2014-06-09 22:42+0000\n"
+"POT-Creation-Date: 2014-06-10 14:31+0000\n"
+"PO-Revision-Date: 2014-06-10 14:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -104,6 +104,18 @@ msgid "Final balance amount = (initial balance + credit - debit) doesn't match w
 msgstr ""
 
 #. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/models/account_statement_completion_rule.py:33
+#, python-format
+msgid "From CaixaBank C43 rules"
+msgstr ""
+
+#. module: l10n_es_bank_statement
+#: code:addons/l10n_es_bank_statement/models/account_statement_completion_rule.py:34
+#, python-format
+msgid "From generic C43 rules"
+msgstr ""
+
+#. module: l10n_es_bank_statement
 #: selection:account.bank.statement.line,c43_concept:0
 msgid "Giro/Transferencia/Traspaso/Cheque"
 msgstr ""
@@ -119,13 +131,13 @@ msgid "Intereses/Comisión/Custodia/Gastos/Impuestos"
 msgstr ""
 
 #. module: l10n_es_bank_statement
-#: code:addons/l10n_es_bank_statement/models/account_statement_completion_rule.py:67
+#: code:addons/l10n_es_bank_statement/models/account_statement_completion_rule.py:68
 #, python-format
 msgid "Line named \"%s\" (Ref: %s) was matched by more than one partner for VAT number \"%s\"."
 msgstr ""
 
 #. module: l10n_es_bank_statement
-#: code:addons/l10n_es_bank_statement/models/account_statement_completion_rule.py:93
+#: code:addons/l10n_es_bank_statement/models/account_statement_completion_rule.py:123
 #, python-format
 msgid "Line named \"%s\" (Ref: %s) was matched by more than one partner for invoice amount \"%s\"."
 msgstr ""
