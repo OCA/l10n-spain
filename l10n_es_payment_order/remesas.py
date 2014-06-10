@@ -38,20 +38,15 @@
 #
 ##############################################################################
 
-from osv import osv, fields
-import pooler
-from tools.translate import _
+from openerp.osv import orm, fields
+from openerp.tools.translate import _
 
-
-
-class payment_mode(osv.osv):
-    _name= 'payment.mode'
+class payment_mode(orm.Model):
     _inherit = 'payment.mode'
 
     def onchange_partner(self, cr, uid, ids, partner_id):
         if partner_id:
-            pool = pooler.get_pool(cr.dbname)
-            obj = pool.get('res.partner')
+            obj = self.pool['res.partner']
             field = ['name']
             ids = [partner_id]
             filas = obj.read(cr, uid, ids, field) 
@@ -118,7 +113,5 @@ class payment_mode(osv.osv):
         'concept': lambda *a: 'other',
         'direct_pay_order': lambda *a: False,
     }
-
-payment_mode()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

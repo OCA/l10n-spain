@@ -30,10 +30,10 @@ para añadir un campo con el nombre de la plantilla en si (para poder
 diferenciar entre PGCE 2008 y PGCE PYMES).
 """
 
-from openerp.osv import fields, osv
+from openerp.osv import fields, orm
 
 
-class account_account(osv.osv):
+class account_account(orm.Model):
     _inherit = "account.account"
 
     def search(self, cr, uid, args, offset=0, limit=None, order=None,
@@ -60,10 +60,9 @@ class account_account(osv.osv):
         return super(account_account, self).search(cr, uid, args,
                                                   offset, limit, order,
                                                   context, count)
-account_account()
 
 
-class account_account_template(osv.osv):
+class account_account_template(orm.Model):
     """Extends the account template to add the chart
     template that the account belongs"""
 
@@ -130,10 +129,8 @@ class account_account_template(osv.osv):
         ),
     }
 
-account_account_template()
 
-
-class account_tax_code_template(osv.osv):
+class account_tax_code_template(orm.Model):
     """Extends the tax code template to add the chart
     template that the tax code belongs"""
 
@@ -197,7 +194,5 @@ class account_tax_code_template(osv.osv):
             },
         ),
     }
-
-account_tax_code_template()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

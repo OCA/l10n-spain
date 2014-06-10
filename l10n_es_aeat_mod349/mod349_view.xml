@@ -9,7 +9,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_record_detail_tree" model="ir.ui.view">
             <field name="name">AEAT 349 Partner record detail (tree)</field>
             <field name="model">l10n.es.aeat.mod349.partner_record_detail</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="AEAT 349 Partner record detail">
                     <field name="invoice_id"/>
@@ -23,7 +22,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_record_detail_form" model="ir.ui.view">
             <field name="name">AEAT 349 Partner record detail (form)</field>
             <field name="model">l10n.es.aeat.mod349.partner_record_detail</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="AEAT 349 Partner record">
                     <field name="invoice_id"/>
@@ -33,8 +31,6 @@
             </field>
         </record>
 
-
-
         <!-- #################################
         ### AEAT MODEL 349 PARTNER RECORDS ###
         ################################## -->
@@ -42,7 +38,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_record_tree" model="ir.ui.view">
             <field name="name">AEAT 349 Partner record (tree)</field>
             <field name="model">l10n.es.aeat.mod349.partner_record</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="AEAT 349 Partner records" colors="red:partner_record_ok==False">
                     <field name="partner_record_ok" invisible="1"/>
@@ -59,7 +54,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_record_form" model="ir.ui.view">
             <field name="name">AEAT 349 Partner record (form)</field>
             <field name="model">l10n.es.aeat.mod349.partner_record</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="AEAT 349 Partner records">
                     <notebook colspan="4">
@@ -78,8 +72,6 @@
             </field>
         </record>
 
-
-
         <!-- #######################################
         ### AEAT MODEL 349 PARTNER REFUND DETAIL ###
         ######################################## -->
@@ -87,7 +79,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_refund_detail_tree" model="ir.ui.view">
             <field name="name">AEAT 349 Partner refund detail (tree)</field>
             <field name="model">l10n.es.aeat.mod349.partner_refund_detail</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="AEAT 349 Partner refund detail">
                     <field name="invoice_id"/>
@@ -101,7 +92,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_refund_detail_form" model="ir.ui.view">
             <field name="name">AEAT 349 Partner refund detail (form)</field>
             <field name="model">l10n.es.aeat.mod349.partner_refund_detail</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="AEAT 349 Partner refund">
                     <field name="invoice_id"/>
@@ -111,8 +101,6 @@
             </field>
         </record>
 
-
-
         <!-- #################################
         ### AEAT MODEL 349 PARTNER REFUNDS ###
         ################################## -->
@@ -120,7 +108,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_refund_tree" model="ir.ui.view">
             <field name="name">AEAT 349 Partner refund (tree)</field>
             <field name="model">l10n.es.aeat.mod349.partner_refund</field>
-            <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="AEAT 349 Partner refunds" colors="red:partner_refund_ok==False">
                     <field name="partner_refund_ok" invisible="1"/>
@@ -140,7 +127,6 @@
         <record id="view_l10n_ES_aeat_mod349_partner_refund_form" model="ir.ui.view">
             <field name="name">AEAT 349 Partner refund (form)</field>
             <field name="model">l10n.es.aeat.mod349.partner_refund</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="AEAT 349 Partner refunds">
                     <notebook>
@@ -166,78 +152,68 @@
             </field>
         </record>
 
-
-
         <!-- #################
         ### AEAT MODEL 349 ###
         ################## -->
         <!-- Tree view -->
         <record id="view_l10n_es_aeat_mod349_report_tree" model="ir.ui.view">
-            <field name="name">AEAT Model 349 (tree)</field>
+            <field name="name">l10n_es.aeat.mod349.report.tree</field>
             <field name="model">l10n.es.aeat.mod349.report</field>
-            <field name="type">tree</field>
+            <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree"/>
             <field name="arch" type="xml">
-                <tree string="AEAT 349">
-                    <field name="number"/>
-                    <field name="name"/>
-                    <field name="company_id"/>
-                    <field name="fiscalyear_id"/>
+                <tree position="attributes">
+                    <attribute name="string">AEAT 349 reports</attribute>=
+                </tree>
+                <field name="fiscalyear_id" position="after">
                     <field name="period_selection"/>
                     <field name="month_selection"/>
-                    <field name="type"/>
-                    <field name="previous_number"/>
-                    <field name="state"/>
-                </tree>
+                    <field name="total_partner_records"/>
+                    <field name="total_partner_records_amount"/>
+                    <field name="total_partner_refunds"/>
+                    <field name="total_partner_refunds_amount"/>
+                </field>
             </field>
         </record>
 
         <!-- Form view -->
         <record id="view_l10n_es_aeat_mod349_report_form" model="ir.ui.view">
-            <field name="name">AEAT Model 349 (form)</field>
+            <field name="name">l10n_es.aeat.mod349.report.form</field>
             <field name="model">l10n.es.aeat.mod349.report</field>
-            <field name="type">form</field>
+            <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
             <field name="arch" type="xml">
-                <form string="AEAT 349">
-                    <group colspan="4" col="6" string="Declaration">
-                        <field name="company_id" on_change="on_change_company_id(company_id)" required="1" select="1"/>
-                        <field name="number"/>
+                <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
+                    <attribute name="name">%(action_wizard_aeat_mod349_export)d</attribute>
+                </button>
+                <field name="company_vat" position="after">
+                    <field name="contact_phone"/>
+                    <field name="contact_name"/>
+                    <field name="representative_vat"/>
+                </field>
+                <field name="calculation_date" position="after">
+                    <field name="period_selection" on_change="onchange_period_selection(period_selection, fiscalyear_id)"/>
+                    <field name="period_ids"
+                            attrs="{'required': [('period_selection', 'in', ['1T','2T','3T','4T'])], 'invisible':[('period_selection', 'not in', ['1T','2T','3T','4T'])]}"
+                            domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
+                    <field name="month_selection"
+                            attrs="{'required': [('period_selection','==','MO')], 'invisible': [('period_selection','!=','MO')]}"/>
+                </field>
+                <group string="Declaración" position="after">
+                    <group string="Complementaria" colspan="4">
+                        <field name="type"/>
+                        <field name="previous_number"
+                                attrs="{'invisible': [('type','==','N')], 'required': ['|', ('type','==','S'), ('type','==','C')]}"/>
                     </group>
-                    
-                    <group colspan="4" col="8">
-                        <group colspan="4" col="2">
-                            <field name="fiscalyear_id"/>
-                        </group>
-                        <group colspan="4" col="2">
-                            <field name="period_selection" on_change="onchange_period_selection(period_selection, fiscalyear_id)"/>
-                                <newline/>
-                            <group colspan="2" col="2" attrs="{'invisible':[('period_selection','not in',['1T','2T','3T','4T'])]}">
-                                <field name="period_ids"  attrs="{'required':[('period_selection','in',['1T','2T','3T','4T'])]}" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
-                            </group>
-                                <newline/>
-                            <group colspan="2" col="2" attrs="{'invisible':[('period_selection','!=','MO')]}">
-                                <field name="month_selection" attrs="{'required':[('period_selection','==','MO')]}"/>
-                            </group>
-                        </group>
-                    </group>
-
                     <notebook colspan="4">
                         <page string="General">
-                            <group string="Identification" colspan="4">
-                                <field name="company_vat"/>
-                                <field name="contact_phone"/>
-                                <field name="contact_name"/>
-                                <field name="representative_vat"/>
-                            </group>
-                            <group string="Complementary/Substitutive declaration" colspan="4">
-                                <field name="type"/>
-                                <field name="previous_number"
-                                    attrs="{'required':[('type','==','S'),('state','==','calculated')]}"/>
-                            </group>
-                            <group string="Summary" colspan="4">
-                                <field name="total_partner_records"/>
-                                <field name="total_partner_records_amount"/>
-                                <field name="total_partner_refunds"/>
-                                <field name="total_partner_refunds_amount"/>
+                            <group string="Resultado">
+                                <group>
+                                    <field name="total_partner_records"/>
+                                    <field name="total_partner_records_amount"/>
+                                </group>
+                                <group>
+                                    <field name="total_partner_refunds"/>
+                                    <field name="total_partner_refunds_amount"/>
+                                </group>
                             </group>
                             <group string="Options" colspan="4">
                                 <field name="support_type"/>
@@ -251,55 +227,7 @@
                             <field name="partner_refund_ids" nolabel="1"/>
                         </page>
                     </notebook>
-                    <group colspan="4">
-                        <field name="state" select="2" readonly="1"/>
-                        <field name="calculation_date" select="2" readonly="1"/>
-                    </group>
-                    <group colspan="4" col="8">
-                        <button name="button_calculate"
-                                type="object"
-                                string="Calculate"
-                                states="draft"
-                                icon="gtk-execute"/>
-                        <button name="button_recalculate"
-                                type="object"
-                                string="Recalculate"
-                                states="calculating,calculated"
-                                icon="gtk-execute"/>
-                        <button name="button_export"
-                                type="object"
-                                string="Export to BOE"
-                                states="calculated,done"
-                                icon="gtk-execute"/>
-                        <button name="confirm" string="Confirm" type="workflow" states="calculated" icon="gtk-ok"/>
-                        <button name="cancel" string="Cancel" type="workflow" states="calculated,done" icon="gtk-cancel"/>
-                        <button name="action_recover" string="Draft" type="object" states="canceled" icon="gtk-undo"/>
-                    </group>
-                </form>
-            </field>
-        </record>
-
-       <record id="view_l10n_es_aeat_mod349_report_search" model="ir.ui.view">
-            <field name="name">AEAT Model 349 (search)</field>
-            <field name="model">l10n.es.aeat.mod349.report</field>
-            <field name="type">search</field>
-            <field name="arch" type="xml">
-                <search string="AEAT 349">
-                    <group col="8" colspan="4">
-                        <filter icon="terp-gtk-media-pause" string="Draft" domain="[('state','=','draft')]" help="Draft models"/>
-                        <filter icon="gtk-execute" string="In process" domain="[('state','in',('calculating', 'calculated'))]" help="In process models"/>
-                        <filter icon="terp-camera_test" string="Done" domain="[('state','=','done')]" help="Confirmed models"/>
-                        <filter icon="gtk-cancel" string="Cancelled" domain="[('state', '=', 'canceled')]" help="Cancelled models"/>
-                        <separator orientation="vertical"/>
-                        <filter string="Fiscal Year" icon="terp-folder-orange" domain="[]" context="{'group_by':'fiscalyear_id'}"/>
-                        <separator orientation="vertical"/>
-                        <filter string="Company" icon="terp-personal" domain="[]" context="{'group_by':'company_id'}"/>
-                    </group>
-                    <newline/>
-                    <field name="number"/>
-                    <field name="period_selection"/>
-                    <field name="type"/>
-                </search>
+                </group>
             </field>
         </record>
 
@@ -309,19 +237,27 @@
             <field name="res_model">l10n.es.aeat.mod349.report</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="help">Create and query AEAT Model 349 Reports</field>
+            <field name="help">Create and query AEAT Model 349 reports</field>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod303_report_tree">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_l10n_es_aeat_mod349_report_tree"/>
+            <field name="act_window_id" ref="action_l10n_es_aeat_mod349_report"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod349_report_form">
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_l10n_es_aeat_mod349_report_form"/>
+            <field name="act_window_id" ref="action_l10n_es_aeat_mod349_report"/>
         </record>
 
-
-
-        <!--
-        ### MENU ACCESS ###
-        -->
+        <!-- ### MENU ACCESS ### -->
         <menuitem
             id="menu_aeat_mod349_report"
             parent="l10n_es_aeat.menu_root_aeat"
             action="action_l10n_es_aeat_mod349_report"
-            sequence="60"
+            sequence="349"
             name="AEAT 349 Model"/>
                 
     </data>

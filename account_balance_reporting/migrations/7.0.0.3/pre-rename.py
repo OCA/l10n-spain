@@ -73,5 +73,7 @@ def migrate_reports(cr, version):
                   RENAME COLUMN sequence_temp to sequence""")
 
 def migrate(cr, version):
+    if not version:
+        return
     migrate_templates(cr, version)
     migrate_reports(cr, version)

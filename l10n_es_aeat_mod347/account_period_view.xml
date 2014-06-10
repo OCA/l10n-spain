@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Add quarter configuration on periods  -->
+        <record id="view_account_period_quarter_form" model="ir.ui.view">
+            <field name="name">account.period.quarter.form</field>
+            <field name="model">account.period</field>
+            <field name="inherit_id" ref="account.view_account_period_form"/>
+            <field name="arch" type="xml">
+                    <field name="company_id" position="after">
+                        <field name="quarter"/>
+                    </field>
+            </field>
+        </record>
+
+        <record id="view_account_period_quarter_tree" model="ir.ui.view">
+            <field name="name">account.period.quarter.tree</field>
+            <field name="model">account.period</field>
+            <field name="inherit_id" ref="account.view_account_period_tree"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="quarter"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

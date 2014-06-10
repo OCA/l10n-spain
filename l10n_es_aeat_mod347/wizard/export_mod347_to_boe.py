@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
-#    Copyright (C) 2012
-#        NaN·tic  (http://www.nan-tic.com) All Rights Reserved
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -20,34 +15,29 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from openerp.osv import orm, fields
+from openerp.tools.translate import _
 
-__author__ = "Luis Manuel Angueira Blanco (Pexego)"
-
-
-from osv import osv
-from tools.translate import _
-
-
-class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
-
+class l10n_es_aeat_mod347_export_to_boe(orm.TransientModel):
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = "l10n.es.aeat.mod347.export_to_boe"
-    _description = "Export AEAT Model 347 to BOE format"
 
-    def _get_formated_declaration_record(self, report):
+    def _get_formatted_declaration_record(self, cr, uid, report,
+                                          context=None):
         """
         Returns a type 1, declaration/company, formated record.
 
         Format of the record:
             Tipo registro 1 – Registro de declarante:
+
             Posiciones 	Descripción
             1           Tipo de Registro
-            2-4 	Modelo Declaración
-            5-8 	Ejercicio
-            9-17 	NIF del declarante
-            18-57 	Apellidos y nombre o razón social del declarante
+            2-4 	    Modelo Declaración
+            5-8 	    Ejercicio
+            9-17 	    NIF del declarante
+            18-57 	    Apellidos y nombre o razón social del declarante
             58          Tipo de soporte
-            59-67 	Teléfono contacto
+            59-67 	    Teléfono contacto
             68-107      Apellidos y nombre contacto
             108-120 	Número identificativo de la declaración
             121-122 	Declaración complementaria o substitutiva
@@ -62,32 +52,48 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
             488-500 	Sello electrónico
         """
         text = ''
-
-        text += '1'                                           # Tipo de Registro
-        text += '347'                                         # Modelo Declaración
-        text += self._formatString(report.fiscalyear_id.code, 4)   # Ejercicio
-        text += self._formatString(report.company_vat, 9)          # NIF del declarante
-        text += self._formatString(report.company_id.name, 40)     # Apellidos y nombre o razón social del declarante
-        text += self._formatString(report.support_type, 1)         # Tipo de soporte
-        text += self._formatString(report.contact_phone, 9)       # Persona de contacto (Teléfono)
-        text += self._formatString(report.contact_name, 40)        # Persona de contacto (Apellidos y nombre)
-        text += self._formatNumber(report.number, 13)              # Número identificativo de la declaración
-        text += self._formatString(report.type, 2).replace('N', ' ')                # Declaración complementaria o substitutiva
-        text += self._formatNumber(report.previous_number, 13)     # Número identificativo de la declaración anterior
-        text += self._formatNumber(report.total_partner_records, 9)          # Número total de personas y entidades
-        text += self._formatNumber(report.total_amount, 13, 2,True)               # Importe total de las operaciones
-        text += self._formatNumber(report.total_real_state_records, 9)       # Número total de inmuebles
-        text += self._formatNumber(report.total_real_state_amount, 13, 2)    # Importe total de las operaciones de arrendamiento
-        text += 206*' '                                       # Blancos
-        text += self._formatString(report.representative_vat, 9)   # NIF del representante legal
-        text += 88*' '                                        # Blancos
-        text += 13*' '                                        # Sello electrónico
+        # Tipo de Registro
+        text += '1'
+        # Modelo Declaración
+        text += '347'
+        # Ejercicio
+        text += self._formatString(report.fiscalyear_id.code, 4)
+        # NIF del declarante
+        text += self._formatString(report.company_vat, 9)
+        # Apellidos y nombre o razón social del declarante
+        text += self._formatString(report.company_id.name, 40)
+        # Tipo de soporte
+        text += self._formatString(report.support_type, 1)
+        # Persona de contacto (Teléfono)
+        text += self._formatString(report.contact_phone, 9)
+        # Persona de contacto (Apellidos y nombre)
+        text += self._formatString(report.contact_name, 40)
+        # Número identificativo de la declaración
+        text += self._formatNumber(report.number, 13)
+        # Declaración complementaria o substitutiva
+        text += self._formatString(report.type, 2).replace('N', ' ')
+        # Número identificativo de la declaración anterior
+        text += self._formatNumber(report.previous_number, 13)
+        # Número total de personas y entidades
+        text += self._formatNumber(report.total_partner_records, 9)
+        # Importe total de las operaciones
+        text += self._formatNumber(report.total_amount, 13, 2, True)
+        # Número total de inmuebles
+        text += self._formatNumber(report.total_real_state_records, 9)
+        # Importe total de las operaciones de arrendamiento
+        text += self._formatNumber(report.total_real_state_amount, 13, 2)
+        # Blancos
+        text += 206 * ' '
+        # NIF del representante legal
+        text += self._formatString(report.representative_vat, 9)
+        # Blancos
+        text += 88 * ' '
+        # Sello electrónico
+        text += 13 * ' '
         text += '\r\n'
-
-
-        assert len(text) == 502, _("The type 1 record must be 502 characters long")
+        assert len(text) == 502, _(
+                    "The type 1 record must be 502 characters long")
         return text
-
 
     def _get_formated_partner_record(self, report, partner_record):
         """
@@ -95,19 +101,20 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
 
         Format of the record:
             Tipo de Registro 2 – Registro de declarado
+
             Posiciones 	Descripción
             1           Tipo de Registro
-            2-4 	Modelo Declaración
-            5-8 	Ejercicio
-            9-17 	NIF del declarante
-            18-26 	NIF del declarado
-            27-35 	NIF del representante legal
-            36-75 	Apellidos y nombre, razón social o denominación del declarado
+            2-4 	    Modelo Declaración
+            5-8 	    Ejercicio
+            9-17 	    NIF del declarante
+            18-26 	    NIF del declarado
+            27-35 	    NIF del representante legal
+            36-75 	    Apellidos y nombre, razón social o denominación del declarado
             76          Tipo de hoja
-            77-80 	Código provincia/país
+            77-80 	    Código provincia/país
             81          Blancos
             82          Clave de operación
-            83-98 	Importe de las operaciones
+            83-98 	    Importe de las operaciones
             98          Operación de seguro
             99          Arrendamiento local negocio
             100-114 	Importe percibido en metálico
@@ -125,124 +132,172 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
             488-500 	Sello electrónico
         """
         text = ''
-
-        text += '2'                                                     # Tipo de Registro
-        text += '347'                                                   # Modelo Declaración
-        text += self._formatString(report.fiscalyear_id.code, 4)             # Ejercicio
-        text += self._formatString(report.company_vat, 9)                    # NIF del declarante
-        text += self._formatString(partner_record.partner_vat, 9)            # NIF del declarado
-        text += self._formatString(partner_record.representative_vat, 9)     # NIF del representante legal
-        text += self._formatString(partner_record.partner_id.name, 40)       # Apellidos y nombre, razón social o denominación del declarado
-        text += 'D'                                                     # Tipo de hoja: Constante ‘D’.
-        text += self._formatNumber(partner_record.partner_state_code, 2)     # Código provincia
-        text += 3*' '                                                     # Blancos
-        text += self._formatString(partner_record.operation_key, 1)          # Clave de operación
-        text += self._formatNumber(partner_record.amount, 13, 2,True)             # Importe de las operaciones
-        text += self._formatBoolean(partner_record.insurance_operation)                      # Operación de seguro
-        text += self._formatBoolean(partner_record.bussiness_real_state_rent)                # Arrendamiento local negocio
-        text += self._formatNumber(partner_record.cash_amount, 13, 2)                        # Importe percibido en metálico
-        text += self._formatNumber(partner_record.real_state_transmissions_amount, 13, 2,True)    # Importe percibido por transmisiones de inmuebles sujetas a IVA
-        text += partner_record.origin_fiscalyear_id and self._formatString(partner_record.origin_fiscalyear_id.code, 4) or 4*'0' #Año de devengo de las operaciones en efectivo
-        text += self._formatNumber(partner_record.first_quarter,13,2,True)
-        text += self._formatNumber(partner_record.first_quarter_real_state_transmission_amount,13,2,True)
-        text += self._formatNumber(partner_record.second_quarter,13,2,True)
-        text += self._formatNumber(partner_record.second_quarter_real_state_transmission_amount,13,2,True)
-        text += self._formatNumber(partner_record.third_quarter,13,2,True)
-        text += self._formatNumber(partner_record.third_quarter_real_state_transmission_amount,13,2,True)
-        text += self._formatNumber(partner_record.fourth_quarter,13,2,True)
-        text += self._formatNumber(partner_record.fourth_quarter_real_state_transmission_amount,13,2,True)        
-        text += 237*' '                                                 # Blancos
-        text += '\r\n'                                                  # Sello electrónico
-
-        assert len(text) == 502, _("The type 2-D record (partner) must be 502 characters long")
+        # Tipo de Registro
+        text += '2'
+        # Modelo Declaración
+        text += '347'
+        # Ejercicio
+        text += self._formatString(report.fiscalyear_id.code, 4)
+        # NIF del declarante
+        text += self._formatString(report.company_vat, 9)
+        # NIF del declarado
+        text += self._formatString(partner_record.partner_vat, 9)
+        # NIF del representante legal
+        text += self._formatString(partner_record.representative_vat, 9)
+        # Apellidos y nombre, razón social o denominación del declarado
+        text += self._formatString(partner_record.partner_id.name, 40)
+        # Tipo de hoja: Constante ‘D’.
+        text += 'D'
+        # Código provincia
+        text += self._formatNumber(partner_record.partner_state_code, 2)
+        # Blancos
+        text += 3 * ' '
+        # Clave de operación
+        text += self._formatString(partner_record.operation_key, 1)
+        # Importe de las operaciones
+        text += self._formatNumber(partner_record.amount, 13, 2, True)
+        # Operación de seguro
+        text += self._formatBoolean(partner_record.insurance_operation)
+        # Arrendamiento local negocio
+        text += self._formatBoolean(partner_record.bussiness_real_state_rent)
+        # Importe percibido en metálico
+        text += self._formatNumber(partner_record.cash_amount, 13, 2)
+        # Importe percibido por transmisiones de inmuebles sujetas a IVA
+        text += self._formatNumber(partner_record.real_state_transmissions_amount, 13, 2, True)
+        # Año de devengo de las operaciones en efectivo
+        text += partner_record.origin_fiscalyear_id and self._formatString(partner_record.origin_fiscalyear_id.code, 4) or 4*'0'
+        # Importe de las operaciones del primer trimestre
+        text += self._formatNumber(partner_record.first_quarter, 13, 2, True)
+        # Importe percibido por transmisiones de inmuebles sujates a Iva Primer Trimestre
+        text += self._formatNumber(partner_record.first_quarter_real_state_transmission_amount, 13, 2, True)
+        # Importe de las operaciones del segundo trimestre
+        text += self._formatNumber(partner_record.second_quarter, 13, 2, True)
+        # Importe percibido por transmisiones de inmuebles sujates a Iva Segundo Trimestre
+        text += self._formatNumber(partner_record.second_quarter_real_state_transmission_amount, 13, 2, True)
+        # Importe de las operaciones del tercer trimestre
+        text += self._formatNumber(partner_record.third_quarter, 13, 2, True)
+        # Importe percibido por transmisiones de inmuebles sujates a Iva Tercer Trimestre
+        text += self._formatNumber(partner_record.third_quarter_real_state_transmission_amount, 13, 2, True)
+        # Importe de las operaciones del cuarto trimestre
+        text += self._formatNumber(partner_record.fourth_quarter, 13, 2, True)
+        # Importe percibido por transmisiones de inmuebles sujates a Iva Cuarto Trimestre
+        text += self._formatNumber(partner_record.fourth_quarter_real_state_transmission_amount, 13, 2, True)        
+        # Blancos
+        text += 237 * ' '
+        # Sello electrónico
+        text += '\r\n'
+        assert len(text) == 502, _(
+                "The type 2-D record (partner) must be 502 characters long")
         return text
-
 
     def _get_formated_real_state_record(self, report, partner_record):
         """
-        Returns a type 2, real estate, formated record
-
+        Returns a type 2, real state, formated record
         Format of the record:
             Tipo de Registro 2 – Registro de inmueble
+
             Posiciones 	Descripción
-            1           Tipo de Registro
-            2-4 	Modelo Declaración
-            5-8 	Ejercicio
-            9-17 	NIF del declarante
-            18-26 	NIF del arrendatario
-            27-35 	NIF del representante legal
-            36-75 	Apellidos y nombre, razón social o denominación del declarado
-            76          Tipo de hoja
-            77-99 	Blancos
-            100-114 	Importe de la operación
-            115 	Situación del inmueble
-            116-140 	Referencia catastral
-            141-333 	Dirección y datos del inmueble
-                141–145 TIPO DE VÍA
-                146–195 NOMBRE VÍA PUBLICA
-                196–198 TIPO DE NUMERACIÓN
-                199–203 NUMERO DE CASA
-                204-206 CALIFICADOR DEL NUMERO
-                207–209 BLOQUE
-                210–212 PORTAL
-                213–215 ESCALERA
-                216–218 PLANTA O PISO
-                219–221 PUERTA
-                222–261 COMPLEMENTO.
-                262–291 LOCALIDAD O POBLACIÓN.
-                292–321 MUNICIPIO
-                322–326 CODIGO DE MUNICIPIO
-                327-328 CODIGO PROVINCIA
-                329-333 CODIGO POSTAL
-            334-500 	Blancos
+            1          Tipo de Registro
+            2-4        Modelo Declaración
+            5-8        Ejercicio
+            9-17       NIF del declarante
+            18-26      NIF del arrendatario
+            27-35      NIF del representante legal
+            36-75      Apellidos y nombre, razón social o denominación del declarado
+            76         Tipo de hoja
+            77-99 	   Blancos
+            100-114    Importe de la operación
+            115 	   Situación del inmueble
+            116-140    Referencia catastral
+            141-333    Dirección y datos del inmueble
+            141–145    TIPO DE VÍA
+            146–195    NOMBRE VÍA PUBLICA
+            196–198    TIPO DE NUMERACIÓN
+            199–203    NUMERO DE CASA
+            204-206    CALIFICADOR DEL NUMERO
+            207–209    BLOQUE
+            210–212    PORTAL
+            213–215    ESCALERA
+            216–218    PLANTA O PISO
+            219–221    PUERTA
+            222–261    COMPLEMENTO.
+            262–291    LOCALIDAD O POBLACIÓN.
+            292–321    MUNICIPIO
+            322–326    CODIGO DE MUNICIPIO
+            327-328    CODIGO PROVINCIA
+            329-333    CODIGO POSTAL
+            334-500    Blancos
         """
         text = ''
-
-        text += '2'                                                     # Tipo de Registro
-        text += '347'                                                   # Modelo Declaración
-        text += self._formatString(report.fiscalyear_id.code, 4)             # Ejercicio
-        text += self._formatString(report.company_vat, 9)                    # NIF del declarante
-        text += self._formatString(partner_record.partner_vat, 9)            # NIF del declarado
-        text += self._formatString(partner_record.representative_vat, 9)     # NIF del representante legal
-        text += self._formatString(partner_record.partner_id.name, 40)       # Apellidos y nombre, razón social o denominación del declarado
-        text += 'I'                                                     # Tipo de hoja: Constante ‘I’.
-        text += 23*' '                                                   # Blancos
-        text += self._formatNumber(partner_record.amount, 13, 2)  # Importe de las operaciones
-        text += self._formatNumber(partner_record.situation, 1)   # Situación del inmueble
-        text += self._formatString(partner_record.reference, 25)  # Referencia catastral
-        text += self._formatString(partner_record.address_type, 5)        # TIPO DE VÍA
-        text += self._formatString(partner_record.address, 50)            # NOMBRE VÍA PUBLICA
-        text += self._formatString(partner_record.number_type, 3)         # TIPO DE NUMERACIÓN
-        text += self._formatNumber(partner_record.number, 5)              # NUMERO DE CASA
-        text += self._formatString(partner_record.number_calification, 3) # CALIFICADOR DEL NUMERO
-        text += self._formatString(partner_record.block, 3)               # BLOQUE
-        text += self._formatString(partner_record.portal, 3)              # PORTAL
-        text += self._formatString(partner_record.stairway, 3)            # ESCALERA
-        text += self._formatString(partner_record.floor, 3)               # PLANTA O PISO
-        text += self._formatString(partner_record.door, 3)                # PUERTA
-        text += self._formatString(partner_record.complement, 40)         # COMPLEMENTO
-        text += self._formatString(partner_record.city, 30)               # LOCALIDAD O POBLACIÓN
-        text += self._formatString(partner_record.township, 30)           # MUNICIPIO
-        text += self._formatString(partner_record.township_code, 5)       # CODIGO DE MUNICIPIO
-        text += self._formatString(partner_record.state_code, 2)          # CODIGO PROVINCIA
-        text += self._formatString(partner_record.postal_code, 5)         # CODIGO POSTAL
-        text += 167*' '                                                 # Blancos
-        text += '\r\n'                                                  # Sello electrónico
-
-        assert len(text) == 502, _("The type 2-I record (real estate) must be 502 characters long")
+        # Tipo de Registro
+        text += '2'
+        # Modelo Declaración
+        text += '347'
+        # Ejercicio
+        text += self._formatString(report.fiscalyear_id.code, 4)
+        # NIF del declarante
+        text += self._formatString(report.company_vat, 9)
+        # NIF del declarado
+        text += self._formatString(partner_record.partner_vat, 9)
+        # NIF del representante legal
+        text += self._formatString(partner_record.representative_vat, 9)
+        # Apellidos y nombre, razón social o denominación del declarado
+        text += self._formatString(partner_record.partner_id.name, 40)
+        # Tipo de hoja: Constante ‘I’.
+        text += 'I'
+        # Blancos
+        text += 23 * ' '
+        # Importe de las operaciones
+        text += self._formatNumber(partner_record.amount, 13, 2)
+        # Situación del inmueble
+        text += self._formatNumber(partner_record.situation, 1)
+        # Referencia catastral
+        text += self._formatString(partner_record.reference, 25)
+        # TIPO DE VÍA
+        text += self._formatString(partner_record.address_type, 5)
+        # NOMBRE VÍA PUBLICA
+        text += self._formatString(partner_record.address, 50)
+        # TIPO DE NUMERACION
+        text += self._formatString(partner_record.number_type, 3)
+        # NUMERO DE CASA
+        text += self._formatNumber(partner_record.number, 5)
+        # CALIFICADOR DEL NUMERO
+        text += self._formatString(partner_record.number_calification, 3)
+        # BLOQUE
+        text += self._formatString(partner_record.block, 3)
+        # PORTAL
+        text += self._formatString(partner_record.portal, 3)
+        # ESCALERA
+        text += self._formatString(partner_record.stairway, 3)
+        # PLANTA O PISO
+        text += self._formatString(partner_record.floor, 3)
+        # PUERTA
+        text += self._formatString(partner_record.door, 3)
+        # COMPLEMENTO
+        text += self._formatString(partner_record.complement, 40)
+        # LOCALIDAD O POBLACIÓN
+        text += self._formatString(partner_record.city, 30)
+        # MUNICIPIO
+        text += self._formatString(partner_record.township, 30)
+        # CODIGO DE MUNICIPIO
+        text += self._formatString(partner_record.township_code, 5)
+        # CODIGO PROVINCIA
+        text += self._formatString(partner_record.state_code, 2)
+        # CODIGO POSTAL
+        text += self._formatString(partner_record.postal_code, 5)
+        # Blancos
+        text += 167 * ' '
+        # Sello electrónico
+        text += '\r\n'
+        assert len(text) == 502, _(
+                "The type 2-I record (real state) must be 502 characters long")
         return text
 
-
-    def _get_formated_other_records(self, report):
-        file_contents = ''
-
+    def _get_formatted_main_record(self, cr, uid, report, context=None):
+        res = ''
+        for partner_record in report.partner_record_ids:
+            res += self._get_formated_partner_record(report, partner_record)
         for real_state_record in report.real_state_record_ids:
-            file_contents += self._get_formated_real_state_record(report, real_state_record)
-
-        return file_contents
-    
-
-    def _export_boe_file(self, cr, uid, ids, object_to_export, model=None, context=None):
-        return super(l10n_es_aeat_mod347_export_to_boe, self)._export_boe_file(cr, uid, ids, object_to_export, model='347')
-
-l10n_es_aeat_mod347_export_to_boe()
+            res += self._get_formated_real_state_record(report,
+                                                        real_state_record)
+        return res

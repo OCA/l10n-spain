@@ -20,12 +20,12 @@
 ##############################################################################
 
 """
-Extends partnet to add fields used by the 340 report.
+Extends partner to add fields used by the 340 report.
 """
 
-from osv import osv, fields
+from openerp.osv import orm, fields
 
-class res_partner(osv.osv):
+class res_partner(orm.Model):
     """
     Extends the partners to add the include_in_mod347 field
     """
@@ -45,5 +45,3 @@ class res_partner(osv.osv):
     _defaults = {
         'vat_type': '1',
     }
-
-res_partner()

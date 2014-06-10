@@ -6,20 +6,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-07 10:52+0000\n"
+"POT-Creation-Date: 2014-03-06 00:49+0000\n"
 "PO-Revision-Date: 2013-10-11 22:56+0000\n"
 "Last-Translator: Ignacio Ibeas (www.acysos.com) <ignacio@acysos.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-08 05:41+0000\n"
-"X-Generator: Launchpad (build 16877)\n"
+"X-Launchpad-Export-Date: 2014-06-10 06:48+0000\n"
+"X-Generator: Launchpad (build 17031)\n"
 
 #. module: l10n_es_partner
-#: field:res.bank,website:0
-msgid "Website"
-msgstr "Lloc web"
+#: help:res.partner.bank,acc_country_id:0
+msgid ""
+"If the country of the bank is Spain, it validates the bank code or IBAN, "
+"formatting it accordingly."
+msgstr ""
 
 #. module: l10n_es_partner
 #: view:res.partner:0
@@ -44,6 +46,7 @@ msgid "Import spanish bank data"
 msgstr ""
 
 #. module: l10n_es_partner
+#: code:addons/l10n_es_partner/l10n_es_partner.py:130
 #: code:addons/l10n_es_partner/l10n_es_partner.py:135
 #, python-format
 msgid "IBAN account is not valid"
@@ -76,6 +79,7 @@ msgid "Value Added Tax number"
 msgstr "Codi d'Indentificació Fiscal"
 
 #. module: l10n_es_partner
+#: code:addons/l10n_es_partner/l10n_es_partner.py:99
 #: code:addons/l10n_es_partner/l10n_es_partner.py:104
 #, python-format
 msgid "Bank account should have 20 digits."
@@ -97,50 +101,52 @@ msgid "Partner"
 msgstr "Empresa"
 
 #. module: l10n_es_partner
-#: help:res.partner.bank,acc_country_id:0
-msgid ""
-"If the country of the bank is Spain, it validates the bank code. It only "
-"reads the digit characters of the bank code:\n"
-"- If the number of digits is 18, computes the two digits of control.\n"
-"- If the number of digits is 20, computes the two digits of control and "
-"ignores the current ones.\n"
-"- If the number of digits is different from 18 or 20, it leaves the bank "
-"code unaltered.\n"
-"The result is shown in the '1234 5678 06 1234567890' format."
-msgstr ""
-"Si el país del compte bancari és Espanya, valida el número del compte. Només "
-"mira els caràcters del compte que siguin dígits:\n"
-"- Si el nombre de dígits és 18, calcula els dos dígits de control.\n"
-"- Si el nombre de dígits és 20, calcula els dos dígits de control i ignora "
-"els actuals.\n"
-"- Si el número de dígits és diferent de 18 o 20, deixa el valor inalterat.\n"
-"Presenta el resultat amb el format '1234 5678 06 1234567890'."
-
-#. module: l10n_es_partner
 #: view:l10n.es.partner.import.wizard:0
 msgid "Import"
 msgstr "Importa"
 
 #. module: l10n_es_partner
+#: code:addons/l10n_es_partner/l10n_es_partner.py:98
 #: code:addons/l10n_es_partner/l10n_es_partner.py:103
+#: code:addons/l10n_es_partner/l10n_es_partner.py:105
 #: code:addons/l10n_es_partner/l10n_es_partner.py:110
+#: code:addons/l10n_es_partner/l10n_es_partner.py:129
 #: code:addons/l10n_es_partner/l10n_es_partner.py:134
 #, python-format
 msgid "Warning"
 msgstr "Warning"
 
 #. module: l10n_es_partner
+#: code:addons/l10n_es_partner/l10n_es_partner.py:106
 #: code:addons/l10n_es_partner/l10n_es_partner.py:111
 #, python-format
 msgid "Invalid bank account."
 msgstr "Invalid bank account."
 
 #. module: l10n_es_partner
-#: view:res.partner.bank:0
-msgid "onchange_banco(acc_number, acc_country_id, state)"
-msgstr ""
-
-#. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_bank
 msgid "Bank"
 msgstr "Banc"
+
+#. module: l10n_es_partner
+#: field:res.bank,website:0
+msgid "Website"
+msgstr "Lloc web"
+
+#~ msgid ""
+#~ "If the country of the bank is Spain, it validates the bank code. It only "
+#~ "reads the digit characters of the bank code:\n"
+#~ "- If the number of digits is 18, computes the two digits of control.\n"
+#~ "- If the number of digits is 20, computes the two digits of control and "
+#~ "ignores the current ones.\n"
+#~ "- If the number of digits is different from 18 or 20, it leaves the bank "
+#~ "code unaltered.\n"
+#~ "The result is shown in the '1234 5678 06 1234567890' format."
+#~ msgstr ""
+#~ "Si el país del compte bancari és Espanya, valida el número del compte. Només "
+#~ "mira els caràcters del compte que siguin dígits:\n"
+#~ "- Si el nombre de dígits és 18, calcula els dos dígits de control.\n"
+#~ "- Si el nombre de dígits és 20, calcula els dos dígits de control i ignora "
+#~ "els actuals.\n"
+#~ "- Si el número de dígits és diferent de 18 o 20, deixa el valor inalterat.\n"
+#~ "Presenta el resultat amb el format '1234 5678 06 1234567890'."

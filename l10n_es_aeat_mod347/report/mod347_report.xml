@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            id="report_l10n_es_aeat_mod347"
+            string="AEAT 347 Model report"
+            model="l10n.es.aeat.mod347.report"
+            name="report_l10n_es_aeat_mod347.report"
+            rml="addons/l10n_es_aeat_mod347/report/mod347_report.rml"
+            auto="True"
+            menu="True"
+            header="False"/>
+
+    </data>
+</openerp>

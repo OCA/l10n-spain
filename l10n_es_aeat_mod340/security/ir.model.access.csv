@@ -1,15 +1,8 @@
-"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"access_l10n_es_aeat_mod340","l10n_es_aeat_mod340","model_l10n_es_aeat_mod340","account.group_account_user",1,0,0,0
-"access_l10n_es_aeat_mod340_manager","l10n_es_aeat_mod340 manager","model_l10n_es_aeat_mod340","account.group_account_manager",1,1,1,1
-"access_l10n_es_aeat_mod340_issued","l10n_es_aeat_mod340_issued","model_l10n_es_aeat_mod340_issued","account.group_account_user",1,0,0,0
-"access_l10n_es_aeat_mod340_issued_manager","l10n_es_aeat_mod340_issued manager","model_l10n_es_aeat_mod340_issued","account.group_account_manager",1,1,1,1
-"access_l10n_es_aeat_mod340_received","l10n_es_aeat_mod340_received","model_l10n_es_aeat_mod340_received","account.group_account_user",1,0,0,0
-"access_l10n_es_aeat_mod340_received_manager","l10n_es_aeat_mod340_received manager","model_l10n_es_aeat_mod340_received","account.group_account_manager",1,1,1,1
-"access_l10n_es_aeat_mod340_investment","l10n_es_aeat_mod340_investment","model_l10n_es_aeat_mod340_investment","account.group_account_user",1,0,0,0
-"access_l10n_es_aeat_mod340_investment_manager","l10n_es_aeat_mod340_investment manager","model_l10n_es_aeat_mod340_investment","account.group_account_manager",1,1,1,1
-"access_l10n_es_aeat_mod340_intracomunitarias","l10n_es_aeat_mod340_intracomunitarias","model_l10n_es_aeat_mod340_intracomunitarias","account.group_account_user",1,0,0,0
-"access_l10n_es_aeat_mod340_intracomunitarias_manager","l10n_es_aeat_mod340_intracomunitarias manager","model_l10n_es_aeat_mod340_intracomunitarias","account.group_account_manager",1,1,1,1
-"access_l10n_es_aeat_mod340_tax_line_issued","l10n_es_aeat_mod340_tax_line_issued","model_l10n_es_aeat_mod340_tax_line_issued","account.group_account_manager",1,1,1,1
-
-
-
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_es_aeat_mod340_report_manager,l10n_es_aeat_mod340_report manager,model_l10n_es_aeat_mod340_report,l10n_es_aeat.group_account_aeat,1,1,1,1
+access_l10n_es_aeat_mod340_issued_manager,l10n_es_aeat_mod340_issued manager,model_l10n_es_aeat_mod340_issued,l10n_es_aeat.group_account_aeat,1,1,1,1
+access_l10n_es_aeat_mod340_received_manager,l10n_es_aeat_mod340_received manager,model_l10n_es_aeat_mod340_received,l10n_es_aeat.group_account_aeat,1,1,1,1
+access_l10n_es_aeat_mod340_investment_manager,l10n_es_aeat_mod340_investment manager,model_l10n_es_aeat_mod340_investment,l10n_es_aeat.group_account_aeat,1,1,1,1
+access_l10n_es_aeat_mod340_intracomunitarias_manager,l10n_es_aeat_mod340_intracomunitarias manager,model_l10n_es_aeat_mod340_intracomunitarias,l10n_es_aeat.group_account_aeat,1,1,1,1
+access_l10n_es_aeat_mod340_tax_line_issued,l10n_es_aeat_mod340_tax_line_issued,model_l10n_es_aeat_mod340_tax_line_issued,l10n_es_aeat.group_account_aeat,1,1,1,1
+access_l10n_es_aeat_mod340_tax_line_received,l10n_es_aeat_mod340_tax_line_received,model_l10n_es_aeat_mod340_tax_line_received,l10n_es_aeat.group_account_aeat,1,1,1,1

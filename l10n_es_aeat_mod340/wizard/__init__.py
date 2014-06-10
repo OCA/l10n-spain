@@ -22,5 +22,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import calculate_mod340_records
-import export_mod340_to_boe
+from . import calculate_mod340_records
+from . import export_mod340_to_boe

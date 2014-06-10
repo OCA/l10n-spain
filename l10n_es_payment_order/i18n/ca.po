@@ -6,14 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20130519-231019\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-10 10:42+0000\n"
-"PO-Revision-Date: 2013-10-10 10:42+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2013-10-10 09:39+0000\n"
+"PO-Revision-Date: 2014-05-12 21:22+0000\n"
+"Last-Translator: Omar (Pexego) <bronxkds@hotmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2014-06-10 06:48+0000\n"
+"X-Generator: Launchpad (build 17031)\n"
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,tipo:0
@@ -53,12 +54,15 @@ msgstr "_Export"
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/converter.py:68
 #, python-format
-msgid "Error:\n"
+msgid ""
+"Error:\n"
 "\n"
 "Can not convert float number %(number).2f to fit in %(size)d characters."
-msgstr "Error:\n"
+msgstr ""
+"Error:\n"
 "\n"
-"No és possible convertir el nombre %(number).2f i encabir-lo en %(size)d caràcters."
+"No és possible convertir el nombre %(number).2f i encabir-lo en %(size)d "
+"caràcters."
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,sufijo:0
@@ -78,7 +82,8 @@ msgstr "csb.3401"
 #. module: l10n_es_payment_order
 #: help:payment.mode,inc_domicile:0
 msgid "Add partner domicile records to the exported file (CSB 58)"
-msgstr "Afegir registres de domicili dels clients al fitxer exportat (CSB 58)"
+msgstr ""
+"Afegir registres de domicili dels clients al fitxer exportat (CSB 58)"
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,cedente:0
@@ -98,10 +103,12 @@ msgstr "No a l'ordre"
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:147
 #, python-format
-msgid "User error:\n"
+msgid ""
+"User error:\n"
 "\n"
 "The bank account number of the customer %s has not 20 digits."
-msgstr "Error d'usuari:\n"
+msgstr ""
+"Error d'usuari:\n"
 "\n"
 "El número de C.C. del client %s no té 20 dígits."
 
@@ -133,12 +140,16 @@ msgstr "Per defecte 'No'."
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:144
 #, python-format
-msgid "User error:\n"
+msgid ""
+"User error:\n"
 "\n"
-"The bank account number of the customer %s is not defined and current payment mode enforces all lines to have a bank account."
-msgstr "Error d'usuari:\n"
+"The bank account number of the customer %s is not defined and current "
+"payment mode enforces all lines to have a bank account."
+msgstr ""
+"Error d'usuari:\n"
 "\n"
-"L'empresa %s no té compte bancari definit i el mode de pagament actual força que totes les línies tinguin un compte bancari."
+"L'empresa %s no té compte bancari definit i el mode de pagament actual força "
+"que totes les línies tinguin un compte bancari."
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,inc_domicile:0
@@ -149,20 +160,24 @@ msgstr "Incloure domicili"
 #: code:addons/l10n_es_payment_order/wizard/converter.py:95
 #: code:addons/l10n_es_payment_order/wizard/converter.py:103
 #, python-format
-msgid "User error:\n"
+msgid ""
+"User error:\n"
 "\n"
 "The bank account number of %s is not defined."
-msgstr "Error d'usuari:\n"
+msgstr ""
+"Error d'usuari:\n"
 "\n"
 "El número de C.C. de %s no existeix."
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:92
 #, python-format
-msgid "User error:\n"
+msgid ""
+"User error:\n"
 "\n"
 "The bank account of the company %s is not defined."
-msgstr "Error d'usuari:\n"
+msgstr ""
+"Error d'usuari:\n"
 "\n"
 "No s'ha definit el C.C. de la companyia %s."
 
@@ -221,10 +236,12 @@ msgstr "Cap"
 #: code:addons/l10n_es_payment_order/wizard/converter.py:98
 #: code:addons/l10n_es_payment_order/wizard/converter.py:106
 #, python-format
-msgid "User error:\n"
+msgid ""
+"User error:\n"
 "\n"
 "The bank account number of %s does not have 20 digits."
-msgstr "Error d'usuari:\n"
+msgstr ""
+"Error d'usuari:\n"
 "\n"
 "El número de C.C. de la companyia %s no té 20 dígits."
 
@@ -252,11 +269,13 @@ msgstr "Pensió"
 #: code:addons/l10n_es_payment_order/wizard/csb_32.py:205
 #: code:addons/l10n_es_payment_order/wizard/csb_32.py:232
 #, python-format
-msgid "Configuration error:\n"
+msgid ""
+"Configuration error:\n"
 "\n"
 "The line \"%s\" is not 150 characters long:\n"
 "%s"
-msgstr "Error de configuració:\n"
+msgstr ""
+"Error de configuració:\n"
 "\n"
 "La línia \"%s\" no té 150 caràcters:\n"
 "%s"
@@ -266,11 +285,13 @@ msgstr "Error de configuració:\n"
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:362
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:378
 #, python-format
-msgid "Configuration error:\n"
+msgid ""
+"Configuration error:\n"
 "\n"
 "The line \"%s\" is not 72 characters long:\n"
 "%s"
-msgstr "Error de configuració:\n"
+msgstr ""
+"Error de configuració:\n"
 "\n"
 "La línia \"%s\" no té 72 caràcters:\n"
 "%s"
@@ -278,18 +299,18 @@ msgstr "Error de configuració:\n"
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:185
 #, python-format
-msgid "Successfully Exported\n"
+msgid ""
+"Successfully Exported\n"
 "\n"
 "Summary:\n"
 " Total amount paid: %.2f\n"
 " Total Number of Payments: %d\n"
-""
-msgstr "Exportació realitzada amb èxit\n"
+msgstr ""
+"Exportació realitzada amb èxit\n"
 "\n"
 "Resum:\n"
 " Import total de la remesa: %.2f\n"
 " Nombre total de rebuts: %d\n"
-""
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,text3:0
@@ -299,10 +320,12 @@ msgstr "Línia 3"
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_19.py:86
 #, python-format
-msgid "User error:\n"
+msgid ""
+"User error:\n"
 "\n"
 "Fixed date of charge has not been defined."
-msgstr "Error d'usuari:\n"
+msgstr ""
+"Error d'usuari:\n"
 "\n"
 "No s'ha definit cap data fixa de càrrec."
 
@@ -326,22 +349,27 @@ msgstr "Remesa_%s_%s.txt"
 #: code:addons/l10n_es_payment_order/wizard/csb_34_01.py:132
 #: code:addons/l10n_es_payment_order/wizard/csb_34_01.py:151
 #, python-format
-msgid "User error:\n"
+msgid ""
+"User error:\n"
 "\n"
 "Company %s has no vat."
-msgstr "User error:\n"
+msgstr ""
+"User error:\n"
 "\n"
 "Company %s has no vat."
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/converter.py:77
 #, python-format
-msgid "Error:\n"
+msgid ""
+"Error:\n"
 "\n"
 "Can not convert integer number %(number)d to fit in %(size)d characters."
-msgstr "Error: \n"
+msgstr ""
+"Error: \n"
 "\n"
-"No és possible convertir el número enter %(number)d i encabir-lo en %(size)d caràcters."
+"No és possible convertir el número enter %(number)d i encabir-lo en %(size)d "
+"caràcters."
 
 #. module: l10n_es_payment_order
 #: model:ir.model,name:l10n_es_payment_order.model_payment_converter_spain
@@ -351,10 +379,12 @@ msgstr "payment.converter.spain"
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:160
 #, python-format
-msgid "User error:\n"
+msgid ""
+"User error:\n"
 "\n"
 "The payment mode is not CSB 19, CSB 32, CSB 34 or CSB 58"
-msgstr "Error d'usuari:\n"
+msgstr ""
+"Error d'usuari:\n"
 "\n"
 "El mode de pagament no és CSB 19, CSB 32, CSB 34 ni CSB 58"
 
@@ -377,10 +407,12 @@ msgstr "Cheque CSB"
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:128
 #, python-format
-msgid "User error:\n"
+msgid ""
+"User error:\n"
 "\n"
 "Company %s has no invoicing or default address."
-msgstr "Error d'usuari:\n"
+msgstr ""
+"Error d'usuari:\n"
 "\n"
 "La companyia %s no té adreça de facturació o adreça per defecte."
 
@@ -392,10 +424,12 @@ msgstr "Despeses per compte de l'ordenant"
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:85
 #, python-format
-msgid "User error:\n"
+msgid ""
+"User error:\n"
 "\n"
 "Wizard can not generate export file, there are not payment lines."
-msgstr "Error d'usuari:\n"
+msgstr ""
+"Error d'usuari:\n"
 "\n"
 "L'assistent no pot generar el fitxer de remeses, no hi ha cap rebut."
 
@@ -451,8 +485,12 @@ msgstr "Format domicili alt."
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,payroll_check:0
-msgid "Check it if you want to add the 018 data type in the file (the vat of the recipient is added in the 018 data type)."
-msgstr "Activeu-lo si voleu afegir el tipus de dada 018 al fitxer (s'afegeix el CIF del receptor al tipus de dada 018)."
+msgid ""
+"Check it if you want to add the 018 data type in the file (the vat of the "
+"recipient is added in the 018 data type)."
+msgstr ""
+"Activeu-lo si voleu afegir el tipus de dada 018 al fitxer (s'afegeix el CIF "
+"del receptor al tipus de dada 018)."
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,direct_pay_order:0
@@ -462,12 +500,16 @@ msgstr "Ordre d'abonament directe"
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:99
 #, python-format
-msgid "User error:\n"
+msgid ""
+"User error:\n"
 "\n"
-"The company VAT number related to the bank account of the payment mode is not defined."
-msgstr "Error d'usuari:\n"
+"The company VAT number related to the bank account of the payment mode is "
+"not defined."
+msgstr ""
+"Error d'usuari:\n"
 "\n"
-"No s'ha definit el CIF de la companyia associada al C.C. del mode de pagament."
+"No s'ha definit el CIF de la companyia associada al C.C. del mode de "
+"pagament."
 
 #. module: l10n_es_payment_order
 #: model:ir.model,name:l10n_es_payment_order.model_csb_32
@@ -518,11 +560,13 @@ msgstr "Transferència"
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:143
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:346
 #, python-format
-msgid "Configuration error:\n"
+msgid ""
+"Configuration error:\n"
 "\n"
 "A line in \"%s\" is not 72 characters long:\n"
 "%s"
-msgstr "Error de configuració:\n"
+msgstr ""
+"Error de configuració:\n"
 "\n"
 "Una línia del \"%s\" no té 72 caràcters:\n"
 "%s"
@@ -545,8 +589,12 @@ msgstr "Altres"
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,add_date:0
-msgid "Check it if you want to add the 910 data type in the file to include the payment date."
-msgstr "Activeu-lo si voleu afegir el tipus de dada 910 amb la data de pagament al fitxer."
+msgid ""
+"Check it if you want to add the 910 data type in the file to include the "
+"payment date."
+msgstr ""
+"Activeu-lo si voleu afegir el tipus de dada 910 amb la data de pagament al "
+"fitxer."
 
 #. module: l10n_es_payment_order
 #: model:ir.model,name:l10n_es_payment_order.model_csb_34
@@ -576,8 +624,11 @@ msgstr "Xecs"
 
 #. module: l10n_es_payment_order
 #: view:payment.mode:0
-msgid "Optional Text for the Letter (adds 101, 102, 103, data tipes in the file)"
-msgstr "Text opcional per a cartes (afegeix els tipus de dades 101, 102, 103 al fitxer)"
+msgid ""
+"Optional Text for the Letter (adds 101, 102, 103, data tipes in the file)"
+msgstr ""
+"Text opcional per a cartes (afegeix els tipus de dades 101, 102, 103 al "
+"fitxer)"
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,concept:0
@@ -587,10 +638,12 @@ msgstr "Nòmina"
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:95
 #, python-format
-msgid "User error:\n"
+msgid ""
+"User error:\n"
 "\n"
 "The bank account number of the company %s has not 20 digits."
-msgstr "Error d'usuari:\n"
+msgstr ""
+"Error d'usuari:\n"
 "\n"
 "El número de C.C. de la companyia %s no té 20 dígits."
 
@@ -602,10 +655,12 @@ msgstr "Tipus de remesa"
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_34.py:172
 #, python-format
-msgid "User error:\n"
+msgid ""
+"User error:\n"
 "\n"
 "Partner %s has no invoicing or default address."
-msgstr "Error d'usuari:\n"
+msgstr ""
+"Error d'usuari:\n"
 "\n"
 "La companyia %s no té adreça de facturació o adreça per defecte."
 
@@ -624,28 +679,42 @@ msgstr "Correu ordinari"
 #: help:payment.mode,text1:0
 #: help:payment.mode,text2:0
 #: help:payment.mode,text3:0
-msgid "Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}"
-msgstr "Introduïu text i/o seleccioneu un camp de la factura per incloure'l a la descripció de la carta. Són possibles els següents valors: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}"
+msgid ""
+"Enter text and/or select a field of the invoice to include as a description "
+"in the letter. The possible values ​​are: ${amount}, ${communication}, "
+"{communication2}, {date}, {ml_maturity_date}, {create_date}, "
+"{ml_date_created}"
+msgstr ""
+"Introduïu text i/o seleccioneu un camp de la factura per incloure'l a la "
+"descripció de la carta. Són possibles els següents valors: ${amount}, "
+"${communication}, {communication2}, {date}, {ml_maturity_date}, "
+"{create_date}, {ml_date_created}"
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_34_01.py:106
 #, python-format
-msgid "User error:\n"
+msgid ""
+"User error:\n"
 "\n"
 "Company %s has no invoicing address."
-msgstr "User error:\n"
+msgstr ""
+"User error:\n"
 "\n"
 "Company %s has no invoicing address."
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_remesas.py:87
 #, python-format
-msgid "User error:\n"
+msgid ""
+"User error:\n"
 "\n"
-"If direct payment is selected to create the account moves, you should confirm payments befores. Creating the files will make the payments."
-msgstr "User error:\n"
+"If direct payment is selected to create the account moves, you should "
+"confirm payments befores. Creating the files will make the payments."
+msgstr ""
+"User error:\n"
 "\n"
-"If direct payment is selected to create the account moves, you should confirm payments befores. Creating the files will make the payments."
+"If direct payment is selected to create the account moves, you should "
+"confirm payments befores. Creating the files will make the payments."
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/csb_19.py:65
@@ -664,11 +733,13 @@ msgstr "User error:\n"
 #: code:addons/l10n_es_payment_order/wizard/csb_58.py:265
 #: code:addons/l10n_es_payment_order/wizard/csb_58.py:282
 #, python-format
-msgid "Configuration error:\n"
+msgid ""
+"Configuration error:\n"
 "\n"
 "The line \"%s\" is not 162 characters long:\n"
 "%s"
-msgstr "Error de configuració:\n"
+msgstr ""
+"Error de configuració:\n"
 "\n"
 "La línia \"%s\" no té 162 caràcters:\n"
 "%s"
@@ -686,6 +757,9 @@ msgstr "Correu certificat"
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,csb19_extra_concepts:0
-msgid "Check it if you want to add the invoice lines to the extra concepts (Max. 15 lines)"
-msgstr "Comprovar si es vol afegir a les línies de factura conceptes extra (Màx. 15 línies)"
-
+msgid ""
+"Check it if you want to add the invoice lines to the extra concepts (Max. 15 "
+"lines)"
+msgstr ""
+"Comprovar si es vol afegir a les línies de factura conceptes extra (Màx. 15 "
+"línies)"

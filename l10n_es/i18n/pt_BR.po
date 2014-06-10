@@ -7,44 +7,76 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openobject-addons\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-01-11 11:15+0000\n"
-"PO-Revision-Date: 2013-10-10 16:40+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-05-29 22:03+0000\n"
+"PO-Revision-Date: 2014-05-29 22:40+0000\n"
+"Last-Translator: Fábio Martinelli - http://zupy.com.br "
+"<webmaster@zupy.com.br>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-07 05:30+0000\n"
-"X-Generator: Launchpad (build 16877)\n"
+"X-Launchpad-Export-Date: 2014-06-10 06:47+0000\n"
+"X-Generator: Launchpad (build 17031)\n"
 
 #. module: l10n_es
-#: model:ir.module.module,shortdesc:l10n_es.module_meta_information
-msgid "Spanish Charts of Accounts (PGCE 2008)"
-msgstr "Spanish Charts of Accounts (PGCE 2008)"
+#: model:account.account.type,name:l10n_es.account_type_capital
+msgid "Capital"
+msgstr "Capital"
 
 #. module: l10n_es
-#: model:ir.module.module,description:l10n_es.module_meta_information
-msgid ""
-"Spanish Charts of Accounts (PGCE 2008)\n"
-"\n"
-"* Defines the following chart of account templates:\n"
-"        * Spanish General Chart of Accounts 2008.\n"
-"        * Spanish General Chart of Accounts 2008 for small and medium "
-"companies.\n"
-"* Defines templates for sale and purchase VAT.\n"
-"* Defines tax code templates.\n"
-"\n"
-"Note: You should install the l10n_ES_account_balance_report module\n"
-"for yearly account reporting (balance, profit & losses).\n"
+#: model:account.account.type,name:l10n_es.account_type_stock
+msgid "Existencias"
+msgstr "Estoques"
+
+#. module: l10n_es
+#: model:account.account.type,name:l10n_es.account_type_financieras
+msgid "Financieras"
+msgstr "Financeiras"
+
+#. module: l10n_es
+#: model:account.account.type,name:l10n_es.account_type_gastos_neto
+msgid "Gastos patrimonio neto"
+msgstr "Despesas Líquidas"
+
+#. module: l10n_es
+#: model:account.account.type,name:l10n_es.account_type_ingresos_neto
+msgid "Ingresos patrimonio neto"
+msgstr "Resultado de equivalência patrimonial"
+
+#. module: l10n_es
+#: model:account.account.type,name:l10n_es.account_type_inmo
+msgid "Inmovilizado"
 msgstr ""
-"Spanish Charts of Accounts (PGCE 2008)\n"
-"\n"
-"* Defines the following chart of account templates:\n"
-"        * Spanish General Chart of Accounts 2008.\n"
-"        * Spanish General Chart of Accounts 2008 for small and medium "
-"companies.\n"
-"* Defines templates for sale and purchase VAT.\n"
-"* Defines tax code templates.\n"
-"\n"
-"Note: You should install the l10n_ES_account_balance_report module\n"
-"for yearly account reporting (balance, profit & losses).\n"
+
+#. module: l10n_es
+#: model:account.account.type,name:l10n_es.account_type_terceros
+msgid "Terceros"
+msgstr "Terceiros"
+
+#~ msgid "Spanish Charts of Accounts (PGCE 2008)"
+#~ msgstr "Spanish Charts of Accounts (PGCE 2008)"
+
+#~ msgid ""
+#~ "Spanish Charts of Accounts (PGCE 2008)\n"
+#~ "\n"
+#~ "* Defines the following chart of account templates:\n"
+#~ "        * Spanish General Chart of Accounts 2008.\n"
+#~ "        * Spanish General Chart of Accounts 2008 for small and medium "
+#~ "companies.\n"
+#~ "* Defines templates for sale and purchase VAT.\n"
+#~ "* Defines tax code templates.\n"
+#~ "\n"
+#~ "Note: You should install the l10n_ES_account_balance_report module\n"
+#~ "for yearly account reporting (balance, profit & losses).\n"
+#~ msgstr ""
+#~ "Spanish Charts of Accounts (PGCE 2008)\n"
+#~ "\n"
+#~ "* Defines the following chart of account templates:\n"
+#~ "        * Spanish General Chart of Accounts 2008.\n"
+#~ "        * Spanish General Chart of Accounts 2008 for small and medium "
+#~ "companies.\n"
+#~ "* Defines templates for sale and purchase VAT.\n"
+#~ "* Defines tax code templates.\n"
+#~ "\n"
+#~ "Note: You should install the l10n_ES_account_balance_report module\n"
+#~ "for yearly account reporting (balance, profit & losses).\n"

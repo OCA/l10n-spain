@@ -34,10 +34,7 @@
 """,
     "license" : "AGPL-3",
     "depends" : ["l10n_es"],
-    "init_xml" : [
-    ],
-    "demo_xml" : [],
-    "update_xml" : [
+    "data" : [
         "account_view.xml",
     ],
     "active": False,

@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-24 10:14+0000\n"
-"PO-Revision-Date: 2014-01-24 17:27+0000\n"
-"Last-Translator: Pedro Manuel Baeza <pedro.baeza@gmail.com>\n"
+"PO-Revision-Date: 2014-01-31 02:28+0000\n"
+"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-25 06:40+0000\n"
-"X-Generator: Launchpad (build 16914)\n"
+"X-Launchpad-Export-Date: 2014-06-10 06:48+0000\n"
+"X-Generator: Launchpad (build 17031)\n"
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,previous_number:0
@@ -229,7 +229,7 @@ msgid ""
 "código electrónico o el nº de justifacnte de la declaración anterior."
 msgstr ""
 "Si se marca la casilla de liquidación complementaria, debe rellenar el "
-"código electrónico o el nº de justifacnte de la declaración anterior."
+"código electrónico o el nº de justificante de la declaración anterior."
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,casilla_17:0
@@ -340,9 +340,9 @@ msgid ""
 msgstr ""
 "Permite indicar si destina cantidades al pago de préstamos para la "
 "adquisición o rehabilitación de la vivienda habitual. Si marca la casilla, "
-"se podrá realiza un 2% de deducción sobre el importe de la casilla [03], con "
-"un máximo de 660,14 € por trimestre, o del 2% de la casilla [08], con un "
-"máximo de 660,14 euros anuales. \n"
+"se podrá realizar un 2% de deducción sobre el importe de la casilla [03], "
+"con un máximo de 660,14 € por trimestre, o del 2% de la casilla [08], con un "
+"máximo de 660,14 € anuales. \n"
 "Debe consultar las excepciones para las que no se computaría la deducción a "
 "pesar del préstamo."
 
@@ -498,7 +498,7 @@ msgstr "Presentación complementaria"
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,casilla_08:0
 msgid "Casilla [08] - Ingresos primario"
-msgstr "Casilla [08] - Ingresos primario"
+msgstr "Casilla [08] - Ingresos primarios"
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,complementary:0

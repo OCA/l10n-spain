@@ -24,7 +24,7 @@ from openerp.osv import fields, orm
 from openerp import netsvc
 from openerp.tools.translate import _
 from datetime import datetime
-from tools import config
+from openerp.tools import config
 import logging
 
 

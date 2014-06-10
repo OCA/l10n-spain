@@ -38,12 +38,12 @@
 #
 ##############################################################################
 
-from osv import osv, fields
+from openerp.osv import orm, fields
 from datetime import datetime
-from tools.translate import _
+from openerp.tools.translate import _
 from log import *
 
-class csb_58(osv.osv):
+class csb_58(orm.Model):
     _name = 'csb.58'
     _auto = False
     
@@ -311,5 +311,3 @@ class csb_58(osv.osv):
         txt_remesa += self._total_general_58(cr, uid)
 
         return txt_remesa
-
-csb_58()

@@ -28,7 +28,7 @@
 #
 ##############################################################################
 
-from tools.translate import _
+from openerp.tools.translate import _
 
 class Log(Exception):
     def __init__(self, content = '', error = False):

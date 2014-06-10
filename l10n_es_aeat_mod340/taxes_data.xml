@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <!-- Bases incluidas en el Modelo 340
+             Ignacio Ibeas (Acysos) - ignacio@acysos.com (2013-05-13)
+        -->
+        <!--IVA Devengado Base imponible-->
+        <record id="l10n_es.iva_dev_base" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <!-- Exentas IVA -->
+        <record id="l10n_es.base_sop_ex" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.base_rep_ex" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <!--Regimen general-->
+        <record id="l10n_es.iva_dev_01" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.iva_dev_04_10" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.iva_dev_07_21" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <!-- ADQUISICIONES INTRACOMUNITARIAS -->
+        <record id="l10n_es.iva_dev_19" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <!--IVA DEDUCIBLE -->
+        <record id="l10n_es.iva_ded_base_total" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <!-- Base en OPERACIONES INTERIORES CORRIENTES-->
+        <record id="l10n_es.iva_ded_22" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.iva_ded_22_4" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.iva_ded_22_10" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.iva_ded_22_21" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <!-- Base en OPERACIONES INTERIORES CON BIENES DE INVERSIÓN-->
+        <record id="l10n_es.iva_ded_24" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.iva_ded_24_4" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.iva_ded_24_10" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.iva_ded_24_21" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES CORRIENTES-->
+        <record id="l10n_es.iva_ded_30" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.iva_ded_30_4" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.iva_ded_30_10" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.iva_ded_30_21" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES DE INVERSIÓN-->
+        <record id="l10n_es.iva_ded_32" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.iva_ded_32_4" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.iva_ded_32_10" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.iva_ded_32_21" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <!--Otros Códigos de Impuestos-->
+        <record id="l10n_es.base_intra_42" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        
+        <record id="l10n_es.base_extra_44" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+    </data>
+</openerp>

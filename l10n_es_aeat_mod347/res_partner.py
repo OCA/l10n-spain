@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -18,28 +15,20 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from openerp.osv import fields, orm
 
-__author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
-"""
-Extends the account journals to add fields used by the 347 report.
-"""
-
-from osv import osv, fields
-
-class res_partner(osv.osv):
-    """
-    Extends the partners to add the include_in_mod347 field
-    """
+class res_partner(orm.Model):
     _inherit = "res.partner"
-    
     _columns = {
-        'include_in_mod347' : fields.boolean(u"Include in 347 Report",
-            help="Include in AEAT 347 Model report"),
+        'not_in_mod347': fields.boolean(u"Not included in 347 report",
+            help="If you mark this field, this partner will not be included "
+                 "in any AEAT 347 model report, independently from the "
+                 "total amount of its operations."),
     }
 
     _defaults = {
-        'include_in_mod347' : lambda *a: True,
+        'not_in_mod347': False,
     }
 
-res_partner()
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

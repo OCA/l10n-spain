@@ -27,7 +27,8 @@ import base64
 import time
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT 
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+from unidecode import unidecode
 
 
 class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
@@ -60,60 +61,21 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
         """
 
         if not text:
-            return fill*length
-
-        #
-        # Replace accents
-        #
-        replacements = [
-            (u'Á', 'A'),(u'á', 'A'),
-            (u'É', 'E'),(u'é', 'E'),
-            (u'Í', 'I'),(u'í', 'I'),
-            (u'Ó', 'O'),(u'ó', 'O'),
-            (u'Ú', 'U'),(u'ú', 'U'),
-            (u'Ä', 'A'),(u'ä', 'A'),
-            (u'Ë', 'E'),(u'ë', 'E'),
-            (u'Ï', 'I'),(u'ï', 'I'),
-            (u'Ö', 'O'),(u'ö', 'O'),
-            (u'Ü', 'U'),(u'ü', 'U'),
-            (u'À', 'A'),(u'à', 'A'),
-            (u'È', 'E'),(u'è', 'E'),
-            (u'Ì', 'I'),(u'ì', 'I'),
-            (u'Ò', 'O'),(u'ò', 'O'),
-            (u'Ù', 'U'),(u'ù', 'U'),
-            (u'Â', 'A'),(u'â', 'A'),
-            (u'Ê', 'E'),(u'ê', 'E'),
-            (u'Î', 'I'),(u'î', 'I'),
-            (u'Ô', 'O'),(u'ô', 'O'),
-            (u'Û', 'U'),(u'û', 'U')]
-
-        #
-        # String uppercase
-        #
+            return fill * length
+        # Replace accents and convert to upper
+        text = unidecode(unicode(text))
         text = text.upper()
-
-        #
-        # Turn text (probably unicode) into an ASCII (iso-8859-1) string
-        #
-        if isinstance(text, (unicode)):
-            ascii_string = text.encode('iso-8859-1', 'ignore')
-        else:
-            ascii_string = str(text or '')
+        ascii_string = text.encode('iso-8859-1')
         # Cut the string if it is too long
         if len(ascii_string) > length:
             ascii_string = ascii_string[:length]
         # Format the string
-        #ascii_string = '{0:{1}{2}{3}s}'.format(ascii_string, fill, align,
-        # length) #for python >= 2.6
         if align == '<':
-            ascii_string = str(ascii_string) + \
-            (length-len(str(ascii_string)))*fill
+            ascii_string = ascii_string.ljust(length, fill)
         elif align == '>':
-            ascii_string = (length-len(str(ascii_string)))* \
-            fill + str(ascii_string)
+            ascii_string = ascii_string.rjust(length, fill)
         else:
             assert False, _('Wrong aling option. It should be < or >')
-
         # Sanity-check
         assert len(ascii_string) == length, \
             _("The formated string must match the given length")
@@ -166,13 +128,13 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
         """
         return value and yes or no
 
-    def _get_formatted_declaration_record(self, report, context=None):
+    def _get_formatted_declaration_record(self, cr, uid, report, context=None):
         return ''
 
-    def _get_formatted_main_record(self, report, context=None):
+    def _get_formatted_main_record(self, cr, uid, report, context=None):
         return ''
 
-    def _get_formatted_other_records(self, report, context=None):
+    def _get_formatted_other_records(self, cr, uid, report, context=None):
         return ''
 
     def _do_global_checks(self, report, contents, context=None):
@@ -189,12 +151,14 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
                                         context['active_id'], context=context)
         contents = ''
         ## Add header record
-        contents += self._get_formatted_declaration_record(report,
+        contents += self._get_formatted_declaration_record(cr, uid, report,
                                                           context=context)
         ## Add main record
-        contents += self._get_formatted_main_record(report, context=context)
+        contents += self._get_formatted_main_record(cr, uid, report, 
+                                                    context=context)
         ## Adds other fields
-        contents += self._get_formatted_other_records(report, context=context)
+        contents += self._get_formatted_other_records(cr, uid, report, 
+                                                      context=context)
         ## Generate the file and save as attachment
         file = base64.encodestring(contents)
         file_name = _("%s_report_%s.txt") % (report.number,
@@ -210,7 +174,7 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
             "name" : file_name,
             "datas" : file,
             "datas_fname" : file_name,
-            "res_model" : "l10n.es.aeat.mod%s.report" % report.number,
+            "res_model" : report._model._name,
             "res_id" : report.id,
         }, context=context)
         self.write(cr, uid, ids,

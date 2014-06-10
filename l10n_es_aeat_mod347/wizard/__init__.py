@@ -18,11 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-__author__ = "Luis Manuel Angueira Blanco (Pexego)"
-
-
-import calculate_mod347_records
 import export_mod347_to_boe
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

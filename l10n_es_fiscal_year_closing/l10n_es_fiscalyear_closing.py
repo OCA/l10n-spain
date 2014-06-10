@@ -20,7 +20,7 @@
 #
 ##############################################################################
 from openerp.osv import fields, orm
-from tools.translate import _
+from openerp.tools.translate import _
 
 #-------------------------------------------------------------------------------
 # Default Spanish Account Mappings

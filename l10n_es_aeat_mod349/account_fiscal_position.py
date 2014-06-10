@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
+#    Copyright (C)
+#        2004-2011: Pexego Sistemas Informáticos. (http://pexego.es)
+#        2013:      Top Consultant Software Creations S.L.
+#                   (http://www.topconsultant.es/)
+#        2014:      Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
+#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com> 
+#
+#    Autor original: Luis Manuel Angueira Blanco (Pexego)
+#    Migración OpenERP 7.0: Ignacio Martínez y Miguel López.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,22 +25,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-__author__ = "Luis Manuel Angueira Blanco (Pexego)"
-
-
-from osv import osv, fields
+from openerp.osv import fields, orm
 
 
-class account_fiscal_position(osv.osv):
+class account_fiscal_position(orm.Model):
     """
     Inheritance of Account fiscal position to add field 'include_in_mod349'.
-    This fields let us map fiscal position, taxes and accounts to create an AEAT 349 Report
+    This fields let us map fiscal position, taxes and accounts to create an
+    AEAT 349 Report
     """
     _inherit = 'account.fiscal.position'
-
     _columns = {
-        'intracommunity_operations' : fields.boolean('Intra-Community operations'),
+        'intracommunity_operations': fields.boolean(
+                                                'Intra-Community operations'),
     }
-
-account_fiscal_position()

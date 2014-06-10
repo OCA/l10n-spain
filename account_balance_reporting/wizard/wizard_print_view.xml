@@ -31,7 +31,6 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
         <record id="wizard_account_balance_reporting_print" model="ir.ui.view">
             <field name="name">account.balance.reporting.print.wizard.form</field>
             <field name="model">account.balance.reporting.print.wizard</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Print report" version="7.0">
                     <group>
@@ -46,6 +45,7 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
                 </form>
             </field>
         </record>
+
         <act_window name="Print report"
             res_model="account.balance.reporting.print.wizard"
             src_model="account.balance.reporting"
@@ -53,11 +53,13 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
             target="new"
             id="account_balance_reporting_print_wizard_act_window" />
 
-        <!-- Calculate wizard -->
-        <wizard id="wiz_account_balance_reporting_calculate"
-                model="account.balance.reporting"
-                string="Calculate report"
-                name="account_balance_reporting.calculate_wizard"
-                menu="False"/>
+        <record id="account_balance_reporting_print_wizard_ir_values" model="ir.values">
+            <field name="object" eval="1" />
+            <field name="name">Print report</field>
+            <field name="key2">print_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('account_balance_reporting_print_wizard_act_window'))"/>
+            <field name="key">action</field>
+            <field name="model">account.balance.reporting</field>
+        </record>
     </data>
 </openerp>
