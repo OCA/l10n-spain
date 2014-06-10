@@ -3,9 +3,15 @@
 <data noupdate="1">
 
     <record id="bank_statement_completion_rule_caixabank" model="account.statement.completion.rule">
-         <field name="name">Match according CaixaBank C43 rules</field>
+         <field name="name">Casar acorde a las reglas C43 de CaixaBank</field>
          <field name="sequence">10</field>
          <field name="function_to_call">get_from_caixabank_rules</field>
+     </record>
+
+    <record id="bank_statement_completion_rule_caixabank" model="account.statement.completion.rule">
+         <field name="name">Casar acorde a las reglas genéricas C43</field>
+         <field name="sequence">99</field>
+         <field name="function_to_call">get_from_generic_c43_rules</field>
      </record>
 
 </data>
