@@ -71,6 +71,7 @@ if __name__ == "__main__":
     # Parsear argumentos de la línea de comandos
     argparser = argparse.ArgumentParser(description=u'Descarga los datos de CPs de GeoNames.')
     argparser.add_argument('--start', dest='start', type=int, default=1000, help=u'CP de inicio de la consulta')
+    argparser.add_argument('--ine_code', dest='ine_code', type=str, default='', help=u'Archivo codigos INE')
     args = argparser.parse_args()
     start = args.start
     # Preparar archivo en el que escribir
@@ -81,6 +82,18 @@ if __name__ == "__main__":
         output.write("    <data noupdate='1'>\n")
     else:
         output = open("l10n_es_toponyms_zipcodes.xml", 'a')
+
+    # Descargamos el fichero desde la web del INE apartado "Callejero del censo electoral":
+    # http://www.ine.es/ss/Satellite?L=es_ES&c=Page&cid=1254735624326&p=1254735624326&pagename=ProductosYServicios%2FPYSLayout
+    # Descomprimimos el archivo y pasamos como parametro ine_code la ruta del archivo mas grande "TRAMOS-NAL.Fxxxxxx"
+    ine_dic = {}
+    if args.ine_code != '':
+        if os.path.exists(args.ine_code):
+            fCPs = open(args.ine_code, 'r')
+            # Creamos un diccionario con clave Código postal y valor codigo INE de municipio
+            for lineCP in fCPs:
+                ine_dic[lineCP[42:47]] = lineCP[0:5] 
+    
     # Iterar por el rango de CPs
     cont = 0
     for cp in range (start, 53000):
@@ -101,6 +114,7 @@ if __name__ == "__main__":
                 output.write('            <field name="name">%s</field>\n' %filterCity(city).encode('utf-8'))
                 output.write('            <field name="zip">%s</field>\n' %cp_str)
                 output.write('            <field name="country_id" ref="base.es"/>\n')
+                output.write('            <field name="code">%s</field>\n' %ine_dic.get(cp,''))
                 output.write('        </record>\n')
         else:
             print "No se puede continuar la extracción de datos.\n%s\nContinúe después del tiempo indicado utilizando el parámetro --start con el número %s." %(handler.message.encode('utf-8'), cp)
