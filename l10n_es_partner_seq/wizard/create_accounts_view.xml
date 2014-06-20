@@ -34,7 +34,6 @@
 
         <record id="action_account_create_accounts_from_partner" model="ir.values">
             <field name="model_id" ref="model_res_partner" />
-            <field name="object" eval="1" />
             <field name="name">Create accounts</field>
             <field name="key2">client_action_multi</field>
             <field name="value" eval="'ir.actions.act_window,' + str(ref('action_account_create_accounts'))"/>
