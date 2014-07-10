@@ -6,8 +6,8 @@
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -20,5 +20,18 @@
 #
 ##############################################################################
 
-import partner_es
+from openerp.osv import orm, fields
 
+
+class ResPartner(orm.Model):
+    _inherit = 'res.partner'
+
+    _columns = {
+        'es_libro': fields.char('Book', size=128),  # libro
+        # Registro Mercantil
+        'es_registro_mercantil': fields.char('Commercial Registry', size=128),
+        'es_hoja': fields.char('Sheet', size=128),  # hoja
+        'es_folio': fields.char('Page', size=128),  # folio
+        'es_seccion': fields.char('Section', size=128),  # seccion
+        'es_tomo': fields.char('Volume', size=128),  # tomo
+    }
