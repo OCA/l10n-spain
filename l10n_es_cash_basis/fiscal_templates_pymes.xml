@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="fp_pymes_recc" model="account.fiscal.position.template">
+            <field name="name">Régimen Especial Criterio de Caja (RECC)</field>
+            <field name="chart_template_id" ref="l10n_es.l10nES_chart_template_pymes"/>
+        </record>
+
+        <!-- *********************************************** -->
+        <!-- IVA repercutido -->
+        <!-- *********************************************** -->
+
+        <record id="fptt_pymes_recc_4" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recc"/>
+            <field name="tax_src_id" ref="l10n_es.iva_pymes_rep_4"/>
+            <field name="tax_dest_id" ref="iva_pymes_rep_4_recc"/>
+        </record>
+
+        <record id="fptt_pymes_recc_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recc"/>
+            <field name="tax_src_id" ref="l10n_es.iva_pymes_rep_10"/>
+            <field name="tax_dest_id" ref="iva_pymes_rep_10_recc"/>
+        </record>
+
+        <record id="fptt_pymes_recc_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recc"/>
+            <field name="tax_src_id" ref="l10n_es.iva_pymes_rep_21"/>
+            <field name="tax_dest_id" ref="iva_pymes_rep_21_recc"/>
+        </record>
+
+        <!-- *********************************************** -->
+        <!-- IVA soportado -->
+        <!-- *********************************************** -->
+
+        <!-- OPERACIONES INTERIORES CORRIENTES -->
+        <record id="fptt_pymes_recc_sop_4" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recc"/>
+            <field name="tax_src_id" ref="l10n_es.iva_pymes_sop_4" />
+            <field name="tax_dest_id" ref="iva_pymes_sop_4_recc"/>
+        </record>
+
+        <record id="fptt_pymes_recc_sop_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recc"/>
+            <field name="tax_src_id" ref="l10n_es.iva_pymes_sop_10"/>
+            <field name="tax_dest_id" ref="iva_pymes_sop_10_recc"/>
+        </record>
+
+        <record id="fptt_pymes_recc_sop_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recc"/>
+            <field name="tax_src_id" ref="l10n_es.iva_pymes_sop_21"/>
+            <field name="tax_dest_id" ref="iva_pymes_sop_21_recc"/>
+        </record>
+
+        <!-- OPERACIONES INTERIORES CON BIENES DE INVERSIÓN -->
+        <record id="fptt_pymes_recc_sop_inv_4" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recc"/>
+            <field name="tax_src_id" ref="l10n_es.iva_pymes_sop_4_inv"/>
+            <field name="tax_dest_id" ref="iva_pymes_sop_4_inv_recc"/>
+        </record>
+
+        <record id="fptt_pymes_recc_sop_inv_10" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recc"/>
+            <field name="tax_src_id" ref="l10n_es.iva_pymes_sop_10_inv"/>
+            <field name="tax_dest_id" ref="iva_pymes_sop_10_inv_recc"/>
+        </record>
+
+        <record id="fptt_pymes_recc_sop_inv_21" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_pymes_recc"/>
+            <field name="tax_src_id" ref="l10n_es.iva_pymes_sop_21_inv"/>
+            <field name="tax_dest_id" ref="iva_pymes_sop_21_inv_recc"/>
+        </record>
+
+    </data>
+</openerp>

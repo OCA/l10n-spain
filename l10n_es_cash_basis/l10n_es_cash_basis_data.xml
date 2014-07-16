@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="chart_update_todo" model="ir.actions.todo">
+            <field name="name">Account chart update</field>
+            <field name="note">Update chart from template</field>
+            <field name="action_id" ref="account_chart_update.action_wizard_update_chart"/>
+            <field name="type">automatic</field>
+            <field name="sequence">15</field>
+            <field name="restart">onskip</field>
+        </record>
+
+    </data>
+</openerp>

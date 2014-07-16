@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="iva_recc_pymes" model="account.tax.code.template">
+            <field name="name">IVA RECC</field>
+            <field name="code">RECC</field>
+            <field name="sign">1.0</field>
+            <field name="parent_id" ref="l10n_es.vat_code_chart_pymes_root"/>
+        </record>
+
+        <!-- *********************************************** -->
+        <!-- IVA DEVENGADO (REPERCUTIDO) -->
+        <!-- *********************************************** -->
+
+        <!-- Base imponible -->
+
+        <record id="iva_pymes_recc_cobro_base" model="account.tax.code.template">
+            <field name="name">Base imponible pendiente de cobro</field>
+            <field name="code">RECC-B</field>
+            <field name="sign">1.0</field>
+            <field name="parent_id" ref="iva_recc_pymes"/>
+        </record>
+
+        <record id="iva_pymes_recc_cobro_base_4" model="account.tax.code.template">
+            <field name="name">Base pendiente de cobro (4%)</field>
+            <field name="code">RECC-B-4</field>
+            <field name="parent_id" ref="iva_pymes_recc_cobro_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
+         <record id="iva_pymes_recc_cobro_base_10" model="account.tax.code.template">
+            <field name="name">Base pendiente de cobro (10%)</field>
+            <field name="code">RECC-B-10</field>
+            <field name="parent_id" ref="iva_pymes_recc_cobro_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_pymes_recc_cobro_base_21" model="account.tax.code.template">
+            <field name="name">Base pendiente de cobro (21%)</field>
+            <field name="code">RECC-B-21</field>
+            <field name="parent_id" ref="iva_pymes_recc_cobro_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <!-- Cuotas -->
+
+        <record id="iva_pymes_recc_cobro" model="account.tax.code.template">
+            <field name="name">IVA cuota pendiente de cobro</field>
+            <field name="code">RECC-C</field>
+            <field name="sign">1.0</field>
+            <field name="parent_id" ref="iva_recc_pymes"/>
+        </record>
+        <record id="iva_pymes_recc_cobro_4" model="account.tax.code.template">
+            <field name="name">IVA pendiente de cobro. Cuota 4%</field>
+            <field name="code">RECC-C-4</field>
+            <field name="parent_id" ref="iva_pymes_recc_cobro"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_recc_cobro_10" model="account.tax.code.template">
+            <field name="name">IVA pendiente de cobro. Cuota 10%</field>
+            <field name="code">RECC-C-10</field>
+            <field name="parent_id" ref="iva_pymes_recc_cobro"/>
+            <field name="sign">1.0</field>
+        </record>
+        <record id="iva_pymes_recc_cobro_21" model="account.tax.code.template">
+            <field name="name">IVA pendiente de cobro. Cuota 21%</field>
+            <field name="code">RECC-C-21</field>
+            <field name="parent_id" ref="iva_pymes_recc_cobro"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <!-- *********************************************** -->
+        <!-- IVA DEDUCIBLE (SOPORTADO) -->
+        <!-- *********************************************** -->
+
+        <!-- Base imponible -->
+
+        <record id="iva_pymes_recc_pago_base" model="account.tax.code.template">
+            <field name="name">Base imponible pendiente de pago</field>
+            <field name="code">--</field>
+            <field name="sign">1.0</field>
+            <field name="parent_id" ref="iva_recc_pymes"/>
+        </record>
+
+        <!-- Base en OPERACIONES INTERIORES CORRIENTES -->
+        <record id="iva_pymes_recc_pago_base_4" model="account.tax.code.template">
+            <field name="name">Base oper. interiores corrientes pendiente de pago (4%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_recc_pago_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
+       <record id="iva_pymes_recc_pago_base_10" model="account.tax.code.template">
+            <field name="name">Base oper. interiores corrientes pendiente de pago (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_recc_pago_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_pymes_recc_pago_base_21" model="account.tax.code.template">
+            <field name="name">Base oper. interiores corrientes pendiente de pago (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_recc_pago_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <!-- Base en OPERACIONES INTERIORES CON BIENES DE INVERSIÓN -->
+        <record id="iva_pymes_recc_pago_base_inv_4" model="account.tax.code.template">
+            <field name="name">Base oper. interiores bienes inversión pendiente de pago (4%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_recc_pago_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_pymes_recc_pago_base_inv_10" model="account.tax.code.template">
+            <field name="name">Base oper. interiores bienes inversión pendiente de pago (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_recc_pago_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
+         <record id="iva_pymes_recc_pago_base_inv_21" model="account.tax.code.template">
+            <field name="name">Base oper. interiores bienes inversión pendiente de pago (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_recc_pago_base"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <!-- Cuotas -->
+
+        <record id="iva_pymes_recc_pago" model="account.tax.code.template">
+            <field name="name">IVA cuota pendiente de pago</field>
+            <field name="code">RECC-P</field>
+            <field name="parent_id" ref="iva_recc_pymes"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <!-- Cuotas en OPERACIONES INTERIORES CORRIENTES -->
+        <record id="iva_pymes_recc_pago_4" model="account.tax.code.template">
+            <field name="name">IVA pendiente de pago oper. interiores corrientes (4%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_recc_pago"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_pymes_recc_pago_10" model="account.tax.code.template">
+            <field name="name">IVA pendiente de pago oper. interiores corrientes (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_recc_pago"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_pymes_recc_pago_21" model="account.tax.code.template">
+            <field name="name">IVA pendiente de pago oper. interiores corrientes (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_recc_pago"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <!-- Cuotas en OPERACIONES INTERIORES CON BIENES DE INVERSIÓN -->
+        <record id="iva_pymes_recc_pago_bi_4" model="account.tax.code.template">
+            <field name="name">IVA pendiente de pago oper. interiores bienes inversión (4%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_recc_pago"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_pymes_recc_pago_bi_10" model="account.tax.code.template">
+            <field name="name">IVA pendiente de pago oper. interiores bienes inversión (10%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_recc_pago"/>
+            <field name="sign">1.0</field>
+        </record>
+
+        <record id="iva_pymes_recc_pago_bi_21" model="account.tax.code.template">
+            <field name="name">IVA pendiente de pago oper. interiores bienes inversión (21%)</field>
+            <field name="code">--</field>
+            <field name="parent_id" ref="iva_pymes_recc_pago"/>
+            <field name="sign">1.0</field>
+        </record>
+
+    </data>
+</openerp>
