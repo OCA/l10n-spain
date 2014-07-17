@@ -1,2 +1,0 @@
-import baja_fichero
-
