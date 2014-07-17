@@ -1,12 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
-#
-#    Migración OpenERP 7.0. Top Consultant Software Creations S.L. (http://www.topconsultant.es/) 2013
-#        Ignacio Martínez y Miguel López.
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -22,12 +16,27 @@
 #
 ##############################################################################
 
-__author__ = "Luis Manuel Angueira Blanco (Pexego)"
-
-
-from . import account_fiscal_position
-from . import account_invoice
-from . import mod349
-
+from . import models
 from . import wizard
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+from openerp import SUPERUSER_ID
+
+
+def _assign_invoice_operation_keys(cr, registry):
+    """On first install of the module, this method is called to assign a
+    default value to invoices and fiscal position.
+    """
+    fp_obj = registry['account.fiscal.position']
+    # TODO: Intentar depender lo menos posible del nombre
+    fp_ids = fp_obj.search(cr, SUPERUSER_ID,
+                           [('name', '=', "Régimen Intracomunitario")])
+    if not fp_ids:
+        return
+    fp_obj.write(cr, SUPERUSER_ID, fp_ids, {'intracommunity_operations': True})
+    invoice_obj = registry['account.invoice']
+    invoice_ids = invoice_obj.search(cr, SUPERUSER_ID, [])
+    for invoice in invoice_obj.browse(cr, SUPERUSER_ID, invoice_ids):
+        if invoice.fiscal_position:
+            op_key = invoice._get_operation_key(invoice.fiscal_position,
+                                                invoice.type)
+            invoice_obj.write(cr, SUPERUSER_ID, invoice.id,
+                              {'operation_key': op_key})
