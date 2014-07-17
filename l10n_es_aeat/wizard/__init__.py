@@ -21,4 +21,4 @@
 
 __author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
-import export_to_boe
+from . import export_to_boe
