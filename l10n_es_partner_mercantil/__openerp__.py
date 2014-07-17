@@ -22,9 +22,9 @@
 
 {
     "name": "Partner Mercantil",
-    "version": "1.0",
-    "author": "Spanish Localization Team",
-    "website": "https://launchpad.net/openerp-spain",
+    "version": "8.0.1.0.0",
+    "author": "Spanish Localization Team,Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-spain",
     "category": "Localisation/Europe",
     "description": """
     Añade los siguientes campos en la ficha de Empresa:
@@ -42,6 +42,5 @@
     "data": [
         "views/partner_es_view.xml",
     ],
-    "active": True,
-    "installable": True
+    "installable": True,
 }
