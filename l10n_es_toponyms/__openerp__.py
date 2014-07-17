@@ -2,14 +2,14 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
 #    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -43,7 +43,7 @@ Los datos han sido obtenidos de GeoNames (http://www.geonames.org).
 
 **AVISO:** Este módulo requiere el módulo *base_location*, disponible en:
 
-https://launchpad.net/partner-contact-management
+https://github.com/OCA/partner-contact
 """,
     "depends" : ["base", "base_location"],
     "license" : "AGPL-3",
@@ -52,6 +52,5 @@ https://launchpad.net/partner-contact-management
     ],
     'images': ['images/l10n_es_toponyms_config.png',],
     "demo" : [ ],
-    "active": False,
     "installable": True
 } 
