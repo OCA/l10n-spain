@@ -23,31 +23,31 @@
 ##############################################################################
 
 {
-    'name' : "AEAT Base",
-    'version' : "1.1",
-    'author' : "Pexego",
-    'license' : "AGPL-3",
+    'name': "AEAT Base",
+    'version': "1.1",
+    'author': "Pexego",
+    'license': "AGPL-3",
     'contributors': [
         'Ignacio Ibeas (Acysos S.L.)',
         'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
-        ],
-    'website' : "http://www.pexego.es, http://www.acysos.com",
-    'category' : "Localisation/Accounting",
-    'depends' : [
+    ],
+    'website': "http://www.pexego.es, http://www.acysos.com",
+    'category': "Localisation/Accounting",
+    'depends': [
         "account",
-        ],
+    ],
     'external_dependencies': {
         'python': ['unidecode'],
     },
     'description': """
 Módulo base para declaraciones de la AEAT.
     """,
-    'data' : [
+    'data': [
         'security/aeat_security.xml',
         'security/ir.model.access.csv',
         'wizard/export_to_boe_wizard.xml',
         'aeat_menuitem.xml',
         'aeat_view.xml',
-        ],
+    ],
     'installable': True,
 }
