@@ -1,2 +1,0 @@
-import config_fiscal_position
-import partner
