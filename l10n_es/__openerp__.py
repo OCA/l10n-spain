@@ -28,7 +28,7 @@
     "name" : "Spanish Charts of Accounts (PGCE 2008)",
     "version" : "4.0",
     "author" : "Spanish Localization Team",
-    'website' : 'https://launchpad.net/openerp-spain',
+    'website' : 'https://github.com/OCA/l10n-spain',
     "category" : "Localization/Account Charts",
     "description": """
 Spanish charts of accounts (PGCE 2008).
