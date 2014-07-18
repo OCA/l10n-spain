@@ -3,15 +3,15 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2008 Spanish Localization Team
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2012-2014 Acysos S.L. (http://acysos.com) All Rights Reserved.
+#    Copyright (c) 2012-2014 Acysos S.L. (http://acysos.com)
 #                       Ignacio Ibeas <ignacio@acysos.com>
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -96,7 +96,8 @@ class res_partner_bank(orm.Model):
                         return {
                             'warning': {
                                 'title': _('Warning'),
-                                'message': _('Bank account should have 20 digits.')
+                                'message': _('Bank account should have 20 '
+                                             'digits.')
                             }
                         }
                     if number == 'invalid-dc':
@@ -107,27 +108,28 @@ class res_partner_bank(orm.Model):
                             }
                         }
                     bank_ids = bank_obj.search(cr, uid,
-                                    [('code', '=', number[:4])], context=context)
+                                    [('code', '=', number[:4])],
+                                    context=context)
                     if bank_ids:
-                        return {'value':{'acc_number': number, 'bank': bank_ids[0]}}
+                        return {'value':{'acc_number': number,
+                                         'bank': bank_ids[0]}}
                     else:
                         return {'value':{'acc_number': number}}
                 elif state =='iban':
-                    partner_bank_obj = self.pool.get('res.partner.bank')
+                    partner_bank_obj = self.pool['res.partner.bank']
                     if partner_bank_obj.is_iban_valid(cr,uid,account,context):
                         number = self._pretty_iban(account.replace(" ", ""))
-                        
-                        bank_ids = bank_obj.search(cr, uid, 
-                                                   [('code','=',number[5:9])], 
+                        bank_ids = bank_obj.search(cr, uid,
+                                                   [('code','=',number[5:9])],
                                                    context=context)
                         if bank_ids:
-                            return {'value':{'acc_number': number, 
-                                             'bank': bank_ids[0]}}
+                            return {'value': {'acc_number': number,
+                                              'bank': bank_ids[0]}}
                         else:
-                            return {'value':{'acc_number': number}}
+                            return {'value': {'acc_number': number}}
                     else:
-                       return { 'warning': { 'title': _('Warning'), 
-                                'message': _('IBAN account is not valid') } }                 
+                       return { 'warning': {'title': _('Warning'),
+                                'message': _('IBAN account is not valid')}}
         return {'value':{}}
 
 
@@ -151,17 +153,14 @@ class res_partner(orm.Model):
     def name_search(self, cr, uid, name, args=None, operator='ilike',
                     context=None, limit=100):
         if not args:
-            args=[]
-        if not context:
-            context={}
-
+            args = []
         partners = super(res_partner, self).name_search(cr, uid, name, args,
                                                     operator, context, limit)
         ids = [x[0] for x in partners]
         if name and len(ids) == 0:
             ids = self.search(cr, uid, [('comercial', operator, name)] + args,
                                                 limit=limit, context=context)
-        return self.name_get(cr, uid, ids, context)
+        return self.name_get(cr, uid, ids, context=context)
 
     def vat_change(self, cr, uid, ids, value, context=None):
         result = super(res_partner,self).vat_change(cr, uid, ids, value,
@@ -169,5 +168,3 @@ class res_partner(orm.Model):
         if value:
             result['value']['vat'] = value.upper()
         return result
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
