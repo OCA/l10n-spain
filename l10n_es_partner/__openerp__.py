@@ -29,7 +29,7 @@
     "name" : "Adaptación de los clientes, proveedores y bancos para España",
     "version" : "1.1",
     "author" : "Spanish localization team",
-    "website" : "https://launchpad.net/openerp-spain",
+    "website" : "https://github.com/OCA/l10n-spain",
     "contributors": [
         'Jordi Esteve <jesteve@zikzakmedia.com>',
         'Ignacio Ibeas <ignacio@acysos.com>',
