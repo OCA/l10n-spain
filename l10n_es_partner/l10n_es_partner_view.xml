@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <!-- Añadir el campo acc_country_id a la cuenta bancaria de empresa -->
+    <record model="ir.ui.view" id="view_partner_bank_form_banco">
+        <field name="name">view.partner.bank.form.banco</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_form"/>
+        <field name="arch" type="xml">
+            <field name="acc_number" position="before">
+                <field name="acc_country_id" on_change="onchange_banco(acc_number, acc_country_id, state)"/>
+            </field>
+            <field name="acc_number" position="attributes">
+                <attribute name="on_change">onchange_banco(acc_number, acc_country_id, state)</attribute>
+            </field>
+        </field>
+    </record>
+
+    <!-- Añadir los campos nombre largo, código, NIF y página web a bancos -->
+    <record model="ir.ui.view" id="view_res_bank_form_es1">
+        <field name="name">view.res.bank.form.es1</field>
+        <field name="model">res.bank</field>
+        <field name="inherit_id" ref="base.view_res_bank_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="code" />
+                <field name="lname" select="2" colspan="4"/>
+            </field>
+            <field name="bic" position="after">
+                <field name="vat" select="1"/>
+            </field>
+            <field name="email" position="after">
+                <field name="website" select="2" widget="url"/>
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_res_bank_tree_es1">
+        <field name="name">view.res.bank.tree.es1</field>
+        <field name="model">res.bank</field>
+        <field name="inherit_id" ref="base.view_res_bank_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="code" />
+            </field>
+        </field>
+    </record>
+
+    <!-- Añadir el campo nombre comercial a empresa -->
+    <record id="view_partner_form_comercial" model="ir.ui.view">
+        <field name="name">view.partner.form.comercial</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="comercial" placeholder="Trade name" 
+                    domain="[('is_company', '=', False)]"
+                    context="{'default_is_company': False}"
+                    attrs="{'invisible': [('is_company','=', False)]}"  />
+            </field>
+        </field>
+    </record>
+    <record id="view_partner_simple_form_comercial" model="ir.ui.view">
+        <field name="name">res.partner.simplified.form.comercial</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_simple_form"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="comercial" placeholder="Trade name" 
+                       domain="[('is_company', '=', False)]"
+                       context="{'default_is_company': False}"
+                       attrs="{'invisible': [('is_company','=', False)]}"  />
+            </field>
+        </field>
+    </record>
+
+  </data>
+</openerp>
