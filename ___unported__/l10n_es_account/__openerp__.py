@@ -26,7 +26,7 @@
     "name" : "Spanish account tools",
     "version" : "3.0",
     "author" : "Spanish Localization Team",
-    'website' : 'https://launchpad.net/openerp-spain',
+    'website' : 'https://github.com/OCA/l10n-spain',
     "category" : "Localisation/Accounting",
     "description": """Adds several tools to help Spanish accountants:
   * Searching of accounts using a dot to fill the zeroes (like 43.27 to search account 43000027).

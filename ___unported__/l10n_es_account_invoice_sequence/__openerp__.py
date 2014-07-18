@@ -25,21 +25,21 @@
     "name" : "Secuencia para facturas separada de la secuencia de asientos",
     "version" : "1.1",
     "author" : "Localización española de OpenERP",
-    "website" : "https://launchpad.net/openerp-spain",
+    "website" : "https://github.com/OCA/l10n-spain",
     "category" : "Accounting",
     "license" : "AGPL-3",
     "description": """
-Este módulo separa los números de las facturas de los de los asientos. Para 
-ello, convierte el campo number de 'related' a campo de texto normal, y le 
-asigna un valor según una nueva secuencia definida en el diario 
+Este módulo separa los números de las facturas de los de los asientos. Para
+ello, convierte el campo number de 'related' a campo de texto normal, y le
+asigna un valor según una nueva secuencia definida en el diario
 correspondiente.
 
 Su uso es obligatorio para España, ya que legalmente las facturas deben llevar
-una numeración única y continua, lo que no es compatible con el sistema que 
+una numeración única y continua, lo que no es compatible con el sistema que
 utiliza OpenERP por defecto.
 
-**AVISO**: Hay que configurar las secuencias correspondientes para todos los 
-diarios de ventas, compras, abono de ventas y abono de compras utilizados 
+**AVISO**: Hay que configurar las secuencias correspondientes para todos los
+diarios de ventas, compras, abono de ventas y abono de compras utilizados
 después de instalar este módulo.
 """,
     "depends" : [
