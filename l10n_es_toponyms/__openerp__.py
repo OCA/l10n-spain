@@ -26,17 +26,17 @@
     "name" : "Topónimos españoles",
     "version" : "1.0",
     "author" : "Spanish Localization Team",
-    "website" : "https://launchpad.net/openerp-spain",
+    "website" : "https://github.com/OCA/l10n-spain",
     "category" : "Localisation/Europe",
     "description": """
 Provincias, municipios y códigos postales de España.
 
-  * Añade las 52 provincias actuales de España con posibilidad de escoger 
+  * Añade las 52 provincias actuales de España con posibilidad de escoger
     entre versión oficial, española o ambas.
-  * Proporciona un asistente para dar de alta los municipios y provincias por 
-    defecto asociados a los códigos postales españoles. 
-  * Utilizando el módulo base_location, permite rellenar automáticamente los 
-    campos ciudad y provincia del formulario de empresa, de contacto y de 
+  * Proporciona un asistente para dar de alta los municipios y provincias por
+    defecto asociados a los códigos postales españoles.
+  * Utilizando el módulo base_location, permite rellenar automáticamente los
+    campos ciudad y provincia del formulario de empresa, de contacto y de
     compañía a partir del código postal o el nombre de la ciudad.
 
 Los datos han sido obtenidos de GeoNames (http://www.geonames.org).
@@ -53,4 +53,4 @@ https://github.com/OCA/partner-contact
     'images': ['images/l10n_es_toponyms_config.png',],
     "demo" : [ ],
     "installable": True
-} 
+}
