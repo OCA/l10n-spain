@@ -19,19 +19,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from openerp import models, fields, api, _
 
-from openerp.osv import orm, fields
 
-
-class ResPartner(orm.Model):
+class res_partner(models.Model):
     _inherit = 'res.partner'
 
-    _columns = {
-        'es_libro': fields.char('Book', size=128),  # libro
-        # Registro Mercantil
-        'es_registro_mercantil': fields.char('Commercial Registry', size=128),
-        'es_hoja': fields.char('Sheet', size=128),  # hoja
-        'es_folio': fields.char('Page', size=128),  # folio
-        'es_seccion': fields.char('Section', size=128),  # seccion
-        'es_tomo': fields.char('Volume', size=128),  # tomo
-    }
+    es_libro = fields.Char(string='Book', size=128)
+    es_registro_mercantil = fields.Char(string='Commercial Registry', size=128)
+    es_hoja = fields.Char(string='Sheet', size=128)
+    es_folio = fields.Char(string='Page', size=128)
+    es_seccion = fields.Char(string='Section', size=128)
+    es_tomo = fields.Char(string='Volume', size=128)
