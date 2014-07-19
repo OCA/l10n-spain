@@ -24,7 +24,7 @@
     "name" : "Extractos bancarios españoles (Norma 43)",
     "version" : "3.0",
     "author" : "Spanish localization team",
-    "website" : "https://launchpad.net/openerp-spain",
+    "website" : "https://github.com/OCA/l10n-spain",
     "category" : "Localisation/Accounting",
     "description" : """
 Extractos bancarios españoles (Norma 43)

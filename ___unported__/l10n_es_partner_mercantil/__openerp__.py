@@ -24,7 +24,7 @@
     "name": "Partner Mercantil",
     "version": "1.0",
     "author": "Spanish Localization Team",
-    "website": "https://launchpad.net/openerp-spain",
+    "website": "https://github.com/OCA/l10n-spain",
     "category": "Localisation/Europe",
     "description": """
     Añade los siguientes campos en la ficha de Empresa:
