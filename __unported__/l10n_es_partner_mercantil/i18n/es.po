@@ -1,0 +1,64 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_es_partner_mercantil
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-07-11 08:51+0000\n"
+"PO-Revision-Date: 2014-07-11 08:51+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_partner_mercantil
+#: field:res.partner,es_libro:0
+msgid "Book"
+msgstr "Libro"
+
+#. module: l10n_es_partner_mercantil
+#: view:res.partner:0
+msgid "Commercial Info"
+msgstr "Información Mercantil"
+
+#. module: l10n_es_partner_mercantil
+#: field:res.partner,es_registro_mercantil:0
+msgid "Commercial Registry"
+msgstr "Registro Mercantil"
+
+#. module: l10n_es_partner_mercantil
+#: view:res.partner:0
+msgid "Internal Notes"
+msgstr "Notas internas"
+
+#. module: l10n_es_partner_mercantil
+#: field:res.partner,es_folio:0
+msgid "Page"
+msgstr "Folio"
+
+#. module: l10n_es_partner_mercantil
+#: code:_description:0
+#: model:ir.model,name:l10n_es_partner_mercantil.model_res_partner
+#, python-format
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_partner_mercantil
+#: field:res.partner,es_seccion:0
+msgid "Section"
+msgstr "Sección"
+
+#. module: l10n_es_partner_mercantil
+#: field:res.partner,es_hoja:0
+msgid "Sheet"
+msgstr "Hoja"
+
+#. module: l10n_es_partner_mercantil
+#: field:res.partner,es_tomo:0
+msgid "Volume"
+msgstr "Tomo"
+
