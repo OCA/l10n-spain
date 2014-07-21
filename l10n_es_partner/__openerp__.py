@@ -26,16 +26,16 @@
 ##############################################################################
 
 {
-    "name" : "Adaptación de los clientes, proveedores y bancos para España",
-    "version" : "1.1",
-    "author" : "Spanish localization team",
-    "website" : "https://github.com/OCA/l10n-spain",
+    "name": "Adaptación de los clientes, proveedores y bancos para España",
+    "version": "1.1",
+    "author": "Spanish localization team",
+    "website": "https://github.com/OCA/l10n-spain",
     "contributors": [
         'Jordi Esteve <jesteve@zikzakmedia.com>',
         'Ignacio Ibeas <ignacio@acysos.com>',
         'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
     ],
-    "category" : "Localisation/Europe",
+    "category": "Localisation/Europe",
     "description": """
 Funcionalidad:
 --------------
@@ -68,13 +68,13 @@ Funcionamiento de la validación de la cuenta bancaria para cuentas IBAN:
  * Se limpia la cuenta de espacios.
  * Se divide lo introducido en bloques de 4 caracteres.
 """,
-    "license" : "AGPL-3",
-    "depends" : [
+    "license": "AGPL-3",
+    "depends": [
         "base",
         "base_iban",
         "l10n_es_toponyms",
     ],
-    "data" : [
+    "data": [
         "l10n_es_partner_view.xml",
         "wizard/l10n_es_partner_wizard.xml"
     ],
