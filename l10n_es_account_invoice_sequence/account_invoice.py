@@ -25,7 +25,7 @@
 from openerp import models, fields, api, _
 from openerp.exceptions import except_orm
 
-class account_invoice(models.Model):
+class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     def copy(self, cr, uid, id, default=None, context=None):
@@ -33,33 +33,27 @@ class account_invoice(models.Model):
             default = {}
         default.update({'invoice_number' : False})
         default.update({'number' : False})
-        return super(account_invoice, self).copy(cr, uid, id, default,
+        return super(AccountInvoice, self).copy(cr, uid, id, default,
                                                  context=context)
-
     number = fields.Char('Invoice Number', size=32, readonly=True,
                 help="Unique number of the invoice, computed automatically "
                      "when the invoice is created.")
     
     @api.multi
     def action_number(self):
-        
-        
+        sequence_obj = self.pool['ir.sequence']
+        period_obj = self.pool['account.period']
         for inv in self:
-
             sequence = inv.journal_id.invoice_sequence_id
             if not sequence:
                 raise except_orm(_('Error!'),
                     _('Journal %s has no sequence defined for invoices.')
                     %inv.journal_id.name)
             ctx = self.env.context.copy()
-            period_obj = self.pool.get('account.period')
             ctx['fiscalyear_id'] = period_obj.browse(self.env.cr, self.env.uid,
                                         inv.period_id.id).fiscalyear_id.id
-            sequence_obj = self.pool.get('ir.sequence')
             number = sequence_obj.next_by_id(self.env.cr, self.env.uid, sequence.id, ctx)
             inv.write({'number': number})
-            
-        result = super(account_invoice, self).action_number()
-            
-        return result
+        return super(AccountInvoice, self).action_number()
+    
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
