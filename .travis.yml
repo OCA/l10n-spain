@@ -1,0 +1,24 @@
+language: python
+
+python:
+  - "2.7"
+
+env:
+  - VERSION="8.0"
+
+virtualenv:
+  system_site_packages: true
+
+install:
+  - git clone https://github.com/OCA/partner-contact ${HOME}/partner-contact -b ${VERSION}
+  - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
+  - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
+  - travis_install_nightly ${VERSION}
+  - $HOME/maintainer-quality-tools/travis/travis_install_nightly ${VERSION}
+
+script:
+  - travis_run_flake8
+  - travis_run_tests ${VERSION} ${HOME}/partner-contact
+
+after_success:
+  coveralls
