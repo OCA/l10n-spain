@@ -26,10 +26,12 @@
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 
-class res_partner_bank(orm.Model):
+
+class ResPartnerBank(orm.Model):
     _inherit = 'res.partner.bank'
     _columns = {
-        'acc_country_id': fields.many2one("res.country", 'Bank country',
+        'acc_country_id': fields.many2one(
+            "res.country", 'Bank country',
             help="If the country of the bank is Spain, it validates the bank "
                  "code or IBAN, formatting it accordingly."),
     }
@@ -44,9 +46,9 @@ class res_partner_bank(orm.Model):
             nCRC += int(cTexto[n]) * factor[n]
         # Reducción del CRC a un dígi9to
         nValor = 11 - nCRC % 11
-        if nValor == 10: 
+        if nValor == 10:
             nValor = 1
-        elif nValor == 11: 
+        elif nValor == 11:
             nValor = 0
         return nValor
 
@@ -72,9 +74,9 @@ class res_partner_bank(orm.Model):
         if dc != self.calcCC(bank, office, account):
             return 'invalid-dc'
         return '%s %s %s %s' % (bank, office, dc, account)
-    
+
     def _pretty_iban(self, iban_str):
-        """return iban_str in groups of four characters separated 
+        """return iban_str in groups of four characters separated
         by a single space"""
         res = []
         while iban_str:
@@ -82,7 +84,7 @@ class res_partner_bank(orm.Model):
             iban_str = iban_str[4:]
         return ' '.join(res)
 
-    def onchange_banco(self, cr, uid, ids, account, country_id, 
+    def onchange_banco(self, cr, uid, ids, account, country_id,
                        state, context=None):
         if account and country_id:
             country = self.pool.get('res.country').browse(cr, uid, country_id,
@@ -108,19 +110,19 @@ class res_partner_bank(orm.Model):
                             }
                         }
                     bank_ids = bank_obj.search(cr, uid,
-                                    [('code', '=', number[:4])],
-                                    context=context)
+                                               [('code', '=', number[:4])],
+                                               context=context)
                     if bank_ids:
-                        return {'value':{'acc_number': number,
-                                         'bank': bank_ids[0]}}
+                        return {'value': {'acc_number': number,
+                                          'bank': bank_ids[0]}}
                     else:
-                        return {'value':{'acc_number': number}}
-                elif state =='iban':
+                        return {'value': {'acc_number': number}}
+                elif state == 'iban':
                     partner_bank_obj = self.pool['res.partner.bank']
-                    if partner_bank_obj.is_iban_valid(cr,uid,account,context):
+                    if partner_bank_obj.is_iban_valid(cr, uid, account, context):
                         number = self._pretty_iban(account.replace(" ", ""))
                         bank_ids = bank_obj.search(cr, uid,
-                                                   [('code','=',number[5:9])],
+                                                   [('code', '=', number[5:9])],
                                                    context=context)
                         if bank_ids:
                             return {'value': {'acc_number': number,
@@ -128,12 +130,12 @@ class res_partner_bank(orm.Model):
                         else:
                             return {'value': {'acc_number': number}}
                     else:
-                       return { 'warning': {'title': _('Warning'),
+                        return {'warning': {'title': _('Warning'),
                                 'message': _('IBAN account is not valid')}}
-        return {'value':{}}
+        return {'value': {}}
 
 
-class res_bank(orm.Model):
+class ResBank(orm.Model):
     _inherit = 'res.bank'
     _columns = {
         'code': fields.char('Code', size=64),
@@ -144,7 +146,7 @@ class res_bank(orm.Model):
     }
 
 
-class res_partner(orm.Model):
+class ResPartner(orm.Model):
     _inherit = 'res.partner'
     _columns = {
         'comercial': fields.char('Trade name', size=128, select=True),
@@ -154,16 +156,17 @@ class res_partner(orm.Model):
                     context=None, limit=100):
         if not args:
             args = []
-        partners = super(res_partner, self).name_search(cr, uid, name, args,
-                                                    operator, context, limit)
+        partners = super(ResPartner, self).name_search(cr, uid, name, args,
+                                                       operator, context,
+                                                       limit)
         ids = [x[0] for x in partners]
         if name and len(ids) == 0:
             ids = self.search(cr, uid, [('comercial', operator, name)] + args,
-                                                limit=limit, context=context)
+                              limit=limit, context=context)
         return self.name_get(cr, uid, ids, context=context)
 
     def vat_change(self, cr, uid, ids, value, context=None):
-        result = super(res_partner,self).vat_change(cr, uid, ids, value,
+        result = super(ResPartner, self).vat_change(cr, uid, ids, value,
                                                     context=context)
         if value:
             result['value']['vat'] = value.upper()

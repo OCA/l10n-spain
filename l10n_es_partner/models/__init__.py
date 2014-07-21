@@ -2,8 +2,12 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
+#    Copyright (c) 2008 Spanish Localization Team
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
+#                       Jordi Esteve <jesteve@zikzakmedia.com>
 #    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+#                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
+#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,25 +23,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import orm
-from openerp import tools
-import os
 
-
-class l10nEsPartnerImportWizard(orm.TransientModel):
-    _name = 'l10n.es.partner.import.wizard'
-    _inherit = 'res.config.installer'
-
-    def execute(self, cr, uid, ids, context=None):
-        super(l10nEsPartnerImportWizard, self).execute(cr, uid, ids,
-                                                       context=context)
-        try:
-            path = os.path.join('l10n_es_partner', 'wizard', 'data_banks.xml')
-            fp = tools.file_open(path)
-        except IOError:
-            return {}
-        idref = {}
-        tools.convert_xml_import(cr, 'l10n_es_partner', fp,  idref, 'init',
-                                 noupdate=True)
-        fp.close()
-        return {}
+from . import l10n_es_partner
