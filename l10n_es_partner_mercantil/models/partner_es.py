@@ -22,7 +22,7 @@
 from openerp import models, fields, api, _
 
 
-class res_partner(models.Model):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     es_libro = fields.Char(string='Book', size=128)
