@@ -24,6 +24,5 @@
 #
 ##############################################################################
 
-from . import l10n_es_partner
+from . import models
 from . import wizard
-
