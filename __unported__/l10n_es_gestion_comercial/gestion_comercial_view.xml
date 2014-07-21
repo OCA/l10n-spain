@@ -1,0 +1,127 @@
+<?xml version="1.0" ?>
+
+<openerp>
+    <data>
+	    <!-- ======================================================================= -->
+	    <!-- ========================== ACCOUNT VOUCHER FORM VIEW ================== -->
+	    <!-- ======================================================================= -->
+	    <record id="l10n_es_account_voucher_receipt_form" model="ir.ui.view">
+	 	<field name="name">account.voucher.receipt.form</field>
+		<field name="model">account.voucher</field>
+		<field name="inherit_id" ref="account_voucher.view_vendor_receipt_form" />
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+	        <field name="date" position="after">
+			    <field name="date_due"/>
+			    <field name="payment_type"/>
+			    <field name="received_check" invisible="True"/>
+			    <field name="indirect_payment" invisible="True"/>		    
+  		    </field>           
+		</field>
+		</record>
+		
+		
+		<!-- ======================================================================= -->
+	    <!-- ========================== PARTNERS                  ================== -->
+	    <!-- ======================================================================= -->
+	    <record id="l10n_es_account.view_partner_property_form" model="ir.ui.view">
+	 	<field name="name">res.partner.property.form.inherit</field>
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="account.view_partner_property_form" />
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+	        <field name="property_payment_term" position="after">
+			    <field name="property_account_efectos_cartera" groups="base.group_extended" />	
+			    <field name="property_account_impagos" groups="base.group_extended" />
+			    <field name="property_account_efectos_incobrables" groups="base.group_extended" />
+  		    </field>
+		</field>
+		</record>
+		
+		<!-- ======================================================================= -->
+	    <!-- ========================== ACCOUNT JOURNAL FORM VIEW ================== -->
+	    <!-- ======================================================================= -->
+	    <record id="l10n_es_account_journal_form" model="ir.ui.view">
+	 	<field name="name">account.journal.form</field>
+		<field name="model">account.journal</field>
+		<field name="inherit_id" ref="account.view_account_journal_form" />
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+	        <field name="centralisation" position="before">
+			    <field name="indirect_payment"/>
+			    <field name="indirect_payment_type" attrs="{'invisible':[('indirect_payment','=',0)],'required':[('indirect_payment','=',1)]}"/>
+			    <field name="without_account_efect"/>
+				<field name="gestion_cobro"/>
+				<field name="descuento_efectos"/>
+			    <field name="property_account_descuento_efectos" attrs="{'invisible':[('descuento_efectos','=',0)],'required':[('descuento_efectos','=',1)]}"/>
+			    
+			    			    			    
+  		    </field>           
+		</field>
+		</record>
+		
+		<!--PAYMENT VIEW-->
+
+        <record id="view_voucher_check_form" model="ir.ui.view">
+            <field name="name">account.voucher.form.inherit</field>
+            <field name="model">account.voucher</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
+            <field name="arch" type="xml">
+                <field name="amount" position="after">
+                    <separator string="Metodos de Pago" colspan="8"/>
+                </field>
+                <page string="Payment Information" position="after">
+                    <page string="Documentos" attrs="{'invisible':[('indirect_payment','=',0)]}">
+                        <field name="issued_check_ids" string="Documentos Emitidos" nolabel="1" colspan="4" on_change="onchange_issued_checks(issued_check_ids,journal_id,partner_id,currency_id,type,date)"/>
+                        <separator string="Cheques De Terceros" colspan="4"/>
+                        <field name="third_check_ids" string="Documentos de Terceros" nolabel="1 " colspan="4" on_change="onchange_third_check_ids(third_check_ids,journal_id,partner_id,currency_id,type,date)"/>
+                    </page>
+                </page>
+
+            </field>
+        </record>
+
+
+       <!--RECEIPT VIEW-->
+
+        <record id="view_vendor_receipt_check_form" model="ir.ui.view">
+            <field name="name">account.voucher.form.receipt.inherit</field>
+            <field name="model">account.voucher</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_receipt_form"/>
+            <field name="arch" type="xml">
+                <field name="amount" position="after">
+                    <separator string="Metodos de Cobro" colspan="8"/>
+                </field>
+                <page string="Payment Information" position="after">
+                    <page string="Documentos"  attrs="{'invisible':[('indirect_payment','=',0)]}">
+                        <field name="third_check_receipt_ids" string="Documentos de Terceros" nolabel="1 " colspan="4" on_change="onchange_third_check_receipt_ids(third_check_receipt_ids,journal_id,partner_id,currency_id,type,date)"/>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+   <!-- Invoice Payments -->
+    <record model="ir.actions.act_window" id="account_payment_extension.action_invoice_payments">
+        <field name="name">Efectos</field>
+        <field name="res_model">account.move.line</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="account_payment_extension.view_payments_tree"/>
+        <field name="search_view_id" ref="account_payment_extension.view_payments_filter"/>
+        <!-- <field name="domain">[('account_id.type','in',['receivable','payable']),('invoice','&lt;&gt;',False)]</field> -->
+	<field name="domain">['&amp;','|',('invoice','&lt;&gt;',False),('indirect_payment','=',True),('account_id.type','in',['receivable','payable'])]</field>
+    </record>
+
+    <!-- Done Payments -->
+    <record model="ir.actions.act_window" id="account_payment_extension.action_done_payments">
+        <field name="name">Done payments</field>
+        <field name="res_model">account.move.line</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="account_payment_extension.view_payments_tree"/>
+        <field name="search_view_id" ref="account_payment_extension.view_payments_filter"/>
+        <field name="domain">['&amp;','&amp;',('invoice','=',False),('indirect_payment','=',False),('account_id.type','in',['receivable','payable'])]</field>
+    </record>
+
+	</data>	
+</openerp>

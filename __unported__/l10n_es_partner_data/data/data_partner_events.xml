@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="1">
+    <record model="crm.case.channel" id="canal_web">
+        <field name="name">Web</field>
+    </record>
+    <record model="crm.case.channel" id="canal_tlf">
+        <field name="name">Teléfono</field>
+    </record>
+    <record model="crm.case.channel" id="canal_directo">
+        <field name="name">Directo</field>
+    </record>
+    <record model="crm.case.channel" id="canal_email">
+        <field name="name">E-mail</field>
+    </record>
+</data>
+</openerp>

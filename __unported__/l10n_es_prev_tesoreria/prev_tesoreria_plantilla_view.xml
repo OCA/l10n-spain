@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		
+		<!--
+			====================================== 
+			Árbol de plantilla de pagos periodicos
+			======================================
+		-->
+
+		<record model="ir.ui.view" id="l10n_es_tesoreria_pla_pagos_period_tree_view">
+			<field name="name">l10n.es.tesoreria.pagos.period.plan.tree</field>
+			<field name="model">l10n.es.tesoreria.pagos.period.plan</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Pagos Periodicos" editable="bottom">
+					<field name="fecha" />
+					<field name="name" />
+					<field name="partner_id" />
+					<field name="factura_id" on_change="onchange_factura(factura_id)" />
+					<field name="diario" />
+					<field name="importe" />
+					<field name="pagado" />
+					<button name="%(action_wiz_crear_factura_view)d" string="Crear Factura" type="action"
+							icon="gtk-execute" />
+				</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="l10n_es_tesoreria_pagos_period_plan_form_view">
+			<field name="name">l10n.es.tesoreria.pagos.period.plan.form</field>
+			<field name="model">l10n.es.tesoreria.pagos.period.plan</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Pagos Periodicos">
+					<field name="fecha" />
+					<field name="name" />
+					<field name="partner_id" />
+					<field name="factura_id" on_change="onchange_factura(factura_id)" context="{'type':'in_invoice', 'journal_type': 'purchase'}"/>
+					<field name="diario" />
+					<field name="importe" />
+					<field name="pagado" />
+				</form>
+			</field>
+		</record>
+		
+		<!--
+			========================================== 
+			Formulario de plantilla pagos variables
+			==========================================
+		-->
+		
+		<record model="ir.ui.view" id="l10n_es_tesoreria_pla_pagos_var_tree_view">
+			<field name="name">l10n.es.tesoreria.pagos.var.plan.tree</field>
+			<field name="model">l10n.es.tesoreria.pagos.var.plan</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Pagos Variables" editable="bottom">
+					<field name="fecha" />
+					<field name="name" />
+					<field name="partner_id" />
+					<field name="factura_id" on_change="onchange_factura(factura_id)"/>
+					<field name="diario" />
+					<field name="importe" />
+					<field name="pagado" />
+					<button name="%(action_wiz_crear_factura_view)d" string="Crear Factura" type="action"
+							icon="gtk-execute" />
+				</tree>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="l10n_es_tesoreria_pagos_var_plan_form_view">
+			<field name="name">l10n.es.tesoreria.pagos.var.plan.form</field>
+			<field name="model">l10n.es.tesoreria.pagos.var.plan</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Pagos Periodicos">
+					<field name="fecha" />
+					<field name="name" />
+					<field name="partner_id" />
+					<field name="factura_id" on_change="onchange_factura(factura_id)" context="{'type':'in_invoice', 'journal_type': 'purchase'}"/>
+					<field name="diario" />
+					<field name="importe" />
+					<field name="pagado" />
+				</form>
+			</field>
+		</record>
+		
+		<!--
+			========================================== 
+			Busqueda de plantilla de tesorería
+			==========================================
+		-->
+		
+		<record model="ir.ui.view" id="l10n_es_tesoreria_pla_search_view">
+			<field name="name">l10n.es.tesoreria.plantilla.search</field>
+			<field name="model">l10n.es.tesoreria.plantilla</field>
+			<field name="type">search</field>
+			<field name="arch" type="xml">
+				<search string="Previsiones de Tesorería">
+					<field name="name" />
+				</search>
+			</field>
+		</record>
+		
+		<!--
+			========================================== 
+			Árbol de plantilla de tesorería
+			==========================================
+		-->
+		
+		<record model="ir.ui.view" id="l10n_es_tesoreria_pla_tree_view">
+			<field name="name">l10n.es.tesoreria.plantilla.tree</field>
+			<field name="model">l10n.es.tesoreria.plantilla</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Previsiones de Tesorería">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+		
+		<!--
+			========================================== 
+			Formulario de plantilla de tesorería
+			==========================================
+		-->
+		
+		<record model="ir.ui.view" id="l10n_es_tesoreria_pla_form_view">
+			<field name="name">l10n.es.tesoreria.plantilla.form</field>
+			<field name="model">l10n.es.tesoreria.plantilla</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Plantilla Previsión Tesorería">
+					<group colspan="4">
+						<field name="name" colspan="4"/>
+					</group>
+					<notebook colspan="4">
+						<page string="Pagos Periodicos">
+							<field name="pagos_period" nolabel="1" />
+						</page>
+						<page string="Pagos Variables">
+							<field name="pagos_var" nolabel="1" />
+						</page>
+					</notebook>
+				</form>
+			</field>
+		</record>
+		
+		<!--
+			========================================== 
+			Acción de plantilla de tesorería
+			==========================================
+		-->
+		
+		<record id="action_account_pla_tesoreria_form" model="ir.actions.act_window">
+            <field name="name">Plantilla Previsiones Tesorería</field>
+            <field name="res_model">l10n.es.tesoreria.plantilla</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help">Plantilla de Previsiones de Tesorería</field>
+        </record>
+        
+        <!--
+			========================================== 
+			Menús de plantilla de tesorería
+			==========================================
+		-->
+		
+		<menuitem id="menu_finance_tesoreria_pla" name="Plantillas de Previsión de Tesorería" parent="menu_finance_tesoreria" sequence="8"/>
+		<menuitem action="action_account_pla_tesoreria_form" id="menu_action_account_tesoreria_pla_form" parent="menu_finance_tesoreria_pla"/>
+
+	</data>
+</openerp>

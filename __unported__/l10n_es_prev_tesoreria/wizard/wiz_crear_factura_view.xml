@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+		<record model="ir.ui.view" id="wiz_crear_factura_form_view">
+			<field name="name">wiz.crear.factura.form</field>
+			<field name="model">wiz.crear.factura</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Crear Factura">
+					<group>
+						<field name="description" />
+						<field name="partner_id" />
+						<field name="journal_id" />
+						<field name="importe" />
+					</group>
+					<group colspan="4">
+						<button icon='gtk-cancel' special="cancel" string="Cancelar" />
+						<button name="button_create_inv" icon='gtk-ok' type="object" string="Ok" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_wiz_crear_factura_view">
+			<field name="name">action.wiz.crear.factura.view</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wiz.crear.factura</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+	</data>
+</openerp>

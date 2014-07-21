@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<openerp>
+  <data noupdate='1'>
+    <!-- cliente proveedor banco fabricante colaborador -->
+    <record model="res.partner.category" id="cat_cliente">
+        <field name="name">Cliente</field>
+        <field name="active">True</field>
+    </record>
+    <record model="res.partner.category" id="cat_proveedor">
+        <field name="name">Proveedor</field>
+        <field name="active">True</field>
+    </record>
+    <record model="res.partner.category" id="cat_banco">
+        <field name="name">Banco</field>
+        <field name="active">True</field>
+    </record>
+    <record model="res.partner.category" id="cat_fabricante">
+        <field name="name">Fabricante</field>
+        <field name="active">True</field>
+    </record>
+    <record model="res.partner.category" id="cat_colaborador">
+        <field name="name">Colaborador</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- cliente antiguo, cliente potencial -->
+    <record model="res.partner.category" id="cat_cliente_antiguo">
+        <field name="name">Cliente antiguo</field>
+        <field name="active">True</field>
+        <field name="parent_id" ref="l10n_es_partner_data.cat_cliente"/>
+    </record>
+    <record model="res.partner.category" id="cat_cliente_potencial">
+        <field name="name">Cliente potencial</field>
+        <field name="active">True</field>
+        <field name="parent_id" ref="l10n_es_partner_data.cat_cliente"/>
+    </record>
+  </data>
+</openerp>
+

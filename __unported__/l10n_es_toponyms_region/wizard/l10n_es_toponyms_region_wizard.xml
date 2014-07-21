@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+	<!-- 
+	===============================================================================================================
+		WIZ.CPOSTAL.REGION
+	===============================================================================================================
+	 -->
+	
+	<!-- FORM -->
+		<record model="ir.ui.view" id="wizard_create_zipcodes_form_view">
+        	<field name="name">wizard.create.zipcodes.form.view</field>
+            <field name="model">wizard.create.zipcode.region</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            	<form string="Zip codes">
+            		<group>
+            			<separator string="Result:" colspan="4"/>
+    					<label string="The regions has been associated to the Spanish zip codes." colspan="4" align="0.0"/>
+    					<label string="This allows to fill automatically the region field of partner and contact forms from the zip code." colspan="4" align="0.0"/>
+    				</group>
+    				<group colspan="4" col="2">
+						<button name="cerrar" type="object" icon='gtk-no' string="Cancelar"/>
+                		<button name="create_zipcode" icon='gtk-ok' type="object" string="Aceptar"/>
+    				</group>
+                </form>
+            </field>
+         </record>
+                  
+     <!-- ACCION -->
+
+		<record id="act_wizard_create_zipcode" model="ir.actions.act_window">
+			<field name="name">Associate regions to Spanish zip codes</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wizard.create.zipcode.region</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+		
+	<!-- MENU -->
+    
+		<menuitem id="l10n_ES_toponyms_region_create_zipcode_region" parent="base.menu_localisation" action="act_wizard_create_zipcode"/>
+
+</data>
+</openerp>

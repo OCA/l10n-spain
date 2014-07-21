@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	<!-- 
+	==============================================================================================
+		WIZARD.CONFIRMAR.NOMINAS
+	==============================================================================================
+	 -->
+	<!-- FORM -->
+		<record model="ir.ui.view" id="wizard_confirmar_nominas_form_view">
+        	<field name="name">wizard.confirmar.nominas.form.view</field>
+            <field name="model">wizard.confirmar.nominas</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            	<form string="Confirmar Nominas">
+            		<group colspan="4" col="2">
+                		<field name="nominas_ids" height="320" width="780" domain="[('state','=','borrador')]" nolabel="1"/>
+    				</group>
+    				<group colspan="4" col="2">
+                		<button name="cerrar" type="object" icon='gtk-no' string="Cancelar"/>
+                		<button name="confirma_nominas" icon='gtk-ok' type="object" string="Confirmar"/>
+    				</group>
+                </form>
+            </field>
+         </record>
+         
+     <!-- ACCION -->	
+		<record id="act_wizard_confirmar_nominas" model="ir.actions.act_window">
+			<field name="name">Confirmar Nominas</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wizard.confirmar.nominas</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+		
+	<!-- MENU -->
+	<menuitem id="menu_confirmar_nominas" parent="menu_nomina" action="act_wizard_confirmar_nominas"/>
+	
+	<!-- 
+	==============================================================================================
+		WIZARD.PAGAR.NOMINAS
+	==============================================================================================
+	 -->
+	 
+	 <!-- FORM -->
+		<record model="ir.ui.view" id="wizard_pagar_nominas_form_view">
+        	<field name="name">wizard.pagar.nominas.form.view</field>
+            <field name="model">wizard.pagar.nominas</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            	<form string="Pagar Nominas">
+            		<group colspan="4" col="2">
+                		<field name="nominas_ids" height="320" width="780" domain="[('state','=','confirmada')]" nolabel="1"/>
+    				</group>
+    				<group colspan="4" col="2">
+                		<button name="cerrar" icon='gtk-no' type="object" string="Cancelar"/>
+                		<button name="paga_nominas" icon='gtk-ok' type="object" string="Confirmar"/>
+    				</group>
+                </form>
+            </field>
+         </record>
+         
+     <!-- ACCION -->	
+		<record id="act_wizard_pagar_nominas" model="ir.actions.act_window">
+			<field name="name">Pagar Nominas</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wizard.pagar.nominas</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+		
+	<!-- MENU -->
+	<menuitem id="menu_pagar_nominas" parent="menu_nomina" action="act_wizard_pagar_nominas"/>
+	
+	</data>
+</openerp>

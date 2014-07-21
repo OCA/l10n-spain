@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	<wizard string="Generar Nóminas" model="hr.employee" name="wiz_crear_nominas" id="wizard_crea_nominas" />
+	<wizard string="Generar Pagas Extras" model="hr.employee" name="wiz_crear_extras" id="wizard_crea_extras"/>
+	<wizard string="Confirmar nóminas" model="hr.nomina" name="wizard_confirmar_nominas" id="wiz_confirmar_nominas" multi="True"/>
+	<wizard string="Pagar nóminas" model="hr.nomina" name="wizard_pagar_nominas" id="wiz_pagar_nominas" multi="True"/>
+	<wizard string="Generar Anticipos" model="hr.employee" name="wiz_crear_anticipos" id="wizard_crea_anticipos"/>
+    <wizard string="Confirmar Anticipos" model="hr.anticipo" name="wizard_confirmar_anticipos" id="wiz_confirmar_anticipos" multi="True"/>
+	<wizard string="Pagar Anticipos" model="hr.anticipo" name="wizard_pagar_anticipos" id="wiz_pagar_anticipos" multi="True"/>
+    
+    <menuitem id="menu_crea_nominas" parent="menu_nomina" action="wizard_crea_nominas" type="wizard"/>
+    <menuitem id="menu_crea_extras" parent="menu_nomina" action="wizard_crea_extras" type="wizard"/>
+    <menuitem id="menu_confirmar_nominas" parent="menu_nomina" action="wiz_confirmar_nominas" type="wizard"/>
+    <menuitem id="menu_pagar_nominas" parent="menu_nomina" action="wiz_pagar_nominas" type="wizard"/>
+    <menuitem id="menu_crea_anticipos" parent="menu_nomina" action="wizard_crea_anticipos" type="wizard"/>
+    <menuitem id="menu_confirmar_anticipos" parent="menu_nomina" action="wiz_confirmar_anticipos" type="wizard"/>
+    <menuitem id="menu_pagar_anticipos" parent="menu_nomina" action="wiz_pagar_anticipos" type="wizard"/>
+    
+    </data>
+</openerp>

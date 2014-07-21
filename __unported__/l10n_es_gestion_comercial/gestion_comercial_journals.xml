@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+    	<record id="sequence_journal_type" model="ir.sequence.type">
+            <field name="name">Account Journal</field>
+            <field name="code">account.journal</field>
+        </record>
+        <record id="sequence_journal" model="ir.sequence">
+            <field name="name">Account Journal</field>
+            <field name="code">account.journal</field>
+            <field name="prefix"/>
+        </record>
+        
+	<!--Diarios-->
+        <record id="account_journal_diario_impagos" model="account.journal">
+            <field eval="&quot;&quot;&quot;IMP&quot;&quot;&quot;" name="code"/>
+            <field eval="[(6,0,[])]" name="account_control_ids"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field eval="0" name="centralisation"/>
+            <field eval="0" name="group_invoice_lines"/>
+            <field eval="&quot;&quot;&quot;bank&quot;&quot;&quot;" name="type"/>
+            <field name="view_id" ref="account.account_journal_view"/>
+            <field eval="[(6,0,[])]" name="type_control_ids"/>
+            <field name="sequence_id" ref="sequence_journal"/>
+            <field eval="1" name="active"/>
+            <field eval="0" name="update_posted"/>
+            <field eval="&quot;&quot;&quot;Impagos&quot;&quot;&quot;" name="name"/>
+            <field eval="0" name="refund_journal"/>
+            <field eval="0" name="entry_posted"/>
+            <field eval="1" name="indirect_payment"/>
+            <field eval="0" name="without_account_efect"/>
+            <field eval="&quot;&quot;&quot;impago&quot;&quot;&quot;" name="indirect_payment_type"/>
+            <field search="[('code','like','4315%00')]" model='account.account' name="default_debit_account_id"/>
+            <field search="[('code','like','4315%00')]" model='account.account' name="default_credit_account_id"/>
+        </record>
+        
+        <record id="account_journal_diario_documento" model="account.journal">
+            <field eval="&quot;&quot;&quot;DOC3&quot;&quot;&quot;" name="code"/>
+            <field eval="[(6,0,[])]" name="account_control_ids"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field eval="0" name="centralisation"/>
+            <field eval="0" name="group_invoice_lines"/>
+            <field eval="&quot;&quot;&quot;bank&quot;&quot;&quot;" name="type"/>
+            <field name="view_id" ref="account.account_journal_view"/>
+            <field eval="[(6,0,[])]" name="type_control_ids"/>
+            <field name="sequence_id" ref="sequence_journal"/>
+            <field eval="1" name="active"/>
+            <field eval="0" name="update_posted"/>
+            <field eval="&quot;&quot;&quot;Documento de Cobro&quot;&quot;&quot;" name="name"/>
+            <field eval="0" name="refund_journal"/>
+            <field eval="0" name="entry_posted"/>
+            <field eval="1" name="indirect_payment"/>
+            <field eval="0" name="without_account_efect"/>
+            <field eval="&quot;&quot;&quot;documento&quot;&quot;&quot;" name="indirect_payment_type"/>
+            <field search="[('code','like','4310%00')]" model='account.account' name="default_debit_account_id"/>
+            <field search="[('code','like','4310%00')]" model='account.account' name="default_credit_account_id"/>
+        </record>
+        
+        <record id="account_journal_diario_incobrable" model="account.journal">
+            <field eval="&quot;&quot;&quot;INCO&quot;&quot;&quot;" name="code"/>
+            <field eval="[(6,0,[])]" name="account_control_ids"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field eval="0" name="centralisation"/>
+            <field eval="0" name="group_invoice_lines"/>
+            <field eval="&quot;&quot;&quot;bank&quot;&quot;&quot;" name="type"/>
+            <field name="view_id" ref="account.account_journal_view"/>
+            <field eval="[(6,0,[])]" name="type_control_ids"/>
+            <field name="sequence_id" ref="sequence_journal"/>
+            <field eval="1" name="active"/>
+            <field eval="0" name="update_posted"/>
+            <field eval="&quot;&quot;&quot;Incobrable&quot;&quot;&quot;" name="name"/>
+            <field eval="0" name="refund_journal"/>
+            <field eval="0" name="entry_posted"/>
+            <field eval="1" name="indirect_payment"/>
+            <field eval="0" name="without_account_efect"/>
+            <field eval="&quot;&quot;&quot;incobrable&quot;&quot;&quot;" name="indirect_payment_type"/>
+            <field search="[('code','like','650%00')]" model='account.account' name="default_debit_account_id"/>
+            <field search="[('code','like','650%00')]" model='account.account' name="default_credit_account_id"/>
+        </record>
+
+    </data>
+</openerp>

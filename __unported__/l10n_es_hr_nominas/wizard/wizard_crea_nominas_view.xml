@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	
+	<!-- 
+	===============================================================================================================
+		WIZAR.CREA.NOMINAS
+	===============================================================================================================
+	 -->
+	
+	<!-- FORM -->
+		<record model="ir.ui.view" id="wizard_crea_nominas_form_view">
+        	<field name="name">wizard.crea.nominas.form.view</field>
+            <field name="model">wizard.crea.nominas</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            	<form string="Generar Nominas">
+            		<group colspan="4" col="2">
+                		<field name="fecha"/>
+    					<field name="employee_ids" nolabel="1" colspan="4" height="320" width="780"/>
+    				</group>
+    				<group colspan="4" col="2">
+                		<button name="cerrar" type="object" icon='gtk-no' string="Cancelar"/>
+                		<button name="crea_nominas" icon='gtk-ok' type="object" string="Crear Nominas"/>
+    				</group>
+                </form>
+            </field>
+         </record>
+                  
+     <!-- ACCION -->
+     	
+		<record id="act_wizard_crea_nominas" model="ir.actions.act_window">
+			<field name="name">Crear Nominas</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wizard.crea.nominas</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+		
+	<!-- MENU -->
+		<menuitem id="menu_crea_nominas" parent="menu_nomina" action="act_wizard_crea_nominas"/>
+	
+	<!-- 
+	==============================================================================================
+		WIZ.CREA.EXTRAS
+	==============================================================================================
+	-->
+	 
+	 <!-- FORM -->
+	 
+		<record model="ir.ui.view" id="wizard_crea_extras_form_view">
+        	<field name="name">wizard.crea.extras.form.view</field>
+            <field name="model">wizard.crea.extras</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            	<form string="Generar Extras">
+            		<group colspan="4" col="2">
+                		<field name="fecha"/>
+    					<field name="employee_ids" nolabel="1" colspan="4" height="320" width="780"/>
+    				</group>
+    				<group colspan="4" col="2">
+                		<button name ="cerrar" type ="object" icon='gtk-no' string="Cancelar"/>
+                		<button name="crea_extras" icon='gtk-ok' type="object" string="Crear Pagas Extra"/>
+    				</group>
+                </form>
+            </field>
+         </record>
+       
+      <!--ACCION-->
+      
+		<record id="act_wizard_crea_extras" model="ir.actions.act_window">
+			<field name="name">Crear Extras</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wizard.crea.extras</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+	
+	<!--MENU-->
+		
+		<menuitem id="menu_crea_extras" parent="menu_nomina" action="act_wizard_crea_extras"/>
+		
+	<!--
+	==============================================================================================
+		WIZ.CREA.ANTICIPOS
+	==============================================================================================
+	-->  
+	 
+	  <!--FORM-->
+	 
+		<record model="ir.ui.view" id="wizard_crea_anticipos_form_view">
+        	<field name="name">wizard.crea.anticipos.form.view</field>
+            <field name="model">wizard.crea.anticipos</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            	<form string="Generar Anticipo">
+            		<group colspan="4" col="2">
+                		<field name="fecha"/>
+    					<field name="employee_ids" colspan="4" height="320" width="800" nolabel="1"/>
+    					<field name="cantidad"/>
+    				</group>
+    				<group colspan="4" col="2">
+                		<button name="cerrar" type="object" icon='gtk-no' string="Cancelar"/>
+                		<button name="crea_anticipos" icon='gtk-ok' type="object" string="Crear Anticipos"/>
+    				</group>
+                </form>
+            </field>
+         </record>
+    
+	  <!--ACCION-->
+
+		<record id="act_wizard_crea_anticipos" model="ir.actions.act_window">
+			<field name="name">Crear Anticipos</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wizard.crea.anticipos</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+				
+	  <!--MENU-->	
+	 
+		<menuitem id="menu_crea_anticipos" parent="menu_nomina" action="act_wizard_crea_anticipos"/>
+		
+		
+	</data>
+</openerp>

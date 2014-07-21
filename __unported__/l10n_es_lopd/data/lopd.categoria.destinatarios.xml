@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+		<record model="lopd.categoria.destinatarios" id="1">
+			<field name="name">Compañías filiales</field>
+		</record>
+		<record model="lopd.categoria.destinatarios" id="2">
+			<field name="name">Compañía matriz</field>
+		</record>
+		<record model="lopd.categoria.destinatarios" id="3">
+			<field name="name">Compañías del grupo</field>
+		</record>
+		<record model="lopd.categoria.destinatarios" id="4">
+			<field name="name">Prestadores de servicio</field>
+		</record>
+		<record model="lopd.categoria.destinatarios" id="5">
+			<field name="name">Universidades y centros educativos</field>
+		</record>
+		<record model="lopd.categoria.destinatarios" id="6">
+			<field name="name">Órganos públicos de otros estados</field>
+		</record>
+		<record model="lopd.categoria.destinatarios" id="7">
+			<field name="name">Organismos internacionales</field>
+		</record>
+		<record model="lopd.categoria.destinatarios" id="8">
+			<field name="name">Entidades sanitarias</field>
+		</record>
+		<record model="lopd.categoria.destinatarios" id="9">
+			<field name="name">Órganos judiciales</field>
+		</record>
+		<record model="lopd.categoria.destinatarios" id="10">
+			<field name="name">Entidades financieras</field>
+		</record>
+		<record model="lopd.categoria.destinatarios" id="11">
+			<field name="name">Datos de pasajeros con destino a los organismos de fronteras de EEUU y Canadá</field>
+		</record>
+	</data>
+</openerp>
+

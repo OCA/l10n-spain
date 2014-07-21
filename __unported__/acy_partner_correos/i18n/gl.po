@@ -1,0 +1,207 @@
+# Galician translation for openerp-spain
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the openerp-spain package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: openerp-spain\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-11-25 11:11+0000\n"
+"PO-Revision-Date: 2013-11-15 01:57+0000\n"
+"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
+"Language-Team: Galician <gl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2014-03-04 08:27+0000\n"
+"X-Generator: Launchpad (build 16948)\n"
+
+#. module: acy_partner_correos
+#: model:ir.module.module,description:acy_partner_correos.module_meta_information
+msgid ""
+"Only 300 companies can be exported by file. All partners must have street, "
+"zip, city, state and country. Select the partners and clic action."
+msgstr ""
+"Só se poden exportat 300 empresas por ficheiro. Tódolas empresas deben ter "
+"rúa, C.P., cidade, provincia e país. Seleccione as empresas e pulse na "
+"acción."
+
+#. module: acy_partner_correos
+#: model:ir.module.module,shortdesc:account.module_meta_information
+msgid ""
+"Export partners to a txt file compatible with the Correos Virtual Office"
+msgstr ""
+"Exporta empresas a un ficheiro txt compatible coa oficina virtual de Correos."
+
+#. module: acy_partner_correos
+#: wizard_view:export_correos_file,export:0
+#: wizard_view:export_correos_file,init:0
+msgid "Export Correos File"
+msgstr "Exportar ficheiro de Correos"
+
+#. module: acy_partner_correos
+#: wizard_field:export_correos_file,init,color:0
+msgid "Color letters"
+msgstr "Cartas de cor"
+
+#. module: acy_partner_correos
+#: wizard_field:export_correos_file,init,certificate:0
+msgid "Certificate letters"
+msgstr "Cartas certificadas"
+
+#. module: acy_partner_correos
+#: wizard_field:export_correos_file,export,correos_fname:0
+#: wizard_field:export_correos_file,export,correos:0
+msgid "File name"
+msgstr "Nome do ficheiro"
+
+#. module: acy_partner_correos
+#: code:addons/acy_partner_correos/wizard/export_file.py:63
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+" The Virtual Office of Correos only support 300 address. You have selected "
+"%s partners."
+msgstr ""
+"Erro do usuario:\n"
+"\n"
+" A oficina virtual de Correos só permite 300 enderezos e foron seleccionadas "
+"%s empresas."
+
+#. module: acy_partner_correos
+#: code:addons/acy_partner_correos/wizard/export_file.py:71
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+" The partner %s hasn't address."
+msgstr ""
+"Erro do usuario:\n"
+"\n"
+" A empresa %s non ten enderezo."
+
+#. module: acy_partner_correos
+#: code:addons/acy_partner_correos/wizard/export_file.py:78
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+" The partner %s hasn't street."
+msgstr ""
+"Erro do usuario:\n"
+"\n"
+" A empresa %s non ten rúa."
+
+#. module: acy_partner_correos
+#: code:addons/acy_partner_correos/wizard/export_file.py:80
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+" The partner %s hasn't zip."
+msgstr ""
+"Erro do usuario:\n"
+"\n"
+" A empresa %s non ten código postal."
+
+#. module: acy_partner_correos
+#: code:addons/acy_partner_correos/wizard/export_file.py:82
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+" The partner %s hasn't city."
+msgstr ""
+"Erro do usuario:\n"
+"\n"
+" A empresa %s non ten cidade."
+
+#. module: acy_partner_correos
+#: code:addons/acy_partner_correos/wizard/export_file.py:84
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+" The partner %s hasn't state."
+msgstr ""
+"Erro do usuario:\n"
+"\n"
+" A empresa %s non ten provincia."
+
+#. module: acy_partner_correos
+#: code:addons/acy_partner_correos/wizard/export_file.py:86
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+" The partner %s hasn't country."
+msgstr ""
+"Erro do usuario:\n"
+"\n"
+" A empresa %s non ten país."
+
+#. module: acy_partner_correos
+#: code:addons/acy_partner_correos/wizard/export_file.py:100
+#, python-format
+msgid ""
+"Successfully Exported\n"
+"\n"
+"Summary::\n"
+" Number of exported partners: %d\n"
+msgstr ""
+"Exportada correctamente.\n"
+"\n"
+"Resumo:\n"
+" Número de empresas exportadas: %d\n"
+
+#. module: acy_partner_correos
+#: code:addons/acy_partner_correos/wizard/converter.py:71
+#, python-format
+msgid ""
+"Error:\n"
+"\n"
+"Can not convert float number %(number).2f to fit in %(size)d characters."
+msgstr ""
+"Erro:\n"
+"\n"
+"Non se pode converti-lo número decimal %(number).2f para que caiba en "
+"%(size)d caracteres."
+
+#. module: acy_partner_correos
+#: code:addons/acy_partner_correos/wizard/converter.py:98
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"The bank account number of %s is not defined."
+msgstr ""
+"Erro do usuario:\n"
+"\n"
+" O código de conta bancaria da empresa %s non está definida."
+
+#. module: acy_partner_correos
+#: code:addons/acy_partner_correos/wizard/converter.py:101
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"The bank account number of %s does not have 20 digits."
+msgstr ""
+"Erro do usuario:\n"
+"\n"
+" O código de conta bancaria da empresa %s non ten 20 díxitos."
+
+#. module: acy_partner_correos
+#: code:addons/acy_partner_correos/wizard/converter.py:80
+#, python-format
+msgid ""
+"Error:\n"
+"\n"
+"Can not convert integer number %(number)d to fit in %(size)d characters."
+msgstr ""
+"Erro:\n"
+"\n"
+"Non se pode converti-lo número enteiro %(number)d para que caiba en %(size)d "
+"caracteres."

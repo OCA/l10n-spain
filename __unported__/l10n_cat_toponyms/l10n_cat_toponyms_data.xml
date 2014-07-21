@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record model='res.country.state.comarca' id='CT01'>
+            <field name='name'>Alt Camp</field>
+            <field name='code'>AC</field>
+             <field search="[('code','=','43'),('name','=','Tarragona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT02'>
+            <field name='name'>Alt Empordà</field>
+            <field name='code'>AE</field>
+            <field search="[('code','=','17'),('name','=','Girona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT03'>
+            <field name='name'>Alt Penedès</field>
+            <field name='code'>AP</field>
+            <field search="[('code','=','08'),('name','=','Barcelona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT04'>
+            <field name='name'>Alt Urgell</field>
+            <field name='code'>AU</field>
+            <field search="[('code','=','25'),('name','=','Lleida')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT05'>
+            <field name='name'>Alta Ribagorça</field>
+            <field name='code'>AG</field>
+            <field search="[('code','=','25'),('name','=','Lleida')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT06'>
+            <field name='name'>Anoia</field>
+            <field name='code'>AI</field>
+            <field search="[('code','=','08'),('name','=','Barcelona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT07'>
+            <field name='name'>Bages</field>
+            <field name='code'>BG</field>
+            <field search="[('code','=','08'),('name','=','Barcelona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT08'>
+            <field name='name'>Baix Camp</field>
+            <field name='code'>BC</field>
+            <field search="[('code','=','43'),('name','=','Tarragona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT09'>
+            <field name='name'>Baix Ebre</field>
+            <field name='code'>BB</field>
+            <field search="[('code','=','43'),('name','=','Tarragona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT10'>
+            <field name='name'>Baix Empordà</field>
+            <field name='code'>BM</field>
+            <field search="[('code','=','17'),('name','=','Girona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT11'>
+            <field name='name'>Baix Llobregat</field>
+            <field name='code'>BT</field>
+            <field search="[('code','=','08'),('name','=','Barcelona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT12'>
+            <field name='name'>Baix Penedès</field>
+            <field name='code'>BP</field>
+            <field search="[('code','=','43'),('name','=','Tarragona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT13'>
+            <field name='name'>Cerdanya</field>
+            <field name='code'>CD</field>
+            <field search="[('code','=','25'),('name','=','Lleida')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT14'>
+            <field name='name'>Barcelonès</field>
+            <field name='code'>BR</field>
+            <field search="[('code','=','08'),('name','=','Barcelona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT15'>
+            <field name='name'>Berguedà</field>
+            <field name='code'>BD</field>
+            <field search="[('code','=','08'),('name','=','Barcelona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT16'>
+            <field name='name'>Conca de Barberà</field>
+            <field name='code'>CB</field>
+            <field search="[('code','=','43'),('name','=','Tarragona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT17'>
+            <field name='name'>Garraf</field>
+            <field name='code'>GF</field>
+            <field search="[('code','=','08'),('name','=','Barcelona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT18'>
+            <field name='name'>Garrigues</field>
+            <field name='code'>GG</field>
+            <field search="[('code','=','25'),('name','=','Lleida')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT19'>
+            <field name='name'>Garrotxa</field>
+            <field name='code'>GX</field>
+            <field search="[('code','=','17'),('name','=','Girona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT20'>
+            <field name='name'>Gironès</field>
+            <field name='code'>GN</field>
+            <field search="[('code','=','17'),('name','=','Girona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT21'>
+            <field name='name'>Maresme</field>
+            <field name='code'>MM</field>
+            <field search="[('code','=','08'),('name','=','Barcelona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT22'>
+            <field name='name'>Montsià</field>
+            <field name='code'>MT</field>
+            <field search="[('code','=','43'),('name','=','Tarragona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT23'>
+            <field name='name'>Noguera</field>
+            <field name='code'>NG</field>
+            <field search="[('code','=','25'),('name','=','Lleida')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT24'>
+            <field name='name'>Osona</field>
+            <field name='code'>OS</field>
+            <field search="[('code','=','08'),('name','=','Barcelona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT25'>
+            <field name='name'>Pallars Jussà</field>
+            <field name='code'>PJ</field>
+            <field search="[('code','=','25'),('name','=','Lleida')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT26'>
+            <field name='name'>Pallars Sobirà</field>
+            <field name='code'>PS</field>
+            <field search="[('code','=','25'),('name','=','Lleida')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT27'>
+            <field name='name'>Pla de l'Estany</field>
+            <field name='code'>PE</field>
+            <field search="[('code','=','17'),('name','=','Girona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT28'>
+            <field name='name'>Pla d'Urgell</field>
+            <field name='code'>PU</field>
+            <field search="[('code','=','25'),('name','=','Lleida')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT29'>
+            <field name='name'>Priorat</field>
+            <field name='code'>PR</field>
+            <field search="[('code','=','43'),('name','=','Tarragona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT30'>
+            <field name='name'>Ribera d'Ebre</field>
+            <field name='code'>RE</field>
+            <field search="[('code','=','43'),('name','=','Tarragona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT31'>
+            <field name='name'>Ripollès</field>
+            <field name='code'>RI</field>
+            <field search="[('code','=','17'),('name','=','Girona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT32'>
+            <field name='name'>Segarra</field>
+            <field name='code'>SR</field>
+            <field search="[('code','=','25'),('name','=','Lleida')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT33'>
+            <field name='name'>Segrià</field>
+            <field name='code'>SI</field>
+            <field search="[('code','=','25'),('name','=','Lleida')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT34'>
+            <field name='name'>Selva</field>
+            <field name='code'>SV</field>
+            <field search="[('code','=','17'),('name','=','Girona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT35'>
+            <field name='name'>Solsonès</field>
+            <field name='code'>SL</field>
+            <field search="[('code','=','25'),('name','=','Lleida')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT36'>
+            <field name='name'>Tarragonès</field>
+            <field name='code'>TR</field>
+            <field search="[('code','=','43'),('name','=','Tarragona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT37'>
+            <field name='name'>Terra Alta</field>
+            <field name='code'>TT</field>
+            <field search="[('code','=','43'),('name','=','Tarragona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT38'>
+            <field name='name'>Urgell</field>
+            <field name='code'>UR</field>
+            <field search="[('code','=','25'),('name','=','Lleida')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT39'>
+            <field name='name'>Vall d'Aran</field>
+            <field name='code'>VN</field>
+            <field search="[('code','=','25'),('name','=','Lleida')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT40'>
+            <field name='name'>Vallès Occidental</field>
+            <field name='code'>VC</field>
+            <field search="[('code','=','08'),('name','=','Barcelona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT41'>
+            <field name='name'>Vallès Oriental</field>
+            <field name='code'>VR</field>
+            <field search="[('code','=','08'),('name','=','Barcelona')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT42'>
+            <field name='name'>Ports</field>
+            <field name='code'>PO</field>
+            <field search="[('code','=','12'),('name','=','Castelló')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT43'>
+            <field name='name'>Marina Baixa</field>
+            <field name='code'>MB</field>
+            <field search="[('code','=','03'),('name','=','Alacant')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT44'>
+            <field name='name'>Marina Alta</field>
+            <field name='code'>MA</field>
+            <field search="[('code','=','03'),('name','=','Alacant')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT45'>
+            <field name='name'>Horta</field>
+            <field name='code'>HO</field>
+            <field search="[('code','=','46'),('name','=','València')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT46'>
+            <field name='name'>Foia de Bunyol</field>
+            <field name='code'>FB</field>
+            <field search="[('code','=','46'),('name','=','València')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT47'>
+            <field name='name'>Costera</field>
+            <field name='code'>CR</field>
+            <field search="[('code','=','46'),('name','=','València')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT48'>
+            <field name='name'>Comtat</field>
+            <field name='code'>CT</field>
+            <field search="[('code','=','03'),('name','=','Alacant')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT49'>
+            <field name='name'>Canal de Navarrés</field>
+            <field name='code'>CN</field>
+            <field search="[('code','=','46'),('name','=','València')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT50'>
+            <field name='name'>Camp de Túria</field>
+            <field name='code'>CT</field>
+            <field search="[('code','=','46'),('name','=','València')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT51'>
+            <field name='name'>Camp de Morvedre</field>
+            <field name='code'>CE</field>
+            <field search="[('code','=','46'),('name','=','València')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT52'>
+            <field name='name'>Baix Vinalopó</field>
+            <field name='code'>BV</field>
+            <field search="[('code','=','03'),('name','=','Alacant')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT53'>
+            <field name='name'>Baix Segura</field>
+            <field name='code'>BS</field>
+            <field search="[('code','=','03'),('name','=','Alacant')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT54'>
+            <field name='name'>Baix Maestrat</field>
+            <field name='code'>BM</field>
+            <field search="[('code','=','12'),('name','=','Castelló')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT55'>
+            <field name='name'>Alt Vinalopó</field>
+            <field name='code'>AV</field>
+            <field search="[('code','=','03'),('name','=','Alacant')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT56'>
+            <field name='name'>Alt Palància</field>
+            <field name='code'>AP</field>
+            <field search="[('code','=','12'),('name','=','Castelló')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT57'>
+            <field name='name'>Alt Millars</field>
+            <field name='code'>AM</field>
+            <field search="[('code','=','12'),('name','=','Castelló')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT58'>
+            <field name='name'>Alt Maestrat</field>
+            <field name='code'>AT</field>
+            <field search="[('code','=','12'),('name','=','Castelló')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT59'>
+            <field name='name'>Alcalatén</field>
+            <field name='code'>AN</field>
+            <field search="[('code','=','12'),('name','=','Castelló')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT60'>
+            <field name='name'>Alcoià</field>
+            <field name='code'>AI</field>
+            <field search="[('code','=','03'),('name','=','Alacant')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT61'>
+            <field name='name'>Alacantí</field>
+            <field name='code'>AN</field>
+            <field search="[('code','=','03'),('name','=','Alacant')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT62'>
+            <field name='name'>Plana Alta</field>
+            <field name='code'>PA</field>
+            <field search="[('code','=','12'),('name','=','Castelló')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT63'>
+            <field name='name'>Plana Baixa</field>
+            <field name='code'>PB</field>
+            <field search="[('code','=','12'),('name','=','Castelló')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT64'>
+            <field name='name'>Plana d'Utiel</field>
+            <field name='code'>PU</field>
+            <field search="[('code','=','46'),('name','=','València')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT65'>
+            <field name='name'>Racó</field>
+            <field name='code'>RO</field>
+            <field search="[('code','=','46'),('name','=','València')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT66'>
+            <field name='name'>Ribera Alta</field>
+            <field name='code'>RA</field>
+            <field search="[('code','=','46'),('name','=','València')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT67'>
+            <field name='name'>Ribera Baixa</field>
+            <field name='code'>RB</field>
+            <field search="[('code','=','46'),('name','=','València')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT68'>
+            <field name='name'>Serrans</field>
+            <field name='code'>SN</field>
+            <field search="[('code','=','46'),('name','=','València')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT69'>
+            <field name='name'>Safor</field>
+            <field name='code'>SR</field>
+            <field search="[('code','=','46'),('name','=','València')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT70'>
+            <field name='name'>Vall d'Albaida</field>
+            <field name='code'>VA</field>
+            <field search="[('code','=','46'),('name','=','València')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT71'>
+            <field name='name'>Vall de Cofrents</field>
+            <field name='code'>VC</field>
+            <field search="[('code','=','46'),('name','=','València')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT72'>
+            <field name='name'>Vinalopó Mitjà</field>
+            <field name='code'>VM</field>
+            <field search="[('code','=','03'),('name','=','Alacant')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT73'>
+            <field name='name'>Mallorca</field>
+            <field name='code'>MA</field>
+            <field search="[('code','=','07'),('name','=','Balears, Illes')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT74'>
+            <field name='name'>Menorca</field>
+            <field name='code'>MC</field>
+            <field search="[('code','=','07'),('name','=','Balears, Illes')]" model='res.country.state' name='state_id'/> 
+        </record>
+        <record model='res.country.state.comarca' id='CT75'>
+            <field name='name'>Eivissa</field>
+            <field name='code'>EA</field>
+            <field search="[('code','=','07'),('name','=','Balears, Illes')]" model='res.country.state' name='state_id'/> 
+        </record>
+    </data>
+</openerp>

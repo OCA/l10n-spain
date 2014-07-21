@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+		<!-- Tipos de Sitemas operativos -->
+		<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+
+		<!-- Vista Formulario -->
+		<record id="vista_sos_tipos" model="ir.ui.view">
+			<field name="name">lopd.sos.tipos.form</field>
+			<field name="model">lopd.sos.tipos</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Tipos de Sitemas Operativos">
+					<field name="name" />
+				</form>
+			</field>
+		</record>
+		<!-- Vista arbol -->
+		<record id="vista_sos_tipos_arbol" model="ir.ui.view">
+			<field name="name">lopd.sos.tipos.tree</field>
+			<field name="model">lopd.sos.tipos</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Lista de tipos de Sistemas Operativos">
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+		<!-- acciones -->
+		<record id="accion_sos_tipos_arbol" model="ir.actions.act_window">
+			<field name="name">Tipos de Sistemas Operativos</field>
+			<field name="res_model">lopd.sos.tipos</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="help">Aquí puede añadir, editar o eliminar los tipos de sistemas operativos base.</field>
+		</record>
+
+		<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+		<!-- Programas -->
+		<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+
+		<!-- Vista Formulario -->
+		<record id="vista_programas_tipos" model="ir.ui.view">
+			<field name="name">lopd.programas.tipos.form</field>
+			<field name="model">lopd.programas.tipos</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Tipos de programas">
+					<field name="name" />
+				</form>
+			</field>
+		</record>
+		<!-- Vista arbol -->
+		<record id="vista_programas_tipos_arbol" model="ir.ui.view">
+			<field name="name">lopd.programas.tipos.tree</field>
+			<field name="model">lopd.programas.tipos</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Lista de tipos de programas">
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+		<!-- acciones -->
+		<record id="accion_programas_tipos_arbol" model="ir.actions.act_window">
+			<field name="name">Tipos de programas</field>
+			<field name="res_model">lopd.programas.tipos</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="help">Aquí puede añadir, editar o eliminar los tipos de programas.</field>
+		</record>
+
+		<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+		<!-- Tipos de Equipos -->
+		<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+		
+		<!-- Vista Formulario -->
+		<record id="vista_equipos_tipos" model="ir.ui.view">
+			<field name="name">lopd.equipos.tipos.form</field>
+			<field name="model">lopd.equipos.tipos</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Tipos de equipos">
+					<field name="name" />
+				</form>
+			</field>
+		</record>
+		<!-- Vista arbol -->
+		<record id="vista_equipos_tipos_arbol" model="ir.ui.view">
+			<field name="name">lopd.equipos.tipos.tree</field>
+			<field name="model">lopd.equipos.tipos</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Lista de tipos">
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+		<!-- acciones -->
+		<record id="accion_equipos_tipos_arbol" model="ir.actions.act_window">
+			<field name="name">Tipos de equipos</field>
+			<field name="res_model">lopd.equipos.tipos</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="help">Aquí puede añadir, editar o eliminar los tipos de equipos.</field>
+		</record>
+
+		<record id="accion_equipos_tipos" model="ir.actions.act_window">
+			<field name="name">Nuevo tipo de equipo</field>
+			<field name="res_model">lopd.equipos.tipos</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+		</record>
+		<!-- entradas de menu -->
+		<!--<menuitem action="accion_equipos_tipos" id="menu_equipos_tipos" parent="menu_lopd_extra" sequence="1" /> -->
+
+		<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+		<!-- Tipos de Recursos -->
+		<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+
+		<!-- Vista Formulario -->
+		<record id="vista_recursos_tipos" model="ir.ui.view">
+			<field name="name">lopd.recursos.tipos.form</field>
+			<field name="model">lopd.recursos.tipos</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Tipos de recursos">
+					<field name="name" />
+				</form>
+			</field>
+		</record>
+		<!-- Vista arbol -->
+		<record id="vista_recursos_tipos_arbol" model="ir.ui.view">
+			<field name="name">lopd.recursos.tipos.tree</field>
+			<field name="model">lopd.recursos.tipos</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Tipos de recursos">
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+		<!-- acciones -->
+		<record id="accion_recursos_tipos_arbol" model="ir.actions.act_window">
+			<field name="name">Tipos de recursos</field>
+			<field name="res_model">lopd.recursos.tipos</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="help">Aquí puede añadir, editar o eliminar los tipos de recursos.</field>
+		</record>
+
+		<record id="accion_recursos_tipos" model="ir.actions.act_window">
+			<field name="name">Nuevo tipo de recurso</field>
+			<field name="res_model">lopd.recursos.tipos</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+		</record>
+		<!-- entradas de menu -->
+		<!--<menuitem action="accion_recursos_tipos" id="menu_recursos_tipos" parent="menu_lopd_extra" sequence="2"/>-->
+
+		<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+		<!-- Tipos de soportes -->
+		<!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+
+		<!-- Vista Formulario -->
+		<record id="vista_soportes_tipos" model="ir.ui.view">
+			<field name="name">lopd.soportes.tipos.form</field>
+			<field name="model">lopd.soportes.tipos</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Tipos de soportes">
+					<field name="name" />
+				</form>
+			</field>
+		</record>
+		<!-- Vista arbol -->
+		<record id="vista_soportes_tipos_arbol" model="ir.ui.view">
+			<field name="name">lopd.soportes.tipos.tree</field>
+			<field name="model">lopd.soportes.tipos</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Tipos de soportes">
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+		<!-- acciones -->
+		<record id="accion_soportes_tipos_arbol" model="ir.actions.act_window">
+			<field name="name">Tipos de soportes</field>
+			<field name="res_model">lopd.soportes.tipos</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="help">Aquí puede añadir, editar o eliminar los tipos de soportes.</field>
+		</record>
+
+		<record id="accion_soportes_tipos" model="ir.actions.act_window">
+			<field name="name">Nuevo tipo de recurso</field>
+			<field name="res_model">lopd.soportes.tipos</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form,tree</field>
+		</record>
+		<!-- entradas de menu -->
+		<!--<menuitem action="accion_soportes_tipos" id="menu_soportes_tipos" parent="menu_lopd_extra" sequence="2"/>-->
+
+	</data>
+</openerp>
