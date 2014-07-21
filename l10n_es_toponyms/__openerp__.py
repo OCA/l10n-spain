@@ -23,11 +23,11 @@
 ##############################################################################
 
 {
-    "name" : "Topónimos españoles",
-    "version" : "1.0",
-    "author" : "Spanish Localization Team",
-    "website" : "https://github.com/OCA/l10n-spain",
-    "category" : "Localisation/Europe",
+    "name": "Topónimos españoles",
+    "version": "1.0",
+    "author": "Spanish Localization Team",
+    "website": "https://github.com/OCA/l10n-spain",
+    "category": "Localisation/Europe",
     "description": """
 Provincias, municipios y códigos postales de España.
 
@@ -45,12 +45,12 @@ Los datos han sido obtenidos de GeoNames (http://www.geonames.org).
 
 https://github.com/OCA/partner-contact
 """,
-    "depends" : ["base", "base_location"],
-    "license" : "AGPL-3",
-    "data" : [
+    "depends": ["base", "base_location"],
+    "license": "AGPL-3",
+    "data": [
         "wizard/l10n_es_toponyms_wizard.xml",
     ],
-    'images': ['images/l10n_es_toponyms_config.png',],
-    "demo" : [ ],
+    'images': ['images/l10n_es_toponyms_config.png'],
+    "demo": [],
     "installable": True
 }

@@ -43,7 +43,7 @@ class config_es_toponyms(orm.TransientModel):
         'state': 'official',
         'city_info': 'yes',
     }
-    
+
     def create_states(self, cr, uid, state_type, context=None):
         """Import spanish states information through an XML file."""
         file_name = 'l10n_es_toponyms_states_%s.xml' %state_type
