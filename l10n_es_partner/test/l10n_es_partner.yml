@@ -1,0 +1,74 @@
+-
+    Crear banco 'Banco de España'
+-
+    !record {model: res.bank, id: test_bank}:
+        name: BDE
+        code: 1234
+        lname: Banco de España
+        vat: ES12345678Z
+        website: www.bde.es
+
+-
+    Crear partner
+-
+    !record {model: res.partner, id: test_partner}:
+        name: Empresa de prueba
+        comercial: Nombre comercial
+        vat: ES12345678Z
+
+-
+    Crear cuenta IBAN
+-
+    !record {model: res.partner.bank, id: test_partner_bank}:
+        name: BDE
+        state: iban
+        company_id: base.main_company
+        partner_id: base.main_partner
+        acc_number: ES7620770024003102575766
+        country_id: base.es
+        state_id: l10n_es_toponyms.ES28
+        bank: test_bank
+        bank_name: BDE
+        footer: True
+        partner_id: test_partner
+
+-
+    Comprobar onchange del banco
+-
+    !python {model: res.partner.bank}: |
+        re = self.onchange_banco(cr, uid, [], 'ES7620770024003102575766', ref('base.es'), 'iban', context=None)
+        assert 'value' in re and re['value']['acc_number'] == 'ES76 2077 0024 0031 0257 5766', 'IBAN valido detectado como no valido'
+
+        re = self.onchange_banco(cr, uid, [], 'ES9920770024003102575766', ref('base.es'), 'iban', context=None)
+        assert 'warning' in re and re['warning']['message'] == 'IBAN account is not valid', 'IBAN no detectado como no valido'
+
+-
+    Busqueda de empresas por nombre comercial
+-
+    !python {model: res.partner}: |
+        re = self.name_search(cr, uid, 'Nombre comercial')
+        assert len(re) > 0, 'No se esta buscando por el nombre comercial'
+
+-
+    Comprobar el onchange vat de la empresa
+-
+    !python {model: res.partner}: |
+        partner = self.browse(cr, uid, ref('test_partner'))
+        assert partner.vat, 'No se almacena el NIF de la empresa'
+
+        vat = self.vat_change(cr, uid, [partner.id], partner.vat, context=None)
+        assert len(vat) > 0 and vat['value']['vat_subjected'], 'Error al cambiar el NIF'
+
+-
+    Asistente para importar los bancos
+-
+    !python {model: l10n.es.partner.import.wizard}: |
+        wiz_id = self.create(cr, uid, {})
+        self.execute(cr, uid, [wiz_id], context=None)
+
+-
+    Probar que se han importado los bancos
+-
+    !assert {model: res.bank, id: res_bank_caterpillar}:
+        - name == 'CATERPILLAR'
+
