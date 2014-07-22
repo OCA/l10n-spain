@@ -47,10 +47,9 @@ class AccountInvoice(models.Model):
         for inv in self:
             sequence = inv.journal_id.invoice_sequence_id
             if not sequence:
-                raise except_orm(
-                        _('Error!'),
-                        _('Journal %s has no sequence defined for invoices.')
-                        % inv.journal_id.name)
+                raise except_orm(_('Error!'),
+                                 _('Journal %s has no sequence defined for '
+                                   'invoices.') % inv.journal_id.name)
             ctx = self.env.context.copy()
             period = period_obj.browse(self.env.cr, self.env.uid,
                                        inv.period_id.id)
