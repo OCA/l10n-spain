@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-# Copyright (c) 2011 NaN Projectes de Programari Lliure, S.L. All Rights Reserved.
+# Copyright (c) 2011 NaN Projectes de Programari Lliure, S.L.
 #                    http://www.NaN-tic.com
 #    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -22,12 +22,12 @@
 ##############################################################################
 
 {
-    "name" : "Secuencia para facturas separada de la secuencia de asientos",
-    "version" : "1.1",
-    "author" : "Localización española de OpenERP",
-    "website" : "https://github.com/OCA/l10n-spain",
-    "category" : "Accounting",
-    "license" : "AGPL-3",
+    "name": "Secuencia para facturas separada de la secuencia de asientos",
+    "version": "1.1",
+    "author": "Localización española de OpenERP",
+    "website": "https://github.com/OCA/l10n-spain",
+    "category": "Accounting",
+    "license": "AGPL-3",
     "description": """
 Este módulo separa los números de las facturas de los de los asientos. Para
 ello, convierte el campo number de 'related' a campo de texto normal, y le
@@ -42,15 +42,13 @@ utiliza OpenERP por defecto.
 diarios de ventas, compras, abono de ventas y abono de compras utilizados
 después de instalar este módulo.
 """,
-    "depends" : [
+    "depends": [
         'account',
         ],
-    "data" : [
-        'account_view.xml',
+    "data": [
+        'views/account_view.xml',
     ],
-    "demo" : [],
+    "demo": [],
     "active": False,
     "installable": True,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
