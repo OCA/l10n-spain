@@ -28,7 +28,7 @@ from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 import time
 import re
 
-class l10n_es_aeat_report(orm.Model):
+class L10nEsAeatReport(orm.Model):
     _name = "l10n.es.aeat.report"
     _description = "AEAT report base module"
 
@@ -41,7 +41,7 @@ class l10n_es_aeat_report(orm.Model):
         if company_id:
             company = self.pool['res.company'].browse(cr, uid, company_id)
             if company.partner_id and company.partner_id.vat:
-                # Remove the ES part from spanish vat numbers 
+                # Remove the ES part from spanish vat numbers
                 # (ES12345678Z => 12345678Z)
                 company_vat = re.match("(ES){0,1}(.*)",
                                        company.partner_id.vat).groups()[1]
@@ -131,5 +131,5 @@ class l10n_es_aeat_report(orm.Model):
                 raise orm.except_orm(_('Error!'),
                                      _("Only reports in 'draft' or "
                                        "'cancelled' state can be removed"))
-        return super(l10n_es_aeat_report, self).unlink(cr, uid, ids,
+        return super(L10nEsAeatReport, self).unlink(cr, uid, ids,
                                                        context=context)
