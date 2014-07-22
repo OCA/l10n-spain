@@ -21,8 +21,6 @@
 #
 ##############################################################################
 """
-Spanish Fiscal Year Closing
+Spanish Fiscal Year Closing Wizards
 """
-import fiscalyear_closing
-import l10n_es_fiscalyear_closing
-import wizard
+from . import wizard_run

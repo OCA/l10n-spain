@@ -2,7 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2013 Servicios Tecnológicos Avanzados (http://www.serviciosbaeza.com)
+#    Copyright (c) 2013 Servicios Tecnológicos Avanzados
+#                       (http://www.serviciosbaeza.com)
 #                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -19,14 +20,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import fields, orm
+from openerp.osv import orm
 from openerp.tools.translate import _
 
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Default Spanish Account Mappings
 # Format for the mappings:
 #       (<source account code>, <dest account code>, <description>)
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 _LP_ACCOUNT_MAPPING = [
     ('6', '129%', False),
@@ -42,8 +43,8 @@ _NLP_ACCOUNT_MAPPING = [
     ('813', '1341%0', False),
     ('820', '135%0', False),
     ('821', '135%0', False),
-    ('830', '13', False), # Can be any 13? account, like 130 or 133
-    ('833', '13', False), # Can be any 13? account, like 130 or 133
+    ('830', '13', False),  # Can be any 13? account, like 130 or 133
+    ('833', '13', False),  # Can be any 13? account, like 130 or 133
     ('834', '137%0', False),
     ('835', '137%0', False),
     ('835', '137%0', False),
@@ -86,7 +87,8 @@ _C_ACCOUNT_MAPPING = [
     ('5', False, False),
 ]
 
-class l10n_es_fiscalyear_closing(orm.Model):
+
+class L10nEsFiscalyearClosing(orm.Model):
     _inherit = "account.fiscalyear.closing"
 
     def _get_account_mappings(self, cr, uid, fyc, mapping, context):
@@ -98,23 +100,25 @@ class l10n_es_fiscalyear_closing(orm.Model):
         for source, dest, description in mapping:
             # Find the source account
             account_ids = account_obj.search(cr, uid, [
-                            ('company_id', '=', fyc.company_id.id),
-                            ('code', '=like', source),
-                        ])
+                ('company_id', '=', fyc.company_id.id),
+                ('code', '=like', source),
+            ])
             source_account_id = account_ids and account_ids[0] or None
             if source_account_id:
                 # Find the dest account
                 account_ids = account_obj.search(cr, uid, [
-                                ('company_id', '=', fyc.company_id.id),
-                                ('code', '=like', dest),
-                                ('type', '!=', 'view'),
-                            ])
+                    ('company_id', '=', fyc.company_id.id),
+                    ('code', '=like', dest),
+                    ('type', '!=', 'view'),
+                ])
                 dest_account_id = account_ids and account_ids[0] or None
                 # Use a default description if not provided
                 if not description and source_account_id:
-                    description = account_obj.read(cr, uid, source_account_id, ['name'])['name']
+                    description = account_obj.read(cr, uid,
+                                                   source_account_id, ['name'])['name']
                 account_mappings.append({
-                    'name': description if dest_account_id else _('No destination account %s found for account %s.') % (dest, source),
+                    'name': (description if dest_account_id
+                                        else _('No destination account %s found for account %s.') % (dest, source)),
                     'source_account_id': source_account_id,
                     'dest_account_id': dest_account_id or None,
                 })
