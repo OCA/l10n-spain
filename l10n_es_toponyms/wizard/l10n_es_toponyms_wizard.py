@@ -76,7 +76,6 @@ class ConfigEsToponyms(orm.TransientModel):
         return False
 
     def execute(self, cr, uid, ids, context=None):
-        if context is None: context = {}
         super(ConfigEsToponyms, self).execute(cr, uid, ids, context=context)
         res = self.read(cr, uid, ids)[0]
         # Import spanish states (official, Spanish or both)
