@@ -23,18 +23,17 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
+from openerp import models, fields, _
 
 
-class ResPartnerBank(orm.Model):
+class ResPartnerBank(models.Model):
     _inherit = 'res.partner.bank'
-    _columns = {
-        'acc_country_id': fields.many2one(
-            "res.country", 'Bank country',
-            help="If the country of the bank is Spain, it validates the bank "
-                 "code or IBAN, formatting it accordingly."),
-    }
+
+    acc_country_id = fields.Many2one(
+        comodel_name='res.country',
+        string='Bank country',
+        help='If the country of the bank is Spain, it validates the bank '
+             'code or IBAN, formatting it accordingly.')
 
     def _crc(self, cTexto):
         """Calculo el CRC de un número de 10 dígitos
@@ -119,11 +118,12 @@ class ResPartnerBank(orm.Model):
                         return {'value': {'acc_number': number}}
                 elif state == 'iban':
                     partner_bank_obj = self.pool['res.partner.bank']
-                    if partner_bank_obj.is_iban_valid(cr, uid, account, context):
+                    if partner_bank_obj.is_iban_valid(cr, uid, account,
+                                                      context):
                         number = self._pretty_iban(account.replace(" ", ""))
-                        bank_ids = bank_obj.search(cr, uid,
-                                                   [('code', '=', number[5:9])],
-                                                   context=context)
+                        bank_ids = bank_obj.search(
+                            cr, uid, [('code', '=', number[5:9])],
+                            context=context)
                         if bank_ids:
                             return {'value': {'acc_number': number,
                                               'bank': bank_ids[0]}}
@@ -135,22 +135,19 @@ class ResPartnerBank(orm.Model):
         return {'value': {}}
 
 
-class ResBank(orm.Model):
+class ResBank(models.Model):
     _inherit = 'res.bank'
-    _columns = {
-        'code': fields.char('Code', size=64),
-        'lname': fields.char('Long name', size=128),
-        'vat': fields.char('VAT code', size=32, help="Value Added Tax number"),
-        'website': fields.char('Website', size=64),
-        'code': fields.char('Code', size=64),
-    }
+
+    code = fields.Char('Code', size=64)
+    lname = fields.Char('Long name', size=128)
+    vat = fields.Char('VAT code', size=32, help='Value Added Tax number')
+    website = fields.Char('Website', size=64)
 
 
-class ResPartner(orm.Model):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
-    _columns = {
-        'comercial': fields.char('Trade name', size=128, select=True),
-    }
+
+    comercial = fields.Char('Trade name', size=128, select=True)
 
     def name_search(self, cr, uid, name, args=None, operator='ilike',
                     context=None, limit=100):
