@@ -24,20 +24,22 @@ from openerp import tools
 import os
 
 
-class l10nEsPartnerImportWizard(orm.TransientModel):
+class L10nEsPartnerImportWizard(orm.TransientModel):
     _name = 'l10n.es.partner.import.wizard'
     _inherit = 'res.config.installer'
 
     def execute(self, cr, uid, ids, context=None):
-        super(l10nEsPartnerImportWizard, self).execute(cr, uid, ids,
+        super(L10nEsPartnerImportWizard, self).execute(cr, uid, ids,
                                                        context=context)
         try:
             path = os.path.join('l10n_es_partner', 'wizard', 'data_banks.xml')
             fp = tools.file_open(path)
+            idref = {}
+            tools.convert_xml_import(cr, 'l10n_es_partner', fp,  idref, 'init',
+                                     noupdate=True)
         except IOError:
-            return {}
-        idref = {}
-        tools.convert_xml_import(cr, 'l10n_es_partner', fp,  idref, 'init',
-                                 noupdate=True)
-        fp.close()
+            pass
+        finally:
+            fp.close()
+
         return {}
