@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009-2014 Spanish Localization Team
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
 #    by the Free Software Foundation, either version 3 of the License, or
@@ -18,15 +15,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields
 
-
-class ResPartner(models.Model):
-    _inherit = 'res.partner'
-
-    es_libro = fields.Char(string='Book', size=128)
-    es_registro_mercantil = fields.Char(string='Commercial Registry', size=128)
-    es_hoja = fields.Char(string='Sheet', size=128)
-    es_folio = fields.Char(string='Page', size=128)
-    es_seccion = fields.Char(string='Section', size=128)
-    es_tomo = fields.Char(string='Volume', size=128)
+from . import account_invoice
+from . import account_journal
