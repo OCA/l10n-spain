@@ -10,7 +10,8 @@ virtualenv:
   system_site_packages: true
 
 install:
-  - sudo pip install unidecode
+  - pip install unidecode
+  - pip install xlrd
   - git clone https://github.com/OCA/partner-contact ${HOME}/partner-contact -b ${VERSION}
   - git clone https://github.com/OCA/account-financial-tools ${HOME}/account-financial-tools -b ${VERSION}
   - git clone https://github.com/OCA/bank-statement-reconcile ${HOME}/bank-statement-reconcile -b ${VERSION}
