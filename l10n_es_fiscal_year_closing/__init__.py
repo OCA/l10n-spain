@@ -3,7 +3,6 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
-#                           All Rights Reserved.
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
 #    $Id$
 #
