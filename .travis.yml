@@ -1,0 +1,30 @@
+language: python
+
+python:
+  - "2.7"
+
+env:
+  - VERSION="7.0"
+
+virtualenv:
+  system_site_packages: true
+
+install:
+  - pip install unidecode
+  - pip install xlrd
+  - git clone https://github.com/OCA/partner-contact ${HOME}/partner-contact -b ${VERSION}
+  - git clone https://github.com/OCA/account-financial-tools ${HOME}/account-financial-tools -b ${VERSION}
+  - git clone https://github.com/OCA/bank-statement-reconcile ${HOME}/bank-statement-reconcile -b ${VERSION}
+  - git clone https://github.com/OCA/account-payment ${HOME}/account-payment -b ${VERSION}
+  - bzr branch lp:acysos/openerp-addons-7.0 ${HOME}/acysos-addons
+  - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
+  - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
+  - travis_install_nightly ${VERSION}
+  - $HOME/maintainer-quality-tools/travis/travis_install_nightly ${VERSION}
+
+script:
+  - travis_run_flake8
+  - travis_run_tests ${VERSION} ${HOME}/partner-contact ${HOME}/account-financial-tools ${HOME}/acysos-addons ${HOME}/bank-statement-reconcile ${HOME}/account-payment
+
+after_success:
+  coveralls
