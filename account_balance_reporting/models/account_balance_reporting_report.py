@@ -26,7 +26,7 @@ Generic account balance report document (with header and detail lines).
 Designed following the needs of the
 Spanish/Spain localization.
 """
-from openerp.osv import orm,fields
+from openerp.osv import orm, fields
 from openerp.tools.translate import _
 import re
 import time
@@ -34,10 +34,11 @@ from openerp import netsvc
 import logging
 
 # CSS classes for the account line templates
-CSS_CLASSES = [('default','Default'),('l1', 'Level 1'), ('l2', 'Level 2'),
-                ('l3', 'Level 3'), ('l4', 'Level 4'), ('l5', 'Level 5')]
+CSS_CLASSES = [('default', 'Default'), ('l1', 'Level 1'), ('l2', 'Level 2'),
+               ('l3', 'Level 3'), ('l4', 'Level 4'), ('l5', 'Level 5')]
 
-class account_balance_reporting(orm.Model):
+
+class AccountBalanceReporting(orm.Model):
     """
     Account balance report.
     It stores the configuration/header fields of an account balance report,
@@ -48,46 +49,53 @@ class account_balance_reporting(orm.Model):
 
     _columns = {
         'name': fields.char('Name', size=64, required=True, select=True),
-        'template_id': fields.many2one('account.balance.reporting.template',
-                'Template', ondelete='set null', required=True, select=True,
-                states={'calc_done': [('readonly', True)],
-                        'done': [('readonly', True)]}),
+        'template_id': fields.many2one(
+            'account.balance.reporting.template',
+            'Template', ondelete='set null', required=True, select=True,
+            states={'calc_done': [('readonly', True)],
+                    'done': [('readonly', True)]}),
         'calc_date': fields.datetime("Calculation date", readonly=True),
-        'state': fields.selection([('draft','Draft'),
-                                   ('calc','Processing'),
-                                   ('calc_done','Processed'),
-                                   ('done','Done'),
-                                   ('canceled','Canceled')], 'State'),
-        'company_id': fields.many2one('res.company', 'Company',
-                ondelete='cascade', required=True, readonly=True,
-                states={'draft': [('readonly', False)]}),
-        'current_fiscalyear_id': fields.many2one('account.fiscalyear',
-                'Fiscal year 1', select=True, required=True,
-                states={'calc_done': [('readonly', True)],
-                          'done': [('readonly', True)]}),
-        'current_period_ids': fields.many2many('account.period',
-                'account_balance_reporting_account_period_current_rel',
-                'account_balance_reporting_id', 'period_id',
-                'Fiscal year 1 periods',
-                states={'calc_done': [('readonly', True)],
-                        'done': [('readonly', True)]}),
-        'previous_fiscalyear_id': fields.many2one('account.fiscalyear',
-                'Fiscal year 2', select=True,
-                states={'calc_done': [('readonly', True)],
-                        'done': [('readonly', True)]}),
-        'previous_period_ids': fields.many2many('account.period',
-                'account_balance_reporting_account_period_previous_rel',
-                'account_balance_reporting_id', 'period_id',
-                'Fiscal year 2 periods',
-                states={'calc_done': [('readonly', True)],
-                        'done': [('readonly', True)]}),
+        'state': fields.selection([('draft', 'Draft'),
+                                   ('calc', 'Processing'),
+                                   ('calc_done', 'Processed'),
+                                   ('done', 'Done'),
+                                   ('canceled', 'Canceled')], 'State'),
+        'company_id': fields.many2one(
+            'res.company', 'Company',
+            ondelete='cascade', required=True, readonly=True,
+            states={'draft': [('readonly', False)]}),
+        'current_fiscalyear_id': fields.many2one(
+            'account.fiscalyear',
+            'Fiscal year 1', select=True, required=True,
+            states={'calc_done': [('readonly', True)],
+                    'done': [('readonly', True)]}),
+        'current_period_ids': fields.many2many(
+            'account.period',
+            'account_balance_reporting_account_period_current_rel',
+            'account_balance_reporting_id', 'period_id',
+            'Fiscal year 1 periods',
+            states={'calc_done': [('readonly', True)],
+                    'done': [('readonly', True)]}),
+        'previous_fiscalyear_id': fields.many2one(
+            'account.fiscalyear',
+            'Fiscal year 2', select=True,
+            states={'calc_done': [('readonly', True)],
+                    'done': [('readonly', True)]}),
+        'previous_period_ids': fields.many2many(
+            'account.period',
+            'account_balance_reporting_account_period_previous_rel',
+            'account_balance_reporting_id', 'period_id',
+            'Fiscal year 2 periods',
+            states={'calc_done': [('readonly', True)],
+                    'done': [('readonly', True)]}),
         'line_ids': fields.one2many('account.balance.reporting.line',
                                     'report_id', 'Lines',
-                                    states = {'done': [('readonly', True)]}),
+                                    states={'done': [('readonly', True)]}),
     }
 
     _defaults = {
-        'company_id': lambda self, cr, uid, context: self.pool.get('res.users').browse(cr, uid, uid, context).company_id.id,
+        'company_id': lambda self, cr, uid, context:
+        self.pool['res.users'].browse(cr, uid, uid, context).company_id.id,
         'state': 'draft',
     }
 
@@ -107,20 +115,21 @@ class account_balance_reporting(orm.Model):
             # Clear the report data (unlink the lines of detail)
             line_obj.unlink(cr, uid, [line.id for line in report.line_ids],
                             context=context)
-            # Fill the report with a 'copy' of the lines of its template (if it has one)
+            # Fill the report with a 'copy' of the lines of its template
+            # (if it has one)
             if report.template_id:
                 for template_line in report.template_id.line_ids:
                     line_obj.create(cr, uid, {
-                            'code': template_line.code,
-                            'name': template_line.name,
-                            'report_id': report.id,
-                            'template_line_id': template_line.id,
-                            'parent_id': None,
-                            'current_value': None,
-                            'previous_value': None,
-                            'sequence': template_line.sequence,
-                            'css_class': template_line.css_class,
-                        }, context=context)
+                        'code': template_line.code,
+                        'name': template_line.name,
+                        'report_id': report.id,
+                        'template_line_id': template_line.id,
+                        'parent_id': None,
+                        'current_value': None,
+                        'previous_value': None,
+                        'sequence': template_line.sequence,
+                        'css_class': template_line.css_class,
+                    }, context=context)
         # Set the parents of the lines in the report
         # Note: We reload the reports objects to refresh the lines of detail.
         for report in self.browse(cr, uid, ids, context=context):
@@ -129,13 +138,13 @@ class account_balance_reporting(orm.Model):
                 for line in report.line_ids:
                     tmpl_line = line.template_line_id
                     if tmpl_line and tmpl_line.parent_id:
-                        parent_line_ids = line_obj.search(cr, uid,
-                                [('report_id', '=', report.id),
-                                 ('code', '=', tmpl_line.parent_id.code)])
+                        parent_line_ids = line_obj.search(
+                            cr, uid, [('report_id', '=', report.id),
+                                      ('code', '=', tmpl_line.parent_id.code)])
                         line_obj.write(cr, uid, line.id, {
-                                'parent_id': (parent_line_ids and
-                                              parent_line_ids[0] or False),
-                            }, context=context)
+                            'parent_id': (parent_line_ids and
+                                          parent_line_ids[0] or False),
+                        }, context=context)
         # Calculate the values of the lines
         # Note: We reload the reports objects to refresh the lines of detail.
         for report in self.browse(cr, uid, ids, context=context):
@@ -184,7 +193,7 @@ class account_balance_reporting(orm.Model):
         return 'close'
 
 
-class account_balance_reporting_line(orm.Model):
+class AccountBalanceReportingLine(orm.Model):
     """
     Account balance report line / Accounting concept
     One line of detail of the balance report representing an accounting
@@ -202,13 +211,13 @@ class account_balance_reporting_line(orm.Model):
         'code': fields.char('Code', size=64, required=True, select=True),
         'name': fields.char('Name', size=256, required=True, select=True),
         'notes': fields.text('Notes'),
-        'current_value': fields.float('Fiscal year 1', digits=(16,2)),
-        'previous_value': fields.float('Fiscal year 2', digits=(16,2)),
+        'current_value': fields.float('Fiscal year 1', digits=(16, 2)),
+        'previous_value': fields.float('Fiscal year 2', digits=(16, 2)),
         'calc_date': fields.datetime("Calculation date"),
         'css_class': fields.selection(CSS_CLASSES, 'CSS Class'),
         'template_line_id': fields.many2one(
-                                'account.balance.reporting.template.line',
-                                'Line template', ondelete='set null'),
+            'account.balance.reporting.template.line',
+            'Line template', ondelete='set null'),
         'parent_id': fields.many2one('account.balance.reporting.line',
                                      'Parent', ondelete='cascade'),
         'child_ids': fields.one2many('account.balance.reporting.line',
@@ -216,7 +225,8 @@ class account_balance_reporting_line(orm.Model):
     }
 
     _defaults = {
-        'report_id': lambda self, cr, uid, context: context.get('report_id', None),
+        'report_id': lambda self, cr, uid, context: context.get('report_id',
+                                                                None),
         'css_class': 'default',
         'sequence': 10,
     }
@@ -240,10 +250,10 @@ class account_balance_reporting_line(orm.Model):
         """Redefine the method to allow searching by code."""
         ids = []
         if name:
-            ids = self.search(cr, uid, [('code','ilike',name)]+ args,
+            ids = self.search(cr, uid, [('code', 'ilike', name)] + args,
                               limit=limit, context=context)
         if not ids:
-            ids = self.search(cr, uid, [('name',operator,name)]+ args,
+            ids = self.search(cr, uid, [('name', operator, name)] + args,
                               limit=limit, context=context)
         return self.name_get(cr, uid, ids, context=context)
 
@@ -255,9 +265,11 @@ class account_balance_reporting_line(orm.Model):
         Depending on this formula the final value is calculated as follows:
         - Empy report value: sum of (this concept) children values.
         - Number with decimal point ("10.2"): that value (constant).
-        - Account numbers separated by commas ("430,431,(437)"): Sum of the account balances.
+        - Account numbers separated by commas ("430,431,(437)"): Sum of the
+            account balances.
             (The sign of the balance depends on the balance mode)
-        - Concept codes separated by "+" ("11000+12000"): Sum of those concepts values.
+        - Concept codes separated by "+" ("11000+12000"): Sum of those
+            concepts values.
         """
         if context is None:
             context = {}
@@ -275,12 +287,13 @@ class account_balance_reporting_line(orm.Model):
                     tmpl_value = tmpl_line.current_value
                 elif fyear == 'previous':
                     tmpl_value = (tmpl_line.previous_value or
-                                      tmpl_line.current_value)
+                                  tmpl_line.current_value)
                 # Remove characters after a ";" (we use ; for comments)
                 if tmpl_value:
                     tmpl_value = tmpl_value.split(';')[0]
                 if (fyear == 'current' and not report.current_fiscalyear_id) \
-                        or (fyear == 'previous' and not report.previous_fiscalyear_id):
+                        or (fyear == 'previous' and
+                            not report.previous_fiscalyear_id):
                     value = 0
                 else:
                     if not tmpl_value:
@@ -308,14 +321,16 @@ class account_balance_reporting_line(orm.Model):
                         if fyear == 'current':
                             ctx.update({
                                 'fiscalyear': report.current_fiscalyear_id.id,
-                                'periods': [p.id for p in report.current_period_ids],
+                                'periods': [p.id for p in
+                                            report.current_period_ids],
                             })
                         elif fyear == 'previous':
                             ctx.update({
                                 'fiscalyear': report.previous_fiscalyear_id.id,
-                                'periods': [p.id for p in report.previous_period_ids],
+                                'periods': [p.id for p in
+                                            report.previous_period_ids],
                             })
-                        value = line._get_account_balance(tmpl_value,
+                        value = line._get_account_balance(cr, uid, ids, tmpl_value,
                                                           balance_mode, ctx)
                     elif re.match(r'^[\+\-0-9a-zA-Z_\*\ ]*$', tmpl_value):
                         # Account concept codes separated by "+" => sum of the
@@ -323,21 +338,22 @@ class account_balance_reporting_line(orm.Model):
                         for line_code in re.findall(r'(-?\(?[0-9a-zA-Z_]*\)?)',
                                                     tmpl_value):
                             sign = 1
-                            if line_code.startswith('-') or \
-                                    (line_code.startswith('(') and 
-                                     balance_mode in (2, 4)):
+                            if (line_code.startswith('-') or
+                                    (line_code.startswith('(') and
+                                     balance_mode in (2, 4))):
                                 sign = -1
                             line_code = line_code.strip('-()*')
                             # findall might return empty strings
                             if line_code:
                                 # Search for the line (perfect match)
                                 line_ids = self.search(cr, uid, [
-                                        ('report_id','=', report.id),
-                                        ('code', '=', line_code),
-                                    ], context=context)
+                                    ('report_id', '=', report.id),
+                                    ('code', '=', line_code),
+                                ], context=context)
                                 for child in self.browse(cr, uid, line_ids,
                                                          context=context):
-                                    if child.calc_date != child.report_id.calc_date:
+                                    if (child.calc_date !=
+                                            child.report_id.calc_date):
                                         child.refresh_values()
                                         # Reload the child data
                                         child = self.browse(cr, uid, child.id,
@@ -355,10 +371,10 @@ class account_balance_reporting_line(orm.Model):
                     previous_value = value
             # Write the values
             self.write(cr, uid, line.id, {
-                    'current_value': current_value,
-                    'previous_value': previous_value,
-                    'calc_date': line.report_id.calc_date,
-                }, context=context)
+                'current_value': current_value,
+                'previous_value': previous_value,
+                'calc_date': line.report_id.calc_date,
+            }, context=context)
         return True
 
     def _get_account_balance(self, cr, uid, ids, code, balance_mode=0,
@@ -374,10 +390,10 @@ class account_balance_reporting_line(orm.Model):
           Mode 2: credit-debit for all accounts;
           Mode 3: credit-debit, debit-credit for accounts in brackets.
 
-        Also the user may specify to use only the debit or credit of the account
-        instead of the balance writing "debit(551)" or "credit(551)".
+        Also the user may specify to use only the debit or credit of the
+        account instead of the balance writing "debit(551)" or "credit(551)".
         """
-        acc_obj = self.pool.get('account.account')
+        acc_obj = self.pool['account.account']
         logger = logging.getLogger(__name__)
         res = 0.0
         line = self.browse(cr, uid, ids[0], context=context)
@@ -392,17 +408,17 @@ class account_balance_reporting_line(orm.Model):
                 # Check the sign of the code (substraction)
                 if acc_code.startswith('-'):
                     sign = -1
-                    acc_code = acc_code[1:].strip() # Strip the sign
+                    acc_code = acc_code[1:].strip()  # Strip the sign
                 else:
                     sign = 1
                 if re.match(r'^debit\(.*\)$', acc_code):
                     # Use debit instead of balance
                     mode = 'debit'
-                    acc_code = acc_code[6:-1] # Strip debit()
+                    acc_code = acc_code[6:-1]  # Strip debit()
                 elif re.match(r'^credit\(.*\)$', acc_code):
                     # Use credit instead of balance
                     mode = 'credit'
-                    acc_code = acc_code[7:-1] # Strip credit()
+                    acc_code = acc_code[7:-1]  # Strip credit()
                 else:
                     mode = 'balance'
                 # Calculate sign of the balance mode
@@ -417,18 +433,18 @@ class account_balance_reporting_line(orm.Model):
                     acc_code = acc_code[1:-1]
                 # Search for the account (perfect match)
                 account_ids = acc_obj.search(cr, uid, [
-                        ('code', '=', acc_code),
-                        ('company_id','=', company_id)
-                    ], context=context)
+                    ('code', '=', acc_code),
+                    ('company_id', '=', company_id)
+                ], context=context)
                 if not account_ids:
                     # Search for a subaccount ending with '0'
                     account_ids = acc_obj.search(cr, uid, [
-                            ('code', '=like', '%s%%0' % acc_code),
-                            ('company_id','=', company_id)
-                        ], context=context)
+                        ('code', '=like', '%s%%0' % acc_code),
+                        ('company_id', '=', company_id)
+                    ], context=context)
                 if not account_ids:
                     logger.warning("Account with code '%s' not found!"
-                                   %acc_code)
+                                   % acc_code)
                 for account in acc_obj.browse(cr, uid, account_ids,
                                               context=context):
                     if mode == 'debit':
