@@ -23,4 +23,4 @@
 """
 Spanish Fiscal Year Closing Wizards
 """
-import wizard_run
+from . import wizard_run
