@@ -2,14 +2,14 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
 #    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -25,32 +25,33 @@ import os
 import openerp.tools
 from openerp.osv import fields, orm
 
-class config_es_toponyms(orm.TransientModel):
-    _name='config.es.toponyms'
+
+class ConfigEsToponyms(orm.TransientModel):
+    _name = 'config.es.toponyms'
     _inherit = 'res.config.installer'
 
     _columns = {
-        'name':fields.char('Name', size=64),
+        'name': fields.char('Name', size=64),
         'state': fields.selection([('official', 'Official'),
                                    ('spanish', 'Spanish'),
                                    ('both', 'Both')], 'State names',
                                   required=True),
-        'city_info': fields.selection([('yes', 'Yes'), ('no','No')],
+        'city_info': fields.selection([('yes', 'Yes'), ('no', 'No')],
                                       'City information', required=True),
     }
 
-    _defaults={
+    _defaults = {
         'state': 'official',
         'city_info': 'yes',
     }
 
     def create_states(self, cr, uid, state_type, context=None):
         """Import spanish states information through an XML file."""
-        file_name = 'l10n_es_toponyms_states_%s.xml' %state_type
+        file_name = 'l10n_es_toponyms_states_%s.xml' % state_type
         try:
             fp = openerp.tools.file_open(os.path.join('l10n_es_toponyms',
-                                            os.path.join('wizard', file_name)))
-        except IOError, e:
+                                         os.path.join('wizard', file_name)))
+        except IOError:
             fp = None
         if fp:
             idref = {}
@@ -64,8 +65,8 @@ class config_es_toponyms(orm.TransientModel):
         file_name = 'l10n_es_toponyms_zipcodes.xml'
         try:
             fp = openerp.tools.file_open(os.path.join('l10n_es_toponyms',
-                                            os.path.join('wizard', file_name)))
-        except IOError, e:
+                                         os.path.join('wizard', file_name)))
+        except IOError:
             fp = None
         if fp:
             idref = {}
@@ -76,7 +77,7 @@ class config_es_toponyms(orm.TransientModel):
 
     def execute(self, cr, uid, ids, context=None):
         if context is None: context = {}
-        super(config_es_toponyms, self).execute(cr, uid, ids, context=context)
+        super(ConfigEsToponyms, self).execute(cr, uid, ids, context=context)
         res = self.read(cr, uid, ids)[0]
         # Import spanish states (official, Spanish or both)
         self.create_states(cr, uid, res['state'], context=context)
