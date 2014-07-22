@@ -95,6 +95,7 @@ class account_asset_asset(orm.Model):
 
     _defaults = {
         'method_percentage': 100.0,
+        'ext_method_time': 'percentage',
         'move_end_period': True,
     }
 
