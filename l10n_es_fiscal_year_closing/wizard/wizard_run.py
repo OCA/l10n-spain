@@ -310,7 +310,7 @@ class ExecuteFyc(orm.TransientModel):
                         lines_by_partner = {}
                         for line in move_line_obj.browse(cr, uid, found_lines):
                             balance = line.debit - line.credit
-                            if lines_by_partner.has_key(line.partner_id.id):
+                            if line.partner_id.id in lines_by_partner:
                                 lines_by_partner[line.partner_id.id] += balance
                             else:
                                 lines_by_partner[line.partner_id.id] = balance
