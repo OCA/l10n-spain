@@ -20,14 +20,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import fields, orm
+from openerp.osv import orm
 from openerp.tools.translate import _
 
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Default Spanish Account Mappings
 # Format for the mappings:
 #       (<source account code>, <dest account code>, <description>)
-#-------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 _LP_ACCOUNT_MAPPING = [
     ('6', '129%', False),

@@ -23,7 +23,6 @@
 #############################################################################
 
 from openerp import netsvc
-from openerp import pooler
 from openerp.osv import fields, osv, orm
 from openerp.tools.translate import _
 
@@ -192,8 +191,16 @@ class ExecuteFyc(orm.TransientModel):
         # If one or more moves where found, raise an exception
         if len(account_move_ids):
             invalid_period_moves = move_obj.browse(cr, uid, account_move_ids, context)
-            str_invalid_period_moves = '\n'.join(['id: %s, date: %s, number: %s, ref: %s' % (move.id, move.date, move.name, move.ref) for move in invalid_period_moves])
-            raise orm.except_orm(_('Error'), _('One or more moves with invalid period or date found on the fiscal year: \n%s') % str_invalid_period_moves)
+            str_invalid_period_moves = '\n'.join(
+                [
+                    'id: %s, date: %s, number: %s, ref: %s' %
+                    (move.id, move.date, move.name, move.ref) for move in invalid_period_moves
+                ]
+            )
+            raise orm.except_orm(
+                _('Error'),
+                _('One or more moves with invalid period or date found on the fiscal year: \n%s')
+                % str_invalid_period_moves)
 
     def _check_draft_moves(self, cr, uid, fyc, context):
         """
@@ -252,7 +259,12 @@ class ExecuteFyc(orm.TransientModel):
                 unbalanced_moves.append(move)
         # If one or more unbalanced moves where found, raise an exception
         if len(unbalanced_moves):
-            str_unbalanced_moves = '\n'.join(['id: %s, date: %s, number: %s, ref: %s' % (move.id, move.date, move.name, move.ref) for move in unbalanced_moves])
+            str_unbalanced_moves = '\n'.join(
+                [
+                    'id: %s, date: %s, number: %s, ref: %s'
+                    % (move.id, move.date, move.name, move.ref) for move in unbalanced_moves
+                ]
+            )
             raise orm.except_orm(_('Error'), _('One or more unbalanced moves found: \n%s') % str_unbalanced_moves)
 
     def _create_closing_move(self, cr, uid, account_mapping_ids, period_ids,
@@ -277,7 +289,8 @@ class ExecuteFyc(orm.TransientModel):
             if account_map.dest_account_id and not dest_accounts_totals.get(account_map.dest_account_id.id):
                 dest_accounts_totals[account_map.dest_account_id.id] = 0
             # Find its children accounts (recursively)
-            # FIXME: _get_children_and_consol is a protected member of account_account, but the OpenERP code base uses it like this :(
+            # FIXME: _get_children_and_consol is a protected member of account_account,
+            # but the OpenERP code base uses it like this :(
             child_ids = account_obj._get_children_and_consol(cr, uid, [account_map.source_account_id.id], ctx)
             # For each children account. (Notice the context filter! the computed balanced is based on this filter)
             for account in account_obj.browse(cr, uid, child_ids, ctx):
@@ -368,7 +381,9 @@ class ExecuteFyc(orm.TransientModel):
         account_mapping_ids = []
 
         # Depending on the operation we will use different data
-        assert operation in ('loss_and_profit', 'net_loss_and_profit', 'close'), _("The operation must be a supported one")
+        assert operation in ('loss_and_profit', 'net_loss_and_profit', 'close'), (
+            _("The operation must be a supported one")
+        )
         if operation == 'loss_and_profit':
             # Consider all the periods of the fiscal year *BUT* the L&P, Net L&P and the Closing one.
             for period in fyc.closing_fiscalyear_id.period_ids:
@@ -380,7 +395,10 @@ class ExecuteFyc(orm.TransientModel):
             account_mapping_ids = fyc.lp_account_mapping_ids
             for account_map in account_mapping_ids:
                 if not account_map.dest_account_id:
-                    raise orm.except_orm(_('UserError'), _("The L&P account mappings are not properly configured: %s") % account_map.name)
+                    raise orm.except_orm(
+                        _('UserError'),
+                        _("The L&P account mappings are not properly configured: %s") % account_map.name
+                    )
             # Get the values for the lines
             description = fyc.lp_description
             date = fyc.lp_date
@@ -396,7 +414,10 @@ class ExecuteFyc(orm.TransientModel):
             account_mapping_ids = fyc.nlp_account_mapping_ids
             for account_map in account_mapping_ids:
                 if not account_map.dest_account_id:
-                    raise orm.except_orm(_('UserError'), _("The Net L&P account mappings are not properly configured: %s") % account_map.name)
+                    raise orm.except_orm(
+                        _('UserError'),
+                        _("The Net L&P account mappings are not properly configured: %s") % account_map.name
+                    )
             # Get the values for the lines
             description = fyc.nlp_description
             date = fyc.nlp_date
