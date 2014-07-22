@@ -86,7 +86,7 @@ _C_ACCOUNT_MAPPING = [
     ('5', False, False),
 ]
 
-class l10n_es_fiscalyear_closing(orm.Model):
+class L10nEsFiscalyearClosing(orm.Model):
     _inherit = "account.fiscalyear.closing"
 
     def _get_account_mappings(self, cr, uid, fyc, mapping, context):

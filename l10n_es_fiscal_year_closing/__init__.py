@@ -23,6 +23,6 @@
 """
 Spanish Fiscal Year Closing
 """
-import fiscalyear_closing
-import l10n_es_fiscalyear_closing
-import wizard
+from . import fiscalyear_closing
+from . import l10n_es_fiscalyear_closing
+from . import wizard

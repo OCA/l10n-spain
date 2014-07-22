@@ -28,7 +28,7 @@ from openerp.tools import config
 import logging
 
 
-class fiscalyear_closing_account_mapping(orm.AbstractModel):
+class FiscalyearClosingAccountMapping(orm.AbstractModel):
     _name = "account.fiscalyear.closing.account_map"
     _description = "Generic account mapping"
 
@@ -40,25 +40,25 @@ class fiscalyear_closing_account_mapping(orm.AbstractModel):
     }
 
 
-class fiscalyear_closing_lp_account_mapping(orm.Model):
+class FiscalyearClosingLpAccountMapping(orm.Model):
     _name = "account.fiscalyear.closing.lp_account_map"
     _inherit = "account.fiscalyear.closing.account_map"
     _description = "SFYC Loss & Profit Account Mapping"
 
 
-class fiscalyear_closing_nlp_account_mapping(orm.Model):
+class FiscalyearClosingNlpAccountMapping(orm.Model):
     _name = "account.fiscalyear.closing.nlp_account_map"
     _inherit = "account.fiscalyear.closing.account_map"
     _description = "SFYC Net Loss & Profit Account Mapping"
 
 
-class fiscalyear_closing_c_account_mapping(orm.Model):
+class FiscalyearClosingCAccountMapping(orm.Model):
     _name = "account.fiscalyear.closing.c_account_map"
     _inherit = "account.fiscalyear.closing.account_map"
     _description = "SFYC Closing Account Mapping"
 
 
-class fiscalyear_closing(orm.Model):
+class FiscalyearClosing(orm.Model):
     _name = "account.fiscalyear.closing"
     _description = "Fiscal year closing"
 
@@ -119,8 +119,8 @@ class fiscalyear_closing(orm.Model):
         """
         company_id = self.pool.get('res.users').browse(cr, uid, uid, context).company_id.id
         fiscalyear_ids = self.pool.get('account.fiscalyear').search(cr, uid, [
-                            ('company_id', '=', company_id), 
-                            ('state', '=', 'draft'), 
+                            ('company_id', '=', company_id),
+                            ('state', '=', 'draft'),
                         ], order='date_start')
         return fiscalyear_ids and fiscalyear_ids[0]
 
@@ -141,10 +141,10 @@ class fiscalyear_closing(orm.Model):
 
     def _check_duplicate(self, cr, uid, ids, context=None):
         for fyc in self.browse(cr, uid, ids, context):
-            if len(self.search(cr, uid, [('closing_fiscalyear_id', '=', 
+            if len(self.search(cr, uid, [('closing_fiscalyear_id', '=',
                                           fyc.closing_fiscalyear_id.id)])) > 1:
                 return False
-            if len(self.search(cr, uid, [('opening_fiscalyear_id', '=', 
+            if len(self.search(cr, uid, [('opening_fiscalyear_id', '=',
                                           fyc.opening_fiscalyear_id.id)])) > 1:
                 return False
         return True
@@ -166,7 +166,7 @@ class fiscalyear_closing(orm.Model):
         for fyc in self.read(cr, uid, ids, ['state'], context=context):
             if fyc['state'] in ('in_progress', 'done'):
                 raise orm.except_orm(_('Error!'), _('You cannot delete a fiscal year closing which is in progress or done. You have to cancel it first.'))
-        return super(fiscalyear_closing, self).unlink(cr, uid, ids, context=context)
+        return super(FiscalyearClosing, self).unlink(cr, uid, ids, context=context)
 
     def _get_journal_id(self, cr, uid, fyc, context):
         """
@@ -355,12 +355,12 @@ class fiscalyear_closing(orm.Model):
                 #       reconcile option of an account in the future)
                 logger.debug("Reconcile %s" % move.ref)
                 line_ids = [line.id for line in move.line_id]
-                r_id = self.pool.get('account.move.reconcile').create(cr, uid, 
-                    {'type': 'auto', 
+                r_id = self.pool.get('account.move.reconcile').create(cr, uid,
+                    {'type': 'auto',
                      'opening_reconciliation': True,
                      })
-                cr.execute("""UPDATE account_move_line 
-                    SET reconcile_id = %s 
+                cr.execute("""UPDATE account_move_line
+                    SET reconcile_id = %s
                     WHERE id in %s""",
                     (r_id, tuple(line_ids),))
             # Close the fiscal year and it's periods

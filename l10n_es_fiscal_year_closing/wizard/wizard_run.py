@@ -27,8 +27,8 @@ from openerp import pooler
 from openerp.osv import fields, osv, orm
 from openerp.tools.translate import _
 
-class cancel_fyc(orm.TransientModel):
-    
+class CancelFyc(orm.TransientModel):
+
     _name="account.fiscalyear.closing.cancel_wizard"
     _description="Cancel the Fiscal Year Closing"
     _columns = {
@@ -50,7 +50,7 @@ class cancel_fyc(orm.TransientModel):
         @return : default values of fields.
         """
         context = context or {}
-        res = super(cancel_fyc, self).default_get(cr, uid, fields, context=context)
+        res = super(CancelFyc, self).default_get(cr, uid, fields, context=context)
         if context.get('active_id'):
             fyc = self.pool.get('account.fiscalyear.closing').browse(cr, uid, context['active_id'])
             res['delete_pyg'] = bool(fyc.loss_and_profit_move_id)
@@ -79,10 +79,10 @@ class cancel_fyc(orm.TransientModel):
         obj_move = self.pool.get('account.move')
         # Remove the move after changing it's state to draft
         obj_move.write(cr, uid, [move.id], {'state': 'draft'}, context)
-        # Done in this way for performance reasons instead of letting 
-        # move unlink code to act 
+        # Done in this way for performance reasons instead of letting
+        # move unlink code to act
         line_ids = map(lambda x: x.id, move.line_id)
-        self.pool.get('account.move.line').unlink(cr, 
+        self.pool.get('account.move.line').unlink(cr,
             uid, line_ids, context=context, check=False)
         obj_move.unlink(cr, uid, [move.id], context)
 
@@ -123,13 +123,12 @@ class cancel_fyc(orm.TransientModel):
 
         return {'type': 'ir.actions.act_window_close'}
 
-cancel_fyc()
 
-class execute_fyc(orm.TransientModel):
-    
+class ExecuteFyc(orm.TransientModel):
+
     _name='account.fiscalyear.closing.execute_wizard'
     _description="Execute the Fiscal Year Closing"
-    
+
     _columns = {
                 'create_pyg':fields.boolean('Create P&L move', readonly=True),
                 'create_net_pyg':fields.boolean('Create Net P&L move', readonly=True),
@@ -139,7 +138,7 @@ class execute_fyc(orm.TransientModel):
                 'check_unbalanced':fields.boolean('Check unbalanced moves', readonly=True),
                 'check_invalid':fields.boolean('Check invalid periods or date moves', readonly=True),
                 }
-    
+
     def default_get(self, cr, uid, fields, context=None):
         """
         This function gets default values
@@ -152,7 +151,7 @@ class execute_fyc(orm.TransientModel):
         @return : default values of fields.
         """
         context = context or {}
-        res = super(execute_fyc, self).default_get(cr, uid, fields, context=context)
+        res = super(ExecuteFyc, self).default_get(cr, uid, fields, context=context)
         if context.get('active_id'):
             fyc = self.pool.get('account.fiscalyear.closing').browse(cr, uid, context['active_id'])
             res['create_pyg'] = fyc.create_loss_and_profit
@@ -206,7 +205,7 @@ class execute_fyc(orm.TransientModel):
                     and period.id != fyc.nlp_period_id.id \
                     and period.id != fyc.c_period_id.id:
                 period_ids.append(period.id)
-        draft_move_ids = move_obj.search(cr, uid, 
+        draft_move_ids = move_obj.search(cr, uid,
                                          [('period_id', 'in', period_ids),
                                           ('state', '=', 'draft')],
                                          context=context)
@@ -276,7 +275,7 @@ class execute_fyc(orm.TransientModel):
             # For each children account. (Notice the context filter! the computed balanced is based on this filter)
             for account in account_obj.browse(cr, uid, child_ids, ctx):
                 # Check if the children account needs to (and can) be closed
-                if account.type != 'view': 
+                if account.type != 'view':
                     if account.user_type.close_method == 'balance':
                         # Compute the balance for the account (uses the previous browse context filter)
                         balance = account.balance
@@ -296,7 +295,7 @@ class execute_fyc(orm.TransientModel):
                             if account_map.dest_account_id:
                                 dest_accounts_totals[account_map.dest_account_id.id] -= balance
                     elif account.user_type.close_method == 'unreconciled':
-                        found_lines = move_line_obj.search(cr, uid, [ 
+                        found_lines = move_line_obj.search(cr, uid, [
                             ('period_id', 'in', period_ids),
                             ('account_id', '=', account.id),
                             ('company_id', '=', company_id),
@@ -412,8 +411,8 @@ class execute_fyc(orm.TransientModel):
             period_id = fyc.c_period_id.id
             journal_id = fyc.c_journal_id.id
 
-        return self._create_closing_move(cr, uid, account_mapping_ids, 
-            period_ids, description, date, period_id, journal_id, 
+        return self._create_closing_move(cr, uid, account_mapping_ids,
+            period_ids, description, date, period_id, journal_id,
             fyc.company_id.id, fyc.closing_fiscalyear_id.id, context)
 
     def create_opening_move(self, cr, uid, operation, fyc, context):
@@ -459,7 +458,7 @@ class execute_fyc(orm.TransientModel):
         else:
             move_id = False
         return move_id
-    
+
     def run_execute(self, cr, uid, data, context=None):
         """
         Creates / removes FYC entries
@@ -493,4 +492,4 @@ class execute_fyc(orm.TransientModel):
 
         return {'type': 'ir.actions.act_window_close'}
 
-execute_fyc()
+ExecuteFyc()
