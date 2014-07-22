@@ -28,11 +28,11 @@ class account_journal(orm.Model):
 
     _columns = {
         'invoice_sequence_id': fields.many2one(
-                'ir.sequence',
-                'Invoice sequence',
-                domain="[('company_id','=',company_id)]",
-                help="The sequence used for invoice numbers in this journal.",
-                ondelete='restrict'),
+            'ir.sequence',
+            'Invoice sequence',
+            domain="[('company_id','=',company_id)]",
+            help="The sequence used for invoice numbers in this journal.",
+            ondelete='restrict'),
     }
 
     def _check_company(self, cr, uid, ids):
@@ -46,5 +46,5 @@ class account_journal(orm.Model):
     _constraints = [
         (_check_company,
          'Journal company and invoice sequence company do not match.',
-         ['company_id','invoice_sequence_id'])
+         ['company_id', 'invoice_sequence_id'])
     ]
