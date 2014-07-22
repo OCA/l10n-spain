@@ -75,8 +75,8 @@ Funcionamiento de la validación de la cuenta bancaria para cuentas IBAN:
         "l10n_es_toponyms",
     ],
     "data": [
-        "l10n_es_partner_view.xml",
-        "wizard/l10n_es_partner_wizard.xml"
+        "views/l10n_es_partner_view.xml",
+        "wizard/l10n_es_partner_wizard.xml",
     ],
     "installable": True,
 }
