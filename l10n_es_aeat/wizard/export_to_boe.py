@@ -31,7 +31,7 @@ from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from unidecode import unidecode
 
 
-class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
+class L10nEsAeatReportExportToBoe(orm.TransientModel):
     _name = "l10n.es.aeat.report.export_to_boe"
     _description = "Export Report to BOE Format"
 
@@ -51,7 +51,7 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
         Formats the string into a fixed length ASCII (iso-8859-1) record.
 
         Note:
-            'Todos los campos alfanuméricos y alfabéticos se presentarán 
+            'Todos los campos alfanuméricos y alfabéticos se presentarán
             alineados a la izquierda y rellenos de blancos por la derecha,
             en mayúsculas sin caracteres especiales, y sin vocales acentuadas.
             Para los caracteres específicos del idioma se utilizará la
@@ -103,19 +103,18 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
         number = abs(number)
         int_part = int(number)
 
-        ##
-        ## Format the string
+        # Format the string
         ascii_string = ''
         if include_sign:
             ascii_string += sign
-            
+
         if dec_length > 0:
-            ascii_string += '%0*.*f' % (int_length+ \
-                                        dec_length+1,dec_length, number)
-            ascii_string = ascii_string.replace('.','')
+            ascii_string += '%0*.*f' % (int_length + dec_length + 1,
+                                        dec_length, number)
+            ascii_string = ascii_string.replace('.', '')
         elif int_length > 0:
             ascii_string += '%.*d' % (int_length, int_part)
-            
+
         # Sanity-check
         assert len(ascii_string) == (include_sign and 1 or 0) + int_length + \
             dec_length, _("The formated string must match the given length")
@@ -147,35 +146,42 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
         """
         if not context.get('active_id') or not context.get('active_model'):
             return False
-        report = self.pool[context['active_model']].browse(cr, uid,
-                                        context['active_id'], context=context)
+        report = self.pool[context['active_model']].browse(
+            cr, uid,
+            context['active_id'], context=context
+        )
         contents = ''
-        ## Add header record
+        # Add header record
         contents += self._get_formatted_declaration_record(cr, uid, report,
-                                                          context=context)
-        ## Add main record
-        contents += self._get_formatted_main_record(cr, uid, report, 
+                                                           context=context)
+        # Add main record
+        contents += self._get_formatted_main_record(cr, uid, report,
                                                     context=context)
-        ## Adds other fields
-        contents += self._get_formatted_other_records(cr, uid, report, 
+        # Adds other fields
+        contents += self._get_formatted_other_records(cr, uid, report,
                                                       context=context)
-        ## Generate the file and save as attachment
+        # Generate the file and save as attachment
         file = base64.encodestring(contents)
-        file_name = _("%s_report_%s.txt") % (report.number,
-                                time.strftime(_(DEFAULT_SERVER_DATE_FORMAT)))
+        file_name = _("%s_report_%s.txt") % (
+            report.number,
+            time.strftime(_(DEFAULT_SERVER_DATE_FORMAT))
+        )
         # Delete old files
         attachment_obj = self.pool['ir.attachment']
-        attachment_ids = attachment_obj.search(cr, uid,
-                    [('name', '=', file_name),
-                     ('res_model', '=', report._model._name)], context=context)
+        attachment_ids = attachment_obj.search(
+            cr, uid,
+            [
+                ('name', '=', file_name),
+                ('res_model', '=', report._model._name)
+            ], context=context)
         if attachment_ids:
             attachment_obj.unlink(cr, uid, attachment_ids, context=context)
-        attach_id = attachment_obj.create(cr, uid, {
-            "name" : file_name,
-            "datas" : file,
-            "datas_fname" : file_name,
-            "res_model" : report._model._name,
-            "res_id" : report.id,
+        attachment_obj.create(cr, uid, {
+            "name": file_name,
+            "datas": file,
+            "datas_fname": file_name,
+            "res_model": report._model._name,
+            "res_id": report.id,
         }, context=context)
         self.write(cr, uid, ids,
                    {'state': 'get', 'data': file, 'name': file_name},

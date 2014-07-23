@@ -21,7 +21,4 @@
 
 __author__ = "Luis Manuel Angueira Blanco (Pexego)"
 
-
-import aeat_report
-import wizard
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+from . import export_to_boe
