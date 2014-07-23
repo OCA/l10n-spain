@@ -20,7 +20,8 @@ from openerp.tools.translate import _
 from openerp.osv import orm
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
-class l10n_es_aeat_mod130_export_to_boe(orm.TransientModel):
+
+class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = 'l10n.es.aeat.mod130.export_to_boe'
 
@@ -29,7 +30,7 @@ class l10n_es_aeat_mod130_export_to_boe(orm.TransientModel):
 
     def _get_formatted_declaration_record(self, cr, uid, report, context=None):
         res = ''
-        ## cabecera 
+        # cabecera
         res += "13001 "
         # Tipo de declaración
         # B (resultado a deducir)
@@ -41,11 +42,11 @@ class l10n_es_aeat_mod130_export_to_boe(orm.TransientModel):
         # Código Administración - No se usan
         res += self._formatString("", 5)
         # Identificación (1)
-        res += self._formatString(report.company_vat, 9) # NIF del declarante
-        res += self._formatString(report.company_id.name, 4) # Comienzo primer apellido
-        res += self._formatString(report.company_id.name, 30) # Apellidos
-        res += self._formatString("", 15) # Nombre
-        res += self._formatNumber(report.fiscalyear_id.code, 4) #Ejercicio
+        res += self._formatString(report.company_vat, 9)  # NIF del declarante
+        res += self._formatString(report.company_id.name, 4)  # Comienzo primer apellido
+        res += self._formatString(report.company_id.name, 30)  # Apellidos
+        res += self._formatString("", 15)  # Nombre
+        res += self._formatNumber(report.fiscalyear_id.code, 4)  # Ejercicio
         res += self._formatString(report.period, 2)
         return res
 
@@ -99,18 +100,18 @@ class l10n_es_aeat_mod130_export_to_boe(orm.TransientModel):
         # Ingreso (4) Forma de pago - "0" No consta, "1" Efectivo,
         # "2" Adeudo en cuenta, "3" Domiciliación
         res += self._formatString("0", 1)
-        ## Ingreso (4) CCC - Entidad - Sucursal - DC - Nº de cuenta - SIN USO
+        # Ingreso (4) CCC - Entidad - Sucursal - DC - Nº de cuenta - SIN USO
         res += self._formatString("",  20)
         # A deducir (5) Declaración con resultado a deducir en los siguientes
         # pagos fraccionados
         res += self._formatBoolean(report.result < 0 and report.period != '4T',
                                    yes='X', no=' ')
-        # Complementaria (7) Cod. electrónico declaración anterior 
+        # Complementaria (7) Cod. electrónico declaración anterior
         res += self._formatString(report.previous_electronic_code if
-                                  report.complementary else "" , 16)
-        # Complementaria (7) Nº justificante declaración anterior 
+                                  report.complementary else "", 16)
+        # Complementaria (7) Nº justificante declaración anterior
         res += self._formatString(report.previous_declaration if
-                                  report.complementary else "" , 13)
+                                  report.complementary else "", 13)
         # Persona de contacto
         res += self._formatString(report.company_id.name, 100)
         # Teléfono
@@ -121,17 +122,17 @@ class l10n_es_aeat_mod130_export_to_boe(orm.TransientModel):
         res += self._formatString(report.company_id.partner_id.city, 16)
         date = datetime.strptime(report.calculation_date,
                                  DEFAULT_SERVER_DATETIME_FORMAT)
-        ## fecha: Dia
+        # fecha: Dia
         res += self._formatString(date.strftime("%d"), 2)
-        ## fecha: Mes
+        # fecha: Mes
         res += self._formatString(_(date.strftime("%B")), 10)
-        ## fecha: Año
+        # fecha: Año
         res += self._formatString(date.strftime("%Y"), 4)
         res += "\r\n".encode("ascii")
         return res
 
     def _do_global_checks(self, report, contents, context=None):
-        assert len(contents) == 880, \
-                _("The 130 report must be 880 characters long and are %s"
-                  ) %len(contents)
+        assert len(contents) == 880, (
+            "The 130 report must be 880 characters long and are %s" % len(contents)
+        )
         return True
