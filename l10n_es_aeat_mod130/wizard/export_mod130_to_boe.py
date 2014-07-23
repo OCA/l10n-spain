@@ -20,6 +20,7 @@ from openerp.tools.translate import _
 from openerp.osv import orm
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
+
 class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = 'l10n.es.aeat.mod130.export_to_boe'
@@ -41,11 +42,11 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
         # Código Administración - No se usan
         res += self._formatString("", 5)
         # Identificación (1)
-        res += self._formatString(report.company_vat, 9) # NIF del declarante
-        res += self._formatString(report.company_id.name, 4) # Comienzo primer apellido
-        res += self._formatString(report.company_id.name, 30) # Apellidos
-        res += self._formatString("", 15) # Nombre
-        res += self._formatNumber(report.fiscalyear_id.code, 4) #Ejercicio
+        res += self._formatString(report.company_vat, 9)  # NIF del declarante
+        res += self._formatString(report.company_id.name, 4)  # Comienzo primer apellido
+        res += self._formatString(report.company_id.name, 30)  # Apellidos
+        res += self._formatString("", 15)  # Nombre
+        res += self._formatNumber(report.fiscalyear_id.code, 4)  # Ejercicio
         res += self._formatString(report.period, 2)
         return res
 
@@ -107,10 +108,10 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
                                    yes='X', no=' ')
         # Complementaria (7) Cod. electrónico declaración anterior
         res += self._formatString(report.previous_electronic_code if
-                                  report.complementary else "" , 16)
+                                  report.complementary else "", 16)
         # Complementaria (7) Nº justificante declaración anterior
         res += self._formatString(report.previous_declaration if
-                                  report.complementary else "" , 13)
+                                  report.complementary else "", 13)
         # Persona de contacto
         res += self._formatString(report.company_id.name, 100)
         # Teléfono
@@ -131,7 +132,7 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
         return res
 
     def _do_global_checks(self, report, contents, context=None):
-        assert len(contents) == 880, \
-                _("The 130 report must be 880 characters long and are %s"
-                  ) %len(contents)
+        assert len(contents) == 880, (
+            "The 130 report must be 880 characters long and are %s" % len(contents)
+        )
         return True
