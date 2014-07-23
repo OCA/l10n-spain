@@ -18,7 +18,6 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from openerp.osv import orm, fields
-from openerp.tools.translate import _
 
 
 def trunc(f, n):
@@ -78,7 +77,8 @@ class L10nEsAeatMod130Report(orm.Model):
                  "[08], con un máximo de 660,14 euros anuales. \nDebe "
                  "consultar las excepciones para las que no se computaría "
                  "la deducción a pesar del préstamo."),
-        'complementary': fields.boolean("Presentación complementaria",
+        'complementary': fields.boolean(
+            "Presentación complementaria",
             states={'draft': [('readonly', False)]}, readonly=True,
             help="Se marcará si esta declaración es complementaria de "
                  "otra u otras declaraciones presentadas anteriormente "
@@ -90,14 +90,16 @@ class L10nEsAeatMod130Report(orm.Model):
                  "presentó telemáticamente). A cumplimentar sólo en el caso "
                  "de declaración complementaria", readonly=False,
                  states={'done': [('readonly', True)]}),
-        'previous_number': fields.char("Nº declaración anterior", size=13,
+        'previous_number': fields.char(
+            "Nº declaración anterior", size=13,
             help="Número de justificante de la declaración anterior (si se "
                  "presentó en papel. A cumplimentar sólo en el caso de "
                  "declaración complementaria", readonly=False,
                  states={'done': [('readonly', True)]}),
-        'comments': fields.char("Observaciones", size=350, readonly=True,
+        'comments': fields.char(
+            "Observaciones", size=350, readonly=True,
             help="Observaciones que se adjuntarán con el modelo",
-                 states={'draft': [('readonly', False)]}),
+            states={'draft': [('readonly', False)]}),
         'casilla_01': fields.float("Casilla [01] - Ingresos", readonly=True),
         'casilla_02': fields.float("Casilla [02] - Gastos", readonly=True),
         'casilla_03': fields.float("Casilla [03] - Rendimiento",
