@@ -235,8 +235,6 @@ class L10nEsAeatMod130Report(orm.Model):
 
     def _calc_prev_trimesters_data(self, cr, uid, report, context=None):
         periods = ['1T', '2T', '3T', '4T']
-        income_accounts = ['7']
-        expense_accounts = ['6']
         amount = 0
         for period in periods:
             if period == report.period:
