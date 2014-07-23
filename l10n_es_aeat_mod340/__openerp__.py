@@ -75,5 +75,4 @@ Exportación de asientos resumen de facturas
         'taxes_data.xml',
     ],
     'installable': True,
-    'active': False,
 }

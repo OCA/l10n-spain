@@ -33,19 +33,12 @@ from openerp import netsvc
 class L10nEsAeatMod340Report(orm.Model):
 
     def button_calculate(self, cr, uid, ids, args, context=None):
-
-        if not context:
-            context = {}
-
         calculate_obj = self.pool.get('l10n.es.aeat.mod340.calculate_records')
         calculate_obj._wkf_calculate_records(cr, uid, ids, context)
 
         return True
 
     def button_recalculate(self, cr, uid, ids, context=None):
-        if context is None:
-            context = {}
-
         calculate_obj = self. pool.get('l10n.es.aeat.mod340.calculate_records')
         calculate_obj._calculate_records(cr, uid, ids, context)
 
@@ -134,8 +127,8 @@ class L10nEsAeatMod340Report(orm.Model):
         'calculation_date': fields.date('Calculation date', readonly=True),
     }
     _defaults = {
-        'number': lambda *a: '340',
-        'declaration_number': lambda *a: '340',
+        'number': '340',
+        'declaration_number': '340',
     }
 
     def set_done(self, cr, uid, id, *args):
@@ -148,10 +141,6 @@ class L10nEsAeatMod340Report(orm.Model):
 
     def action_confirm(self, cr, uid, ids, context=None):
         """set to done the report and check its records"""
-
-        if context is None:
-            context = {}
-
         self.check_report(cr, uid, ids, context)
         self.write(cr, uid, ids, {'state': 'done'})
 
