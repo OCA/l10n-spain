@@ -20,6 +20,7 @@
 ##############################################################################
 
 from openerp.osv import orm
+from openerp.tools.translate import _
 
 
 class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
