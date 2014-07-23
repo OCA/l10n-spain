@@ -5,7 +5,7 @@
 #    Copyright (c) 20011 Ting (http://www.ting.es) All Rights Reserved.
 #    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com) All Rights Reserved
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
-#                      
+#
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -23,9 +23,8 @@
 #
 ##############################################################################
 from openerp import report
-import wizard
-import mod340
-import res_partner
-import account_invoice
-import account
-
+from . import wizard
+from . import mod340
+from . import res_partner
+from . import account_invoice
+from . import account

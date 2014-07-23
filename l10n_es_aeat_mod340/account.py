@@ -22,28 +22,28 @@
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 
-class account_tax_code_template(orm.Model):
+class AccountTaxCodeTemplate(orm.Model):
     _inherit = 'account.tax.code.template'
 
     _columns = {
         'mod340': fields.boolean("Include in mod340"),
     }
 
-class account_tax_code(orm.Model):
+class AccountTaxCode(orm.Model):
     _inherit = 'account.tax.code'
 
     _columns = {
         'mod340': fields.boolean("Include in mod340"),
     }
 
-class wizard_update_charts_accounts(orm.TransientModel):
+class WizardUpdateChartsAccounts(orm.TransientModel):
     _inherit = 'wizard.update.charts.accounts'
 
     def _find_tax_codes(self, cr, uid, wizard, chart_template_ids,
                         context=None):
         """
         Search for, and load, tax code templates to create/update.
-        
+
         @param chart_template_ids: IDs of the chart templates to look on,
             calculated once in the calling method.
         """
@@ -111,7 +111,7 @@ class wizard_update_charts_accounts(orm.TransientModel):
             'updated': updated_tax_codes,
             'mapping': tax_code_template_mapping
         }
-                
+
     def _update_tax_codes(self, cr, uid, wizard, log, context=None):
         """
         Search for, and load, tax code templates to create/update.

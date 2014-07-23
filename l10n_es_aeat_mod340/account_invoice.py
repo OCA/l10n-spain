@@ -22,11 +22,11 @@
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 
-class account_invoice(orm.Model):
+class AccountInvoice(orm.Model):
     _inherit = 'account.invoice'
-    
+
     _columns = {
-        'is_ticket_summary': fields.boolean('Ticket Summary', 
+        'is_ticket_summary': fields.boolean('Ticket Summary',
                             help='Check if this invoice is a ticket summary'),
         'number_tickets': fields.integer('Number of tickets', digits=(12,0)),
         'first_ticket': fields.char('First ticket', size=40),

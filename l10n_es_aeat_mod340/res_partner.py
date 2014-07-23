@@ -25,12 +25,12 @@ Extends partner to add fields used by the 340 report.
 
 from openerp.osv import orm, fields
 
-class res_partner(orm.Model):
+class ResPartner(orm.Model):
     """
     Extends the partners to add the include_in_mod347 field
     """
     _inherit = "res.partner"
-    
+
     _columns = {
         'vat_type': fields.selection([
                     ('1', u'1 - Corresponde a un NIF'),
@@ -41,7 +41,7 @@ class res_partner(orm.Model):
                     ('6', u'6 - Otro documento probatorio'),
                 ], 'Clave tipo de NIF', help="Clave número de identificación en el país de residencia. Modelo 340."),
     }
-    
+
     _defaults = {
         'vat_type': '1',
     }
