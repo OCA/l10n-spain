@@ -21,6 +21,7 @@ from openerp.osv import orm
 import base64
 import time
 
+
 class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = 'l10n.es.aeat.mod303.export_to_boe'
@@ -33,9 +34,9 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         # alfanumérico o 'N' si la autoliquidación se declara SIN ACTIVIDAD"
         res += self._formatString("N" if report.sin_actividad else " ", 1)
         # Identificación (1)
-        res += self._formatString(report.company_vat, 9) # NIF del declarante
-        res += self._formatString(report.company_id.name, 30) # Apellidos o razón social.
-        res += self._formatString("", 15) # Nombre
+        res += self._formatString(report.company_vat, 9)  # NIF del declarante
+        res += self._formatString(report.company_id.name, 30)  # Apellidos o razón social.
+        res += self._formatString("", 15)  # Nombre
         res += self._formatBoolean(report.devolucion_mensual, yes='1', no='2')
         ## devengo (2)
         res += self._formatNumber(report.fiscalyear_id.code, 4)
@@ -47,17 +48,17 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
     def _get_formatted_main_record(self, cr, uid, report, context=None):
         lines = report._get_report_lines(context=context)
         res = ''
-        ## IVA devengado
+        # IVA devengado
         # -- Regimen General y Recargo de Equivalencia - code_pair [1~18]
         codes = [
             ## Régimen general
-            ('[01]','[03]'),
-            ('[04]','[06]'),
-            ('[07]','[09]'),
+            ('[01]', '[03]'),
+            ('[04]', '[06]'),
+            ('[07]', '[09]'),
             ## Recargo de equivalencia
-            ('[10]','[12]'),
-            ('[13]','[15]'),
-            ('[16]','[18]'),
+            ('[10]', '[12]'),
+            ('[13]', '[15]'),
+            ('[16]', '[18]'),
         ]
         for code_pair in codes:
             base_imponible = lines.get(code_pair[0], 0)
@@ -70,11 +71,11 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
             # cuota X % -- codes [3, 6, 9, 12, 15, 18]
             res += self._formatNumber(cuota, 15, 2)
         # -- Adquisiciones Intracomunitarias - codes [19,20]
-        res += self._formatNumber(lines.get("[19]"), 15, 2) ## base imponible
-        res += self._formatNumber(lines.get("[20]"), 15, 2) ## cuota
+        res += self._formatNumber(lines.get("[19]"), 15, 2)  # base imponible
+        res += self._formatNumber(lines.get("[20]"), 15, 2)  # cuota
         # -- Total Cuota Devengada - code [21]
-        res += self._formatNumber(report.total_devengado, 15, 2) ## cuota
-        ## IVA deducible
+        res += self._formatNumber(report.total_devengado, 15, 2)  # cuota
+        # IVA deducible
         # -- Por Cuotas soportadas ... - codes [22~25]
         # -- Por Cuotas satisfechas en ... - codes [26~29]
         # -- En adquisiciones intracomunitarias de bienes ... - codes [30~33]
@@ -95,39 +96,39 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         # TODO: Navarra y País Vasco
         res += self._formatNumber(report.porcentaje_atribuible_estado, 3, 2)
         res += self._formatNumber(report.atribuible_estado, 15, 2)
-        res += self._formatNumber(report.cuota_compensar, 15, 2) ## [41]
+        res += self._formatNumber(report.cuota_compensar, 15, 2)  # [41]
         # Entregas intracomunitarias
         res += self._formatNumber(lines.get("[42]"), 15, 2)
         # [42], Exportaciones y operaciones asimiladas
         res += self._formatNumber(lines.get("[43]"), 15, 2)
         # [43], Derecho a deucción [44]
         res += self._formatNumber(lines.get("[44]"), 15, 2)
-        ## Estado y Comunidades Forales
+        # Estado y Comunidades Forales
         res += self._formatNumber(report.regularizacion_anual, 15, 2)
-        res += self._formatNumber(report.resultado_casilla_46, 15, 2) ## [40] - [41]
-        ## A deducir - autoliquidación complementaria .... pedir campo
+        res += self._formatNumber(report.resultado_casilla_46, 15, 2)  # [40] - [41]
+        # A deducir - autoliquidación complementaria .... pedir campo
         res += self._formatNumber(report.previus_result if report.complementaria else 0, 15, 2)
-        res += self._formatNumber(report.resultado_liquidacion, 15, 2) ## [48]
-        ## A compensar
-        res += self._formatNumber(report.compensar, 15, 2) ## [49]
-        ## Marca SIN ACTIVIDAD
-        res += self._formatBoolean( report.sin_actividad , yes='1', no='2') #
+        res += self._formatNumber(report.resultado_liquidacion, 15, 2)  # [48]
+        # A compensar
+        res += self._formatNumber(report.compensar, 15, 2)  # [49]
+        # Marca SIN ACTIVIDAD
+        res += self._formatBoolean(report.sin_actividad, yes='1', no='2')
         assert len(res) == 822 - 72, _("The vat records must be 749 characters long and are %s") % len(res)
         return res
 
     def _get_formatted_other_records(self, cr, uid, report, context=None):
         res = ''
-        ## devolucion (6)
-        res += self._formatNumber(report.devolver, 15, 2) ## devolucion [50]
+        # devolucion (6)
+        res += self._formatNumber(report.devolver, 15, 2)  # devolucion [50]
         ccc = ""
         if report.cuenta_devolucion_id and report.devolver:
             ccc = report.cuenta_devolucion_id.acc_number.replace("-", "").replace(" ", "")
             if not (len(ccc) == 20 and ccc.isdigit()):
                 raise orm.except_orm(_('Warning'),
-                                     _("CCC de devolución no válida \n%s") %ccc)
-        res += self._formatString(ccc,20) ## no hay devolución
+                                     _("CCC de devolución no válida \n%s") % ccc)
+        res += self._formatString(ccc, 20)  # no hay devolución
         """
-        ## ingreso (7)
+        # ingreso (7)
         859     1     Num     Ingreso (7) - Forma de pago
         860     17    N       Ingreso (7) - Importe [I]
         877     4     An      Ingreso (7) - Código cuenta cliente - Entidad
@@ -138,36 +139,35 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         # NO SE USA ??? Forma de Pago - "0" No consta, "1" Efectivo,
         # "2" Adeudo en cuenta, "3" Domiciliación
         res += self._formatString("0", 1)
-        res += self._formatNumber(report.ingresar, 15, 2) ## devolucion [50]
+        res += self._formatNumber(report.ingresar, 15, 2)  # devolucion [50]
         ccc = ""
         if report.cuenta_ingreso_id and report.ingresar:
             ccc = report.cuenta_ingreso_id.acc_number.replace("-", "").replace(" ", "")
             if not (len(ccc) == 20 and ccc.isdigit()):
                 raise orm.except_orm(_('Warning'),
                                      _("CCC de ingreso no válido %s") % ccc)
-        res += self._formatString(ccc,20) ## no hay devolución
+        res += self._formatString(ccc, 20)  # no hay devolución
         # Complementaria (8) Indicador Autoliquidación complementaria
         res += self._formatBoolean(report.complementaria, yes='1', no='0')
         # Complementaria (8) - no justificante declaración anterior
-        res += self._formatString(report.previous_number if report.complementaria else "" , 13)
-        ## TODO -- hardcode por ahora
+        res += self._formatString(report.previous_number if report.complementaria else "", 13)
+        # TODO -- hardcode por ahora
         # Autorización conjunta
         res += self._formatBoolean(False, yes='1', no=' ')
-        res += self._formatString(' ', 1) ## 77 autodeclaracion del concurso
-        res += ' '*398    ## campo reservado
+        res += self._formatString(' ', 1)  # 77 autodeclaracion del concurso
+        res += ' '*398  # campo reservado
         # Localidad
         res += self._formatString(report.company_id.partner_id.city, 16)
         # TODO: Utilizar formato del servidor
         date = datetime.strptime(report.calculation_date, "%Y-%m-%d %H:%M:%S")
-        res += self._formatString(date.strftime("%d"), 2) ## fecha: Dia
-        res += self._formatString(_(date.strftime("%B")), 10) ## fecha: Mes
-        res += self._formatString(date.strftime("%Y"), 4) ## fecha: Año
+        res += self._formatString(date.strftime("%d"), 2)  # fecha: Dia
+        res += self._formatString(_(date.strftime("%B")), 10)  # fecha: Mes
+        res += self._formatString(date.strftime("%Y"), 4)  # fecha: Año
         res += self._formatString("</T30301>", 9)
         res += "\r\n".encode("ascii")
         return res
 
     def _do_global_checks(self, report, contents, context=None):
-        assert len(contents) == 1353, \
-                _("The 303 report must be 1353 characters long and are %s"
-                  ) %len(contents)
+        assert len(contents) == 1353, (
+            _("The 303 report must be 1353 characters long and are %s") % len(contents))
         return True
