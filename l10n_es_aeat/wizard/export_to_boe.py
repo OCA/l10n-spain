@@ -103,8 +103,7 @@ class L10nEsAeatReportExportToBoe(orm.TransientModel):
         number = abs(number)
         int_part = int(number)
 
-        ##
-        ## Format the string
+        # Format the string
         ascii_string = ''
         if include_sign:
             ascii_string += sign
@@ -152,16 +151,16 @@ class L10nEsAeatReportExportToBoe(orm.TransientModel):
             context['active_id'], context=context
         )
         contents = ''
-        ## Add header record
+        # Add header record
         contents += self._get_formatted_declaration_record(cr, uid, report,
                                                            context=context)
-        ## Add main record
+        # Add main record
         contents += self._get_formatted_main_record(cr, uid, report,
                                                     context=context)
-        ## Adds other fields
+        # Adds other fields
         contents += self._get_formatted_other_records(cr, uid, report,
                                                       context=context)
-        ## Generate the file and save as attachment
+        # Generate the file and save as attachment
         file = base64.encodestring(contents)
         file_name = _("%s_report_%s.txt") % (
             report.number,
@@ -177,7 +176,7 @@ class L10nEsAeatReportExportToBoe(orm.TransientModel):
             ], context=context)
         if attachment_ids:
             attachment_obj.unlink(cr, uid, attachment_ids, context=context)
-        attach_id = attachment_obj.create(cr, uid, {
+        attachment_obj.create(cr, uid, {
             "name": file_name,
             "datas": file,
             "datas_fname": file_name,
