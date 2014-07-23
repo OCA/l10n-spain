@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
@@ -6,7 +5,6 @@
 #    Copyright (C) 2009 Pexego Sistemas Informáticos. All Rights Reserved
 #    AvanzOSC, Advanced Open Source Consulting
 #    Copyright (C) 2011-2012 Iker Coranti (www.avanzosc.es) All Rights Reserved
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by

@@ -408,9 +408,8 @@ class AccountBalanceReportingLine(orm.Model):
                                 'periods': [p.id for p in
                                             report.previous_period_ids],
                             })
-                        value = line._get_account_balance(tmpl_value,
-                                                          balance_mode=balance_mode,
-                                                          context=ctx)
+                        value = line._get_account_balance(
+                            tmpl_value, balance_mode=balance_mode, context=ctx)
                     elif re.match(r'^[\+\-0-9a-zA-Z_\*\ ]*$', tmpl_value):
                         # Account concept codes separated by "+" => sum of the
                         # concepts (template lines) values.
