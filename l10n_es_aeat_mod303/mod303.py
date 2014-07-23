@@ -24,7 +24,7 @@ try:
 except:
     from openerp.addons.account.report.account_tax_report import tax_report
 
-class l10n_es_aeat_mod303_report(orm.Model):
+class L10nEsAeatMod303Report(orm.Model):
     _inherit = "l10n.es.aeat.report"
     _name = "l10n.es.aeat.mod303.report"
     _description = "AEAT 303 Report"
@@ -157,7 +157,7 @@ class l10n_es_aeat_mod303_report(orm.Model):
             lines = generated_report._get_lines('invoices',
                                             company_id=mod303.company_id.id)
         except TypeError:
-            # Este error ocurre en la rama OCB, ya que se ha añadido en la 
+            # Este error ocurre en la rama OCB, ya que se ha añadido en la
             # revisión 9599 un nuevo parámetro posicional al método.
             # Publicado como bug #1269965, pendiente de resolución, esto
             # es un parche temporal
@@ -195,7 +195,7 @@ class l10n_es_aeat_mod303_report(orm.Model):
                 'compensar': abs(resultado_liquidacion) if resultado_liquidacion < 0 and mod303.devolver == 0 else 0,
                 'ingresar': resultado_liquidacion if resultado_liquidacion > 0 else 0
             }
-            if (mod303.regularizacion_anual > 0 and not 
+            if (mod303.regularizacion_anual > 0 and not
                 (mod303.period == "4T" and mod303.period == "12")):
                 self.log(cr, uid, mod303.id,
                     _("El valor añadido para la regularizacion anual no se ha "
@@ -217,5 +217,5 @@ class l10n_es_aeat_mod303_report(orm.Model):
                         "Marque la casilla correspondinte")
         if msg:
             raise orm.except_orm("", msg)
-        return super(l10n_es_aeat_mod303_report, self).button_confirm(cr, uid,
+        return super(L10nEsAeatMod303Report, self).button_confirm(cr, uid,
                                                         ids, context=context)
