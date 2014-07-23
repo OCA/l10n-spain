@@ -27,32 +27,38 @@ accounting concepts with formulas to calculate its values/balance.
 Designed following the needs of the Spanish/Spain localization.
 """
 
-from openerp.osv import orm,fields
+from openerp.osv import orm, fields
 from openerp.tools.translate import _
 
-_BALANCE_MODE_HELP = """Formula calculation mode: Depending on it, the balance is calculated as follows:
-  Mode 0: debit-credit (default);
-  Mode 1: debit-credit, credit-debit for accounts in brackets;
-  Mode 2: credit-debit;
-  Mode 3: credit-debit, debit-credit for accounts in brackets."""
+_BALANCE_MODE_HELP = (
+    """Formula calculation mode: Depending on it, the balance is calculated as
+    follows:
+      Mode 0: debit-credit (default);
+      Mode 1: debit-credit, credit-debit for accounts in brackets;
+      Mode 2: credit-debit;
+      Mode 3: credit-debit, debit-credit for accounts in brackets.""")
 
-_VALUE_FORMULA_HELP = """Value calculation formula: Depending on this formula the final value is calculated as follows:
-  Empy template value: sum of (this concept) children values.
-  Number with decimal point ("10.2"): that value (constant).
-  Account numbers separated by commas ("430,431,(437)"): Sum of the account balances
-    (the sign of the balance depends on the balance mode).
-  Concept codes separated by "+" ("11000+12000"): Sum of those concepts values.
-"""
+_VALUE_FORMULA_HELP = (
+    """Value calculation formula: Depending on this formula the final value is
+    calculated as follows:
+      Empy template value: sum of (this concept) children values.
+      Number with decimal point ("10.2"): that value (constant).
+      Account numbers separated by commas ("430,431,(437)"): Sum of the account
+          balances (the sign of the balance depends on the balance mode).
+      Concept codes separated by "+" ("11000+12000"): Sum of those concepts
+      values.
+    """)
 
 # CSS classes for the account lines
-CSS_CLASSES = [('default','Default'),
-               ('l1', 'Level 1'), 
+CSS_CLASSES = [('default', 'Default'),
+               ('l1', 'Level 1'),
                ('l2', 'Level 2'),
-               ('l3', 'Level 3'), 
-               ('l4', 'Level 4'), 
+               ('l3', 'Level 3'),
+               ('l4', 'Level 4'),
                ('l5', 'Level 5')]
 
-class account_balance_reporting_template(orm.Model):
+
+class AccountBalanceReportingTemplate(orm.Model):
     """
     Account balance report template.
     It stores the header fields of an account balance report template,
@@ -69,11 +75,11 @@ class account_balance_reporting_template(orm.Model):
                                          'Report design', ondelete='set null'),
         'description': fields.text('Description'),
         'balance_mode': fields.selection(
-                            [('0', 'Debit-Credit'),
-                             ('1', 'Debit-Credit, reversed with brackets'),
-                             ('2', 'Credit-Debit'),
-                             ('3', 'Credit-Debit, reversed with brackets')],
-                            'Balance mode', help=_BALANCE_MODE_HELP),
+            [('0', 'Debit-Credit'),
+             ('1', 'Debit-Credit, reversed with brackets'),
+             ('2', 'Credit-Debit'),
+             ('3', 'Credit-Debit, reversed with brackets')],
+            'Balance mode', help=_BALANCE_MODE_HELP),
         'line_ids': fields.one2many('account.balance.reporting.template.line',
                                     'template_id', 'Lines'),
     }
@@ -90,53 +96,53 @@ class account_balance_reporting_template(orm.Model):
         """
         if context is None:
             context = {}
-        line_obj = self.pool.get('account.balance.reporting.template.line')
+        line_obj = self.pool['account.balance.reporting.template.line']
         # Read the current item data:
         template = self.browse(cr, uid, id, context=context)
         # Create the template
         new_id = self.create(cr, uid, {
-                    'name': '%s*' %template.name,
-                    'type': 'user', # Copies are always user templates
-                    'report_xml_id': template.report_xml_id.id,
-                    'description': template.description,
-                    'balance_mode': template.balance_mode,
-                    'line_ids': None,
-                }, context=context)
+            'name': '%s*' % template.name,
+            'type': 'user',  # Copies are always user templates
+            'report_xml_id': template.report_xml_id.id,
+            'description': template.description,
+            'balance_mode': template.balance_mode,
+            'line_ids': None,
+        }, context=context)
         # Now create the lines (without parents)
         for line in template.line_ids:
             line_obj.create(cr, uid, {
-                    'template_id': new_id,
-                    'sequence': line.sequence,
-                    'css_class': line.css_class,
-                    'code': line.code,
-                    'name': line.name,
-                    'current_value': line.current_value,
-                    'previous_value': line.previous_value,
-                    'negate': line.negate,
-                    'parent_id': None,
-                    'child_ids': None,
-                }, context=context)
+                'template_id': new_id,
+                'sequence': line.sequence,
+                'css_class': line.css_class,
+                'code': line.code,
+                'name': line.name,
+                'current_value': line.current_value,
+                'previous_value': line.previous_value,
+                'negate': line.negate,
+                'parent_id': None,
+                'child_ids': None,
+            }, context=context)
         # Now set the (lines) parents
         for line in template.line_ids:
             if line.parent_id:
                 # Search for the copied line
                 new_line_id = line_obj.search(cr, uid, [
-                        ('template_id', '=', new_id),
-                        ('code', '=', line.code),
-                    ], context=context)[0]
+                    ('template_id', '=', new_id),
+                    ('code', '=', line.code),
+                ], context=context)[0]
                 # Search for the copied parent line
                 new_parent_id = line_obj.search(cr, uid, [
-                        ('template_id', '=', new_id),
-                        ('code', '=', line.parent_id.code),
-                    ], context=context)[0]
+                    ('template_id', '=', new_id),
+                    ('code', '=', line.parent_id.code),
+                ], context=context)[0]
                 # Set the parent
                 line_obj.write(cr, uid, new_line_id, {
-                        'parent_id': new_parent_id,
-                    }, context=context)
+                    'parent_id': new_parent_id,
+                }, context=context)
         return new_id
 
 
-class account_balance_reporting_template_line(orm.Model):
+class AccountBalanceReportingTemplateLine(orm.Model):
     """
     Account balance report template line / Accounting concept template
     One line of detail of the balance report representing an accounting
@@ -148,8 +154,9 @@ class account_balance_reporting_template_line(orm.Model):
     _columns = {
         'template_id': fields.many2one('account.balance.reporting.template',
                                        'Template', ondelete='cascade'),
-        'sequence': fields.integer('Sequence', required=True,
-                        help="Lines will be sorted/grouped by this field"),
+        'sequence': fields.integer(
+            'Sequence', required=True,
+            help="Lines will be sorted/grouped by this field"),
         'css_class': fields.selection(CSS_CLASSES, 'CSS Class', required=False,
                                       help="Style-sheet class"),
         'code': fields.char('Code', size=64, required=True, select=True,
@@ -161,8 +168,9 @@ class account_balance_reporting_template_line(orm.Model):
                                      help=_VALUE_FORMULA_HELP),
         'previous_value': fields.text('Fiscal year 2 formula',
                                       help=_VALUE_FORMULA_HELP),
-        'negate': fields.boolean('Negate',
-                    help="Negate the value (change the sign of the balance)"),
+        'negate': fields.boolean(
+            'Negate',
+            help="Negate the value (change the sign of the balance)"),
         'parent_id': fields.many2one('account.balance.reporting.template.line',
                                      'Parent', ondelete='cascade'),
         'child_ids': fields.one2many('account.balance.reporting.template.line',
@@ -171,12 +179,11 @@ class account_balance_reporting_template_line(orm.Model):
 
     _defaults = {
         'template_id': lambda self, cr, uid, context: context.get(
-                                                        'template_id', None),
+            'template_id', None),
         'negate': False,
         'css_class': 'default',
         'sequence': 10,
     }
-
 
     _order = "sequence, code"
 
@@ -194,7 +201,7 @@ class account_balance_reporting_template_line(orm.Model):
             context = {}
         res = []
         for item in self.browse(cr, uid, ids, context=context):
-            res.append((item.id, "[%s] %s" %(item.code, item.name)))
+            res.append((item.id, "[%s] %s" % (item.code, item.name)))
         return res
 
     def name_search(self, cr, uid, name, args=[], operator='ilike',

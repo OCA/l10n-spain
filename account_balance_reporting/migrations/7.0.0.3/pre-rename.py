@@ -6,8 +6,8 @@
 #                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -20,6 +20,7 @@
 #
 ##############################################################################
 __name__ = ("Rename some columns and convert sequence field")
+
 
 def migrate_templates(cr, version):
     # Rename report_id to template_id on templates lines
@@ -48,6 +49,7 @@ def migrate_templates(cr, version):
     cr.execute("""ALTER TABLE account_balance_reporting_template_line
                   RENAME COLUMN sequence_temp to sequence""")
 
+
 def migrate_reports(cr, version):
     # Add temporary column to report lines
     cr.execute("""ALTER TABLE account_balance_reporting_line
@@ -71,6 +73,7 @@ def migrate_reports(cr, version):
                   DROP COLUMN sequence""")
     cr.execute("""ALTER TABLE account_balance_reporting_line
                   RENAME COLUMN sequence_temp to sequence""")
+
 
 def migrate(cr, version):
     if not version:

@@ -3,8 +3,8 @@
 #
 #    OpenERP - Account balance reporting engine
 #    Copyright (C) 2009 Pexego Sistemas Informáticos. All Rights Reserved
-#    AvanzOSC, Avanzed Open Source Consulting 
-#    Copyright (C) 2011-2012 Iker Coranti (www.avanzosc.com). All Rights Reserved
+#    AvanzOSC, Advanced Open Source Consulting
+#    Copyright (C) 2011-2012 Iker Coranti (www.avanzosc.es) All Rights Reserved
 #    Adaptado a la versión 7.0 por:
 #        Juanjo Algaz <juanjoa@malagatic.com>   www.malagatic.com
 #        Joaquín Gutierrez <joaquing.pedrosa@gmail.com>   gutierrezweb.es
@@ -32,17 +32,18 @@
     "website": "http://www.pexego.es",
     "category": "Accounting",
     "contributors": [
-        'Juanjo Algaz  <juanjoa@malagatic.com>',
+        "Juanjo Algaz  <juanjoa@malagatic.com>",
         "Joaquín Gutierrez <joaquing.pedrosa@gmail.com>",
-        'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
+        "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
+        "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
     ],
-        "description": """
+    "description": """
 The module allows the user to create account balance reports and templates,
 comparing the values of 'accounting concepts' between two fiscal years
 or a set of fiscal periods.
 
-Accounting concepts values can be calculated as the sum of some account balances,
-the sum of its children, other account concepts or constant values.
+Accounting concepts values can be calculated as the sum of some account
+balances, the sum of its children, other account concepts or constant values.
 
 Generated reports are stored as objects on the server,
 so you can check them anytime later or edit them
@@ -57,20 +58,20 @@ The user interface has been designed to be as much user-friendly as it can be.
 
 Note: It has been designed to meet Spanish/Spain localization needs,
 but it might be used as a generic accounting report engine.
-            """,
+    """,
     "depends": [
-            'base',
-            'account',
-        ],
-    "demo": [ ],
+        "base",
+        "account",
+    ],
+    "demo": [],
     "data": [
-        'security/ir.model.access.csv',
-        'account_balance_reporting_template_view.xml',
-        'account_balance_reporting_report_view.xml',
-        'account_balance_reporting_menu.xml',
-        'account_balance_reporting_workflow.xml',
-        'report/account_balance_reporting_reports.xml',
-        'wizard/wizard_print_view.xml',
+        "security/ir.model.access.csv",
+        "views/account_balance_reporting_template_view.xml",
+        "views/account_balance_reporting_report_view.xml",
+        "views/account_balance_reporting_menu.xml",
+        "views/account_balance_reporting_workflow.xml",
+        "report/account_balance_reporting_reports.xml",
+        "wizard/wizard_print_view.xml",
     ],
     "installable": True,
 }

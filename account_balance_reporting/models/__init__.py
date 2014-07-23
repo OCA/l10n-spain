@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP - Account balance reporting engine
 #    Copyright (C) 2009 Pexego Sistemas Informáticos. All Rights Reserved
-#    $Id$
+#    AvanzOSC, Advanced Open Source Consulting
+#    Copyright (C) 2011-2012 Iker Coranti (www.avanzosc.es) All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -21,10 +21,5 @@
 #
 ##############################################################################
 
-"""
-Account balance reporting engine wizards
-"""
-__author__ = "Borja López Soilán (Pexego) - borjals@pexego.es"
-
-
-from . import wizard_print
+from . import account_balance_reporting_template
+from . import account_balance_reporting_report
