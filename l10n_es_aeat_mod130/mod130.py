@@ -24,7 +24,7 @@ def trunc(f, n):
     slen = len('%.*f' % (n, f))
     return float(str(f)[:slen])
 
-class l10n_es_aeat_mod130_report(orm.Model):
+class L10nEsAeatMod130Report(orm.Model):
     _inherit = "l10n.es.aeat.report"
     _name = "l10n.es.aeat.mod130.report"
     _description = "AEAT 130 report"
@@ -330,5 +330,5 @@ class l10n_es_aeat_mod130_report(orm.Model):
                            'debe tener 13 caracteres.')
         if msg:
             raise orm.except_orm("Error", msg)
-        return super(l10n_es_aeat_mod130_report, self).button_confirm(cr, uid,
+        return super(L10nEsAeatMod130Report, self).button_confirm(cr, uid,
                                                         ids, context=context)
