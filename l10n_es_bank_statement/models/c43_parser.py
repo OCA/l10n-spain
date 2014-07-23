@@ -36,13 +36,13 @@ class c43_parser(BankStatementImportParser):
     def _process_record_11(self, line):
         """11 - Registro cabecera de cuenta (obligatorio)"""
         st_group = {
-            'entidad':line[2:6],
+            'entidad': line[2:6],
             'oficina': line[6:10],
             'cuenta': line[10:20],
             'fecha_ini': datetime.strptime(line[20:26], '%y%m%d'),
             'fecha_fin': datetime.strptime(line[26:32], '%y%m%d'),
             'divisa': line[47:50],
-            'modalidad': line[50:51], # 1,2 o 3
+            'modalidad': line[50:51],  # 1,2 o 3
             'nombre_propietario': line[51:77],
             'saldo_ini': float(line[33:45]) + (float(line[45:47]) / 100),
             'saldo_fin': 0,
@@ -84,7 +84,7 @@ class c43_parser(BankStatementImportParser):
         return st_line
 
     def _process_record_24(self, st_line, line):
-        """24 - Registro complementario de información de equivalencia del 
+        """24 - Registro complementario de información de equivalencia del
         importe (opcional y sin valor contable)"""
         st_line['divisa_eq'] = line[4:7]
         st_line['importe_eq'] = float(line[7:19]) + (float(line[19:21]) / 100)
@@ -112,19 +112,23 @@ class c43_parser(BankStatementImportParser):
                 credit_count += 1
                 credit += st_line['importe']
         if st_group['num_debe'] != debit_count:
-            raise orm.except_orm(_('Error in C43 file'),
+            raise orm.except_orm(
+                _('Error in C43 file'),
                 _("Number of debit records doesn't match with the defined in "
                   "the last record of account."))
-        if  st_group['num_haber'] != credit_count:
-            raise orm.except_orm(_('Error in C43 file'),
+        if st_group['num_haber'] != credit_count:
+            raise orm.except_orm(
+                _('Error in C43 file'),
                 _("Number of credit records doesn't match with the defined "
                   "in the last record of account."))
         if abs(st_group['debe'] - debit) > 0.005:
-            raise orm.except_orm(_('Error in C43 file'),
+            raise orm.except_orm(
+                _('Error in C43 file'),
                 _("Debit amount doesn't match with the defined in the last "
                   "record of account."))
         if abs(st_group['haber'] - credit) > 0.005:
-            raise orm.except_orm(_('Error in C43 file'),
+            raise orm.except_orm(
+                _('Error in C43 file'),
                 _("Credit amount doesn't match with the defined in the last "
                   "record of account."))
         # Note: Only perform this check if the balance is defined on the file
@@ -133,7 +137,8 @@ class c43_parser(BankStatementImportParser):
         if st_group['saldo_fin']:
             balance = st_group['saldo_ini'] + credit - debit
             if abs(st_group['saldo_fin'] - balance) > 0.005:
-                raise orm.except_orm(_('Error in C43 file'),
+                raise orm.except_orm(
+                    _('Error in C43 file'),
                     _("Final balance amount = (initial balance + credit "
                       "- debit) doesn't match with the defined in the last "
                       "record of account."))
@@ -144,7 +149,8 @@ class c43_parser(BankStatementImportParser):
         st_data['num_registros'] = int(line[20:26])
         # File level checks
         if st_data['num_registros'] != st_data['_num_records']:
-            raise orm.except_orm(_('Error in C43 file'),
+            raise orm.except_orm(
+                _('Error in C43 file'),
                 _("Number of records doesn't match with the defined in the "
                   "last record."))
         return st_data
@@ -165,8 +171,8 @@ class c43_parser(BankStatementImportParser):
         """Launch the parsing itself."""
         # st_data will contain data read from the file
         st_data = {
-            '_num_records': 0, # Number of records really counted
-            'groups': [], # Info about each of the groups (account groups)
+            '_num_records': 0,  # Number of records really counted
+            'groups': [],  # Info about each of the groups (account groups)
         }
         for raw_line in self.filebuffer.split("\n"):
             if not raw_line:
@@ -191,8 +197,8 @@ class c43_parser(BankStatementImportParser):
                 continue
             else:
                 raise orm.except_orm(
-                            _('Error in C43 file'),
-                            _('Record type %s is not valid.') % raw_line[0:2])
+                    _('Error in C43 file'),
+                    _('Record type %s is not valid.') % raw_line[0:2])
             # Update the record counter
             st_data['_num_records'] += 1
         self.result_row_list = []

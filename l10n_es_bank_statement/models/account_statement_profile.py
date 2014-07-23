@@ -55,14 +55,14 @@ class AccountStatementProfile(orm.Model):
         """
         vals = super(AccountStatementProfile, self
                      ).prepare_statement_lines_vals(
-                                cr, uid, parser_vals, statement_id, context)
+            cr, uid, parser_vals, statement_id, context)
         if vals.get('c43_concept'):
             account_obj = self.pool['account.account']
             account_ids = account_obj.search(
-                            cr, uid,
-                            [('code', 'like',
-                              account_concept_mapping[vals['c43_concept']])],
-                            context=context)
+                cr, uid,
+                [('code', 'like',
+                  account_concept_mapping[vals['c43_concept']])],
+                context=context)
             if account_ids:
                 vals['account_id'] = account_ids[0]
         return vals

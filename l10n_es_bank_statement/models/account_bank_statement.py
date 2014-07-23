@@ -19,7 +19,9 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 from openerp.osv import orm, fields
+
 
 class AccountBankStatementLine(orm.Model):
     _inherit = "account.bank.statement.line"
