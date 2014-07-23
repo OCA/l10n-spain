@@ -24,4 +24,3 @@
 
 from . import wizard
 from . import mod340
-

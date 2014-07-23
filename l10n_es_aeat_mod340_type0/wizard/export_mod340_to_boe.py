@@ -19,10 +19,6 @@
 #
 ##############################################################################
 
-import base64
-import time
-
-from openerp.tools.translate import _
 from openerp.osv import orm
 
 
@@ -68,7 +64,7 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
         text += '340'
         # Ejercicio
         text += self._formatString(report.fiscalyear_id.code, 4)
-         # NIF del presentador
+        # NIF del presentador
         text += self._formatString(report.presenter_vat or '', 9)
         # Apellidos y nombre del presentador
         text += self._formatString(report.presenter_name or '', 40)
@@ -112,18 +108,16 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
         assert len(text) == 502, _("The type 0 record must be 500 characters long")
         return text
 
-    def _get_formatted_other_records(self, cr, uid, report,context=None):
+    def _get_formatted_other_records(self, cr, uid, report, context=None):
         file_contents = ''
-
         file_contents += self._get_formated_presenter_record(report)
 
         for invoice_issued in report.issued:
-            file_contents += self._get_formatted_invoice_issued(cr,uid,report,
+            file_contents += self._get_formatted_invoice_issued(cr, uid, report,
                                                                 invoice_issued)
 
         for invoice_received in report.received:
-            file_contents += self._get_formatted_invoice_received(cr,uid,
-                                                      report, invoice_received)
+            file_contents += self._get_formatted_invoice_received(cr, uid, report,
+                                                                  invoice_received)
 
         return file_contents
-
