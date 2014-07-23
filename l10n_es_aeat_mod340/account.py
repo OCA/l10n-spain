@@ -22,6 +22,7 @@
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 
+
 class AccountTaxCodeTemplate(orm.Model):
     _inherit = 'account.tax.code.template'
 
@@ -29,12 +30,14 @@ class AccountTaxCodeTemplate(orm.Model):
         'mod340': fields.boolean("Include in mod340"),
     }
 
+
 class AccountTaxCode(orm.Model):
     _inherit = 'account.tax.code'
 
     _columns = {
         'mod340': fields.boolean("Include in mod340"),
     }
+
 
 class WizardUpdateChartsAccounts(orm.TransientModel):
     _inherit = 'wizard.update.charts.accounts'
@@ -63,12 +66,13 @@ class WizardUpdateChartsAccounts(orm.TransientModel):
             'parent_id', 'child_of', [root_tax_code_id])], order='id',
             context=context)
         for tax_code_template in tax_code_templ_obj.browse(cr, uid,
-                                children_tax_code_template, context=context):
+                                                           children_tax_code_template,
+                                                           context=context):
             # Ensure the tax code template is on the map (search for the mapped
             # tax code id).
             tax_code_id = self._map_tax_code_template(cr, uid, wizard,
-                                            tax_code_template_mapping,
-                                            tax_code_template, context=context)
+                                                      tax_code_template_mapping,
+                                                      tax_code_template, context=context)
             if not tax_code_id:
                 new_tax_codes += 1
                 wiz_tax_code_obj.create(cr, uid, {
@@ -170,4 +174,3 @@ class WizardUpdateChartsAccounts(orm.TransientModel):
             'updated': updated_tax_codes,
             'mapping': tax_code_template_mapping
         }
-

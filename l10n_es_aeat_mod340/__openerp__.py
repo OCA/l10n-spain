@@ -23,12 +23,12 @@
 ##############################################################################
 
 {
-    'name' : 'Generación de fichero modelo 340 y libro de IVA',
-    'version' : '2.0',
-    'author' : 'Acysos S.L., Francisco Pascual (Ting), Nan-tic',
-    'website' : 'www.acysos.com, www.ting.es, www.nan-tic.com',
-    'category' : 'Localisation/Accounting',
-    'description' : '''
+    'name': 'Generación de fichero modelo 340 y libro de IVA',
+    'version': '2.0',
+    'author': 'Acysos S.L., Francisco Pascual (Ting), Nan-tic',
+    'website': 'www.acysos.com, www.ting.es, www.nan-tic.com',
+    'category': 'Localisation/Accounting',
+    'description': '''
 Módulo para la presentación del modelo 340. Exportación a formato AEAT. Libro de IVA
 
 Los impuestos incluidos en este modelo se indican en el Código base cuenta. Por defecto actualiza todos los código base que deban incluirse.
@@ -49,15 +49,16 @@ Facturas intracomunitarias. Operaciones a las que hace referencia el artículo 6
 Asientos contables de resumen de tiques
 Exportación de asientos resumen de facturas
 ''',
-    'license' : 'AGPL-3',
-    'depends' : ['account',
-                 'base_vat',
-                 'l10n_es',
-                 'l10n_es_aeat',
-                 'account_refund_original',
-                 'account_chart_update',
-                 ],
-    'data' : [
+    'license': 'AGPL-3',
+    'depends': [
+        'account',
+        'base_vat',
+        'l10n_es',
+        'l10n_es_aeat',
+        'account_refund_original',
+        'account_chart_update',
+    ],
+    'data': [
         'report/report_view.xml',
         'wizard/export_mod340_to_boe.xml',
         'mod340_view.xml',
@@ -69,6 +70,6 @@ Exportación de asientos resumen de facturas
         'account_view.xml',
         'taxes_data.xml',
     ],
-    'installable' : True,
-    'active' : False,
+    'installable': True,
+    'active': False,
 }

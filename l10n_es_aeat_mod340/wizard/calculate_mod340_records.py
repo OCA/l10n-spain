@@ -26,8 +26,7 @@ import time
 import re
 from openerp.tools.translate import _
 from openerp.osv import orm
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
+
 
 class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
     _name = "l10n.es.aeat.mod340.calculate_records"
@@ -42,8 +41,6 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
         wf_service.trg_validate(uid, 'l10n.es.aeat.mod340.report',
                                 ids and ids[0], 'calculate', cr)
 
-
-
     def _calculate_records(self, cr, uid, ids, context=None, recalculate=True):
         if context is None:
             context = {}
@@ -57,8 +54,8 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
             period_obj = self.pool.get('account.period')
 
             mod340.write({
-                'state' : 'calculated',
-                'calculation_date' : time.strftime('%Y-%m-%d %H:%M:%S')
+                'state': 'calculated',
+                'calculation_date': time.strftime('%Y-%m-%d %H:%M:%S')
             })
 
             if not mod340.company_id.partner_id.vat:
@@ -73,54 +70,52 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
             code += mod340.period_to.date_stop[5:7] + '0001'
 
             account_period_ids = period_obj.build_ctx_periods(cr, uid,
-                                  mod340.period_from.id, mod340.period_to.id)
+                                                              mod340.period_from.id,
+                                                              mod340.period_to.id)
 
             if len(account_period_ids) == 0:
                 raise orm.except_orm(_('Error'),
-                   _("The periods selected don't belong to the fiscal year %s")
-                   % (mod340.fiscalyear_id.name))
+                                     _("The periods selected don't belong to the fiscal year %s")
+                                     % (mod340.fiscalyear_id.name))
 
             tot_base = 0
             tot_amount = 0
             tot_tot = 0
             tot_rec = 0
 
-
-            #Limpieza de las facturas calculadas anteriormente
-
-            del_ids = invoices340.search(cr, uid, [
-            ('mod340_id', '=', mod340.id)])
+            # Limpieza de las facturas calculadas anteriormente
+            del_ids = invoices340.search(cr, uid, [('mod340_id', '=', mod340.id)])
 
             if del_ids:
                 invoices340.unlink(cr, uid, del_ids, context=context)
 
-            del_ids = invoices340_rec.search(cr, uid, [
-            ('mod340_id', '=', mod340.id)])
+            del_ids = invoices340_rec.search(cr, uid, [('mod340_id', '=', mod340.id)])
 
             if del_ids:
                 invoices340_rec.unlink(cr, uid, del_ids, context=context)
 
-            domain = [('period_id', 'in',account_period_ids),
-                ('state', 'in', ('open', 'paid'))]
+            domain = [
+                ('period_id', 'in', account_period_ids),
+                ('state', 'in', ('open', 'paid'))
+            ]
 
-            invoice_obj=self.pool.get('account.invoice')
-            invoice_ids = invoice_obj.search(cr, uid,domain, context=context)
+            invoice_obj = self.pool.get('account.invoice')
+            invoice_ids = invoice_obj.search(cr, uid, domain, context=context)
             for invoice in invoice_obj.browse(cr, uid, invoice_ids, context):
                 include = False
                 for tax_line in invoice.tax_line:
                     if tax_line.base_code_id and tax_line.base:
-                        if tax_line.base_code_id.mod340 == True:
+                        if tax_line.base_code_id.mod340 is True:
                             include = True
-                if include == True:
+                if include is True:
                     if invoice.partner_id.vat_type == 1:
                         if not invoice.partner_id.vat:
                             raise orm.except_orm(
-                              _('La siguiente empresa no tiene asignado nif:'),
-                              invoice.partner_id.name)
+                                _('La siguiente empresa no tiene asignado nif:'),
+                                invoice.partner_id.name)
 
-                    nif = invoice.partner_id.vat and \
-                        re.match(r"([A-Z]{0,2})(.*)",
-                                 invoice.partner_id.vat).groups()[1]
+                    nif = invoice.partner_id.vat and re.match(r"([A-Z]{0,2})(.*)",
+                                                              invoice.partner_id.vat).groups()[1]
                     country_code = invoice.partner_id.country_id.code
 
                     values = {
@@ -135,17 +130,16 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                         'total': invoice.amount_total,
                         'date_invoice': invoice.date_invoice,
                     }
-                    if invoice.type in ( 'out_refund','in_refund'):
+                    if invoice.type in ('out_refund', 'in_refund'):
                         values['base_tax'] *= -1
                         values['amount_tax'] *= -1
                         values['total'] *= -1
 
+                    if invoice.type == "out_invoice" or invoice.type == "out_refund":
+                        invoice_created = invoices340.create(cr, uid, values)
 
-                    if invoice.type=="out_invoice" or invoice.type=="out_refund":
-                        invoice_created = invoices340.create(cr,uid,values)
-
-                    if invoice.type=="in_invoice" or invoice.type=="in_refund":
-                        invoice_created = invoices340_rec.create(cr,uid,values)
+                    if invoice.type == "in_invoice" or invoice.type == "in_refund":
+                        invoice_created = invoices340_rec.create(cr, uid, values)
 
                     tot_tax_invoice = 0
                     check_tax = 0
@@ -154,7 +148,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                     # Add the invoices detail to the partner record
                     for tax_line in invoice.tax_line:
                         if tax_line.base_code_id and tax_line.base:
-                            if tax_line.base_code_id.mod340 == True:
+                            if tax_line.base_code_id.mod340 is True:
                                 tax_percentage = tax_line.amount/tax_line.base
 
                                 values = {
@@ -164,10 +158,10 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                                     'base_amount': tax_line.base_amount,
                                     'invoice_record_id': invoice_created,
                                 }
-                                if invoice.type=="out_invoice" or invoice.type=="out_refund":
+                                if invoice.type == "out_invoice" or invoice.type == "out_refund":
                                     issued_obj = self.pool.get('l10n.es.aeat.mod340.tax_line_issued')
                                     issued_obj.create(cr, uid, values)
-                                if invoice.type=="in_invoice" or invoice.type=="in_refund":
+                                if invoice.type == "in_invoice" or invoice.type == "in_refund":
                                     received_obj = self.pool.get('l10n.es.aeat.mod340.tax_line_received')
                                     received_obj.create(cr, uid, values)
                                 tot_tax_invoice += tax_line.tax_amount
@@ -181,39 +175,41 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                     tot_tot += invoice.amount_untaxed + tot_tax_invoice
 
                     if invoice.type == "out_invoice" or invoice.type == "out_refund":
-                        invoices340.write(cr,uid,invoice_created,
-                                          {'amount_tax':tot_tax_invoice})
+                        invoices340.write(cr, uid, invoice_created,
+                                          {'amount_tax': tot_tax_invoice})
                     if invoice.type == "in_invoice" or invoice.type == "in_refund":
-                        invoices340_rec.write(cr,uid,invoice_created,
-                                              {'amount_tax':tot_tax_invoice})
+                        invoices340_rec.write(cr, uid, invoice_created,
+                                              {'amount_tax': tot_tax_invoice})
 
-                    sign=1
-                    if  invoice.type in ( 'out_refund','in_refund' ):
+                    sign = 1
+                    if invoice.type in ('out_refund', 'in_refund'):
                         sign = -1
 
                     if str(invoice.amount_untaxed*sign) != str(check_base):
-                        raise orm.except_orm( "REVIEW INVOICE",
-                          _('Invoice  %s, Amount untaxed Lines %.2f do not correspond to AmountUntaxed on Invoice %.2f' )
-                          %(invoice.number, check_base,
-                            invoice.amount_untaxed*sign)  )
+                        raise orm.except_orm(
+                            "REVIEW INVOICE",
+                            _('Invoice  %s, Amount untaxed Lines %.2f do not correspond to AmountUntaxed on Invoice %.2f')
+                            % (invoice.number, check_base,
+                               invoice.amount_untaxed * sign))
 
-            mod340.write({'total_taxable':tot_base,'total_sharetax':tot_amount,
-                      'number_records':tot_rec,'total':tot_tot,
-                      'declaration_number':code})
+            mod340.write({
+                'total_taxable': tot_base,
+                'total_sharetax': tot_amount,
+                'number_records': tot_rec,
+                'total': tot_tot,
+                'declaration_number': code
+            })
 
             if recalculate:
                 mod340.write({
-                    'state' : 'calculated',
-                    'calculation_date' : time.strftime('%Y-%m-%d %H:%M:%S')
+                    'state': 'calculated',
+                    'calculation_date': time.strftime('%Y-%m-%d %H:%M:%S')
                 })
 
         except Exception, ex:
             raise
 
-
-
         return True
-
 
     def calculation_threading(self, cr, uid, ids, context=None):
         if context is None:
