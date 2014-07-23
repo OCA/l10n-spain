@@ -20,7 +20,7 @@ from openerp.tools.translate import _
 from openerp.osv import orm
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
-class l10n_es_aeat_mod130_export_to_boe(orm.TransientModel):
+class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = 'l10n.es.aeat.mod130.export_to_boe'
 
@@ -29,7 +29,7 @@ class l10n_es_aeat_mod130_export_to_boe(orm.TransientModel):
 
     def _get_formatted_declaration_record(self, cr, uid, report, context=None):
         res = ''
-        ## cabecera 
+        ## cabecera
         res += "13001 "
         # Tipo de declaración
         # B (resultado a deducir)
@@ -105,10 +105,10 @@ class l10n_es_aeat_mod130_export_to_boe(orm.TransientModel):
         # pagos fraccionados
         res += self._formatBoolean(report.result < 0 and report.period != '4T',
                                    yes='X', no=' ')
-        # Complementaria (7) Cod. electrónico declaración anterior 
+        # Complementaria (7) Cod. electrónico declaración anterior
         res += self._formatString(report.previous_electronic_code if
                                   report.complementary else "" , 16)
-        # Complementaria (7) Nº justificante declaración anterior 
+        # Complementaria (7) Nº justificante declaración anterior
         res += self._formatString(report.previous_declaration if
                                   report.complementary else "" , 13)
         # Persona de contacto
