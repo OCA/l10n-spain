@@ -28,7 +28,7 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
 
     def _get_formatted_declaration_record(self, cr, uid, report, context=None):
         res = ''
-        ## cabecera
+        # cabecera
         res += "<T30301> "
         # Tipo de declaración - "Para impresión, cualquier caracter
         # alfanumérico o 'N' si la autoliquidación se declara SIN ACTIVIDAD"
@@ -38,7 +38,7 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         res += self._formatString(report.company_id.name, 30)  # Apellidos o razón social.
         res += self._formatString("", 15)  # Nombre
         res += self._formatBoolean(report.devolucion_mensual, yes='1', no='2')
-        ## devengo (2)
+        # devengo (2)
         res += self._formatNumber(report.fiscalyear_id.code, 4)
         res += self._formatString(report.period, 2)
         assert len(res) == 71, _("The identification (1) and income (2) must "
@@ -51,11 +51,11 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         # IVA devengado
         # -- Regimen General y Recargo de Equivalencia - code_pair [1~18]
         codes = [
-            ## Régimen general
+            # Régimen general
             ('[01]', '[03]'),
             ('[04]', '[06]'),
             ('[07]', '[09]'),
-            ## Recargo de equivalencia
+            # Recargo de equivalencia
             ('[10]', '[12]'),
             ('[13]', '[15]'),
             ('[16]', '[18]'),
@@ -66,7 +66,7 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
             tipo = cuota / base_imponible * 100 if base_imponible else 0
             # base imponible X %  -- codes [1, 4, 7, 10, 13, 16]
             res += self._formatNumber(base_imponible, 15, 2)
-             # tipo % codes - [2, 5, 8, 11, 14, 17]
+            # tipo % codes - [2, 5, 8, 11, 14, 17]
             res += self._formatNumber(tipo, 3,  2)
             # cuota X % -- codes [3, 6, 9, 12, 15, 18]
             res += self._formatNumber(cuota, 15, 2)
