@@ -23,19 +23,19 @@
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 
-class l10n_es_aeat_mod340_report(orm.Model):
+class L10nEsAeatMod340Report(orm.Model):
     _inherit = 'l10n.es.aeat.mod340.report'
-    
+
     def on_change_name_contact(self, cr, uid, ids, name_contact):
         return  { 'value': { 'presenter_name': name_contact,
                             'presenter_name_contact': name_contact } }
-    
+
     def on_change_phone_contact(self, cr, uid, ids, phone_contact):
         return  { 'value': { 'presenter_phone_contact': phone_contact } }
-    
+
     def on_change_representative_vat(self, cr, uid, ids, representative_vat):
         return  { 'value': { 'presenter_vat': representative_vat } }
-    
+
     _columns = {
         'presenter_vat': fields.char('VAT number', size=9,
             states={'confirmed':[('readonly',True)]}),

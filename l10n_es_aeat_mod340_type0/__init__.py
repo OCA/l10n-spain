@@ -4,7 +4,7 @@
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2013 Acysos S.L. (http://acysos.com) All Rights Reserved
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
-#                      
+#
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -22,6 +22,6 @@
 #
 ##############################################################################
 
-import wizard
-import mod340
+from . import wizard
+from . import mod340
 
