@@ -21,13 +21,13 @@ from openerp.osv import orm
 import base64
 import time
 
-class l10n_es_aeat_mod303_export_to_boe(orm.TransientModel):
+class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = 'l10n.es.aeat.mod303.export_to_boe'
 
     def _get_formatted_declaration_record(self, cr, uid, report, context=None):
         res = ''
-        ## cabecera 
+        ## cabecera
         res += "<T30301> "
         # Tipo de declaración - "Para impresión, cualquier caracter
         # alfanumérico o 'N' si la autoliquidación se declara SIN ACTIVIDAD"
@@ -53,7 +53,7 @@ class l10n_es_aeat_mod303_export_to_boe(orm.TransientModel):
             ## Régimen general
             ('[01]','[03]'),
             ('[04]','[06]'),
-            ('[07]','[09]'), 
+            ('[07]','[09]'),
             ## Recargo de equivalencia
             ('[10]','[12]'),
             ('[13]','[15]'),
@@ -74,13 +74,13 @@ class l10n_es_aeat_mod303_export_to_boe(orm.TransientModel):
         res += self._formatNumber(lines.get("[20]"), 15, 2) ## cuota
         # -- Total Cuota Devengada - code [21]
         res += self._formatNumber(report.total_devengado, 15, 2) ## cuota
-        ## IVA deducible 
+        ## IVA deducible
         # -- Por Cuotas soportadas ... - codes [22~25]
         # -- Por Cuotas satisfechas en ... - codes [26~29]
         # -- En adquisiciones intracomunitarias de bienes ... - codes [30~33]
         for i in range(22, 34):
             res += self._formatNumber(lines.get("[%s]" % i), 15, 2)
-        # -- 
+        # --
         # Compesaciones Regimen Especial AG y P
         res += self._formatNumber(lines.get("[34]"), 15, 2)
         # Regularización inversiones
@@ -90,7 +90,7 @@ class l10n_es_aeat_mod303_export_to_boe(orm.TransientModel):
         # -- Total a deducir
         res += self._formatNumber(report.total_deducir, 15, 2)
         # Diferencia [21] - [37]
-        res += self._formatNumber(report.diferencia, 15, 2) 
+        res += self._formatNumber(report.diferencia, 15, 2)
         # Atribuible a la administracion ...
         # TODO: Navarra y País Vasco
         res += self._formatNumber(report.porcentaje_atribuible_estado, 3, 2)
@@ -102,7 +102,7 @@ class l10n_es_aeat_mod303_export_to_boe(orm.TransientModel):
         res += self._formatNumber(lines.get("[43]"), 15, 2)
         # [43], Derecho a deucción [44]
         res += self._formatNumber(lines.get("[44]"), 15, 2)
-        ## Estado y Comunidades Forales 
+        ## Estado y Comunidades Forales
         res += self._formatNumber(report.regularizacion_anual, 15, 2)
         res += self._formatNumber(report.resultado_casilla_46, 15, 2) ## [40] - [41]
         ## A deducir - autoliquidación complementaria .... pedir campo
@@ -138,7 +138,7 @@ class l10n_es_aeat_mod303_export_to_boe(orm.TransientModel):
         # NO SE USA ??? Forma de Pago - "0" No consta, "1" Efectivo,
         # "2" Adeudo en cuenta, "3" Domiciliación
         res += self._formatString("0", 1)
-        res += self._formatNumber(report.ingresar, 15, 2) ## devolucion [50] 
+        res += self._formatNumber(report.ingresar, 15, 2) ## devolucion [50]
         ccc = ""
         if report.cuenta_ingreso_id and report.ingresar:
             ccc = report.cuenta_ingreso_id.acc_number.replace("-", "").replace(" ", "")
