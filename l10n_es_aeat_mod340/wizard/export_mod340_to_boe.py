@@ -21,11 +21,8 @@
 #
 ##############################################################################
 
-from datetime import datetime
 from openerp.tools.translate import _
 from openerp.osv import orm
-import base64
-import time
 
 
 class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
@@ -280,7 +277,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             text += 25*' '
             # Importe Percibido en Metálico #TODO
             text += 15*'0'
-            # Ejercicio ( cifras del ejercicio en el que se hubieran declarado las operaciones que dan origen al cobro ) #TODO
+            # Ejercicio ( cifras del ejercicio en el que se hubieran declarado
+            # las operaciones que dan origen al cobro ) #TODO
             text += 4*'0'
             # Importe percibido por transmisiones de Inmuebles sujetas a IVA. #TODO
             text += 15*'0'
@@ -293,7 +291,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             # Cuenta Bancaria o medio de cobro utilizado #TODO
             text += 34*' '
             text += '\r\n'
-        assert len(text) == 502 * len(invoice_issued.tax_line_ids), _("The type 2 issued record must be 500 characters long for each Vat registry")
+        assert len(text) == 502 * len(invoice_issued.tax_line_ids), (
+            _("The type 2 issued record must be 500 characters long for each Vat registry"))
         return text
 
     def _get_formatted_invoice_received(self, cr, uid, report, invoice_received):
@@ -315,7 +314,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             79-95       Número de identificación fiscal en el país de residencia. TODO de momento blancos.
             96-98       Blancos
             99          Clave tipo de libro. Constante 'R'.
-            100         Clave de operación. Constante ' ' para un solo tipo de IVA. Constante 'C' para varios tipos de IVA. TODO Resto de operaciones. Varios tipos impositivos.
+            100         Clave de operación. Constante ' ' para un solo tipo de IVA.
+                            Constante 'C' para varios tipos de IVA. TODO Resto de operaciones. Varios tipos impositivos.
             101-108     Fecha de expedición
             109-116     Fecha de operación. Se consigna la misma que expedición. TODO. Fecha del uso del bien.
             117-121     Tipo impositivo
@@ -417,7 +417,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             text += 95*' '
             text += '\r\n'
 
-        assert len(text) == 502*len(invoice_received.tax_line_ids), _("The type 2 received record must be 500 characters long for each Vat registry")
+        assert len(text) == 502*len(invoice_received.tax_line_ids), (
+            _("The type 2 received record must be 500 characters long for each Vat registry"))
         return text
 
     def _get_formatted_other_records(self, cr, uid, report, context=None):
