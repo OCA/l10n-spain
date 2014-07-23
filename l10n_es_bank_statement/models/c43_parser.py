@@ -193,7 +193,7 @@ class c43_parser(BankStatementImportParser):
             elif code == '88':
                 self._process_record_88(st_data, raw_line)
             elif ord(raw_line[0]) == 26:
-                 # CTRL-Z (^Z), is often used as an end-of-file marker in DOS
+                # CTRL-Z (^Z), is often used as an end-of-file marker in DOS
                 continue
             else:
                 raise orm.except_orm(
