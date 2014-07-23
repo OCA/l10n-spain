@@ -110,9 +110,9 @@ class L10nEsAeatReportExportToBoe(orm.TransientModel):
             ascii_string += sign
 
         if dec_length > 0:
-            ascii_string += '%0*.*f' % (int_length+ \
-                                        dec_length+1,dec_length, number)
-            ascii_string = ascii_string.replace('.','')
+            ascii_string += '%0*.*f' % (int_length + dec_length + 1,
+                                        dec_length, number)
+            ascii_string = ascii_string.replace('.', '')
         elif int_length > 0:
             ascii_string += '%.*d' % (int_length, int_part)
 
@@ -147,12 +147,14 @@ class L10nEsAeatReportExportToBoe(orm.TransientModel):
         """
         if not context.get('active_id') or not context.get('active_model'):
             return False
-        report = self.pool[context['active_model']].browse(cr, uid,
-                                        context['active_id'], context=context)
+        report = self.pool[context['active_model']].browse(
+            cr, uid,
+            context['active_id'], context=context
+        )
         contents = ''
         ## Add header record
         contents += self._get_formatted_declaration_record(cr, uid, report,
-                                                          context=context)
+                                                           context=context)
         ## Add main record
         contents += self._get_formatted_main_record(cr, uid, report,
                                                     context=context)
@@ -161,21 +163,26 @@ class L10nEsAeatReportExportToBoe(orm.TransientModel):
                                                       context=context)
         ## Generate the file and save as attachment
         file = base64.encodestring(contents)
-        file_name = _("%s_report_%s.txt") % (report.number,
-                                time.strftime(_(DEFAULT_SERVER_DATE_FORMAT)))
+        file_name = _("%s_report_%s.txt") % (
+            report.number,
+            time.strftime(_(DEFAULT_SERVER_DATE_FORMAT))
+        )
         # Delete old files
         attachment_obj = self.pool['ir.attachment']
-        attachment_ids = attachment_obj.search(cr, uid,
-                    [('name', '=', file_name),
-                     ('res_model', '=', report._model._name)], context=context)
+        attachment_ids = attachment_obj.search(
+            cr, uid,
+            [
+                ('name', '=', file_name),
+                ('res_model', '=', report._model._name)
+            ], context=context)
         if attachment_ids:
             attachment_obj.unlink(cr, uid, attachment_ids, context=context)
         attach_id = attachment_obj.create(cr, uid, {
-            "name" : file_name,
-            "datas" : file,
-            "datas_fname" : file_name,
-            "res_model" : report._model._name,
-            "res_id" : report.id,
+            "name": file_name,
+            "datas": file,
+            "datas_fname": file_name,
+            "res_model": report._model._name,
+            "res_id": report.id,
         }, context=context)
         self.write(cr, uid, ids,
                    {'state': 'get', 'data': file, 'name': file_name},
