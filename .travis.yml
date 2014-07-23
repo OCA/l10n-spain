@@ -10,6 +10,7 @@ virtualenv:
   system_site_packages: true
 
 install:
+  - pip install unidecode
   - git clone https://github.com/OCA/partner-contact ${HOME}/partner-contact -b ${VERSION}
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
