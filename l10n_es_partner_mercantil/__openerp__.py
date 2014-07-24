@@ -42,6 +42,5 @@
     "data": [
         "views/partner_es_view.xml",
     ],
-    "active": True,
-    "installable": True
+    "installable": True,
 }
