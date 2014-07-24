@@ -42,7 +42,7 @@ class AccountStatementCompletionRule(orm.Model):
         """
         Match the partner based on several criteria extracted from reverse
         engineer of CaixaBank C43 files.
-        
+
         If more than one partner is matched, raise the ErrorTooManyPartner
         error.
         :param dict st_line: read of the concerned account.bank.statement.line
@@ -66,7 +66,7 @@ class AccountStatementCompletionRule(orm.Model):
         if len(ids) > 1:
             raise ErrorTooManyPartner(
                 _('Line named "%s" (Ref: %s) was matched by more than '
-                  'one partner for VAT number "%s".') % \
+                  'one partner for VAT number "%s".') %
                 (st_line['name'], st_line['ref'], vat))
         if not ids:
             # Try to match from partner name
@@ -77,19 +77,19 @@ class AccountStatementCompletionRule(orm.Model):
         if ids:
             res['partner_id'] = ids[0]
         st_vals = st_line_obj.get_values_for_line(
-                        cr, uid, profile_id=st_line['profile_id'],
-                        master_account_id=st_line['master_account_id'],
-                        partner_id=res.get('partner_id', False),
-                        line_type=st_line['type'],
-                        amount=st_line['amount'] or 0.0,
-                        context=context)
+            cr, uid, profile_id=st_line['profile_id'],
+            master_account_id=st_line['master_account_id'],
+            partner_id=res.get('partner_id', False),
+            line_type=st_line['type'],
+            amount=st_line['amount'] or 0.0,
+            context=context)
         res.update(st_vals)
         return res
 
     def get_from_generic_c43_rules(self, cr, uid, st_line, context=None):
         """
         Match the partner based on invoice amount..
-        
+
         If more than one partner is matched, raise the ErrorTooManyPartner
         error.
         :param dict st_line: read of the concerned account.bank.statement.line
@@ -121,16 +121,16 @@ class AccountStatementCompletionRule(orm.Model):
         if len(ids) > 1:
             raise ErrorTooManyPartner(
                 _('Line named "%s" (Ref: %s) was matched by more than '
-                  'one partner for invoice amount "%s".') % \
+                  'one partner for invoice amount "%s".') %
                 (st_line['name'], st_line['ref'], st_line['amount']))
         if ids:
             res['partner_id'] = ids[0]
         st_vals = st_line_obj.get_values_for_line(
-                        cr, uid, profile_id=st_line['profile_id'],
-                        master_account_id=st_line['master_account_id'],
-                        partner_id=res.get('partner_id', False),
-                        line_type=st_line['type'],
-                        amount=st_line['amount'] or 0.0,
-                        context=context)
+            cr, uid, profile_id=st_line['profile_id'],
+            master_account_id=st_line['master_account_id'],
+            partner_id=res.get('partner_id', False),
+            line_type=st_line['type'],
+            amount=st_line['amount'] or 0.0,
+            context=context)
         res.update(st_vals)
         return res

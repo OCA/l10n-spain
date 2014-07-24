@@ -20,7 +20,8 @@
 #
 ##############################################################################
 from openerp.tools.translate import _
-from openerp.osv import fields, orm
+from openerp.osv import orm
+
 
 class AccountStatementProfil(orm.Model):
     _inherit = "account.statement.profile"
@@ -32,4 +33,3 @@ class AccountStatementProfil(orm.Model):
                                                       context=context)
         selection.append(('aeb_c43', _('AEB C43 standard')))
         return selection
-
