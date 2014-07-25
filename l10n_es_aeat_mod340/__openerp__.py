@@ -46,7 +46,7 @@ Facturas rectificativas.
 Facturas resumen de tiques.
 Permite imprimir el libro de IVA, basado en la misma legislación.
 
---- COSAS PENDIENTES (TODO LIST) ----------------------------------------------
+---- COSAS PENDIENTES (TODO LIST) ----------------------------------------------
 
 Facturas bienes de inversión
 Facturas intracomunitarias. Operaciones a las que hace referencia el artículo 66 del RIVA.
