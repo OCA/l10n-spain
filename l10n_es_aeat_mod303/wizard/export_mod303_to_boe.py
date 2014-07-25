@@ -18,8 +18,6 @@
 from datetime import datetime
 from openerp.tools.translate import _
 from openerp.osv import orm
-import base64
-import time
 
 
 class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
