@@ -19,7 +19,7 @@ install:
 
 script:
   - travis_run_flake8
-  - travis_run_tests ${VERSION} ${HOME}/partner-contact
+  - travis_run_tests ${VERSION} ${HOME}/partner-contact ${HOME}/maintainer-quality-tools ${HOME}/acysos-addons
 
 after_success:
   coveralls
