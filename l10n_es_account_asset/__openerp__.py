@@ -20,28 +20,26 @@
 ##############################################################################
 
 {
-    "name" : "Gestión de activos fijos para España",
-    "version" : "1.0",
-    "depends" : ["account_asset"],
-    "author" : "Serv. Tecnol. Avanzados - Pedro M. Baeza",
+    "name": "Gestión de activos fijos para España",
+    "version": "1.0",
+    "depends": ["account_asset"],
+    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza",
     "description": """
 Gestión de activos fijos española
 =================================
 
-Cambia la gestión estándar de activos fijos de OpenERP para acomodarla a las 
+Cambia la gestión estándar de activos fijos de OpenERP para acomodarla a las
 regulaciones españolas:
-    
+
     * Cambia el método de cálculo para el prorrateo temporal.
     * Añade un nuevo método de cálculo para porcentaje fijo por periodo.
     * Añade la opción de trasladar la depreciación al final del periodo.
     """,
-    "website" : "http://www.serviciosbaeza.com",
-    "category" : "Accounting & Finance",
-    "data" : [
+    "website": "http://www.serviciosbaeza.com",
+    "category": "Accounting & Finance",
+    "data": [
         "account_asset_view.xml",
     ],
     "active": False,
     "installable": True,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

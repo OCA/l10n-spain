@@ -24,6 +24,7 @@ from datetime import datetime
 from openerp.osv import orm, fields
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as DSDF
 
+
 class account_asset_category(orm.Model):
     _inherit = 'account.asset.category'
 
@@ -41,7 +42,7 @@ class account_asset_category(orm.Model):
                  "  * Fixed percentage: Choose the time between 2 "
                  "depreciations and the percentage to depreciate."),
         'method_percentage': fields.float('Depreciation percentage',
-                                          digits=(3,2)),
+                                          digits=(3, 2)),
     }
 
     _defaults = {
@@ -57,8 +58,9 @@ class account_asset_category(orm.Model):
 
     def onchange_ext_method_time(self, cr, uid, ids, ext_method_time,
                                  context=None):
-        res = {'value':{}}
-        res['value']['method_time'] = 'end' if ext_method_time == 'end' else 'number'
+        res = {'value': {}}
+        res['value']['method_time'] = ('end' if ext_method_time == 'end' else
+                                       'number')
         return res
 
 
@@ -66,7 +68,8 @@ class account_asset_asset(orm.Model):
     _inherit = 'account.asset.asset'
 
     _columns = {
-        'move_end_period': fields.boolean("At the end of the period",
+        'move_end_period': fields.boolean(
+            "At the end of the period",
             help='Move the depreciation entry at the end of the period. If '
                  'the period are 12 months, it is put on 31st of December, '
                  'and in the end of the month in other case.'),
@@ -75,8 +78,8 @@ class account_asset_asset(orm.Model):
         # modificar mucho código base
         'ext_method_time': fields.selection(
             [('number', 'Number of Depreciations'),
-             ('end','Ending Date'),
-             ('percentage','Fixed percentage')], 'Time Method', required=True,
+             ('end', 'Ending Date'),
+             ('percentage', 'Fixed percentage')], 'Time Method', required=True,
             help="Choose the method to use to compute the dates and number of "
                  "depreciation lines.\n"
                  "  * Number of Depreciations: Fix the number of depreciation "
@@ -86,7 +89,7 @@ class account_asset_asset(orm.Model):
                  "  * Fixed percentage: Choose the time between 2 "
                  "depreciations and the percentage to depreciate."),
         'method_percentage': fields.float('Depreciation percentage',
-                                          digits=(3,2)),
+                                          digits=(3, 2)),
     }
 
     _defaults = {
@@ -102,14 +105,14 @@ class account_asset_asset(orm.Model):
 
     def onchange_ext_method_time(self, cr, uid, ids, ext_method_time,
                                  context=None):
-        res = {'value':{}}
-        res['value']['method_time'] = ('end' if ext_method_time == 'end' 
+        res = {'value': {}}
+        res['value']['method_time'] = ('end' if ext_method_time == 'end'
                                        else 'number')
         return res
 
     def onchange_category_id(self, cr, uid, ids, category_id, context=None):
-        res = super(account_asset_asset, self).onchange_category_id(cr, uid,
-                                            ids, category_id, context=context)
+        res = super(account_asset_asset, self).onchange_category_id(
+            cr, uid, ids, category_id, context=context)
         if category_id:
             category_obj = self.pool.get('account.asset.category')
             category = category_obj.browse(cr, uid, category_id,
@@ -119,7 +122,8 @@ class account_asset_asset(orm.Model):
         return res
 
     def _compute_board_undone_dotation_nb(self, cr, uid, asset,
-                                depreciation_date, total_days, context=None):
+                                          depreciation_date, total_days,
+                                          context=None):
         if asset.ext_method_time == 'percentage':
             number = 0
             percentage = 100.0
@@ -139,7 +143,7 @@ class account_asset_asset(orm.Model):
                                                   total_days, context=context)
             if depreciation_date.day == 1 and depreciation_date.month == 1:
                 # Quitar una depreciación del nº total si el activo se compró
-                # el 1 de enero, ya que ese año sería completo  
+                # el 1 de enero, ya que ese año sería completo
                 val -= 1
             return val
 
@@ -169,35 +173,34 @@ class account_asset_asset(orm.Model):
                 amount *= days / total_days
             return amount
         else:
-            return super(account_asset_asset, self)._compute_board_amount(cr,
-                    uid, asset, i, residual_amount, amount_to_depr,
-                    undone_dotation_number, posted_depreciation_line_ids,
-                    total_days, depreciation_date, context=context)
+            return super(account_asset_asset, self)._compute_board_amount(
+                cr, uid, asset, i, residual_amount, amount_to_depr,
+                undone_dotation_number, posted_depreciation_line_ids,
+                total_days, depreciation_date, context=context)
 
     def compute_depreciation_board(self, cr, uid, ids, context=None):
-        super(account_asset_asset, self).compute_depreciation_board(cr, uid,
-                                                        ids, context=context)
+        super(account_asset_asset, self).compute_depreciation_board(
+            cr, uid, ids, context=context)
         for asset in self.browse(cr, uid, ids, context=context):
             if asset.move_end_period:
                 # Reescribir la fecha de la depreciación
-                depr_lin_obj = self.pool.get('account.asset.depreciation.line')
-                new_depr_line_ids = depr_lin_obj.search(cr, uid,
-                                            [('asset_id', '=', asset.id),
-                                             ('move_id', '=', False)])
+                depr_lin_obj = self.pool['account.asset.depreciation.line']
+                new_depr_line_ids = depr_lin_obj.search(
+                    cr, uid, [('asset_id', '=', asset.id),
+                              ('move_id', '=', False)], context=context)
                 for depr_line in depr_lin_obj.browse(cr, uid,
                                                      new_depr_line_ids):
                     depr_date = datetime.strptime(
-                                    depr_line.depreciation_date, DSDF)
+                        depr_line.depreciation_date, DSDF)
                     if asset.method_period == 12:
                         depr_date = depr_date.replace(depr_date.year, 12, 31)
                     else:
-                        last_month_day = calendar.monthrange(depr_date.year,
-                                                        depr_date.month)[1]
+                        last_month_day = calendar.monthrange(
+                            depr_date.year, depr_date.month)[1]
                         depr_date = depr_date.replace(depr_date.year,
                                                       depr_date.month,
                                                       last_month_day)
-                    depr_lin_obj.write(cr, uid, depr_line.id,
-                            {'depreciation_date': depr_date.strftime(DSDF)})
+                    depr_lin_obj.write(
+                        cr, uid, depr_line.id,
+                        {'depreciation_date': depr_date.strftime(DSDF)})
         return True
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
