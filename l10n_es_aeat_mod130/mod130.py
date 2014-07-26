@@ -18,29 +18,30 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from openerp.osv import orm, fields
-from openerp.tools.translate import _
+
 
 def trunc(f, n):
     slen = len('%.*f' % (n, f))
     return float(str(f)[:slen])
 
-class l10n_es_aeat_mod130_report(orm.Model):
+
+class L10nEsAeatMod130Report(orm.Model):
     _inherit = "l10n.es.aeat.report"
     _name = "l10n.es.aeat.mod130.report"
     _description = "AEAT 130 report"
 
     _columns = {
-        'company_partner_id': fields.related('company_id', 'partner_id',
-                type='many2one', relation='res.partner', string='Partner',
-                store=True),
-        'currency_id': fields.related('company_id', 'currency_id',
-                type='many2one', relation='res.currency', string='Currency',
-                store=True),
+        'company_partner_id': fields.related(
+            'company_id', 'partner_id', type='many2one',
+            relation='res.partner', string='Partner', store=True),
+        'currency_id': fields.related(
+            'company_id', 'currency_id', type='many2one',
+            relation='res.currency', string='Currency', store=True),
         'period': fields.selection(
-                [('1T', 'First quarter'), ('2T', 'Second quarter'),
-                 ('3T', 'Third quarter'), ('4T', 'Fourth quarter')],
-                'Period', states={'draft': [('readonly', False)]},
-                readonly=True, required=True),
+            [('1T', 'First quarter'), ('2T', 'Second quarter'),
+             ('3T', 'Third quarter'), ('4T', 'Fourth quarter')],
+            'Period', states={'draft': [('readonly', False)]},
+            readonly=True, required=True),
         'activity_type': fields.selection(
             [('primary', 'Actividad agrícola, ganadera, forestal o pesquera'),
              ('other', 'Actividad distinta a las anteriores')],
@@ -65,33 +66,34 @@ class l10n_es_aeat_mod130_report(orm.Model):
             "¿Préstamo para vivienda habitual?",
             states={'draft': [('readonly', False)]}, readonly=True,
             help="Permite indicar si destina cantidades al pago de préstamos "
-                 "para la adquisición o rehabilitación de la vivienda "
-                 "habitual. Si marca la casilla, se podrá realiza un 2% de "
-                 "deducción sobre el importe de la casilla [03], con un "
-                 "máximo de 660,14 € por trimestre, o del 2% de la casilla "
-                 "[08], con un máximo de 660,14 euros anuales. \nDebe "
-                 "consultar las excepciones para las que no se computaría "
-                 "la deducción a pesar del préstamo."),
-        'complementary': fields.boolean("Presentación complementaria",
-                states={'draft': [('readonly', False)]}, readonly=True,
-                help="Se marcará si esta declaración es complementaria de "
-                     "otra u otras declaraciones presentadas anteriormente "
-                     "por el mismo concepto y correspondientes al mismo "
-                     "ejercicio y período."),
+            "para la adquisición o rehabilitación de la vivienda habitual. "
+            "Si marca la casilla, se podrá realiza un 2% de deducción sobre "
+            "el importe de la casilla [03], con un máximo de 660,14 € por "
+            "trimestre, o del 2% de la casilla [08], con un máximo de 660,14 "
+            "euros anuales. \nDebe consultar las excepciones para las que no "
+            "se computaría la deducción a pesar del préstamo."),
+        'complementary': fields.boolean(
+            "Presentación complementaria",
+            states={'draft': [('readonly', False)]}, readonly=True,
+            help="Se marcará si esta declaración es complementaria de otra u "
+            "otras declaraciones presentadas anteriormente por el mismo "
+            "concepto y correspondientes al mismo ejercicio y período."),
         'previous_electronic_code': fields.char(
             "Cód. electr. declaración anterior", size=16,
             help="Código electrónico de la declaración anterior (si se "
-                 "presentó telemáticamente). A cumplimentar sólo en el caso "
-                 "de declaración complementaria", readonly=False,
-                 states={'done': [('readonly', True)]}),
-        'previous_number': fields.char("Nº declaración anterior", size=13,
+            "presentó telemáticamente). A cumplimentar sólo en el caso de "
+            "declaración complementaria", readonly=False,
+            states={'done': [('readonly', True)]}),
+        'previous_number': fields.char(
+            "Nº declaración anterior", size=13,
             help="Número de justificante de la declaración anterior (si se "
-                 "presentó en papel. A cumplimentar sólo en el caso de "
-                 "declaración complementaria", readonly=False,
-                 states={'done': [('readonly', True)]}),
-        'comments': fields.char("Observaciones", size=350, readonly=True,
+            "presentó en papel. A cumplimentar sólo en el caso de declaración "
+            "complementaria", readonly=False,
+            states={'done': [('readonly', True)]}),
+        'comments': fields.char(
+            "Observaciones", size=350, readonly=True,
             help="Observaciones que se adjuntarán con el modelo",
-                 states={'draft': [('readonly', False)]}),
+            states={'draft': [('readonly', False)]}),
         'casilla_01': fields.float("Casilla [01] - Ingresos", readonly=True),
         'casilla_02': fields.float("Casilla [02] - Gastos", readonly=True),
         'casilla_03': fields.float("Casilla [03] - Rendimiento",
@@ -116,11 +118,11 @@ class l10n_es_aeat_mod130_report(orm.Model):
         'casilla_17': fields.float("Casilla [17]", readonly=True),
         'casilla_18': fields.float("Casilla [18]", readonly=True),
         'result': fields.float("Resultado", readonly=True),
-        'tipo_declaracion': fields.selection(
-                [('I', 'A ingresar'),
-                 ('N', 'Negativa'),
-                 ('B', 'A deducir')],
-                'Tipo declaración', readonly=True),
+        'tipo_declaracion': fields.selection([('I', 'A ingresar'),
+                                              ('N', 'Negativa'),
+                                              ('B', 'A deducir')],
+                                             'Tipo declaración',
+                                             readonly=True),
     }
 
     def _check_complementary(self, cr, uid, ids, context=None):
@@ -154,8 +156,7 @@ class l10n_es_aeat_mod130_report(orm.Model):
         return {'value': {'result': casilla_17 - casilla_18}}
 
     def _get_periods(self, cr, uid, period, report, context=None):
-        """
-        Obtiene el periodo o periodos contables asociados al trimestre del
+        """Obtiene el periodo o periodos contables asociados al trimestre del
         informe asociado.
         """
         period_obj = self.pool["account.period"]
@@ -168,23 +169,24 @@ class l10n_es_aeat_mod130_report(orm.Model):
         year = report.fiscalyear_id.date_start.split('-')[0]
         # Obtener el primer mes del trimestre
         month = int(period[0]) * 3 - 2
-        fecha_ini = datetime.strptime('%s-%s-01' %(year, month), '%Y-%m-%d')
+        fecha_ini = datetime.strptime('%s-%s-01' % (year, month), '%Y-%m-%d')
         fecha_fin = fecha_ini + relativedelta(months=3, days=-1)
-        account_period_ids = period_obj.search(cr, uid,
-                                [('date_start', '=', fecha_ini),
-                                 ('date_stop', '=', fecha_fin),
-                                 ('company_id', '=', report.company_id.id)],
-                                    context=context)
+        account_period_ids = period_obj.search(
+            cr, uid, [('date_start', '=', fecha_ini),
+                      ('date_stop', '=', fecha_fin),
+                      ('company_id', '=', report.company_id.id)],
+            context=context)
         if not account_period_ids:
-            account_period_ids = period_obj.search(cr, uid,
-                        [('quarter', '=', quarter_dict[period]),
-                         ('company_id', '=', report.company_id.id)],
-                        context=context)
+            account_period_ids = period_obj.search(
+                cr, uid, [('quarter', '=', quarter_dict[period]),
+                          ('company_id', '=', report.company_id.id)],
+                context=context)
         if not account_period_ids:
-            raise orm.except_orm("Error", "No se ha encontrado un periodo "
-                "contable adecuado para el periodo y ejercicio fiscal "
-                "indicados. Revise si tiene especificado en el periodo el "
-                "trimestre al que pertenece.")
+            raise orm.except_orm(
+                "Error", "No se ha encontrado un periodo contable adecuado "
+                "para el periodo y ejercicio fiscal indicados. Revise si "
+                "tiene especificado en el periodo el trimestre al que "
+                "pertenece.")
         return account_period_ids
 
     def _calc_ingresos_gastos(self, cr, uid, report, context=None):
@@ -203,17 +205,17 @@ class l10n_es_aeat_mod130_report(orm.Model):
         ctx = context.copy()
         ctx['fiscalyear'] = report.fiscalyear_id.id
         ctx['periods'] = period_ids
-        income_account_ids = acc_obj.search(cr, uid,
-                                [('code', 'in', income_accounts),
-                                 ('company_id','=', report.company_id.id)],
-                                context=context)
+        income_account_ids = acc_obj.search(
+            cr, uid, [('code', 'in', income_accounts),
+                      ('company_id', '=', report.company_id.id)],
+            context=context)
         for account in acc_obj.browse(cr, uid, income_account_ids,
                                       context=ctx):
             ingresos -= account.balance
-        expense_account_ids = acc_obj.search(cr, uid,
-                                [('code', 'in', expense_accounts),
-                                 ('company_id','=', report.company_id.id)],
-                                context=context)
+        expense_account_ids = acc_obj.search(
+            cr, uid, [('code', 'in', expense_accounts),
+                      ('company_id', '=', report.company_id.id)],
+            context=context)
         for account in acc_obj.browse(cr, uid, expense_account_ids,
                                       context=ctx):
             gastos += account.balance
@@ -221,22 +223,20 @@ class l10n_es_aeat_mod130_report(orm.Model):
 
     def _calc_prev_trimesters_data(self, cr, uid, report, context=None):
         periods = ['1T', '2T', '3T', '4T']
-        income_accounts = ['7']
-        expense_accounts = ['6']
         amount = 0
         for period in periods:
             if period == report.period:
                 break
-            report_ids = self.search(cr, uid,
-                        [('period', '=', period),
-                         ('fiscalyear_id', '=', report.fiscalyear_id.id),
-                         ('company_id', '=', report.company_id.id)],
-                        context=context)
+            report_ids = self.search(
+                cr, uid, [('period', '=', period),
+                          ('fiscalyear_id', '=', report.fiscalyear_id.id),
+                          ('company_id', '=', report.company_id.id)],
+                context=context)
             if not report_ids:
-                raise orm.except_orm("Error", "No se ha encontrado la "
-                        "declaración mod. 130 para el trimestre %s. No se "
-                        "puede continuar el cálculo si no existe dicha "
-                        "declaración." %period)
+                raise orm.except_orm(
+                    "Error", "No se ha encontrado la declaración mod. 130 "
+                    "para el trimestre %s. No se puede continuar el cálculo "
+                    "si no existe dicha declaración." % period)
             prev_report = self.browse(cr, uid, report_ids[0], context=context)
             if prev_report.casilla_07 > 0:
                 amount += prev_report.casilla_07 - prev_report.casilla_16
@@ -248,8 +248,9 @@ class l10n_es_aeat_mod130_report(orm.Model):
                 raise orm.except_orm("Error", 'Este tipo de actividad no '
                                      'está aún soportado por el módulo.')
             if report.has_deduccion_80:
-                raise orm.except_orm("Error", 'No se pueden calcular por el '
-                    'momento declaraciones que contengan deducciones por el '
+                raise orm.except_orm(
+                    "Error", 'No se pueden calcular por el momento '
+                    'declaraciones que contengan deducciones por el '
                     'artículo 80 bis.')
             vals = {}
             if report.activity_type == 'other':
@@ -264,8 +265,8 @@ class l10n_es_aeat_mod130_report(orm.Model):
                 # IRPF - Truncar resultado, ya que es lo que hace la AEAT
                 vals['casilla_04'] = trunc(0.20 * vals['casilla_03'], 2)
                 # Pago fraccionado previo del trimestre
-                vals['casilla_05'] = self._calc_prev_trimesters_data(cr, uid,
-                                                    report, context=context)
+                vals['casilla_05'] = self._calc_prev_trimesters_data(
+                    cr, uid, report, context=context)
                 vals['casilla_06'] = 0.0
                 vals['casilla_07'] = (vals['casilla_04'] - vals['casilla_05'] -
                                       vals['casilla_06'])
@@ -330,5 +331,5 @@ class l10n_es_aeat_mod130_report(orm.Model):
                            'debe tener 13 caracteres.')
         if msg:
             raise orm.except_orm("Error", msg)
-        return super(l10n_es_aeat_mod130_report, self).button_confirm(cr, uid,
-                                                        ids, context=context)
+        return super(L10nEsAeatMod130Report, self).button_confirm(
+            cr, uid, ids, context=context)
