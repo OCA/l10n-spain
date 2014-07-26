@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2013 Acysos S.L. (http://acysos.com) All Rights Reserved.
+#    Copyright (c) 2013 Acysos S.L. (http://acysos.com)
 #                       Ignacio Ibeas <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -19,20 +19,15 @@
 #
 ##############################################################################
 
-import base64
-import time
-
 from openerp.tools.translate import _
 from openerp.osv import orm
 
 
-class l10n_es_aeat_mod340_export_to_boe(orm.TransientModel):
-
+class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
     _inherit = "l10n.es.aeat.mod340.export_to_boe"
 
     def _get_formated_presenter_record(self, report):
-        """
-        Returns a type 0, declaration/presenter, formated record.
+        """Returns a type 0, declaration/presenter, formated record.
         Only for Comunidad Foral de Navarra
 
         Format of the record:
@@ -60,70 +55,66 @@ class l10n_es_aeat_mod340_export_to_boe(orm.TransientModel):
             174-487     Relleno a blanco
             488-500     Sello electrónico
         """
-        
         text = ''
         # Tipo de Registro
-        text += '0'     
-        # Modelo Declaración                                      
-        text += '340'           
-        # Ejercicio                              
-        text += self._formatString(report.fiscalyear_id.code, 4)   
+        text += '0'
+        # Modelo Declaración
+        text += '340'
+        # Ejercicio
+        text += self._formatString(report.fiscalyear_id.code, 4)
          # NIF del presentador
-        text += self._formatString(report.presenter_vat or '', 9)      
-        # Apellidos y nombre del presentador   
-        text += self._formatString(report.presenter_name or '', 40)     
+        text += self._formatString(report.presenter_vat or '', 9)
+        # Apellidos y nombre del presentador
+        text += self._formatString(report.presenter_name or '', 40)
         # Siglas de la vía pública
         text += self._formatString(report.presenter_address_acronym or '', 2)
         # Nombre de la vía pública
-        text += self._formatString(report.presenter_address_name or '', 20) 
-        # Número de la casa  
-        text += self._formatNumber(report.presenter_address_number or 0, 5)  
+        text += self._formatString(report.presenter_address_name or '', 20)
+        # Número de la casa
+        text += self._formatNumber(report.presenter_address_number or 0, 5)
         # Escalera
-        text += self._formatString(report.presenter_address_stair or '', 2)   
+        text += self._formatString(report.presenter_address_stair or '', 2)
         # Piso
-        text += self._formatString(report.presenter_address_floor or '', 2)  
-        # Puerta 
-        text += self._formatString(report.presenter_address_door or '', 2)  
-        # Código postal 
-        text += self._formatNumber(int(report.presenter_city_id.zip or 0), 5)  
+        text += self._formatString(report.presenter_address_floor or '', 2)
+        # Puerta
+        text += self._formatString(report.presenter_address_door or '', 2)
+        # Código postal
+        text += self._formatNumber(int(report.presenter_city_id.zip or 0), 5)
         # Municipio
         text += self._formatString(report.presenter_city_id.name or '', 12)
-        # Código postal  
+        # Código postal
         if report.presenter_city_id:
-            text += self._formatNumber(int(report.presenter_city_id.state_id.code), 2)  
+            text += self._formatNumber(int(
+                report.presenter_city_id.state_id.code), 2)
         else:
             text += 2 * ' '
         # Numero total de declarantes, actualmente solo 1
-        text += '00001'      
+        text += '00001'
         # Número total de registros
-        text += self._formatNumber(report.number_records, 9)   
+        text += self._formatNumber(report.number_records, 9)
         # Tipo de soporte
-        text += self._formatString(report.support_type, 1)   
+        text += self._formatString(report.support_type, 1)
         # Persona de contacto (Teléfono)
-        text += self._formatString(report.presenter_phone_contact or '', 9) 
+        text += self._formatString(report.presenter_phone_contact or '', 9)
         # Persona de contacto (Apellidos y nombre)
-        text += self._formatString(report.presenter_name_contact or '', 40) 
+        text += self._formatString(report.presenter_name_contact or '', 40)
         # Blancos
-        text += 314 * ' '   
+        text += 314 * ' '
         # Firma digital opcional, no implementado
-        text += 13 * ' '   
+        text += 13 * ' '
         text += '\r\n'
-        
-        assert len(text) == 502, _("The type 0 record must be 500 characters long")
+
+        assert len(text) == 502, \
+            _("The type 0 record must be 500 characters long")
         return text
-    
-    def _get_formatted_other_records(self, cr, uid, report,context=None):
+
+    def _get_formatted_other_records(self, cr, uid, report, context=None):
         file_contents = ''
-        
         file_contents += self._get_formated_presenter_record(report)
-
         for invoice_issued in report.issued:
-            file_contents += self._get_formatted_invoice_issued(cr,uid,report, 
-                                                                invoice_issued)
-
+            file_contents += self._get_formatted_invoice_issued(
+                cr, uid, report, invoice_issued)
         for invoice_received in report.received:
-            file_contents += self._get_formatted_invoice_received(cr,uid,
-                                                      report, invoice_received)
-
+            file_contents += self._get_formatted_invoice_received(
+                cr, uid, report, invoice_received)
         return file_contents
-
