@@ -2,15 +2,14 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 20011 Ting (http://www.ting.es) All Rights Reserved.
-#    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com) All Rights Reserved
+#    Copyright (c) 20011 Ting (http://www.ting.es)
+#    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com)
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
-#                      
-#    $Id$
+#
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -22,10 +21,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import report
-import wizard
-import mod340
-import res_partner
-import account_invoice
-import account
-
+from . import wizard
+from . import mod340
+from . import res_partner
+from . import account_invoice
+from . import account
