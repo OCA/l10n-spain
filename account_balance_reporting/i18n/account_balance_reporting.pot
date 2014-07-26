@@ -173,7 +173,9 @@ msgstr ""
 
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template,balance_mode:0
-msgid "Formula calculation mode: Depending on it, the balance is calculated as follows:\n"
+msgid "\n"
+"Formula calculation mode: Depending on it, the balance is calculated as\n"
+"follows:\n"
 "  Mode 0: debit-credit (default);\n"
 "  Mode 1: debit-credit, credit-debit for accounts in brackets;\n"
 "  Mode 2: credit-debit;\n"
@@ -485,11 +487,13 @@ msgstr ""
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template.line,current_value:0
 #: help:account.balance.reporting.template.line,previous_value:0
-msgid "Value calculation formula: Depending on this formula the final value is calculated as follows:\n"
+msgid "\n"
+"Value calculation formula: Depending on this formula the final value is\n"
+"calculated as follows:\n"
 "  Empy template value: sum of (this concept) children values.\n"
 "  Number with decimal point (\"10.2\"): that value (constant).\n"
-"  Account numbers separated by commas (\"430,431,(437)\"): Sum of the account balances\n"
-"    (the sign of the balance depends on the balance mode).\n"
+"  Account numbers separated by commas (\"430,431,(437)\"): Sum of the account\n"
+"  balances (the sign of the balance depends on the balance mode).\n"
 "  Concept codes separated by \"+\" (\"11000+12000\"): Sum of those concepts values.\n"
 ""
 msgstr ""
