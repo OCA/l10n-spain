@@ -2,16 +2,16 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2010-2010 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2010-2010 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                            Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2010-2010 NaN-Tic (http://www.nan-tic.com) All Rights Reserved.
+#    Copyright (c) 2010-2010 NaN-Tic (http://www.nan-tic.com)
 #                            Albert Cervera
 #    Copyright (c) 2013
 #        Joan M. Grande <totaler@gmail.com> All Rights Reserved
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -44,22 +44,22 @@ class account_account(orm.Model):
         pos = 0
         while pos < len(args):
             if (args[pos][0] == 'code' and
-                args[pos][1] in ('like', 'ilike', '=like') and
-                args[pos][2]):
+                    args[pos][1] in ('like', 'ilike', '=like') and
+                    args[pos][2]):
                 query = args[pos][2].replace('%', '')
                 if '.' in query:
                     query = query.partition('.')
                     cr.execute("""SELECT id FROM account_account
                                 WHERE type <> 'view'
                                 AND code ~ ('^' || %s || '0+' || %s || '$')""",
-                                (query[0], query[2]))
+                               (query[0], query[2]))
                     ids = [x[0] for x in cr.fetchall()]
                     if ids:
                         args[pos] = ('id', 'in', ids)
             pos += 1
         return super(account_account, self).search(cr, uid, args,
-                                                  offset, limit, order,
-                                                  context, count)
+                                                   offset, limit, order,
+                                                   context, count)
 
 
 class account_account_template(orm.Model):
