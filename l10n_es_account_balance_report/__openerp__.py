@@ -2,8 +2,8 @@
 ##############################################################################
 #
 #    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
-#        Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#        Pexego Sistemas Informáticos. (http://pexego.es)
+#        Zikzakmedia S.L. (http://zikzakmedia.com)
 #
 #    Adaptado a la versión 7.0 por:
 #        Juanjo Algaz <juanjoa@malagatic.com>   www.malagatic.com
@@ -17,7 +17,7 @@
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
@@ -26,17 +26,17 @@
 ##############################################################################
 
 {
-    "name" : "Informes de cuentas anuales españoles",
-    "version" : "0.1",
-    "author" : "Pexego, Zikzakmedia",
+    "name": "Informes de cuentas anuales españoles",
+    "version": "0.1",
+    "author": "Pexego, Zikzakmedia",
     "contributors": [
         "Juanjo Algaz <juanjoa@malagatic.com>",
         "Joaquín Gutierrez <joaquing.pedrosa@gmail.com>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
     ],
-    "license" : "AGPL-3",
-    "website" : "http://www.pexego.es",
-    "category" : "Localisation/Accounting",
+    "license": "AGPL-3",
+    "website": "http://www.pexego.es",
+    "category": "Localisation/Accounting",
     "description": """
 Informes de cuentas anuales oficiales españoles.
 ================================================
@@ -63,8 +63,8 @@ del Registro Mercantil:
         'l10n_es',
         'account_balance_reporting',
     ],
-    "demo" : [ ],
-    "data" : [
+    "demo": [],
+    "data": [
         'data/balance_pymes.xml',
         'data/pyg_pymes.xml',
         'data/balance_abreviado.xml',
