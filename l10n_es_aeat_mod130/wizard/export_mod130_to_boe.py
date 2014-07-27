@@ -30,7 +30,7 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
 
     def _get_formatted_declaration_record(self, cr, uid, report, context=None):
         res = ''
-        ## cabecera
+        # cabecera
         res += "13001 "
         # Tipo de declaración
         # B (resultado a deducir)
@@ -112,7 +112,7 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
         # Ingreso (4) Forma de pago - "0" No consta, "1" Efectivo,
         # "2" Adeudo en cuenta, "3" Domiciliación
         res += self._formatString("0", 1)
-        ## Ingreso (4) CCC - Entidad - Sucursal - DC - Nº de cuenta - SIN USO
+        # Ingreso (4) CCC - Entidad - Sucursal - DC - Nº de cuenta - SIN USO
         res += self._formatString("",  20)
         # A deducir (5) Declaración con resultado a deducir en los siguientes
         # pagos fraccionados
@@ -135,11 +135,11 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
         res += self._formatString(report.company_id.partner_id.city, 16)
         date = datetime.strptime(report.calculation_date,
                                  DEFAULT_SERVER_DATETIME_FORMAT)
-        ## fecha: Dia
+        # fecha: Dia
         res += self._formatString(date.strftime("%d"), 2)
-        ## fecha: Mes
+        # fecha: Mes
         res += self._formatString(_(date.strftime("%B")), 10)
-        ## fecha: Año
+        # fecha: Año
         res += self._formatString(date.strftime("%Y"), 4)
         res += "\r\n".encode("ascii")
         return res
