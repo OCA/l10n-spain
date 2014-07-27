@@ -74,7 +74,7 @@ class Csb3401(orm.Model):
             text += planned.strftime('%d%m%y')
         else:
             text += today
-        #text += self.convert(self.order.mode.nombre, 40)
+        # text += self.convert(self.order.mode.nombre, 40)
         ccc = converter.bank_account_parts(
             cr, uid, self.order.mode.bank_id.acc_number,
             self.order.mode.partner_id.name, context)

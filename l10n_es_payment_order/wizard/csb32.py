@@ -172,7 +172,7 @@ class Csb32(orm.Model):
         texto += '  '
         addresses = self.pool['res.partner'].address_get(
             cr, uid, [recibo['partner_id'].id])
-        #if not addresses:
+        # if not addresses:
         #    print "NO ADDRESSES"
         address = self.pool['res.partner'].browse(cr, uid, addresses['default'],
                                                   context)
