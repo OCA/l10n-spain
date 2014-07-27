@@ -35,7 +35,7 @@ class L10nEsPartnerImportWizard(orm.TransientModel):
             path = os.path.join('l10n_es_partner', 'wizard', 'data_banks.xml')
             fp = tools.file_open(path)
             idref = {}
-            tools.convert_xml_import(cr, 'l10n_es_partner', fp,  idref, 'init',
+            tools.convert_xml_import(cr, 'l10n_es_partner', fp, idref, 'init',
                                      noupdate=True)
         except IOError:
             pass
