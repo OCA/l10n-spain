@@ -229,7 +229,7 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
                 invoice_issued.invoice_id.date_invoice.split('-')[1], 2)
             text += self._formatNumber(
                 invoice_issued.invoice_id.date_invoice.split('-')[2], 2)
-            #Tipo impositivo
+            # Tipo impositivo
             text += self._formatNumber(tax_line.tax_percentage * 100, 3, 2)
             # Base imponible
             text += self._formatNumber(tax_line.base_amount, 11, 2, True)
@@ -388,7 +388,7 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             text += self._formatNumber(exp_date.split('-')[0], 4)
             text += self._formatNumber(exp_date.split('-')[1], 2)
             text += self._formatNumber(exp_date.split('-')[2], 2)
-            #Tipo impositivo
+            # Tipo impositivo
             text += self._formatNumber(tax_line.tax_percentage * 100, 3, 2)
             # Base imponible
             text += self._formatNumber(tax_line.base_amount, 11, 2, True)
@@ -413,9 +413,9 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             text += 80 * ' '
             # Cuota deducible
             text += ' ' + self._formatNumber(0, 11, 2)
-            #Fecha de Pago #TODO
+            # Fecha de Pago #TODO
             text += 8 * '0'
-            #Importes pagados #TODO
+            # Importes pagados #TODO
             text += 13 * '0'
             # Medio de pago utilizado
             text += ' '
