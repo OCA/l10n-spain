@@ -75,7 +75,7 @@ class Mod349(orm.Model):
     _name = "l10n.es.aeat.mod349.report"
     _description = "AEAT Model 349 Report"
 
-    ### FUNCTIONS ###
+    # FUNCTIONS ###
     def _get_report_totals(self, cr, uid, ids, name, args, context=None):
         res = {}
         for report in self.browse(cr, uid, ids, context=context):
@@ -125,7 +125,7 @@ class Mod349(orm.Model):
              'country_id': partner_country.id or False,
              'total_operation_amount': sum_credit - sum_debit
              })
-        ### Creation of partner detail lines
+        # Creation of partner detail lines
         for invoice in invoices_ids:
             detail_obj = self.pool['l10n.es.aeat.mod349.partner_record_detail']
             detail_obj.create(cr, uid,
@@ -153,7 +153,7 @@ class Mod349(orm.Model):
         partner_country = partner_country and partner_country[0] or False
         record = {}
         for invoice in refunds:
-            #goes around all refunded invoices
+            # goes around all refunded invoices
             for origin_inv in invoice.origin_invoices_ids:
                 if origin_inv.state in ['open', 'paid']:
                     # searches for details of another 349s to restor
@@ -166,22 +166,22 @@ class Mod349(orm.Model):
                             valid_refund_details.remove(detail.id)
                     if valid_refund_details:
                         rd = refundpol.browse(cr, uid, valid_refund_details[0])
-                        #creates a dictionary key with partner_record id to
-                        #after recover it
+                        # creates a dictionary key with partner_record id to
+                        # after recover it
                         key = str(rd.partner_record_id.id)
-                        #separates restitutive invoices and nomal, refund
-                        #invoices of correct period
+                        # separates restitutive invoices and nomal, refund
+                        # invoices of correct period
                         if record.get(key):
                             record[key].append(invoice)
-                            #NOTE: Two or more refunded invoices declared in
-                            #different 349s isn't implemented
+                            # NOTE: Two or more refunded invoices declared in
+                            # different 349s isn't implemented
                             break
                         else:
                             record[key] = [invoice]
-                            #NOTE: Two or more refunded invoices declared in
-                            #different 349s isn't implemented
+                            # NOTE: Two or more refunded invoices declared in
+                            # different 349s isn't implemented
                             break
-        #recorremos nuestro diccionario y vamos creando registros
+        # recorremos nuestro diccionario y vamos creando registros
         for line in record:
             partner_rec = refund_obj.browse(cr, uid, int(line),
                                             context=context)
@@ -201,7 +201,7 @@ class Mod349(orm.Model):
                  'month_selection': partner_rec.report_id.month_selection,
                  'fiscalyear_id': partner_rec.report_id.fiscalyear_id.id},
                 context=context)
-            ### Creation of partner detail lines
+            # Creation of partner detail lines
             for invoice in record[line]:
                 obj_detail.create(
                     cr, uid, {'refund_id': record_created,
@@ -217,7 +217,7 @@ class Mod349(orm.Model):
         partner_record_obj = self.pool['l10n.es.aeat.mod349.partner_record']
         partner_refund_obj = self.pool['l10n.es.aeat.mod349.partner_refund']
         for mod349 in self.browse(cr, uid, ids, context=context):
-            ## Remove previous partner records and partner refunds in report
+            # Remove previous partner records and partner refunds in report
             partner_record_obj.unlink(cr, uid, [record.id for record in
                                                 mod349.partner_record_ids],
                                       context=context)
@@ -230,7 +230,7 @@ class Mod349(orm.Model):
             partner_ids = partner_obj.search(cr, uid, [], context=context)
             for partner_id in partner_ids:
                 for op_key in [x[0] for x in OPERATION_KEYS]:
-                    ## Invoices
+                    # Invoices
                     invoice_ids = invoice_obj._get_invoices_by_type(
                         cr, uid, partner_id, operation_key=op_key,
                         period_selection=mod349.period_selection,
@@ -264,8 +264,8 @@ class Mod349(orm.Model):
         (partner records and partner refund) are filled
         """
         for item in self.browse(cr, uid, ids, context):
-            ## Browse partner record lines to check if
-            ## all are correct (all fields filled)
+            # Browse partner record lines to check if
+            # all are correct (all fields filled)
             for partner_record in item.partner_record_ids:
                 if not partner_record.partner_record_ok:
                     raise orm.except_orm(
@@ -288,7 +288,7 @@ class Mod349(orm.Model):
     def _check_names(self, cr, uid, ids, context=None):
         """Checks that names are correct (not formed by only one string)"""
         for item in self.browse(cr, uid, ids, context=context):
-            ## Check company name and title
+            # Check company name and title
             if (not item.company_id.partner_id or
                     not item.company_id.partner_id.title):
                 return {
@@ -299,7 +299,7 @@ class Mod349(orm.Model):
                                      'to import on AEAT help program')
                         }
                     }
-            ## Check Full name (contact_name)
+            # Check Full name (contact_name)
             if (not item.contact_name or
                     len(item.contact_name.split(' ')) < 2):
                 raise orm.except_orm(_('Error!'),
@@ -314,7 +314,7 @@ class Mod349(orm.Model):
                 _('Error!'),
                 _("Name '%s' have not allowed characters.\nPlease, fix it "
                   "before confirm the report") % mod349_obj.contact_name)
-        ## Check partner record partner names
+        # Check partner record partner names
         for partner_record in mod349_obj.partner_record_ids:
             if not _check_valid_string(partner_record.partner_id.name):
                 raise orm.except_orm(
@@ -322,7 +322,7 @@ class Mod349(orm.Model):
                     _("Partner name '%s' in partner records is not valid "
                       "due to incorrect characters") %
                     partner_record.partner_id.name)
-        ## Check partner refund partner names
+        # Check partner refund partner names
         for partner_refund in mod349_obj.partner_refund_ids:
             if not _check_valid_string(partner_refund.partner_id.name):
                 raise orm.except_orm(
@@ -351,7 +351,7 @@ class Mod349(orm.Model):
         return {'value': {'period_id': period_id and period_id[0] or False}}
 
     _columns = {
-        ## The name is just an alias
+        # The name is just an alias
         'name': fields.function(_get_report_alias, type="char",
                                 string="Name", method=True),
         'period_ids': fields.many2many('account.period',
@@ -372,7 +372,7 @@ class Mod349(orm.Model):
         'frequency_change': fields.boolean(
             'Frequency change',
             states={'confirmed': [('readonly', True)]}),
-        ## Identification
+        # Identification
         'contact_name': fields.char(
             "Full Name", size=40, help="Must have name and surname.",
             states={'calculated': [('required', True)],
@@ -380,7 +380,7 @@ class Mod349(orm.Model):
         'contact_phone': fields.char(
             "Phone", size=9, states={'calculated': [('required', True)],
                                      'confirmed': [('readonly', True)]}),
-        ## TOTALS
+        # TOTALS
         'total_partner_records': fields.function(
             _get_report_totals, string="Partners records", method=True,
             type='integer', multi="report_totals_multi"),

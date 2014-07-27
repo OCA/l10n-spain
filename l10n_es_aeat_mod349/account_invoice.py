@@ -107,7 +107,7 @@ class AccountInvoice(orm.Model):
         year, period or month.
         """
         assert period_selection, 'There is no period selected'
-        ## Set type of invoice
+        # Set type of invoice
         type = ['in_invoice', 'out_invoice', 'in_refund', 'out_refund']
         fy_obj = self.pool['account.fiscalyear']
         fy = fy_obj.browse(cr, uid, fiscalyear_id, context=context)
@@ -115,7 +115,7 @@ class AccountInvoice(orm.Model):
                   ('state', 'in', ['open', 'paid']),
                   ('type', 'in', type),
                   ('operation_key', '=', operation_key)]
-        ## Invoices by fiscalyear (Annual)
+        # Invoices by fiscalyear (Annual)
         if period_selection == '0A':
             if not fiscalyear_id:
                 raise orm.except_orm(
@@ -124,14 +124,14 @@ class AccountInvoice(orm.Model):
             domain.append(('period_id', 'in',
                            [period.id for period in fy.period_ids
                             if not period.special]))
-        ## Invoices by period
+        # Invoices by period
         elif period_selection in ['1T', '2T', '3T', '4T']:
             if not period_id:
                 raise orm.except_orm(
                     _('Error'), _('Cannot get invoices.\nThere is no period '
                                   'selected'))
             domain.append(('period_id', 'in', period_id))
-        ## Invoices by month
+        # Invoices by month
         else:
             if not month and not fiscalyear_id:
                 raise orm.except_orm(

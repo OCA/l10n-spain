@@ -141,7 +141,7 @@ class Mod349ExportToBoe(orm.TransientModel):
         text += 204 * ' '  # Blancos
         # NIF del representante legal
         text += self._formatString(report.representative_vat, 9)
-        #text += 9*' '
+        # text += 9*' '
         text += 88 * ' '  # Blancos
         text += 13 * ' '  # Sello electrónico
         text += '\r\n'  # Retorno de carro + Salto de línea
@@ -193,8 +193,8 @@ class Mod349ExportToBoe(orm.TransientModel):
                                  code must be numeric and contain the fiscal \
                                  year number. Please, fix it and try again.'))
 
-        ## Formateo de algunos campos (debido a que pueden no ser correctos)
-        ## NIF : Se comprueba que no se incluya el código de pais
+        # Formateo de algunos campos (debido a que pueden no ser correctos)
+        # NIF : Se comprueba que no se incluya el código de pais
         company_vat = report.company_vat
         if len(report.company_vat) > 9:
             company_vat = report.company_vat[2:]
