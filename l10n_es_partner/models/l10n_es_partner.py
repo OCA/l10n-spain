@@ -119,7 +119,8 @@ class ResPartnerBank(orm.Model):
                         return {'value': {'acc_number': number}}
                 elif state == 'iban':
                     partner_bank_obj = self.pool['res.partner.bank']
-                    if partner_bank_obj.is_iban_valid(cr, uid, account, context):
+                    if partner_bank_obj.is_iban_valid(cr, uid, account,
+                                                      context):
                         number = self._pretty_iban(account.replace(" ", ""))
                         bank_ids = bank_obj.search(cr, uid,
                                                    [('code', '=', number[5:9])],
