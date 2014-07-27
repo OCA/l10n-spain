@@ -44,7 +44,7 @@ después de instalar este módulo.
 """,
     "depends": [
         'account',
-        ],
+    ],
     "data": [
         'views/account_view.xml',
     ],
