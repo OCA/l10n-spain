@@ -2,9 +2,9 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2008-2010 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2008-2010 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                            Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2012-2013, Grupo OPENTIA (<http://opentia.com>) Registered EU Trademark.
+#    Copyright (c) 2012-2013, Grupo OPENTIA (<http://opentia.com>)
 #                            Dpto. Consultoría <consultoria@opentia.es>
 #    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
