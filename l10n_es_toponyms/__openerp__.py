@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
 #    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
@@ -23,20 +23,20 @@
 ##############################################################################
 
 {
-    "name" : "Topónimos españoles",
-    "version" : "1.0",
-    "author" : "Spanish Localization Team",
-    "website" : "https://launchpad.net/openerp-spain",
-    "category" : "Localisation/Europe",
+    "name": "Topónimos españoles",
+    "version": "1.0",
+    "author": "Spanish Localization Team",
+    "website": "https://launchpad.net/openerp-spain",
+    "category": "Localisation/Europe",
     "description": """
 Provincias, municipios y códigos postales de España.
 
-  * Añade las 52 provincias actuales de España con posibilidad de escoger 
+  * Añade las 52 provincias actuales de España con posibilidad de escoger
     entre versión oficial, española o ambas.
-  * Proporciona un asistente para dar de alta los municipios y provincias por 
-    defecto asociados a los códigos postales españoles. 
-  * Utilizando el módulo base_location, permite rellenar automáticamente los 
-    campos ciudad y provincia del formulario de empresa, de contacto y de 
+  * Proporciona un asistente para dar de alta los municipios y provincias por
+    defecto asociados a los códigos postales españoles.
+  * Utilizando el módulo base_location, permite rellenar automáticamente los
+    campos ciudad y provincia del formulario de empresa, de contacto y de
     compañía a partir del código postal o el nombre de la ciudad.
 
 Los datos han sido obtenidos de GeoNames (http://www.geonames.org).
@@ -45,13 +45,13 @@ Los datos han sido obtenidos de GeoNames (http://www.geonames.org).
 
 https://launchpad.net/partner-contact-management
 """,
-    "depends" : ["base", "base_location"],
-    "license" : "AGPL-3",
-    "data" : [
+    "depends": ["base", "base_location"],
+    "license": "AGPL-3",
+    "data": [
         "wizard/l10n_es_toponyms_wizard.xml",
     ],
-    'images': ['images/l10n_es_toponyms_config.png',],
-    "demo" : [ ],
+    'images': ['images/l10n_es_toponyms_config.png'],
+    "demo": [],
     "active": False,
     "installable": True
-} 
+}
