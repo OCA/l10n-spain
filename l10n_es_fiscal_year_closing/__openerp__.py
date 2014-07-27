@@ -2,11 +2,11 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2008 ACYSOS S.L. (http://acysos.com) All Rights Reserved.
+#    Copyright (c) 2008 ACYSOS S.L. (http://acysos.com)
 #                       Pedro Tarrafeta <pedro@acysos.com>
-#    Copyright (c) 2012 Servicios Tecnológicos Avanzados (http://www.serviciosbaeza.com)
+#    Copyright (c) 2012 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
 #    Copyright (c) 2012 Avanzosc (http://www.avanzosc.com)
 #    Copyright (c) 2013 Joaquin Gutierrez (http://www.gutierrezweb.es)

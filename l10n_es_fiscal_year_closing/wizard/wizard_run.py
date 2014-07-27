@@ -3,7 +3,7 @@
 #
 #    OpenERP - Import operations model 347 engine
 #    Copyright (C) 2009 Asr Oss. All Rights Reserved
-#    Copyright (c) 2012 Servicios Tecnológicos Avanzados (http://www.serviciosbaeza.com)
+#    Copyright (c) 2012 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
 #    Copyright (c) 2012 Avanzosc (http://www.avanzosc.com)
 #
@@ -32,15 +32,18 @@ class CancelFyc(orm.TransientModel):
     _name = "account.fiscalyear.closing.cancel_wizard"
     _description = "Cancel the Fiscal Year Closing"
     _columns = {
-        'delete_pyg': fields.boolean('Delete P&L account move', readonly=True),
-        'delete_net_pyg': fields.boolean('Delete net P&L account move', readonly=True),
-        'delete_close': fields.boolean('Delete closing account move', readonly=True),
-        'delete_open': fields.boolean('Delete opening account move', readonly=True),
+        'delete_pyg': fields.boolean(
+            'Delete P&L account move', readonly=True),
+        'delete_net_pyg': fields.boolean(
+            'Delete net P&L account move', readonly=True),
+        'delete_close': fields.boolean(
+            'Delete closing account move', readonly=True),
+        'delete_open': fields.boolean(
+            'Delete opening account move', readonly=True),
     }
 
     def default_get(self, cr, uid, fields, context=None):
-        """
-        This function gets default values
+        """This function gets default values
         @param self: The object pointer
         @param cr: the current row, from the database cursor,
         @param uid: the current user’s ID for security checks,
@@ -50,9 +53,11 @@ class CancelFyc(orm.TransientModel):
         @return : default values of fields.
         """
         context = context or {}
-        res = super(CancelFyc, self).default_get(cr, uid, fields, context=context)
+        res = super(CancelFyc, self).default_get(cr, uid, fields,
+                                                 context=context)
         if context.get('active_id'):
-            fyc = self.pool.get('account.fiscalyear.closing').browse(cr, uid, context['active_id'])
+            fyc = self.pool['account.fiscalyear.closing'].browse(
+                cr, uid, context['active_id'])
             res['delete_pyg'] = bool(fyc.loss_and_profit_move_id)
             res['delete_net_pyg'] = bool(fyc.net_loss_and_profit_move_id)
             res['delete_close'] = bool(fyc.closing_move_id)
@@ -60,9 +65,7 @@ class CancelFyc(orm.TransientModel):
         return res
 
     def _remove_move(self, cr, uid, move, context):
-        """
-        Remove an account move, removing reconciles if any
-        """
+        """Remove an account move, removing reconciles if any"""
         # Unreconcile the move if needed
         reconcile_ids = set()
         for line in move.line_id:
@@ -105,12 +108,14 @@ class CancelFyc(orm.TransientModel):
                    'SET state = %s WHERE id = %s',
                    ('draft', fy_id))
         result = {}
-        if fyc.loss_and_profit_move_id or fyc.net_loss_and_profit_move_id or fyc.closing_move_id or fyc.opening_move_id:
+        if fyc.loss_and_profit_move_id or fyc.net_loss_and_profit_move_id or \
+                fyc.closing_move_id or fyc.opening_move_id:
             if fyc.loss_and_profit_move_id:
                 self._remove_move(cr, uid, fyc.loss_and_profit_move_id, context)
                 result['loss_and_profit_move_id'] = False
             if fyc.net_loss_and_profit_move_id:
-                self._remove_move(cr, uid, fyc.net_loss_and_profit_move_id, context)
+                self._remove_move(cr, uid, fyc.net_loss_and_profit_move_id,
+                                  context)
                 result['net_loss_and_profit_move_id'] = False
             if fyc.closing_move_id:
                 self._remove_move(cr, uid, fyc.closing_move_id, context)
@@ -121,13 +126,12 @@ class CancelFyc(orm.TransientModel):
         fyc_obj.write(cr, uid, [fyc.id], result, context)
         # Change workflow state
         wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(uid, 'account.fiscalyear.closing', context['active_id'], 'cancel', cr)
-
+        wf_service.trg_validate(uid, 'account.fiscalyear.closing',
+                                context['active_id'], 'cancel', cr)
         return {'type': 'ir.actions.act_window_close'}
 
 
 class ExecuteFyc(orm.TransientModel):
-
     _name = 'account.fiscalyear.closing.execute_wizard'
     _description = "Execute the Fiscal Year Closing"
 
@@ -137,13 +141,14 @@ class ExecuteFyc(orm.TransientModel):
         'create_close': fields.boolean('Create closing move', readonly=True),
         'create_open': fields.boolean('Create opening move', readonly=True),
         'check_draft': fields.boolean('Check draft moves', readonly=True),
-        'check_unbalanced': fields.boolean('Check unbalanced moves', readonly=True),
-        'check_invalid': fields.boolean('Check invalid periods or date moves', readonly=True),
+        'check_unbalanced': fields.boolean('Check unbalanced moves',
+                                           readonly=True),
+        'check_invalid': fields.boolean('Check invalid periods or date moves',
+                                        readonly=True),
     }
 
     def default_get(self, cr, uid, fields, context=None):
-        """
-        This function gets default values
+        """This function gets default values
         @param self: The object pointer
         @param cr: the current row, from the database cursor,
         @param uid: the current user’s ID for security checks,
@@ -153,9 +158,11 @@ class ExecuteFyc(orm.TransientModel):
         @return : default values of fields.
         """
         context = context or {}
-        res = super(ExecuteFyc, self).default_get(cr, uid, fields, context=context)
+        res = super(ExecuteFyc, self).default_get(cr, uid, fields,
+                                                  context=context)
         if context.get('active_id'):
-            fyc = self.pool.get('account.fiscalyear.closing').browse(cr, uid, context['active_id'])
+            fyc = self.pool['account.fiscalyear.closing'].browse(
+                cr, uid, context['active_id'])
             res['create_pyg'] = fyc.create_loss_and_profit
             res['create_net_pyg'] = fyc.create_net_loss_and_profit
             res['create_close'] = fyc.create_closing
@@ -166,12 +173,13 @@ class ExecuteFyc(orm.TransientModel):
         return res
 
     def _check_invalid_period_moves(self, cr, uid, fyc, context):
-        """
-        Checks for moves with invalid period on the fiscal year that is being closed
+        """Checks for moves with invalid period on the fiscal year that is
+        being closed
         """
         move_obj = self.pool.get('account.move')
         # Consider all the periods of the fiscal year.
-        period_ids = [period.id for period in fyc.closing_fiscalyear_id.period_ids]
+        period_ids = [period.id for period in
+                      fyc.closing_fiscalyear_id.period_ids]
         # Find moves on the closing fiscal year with dates of previous years
         account_move_ids = move_obj.search(cr, uid, [
             ('period_id', 'in', period_ids),
@@ -190,23 +198,24 @@ class ExecuteFyc(orm.TransientModel):
         ], context=context))
         # If one or more moves where found, raise an exception
         if len(account_move_ids):
-            invalid_period_moves = move_obj.browse(cr, uid, account_move_ids, context)
+            invalid_period_moves = move_obj.browse(cr, uid, account_move_ids,
+                                                   context)
             str_invalid_period_moves = '\n'.join(
                 [
                     'id: %s, date: %s, number: %s, ref: %s' %
-                    (move.id, move.date, move.name, move.ref) for move in invalid_period_moves
+                    (move.id, move.date, move.name, move.ref) for move in
+                    invalid_period_moves
                 ]
             )
             raise orm.except_orm(
                 _('Error'),
-                _('One or more moves with invalid period or date found on the fiscal year: \n%s')
+                _('One or more moves with invalid period or date found on the '
+                  'fiscal year: \n%s')
                 % str_invalid_period_moves)
 
     def _check_draft_moves(self, cr, uid, fyc, context):
-        """
-        Checks for draft moves on the fiscal year that is being closed
-        """
-        move_obj = self.pool.get('account.move')
+        """Checks for draft moves on the fiscal year that is being closed"""
+        move_obj = self.pool['account.move']
         # Consider all the periods of the fiscal year *BUT* the L&P, Net L&P
         # and the closing one.
         period_ids = []
@@ -232,12 +241,12 @@ class ExecuteFyc(orm.TransientModel):
             )
 
     def _check_unbalanced_moves(self, cr, uid, fyc, context):
-        """
-        Checks for unbalanced moves on the fiscal year that is being closed
-        """
-        move_obj = self.pool.get('account.move')
-        decimal_precision_obj = self.pool.get('decimal.precision')
-        # Consider all the periods of the fiscal year *BUT* the L&P, Net L&P and the Closing one.
+        """Checks for unbalanced moves on the fiscal year that is being
+        closed"""
+        move_obj = self.pool['account.move']
+        decimal_precision_obj = self.pool['decimal.precision']
+        # Consider all the periods of the fiscal year *BUT* the L&P, Net L&P
+        # and the Closing one.
         period_ids = []
         for period in fyc.closing_fiscalyear_id.period_ids:
             if period.id != fyc.lp_period_id.id \
@@ -255,52 +264,66 @@ class ExecuteFyc(orm.TransientModel):
             amount = 0
             for line in move.line_id:
                 amount += (line.debit - line.credit)
-            if round(abs(amount), decimal_precision_obj.precision_get(cr, uid, 'Account')) > 0:
+            if round(abs(amount), decimal_precision_obj.precision_get(
+                    cr, uid, 'Account')) > 0:
                 unbalanced_moves.append(move)
         # If one or more unbalanced moves where found, raise an exception
         if len(unbalanced_moves):
             str_unbalanced_moves = '\n'.join(
                 [
                     'id: %s, date: %s, number: %s, ref: %s'
-                    % (move.id, move.date, move.name, move.ref) for move in unbalanced_moves
+                    % (move.id, move.date, move.name, move.ref) for move in
+                    unbalanced_moves
                 ]
             )
-            raise orm.except_orm(_('Error'), _('One or more unbalanced moves found: \n%s') % str_unbalanced_moves)
+            raise orm.except_orm(
+                _('Error'),
+                _('One or more unbalanced moves found: \n%s') %
+                str_unbalanced_moves)
 
     def _create_closing_move(self, cr, uid, account_mapping_ids, period_ids,
-                             description, date, period_id, journal_id, company_id,
-                             fiscalyear_id, context=None):
+                             description, date, period_id, journal_id,
+                             company_id, fiscalyear_id, context=None):
+        """Create a closing move with the given data, provided by another
+        method.
         """
-        Create a closing move with the given data, provided by another method.
-        """
-        context = context or {}
-
+        if context is None:
+            context = {}
         move_lines = []
         dest_accounts_totals = {}
         ctx = context.copy()
-        ctx.update({'fiscalyear': fiscalyear_id, 'periods': period_ids, 'company_id': company_id})
-        account_obj = self.pool.get('account.account')
-        move_line_obj = self.pool.get('account.move.line')
-        decimal_precision_obj = self.pool.get('decimal.precision')
+        ctx.update({'fiscalyear': fiscalyear_id,
+                    'periods': period_ids,
+                    'company_id': company_id})
+        account_obj = self.pool['account.account']
+        move_line_obj = self.pool['account.move.line']
+        dp_obj = self.pool['decimal.precision']
 
         # For each (parent) account in the mapping list
         for account_map in account_mapping_ids:
-            # Init (if needed) the dictionary that will store the totals for the dest accounts
-            if account_map.dest_account_id and not dest_accounts_totals.get(account_map.dest_account_id.id):
+            # Init (if needed) the dictionary that will store the totals for
+            # the dest accounts
+            if account_map.dest_account_id and not \
+                    dest_accounts_totals.get(account_map.dest_account_id.id):
                 dest_accounts_totals[account_map.dest_account_id.id] = 0
             # Find its children accounts (recursively)
-            # FIXME: _get_children_and_consol is a protected member of account_account,
+            # FIXME: _get_children_and_consol is a protected member of
+            # account_account,
             # but the OpenERP code base uses it like this :(
-            child_ids = account_obj._get_children_and_consol(cr, uid, [account_map.source_account_id.id], ctx)
-            # For each children account. (Notice the context filter! the computed balanced is based on this filter)
+            child_ids = account_obj._get_children_and_consol(
+                cr, uid, [account_map.source_account_id.id], ctx)
+            # For each children account. (Notice the context filter! the
+            # computed balanced is based on this filter)
             for account in account_obj.browse(cr, uid, child_ids, ctx):
                 # Check if the children account needs to (and can) be closed
                 if account.type != 'view':
                     if account.user_type.close_method == 'balance':
-                        # Compute the balance for the account (uses the previous browse context filter)
+                        # Compute the balance for the account (uses the
+                        # previous browse context filter)
                         balance = account.balance
                         # Check if the balance is greater than the limit
-                        if round(abs(balance), decimal_precision_obj.precision_get(cr, uid, 'Account')) > 0:
+                        dp = dp_obj.precision_get(cr, uid, 'Account')
+                        if round(abs(balance), dp) > 0:
                             # Add a new line to the move
                             move_lines.append({
                                 'account_id': account.id,
@@ -311,9 +334,11 @@ class ExecuteFyc(orm.TransientModel):
                                 'period_id': period_id,
                                 'journal_id': journal_id,
                             })
-                            # Update the dest account total (with the inverse of the balance)
+                            # Update the dest account total (with the inverse
+                            # of the balance)
                             if account_map.dest_account_id:
-                                dest_accounts_totals[account_map.dest_account_id.id] -= balance
+                                dest_id = account_map.dest_account_id.id
+                                dest_accounts_totals[dest_id] -= balance
                     elif account.user_type.close_method == 'unreconciled':
                         found_lines = move_line_obj.search(cr, uid, [
                             ('period_id', 'in', period_ids),
@@ -340,13 +365,18 @@ class ExecuteFyc(orm.TransientModel):
                                     'journal_id': journal_id,
                                     'partner_id': partner_id,
                                 })
-                            # Update the dest account total (with the inverse of the balance)
+                            # Update the dest account total (with the inverse
+                            # of the balance)
                             if account_map.dest_account_id:
-                                dest_accounts_totals[account_map.dest_account_id.id] -= balance
+                                dest_id = account_map.dest_account_id.id
+                                dest_accounts_totals[dest_id] -= balance
                     elif account.user_type.close_method == 'detail':
-                        raise orm.except_orm(_('UserError'), _("Account type closing method is not supported"))
+                        raise orm.except_orm(
+                            _('UserError'),
+                            _("Account type closing method is not supported"))
                     else:
-                        # Account type has no closing method or method is not listed
+                        # Account type has no closing method or method is not
+                        # listed
                         continue
         # Add the dest lines
         for dest_account_id in dest_accounts_totals.keys():
@@ -374,18 +404,17 @@ class ExecuteFyc(orm.TransientModel):
         return move_id
 
     def create_closing_move(self, cr, uid, operation, fyc, context):
-        """
-        Create a closing move (L&P, NL&P or Closing move).
-        """
+        """Create a closing move (L&P, NL&P or Closing move)."""
         period_ids = []
         account_mapping_ids = []
 
         # Depending on the operation we will use different data
-        assert operation in ('loss_and_profit', 'net_loss_and_profit', 'close'), (
-            _("The operation must be a supported one")
-        )
+        assert operation in ('loss_and_profit', 'net_loss_and_profit',
+                             'close'), \
+            (_("The operation must be a supported one"))
         if operation == 'loss_and_profit':
-            # Consider all the periods of the fiscal year *BUT* the L&P, Net L&P and the Closing one.
+            # Consider all the periods of the fiscal year *BUT* the L&P, Net
+            # L&P and the Closing one.
             for period in fyc.closing_fiscalyear_id.period_ids:
                 if period.id != fyc.lp_period_id.id \
                         and period.id != fyc.nlp_period_id.id \
@@ -397,7 +426,8 @@ class ExecuteFyc(orm.TransientModel):
                 if not account_map.dest_account_id:
                     raise orm.except_orm(
                         _('UserError'),
-                        _("The L&P account mappings are not properly configured: %s") % account_map.name
+                        _("The L&P account mappings are not properly "
+                          "configured: %s") % account_map.name
                     )
             # Get the values for the lines
             description = fyc.lp_description
@@ -405,7 +435,8 @@ class ExecuteFyc(orm.TransientModel):
             period_id = fyc.lp_period_id.id
             journal_id = fyc.lp_journal_id.id
         elif operation == 'net_loss_and_profit':
-            # Consider all the periods of the fiscal year *BUT* the Net L&P and the Closing one.
+            # Consider all the periods of the fiscal year *BUT* the Net L&P
+            # and the Closing one.
             for period in fyc.closing_fiscalyear_id.period_ids:
                 if period.id != fyc.nlp_period_id.id \
                         and period.id != fyc.c_period_id.id:
@@ -416,7 +447,8 @@ class ExecuteFyc(orm.TransientModel):
                 if not account_map.dest_account_id:
                     raise orm.except_orm(
                         _('UserError'),
-                        _("The Net L&P account mappings are not properly configured: %s") % account_map.name
+                        _("The Net L&P account mappings are not properly "
+                          "configured: %s") % account_map.name
                     )
             # Get the values for the lines
             description = fyc.nlp_description
@@ -426,7 +458,10 @@ class ExecuteFyc(orm.TransientModel):
         elif operation == 'close':
             # Require the user to have performed the L&P operation
             if not fyc.loss_and_profit_move_id:
-                raise orm.except_orm(_('UserError'), _("The L&P move must exist before creating the closing one"))
+                raise orm.except_orm(
+                    _('UserError'),
+                    _("The L&P move must exist before creating the closing "
+                      "one"))
             # Consider all the periods of the fiscal year *BUT* the Closing one.
             for period in fyc.closing_fiscalyear_id.period_ids:
                 if period.id != fyc.c_period_id.id:
@@ -453,17 +488,22 @@ class ExecuteFyc(orm.TransientModel):
         closing_move = move_obj.browse(cr, uid, fyc.closing_move_id.id)
         if operation == 'open':
             if not closing_move:
-                raise orm.except_orm(_('UserError'), _("The closing move must exist to create the opening one"))
+                raise orm.except_orm(
+                    _('UserError'),
+                    _("The closing move must exist to create the opening one"))
             if not closing_move.line_id:
-                raise orm.except_orm(_('UserError'), _("The closing move shouldn't be empty"))
+                raise orm.except_orm(_('UserError'),
+                                     _("The closing move shouldn't be empty"))
             # Get the values for the lines
             description = fyc.o_description
             date = fyc.o_date
             period_id = fyc.o_period_id.id
             journal_id = fyc.o_journal_id.id
         else:
-            assert operation in ('open'), "The operation must be a supported one"
-        # Read the lines from the closing move, and append the inverse lines to the opening move lines.
+            assert operation in ('open'), \
+                "The operation must be a supported one"
+        # Read the lines from the closing move, and append the inverse lines to
+        # the opening move lines.
         move_lines = []
         for line in closing_move.line_id:
             move_lines.append({
@@ -490,10 +530,8 @@ class ExecuteFyc(orm.TransientModel):
         return move_id
 
     def run_execute(self, cr, uid, data, context=None):
-        """
-        Creates / removes FYC entries
-        """
-        fyc_object = self.pool.get('account.fiscalyear.closing')
+        """Creates / removes FYC entries"""
+        fyc_object = self.pool['account.fiscalyear.closing']
         fyc = fyc_object.browse(cr, uid, context['active_id'], context=context)
         if fyc.check_invalid_period_moves:
             self._check_invalid_period_moves(cr, uid, fyc, context)
@@ -502,22 +540,28 @@ class ExecuteFyc(orm.TransientModel):
         if fyc.check_unbalanced_moves:
             self._check_unbalanced_moves(cr, uid, fyc, context)
         if fyc.create_loss_and_profit:
-            move_id = self.create_closing_move(cr, uid, 'loss_and_profit', fyc, context)
-            fyc_object.write(cr, uid, [fyc.id], {'loss_and_profit_move_id': move_id})
+            move_id = self.create_closing_move(cr, uid, 'loss_and_profit', fyc,
+                                               context)
+            fyc_object.write(cr, uid, [fyc.id],
+                             {'loss_and_profit_move_id': move_id})
         if fyc.create_net_loss_and_profit:
-            move_id = self.create_closing_move(cr, uid, 'net_loss_and_profit', fyc, context)
-            fyc_object.write(cr, uid, [fyc.id], {'net_loss_and_profit_move_id': move_id})
-        fyc = fyc_object.browse(cr, uid, fyc.id, context=context)  # Refresh content
+            move_id = self.create_closing_move(cr, uid, 'net_loss_and_profit',
+                                               fyc, context)
+            fyc_object.write(cr, uid, [fyc.id],
+                             {'net_loss_and_profit_move_id': move_id})
+        # Refresh content
+        fyc = fyc_object.browse(cr, uid, fyc.id, context=context)
         if fyc.create_closing:
             move_id = self.create_closing_move(cr, uid, 'close', fyc, context)
             fyc_object.write(cr, uid, [fyc.id], {'closing_move_id': move_id})
-            fyc = fyc_object.browse(cr, uid, fyc.id, context=context)  # Refresh content
+            # Refresh content
+            fyc = fyc_object.browse(cr, uid, fyc.id, context=context)
         if fyc.create_opening:
             move_id = self.create_opening_move(cr, uid, 'open', fyc, context)
             fyc_object.write(cr, uid, [fyc.id], {'opening_move_id': move_id})
 
         # Set the as done (if not in cancel_mode)
         wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(uid, 'account.fiscalyear.closing', fyc.id, 'run', cr)
-
+        wf_service.trg_validate(uid, 'account.fiscalyear.closing', fyc.id,
+                                'run', cr)
         return {'type': 'ir.actions.act_window_close'}
