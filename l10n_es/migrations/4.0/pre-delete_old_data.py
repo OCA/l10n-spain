@@ -39,7 +39,7 @@ def migrate(cr, version):
         "account.fiscal.position.template",
         "account.account.template",
         # Not possible because it's also linked to account.account
-        #"account.account.type",
+        # "account.account.type",
         "account.tax.template",
         "account.tax.code.template",
         "account.chart.template",
