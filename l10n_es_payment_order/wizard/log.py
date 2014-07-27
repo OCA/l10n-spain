@@ -2,14 +2,13 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2006 ACYSOS S.L. (http://acysos.com) All Rights Reserved.
+#    Copyright (c) 2006 ACYSOS S.L. (http://acysos.com)
 #                       Pedro Tarrafeta <pedro@acysos.com>
 #    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
 #    Copyright (c) 2009 NaN (http://www.nan-tic.com) All Rights Reserved.
 #                       Albert Cervera i Areny <albert@nan-tic.com>
-#    $Id$
 #    Refactorización. Acysos S.L. (http://www.acysos.com) 2012
 #        Ignacio Ibeas <ignacio@acysos.com>
 #
@@ -28,18 +27,19 @@
 #
 ##############################################################################
 
-from openerp.tools.translate import _
 
 class Log(Exception):
-    def __init__(self, content = '', error = False):
+    def __init__(self, content='', error=False):
         self.content = unicode(content)
         self.error = error
+
     def add(self, s, error=True):
         self.content = self.content + s
         if error:
             self.error = error
+
     def __call__(self):
         return self.content
+
     def __str__(self):
         return self.content
-

@@ -2,9 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -24,15 +23,17 @@
 import time
 from openerp.report import report_sxw
 
-class remesas_report(report_sxw.rml_parse):
+
+class RemesasReport(report_sxw.rml_parse):
 
     def __init__(self, cr, uid, name, context):
-        super(remesas_report, self).__init__(cr, uid, name, context)
+        super(RemesasReport, self).__init__(cr, uid, name, context)
         self.localcontext.update({
             'time': time,
         })
 
 
-report_sxw.report_sxw('report.remesas.report', 'payment.order',
-        'addons/l10n_es_payment_order/report/remesas_report.rml',
-        parser=remesas_report)
+report_sxw.report_sxw(
+    'report.remesas.report', 'payment.order',
+    'addons/l10n_es_payment_order/report/remesas_report.rml',
+    parser=RemesasReport)
