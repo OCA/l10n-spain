@@ -25,13 +25,13 @@ import re
 
 
 def capitalizeSpanishCity(originalName):
-    #return re.sub(r"[A-Za-z]+('[A-Za-z]+)?",
-                   #lambda mo: mo.group(0)[0].upper() + mo.group(0)[1:].lower(),
-                   #originalName)
+    # return re.sub(r"[A-Za-z]+('[A-Za-z]+)?",
+    # lambda mo: mo.group(0)[0].upper() + mo.group(0)[1:].lower(),
+    # originalName)
     # Quitar mayúsculas de las letras no iniciales
     name = ' '.join([x.capitalize() for x in originalName.split()])
     # Buscar Ñ, Ü
-    #TODO: No funciona esta sustitución
+    # TODO: No funciona esta sustitución
     name = re.sub(r"[A-Za-z]Ñ", lambda mo: mo.group(0)[0] + "ñ", name)
     name = re.sub(r"[A-Za-z]Ü", lambda mo: mo.group(0)[0] + "ü", name)
     return name
