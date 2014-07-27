@@ -6,7 +6,7 @@
 #        2013:      Top Consultant Software Creations S.L.
 #                   (http://www.topconsultant.es/)
 #        2014:      Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com> 
+#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    Autores originales: Luis Manuel Angueira Blanco (Pexego)
 #                        Omar Castiñeira Saavedra(omar@pexego.es)
@@ -51,16 +51,16 @@ NAME_RESTRICTIVE_REGEXP = re.compile(u"^[a-zA-Z0-9\sáÁéÉíÍóÓúÚñÑçÇ
                                      u"àÀèÈìÌòÒùÙâÂêÊîÎôÔûÛ\.,-_&'´\:;:/]*$",
                                      re.UNICODE | re.X)
 
+
 def _check_valid_string(text_to_check):
-    """
-    Checks if string fits with RegExp
-    """
+    """Checks if string fits with RegExp"""
     if text_to_check and NAME_RESTRICTIVE_REGEXP.match(text_to_check):
         return True
     return False
 
+
 def _format_partner_vat(cr, uid, partner_vat=None, country=None,
-                      context=None):
+                        context=None):
     """Formats VAT to match XXVATNUMBER (where XX is country code)."""
     if country:
         country_pattern = "[" + country.code + country.code.lower() + "]{2}.*"
@@ -82,12 +82,12 @@ class Mod349(orm.Model):
             res[report.id] = {
                 'total_partner_records': len(report.partner_record_ids),
                 'total_partner_records_amount':
-                            sum([record.total_operation_amount for record in
-                                 report.partner_record_ids]) or 0.0,
+                sum([record.total_operation_amount for record in
+                     report.partner_record_ids]) or 0.0,
                 'total_partner_refunds': len(report.partner_refund_ids),
                 'total_partner_refunds_amount':
-                            sum([refund.total_operation_amount for refund in
-                                 report.partner_refund_ids]) or 0.0,
+                sum([refund.total_operation_amount for refund in
+                     report.partner_refund_ids]) or 0.0,
             }
         return res
 
@@ -103,31 +103,28 @@ class Mod349(orm.Model):
         return res
 
     def _create_349_partner_records(self, cr, uid, ids, report_id,
-                                           partner_obj, operation_key,
-                                           context=None):
+                                    partner_obj, operation_key, context=None):
         """creates partner records in 349"""
         invoices_ids = self.pool['account.invoice'].browse(cr, uid, ids,
                                                            context=context)
         obj = self.pool['l10n.es.aeat.mod349.partner_record']
         partner_country = partner_obj.country_id
-        invoice_created = obj.create(cr, uid, {
-            'report_id': report_id,
-            'partner_id': partner_obj.id,
-            'partner_vat': _format_partner_vat(cr, uid,
-                                               partner_vat=partner_obj.vat,
-                                               country=partner_country),
-            'operation_key': operation_key,
-            'country_id': partner_country.id or False,
-            'total_operation_amount': sum([invoice.cc_amount_untaxed for
-                                            invoice in invoices_ids if
-                                            invoice.type not in
-                                            ('in_refund', 'out_refund')]) -
-                                               sum([invoice.cc_amount_untaxed
-                                                    for invoice in invoices_ids
-                                                    if invoice.type in
-                                                    ('in_refund',
-                                                     'out_refund')])
-        })
+        sum_credit = sum([invoice.cc_amount_untaxed for invoice in invoices_ids
+                          if invoice.type not in ('in_refund', 'out_refund')])
+        sum_debit = sum([invoice.cc_amount_untaxed for invoice in invoices_ids
+                         if invoice.type in ('in_refund', 'out_refund')])
+
+        invoice_created = obj.create(
+            cr, uid,
+            {'report_id': report_id,
+             'partner_id': partner_obj.id,
+             'partner_vat': _format_partner_vat(cr, uid,
+                                                partner_vat=partner_obj.vat,
+                                                country=partner_country),
+             'operation_key': operation_key,
+             'country_id': partner_country.id or False,
+             'total_operation_amount': sum_credit - sum_debit
+             })
         ### Creation of partner detail lines
         for invoice in invoices_ids:
             detail_obj = self.pool['l10n.es.aeat.mod349.partner_record_detail']
@@ -138,7 +135,7 @@ class Mod349(orm.Model):
         return invoice_created
 
     def _create_349_refund_records(self, cr, uid, ids, report_id,
-                                    partner_obj, operation_key, context=None):
+                                   partner_obj, operation_key, context=None):
         """Creates restitution records in 349"""
         refunds = self.pool['account.invoice'].browse(cr, uid, ids)
         refundpol = self.pool['l10n.es.aeat.mod349.partner_record_detail']
@@ -188,36 +185,35 @@ class Mod349(orm.Model):
         for line in record:
             partner_rec = refund_obj.browse(cr, uid, int(line),
                                             context=context)
-            record_created = obj.create(cr, uid, {
-                'report_id': report_id,
-                'partner_id': partner_obj.id,
-                'partner_vat': _format_partner_vat(cr, uid,
-                                                   partner_vat=partner_obj.vat,
-                                                   country=partner_country,
-                                                   context=context),
-                'operation_key': operation_key,
-                'country_id': partner_country and partner_country.id or False,
-                'total_operation_amount':  partner_rec.total_operation_amount \
+            record_created = obj.create(
+                cr, uid,
+                {'report_id': report_id,
+                 'partner_id': partner_obj.id,
+                 'partner_vat': _format_partner_vat(
+                     cr, uid, partner_vat=partner_obj.vat,
+                     country=partner_country, context=context),
+                 'operation_key': operation_key,
+                 'country_id': partner_country and partner_country.id or False,
+                 'total_operation_amount': partner_rec.total_operation_amount
                     - sum([x.cc_amount_untaxed for x in record[line]]),
-                'total_origin_amount': partner_rec.total_operation_amount,
-                'period_selection': partner_rec.report_id.period_selection,
-                'month_selection': partner_rec.report_id.month_selection,
-                'fiscalyear_id': partner_rec.report_id.fiscalyear_id.id
-            }, context=context)
+                 'total_origin_amount': partner_rec.total_operation_amount,
+                 'period_selection': partner_rec.report_id.period_selection,
+                 'month_selection': partner_rec.report_id.month_selection,
+                 'fiscalyear_id': partner_rec.report_id.fiscalyear_id.id},
+                context=context)
             ### Creation of partner detail lines
             for invoice in record[line]:
-                obj_detail.create(cr, uid, {
-                    'refund_id': record_created,
-                    'invoice_id': invoice.id,
-                    'amount_untaxed': invoice.cc_amount_untaxed
-                }, context=context)
+                obj_detail.create(
+                    cr, uid, {'refund_id': record_created,
+                              'invoice_id': invoice.id,
+                              'amount_untaxed': invoice.cc_amount_untaxed},
+                    context=context)
         return True
 
     def calculate(self, cr, uid, ids, context=None):
         """Computes the records in report."""
         partner_obj = self.pool['res.partner']
         invoice_obj = self.pool['account.invoice']
-        report_obj = self.pool['l10n.es.aeat.mod349.report']
         partner_record_obj = self.pool['l10n.es.aeat.mod349.partner_record']
         partner_refund_obj = self.pool['l10n.es.aeat.mod349.partner_refund']
         for mod349 in self.browse(cr, uid, ids, context=context):
@@ -235,37 +231,36 @@ class Mod349(orm.Model):
             for partner_id in partner_ids:
                 for op_key in [x[0] for x in OPERATION_KEYS]:
                     ## Invoices
-                    invoice_ids = invoice_obj._get_invoices_by_type(cr, uid,
-                                partner_id,
-                                operation_key=op_key,
-                                period_selection=mod349.period_selection,
-                                fiscalyear_id=mod349.fiscalyear_id.id,
-                                period_id=[x.id for x in mod349.period_ids],
-                                month=mod349.month_selection, context=context)
+                    invoice_ids = invoice_obj._get_invoices_by_type(
+                        cr, uid, partner_id, operation_key=op_key,
+                        period_selection=mod349.period_selection,
+                        fiscalyear_id=mod349.fiscalyear_id.id,
+                        period_id=[x.id for x in mod349.period_ids],
+                        month=mod349.month_selection, context=context)
                     # Separates normal invoices from restitution
                     invoice_ids, refunds_ids = invoice_obj.\
-                        clean_refund_invoices(cr, uid, invoice_ids, partner_id,
-                                  fiscalyear_id=mod349.fiscalyear_id.id,
-                                  period_id=[x.id for x in mod349.period_ids],
-                                  month=mod349.month_selection,
-                                  period_selection=mod349.period_selection,
-                                  context=context)
+                        clean_refund_invoices(
+                            cr, uid, invoice_ids, partner_id,
+                            fiscalyear_id=mod349.fiscalyear_id.id,
+                            period_id=[x.id for x in mod349.period_ids],
+                            month=mod349.month_selection,
+                            period_selection=mod349.period_selection,
+                            context=context)
                     if invoice_ids or refunds_ids:
                         partner = partner_obj.browse(cr, uid, partner_id,
                                                      context=context)
                     if invoice_ids:
-                        self._create_349_partner_records(cr, uid,
-                                            invoice_ids, mod349.id, partner,
-                                            op_key, context=context)
+                        self._create_349_partner_records(
+                            cr, uid, invoice_ids, mod349.id, partner, op_key,
+                            context=context)
                     if refunds_ids:
-                        self._create_349_refund_records(cr, uid,
-                                            refunds_ids, mod349.id, partner,
-                                            op_key, context=context)
+                        self._create_349_refund_records(
+                            cr, uid, refunds_ids, mod349.id, partner, op_key,
+                            context=context)
         return True
 
     def _check_report_lines(self, cr, uid, ids, context=None):
-        """
-        Checks if all the fields of all the report lines
+        """Checks if all the fields of all the report lines
         (partner records and partner refund) are filled
         """
         for item in self.browse(cr, uid, ids, context):
@@ -273,31 +268,29 @@ class Mod349(orm.Model):
             ## all are correct (all fields filled)
             for partner_record in item.partner_record_ids:
                 if not partner_record.partner_record_ok:
-                    raise orm.except_orm(_('Error!'),
-                        _("All partner records fields (country, VAT number) "
-                          "must be filled."))
+                    raise orm.except_orm(
+                        _('Error!'), _("All partner records fields (country, "
+                                       "VAT number) must be filled."))
                 if partner_record.total_operation_amount < 0:
                     raise orm.except_orm(_('Error!'),
                                          _("All amounts must be positives"))
             for partner_record in item.partner_refund_ids:
                 if not partner_record.partner_refund_ok:
-                    raise orm.except_orm(_('Error!'),
-                        _("All partner refunds fields (country, VAT number) "
-                          "must be filled."))
-                if partner_record.total_operation_amount < 0 or \
-                                partner_record.total_origin_amount < 0:
+                    raise orm.except_orm(
+                        _('Error!'), _("All partner refunds fields (country, "
+                                       "VAT number) must be filled."))
+                if (partner_record.total_operation_amount < 0 or
+                        partner_record.total_origin_amount < 0):
                     raise orm.except_orm(_('Error!'),
                                          _("All amounts must be positives"))
         return True
 
     def _check_names(self, cr, uid, ids, context=None):
-        """
-        Checks that names are correct (not formed by only one string)
-        """
+        """Checks that names are correct (not formed by only one string)"""
         for item in self.browse(cr, uid, ids, context=context):
             ## Check company name and title
-            if not item.company_id.partner_id or \
-                not item.company_id.partner_id.title:
+            if (not item.company_id.partner_id or
+                    not item.company_id.partner_id.title):
                 return {
                     'warning': {
                         'title': _('Company without Title'),
@@ -307,40 +300,39 @@ class Mod349(orm.Model):
                         }
                     }
             ## Check Full name (contact_name)
-            if not item.contact_name or \
-                len(item.contact_name.split(' ')) < 2:
+            if (not item.contact_name or
+                    len(item.contact_name.split(' ')) < 2):
                 raise orm.except_orm(_('Error!'),
                                      _('Contact name (Full name) must have ' +
                                        'name and surname'))
 
     def _check_restrictive_names(self, cr, uid, ids, context=None):
-        """
-        Checks if names have not allowed characters and returns a message
-        """
+        """Checks if names have not allowed characters and returns a message"""
         mod349_obj = self.browse(cr, uid, ids and ids[0], context)
         if not _check_valid_string(mod349_obj.contact_name):
-            raise orm.except_orm(_('Error!'),
+            raise orm.except_orm(
+                _('Error!'),
                 _("Name '%s' have not allowed characters.\nPlease, fix it "
                   "before confirm the report") % mod349_obj.contact_name)
         ## Check partner record partner names
         for partner_record in mod349_obj.partner_record_ids:
             if not _check_valid_string(partner_record.partner_id.name):
-                raise orm.except_orm(_("Error!"),
+                raise orm.except_orm(
+                    _("Error!"),
                     _("Partner name '%s' in partner records is not valid "
                       "due to incorrect characters") %
-                                     partner_record.partner_id.name)
+                    partner_record.partner_id.name)
         ## Check partner refund partner names
         for partner_refund in mod349_obj.partner_refund_ids:
             if not _check_valid_string(partner_refund.partner_id.name):
-                raise orm.except_orm(_("Error!"),
+                raise orm.except_orm(
+                    _("Error!"),
                     _("Partner name '%s' in refund lines is not valid due "
                       "to incorrect characters") %
-                                     partner_refund.partner_id.name)
+                    partner_refund.partner_id.name)
 
     def button_confirm(self, cr, uid, ids, context=None):
-        """
-        Checks if all the fields of the report are correctly filled
-        """
+        """Checks if all the fields of the report are correctly filled"""
         self._check_names(cr, uid, ids, context)
         self._check_report_lines(cr, uid, ids, context)
         self._check_restrictive_names(cr, uid, ids, context)
@@ -352,9 +344,10 @@ class Mod349(orm.Model):
         period_id = None
         if period_selection:
             if period_selection in ['1T', '2T', '3T', '4T']:
-                period_id = self.pool.get('account.period').search(cr, uid, [
-                    ('name', 'like', period_selection),
-                    ('fiscalyear_id', '=', fiscalyear_id)], context=context)
+                period_id = self.pool.get('account.period').search(
+                    cr, uid, [('name', 'like', period_selection),
+                              ('fiscalyear_id', '=', fiscalyear_id)],
+                    context=context)
         return {'value': {'period_id': period_id and period_id[0] or False}}
 
     _columns = {
@@ -364,49 +357,51 @@ class Mod349(orm.Model):
         'period_ids': fields.many2many('account.period',
                                        'mod349_mod349_period_rel',
                                        'mod349_id', 'period_ids', 'Periods'),
-        'period_selection': fields.selection([
-                ('0A', '0A - Annual'),
-                ('MO', 'MO - Monthly'),
-                ('1T', '1T - First Quarter'),
-                ('2T', '2T - Second Quarter'),
-                ('3T', '3T - Third Quarter'),
-                ('4T', '4T - Fourth Quarter')
-            ], 'Period', required=True, select=1,
+        'period_selection': fields.selection(
+            [('0A', '0A - Annual'),
+             ('MO', 'MO - Monthly'),
+             ('1T', '1T - First Quarter'),
+             ('2T', '2T - Second Quarter'),
+             ('3T', '3T - Third Quarter'),
+             ('4T', '4T - Fourth Quarter')],
+            'Period', required=True, select=1,
             states={'confirmed': [('readonly', True)]}),
-        'month_selection': fields.selection(MONTH_MAPPING, 'Month',
-                                states={'confirmed': [('readonly', True)]}),
-        'frequency_change': fields.boolean('Frequency change',
-                                states={'confirmed': [('readonly', True)]}),
+        'month_selection': fields.selection(
+            MONTH_MAPPING, 'Month',
+            states={'confirmed': [('readonly', True)]}),
+        'frequency_change': fields.boolean(
+            'Frequency change',
+            states={'confirmed': [('readonly', True)]}),
         ## Identification
-        'contact_name': fields.char("Full Name", size=40,
-                                help="Must have name and surname.",
-                                states={'calculated': [('required', True)],
-                                        'confirmed': [('readonly', True)]}),
-        'contact_phone': fields.char("Phone", size=9,
-                            states={'calculated': [('required', True)],
-                                    'confirmed': [('readonly', True)]}),
+        'contact_name': fields.char(
+            "Full Name", size=40, help="Must have name and surname.",
+            states={'calculated': [('required', True)],
+                    'confirmed': [('readonly', True)]}),
+        'contact_phone': fields.char(
+            "Phone", size=9, states={'calculated': [('required', True)],
+                                     'confirmed': [('readonly', True)]}),
         ## TOTALS
-        'total_partner_records': fields.function(_get_report_totals,
-                            string="Partners records", method=True,
-                            type='integer', multi="report_totals_multi"),
-        'total_partner_records_amount': fields.function(_get_report_totals,
-                            string="Partners records amount", method=True,
-                            type='float', multi="report_totals_multi"),
-        'total_partner_refunds': fields.function(_get_report_totals,
-                            string="Partners refunds", method=True,
-                            type='integer', multi="report_totals_multi"),
-        'total_partner_refunds_amount': fields.function(_get_report_totals,
-                            string="Partners refunds amount", method=True,
-                            type='float', multi="report_totals_multi"),
+        'total_partner_records': fields.function(
+            _get_report_totals, string="Partners records", method=True,
+            type='integer', multi="report_totals_multi"),
+        'total_partner_records_amount': fields.function(
+            _get_report_totals, string="Partners records amount", method=True,
+            type='float', multi="report_totals_multi"),
+        'total_partner_refunds': fields.function(
+            _get_report_totals, string="Partners refunds", method=True,
+            type='integer', multi="report_totals_multi"),
+        'total_partner_refunds_amount': fields.function(
+            _get_report_totals, string="Partners refunds amount", method=True,
+            type='float', multi="report_totals_multi"),
         # LISTADOS
         'partner_record_ids': fields.one2many(
-                            'l10n.es.aeat.mod349.partner_record',
-                            'report_id', 'Partner records', ondelete='cascade',
-                            states={'confirmed': [('readonly', True)]}),
+            'l10n.es.aeat.mod349.partner_record', 'report_id',
+            'Partner records', ondelete='cascade',
+            states={'confirmed': [('readonly', True)]}),
         'partner_refund_ids': fields.one2many(
-                        'l10n.es.aeat.mod349.partner_refund',
-                        'report_id', 'Partner refund IDS', ondelete='cascade',
-                        states={'confirmed': [('readonly', True)]}),
+            'l10n.es.aeat.mod349.partner_refund', 'report_id',
+            'Partner refund IDS', ondelete='cascade',
+            states={'confirmed': [('readonly', True)]}),
     }
     _defaults = {
         'period_selection': '0A',
@@ -416,8 +411,7 @@ class Mod349(orm.Model):
 
 
 class Mod349PartnerRecord(orm.Model):
-    """
-    AEAT 349 Model - Partner record
+    """AEAT 349 Model - Partner record
     Shows total amount per operation key (grouped) for each partner
     """
     _name = 'l10n.es.aeat.mod349.partner_record'
@@ -442,8 +436,7 @@ class Mod349PartnerRecord(orm.Model):
 
     def onchange_format_partner_vat(self, cr, uid, ids,
                                     partner_vat, country_id, context=None):
-        """
-        Formats VAT to match XXVATNUMBER (where XX is country code)
+        """Formats VAT to match XXVATNUMBER (where XX is country code)
         """
         if country_id:
             country_obj = self.pool['res.country']
@@ -464,19 +457,19 @@ class Mod349PartnerRecord(orm.Model):
         'operation_key': fields.selection(OPERATION_KEYS, 'Operation key',
                                           required=True),
         'total_operation_amount': fields.float('Total operation amount'),
-        'partner_record_ok': fields.function(_check_partner_record_line,
-                                    method=True, string='Partner Record OK',
-                                    help='Checked if partner record is OK'),
+        'partner_record_ok': fields.function(
+            _check_partner_record_line, method=True,
+            string='Partner Record OK',
+            help='Checked if partner record is OK'),
         'record_detail_ids': fields.one2many(
-                            'l10n.es.aeat.mod349.partner_record_detail',
-                            'partner_record_id', 'Partner record detail IDS',
-                            ondelete='cascade'),
+            'l10n.es.aeat.mod349.partner_record_detail',
+            'partner_record_id', 'Partner record detail IDS',
+            ondelete='cascade'),
     }
 
 
 class Mod349PartnerRecordDetail(orm.Model):
-    """
-    AEAT 349 Model - Partner record detail
+    """AEAT 349 Model - Partner record detail
     Shows detail lines for each partner record.
     """
     _name = 'l10n.es.aeat.mod349.partner_record_detail'
@@ -484,9 +477,8 @@ class Mod349PartnerRecordDetail(orm.Model):
 
     _columns = {
         'partner_record_id': fields.many2one(
-                                        'l10n.es.aeat.mod349.partner_record',
-                                        'Partner record', required=True,
-                                        ondelete='cascade', select=1),
+            'l10n.es.aeat.mod349.partner_record', 'Partner record',
+            required=True, ondelete='cascade', select=1),
         'invoice_id': fields.many2one('account.invoice', 'Invoice'),
         'amount_untaxed': fields.float('Amount untaxed'),
         'date': fields.related('invoice_id', 'date_invoice', type="date",
@@ -494,8 +486,8 @@ class Mod349PartnerRecordDetail(orm.Model):
     }
 
     _defaults = {
-        'partner_record_id': lambda self, cr, uid, context:
-                                        context.get('partner_record_id', None),
+        'partner_record_id': (lambda self, cr, uid, context:
+                              context.get('partner_record_id', None)),
     }
 
 
@@ -506,8 +498,7 @@ class Mod349PartnerRefund(orm.Model):
 
     def _check_partner_refund_line(self, cr, uid, ids,
                                    field_name, args, context=None):
-        """
-        Checks if partner refund line have all fields filled
+        """Checks if partner refund line have all fields filled
         """
         res = {}
         for item in self.browse(cr, uid, ids, context):
@@ -530,22 +521,20 @@ class Mod349PartnerRefund(orm.Model):
         'total_operation_amount': fields.float('Total operation amount'),
         'total_origin_amount': fields.float('Original amount',
                                             help="Refund original amount"),
-        'partner_refund_ok': fields.function(_check_partner_refund_line,
-                                     method=True, string='Partner refund OK',
-                                     help='Checked if refund record is OK'),
-        'period_selection': fields.selection([
-                ('0A', '0A - Annual'),
-                ('MO', 'MO - Monthly'),
-                ('1T', '1T - First Quarter'),
-                ('2T', '2T - Second Quarter'),
-                ('3T', '3T - Third Quarter'),
-                ('4T', '4T - Fourth Quarter')
-            ], 'Period'),
+        'partner_refund_ok': fields.function(
+            _check_partner_refund_line, method=True,
+            string='Partner refund OK', help='Checked if refund record is OK'),
+        'period_selection': fields.selection(
+            [('0A', '0A - Annual'),
+             ('MO', 'MO - Monthly'),
+             ('1T', '1T - First Quarter'),
+             ('2T', '2T - Second Quarter'),
+             ('3T', '3T - Third Quarter'),
+             ('4T', '4T - Fourth Quarter')], 'Period'),
         'month_selection': fields.selection(MONTH_MAPPING, 'Month'),
         'refund_detail_ids': fields.one2many(
-                                'l10n.es.aeat.mod349.partner_refund_detail',
-                                'refund_id', 'Partner refund detail IDS',
-                                ondelete='cascade'),
+            'l10n.es.aeat.mod349.partner_refund_detail', 'refund_id',
+            'Partner refund detail IDS', ondelete='cascade'),
     }
 
     _defaults = {

@@ -6,7 +6,7 @@
 #        2013:      Top Consultant Software Creations S.L.
 #                   (http://www.topconsultant.es/)
 #        2014:      Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com> 
+#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    Autores originales: Luis Manuel Angueira Blanco (Pexego)
 #                        Omar Castiñeira Saavedra(omar@pexego.es)
@@ -44,22 +44,22 @@ OPERATION_KEYS = [
      'delivered by legal representative')
 ]
 
-class account_invoice(orm.Model):
-    """
-    Inheritance of account invoce to add some fields:
+
+class AccountInvoice(orm.Model):
+    """Inheritance of account invoce to add some fields:
     - operation_key: Operation key of invoice
     """
     _inherit = 'account.invoice'
-    ### FUNCTIONS ###
+
     def _assign_invoice_operation_keys(self, cr, uid, ids=None,
                                        context=None):
         """On first install of the module, this method is called to
         assign a default value to invoices and fiscal position"""
         # Marcar la posición fiscal intracomunitaria
         fp_obj = self.pool['account.fiscal.position']
-        fp_ids = fp_obj.search(cr, uid, [('name', '=',
-                                          "Régimen Intracomunitario")],
-                                          context=context)
+        fp_ids = fp_obj.search(cr, uid,
+                               [('name', '=', "Régimen Intracomunitario")],
+                               context=context)
         if not fp_ids:
             return
         fp_obj.write(cr, uid, fp_ids, {'intracommunity_operations': True},
@@ -94,9 +94,10 @@ class account_invoice(orm.Model):
         elif fy_stop.month > month:
             year = fy_stop.year
         else:
-            raise orm.except_orm(_('Error'),
-                _('Cannot get invoices.\nProvided month is not included '
-                  'on selected fiscal year'))
+            raise orm.except_orm(
+                _('Error'), _('Cannot get invoices.\nProvided month is not '
+                              'included on selected fiscal year'))
+        return year
 
     def _get_invoices_by_type(self, cr, uid, partner_id, operation_key,
                               fiscalyear_id=None, period_id=None, month=None,
@@ -117,33 +118,35 @@ class account_invoice(orm.Model):
         ## Invoices by fiscalyear (Annual)
         if period_selection == '0A':
             if not fiscalyear_id:
-                raise orm.except_orm(_('Error'),
-                        _('Cannot get invoices.\nThere is no fiscal '
-                          'year selected'))
-            domain.append(('period_id', 'in', [period.id for period in
-                                                    fy.period_ids
-                                                    if not period.special]))
+                raise orm.except_orm(
+                    _('Error'), _('Cannot get invoices.\nThere is no fiscal '
+                                  'year selected'))
+            domain.append(('period_id', 'in',
+                           [period.id for period in fy.period_ids
+                            if not period.special]))
         ## Invoices by period
         elif period_selection in ['1T', '2T', '3T', '4T']:
             if not period_id:
-                raise orm.except_orm(_('Error'),
-                    _('Cannot get invoices.\nThere is no period selected'))
+                raise orm.except_orm(
+                    _('Error'), _('Cannot get invoices.\nThere is no period '
+                                  'selected'))
             domain.append(('period_id', 'in', period_id))
         ## Invoices by month
         else:
             if not month and not fiscalyear_id:
-                raise orm.except_orm(_('Error'),
-                    _('Cannot get invoices.\nThere is no month and/or '
-                      'fiscal year selected'))
+                raise orm.except_orm(
+                    _('Error'), _('Cannot get invoices.\nThere is no month '
+                                  'and/or fiscal year selected'))
             month = int(month)
             year = self._get_year_from_fy_month(fy, month)
             month_last_day = calendar.monthrange(year, month)[1]
             date_start = datetime(year=year, month=month, day=1)
             date_stop = datetime(year=year, month=month, day=month_last_day)
-            domain.append(('date_invoice', '>=',
-                        date_start.strftime(DEFAULT_SERVER_DATETIME_FORMAT)))
+            domain.append(
+                ('date_invoice', '>=',
+                 date_start.strftime(DEFAULT_SERVER_DATETIME_FORMAT)))
             domain.append(('date_invoice', '<=',
-                        date_stop.strftime(DEFAULT_SERVER_DATETIME_FORMAT)))
+                           date_stop.strftime(DEFAULT_SERVER_DATETIME_FORMAT)))
         return self.search(cr, uid, domain, context=context)
 
     def clean_refund_invoices(self, cr, uid, ids, partner_id,
@@ -160,12 +163,12 @@ class account_invoice(orm.Model):
                     invoice_ids.append(refund.id)
                     continue
                 for origin_line in refund.origin_invoices_ids:
-                    if origin_line.state in ['open', 'paid'] and \
-                                    origin_line.partner_id.id == partner_id:
+                    if (origin_line.state in ['open', 'paid'] and
+                            origin_line.partner_id.id == partner_id):
                         if period_selection == '0A':
-                            if origin_line.period_id.id not in \
-                                        [period.id for period in
-                                         fy.period_ids if not period.special]:
+                            if (origin_line.period_id.id not in
+                                    [period.id for period in
+                                     fy.period_ids if not period.special]):
                                 refund_ids.append(refund.id)
                             else:
                                 invoice_ids.append(refund.id)
@@ -177,9 +180,10 @@ class account_invoice(orm.Model):
                         else:
                             month = int(month)
                             year = self._get_year_from_fy_month(fy, month)
-                            if datetime.strptime(origin_line.date_invoice,
-                                    DEFAULT_SERVER_DATETIME_FORMAT) < \
-                                    datetime(year=year, month=month, day=1):
+                            if (datetime.strptime(
+                                    origin_line.date_invoice,
+                                    DEFAULT_SERVER_DATETIME_FORMAT) <
+                                    datetime(year=year, month=month, day=1)):
                                 refund_ids.append(refund.id)
                             else:
                                 invoice_ids.append(refund.id)
@@ -205,12 +209,11 @@ class account_invoice(orm.Model):
                 vals.get('type') and not vals.get('operation_key'):
             fp_obj = self.pool['account.fiscal.position']
             if fp_obj.browse(cr, uid, vals.get('fiscal_position'),
-                          context=context).intracommunity_operations:
+                             context=context).intracommunity_operations:
                 vals['operation_key'] = self._get_operation_key(
-                                                    vals['fiscal_position'],
-                                                    vals['type'])
-        return super(account_invoice, self).create(cr, uid, vals,
-                                                   context=context)
+                    vals['fiscal_position'], vals['type'])
+        return super(AccountInvoice, self).create(cr, uid, vals,
+                                                  context=context)
 
     _columns = {
         'operation_key': fields.selection(OPERATION_KEYS, 'Operation key')

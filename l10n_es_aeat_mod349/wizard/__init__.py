@@ -6,7 +6,7 @@
 #        2013:      Top Consultant Software Creations S.L.
 #                   (http://www.topconsultant.es/)
 #        2014:      Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com> 
+#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    Autores originales: Luis Manuel Angueira Blanco (Pexego)
 #                        Omar Castiñeira Saavedra(omar@pexego.es)

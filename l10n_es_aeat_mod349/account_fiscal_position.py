@@ -6,7 +6,7 @@
 #        2013:      Top Consultant Software Creations S.L.
 #                   (http://www.topconsultant.es/)
 #        2014:      Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com> 
+#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    Autor original: Luis Manuel Angueira Blanco (Pexego)
 #    Migración OpenERP 7.0: Ignacio Martínez y Miguel López.
@@ -28,14 +28,13 @@
 from openerp.osv import fields, orm
 
 
-class account_fiscal_position(orm.Model):
-    """
-    Inheritance of Account fiscal position to add field 'include_in_mod349'.
+class AccountFiscalPosition(orm.Model):
+    """Inheritance of Account fiscal position to add field 'include_in_mod349'.
     This fields let us map fiscal position, taxes and accounts to create an
     AEAT 349 Report
     """
     _inherit = 'account.fiscal.position'
     _columns = {
         'intracommunity_operations': fields.boolean(
-                                                'Intra-Community operations'),
+            'Intra-Community operations'),
     }

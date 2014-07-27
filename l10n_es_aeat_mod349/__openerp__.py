@@ -92,7 +92,6 @@ presentar el modelo 349:
    Miembro (salvo medios de transporte nuevos) exentas de IVA no sea superior
    a 15.000 €.
     """,
-    
     'website': 'http://www.pexego.es',
     "depends": [
         "account",
@@ -113,4 +112,3 @@ presentar el modelo 349:
     ],
     'installable': True,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
