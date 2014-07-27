@@ -28,7 +28,6 @@ import time
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
-from unidecode import unidecode
 
 
 class L10nEsAeatReportExportToBoe(orm.TransientModel):
@@ -63,6 +62,7 @@ class L10nEsAeatReportExportToBoe(orm.TransientModel):
         if not text:
             return fill * length
         # Replace accents and convert to upper
+        from unidecode import unidecode
         text = unidecode(unicode(text))
         text = text.upper()
         ascii_string = text.encode('iso-8859-1')
