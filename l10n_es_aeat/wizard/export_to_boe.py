@@ -98,7 +98,7 @@ class L10nEsAeatReportExportToBoe(orm.TransientModel):
         sign = number >= 0 and ' ' or 'N'
         number = abs(number)
         int_part = int(number)
-        ## Format the string
+        # Format the string
         ascii_string = ''
         if include_sign:
             ascii_string += sign
@@ -141,16 +141,16 @@ class L10nEsAeatReportExportToBoe(orm.TransientModel):
         report = self.pool[context['active_model']].browse(
             cr, uid, context['active_id'], context=context)
         contents = ''
-        ## Add header record
+        # Add header record
         contents += self._get_formatted_declaration_record(cr, uid, report,
                                                            context=context)
-        ## Add main record
+        # Add main record
         contents += self._get_formatted_main_record(cr, uid, report,
                                                     context=context)
-        ## Adds other fields
+        # Adds other fields
         contents += self._get_formatted_other_records(cr, uid, report,
                                                       context=context)
-        ## Generate the file and save as attachment
+        # Generate the file and save as attachment
         file = base64.encodestring(contents)
         file_name = _("%s_report_%s.txt") % (
             report.number, time.strftime(_(DEFAULT_SERVER_DATE_FORMAT)))
