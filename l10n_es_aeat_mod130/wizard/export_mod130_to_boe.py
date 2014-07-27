@@ -43,7 +43,8 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
         res += self._formatString("", 5)
         # Identificación (1)
         res += self._formatString(report.company_vat, 9)  # NIF del declarante
-        res += self._formatString(report.company_id.name, 4)  # Comienzo primer apellido
+        # Comienzo primer apellido
+        res += self._formatString(report.company_id.name, 4)
         res += self._formatString(report.company_id.name, 30)  # Apellidos
         res += self._formatString("", 15)  # Nombre
         res += self._formatNumber(report.fiscalyear_id.code, 4)  # Ejercicio
@@ -54,39 +55,50 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
         res = ''
         # I. Activ. económicas estimac. Directa - Ingresos computables [01]
         res += self._formatNumber(report.casilla_01, 11, 2)
-        # I. Activ. económicas estimac. Directa - Gastos fiscalmente deducibles [02]
+        # I. Activ. económicas estimac. Directa - Gastos fiscalmente deducibles
+        # [02]
         res += self._formatNumber(report.casilla_02, 11, 2)
         # I. Activ. económicas estimac. Directa - Rendimiento neto [03]
         res += self._formatNumber(report.casilla_03, 11, 2)
         # I. Activ. económicas estimac. Directa - 20% de la casilla 03 [04]
         res += self._formatNumber(report.casilla_04, 11, 2)
-        # I. Activ. económicas estimac. Directa - A deducir - De los trimestres anteriores [05]
+        # I. Activ. económicas estimac. Directa - A deducir - De los trimestres
+        # anteriores [05]
         res += self._formatNumber(report.casilla_05, 11, 2)
-        # I. Activ. económicas estimac. Directa - A deducir - Retenciones e ingr. a cuenta [06]
+        # I. Activ. económicas estimac. Directa - A deducir - Retenciones e
+        # ingr. a cuenta [06]
         res += self._formatNumber(report.casilla_06, 11, 2)
-        # I. Activ. económicas estimac. Directa - Pago fraccionado previo del trimestre [07]
+        # I. Activ. económicas estimac. Directa - Pago fraccionado previo del
+        # trimestre [07]
         res += self._formatNumber(report.casilla_07, 11, 2)
         # II. Activ. agrícola. estimac. directa - Volumen de ingresos [08]
         res += self._formatNumber(report.casilla_08, 11, 2)
         # II. Activ. agrícola. estimac. directa - 2% de la casilla 08 [09]
         res += self._formatNumber(report.casilla_09, 11, 2)
-        # II. Activ. agrícola. estimac. directa - A deducir- Retenciones e ingr. a cuenta [10]
+        # II. Activ. agrícola. estimac. directa - A deducir- Retenciones e ingr.
+        # a cuenta [10]
         res += self._formatNumber(report.casilla_10, 11, 2)
-        # II. Activ. agrícola estimac. directa - Pago fraccionado previo del trimestre [11]
+        # II. Activ. agrícola estimac. directa - Pago fraccionado previo del
+        # trimestre [11]
         res += self._formatNumber(report.casilla_11, 11, 2)
-        # III. Total liquidación - Suma de pagos fraccionados previos del trimestre [12]
+        # III. Total liquidación - Suma de pagos fraccionados previos del
+        # trimestre [12]
         res += self._formatNumber(report.casilla_12, 11, 2)
-        # III. Total liquidación -Minoración por aplicación de la deducción. Artículo 80 bis [13]
+        # III. Total liquidación -Minoración por aplicación de la deducción.
+        # Artículo 80 bis [13]
         res += self._formatNumber(report.casilla_13, 11, 2)
         # III. Total liquidación - Diferencia (12) - (13) [14]
         res += self._formatNumber(report.casilla_14, 11, 2)
-        # III. Total liquidación - A deducir - Resultados negativos de trimestres anteriores [15]
+        # III. Total liquidación - A deducir - Resultados negativos de
+        # trimestres anteriores [15]
         res += self._formatNumber(report.casilla_15, 11, 2)
-        # III. Total liquidación - Pago de préstamos para la adquisición de vivienda habitual [16]
+        # III. Total liquidación - Pago de préstamos para la adquisición de
+        # vivienda habitual [16]
         res += self._formatNumber(report.casilla_16, 11, 2)
         # III. Total liquidación - Total (14) - (15) [17]
         res += self._formatNumber(report.casilla_17, 11, 2)
-        # III. Total liquidación - A deducir - Resultado de las anteriores declaraciones [18]
+        # III. Total liquidación - A deducir - Resultado de las anteriores
+        # declaraciones [18]
         res += self._formatNumber(report.casilla_18, 11, 2)
         # III. Total liquidación - Resultado de la declaración [19]
         res += self._formatNumber(report.result, 11, 2)
@@ -101,7 +113,7 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
         # "2" Adeudo en cuenta, "3" Domiciliación
         res += self._formatString("0", 1)
         # Ingreso (4) CCC - Entidad - Sucursal - DC - Nº de cuenta - SIN USO
-        res += self._formatString("",  20)
+        res += self._formatString("", 20)
         # A deducir (5) Declaración con resultado a deducir en los siguientes
         # pagos fraccionados
         res += self._formatBoolean(report.result < 0 and report.period != '4T',
@@ -133,6 +145,7 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
 
     def _do_global_checks(self, report, contents, context=None):
         assert len(contents) == 880, (
-            "The 130 report must be 880 characters long and are %s" % len(contents)
+            "The 130 report must be 880 characters long and are %s" %
+            len(contents)
         )
         return True
