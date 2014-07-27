@@ -26,7 +26,7 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
 
     def _get_formatted_declaration_record(self, cr, uid, report, context=None):
         res = ''
-        ## cabecera
+        # cabecera
         res += "<T30301> "
         # Tipo de declaración - "Para impresión, cualquier caracter
         # alfanumérico o 'N' si la autoliquidación se declara SIN ACTIVIDAD"
@@ -37,7 +37,7 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         res += self._formatString(report.company_id.name, 30)
         res += self._formatString("", 15)  # Nombre
         res += self._formatBoolean(report.devolucion_mensual, yes='1', no='2')
-        ## devengo (2)
+        # devengo (2)
         res += self._formatNumber(report.fiscalyear_id.code, 4)
         res += self._formatString(report.period, 2)
         assert len(res) == 71, _("The identification (1) and income (2) must "
@@ -47,7 +47,7 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
     def _get_formatted_main_record(self, cr, uid, report, context=None):
         lines = report._get_report_lines(context=context)
         res = ''
-        ## IVA devengado
+        # IVA devengado
         # -- Regimen General y Recargo de Equivalencia - code_pair [1~18]
         codes = [
             # Régimen general
@@ -65,7 +65,7 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
             tipo = cuota / base_imponible * 100 if base_imponible else 0
             # base imponible X %  -- codes [1, 4, 7, 10, 13, 16]
             res += self._formatNumber(base_imponible, 15, 2)
-             # tipo % codes - [2, 5, 8, 11, 14, 17]
+            # tipo % codes - [2, 5, 8, 11, 14, 17]
             res += self._formatNumber(tipo, 3,  2)
             # cuota X % -- codes [3, 6, 9, 12, 15, 18]
             res += self._formatNumber(cuota, 15, 2)
@@ -103,17 +103,17 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         res += self._formatNumber(lines.get("[43]"), 15, 2)
         # [43], Derecho a deucción [44]
         res += self._formatNumber(lines.get("[44]"), 15, 2)
-        ## Estado y Comunidades Forales
+        # Estado y Comunidades Forales
         res += self._formatNumber(report.regularizacion_anual, 15, 2)
         # [40] - [41]
         res += self._formatNumber(report.resultado_casilla_46, 15, 2)
-        ## A deducir - autoliquidación complementaria .... pedir campo
+        # A deducir - autoliquidación complementaria .... pedir campo
         res += self._formatNumber(report.previus_result if
                                   report.complementaria else 0, 15, 2)
         res += self._formatNumber(report.resultado_liquidacion, 15, 2)  # [48]
-        ## A compensar
+        # A compensar
         res += self._formatNumber(report.compensar, 15, 2)  # [49]
-        ## Marca SIN ACTIVIDAD
+        # Marca SIN ACTIVIDAD
         res += self._formatBoolean(report.sin_actividad, yes='1', no='2')
         assert len(res) == 822 - 72, _("The vat records must be 749 "
                                        "characters long and are %s") % len(res)
@@ -121,7 +121,7 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
 
     def _get_formatted_other_records(self, cr, uid, report, context=None):
         res = ''
-        ## devolucion (6)
+        # devolucion (6)
         res += self._formatNumber(report.devolver, 15, 2)  # devolucion [50]
         ccc = ""
         if report.cuenta_devolucion_id and report.devolver:
@@ -157,7 +157,7 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         # Complementaria (8) - no justificante declaración anterior
         res += self._formatString(report.previous_number if
                                   report.complementaria else "", 13)
-        ## TODO -- hardcode por ahora
+        # TODO -- hardcode por ahora
         # Autorización conjunta
         res += self._formatBoolean(False, yes='1', no=' ')
         res += self._formatString(' ', 1)  # 77 autodeclaracion del concurso
