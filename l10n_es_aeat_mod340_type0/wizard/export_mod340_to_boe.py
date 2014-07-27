@@ -62,7 +62,7 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
         text += '340'
         # Ejercicio
         text += self._formatString(report.fiscalyear_id.code, 4)
-         # NIF del presentador
+        # NIF del presentador
         text += self._formatString(report.presenter_vat or '', 9)
         # Apellidos y nombre del presentador
         text += self._formatString(report.presenter_name or '', 40)
