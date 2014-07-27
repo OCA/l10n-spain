@@ -2,14 +2,13 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2006 ACYSOS S.L. (http://acysos.com) All Rights Reserved.
+#    Copyright (c) 2006 ACYSOS S.L. (http://acysos.com)
 #                       Pedro Tarrafeta <pedro@acysos.com>
 #    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2009 NaN (http://www.nan-tic.com) All Rights Reserved.
+#    Copyright (c) 2009 NaN (http://www.nan-tic.com)
 #                       Albert Cervera i Areny <albert@nan-tic.com>
-#    $Id$
 #
 # Corregido para instalación TinyERP estándar 4.2.0: Zikzakmedia S.L. 2008
 #   Jordi Esteve <jesteve@zikzakmedia.com>
@@ -17,10 +16,12 @@
 # Añadidas cuentas de remesas y tipos de pago. 2008
 #    Pablo Rocandio <salbet@gmail.com>
 #
-# Rehecho de nuevo para instalación OpenERP 5.0.0 sobre account_payment_extension: Zikzakmedia S.L. 2009
+# Rehecho de nuevo para instalación OpenERP 5.0.0 sobre
+# account_payment_extension: Zikzakmedia S.L. 2009
 #   Jordi Esteve <jesteve@zikzakmedia.com>
 #
-# Adaptacion de la norma 34-01 para emision de pagos. Validado para La Caixa: 2012
+# Adaptacion de la norma 34-01 para emision de pagos. Validado para
+# La Caixa: 2012
 #   Joan M. Grande <totaler@gmail.com>
 #
 # Refactorización. Acysos S.L. (http://www.acysos.com) 2012
@@ -41,25 +42,26 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp.osv import orm
 from datetime import datetime
 from openerp.tools.translate import _
-from log import *
+from log import Log
 
-class csb_34_01(orm.Model):
+
+class Csb3401(orm.Model):
     _name = 'csb.3401'
     _auto = False
-    
+
     def _start_34(self, cr, uid, context):
-        converter = self.pool.get('payment.converter.spain')
-        return converter.convert(cr, uid, self.order.mode.bank_id.partner_id.vat[2:], 10, context, 'right')
+        converter = self.pool['payment.converter.spain']
+        return converter.convert(cr, uid,
+                                 self.order.mode.bank_id.partner_id.vat[2:],
+                                 10, context, 'right')
 
     def _cabecera_ordenante_34(self, cr, uid, context):
         converter = self.pool.get('payment.converter.spain')
         today = datetime.today().strftime('%d%m%y')
-
         text = ''
-
         # Primer tipo
         text += '0356'
         text += self._start_34(cr, uid, context)
@@ -72,51 +74,55 @@ class csb_34_01(orm.Model):
             text += planned.strftime('%d%m%y')
         else:
             text += today
-        #text += self.convert(self.order.mode.nombre, 40)
-        ccc = converter.bank_account_parts(cr, uid, self.order.mode.bank_id.acc_number, self.order.mode.partner_id.name, context)
+        # text += self.convert(self.order.mode.nombre, 40)
+        ccc = converter.bank_account_parts(
+            cr, uid, self.order.mode.bank_id.acc_number,
+            self.order.mode.partner_id.name, context)
         text += ccc['bank']
         text += ccc['office']
         text += ccc['account']
-        text += '0' #Detalle de cargo
-        text += '1' #Gastos por cuenta del ordenante
+        text += '0'  # Detalle de cargo
+        text += '1'  # Gastos por cuenta del ordenante
         text += 2*' '
         text += ccc['dc']
         text += 7*' '
         text += '\n'
-
-        # Segundo Tipo 
+        # Segundo Tipo
         text += '0356'
         text += self._start_34(cr, uid, context)
         text += '34016'
         text += 7*' '
         text += '002'
-        text += converter.convert(cr, uid, self.order.mode.bank_id.partner_id.name, 36, context)
+        text += converter.convert(
+            cr, uid, self.order.mode.bank_id.partner_id.name, 36, context)
         text += 7*' '
         text += '\n'
-
-        # Tercer Tipo 
+        # Tercer Tipo
         text += '0356'
         text += self._start_34(cr, uid, context)
         text += '34016'
         text += 7*' '
         text += '003'
         # Direccion
-        address_id = self.pool.get('res.partner').address_get(cr, uid, [self.order.mode.bank_id.partner_id.id], ['invoice'])['invoice']
+        address_id = self.pool['res.partner'].address_get(
+            cr, uid, [self.order.mode.bank_id.partner_id.id],
+            ['invoice'])['invoice']
         if not address_id:
-            raise Log( _('User error:\n\nCompany %s has no invoicing address.') % address_id )
-
-        street = self.pool.get('res.partner').read(cr, uid, [address_id], ['street'], context)[0]['street']
+            raise Log(_('User error:\n\nCompany %s has no invoicing '
+                        'address.') % address_id)
+        street = self.pool['res.partner'].read(
+            cr, uid, [address_id], ['street'], context)[0]['street']
         text += converter.convert(cr, uid, street, 36, context)
         text += 7*' '
         text += '\n'
-
-        # Cuarto Tipo 
+        # Cuarto Tipo
         text += '0356'
         text += self._start_34(cr, uid, context)
         text += '34016'
         text += 7*' '
         text += '004'
-        city = self.pool.get('res.partner').read(cr, uid, [address_id], ['city'], context)[0]['city']
+        city = self.pool['res.partner'].read(
+            cr, uid, [address_id], ['city'], context)[0]['city']
         text += converter.convert(cr, uid, city, 36, context)
         text += 7*' '
         text += '\n'
@@ -129,35 +135,41 @@ class csb_34_01(orm.Model):
         text += '0656'
         text += self._start_34(cr, uid, context)
         if not recibo['partner_id'].vat:
-            raise Log( _('User error:\n\nCompany %s has no vat.') % recibo['partner_id'].name )    
-        text += converter.convert(cr, uid, recibo['partner_id'].vat[2:], 12, context, 'right')
+            raise Log(_('User error:\n\nCompany %s has no vat.') %
+                      recibo['partner_id'].name)
+        text += converter.convert(
+            cr, uid, recibo['partner_id'].vat[2:], 12, context, 'right')
         text += '010'
         text += converter.convert(cr, uid, recibo['amount'], 12, context)
-        ccc = converter.bank_account_parts(cr, uid, recibo['bank_id'].acc_number, recibo['partner_id'].name, context)
+        ccc = converter.bank_account_parts(
+            cr, uid, recibo['bank_id'].acc_number, recibo['partner_id'].name,
+            context)
         text += ccc['bank']
         text += ccc['office']
         text += ccc['account']
         text += ' '
-        text += '9' # Otros conceptos (ni Nomina ni Pension)
+        text += '9'  # Otros conceptos (ni Nomina ni Pension)
         text += 2*' '
         text += ccc['dc']
         text += 7*' '
         text += '\n'
-
         # Segundo Registro
         text += '0656'
         text += self._start_34(cr, uid, context)
         if not recibo['partner_id'].vat:
-            raise Log( _('User error:\n\nCompany %s has no vat.') % recibo['partner_id'].name ) 
-        text += converter.convert(cr, uid, recibo['partner_id'].vat[2:], 12, context, 'right')
+            raise Log(_('User error:\n\nCompany %s has no vat.') %
+                      recibo['partner_id'].name)
+        text += converter.convert(
+            cr, uid, recibo['partner_id'].vat[2:], 12, context, 'right')
         text += '011'
-        text += converter.convert(cr, uid, recibo['partner_id'].name, 36, context)
+        text += converter.convert(
+            cr, uid, recibo['partner_id'].name, 36, context)
         text += 7*' '
         text += '\n'
         return text
 
     def _totales_nacionales_34(self, cr, uid, context):
-        converter = self.pool.get('payment.converter.spain')
+        converter = self.pool['payment.converter.spain']
         text = '0856'
         text += self._start_34(cr, uid, context)
         text += 12*' '
@@ -172,10 +184,8 @@ class csb_34_01(orm.Model):
 
     def create_file(self, cr, uid, order, lines, context):
         self.order = order
-
         self.payment_line_count = 0
         self.record_count = 0
-
         file = ''
         file += self._cabecera_ordenante_34(cr, uid, context)
         self.record_count += 4
@@ -185,5 +195,4 @@ class csb_34_01(orm.Model):
             self.record_count += 2
         self.record_count += 1
         file += self._totales_nacionales_34(cr, uid, context)
-        
         return file

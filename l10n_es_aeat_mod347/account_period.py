@@ -17,14 +17,13 @@
 ##############################################################################
 from openerp.osv import fields, orm
 
-class account_period(orm.Model):
+
+class AccountPeriod(orm.Model):
     _inherit = "account.period"
 
     _columns = {
-        'quarter': fields.selection([
-                                    ('first', 'First'),
-                                    ('second', 'Second'),
-                                    ('third', 'Third'),
-                                    ('fourth', 'Fourth')
-                                    ], 'Quarter'),
+        'quarter': fields.selection([('first', 'First'),
+                                     ('second', 'Second'),
+                                     ('third', 'Third'),
+                                     ('fourth', 'Fourth')], 'Quarter'),
     }

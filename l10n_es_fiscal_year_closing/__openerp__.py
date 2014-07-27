@@ -2,19 +2,19 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2008 ACYSOS S.L. (http://acysos.com) All Rights Reserved.
+#    Copyright (c) 2008 ACYSOS S.L. (http://acysos.com)
 #                       Pedro Tarrafeta <pedro@acysos.com>
-#    Copyright (c) 2012 Servicios Tecnológicos Avanzados (http://www.serviciosbaeza.com)
+#    Copyright (c) 2012 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
 #    Copyright (c) 2012 Avanzosc (http://www.avanzosc.com)
 #    Copyright (c) 2013 Joaquin Gutierrez (http://www.gutierrezweb.es)
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -31,17 +31,17 @@
 ##############################################################################
 
 {
-    'name' : "Cierre de ejercicio fiscal para España",
-    'version' : "1.0",
-    'author' : "Pexego",
-    'website' : "http://www.pexego.es",
-    'contributors' : ['Pedro M. Baeza', 'Joaquín Gutierrez'],
-    'category' : "Localisation/Accounting",
+    'name': "Cierre de ejercicio fiscal para España",
+    'version': "1.0",
+    'author': "Pexego",
+    'website': "http://www.pexego.es",
+    'contributors': ['Pedro M. Baeza', 'Joaquín Gutierrez'],
+    'category': "Localisation/Accounting",
     'description': """
-Cierre contable del ejercicio fiscal español 
+Cierre contable del ejercicio fiscal español
 ============================================
-    
-Reemplaza el asistente por defecto de OpenERP para el cierre contable (del 
+
+Reemplaza el asistente por defecto de OpenERP para el cierre contable (del
 módulo *account*) por un asistente todo en uno más avanzado que permite:
 
  * Comprobar asientos descuadrados.
@@ -52,10 +52,10 @@ módulo *account*) por un asistente todo en uno más avanzado que permite:
  * Crear el asiento de cierre.
  * Crear el asiento de apertura.
 
-Permite configurar todos los parámetros para la realización de los asientos, 
-aunque viene preconfigurado para el actual plan de cuentas español. 
+Permite configurar todos los parámetros para la realización de los asientos,
+aunque viene preconfigurado para el actual plan de cuentas español.
 
-Para la creación de los asientos, se tiene en cuenta el método de cierre 
+Para la creación de los asientos, se tiene en cuenta el método de cierre
 definido en los tipos de cuenta (siempre que la cuenta no sea de tipo view):
 
  * Ninguno: No se realiza ningún cierre para esa cuenta.
@@ -63,16 +63,16 @@ definido en los tipos de cuenta (siempre que la cuenta no sea de tipo view):
  * No conciliados: Crea un apunte por cada empresa con saldo para la cuenta.
  * Detalle: No soportado.
 
-También conserva el estado del cierre, por lo que el usuario puede cancelar y 
+También conserva el estado del cierre, por lo que el usuario puede cancelar y
 deshacer las operaciones fácilmente.
     """,
-    "license" : "AGPL-3",
-    "depends" : [
+    "license": "AGPL-3",
+    "depends": [
         "base",
         "account",
         "l10n_es",
     ],
-    "data" : [
+    "data": [
         "wizard/wizard_run_view.xml",
         "security/security.xml",
         "security/ir.model.access.csv",
@@ -80,10 +80,8 @@ deshacer las operaciones fácilmente.
         "fiscalyear_closing_view.xml",
         "hide_account_wizards.xml",
     ],
-    "active": False,
     "installable": True,
     'images': [
         'images/l10n_es_fiscal_year_closing.png',
     ],
 }
-

@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution    
-#    Copyright (c) All rights reserved:
+#    OpenERP, Open Source Management Solution
+#    Copyright (c):
 #       2014      Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #                 Pedro M. Baeza <pedro.baeza@serviciobaeza.com>
 #
@@ -22,13 +22,13 @@
 ##############################################################################
 
 {
-    "name" : "AEAT modelo 130",
-    "version" : "0.8",
-    "author" : "Serv. Tecnol. Avanzados - Pedro M. Baeza",
-    "license" : "AGPL-3",
-    "website" : "http://www.serviciosbaeza.com",
-    "category" : "Localisation/Accounting",
-    "description" : """
+    "name": "AEAT modelo 130",
+    "version": "0.8",
+    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza",
+    "license": "AGPL-3",
+    "website": "http://www.serviciosbaeza.com",
+    "category": "Localisation/Accounting",
+    "description": """
 Modelo 130 de la AEAT
 =====================
 
@@ -40,7 +40,7 @@ Instrucciones del modelo: http://goo.gl/StTY2h
 
 Incluye la exportación al formato BOE para su uso telemático.
 
-**AVISO**: Este modelo no cubre el 100% de las posibilidades que se pueden 
+**AVISO**: Este modelo no cubre el 100% de las posibilidades que se pueden
 dar en la declaración, por lo que se exime a los desarrolladores de cualquier
 responsabilidad derivada de su uso. Carencias conocidas:
 
@@ -57,13 +57,13 @@ responsabilidad derivada de su uso. Carencias conocidas:
 * No se pueden deducir resultados negativos de anteriores declaraciones
   (casilla [15]).
     """,
-    "depends" : [
+    "depends": [
         "l10n_es_aeat",
     ],
-    "data" : [
+    "data": [
         "wizard/export_mod130_to_boe.xml",
         "mod130_view.xml",
         "security/ir.model.access.csv",
     ],
-    "installable" : True,
+    "installable": True,
 }

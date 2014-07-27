@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP - Account balance reporting engine
-#    Copyright (C) 2009 Pexego Sistemas Informáticos. All Rights Reserved
-#    AvanzOSC, Avanzed Open Source Consulting 
-#    Copyright (C) 2011-2012 Iker Coranti (www.avanzosc.com). All Rights Reserved
-#    $Id$
+#    Copyright (C) 2009 Pexego Sistemas Informáticos.
+#    AvanzOSC, Avanzed Open Source Consulting
+#    Copyright (C) 2011-2012 Iker Coranti (www.avanzosc.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by

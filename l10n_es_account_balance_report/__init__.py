@@ -2,8 +2,8 @@
 ##############################################################################
 #
 #    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
-#        Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#        Pexego Sistemas Informáticos. (http://pexego.es)
+#        Zikzakmedia S.L. (http://zikzakmedia.com)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,11 +19,3 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-"""
-Spanish account balance reports
-"""
-__author__ = "Borja López Soilán (Pexego) - borjals@pexego.es"
-
-
-

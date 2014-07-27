@@ -3,17 +3,16 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2008 Spanish Localization Team
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2013 Acysos S.L. (http://acysos.com) All Rights Reserved.
+#    Copyright (c) 2013 Acysos S.L. (http://acysos.com)
 #                       Ignacio Ibeas <ignacio@acysos.com>
-#    Copyright (c) 2013 Servicios Tecnológicos Avanzados (http://www.serviciosbaeza.com)
+#    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -27,16 +26,16 @@
 ##############################################################################
 
 {
-    "name" : "Adaptación de los clientes, proveedores y bancos para España",
-    "version" : "1.1",
-    "author" : "Spanish localization team",
-    "website" : "https://launchpad.net/openerp-spain",
+    "name": "Adaptación de los clientes, proveedores y bancos para España",
+    "version": "1.1",
+    "author": "Spanish localization team",
+    "website": "https://launchpad.net/openerp-spain",
     "contributors": [
         'Jordi Esteve <jesteve@zikzakmedia.com>',
         'Ignacio Ibeas <ignacio@acysos.com>',
         'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com',
     ],
-    "category" : "Localisation/Europe",
+    "category": "Localisation/Europe",
     "description": """
 Funcionalidad:
 --------------
@@ -69,17 +68,15 @@ Funcionamiento de la validación de la cuenta bancaria para cuentas IBAN:
  * Se limpia la cuenta de espacios.
  * Se divide lo introducido en bloques de 4 caracteres.
 """,
-    "license" : "AGPL-3",
-    "depends" : [
+    "license": "AGPL-3",
+    "depends": [
         "base",
         "base_iban",
         "l10n_es_toponyms",
     ],
-    "data" : [
+    "data": [
         "l10n_es_partner_view.xml",
         "wizard/l10n_es_partner_wizard.xml"
     ],
-    "active": False,
     "installable": True
 }
-

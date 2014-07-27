@@ -2,11 +2,10 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2011 Ting (www.ting.es) All Rights Reserved.
-#    Copyright (c) 2011 Acysos S.L. (http://acysos.com) All Rights Reserved
+#    Copyright (c) 2011 Ting (www.ting.es)
+#    Copyright (c) 2011 Acysos S.L. (http://acysos.com)
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
-#                      
-#    $Id$
+#
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by

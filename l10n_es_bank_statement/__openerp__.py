@@ -21,12 +21,12 @@
 ##############################################################################
 
 {
-    "name" : "Extractos bancarios españoles (Norma 43)",
-    "version" : "3.0",
-    "author" : "Spanish localization team",
-    "website" : "https://launchpad.net/openerp-spain",
-    "category" : "Localisation/Accounting",
-    "description" : """
+    "name": "Extractos bancarios españoles (Norma 43)",
+    "version": "3.0",
+    "author": "Spanish localization team",
+    "website": "https://launchpad.net/openerp-spain",
+    "category": "Localisation/Accounting",
+    "description": """
 Extractos bancarios españoles (Norma 43)
 ========================================
 
@@ -34,21 +34,21 @@ Importación y tratamiento de los extractos bancarios españoles que siguen la
 norma/cuaderno 43 de la 'Asociación Española de la Banca'. Puede consultarse la
 especificación del formato aquí_.
 
-.. _aquí: https://docs.bankinter.com/stf/plataformas/empresas/gestion/ficheros/formatos_fichero/norma_43_castellano.pdf
+.. _aquí: http://goo.gl/2zzlmu
 
 **AVISO:** Este módulo requiere de varios módulos del repositorio de código:
 
-https://code.launchpad.net/~banking-addons-team/banking-addons/bank-statement-reconcile-70
+https://github.com/OCA/bank-statement-reconcile
     """,
-    "license" : "AGPL-3",
-    "depends" : [
+    "license": "AGPL-3",
+    "depends": [
         "l10n_es",
         'account_statement_base_import',
         'account_statement_base_completion',
     ],
-    "data" : [
+    "data": [
         "views/account_bank_statement_view.xml",
         "data/account_statement_completion_rule_data.xml",
     ],
-    "installable" : True,
+    "installable": True,
 }

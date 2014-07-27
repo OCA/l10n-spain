@@ -6,7 +6,7 @@
 #        2013:      Top Consultant Software Creations S.L.
 #                   (http://www.topconsultant.es/)
 #        2014:      Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com> 
+#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    Autores originales: Luis Manuel Angueira Blanco (Pexego)
 #                        Omar Castiñeira Saavedra(omar@pexego.es)
@@ -29,6 +29,7 @@
 from openerp.osv import orm
 from openerp.tools.translate import _
 
+
 class Mod349ExportToBoe(orm.TransientModel):
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = "l10n.es.aeat.mod349.export_to_boe"
@@ -42,7 +43,7 @@ class Mod349ExportToBoe(orm.TransientModel):
         return company_obj.name
 
     def _get_formatted_declaration_record(self, cr, uid, report,
-                                         context=None):
+                                          context=None):
         """
         Returns a type 1, declaration/company, formated record.
 
@@ -59,30 +60,41 @@ class Mod349ExportToBoe(orm.TransientModel):
         Format of the record:
             Tipo registro 1 – Registro de declarante:
             Posiciones  Naturaleza      Descripción
-            1           Numérico        Tipo de Registro            Constante = '1'
-            2-4         Numérico        Modelo Declaración          Constante = '349'
+            1           Numérico        Tipo de Registro      Constante = '1'
+            2-4         Numérico        Modelo Declaración    Constante = '349'
             5-8         Numérico        Ejercicio
             9-17        Alfanumérico    NIF del declarante
-            18-57       Alfanumérico    Apellidos y nombre o razón social del declarante
+            18-57       Alfanumérico    Apellidos y nombre o razón social del
+                                        declarante
             58          Alfabético      Tipo de soporte
             59-67       Numérico (9)    Teléfono contacto
             68-107      Alfabético      Apellidos y nombre contacto
             108-120     Numérico        Número identificativo de la declaración
-            121-122     Alfabético      Declaración complementaria o substitutiva
-            123-135     Numérico        Número identificativo de la declaración anterior
+            121-122     Alfabético      Declaración complementaria o
+                                        substitutiva
+            123-135     Numérico        Número identificativo de la declaración
+                                        anterior
             136-137     Alfanumérico    Período
-            138-146     Numérico        Número total de operadores intracomunitarios
-            147-161     Numérico        Importe de las operaciones intracomunitarias
-            - 147-159     Numérico        Importe de las operaciones intracomunitarias (parte entera)
-            - 160-161     Numérico        Importe de las operaciones intracomunitarias (parte decimal)
-            162-170     Numérico        Número total de operadores intracomunitarios con rectificaciones
+            138-146     Numérico        Número total de operadores
+                                        intracomunitarios
+            147-161     Numérico        Importe de las operaciones
+                                        intracomunitarias
+            147-159     Numérico        Importe de las operaciones
+                                        intracomunitarias (parte entera)
+            160-161     Numérico        Importe de las operaciones
+                                        intracomunitarias (parte decimal)
+            162-170     Numérico        Número total de operadores
+                                        intracomunitarios con rectificaciones
             171-185     Numérico        Importe total de las rectificaciones
-            - 171-183     Numérico        Importe total de las rectificaciones (parte entera)
-            - 184-185     Numérico        Importe total de las rectificaciones (parte decimal)
-            186         Alfabético      Indicador cambio periodicidad en la obligación a declarar (X o '')
-            187-390     Blancos         ----------------------------------------
+            171-183     Numérico        Importe total de las rectificaciones
+                                        (parte entera)
+            184-185     Numérico        Importe total de las rectificaciones
+                                        (parte decimal)
+            186         Alfabético      Indicador cambio periodicidad en la
+                                        obligación a declarar (X o '')
+            187-390     Blancos         ---------------------------------------
             391-399     Alfanumérico    NIF del representante legal
-            400-487     Blancos         ----------------------------------------
+            400-487     Blancos         ---------------------------------------
             488-500     Sello electrónico
         """
         assert report, 'No Report defined'
@@ -95,68 +107,80 @@ class Mod349ExportToBoe(orm.TransientModel):
                                  year number. Please, fix it and try again.'))
         company_name = self._get_company_name_with_title(report.company_id,
                                                          context=context)
-        period = report.period_selection == 'MO' and report.month_selection \
-                                                 or report.period_selection
-        text = ''                                                               # Empty text
-        text += '1'                                                             # Tipo de Registro
-        text += '349'                                                           # Modelo Declaración
-        text += self._formatNumber(fiscal_year, 4)                              # Ejercicio
-        text += self._formatString(report.company_vat, 9)                       # NIF del declarante
-        text += self._formatString(company_name, 40)                            # Apellidos y nombre o razón social del declarante
-        text += self._formatString(report.support_type, 1)                      # Tipo de soporte
-        text += self._formatString(report.contact_phone.replace(' ', ''), 9)    # Persona de contacto (Teléfono)
-        text += self._formatString(report.contact_name, 40)                     # Persona de contacto (Apellidos y nombre)
-        text += self._formatNumber(report.number, 13)                           # Número identificativo de la declaración
-        text += self._formatString(report.type, 2).replace('N', ' ')            # Declaración complementaria o substitutiva
-        text += self._formatNumber(report.previous_number, 13)                  # Número identificativo de la declaración anterior
-        text += self._formatString(period, 2)                                   # Período
-        text += self._formatNumber(report.total_partner_records, 9)             # Número total de operadores intracomunitarios
-        text += self._formatNumber(report.total_partner_records_amount, 13, 2)  # Importe total de las operaciones intracomunitarias (parte entera)
-        text += self._formatNumber(report.total_partner_refunds, 9)             # Número total de operadores intracomunitarios con rectificaciones
-        text += self._formatNumber(report.total_partner_refunds_amount, 13, 2)  # Importe total de las rectificaciones
-        text += self._formatBoolean(report.frequency_change)                    # Indicador cambio periodicidad en la obligación a declarar
-        text += 204 * ' '                                                         # Blancos
-        text += self._formatString(report.representative_vat, 9)                # NIF del representante legal
-        #text += 9*' '
-        text += 88 * ' '                                                          # Blancos
-        text += 13 * ' '                                                          # Sello electrónico
-        text += '\r\n'                                                          # Retorno de carro + Salto de línea
+        period = (report.period_selection == 'MO' and report.month_selection or
+                  report.period_selection)
+        text = ''  # Empty text
+        text += '1'  # Tipo de Registro
+        text += '349'  # Modelo Declaración
+        text += self._formatNumber(fiscal_year, 4)  # Ejercicio
+        text += self._formatString(report.company_vat, 9)  # NIF del declarante
+        # Apellidos y nombre o razón social del declarante
+        text += self._formatString(company_name, 40)
+        text += self._formatString(report.support_type, 1)  # Tipo de soporte
+        # Persona de contacto (Teléfono)
+        text += self._formatString(report.contact_phone.replace(' ', ''), 9)
+        # Persona de contacto (Apellidos y nombre)
+        text += self._formatString(report.contact_name, 40)
+        # Número identificativo de la declaración
+        text += self._formatNumber(report.number, 13)
+        # Declaración complementaria o substitutiva
+        text += self._formatString(report.type, 2).replace('N', ' ')
+        # Número identificativo de la declaración anterior
+        text += self._formatNumber(report.previous_number, 13)
+        text += self._formatString(period, 2)  # Período
+        # Número total de operadores intracomunitarios
+        text += self._formatNumber(report.total_partner_records, 9)
+        # Importe total de las operaciones intracomunitarias (parte entera)
+        text += self._formatNumber(report.total_partner_records_amount, 13, 2)
+        # Número total de operadores intracomunitarios con rectificaciones
+        text += self._formatNumber(report.total_partner_refunds, 9)
+        # Importe total de las rectificaciones
+        text += self._formatNumber(report.total_partner_refunds_amount, 13, 2)
+        # Indicador cambio periodicidad en la obligación a declarar
+        text += self._formatBoolean(report.frequency_change)
+        text += 204 * ' '  # Blancos
+        # NIF del representante legal
+        text += self._formatString(report.representative_vat, 9)
+        # text += 9*' '
+        text += 88 * ' '  # Blancos
+        text += 13 * ' '  # Sello electrónico
+        text += '\r\n'  # Retorno de carro + Salto de línea
         assert len(text) == 502, \
-                _("The type 1 record must be 502 characters long")
+            _("The type 1 record must be 502 characters long")
         return text
 
     def _get_formatted_main_record(self, cr, uid, report, context=None):
         file_contents = ''
         for partner_record in report.partner_record_ids:
-            file_contents += self._get_formated_partner_record(report,
-                                            partner_record, context=context)
+            file_contents += self._get_formated_partner_record(
+                report, partner_record, context=context)
         for refund_record in report.partner_refund_ids:
-            file_contents += self._get_formatted_partner_refund(report,
-                                                refund_record, context=context)
+            file_contents += self._get_formatted_partner_refund(
+                report, refund_record, context=context)
         return file_contents
 
     def _get_formated_partner_record(self, report, partner_record,
                                      context=None):
-        """
-        Returns a type 2, partner record
+        """Returns a type 2, partner record
 
         Format of the record:
             Tipo registro 2
             Posiciones  Naturaleza      Descripción
-            1           Numérico        Tipo de Registro            Constante = '2'
-            2-4         Numérico        Modelo Declaración          Constante = '349'
+            1           Numérico        Tipo de Registro       Constante = '2'
+            2-4         Numérico        Modelo Declaración     onstante = '349'
             5-8         Numérico        Ejercicio
             9-17        Alfanumérico    NIF del declarante
-            18-75       Blancos         ----------------------------------------
+            18-75       Blancos         ---------------------------------------
             76-92       Alfanumérico    NIF operador Intracomunitario
-            - 76-77       Alfanumérico    Codigo de País
-            - 78-92       Alfanumérico    NIF
-            93-132      Alfanumérico    Apellidos y nombre o razón social del operador intracomunitario
+            76-77       Alfanumérico    Codigo de País
+            78-92       Alfanumérico    NIF
+            93-132      Alfanumérico    Apellidos y nombre o razón social del
+                                        operador intracomunitario
             133         Alfanumérico    Clave de operación
             134-146     Numérico        Base imponible
-            - 134-144     Numérico        Base imponible (parte entera)
-            - 145-146     Numérico        Base imponible (parte decimal)
-            147-500     Blancos         ----------------------------------------
+            134-144     Numérico        Base imponible (parte entera)
+            145-146     Numérico        Base imponible (parte decimal)
+            147-500     Blancos         ---------------------------------------
         """
         assert report, 'No AEAT 349 Report defined'
         assert partner_record, 'No Partner record defined'
@@ -169,16 +193,16 @@ class Mod349ExportToBoe(orm.TransientModel):
                                  code must be numeric and contain the fiscal \
                                  year number. Please, fix it and try again.'))
 
-        ## Formateo de algunos campos (debido a que pueden no ser correctos)
-        ## NIF : Se comprueba que no se incluya el código de pais
+        # Formateo de algunos campos (debido a que pueden no ser correctos)
+        # NIF : Se comprueba que no se incluya el código de pais
         company_vat = report.company_vat
         if len(report.company_vat) > 9:
             company_vat = report.company_vat[2:]
-        text += '2' # Tipo de registro
-        text += '349' # Modelo de declaración
-        text += self._formatNumber(fiscal_year, 4) # Ejercicio
-        text += self._formatString(company_vat, 9) # NIF del declarante
-        text += 58 * ' ' # Blancos
+        text += '2'  # Tipo de registro
+        text += '349'  # Modelo de declaración
+        text += self._formatNumber(fiscal_year, 4)  # Ejercicio
+        text += self._formatString(company_vat, 9)  # NIF del declarante
+        text += 58 * ' '  # Blancos
         # NIF del operador intracomunitario
         text += self._formatString(partner_record.partner_vat, 17)
         # Apellidos y nombre o razón social del operador intracomunitario
@@ -186,61 +210,75 @@ class Mod349ExportToBoe(orm.TransientModel):
         # Clave de operación
         text += self._formatString(partner_record.operation_key, 1)
         # Base imponible (parte entera)
-        text += self._formatNumber(partner_record.total_operation_amount, 11, 2)
-        text += 354 * ' ' # Blancos
-        text += '\r\n' # Retorno de carro + Salto de línea
+        text += self._formatNumber(partner_record.total_operation_amount, 11,
+                                   2)
+        text += 354 * ' '  # Blancos
+        text += '\r\n'  # Retorno de carro + Salto de línea
         assert len(text) == 502, \
-                _("The type 2 record must be 502 characters long")
+            _("The type 2 record must be 502 characters long")
         return text
 
     def _get_formatted_partner_refund(self, report, refund_record,
                                       context=None):
-        """
-        Returns a type 2, refund record
+        """Returns a type 2, refund record
 
         Format of the record:
             Tipo registro 2
             Posiciones  Naturaleza      Descripción
-            1           Numérico        Tipo de Registro            Constante = '2'
-            2-4         Numérico        Modelo Declaración          Constante = '349'
+            1           Numérico        Tipo de Registro      Constante = '2'
+            2-4         Numérico        Modelo Declaración    Constante = '349'
             5-8         Numérico        Ejercicio
             9-17        Alfanumérico    NIF del declarante
-            18-75       Blancos         ----------------------------------------
+            18-75       Blancos         ---------------------------------------
             76-92       Alfanumérico    NIF operador Intracomunitario
-            - 76-77       Alfanumérico    Codigo de Pais
-            - 78-92       Alfanumérico    NIF
-            93-132      Alfanumérico    Apellidos y nombre o razón social del operador intracomunitario
+            76-77       Alfanumérico    Codigo de Pais
+            78-92       Alfanumérico    NIF
+            93-132      Alfanumérico    Apellidos y nombre o razón social del
+                                        operador intracomunitario
             133         Alfanumérico    Clave de operación
-            134-146     Blancos         ----------------------------------------
+            134-146     Blancos         ---------------------------------------
             147-178     Alfanumérico    Rectificaciones
-            - 147-150     Numérico        Ejercicio
-            - 151-152     Alfanumérico    Periodo
-            - 153-165     Numérico        Base Imponible rectificada
-              - 153-163     Numérico        Base Imponible (parte entera)
-              - 164-165     Numérico        Base Imponible (parte decimal)
+            147-150     Numérico        Ejercicio
+            151-152     Alfanumérico    Periodo
+            153-165     Numérico        Base Imponible rectificada
+            153-163     Numérico        Base Imponible (parte entera)
+            164-165     Numérico        Base Imponible (parte decimal)
             166-178     Numérico        Base imponible declarada anteriormente
-            - 166-176     Numérico        Base imponible declarada anteriormente (parte entera)
-            - 177-176     Numérico        Base imponible declarada anteriormente (parte decimal)
-            179-500     Blancos         ----------------------------------------
+            166-176     Numérico        Base imponible declarada anteriormente
+                                        (parte entera)
+            177-176     Numérico        Base imponible declarada anteriormente
+                                        (parte decimal)
+            179-500     Blancos         ---------------------------------------
         """
         assert report, 'No AEAT 349 Report defined'
         assert refund_record, 'No Refund record defined'
         text = ''
-        period = refund_record.period_selection == 'MO' and refund_record.month_selection or refund_record.period_selection
-        text += '2'                                                             # Tipo de registro
-        text += '349'                                                           # Modelo de declaración
-        text += self._formatNumber(report.fiscalyear_id.code[:4], 4)                # Ejercicio
-        text += self._formatString(report.company_vat, 9)                       # NIF del declarante
-        text += 58 * ' '                                                        # Blancos
-        text += self._formatString(refund_record.partner_id.vat, 17)            # NIF del operador intracomunitario
-        text += self._formatString(refund_record.partner_id.name, 40)           # Apellidos y nombre o razón social del operador intracomunitario
-        text += self._formatString(refund_record.operation_key, 1)              # Clave de operación
-        text += 13 * ' '                                                        # Blancos
-        text += self._formatNumber(refund_record.fiscalyear_id.code[:4], 4)       # Ejercicio (de la rectificación)
-        text += self._formatString(period, 2)                                   # Periodo (de la rectificación)
-        text += self._formatNumber(refund_record.total_operation_amount, 11, 2)  # Base imponible de la rectificación
-        text += self._formatNumber(refund_record.total_origin_amount, 11, 2)    # Base imponible declarada anteriormente
-        text += 322 * ' '                                                         # Blancos
-        text += '\r\n'                                                           # Retorno de carro + Salto de línea
-        assert len(text) == 502, _("The type 2 record must be 502 characters long")
+        period = (refund_record.period_selection == 'MO' and
+                  refund_record.month_selection or
+                  refund_record.period_selection)
+        text += '2'  # Tipo de registro
+        text += '349'  # Modelo de declaración
+        # Ejercicio
+        text += self._formatNumber(report.fiscalyear_id.code[:4], 4)
+        text += self._formatString(report.company_vat, 9)  # NIF del declarante
+        text += 58 * ' '   # Blancos
+        # NIF del operador intracomunitario
+        text += self._formatString(refund_record.partner_id.vat, 17)
+        # Apellidos y nombre o razón social del operador intracomunitario
+        text += self._formatString(refund_record.partner_id.name, 40)
+        # Clave de operación
+        text += self._formatString(refund_record.operation_key, 1)
+        text += 13 * ' '  # Blancos
+        # Ejercicio (de la rectificación)
+        text += self._formatNumber(refund_record.fiscalyear_id.code[:4], 4)
+        # Periodo (de la rectificación)
+        text += self._formatString(period, 2)
+        # Base imponible de la rectificación
+        text += self._formatNumber(refund_record.total_operation_amount, 11, 2)
+        # Base imponible declarada anteriormente
+        text += self._formatNumber(refund_record.total_origin_amount, 11, 2)
+        text += 322 * ' '  # Blancos
+        text += '\r\n'  # Retorno de carro + Salto de línea
+        assert len(text) == 502, \
+            _("The type 2 record must be 502 characters long")
         return text

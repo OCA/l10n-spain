@@ -2,16 +2,16 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2008-2010 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2008-2010 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                            Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2012-2013, Grupo OPENTIA (<http://opentia.com>) Registered EU Trademark.
+#    Copyright (c) 2012-2013, Grupo OPENTIA (<http://opentia.com>)
 #                            Dpto. Consultoría <consultoria@opentia.es>
 #    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -25,11 +25,11 @@
 ##############################################################################
 
 {
-    "name" : "Spanish Charts of Accounts (PGCE 2008)",
-    "version" : "4.0",
-    "author" : "Spanish Localization Team",
-    'website' : 'https://launchpad.net/openerp-spain',
-    "category" : "Localization/Account Charts",
+    "name": "Spanish Charts of Accounts (PGCE 2008)",
+    "version": "4.0",
+    "author": "Spanish Localization Team",
+    'website': 'https://launchpad.net/openerp-spain',
+    "category": "Localization/Account Charts",
     "description": """
 Spanish charts of accounts (PGCE 2008).
 ========================================
@@ -42,9 +42,9 @@ Spanish charts of accounts (PGCE 2008).
     * Defines tax code templates
     * Defines fiscal positions for spanish fiscal legislation
 """,
-    "license" : "AGPL-3",
-    "depends" : ["account", "base_vat", "base_iban"],
-    "data" : [
+    "license": "AGPL-3",
+    "depends": ["account", "base_vat", "base_iban"],
+    "data": [
         "account_type.xml",
         "account_chart_template.xml",
         "account_account_common.xml",
@@ -57,7 +57,7 @@ Spanish charts of accounts (PGCE 2008).
         "account_chart_template_post.xml",
         "l10n_es_wizard.xml",
     ],
-    "demo" : [],
+    "demo": [],
     'auto_install': False,
     "installable": True,
     'images': ['images/config_chart_l10n_es.png', 'images/l10n_es_chart.png'],

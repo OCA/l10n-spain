@@ -1,18 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2006 ACYSOS S.L. (http://acysos.com) All Rights Reserved.
-#                       Pedro Tarrafeta <pedro@acysos.com>
-#    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
-#                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    AvanzOSC, Advanced Open Source Consulting 
-#    Copyright (C) 2011-2012 Ainara Galdona (www.avanzosc.com). All Rights Reserved
-#    $Id$
-# Refactorización. Acysos S.L. (http://www.acysos.com) 2012
-#   Ignacio Ibeas <ignacio@acysos.com>
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -28,10 +16,10 @@
 #
 ##############################################################################
 
-import export_remesas
-import converter
-import csb_19
-import csb_32
-import csb_34
-import csb_34_01
-import csb_58
+from . import export_remesas
+from . import converter
+from . import csb19
+from . import csb32
+from . import csb34
+from . import csb3401
+from . import csb58

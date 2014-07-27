@@ -3,15 +3,14 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2008 Spanish Localization Team
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2012-2014 Acysos S.L. (http://acysos.com) All Rights Reserved.
+#    Copyright (c) 2012-2014 Acysos S.L. (http://acysos.com)
 #                       Ignacio Ibeas <ignacio@acysos.com>
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -26,17 +25,20 @@
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
 
-class res_partner_bank(orm.Model):
+
+class ResPartnerBank(orm.Model):
     _inherit = 'res.partner.bank'
     _columns = {
-        'acc_country_id': fields.many2one("res.country", 'Bank country',
-            help="If the country of the bank is Spain, it validates the bank "
-                 "code or IBAN, formatting it accordingly."),
+        'acc_country_id': fields.many2one(
+            "res.country", 'Bank country', help="If the country of the bank is "
+            "Spain, it validates the bank code or IBAN, formatting it "
+            "accordingly."),
     }
 
     def _crc(self, cTexto):
-        """Calculo el CRC de un número de 10 dígitos
-        ajustados con ceros por la izquierda"""
+        """Calculo el CRC de un número de 10 dígitos ajustados con ceros por
+        la izquierda
+        """
         factor = (1, 2, 4, 8, 5, 10, 9, 7, 3, 6)
         # Cálculo CRC
         nCRC = 0
@@ -44,9 +46,9 @@ class res_partner_bank(orm.Model):
             nCRC += int(cTexto[n]) * factor[n]
         # Reducción del CRC a un dígi9to
         nValor = 11 - nCRC % 11
-        if nValor == 10: 
+        if nValor == 10:
             nValor = 1
-        elif nValor == 11: 
+        elif nValor == 11:
             nValor = 0
         return nValor
 
@@ -72,9 +74,9 @@ class res_partner_bank(orm.Model):
         if dc != self.calcCC(bank, office, account):
             return 'invalid-dc'
         return '%s %s %s %s' % (bank, office, dc, account)
-    
+
     def _pretty_iban(self, iban_str):
-        """return iban_str in groups of four characters separated 
+        """return iban_str in groups of four characters separated
         by a single space"""
         res = []
         while iban_str:
@@ -82,13 +84,13 @@ class res_partner_bank(orm.Model):
             iban_str = iban_str[4:]
         return ' '.join(res)
 
-    def onchange_banco(self, cr, uid, ids, account, country_id, 
+    def onchange_banco(self, cr, uid, ids, account, country_id,
                        state, context=None):
         if account and country_id:
-            country = self.pool.get('res.country').browse(cr, uid, country_id,
-                                                          context=context)
+            country = self.pool['res.country'].browse(cr, uid, country_id,
+                                                      context=context)
             if country.code.upper() == 'ES':
-                bank_obj = self.pool.get('res.bank')
+                bank_obj = self.pool['res.bank']
                 if state == 'bank':
                     account = account.replace(' ', '')
                     number = self.checkBankAccount(account)
@@ -96,7 +98,8 @@ class res_partner_bank(orm.Model):
                         return {
                             'warning': {
                                 'title': _('Warning'),
-                                'message': _('Bank account should have 20 digits.')
+                                'message': _('Bank account should have 20 '
+                                             'digits.')
                             }
                         }
                     if number == 'invalid-dc':
@@ -106,32 +109,34 @@ class res_partner_bank(orm.Model):
                                 'message': _('Invalid bank account.')
                             }
                         }
-                    bank_ids = bank_obj.search(cr, uid,
-                                    [('code', '=', number[:4])], context=context)
+                    bank_ids = bank_obj.search(
+                        cr, uid, [('code', '=', number[:4])], context=context)
                     if bank_ids:
-                        return {'value':{'acc_number': number, 'bank': bank_ids[0]}}
+                        return {'value': {'acc_number': number,
+                                          'bank': bank_ids[0]}}
                     else:
-                        return {'value':{'acc_number': number}}
-                elif state =='iban':
-                    partner_bank_obj = self.pool.get('res.partner.bank')
-                    if partner_bank_obj.is_iban_valid(cr,uid,account,context):
+                        return {'value': {'acc_number': number}}
+                elif state == 'iban':
+                    partner_bank_obj = self.pool['res.partner.bank']
+                    if partner_bank_obj.is_iban_valid(cr, uid, account,
+                                                      context):
                         number = self._pretty_iban(account.replace(" ", ""))
-                        
-                        bank_ids = bank_obj.search(cr, uid, 
-                                                   [('code','=',number[5:9])], 
-                                                   context=context)
+
+                        bank_ids = bank_obj.search(
+                            cr, uid, [('code', '=', number[5:9])],
+                            context=context)
                         if bank_ids:
-                            return {'value':{'acc_number': number, 
-                                             'bank': bank_ids[0]}}
+                            return {'value': {'acc_number': number,
+                                              'bank': bank_ids[0]}}
                         else:
-                            return {'value':{'acc_number': number}}
+                            return {'value': {'acc_number': number}}
                     else:
-                       return { 'warning': { 'title': _('Warning'), 
-                                'message': _('IBAN account is not valid') } }                 
-        return {'value':{}}
+                        return {'warning': {'title': _('Warning'),
+                                'message': _('IBAN account is not valid')}}
+        return {'value':  {}}
 
 
-class res_bank(orm.Model):
+class ResBank(orm.Model):
     _inherit = 'res.bank'
     _columns = {
         'code': fields.char('Code', size=64),
@@ -142,7 +147,7 @@ class res_bank(orm.Model):
     }
 
 
-class res_partner(orm.Model):
+class ResPartner(orm.Model):
     _inherit = 'res.partner'
     _columns = {
         'comercial': fields.char('Trade name', size=128, select=True),
@@ -150,24 +155,17 @@ class res_partner(orm.Model):
 
     def name_search(self, cr, uid, name, args=None, operator='ilike',
                     context=None, limit=100):
-        if not args:
-            args=[]
-        if not context:
-            context={}
-
-        partners = super(res_partner, self).name_search(cr, uid, name, args,
-                                                    operator, context, limit)
+        partners = super(ResPartner, self).name_search(cr, uid, name, args,
+                                                       operator, context, limit)
         ids = [x[0] for x in partners]
         if name and len(ids) == 0:
             ids = self.search(cr, uid, [('comercial', operator, name)] + args,
-                                                limit=limit, context=context)
+                              limit=limit, context=context)
         return self.name_get(cr, uid, ids, context)
 
     def vat_change(self, cr, uid, ids, value, context=None):
-        result = super(res_partner,self).vat_change(cr, uid, ids, value,
+        result = super(ResPartner, self).vat_change(cr, uid, ids, value,
                                                     context=context)
         if value:
             result['value']['vat'] = value.upper()
         return result
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
