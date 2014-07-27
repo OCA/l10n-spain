@@ -3,9 +3,8 @@
 #
 #    OpenERP - Account balance reporting engine
 #    Copyright (C) 2009 Pexego Sistemas Informáticos.
-#    AvanzOSC, Avanzed Open Source Consulting 
+#    AvanzOSC, Avanzed Open Source Consulting
 #    Copyright (C) 2011-2012 Iker Coranti (www.avanzosc.com).
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by

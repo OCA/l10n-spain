@@ -2,10 +2,6 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP - Account balance reporting engine
-#    Copyright (C) 2009 Pexego Sistemas Informáticos. All Rights Reserved
-#    $Id$
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -20,8 +16,3 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-"""
-Account balance reporting engine generic reports
-"""
-__author__ = "Borja López Soilán (Pexego) - borjals@pexego.es"
