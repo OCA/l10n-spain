@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com) All Rights Reserved.
+#    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com)
 #                       Ignacio Ibeas <ignacio@acysos.com>
 #    Copyright (c) 2011 NaN Projectes de Programari Lliure, S.L.
 #                       http://www.NaN-tic.com
@@ -102,8 +102,9 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             elif period_stop == '12':
                 period = '4T'
             else:
-                raise orm.except_orm("ERROR",
-                                     _("The period hasn't a valid Mod340 period"))
+                raise orm.except_orm(
+                    "ERROR",
+                    _("The period hasn't a valid Mod340 period"))
         # Periodo
         text += self._formatString(period, 2)
         # Número total de registros
@@ -115,7 +116,7 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
         # Importe total de las facturas
         text += self._formatNumber(report.total, 15, 2, True)
         # Blancos
-        text += 190*' '
+        text += 190 * ' '
         # NIF del representante legal
         text += self._formatString(report.representative_vat, 9)
         # Sello electrónico
@@ -124,7 +125,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
         text += 84 * ' '
         text += '\r\n'
 
-        assert len(text) == 502, _("The type 1 record must be 500 characters long")
+        assert len(text) == 502, \
+            _("The type 1 record must be 500 characters long")
         return text
 
     def _get_formatted_invoice_issued(self, cr, uid, report, invoice_issued):
@@ -179,8 +181,6 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             430-444     Importe percibido por transmisiones de Inmuebles
                         sujetas a IVA. #TODO
             445-500     BLANCOS
-
-
         """
         text = ''
         for tax_line in invoice_issued.tax_line_ids:
@@ -207,7 +207,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             text += self._formatNumber(invoice_issued.partner_id.vat_type, 1)
             # Número de identificación fiscal en el país de residencia.
             if invoice_issued.partner_country_code != 'ES':
-                text += self._formatString(invoice_issued.partner_country_code, 2)
+                text += self._formatString(
+                    invoice_issued.partner_country_code, 2)
                 text += self._formatString(invoice_issued.partner_vat, 15)
             else:
                 text += 17 * ' '
@@ -224,7 +225,6 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
                 text += 'B'
             else:
                 text += ' '
-
             text += self._formatNumber(
                 invoice_issued.invoice_id.date_invoice.split('-')[0], 4)
             text += self._formatNumber(
@@ -244,9 +244,10 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             # Cuota del impuesto
             text += self._formatNumber(tax_line.tax_amount, 11, 2, True)
             # Importe total de la factura
-            text += self._formatNumber(tax_line.tax_amount + tax_line.base_amount, 11, 2, True)
+            text += self._formatNumber(
+                tax_line.tax_amount + tax_line.base_amount, 11, 2, True)
             # Base imponible a coste.
-            text += ' '+self._formatNumber(0, 11, 2)
+            text += ' ' + self._formatNumber(0, 11, 2)
             # Identificación de la factura
             text += self._formatString(invoice_issued.invoice_id.number, 40)
             # Número de registro
@@ -254,50 +255,57 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             text += self._formatString(sequence_obj.get(cr, uid, 'mod340'), 18)
             # Número de facturas
             if invoice_issued.invoice_id.is_ticket_summary == 1:
-                text += self._formatNumber(invoice_issued.invoice_id.number_tickets, 8)
+                text += self._formatNumber(
+                    invoice_issued.invoice_id.number_tickets, 8)
             else:
                 text += self._formatNumber(1, 8)
             # Número de registros (Desglose)
             text += self._formatNumber(len(invoice_issued.tax_line_ids), 2)
             # Intervalo de identificación de la acumulación
             if invoice_issued.invoice_id.is_ticket_summary == 1:
-                text += self._formatString(invoice_issued.invoice_id.first_ticket, 40)
-                text += self._formatString(invoice_issued.invoice_id.last_ticket, 40)
+                text += self._formatString(
+                    invoice_issued.invoice_id.first_ticket, 40)
+                text += self._formatString(
+                    invoice_issued.invoice_id.last_ticket, 40)
             else:
                 text += 80 * ' '
             # Identificación factura rectificativa
-            text += self._formatString(",".join([x.number for x in invoice_issued.invoice_id.origin_invoices_ids]), 40)
+            text += self._formatString(
+                ",".join([x.number for x in
+                          invoice_issued.invoice_id.origin_invoices_ids]), 40)
             # Tipo Recargo de equivalencia
             text += self._formatNumber(0, 5)
             # Couta del recargo de equivalencia
-            text += ' '+self._formatNumber(0, 11, 2)
+            text += ' ' + self._formatNumber(0, 11, 2)
             # Situación del Inmueble #TODO
             text += '0'
             # Referencia Catastral #TODO
-            text += 25*' '
+            text += 25 * ' '
             # Importe Percibido en Metálico #TODO
-            text += 15*'0'
+            text += 15 * '0'
             # Ejercicio ( cifras del ejercicio en el que se hubieran declarado
             # las operaciones que dan origen al cobro ) #TODO
-            text += 4*'0'
-            # Importe percibido por transmisiones de Inmuebles sujetas a IVA. #TODO
-            text += 15*'0'
+            text += 4 * '0'
+            # TODO: Importe percibido por transmisiones de Inmuebles sujetas a
+            # IVA.
+            text += 15 * '0'
             # Fecha de Cobro #TODO
-            text += 8*'0'
+            text += 8 * '0'
             # Importes cobrado #TODO
-            text += 13*'0'
+            text += 13 * '0'
             # Medio de pago utilizado #TODO
             text += ' '
             # Cuenta Bancaria o medio de cobro utilizado #TODO
-            text += 34*' '
+            text += 34 * ' '
             text += '\r\n'
         assert len(text) == 502 * len(invoice_issued.tax_line_ids), (
-            _("The type 2 issued record must be 500 characters long for each Vat registry"))
+            _("The type 2 issued record must be 500 characters long for each "
+              "Vat registry"))
         return text
 
-    def _get_formatted_invoice_received(self, cr, uid, report, invoice_received):
-        """
-        Returns a type 2, invoice received, formated record
+    def _get_formatted_invoice_received(self, cr, uid, report,
+                                        invoice_received):
+        """Returns a type 2, invoice received, formated record
 
         Format of the record:
             Tipo de Registro 2 – Registro de facturas recibidas
@@ -308,16 +316,21 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             9-17        NIF del declarante
             18-26       NIF del declarado
             27-35       NIF del representante legal
-            36-75       Apellidos y nombre, razón social o denominación del declarado
+            36-75       Apellidos y nombre, razón social o denominación del
+                        declarado
             76-77       Código país
             78          Clave de identificación en el país de residencia
-            79-95       Número de identificación fiscal en el país de residencia. TODO de momento blancos.
+            79-95       Número de identificación fiscal en el país de
+                        residencia. TODO de momento blancos.
             96-98       Blancos
             99          Clave tipo de libro. Constante 'R'.
-            100         Clave de operación. Constante ' ' para un solo tipo de IVA.
-                            Constante 'C' para varios tipos de IVA. TODO Resto de operaciones. Varios tipos impositivos.
+            100         Clave de operación. Constante ' ' para un solo tipo de
+                        IVA.
+                        Constante 'C' para varios tipos de IVA. TODO Resto de
+                        operaciones. Varios tipos impositivos.
             101-108     Fecha de expedición
-            109-116     Fecha de operación. Se consigna la misma que expedición. TODO. Fecha del uso del bien.
+            109-116     Fecha de operación. Se consigna la misma que expedición.
+                        TODO. Fecha del uso del bien.
             117-121     Tipo impositivo
             122-135     Base imponible
             136-149     Cuota del impuesto
@@ -325,13 +338,14 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             164-177     Base imponible a coste. TODO de momento 0.
             178-217     Identificación de la factura
             218-235     Número de registro TODO No se exactamente que es
-            236-243     Número de facturas. Siempre 1. TODO Resumenes de facturas o tickets. Clave A o B.
-            244-245     Número de registro. Siempre 1. TODO Facturas con varios asientos. Clave C.
-            246-335     Intervalo de acumulación. Vacio. TODO Intervalo de resumenes de facturas o tickets.
+            236-243     Número de facturas. Siempre 1. TODO Resumenes de
+                        facturas o tickets. Clave A o B.
+            244-245     Número de registro. Siempre 1. TODO Facturas con
+                        varios asientos. Clave C.
+            246-335     Intervalo de acumulación. Vacio. TODO Intervalo de
+                        resúmenes de facturas o tickets.
             336-349     Cuota deducible. TODO.
             350-500     Blancos
-
-
         """
         text = ''
         for tax_line in invoice_received.tax_line_ids:
@@ -358,13 +372,13 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             text += self._formatNumber(invoice_received.partner_id.vat_type, 1)
             # Número de identificación fiscal en el país de residencia.
             if invoice_received.partner_country_code != 'ES':
-                text += self._formatString(invoice_received.partner_country_code,
-                                           2)
+                text += self._formatString(
+                    invoice_received.partner_country_code, 2)
                 text += self._formatString(invoice_received.partner_vat, 15)
             else:
-                text += 17*' '
+                text += 17 * ' '
             # Blancos
-            text += 3*' '
+            text += 3 * ' '
             # Clave tipo de libro. Constante 'R'.
             text += 'R'
             # Clave de operación
@@ -373,13 +387,19 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             else:
                 text += ' '
             # Fecha de expedición
-            text += self._formatNumber(invoice_received.invoice_id.date_invoice.split('-')[0], 4)
-            text += self._formatNumber(invoice_received.invoice_id.date_invoice.split('-')[1], 2)
-            text += self._formatNumber(invoice_received.invoice_id.date_invoice.split('-')[2], 2)
+            text += self._formatNumber(
+                invoice_received.invoice_id.date_invoice.split('-')[0], 4)
+            text += self._formatNumber(
+                invoice_received.invoice_id.date_invoice.split('-')[1], 2)
+            text += self._formatNumber(
+                invoice_received.invoice_id.date_invoice.split('-')[2], 2)
             # Fecha de operación
-            text += self._formatNumber(invoice_received.invoice_id.date_invoice.split('-')[0], 4)
-            text += self._formatNumber(invoice_received.invoice_id.date_invoice.split('-')[1], 2)
-            text += self._formatNumber(invoice_received.invoice_id.date_invoice.split('-')[2], 2)
+            text += self._formatNumber(
+                invoice_received.invoice_id.date_invoice.split('-')[0], 4)
+            text += self._formatNumber(
+                invoice_received.invoice_id.date_invoice.split('-')[1], 2)
+            text += self._formatNumber(
+                invoice_received.invoice_id.date_invoice.split('-')[2], 2)
             # Tipo impositivo
             text += self._formatNumber(tax_line.tax_percentage * 100, 3, 2)
             # Base imponible
@@ -387,10 +407,10 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             # Cuota del impuesto
             text += self._formatNumber(tax_line.tax_amount, 11, 2, True)
             # Importe total de la factura
-            text += self._formatNumber(tax_line.tax_amount + tax_line.base_amount,
-                                       11, 2, True)
+            text += self._formatNumber(tax_line.tax_amount +
+                                       tax_line.base_amount, 11, 2, True)
             # Base imponible a coste.
-            text += ' '+self._formatNumber(0, 11, 2)
+            text += ' ' + self._formatNumber(0, 11, 2)
             # Identificación de la factura
             text += self._formatString(invoice_received.invoice_id.reference,
                                        40)
@@ -402,34 +422,31 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             # Número de registros (Desglose)
             text += self._formatNumber(len(invoice_received.tax_line_ids), 2)
             # Intervalo de identificación de la acumulación
-            text += 80*' '
+            text += 80 * ' '
             # Cuota deducible
-            text += ' '+self._formatNumber(0, 11, 2)
+            text += ' ' + self._formatNumber(0, 11, 2)
             # Fecha de Pago #TODO
-            text += 8*'0'
+            text += 8 * '0'
             # Importes pagados #TODO
-            text += 13*'0'
+            text += 13 * '0'
             # Medio de pago utilizado
             text += ' '
             # Cuenta Bancaria o medio de cobro utilizado #TODO
-            text += 34*' '
+            text += 34 * ' '
             # Blancos
-            text += 95*' '
+            text += 95 * ' '
             text += '\r\n'
-
-        assert len(text) == 502*len(invoice_received.tax_line_ids), (
-            _("The type 2 received record must be 500 characters long for each Vat registry"))
+        assert len(text) == 502 * len(invoice_received.tax_line_ids), (
+            _("The type 2 received record must be 500 characters long for each "
+              "Vat registry"))
         return text
 
     def _get_formatted_other_records(self, cr, uid, report, context=None):
         file_contents = ''
-
         for invoice_issued in report.issued:
-            file_contents += self._get_formatted_invoice_issued(cr, uid, report,
-                                                                invoice_issued)
-
+            file_contents += self._get_formatted_invoice_issued(
+                cr, uid, report, invoice_issued)
         for invoice_received in report.received:
-            file_contents += self._get_formatted_invoice_received(cr, uid,
-                                                                  report, invoice_received)
-
+            file_contents += self._get_formatted_invoice_received(
+                cr, uid, report, invoice_received)
         return file_contents

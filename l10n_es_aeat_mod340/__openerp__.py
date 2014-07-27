@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2011 Ting (http://www.ting.es) All Rights Reserved.
-#    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com) All Rights Reserved
+#    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com)
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 #    $Id$
 #
@@ -29,19 +29,21 @@
     'website': 'www.acysos.com, www.ting.es, www.nan-tic.com',
     'category': 'Localisation/Accounting',
     'description': '''
-Módulo para la presentación del modelo 340. Exportación a formato AEAT. Libro de IVA
+Módulo para la presentación del modelo 340. Exportación a formato AEAT. Libro de
+IVA
 
-Los impuestos incluidos en este modelo se indican en el Código base cuenta. Por defecto
-actualiza todos los código base que deban incluirse.
-Si el plan contable esta instalado recuerde utilizar account_chart_update para actualizar
-los códigos. Contabilidad y Finanzas -> Configuración -> Contabilidad Financiera -> Actualizar
-plan contable a partir de una plantila de plan contable
+Los impuestos incluidos en este modelo se indican en el Código base cuenta. Por
+defecto actualiza todos los código base que deban incluirse.
+Si el plan contable esta instalado recuerde utilizar account_chart_update para
+actualizar
+los códigos. Contabilidad y Finanzas -> Configuración -> Contabilidad Financiera
+-> Actualizar plan contable a partir de una plantila de plan contable
 
 Búsqueda de facturas emitidas y recibidas.
 Exportación a formato de AEAT de facturas emitidas y recibidas.
 Exportación de facturas con varios tipos impositivos. Clave de operación C.
-Facturas intracomunitarias excepto las operaciones a las que hace referencia el artículo 66
-del RIVA que tienen un tratamiento especial.
+Facturas intracomunitarias excepto las operaciones a las que hace referencia el
+artículo 66 del RIVA que tienen un tratamiento especial.
 Facturas rectificativas.
 Facturas resumen de tiques.
 Permite imprimir el libro de IVA, basado en la misma legislación.
@@ -49,7 +51,8 @@ Permite imprimir el libro de IVA, basado en la misma legislación.
 ---- COSAS PENDIENTES (TODO LIST) ----------------------------------------------
 
 Facturas bienes de inversión
-Facturas intracomunitarias. Operaciones a las que hace referencia el artículo 66 del RIVA.
+Facturas intracomunitarias. Operaciones a las que hace referencia el artículo 66
+del RIVA.
 Asientos contables de resumen de tiques
 Exportación de asientos resumen de facturas
 ''',
