@@ -44,7 +44,7 @@ class C43Parser(BankStatementImportParser):
             'divisa': line[47:50],
             'modalidad': line[50:51],  # 1, 2 o 3
             'nombre_propietario': line[51:77],
-            'saldo_ini': float(line[33:45]) + (float(line[45:47]) / 100),
+            'saldo_ini': float("%s.%s" % (line[33:45], line[45:47])),
             'saldo_fin': 0,
             'num_debe': 0,
             'debe': 0,
@@ -54,6 +54,7 @@ class C43Parser(BankStatementImportParser):
         }
         if line[32:33] == '1':
             st_group['saldo_ini'] *= -1
+        self.balance_start = st_group['saldo_ini']
         return st_group
 
     def _process_record_22(self, line):
@@ -93,12 +94,13 @@ class C43Parser(BankStatementImportParser):
     def _process_record_33(self, st_group, line):
         """33 - Registro final de cuenta"""
         st_group['num_debe'] += int(line[20:25])
-        st_group['debe'] += float(line[25:37]) + float(line[37:39]) / 100
+        st_group['debe'] += float("%s.%s" % (line[25:37], line[37:39]))
         st_group['num_haber'] += int(line[39:44])
-        st_group['haber'] += float(line[44:56]) + float(line[56:58]) / 100
-        st_group['saldo_fin'] += float(line[59:71]) + float(line[71:73]) / 100
+        st_group['haber'] += float("%s.%s" % (line[44:56], line[56:58]))
+        st_group['saldo_fin'] += float("%s.%s" % (line[59:71], line[71:73]))
         if line[58:59] == '1':
             st_group['saldo_fin'] *= -1
+        self.balance_end = st_group['saldo_fin']
         # Group level checks
         debit_count = 0
         debit = 0.0
