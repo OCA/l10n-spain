@@ -114,24 +114,28 @@ class L10nEsFiscalyearClosing(orm.Model):
                 dest_account_id = account_ids and account_ids[0] or None
                 # Use a default description if not provided
                 if not description and source_account_id:
-                    description = account_obj.read(cr, uid,
-                                                   source_account_id, ['name'])['name']
+                    description = account_obj.read(
+                        cr, uid, source_account_id, ['name'])['name']
                 account_mappings.append({
                     'name': (description if dest_account_id
-                                        else _('No destination account %s found for account %s.') % (dest, source)),
+                             else _('No destination account %s found for '
+                                    'account %s.') % (dest, source)),
                     'source_account_id': source_account_id,
                     'dest_account_id': dest_account_id or None,
                 })
         return account_mappings
 
     def _get_lp_account_mapping(self, cr, uid, fyc, context=None):
-        account_mappings = self._get_account_mappings(cr, uid, fyc, _LP_ACCOUNT_MAPPING, context)
+        account_mappings = self._get_account_mappings(
+            cr, uid, fyc, _LP_ACCOUNT_MAPPING, context)
         return [(0, 0, acc_map) for acc_map in account_mappings]
 
     def _get_nlp_account_mapping(self, cr, uid, fyc, context=None):
-        account_mappings = self._get_account_mappings(cr, uid, fyc, _NLP_ACCOUNT_MAPPING, context)
+        account_mappings = self._get_account_mappings(
+            cr, uid, fyc, _NLP_ACCOUNT_MAPPING, context)
         return [(0, 0, acc_map) for acc_map in account_mappings]
 
     def _get_c_account_mapping(self, cr, uid, fyc, context=None):
-        account_mappings = self._get_account_mappings(cr, uid, fyc, _C_ACCOUNT_MAPPING, context)
+        account_mappings = self._get_account_mappings(
+            cr, uid, fyc, _C_ACCOUNT_MAPPING, context)
         return [(0, 0, acc_map) for acc_map in account_mappings]

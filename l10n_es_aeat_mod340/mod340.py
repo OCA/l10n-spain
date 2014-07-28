@@ -2,13 +2,11 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2011 Ting (http://www.ting.es) All Rights Reserved.
-#    Copyright (c) 2011-2013 Acysos S.L.(http://acysos.com) All Rights Reserved
+#    Copyright (c) 2011 Ting (http://www.ting.es)
+#    Copyright (c) 2011-2013 Acysos S.L.(http://acysos.com)
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 #    Copyright (c) 2011 NaN Projectes de Programari Lliure, S.L.
 #                       http://www.NaN-tic.com
-#
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -35,19 +33,15 @@ class L10nEsAeatMod340Report(orm.Model):
     def button_calculate(self, cr, uid, ids, args, context=None):
         calculate_obj = self.pool.get('l10n.es.aeat.mod340.calculate_records')
         calculate_obj._wkf_calculate_records(cr, uid, ids, context)
-
         return True
 
     def button_recalculate(self, cr, uid, ids, context=None):
         calculate_obj = self. pool.get('l10n.es.aeat.mod340.calculate_records')
         calculate_obj._calculate_records(cr, uid, ids, context)
-
         return True
 
     def _name_get(self, cr, uid, ids, field_name, arg, context={}):
-        """
-        Returns the report name
-        """
+        """Returns the report name"""
         result = {}
         for report in self.browse(cr, uid, ids, context):
             result[report.id] = report.number
@@ -59,21 +53,17 @@ class L10nEsAeatMod340Report(orm.Model):
             result[id] = {}.fromkeys(
                 ['number_records', 'total_taxable', 'total_sharetax', 'total'],
                 0.0)
-
         for model in self.browse(cr, uid, ids, context):
-
             for issue in model.issued:
                 result[model.id]['number_records'] += len(issue.tax_line_ids)
                 result[model.id]['total_taxable'] += issue.base_tax
                 result[model.id]['total_sharetax'] += issue.amount_tax
                 result[model.id]['total'] += issue.base_tax + issue.amount_tax
-
             for issue in model.received:
                 result[model.id]['number_records'] += len(issue.tax_line_ids)
                 result[model.id]['total_taxable'] += issue.base_tax
                 result[model.id]['total_sharetax'] += issue.amount_tax
                 result[model.id]['total'] += issue.base_tax + issue.amount_tax
-
         return result
 
     _inherit = "l10n.es.aeat.report"
@@ -101,10 +91,8 @@ class L10nEsAeatMod340Report(orm.Model):
         'intracomunitarias': fields.one2many(
             'l10n.es.aeat.mod340.intracomunitarias',
             'mod340_id', 'Operations Intracomunitarias'),
-
         'ean13': fields.char('Electronic Code VAT reverse charge', size=16),
-
-        'total_taxable':  fields.function(
+        'total_taxable': fields.function(
             _get_number_records, method=True,
             type='float', string='Total Taxable', multi='recalc',
             help="""The declaration will include partners with the total
@@ -126,14 +114,16 @@ class L10nEsAeatMod340Report(orm.Model):
                 of operations over this limit"""),
         'calculation_date': fields.date('Calculation date', readonly=True),
     }
+
     _defaults = {
         'number': '340',
         'declaration_number': '340',
     }
 
     def set_done(self, cr, uid, id, *args):
-        self.write(cr, uid, id,
-                   {'calculation_date': time.strftime('%Y-%m-%d'), 'state': 'done'})
+        self.write(
+            cr, uid, id,
+            {'calculation_date': time.strftime('%Y-%m-%d'), 'state': 'done'})
         wf_service = netsvc.LocalService("workflow")
         wf_service.trg_validate(uid, 'l10n.es.aeat.mod340.report',
                                 id, 'done', cr)
@@ -156,8 +146,8 @@ class L10nEsAeatMod340Issued(orm.Model):
         'partner_id': fields.many2one('res.partner', 'Partner',
                                       ondelete="cascade"),
         'partner_vat': fields.char('Company CIF/NIF', size=12),
-        'representative_vat': fields.char('L.R. VAT number', size=9,
-                                          help="Legal Representative VAT number"),
+        'representative_vat': fields.char(
+            'L.R. VAT number', size=9, help="Legal Representative VAT number"),
         'partner_country_code': fields.char('Country Code', size=2),
         'invoice_id': fields.many2one('account.invoice', 'Invoice',
                                       ondelete="cascade"),
