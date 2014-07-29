@@ -22,23 +22,22 @@
 ##############################################################################
 
 {
-    'name' : 'Generación de fichero modelo 340. Registro tipo 0',
-    'version' : '1.0',
-    'author' : 'Acysos S.L.',
-    'website' : 'www.acysos.com',
-    'category' : 'Localisation/Accounting',
-    'description' : '''
-        Exporta el registro de tipo 0 del Modelo 340. 
+    'name': 'Generación de fichero modelo 340. Registro tipo 0',
+    'version': '1.0',
+    'author': 'Acysos S.L.',
+    'website': 'www.acysos.com',
+    'category': 'Localisation/Accounting',
+    'description': '''
+        Exporta el registro de tipo 0 del Modelo 340.
         Actualmente solo obligatorio para la Comunidad Foral de Navarra.
         ''',
-    'license' : 'AGPL-3',
-    'depends' : ['l10n_es_aeat_mod340',
-                 'base_location',
-                 ],
-    'init_xml' : [],
-    'demo_xml' : [],
-    'update_xml' : [
-        'mod340_view.xml'],
-    'installable' : True,
-    'active' : False,
+    'license': 'AGPL-3',
+    'depends': [
+        'l10n_es_aeat_mod340',
+        'base_location',
+    ],
+    'data': [
+        'mod340_view.xml'
+    ],
+    'installable': True,
 }
