@@ -33,7 +33,8 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         res += self._formatString("N" if report.sin_actividad else " ", 1)
         # Identificación (1)
         res += self._formatString(report.company_vat, 9)  # NIF del declarante
-        res += self._formatString(report.company_id.name, 30)  # Apellidos o razón social.
+        # Apellidos o razón social.
+        res += self._formatString(report.company_id.name, 30)
         res += self._formatString("", 15)  # Nombre
         res += self._formatBoolean(report.devolucion_mensual, yes='1', no='2')
         # devengo (2)
@@ -84,7 +85,8 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         res += self._formatNumber(lines.get("[34]"), 15, 2)
         # Regularización inversiones
         res += self._formatNumber(lines.get("[35]"), 15, 2)
-        # Regularización inversiones por aplicación del porcentaje def de prorrata
+        # Regularización inversiones por aplicación del porcentaje
+        # def de prorrata
         res += self._formatNumber(lines.get("[36]"), 15, 2)
         # -- Total a deducir
         res += self._formatNumber(report.total_deducir, 15, 2)
@@ -103,15 +105,18 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         res += self._formatNumber(lines.get("[44]"), 15, 2)
         # Estado y Comunidades Forales
         res += self._formatNumber(report.regularizacion_anual, 15, 2)
-        res += self._formatNumber(report.resultado_casilla_46, 15, 2)  # [40] - [41]
+        # [40] - [41] --v
+        res += self._formatNumber(report.resultado_casilla_46, 15, 2)
         # A deducir - autoliquidación complementaria .... pedir campo
-        res += self._formatNumber(report.previus_result if report.complementaria else 0, 15, 2)
+        res += self._formatNumber(report.previus_result
+                                  if report.complementaria else 0, 15, 2)
         res += self._formatNumber(report.resultado_liquidacion, 15, 2)  # [48]
         # A compensar
         res += self._formatNumber(report.compensar, 15, 2)  # [49]
         # Marca SIN ACTIVIDAD
         res += self._formatBoolean(report.sin_actividad, yes='1', no='2')
-        assert len(res) == 822 - 72, _("The vat records must be 749 characters long and are %s") % len(res)
+        assert len(res) == 822 - 72, (_("The vat records must be 749 characters"
+                                        " long and are %s") % len(res))
         return res
 
     def _get_formatted_other_records(self, cr, uid, report, context=None):
@@ -120,10 +125,12 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         res += self._formatNumber(report.devolver, 15, 2)  # devolucion [50]
         ccc = ""
         if report.cuenta_devolucion_id and report.devolver:
-            ccc = report.cuenta_devolucion_id.acc_number.replace("-", "").replace(" ", "")
+            ccc = report.cuenta_devolucion_id.acc_number
+            ccc = ccc.replace("-", "").replace(" ", "")
             if not (len(ccc) == 20 and ccc.isdigit()):
-                raise orm.except_orm(_('Warning'),
-                                     _("CCC de devolución no válida \n%s") % ccc)
+                raise orm.except_orm(
+                    _('Warning'),
+                    _("CCC de devolución no válida \n%s") % ccc)
         res += self._formatString(ccc, 20)  # no hay devolución
         """
         # ingreso (7)
@@ -132,7 +139,8 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         877     4     An      Ingreso (7) - Código cuenta cliente - Entidad
         881     4     An      Ingreso (7) - Código cuenta cliente - Oficina
         885     2     An      Ingreso (7) - Código cuenta cliente - DC
-        887     10    An      Ingreso (7) - Código cuenta cliente - Número de cuenta
+        887     10    An      Ingreso (7) - Código cuenta cliente - Número de
+                                                                    cuenta
         """
         # NO SE USA ??? Forma de Pago - "0" No consta, "1" Efectivo,
         # "2" Adeudo en cuenta, "3" Domiciliación
@@ -140,7 +148,8 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         res += self._formatNumber(report.ingresar, 15, 2)  # devolucion [50]
         ccc = ""
         if report.cuenta_ingreso_id and report.ingresar:
-            ccc = report.cuenta_ingreso_id.acc_number.replace("-", "").replace(" ", "")
+            ccc = report.cuenta_ingreso_id.acc_number
+            ccc = ccc.replace("-", "").replace(" ", "")
             if not (len(ccc) == 20 and ccc.isdigit()):
                 raise orm.except_orm(_('Warning'),
                                      _("CCC de ingreso no válido %s") % ccc)
@@ -148,7 +157,8 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         # Complementaria (8) Indicador Autoliquidación complementaria
         res += self._formatBoolean(report.complementaria, yes='1', no='0')
         # Complementaria (8) - no justificante declaración anterior
-        res += self._formatString(report.previous_number if report.complementaria else "", 13)
+        res += self._formatString(report.previous_number
+                                  if report.complementaria else "", 13)
         # TODO -- hardcode por ahora
         # Autorización conjunta
         res += self._formatBoolean(False, yes='1', no=' ')
@@ -167,5 +177,6 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
 
     def _do_global_checks(self, report, contents, context=None):
         assert len(contents) == 1353, (
-            _("The 303 report must be 1353 characters long and are %s") % len(contents))
+            _("The 303 report must be 1353 characters long and are %s")
+            % len(contents))
         return True

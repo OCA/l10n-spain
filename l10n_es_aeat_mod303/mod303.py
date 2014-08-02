@@ -31,9 +31,9 @@ class L10nEsAeatMod303Report(orm.Model):
     _description = "AEAT 303 Report"
 
     _columns = {
-        'company_partner_id': fields.related('company_id', 'partner_id',
-                                             type='many2one', relation='res.partner',
-                                             string='Partner', store=True),
+        'company_partner_id': fields.related(
+            'company_id', 'partner_id', type='many2one', relation='res.partner',
+            string='Partner', store=True),
         'period': fields.selection(
             [('1T', 'First quarter'), ('2T', 'Second quarter'),
              ('3T', 'Third quarter'), ('4T', 'Fourth quarter'),
@@ -42,16 +42,18 @@ class L10nEsAeatMod303Report(orm.Model):
              ('07', 'July'), ('08', 'August'), ('09', 'September'),
              ('10', 'October'), ('11', 'November'), ('12', 'December')],
             'Period', states={'done': [('readonly', True)]}),
-        'devolucion_mensual': fields.boolean("Devolución Mensual",
-                                             help="Inscrito en el Registro de Devolución Mensual",
-                                             states={'done': [('readonly', True)]}),
+        'devolucion_mensual': fields.boolean(
+            "Devolución Mensual",
+            help="Inscrito en el Registro de Devolución Mensual",
+            states={'done': [('readonly', True)]}),
         'complementaria': fields.boolean("Autoliquidación complementaria",
                                          states={'done': [('readonly', True)]}),
         'contact_name': fields.char("Full name", size=40),
         'total_devengado': fields.float("IVA devengado", readonly=True),  # 21
         'total_deducir': fields.float("IVA a deducir", readonly=True),  # 37
-        'diferencia': fields.float("Diferencia", readonly=True,
-                                   help="( IVA devengado - IVA deducible )"),  # 38
+        'diferencia': fields.float(
+            "Diferencia", readonly=True,
+            help="( IVA devengado - IVA deducible )"),  # 38
         'porcentaje_atribuible_estado': fields.float(
             "%",
             help="Los sujetos pasivos que tributen conjuntamente a la "
@@ -63,9 +65,10 @@ class L10nEsAeatMod303Report(orm.Model):
             states={'done': [('readonly', True)]}),  # 39
         'atribuible_estado': fields.float("Atribuible a la Administración",
                                           readonly=True),  # 40
-        'cuota_compensar': fields.float("Cuotas a compensar",
-                                        help="Cuota a compensar de periodos anteriores",
-                                        states={'done': [('readonly', True)]}),  # 41
+        'cuota_compensar': fields.float(
+            "Cuotas a compensar",
+            help="Cuota a compensar de periodos anteriores",
+            states={'done': [('readonly', True)]}),  # 41
         'regularizacion_anual': fields.float(
             "Regularización anual",
             help="En la última autoliquidación del  año (la del período "
@@ -93,14 +96,14 @@ class L10nEsAeatMod303Report(orm.Model):
                                  states={'done': [('readonly', True)]}),
         "ingresar": fields.float("Ingresar",
                                  states={'done': [('readonly', True)]}),
-        'cuenta_devolucion_id': fields.many2one("res.partner.bank",
-                                                "CCC devolución",
-                                                states={'done': [('readonly', True)]}),
-        'cuenta_ingreso_id': fields.many2one("res.partner.bank",
-                                             "CCC Ingreso",
-                                             states={'done': [('readonly', True)]}),
-        'sin_actividad': fields.boolean("Sin actividad",
-                                        states={'done': [('readonly', True)]}),
+        'cuenta_devolucion_id': fields.many2one(
+            "res.partner.bank", "CCC devolución",
+            states={'done': [('readonly', True)]}),
+        'cuenta_ingreso_id': fields.many2one(
+            "res.partner.bank", "CCC Ingreso",
+            states={'done': [('readonly', True)]}),
+        'sin_actividad': fields.boolean(
+            "Sin actividad", states={'done': [('readonly', True)]}),
     }
 
     _defaults = {
@@ -124,27 +127,32 @@ class L10nEsAeatMod303Report(orm.Model):
             dec_year = mod303.fiscalyear_id.date_start.split('-')[0]
             mod = mod303.period
             if mod >= '01' and mod <= '12':
-                fecha_ini = datetime.strptime('%s-%s-01' % (dec_year, mod), '%Y-%m-%d')
+                fecha_ini = datetime.strptime('%s-%s-01'
+                                              % (dec_year, mod), '%Y-%m-%d')
                 fecha_fin = fecha_ini + relativedelta(months=+1, days=-1)
-                account_period_id = period_obj.search(cr, uid,
-                                                      [('date_start', '=', fecha_ini),
-                                                       ('date_stop', '=', fecha_fin)],
-                                                      context=context)
+                account_period_id = period_obj.search(
+                    cr, uid,
+                    [('date_start', '=', fecha_ini),
+                     ('date_stop', '=', fecha_fin)],
+                    context=context)
             elif mod in ('1T', '2T', '3T', '4T'):
                 month = ((int(mod[0]) - 1) * 3) + 1
-                fecha_ini = datetime.strptime('%s-%s-01' % (dec_year, month), '%Y-%m-%d')
+                fecha_ini = datetime.strptime('%s-%s-01'
+                                              % (dec_year, month), '%Y-%m-%d')
                 fecha_fin = fecha_ini + relativedelta(months=3, days=-1)
-                account_period_id = period_obj.search(cr, uid,
-                                                      [('date_start', '=', fecha_ini),
-                                                       ('date_stop', '=', fecha_fin)],
-                                                      context=context)
+                account_period_id = period_obj.search(
+                    cr, uid,
+                    [('date_start', '=', fecha_ini),
+                     ('date_stop', '=', fecha_fin)],
+                    context=context)
                 if not account_period_id:
-                    account_period_id = period_obj.search(cr, uid,
-                                                          [('quarter', '=', quarter_dict[mod])],
-                                                          context=context)
+                    account_period_id = period_obj.search(
+                        cr, uid, [('quarter', '=', quarter_dict[mod])],
+                        context=context)
             if not account_period_id:
                 raise orm.except_orm(
-                    _('El periodo seleccionado no coincide con los periodos del ejercicio fiscal: '),
+                    _('El periodo seleccionado no coincide con los periodos del'
+                      ' ejercicio fiscal: '),
                     dec_year)
         return account_period_id
 
@@ -191,7 +199,8 @@ class L10nEsAeatMod303Report(orm.Model):
                                  mod303.porcentaje_atribuible_estado / 100)
             casilla_46 = (atribuible_estado - mod303.cuota_compensar +
                           regularizacion_anual)
-            previus_result = mod303.previus_result if mod303.complementaria else 0
+            previus_result = (mod303.previus_result if mod303.complementaria
+                              else 0)
             resultado_liquidacion = casilla_46 - previus_result
             vals = {
                 'total_devengado': total_devengado,
@@ -200,15 +209,20 @@ class L10nEsAeatMod303Report(orm.Model):
                 'atribuible_estado': atribuible_estado,
                 'resultado_casilla_46': casilla_46,
                 'resultado_liquidacion': resultado_liquidacion,
-                'compensar': abs(resultado_liquidacion) if resultado_liquidacion < 0 and mod303.devolver == 0 else 0,
-                'ingresar': resultado_liquidacion if resultado_liquidacion > 0 else 0
+                'compensar': (abs(resultado_liquidacion) if
+                              resultado_liquidacion < 0
+                              and mod303.devolver == 0
+                              else 0),
+                'ingresar': (resultado_liquidacion if resultado_liquidacion > 0
+                             else 0)
             }
             if (mod303.regularizacion_anual > 0 and not
                (mod303.period == "4T" and mod303.period == "12")):
-                self.log(cr, uid, mod303.id,
-                         _("El valor añadido para la regularizacion anual no se ha "
-                           "tenido en cuenta por no ser un periodo de cierre (12 o "
-                           "4T)"), context=context)
+                self.log(
+                    cr, uid, mod303.id,
+                    _("El valor añadido para la regularizacion anual no se ha "
+                      "tenido en cuenta por no ser un periodo de cierre (12 o "
+                      "4T)"), context=context)
             self.write(cr, uid, mod303.id, vals, context=context)
         return True
 
@@ -225,4 +239,5 @@ class L10nEsAeatMod303Report(orm.Model):
                         "Marque la casilla correspondinte")
         if msg:
             raise orm.except_orm("", msg)
-        return super(L10nEsAeatMod303Report, self).button_confirm(cr, uid, ids, context=context)
+        return super(L10nEsAeatMod303Report, self).button_confirm(
+            cr, uid, ids, context=context)
