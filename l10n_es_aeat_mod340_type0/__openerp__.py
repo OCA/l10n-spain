@@ -36,10 +36,8 @@
         'l10n_es_aeat_mod340',
         'base_location',
     ],
-    'init_xml': [],
-    'demo_xml': [],
-    'update_xml': [
-        'mod340_view.xml'],
+    'data': [
+        'mod340_view.xml'
+    ],
     'installable': True,
-    'active': False,
 }
