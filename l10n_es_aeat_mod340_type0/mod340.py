@@ -37,8 +37,9 @@ class L10nEsAeatMod340Report(orm.Model):
         return {'value': {'presenter_vat': representative_vat}}
 
     _columns = {
-        'presenter_vat': fields.char('VAT number', size=9,
-                                     states={'confirmed': [('readonly', True)]}),
+        'presenter_vat': fields.char(
+            'VAT number', size=9,
+            states={'confirmed': [('readonly', True)]}),
         'presenter_name': fields.char('Name And Surname', size=40),
         'presenter_address_acronym': fields.char(
             'Address Acronym', size=2,
@@ -52,5 +53,6 @@ class L10nEsAeatMod340Report(orm.Model):
             'res.better.zip', 'Location', select=1,
             help='Use the name or the zip to search the location'),
         'presenter_phone_contact': fields.char('Phone Contact', size=9),
-        'presenter_name_contact': fields.char('Name And Surname Contact', size=40),
+        'presenter_name_contact': fields.char(
+            'Name And Surname Contact', size=40),
     }

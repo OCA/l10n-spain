@@ -87,7 +87,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
         text += self._formatString(report.presenter_city_id.name or '', 12)
         # Código postal
         if report.presenter_city_id:
-            text += self._formatNumber(int(report.presenter_city_id.state_id.code), 2)
+            text += self._formatNumber(
+                int(report.presenter_city_id.state_id.code), 2)
         else:
             text += 2 * ' '
         # Numero total de declarantes, actualmente solo 1
@@ -106,7 +107,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
         text += 13 * ' '
         text += '\r\n'
 
-        assert len(text) == 502, _("The type 0 record must be 500 characters long")
+        assert len(text) == 502, (
+            _("The type 0 record must be 500 characters long"))
         return text
 
     def _get_formatted_other_records(self, cr, uid, report, context=None):
@@ -118,7 +120,7 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
                                                                 invoice_issued)
 
         for invoice_received in report.received:
-            file_contents += self._get_formatted_invoice_received(cr, uid, report,
-                                                                  invoice_received)
+            file_contents += self._get_formatted_invoice_received(
+                cr, uid, report, invoice_received)
 
         return file_contents
