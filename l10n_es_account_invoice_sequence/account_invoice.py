@@ -67,8 +67,7 @@ class AccountInvoice(orm.Model):
             number = sequence_obj.get_id(cr, uid, sequence.id, context=ctx)
             self.write(cr, uid, [invoice.id], {'number': number},
                        context=context)
-        result = super(AccountInvoice, self).action_number(cr, uid, ids,
-                                                           context=context)
+        result = super(AccountInvoice, self).action_number(cr, uid, ids, ctx)
         # As super's action_number() will store internal_number we clear it
         # afterwards. The reason is that post() function in account.move will
         # try to use this 'internal_number' if move is created again. As this
