@@ -26,17 +26,17 @@
 ##############################################################################
 
 {
-    "name" : "Informes de cuentas anuales españoles",
-    "version" : "0.1",
-    "author" : "Pexego, Zikzakmedia",
+    "name": "Informes de cuentas anuales españoles",
+    "version": "0.1",
+    "author": "Pexego, Zikzakmedia",
     "contributors": [
         "Juanjo Algaz <juanjoa@malagatic.com>",
         "Joaquín Gutierrez <joaquing.pedrosa@gmail.com>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
     ],
-    "license" : "AGPL-3",
-    "website" : "http://www.pexego.es",
-    "category" : "Localisation/Accounting",
+    "license": "AGPL-3",
+    "website": "http://www.pexego.es",
+    "category": "Localisation/Accounting",
     "description": """
 Informes de cuentas anuales oficiales españoles.
 ================================================
@@ -63,8 +63,8 @@ del Registro Mercantil:
         'l10n_es',
         'account_balance_reporting',
     ],
-    "demo" : [ ],
-    "data" : [
+    "demo": [],
+    "data": [
         'data/balance_pymes.xml',
         'data/pyg_pymes.xml',
         'data/balance_abreviado.xml',
