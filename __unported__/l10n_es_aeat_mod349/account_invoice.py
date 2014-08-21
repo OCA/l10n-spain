@@ -6,7 +6,7 @@
 #        2013:      Top Consultant Software Creations S.L.
 #                   (http://www.topconsultant.es/)
 #        2014:      Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com> 
+#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    Autores originales: Luis Manuel Angueira Blanco (Pexego)
 #                        Omar Castiñeira Saavedra(omar@pexego.es)
@@ -28,7 +28,7 @@
 ##############################################################################
 from openerp.tools.translate import _
 from openerp.osv import fields, orm
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 from datetime import datetime
 import calendar
 
@@ -86,9 +86,9 @@ class account_invoice(orm.Model):
 
     def _get_year_from_fy_month(self, fy, month):
         fy_start = datetime.strptime(fy.date_start,
-                                     DEFAULT_SERVER_DATETIME_FORMAT)
+                                     DEFAULT_SERVER_DATE_FORMAT)
         fy_stop = datetime.strptime(fy.date_stop,
-                                    DEFAULT_SERVER_DATETIME_FORMAT)
+                                    DEFAULT_SERVER_DATE_FORMAT)
         if fy_start.month < month:
             year = fy_start.year
         elif fy_stop.month > month:
@@ -140,10 +140,11 @@ class account_invoice(orm.Model):
             month_last_day = calendar.monthrange(year, month)[1]
             date_start = datetime(year=year, month=month, day=1)
             date_stop = datetime(year=year, month=month, day=month_last_day)
-            domain.append(('date_invoice', '>=',
-                        date_start.strftime(DEFAULT_SERVER_DATETIME_FORMAT)))
+            domain.append(
+                ('date_invoice', '>=',
+                 date_start.strftime(DEFAULT_SERVER_DATE_FORMAT)))
             domain.append(('date_invoice', '<=',
-                        date_stop.strftime(DEFAULT_SERVER_DATETIME_FORMAT)))
+                           date_stop.strftime(DEFAULT_SERVER_DATE_FORMAT)))
         return self.search(cr, uid, domain, context=context)
 
     def clean_refund_invoices(self, cr, uid, ids, partner_id,
@@ -177,9 +178,10 @@ class account_invoice(orm.Model):
                         else:
                             month = int(month)
                             year = self._get_year_from_fy_month(fy, month)
-                            if datetime.strptime(origin_line.date_invoice,
-                                    DEFAULT_SERVER_DATETIME_FORMAT) < \
-                                    datetime(year=year, month=month, day=1):
+                            if (datetime.strptime(
+                                    origin_line.date_invoice,
+                                    DEFAULT_SERVER_DATE_FORMAT) <
+                                    datetime(year=year, month=month, day=1)):
                                 refund_ids.append(refund.id)
                             else:
                                 invoice_ids.append(refund.id)
