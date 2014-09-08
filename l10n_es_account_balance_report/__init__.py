@@ -19,11 +19,3 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-"""
-Spanish account balance reports
-"""
-__author__ = "Borja López Soilán (Pexego) - borjals@pexego.es"
-
-
-
