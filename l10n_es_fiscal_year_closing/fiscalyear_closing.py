@@ -86,13 +86,16 @@ class FiscalyearClosing(orm.Model):
         'create_net_loss_and_profit': fields.boolean(
             'Create Net Loss & Profit move'),
         'net_loss_and_profit_move_id': fields.many2one(
-            'account.move', 'Net L&P Move', ondelete='set null', readonly=True),
+            'account.move', 'Net L&P Move', ondelete='set null',
+            readonly=True),
         'create_closing': fields.boolean('Create closing move'),
         'closing_move_id': fields.many2one(
-            'account.move', 'Closing Move', ondelete='set null', readonly=True),
+            'account.move', 'Closing Move', ondelete='set null',
+            readonly=True),
         'create_opening': fields.boolean('Create opening move'),
         'opening_move_id': fields.many2one(
-            'account.move', 'Opening Move', ondelete='set null', readonly=True),
+            'account.move', 'Opening Move', ondelete='set null',
+            readonly=True),
         # Extra operations
         'check_invalid_period_moves': fields.boolean(
             'Check invalid period or date moves',
@@ -101,13 +104,13 @@ class FiscalyearClosing(orm.Model):
                  "year."),
         'check_draft_moves': fields.boolean(
             'Check draft moves',
-            help="Checks that there are no draft moves on the fiscal year that "
-                 "is being closed. Non-confirmed moves won't be taken in "
+            help="Checks that there are no draft moves on the fiscal year "
+                 "that is being closed. Non-confirmed moves won't be taken in "
                  "account on the closing operations."),
         'check_unbalanced_moves': fields.boolean(
             'Check unbalanced moves',
-            help="Checks that there are no unbalanced moves on the fiscal year "
-                 "that is being closed."),
+            help="Checks that there are no unbalanced moves on the fiscal "
+                 "year that is being closed."),
         'state': fields.selection(
             [
                 ('new', 'New'),
@@ -298,23 +301,22 @@ class FiscalyearClosing(orm.Model):
             'lp_journal_id': self._get_journal_id(cr, uid, fyc, context),
             'lp_period_id': self._get_lp_period_id(cr, uid, fyc, context),
             'lp_date': fyc.closing_fiscalyear_id.date_stop,
-            'lp_account_mapping_ids': self._get_lp_account_mapping(cr, uid, fyc,
-                                                                   context),
+            'lp_account_mapping_ids': self._get_lp_account_mapping(
+                cr, uid, fyc, context),
             # Net L&P options
             'nlp_description': _("Net Loss & Profit"),
             'nlp_journal_id': self._get_journal_id(cr, uid, fyc, context),
             'nlp_period_id': self._get_lp_period_id(cr, uid, fyc, context),
             'nlp_date': fyc.closing_fiscalyear_id.date_stop,
-            'nlp_account_mapping_ids': self._get_nlp_account_mapping(cr, uid,
-                                                                     fyc,
-                                                                     context),
+            'nlp_account_mapping_ids': self._get_nlp_account_mapping(
+                cr, uid, fyc, context),
             # Closing options
             'c_description': _("Fiscal Year Closing"),
             'c_journal_id': self._get_journal_id(cr, uid, fyc, context),
             'c_period_id': self._get_c_period_id(cr, uid, fyc, context),
             'c_date': fyc.closing_fiscalyear_id.date_stop,
-            'c_account_mapping_ids': self._get_c_account_mapping(cr, uid, fyc,
-                                                                 context),
+            'c_account_mapping_ids': self._get_c_account_mapping(
+                cr, uid, fyc, context),
             # Opening options
             'o_description': _("Fiscal Year Opening"),
             'o_journal_id': self._get_journal_id(cr, uid, fyc, context),
@@ -325,7 +327,7 @@ class FiscalyearClosing(orm.Model):
         return vals
 
     #
-    # Workflow actions ---------------------------------------------------------
+    # Workflow actions --------------------------------------------------------
     #
 
     def action_draft(self, cr, uid, ids, context=None):
@@ -345,15 +347,13 @@ class FiscalyearClosing(orm.Model):
 
     def action_run(self, cr, uid, ids, context=None):
         """Called when the create entries button is used."""
-        # Note: Just change the state, everything else is done on the run wizard
-        #       *before* this action is called.
+        # Note: Just change the state, everything else is done on the run
+        #       wizard *before* this action is called.
         self.write(cr, uid, ids, {'state': 'in_progress'})
         return True
 
     def action_confirm(self, cr, uid, ids, context=None):
-        """
-        Called when the user clicks the confirm button.
-        """
+        """Called when the user clicks the confirm button."""
         context = context or {}
         logger = logging.getLogger('l10n_es_fiscal_year_closing')
         precision = self.pool['decimal.precision'].precision_get(cr, uid,
@@ -399,7 +399,8 @@ class FiscalyearClosing(orm.Model):
                 if abs(amount) > 0.5 * 10 ** -int(precision):
                     raise orm.except_orm(
                         _("Some moves are unbalanced!"),
-                        _("All the moves should be balanced before continuing"))
+                        _("All the moves should be balanced before "
+                          "continuing"))
                 # Reconcile the move
                 # Note: We will reconcile all the lines, even the 'not
                 # reconcile' ones, to prevent future problems (the user may
@@ -433,9 +434,7 @@ class FiscalyearClosing(orm.Model):
         return True
 
     def action_cancel(self, cr, uid, ids, context=None):
-        """
-        Called when the user clicks the cancel button.
-        """
+        """Called when the user clicks the cancel button."""
         context = context or {}
         self.write(cr, uid, ids, {'state': 'cancelled'})
         return True

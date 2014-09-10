@@ -5,8 +5,8 @@
 #                       Ignacio Ibeas <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -37,8 +37,8 @@ class ResPartner(orm.Model):
                       u'el país'),
                 ('5', u'5 - Certificado de residencia fiscal'),
                 ('6', u'6 - Otro documento probatorio'),
-            ], 'Clave tipo de NIF', help="Clave número de identificación en el "
-                                         "país de residencia. Modelo 340."),
+            ], 'Clave tipo de NIF', help="Clave número de identificación en "
+                                         "el país de residencia. Modelo 340."),
     }
 
     _defaults = {

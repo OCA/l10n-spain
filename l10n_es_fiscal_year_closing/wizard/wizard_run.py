@@ -8,8 +8,8 @@
 #    Copyright (c) 2012 Avanzosc (http://www.avanzosc.com)
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -111,7 +111,8 @@ class CancelFyc(orm.TransientModel):
         if fyc.loss_and_profit_move_id or fyc.net_loss_and_profit_move_id or \
                 fyc.closing_move_id or fyc.opening_move_id:
             if fyc.loss_and_profit_move_id:
-                self._remove_move(cr, uid, fyc.loss_and_profit_move_id, context)
+                self._remove_move(cr, uid, fyc.loss_and_profit_move_id,
+                                  context)
                 result['loss_and_profit_move_id'] = False
             if fyc.net_loss_and_profit_move_id:
                 self._remove_move(cr, uid, fyc.net_loss_and_profit_move_id,
@@ -234,7 +235,8 @@ class ExecuteFyc(orm.TransientModel):
             for move in move_obj.browse(cr, uid, draft_move_ids,
                                         context=context):
                 str_draft_moves += ('id: %s, date: %s, number: %s, ref: %s\n'
-                                    % (move.id, move.date, move.name, move.ref))
+                                    % (move.id, move.date, move.name,
+                                       move.ref))
             raise orm.except_orm(
                 _('Error'),
                 _('One or more draft moves found: \n%s') % str_draft_moves
@@ -462,7 +464,8 @@ class ExecuteFyc(orm.TransientModel):
                     _('UserError'),
                     _("The L&P move must exist before creating the closing "
                       "one"))
-            # Consider all the periods of the fiscal year *BUT* the Closing one.
+            # Consider all the periods of the fiscal year *BUT* the closing
+            # one.
             for period in fyc.closing_fiscalyear_id.period_ids:
                 if period.id != fyc.c_period_id.id:
                     period_ids.append(period.id)

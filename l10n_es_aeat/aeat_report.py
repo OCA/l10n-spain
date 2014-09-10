@@ -2,10 +2,10 @@
 ##############################################################################
 #
 #    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
+#        Pexego Sistemas Informáticos. (http://pexego.es)
 #        Luis Manuel Angueira Blanco (Pexego)
 #    Copyright (C) 2013
-#        Ignacio Ibeas - Acysos S.L. (http://acysos.com) All Rights Reserved
+#        Ignacio Ibeas - Acysos S.L. (http://acysos.com)
 #        Migración a OpenERP 7.0
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -99,13 +99,15 @@ class L10nEsAeatReport(orm.Model):
         self.write(
             cr, uid, ids,
             {'state': 'calculated',
-             'calculation_date': time.strftime(DEFAULT_SERVER_DATETIME_FORMAT)})
+             'calculation_date': time.strftime(
+                 DEFAULT_SERVER_DATETIME_FORMAT)})
         return res
 
     def button_recalculate(self, cr, uid, ids, context=None):
         self.write(
             cr, uid, ids,
-            {'calculation_date': time.strftime(DEFAULT_SERVER_DATETIME_FORMAT)})
+            {'calculation_date': time.strftime(
+                DEFAULT_SERVER_DATETIME_FORMAT)})
         return self.calculate(cr, uid, ids, context=context)
 
     def calculate(self, cr, uid, ids, context=None):

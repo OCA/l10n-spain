@@ -5,11 +5,10 @@
 #    Copyright (c) 2011 Ting (http://www.ting.es) All Rights Reserved.
 #    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com)
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -29,15 +28,16 @@
     'website': 'www.acysos.com, www.ting.es, www.nan-tic.com',
     'category': 'Localisation/Accounting',
     'description': '''
-Módulo para la presentación del modelo 340. Exportación a formato AEAT. Libro de
-IVA
+Módulo para la presentación del modelo 340. Exportación a formato AEAT. Libro
+de IVA
 
 Los impuestos incluidos en este modelo se indican en el Código base cuenta. Por
 defecto actualiza todos los código base que deban incluirse.
 Si el plan contable esta instalado recuerde utilizar account_chart_update para
 actualizar
-los códigos. Contabilidad y Finanzas -> Configuración -> Contabilidad Financiera
--> Actualizar plan contable a partir de una plantila de plan contable
+los códigos. Contabilidad y Finanzas -> Configuración -> Contabilidad
+Financiera -> Actualizar plan contable a partir de una plantila de plan
+contable
 
 Búsqueda de facturas emitidas y recibidas.
 Exportación a formato de AEAT de facturas emitidas y recibidas.
@@ -48,11 +48,11 @@ Facturas rectificativas.
 Facturas resumen de tiques.
 Permite imprimir el libro de IVA, basado en la misma legislación.
 
----- COSAS PENDIENTES (TODO LIST) ----------------------------------------------
+---- COSAS PENDIENTES (TODO LIST) ---------------------------------------------
 
 Facturas bienes de inversión
-Facturas intracomunitarias. Operaciones a las que hace referencia el artículo 66
-del RIVA.
+Facturas intracomunitarias. Operaciones a las que hace referencia el artículo
+66 del RIVA.
 Asientos contables de resumen de tiques
 Exportación de asientos resumen de facturas
 ''',

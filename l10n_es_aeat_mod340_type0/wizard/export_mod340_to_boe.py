@@ -5,8 +5,8 @@
 #                       Ignacio Ibeas <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -116,8 +116,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
         file_contents += self._get_formated_presenter_record(report)
 
         for invoice_issued in report.issued:
-            file_contents += self._get_formatted_invoice_issued(cr, uid, report,
-                                                                invoice_issued)
+            file_contents += self._get_formatted_invoice_issued(
+                cr, uid, report, invoice_issued)
 
         for invoice_received in report.received:
             file_contents += self._get_formatted_invoice_received(

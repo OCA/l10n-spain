@@ -37,7 +37,8 @@ class print_wizard(orm.TransientModel):
     def _get_current_report_id(self, cr, uid, context=None):
         if context is None:
             context = {}  # Ensuring a dict.
-        rpt_facade = pooler.get_pool(cr.dbname).get('account.balance.reporting')
+        rpt_facade = pooler.get_pool(cr.dbname).get(
+            'account.balance.reporting')
         report_id = None
         if (context.get('active_model') == 'account.balance.reporting' and
                 context.get('active_ids') and context.get('active_ids')[0]):
@@ -50,7 +51,8 @@ class print_wizard(orm.TransientModel):
         if context is None:
             context = {}  # Ensuring a dict.
         report_id = self._get_current_report_id(cr, uid, context=context)
-        rpt_facade = pooler.get_pool(cr.dbname).get('account.balance.reporting')
+        rpt_facade = pooler.get_pool(cr.dbname).get(
+            'account.balance.reporting')
         report = rpt_facade.browse(cr, uid, [report_id])[0]
         report_xml_id = None
         if report.template_id and report.template_id.report_xml_id:
