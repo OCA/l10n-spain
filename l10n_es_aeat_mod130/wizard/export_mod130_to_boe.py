@@ -75,8 +75,8 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
         res += self._formatNumber(report.casilla_08, 11, 2)
         # II. Activ. agrícola. estimac. directa - 2% de la casilla 08 [09]
         res += self._formatNumber(report.casilla_09, 11, 2)
-        # II. Activ. agrícola. estimac. directa - A deducir- Retenciones e ingr.
-        # a cuenta [10]
+        # II. Activ. agrícola. estimac. directa - A deducir- Retenciones e
+        # ingr. a cuenta [10]
         res += self._formatNumber(report.casilla_10, 11, 2)
         # II. Activ. agrícola estimac. directa - Pago fraccionado previo del
         # trimestre [11]
@@ -127,7 +127,8 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
         # Persona de contacto
         res += self._formatString(report.company_id.name, 100)
         # Teléfono
-        res += self._formatString(self._cleanString(report.company_id.phone), 9)
+        res += self._formatString(self._cleanString(report.company_id.phone),
+                                  9)
         # Observaciones
         res += self._formatString(report.comments, 350)
         # Localidad

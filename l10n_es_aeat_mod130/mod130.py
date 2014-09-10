@@ -167,12 +167,6 @@ class L10nEsAeatMod130Report(orm.Model):
         informe asociado.
         """
         period_obj = self.pool["account.period"]
-        quarter_dict = {
-            "1T": 'first',
-            "2T": 'second',
-            "3T": 'third',
-            "4T": 'fourth',
-        }
         year = report.fiscalyear_id.date_start.split('-')[0]
         # Obtener el primer mes del trimestre
         month = int(period[0]) * 3 - 2
@@ -180,16 +174,10 @@ class L10nEsAeatMod130Report(orm.Model):
         fecha_fin = fecha_ini + relativedelta(months=3, days=-1)
         account_period_ids = period_obj.search(
             cr, uid,
-            [('date_start', '=', fecha_ini),
-             ('date_stop', '=', fecha_fin),
+            [('date_start', '>=', fecha_ini),
+             ('date_stop', '<=', fecha_fin),
              ('company_id', '=', report.company_id.id)],
             context=context)
-        if not account_period_ids:
-            account_period_ids = period_obj.search(
-                cr, uid,
-                [('quarter', '=', quarter_dict[period]),
-                 ('company_id', '=', report.company_id.id)],
-                context=context)
         if not account_period_ids:
             raise orm.except_orm(
                 "Error",
