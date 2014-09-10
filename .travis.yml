@@ -4,7 +4,8 @@ python:
   - "2.7"
 
 env:
-  - VERSION="8.0"
+  - VERSION="8.0" ODOO_REPO="odoo/odoo"
+  - VERSION="8.0" ODOO_REPO="OCA/OCB"
 
 virtualenv:
   system_site_packages: true
@@ -16,7 +17,6 @@ install:
   - bzr branch lp:acysos/openerp-addons-8.0 ${HOME}/acysos-addons
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly ${VERSION}
-  - $HOME/maintainer-quality-tools/travis/travis_install_nightly ${VERSION}
 
 script:
   - travis_run_flake8
