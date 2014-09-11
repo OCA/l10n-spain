@@ -2,13 +2,11 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2013 Acysos S.L. (http://acysos.com) All Rights Reserved
+#    Copyright (c) 2013 Acysos S.L. (http://acysos.com)
 #                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 #
-#    $Id$
-#
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
+#    it under the terms of the GNU Affero General Public License as published
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #

@@ -7,8 +7,8 @@
 #                       http://www.NaN-tic.com
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -329,8 +329,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
                         Constante 'C' para varios tipos de IVA. TODO Resto de
                         operaciones. Varios tipos impositivos.
             101-108     Fecha de expedición
-            109-116     Fecha de operación. Se consigna la misma que expedición.
-                        TODO. Fecha del uso del bien.
+            109-116     Fecha de operación. Se consigna la misma que
+                        expedición. TODO. Fecha del uso del bien.
             117-121     Tipo impositivo
             122-135     Base imponible
             136-149     Cuota del impuesto
@@ -367,7 +367,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             # Apellidos y nombre, razón social o denominación del declarado
             text += self._formatString(invoice_received.partner_id.name, 40)
             # Código país
-            text += self._formatString(invoice_received.partner_country_code, 2)
+            text += self._formatString(invoice_received.partner_country_code,
+                                       2)
             # Clave de identificación en el país de residencia
             text += self._formatNumber(invoice_received.partner_id.vat_type, 1)
             # Número de identificación fiscal en el país de residencia.
@@ -437,8 +438,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             text += 95 * ' '
             text += '\r\n'
         assert len(text) == 502 * len(invoice_received.tax_line_ids), (
-            _("The type 2 received record must be 500 characters long for each "
-              "Vat registry"))
+            _("The type 2 received record must be 500 characters long for "
+              "each Vat registry"))
         return text
 
     def _get_formatted_other_records(self, cr, uid, report, context=None):
