@@ -40,10 +40,10 @@ class L10nEsAeatMod340Report(orm.Model):
         calculate_obj._calculate_records(cr, uid, ids, context)
         return True
 
-    def _name_get(self, cr, uid, ids, field_name, arg, context={}):
+    def _name_get(self, cr, uid, ids, field_name, arg, context=None):
         """Returns the report name"""
         result = {}
-        for report in self.browse(cr, uid, ids, context):
+        for report in self.browse(cr, uid, ids, context=context):
             result[report.id] = report.number
         return result
 

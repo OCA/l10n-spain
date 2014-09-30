@@ -2,8 +2,7 @@
 ##############################################################################
 #
 #    OpenERP - Account balance reporting engine
-#    Copyright (C) 2009 Pexego Sistemas Informáticos. All Rights Reserved
-#    $Id$
+#    Copyright (C) 2009 Pexego Sistemas Informáticos.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -204,13 +203,13 @@ class AccountBalanceReportingTemplateLine(orm.Model):
             res.append((item.id, "[%s] %s" % (item.code, item.name)))
         return res
 
-    def name_search(self, cr, uid, name, args=[], operator='ilike',
+    def name_search(self, cr, uid, name, args=None, operator='ilike',
                     context=None, limit=80):
-        """
-        Redefine the name_search method to allow searching by code.
-        """
+        """Redefine the name_search method to allow searching by code."""
         if context is None:
             context = {}
+        if args is None:
+            args = []
         ids = []
         if name:
             ids = self.search(cr, uid, [('code', 'ilike', name)] + args,

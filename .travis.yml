@@ -19,8 +19,7 @@ install:
   - travis_install_nightly ${VERSION}
 
 script:
-  - travis_run_flake8
-  - travis_run_tests ${VERSION} ${HOME}/partner-contact ${HOME}/maintainer-quality-tools ${HOME}/acysos-addons
+  - travis_run_tests ${VERSION}
 
 after_success:
   coveralls
