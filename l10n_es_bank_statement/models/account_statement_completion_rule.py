@@ -20,8 +20,6 @@
 #
 ##############################################################################
 from openerp.osv import orm, fields
-from openerp.addons.account_statement_base_completion.statement \
-    import ErrorTooManyPartner
 from openerp.tools.translate import _
 
 
@@ -65,6 +63,8 @@ class AccountStatementCompletionRule(orm.Model):
             ids = partner_obj.search(cr, uid, [('vat', '=', vat)],
                                      context=context)
         if len(ids) > 1:
+            from openerp.addons.account_statement_base_completion.statement \
+                import ErrorTooManyPartner
             raise ErrorTooManyPartner(
                 _('Line named "%s" (Ref: %s) was matched by more than '
                   'one partner for VAT number "%s".') %
@@ -118,6 +118,8 @@ class AccountStatementCompletionRule(orm.Model):
             ids = [x['partner_id'][0] for x in invoices]
             ids = list(set(ids))
         if len(ids) > 1:
+            from openerp.addons.account_statement_base_completion.statement \
+                import ErrorTooManyPartner
             raise ErrorTooManyPartner(
                 _('Line named "%s" (Ref: %s) was matched by more than '
                   'one partner for invoice amount "%s".') %
