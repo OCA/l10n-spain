@@ -31,8 +31,8 @@
 #   Ignacio Ibeas <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -115,11 +115,12 @@ class WizardPaymentFileSpain(orm.TransientModel):
                 # Lista con todos los partners+bancos diferentes de la remesa
                 partner_bank_l = reduce(lambda l, x: x not in l and
                                         l.append(x) or l,
-                                        [(recibo.partner_id, recibo.bank_id) for
-                                         recibo in orden.line_ids], [])
+                                        [(recibo.partner_id, recibo.bank_id)
+                                         for recibo in orden.line_ids], [])
                 # Cómputo de la lista de recibos agrupados por mismo
-                # partner+banco. Los importes se suman, los textos se concatenan
-                # con un espacio en blanco y las fechas se escoge el máximo
+                # partner+banco. Los importes se suman, los textos se
+                # concatenan con un espacio en blanco y las fechas se escoge
+                # el máximo
                 for partner, bank in partner_bank_l:
                     lineas = [recibo for recibo in orden.line_ids if
                               recibo.partner_id == partner and
@@ -167,16 +168,16 @@ class WizardPaymentFileSpain(orm.TransientModel):
                     ccc = (line['bank_id'] and line['bank_id'].acc_number or
                            False)
                     if not ccc:
-                        raise Log(_('User error:\n\nThe bank account number of '
-                                    'the customer %s is not defined and '
+                        raise Log(_('User error:\n\nThe bank account number '
+                                    'of the customer %s is not defined and '
                                     'current payment mode enforces all lines '
                                     'to have a bank account.') %
                                   (line['partner_id'].name), True)
                     ccc = converter.digits_only(cr, uid, ccc)
                     if len(ccc) != 20:
-                        raise Log(_('User error:\n\nThe bank account number of '
-                                    'the customer %s has not 20 digits.') %
-                                  (line['partner_id'].name), True)
+                        raise Log(_('User error:\n\nThe bank account number '
+                                    'of the customer %s has not 20 digits.') %
+                                  line['partner_id'].name, True)
             if orden.mode.tipo == 'csb_19':
                 csb = self.pool.get('csb.19')
             elif orden.mode.tipo == 'csb_32':

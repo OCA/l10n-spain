@@ -23,8 +23,8 @@
 #   Ignacio Ibeas <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -174,7 +174,8 @@ class Csb32(orm.Model):
             cr, uid, [recibo['partner_id'].id])
         # if not addresses:
         #    print "NO ADDRESSES"
-        address = self.pool['res.partner'].browse(cr, uid, addresses['default'],
+        address = self.pool['res.partner'].browse(cr, uid,
+                                                  addresses['default'],
                                                   context)
         texto += converter.convert(cr, uid, address.street, 34, context)
         texto += converter.convert(cr, uid, address.zip, 5, context)
@@ -183,7 +184,8 @@ class Csb32(orm.Model):
                                    address.state_id.code or False, 2, context)
         texto += '0'*7
         # C: Datos del efecto
-        vat = recibo['partner_id'].vat and recibo['partner_id'].vat[2:] or False
+        vat = (recibo['partner_id'].vat and recibo['partner_id'].vat[2:] or
+               False)
         texto += converter.convert(cr, uid, vat, 9, context)
         texto += ' '*50
         texto += '\r\n'

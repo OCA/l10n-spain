@@ -30,9 +30,9 @@ class ResPartnerBank(orm.Model):
     _inherit = 'res.partner.bank'
     _columns = {
         'acc_country_id': fields.many2one(
-            "res.country", 'Bank country', help="If the country of the bank is "
-            "Spain, it validates the bank code or IBAN, formatting it "
-            "accordingly."),
+            "res.country", 'Bank country',
+            help="If the country of the bank is Spain, it validates the bank "
+                 "code or IBAN, formatting it accordingly."),
     }
 
     def _crc(self, cTexto):
@@ -155,8 +155,8 @@ class ResPartner(orm.Model):
 
     def name_search(self, cr, uid, name, args=None, operator='ilike',
                     context=None, limit=100):
-        partners = super(ResPartner, self).name_search(cr, uid, name, args,
-                                                       operator, context, limit)
+        partners = super(ResPartner, self).name_search(
+            cr, uid, name, args, operator, context, limit)
         ids = [x[0] for x in partners]
         if name and len(ids) == 0:
             ids = self.search(cr, uid, [('comercial', operator, name)] + args,

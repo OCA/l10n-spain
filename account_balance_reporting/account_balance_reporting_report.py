@@ -44,8 +44,7 @@ CSS_CLASSES = [
 
 
 class AccountBalanceReporting(orm.Model):
-    """
-    Account balance report.
+    """Account balance report.
     It stores the configuration/header fields of an account balance report,
     and the linked lines of detail with the values of the accounting concepts
     (values generated from the selected template lines of detail formulas).
@@ -203,8 +202,7 @@ class AccountBalanceReporting(orm.Model):
 
 
 class account_balance_reporting_line(orm.Model):
-    """
-    Account balance report line / Accounting concept
+    """Account balance report line / Accounting concept
     One line of detail of the balance report representing an accounting
     concept with its values.
     The accounting concepts follow a parent-children hierarchy.
@@ -254,10 +252,12 @@ class account_balance_reporting_line(orm.Model):
             res.append((item.id, "[%s] %s" % (item.code, item.name)))
         return res
 
-    def name_search(self, cr, uid, name, args=[], operator='ilike',
+    def name_search(self, cr, uid, name, args=None, operator='ilike',
                     context=None, limit=80):
         """Redefine the method to allow searching by code."""
         ids = []
+        if args is None:
+            args = []
         if name:
             ids = self.search(cr, uid, [('code', 'ilike', name)] + args,
                               limit=limit, context=context)
@@ -267,8 +267,7 @@ class account_balance_reporting_line(orm.Model):
         return self.name_get(cr, uid, ids, context=context)
 
     def refresh_values(self, cr, uid, ids, context=None):
-        """
-        Recalculates the values of this report line using the
+        """Recalculates the values of this report line using the
         linked line report values formulas:
 
         Depending on this formula the final value is calculated as follows:
@@ -390,9 +389,8 @@ class account_balance_reporting_line(orm.Model):
 
     def _get_account_balance(self, cr, uid, ids, code, balance_mode=0,
                              context=None):
-        '''
-        It returns the (debit, credit, balance*) tuple for a account with the
-        given code, or the sum of those values for a set of accounts
+        """It returns the (debit, credit, balance*) tuple for a account with
+        the given code, or the sum of those values for a set of accounts
         when the code is in the form "400,300,(323)"
 
         Depending on the balance_mode, the balance is calculated as follows:
@@ -401,9 +399,9 @@ class account_balance_reporting_line(orm.Model):
           Mode 2: credit-debit for all accounts;
           Mode 3: credit-debit, debit-credit for accounts in brackets.
 
-        Also the user may specify to use only the debit or credit of the account
-        instead of the balance writing "debit(551)" or "credit(551)".
-        '''
+        Also the user may specify to use only the debit or credit of the
+        account instead of the balance writing "debit(551)" or "credit(551)".
+        """
         acc_obj = self.pool.get('account.account')
         logger = logging.getLogger(__name__)
         res = 0.0

@@ -19,8 +19,8 @@
 #   Ignacio Ibeas <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -53,8 +53,8 @@ También crea los tipos de pago "Transferencia" (TRANSFERENCIA_CSB), "Pagaré"
 (PAGARE_CSB), "Cheque" (CHEQUE_CSB), "Pago certificado" (PAGO_CERTIFICADO_CSB).
 
 Antes de generar un fichero bancario CSB habrá que definir un modo de pago que
-use el tipo de pago anterior y donde se defina la forma de pago (CSB 19, CSB 32,
-CSB 34 o CSB 58), la compañía que emite el fichero y el sufijo y nombre de
+use el tipo de pago anterior y donde se defina la forma de pago (CSB 19, CSB
+32, CSB 34 o CSB 58), la compañía que emite el fichero y el sufijo y nombre de
 compañia a incluir en el fichero.
 
 Al crear el fichero bancario CSB:

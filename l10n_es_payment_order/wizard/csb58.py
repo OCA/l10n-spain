@@ -24,8 +24,8 @@
 #   Ignacio Ibeas <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -81,8 +81,8 @@ class Csb58(orm.Model):
         texto += '06'
         texto += 52 * ' '
         texto += (self.order.mode.ine and
-                  converter.to_ascii(cr, uid,
-                                     self.order.mode.ine)[:9].zfill(9) or 9*' ')
+                  converter.to_ascii(
+                      cr, uid, self.order.mode.ine)[:9].zfill(9) or 9 * ' ')
         texto += 3*' '
         texto += '\r\n'
         if len(texto) != 164:
@@ -192,7 +192,8 @@ Formato:
             if 'zip_id' in ads:
                 zip_obj = self.pool['res.partner.zip']
                 obj_zip_city = (ads.zip_id and
-                                zip_obj.browse(self.cr, self.uid, ads.zip_id.id,
+                                zip_obj.browse(self.cr, self.uid,
+                                               ads.zip_id.id,
                                                self.context) or '')
                 zip = obj_zip_city and obj_zip_city.name or ''
                 city = obj_zip_city and obj_zip_city.city or ''
@@ -202,8 +203,8 @@ Formato:
             #
             # Comprobamos el código postal:
             #   "Cuando no se conozca el código completo, se cumplimentara, al
-            #   menos, las dos primeras posiciones que identifican la provincia,
-            #   dejando el resto de posiciones a cero."
+            #   menos, las dos primeras posiciones que identifican la
+            #   provincia, dejando el resto de posiciones a cero."
             #
             if len(zip) < 2:
                 zip = ads.state_id and ads.state_id.code or ''

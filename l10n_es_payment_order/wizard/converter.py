@@ -13,8 +13,8 @@
 #        Ignacio Ibeas <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -51,15 +51,16 @@ class PaymentConverterSpain(orm.Model):
     def to_ascii(self, cr, uid, text):
         """Converts special characters such as those with accents to their
         ASCII equivalents"""
-        old_chars = ['á', 'é', 'í', 'ó', 'ú', 'à', 'è', 'ì', 'ò', 'ù', 'ä', 'ë',
-                     'ï', 'ö', 'ü', 'â', 'ê', 'î', 'ô', 'û', 'Á', 'É', 'Í', 'Ú',
-                     'Ó', 'À', 'È', 'Ì', 'Ò', 'Ù', 'Ä', 'Ë', 'Ï', 'Ö', 'Ü', 'Â',
-                     'Ê', 'Î', 'Ô', 'Û', 'ñ', 'Ñ', 'ç', 'Ç', 'ª', 'º', '·',
-                     '\n']
-        new_chars = ['a', 'e', 'i', 'o', 'u', 'a', 'e', 'i', 'o', 'u', 'a', 'e',
-                     'i', 'o', 'u', 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'U',
-                     'O', 'A', 'E', 'I', 'O', 'U', 'A', 'E', 'I', 'O', 'U', 'A',
-                     'E', 'I', 'O', 'U', 'n', 'N', 'c', 'C', 'a', 'o', '.', ' ']
+        old_chars = ['á', 'é', 'í', 'ó', 'ú', 'à', 'è', 'ì', 'ò', 'ù', 'ä',
+                     'ë', 'ï', 'ö', 'ü', 'â', 'ê', 'î', 'ô', 'û', 'Á', 'É',
+                     'Í', 'Ú', 'Ó', 'À', 'È', 'Ì', 'Ò', 'Ù', 'Ä', 'Ë', 'Ï',
+                     'Ö', 'Ü', 'Â', 'Ê', 'Î', 'Ô', 'Û', 'ñ', 'Ñ', 'ç', 'Ç',
+                     'ª', 'º', '·', '\n']
+        new_chars = ['a', 'e', 'i', 'o', 'u', 'a', 'e', 'i', 'o', 'u', 'a',
+                     'e', 'i', 'o', 'u', 'a', 'e', 'i', 'o', 'u', 'A', 'E',
+                     'I', 'U', 'O', 'A', 'E', 'I', 'O', 'U', 'A', 'E', 'I',
+                     'O', 'U', 'A', 'E', 'I', 'O', 'U', 'n', 'N', 'c', 'C',
+                     'a', 'o', '.', ' ']
         for old, new in zip(old_chars, new_chars):
             text = text.replace(unicode(old, 'UTF-8'), new)
         return text
@@ -112,8 +113,8 @@ class PaymentConverterSpain(orm.Model):
                         'defined.') % partner_name)
         ccc = self.digits_only(cr, uid, value)
         if len(ccc) != 20:
-            raise Log(_('User error:\n\nThe bank account number of %s does not '
-                        'have 20 digits.') % partner_name)
+            raise Log(_('User error:\n\nThe bank account number of %s does '
+                        'not have 20 digits.') % partner_name)
         return {'bank': ccc[:4],
                 'office': ccc[4:8],
                 'dc': ccc[8:10],

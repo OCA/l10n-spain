@@ -138,7 +138,7 @@ class L10nEsAeatMod303ExportToBoe(orm.TransientModel):
         877     4     An      Ingreso (7) - Código cuenta cliente - Entidad
         881     4     An      Ingreso (7) - Código cuenta cliente - Oficina
         885     2     An      Ingreso (7) - Código cuenta cliente - DC
-        887     10    An      Ingreso (7) - Código cuenta cliente - Nº de cuenta
+        887     10    An      Ingreso (7) - Código cuenta cliente - Nº cuenta
         """
         # NO SE USA ??? Forma de Pago - "0" No consta, "1" Efectivo,
         # "2" Adeudo en cuenta, "3" Domiciliación

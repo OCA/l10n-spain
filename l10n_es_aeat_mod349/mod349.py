@@ -418,10 +418,10 @@ class Mod349PartnerRecord(orm.Model):
     _description = 'AEAT 349 Model - Partner record'
     _order = 'operation_key asc'
 
-    def get_record_name(self, cr, uid, ids, field_name, args, context={}):
+    def get_record_name(self, cr, uid, ids, field_name, args, context=None):
         """Returns the record name."""
         result = {}
-        for rec in self.browse(cr, uid, ids, context):
+        for rec in self.browse(cr, uid, ids, context=context):
             result[rec.id] = rec.partner_vat
         return result
 

@@ -199,13 +199,13 @@ class account_balance_reporting_template_line(orm.Model):
             res.append((item.id, "[%s] %s" % (item.code, item.name)))
         return res
 
-    def name_search(self, cr, uid, name, args=[], operator='ilike',
+    def name_search(self, cr, uid, name, args=None, operator='ilike',
                     context=None, limit=80):
-        """
-        Redefine the name_search method to allow searching by code.
-        """
+        """Redefine the name_search method to allow searching by code."""
         if context is None:
             context = {}
+        if args is None:
+            args = []
         ids = []
         if name:
             ids = self.search(cr, uid, [('code', 'ilike', name)] + args,

@@ -6,8 +6,8 @@
 #                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -72,8 +72,8 @@ if __name__ == "__main__":
                                  'model="city.city">\n' % cont)
                     output.write('            <field name="state_id" '
                                  'ref="l10n_es_toponyms.ES%s"/>\n' % cp[:2])
-                    output.write('            <field name="name">%s</field>\n' %
-                                 ciudad)
+                    output.write('            <field name="name">%s</field>\n'
+                                 % ciudad)
                     output.write('            <field name="zip">%s</field>\n' %
                                  cp)
                     output.write('            <field name="country_id" '

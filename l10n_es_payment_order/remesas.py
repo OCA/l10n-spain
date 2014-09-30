@@ -23,11 +23,9 @@
 # Añadidos conceptos extras del CSB 19: Acysos S.L. 2011
 #   Ignacio Ibeas <ignacio@acysos.com>
 #
-#    $Id$
-#
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -57,9 +55,12 @@ class PaymentMode(orm.Model):
         return {'value': {'nombre': ""}}
 
     _columns = {
-        'tipo': fields.selection([('none', 'None'), ('csb_19', 'CSB 19'),
-                                  ('csb_32', 'CSB 32'), ('csb_34', 'CSB 34'),
-                                  ('34_01', 'CSB 34-01'), ('csb_58', 'CSB 58')],
+        'tipo': fields.selection([('none', 'None'),
+                                  ('csb_19', 'CSB 19'),
+                                  ('csb_32', 'CSB 32'),
+                                  ('csb_34', 'CSB 34'),
+                                  ('34_01', 'CSB 34-01'),
+                                  ('csb_58', 'CSB 58')],
                                  'Type of payment file', size=6, select=True,
                                  required=True),
         'sufijo': fields.char('suffix', size=3, select=True),
@@ -112,8 +113,8 @@ class PaymentMode(orm.Model):
                  '(the vat of the recipient is added in the 018 data type).'),
         'add_date': fields.boolean(
             'Add Date',
-            help='Check it if you want to add the 910 data type in the file to '
-                 'include the payment date.'),
+            help='Check it if you want to add the 910 data type in the file '
+                 'to include the payment date.'),
         'send_type': fields.selection(
             [('mail', 'Ordinary Mail'),
              ('certified_mail', 'Certified Mail'),

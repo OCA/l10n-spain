@@ -6,8 +6,8 @@
 #                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -113,8 +113,9 @@ if __name__ == "__main__":
             handler = GeoNameXmlHandler()
             xml.sax.parseString(xml_string, handler)
         except:
-            print "Ha ocurrido un error inesperado. Pruebe a lanzar de nuevo " \
-                  "el script con el parámetro --start y el número %s." % cp
+            print ("Ha ocurrido un error inesperado. Pruebe a lanzar de "
+                   "nuevo el script con el parámetro --start y el número %s." %
+                   cp)
             sys.exit()
         if handler.isServiceOk:
             cp_str = "%05d" % cp
