@@ -2,8 +2,7 @@
 ##############################################################################
 #
 #    OpenERP - Account balance reporting engine
-#    Copyright (C) 2009 Pexego Sistemas Informáticos. All Rights Reserved
-#    $Id$
+#    Copyright (C) 2009 Pexego Sistemas Informáticos.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -39,8 +38,7 @@ CSS_CLASSES = [('default', 'Default'), ('l1', 'Level 1'), ('l2', 'Level 2'),
 
 
 class AccountBalanceReporting(orm.Model):
-    """
-    Account balance report.
+    """Account balance report.
     It stores the configuration/header fields of an account balance report,
     and the linked lines of detail with the values of the accounting concepts
     (values generated from the selected template lines of detail formulas).
@@ -245,10 +243,12 @@ class AccountBalanceReportingLine(orm.Model):
             res.append((item.id, "[%s] %s" % (item.code, item.name)))
         return res
 
-    def name_search(self, cr, uid, name, args=[], operator='ilike',
+    def name_search(self, cr, uid, name, args=None, operator='ilike',
                     context=None, limit=80):
         """Redefine the method to allow searching by code."""
         ids = []
+        if args is None:
+            args = []
         if name:
             ids = self.search(cr, uid, [('code', 'ilike', name)] + args,
                               limit=limit, context=context)
@@ -259,9 +259,8 @@ class AccountBalanceReportingLine(orm.Model):
 
     def _get_account_balance(self, cr, uid, ids, code, balance_mode=0,
                              context=None):
-        """
-        It returns the (debit, credit, balance*) tuple for a account with the
-        given code, or the sum of those values for a set of accounts
+        """It returns the (debit, credit, balance*) tuple for a account with
+        the given code, or the sum of those values for a set of accounts
         when the code is in the form "400,300,(323)"
 
         Depending on the balance_mode, the balance is calculated as follows:
@@ -336,8 +335,7 @@ class AccountBalanceReportingLine(orm.Model):
         return res
 
     def refresh_values(self, cr, uid, ids, context=None):
-        """
-        Recalculates the values of this report line using the
+        """Recalculates the values of this report line using the
         linked line report values formulas:
 
         Depending on this formula the final value is calculated as follows:
