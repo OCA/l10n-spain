@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+<!-- HR SALARY RULES-->
+        <record id="l10n_es_hr_payroll.hr_rule_impbruto" model="hr.salary.rule">
+            <field name="account_debit" search="[('code', 'like', '640000%')]"/>
+        </record>
+        <record id="l10n_es_hr_payroll.hr_rule_ssempresa" model="hr.salary.rule">
+            <field name="account_debit" search="[('code', 'like', '642000%')]"/>
+            <field name="account_credit" search="[('code', 'like', '476000%')]"/>
+        </record>
+        <record id="l10n_es_hr_payroll.hr_rule_sstrabajador" model="hr.salary.rule">
+            <field name="account_credit" search="[('code', 'like', '476000%')]"/>
+        </record>
+        <record id="l10n_es_hr_payroll.hr_rule_irpf" model="hr.salary.rule">
+            <field name="account_credit" search="[('code', 'like', '475100%')]"/>
+        </record>
+        <record id="l10n_es_hr_payroll.hr_rule_impneto" model="hr.salary.rule">
+            <field name="account_debit" search="[('code', 'like', '465000%')]"/>
+            <field name="account_credit" search="[('code', 'like', '410000%')]"/>
+        </record>
+    </data>
+</openerp>

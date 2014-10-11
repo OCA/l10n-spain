@@ -1,0 +1,50 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_es_payroll
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-09 17:37+0000\n"
+"PO-Revision-Date: 2014-10-09 17:37+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_payroll
+#: field:hr.contract,insurance_company:0
+#: help:hr.contract,insurance_company:0
+msgid "Company Insurance"
+msgstr "Company Insurance"
+
+#. module: l10n_es_payroll
+#: model:ir.model,name:l10n_es_payroll.model_hr_contract
+msgid "Contract"
+msgstr "Contract"
+
+#. module: l10n_es_payroll
+#: code:_description:0
+#, python-format
+msgid "Employee Contract"
+msgstr "Employee Contract"
+
+#. module: l10n_es_payroll
+#: field:hr.contract,insurance_employee:0
+#: help:hr.contract,insurance_employee:0
+msgid "Employee Insurance"
+msgstr "Employee Insurance"
+
+#. module: l10n_es_payroll
+#: field:hr.contract,retention_employee:0
+msgid "Employee Retention"
+msgstr "Employee Retention"
+
+#. module: l10n_es_payroll
+#: help:hr.contract,retention_employee:0
+msgid "Employee Retentions"
+msgstr "Employee Retentions"
+

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <!-- Salary Rules Category-->
+        <record id="BRUTO" model="hr.salary.rule.category">
+            <field name="name">Salario Bruto</field>
+            <field name="note">Salario Bruto del Empleado</field>
+            <field name="code">BRUTO</field>
+        </record>
+        <record id="SS" model="hr.salary.rule.category">
+            <field name="name">Seguridad Social</field>
+            <field name="note">Seguridad Social</field>
+            <field name="code">SS</field>
+        </record>
+        <record id="RET" model="hr.salary.rule.category">
+            <field name="name">Retenciones Practicadas</field>
+            <field name="code">RET</field>
+        </record>
+        <record id="NETO" model="hr.salary.rule.category">
+            <field name="name">Salario Neto</field>
+            <field name="note">Salario Neto del Empleado</field>
+            <field name="code">NETO</field>
+        </record>
+        <!-- Salary Rules -->
+        <record id="hr_rule_impbruto" model="hr.salary.rule">
+            <field name="name">Salario Bruto</field>
+            <field name="sequence" eval="10"/>
+            <field name="code">BRUTO</field>
+            <field name="category_id" ref="BRUTO"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.wage</field>
+            <field name="note">Importe del Salario Bruto del Trabajador, recuperado del campo Salario del contrato</field>
+        </record>
+        <record id="hr_rule_ssempresa" model="hr.salary.rule">
+            <field name="name">Seguridad Social de la Empresa</field>
+            <field name="sequence" eval="11"/>
+            <field name="code">SSE</field>
+            <field name="category_id" ref="SS"/>
+            <field name="condition_select">none</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.insurance_company</field>
+            <field name="note">Seguridad Social a cargo de la empresa, recuperado del campo SS Empresa del contrato</field>
+        </record>
+        <record id="hr_rule_sstrabajador" model="hr.salary.rule">
+            <field name="name">Seguridad Social del Trabajador</field>
+            <field name="sequence" eval="12"/>
+            <field name="code">SST</field>
+            <field name="category_id" ref="SS"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.insurance_employee</field>
+            <field name="note">Seguridad Social a cargo del trabajador, recuperado del campo SS Trabajador del contrato</field>
+        </record>
+        <record id="hr_rule_irpf" model="hr.salary.rule">
+            <field name="name">IRPF</field>
+            <field name="sequence" eval="13"/>
+            <field name="code">IRPF</field>
+            <field name="category_id" ref="RET"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (contract.wage * contract.retention_employee) / 100</field>
+            <field name="note">Retencion por IRPF del Trabajador, calculado a partir del % del contrato y el salario bruto</field>
+        </record>
+        <record id="hr_rule_impneto" model="hr.salary.rule">
+            <field name="name">Salario Neto</field>
+            <field name="sequence" eval="14"/>
+            <field name="code">NETO</field>
+            <field name="category_id" ref="NETO"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.wage - (categories.RET + contract.insurance_employee)</field>
+            <field name="note">Salario Neto a percibir por el Trabajador</field>
+        </record>
+        <!-- Salary Structure -->
+         <record id="structure_normal" model="hr.payroll.structure">
+            <field name="code">NORM</field>
+            <field name="name">Estructura Nomina Normal</field>
+            <field eval="[(6, 0, [ref('hr_rule_impbruto'), ref('hr_rule_ssempresa'), ref('hr_rule_sstrabajador'), ref('hr_rule_irpf'), ref('hr_rule_impneto')])]" name="rule_ids"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="parent_id"></field>
+        </record>
+    </data>
+</openerp>
