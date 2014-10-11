@@ -78,5 +78,8 @@ Funcionamiento de la validación de la cuenta bancaria para cuentas IBAN:
         "views/l10n_es_partner_view.xml",
         "wizard/l10n_es_partner_wizard.xml",
     ],
+    "test": [
+        "test/l10n_es_partner.yml",
+    ],
     "installable": True,
 }
