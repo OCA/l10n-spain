@@ -72,6 +72,7 @@ Funcionamiento de la validación de la cuenta bancaria para cuentas IBAN:
     "depends": [
         "base",
         "base_iban",
+        "base_vat",
         "l10n_es_toponyms",
     ],
     "data": [
