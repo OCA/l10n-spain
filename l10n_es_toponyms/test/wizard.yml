@@ -1,0 +1,34 @@
+-
+    Instalar los topononimos oficilaes
+-
+    !python {model: config.es.toponyms}: |
+        wiz_id = self.create(cr, uid, {
+            'name': '',
+            'state': 'official',
+            'city_info': 'yes'
+        })
+        self.execute(cr, uid, [wiz_id])
+
+-
+    Comprobar que se instalan los toponimos correctamente
+-
+    !assert {model: config.es.toponyms, id: ES01}:
+        - name == 'Araba'
+
+-
+    Intalar los toponimos Españoles
+-
+    !python {model: config.es.toponyms}: |
+        wiz_id = self.create(cr, uid, {
+            'name': '',
+            'state': 'spanish',
+            'city_info': 'yes'
+        })
+        self.execute(cr, uid, [wiz_id])
+
+-
+    Comprobar que se instalan los toponimos correctamente
+-
+    !assert {model: config.es.toponyms, id: ES01}:
+        - name == 'Alava'
+
