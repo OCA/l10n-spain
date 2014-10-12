@@ -10,12 +10,6 @@
         self.execute(cr, uid, [wiz_id])
 
 -
-    Comprobar que se instalan los toponimos correctamente
--
-    !assert {model: config.es.toponyms, id: ES01}:
-        - name == 'Araba'
-
--
     Intalar los toponimos Españoles
 -
     !python {model: config.es.toponyms}: |
@@ -25,10 +19,3 @@
             'city_info': 'yes'
         })
         self.execute(cr, uid, [wiz_id])
-
--
-    Comprobar que se instalan los toponimos correctamente
--
-    !assert {model: config.es.toponyms, id: ES01}:
-        - name == 'Alava'
-
