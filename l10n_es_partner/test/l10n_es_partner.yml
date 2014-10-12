@@ -40,7 +40,7 @@
         partner_id: test_partner
 
 -
-    Comprobar onchnage del banco
+    Comprobar onchange del banco
 -
     !python {model: res.partner.bank}: |
         re = self.onchange_banco(cr, uid, [], 'ES7620770024003102575766', ref('base.es'), 'iban', context=None)
