@@ -52,5 +52,8 @@ https://github.com/OCA/partner-contact
     ],
     'images': ['images/l10n_es_toponyms_config.png'],
     "demo": [],
+    'test': [
+        'test/wizard.yml'
+    ],
     "installable": True
 }
