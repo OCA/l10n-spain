@@ -53,7 +53,6 @@ class ConfigEsToponyms(models.TransientModel):
         """Import spanish states information through an XML file."""
         file_name = 'l10n_es_toponyms_states_%s.xml' % state_type
         path = os.path.join('l10n_es_toponyms', 'wizard', file_name)
-
         with tools.file_open(path) as fp:
             tools.convert_xml_import(cr, 'l10n_es_toponyms', fp, {},
                                      'init', noupdate=True)
@@ -65,7 +64,6 @@ class ConfigEsToponyms(models.TransientModel):
         """Import spanish zipcodes information through an XML file."""
         file_name = 'l10n_es_toponyms_zipcodes.xml'
         path = os.path.join('l10n_es_toponyms', 'wizard', file_name)
-
         with tools.file_open(path) as fp:
             tools.convert_xml_import(cr, 'l10n_es_toponyms', fp, {},
                                      'init', noupdate=True)
@@ -76,10 +74,8 @@ class ConfigEsToponyms(models.TransientModel):
     def execute(self, cr, uid, ids, context=None):
         super(ConfigEsToponyms, self).execute(cr, uid, ids, context=context)
         res = self.read(cr, uid, ids)[0]
-
         # Import spanish states (official, Spanish or both)
         self.create_states(cr, uid, res['state'], context=context)
-
         # Import spanish cities and zip codes
         if res['city_info'] == 'yes':
             self.create_zipcodes(cr, uid, context=context)
