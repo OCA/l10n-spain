@@ -4,8 +4,8 @@ python:
   - "2.7"
 
 env:
-  - VERSION="8.0" ODOO_REPO="odoo/odoo"
-  - VERSION="8.0" ODOO_REPO="OCA/OCB"
+  - VERSION="8.0" ODOO_REPO="odoo/odoo" OPTIONS="--test-commit"
+  - VERSION="8.0" ODOO_REPO="OCA/OCB" OPTIONS="--test-commit"
 
 virtualenv:
   system_site_packages: true
