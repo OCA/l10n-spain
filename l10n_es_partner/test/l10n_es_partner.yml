@@ -1,10 +1,13 @@
 -
-    Crear 'Provincia'
+    Instalar los topononimos oficilaes
 -
-    !record {model: res.country.state, id: test_state}:
-        country_id: base.es
-        name: Provincia
-        code: '00'
+    !python {model: config.es.toponyms}: |
+        wiz_id = self.create(cr, uid, {
+            'name': '',
+            'state': 'official',
+            'city_info': 'yes'
+        })
+        self.execute(cr, uid, [wiz_id])
 
 -
     Crear banco 'Banco de España'
@@ -34,7 +37,7 @@
         partner_id: base.main_partner
         acc_number: ES7620770024003102575766
         country_id: base.es
-        state_id: test_state
+        state_id: l10n_es_toponyms.ES28
         bank: test_bank
         bank_name: BDE
         footer: True
