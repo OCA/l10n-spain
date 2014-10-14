@@ -1,15 +1,4 @@
 -
-    Instalar los topononimos oficilaes
--
-    !python {model: config.es.toponyms}: |
-        wiz_id = self.create(cr, uid, {
-            'name': '',
-            'state': 'official',
-            'city_info': 'yes'
-        })
-        self.execute(cr, uid, [wiz_id])
-
--
     Crear banco 'Banco de España'
 -
     !record {model: res.bank, id: test_bank}:
