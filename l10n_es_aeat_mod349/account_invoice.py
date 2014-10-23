@@ -208,10 +208,9 @@ class AccountInvoice(orm.Model):
         if vals.get('fiscal_position') and \
                 vals.get('type') and not vals.get('operation_key'):
             fp_obj = self.pool['account.fiscal.position']
-            if fp_obj.browse(cr, uid, vals.get('fiscal_position'),
-                             context=context).intracommunity_operations:
-                vals['operation_key'] = self._get_operation_key(
-                    vals['fiscal_position'], vals['type'])
+            fp = fp_obj.browse(cr, uid, vals['fiscal_position'],
+                               context=context)
+            vals['operation_key'] = self._get_operation_key(fp, vals['type'])
         return super(AccountInvoice, self).create(cr, uid, vals,
                                                   context=context)
 
