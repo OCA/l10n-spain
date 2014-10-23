@@ -26,8 +26,13 @@
 ##############################################################################
 from openerp.osv import orm
 from openerp.tools.translate import _
-from account_statement_base_import.parser import BankStatementImportParser
 from datetime import datetime
+try:
+    from openerp.addons.account_statement_base_import.parser import \
+        BankStatementImportParser
+except ImportError:
+    # Make the class inheritance work
+    BankStatementImportParser = object
 
 
 class C43Parser(BankStatementImportParser):
