@@ -97,3 +97,10 @@
         - number[:4] == 'tFAC'
         - move_id.name[:3] == 'tAC'
 
+-
+    Comprobar copiar una factura
+-
+    !python {model: account.invoice, id: invoice}: |
+        copy = self.copy()
+        assert copy.number != self.number, 'Mantiene el number de factura al duplicarse'
+        assert copy.internal_number != self.internal_number, 'Mantiene el internal_number de factura al duplicarse'

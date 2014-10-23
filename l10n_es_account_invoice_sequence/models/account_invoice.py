@@ -22,24 +22,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, api, _
-from openerp.exceptions import except_orm
+from openerp import models, fields, api, _, exceptions
 
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    def copy(self, cr, uid, id, default=None, context=None):
-        if not default:
-            default = {}
-        default['invoice_number'] = False
-        default['number'] = False
-        return super(AccountInvoice, self).copy(cr, uid, id, default,
-                                                context=context)
-    number = fields.Char('Invoice Number', related=False,
-                         size=32, readonly=True,
-                         help="Unique number of the invoice, computed "
-                         "automatically when the invoice is created.")
+    number = fields.Char(related=False, size=32, copy=False)
+    invoice_number = fields.Char(copy=False)
 
     @api.multi
     def action_number(self):
@@ -48,14 +38,15 @@ class AccountInvoice(models.Model):
         for inv in self:
             sequence = inv.journal_id.invoice_sequence_id
             if not sequence:
-                raise except_orm(_('Error!'),
-                                 _('Journal %s has no sequence defined for '
-                                   'invoices.') % inv.journal_id.name)
+                raise exceptions.Warning(
+                    _('Error!:: Journal %s has no sequence defined for'
+                      'invoices.') % inv.journal_id.name)
+
             ctx = self.env.context.copy()
             period = period_obj.browse(self.env.cr, self.env.uid,
                                        inv.period_id.id)
             ctx['fiscalyear_id'] = period.fiscalyear_id.id
             number = sequence_obj.next_by_id(self.env.cr, self.env.uid,
                                              sequence.id, ctx)
-            inv.write({'number': number})
+            inv.number = number
         return super(AccountInvoice, self).action_number()
