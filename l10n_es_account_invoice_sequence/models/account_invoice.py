@@ -36,17 +36,21 @@ class AccountInvoice(models.Model):
         sequence_obj = self.pool['ir.sequence']
         period_obj = self.pool['account.period']
         for inv in self:
-            sequence = inv.journal_id.invoice_sequence_id
-            if not sequence:
-                raise exceptions.Warning(
-                    _('Error!:: Journal %s has no sequence defined for'
-                      'invoices.') % inv.journal_id.name)
+            if inv.internal_number:
+                number = inv.internal_number
+            else:
+                sequence = inv.journal_id.invoice_sequence_id
+                if not sequence:
+                    raise exceptions.Warning(
+                        _('Error!:: Journal %s has no sequence defined for'
+                          'invoices.') % inv.journal_id.name)
 
-            ctx = self.env.context.copy()
-            period = period_obj.browse(self.env.cr, self.env.uid,
-                                       inv.period_id.id)
-            ctx['fiscalyear_id'] = period.fiscalyear_id.id
-            number = sequence_obj.next_by_id(self.env.cr, self.env.uid,
-                                             sequence.id, ctx)
+                ctx = self.env.context.copy()
+                period = period_obj.browse(self.env.cr, self.env.uid,
+                                           inv.period_id.id)
+                ctx['fiscalyear_id'] = period.fiscalyear_id.id
+                number = sequence_obj.next_by_id(self.env.cr, self.env.uid,
+                                                 sequence.id, ctx)
+
             inv.number = number
         return super(AccountInvoice, self).action_number()
