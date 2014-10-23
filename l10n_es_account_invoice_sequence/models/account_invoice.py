@@ -36,7 +36,8 @@ class AccountInvoice(models.Model):
         default['number'] = False
         return super(AccountInvoice, self).copy(cr, uid, id, default,
                                                 context=context)
-    number = fields.Char('Invoice Number', size=32, readonly=True,
+    number = fields.Char('Invoice Number', related=False,
+                         size=32, readonly=True,
                          help="Unique number of the invoice, computed "
                          "automatically when the invoice is created.")
 
