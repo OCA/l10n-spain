@@ -33,24 +33,14 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def action_number(self):
-        sequence_obj = self.pool['ir.sequence']
-        period_obj = self.pool['account.period']
         for inv in self:
-            if inv.internal_number:
-                number = inv.internal_number
-            else:
+            if not inv.internal_number:
                 sequence = inv.journal_id.invoice_sequence_id
                 if not sequence:
                     raise exceptions.Warning(
                         _('Error!:: Journal %s has no sequence defined for'
                           'invoices.') % inv.journal_id.name)
-
-                ctx = self.env.context.copy()
-                period = period_obj.browse(self.env.cr, self.env.uid,
-                                           inv.period_id.id)
-                ctx['fiscalyear_id'] = period.fiscalyear_id.id
-                number = sequence_obj.next_by_id(self.env.cr, self.env.uid,
-                                                 sequence.id, ctx)
-
-            inv.number = number
+                inv.number = sequence.with_context({
+                    'fiscalyear_id': inv.period_id.fiscalyear_id.id
+                }).next_by_id(sequence.id)
         return super(AccountInvoice, self).action_number()
