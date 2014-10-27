@@ -38,7 +38,7 @@ class AccountInvoice(models.Model):
                 sequence = inv.journal_id.invoice_sequence_id
                 if not sequence:
                     raise exceptions.Warning(
-                        _('Error!:: Journal %s has no sequence defined for'
+                        _('Error!:: Journal %s has no sequence defined for '
                           'invoices.') % inv.journal_id.name)
                 inv.number = sequence.with_context({
                     'fiscalyear_id': inv.period_id.fiscalyear_id.id
