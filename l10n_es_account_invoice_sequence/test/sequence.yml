@@ -1,0 +1,106 @@
+-
+    Crear secuencia para los apuntes contables
+-
+    !record {model: ir.sequence, id: sequence_move}:
+        name: (TEST) Asientos contables
+        padding: 3
+        prefix: tAC
+
+-
+    Crear secuencia para las facturas
+-
+    !record {model: ir.sequence, id: sequence_invoice}:
+        name: (TEST) Factura
+        padding: 3
+        prefix: tFAC
+
+-
+    Crear diario de ventas
+-
+    !record {model: account.journal, id: journal_sale}:
+        name: (TEST) Diario de ventas
+        code: tVEN
+        type: sale
+        sequence_id: sequence_move
+        invoice_sequence_id: sequence_invoice
+
+-
+    Crear asiento contable
+-
+  !record {model: account.move, id: account_move}:
+    date: !eval time.strftime('%Y-%m-%d')
+    period_id: account.period_1
+    journal_id: journal_sale
+    line_id:
+      - account_id: account.a_sale
+        amount_currency: 0.0
+        credit: 1000.0
+        debit: 0.0
+        name: Test l10n_es_account_invoice_sequence
+        partner_id: base.res_partner_1
+        ref: 'l10n_es_account_invoice_sequence'
+        tax_amount: 0.0
+      - account_id: account.a_sale
+        amount_currency: 0.0
+        credit: 0.0
+        debit: 1000.0
+        name: Test l10n_es_account_invoice_sequence
+        partner_id: base.res_partner_1
+        ref: 'l10n_es_account_invoice_sequence'
+        tax_amount: 0.0
+    name: /
+    ref: 'l10n_es_account_invoice_sequence'
+    state: draft
+
+-
+    Validar asiento contable
+-
+    !python {model: account.move}: |
+        self.button_validate(cr, uid, [ref("account_move")], context=context)
+
+-
+    Comprobar asiento contable
+-
+    !assert {model: account.move, id: account_move}:
+        - state == 'posted'
+        - name[:3] == 'tAC'
+
+-
+    Crear factura
+-
+    !record {model: account.invoice, id: invoice}:
+        journal_id: journal_sale
+        account_id: account.a_recv
+        company_id: base.main_company
+        currency_id: base.EUR
+        invoice_line:
+          - account_id: account.a_sale
+            name: 'Un producto'
+            price_unit: 50.0
+            quantity: 10.0
+            product_id: product.product_product_5
+            uos_id: product.product_uom_unit
+        partner_id: base.res_partner_1
+        reference_type: none
+        period_id: account.period_1
+
+-
+    Validar la factura
+-
+    !workflow {model: account.invoice, action: invoice_open, ref: invoice}
+
+-
+    Comprobar factura
+-
+    !assert {model: account.invoice, id: invoice}:
+        - state == 'open'
+        - number[:4] == 'tFAC'
+        - move_id.name[:3] == 'tAC'
+
+-
+    Comprobar copiar una factura
+-
+    !python {model: account.invoice, id: invoice}: |
+        copy = self.copy()
+        assert copy.number != self.number, 'Mantiene el number de factura al duplicarse'
+        assert copy.internal_number != self.internal_number, 'Mantiene el internal_number de factura al duplicarse'
