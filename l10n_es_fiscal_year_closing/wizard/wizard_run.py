@@ -42,7 +42,8 @@ class CancelFyc(orm.TransientModel):
             'Delete opening account move', readonly=True),
     }
 
-    def default_get(self, cr, uid, fields, context=None):
+    def default_get(self, cr, uid,
+                    fields, context=None):  # pylint: disable=W0621
         """This function gets default values
         @param self: The object pointer
         @param cr: the current row, from the database cursor,
@@ -148,7 +149,8 @@ class ExecuteFyc(orm.TransientModel):
                                         readonly=True),
     }
 
-    def default_get(self, cr, uid, fields, context=None):
+    def default_get(self, cr, uid,
+                    fields, context=None):  # pylint: disable=W0621
         """This function gets default values
         @param self: The object pointer
         @param cr: the current row, from the database cursor,
