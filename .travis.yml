@@ -13,7 +13,7 @@ virtualenv:
 install:
   - pip install unidecode
   - git clone https://github.com/OCA/partner-contact ${HOME}/partner-contact -b ${VERSION}
-  - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
+  - git clone https://github.com/vauxoo-dev/maintainer-quality-tools.git -b master-issue-oca-109-dev-moylop260 ${HOME}/maintainer-quality-tools
   - bzr branch lp:acysos/openerp-addons-8.0 ${HOME}/acysos-addons
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly ${VERSION}

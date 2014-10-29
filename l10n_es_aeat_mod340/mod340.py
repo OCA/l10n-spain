@@ -49,8 +49,8 @@ class L10nEsAeatMod340Report(orm.Model):
 
     def _get_number_records(self, cr, uid, ids, field_name, args, context):
         result = {}
-        for id in ids:
-            result[id] = {}.fromkeys(
+        for record_id in ids:
+            result[record_id] = {}.fromkeys(
                 ['number_records', 'total_taxable', 'total_sharetax', 'total'],
                 0.0)
         for model in self.browse(cr, uid, ids, context):
