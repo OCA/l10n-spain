@@ -34,7 +34,7 @@ class AccountInvoice(models.Model):
     @api.multi
     def action_number(self):
         for inv in self:
-            if not inv.internal_number:
+            if not inv.number:
                 sequence = inv.journal_id.invoice_sequence_id
                 if not sequence:
                     raise exceptions.Warning(
