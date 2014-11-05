@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <template id="redsys_acquirer_button">
+            <form t-if="acquirer" t-att-action="tx_url" method="post" target="_self">
+				<input type="hidden" name="Ds_Merchant_Amount" t-att-value="tx_values['Ds_Merchant_Amount']"/>
+	            <input type="hidden" name="Ds_Merchant_Currency" t-att-value="tx_values['Ds_Merchant_Currency']"/>
+	            <input type="hidden" name="Ds_Merchant_Order" t-att-value="tx_values['Ds_Merchant_Order']"/>
+	            <input type="hidden" name="Ds_Merchant_MerchantCode" t-att-value="tx_values['Ds_Merchant_MerchantCode']"/>
+	            <input type="hidden" name="Ds_Merchant_Terminal" t-att-value="tx_values['Ds_Merchant_Terminal']"/>
+	            <input type="hidden" name="Ds_Merchant_TransactionType" t-att-value="tx_values['Ds_Merchant_TransactionType']"/>
+	            <input type="hidden" name="Ds_Merchant_Titular" t-att-value="tx_values['Ds_Merchant_Titular']"/>
+	            <input type="hidden" name="Ds_Merchant_MerchantName" t-att-value="tx_values['Ds_Merchant_MerchantName']"/>
+	            <input type="hidden" name="Ds_Merchant_MerchantURL" t-att-value="tx_values['Ds_Merchant_MerchantURL']"/>
+   	            <input type="hidden" name="Ds_Merchant_MerchantData" t-att-value="tx_values['Ds_Merchant_MerchantData']"/>
+				<input type="hidden" name="Ds_Merchant_ProductDescription" t-att-value="tx_values['Ds_Merchant_ProductDescription']"/>
+	            <input type="hidden" name="Ds_Merchant_ConsumerLanguage " t-att-value="tx_values['Ds_Merchant_ConsumerLanguage']"/>
+	            <input type="hidden" name="Ds_Merchant_UrlOK" t-att-value="tx_values['Ds_Merchant_UrlOK']"/>
+	            <input type="hidden" name="Ds_Merchant_UrlKO" t-att-value="tx_values['Ds_Merchant_UrlKO']"/>
+	            <input type="hidden" name="Ds_Merchant_PayMethods" t-att-value="tx_values['Ds_Merchant_PayMethods']"/>
+	            <input type="hidden" name="Ds_Merchant_MerchantSignature" t-att-value="tx_values['Ds_Merchant_MerchantSignature']"/>                       
+                <!-- submit -->
+                <button type="submit" width="100px"
+                    t-att-class="submit_class">
+                    <img t-if="not submit_txt" src="/payment_redsys/static/src/img/redsys_icon.png"/>
+                    <span t-if="submit_txt"><t t-esc="submit_txt"/> <span class="fa fa-long-arrow-right"/></span>
+                </button>
+            </form>
+        </template>
+
+    </data>
+</openerp>
