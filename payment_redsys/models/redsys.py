@@ -102,7 +102,6 @@ class AcquirerRedsys(models.Model):
 
     @api.model
     def redsys_form_generate_values(self, id, partner_values, tx_values):
-        base_url = self.env['ir.config_parameter'].get_param('web.base.url')
         acquirer = self.browse(id)
         redsys_tx_values = dict(tx_values)
         redsys_tx_values.update({
