@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="acquirer_form_redsys" model="ir.ui.view">
+            <field name="name">acquirer.form.redsys</field>
+            <field name="model">payment.acquirer</field>
+            <field name="inherit_id" ref="payment.acquirer_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//group[@name="acquirer_display"]' position='after'>
+                    <group attrs="{'invisible': [('provider', '!=', 'redsys')]}">
+                        <field name="redsys_merchant_url"/>
+                        <field name="redsys_merchant_titular"/>
+                        <field name="redsys_merchant_name"/>
+                        <field name="redsys_merchant_code"/>
+                        <field name="redsys_secret_key"/>
+                        <field name="redsys_terminal"/>
+                        <field name="redsys_currency"/>
+                        <field name="redsys_transaction_type"/>
+                        <field name="redsys_merchant_lang"/>
+                        <field name="redsys_pay_method"/>
+                        <field name="redsys_merchant_data"/>
+                        <field name="redsys_merchant_description"/>
+                        <field name="redsys_url_ok"/>
+						<field name="redsys_url_ko"/>
+                        </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="transaction_form_redsys" model="ir.ui.view">
+            <field name="name">acquirer.transaction.form.redsys</field>
+            <field name="model">payment.transaction</field>
+            <field name="inherit_id" ref="payment.transaction_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//notebook' position='inside'>
+                    <page string="Redsys TX Details">
+                        <group>
+                            <field name="redsys_txnid"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
