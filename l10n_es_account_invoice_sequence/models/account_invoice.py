@@ -55,3 +55,8 @@ class AccountInvoice(models.Model):
                     'internal_number': inv.move_id.name,
                 })
         return re
+
+    @api.multi
+    def unlink(self):
+        self.write({'internal_number': False})
+        return super(AccountInvoice, self).unlink()
