@@ -49,6 +49,9 @@ después de instalar este módulo.
         'views/account_view.xml',
     ],
     "demo": [],
+    "test": [
+        'test/sequence.yml'
+    ],
     "active": False,
     "installable": True,
 }
