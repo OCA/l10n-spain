@@ -18,16 +18,16 @@
 #########################################################################
 
 {
-    "name" : "Validate Vat (Vies Webservice)",
-    "version" : "1.0",
-    "author" : "Factor Libre SL",
-    "category" : "Localisation/Europe",
+    "name": "Validate Vat (Vies Webservice)",
+    "version": "1.0",
+    "author": "Factor Libre SL",
+    "category": "Localisation/Europe",
     "description": """This addon validates the vat number in the vies webservice (http://ec.europa.eu/taxation_customs/vies/)""",
-    "depends" : ["base", "base_vat"],
-    "license" : "AGPL-3",
-    "init_xml" : [],
-    "demo_xml" : [],
-    "update_xml" : [
+    "depends": ["base", "base_vat"],
+    "license": "AGPL-3",
+    "init_xml": [],
+    "demo_xml": [],
+    "update_xml": [
         'wizard/validate_vies_vat_view.xml',
         'partner_view.xml',
     ],

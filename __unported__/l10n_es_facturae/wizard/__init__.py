@@ -21,5 +21,4 @@
 #
 ##############################################################################
 
-import create_facturae
-
+from . import create_facturae

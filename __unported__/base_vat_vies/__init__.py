@@ -1,2 +1,2 @@
-import partner
-import wizard
+from . import partner
+from . import wizard

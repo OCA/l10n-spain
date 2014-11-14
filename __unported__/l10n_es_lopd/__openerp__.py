@@ -20,10 +20,10 @@
 ##############################################################################
 
 {
-        "name" : "LOPD",
-        "version" : "1.0.1",
-        "category" : "Localization",
-        "description": """
+    "name": "LOPD",
+    "version": "1.0.1",
+    "category": "Localization",
+    "description": """
         Módulo de implentación de la Ley Orgánica de Proteccion de Datos en OpenERP.
         Serán necesarias las siguientes dependencias en el sistema (servidor):
             pdftk, PIL, reportlab, suds
@@ -33,35 +33,34 @@
             resultado = client.service.probarXml(envio)
             #resultado = client.service.registrarXml(envio)
         """,
-        "author" : "LambdaSoftware development team",
-        "website" : "http://www.lambdasoftware.net",
-        'depends': ['base','hr','l10n_es_toponyms'],
-        'init_xml': [
-                'data/lopd.sos.tipos.xml',
-                'data/lopd.equipos.tipos.xml',
-                'data/lopd.recursos.tipos.xml',
-                'data/lopd.programas.tipos.xml',
-                'data/lopd.soportes.tipos.xml',
-                'data/lopd.actividades.xml',
-                'data/lopd.categoria.destinatarios.xml',
-        ],
-        'update_xml': [
-                'security/permisos_lopd.xml',
+    "author": "LambdaSoftware development team",
+    "website": "http://www.lambdasoftware.net",
+    'depends': ['base', 'hr', 'l10n_es_toponyms'],
+    'init_xml': [
+            'data/lopd.sos.tipos.xml',
+            'data/lopd.equipos.tipos.xml',
+            'data/lopd.recursos.tipos.xml',
+        'data/lopd.programas.tipos.xml',
+        'data/lopd.soportes.tipos.xml',
+        'data/lopd.actividades.xml',
+        'data/lopd.categoria.destinatarios.xml',
+    ],
+    'update_xml': [
+        'security/permisos_lopd.xml',
         'security/ir.model.access.csv',
-                'vistas/vista_lopd.xml',
-                'vistas/vista_tipos.xml',
-                'vistas/vista_hr.xml',
-                'vistas/vista_partner.xml',
-                'vistas/vista_registros.xml',
-                'vistas/vista_figura_tratamiento.xml',
-                'vistas/vista_declarante.xml',
-                'vistas/vista_fichero.xml',
-                'vistas/vista_solicitudes.xml',
-                'vistas/lopd_menus.xml',
-                'wizard/lopd_fichero_wizard.xml',
-        ],
-        'demo_xml': [],
-        'installable': False,
-        'active': False,
+        'vistas/vista_lopd.xml',
+        'vistas/vista_tipos.xml',
+        'vistas/vista_hr.xml',
+        'vistas/vista_partner.xml',
+        'vistas/vista_registros.xml',
+        'vistas/vista_figura_tratamiento.xml',
+        'vistas/vista_declarante.xml',
+        'vistas/vista_fichero.xml',
+        'vistas/vista_solicitudes.xml',
+        'vistas/lopd_menus.xml',
+        'wizard/lopd_fichero_wizard.xml',
+    ],
+    'demo_xml': [],
+    'installable': False,
+    'active': False,
 }
-

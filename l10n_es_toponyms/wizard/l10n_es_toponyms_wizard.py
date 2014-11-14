@@ -65,7 +65,7 @@ class ConfigEsToponyms(orm.TransientModel):
         file_name = 'l10n_es_toponyms_zipcodes.xml'
         try:
             fp = openerp.tools.file_open(os.path.join('l10n_es_toponyms',
-                                         os.path.join('wizard', file_name)))
+                                                      os.path.join('wizard', file_name)))
         except IOError:
             fp = None
         if fp:

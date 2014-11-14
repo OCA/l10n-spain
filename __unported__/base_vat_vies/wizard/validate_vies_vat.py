@@ -18,27 +18,27 @@
 #########################################################################
 
 from osv import osv
-from osv import fields
 from openerp.tools.translate import _
 
 import vatnumber
 
+
 class validate_vies_vat(osv.osv_memory):
     _name = 'validate.vies.vat'
-    
+
     def _split_vat(self, vat):
         vat_country, vat_number = vat[:2].lower(), vat[2:].replace(' ', '')
         return vat_country, vat_number
-    
+
     def check_customer_vat(self, cr, uid, vat_country, vat_number):
-        partner_obj = self.pool.get('res.partner')        
+        partner_obj = self.pool.get('res.partner')
         if not hasattr(partner_obj, 'check_vat_' + vat_country):
             return False
         check = getattr(partner_obj, 'check_vat_' + vat_country)
         if not check(vat_number):
             return False
         return True
-    
+
     def validate_vies(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
@@ -52,9 +52,10 @@ class validate_vies_vat(osv.osv_memory):
                     if vatnumber.check_vies(partner.vat):
                         values['valid_vies_vat'] = True
                 else:
-                    raise osv.except_osv(_("Error"), _("Client Vat Number not have a valid format"))
-                    return {'type': 'ir.actions.act_window_close'}                    
+                    raise osv.except_osv(
+                        _("Error"), _("Client Vat Number not have a valid format"))
+                    return {'type': 'ir.actions.act_window_close'}
             partner_obj.write(cr, uid, [partner.id], values)
         return {'type': 'ir.actions.act_window_close'}
-            
+
 validate_vies_vat()

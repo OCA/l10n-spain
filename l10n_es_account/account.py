@@ -63,6 +63,7 @@ class account_account(orm.Model):
 
 
 class account_account_template(orm.Model):
+
     """Extends the account template to add the chart
     template that the account belongs"""
 
@@ -131,6 +132,7 @@ class account_account_template(orm.Model):
 
 
 class account_tax_code_template(orm.Model):
+
     """Extends the tax code template to add the chart
     template that the tax code belongs"""
 

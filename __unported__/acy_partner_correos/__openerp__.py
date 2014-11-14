@@ -22,18 +22,18 @@
 ##############################################################################
 
 {
-    "name" : "Export partners to a txt file compatible with the Correos Virtual Office",
-    "version" : "1.0",
-    "author" : "Acysos S.L.",
-    "website" : "www.acysos.com",
+    "name": "Export partners to a txt file compatible with the Correos Virtual Office",
+    "version": "1.0",
+    "author": "Acysos S.L.",
+    "website": "www.acysos.com",
     "description": """Only 300 companies can be exported by file. All partners must have street, zip, city, state and country. Select the partners and click action.""",
-    "license" : "AGPL-3",
-    "depends" : [
+    "license": "AGPL-3",
+    "depends": [
         "base",
-        ],
-    "init_xml" : [],
-    "demo_xml" : [],
-    "update_xml" :["wizard/partner_correos_view.xml"],
+    ],
+    "init_xml": [],
+    "demo_xml": [],
+    "update_xml": ["wizard/partner_correos_view.xml"],
     "active": False,
     "installable": False
 }

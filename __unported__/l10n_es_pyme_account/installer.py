@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2010 Domatix Technologies  S.L. (http://www.domatix.com) 
+#    Copyright (c) 2010 Domatix Technologies  S.L. (http://www.domatix.com)
 #                       info <info@domatix.com>
 #                        Angel Moya <angel.moya@domatix.com>
 #
@@ -31,42 +31,42 @@ class account_fiscalyear(osv.osv):
     _name = "account.fiscalyear"
     _inherit = "account.fiscalyear"
 
-    def create_period_special(self,cr, uid, ids, context=None):
+    def create_period_special(self, cr, uid, ids, context=None):
         for fy in self.browse(cr, uid, ids, context=context):
             ds = datetime.strptime(fy.date_start, '%Y-%m-%d')
             df = datetime.strptime(fy.date_stop, '%Y-%m-%d')
             if ds.strftime('%Y') != df.strftime('%Y'):
-                years=ds.strftime('%Y')+'-'+ df.strftime('%Y')
+                years = ds.strftime('%Y') + '-' + df.strftime('%Y')
             else:
-                years=ds.strftime('%Y')
-            
-            #Apertura
+                years = ds.strftime('%Y')
+
+            # Apertura
             self.pool.get('account.period').create(cr, uid, {
-                    'name': 'A/'+years,
-                    'code': 'A/'+years,
-                    'date_start': ds.strftime('%Y-%m-%d'),
-                    'date_stop': ds.strftime('%Y-%m-%d'),
-                    'fiscalyear_id': fy.id,
-                    'special':True,
-                })
-            #Cierre
+                'name': 'A/' + years,
+                'code': 'A/' + years,
+                'date_start': ds.strftime('%Y-%m-%d'),
+                'date_stop': ds.strftime('%Y-%m-%d'),
+                'fiscalyear_id': fy.id,
+                'special': True,
+            })
+            # Cierre
             self.pool.get('account.period').create(cr, uid, {
-                    'name': 'C/'+years,
-                    'code': 'C/'+years,
-                    'date_start': df.strftime('%Y-%m-%d'),
-                    'date_stop': df.strftime('%Y-%m-%d'),
-                    'fiscalyear_id': fy.id,
-                    'special':True,
-                })
-            #PyG
+                'name': 'C/' + years,
+                'code': 'C/' + years,
+                'date_start': df.strftime('%Y-%m-%d'),
+                'date_stop': df.strftime('%Y-%m-%d'),
+                'fiscalyear_id': fy.id,
+                'special': True,
+            })
+            # PyG
             self.pool.get('account.period').create(cr, uid, {
-                    'name': 'PG/'+years,
-                    'code': 'PG/'+years,
-                    'date_start': df.strftime('%Y-%m-%d'),
-                    'date_stop': df.strftime('%Y-%m-%d'),
-                    'fiscalyear_id': fy.id,
-                    'special':True,
-                })
+                'name': 'PG/' + years,
+                'code': 'PG/' + years,
+                'date_start': df.strftime('%Y-%m-%d'),
+                'date_stop': df.strftime('%Y-%m-%d'),
+                'fiscalyear_id': fy.id,
+                'special': True,
+            })
         return True
 
 account_fiscalyear()
@@ -75,24 +75,25 @@ account_fiscalyear()
 class account_installer(osv.osv_memory):
     _name = 'account.installer'
     _inherit = 'account.installer'
-    
+
     _columns = {
-                'open_close_periods':fields.boolean('Create Open/Close and PyG Periods'),   
-            }
+        'open_close_periods': fields.boolean('Create Open/Close and PyG Periods'),
+    }
     _defaults = {
-                 'open_close_periods':False,
-                 }
-    
+        'open_close_periods': False,
+    }
+
     def execute(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
         super(account_installer, self).execute(cr, uid, ids, context=context)
-        
+
         fy_obj = self.pool.get('account.fiscalyear')
-        
+
         for res in self.read(cr, uid, ids, context=context):
             if res.get('open_close_periods', False) and res.get('date_start', False) and res.get('date_stop', False) and res.get('company_id', False):
-                f_ids = fy_obj.search(cr, uid, [('date_start', '<=', res['date_start']), ('date_stop', '>=', res['date_stop']), ('company_id', '=', res['company_id'])], context=context)
+                f_ids = fy_obj.search(cr, uid, [('date_start', '<=', res['date_start']), ('date_stop', '>=', res[
+                                      'date_stop']), ('company_id', '=', res['company_id'])], context=context)
                 if f_ids:
                     fy_obj.create_period_special(cr, uid, [f_ids[0]])
 

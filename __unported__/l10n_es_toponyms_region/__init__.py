@@ -20,5 +20,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import wizard
-import l10n_es_cpostal_region
+from . import wizard
+from . import l10n_es_cpostal_region

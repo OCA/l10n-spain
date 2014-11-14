@@ -23,10 +23,10 @@
 ##############################################################################
 
 {
-    "name" : "Instalación PYME estándar sólo contabilidad",
-    "version" : "1.0",
-    "author" : "Zikzakmedia SL",
-    "category" : "Generic Modules/Others",
+    "name": "Instalación PYME estándar sólo contabilidad",
+    "version": "1.0",
+    "author": "Zikzakmedia SL",
+    "category": "Generic Modules/Others",
     "website": "www.zikzakmedia.com",
     "description": """
 Instalación de los módulos contables de OpenERP para una PYME estándar incluyendo los módulos de localización española y algunos datos de configuración iniciales.
@@ -39,8 +39,8 @@ Después de instalar este módulo y todas sus dependencias, deberá crear los to
 
 Posteriormente podrá crear los bancos españoles mediante el menú "Ventas/Configuración/Libreta de direcciones/Bancos/Asistente de importación de todos los bancos del Estado Español" y los conceptos de extractos bancarios mediante el menú "Contabilidad/Configuración/Varios/Extractos bancarios C43/Asistente de importación de conceptos de extractos".
 """,
-    "license" : "AGPL-3",
-    "depends" : [
+    "license": "AGPL-3",
+    "depends": [
         "account",
         "account_financial_report",
         "account_payment",
@@ -60,14 +60,13 @@ Posteriormente podrá crear los bancos españoles mediante el menú "Ventas/Conf
         "l10n_es_payment_order",
         "l10n_es_toponyms",
     ],
-    "init_xml" : [
+    "init_xml": [
         "pyme_data.xml",
     ],
-    "demo_xml" : [],
-    "update_xml" : [
+    "demo_xml": [],
+    "update_xml": [
         'account_installer.xml',
     ],
     "active": False,
     "installable": False
 }
-

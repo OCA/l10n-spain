@@ -2,13 +2,13 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    AvanzOSC, Avanzed Open Source Consulting 
+#    AvanzOSC, Avanzed Open Source Consulting
 #    Copyright (C) 2009 Ting! (<http://www.ting.es>). All Rights Reserved
 #    Copyright (c) 2010 Acysos S.L. (http://acysos.com) All Rights Reserved.
-#                       Update to OpenERP 6.0 Ignacio Ibeas <ignacio@acysos.com> 
+#                       Update to OpenERP 6.0 Ignacio Ibeas <ignacio@acysos.com>
 #    Copyright (C) 2011-2012 Iker Coranti (www.avanzosc.com). All Rights Reserved
 #                       Update to OpenERP 6.1 Iker Coranti
-#    
+#
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -24,5 +24,5 @@
 #    along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 ##############################################################################
-import hr_nominas
-import wizard
+from . import hr_nominas
+from . import wizard

@@ -22,24 +22,24 @@
 ##############################################################################
 
 {
-    "name" : "Factura-e File Creation",
-    "version" : "1.0",
-    "author" : "Alejandro Sanchez",
-    "category" : "Localisation/Accounting",
+    "name": "Factura-e File Creation",
+    "version": "1.0",
+    "author": "Alejandro Sanchez",
+    "category": "Localisation/Accounting",
     "description" : """NOTA: NO ADAPTADO TODAVÍA A LA VERSIÓN 6.0
 This module creates Factura-e files from invoices.
 ******* Module under development *******
 Successfully passes format and account validation tests from AEAT: http://www11.mityc.es/FacturaE/ValidarCompleto
 """,
-    "website" : "www.asr-oss.com",
-    "license" : "GPL-3",
-    "depends" : ["account"],
-    "init_xml" : ["data_res_country.xml"],
-    "demo_xml" : [],
-    "update_xml" : [
+    "website": "www.asr-oss.com",
+    "license": "GPL-3",
+    "depends": ["account"],
+    "init_xml": ["data_res_country.xml"],
+    "demo_xml": [],
+    "update_xml": [
         "account_wizard.xml",
         "account_invoice_view.xml",
-        "country_view.xml",],
-    "installable" : False,
-    "active" : False,
+        "country_view.xml", ],
+    "installable": False,
+    "active": False,
 }

@@ -1,4 +1,3 @@
-import funciones
-import fdfgen
-import barcode128
-
+from . import funciones
+from . import fdfgen
+from . import barcode128

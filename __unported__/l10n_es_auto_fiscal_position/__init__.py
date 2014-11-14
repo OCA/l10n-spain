@@ -1,2 +1,2 @@
-import config_fiscal_position
-import partner
+from . import config_fiscal_position
+from . import partner

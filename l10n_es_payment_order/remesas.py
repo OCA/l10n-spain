@@ -150,7 +150,7 @@ class PaymentMode(orm.Model):
         'text1': lambda self, cr, uid, context: _('Dear Sir'),
         'text2': lambda self, cr, uid, context: (_('Payment ref.') +
                                                  ' ${communication}'),
-        'text3': lambda self, cr, uid, context: _('Total:')+' ${amount}',
+        'text3': lambda self, cr, uid, context: _('Total:') + ' ${amount}',
         'send_type': 'mail',
         'not_to_the_order': True,
         'barred': True,

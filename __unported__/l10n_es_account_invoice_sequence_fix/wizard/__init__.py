@@ -24,4 +24,4 @@
 __author__ = "www.eficent.com"
 
 
-import wizard_invoice_number_repair
+from . import wizard_invoice_number_repair

@@ -29,6 +29,7 @@ from openerp.osv import fields, orm
 
 
 class AccountFiscalPosition(orm.Model):
+
     """Inheritance of Account fiscal position to add field 'include_in_mod349'.
     This fields let us map fiscal position, taxes and accounts to create an
     AEAT 349 Report

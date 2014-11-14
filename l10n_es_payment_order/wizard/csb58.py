@@ -41,7 +41,7 @@
 from openerp.osv import orm
 from datetime import datetime
 from openerp.tools.translate import _
-from log import Log
+from .log import Log
 
 
 class Csb58(orm.Model):
@@ -56,7 +56,7 @@ class Csb58(orm.Model):
         texto += datetime.today().strftime('%d%m%y')
         texto += 6 * ' '
         texto += converter.to_ascii(cr, uid, self.order.mode.nombre).ljust(40)
-        texto += 20*' '
+        texto += 20 * ' '
         cc = converter.digits_only(cr, uid, self.order.mode.bank_id.acc_number)
         texto += cc[0:8]
         texto += 66 * ' '
@@ -73,7 +73,7 @@ class Csb58(orm.Model):
         texto += (self.order.mode.bank_id.partner_id.vat[2:] +
                   self.order.mode.sufijo).zfill(12)
         texto += datetime.today().strftime('%d%m%y')
-        texto += 6*' '
+        texto += 6 * ' '
         texto += converter.to_ascii(cr, uid, self.order.mode.nombre).ljust(40)
         cc = converter.digits_only(cr, uid, self.order.mode.bank_id.acc_number)
         texto += cc[0:20]
@@ -83,7 +83,7 @@ class Csb58(orm.Model):
         texto += (self.order.mode.ine and
                   converter.to_ascii(
                       cr, uid, self.order.mode.ine)[:9].zfill(9) or 9 * ' ')
-        texto += 3*' '
+        texto += 3 * ' '
         texto += '\r\n'
         if len(texto) != 164:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 162 '
@@ -108,7 +108,7 @@ class Csb58(orm.Model):
         if len(recibo['ml_inv_ref']) == 1:
             texto += str(recibo['ml_inv_ref'][0].id)[-16:].zfill(16)
         else:
-            texto += 16*' '
+            texto += 16 * ' '
         ######################################################################
         concepto = ''
         if recibo['communication']:
@@ -255,7 +255,7 @@ Formato:
             # la posición 149.
             #
             texto += date_ct.strftime('%d%m%y')  # Fecha crédito
-            texto += 2*' '
+            texto += 2 * ' '
         else:
             # Cod prov del ordenante
             texto += converter.to_ascii(cr, uid, ord_state_code)[:2].zfill(2)

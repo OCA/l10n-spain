@@ -4,10 +4,10 @@
 #    AvanzOSC, Avanzed Open Source Consulting
 #    Copyright (C) 2009 Ting! (<http://www.ting.es>). All Rights Reserved
 #    Copyright (c) 2010 Acysos S.L. (http://acysos.com) All Rights Reserved.
-#                       Update to OpenERP 6.0 Ignacio Ibeas <ignacio@acysos.com> 
+#                       Update to OpenERP 6.0 Ignacio Ibeas <ignacio@acysos.com>
 #    Copyright (C) 2011-2012 Iker Coranti (www.avanzosc.com). All Rights Reserved
 #                       Update to OpenERP 6.1 Iker Coranti
-#    
+#
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@
     "description": """
                 Recursos Humanos: Gestión de Nóminas
                 Este módulo permite automatizar la creación de los asientos contables para las nóminas de los empleados.
-        
+
                 Uso del módulo:
                     - El primer paso es configurar las cuentas y el diario en el que se van a contabilizar las nóminas para ello hay que ir a Administración / Usuarios / Árbol de la compañía / Compañías y dentro de la página configuración de compañías configurar estas cuentas.
                     - Se deben poner los datos de la nómina en la ficha del empleado en recursos humanos dentro de la pestaña salario
@@ -46,11 +46,11 @@
     """,
     "init_xml": [],
     'update_xml': [
-                 'hr_nominas_view.xml',
-                 'wizard/wizard_crea_nominas_view.xml',
-                 'wizard/wizard_pagar_anticipos_view.xml',
-                 'wizard/wizard_pagar_nominas_view.xml',  
-                  ],
+        'hr_nominas_view.xml',
+        'wizard/wizard_crea_nominas_view.xml',
+        'wizard/wizard_pagar_anticipos_view.xml',
+        'wizard/wizard_pagar_nominas_view.xml',
+    ],
     'demo_xml': [],
     'installable': False,
     'active': False,

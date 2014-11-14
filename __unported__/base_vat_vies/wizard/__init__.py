@@ -1,1 +1,1 @@
-import validate_vies_vat
+from . import validate_vies_vat

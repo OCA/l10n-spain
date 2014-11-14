@@ -125,7 +125,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                 for tax_line in invoice.tax_line:
                     if tax_line.base_code_id and tax_line.base:
                         if tax_line.base_code_id.mod340:
-                            tax_percentage = tax_line.amount/tax_line.base
+                            tax_percentage = tax_line.amount / tax_line.base
                             values = {
                                 'name': tax_line.name,
                                 'tax_percentage': tax_percentage,
@@ -155,7 +155,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                 sign = 1
                 if invoice.type in ('out_refund', 'in_refund'):
                     sign = -1
-                if str(invoice.amount_untaxed*sign) != str(check_base):
+                if str(invoice.amount_untaxed * sign) != str(check_base):
                     raise orm.except_orm(
                         "REVIEW INVOICE",
                         _('Invoice  %s, Amount untaxed Lines %.2f do not '

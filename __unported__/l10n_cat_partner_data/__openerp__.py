@@ -22,26 +22,24 @@
 ##############################################################################
 
 {
-    "name" : "Dades inicials per al mòdul base",
-    "version" : "1.0",
-    "author" : "Zikzakmedia SL",
-    "website" : "www.zikzakmedia.com",
-    "category" : "Localisation/Europe",
+    "name": "Dades inicials per al mòdul base",
+    "version": "1.0",
+    "author": "Zikzakmedia SL",
+    "website": "www.zikzakmedia.com",
+    "category": "Localisation/Europe",
     "description": """Afegeix dades inicials a les taules:
     * Canals
     * Categories d'empreses""",
-    "license" : "AGPL-3",
-    "depends" : [
+    "license": "AGPL-3",
+    "depends": [
         "base",
-        ],
-    "init_xml" : [
+    ],
+    "init_xml": [
         "data/data_partner_events.xml",     # Canals de comunicació
-        "data/data_partner_categories.xml", # Categories d'empreses
-        ],
-    "demo_xml" : [],
-    "update_xml" :[],
+        "data/data_partner_categories.xml",  # Categories d'empreses
+    ],
+    "demo_xml": [],
+    "update_xml": [],
     "active": False,
     "installable": False
 }
-
-

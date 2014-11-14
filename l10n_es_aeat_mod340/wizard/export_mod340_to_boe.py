@@ -108,7 +108,7 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
         # Importe total de las facturas
         text += self._formatNumber(report.total, 15, 2, True)
         # Blancos
-        text += 190*' '
+        text += 190 * ' '
         # NIF del representante legal
         text += self._formatString(report.representative_vat, 9)
         # Sello electrónico
@@ -239,7 +239,7 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             text += self._formatNumber(tax_line.tax_amount +
                                        tax_line.base_amount, 11, 2, True)
             # Base imponible a coste.
-            text += ' '+self._formatNumber(0, 11, 2)
+            text += ' ' + self._formatNumber(0, 11, 2)
             # Identificación de la factura
             text += self._formatString(invoice_issued.invoice_id.number, 40)
             # Número de registro
@@ -398,7 +398,7 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             text += self._formatNumber(tax_line.tax_amount +
                                        tax_line.base_amount, 11, 2, True)
             # Base imponible a coste.
-            text += ' '+self._formatNumber(0, 11, 2)
+            text += ' ' + self._formatNumber(0, 11, 2)
             # Identificación de la factura
             text += self._formatString(invoice_received.invoice_id.reference,
                                        40)
@@ -424,7 +424,7 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             # Blancos
             text += 95 * ' '
             text += '\r\n'
-        assert len(text) == 502*len(invoice_received.tax_line_ids), \
+        assert len(text) == 502 * len(invoice_received.tax_line_ids), \
             _("The type 2 received record must be 500 characters long for "
               "each Vat registry")
         return text

@@ -132,7 +132,7 @@ class ResPartnerBank(orm.Model):
                             return {'value': {'acc_number': number}}
                     else:
                         return {'warning': {'title': _('Warning'),
-                                'message': _('IBAN account is not valid')}}
+                                            'message': _('IBAN account is not valid')}}
         return {'value':  {}}
 
 

@@ -1,2 +1,1 @@
-import baja_fichero
-
+from . import baja_fichero

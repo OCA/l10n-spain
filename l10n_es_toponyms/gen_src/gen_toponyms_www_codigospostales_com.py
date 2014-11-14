@@ -63,7 +63,7 @@ if __name__ == "__main__":
                                        "%scodpos.txt" % line[:pos])):
             fCPs = open(os.path.join(sys.argv[1], "%scodpos.txt" % line[:pos]),
                         'r')
-            if line[pos-1] == 'x':
+            if line[pos - 1] == 'x':
                 # Códigos postales de municipios
                 for lineCP in fCPs:
                     cont += 1

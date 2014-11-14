@@ -41,7 +41,7 @@
 from openerp.osv import orm
 from datetime import datetime
 from openerp.tools.translate import _
-from log import Log
+from .log import Log
 import time
 
 
@@ -91,7 +91,7 @@ class Csb34(orm.Model):
         # Primer tipo
         text += '0362'
         text += self._start_34(cr, uid, context)
-        text += 12*' '
+        text += 12 * ' '
         text += '001'
         text += today
         if self.order.date_scheduled:
@@ -103,21 +103,21 @@ class Csb34(orm.Model):
             cr, uid, self.order.mode.bank_id.acc_number,
             self.order.mode.partner_id.name, context)
         text += '0'
-        text += 8*' '
+        text += 8 * ' '
         text += '\r\n'
         # Segundo Tipo
         text += '0362'
         text += self._start_34(cr, uid, context)
-        text += 12*' '
+        text += 12 * ' '
         text += '002'
         text += converter.convert(
             cr, uid, self.order.mode.bank_id.partner_id.name, 36, context)
-        text += 5*' '
+        text += 5 * ' '
         text += '\r\n'
         # Tercer Tipo
         text += '0362'
         text += self._start_34(cr, uid, context)
-        text += 12*' '
+        text += 12 * ' '
         text += '003'
         # Direccion
         address = None
@@ -139,16 +139,16 @@ class Csb34(orm.Model):
                         'default address.') %
                       self.order.mode.bank_id.partner_id.name)
         text += converter.convert(cr, uid, address['street'], 36, context)
-        text += 5*' '
+        text += 5 * ' '
         text += '\r\n'
         # Cuarto Tipo
         text += '0362'
         text += self._start_34(cr, uid, context)
-        text += 12*' '
+        text += 12 * ' '
         text += '004'
         text += converter.convert(cr, uid, address['zip'], 6, context)
         text += converter.convert(cr, uid, address['city'], 30, context)
-        text += 5*' '
+        text += 5 * ' '
         text += '\r\n'
         if len(text) % 74 != 0:
             raise Log(_('Configuration error:\n\nA line in "%s" is not 72 '
@@ -159,9 +159,9 @@ class Csb34(orm.Model):
     def _cabecera_nacionales_34(self, cr, uid, context):
         text = '0456'
         text += self._start_34(cr, uid, context)
-        text += 12*' '
-        text += 3*' '
-        text += 41*' '
+        text += 12 * ' '
+        text += 3 * ' '
+        text += 41 * ' '
         text += '\r\n'
         if len(text) != 74:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 72 '
@@ -206,7 +206,7 @@ class Csb34(orm.Model):
             text += ccc[:20].zfill(20)
         # Si la orden se emite para pagaré, cheque o pago certificado
         else:
-            text += 17*'0'
+            text += 17 * '0'
             send_type = self.order.mode.send_type
             if send_type == 'mail':
                 text += '1'
@@ -237,7 +237,7 @@ class Csb34(orm.Model):
             text += '1'
         else:
             text += '2'
-        text += 6*' '
+        text += 6 * ' '
         text += '\r\n'
         # Segundo Registro
         text += '06'
@@ -248,7 +248,7 @@ class Csb34(orm.Model):
         text += '011'
         text += converter.convert(cr, uid, recibo['partner_id'].name, 36,
                                   context)
-        text += 5*' '
+        text += 5 * ' '
         text += '\r\n'
         # Tercer y Cuarto Registro
         lines = []
@@ -264,7 +264,7 @@ class Csb34(orm.Model):
                                       context)
             text += code
             text += converter.convert(cr, uid, street, 36, context)
-            text += 5*' '
+            text += 5 * ' '
             text += '\r\n'
 
         # Quinto Registro
@@ -277,7 +277,7 @@ class Csb34(orm.Model):
             text += '014'
             text += converter.convert(cr, uid, address.zip, 6, context)
             text += converter.convert(cr, uid, address.city, 30, context)
-            text += 5*' '
+            text += 5 * ' '
             text += '\r\n'
 
         # Si la orden se emite por carta (sólo tiene sentido si no son
@@ -296,7 +296,7 @@ class Csb34(orm.Model):
             state = address.state_id and address.state_id.name or ''
             text += converter.convert(cr, uid, country_code, 2, context)
             text += converter.convert(cr, uid, state, 34, context)
-            text += 5*' '
+            text += 5 * ' '
             text += '\r\n'
 
             if self.order.mode.csb34_type in ('promissory_note', 'cheques',
@@ -311,7 +311,7 @@ class Csb34(orm.Model):
                     text += '018'
                     text += converter.convert(
                         cr, uid, recibo['partner_id'].vat, 36, context)
-                    text += 5*' '
+                    text += 5 * ' '
                     text += '\r\n'
                 # Registro ciento uno (registro usados por algunos bancos como
                 # texto de la carta)
@@ -324,7 +324,7 @@ class Csb34(orm.Model):
                 message = self.get_message(
                     cr, uid, recibo, self.order.mode.text1)
                 text += converter.convert(cr, uid, message, 36, context)
-                text += 5*' '
+                text += 5 * ' '
                 text += '\r\n'
                 # Registro ciento dos (registro usados por algunos bancos como
                 # texto de la carta)
@@ -337,7 +337,7 @@ class Csb34(orm.Model):
                 message = self.get_message(
                     cr, uid, recibo, self.order.mode.text2)
                 text += converter.convert(cr, uid, message, 36, context)
-                text += 5*' '
+                text += 5 * ' '
                 text += '\r\n'
                 # Registro ciento tres (registro usados por algunos bancos como
                 # texto de la carta)
@@ -350,7 +350,7 @@ class Csb34(orm.Model):
                 message = self.get_message(
                     cr, uid, recibo, self.order.mode.text3)
                 text += converter.convert(cr, uid, message, 36, context)
-                text += 5*' '
+                text += 5 * ' '
                 text += '\r\n'
                 # Registro novecientos diez (registro usados por algunos bancos
                 # como fecha de la carta)
@@ -370,7 +370,7 @@ class Csb34(orm.Model):
                         cr, uid, recibo['partner_id'].vat, 12, context)
                     text += '910'
                     text += converter.convert(cr, uid, message, 36, context)
-                    text += 5*' '
+                    text += 5 * ' '
                     text += '\r\n'
         if len(text) % 74 != 0:
             raise Log(_('Configuration error:\n\nA line in "%s" is not 72 '
@@ -382,13 +382,13 @@ class Csb34(orm.Model):
         converter = self.pool.get('payment.converter.spain')
         text = '0856'
         text += self._start_34(cr, uid, context)
-        text += 12*' '
-        text += 3*' '
+        text += 12 * ' '
+        text += 3 * ' '
         text += converter.convert(cr, uid, self.order.total, 12, context)
         text += converter.convert(cr, uid, values[0], 8, context)
         text += converter.convert(cr, uid, values[1], 10, context)
-        text += 6*' '
-        text += 5*' '
+        text += 6 * ' '
+        text += 5 * ' '
         text += '\r\n'
         if len(text) != 74:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 72 '
@@ -400,13 +400,13 @@ class Csb34(orm.Model):
         converter = self.pool['payment.converter.spain']
         text = '0962'
         text += self._start_34(cr, uid, context)
-        text += 12*' '
-        text += 3*' '
+        text += 12 * ' '
+        text += 3 * ' '
         text += converter.convert(cr, uid, self.order.total, 12, context)
         text += converter.convert(cr, uid, values[0], 8, context)
         text += converter.convert(cr, uid, values[1], 10, context)
-        text += 6*' '
-        text += 5*' '
+        text += 6 * ' '
+        text += 5 * ' '
         text += '\r\n'
         if len(text) != 74:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 72 '
@@ -425,7 +425,7 @@ class Csb34(orm.Model):
             text = self._detalle_nacionales_34(
                 cr, uid, recibo, order.mode.csb34_type, context)
             file += text
-            record_count += len(text.split('\r\n'))-1
+            record_count += len(text.split('\r\n')) - 1
             payment_line_count += 1
         values = (payment_line_count, record_count + 2)
         file += self._totales_nacionales_34(cr, uid, values, context)

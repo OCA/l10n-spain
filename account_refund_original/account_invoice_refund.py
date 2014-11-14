@@ -23,6 +23,7 @@ from openerp.osv import orm
 
 
 class AccountInvoiceRefund(orm.TransientModel):
+
     """Refunds invoice"""
     _inherit = "account.invoice.refund"
 

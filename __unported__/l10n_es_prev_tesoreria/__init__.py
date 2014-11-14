@@ -19,6 +19,6 @@
 #
 ##############################################################################
 
-import prev_tesoreria_plantilla
-import prev_tesoreria
-import wizard
+from . import prev_tesoreria_plantilla
+from . import prev_tesoreria
+from . import wizard

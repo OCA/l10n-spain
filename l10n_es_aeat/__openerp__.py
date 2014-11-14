@@ -30,7 +30,7 @@
     'contributors': [
         'Ignacio Ibeas (Acysos S.L.)',
         'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
-        ],
+    ],
     'website': "http://www.pexego.es, http://www.acysos.com",
     'category': "Localisation/Accounting",
     'depends': [

@@ -48,7 +48,7 @@
 from openerp.osv import orm, fields
 import base64
 from openerp.tools.translate import _
-from log import Log
+from .log import Log
 
 
 def _reopen(self, res_id, model):
@@ -129,7 +129,7 @@ class WizardPaymentFileSpain(orm.TransientModel):
                         'partner_id': partner,
                         'bank_id': bank,
                         'name': partner.ref or str(partner.id),
-                        'amount': reduce(lambda x, y: x+y,
+                        'amount': reduce(lambda x, y: x + y,
                                          [l.amount for l in lineas], 0),
                         'communication': reduce(lambda x, y: x + ' ' +
                                                 (y or ''),
