@@ -160,7 +160,6 @@ class hr_nomina(osv.osv):
         ##################################################################
         # OBJETOS
         ##################################################################
-        account_journal_obj = self.pool.get('account.journal')
         account_period_obj = self.pool.get('account.period')
         account_move_obj = self.pool.get('account.move')
         account_move_line_obj = self.pool.get('account.move.line')
@@ -286,7 +285,6 @@ class hr_nomina(osv.osv):
         ##################################################################
         # OBJETOS
         ##################################################################
-        account_journal_obj = self.pool.get('account.journal')
         account_period_obj = self.pool.get('account.period')
         account_move_obj = self.pool.get('account.move')
         account_move_line_obj = self.pool.get('account.move.line')
@@ -384,7 +382,6 @@ class hr_anticipo(osv.osv):
         ##################################################################
         # OBJETOS
         ##################################################################
-        account_journal_obj = self.pool.get('account.journal')
         account_period_obj = self.pool.get('account.period')
         account_move_obj = self.pool.get('account.move')
         account_move_line_obj = self.pool.get('account.move.line')

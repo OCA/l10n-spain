@@ -1385,7 +1385,7 @@ class fichero_nota(osv.osv):
             datos['pais'] = u'ESPAÑA'  # TODO : Ñ ?
         # datos['provincia'] =
         # getText(dom.getElementsByTagName("provincia")[0].childNodes)
-        # #Devuelve el código de la provincia ej:29
+        # Devuelve el código de la provincia ej:29
         datos['provincia'] = capitalizar(provincia_declarante['name'])
         datos['localidad'] = tools.ustr(
             getText(dom.getElementsByTagName("localidad")[0].childNodes))
