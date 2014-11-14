@@ -20,24 +20,25 @@
 from osv import osv
 from osv import fields
 
+
 class res_partner(osv.osv):
     _inherit = 'res.partner'
-    
+
     _columns = {
         'valid_vies_vat': fields.boolean('Vies Valid Vat')
     }
-    
+
     def onchange_vat(self, cr, uid, ids, vat):
         return {'value': {'valid_vies_vat': False}}
-        
+
     def write(self, cr, uid, ids, vals, context=None):
         if context is None:
             context = {}
-            
+
         if 'validated_vies' not in context:
             if 'vat' in vals:
                 vals['valid_vies_vat'] = False
-        
+
         return super(res_partner, self).write(cr, uid, ids, vals, context=context)
-    
+
 res_partner()

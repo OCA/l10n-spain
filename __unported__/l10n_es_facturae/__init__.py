@@ -21,6 +21,6 @@
 #
 ##############################################################################
 
-import invoice
-import country
-import wizard
+from . import invoice
+from . import country
+from . import wizard

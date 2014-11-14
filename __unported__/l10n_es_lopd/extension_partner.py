@@ -21,28 +21,29 @@
 
 from osv import fields, osv
 
+
 class partner_extension(osv.osv):
-	_inherit = 'res.partner'
-	_name = 'res.partner'
-	_columns = {
-		#'name' :fields.char('Nombre o razón social', size=140)
-		'actividad':fields.many2one('lopd.actividades','Actividad principal'),
-		'encargado':fields.boolean('Encargado de tratamiento', help="Marque esta casilla si es un encargado de tratamiento"),
-		'id_fichero':fields.many2many('lopd.fichero','lopd_rel_pafi', 'id_pa', 'id_fi', 'Ficheros'),
-	}
-	_defaults = {
-		'encargado':lambda *a: False,	
-	}
+    _inherit = 'res.partner'
+    _name = 'res.partner'
+    _columns = {
+        #'name' :fields.char('Nombre o razón social', size=140)
+        'actividad': fields.many2one('lopd.actividades', 'Actividad principal'),
+        'encargado': fields.boolean('Encargado de tratamiento', help="Marque esta casilla si es un encargado de tratamiento"),
+        'id_fichero': fields.many2many('lopd.fichero', 'lopd_rel_pafi', 'id_pa', 'id_fi', 'Ficheros'),
+    }
+    _defaults = {
+        'encargado': lambda *a: False,
+    }
 
 partner_extension()
 
 
 class partner_address_extension(osv.osv):
-	_inherit = 'res.partner.address'
-	_name = 'res.partner.address'
-	_columns = {
-		'street': fields.char('Dirección', size=128, help='Dirección'),
+    _inherit = 'res.partner.address'
+    _name = 'res.partner.address'
+    _columns = {
+        'street': fields.char('Dirección', size=128, help='Dirección'),
         'street2': fields.char('Extra', size=128, help='Use este campo en caso de necesitar más espacio para la dirección'),
-	}
+    }
 
 partner_address_extension()

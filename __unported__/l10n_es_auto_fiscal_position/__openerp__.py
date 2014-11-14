@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2012 Factor Libre All Rights Reserved.
-#    #    $Id$
+# $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -21,16 +21,16 @@
 ##############################################################################
 
 {
-    "name" : "Partner Auto fiscal position",
-    "version" : "0.1",
-    "author" : "Factor Libre SL",
-    "category" : "Localisation/Europe",
+    "name": "Partner Auto fiscal position",
+    "version": "0.1",
+    "author": "Factor Libre SL",
+    "category": "Localisation/Europe",
     "description": """Auto fiscal position depending on invoice address.""",
-    "depends" : ["base","account","base_vat_vies"],
-    "license" : "AGPL-3",
-    "init_xml" : ['security/config_fpos_security.xml'],
-    "demo_xml" : [],
-    "update_xml" : [
+    "depends": ["base", "account", "base_vat_vies"],
+    "license": "AGPL-3",
+    "init_xml": ['security/config_fpos_security.xml'],
+    "demo_xml": [],
+    "update_xml": [
         'config_fiscal_position_view.xml',
         'security/ir.model.access.csv',
     ],

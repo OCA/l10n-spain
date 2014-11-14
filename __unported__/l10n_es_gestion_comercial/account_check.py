@@ -23,13 +23,15 @@ from osv import osv
 from osv import fields
 import time
 
+
 class account_issued_check(osv.osv):
+
     '''
     Account Issued Check
     '''
     _name = 'account.issued.check'
     _description = 'Manage Checks'
-    
+
     _columns = {
         'number': fields.char('Numero de Documento', size=20, required=True),
         'amount': fields.float('Cantidad del Documento', required=True),
@@ -37,20 +39,20 @@ class account_issued_check(osv.osv):
         'date': fields.date('Fecha', required=True),
         'debit_date': fields.date('Fecha de Emision', readonly=True),
         'date_changed': fields.date('Fecha de Cambio', readonly=True),
-        'receiving_partner_id':fields.many2one('res.partner', 'Entidad Receptora', required=False, readonly=True),
+        'receiving_partner_id': fields.many2one('res.partner', 'Entidad Receptora', required=False, readonly=True),
         'bank_id': fields.many2one('res.bank', 'Banco', required=True),
         'on_order': fields.char('A la Orden', size=64),
         'signatory': fields.char('Firmante', size=64),
         'clearing': fields.selection((
-                ('24','24 hs'),
-                ('48','48 hs'),
-                ('72','72 hs'),
-            ), 'Tiempo Efecto'),
+            ('24', '24 hs'),
+            ('48', '48 hs'),
+            ('72', '72 hs'),
+        ), 'Tiempo Efecto'),
         'origin': fields.char('Origen', size=64),
         'account_bank_id': fields.many2one('res.partner.bank', 'Cuenta Destino'),
-        'voucher_id':fields.many2one('account.voucher', 'Comprobante', required=True),
+        'voucher_id': fields.many2one('account.voucher', 'Comprobante', required=True),
         'issued': fields.boolean('Emitido'),
-		'picture':    	fields.binary('Image'),
+        'picture':    	fields.binary('Image'),
 
     }
     _rec_name = 'number'
@@ -61,41 +63,43 @@ class account_issued_check(osv.osv):
 
 account_issued_check()
 
+
 class account_third_check(osv.osv):
+
     '''
     Account Third Check
     '''
     _name = 'account.third.check'
     _description = 'Manage Checks'
-    
+
     _columns = {
         'number': fields.char('Numero de Documento', size=20, required=True),
         'amount': fields.float('Cantidad de Documento', required=True),
         'date_in': fields.date('Fecha de Ingreso', required=True),
         'date': fields.date('Fecha de Documento', required=True),
         'date_out': fields.date('Fecha de Emision', readonly=True),
-        'source_partner_id':fields.many2one('res.partner', 'Empresa Origen', required=False, readonly=True),
-        'destiny_partner_id':fields.many2one('res.partner', 'Empresa Destino', readonly=False, required=False, states={'delivered':[('required',True)]}),
+        'source_partner_id': fields.many2one('res.partner', 'Empresa Origen', required=False, readonly=True),
+        'destiny_partner_id': fields.many2one('res.partner', 'Empresa Destino', readonly=False, required=False, states={'delivered': [('required', True)]}),
         'state': fields.selection((
-                ('draft', 'Draft'),
-                ('C', 'En Cartera'),
-                ('deposited', 'Deposited'),
-                ('delivered', 'Delivered'),
-                ('rejected', 'Rejected'),
-            ), 'State', required=True),
+            ('draft', 'Draft'),
+            ('C', 'En Cartera'),
+            ('deposited', 'Deposited'),
+            ('delivered', 'Delivered'),
+            ('rejected', 'Rejected'),
+        ), 'State', required=True),
         'bank_id': fields.many2one('res.bank', 'Banco', required=True),
         'on_order': fields.char('A la Orden', size=64),
         'signatory': fields.char('Firmante', size=64),
         'clearing': fields.selection((
-                ('24','24 hs'),
-                ('48','48 hs'),
-                ('72','72 hs'),
-            ), 'Tiempo Efecto'),
+            ('24', '24 hs'),
+            ('48', '48 hs'),
+            ('72', '72 hs'),
+        ), 'Tiempo Efecto'),
         'origin': fields.char('Origen', size=64),
         'account_bank_id': fields.many2one('res.partner.bank', 'Cuenta Destino'),
-        'voucher_id':fields.many2one('account.voucher', 'Comprobante', required=True),
-        'reject_debit_note':fields.many2one('account.invoice', 'Debito Por Rechazo'),
-		'picture':    	fields.binary('Image'),
+        'voucher_id': fields.many2one('account.voucher', 'Comprobante', required=True),
+        'reject_debit_note': fields.many2one('account.invoice', 'Debito Por Rechazo'),
+        'picture':    	fields.binary('Image'),
     }
 
     _rec_name = 'number'

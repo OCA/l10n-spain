@@ -22,11 +22,11 @@
 ##############################################################################
 
 {
-    "name" : "Topònims dels Països Catalans",
-    "version" : "1.0",
-    "author" : "Zikzakmedia SL",
-    "website" : "www.zikzakmedia.com",
-    "category" : "Localisation/Europe",
+    "name": "Topònims dels Països Catalans",
+    "version": "1.0",
+    "author": "Zikzakmedia SL",
+    "website": "www.zikzakmedia.com",
+    "category": "Localisation/Europe",
     "description": """Comarques dels Països Catalans (Catalunya, País Valencià i Illes Balears)
 
   * Afegeix un nou camp comarca al formulari d'empresa i contacte.
@@ -34,11 +34,11 @@
   * Proporciona un assistent per donar d'alta les comarques per defecte associats als codis postals dels Països Catalans. Permet omplenar automàticament el camp comarca del formulari d'empresa i contacte a partir del codi postal.
 
 Nota: No funciona amb el mòdul city instal·lat.""",
-    "license" : "AGPL-3",
-    "depends" : ["base","l10n_es_toponyms"],
-    "init_xml" : ["l10n_cat_toponyms_data.xml"],
-    "demo_xml" : [ ],
-    "update_xml" : [
+    "license": "AGPL-3",
+    "depends": ["base", "l10n_es_toponyms"],
+    "init_xml": ["l10n_cat_toponyms_data.xml"],
+    "demo_xml": [],
+    "update_xml": [
         "l10n_cat_toponyms_view.xml",
         "l10n_cat_toponyms_wizard.xml",
         "security/ir.model.access.csv",

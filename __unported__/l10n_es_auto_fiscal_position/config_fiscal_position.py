@@ -3,7 +3,7 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2012 Factor Libre All Rights Reserved.
-#    #    $Id$
+# $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -23,15 +23,16 @@
 from osv import osv
 from osv import fields
 
+
 class config_fiscal_position(osv.osv):
     _name = 'config.fiscal.position'
     _columns = {
         'name': fields.char('Config. Name', size=64),
-        'fpos': fields.many2one('account.fiscal.position','Fiscal Position', required=True),
+        'fpos': fields.many2one('account.fiscal.position', 'Fiscal Position', required=True),
         'state_ids': fields.many2many('res.country.state', 'config_fpos_state_rel',
-            'config_id', 'states_id', 'States'),
+                                      'config_id', 'states_id', 'States'),
         'country_ids': fields.many2many('res.country', 'config_fpos_country_rel',
-            'config_id', 'country_id', 'Countries'),
+                                        'config_id', 'country_id', 'Countries'),
         'sequence': fields.integer('Sequence'),
         'vat_subjected': fields.boolean('VAT Legal Statement'),
         'vies_valid_vat': fields.boolean('Vies Valid Vat'),

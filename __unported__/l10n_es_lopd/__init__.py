@@ -1,10 +1,9 @@
-import lopd
-import fichero
-import extension_partner
-import extension_hr
+from . import lopd
+from . import fichero
+from . import extension_partner
+from . import extension_hr
 #import evaluacion
-import registros
-import figuras_tratamiento
-import fichero_nota
-import wizard
-
+from . import registros
+from . import figuras_tratamiento
+from . import fichero_nota
+from . import wizard

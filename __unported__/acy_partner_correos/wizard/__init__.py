@@ -21,5 +21,5 @@
 #
 ##############################################################################
 
-import converter
-import export_file
+from . import converter
+from . import export_file

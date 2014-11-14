@@ -19,19 +19,22 @@
 #
 ##############################################################################
 
-from osv import fields,osv
+from osv import fields, osv
+
 
 class wizard_update_charts_accounts(osv.osv_memory):
 
     _name = "wizard.update.charts.accounts.todo"
-    _inherit = ["res.config.installer","wizard.update.charts.accounts"]
+    _inherit = ["res.config.installer", "wizard.update.charts.accounts"]
 
     def execute(self, cr, uid, ids, context=None):
-        if context is None: context = {}
+        if context is None:
+            context = {}
         self.action_find_records(cr, uid, ids, context=context)
         self.action_update_records(cr, uid, ids, context=context)
 
 wizard_update_charts_accounts()
+
 
 class install_igic(osv.osv_memory):
 
@@ -44,22 +47,27 @@ class install_igic(osv.osv_memory):
         """
         if context is None:
             context = {}
-        ids = self.pool.get('account.chart.template').search(cr, uid, [], context=context)
+        ids = self.pool.get('account.chart.template').search(
+            cr, uid, [], context=context)
         if ids:
             return ids[0]
         return False
 
     def _get_purchase_tax(self, cr, uid, context=None):
-        ids = self.pool.get('account.chart.template').search(cr, uid, [], context=context)
+        ids = self.pool.get('account.chart.template').search(
+            cr, uid, [], context=context)
         if ids:
-            purchase_tax_ids = self.pool.get('account.tax').search(cr, uid, [('parent_id','=',False),('type_tax_use', 'in', ('purchase','all'))], order="sequence")
+            purchase_tax_ids = self.pool.get('account.tax').search(cr, uid, [(
+                'parent_id', '=', False), ('type_tax_use', 'in', ('purchase', 'all'))], order="sequence")
             return purchase_tax_ids and purchase_tax_ids[0] or False
         return False
 
     def _get_sale_tax(self, cr, uid, context=None):
-        ids = self.pool.get('account.chart.template').search(cr, uid, [], context=context)
+        ids = self.pool.get('account.chart.template').search(
+            cr, uid, [], context=context)
         if ids:
-            sale_tax_ids = self.pool.get('account.tax').search(cr, uid, [('parent_id','=',False),('type_tax_use', 'in', ('sale','all'))], order="sequence")
+            sale_tax_ids = self.pool.get('account.tax').search(cr, uid, [(
+                'parent_id', '=', False), ('type_tax_use', 'in', ('sale', 'all'))], order="sequence")
             return sale_tax_ids and sale_tax_ids[0] or False
         return False
 
@@ -95,13 +103,16 @@ class install_igic(osv.osv_memory):
         if not company_id:
             user = self.pool.get('res.users').browse(cr, uid, uid, context)
             company_id = user.company_id.id
-        property_ids = property_obj.search(cr, uid, [('name', '=', 'property_account_receivable' ), ('company_id', '=', company_id), ('res_id', '=', False), ('value_reference', '!=', False)])
+        property_ids = property_obj.search(cr, uid, [('name', '=', 'property_account_receivable'), (
+            'company_id', '=', company_id), ('res_id', '=', False), ('value_reference', '!=', False)])
         if not property_ids:
             # Try to get a generic (no-company) property
-            property_ids = property_obj.search(cr, uid, [('name', '=', 'property_account_receivable' ), ('res_id', '=', False), ('value_reference', '!=', False)])
+            property_ids = property_obj.search(cr, uid, [(
+                'name', '=', 'property_account_receivable'), ('res_id', '=', False), ('value_reference', '!=', False)])
         number_digits = 6
         if property_ids:
-            prop = property_obj.browse(cr, uid, property_ids[0], context=context)
+            prop = property_obj.browse(
+                cr, uid, property_ids[0], context=context)
             try:
                 # OpenERP 5.0 and 5.2/6.0 revno <= 2236
                 account_id = int(prop.value_reference.split(',')[1])
@@ -110,7 +121,8 @@ class install_igic(osv.osv_memory):
                 account_id = prop.value_reference.id
 
             if account_id:
-                code = account_obj.read(cr, uid, account_id, ['code'], context)['code']
+                code = account_obj.read(
+                    cr, uid, account_id, ['code'], context)['code']
                 number_digits = len(code)
         return number_digits
 
@@ -132,21 +144,24 @@ class install_igic(osv.osv_memory):
         obj = self.browse(cr, uid, ids)[0]
         ir_values = self.pool.get('ir.values')
         if obj.sale_tax:
-            value_ids = ir_values.search(cr, uid, [('key', '=', 'default'),('name', '=', "taxes_id"),('company_id','=', obj.company_id.id)])
+            value_ids = ir_values.search(cr, uid, [(
+                'key', '=', 'default'), ('name', '=', "taxes_id"), ('company_id', '=', obj.company_id.id)])
             ir_values.unlink(cr, uid, value_ids)
             ir_values.set(cr, uid, key='default', key2=False, name="taxes_id", company=obj.company_id.id,
-                            models =[('product.product',False)], value=[obj.sale_tax.id])
+                          models=[('product.product', False)], value=[obj.sale_tax.id])
         if obj.purchase_tax:
-            value_ids = ir_values.search(cr, uid, [('key', '=', 'default'),('name', '=', "supplier_taxes_id"),('company_id','=', obj.company_id.id)])
+            value_ids = ir_values.search(cr, uid, [(
+                'key', '=', 'default'), ('name', '=', "supplier_taxes_id"), ('company_id', '=', obj.company_id.id)])
             ir_values.unlink(cr, uid, value_ids)
             ir_values.set(cr, uid, key='default', key2=False, name="supplier_taxes_id", company=obj.company_id.id,
-                            models =[('product.product',False)], value=[obj.purchase_tax.id])
+                          models=[('product.product', False)], value=[obj.purchase_tax.id])
 
         if obj.rename_fiscal_position:
-            fp_ids = self.pool.get('account.fiscal.position').search(cr, uid, [('name', '=', u'Régimen Nacional'),('company_id', '=', obj.company_id.id)])
+            fp_ids = self.pool.get('account.fiscal.position').search(
+                cr, uid, [('name', '=', u'Régimen Nacional'), ('company_id', '=', obj.company_id.id)])
             if fp_ids:
-                self.pool.get('account.fiscal.position').write(cr, uid, fp_ids, {'name': u'Régimen Canario'})
-
+                self.pool.get('account.fiscal.position').write(
+                    cr, uid, fp_ids, {'name': u'Régimen Canario'})
 
 
 install_igic()

@@ -33,24 +33,28 @@ cpostal_end_form = '''<?xml version="1.0" encoding="utf-8"?>
     <label string="Permet omplenar automàticament el camp comarca del formulari d'empresa i contacte a partir del codi postal." colspan="4" align="0.0"/>
 </form>'''
 
+
 class l10n_cat_crea_cpostal(wizard.interface):
+
     def _crea_cpostal(self, cr, uid, data, context):
-        from comarca_cpostal import cod_postales
+        from .comarca_cpostal import cod_postales
         pool = pooler.get_pool(cr.dbname)
         for m in cod_postales:
-            ids = pool.get('res.country.state.comarca').search(cr, uid, [('name', '=', m[1])])
+            ids = pool.get('res.country.state.comarca').search(
+                cr, uid, [('name', '=', m[1])])
             if ids:
-                ir.ir_set(cr, uid, 'default', 'zip='+m[0], 'comarca', [('res.partner.address', False)], ids[0])
+                ir.ir_set(cr, uid, 'default', 'zip=' +
+                          m[0], 'comarca', [('res.partner.address', False)], ids[0])
         return {}
 
     states = {
         'init': {
             'actions': [_crea_cpostal],
             'result': {
-                'type':'form',
-                'arch':cpostal_end_form,
+                'type': 'form',
+                'arch': cpostal_end_form,
                 'fields': {},
-                'state':[('end', 'Accepta', 'gtk-ok'),]
+                'state': [('end', 'Accepta', 'gtk-ok'), ]
             }
         }
 

@@ -24,13 +24,15 @@
 from osv import osv
 from openerp import netsvc
 
+
 class account_invoce(osv.osv):
     _name = 'account.invoice'
     _inherit = 'account.invoice'
-    #demomento deshabilitado (graba cuando se genero)
+    # demomento deshabilitado (graba cuando se genero)
     #_columns = {
     #    'date_done': fields.date('Execution date', readonly=True),
     #}
+
     def set_done(self, cr, uid, id, *args):
         #self.write(cr,uid,id,{'date_done': time.strftime('%Y-%m-%d'),'state': 'done',})
         wf_service = netsvc.LocalService("workflow")
@@ -38,5 +40,3 @@ class account_invoce(osv.osv):
         return True
 
 account_invoce()
-
-
