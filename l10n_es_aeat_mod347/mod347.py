@@ -347,7 +347,7 @@ class L10nEsAeatMod347Report(orm.Model):
         'real_state_record_ids': fields.one2many(
             'l10n.es.aeat.mod347.real_state_record', 'report_id',
             'Real State Records'),
-        }
+    }
 
     _defaults = {
         'operations_limit': 3005.06,
@@ -386,6 +386,7 @@ class L10nEsAeatMod347Report(orm.Model):
 
 
 class L10nEsAeatMod347PartnerRecord(orm.Model):
+
     """Represents a partner record for the 347 model.
     """
     _name = 'l10n.es.aeat.mod347.partner_record'
@@ -609,6 +610,7 @@ class L10nEsAeatMod347PartnerRecord(orm.Model):
 
 
 class L10nEsAeatMod347RealStateRecord(orm.Model):
+
     """Represents a real state record for the 347 model."""
     _name = 'l10n.es.aeat.mod347.real_state_record'
     _description = 'Real State Record'
@@ -686,6 +688,7 @@ class L10nEsAeatMod347RealStateRecord(orm.Model):
 
 
 class L10nEsAeatMod347InvoiceRecord(orm.Model):
+
     """Represents an invoice record."""
     _name = 'l10n.es.aeat.mod347.invoice_record'
     _description = 'Invoice Record'
@@ -708,6 +711,7 @@ class L10nEsAeatMod347InvoiceRecord(orm.Model):
 
 
 class L10nEsAeatMod347CashRecord(orm.Model):
+
     """Represents a payment record."""
     _name = 'l10n.es.aeat.mod347.cash_record'
     _description = 'Cash Record'

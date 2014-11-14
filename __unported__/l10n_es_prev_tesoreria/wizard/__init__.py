@@ -19,4 +19,4 @@
 #
 ##############################################################################
 
-import wiz_crear_factura
+from . import wiz_crear_factura

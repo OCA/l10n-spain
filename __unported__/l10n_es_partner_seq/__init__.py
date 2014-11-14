@@ -21,6 +21,5 @@
 #
 ##############################################################################
 
-import partner_seq
-import wizard
-
+from . import partner_seq
+from . import wizard

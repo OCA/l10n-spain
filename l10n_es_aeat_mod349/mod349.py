@@ -297,8 +297,8 @@ class Mod349(orm.Model):
                         'message': _('Company has no company title.\nThis ' +
                                      'may cause some problems when trying ' +
                                      'to import on AEAT help program')
-                        }
                     }
+                }
             # Check Full name (contact_name)
             if (not item.contact_name or
                     len(item.contact_name.split(' ')) < 2):
@@ -411,6 +411,7 @@ class Mod349(orm.Model):
 
 
 class Mod349PartnerRecord(orm.Model):
+
     """AEAT 349 Model - Partner record
     Shows total amount per operation key (grouped) for each partner
     """
@@ -469,6 +470,7 @@ class Mod349PartnerRecord(orm.Model):
 
 
 class Mod349PartnerRecordDetail(orm.Model):
+
     """AEAT 349 Model - Partner record detail
     Shows detail lines for each partner record.
     """

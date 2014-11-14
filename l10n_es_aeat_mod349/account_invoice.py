@@ -46,6 +46,7 @@ OPERATION_KEYS = [
 
 
 class AccountInvoice(orm.Model):
+
     """Inheritance of account invoce to add some fields:
     - operation_key: Operation key of invoice
     """

@@ -29,6 +29,7 @@
 
 
 class Log(Exception):
+
     def __init__(self, content='', error=False):
         self.content = unicode(content)
         self.error = error

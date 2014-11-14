@@ -57,6 +57,7 @@ CSS_CLASSES = [('default', 'Default'),
 
 
 class account_balance_reporting_template(orm.Model):
+
     """Account balance report template.
     It stores the header fields of an account balance report template,
     and the linked lines of detail with the formulas to calculate
@@ -138,6 +139,7 @@ class account_balance_reporting_template(orm.Model):
 
 
 class account_balance_reporting_template_line(orm.Model):
+
     """
     Account balance report template line / Accounting concept template
     One line of detail of the balance report representing an accounting

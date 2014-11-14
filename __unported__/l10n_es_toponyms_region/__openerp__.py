@@ -22,11 +22,11 @@
 ##############################################################################
 
 {
-    "name" : "Comunidades Autónomas de España",
-    "version" : "1.0",
-    "author" : "Zikzakmedia SL",
-    "website" : "www.zikzakmedia.com",
-    "category" : "Localisation/Europe",
+    "name": "Comunidades Autónomas de España",
+    "version": "1.0",
+    "author": "Zikzakmedia SL",
+    "website": "www.zikzakmedia.com",
+    "category": "Localisation/Europe",
     "description": """Comunidades Autónomas del Estado Español
 
   * Añade un nuevo campo de comunidades autónomas al formulario de empresas y contactos.
@@ -34,16 +34,16 @@
   * Proporciona un assistente para dar de alta las comunidades autónomas por defecto asociadas a los codigos postales. Permite rellenar automaticamente el campo comunidad autónoma del formulario de las empresas y contactos a partir del codigo postal.
 
 Nota: No funciona con el módulo city instalado.""",
-    "depends" : ["base"],
-    "license" : "AGPL-3",
-    "init_xml" : ["l10n_es_toponyms_region_data.xml"],
-    "demo_xml" : [ ],
-    "update_xml" : [
-                    "l10n_es_toponyms_region_view.xml",
-                    "wizard/l10n_es_toponyms_region_wizard.xml",
-                    #"l10n_es_toponyms_region_wizard.xml",
-                    "security/ir.model.access.csv",
+    "depends": ["base"],
+    "license": "AGPL-3",
+    "init_xml": ["l10n_es_toponyms_region_data.xml"],
+    "demo_xml": [],
+    "update_xml": [
+        "l10n_es_toponyms_region_view.xml",
+        "wizard/l10n_es_toponyms_region_wizard.xml",
+        #"l10n_es_toponyms_region_wizard.xml",
+        "security/ir.model.access.csv",
     ],
     "active": False,
     "installable": False
-} 
+}

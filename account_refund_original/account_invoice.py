@@ -23,6 +23,7 @@ from openerp.osv import orm, fields
 
 
 class AccountInvoice(orm.Model):
+
     """Inheritance of account invoice to add some fields"""
     _inherit = 'account.invoice'
 

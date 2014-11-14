@@ -23,27 +23,25 @@
 ##############################################################################
 
 {
-    "name" : "Datos iniciales para módulo base",
-    "version" : "1.0",
-    "author" : "Pablo Rocandio, Zikzakmedia SL",
-    "website" : "www.zikzakmedia.com",
-    "category" : "Localisation/Europe",
+    "name": "Datos iniciales para módulo base",
+    "version": "1.0",
+    "author": "Pablo Rocandio, Zikzakmedia SL",
+    "website": "www.zikzakmedia.com",
+    "category": "Localisation/Europe",
     "description": """Añade datos iniciales a las tablas:
     * Canales
     * Categorías de empresas""",
-    "license" : "AGPL-3",
-    "depends" : [
+    "license": "AGPL-3",
+    "depends": [
         "base",
         "crm",
-        ],
-    "init_xml" : [
+    ],
+    "init_xml": [
         "data/data_partner_events.xml",     # Canales de comunicación
-        "data/data_partner_categories.xml", # Categorías de empresas
-        ],
-    "demo_xml" : [],
-    "update_xml" :[],
+        "data/data_partner_categories.xml",  # Categorías de empresas
+    ],
+    "demo_xml": [],
+    "update_xml": [],
     "active": False,
     "installable": False
 }
-
-

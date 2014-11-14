@@ -19,28 +19,29 @@
 #
 ##############################################################################
 
-import time
 import decimal_precision as dp
 
 from osv import osv
 from osv import fields
 
+
 class l10n_es_tesoreria_plantilla(osv.osv):
     _name = 'l10n.es.tesoreria.plantilla'
     _description = 'Plantilla Predicción de tesorería'
- 
+
     _columns = {
         'name': fields.char('Descripción', size=64),
         'pagos_period': fields.one2many('l10n.es.tesoreria.pagos.period.plan', 'plan_tesoreria_id', 'Pagos Periodicos'),
         'pagos_var': fields.one2many('l10n.es.tesoreria.pagos.var.plan', 'plan_tesoreria_id', 'Pagos Variables'),
     }
-        
+
 l10n_es_tesoreria_plantilla()
+
 
 class l10n_es_tesoreria_pagos_period_plan(osv.osv):
     _name = 'l10n.es.tesoreria.pagos.period.plan'
     _description = 'Plantilla Pagos Periodicos para la tesorería'
-    
+
     _columns = {
         'name': fields.char('Descripción', size=64),
         'fecha': fields.date('Fecha'),
@@ -50,8 +51,8 @@ class l10n_es_tesoreria_pagos_period_plan(osv.osv):
         'importe': fields.float('Importe', digits_compute=dp.get_precision('Account')),
         'pagado': fields.boolean('Facturado/Pagado'),
         'plan_tesoreria_id': fields.many2one('l10n.es.tesoreria.plantilla', 'Plantilla Tesorería'),
-    } 
-    
+    }
+
     def onchange_factura(self, cr, uid, ids, factura_id, context=None):
         values = {}
         invoice_obj = self.pool.get('account.invoice')
@@ -61,13 +62,14 @@ class l10n_es_tesoreria_pagos_period_plan(osv.osv):
                 'diario': invoice.journal_id.id
             }
         return {'value': values}
-    
+
 l10n_es_tesoreria_pagos_period_plan()
+
 
 class l10n_es_tesoreria_pagos_var_plan(osv.osv):
     _name = 'l10n.es.tesoreria.pagos.var.plan'
     _description = 'Plantilla Pagos Variables para la tesorería'
-    
+
     _columns = {
         'name': fields.char('Descripción', size=64),
         'partner_id': fields.many2one('res.partner', 'Empresa'),
@@ -78,7 +80,7 @@ class l10n_es_tesoreria_pagos_var_plan(osv.osv):
         'pagado': fields.boolean('Pagado'),
         'plan_tesoreria_id': fields.many2one('l10n.es.tesoreria.plantilla', 'Plantilla Tesorería'),
     }
-    
+
     def onchange_factura(self, cr, uid, ids, factura_id, context=None):
         values = {}
         invoice_obj = self.pool.get('account.invoice')
@@ -88,5 +90,5 @@ class l10n_es_tesoreria_pagos_var_plan(osv.osv):
                 'diario': invoice.journal_id.id
             }
         return {'value': values}
-    
+
 l10n_es_tesoreria_pagos_var_plan()

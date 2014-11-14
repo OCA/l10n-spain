@@ -28,6 +28,7 @@ import argparse
 
 
 class GeoNameXmlHandler(xml.sax.handler.ContentHandler):
+
     def __init__(self):
         self.__cpNumber = 0
         self.__isTotalResultsCount = 0

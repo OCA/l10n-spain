@@ -21,7 +21,8 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp.osv import orm
+
 
 class res_partner(orm.Model):
     _inherit = 'res.partner'
@@ -30,15 +31,17 @@ class res_partner(orm.Model):
         """Sequence only assigned to customer or supplier partners"""
         try:
             if (not vals['ref'] or not vals['ref'].strip()) and (vals['customer'] or vals['supplier']):
-                vals['ref'] = self.pool.get('ir.sequence').get(cr, uid, 'res.partner')
+                vals['ref'] = self.pool.get(
+                    'ir.sequence').get(cr, uid, 'res.partner')
         except KeyError:
-            vals['ref'] = self.pool.get('ir.sequence').get(cr, uid, 'res.partner')
+            vals['ref'] = self.pool.get(
+                'ir.sequence').get(cr, uid, 'res.partner')
         return super(res_partner, self).create(cr, uid, vals, context)
 
     def copy(self, cr, uid, ids, default=None, context=None):
         if not default:
             default = {}
         default.update({
-            'ref': '',                        
+            'ref': '',
         })
         return super(res_partner, self).copy(cr, uid, ids, default, context=context)

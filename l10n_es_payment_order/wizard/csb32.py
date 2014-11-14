@@ -40,7 +40,7 @@
 from openerp.osv import orm
 from datetime import datetime
 from openerp.tools.translate import _
-from log import Log
+from .log import Log
 
 
 class Csb32(orm.Model):
@@ -53,12 +53,12 @@ class Csb32(orm.Model):
         texto += '  '
         texto += datetime.today().strftime('%d%m%y')
         texto += converter.digits_only(cr, uid, self.order.reference)[-4:]
-        texto += ' '*35
+        texto += ' ' * 35
         texto += converter.digits_only(
             cr, uid, self.order.mode.bank_id.acc_number)[:8]
-        texto += ' '*6
-        texto += ' '*61
-        texto += ' '*24
+        texto += ' ' * 6
+        texto += ' ' * 61
+        texto += ' ' * 24
         texto += '\r\n'
         if len(texto) != 152:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 150 '
@@ -74,13 +74,13 @@ class Csb32(orm.Model):
         # B
         texto += datetime.today().strftime('%d%m%y')
         texto += '0001'
-        texto += ' '*12
+        texto += ' ' * 12
         # C
         # TODO: Identificador del cedente. Qué es?
         texto += converter.convert(
             cr, uid, self.order.mode.cedente, 15, context)
         texto += '1'  # Identificativo de efectos truncados
-        texto += ' '*21
+        texto += ' ' * 21
         # D
         texto += converter.digits_only(cr, uid,
                                        self.order.mode.bank_id.acc_number)
@@ -88,7 +88,7 @@ class Csb32(orm.Model):
                                        self.order.mode.bank_id.acc_number)
         texto += converter.digits_only(cr, uid,
                                        self.order.mode.bank_id.acc_number)
-        texto += ' ' + ' '*24
+        texto += ' ' + ' ' * 24
         texto += '\r\n'
         if len(texto) != 152:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 150 '
@@ -102,26 +102,26 @@ class Csb32(orm.Model):
         texto = '2565'
         texto += '  '
         # B
-        texto += converter.convert(cr, uid, self.num_recibos+1, 15, context)
+        texto += converter.convert(cr, uid, self.num_recibos + 1, 15, context)
         texto += datetime.today().strftime('%d%m%y')
         texto += '0001'
         # C
         state = (self.order.mode.bank_id.state_id and
                  self.order.mode.bank_id.state_id.code or False)
         texto += converter.convert(cr, uid, state, 2, context)
-        texto += ' '*7
+        texto += ' ' * 7
         texto += '  '
         # D
         texto += converter.convert(
             cr, uid, self.order.mode.bank_id.city, 20, context)
         texto += ' '
         # E
-        texto += ' '*24
+        texto += ' ' * 24
         texto += converter.convert(cr, uid, abs(recibo['amount']), 9, context)
-        texto += ' '*15
+        texto += ' ' * 15
         texto += datetime.strptime(
             recibo['ml_maturity_date'], '%Y-%m-%d').strftime('%d%m%y')
-        texto += ' '*(6+6+1+4+16)
+        texto += ' ' * (6 + 6 + 1 + 4 + 16)
         texto += '\r\n'
         if len(texto) != 152:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 150 '
@@ -135,7 +135,7 @@ class Csb32(orm.Model):
         texto = '2665'
         texto += '  '
         # B: Datos del efecto
-        texto += converter.convert(cr, uid, self.num_recibos+1, 15, context)
+        texto += converter.convert(cr, uid, self.num_recibos + 1, 15, context)
         texto += '  '
         texto += '2'  # Recibo
         texto += '000000'
@@ -147,13 +147,13 @@ class Csb32(orm.Model):
         if ccc:
             texto += ccc[:20].zfill(20)
         else:
-            texto += ' '*20
+            texto += ' ' * 20
         # D: Datos del efecto
         texto += converter.convert(cr, uid, self.order.mode.partner_id.name,
                                    34, context)
         texto += converter.convert(
             cr, uid, recibo['partner_id'].name, 34, context)
-        texto += ' '*30
+        texto += ' ' * 30
         texto += '\r\n'
         if len(texto) != 152:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 150 '
@@ -168,7 +168,7 @@ class Csb32(orm.Model):
         texto += '  '
 
         # B: Datos del efecto
-        texto += converter.convert(cr, uid, self.num_recibos+1, 15, context)
+        texto += converter.convert(cr, uid, self.num_recibos + 1, 15, context)
         texto += '  '
         addresses = self.pool['res.partner'].address_get(
             cr, uid, [recibo['partner_id'].id])
@@ -182,12 +182,12 @@ class Csb32(orm.Model):
         texto += converter.convert(cr, uid, address.city, 20, context)
         texto += converter.convert(cr, uid, address.state_id and
                                    address.state_id.code or False, 2, context)
-        texto += '0'*7
+        texto += '0' * 7
         # C: Datos del efecto
         vat = (recibo['partner_id'].vat and recibo['partner_id'].vat[2:] or
                False)
         texto += converter.convert(cr, uid, vat, 9, context)
-        texto += ' '*50
+        texto += ' ' * 50
         texto += '\r\n'
         if len(texto) != 152:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 150 '
@@ -203,19 +203,19 @@ class Csb32(orm.Model):
         # B: Control de duplicidades
         texto += datetime.today().strftime('%d%m%y')
         texto += '0001'
-        texto += ' '*(6+6)
+        texto += ' ' * (6 + 6)
         # C: Libre
-        texto += ' '*37
+        texto += ' ' * 37
         # D: Acumuladores de importe
-        texto += ' '*10
+        texto += ' ' * 10
         texto += converter.convert(cr, uid, abs(self.order.total), 10, context)
-        texto += ' '*(10+6+7+6+6+6)
+        texto += ' ' * (10 + 6 + 7 + 6 + 6 + 6)
         # E: Controles de lectura de fichero
-        texto += ' '*5
-        texto += converter.convert(cr, uid, (self.num_recibos*3) + 2, 7,
+        texto += ' ' * 5
+        texto += converter.convert(cr, uid, (self.num_recibos * 3) + 2, 7,
                                    context)
         texto += converter.convert(cr, uid, self.num_recibos, 6, context)
-        texto += ' '*6
+        texto += ' ' * 6
         texto += '\r\n'
         if len(texto) != 152:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 150 '
@@ -229,19 +229,19 @@ class Csb32(orm.Model):
         texto = '9865'
         texto += '  '
         # B: Libre
-        texto += ' '*22
+        texto += ' ' * 22
         # C: Libre
-        texto += ' '*37
+        texto += ' ' * 37
         # D: Acumuladores de importes
-        texto += ' '*10
+        texto += ' ' * 10
         texto += converter.convert(cr, uid, abs(self.order.total), 10, context)
-        texto += ' '*(10+6+7+6+6+6)
+        texto += ' ' * (10 + 6 + 7 + 6 + 6 + 6)
         # E: Controles de lectura del fichero
         texto += '00001'
-        texto += converter.convert(cr, uid, (self.num_recibos*3) + 3, 7,
+        texto += converter.convert(cr, uid, (self.num_recibos * 3) + 3, 7,
                                    context)
         texto += converter.convert(cr, uid, self.num_recibos, 6, context)
-        texto += ' '*6
+        texto += ' ' * 6
         texto += '\r\n'
         if len(texto) != 152:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 150 '

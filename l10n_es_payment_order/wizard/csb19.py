@@ -44,7 +44,7 @@
 from openerp.osv import orm
 from datetime import datetime
 from openerp.tools.translate import _
-from log import Log
+from .log import Log
 
 
 class Csb19(orm.Model):
@@ -57,12 +57,12 @@ class Csb19(orm.Model):
         texto += (self.order.mode.bank_id.partner_id.vat[2:] +
                   self.order.mode.sufijo).zfill(12)
         texto += datetime.today().strftime('%d%m%y')
-        texto += 6*' '
+        texto += 6 * ' '
         texto += converter.to_ascii(cr, uid, self.order.mode.nombre).ljust(40)
-        texto += 20*' '
+        texto += 20 * ' '
         cc = converter.digits_only(cr, uid, self.order.mode.bank_id.acc_number)
         texto += cc[0:8]
-        texto += 66*' '
+        texto += 66 * ' '
         texto += '\r\n'
         if len(texto) != 164:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 162 '
@@ -97,9 +97,9 @@ class Csb19(orm.Model):
         texto += converter.to_ascii(cr, uid, self.order.mode.nombre).ljust(40)
         cc = converter.digits_only(cr, uid, self.order.mode.bank_id.acc_number)
         texto += cc[0:20]
-        texto += 8*' '
+        texto += 8 * ' '
         texto += '01'
-        texto += 64*' '
+        texto += 64 * ' '
         texto += '\r\n'
         if len(texto) != 164:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 162 '
@@ -118,13 +118,13 @@ class Csb19(orm.Model):
         ccc = recibo['bank_id'] and recibo['bank_id'].acc_number or ''
         ccc = converter.digits_only(cr, uid, ccc)
         texto += str(ccc)[0:20].zfill(20)
-        importe = int(round(abs(recibo['amount'])*100, 0))
+        importe = int(round(abs(recibo['amount']) * 100, 0))
         texto += str(importe).zfill(10)
         # Referencia para devolución (sólo válida si no se agrupa) ######
         if len(recibo['ml_inv_ref']) == 1:
             texto += str(recibo['ml_inv_ref'][0].id)[-16:].zfill(16)
         else:
-            texto += 16*' '
+            texto += 16 * ' '
         ######################################################################
         concepto = ''
         if recibo['communication']:
@@ -148,7 +148,7 @@ class Csb19(orm.Model):
         texto += converter.to_ascii(
             cr, uid, recibo['communication2'])[0:115].ljust(115)
         texto += '00000'  # Campo de código postal ficticio
-        texto += 14*' '
+        texto += 14 * ' '
         texto += '\r\n'
         if len(texto) != 164:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 162 '
@@ -174,10 +174,10 @@ class Csb19(orm.Model):
                 for invoice_line in invoice.invoice_line:
                     if counter <= length:
                         if counter <= 15:
-                            if (counter-1) % 3 == 0:
+                            if (counter - 1) % 3 == 0:
                                 vat = self.order.mode.bank_id.partner_id.vat
                                 sufijo = self.order.mode.sufijo
-                                res['texto'] += '568'+str(registry_counter)
+                                res['texto'] += '568' + str(registry_counter)
                                 res['texto'] += (vat[2:] +
                                                  sufijo).zfill(12)
                                 res['texto'] += str(recibo['name']).zfill(12)
@@ -185,12 +185,12 @@ class Csb19(orm.Model):
                                     {'#': invoice_line.price_subtotal}
                             texto = converter.to_ascii(cr, uid,
                                                        invoice_line.name)
-                            res['texto'] += texto[0:40-len(price)].ljust(
-                                40-len(price))
+                            res['texto'] += texto[0:40 - len(price)].ljust(
+                                40 - len(price))
                             res['texto'] += converter.to_ascii(
                                 cr, uid, price.replace('.', ','))
                             if counter % 3 == 0:
-                                res['texto'] += 14*' '+'\r\n'
+                                res['texto'] += 14 * ' ' + '\r\n'
                                 res['total_lines'] += 1
                                 if len(res['texto']) != registry_counter * 164:
                                     raise Log(_('Configuration error:\n\nThe '
@@ -200,8 +200,8 @@ class Csb19(orm.Model):
                                                res['texto']), True)
                                 registry_counter += 1
                             elif counter == length:
-                                res['texto'] += ((3-(counter % 3)) * 40 * ' ' +
-                                                 14 * ' '+'\r\n')
+                                res['texto'] += ((3 - (counter % 3)) * 40 * ' ' +
+                                                 14 * ' ' + '\r\n')
                                 res['total_lines'] += 1
                                 if len(res['texto']) != registry_counter * 164:
                                     raise Log(_('Configuration error:\n\nThe '
@@ -216,14 +216,14 @@ class Csb19(orm.Model):
         texto = '5880'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] +
                   self.order.mode.sufijo).zfill(12)
-        texto += 72*' '
+        texto += 72 * ' '
         totalordenante = int(round(abs(self.group_amount) * 100, 0))
         texto += str(totalordenante).zfill(10)
-        texto += 6*' '
+        texto += 6 * ' '
         texto += str(self.group_payments).zfill(10)
         texto += str(
             self.group_payments + self.group_optional_lines + 2).zfill(10)
-        texto += 38*' '
+        texto += 38 * ' '
         texto += '\r\n'
         if len(texto) != 164:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 162 '
@@ -235,17 +235,17 @@ class Csb19(orm.Model):
         texto = '5980'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] +
                   self.order.mode.sufijo).zfill(12)
-        texto += 52*' '
+        texto += 52 * ' '
         if self.order.date_prefered == 'due':
             # Tantos ordenantes como pagos
             texto += str(self.total_payments).zfill(4)
         else:
             # Sólo un ordenante
             texto += '0001'
-        texto += 16*' '
+        texto += 16 * ' '
         totalremesa = int(round(abs(self.order.total) * 100, 0))
         texto += str(totalremesa).zfill(10)
-        texto += 6*' '
+        texto += 6 * ' '
         texto += str(self.total_payments).zfill(10)
         if self.order.date_prefered == 'due':
             # Tantos ordenantes como pagos
@@ -256,7 +256,7 @@ class Csb19(orm.Model):
             # Sólo un ordenante
             texto += str(
                 self.total_payments + self.total_optional_lines + 4).zfill(10)
-        texto += 38*' '
+        texto += 38 * ' '
         texto += '\r\n'
         if len(texto) != 164:
             raise Log(_('Configuration error:\n\nThe line "%s" is not 162 '

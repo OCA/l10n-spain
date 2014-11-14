@@ -36,6 +36,7 @@ except ImportError:
 
 
 class C43Parser(BankStatementImportParser):
+
     """Class for defining parser for AEB C43 file format."""
 
     def _process_record_11(self, line):

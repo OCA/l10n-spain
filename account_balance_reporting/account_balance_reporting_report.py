@@ -44,6 +44,7 @@ CSS_CLASSES = [
 
 
 class AccountBalanceReporting(orm.Model):
+
     """Account balance report.
     It stores the configuration/header fields of an account balance report,
     and the linked lines of detail with the values of the accounting concepts
@@ -202,6 +203,7 @@ class AccountBalanceReporting(orm.Model):
 
 
 class account_balance_reporting_line(orm.Model):
+
     """Account balance report line / Accounting concept
     One line of detail of the balance report representing an accounting
     concept with its values.

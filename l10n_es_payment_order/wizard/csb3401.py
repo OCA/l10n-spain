@@ -45,7 +45,7 @@
 from openerp.osv import orm
 from datetime import datetime
 from openerp.tools.translate import _
-from log import Log
+from .log import Log
 
 
 class Csb3401(orm.Model):
@@ -66,7 +66,7 @@ class Csb3401(orm.Model):
         text += '0356'
         text += self._start_34(cr, uid, context)
         text += '34016'
-        text += 7*' '
+        text += 7 * ' '
         text += '001'
         text += today
         if self.order.date_scheduled:
@@ -83,25 +83,25 @@ class Csb3401(orm.Model):
         text += ccc['account']
         text += '0'  # Detalle de cargo
         text += '1'  # Gastos por cuenta del ordenante
-        text += 2*' '
+        text += 2 * ' '
         text += ccc['dc']
-        text += 7*' '
+        text += 7 * ' '
         text += '\n'
         # Segundo Tipo
         text += '0356'
         text += self._start_34(cr, uid, context)
         text += '34016'
-        text += 7*' '
+        text += 7 * ' '
         text += '002'
         text += converter.convert(
             cr, uid, self.order.mode.bank_id.partner_id.name, 36, context)
-        text += 7*' '
+        text += 7 * ' '
         text += '\n'
         # Tercer Tipo
         text += '0356'
         text += self._start_34(cr, uid, context)
         text += '34016'
-        text += 7*' '
+        text += 7 * ' '
         text += '003'
         # Direccion
         address_id = self.pool['res.partner'].address_get(
@@ -113,18 +113,18 @@ class Csb3401(orm.Model):
         street = self.pool['res.partner'].read(
             cr, uid, [address_id], ['street'], context)[0]['street']
         text += converter.convert(cr, uid, street, 36, context)
-        text += 7*' '
+        text += 7 * ' '
         text += '\n'
         # Cuarto Tipo
         text += '0356'
         text += self._start_34(cr, uid, context)
         text += '34016'
-        text += 7*' '
+        text += 7 * ' '
         text += '004'
         city = self.pool['res.partner'].read(
             cr, uid, [address_id], ['city'], context)[0]['city']
         text += converter.convert(cr, uid, city, 36, context)
-        text += 7*' '
+        text += 7 * ' '
         text += '\n'
         return text
 
@@ -149,9 +149,9 @@ class Csb3401(orm.Model):
         text += ccc['account']
         text += ' '
         text += '9'  # Otros conceptos (ni Nomina ni Pension)
-        text += 2*' '
+        text += 2 * ' '
         text += ccc['dc']
-        text += 7*' '
+        text += 7 * ' '
         text += '\n'
         # Segundo Registro
         text += '0656'
@@ -164,7 +164,7 @@ class Csb3401(orm.Model):
         text += '011'
         text += converter.convert(
             cr, uid, recibo['partner_id'].name, 36, context)
-        text += 7*' '
+        text += 7 * ' '
         text += '\n'
         return text
 
@@ -172,13 +172,13 @@ class Csb3401(orm.Model):
         converter = self.pool['payment.converter.spain']
         text = '0856'
         text += self._start_34(cr, uid, context)
-        text += 12*' '
-        text += 3*' '
+        text += 12 * ' '
+        text += 3 * ' '
         text += converter.convert(cr, uid, self.order.total, 12, context)
         text += converter.convert(cr, uid, self.payment_line_count, 8, context)
         text += converter.convert(cr, uid, self.record_count, 10, context)
-        text += 6*' '
-        text += 7*' '
+        text += 6 * ' '
+        text += 7 * ' '
         text += '\n'
         return text
 

@@ -22,6 +22,7 @@ from openerp.osv import orm, fields
 
 
 class ResPartner(orm.Model):
+
     """Extends partner to add fields used by the 340 report."""
     _inherit = "res.partner"
 
