@@ -33,11 +33,11 @@ class AccountInvoice(orm.Model):
             result[invoice.id] = invoice.invoice_number
         return result
 
-    def copy(self, cr, uid, id, default=None, context=None):
+    def copy(self, cr, uid, rec_id, default=None, context=None):
         if not default:
             default = {}
         default.update({'invoice_number': False})
-        return super(AccountInvoice, self).copy(cr, uid, id, default,
+        return super(AccountInvoice, self).copy(cr, uid, rec_id, default,
                                                 context=context)
 
     _columns = {

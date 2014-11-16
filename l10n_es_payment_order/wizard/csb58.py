@@ -41,7 +41,7 @@
 from openerp.osv import orm
 from datetime import datetime
 from openerp.tools.translate import _
-from log import Log
+from .log import Log
 
 
 class Csb58(orm.Model):
@@ -177,7 +177,7 @@ Formato:
         # Pero si no encontramos ninguna dirección por defecto,
         # tomamos la primera del partner.
         st = ''
-        zip = ''
+        zip_code = ''
         city = ''
         if recibo['partner_id'].address:
             ads = None
@@ -195,10 +195,10 @@ Formato:
                                 zip_obj.browse(self.cr, self.uid,
                                                ads.zip_id.id,
                                                self.context) or '')
-                zip = obj_zip_city and obj_zip_city.name or ''
+                zip_code = obj_zip_city and obj_zip_city.name or ''
                 city = obj_zip_city and obj_zip_city.city or ''
             else:
-                zip = ads.zip and ads.zip or ''
+                zip_code = ads.zip and ads.zip or ''
                 city = ads.city and ads.city or ''
             #
             # Comprobamos el código postal:
@@ -206,8 +206,8 @@ Formato:
             #   menos, las dos primeras posiciones que identifican la
             #   provincia, dejando el resto de posiciones a cero."
             #
-            if len(zip) < 2:
-                zip = ads.state_id and ads.state_id.code or ''
+            if len(zip_code) < 2:
+                zip_code = ads.state_id and ads.state_id.code or ''
 
         #
         # Obtenemos la localidad y código de provincia del ordenante
@@ -242,7 +242,7 @@ Formato:
         texto += converter.to_ascii(cr, uid, st)[:40].ljust(40)  # Domicilio
         # Plaza (ciudad)
         texto += converter.to_ascii(cr, uid, city)[:35].ljust(35)
-        texto += converter.to_ascii(cr, uid, zip)[:5].zfill(5)  # CP
+        texto += converter.to_ascii(cr, uid, zip_code)[:5].zfill(5)  # CP
         # Localidad del ordenante (ciudad)
         texto += converter.to_ascii(cr, uid, ord_city)[:38].ljust(38)
         if alt_format:
