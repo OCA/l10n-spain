@@ -42,7 +42,7 @@ class CancelFyc(orm.TransientModel):
             'Delete opening account move', readonly=True),
     }
 
-    def default_get(self, cr, uid, fields, context=None):
+    def default_get(self, cr, uid, field_list, context=None):
         """This function gets default values
         @param self: The object pointer
         @param cr: the current row, from the database cursor,
@@ -52,8 +52,9 @@ class CancelFyc(orm.TransientModel):
 
         @return : default values of fields.
         """
-        context = context or {}
-        res = super(CancelFyc, self).default_get(cr, uid, fields,
+        if context is None:
+            context = {}
+        res = super(CancelFyc, self).default_get(cr, uid, field_list,
                                                  context=context)
         if context.get('active_id'):
             fyc = self.pool['account.fiscalyear.closing'].browse(
@@ -148,7 +149,7 @@ class ExecuteFyc(orm.TransientModel):
                                         readonly=True),
     }
 
-    def default_get(self, cr, uid, fields, context=None):
+    def default_get(self, cr, uid, field_list, context=None):
         """This function gets default values
         @param self: The object pointer
         @param cr: the current row, from the database cursor,
@@ -158,8 +159,9 @@ class ExecuteFyc(orm.TransientModel):
 
         @return : default values of fields.
         """
-        context = context or {}
-        res = super(ExecuteFyc, self).default_get(cr, uid, fields,
+        if context is None:
+            context = {}
+        res = super(ExecuteFyc, self).default_get(cr, uid, field_list,
                                                   context=context)
         if context.get('active_id'):
             fyc = self.pool['account.fiscalyear.closing'].browse(
