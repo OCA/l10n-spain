@@ -152,13 +152,13 @@ class L10nEsAeatMod303Report(orm.Model):
 
     def _get_report_lines(self, cr, uid, ids, context=None):
         if isinstance(ids, list):
-            id = ids[0]
+            rec_id = ids[0]
         else:
-            id = ids
+            rec_id = ids
         dict_code_values = {}
         for i in range(1, 51):
             dict_code_values["[%.2d]" % i] = 0
-        mod303 = self.browse(cr, uid, id, context=context)
+        mod303 = self.browse(cr, uid, rec_id, context=context)
         generated_report = tax_report(cr, uid, "account.vat.declaration")
         generated_report.period_ids = self._get_period(cr, uid, [mod303.id],
                                                        context=context)

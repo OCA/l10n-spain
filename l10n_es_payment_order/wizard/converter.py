@@ -29,7 +29,7 @@
 
 from openerp.osv import orm
 from openerp.tools.translate import _
-from log import Log
+from .log import Log
 
 
 class PaymentConverterSpain(orm.Model):

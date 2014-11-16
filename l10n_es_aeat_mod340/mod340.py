@@ -50,8 +50,8 @@ class L10nEsAeatMod340Report(orm.Model):
     def _get_number_records(self, cr, uid, ids, field_name, args,
                             context=None):
         result = {}
-        for id in ids:
-            result[id] = {}.fromkeys(
+        for rec_id in ids:
+            result[rec_id] = {}.fromkeys(
                 ['number_records', 'total_taxable', 'total_sharetax', 'total'],
                 0.0)
         for model in self.browse(cr, uid, ids, context=context):
@@ -121,12 +121,12 @@ class L10nEsAeatMod340Report(orm.Model):
         'declaration_number': '340',
     }
 
-    def set_done(self, cr, uid, id, *args):
+    def set_done(self, cr, uid, rec_id, *args):
         self.write(cr, uid, id, {'calculation_date': time.strftime('%Y-%m-%d'),
                                  'state': 'done'})
         wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(uid, 'l10n.es.aeat.mod340.report', id, 'done',
-                                cr)
+        wf_service.trg_validate(uid, 'l10n.es.aeat.mod340.report', rec_id,
+                                'done', cr)
         return True
 
     def action_confirm(self, cr, uid, ids, context=None):

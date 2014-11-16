@@ -48,7 +48,7 @@
 from openerp.osv import orm, fields
 import base64
 from openerp.tools.translate import _
-from log import Log
+from .log import Log
 
 
 def _reopen(self, res_id, model):

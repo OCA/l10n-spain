@@ -44,7 +44,7 @@
 from openerp.osv import orm
 from datetime import datetime
 from openerp.tools.translate import _
-from log import Log
+from .log import Log
 
 
 class Csb19(orm.Model):
