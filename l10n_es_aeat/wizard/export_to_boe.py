@@ -151,7 +151,7 @@ class L10nEsAeatReportExportToBoe(orm.TransientModel):
         contents += self._get_formatted_other_records(cr, uid, report,
                                                       context=context)
         # Generate the file and save as attachment
-        file = base64.encodestring(contents)
+        res = base64.encodestring(contents)
         file_name = _("%s_report_%s.txt") % (
             report.number, time.strftime(_(DEFAULT_SERVER_DATE_FORMAT)))
         # Delete old files
@@ -163,13 +163,13 @@ class L10nEsAeatReportExportToBoe(orm.TransientModel):
         if attachment_ids:
             attachment_obj.unlink(cr, uid, attachment_ids, context=context)
         attachment_obj.create(cr, uid, {"name": file_name,
-                                        "datas": file,
+                                        "datas": res,
                                         "datas_fname": file_name,
                                         "res_model": report._model._name,
                                         "res_id": report.id,
                                         }, context=context)
         self.write(cr, uid, ids,
-                   {'state': 'get', 'data': file, 'name': file_name},
+                   {'state': 'get', 'data': res, 'name': file_name},
                    context=context)
         # Force view to be the parent one
         data_obj = self.pool['ir.model.data']

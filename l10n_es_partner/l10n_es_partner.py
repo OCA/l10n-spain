@@ -143,7 +143,6 @@ class ResBank(orm.Model):
         'lname': fields.char('Long name', size=128),
         'vat': fields.char('VAT code', size=32, help="Value Added Tax number"),
         'website': fields.char('Website', size=64),
-        'code': fields.char('Code', size=64),
     }
 
 

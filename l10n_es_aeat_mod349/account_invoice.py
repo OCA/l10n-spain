@@ -72,12 +72,12 @@ class AccountInvoice(orm.Model):
                 self.write(cr, uid, invoice.id, {'operation_key': op_key},
                            context=context)
 
-    def _get_operation_key(self, fp, type):
+    def _get_operation_key(self, fp, invoice_type):
         if not fp.intracommunity_operations:
             return False
         else:
             # TODO: Ver cómo discernir si son prestación de servicios
-            if type == 'out_invoice' or type == 'out_refund':
+            if invoice_type in ('out_invoice', 'out_refund'):
                 # Establecer a entrega si es de venta
                 return 'E'
             else:
@@ -108,12 +108,12 @@ class AccountInvoice(orm.Model):
         """
         assert period_selection, 'There is no period selected'
         # Set type of invoice
-        type = ['in_invoice', 'out_invoice', 'in_refund', 'out_refund']
+        invoice_type = ['in_invoice', 'out_invoice', 'in_refund', 'out_refund']
         fy_obj = self.pool['account.fiscalyear']
         fy = fy_obj.browse(cr, uid, fiscalyear_id, context=context)
         domain = [('partner_id', '=', partner_id),
                   ('state', 'in', ['open', 'paid']),
-                  ('type', 'in', type),
+                  ('type', 'in', invoice_type),
                   ('operation_key', '=', operation_key)]
         # Invoices by fiscalyear (Annual)
         if period_selection == '0A':
@@ -193,13 +193,13 @@ class AccountInvoice(orm.Model):
         return invoice_ids, refund_ids
 
     def on_change_fiscal_position(self, cr, uid, ids, fiscal_position,
-                                  type, context=None):
+                                  invoice_type, context=None):
         """Suggest an operation key when fiscal position changes."""
         res = {'operation_key': 'Nothing'}
-        if fiscal_position and type:
+        if fiscal_position and invoice_type:
             fp_obj = self.pool['account.fiscal.position']
             fp = fp_obj.browse(cr, uid, fiscal_position, context=context)
-            res['operation_key'] = self._get_operation_key(fp, type)
+            res['operation_key'] = self._get_operation_key(fp, invoice_type)
         return {'value': res}
 
     def create(self, cr, uid, vals, context=None):
