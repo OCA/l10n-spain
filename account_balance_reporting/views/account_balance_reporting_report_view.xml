@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
-<!-- # # OpenERP - Account balance reporting engine # Copyright (C) 2009 
-    Pexego Sistemas Informáticos. All Rights Reserved # $Id$ # # This program 
-    is free software: you can redistribute it and/or modify # it under the terms 
-    of the GNU General Public License as published by # the Free Software Foundation, 
-    either version 3 of the License, or # (at your option) any later version. 
-    # # This program is distributed in the hope that it will be useful, # but 
-    WITHOUT ANY WARRANTY; without even the implied warranty of # MERCHANTABILITY 
-    or FITNESS FOR A PARTICULAR PURPOSE. See the # GNU General Public License 
-    for more details. # # You should have received a copy of the GNU General 
-    Public License # along with this program. If not, see <http://www.gnu.org/licenses/>. 
+<!-- # # OpenERP - Account balance reporting engine # Copyright (C) 2009
+    Pexego Sistemas Informáticos. All Rights Reserved # $Id$ # # This program
+    is free software: you can redistribute it and/or modify # it under the terms
+    of the GNU General Public License as published by # the Free Software Foundation,
+    either version 3 of the License, or # (at your option) any later version.
+    # # This program is distributed in the hope that it will be useful, # but
+    WITHOUT ANY WARRANTY; without even the implied warranty of # MERCHANTABILITY
+    or FITNESS FOR A PARTICULAR PURPOSE. See the # GNU General Public License
+    for more details. # # You should have received a copy of the GNU General
+    Public License # along with this program. If not, see <http://www.gnu.org/licenses/>.
     # -->
-<!-- Views for the account balance reports and its lines. Author: Borja López 
+<!-- Views for the account balance reports and its lines. Author: Borja López
     Soilán (Pexego) - borjals@pexego.es -->
 <openerp>
     <data>
@@ -22,6 +22,7 @@
                 <form string="Account balance report" version="7.0">
                     <header>
                         <button name="calculate_action" type="object" string="Calculate" states="draft" class="oe_highlight"/>
+                        <button name="action_calculate" type="object" string="Recalculate" states="calc_done" />
                         <button name="confirm" string="Confirm" class="oe_highlight" states="calc_done"/>
                         <button name="cancel" string="Cancel" states="calc_done,done"/>
                         <button name="action_recover" string="Draft" type="object" class="oe_highlight" states="canceled"/>

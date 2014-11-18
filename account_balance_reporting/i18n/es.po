@@ -164,7 +164,7 @@ msgid "State"
 msgstr "Estado"
 
 #. module: account_balance_reporting
-#: wizard_button:account_balance_reporting.print_wizard,init,print:0
+#: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Print"
 msgstr "Imprimir"
 
@@ -261,6 +261,8 @@ msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,report_id:0
+#: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
+#: field:account.balance.reporting.print.wizard,report_id:0
 msgid "Report"
 msgstr "Informe"
 
@@ -323,7 +325,12 @@ msgstr "Estilo"
 #. module: account_balance_reporting
 #: view:account.balance.reporting:0
 msgid "Calculate"
-msgstr "Calculado"
+msgstr "Calcular"
+
+#. module: account_balance_reporting
+#: view:account.balance.reporting:0
+msgid "Recalculate"
+msgstr "Recalcular"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.line,css_class:0
@@ -576,6 +583,11 @@ msgid "Print report"
 msgstr "Imprimir informe"
 
 #. module: account_balance_reporting
+#: model:ir.actions.act_window,name:account_balance_reporting.account_balance_reporting_print_wizard_act_window
+msgid "Financial report"
+msgstr "Informe financiero"
+
+#. module: account_balance_reporting
 #: view:account.balance.reporting:0
 msgid "Account balance report"
 msgstr "Informe financiero"
@@ -589,3 +601,15 @@ msgstr "Motor de informes de balances contables"
 #: selection:account.balance.reporting,state:0
 msgid "Canceled"
 msgstr "Cancelado"
+
+#. module: account_balance_reporting
+#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+msgid "Recalculate"
+msgstr "Recalcular"
+
+#. module: account_balance_reporting
+#: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
+#: field:account.balance.reporting.print.wizard,report_xml_id:0
+msgid "Design"
+msgstr "Diseño"
+
