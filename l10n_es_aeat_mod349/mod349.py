@@ -47,8 +47,8 @@ MONTH_MAPPING = [
 ]
 
 # TODO: Quitarlo de aquí y pasarlo a l10n_es_aeat con sustituciones
-NAME_RESTRICTIVE_REGEXP = re.compile(u"^[a-zA-Z0-9\sáÁéÉíÍóÓúÚñÑçÇäÄëËïÏüÜöÖ"
-                                     u"àÀèÈìÌòÒùÙâÂêÊîÎôÔûÛ\.,-_&'´\:;:/]*$",
+NAME_RESTRICTIVE_REGEXP = re.compile(r"^[a-zA-Z0-9\sáÁéÉíÍóÓúÚñÑçÇäÄëËïÏüÜöÖ"
+                                     r"àÀèÈìÌòÒùÙâÂêÊîÎôÔûÛ\.,-_&'´\\:;:/]*$",
                                      re.UNICODE | re.X)
 
 

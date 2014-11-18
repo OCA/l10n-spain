@@ -86,13 +86,13 @@ class account_balance_reporting_template(orm.Model):
         'balance_mode': '0',
     }
 
-    def copy(self, cr, uid, id, default=None, context=None):
+    def copy(self, cr, uid, rec_id, default=None, context=None):
         """Redefine the copy method to perform it correctly as the line
         structure is a graph.
         """
         line_obj = self.pool['account.balance.reporting.template.line']
         # Read the current item data:
-        template = self.browse(cr, uid, id, context=context)
+        template = self.browse(cr, uid, rec_id, context=context)
         # Create the template
         new_id = self.create(
             cr, uid, {

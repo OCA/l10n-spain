@@ -186,17 +186,17 @@ class AccountBalanceReporting(orm.Model):
         self.write(cr, uid, ids, {'state': 'draft', 'calc_date': None},
                    context=context)
         wf_service = netsvc.LocalService("workflow")
-        for id in ids:
-            wf_service.trg_create(uid, 'account.balance.reporting', id, cr)
+        for rec_id in ids:
+            wf_service.trg_create(uid, 'account.balance.reporting', rec_id, cr)
         return True
 
     def calculate_action(self, cr, uid, ids, context=None):
         """Calculate the selected balance report data."""
-        for id in ids:
+        for rec_id in ids:
             # Send the calculate signal to the balance report to trigger
             # action_calculate.
             wf_service = netsvc.LocalService('workflow')
-            wf_service.trg_validate(uid, 'account.balance.reporting', id,
+            wf_service.trg_validate(uid, 'account.balance.reporting', rec_id,
                                     'calculate', cr)
         return 'close'
 
@@ -410,7 +410,7 @@ class account_balance_reporting_line(orm.Model):
         # We iterate over the accounts listed in "code", so code can be
         # a string like "430+431+432-438"; accounts split by "+" will be added,
         # accounts split by "-" will be substracted.
-        for acc_code in re.findall('(-?\w*\(?[0-9a-zA-Z_]*\)?)', code):
+        for acc_code in re.findall(r'(-?\w*\(?[0-9a-zA-Z_]*\)?)', code):
             # Check if the code is valid (findall might return empty strings)
             acc_code = acc_code.strip()
             if acc_code:

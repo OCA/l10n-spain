@@ -45,7 +45,7 @@
 from openerp.osv import orm
 from datetime import datetime
 from openerp.tools.translate import _
-from log import Log
+from .log import Log
 
 
 class Csb3401(orm.Model):
@@ -186,13 +186,13 @@ class Csb3401(orm.Model):
         self.order = order
         self.payment_line_count = 0
         self.record_count = 0
-        file = ''
-        file += self._cabecera_ordenante_34(cr, uid, context)
+        res = ''
+        res += self._cabecera_ordenante_34(cr, uid, context)
         self.record_count += 4
         for recibo in lines:
-            file += self._detalle_nacionales_34(cr, uid, recibo, context)
+            res += self._detalle_nacionales_34(cr, uid, recibo, context)
             self.payment_line_count += 1
             self.record_count += 2
         self.record_count += 1
-        file += self._totales_nacionales_34(cr, uid, context)
-        return file
+        res += self._totales_nacionales_34(cr, uid, context)
+        return res

@@ -72,21 +72,17 @@ class account_account_template(orm.Model):
         until parent_id is null (this is the root account) then
         select the chart template which have 'account_root_id'
         pointing to the root account."""
-
-        chart_obj = self.pool.get('account.chart.template')
-        if context is None:
-            context = {}
+        chart_obj = self.pool['account.chart.template']
         res = {}
         accounts = self.browse(cr, uid, ids)
         for account in accounts:
-            id = account.id
+            rec_id = account.id
             while account.parent_id:
                 account = self.browse(cr, uid, account.parent_id.id)
             search_params = [('account_root_id', '=', account.id)]
             template_ids = chart_obj.search(cr, uid, search_params,
                                             context=context)
-            res[id] = template_ids and template_ids[0] or False
-
+            res[rec_id] = template_ids and template_ids[0] or False
         return res
 
     def _get_account_from_chart(self, cr, uid, ids, context=None):
@@ -140,19 +136,17 @@ class account_tax_code_template(orm.Model):
         until parent_id is null (this is the root tax code) then
         select the chart template which have 'tax_code_root_id'
         pointing to the root tax code."""
-        chart_obj = self.pool.get('account.chart.template')
-        if context is None:
-            context = {}
+        chart_obj = self.pool['account.chart.template']
         res = {}
         taxcodes = self.browse(cr, uid, ids)
         for taxcode in taxcodes:
-            id = taxcode.id
+            rec_id = taxcode.id
             while taxcode.parent_id:
                 taxcode = self.browse(cr, uid, taxcode.parent_id.id)
             search_params = [('tax_code_root_id', '=', taxcode.id)]
             template_ids = chart_obj.search(cr, uid, search_params,
                                             context=context)
-            res[id] = template_ids and template_ids[0] or False
+            res[rec_id] = template_ids and template_ids[0] or False
         return res
 
     def _get_taxcode_from_chart(self, cr, uid, ids, context=None):
