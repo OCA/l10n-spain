@@ -6,6 +6,7 @@ python:
 env:
   - VERSION="7.0" ODOO_REPO="odoo/odoo"
   - VERSION="7.0" ODOO_REPO="OCA/OCB"
+  - VERSION="7.0" UNIT_TEST="1"
 
 virtualenv:
   system_site_packages: true
@@ -19,11 +20,10 @@ install:
   - git clone https://github.com/OCA/account-payment ${HOME}/account-payment -b ${VERSION}
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
-  - travis_install_nightly ${VERSION}
-  - $HOME/maintainer-quality-tools/travis/travis_install_nightly ${VERSION}
+  - travis_install_nightly
 
 script:
-  - travis_run_tests ${VERSION}
+  - travis_run_tests
 
 after_success:
   coveralls
