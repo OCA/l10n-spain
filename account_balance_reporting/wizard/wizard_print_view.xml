@@ -46,7 +46,7 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
             </field>
         </record>
 
-        <act_window name="Print report"
+        <act_window name="Financial report"
             res_model="account.balance.reporting.print.wizard"
             src_model="account.balance.reporting"
             view_mode="form"
@@ -55,8 +55,8 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
 
         <record id="account_balance_reporting_print_wizard_ir_values" model="ir.values">
             <field name="object" eval="1" />
-            <field name="name">Print report</field>
-            <field name="key2">print_action_multi</field>
+            <field name="name">Financial report</field>
+            <field name="key2">client_print_multi</field>
             <field name="value" eval="'ir.actions.act_window,' + str(ref('account_balance_reporting_print_wizard_act_window'))"/>
             <field name="key">action</field>
             <field name="model">account.balance.reporting</field>
