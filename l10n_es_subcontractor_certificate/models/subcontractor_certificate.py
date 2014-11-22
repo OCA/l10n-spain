@@ -26,21 +26,20 @@ from openerp import models, fields, api, _
 EXPIRED_WARNING = {
     'title': _('Warning!'),
     'message': _('The subcontractor certificate for this supplier \
-                    has expired, or is not set.')
+                    has expired')
     }
 
 
 class ResPartner(models.Model):
     _inherit = ['res.partner']
 
-    certificate_required = fields.Boolean(string='Certificate Required')
     certificate_expiration = fields.Date(string='Certificate Expiration')
+    certificate_expired = fields.Boolean(string='Certificate Expirated',
+                                         compute='_certificate_expired')
 
-    @api.one
-    def certificate_expired(self):
-        return self.certificate_required and (
-            not self.certificate_expiration
-            or (self.certificate_expiration < fields.Date.today()))
+    def _certificate_expired(self):
+        self.certificate_expired = self.certificate_expiration and \
+            (self.certificate_expiration < fields.Date.today())
 
 
 class PurchaseOrder(models.Model):
@@ -51,7 +50,7 @@ class PurchaseOrder(models.Model):
         res = super(PurchaseOrder, self).onchange_partner_id(partner_id)
         if partner_id:
             partner = self.env['res.partner'].browse(partner_id)[0]
-            if partner.certificate_expired()[0]:
+            if partner.certificate_expired:
                 res['warning'] = EXPIRED_WARNING
         return res
 
@@ -69,6 +68,6 @@ class AccountInvoice(models.Model):
             company_id=False)
         if type == 'in_invoice' and partner_id:
             partner = self.env['res.partner'].browse(partner_id)
-            if partner.certificate_expired()[0]:
+            if partner.certificate_expired:
                 res['warning'] = EXPIRED_WARNING
         return res
