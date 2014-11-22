@@ -40,9 +40,9 @@ class ResPartner(models.Model):
     def certificate_expired(self):
         return self.certificate_required and (
             not self.certificate_expiration
-            or ( self.certificate_expiration 
-                 < fields.date.today().strftime("%Y-%m-%d")
-                 )
+            or (self.certificate_expiration
+                < fields.date.today().strftime("%Y-%m-%d")
+                )
             )
 
 
