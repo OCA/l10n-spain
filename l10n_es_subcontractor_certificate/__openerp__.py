@@ -28,23 +28,9 @@
 	"website": "www.domatix.com",
 	"category" : "Accounting",
 	"depends" : ["purchase"],
-    "description": """
-Certificado de subcontratista
-=============================
-Este módulo permite gestionar el certificado de subcontratista de los 
-proveedores,incluyendo los siguientes campos en la su ficha:
-* Requiere certificado
-* Caducidad del certificado, indica la fecha de caducidad del certificado.
-
-En pedidos de compra y facturas, al seleccionar el proveedor, si este 
-requiere el certificado y no tiene fecha o es una fecha anterior a la 
-caducidad de su certificado devuelve un aviso indicando que el certificado 
-está caducado.
-    """,
     "data" : ['views/subcontractor_certificate_view.xml'],
     "demo": [],
     'auto_install': False,
     "installable": True,
 }
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
