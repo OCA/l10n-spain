@@ -22,15 +22,14 @@
 ##############################################################################
 
 {
-    "name" : "Certificado de subcontratista",
-	"version" : "0.1",
-	"author" : "Domatix",
-	"website": "www.domatix.com",
-	"category" : "Accounting",
-	"depends" : ["purchase"],
-    "data" : ['views/subcontractor_certificate_view.xml'],
+    "name": "Certificado de subcontratista",
+    "version": "0.1",
+    "author": "Domatix",
+    "website": "www.domatix.com",
+    "category": "Accounting",
+    "depends": ["purchase"],
+    "data": ["views/subcontractor_certificate_view.xml"],
     "demo": [],
-    'auto_install': False,
+    "auto_install": False,
     "installable": True,
 }
-
