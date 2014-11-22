@@ -457,7 +457,7 @@ class Mod349PartnerRecord(orm.Model):
                                      'AEAT 349 Report ID'),
         # The name it's just an alias of the partner vat
         'name': fields.function(get_record_name, method=True, type="char",
-                                size="64", string="Name"),
+                                size=64, string="Name"),
         'partner_id': fields.many2one('res.partner', 'Partner', required=True),
         'partner_vat': fields.char('VAT', size=15, select=1),
         'country_id': fields.many2one('res.country', 'Country'),
