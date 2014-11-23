@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	
+    <record id="view_account_summary_tree1" model="ir.ui.view">
+        <field name="name">view.account.summary.tree1</field>
+        <field name="model">account.summary</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Resumen de ingresos">
+                <field name="balance_inv" string="Ingresos"/>
+                <field name="year"  invisible="1"/>
+                <field name="fiscalyear_id" invisible="1"/>
+                <field name="period_id" invisible="1"/>
+                <field name="account_code" invisible="1"/>
+           </tree>
+        </field>
+    </record>
+	<record id="action_view_account_summary_tree11" model="ir.actions.act_window">
+		<field name="name">Resumen de ingresos</field>
+		<field name="context">{'group_by':['period_id'], 'group_by_no_leaf':1}</field>
+		<field name="res_model">account.summary</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree</field>
+		<field name="view_id" ref="view_account_summary_tree1"/>
+		<field name="domain">[('year','=',time.strftime('%Y')),('account_code','in',('70','71','72','73','74','75','76','77','78','79'))]</field>
+	</record>
+	<record id="action_view_account_summary_tree12" model="ir.actions.act_window">
+		<field name="name">Resumen de ingresos anual</field>
+		<field name="context">{'group_by':['fiscalyear_id'], 'group_by_no_leaf':1}</field>
+		<field name="res_model">account.summary</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree</field>
+		<field name="view_id" ref="view_account_summary_tree1"/>
+		<field name="domain">[('account_code','in',('70','71','72','73','74','75','76','77','78','79'))]</field>
+	</record>
+		
+    <record id="view_account_summary_tree2" model="ir.ui.view">
+        <field name="name">view.account.summary.tree2</field>
+        <field name="model">account.summary</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Resumen de gastos">
+                <field name="balance" string="Gastos"/>
+                <field name="year"  invisible="1"/>
+                <field name="fiscalyear_id" invisible="1"/>
+                <field name="period_id" invisible="1"/>
+                <field name="account_code" invisible="1"/>
+           </tree>
+        </field>
+    </record>
+	<record id="action_view_account_summary_tree21" model="ir.actions.act_window">
+		<field name="name">Resumen de gastos</field>
+		<field name="context">{'group_by':['period_id'], 'group_by_no_leaf':1}</field>
+		<field name="res_model">account.summary</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree</field>
+		<field name="view_id" ref="view_account_summary_tree2"/>
+		<field name="domain">[('year','=',time.strftime('%Y')),('account_code','in',('60','61','62','63','64','65','66','67','68','69'))]</field>
+	</record>
+	<record id="action_view_account_summary_tree22" model="ir.actions.act_window">
+		<field name="name">Resumen de gastos anual</field>
+		<field name="context">{'group_by':['fiscalyear_id'], 'group_by_no_leaf':1}</field>
+		<field name="res_model">account.summary</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree</field>
+		<field name="view_id" ref="view_account_summary_tree2"/>
+		<field name="domain">[('account_code','in',('60','61','62','63','64','65','66','67','68','69'))]</field>
+	</record>
+	
+    <record id="view_account_summary_tree3" model="ir.ui.view">
+        <field name="name">view.account.summary.tree3</field>
+        <field name="model">account.summary</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Resumen de resultados">
+                <field name="balance_inv" string="Resultados"/>
+                <field name="year"  invisible="1"/>
+                <field name="fiscalyear_id" invisible="1"/>
+                <field name="period_id" invisible="1"/>
+                <field name="account_code" invisible="1"/>
+           </tree>
+        </field>
+    </record>
+	<record id="action_view_account_summary_tree31" model="ir.actions.act_window">
+		<field name="name">Resumen de resultados</field>
+		<field name="context">{'group_by':['period_id'], 'group_by_no_leaf':1}</field>
+		<field name="res_model">account.summary</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree</field>
+		<field name="view_id" ref="view_account_summary_tree3"/>
+		<field name="domain">[('year','=',time.strftime('%Y')),('account_code','in',('60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79'))]</field>
+	</record>
+	<record id="action_view_account_summary_tree32" model="ir.actions.act_window">
+		<field name="name">Resumen de resultados anual</field>
+		<field name="context">{'group_by':['fiscalyear_id'], 'group_by_no_leaf':1}</field>
+		<field name="res_model">account.summary</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree</field>
+		<field name="view_id" ref="view_account_summary_tree3"/>
+		<field name="domain">[('account_code','in',('60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79'))]</field>
+	</record>
+    
+	<record id="view_account_summary_tree4" model="ir.ui.view">
+        <field name="name">view.account.summary.tree4</field>
+        <field name="model">account.summary</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Activo circulante">
+                <field name="balance" string="Activos a corto"/>
+                <field name="year"  invisible="1"/>
+                <field name="fiscalyear_id" invisible="1"/>
+                <field name="account_code" invisible="1"/>
+           </tree>
+        </field>
+    </record>
+	<record id="action_view_account_summary_tree4" model="ir.actions.act_window">
+		<field name="name">Activo circulante</field>
+		<field name="context">{'group_by':['fiscalyear_id'], 'group_by_no_leaf':1}</field>
+		<field name="res_model">account.summary</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree</field>
+		<field name="view_id" ref="view_account_summary_tree4"/>
+		<field name="domain">[('year','=',time.strftime('%Y')),('account_code','in',('30','31','32','33','34','35','36','37','38','39','43','44','53','54','55','57'))]</field>
+	</record>
+	
+	<record id="view_account_summary_tree5" model="ir.ui.view">
+        <field name="name">view.account.summary.tree5</field>
+        <field name="model">account.summary</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Pasivo circulante">
+                <field name="balance_inv" string="Pasivos a corto"/>
+                <field name="year"  invisible="1"/>
+                <field name="fiscalyear_id" invisible="1"/>
+                <field name="account_code" invisible="1"/>
+           </tree>
+        </field>
+    </record>
+	<record id="action_view_account_summary_tree5" model="ir.actions.act_window">
+		<field name="name">Pasivo circulante</field>
+		<field name="context">{'group_by':['fiscalyear_id'], 'group_by_no_leaf':1}</field>
+		<field name="res_model">account.summary</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree</field>
+		<field name="view_id" ref="view_account_summary_tree5"/>
+		<field name="domain">[('year','=',time.strftime('%Y')),('account_code','in',('40','41','42','45','46','47','48','49','50','51','52','56','58','59'))]</field>
+	</record>
+	
+	<record id="view_account_summary_tree6" model="ir.ui.view">
+        <field name="name">view.account.summary.tree6</field>
+        <field name="model">account.summary</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Fondo de maniobra">
+                <field name="balance" string="Fondo"/>
+                <field name="year"  invisible="1"/>
+                <field name="fiscalyear_id" invisible="1"/>
+                <field name="account_code" invisible="1"/>
+           </tree>
+        </field>
+    </record>
+	<record id="action_view_account_summary_tree6" model="ir.actions.act_window">
+		<field name="name">Fondo de maniobra</field>
+		<field name="context">{'group_by':['fiscalyear_id'], 'group_by_no_leaf':1}</field>
+		<field name="res_model">account.summary</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree</field>
+		<field name="view_id" ref="view_account_summary_tree6"/>
+		<field name="domain">[('year','=',time.strftime('%Y')),('account_code','in',('30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59'))]</field>
+	</record>
+	
+	<record id="board_account_summary" model="ir.ui.view">
+        <field name="name">board.account.summary</field>
+        <field name="model">board.board</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string = "Resumen anual">
+                <board style="1-1-1">
+                    <column>
+                        <action name="%(action_view_account_summary_tree12)d" string="Ingresos anuales"/>
+						<action name="%(action_view_account_summary_tree11)d" string="Desglose de ingresos"/>
+						<action name="%(action_view_account_summary_tree4)d" string="Activo circulante"/>
+                    </column>
+                    <column>
+                        <action name="%(action_view_account_summary_tree22)d" string="Gastos anuales"/>
+	                    <action name="%(action_view_account_summary_tree21)d" string="Desglose de gastos"/>
+						<action name="%(action_view_account_summary_tree5)d" string="Pasivo circulante"/>
+                    </column>
+                    <column>
+                        <action name="%(action_view_account_summary_tree32)d" string="Resultados anuales"/>
+	                    <action name="%(action_view_account_summary_tree31)d" string="Desglose de resultados"/>
+						<action name="%(action_view_account_summary_tree6)d" string="Fondo de maniobra"/>
+                    </column>
+                </board>
+            </form>
+        </field>
+    </record>
+	
+    <record id="action_board_account_summary" model="ir.actions.act_window">
+            <field name="name">Resumen de cuentas</field>
+            <field name="res_model">board.board</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="usage">menu</field>
+            <field name="view_id" ref="board_account_summary"/>
+        </record>
+	
+	<menuitem id="menu_account_summary1" name="Resumen de cuentas" sequence="4" parent="account.menu_finance_reporting"/>
+    <menuitem action="action_board_account_summary" icon="terp-graph" id="menu_account_summary2" parent="menu_account_summary1" sequence="1"/>
+	
+	</data>
+</openerp>
