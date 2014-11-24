@@ -77,6 +77,7 @@ class AccountInvoice(models.Model):
             payment_term=False, partner_bank_id=False,
             company_id=False)
         if type == 'in_invoice' and partner_id:
+            partner = self.env['res.partner'].browse(partner_id)
             if partner.certificate_required:
                 if not partner.certificate_expiration:
                     res['warning'] = REQUIRED_WARNING
