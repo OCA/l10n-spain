@@ -29,10 +29,17 @@ EXPIRED_WARNING = {
                     has expired')
     }
 
+REQUIRED_WARNING = {
+    'title': _('Warning!'),
+    'message': _('The subcontractor certificate is required and \
+                    expiration date is not set')
+    }
+
 
 class ResPartner(models.Model):
     _inherit = ['res.partner']
 
+    certificate_required = fields.Boolean(string='Certificate Required')
     certificate_expiration = fields.Date(string='Certificate Expiration')
     certificate_expired = fields.Boolean(string='Certificate Expirated',
                                          compute='_certificate_expired')
@@ -50,8 +57,11 @@ class PurchaseOrder(models.Model):
         res = super(PurchaseOrder, self).onchange_partner_id(partner_id)
         if partner_id:
             partner = self.env['res.partner'].browse(partner_id)[0]
-            if partner.certificate_expired:
-                res['warning'] = EXPIRED_WARNING
+            if partner.certificate_required:
+                if not partner.certificate_expiration:
+                    res['warning'] = REQUIRED_WARNING
+                elif partner.certificate_expired:
+                    res['warning'] = EXPIRED_WARNING
         return res
 
 
@@ -67,7 +77,9 @@ class AccountInvoice(models.Model):
             payment_term=False, partner_bank_id=False,
             company_id=False)
         if type == 'in_invoice' and partner_id:
-            partner = self.env['res.partner'].browse(partner_id)
-            if partner.certificate_expired:
-                res['warning'] = EXPIRED_WARNING
+            if partner.certificate_required:
+                if not partner.certificate_expiration:
+                    res['warning'] = REQUIRED_WARNING
+                elif partner.certificate_expired:
+                    res['warning'] = EXPIRED_WARNING
         return res

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-22 21:07+0000\n"
-"PO-Revision-Date: 2014-11-22 22:08+0100\n"
+"POT-Creation-Date: 2014-11-24 07:37+0000\n"
+"PO-Revision-Date: 2014-11-24 08:38+0100\n"
 "Last-Translator: Angel Moya - Domatix <angel.moya@domatix.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,11 @@ msgstr ""
 #: field:res.partner,certificate_expiration:0
 msgid "Certificate Expiration"
 msgstr "Caducidad de certificado"
+
+#. module: l10n_es_subcontractor_certificate
+#: field:res.partner,certificate_required:0
+msgid "Certificate Required"
+msgstr "Requiere certificado de subcontratista"
 
 #. module: l10n_es_subcontractor_certificate
 #: model:ir.model,name:l10n_es_subcontractor_certificate.model_account_invoice
@@ -45,7 +50,17 @@ msgid ""
 msgstr "El certificado de subcontratista ha caducado."
 
 #. module: l10n_es_subcontractor_certificate
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:34
+#, python-format
+msgid ""
+"The subcontractor certificate is required and                     expiration "
+"date is not set"
+msgstr ""
+"No se ha indicado la fecha de caducidad del certificado de subcontratista."
+
+#. module: l10n_es_subcontractor_certificate
 #: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:27
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:33
 #, python-format
 msgid "Warning!"
 msgstr "¡Aviso!"
