@@ -25,14 +25,14 @@ from openerp import models, fields, api, _
 
 EXPIRED_WARNING = {
     'title': _('Warning!'),
-    'message': _('The subcontractor certificate for this supplier \
-                    has expired')
+    'message': _('The subcontractor certificate for this supplier '
+                 'has expired')
     }
 
 REQUIRED_WARNING = {
     'title': _('Warning!'),
-    'message': _('The subcontractor certificate is required and \
-                    expiration date is not set')
+    'message': _('The subcontractor certificate is required and '
+                 'expiration date is not set')
     }
 
 
