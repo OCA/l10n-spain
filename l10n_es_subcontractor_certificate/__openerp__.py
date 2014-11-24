@@ -23,7 +23,7 @@
 
 {
     "name": "Certificado de subcontratista",
-    "version": "0.1",
+    "version": "1.0",
     "author": "Domatix",
     "website": "www.domatix.com",
     "category": "Accounting",
