@@ -280,7 +280,7 @@ class AccountBalanceReportingLine(orm.Model):
         # We iterate over the accounts listed in "code", so code can be
         # a string like "430+431+432-438"; accounts split by "+" will be added,
         # accounts split by "-" will be substracted.
-        for acc_code in re.findall('(-?\w*\(?[0-9a-zA-Z_]*\)?)', code):
+        for acc_code in re.findall(r'(-?\w*\(?[0-9a-zA-Z_]*\)?)', code):
             # Check if the code is valid (findall might return empty strings)
             acc_code = acc_code.strip()
             if acc_code:

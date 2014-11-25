@@ -33,14 +33,30 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def action_number(self):
+        re = super(AccountInvoice, self).action_number()
         for inv in self:
-            if not inv.internal_number:
+            if not inv.invoice_number:
                 sequence = inv.journal_id.invoice_sequence_id
                 if not sequence:
                     raise exceptions.Warning(
-                        _('Error!:: Journal %s has no sequence defined for'
-                          'invoices.') % inv.journal_id.name)
-                inv.number = sequence.with_context({
+                        (_('Journal %s has no sequence defined for invoices.')
+                         % inv.journal_id.name))
+                number = sequence.with_context({
                     'fiscalyear_id': inv.period_id.fiscalyear_id.id
                 }).next_by_id(sequence.id)
-        return super(AccountInvoice, self).action_number()
+                inv.write({
+                    'number': number,
+                    'internal_number': inv.move_id.name,
+                    'invoice_number': number
+                })
+            else:
+                inv.write({
+                    'number': inv.invoice_number,
+                    'internal_number': inv.move_id.name,
+                })
+        return re
+
+    @api.multi
+    def unlink(self):
+        self.write({'internal_number': False})
+        return super(AccountInvoice, self).unlink()
