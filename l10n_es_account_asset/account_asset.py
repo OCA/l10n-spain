@@ -210,7 +210,7 @@ class account_asset_asset(orm.Model):
                 if asset.method_period == 1:
                         total_days = calendar.monthrange(
                             depreciation_date.year, depreciation_date.month)[1]
-                        days = total_days - float(depreciation_date.day)
+                        days = total_days - float(depreciation_date.day) + 1
                 else:
                     days = (total_days -
                             float(depreciation_date.strftime('%j'))) + 1
