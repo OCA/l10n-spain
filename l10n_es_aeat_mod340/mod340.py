@@ -63,9 +63,9 @@ class L10nEsAeatMod340Report(orm.Model):
                 result[model.id]['total'] += issue.base_tax + issue.amount_tax
             for issue in model.received:
                 result[model.id]['number_records'] += len(issue.tax_line_ids)
-                result[model.id]['total_taxable_rec'] +=issue.base_tax
-                result[model.id]['total_sharetax_rec'] +=issue.amount_tax
-                result[model.id]['total_rec'] +=issue.base_tax + issue.amount_tax
+                result[model.id]['total_taxable_rec'] += issue.base_tax
+                result[model.id]['total_sharetax_rec'] += issue.amount_tax
+                result[model.id]['total_rec'] += issue.base_tax + issue.amount_tax
         return result
 
     _inherit = "l10n.es.aeat.report"
