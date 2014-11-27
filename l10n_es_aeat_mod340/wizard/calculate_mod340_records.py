@@ -131,10 +131,12 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                                 'base_amount': tax_line.base_amount,
                                 'invoice_record_id': invoice_created,
                             }
-                            if invoice.type=="out_invoice" or invoice.type=="out_refund":
+                            if invoice.type in ("out_invoice",
+                                                "out_refund"):
                                 issued_obj = self.pool.get('l10n.es.aeat.mod340.tax_line_issued')
                                 issued_obj.create(cr, uid, values)
-                            if invoice.type=="in_invoice" or invoice.type=="in_refund":
+                            if invoice.type in ("in_invoice",
+                                                "in_refund"):
                                 received_obj=self.pool.get('l10n.es.aeat.mod340.tax_line_received')
                                 received_obj.create(cr, uid, values)
                             tot_tax_invoice += tax_line.tax_amount
