@@ -140,7 +140,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                                 tot_tax_invoice += tax_line.tax_amount
                                 check_tax += tax_line.tax_amount
                                 if tax_percentage >= 0:
-                                   check_base += tax_line.base_amount   
+                                    check_base += tax_line.base_amount
                 if invoice.type in ("out_invoice", "out_refund"):
                     invoices340.write(cr, uid, invoice_created,
                                       {'amount_tax': tot_tax_invoice})

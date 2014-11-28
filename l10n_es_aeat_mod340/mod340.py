@@ -51,11 +51,11 @@ class L10nEsAeatMod340Report(orm.Model):
                             context=None):
         result = {}
         for id in ids:
-            result[id] = {}.fromkeys(
-                   ['number_records', 'total_taxable', 'total_sharetax',
-                    'total', 'total_taxable_rec', 'total_sharetax_rec',
-                    'total_rec'], 0.0
-                 )
+            result[id] = {}.fromkeys(['number_records', 'total_taxable',
+                                      'total_sharetax', 'total',
+                                      'total_taxable_rec',
+                                      'total_sharetax_rec', 'total_rec'],
+                                     0.0)
         for model in self.browse(cr, uid, ids, context=context):
             for issue in model.issued:
                 result[model.id]['number_records'] += len(issue.tax_line_ids)
@@ -119,18 +119,18 @@ class L10nEsAeatMod340Report(orm.Model):
         'total_taxable_rec':  fields.function(
             _get_number_records, method=True,
             type='float', string='Total Taxable', multi='recalc',
-            help="""The declaration will include partners with the total 
-                of operations over this limit"""),
+            help="The declaration will include partners with the total "
+            "of operations over this limit"),
         'total_sharetax_rec': fields.function(
             _get_number_records, method=True,
             type='float', string='Total Share Tax', multi='recalc',
-            help="""The declaration will include partners with the total 
-                of operations over this limit"""),
+            help="The declaration will include partners with the total "
+            "of operations over this limit"),
         'total_rec': fields.function(
             _get_number_records, method=True,
             type='float', string="Total", multi='recalc',
-            help="""The declaration will include partners with the total 
-                of operations over this limit"""),
+            help="The declaration will include partners with the total "
+            "of operations over this limit"),
         'calculation_date': fields.date('Calculation date', readonly=True),
     }
 
