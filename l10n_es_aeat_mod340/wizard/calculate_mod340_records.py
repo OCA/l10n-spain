@@ -65,10 +65,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                 _('Error'),
                 _("The periods selected don't belong to the fiscal year %s")
                 % (mod340.fiscalyear_id.name))
-        tot_base = 0
-        tot_amount = 0
-        tot_tot = 0
-        tot_rec = 0
+
         # Limpieza de las facturas calculadas anteriormente
         del_ids = invoices340.search(cr, uid, [('mod340_id', '=', mod340.id)])
         if del_ids:
@@ -95,10 +92,8 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                         raise orm.except_orm(
                             _('La siguiente empresa no tiene asignado nif:'),
                             invoice.partner_id.name)
-                nif = invoice.partner_id.vat and \
-                    re.match(r"([A-Z]{0,2})(.*)",
-                             invoice.partner_id.vat).groups()[1]
-                country_code = invoice.partner_id.country_id.code
+                country_code, nif = (re.match(r"([A-Z]{0,2})(.*)",
+                                              invoice.partner_id.vat).groups())
                 values = {
                     'mod340_id': mod340.id,
                     'partner_id': invoice.partner_id.id,
@@ -124,28 +119,27 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                 check_base = 0
                 # Add the invoices detail to the partner record
                 for tax_line in invoice.tax_line:
-                    if tax_line.base_code_id and tax_line.base:
-                        if tax_line.base_code_id.mod340:
-                            tax_percentage = tax_line.amount / tax_line.base
-                            values = {
-                                'name': tax_line.name,
-                                'tax_percentage': tax_percentage,
-                                'tax_amount': tax_line.tax_amount,
-                                'base_amount': tax_line.base_amount,
-                                'invoice_record_id': invoice_created,
-                            }
-                            if invoice.type in ['out_invoice', 'out_refund']:
-                                issued_obj.create(cr, uid, values)
-                            if invoice.type in ['in_invoice', 'in_refund']:
-                                received_obj.create(cr, uid, values)
-                            tot_tax_invoice += tax_line.tax_amount
-                            tot_rec += 1
-                            check_tax += tax_line.tax_amount
-                            if tax_percentage >= 0:
-                                check_base += tax_line.base_amount
-                tot_base += invoice.amount_untaxed
-                tot_amount += tot_tax_invoice
-                tot_tot += invoice.amount_untaxed + tot_tax_invoice
+                    if tax_line.base_code_id:
+                        if tax_line.base_code_id and tax_line.base:
+                            if tax_line.base_code_id.mod340:
+                                tax_percentage = tax_line.amount/tax_line.base
+                                values = {
+                                    'name': tax_line.name,
+                                    'tax_percentage': tax_percentage,
+                                    'tax_amount': tax_line.tax_amount,
+                                    'base_amount': tax_line.base_amount,
+                                    'invoice_record_id': invoice_created,
+                                }
+                                if invoice.type in ("out_invoice",
+                                                    "out_refund"):
+                                    issued_obj.create(cr, uid, values)
+                                if invoice.type in ("in_invoice",
+                                                    "in_refund"):
+                                    received_obj.create(cr, uid, values)
+                                tot_tax_invoice += tax_line.tax_amount
+                                check_tax += tax_line.tax_amount
+                                if tax_percentage >= 0:
+                                   check_base += tax_line.base_amount
                 if invoice.type in ['out_invoice', 'out_refund']:
                     invoices340.write(cr, uid, invoice_created,
                                       {'amount_tax': tot_tax_invoice})
@@ -162,13 +156,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                           'correspond to AmountUntaxed on Invoice %.2f') %
                         (invoice.number, check_base,
                          invoice.amount_untaxed * sign))
-        mod340.write({
-            'total_taxable': tot_base,
-            'total_sharetax': tot_amount,
-            'number_records': tot_rec,
-            'total': tot_tot,
-            'declaration_number': code
-        })
+
         if recalculate:
             mod340.write({
                 'state': 'calculated',
