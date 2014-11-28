@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2014 Factor Libre S.L (http://www.factorlibre.com) All Rights Reserved.
+#    Copyright (c) 2014 Factor Libre S.L (http://www.factorlibre.com)
 #                       Ismael Calvo <ismael.calvo@factorlibre.com> 
 #    $Id$
 #
