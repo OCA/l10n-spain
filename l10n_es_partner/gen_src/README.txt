@@ -3,7 +3,6 @@
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2014 Factor Libre S.L (http://www.factorlibre.com)
 #                       Ismael Calvo <ismael.calvo@factorlibre.com> 
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -20,13 +19,18 @@
 #
 ##############################################################################
 
-Utilidad para generar el archivo de bancos apartir de la información del Banco de España
-========================================================================================
+Utilidad para generar el archivo de bancos apartir de la información del Banco
+==============================================================================
+de España
+=========
+
+NOTA: Necesita la librería python 'xlrd'
 
 1. Descargar el excel de las 'Entidades con establecimiento' de la web del
 Banco de España:
-http://www.bde.es/bde/es/secciones/servicios/Particulares_y_e/Registros_de_Ent/Datos_actuales/Registros_ofici_c6e37f3710fd821.html
+http://goo.gl/EPfcR5
 2. Mover el archivo descargado 'REGBANESP_CONESTAB_A.XLS' a la carpeta gen_src
 3. Ejecutar:
     python gen_data_banks.py
-4. Se generará un archivo data_banks.xml en la carpeta wizard que sustituirá el anterior
+4. Se generará un archivo data_banks.xml en la carpeta wizard que sustituirá el
+anterior
