@@ -124,7 +124,6 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                         if tax_line.base_code_id and tax_line.base:
                             if tax_line.base_code_id.mod340:
                                 tax_percentage = tax_line.amount/tax_line.base
-        
                                 values = {
                                     'name': tax_line.name,
                                     'tax_percentage': tax_percentage,
@@ -134,11 +133,9 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                                 }
                                 if invoice.type in ("out_invoice",
                                                     "out_refund"):
-                                    issued_obj = self.pool.get('l10n.es.aeat.mod340.tax_line_issued')
                                     issued_obj.create(cr, uid, values)
                                 if invoice.type in ("in_invoice",
                                                     "in_refund"):
-                                    received_obj=self.pool.get('l10n.es.aeat.mod340.tax_line_received')
                                     received_obj.create(cr, uid, values)
                                 tot_tax_invoice += tax_line.tax_amount
                                 check_tax += tax_line.tax_amount
