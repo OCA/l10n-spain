@@ -50,11 +50,11 @@ class L10nEsAeatMod340Report(orm.Model):
     def _get_number_records(self, cr, uid, ids, field_name, args, context):
         result = {}
         for id in ids:
-            result[id] = {}.fromkeys(
-                   ['number_records', 'total_taxable', 'total_sharetax',
-                    'total', 'total_taxable_rec', 'total_sharetax_rec',
-                    'total_rec'], 0.0
-                 )
+            result[id] = {}.fromkeys(['number_records', 'total_taxable',
+                                      'total_sharetax', 'total',
+                                      'total_taxable_rec',
+                                      'total_sharetax_rec', 'total_rec'],
+                                     0.0)
         for model in self.browse(cr, uid, ids, context):
             for issue in model.issued:
                 result[model.id]['number_records'] += len(issue.tax_line_ids)
@@ -98,38 +98,38 @@ class L10nEsAeatMod340Report(orm.Model):
         'total_taxable': fields.function(
             _get_number_records, method=True,
             type='float', string='Total Taxable', multi='recalc',
-            help="""The declaration will include partners with the total
-                of operations over this limit"""),
+            help="The declaration will include partners with the total "
+            "of operations over this limit"),
         'total_sharetax': fields.function(
             _get_number_records, method=True,
             type='float', string='Total Share Tax', multi='recalc',
-            help="""The declaration will include partners with the total
-                of operations over this limit"""),
+            help="The declaration will include partners with the total "
+            "of operations over this limit"),
         'number_records': fields.function(
             _get_number_records, method=True,
             type='integer', string='Records', multi='recalc',
-            help="""The declaration will include partners with the total
-                of operations over this limit"""),
+            help="The declaration will include partners with the total "
+            "of operations over this limit"),
         'total': fields.function(
             _get_number_records, method=True,
             type='float', string="Total", multi='recalc',
-            help="""The declaration will include partners with the total
-                of operations over this limit"""),
+            help="The declaration will include partners with the total "
+            "of operations over this limit"),
         'total_taxable_rec': fields.function(
             _get_number_records, method=True,
             type='float', string='Total Taxable', multi='recalc',
-            help="""The declaration will include partners with the total 
-                of operations over this limit"""),
+            help="The declaration will include partners with the total "
+            "of operations over this limit"),
         'total_sharetax_rec': fields.function(
             _get_number_records, method=True,
             type='float', string='Total Share Tax', multi='recalc',
-            help="""The declaration will include partners with the total 
-                of operations over this limit"""),
+            help="The declaration will include partners with the total "
+            "of operations over this limit"),
         'total_rec': fields.function(
             _get_number_records, method=True,
             type='float', string="Total", multi='recalc',
-            help="""The declaration will include partners with the total 
-                of operations over this limit"""),
+            help="The declaration will include partners with the total "
+            "of operations over this limit"),
         'calculation_date': fields.date('Calculation date', readonly=True),
     }
 
