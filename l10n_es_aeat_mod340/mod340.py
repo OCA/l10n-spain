@@ -40,10 +40,10 @@ class L10nEsAeatMod340Report(orm.Model):
         calculate_obj._calculate_records(cr, uid, ids, context)
         return True
 
-    def _name_get(self, cr, uid, ids, field_name, arg, context=None):
+    def _name_get(self, cr, uid, ids, field_name, arg, context={}):
         """Returns the report name"""
         result = {}
-        for report in self.browse(cr, uid, ids, context=context):
+        for report in self.browse(cr, uid, ids, context):
             result[report.id] = report.number
         return result
 
@@ -51,8 +51,7 @@ class L10nEsAeatMod340Report(orm.Model):
         result = {}
         for id in ids:
             result[id] = {}.fromkeys(
-               ['number_records','total_taxable','total_sharetax','total',
-                'total_taxable_rec','total_sharetax_rec','total_rec'],
+                ['number_records', 'total_taxable', 'total_sharetax', 'total'],
                 0.0)
         for model in self.browse(cr, uid, ids, context):
             for issue in model.issued:
@@ -62,9 +61,9 @@ class L10nEsAeatMod340Report(orm.Model):
                 result[model.id]['total'] += issue.base_tax + issue.amount_tax
             for issue in model.received:
                 result[model.id]['number_records'] += len(issue.tax_line_ids)
-                result[model.id]['total_taxable_rec'] += issue.base_tax
-                result[model.id]['total_sharetax_rec'] += issue.amount_tax
-                result[model.id]['total_rec'] += issue.base_tax + issue.amount_tax
+                result[model.id]['total_taxable'] += issue.base_tax
+                result[model.id]['total_sharetax'] += issue.amount_tax
+                result[model.id]['total'] += issue.base_tax + issue.amount_tax
         return result
 
     _inherit = "l10n.es.aeat.report"
@@ -112,18 +111,6 @@ class L10nEsAeatMod340Report(orm.Model):
             _get_number_records, method=True,
             type='float', string="Total", multi='recalc',
             help="""The declaration will include partners with the total
-                of operations over this limit"""),
-        'total_taxable_rec':  fields.function(_get_number_records, method=True,
-            type='float', string='Total Taxable', multi='recalc',
-            help="""The declaration will include partners with the total 
-                of operations over this limit"""),
-        'total_sharetax_rec': fields.function(_get_number_records, method=True,
-            type='float', string='Total Share Tax', multi='recalc',
-            help="""The declaration will include partners with the total 
-                of operations over this limit"""),
-        'total_rec': fields.function(_get_number_records, method=True,
-            type='float', string="Total", multi='recalc',
-            help="""The declaration will include partners with the total 
                 of operations over this limit"""),
         'calculation_date': fields.date('Calculation date', readonly=True),
     }
@@ -180,9 +167,8 @@ class L10nEsAeatMod340Received(orm.Model):
     _description = 'Invoices Received'
     _inherit = 'l10n.es.aeat.mod340.issued'
     _columns = {
-        'tax_line_ids': fields.one2many(
-            'l10n.es.aeat.mod340.tax_line_received', 'invoice_record_id',
-            'Tax lines'),
+        'tax_line_ids': fields.one2many('l10n.es.aeat.mod340.tax_line_received',
+                                        'invoice_record_id', 'Tax lines'),
     }
 
 
