@@ -80,20 +80,28 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
         ]
         invoice_obj = self.pool['account.invoice']
         invoice_ids = invoice_obj.search(cr, uid, domain, context=context)
+        warning_mod = False
         for invoice in invoice_obj.browse(cr, uid, invoice_ids, context):
             include = False
+            errors = ""
+            warning = False
             for tax_line in invoice.tax_line:
                 if tax_line.base_code_id and tax_line.base:
                     if tax_line.base_code_id.mod340 is True:
                         include = True
             if include is True:
-                if invoice.partner_id.vat_type == 1:
+                if invoice.partner_id.vat_type:
                     if not invoice.partner_id.vat:
-                        raise orm.except_orm(
-                            _('La siguiente empresa no tiene asignado nif:'),
-                            invoice.partner_id.name)
-                country_code, nif = (re.match(r"([A-Z]{0,2})(.*)",
-                                              invoice.partner_id.vat).groups())
+                        warning = True
+                        warning_mod = True
+                        errors += _('La siguiente empresa no tiene asignado '
+                                    'nif: %s \n') % (invoice.partner_id.name)
+                        country_code = ''
+                        nif = ''
+                    else:
+                        country_code, nif = (re.match(r"([A-Z]{0,2})(.*)",
+                                                      invoice.partner_id.vat
+                                                      ).groups())
                 values = {
                     'mod340_id': mod340.id,
                     'partner_id': invoice.partner_id.id,
@@ -119,48 +127,54 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                 check_base = 0
                 # Add the invoices detail to the partner record
                 for tax_line in invoice.tax_line:
-                    if tax_line.base_code_id:
-                        if tax_line.base_code_id and tax_line.base:
-                            if tax_line.base_code_id.mod340:
-                                tax_percentage = tax_line.amount/tax_line.base
-                                values = {
-                                    'name': tax_line.name,
-                                    'tax_percentage': tax_percentage,
-                                    'tax_amount': tax_line.tax_amount,
-                                    'base_amount': tax_line.base_amount,
-                                    'invoice_record_id': invoice_created,
-                                }
-                                if invoice.type in ("out_invoice",
-                                                    "out_refund"):
-                                    issued_obj.create(cr, uid, values)
-                                if invoice.type in ("in_invoice",
-                                                    "in_refund"):
-                                    received_obj.create(cr, uid, values)
-                                tot_tax_invoice += tax_line.tax_amount
-                                check_tax += tax_line.tax_amount
-                                if tax_percentage >= 0:
-                                    check_base += tax_line.base_amount
-                if invoice.type in ['out_invoice', 'out_refund']:
-                    invoices340.write(cr, uid, invoice_created,
-                                      {'amount_tax': tot_tax_invoice})
-                if invoice.type in ['in_invoice', 'in_refund']:
-                    invoices340_rec.write(cr, uid, invoice_created,
-                                          {'amount_tax': tot_tax_invoice})
+                    if tax_line.base_code_id and tax_line.base:
+                        if tax_line.base_code_id.mod340:
+                            tax_percentage = tax_line.amount/tax_line.base
+                            values = {
+                                'name': tax_line.name,
+                                'tax_percentage': tax_percentage,
+                                'tax_amount': tax_line.tax_amount,
+                                'base_amount': tax_line.base_amount,
+                                'invoice_record_id': invoice_created,
+                            }
+                            if invoice.type in ("out_invoice",
+                                                "out_refund"):
+                                issued_obj.create(cr, uid, values)
+                            if invoice.type in ("in_invoice",
+                                                "in_refund"):
+                                received_obj.create(cr, uid, values)
+                            tot_tax_invoice += tax_line.tax_amount
+                            check_tax += tax_line.tax_amount
+                            if tax_percentage >= 0:
+                                check_base += tax_line.base_amount
+
                 sign = 1
                 if invoice.type in ('out_refund', 'in_refund'):
                     sign = -1
                 if str(invoice.amount_untaxed * sign) != str(check_base):
-                    raise orm.except_orm(
-                        "REVIEW INVOICE",
-                        _('Invoice  %s, Amount untaxed Lines %.2f do not '
-                          'correspond to AmountUntaxed on Invoice %.2f') %
-                        (invoice.number, check_base,
-                         invoice.amount_untaxed * sign))
+                    warning = True
+                    warning_mod = True
+                    errors += _('Invoice  %s, Amount untaxed Lines %.2f do '
+                                'not correspond to AmountUntaxed on Invoice'
+                                ' %.2f \n') % (invoice.number, check_base,
+                                               invoice.amount_untaxed * sign)
+
+                if invoice.type in ['out_invoice', 'out_refund']:
+                    invoices340.write(cr, uid, invoice_created,
+                                      {'amount_tax': tot_tax_invoice,
+                                       'warning': warning,
+                                       'warn_message': errors})
+                if invoice.type in ['in_invoice', 'in_refund']:
+                    invoices340_rec.write(cr, uid, invoice_created,
+                                          {'amount_tax': tot_tax_invoice,
+                                           'warning': warning,
+                                           'warn_message': errors})
 
         if recalculate:
             mod340.write({
                 'state': 'calculated',
                 'calculation_date':
-                time.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
+                time.strftime(DEFAULT_SERVER_DATETIME_FORMAT),
+                'warning': warning_mod
             })
         return True
