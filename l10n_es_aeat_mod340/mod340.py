@@ -50,10 +50,12 @@ class L10nEsAeatMod340Report(orm.Model):
     def _get_number_records(self, cr, uid, ids, field_name, args,
                             context=None):
         result = {}
-        for rec_id in ids:
-            result[rec_id] = {}.fromkeys(
-                ['number_records', 'total_taxable', 'total_sharetax', 'total'],
-                0.0)
+        for id in ids:
+            result[id] = {}.fromkeys(['number_records', 'total_taxable',
+                                      'total_sharetax', 'total',
+                                      'total_taxable_rec',
+                                      'total_sharetax_rec', 'total_rec'],
+                                     0.0)
         for model in self.browse(cr, uid, ids, context=context):
             for issue in model.issued:
                 result[model.id]['number_records'] += len(issue.tax_line_ids)
@@ -62,9 +64,10 @@ class L10nEsAeatMod340Report(orm.Model):
                 result[model.id]['total'] += issue.base_tax + issue.amount_tax
             for issue in model.received:
                 result[model.id]['number_records'] += len(issue.tax_line_ids)
-                result[model.id]['total_taxable'] += issue.base_tax
-                result[model.id]['total_sharetax'] += issue.amount_tax
-                result[model.id]['total'] += issue.base_tax + issue.amount_tax
+                result[model.id]['total_taxable_rec'] += issue.base_tax
+                result[model.id]['total_sharetax_rec'] += issue.amount_tax
+                result[model.id]['total_rec'] += issue.base_tax
+                result[model.id]['total_rec'] += issue.amount_tax
         return result
 
     _inherit = "l10n.es.aeat.report"
@@ -113,6 +116,21 @@ class L10nEsAeatMod340Report(orm.Model):
             multi='recalc',
             help="The declaration will include partners with the total "
             "of operations over this limit"),
+        'total_taxable_rec':  fields.function(
+            _get_number_records, method=True,
+            type='float', string='Total Taxable', multi='recalc',
+            help="The declaration will include partners with the total "
+            "of operations over this limit"),
+        'total_sharetax_rec': fields.function(
+            _get_number_records, method=True,
+            type='float', string='Total Share Tax', multi='recalc',
+            help="The declaration will include partners with the total "
+            "of operations over this limit"),
+        'total_rec': fields.function(
+            _get_number_records, method=True,
+            type='float', string="Total", multi='recalc',
+            help="The declaration will include partners with the total "
+            "of operations over this limit"),
         'calculation_date': fields.date('Calculation date', readonly=True),
     }
 
@@ -121,12 +139,12 @@ class L10nEsAeatMod340Report(orm.Model):
         'declaration_number': '340',
     }
 
-    def set_done(self, cr, uid, rec_id, *args):
+    def set_done(self, cr, uid, id, *args):
         self.write(cr, uid, id, {'calculation_date': time.strftime('%Y-%m-%d'),
                                  'state': 'done'})
         wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(uid, 'l10n.es.aeat.mod340.report', rec_id,
-                                'done', cr)
+        wf_service.trg_validate(uid, 'l10n.es.aeat.mod340.report', id, 'done',
+                                cr)
         return True
 
     def action_confirm(self, cr, uid, ids, context=None):

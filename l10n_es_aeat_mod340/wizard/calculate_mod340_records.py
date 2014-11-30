@@ -64,10 +64,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                 _('Error'),
                 _("The periods selected don't belong to the fiscal year "
                   "%s") % (mod340.fiscalyear_id.name))
-        tot_base = 0
-        tot_amount = 0
-        tot_tot = 0
-        tot_rec = 0
+
         # Limpieza de las facturas calculadas anteriormente
         del_ids = invoices340.search(cr, uid,
                                      [('mod340_id', '=', mod340.id)])
@@ -136,16 +133,13 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                             if invoice.type in ("out_invoice",
                                                 "out_refund"):
                                 issued_obj.create(cr, uid, values)
-                            if invoice.type in ("in_invoice", "in_refund"):
+                            if invoice.type in ("in_invoice",
+                                                "in_refund"):
                                 received_obj.create(cr, uid, values)
                             tot_tax_invoice += tax_line.tax_amount
-                            tot_rec += 1
                             check_tax += tax_line.tax_amount
                             if tax_percentage >= 0:
                                 check_base += tax_line.base_amount
-                tot_base += invoice.amount_untaxed
-                tot_amount += tot_tax_invoice
-                tot_tot += invoice.amount_untaxed + tot_tax_invoice
                 if invoice.type in ("out_invoice", "out_refund"):
                     invoices340.write(cr, uid, invoice_created,
                                       {'amount_tax': tot_tax_invoice})
@@ -162,11 +156,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                           'correspond to AmountUntaxed on Invoice %.2f')
                         % (invoice.number, check_base,
                            invoice.amount_untaxed * sign))
-        mod340.write({'total_taxable': tot_base,
-                      'total_sharetax': tot_amount,
-                      'number_records': tot_rec,
-                      'total': tot_tot,
-                      'declaration_number': code})
+
         if recalculate:
             mod340.write({
                 'state': 'calculated',
