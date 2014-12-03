@@ -146,28 +146,27 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                     
                     # Add the invoices detail to the partner record
                     for tax_line in invoice.tax_line:
-                        if tax_line.base_code_id:
-                            if tax_line.base_code_id and tax_line.base:
-                                if tax_line.base_code_id.mod340:
-                                    tax_percentage = tax_line.amount/tax_line.base
-            
-                                    values = {
-                                        'name': tax_line.name,
-                                        'tax_percentage': tax_percentage,
-                                        'tax_amount': tax_line.tax_amount,
-                                        'base_amount': tax_line.base_amount,
-                                        'invoice_record_id': invoice_created,
-                                    }
-                                    if invoice.type=="out_invoice" or invoice.type=="out_refund":
-                                        issued_obj = self.pool.get('l10n.es.aeat.mod340.tax_line_issued')
-                                        issued_obj.create(cr, uid, values)
-                                    if invoice.type=="in_invoice" or invoice.type=="in_refund":
-                                        received_obj=self.pool.get('l10n.es.aeat.mod340.tax_line_received')
-                                        received_obj.create(cr, uid, values)
-                                    tot_tax_invoice += tax_line.tax_amount
-                                    check_tax += tax_line.tax_amount
-                                    if tax_percentage >= 0:
-                                       check_base += tax_line.base_amount                                                         
+                        if tax_line.base_code_id and tax_line.base:
+                            if tax_line.base_code_id.mod340:
+                                tax_percentage = tax_line.amount/tax_line.base
+        
+                                values = {
+                                    'name': tax_line.name,
+                                    'tax_percentage': tax_percentage,
+                                    'tax_amount': tax_line.tax_amount,
+                                    'base_amount': tax_line.base_amount,
+                                    'invoice_record_id': invoice_created,
+                                }
+                                if invoice.type=="out_invoice" or invoice.type=="out_refund":
+                                    issued_obj = self.pool.get('l10n.es.aeat.mod340.tax_line_issued')
+                                    issued_obj.create(cr, uid, values)
+                                if invoice.type=="in_invoice" or invoice.type=="in_refund":
+                                    received_obj=self.pool.get('l10n.es.aeat.mod340.tax_line_received')
+                                    received_obj.create(cr, uid, values)
+                                tot_tax_invoice += tax_line.tax_amount
+                                check_tax += tax_line.tax_amount
+                                if tax_percentage >= 0:
+                                   check_base += tax_line.base_amount                                                         
                 
                     if invoice.type=="out_invoice" or invoice.type=="out_refund":
                         invoices340.write(cr,uid,invoice_created,
