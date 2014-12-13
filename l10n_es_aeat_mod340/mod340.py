@@ -80,7 +80,8 @@ class l10n_es_aeat_mod340(osv.osv):
         result = {} 
         for id in ids:
             result[id] = {}.fromkeys(
-               ['number_records','total_taxable','total_sharetax','total'],
+               ['number_records','total_taxable','total_sharetax','total',
+                'total_taxable_rec','total_sharetax_rec','total_rec'],
                0.0)
     
         for model in self.browse(cr, uid, ids,context):
@@ -93,9 +94,9 @@ class l10n_es_aeat_mod340(osv.osv):
 
             for issue in model.received:
                 result[model.id]['number_records'] += len( issue.tax_line_ids )
-                result[model.id]['total_taxable'] +=issue.base_tax
-                result[model.id]['total_sharetax'] +=issue.amount_tax
-                result[model.id]['total'] +=issue.base_tax + issue.amount_tax
+                result[model.id]['total_taxable_rec'] +=issue.base_tax
+                result[model.id]['total_sharetax_rec'] +=issue.amount_tax
+                result[model.id]['total_rec'] +=issue.base_tax + issue.amount_tax
 
         return result
 
@@ -139,6 +140,18 @@ class l10n_es_aeat_mod340(osv.osv):
             help="""The declaration will include partners with the total 
                 of operations over this limit"""),
         'total': fields.function(_get_number_records, method=True,
+            type='float', string="Total", multi='recalc',
+            help="""The declaration will include partners with the total 
+                of operations over this limit"""),
+        'total_taxable_rec':  fields.function(_get_number_records, method=True,
+            type='float', string='Total Taxable', multi='recalc',
+            help="""The declaration will include partners with the total 
+                of operations over this limit"""),
+        'total_sharetax_rec': fields.function(_get_number_records, method=True,
+            type='float', string='Total Share Tax', multi='recalc',
+            help="""The declaration will include partners with the total 
+                of operations over this limit"""),
+        'total_rec': fields.function(_get_number_records, method=True,
             type='float', string="Total", multi='recalc',
             help="""The declaration will include partners with the total 
                 of operations over this limit"""),
