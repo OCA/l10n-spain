@@ -51,13 +51,18 @@
 	                            <field name="ean13" nolabel="1"/>
 	                        </group>
 	                        <group string="Summary" colspan="4">
-	                    			<field name="number_records" select ="2" readonly="1"/>
-	                    			<newline/>
+                                    <field name="number_records" select ="2" readonly="1"/>
+                                    <field name="calculation_date" select ="2" readonly="1"/>
+                                    <group string="Issued invoices" colspan="2">
 	                    			<field name="total_taxable" select ="2" readonly="1"/>
 	                    			<field name="total_sharetax" select ="2" readonly="1"/>
 	                    			<field name="total" select="2" readonly="1"/>
-	                    			<newline/>
-	                    			<field name="calculation_date" select ="2" readonly="1"/>
+                                    </group>
+                                    <group string="Received invoices" colspan="2">
+                                    <field name="total_taxable_rec" select ="2" readonly="1"/>
+                                    <field name="total_sharetax_rec" select ="2" readonly="1"/>
+                                    <field name="total_rec" select="2" readonly="1"/>                                    
+                                    </group>
 	                    		</group>
 	                    		<group colspan="4" col="10">                                
 				                   <button name="button_calculate"
