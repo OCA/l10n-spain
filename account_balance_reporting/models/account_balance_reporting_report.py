@@ -103,7 +103,7 @@ class AccountBalanceReporting(orm.Model):
         report with calculated values."""
         if context is None:
             context = {}
-        line_obj = self.pool.get('account.balance.reporting.line')
+        line_obj = self.pool['account.balance.reporting.line']
         # Set the state to 'calculating'
         self.write(cr, uid, ids, {
             'state': 'calc',
@@ -406,8 +406,9 @@ class AccountBalanceReportingLine(orm.Model):
                                 'periods': [p.id for p in
                                             report.previous_period_ids],
                             })
-                        value = line._get_account_balance(
-                            tmpl_value, balance_mode=balance_mode, context=ctx)
+                        value = self._get_account_balance(
+                            cr, uid, [line.id], tmpl_value,
+                            balance_mode=balance_mode, context=ctx)
                     elif re.match(r'^[\+\-0-9a-zA-Z_\*\ ]*$', tmpl_value):
                         # Account concept codes separated by "+" => sum of the
                         # concepts (template lines) values.
