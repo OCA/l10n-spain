@@ -6,7 +6,7 @@ import urlparse
 from openerp import models, fields, api, _
 from openerp.addons.payment.models.payment_acquirer import ValidationError
 from openerp.tools.float_utils import float_compare
-
+from datetime import datetime
 _logger = logging.getLogger(__name__)
 
 
@@ -103,6 +103,7 @@ class AcquirerRedsys(models.Model):
     @api.model
     def redsys_form_generate_values(self, id, partner_values, tx_values):
         acquirer = self.browse(id)
+        tx_values['reference'] += datetime.now().strftime('%M%S')
         redsys_tx_values = dict(tx_values)
         redsys_tx_values.update({
             'Ds_Sermepa_Url':
@@ -111,17 +112,21 @@ class AcquirerRedsys(models.Model):
             'Ds_Merchant_Amount': int(tx_values['amount'] * 100),
             'Ds_Merchant_Currency': acquirer.redsys_currency or '978',
             'Ds_Merchant_Order': tx_values['reference'][:12],
-            'Ds_Merchant_MerchantCode': acquirer.redsys_merchant_code[:9],
+            'Ds_Merchant_MerchantCode': acquirer.redsys_merchant_code and
+                acquirer.redsys_merchant_code[:9],
             'Ds_Merchant_Terminal': acquirer.redsys_terminal or '1',
             'Ds_Merchant_TransactionType': (
                 acquirer.redsys_transaction_type or '0'),
-            'Ds_Merchant_Titular': acquirer.redsys_merchant_titular[:60],
-            'Ds_Merchant_MerchantName': acquirer.redsys_merchant_name[:25],
+            'Ds_Merchant_Titular': acquirer.redsys_merchant_titular[:60] and
+                acquirer.redsys_merchant_titular[:60],
+            'Ds_Merchant_MerchantName': acquirer.redsys_merchant_name and
+                acquirer.redsys_merchant_name[:25],
             'Ds_Merchant_MerchantURL':
                 (acquirer.redsys_merchant_url
                  and acquirer.redsys_merchant_url[:250] or ''),
             'Ds_Merchant_MerchantData': acquirer.redsys_merchant_data or '',
             'Ds_Merchant_ProductDescription': (
+                acquirer.redsys_merchant_description and
                 acquirer.redsys_merchant_description[:125]),
             'Ds_Merchant_ConsumerLanguage': (
                 acquirer.redsys_merchant_lang or '001'),
@@ -153,7 +158,7 @@ class TxRedsys(models.Model):
     def _redsys_form_get_tx_from_data(self, data):
         """ Given a data dict coming from redsys, verify it and
         find the related transaction record. """
-        reference = data.get('Ds_Order')
+        reference = data.get('Ds_Order', '')[:-4]
         pay_id = data.get('Ds_AuthorisationCode')
         shasign = data.get('Ds_Signature')
         if not reference or not pay_id or not shasign:
@@ -196,8 +201,8 @@ class TxRedsys(models.Model):
         # check what is buyed
         if (float_compare(float(data.get('Ds_Amount', '0.0'))/100,
                           tx.amount, 2) != 0):
-            invalid_parameters.append('Amount', data.get('Ds_Amount'),
-                                      '%.2f' % tx.amount)
+            invalid_parameters.append(('Amount', data.get('Ds_Amount'),
+                                      '%.2f' % tx.amount))
         return invalid_parameters
 
     @api.model

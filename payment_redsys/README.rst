@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-
-{
-    'name': 'Redsys Payment Acquirer',
-    'category': 'Hidden',
-    'summary': 'Payment Acquirer: Redsys Implementation',
-    'version': '1.0',
-    'description': """
-
-========================
 Pasarela de pago Redsys
 ========================
 
@@ -46,13 +36,17 @@ autorizadas y a otra si la transacción ha sido denegada. A estas
 se las denomina URL_OK y URL_KO, respectivamente. Se trata
 de dos URL que pueden ser proporcionadas por el comercio.
 
-    """,
-    'author': 'Incaser Informatica S.L.',
-    'depends': ['payment'],
-    'data': [
-        'views/redsys.xml',
-        'views/payment_acquirer.xml',
-        'data/redsys.xml',
-    ],
-    'installable': True,
-}
+
+
+Requirements
+------------
+
+Odoo v8.0
+
+
+Note
+----
+
+Se tiene que verificar la configuración del comercio en el
+módulo de administración de Redsys, donde la opción “Parámetros en las
+URLs” debe tener el valor “SI”.

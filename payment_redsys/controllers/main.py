@@ -24,11 +24,12 @@ class RedsysController(http.Controller):
     def redsys_return(self, **post):
         """ Redsys."""
         _logger.info('Redsys: entering form_feedback with post data %s',
-                     pprint.pformat(post))  # debug
-        request.registry['payment.transaction'].form_feedback(
-            request.cr, SUPERUSER_ID, post, 'redsys',
-            context=request.context)
+                     pprint.pformat(post))
+        if post:
+            request.registry['payment.transaction'].form_feedback(
+                request.cr, SUPERUSER_ID, post, 'redsys',
+                context=request.context)
         return_url = post.pop('return_url', '')
         if not return_url:
-            return_url = 'http://localhost:8069/page/gracias-por-su-compra'
+            return_url = '/shop'
         return werkzeug.utils.redirect(return_url)
