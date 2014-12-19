@@ -8,8 +8,8 @@
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -23,13 +23,13 @@
 ##############################################################################
 
 {
-    'name' : 'Generación de fichero modelo 340 y libro de IVA',
-    'version' : '2.0',
-    'author' : 'Acysos S.L., Francisco Pascual (Ting), Nan-tic',
+    'name': 'Generación de fichero modelo 340 y libro de IVA',
+    'version': '2.0',
+    'author': 'Acysos S.L., Francisco Pascual (Ting), Nan-tic',
     'contributors': ["Aserti Global Solutions"],
-    'website' : 'www.acysos.com, www.ting.es, www.nan-tic.com',
-    'category' : 'Localisation/Accounting',
-    'description' : '''
+    'website': 'www.acysos.com, www.ting.es, www.nan-tic.com',
+    'category': 'Localisation/Accounting',
+    'description': '''
 Módulo para la presentación del modelo 340. Exportación a formato AEAT. Libro de IVA
 
 Los impuestos incluidos en este modelo se indican asignándoles una clave de libro.
@@ -53,17 +53,17 @@ Facturas intracomunitarias. Operaciones a las que hace referencia el artículo 6
 Asientos contables de resumen de tiques
 Exportación de asientos resumen de facturas
 ''',
-    'license' : 'AGPL-3',
-    'depends' : ['account',
-                 'base_vat',
-                 'l10n_es',
-                 'l10n_es_aeat',
-                 'account_refund_original',
-                 'account_chart_update',
-                 ],
-    'init_xml' : [],
-    'demo_xml' : [],
-    'update_xml' : [
+    'license': 'AGPL-3',
+    'depends': ['account',
+                'base_vat',
+                'l10n_es',
+                'l10n_es_aeat',
+                'account_refund_original',
+                'account_chart_update',
+                ],
+    'init_xml': [],
+    'demo_xml': [],
+    'update_xml': [
         'report/report_view.xml',
         'wizard/export_mod340_to_boe.xml',
         'mod340_view.xml',
@@ -74,6 +74,6 @@ Exportación de asientos resumen de facturas
         'account_invoice_view.xml',
         'account_view.xml',
         'taxes_common.xml'],
-    'installable' : True,
-    'active' : False,
+    'installable': True,
+    'active': False,
 }

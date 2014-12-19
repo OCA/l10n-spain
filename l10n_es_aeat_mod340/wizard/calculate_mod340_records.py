@@ -205,19 +205,18 @@ class l10n_es_aeat_mod340_calculate_records(orm.TransientModel):
                     for tax_line in invoice.tax_line:
                         if tax_line.base_code_id and tax_line.base:
                             if tax_line.base_code_id.mod340:
-                                tax_percentage = tax_line.amount/tax_line.base
-                                tax_percentage = _rounded_pct(allowed_tax_pct, tax_percentage, ledger_key, invoice)
-                                source_tax = _get_source_tax(tax_line, tax_percentage, invoice)
+                                tax = tax_line.tax_id
+                                tax_percentage = tax.amount
 
                                 # El IVA agrario aunque tenga tipo 12% debe declararse con 0%
-                                if source_tax.operation_key and source_tax.operation_key == 'X':
+                                if tax.operation_key and tax.operation_key == 'X':
                                     tax_percentage = 0
 
                                 # No se debe contar la base de los recargos
                                 # de equivalencia o el check fallará al sumar
                                 # el doble que el subtotal de la factura
                                 if tax_percentage >= 0 and \
-                                        source_tax.operation_key != '-':
+                                        tax.operation_key != '-':
                                     check_base += tax_line.base
 
                                 # Los impuestos que se desdoblan en 2 hijos 
@@ -237,25 +236,25 @@ class l10n_es_aeat_mod340_calculate_records(orm.TransientModel):
                                     'base_amount': tax_line.base_amount,
                                     'invoice_record_id': invoice_created,
                                 }
-                                if source_tax.ledger_key in ('I', 'J'):
+                                if tax.ledger_key in ('I', 'J'):
                                     values['goods_identification'] = invoice_obj.get_inv_good_names(cr, uid, invoice.id, tax_percentage, context)
 
                                 # Separamos recargos de los impuestos corrientes y agrupamos por impuesto
                                 # Esta agrupación se hace porque un mismo impuesto OpenERP lo desdobla en 2 líneas de impuestos
                                 # si hay líneas con importe positivo (línea impuesto con base con un signo) 
                                 # y negativo (línea impuesto con base de signo opuesto)
-                                if source_tax.operation_key and source_tax.operation_key == '-':
-                                    if source_tax.id in values_surcharges:
+                                if tax.operation_key and tax.operation_key == '-':
+                                    if tax.id in values_surcharges:
                                         for key in ['tax_amount', 'base_amount']:
-                                            values_surcharges[source_tax.id][key] += values[key]
+                                            values_surcharges[tax.id][key] += values[key]
                                     else:
-                                        values_surcharges[source_tax.id] = values
+                                        values_surcharges[tax.id] = values
                                 else:
-                                    if source_tax.id in values_taxes:
+                                    if tax.id in values_taxes:
                                         for key in ['tax_amount', 'base_amount']:
-                                            values_taxes[source_tax.id][key] += values[key]
+                                            values_taxes[tax.id][key] += values[key]
                                     else:
-                                        values_taxes[source_tax.id] = values
+                                        values_taxes[tax.id] = values
 
                     # Juntamos los recargos con los registros de impuestos a los que afectan
                     position_id = invoice.fiscal_position.id
