@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record id="view_tax_code_template_form_mod340" model="ir.ui.view">
-            <field name="name">account.tax.code.template.form.mod340</field>
-            <field name="model">account.tax.code.template</field>
-            <field name="inherit_id" ref="account.view_tax_code_template_form"/>
+    
+    	<record id="view_account_tax_template_form_mod340" model="ir.ui.view">
+            <field name="name">account.tax.template.form</field>
+            <field name="model">account.tax.template</field>
+            <field name="inherit_id" ref="account.view_account_tax_template_form"/>
             <field name="arch" type="xml">
-                <field name="sign" position="after">
-                    <field name="mod340"/>
-                </field>
+            	<xpath expr="//field[@name='ref_tax_sign']" position="after">
+            		<group string="Modelo 340">
+            			<field name="ledger_key"/>
+            			<field name="operation_key"/>
+            		</group>
+            	</xpath>
             </field>
         </record>
-        
+
         <record id="view_tax_code_form_mod340" model="ir.ui.view">
             <field name="name">account.tax.code.form.mod340</field>
             <field name="model">account.tax.code</field>
@@ -21,6 +25,24 @@
                     <field name="mod340"/>
                 </field>
             </field>
+        </record>
+        
+        <record id="view_tax_form_mod340" model="ir.ui.view">
+            <field name="name">account.tax.form.mod340</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+        		<field name="child_depend" position="after">
+        			<separator string="Modelo 340" colspan="2"/>
+        			<field name="ledger_key" on_change="onchange_ledger('ledger_key', ledger_key, context)" attrs="{'invisible': [('type_tax_use','!=','all')]}"/>
+        			<field name="ledger_key_in" on_change="onchange_ledger('ledger_key_in', ledger_key_in, context)" attrs="{'invisible': [('type_tax_use','!=','purchase')]}"/>
+        			<field name="ledger_key_out" on_change="onchange_ledger('ledger_key_out', ledger_key_out,  context)" attrs="{'invisible': [('type_tax_use','!=','sale')]}"/>
+        			<field name="operation_key"/>
+        		</field>
+        		<field name="type_tax_use" position="attributes">
+        			<attribute name="on_change">onchange_type_tax_use(context)</attribute>
+        		</field>
+        	</field>
         </record>
     </data>
 </openerp>

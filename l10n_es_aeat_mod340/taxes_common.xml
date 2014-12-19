@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <!-- Plantilla común de impuestos para España.
+        
+        Cargamos las claves para los impuestos presentes en l10n_es rev XXXXXX
+        
+        TODO: poner revisión o fecha cuando se mergee la refactorización que ha hecho Pedro
+        https://code.launchpad.net/~pedro.baeza/openerp-spain/7.0-l10n_es-refactorized/+merge/196807
+        -->
+
+		<!-- NUEVOS (mover a su sitio) -->
+		<!-- 12% IVA Soportado régimen agricultura -->
+		<record id="l10n_es.iva_sop_12_agr" model="account.tax.template">
+        	<field name="ledger_key">R</field>
+        	<field name="operation_key">X</field>
+        </record>
+        <!-- IVA 21% Intracomunitario. Servicios -->
+        <record id="l10n_es.iva_IC_compras_21_sv" model="account.tax.template">
+            <field name="ledger_key">R</field>
+        	<field name="operation_key">I</field>
+        </record>
+        <!-- IVA 21% Intracomunitario. Servicios (1) -->
+        <record id="l10n_es.iva_IC_compras_21_sv_1" model="account.tax.template">
+            <field name="ledger_key">R</field>
+        	<field name="operation_key">I</field>
+        </record>
+        <!-- IVA 21% Intracomunitario. Servicios (2) -->
+        <record id="l10n_es.iva_IC_compras_21_sv_2" model="account.tax.template">
+            <field name="ledger_key">R</field>
+        	<field name="operation_key">I</field>
+        </record>
+        <!-- FIN NUEVOS -->
+
+        <!-- IVA soportado -->
+		<!-- 4% IVA Soportado (operaciones corrientes) -->
+        <record id="l10n_es.iva_sop_4" model="account.tax.template">
+        	<field name="ledger_key">R</field>
+        </record>
+
+		<!-- 4% IVA Soportado (bienes de inversión) -->
+        <record id="l10n_es.iva_sop_4_inv" model="account.tax.template">
+            <field name="ledger_key">I</field>
+        </record>
+
+		<!-- 10% IVA Soportado (operaciones corrientes) -->
+        <record id="l10n_es.iva_sop_10" model="account.tax.template">
+            <field name="ledger_key">R</field>
+        </record>
+
+		<!-- 10% IVA Soportado (bienes de inversión) -->
+        <record id="l10n_es.iva_sop_10_inv" model="account.tax.template">
+			<field name="ledger_key">I</field>
+        </record>
+
+		<!-- 21% IVA Soportado (operaciones corrientes) -->
+        <record id="l10n_es.iva_sop_21" model="account.tax.template">
+			<field name="ledger_key">R</field>
+        </record>
+
+		<!-- 21% IVA Soportado (bienes de inversión) -->
+        <record id="l10n_es.iva_sop_21_inv" model="account.tax.template">
+            <field name="ledger_key">I</field>
+        </record>
+
+        <!-- Plantillas para Extracomunitario-->
+        <!-- IVA compras -->
+        <!-- IVA 0% Importaciones bienes corrientes -->
+        <record id="l10n_es.iva_X0_compras_bc" model="account.tax.template">
+            <field name="ledger_key">R</field>
+        </record>
+        <!-- IVA 0% Importaciones bienes de inversión -->
+        <record id="l10n_es.iva_X0_compras_bi" model="account.tax.template">
+            <field name="ledger_key">I</field>
+        </record>
+		<!-- IVA 4% Importaciones bienes corrientes -->
+        <record id="l10n_es.iva_X4_compras_bc" model="account.tax.template">
+            <field name="ledger_key">R</field>
+        </record>
+        <!-- IVA 4% Importaciones bienes de inversión -->
+        <record id="l10n_es.iva_X4_compras_bi" model="account.tax.template">
+            <field name="ledger_key">I</field>
+        </record>
+		<!-- IVA 10% Importaciones bienes corrientes -->
+        <record id="l10n_es.iva_X10_compras_bc" model="account.tax.template">
+            <field name="ledger_key">R</field>
+        </record>
+        <!-- IVA 10% Importaciones bienes de inversión -->
+        <record id="l10n_es.iva_X10_compras_bi" model="account.tax.template">
+            <field name="ledger_key">I</field>
+        </record>
+		<!-- IVA 21% Importaciones bienes corrientes -->
+        <record id="l10n_es.iva_X21_compras_bc" model="account.tax.template">
+            <field name="ledger_key">R</field>
+        </record>
+        <!-- IVA 21% Importaciones bienes de inversión -->
+        <record id="l10n_es.iva_X21_compras_bi" model="account.tax.template">
+            <field name="ledger_key">I</field>
+        </record>
+
+        <!-- IVA EXPORTACIONES (VENTAS )-->
+        <!-- IVA 0% Exportaciones -->
+        <record id="l10n_es.iva_X0" model="account.tax.template">
+            <field name="ledger_key">E</field>
+        </record>
+
+        <!-- Inversión del sujeto pasivo -->
+        <!-- IVA 21% Inversión del sujeto pasivo -->
+        <record id="l10n_es.iva_ISP_compras_21" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">I</field>
+        </record>
+        <!-- IVA 21% Inversión del sujeto pasivo (1) -->
+        <record id="l10n_es.iva_ISP_compras_21_1" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">I</field>
+        </record>
+        <!-- IVA 21% Inversión del sujeto pasivo (2) -->
+        <record id="l10n_es.iva_ISP_compras_21_2" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">I</field>
+        </record>
+        <!-- IVA 21% Inversión del sujeto pasivo (3) -->
+        <record id="l10n_es.iva_ISP_compras_21_3" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">I</field>
+        </record>
+
+        <!-- IVA REPERCUTIDO-->
+        <!-- IVA 4% -->
+        <record id="l10n_es.iva_rep_4" model="account.tax.template">
+            <field name="ledger_key">E</field>
+        </record>
+		<!-- IVA 10% -->
+        <record id="l10n_es.iva_rep_10" model="account.tax.template">
+            <field name="ledger_key">E</field>
+        </record>
+		<!-- IVA 21% -->
+        <record id="l10n_es.iva_rep_21" model="account.tax.template">
+            <field name="ledger_key">E</field>
+        </record>
+
+        <!-- Plantillas para recargo de equivalencia-->
+        <!-- 0.50% Recargo Equivalencia Ventas -->
+        <record id="l10n_es.re_05" model="account.tax.template">
+            <field name="ledger_key">E</field>
+            <field name="operation_key">-</field>
+        </record>
+		<!-- 1.4% Recargo Equivalencia Ventas -->
+        <record id="l10n_es.re_14" model="account.tax.template">
+            <field name="ledger_key">E</field>
+            <field name="operation_key">-</field>
+        </record>
+		<!-- 5.2% Recargo Equivalencia Ventas -->
+        <record id="l10n_es.re_52" model="account.tax.template">
+            <field name="ledger_key">E</field>
+            <field name="operation_key">-</field>
+        </record>
+		<!-- 0.50% Recargo Equivalencia Compras -->
+        <record id="l10n_es.re_buy_05" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">-</field>
+        </record>
+		<!-- 1.4% Recargo Equivalencia Compras -->
+        <record id="l10n_es.re_buy_14" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">-</field>
+        </record>
+		<!-- 5.2% Recargo Equivalencia Compras -->
+        <record id="l10n_es.re_buy_52" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">-</field>
+        </record>
+
+        <!-- OPERACIONES INTRACOMUNITARIAS -->
+
+        <!-- VENTAS -->
+        <!-- IVA 0% Intracomunitario -->
+        <record id="l10n_es.iva_IO" model="account.tax.template">
+            <field name="ledger_key">E</field>
+        </record>
+
+        <!-- COMPRAS -->
+		<!-- IVA 4% Intracomunitario. Bienes corrientes -->
+        <record id="l10n_es.iva_IC_compras_4_bc" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">P</field>
+        </record>
+        <!-- IVA 4% Intracomunitario. Bienes corrientes (1) -->
+        <record id="l10n_es.iva_IC_compras_4_bc_1" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">P</field>
+        </record>
+        <!-- IVA 4% Intracomunitario. Bienes corrientes (2) -->
+        <record id="l10n_es.iva_IC_compras_4_bc_2" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">P</field>
+        </record>
+		<!-- IVA 4% Intracomunitario. Bienes de inversión -->
+        <record id="l10n_es.iva_IC_compras_4_bi" model="account.tax.template">
+            <field name="ledger_key">I</field>
+            <field name="operation_key">P</field>
+        </record>
+        <!-- IVA 4% Intracomunitario. Bienes de inversión (1) -->
+        <record id="l10n_es.iva_IC_compras_4_bi_1" model="account.tax.template">
+            <field name="ledger_key">I</field>
+            <field name="operation_key">P</field>
+        </record>
+        <!-- IVA 4% Intracomunitario. Bienes de inversión (2) -->
+        <record id="l10n_es.iva_IC_compras_4_bi_2" model="account.tax.template">
+            <field name="ledger_key">I</field>
+            <field name="operation_key">P</field>
+        </record>
+		<!-- IVA 10% Intracomunitario. Bienes corrientes -->
+        <record id="l10n_es.iva_IC_compras_10_bc" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">P</field>
+        </record>
+        <!-- IVA 10% Intracomunitario. Bienes corrientes (1) -->
+        <record id="l10n_es.iva_IC_compras_10_bc_1" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">P</field>
+        </record>
+        <!-- IVA 10% Intracomunitario. Bienes corrientes (2) -->
+        <record id="l10n_es.iva_IC_compras_10_bc_2" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">P</field>
+        </record>
+		<!-- IVA 10% Intracomunitario. Bienes de inversión -->
+        <record id="l10n_es.iva_IC_compras_10_bi" model="account.tax.template">
+            <field name="ledger_key">I</field>
+            <field name="operation_key">P</field>
+        </record>
+        <!-- IVA 10% Intracomunitario. Bienes de inversión (1) -->
+        <record id="l10n_es.iva_IC_compras_10_bi_1" model="account.tax.template">
+            <field name="ledger_key">I</field>
+            <field name="operation_key">P</field>
+        </record>
+        <!-- IVA 10% Intracomunitario. Bienes de inversión (2) -->
+        <record id="l10n_es.iva_IC_compras_10_bi_2" model="account.tax.template">
+            <field name="ledger_key">I</field>
+            <field name="operation_key">P</field>
+        </record>
+		<!-- IVA 21% Intracomunitario. Bienes corrientes -->
+        <record id="l10n_es.iva_IC_compras_21_bc" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">P</field>
+        </record>
+        <!-- IVA 21% Intracomunitario. Bienes corrientes (1) -->
+        <record id="l10n_es.iva_IC_compras_21_bc_1" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">P</field>
+        </record>
+        <!-- IVA 21% Intracomunitario. Bienes corrientes (2) -->
+        <record id="l10n_es.iva_IC_compras_21_bc_2" model="account.tax.template">
+            <field name="ledger_key">R</field>
+            <field name="operation_key">P</field>
+        </record>
+		<!-- IVA 21% Intracomunitario. Bienes de inversión -->
+        <record id="l10n_es.iva_IC_compras_21_bi" model="account.tax.template">
+            <field name="ledger_key">I</field>
+            <field name="operation_key">P</field>
+        </record>
+        <!-- IVA 21% Intracomunitario. Bienes de inversión (1) -->
+        <record id="l10n_es.iva_IC_compras_21_bi_1" model="account.tax.template">
+            <field name="ledger_key">I</field>
+            <field name="operation_key">P</field>
+        </record>
+        <!-- IVA 21% Intracomunitario. Bienes de inversión (2) -->
+        <record id="l10n_es.iva_IC_compras_21_bi_2" model="account.tax.template">
+            <field name="ledger_key">I</field>
+            <field name="operation_key">P</field>
+        </record>
+		<!-- IVA Soportado exento (operaciones corrientes) -->
+        <record id="l10n_es.iva_sop_ex" model="account.tax.template">
+            <field name="ledger_key">R</field>
+        </record>
+		<!-- IVA Exento -->
+        <record id="l10n_es.iva_rep_ex" model="account.tax.template">
+            <field name="ledger_key">E</field>
+        </record>
+
+    </data>
+</openerp>
