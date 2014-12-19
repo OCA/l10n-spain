@@ -183,7 +183,7 @@ class TxRedsys(models.Model):
         shasign_check = acquirer._redsys_generate_digital_sign(
             tx.acquirer_id, 'out', data)
         if shasign_check.upper() != shasign.upper():
-            error_msg = 'Redsys: invalid shasign, received\ %s, computed %s,'\
+            error_msg = 'Redsys: invalid shasign, received\ %s, computed %s,' \
                 ' for data %s' % (shasign, shasign_check, data)
             _logger.error(error_msg)
             raise ValidationError(error_msg)
