@@ -1,5 +1,5 @@
 Pasarela de pago Redsys
-========================
+=======================
 
 
 Este modulo añade la opcion de pago a traves de la pasarela de Redsys
@@ -11,11 +11,9 @@ PARAMETROS:
 Nombre del comercio: Indicaremos el nombre del comercio.
 
 Número de comercio (FUC): Indicaremos el número de comercio que
-
 nuestra entidad nos ha comunicado.
 
 Clave secreta de encriptación: Indicaremos la clave de encriptación
-
 que tiene el comercio.
 
 Número de terminal: Indicaremos el terminal del TPV.
