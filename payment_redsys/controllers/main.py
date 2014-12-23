@@ -5,6 +5,7 @@ import werkzeug
 
 from openerp import http, SUPERUSER_ID
 from openerp.http import request
+from openerp.addons.website_sale.controllers.main import website_sale
 
 _logger = logging.getLogger(__name__)
 
@@ -33,3 +34,12 @@ class RedsysController(http.Controller):
         if not return_url:
             return_url = '/shop'
         return werkzeug.utils.redirect(return_url)
+
+
+class website_sale(website_sale):
+    @http.route(['/shop/payment/transaction/<int:acquirer_id>'], type='json',
+                auth="public", website=True)
+    def payment_transaction(self, acquirer_id):
+        tx_id = super(website_sale, self).payment_transaction(acquirer_id)
+        request.website.sale_reset(context=request.context)
+        return tx_id
