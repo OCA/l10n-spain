@@ -1,0 +1,85 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * l10n_cat_account
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (6.1)\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2010-11-24 19:04:19+0000\n"
+"PO-Revision-Date: 2014-12-23 18:35+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Portuguese (http://www.transifex.com/projects/p/l10n-spain-61/language/pt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_cat_account
+#: model:ir.module.module,shortdesc:l10n_cat_account.module_meta_information
+msgid "Account names in Catalan"
+msgstr ""
+
+#. module: l10n_cat_account
+#: constraint:ir.ui.view:0
+msgid "Invalid XML for View Architecture!"
+msgstr "XML Inválido para a Arquitectura de Vista!"
+
+#. module: l10n_cat_account
+#: constraint:ir.model:0
+msgid ""
+"The Object name must start with x_ and not contain any special character !"
+msgstr "O nome do Objecto deve começar com x_ e não pode conter nenhum caracter especial !"
+
+#. module: l10n_cat_account
+#: field:l10n_cat_account.wizard,name:0
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_cat_account
+#: view:l10n_cat_account.wizard:0
+msgid "Skip"
+msgstr ""
+
+#. module: l10n_cat_account
+#: model:ir.module.module,description:l10n_cat_account.module_meta_information
+msgid ""
+"This module translates the account name in the account templates from Spanish to Catalan (for Spanish 2008 chart of accounts, general or PYMES versions).\n"
+"\n"
+"After installation and changing the account template names, you can create the chart of accounts with Catalan names or update your existing chart of accounts with the account_chart_update module."
+msgstr ""
+
+#. module: l10n_cat_account
+#: constraint:ir.actions.act_window:0
+msgid "Invalid model name in the action definition."
+msgstr "Nome do modelo inválido na definição da acção."
+
+#. module: l10n_cat_account
+#: model:ir.actions.todo,note:l10n_cat_account.config_wizard_l10n_cat_account
+msgid "Translate the name of the account templates from Spanish to Catalan."
+msgstr ""
+
+#. module: l10n_cat_account
+#: model:ir.model,name:l10n_cat_account.model_l10n_cat_account_wizard
+msgid "l10n_cat_account.wizard"
+msgstr ""
+
+#. module: l10n_cat_account
+#: view:l10n_cat_account.wizard:0
+msgid "Translate"
+msgstr ""
+
+#. module: l10n_cat_account
+#: model:ir.actions.act_window,name:l10n_cat_account.action_l10n_cat_account_wizard
+#: view:l10n_cat_account.wizard:0
+msgid "Account templates from Spanish to Catalan"
+msgstr ""
+
+#. module: l10n_cat_account
+#: view:l10n_cat_account.wizard:0
+msgid ""
+"Are you sure you want to translate the account templates from Spanish to "
+"Catalan?"
+msgstr ""
