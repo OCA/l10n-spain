@@ -1,0 +1,38 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * l10n_es
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (6.1)\n"
+"Report-Msgid-Bugs-To: support@openerp.com\n"
+"POT-Creation-Date: 2011-01-11 11:15:29+0000\n"
+"PO-Revision-Date: 2014-12-23 18:35+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"Language-Team: English (http://www.transifex.com/projects/p/l10n-spain-61/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es
+#: model:ir.module.module,shortdesc:l10n_es.module_meta_information
+msgid "Spanish Charts of Accounts (PGCE 2008)"
+msgstr "Spanish Charts of Accounts (PGCE 2008)"
+
+#. module: l10n_es
+#: model:ir.module.module,description:l10n_es.module_meta_information
+msgid ""
+"Spanish Charts of Accounts (PGCE 2008)\n"
+"\n"
+"* Defines the following chart of account templates:\n"
+"        * Spanish General Chart of Accounts 2008.\n"
+"        * Spanish General Chart of Accounts 2008 for small and medium companies.\n"
+"* Defines templates for sale and purchase VAT.\n"
+"* Defines tax code templates.\n"
+"\n"
+"Note: You should install the l10n_ES_account_balance_report module\n"
+"for yearly account reporting (balance, profit & losses).\n"
+msgstr "Spanish Charts of Accounts (PGCE 2008)\n\n* Defines the following chart of account templates:\n        * Spanish General Chart of Accounts 2008.\n        * Spanish General Chart of Accounts 2008 for small and medium companies.\n* Defines templates for sale and purchase VAT.\n* Defines tax code templates.\n\nNote: You should install the l10n_ES_account_balance_report module\nfor yearly account reporting (balance, profit & losses).\n"
