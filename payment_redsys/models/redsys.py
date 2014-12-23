@@ -6,7 +6,6 @@ import urlparse
 from openerp import models, fields, api, _
 from openerp.addons.payment.models.payment_acquirer import ValidationError
 from openerp.tools.float_utils import float_compare
-# from datetime import datetime
 _logger = logging.getLogger(__name__)
 
 
@@ -103,7 +102,6 @@ class AcquirerRedsys(models.Model):
     @api.model
     def redsys_form_generate_values(self, id, partner_values, tx_values):
         acquirer = self.browse(id)
-        # tx_values['reference'] += datetime.now().strftime('%M%S')
         redsys_tx_values = dict(tx_values)
         redsys_tx_values.update({
             'Ds_Sermepa_Url':
@@ -158,7 +156,6 @@ class TxRedsys(models.Model):
     def _redsys_form_get_tx_from_data(self, data):
         """ Given a data dict coming from redsys, verify it and
         find the related transaction record. """
-#        reference = data.get('Ds_Order', '')[:-4]
         reference = data.get('Ds_Order', '')
         pay_id = data.get('Ds_AuthorisationCode')
         shasign = data.get('Ds_Signature')
