@@ -32,6 +32,7 @@ class AccountStatementCompletionRule(orm.Model):
         res.append(('get_from_caixabank_rules', _('From CaixaBank C43 rules')))
         res.append(('get_from_santander_rules', _('From Santander C43 rules')))
         res.append(('get_from_generic_c43_rules', _('From generic C43 rules')))
+        res.append(('get_from_santander_rules', _('From Santander C43 rules')))
         return res
 
     _columns = {
