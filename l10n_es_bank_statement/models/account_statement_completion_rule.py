@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) All rights reserved:
+#    Copyright (c)
 #        2013-2014 Servicios Tecnológicos Avanzados (http://serviciosbaeza.com)
 #                  Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
 #
@@ -30,6 +30,7 @@ class AccountStatementCompletionRule(orm.Model):
         res = super(AccountStatementCompletionRule, self)._get_functions(
             cr, uid, context=context)
         res.append(('get_from_caixabank_rules', _('From CaixaBank C43 rules')))
+        res.append(('get_from_santander_rules', _('From Santander C43 rules')))
         res.append(('get_from_generic_c43_rules', _('From generic C43 rules')))
         return res
 
@@ -73,6 +74,55 @@ class AccountStatementCompletionRule(orm.Model):
             # Try to match from partner name
             if conceptos.get('01'):
                 name = conceptos['01'][0][4:] + conceptos['01'][1]
+                ids = partner_obj.search(cr, uid, [('name', 'ilike', name)],
+                                         context=context)
+        if ids:
+            res['partner_id'] = ids[0]
+        st_vals = st_line_obj.get_values_for_line(
+            cr, uid, profile_id=st_line['profile_id'],
+            master_account_id=st_line['master_account_id'],
+            partner_id=res.get('partner_id', False), line_type=st_line['type'],
+            amount=st_line['amount'] or 0.0, context=context)
+        res.update(st_vals)
+        return res
+
+    def get_from_santander_rules(self, cr, uid, st_line, context=None):
+        """
+        Match the partner based on several criteria extracted from reverse
+        engineer of Banco Santander C43 files.
+
+        If more than one partner is matched, raise the ErrorTooManyPartner
+        error.
+        :param dict st_line: read of the concerned account.bank.statement.line
+        :return:
+            A dict of value that can be passed directly to the write method of
+            the statement line or {}
+           {'partner_id': value,
+            'account_id' : value,
+            ...}
+        """
+        partner_obj = self.pool['res.partner']
+        st_line_obj = self.pool['account.bank.statement.line']
+        conceptos = eval(st_line['name'])
+        ids = []
+        res = {}
+        # Try to match from VAT included in concept complementary record #01
+        if conceptos.get('01'):
+            if conceptos['01'][1]:
+                vat = conceptos['01'][1]
+                ids = partner_obj.search(cr, uid, [('vat', 'ilike', vat)],
+                                         context=context)
+        if len(ids) > 1:
+            from openerp.addons.account_statement_base_completion.statement \
+                import ErrorTooManyPartner
+            raise ErrorTooManyPartner(
+                _('Line named "%s" (Ref: %s) was matched by more than '
+                  'one partner for VAT number "%s".') %
+                (st_line['name'], st_line['ref'], vat))
+        if not ids:
+            # Try to match from partner name
+            if conceptos.get('01'):
+                name = conceptos['01'][0]
                 ids = partner_obj.search(cr, uid, [('name', 'ilike', name)],
                                          context=context)
         if ids:
