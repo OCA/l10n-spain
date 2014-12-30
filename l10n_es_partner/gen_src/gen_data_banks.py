@@ -44,34 +44,39 @@ if __name__ == "__main__":
         # Genera los nuevos registros de los bancos
         for row_index in range(1, sheet.nrows):
             row = sheet.row_values(row_index)
-            name = "city_bank_" + row[40].lower().replace(
-                ' ', '_').replace(u'\xf1', 'n')
-            street = row[7] + '. ' + row[8] + ', ' + row[9] + ' ' + row[10]
-            output.write('        <record id="%s" model="city.city">\n' % name)
-            output.write('            <field name="name">%s<field/>\n' % (
-                         row[40]))
-            output.write('            <field name="lname">%s<field/>\n' % (
-                         row[4]))
-            output.write('            <field name="code">%s<field/>\n' % (
-                         row[1]))
-            output.write('            <field name="vat">%s<field/>\n' % (
-                         row[6]))
-            output.write('            <field name="street">%s<field/>\n' % (
-                         street))
-            output.write('            <field name="city">%s<field/>\n' % (
-                         row[12]))
-            output.write('            <field name="zip">%s<field/>\n' % (
-                         row[11]))
-            output.write('            <field name="phone">'
-                         '%s<field/>\n' % row[16])
-            output.write('            <field name="fax">%s<field/>\n' % (
-                         row[18]))
-            output.write('            <field eval="1" name="active"/>\n')
-            output.write('            <field name="state"'
-                         ' ref="l10n_es_topynyms.ES28"/>\n')
-            output.write('            <field name="country_id"'
-                         ' ref="base.es"/>\n')
-            output.write('        </record>\n')
+            if row[29]:
+                name = "res_bank_" + row[40].lower().replace(
+                    ' ', '').replace(',', '').replace('.', '').replace(
+                    '-', '').replace(u'\xf1', 'n')
+                street = row[7] + '. ' + row[8] + ', ' + row[9] + ' ' + row[10]
+                output.write('        <record id="%s" model="res.bank">\n' %
+                             name)
+                output.write('            <field name="name">%s<field/>\n' % (
+                             row[40]))
+                output.write('            <field name="lname">%s<field/>\n' % (
+                             row[4]))
+                output.write('            <field name="code">%s<field/>\n' % (
+                             row[1]))
+                output.write('            <field name="bic">%s<field/>\n' % (
+                             row[29]))
+                output.write('            <field name="vat">%s<field/>\n' % (
+                             row[6]))
+                output.write('            <field name="street">%s<field/>\n' %
+                             (street))
+                output.write('            <field name="city">%s<field/>\n' % (
+                             row[12]))
+                output.write('            <field name="zip">%s<field/>\n' % (
+                             row[11]))
+                output.write('            <field name="phone">'
+                             '%s<field/>\n' % row[16])
+                output.write('            <field name="fax">%s<field/>\n' % (
+                             row[18]))
+                output.write('            <field name="website">%s<field/>\n' %
+                             (row[19]))
+                output.write('            <field eval="1" name="active"/>\n')
+                output.write('            <field name="country_id"'
+                             ' ref="base.es"/>\n')
+                output.write('        </record>\n')
         output.write("    </data>\n")
         output.write("</openerp>\n")
 
