@@ -23,13 +23,14 @@ __name__ = ("Cambia columnas name y description")
 
 
 def migrate_tax_template(cr, version):
-    
+
     cr.execute("""ALTER TABLE account_tax
                   RENAME COLUMN name to name_to_description_temp""")
     cr.execute("""ALTER TABLE account_tax
                   RENAME COLUMN description to name""")
     cr.execute("""ALTER TABLE account_tax
                   RENAME COLUMN name_to_description_temp to description""")
+
 
 def migrate(cr, version):
     if not version:
