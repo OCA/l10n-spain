@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Copyright (c) 2014 Domatix (http://www.domatix.com)
+#                       Angel Moya <angel.moya@domatix.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,4 +19,15 @@
 #
 ##############################################################################
 
-from . import models
+from openerp import models, api
+
+
+class AccountTax(models.Model):
+    _inherit = 'account.tax'
+
+    @api.multi
+    def name_get(self):
+        result = []
+        for tax in self:
+            result.append((tax.id, tax.name))
+        return result
