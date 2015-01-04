@@ -33,7 +33,6 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def action_number(self):
-        re = super(AccountInvoice, self).action_number()
         for inv in self:
             if not inv.invoice_number:
                 sequence = inv.journal_id.invoice_sequence_id
@@ -46,14 +45,16 @@ class AccountInvoice(models.Model):
                 }).next_by_id(sequence.id)
                 inv.write({
                     'number': number,
-                    'internal_number': inv.move_id.name,
                     'invoice_number': number
                 })
             else:
                 inv.write({
                     'number': inv.invoice_number,
-                    'internal_number': inv.move_id.name,
                 })
+        re = super(AccountInvoice, self).action_number()
+        for inv in self:
+            inv.write({'internal_number': inv.move_id.name})
+
         return re
 
     @api.multi
