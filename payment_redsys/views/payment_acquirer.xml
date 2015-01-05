@@ -9,21 +9,21 @@
             <field name="arch" type="xml">
                 <xpath expr='//group[@name="acquirer_display"]' position='after'>
                     <group attrs="{'invisible': [('provider', '!=', 'redsys')]}">
-                        <field name="redsys_merchant_url"/>
-                        <field name="redsys_merchant_titular"/>
-                        <field name="redsys_merchant_name"/>
-                        <field name="redsys_merchant_code"/>
-                        <field name="redsys_secret_key"/>
-                        <field name="redsys_terminal"/>
-                        <field name="redsys_currency"/>
-                        <field name="redsys_transaction_type"/>
-                        <field name="redsys_merchant_lang"/>
-                        <field name="redsys_pay_method"/>
-                        <field name="redsys_merchant_data"/>
-                        <field name="redsys_merchant_description"/>
-                        <field name="redsys_url_ok"/>
-						<field name="redsys_url_ko"/>
-                        </group>
+                        <field name="redsys_merchant_url" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                        <field name="redsys_merchant_titular" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                        <field name="redsys_merchant_name" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                        <field name="redsys_merchant_code" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                        <field name="redsys_secret_key" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                        <field name="redsys_terminal" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                        <field name="redsys_currency" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                        <field name="redsys_transaction_type" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                        <field name="redsys_merchant_lang" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                        <field name="redsys_pay_method" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                        <field name="redsys_merchant_data" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                        <field name="redsys_merchant_description" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                        <field name="redsys_url_ok" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                        <field name="redsys_url_ko" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                    </group>
                 </xpath>
             </field>
         </record>
