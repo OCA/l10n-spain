@@ -96,6 +96,7 @@
         - state == 'open'
         - number[:4] == 'tFAC'
         - move_id.name[:3] == 'tAC'
+        - move_id.ref[:4] == 'tFAC'
 
 -
     Comprobar copiar una factura
