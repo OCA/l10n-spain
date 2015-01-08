@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Odoo - Account summary
-#    Copyright (C) 2014 Luis Martinez Ontalba (www.tecnisagra.com).
+#    Copyright (C) 2015 Luis Martinez Ontalba (www.tecnisagra.com).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -20,10 +20,13 @@
 ##############################################################################
 
 import tools
-from osv import fields,osv
 import decimal_precision as dp
 
-class account_account(osv.osv):
+from osv import fields,orm
+
+
+class account_account(orm.Model):
+
     _name = "account.account"
     _inherit = "account.account"
 	
@@ -35,16 +38,18 @@ class account_account(osv.osv):
         return result
 	
     _columns = {
-        'code_2' : fields.function(_get_code_2, string = 'Código corto', method=True, type='char', store=True)
+        'code_2' : fields.function(_get_code_2, string = 'Código corto',
+                                   method=True, type='char', store=True)
     }
 
 account_account()	
 	
 
-class account_summary(osv.osv):
+class account_summary(orm.Model):
 
     _name = "account.summary"
     _auto = False
+	
     _columns = {
         'debit': fields.float('Debe', readonly=True),
         'credit': fields.float('Haber', readonly=True),
@@ -53,16 +58,20 @@ class account_summary(osv.osv):
         'account_code': fields.char('Cuenta', size=8, readonly=True),
         'year': fields.char('Año', size=4, readonly=True),
         'date': fields.date('Fecha', size=128, readonly=True),
-        'period_id': fields.many2one('account.period', 'Periodo', readonly=True),
-        'account_id': fields.many2one('account.account', 'Cuenta', readonly=True),
-		'fiscalyear_id': fields.many2one('account.fiscalyear', 'Año fiscal', readonly=True),
+        'period_id': fields.many2one('account.period', 'Periodo',
+                                     readonly=True),
+        'account_id': fields.many2one('account.account', 'Cuenta',
+                                      readonly=True),
+		'fiscalyear_id': fields.many2one('account.fiscalyear', 'Año fiscal',
+                                         readonly=True),
     }
 
     _order = 'date desc'
 
-
     def init(self, cr):
+
         tools.drop_view_if_exists(cr, 'account_summary')
+		
         cr.execute("""
             create or replace view account_summary as (
             select

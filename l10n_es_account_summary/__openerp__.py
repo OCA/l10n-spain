@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Odoo - Account summary
-#    Copyright (C) 2014 Luis Martinez Ontalba (www.tecnisagra.com).
+#    Copyright (C) 2015 Luis Martinez Ontalba (www.tecnisagra.com).
 #	 
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,6 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 {
     "name": "Account summary",
     "version": "1.1",
@@ -29,8 +30,9 @@
 		* Ingresos, gastos y resultado:
 			* Agrupado por año fiscal
 			* Agrupado por periodo fiscal en el año en curso
-		* Activo a corto, pasivo a corto y fondo de maniobra (diferencia entre ambos) 
-	Al tablero se accede desde el menu Contabilidad/Contabilidad/Resumen de cuentas
+		* Activo a corto, pasivo a corto y fondo de maniobra 
+	Al tablero se accede desde el menu:
+        Contabilidad/Contabilidad/Resumen de cuentas
             """,
     "depends": [
         'account', 'l10n_es_account', 'account_payment'

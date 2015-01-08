@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Odoo - Account summary
-#    Copyright (C) 2014 Luis Martinez Ontalba (www.tecnisagra.com).
+#    Copyright (C) 2015 Luis Martinez Ontalba (www.tecnisagra.com).
 #      
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-import account_summary
+from . import account_summary
 
 
 
