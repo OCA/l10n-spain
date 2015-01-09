@@ -254,14 +254,19 @@ class account_asset_asset(orm.Model):
                     depr_date = datetime.strptime(
                         depr_line.depreciation_date, DSDF)
                     if fix_depreciation:
-                        depr_date = depr_date + relativedelta(
-                            months=+asset.method_period)
+                        if depr_date.day != 1:
+                            depr_date = depr_date + relativedelta(
+                                months=+asset.method_period)
                     if asset.method_period == 12:
                         depr_date = depr_date.replace(depr_date.year, 12, 31)
                     else:
                         if not asset.prorata:
-                            depr_date = depreciation_date + relativedelta(
-                                months=+ (asset.method_period * nb))
+                            if depr_date.day != 1:
+                                depr_date = depreciation_date + relativedelta(
+                                    months=+ (asset.method_period * (nb+1)))
+                            else:
+                                depr_date = depreciation_date + relativedelta(
+                                    months=+ (asset.method_period * nb))
                             nb += 1
                         last_month_day = calendar.monthrange(
                             depr_date.year, depr_date.month)[1]
