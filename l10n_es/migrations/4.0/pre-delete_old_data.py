@@ -57,4 +57,8 @@ def migrate(cr, version):
                    """
                    % ({'table': model.replace('.', '_'), 'model': model}))
     # Delete XML IDs
-    cr.execute("DELETE FROM ir_model_data WHERE module='l10n_es'")
+    cr.execute("""DELETE FROM
+                      ir_model_data
+                  WHERE module = 'l10n_es'
+                  AND model != 'account.account.type'
+               """)
