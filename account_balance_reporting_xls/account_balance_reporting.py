@@ -4,7 +4,7 @@
 #    __openerp__.py file at the root folder of this module.    #
 ################################################################
 
-from openerp.osv import orm,fields
+from openerp.osv import orm, fields
 from openerp.addons.report_xls.utils import rowcol_to_cell, _render
 from openerp.tools.translate import _
 import logging
@@ -26,7 +26,7 @@ class account_balance_reporting(orm.Model):
         return "''"
 
     def _report_xls_fields(self, cr, uid, context=None):
-        # Add here the fields to showin the XLS file
+        # Add here the fields to show in the XLS file
         res = [
             'name',  # account.balance.reporting.line, name
             'code',

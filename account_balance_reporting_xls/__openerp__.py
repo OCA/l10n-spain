@@ -6,6 +6,7 @@
 #    Copyright (c) All rights reserved:
 #        (c) 2014      Anubía, soluciones en la nube,SL (http://www.anubia.es)
 #                      Juan Formoso <jfv@anubia.es>
+#                      Alejandro Santana <alejandrosantana@anubia.es>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -24,26 +25,29 @@
 
 {
     "name": "Account Balance Reporting to XLS",
-    "version": "0.1",
-    "depends": [
-        "account_balance_reporting",
-        "report_xls",
-    ],
+    "version": "0.2",
     "author": "Juan Formoso <jfv@anubia.es>",
     "category": "Accounting / Reports",
     "description": """
     This module provides the opportunity of exporting financial reports to
-XLS files.
+    XLS files.
+    
+    This module depends on module **report_xls**, which is a community effort
+    under the umbrella of OCA (Odoo Community Association) and can be found at:
+    https://github.com/OCA/reporting-engine/tree/6.1
+    
+    To easily download it, you can use git in commandline, like this:
+    git clone -b 6.1 https://github.com/OCA/reporting-engine
     """,
     'depends': [
         'account_balance_reporting',
         'report_xls',
     ],
-    'demo_xml': [],
-    'init_xml': [],
-    'update_xml': [
+    'contributors': ['Alejandro Santana <alejandrosantana@anubia.es>', ],
+    'data': [
         'wizard/account_balance_reporting_wizard.xml',
     ],
+    'demo': [],
     'installable': True,
     # 'certificate': 'certificate',
 }

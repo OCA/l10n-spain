@@ -42,8 +42,6 @@ class account_balance_reporting_print(report_sxw.rml_parse):
         self.localcontext.update({
            'additional_data': self._get_additional_data(),
         })
-#         objects = []
-#         self.localcontext['objects'] = self.objects = objects
 
     def __init__(self, cr, uid, name, context):
         if context is None:
@@ -57,12 +55,12 @@ class account_balance_reporting_print(report_sxw.rml_parse):
             '_': self._,
         })
         self.context = context
-    
+
     def _(self, src):
         lang = self.context.get('lang', 'en_US')
         return translate(self.cr, _ir_translation_name, 'report', lang,
                          src) or src
-    
+
     def _get_additional_data(self):
         self.cr.execute(
             "SELECT TO_CHAR(r.calc_date, 'DD-MM-YYYY HH24:MI:SS') AS calc_date, t.name AS tname "
@@ -70,6 +68,10 @@ class account_balance_reporting_print(report_sxw.rml_parse):
             + "INNER JOIN account_balance_reporting_template t ON r.template_id = t.id "
             + "WHERE r.id = %s ", ([self.report_id, ]))
         fields = self.cr.dictfetchall()
+        # !!!!!!!!!!!!!!!!!!!!!!
+        # TODO: Do not use SQL
+#         fields = 
+
         fields = fields[0]
         return fields
 
@@ -101,17 +103,23 @@ class account_balance_reporting_print(report_sxw.rml_parse):
             + where_zero
             + where_extra, ([self.report_id, ]))
         lines = self.cr.dictfetchall()
+        # !!!!!!!!!!!!!!!!!!!!!!
+        # TODO: Do not use SQL
+        # lines = 
  
         return lines
     
-#         def formatLang(self, value, digits=None, date=False, date_time=False, grouping=True, monetary=False, dp=False, currency_obj=False):
+#         def formatLang(self, value, digits=None, date=False, date_time=False,
+#                        grouping=True, monetary=False, dp=False,
+#                        currency_obj=False):
 #             if isinstance(value, (float, int)) and not value:
 #                 return ''
 #             else:
-#                 return super(account_balance_reporting_print, self).formatLang(value, digits, date, date_time, grouping, monetary, dp, currency_obj)
+#                 return super(account_balance_reporting_print,
+#                              self).formatLang(value, digits, date, date_time,
+#                                               grouping, monetary, dp,
+#                                               currency_obj)
 
-report_sxw.report_sxw('report.account.balance.reporting.print', 'account.balance.reporting',
-   # '/opt/openerp7/openerp_70_ocb_devel/all-addons/account_balance_reporting_xls/report/reporting.rml',
+report_sxw.report_sxw('report.account.balance.reporting.print',
+                      'account.balance.reporting',
     parser=account_balance_reporting_print, header=False)
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
