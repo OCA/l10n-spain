@@ -29,18 +29,18 @@ _ir_translation_name = 'account.balance.reporting.print'
 
 
 class account_balance_reporting_print(report_sxw.rml_parse):
+    # _logger = logging.getLogger(__name__)
 
-    _logger = logging.getLogger(__name__)
     def set_context(self, objects, data, ids, report_type=None):
-        super(account_balance_reporting_print, self).set_context(objects, data,
-                                                                 ids)
+        super(account_balance_reporting_print, self).set_context(objects,
+                                                                 data, ids)
         abr_obj = self.pool.get('account.balance.reporting')
         self.report_type = report_type
         self.report_id = data['report_id']
         self.report_name = data['report_name']
         self.report_design = data['report_design']
         self.localcontext.update({
-           'additional_data': self._get_additional_data(),
+            'additional_data': self._get_additional_data(),
         })
 
     def __init__(self, cr, uid, name, context):
@@ -68,7 +68,7 @@ class account_balance_reporting_print(report_sxw.rml_parse):
         calc_date = abr and abr.calc_date or False
         tname = abr and abr.template_id and abr.template_id.name or False
         fields = {'calc_date': calc_date,
-                  'tname': tname,}
+                  'tname': tname, }
         return fields
 
     def _lines(self, object):
@@ -79,14 +79,14 @@ class account_balance_reporting_print(report_sxw.rml_parse):
         non_zero_name = "Generic balance report (non zero lines)"
         non_zero = (self.report_design == non_zero_name)
         # No SQL is used, as performance should not be a problem using
-        # already calculated values.        
+        # already calculated values.
         lines = []
         abr_line_ids = abr.line_ids
         for line in abr_line_ids:
-#             line_balance = line.previous_value and \
-#                             (line.current_value - line.previous_value) or False
+            # line_balance = line.previous_value and \
+            #     (line.current_value - line.previous_value) or False
             line_balance = (line.current_value - line.previous_value)
-            if non_zero and abs(line_balance)<0.005:
+            if non_zero and abs(line_balance) < 0.005:
                 continue
             notes = line.notes and line.notes.encode('utf-8') or ''
             line_fields = {'code': line.code,
@@ -98,7 +98,7 @@ class account_balance_reporting_print(report_sxw.rml_parse):
                            }
             lines.append(line_fields)
         return lines
-    
+
 #         def formatLang(self, value, digits=None, date=False, date_time=False,
 #                        grouping=True, monetary=False, dp=False,
 #                        currency_obj=False):

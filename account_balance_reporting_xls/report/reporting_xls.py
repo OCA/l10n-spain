@@ -16,22 +16,25 @@ from openerp.tools.translate import translate, _
 from openerp import pooler
 import logging
 _logger = logging.getLogger(__name__)
-
 # _ir_translation_name = 'reporting.xls'
+
 
 class account_balance_reporting_xls_parser(account_balance_reporting_print):
 
     def __init__(self, cr, uid, name, context):
-        super(account_balance_reporting_xls_parser, self).__init__(cr, uid, name, context=context)
+        super(account_balance_reporting_xls_parser,
+              self).__init__(cr, uid, name, context=context)
         account_br_obj = self.pool.get('account.balance.reporting')
         self.context = context
         wanted_list = account_br_obj._report_xls_fields(cr, uid, context)
-        template_changes = account_br_obj._report_xls_template(cr, uid, context)
+        template_changes = account_br_obj._report_xls_template(cr, uid,
+                                                               context)
         self.localcontext.update({
             'datetime': datetime,
             'wanted_list': wanted_list,
             'template_changes': template_changes,
         })
+
 
 class account_balance_reporting_xls(report_xls):
 
@@ -39,7 +42,7 @@ class account_balance_reporting_xls(report_xls):
                  rml=False, parser=False, header=True, store=False):
         super(account_balance_reporting_xls,
               self).__init__(name, table, rml, parser, header, store)
-        
+
         # Cell Styles
         _xs = self.xls_styles
         # header
@@ -51,7 +54,7 @@ class account_balance_reporting_xls(report_xls):
         aml_cell_format = _xs['borders_all']
         self.aml_cell_style = xlwt.easyxf(aml_cell_format)
         self.aml_cell_style_center = xlwt.easyxf(
-                                             aml_cell_format + _xs['center'])
+            aml_cell_format + _xs['center'])
         self.aml_cell_style_date = xlwt.easyxf(
             aml_cell_format + _xs['left'],
             num_format_str=report_xls.date_format)
@@ -67,9 +70,10 @@ class account_balance_reporting_xls(report_xls):
             num_format_str=report_xls.decimal_format)
 
         # XLS Template
+        # [Cell columns span, cell width, content type, ??]
         self.col_specs_lines_template = {
             'name': {
-                'header': [1, 80, 'text', _render("_('Concepto')")],  # [Número de celdas que ocupa, Ancho de cada celda que ocupa, Tipo de contenido, ¿?]
+                'header': [1, 80, 'text', _render("_('Concepto')")],
                 'lines': [1, 0, 'text', _render("l['name']")],
                 'totals': [1, 0, 'text', None],
             },
@@ -79,18 +83,24 @@ class account_balance_reporting_xls(report_xls):
                 'totals': [1, 0, 'text', None],
             },
             'previous_value': {
-                'header': [1, 15, 'text', _render("_('Valor anterior')"), None, self.rh_cell_style_right],
-                'lines': [1, 0, 'number', _render("l['previous_value']"), None, self.aml_cell_style_decimal],
+                'header': [1, 15, 'text', _render("_('Valor anterior')"),
+                           None, self.rh_cell_style_right],
+                'lines': [1, 0, 'number', _render("l['previous_value']"),
+                          None, self.aml_cell_style_decimal],
                 'totals': [1, 0, 'text', None]
             },
             'current_value': {
-                'header': [1, 15, 'text', _render("_('Valor actual')"), None, self.rh_cell_style_right],
-                'lines': [1, 0, 'number', _render("l['current_value']"), None, self.aml_cell_style_decimal],
+                'header': [1, 15, 'text', _render("_('Valor actual')"),
+                           None, self.rh_cell_style_right],
+                'lines': [1, 0, 'number', _render("l['current_value']"),
+                          None, self.aml_cell_style_decimal],
                 'totals': [1, 0, 'text', None]
             },
             'balance': {
-                'header': [1, 15, 'text', _render("_('Balance')"), None, self.rh_cell_style_right],
-                'lines': [1, 0, 'number', _render("l['balance']"), None, self.aml_cell_style_decimal],
+                'header': [1, 15, 'text', _render("_('Balance')"),
+                           None, self.rh_cell_style_right],
+                'lines': [1, 0, 'number', _render("l['balance']"),
+                          None, self.aml_cell_style_decimal],
                 'totals': [1, 0, 'text', None]
             },
             'notes': {
@@ -98,7 +108,7 @@ class account_balance_reporting_xls(report_xls):
                 'lines': [1, 0, 'text', _render("l['notes']")],
                 'totals': [1, 0, 'text', None],
             },
-       }
+        }
 
     def generate_xls_report(self, _p, _xs, data, objects, wb):
         wanted_list = _p.wanted_list
@@ -118,13 +128,17 @@ class account_balance_reporting_xls(report_xls):
         ws.footer_str = self.xls_footers['standard']
 
         # Title
-        report_name = _(_p.data['report_name']) + ' ' + '(' + _(_p.additional_data['tname']) + ') - ' + _(_p.additional_data['calc_date']) 
+        r_n = _(_p.data['report_name'])
+        t_n = _(_p.additional_data['tname'])
+        c_d = _(_p.additional_data['calc_date'])
+        report_name = (r_n + ' (' + t_n + ') - ' + c_d)
         cell_style = xlwt.easyxf(_xs['xls_title'])
         c_specs = [
             ('report_name', 6, 0, 'text', report_name),
         ]
         row_data = self.xls_row_template(c_specs, ['report_name'])
-        row_pos = self.xls_write_row(ws, row_pos, row_data, row_style=cell_style)
+        row_pos = self.xls_write_row(ws, row_pos, row_data,
+                                     row_style=cell_style)
         row_pos += 1
 
         # Column headers
@@ -141,8 +155,9 @@ class account_balance_reporting_xls(report_xls):
         for o in objects:
             for l in _p.lines(o):
                 # Data
-                c_specs = map(lambda x: self.render(x,
-                    self.col_specs_lines_template, 'lines'), wanted_list)
+                cslt = self.col_specs_lines_template
+                c_specs = map(lambda x: self.render(x, cslt, 'lines'),
+                              wanted_list)
                 row_data = self.xls_row_template(c_specs,
                                                  [x[0] for x in c_specs])
                 row_pos = self.xls_write_row(ws, row_pos, row_data)
