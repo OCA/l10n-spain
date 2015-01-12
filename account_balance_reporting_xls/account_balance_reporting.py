@@ -15,11 +15,11 @@ class account_balance_reporting(orm.Model):
     _inherit = "account.balance.reporting"
 
     # allow inherited modules to extend the query
-    def _report_xls_query_extra(self, cr, uid, context=None):
-        select_extra = ""
-        join_extra = ""
-        where_extra = ""
-        return (select_extra, join_extra, where_extra)
+#     def _report_xls_query_extra(self, cr, uid, context=None):
+#         select_extra = ""
+#         join_extra = ""
+#         where_extra = ""
+#         return (select_extra, join_extra, where_extra)
 
     # allow inherited modules to add document references
     def _report_xls_document_extra(self, cr, uid, context):
@@ -40,5 +40,3 @@ class account_balance_reporting(orm.Model):
     # Change/Add Template entries
     def _report_xls_template(self, cr, uid, context=None):
         return {}
-
-account_balance_reporting()

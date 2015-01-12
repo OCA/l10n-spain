@@ -24,13 +24,13 @@ import time
 from openerp.report import report_sxw
 from openerp.tools.translate import translate, _
 import logging
-_logger = logging.getLogger(__name__)
 
 _ir_translation_name = 'account.balance.reporting.print'
 
 
 class account_balance_reporting_print(report_sxw.rml_parse):
 
+    _logger = logging.getLogger(__name__)
     def set_context(self, objects, data, ids, report_type=None):
         super(account_balance_reporting_print, self).set_context(objects, data,
                                                                  ids)
@@ -62,51 +62,41 @@ class account_balance_reporting_print(report_sxw.rml_parse):
                          src) or src
 
     def _get_additional_data(self):
-        self.cr.execute(
-            "SELECT TO_CHAR(r.calc_date, 'DD-MM-YYYY HH24:MI:SS') AS calc_date, t.name AS tname "
-            + "FROM account_balance_reporting r "
-            + "INNER JOIN account_balance_reporting_template t ON r.template_id = t.id "
-            + "WHERE r.id = %s ", ([self.report_id, ]))
-        fields = self.cr.dictfetchall()
-        # !!!!!!!!!!!!!!!!!!!!!!
-        # TODO: Do not use SQL
-#         fields = 
-
-        fields = fields[0]
+        abr_obj = self.pool.get('account.balance.reporting')
+        abr = abr_obj.browse(self.cr, self.uid,
+                             self.report_id, self.context)
+        calc_date = abr and abr.calc_date or False
+        tname = abr and abr.template_id and abr.template_id.name or False
+        fields = {'calc_date': calc_date,
+                  'tname': tname,}
         return fields
 
     def _lines(self, object):
-        
-        abr_obj = self.pool.get('account.balance.reporting')
         _ = self._
-
-#         acc_bal_rep = object[0]
-#         acc_bal_rep_id = acc_bal_rep.id
- 
-        if self.report_design == "Generic balance report (non zero lines)":
-            where_zero = "AND (l.current_value-l.previous_value) != 0 "            
-        else:
-            where_zero = ""
- 
-        select_extra, join_extra, where_extra = abr_obj._report_xls_query_extra(self.cr, self.uid, self.context)
- 
-        # SQL select for performance reasons, as a consequence, there are no field value translations.
-        # If performance is no issue, you can adapt the _report_xls_template in an inherited module to add field value translations.
-        
-        self.cr.execute(
-            "SELECT l.name AS name, l.code as code, l.notes AS notes, l.previous_value AS previous_value, l.current_value AS current_value, (l.current_value-l.previous_value) AS balance "
-            + select_extra
-            + "FROM account_balance_reporting_line l "
-            + "INNER JOIN account_balance_reporting r ON l.report_id = r.id "
-            + join_extra
-            + "WHERE r.id = %s "
-            + where_zero
-            + where_extra, ([self.report_id, ]))
-        lines = self.cr.dictfetchall()
-        # !!!!!!!!!!!!!!!!!!!!!!
-        # TODO: Do not use SQL
-        # lines = 
- 
+        # abr stands for 'account balance report'
+        abr = object
+#         abr = abr_obj.browse(self.cr, self.uid, self.report_id, self.context)
+        non_zero_name = "Generic balance report (non zero lines)"
+        non_zero = (self.report_design == non_zero_name)
+        # No SQL is used, as performance should not be a problem using
+        # already calculated values.        
+        lines = []
+        abr_line_ids = abr.line_ids
+        for line in abr_line_ids:
+#             line_balance = line.previous_value and \
+#                             (line.current_value - line.previous_value) or False
+            line_balance = (line.current_value - line.previous_value)
+            if non_zero and abs(line_balance)<0.005:
+                continue
+            notes = line.notes and line.notes.encode('utf-8') or ''
+            line_fields = {'code': line.code,
+                           'name': line.name,
+                           'previous_value': line.previous_value,
+                           'current_value': line.current_value,
+                           'balance': line_balance,
+                           'notes': line.notes,
+                           }
+            lines.append(line_fields)
         return lines
     
 #         def formatLang(self, value, digits=None, date=False, date_time=False,
@@ -122,4 +112,5 @@ class account_balance_reporting_print(report_sxw.rml_parse):
 
 report_sxw.report_sxw('report.account.balance.reporting.print',
                       'account.balance.reporting',
-    parser=account_balance_reporting_print, header=False)
+                      parser=account_balance_reporting_print,
+                      header=False)

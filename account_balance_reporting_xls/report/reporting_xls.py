@@ -78,11 +78,6 @@ class account_balance_reporting_xls(report_xls):
                 'lines': [1, 0, 'text', _render("l['code']")],
                 'totals': [1, 0, 'text', None],
             },
-            'notes': {
-                'header': [1, 30, 'text', _render("_('Notas')")],
-                'lines': [1, 0, 'text', _render("l['notes']")],
-                'totals': [1, 0, 'text', None],
-            },
             'previous_value': {
                 'header': [1, 15, 'text', _render("_('Valor anterior')"), None, self.rh_cell_style_right],
                 'lines': [1, 0, 'number', _render("l['previous_value']"), None, self.aml_cell_style_decimal],
@@ -98,10 +93,14 @@ class account_balance_reporting_xls(report_xls):
                 'lines': [1, 0, 'number', _render("l['balance']"), None, self.aml_cell_style_decimal],
                 'totals': [1, 0, 'text', None]
             },
+            'notes': {
+                'header': [1, 30, 'text', _render("_('Notas')")],
+                'lines': [1, 0, 'text', _render("l['notes']")],
+                'totals': [1, 0, 'text', None],
+            },
        }
 
     def generate_xls_report(self, _p, _xs, data, objects, wb):
-
         wanted_list = _p.wanted_list
         self.wanted_list = wanted_list
         self.col_specs_lines_template.update(_p.template_changes)
@@ -148,7 +147,6 @@ class account_balance_reporting_xls(report_xls):
                                                  [x[0] for x in c_specs])
                 row_pos = self.xls_write_row(ws, row_pos, row_data)
 
-# ¿Es correcto?
 account_balance_reporting_xls('report.reporting.xls',
                               'account.balance.reporting',
                               parser=account_balance_reporting_xls_parser)
