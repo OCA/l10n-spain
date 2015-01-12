@@ -4,23 +4,17 @@
 #    __openerp__.py file at the root folder of this module.    #
 ################################################################
 
-from osv import fields, osv
-import pooler
-import logging
-_logger = logging.getLogger(__name__)
-from openerp.osv import orm
+from osv import osv
 
 
 class print_wizard(osv.osv_memory):
     _inherit = 'account.balance.reporting.print.wizard'
 
     def xls_export(self, cr, uid, ids, context=None):
-        # return self.print_report(cr, uid, ids, context=context)
         if context is None:
             context = {}
 
         data = self.read(cr, uid, ids)[-1]
-
         datas = {
             'report_id': data.get('report_id') and \
                          data['report_id'][0] or None,
@@ -54,7 +48,6 @@ class print_wizard(osv.osv_memory):
             context = {}
 
         data = self.read(cr, uid, ids)[-1]
-
         datas = {
             'report_id': data.get('report_id') and \
                          data['report_id'][0] or None,
@@ -76,9 +69,8 @@ class print_wizard(osv.osv_memory):
             if report_xml_id:
                 report_xml = rpt_facade.browse(cr, uid, [report_xml_id])[0]
             if report_xml:
-                return {
-                    'type': 'ir.actions.report.xml',
-                    'report_name': report_xml.report_name,
-                    'datas': datas,
-                }
+                return {'type': 'ir.actions.report.xml',
+                        'report_name': report_xml.report_name,
+                        'datas': datas,
+                        }
         return {'type': 'ir.actions.act_window_close'}

@@ -5,17 +5,11 @@
 # ##############################################################
 
 import xlwt
-import time
 from datetime import datetime
-from openerp.osv import orm
-from openerp.report import report_sxw
 from openerp.addons.report_xls.report_xls import report_xls
-from openerp.addons.report_xls.utils import rowcol_to_cell, _render
+from openerp.addons.report_xls.utils import _render
 from .reporting import account_balance_reporting_print
-from openerp.tools.translate import translate, _
-from openerp import pooler
-import logging
-_logger = logging.getLogger(__name__)
+from openerp.tools.translate import _
 # _ir_translation_name = 'reporting.xls'
 
 

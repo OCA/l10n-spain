@@ -22,19 +22,16 @@
 
 import time
 from openerp.report import report_sxw
-from openerp.tools.translate import translate, _
-import logging
+from openerp.tools.translate import translate
 
 _ir_translation_name = 'account.balance.reporting.print'
 
 
 class account_balance_reporting_print(report_sxw.rml_parse):
-    # _logger = logging.getLogger(__name__)
 
     def set_context(self, objects, data, ids, report_type=None):
         super(account_balance_reporting_print, self).set_context(objects,
                                                                  data, ids)
-        abr_obj = self.pool.get('account.balance.reporting')
         self.report_type = report_type
         self.report_id = data['report_id']
         self.report_name = data['report_name']
@@ -72,7 +69,6 @@ class account_balance_reporting_print(report_sxw.rml_parse):
         return fields
 
     def _lines(self, object):
-        _ = self._
         # abr stands for 'account balance report'
         abr = object
 #         abr = abr_obj.browse(self.cr, self.uid, self.report_id, self.context)
@@ -94,7 +90,7 @@ class account_balance_reporting_print(report_sxw.rml_parse):
                            'previous_value': line.previous_value,
                            'current_value': line.current_value,
                            'balance': line_balance,
-                           'notes': line.notes,
+                           'notes': notes,
                            }
             lines.append(line_fields)
         return lines
@@ -109,7 +105,7 @@ class account_balance_reporting_print(report_sxw.rml_parse):
 #                              self).formatLang(value, digits, date, date_time,
 #                                               grouping, monetary, dp,
 #                                               currency_obj)
-
+#
 report_sxw.report_sxw('report.account.balance.reporting.print',
                       'account.balance.reporting',
                       parser=account_balance_reporting_print,

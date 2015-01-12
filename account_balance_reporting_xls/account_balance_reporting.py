@@ -4,22 +4,11 @@
 #    __openerp__.py file at the root folder of this module.    #
 ################################################################
 
-from openerp.osv import orm, fields
-from openerp.addons.report_xls.utils import rowcol_to_cell, _render
-from openerp.tools.translate import _
-import logging
-_logger = logging.getLogger(__name__)
+from openerp.osv import orm
 
 
 class account_balance_reporting(orm.Model):
     _inherit = "account.balance.reporting"
-
-    # allow inherited modules to extend the query
-#     def _report_xls_query_extra(self, cr, uid, context=None):
-#         select_extra = ""
-#         join_extra = ""
-#         where_extra = ""
-#         return (select_extra, join_extra, where_extra)
 
     # allow inherited modules to add document references
     def _report_xls_document_extra(self, cr, uid, context):
