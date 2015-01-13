@@ -9,7 +9,8 @@
 				<xpath expr="//page[@name='sales_purchases']/group" position="inside">
 					<group attrs="{'invisible': [('supplier','=', False)]}">
 						<field name="certificate_required"/>
-						<field name="certificate_expiration" attrs="{'invisible': [('certificate_required','=', False)]}"/>
+						<field name="certificate_expiration_aeat" attrs="{'invisible': [('certificate_required','=', False)]}"/>
+						<field name="certificate_expiration_ss" attrs="{'invisible': [('certificate_required','=', False)]}"/>
 					</group>
 				</xpath>
 			</field>
