@@ -1,25 +1,26 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* l10n_es_subcontractor_certificate
-#
+# * l10n_es_subcontractor_certificate
+# angel <angel.moya@domatix.com>, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-24 07:37+0000\n"
-"PO-Revision-Date: 2014-11-24 08:38+0100\n"
-"Last-Translator: Angel Moya - Domatix <angel.moya@domatix.com>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-01-13 08:40+0000\n"
+"PO-Revision-Date: 2015-01-13 09:43+0200\n"
+"Last-Translator: angel <angel.moya@domatix.com>\n"
+"Language-Team: Domatix\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 1.5.4\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
 
 #. module: l10n_es_subcontractor_certificate
-#: field:res.partner,certificate_expiration:0
-msgid "Certificate Expiration"
-msgstr "Caducidad de certificado"
+#: field:res.partner,certificate_expiration_aeat:0
+msgid "AEAT Certificate Expiration"
+msgstr "Fecha de certificado de AEAT"
 
 #. module: l10n_es_subcontractor_certificate
 #: field:res.partner,certificate_required:0
@@ -42,25 +43,43 @@ msgid "Purchase Order"
 msgstr "Pedido de compra"
 
 #. module: l10n_es_subcontractor_certificate
+#: field:res.partner,certificate_expiration_ss:0
+msgid "SS Certificate Expiration"
+msgstr "Fecha de certificado de Seguridad Social"
+
+#. module: l10n_es_subcontractor_certificate
 #: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:28
 #, python-format
-msgid ""
-"The subcontractor certificate for this supplier                     has "
-"expired"
-msgstr "El certificado de subcontratista ha caducado."
+msgid "The AEAT certificate for this supplier has expired"
+msgstr "El certificado de AEAT de este proveedor ha caducado"
 
 #. module: l10n_es_subcontractor_certificate
 #: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:34
 #, python-format
-msgid ""
-"The subcontractor certificate is required and                     expiration "
-"date is not set"
+msgid "The AEAT certificate is required and expiration date is not set"
 msgstr ""
-"No se ha indicado la fecha de caducidad del certificado de subcontratista."
+"El certificado de subcontratista es necesario y no se ha indicado fecha de "
+"certificado de AEAT"
+
+#. module: l10n_es_subcontractor_certificate
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:40
+#, python-format
+msgid "The SS certificate for this supplier has expired"
+msgstr "El certificado de seguridad social de este proveedor ha caducado"
+
+#. module: l10n_es_subcontractor_certificate
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:46
+#, python-format
+msgid "The SS certificate is required and expiration date is not set"
+msgstr ""
+"El certificado de subcontratista es necesario y no se ha indicado fecha de "
+"certificado de seguridad social"
 
 #. module: l10n_es_subcontractor_certificate
 #: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:27
 #: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:33
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:39
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:45
 #, python-format
 msgid "Warning!"
 msgstr "¡Aviso!"
