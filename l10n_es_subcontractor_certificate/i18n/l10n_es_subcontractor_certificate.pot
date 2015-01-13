@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-24 18:08+0000\n"
-"PO-Revision-Date: 2014-11-24 18:08+0000\n"
+"POT-Creation-Date: 2015-01-13 08:44+0000\n"
+"PO-Revision-Date: 2015-01-13 08:44+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_subcontractor_certificate
-#: field:res.partner,certificate_expiration:0
-msgid "Certificate Expiration"
+#: field:res.partner,certificate_expiration_aeat:0
+msgid "AEAT Certificate Expiration"
 msgstr ""
 
 #. module: l10n_es_subcontractor_certificate
@@ -41,20 +41,39 @@ msgid "Purchase Order"
 msgstr ""
 
 #. module: l10n_es_subcontractor_certificate
+#: field:res.partner,certificate_expiration_ss:0
+msgid "SS Certificate Expiration"
+msgstr ""
+
+#. module: l10n_es_subcontractor_certificate
 #: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:28
 #, python-format
-msgid "The subcontractor certificate for this supplier has expired"
+msgid "The AEAT certificate for this supplier has expired"
 msgstr ""
 
 #. module: l10n_es_subcontractor_certificate
 #: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:34
 #, python-format
-msgid "The subcontractor certificate is required and expiration date is not set"
+msgid "The AEAT certificate is required and expiration date is not set"
+msgstr ""
+
+#. module: l10n_es_subcontractor_certificate
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:40
+#, python-format
+msgid "The SS certificate for this supplier has expired"
+msgstr ""
+
+#. module: l10n_es_subcontractor_certificate
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:46
+#, python-format
+msgid "The SS certificate is required and expiration date is not set"
 msgstr ""
 
 #. module: l10n_es_subcontractor_certificate
 #: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:27
 #: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:33
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:39
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:45
 #, python-format
 msgid "Warning!"
 msgstr ""
