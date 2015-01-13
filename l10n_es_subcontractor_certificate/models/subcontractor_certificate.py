@@ -23,15 +23,27 @@
 
 from openerp import models, fields, api, _
 
-EXPIRED_WARNING = {
+EXPIRED_WARNING_AEAT = {
     'title': _('Warning!'),
-    'message': _('The subcontractor certificate for this supplier '
+    'message': _('The AEAT certificate for this supplier '
                  'has expired')
     }
 
-REQUIRED_WARNING = {
+REQUIRED_WARNING_AEAT = {
     'title': _('Warning!'),
-    'message': _('The subcontractor certificate is required and '
+    'message': _('The AEAT certificate is required and '
+                 'expiration date is not set')
+    }
+
+EXPIRED_WARNING_SS = {
+    'title': _('Warning!'),
+    'message': _('The SS certificate for this supplier '
+                 'has expired')
+    }
+
+REQUIRED_WARNING_SS = {
+    'title': _('Warning!'),
+    'message': _('The SS certificate is required and '
                  'expiration date is not set')
     }
 
@@ -40,13 +52,23 @@ class ResPartner(models.Model):
     _inherit = ['res.partner']
 
     certificate_required = fields.Boolean(string='Certificate Required')
-    certificate_expiration = fields.Date(string='Certificate Expiration')
-    certificate_expired = fields.Boolean(string='Certificate Expirated',
-                                         compute='_certificate_expired')
+    certificate_expiration_aeat = fields.Date(
+        string='AEAT Certificate Expiration')
+    certificate_expired_aeat = fields.Boolean(
+        string='AEAT Certificate Expirated',
+        compute='_certificate_expired_aeat')
+    certificate_expiration_ss = fields.Date(string='SS Certificate Expiration')
+    certificate_expired_ss = fields.Boolean(
+        string='SS Certificate Expirated',
+        compute='_certificate_expired_ss')
 
-    def _certificate_expired(self):
-        self.certificate_expired = self.certificate_expiration and \
-            (self.certificate_expiration < fields.Date.today())
+    def _certificate_expired_aeat(self):
+        self.certificate_expired_aeat = self.certificate_expiration_aeat and \
+            (self.certificate_expiration_aeat < fields.Date.today())
+
+    def _certificate_expired_ss(self):
+        self.certificate_expired_ss = self.certificate_expiration_ss and \
+            (self.certificate_expiration_ss < fields.Date.today())
 
 
 class PurchaseOrder(models.Model):
@@ -58,10 +80,14 @@ class PurchaseOrder(models.Model):
         if partner_id:
             partner = self.env['res.partner'].browse(partner_id)[0]
             if partner.certificate_required:
-                if not partner.certificate_expiration:
-                    res['warning'] = REQUIRED_WARNING
-                elif partner.certificate_expired:
-                    res['warning'] = EXPIRED_WARNING
+                if not partner.certificate_expiration_aeat:
+                    res['warning'] = REQUIRED_WARNING_AEAT
+                elif partner.certificate_expired_aeat:
+                    res['warning'] = EXPIRED_WARNING_AEAT
+                elif not partner.certificate_expiration_ss:
+                    res['warning'] = REQUIRED_WARNING_SS
+                elif partner.certificate_expired_ss:
+                    res['warning'] = EXPIRED_WARNING_SS
         return res
 
 
@@ -79,8 +105,12 @@ class AccountInvoice(models.Model):
         if type == 'in_invoice' and partner_id:
             partner = self.env['res.partner'].browse(partner_id)
             if partner.certificate_required:
-                if not partner.certificate_expiration:
-                    res['warning'] = REQUIRED_WARNING
-                elif partner.certificate_expired:
-                    res['warning'] = EXPIRED_WARNING
+                if not partner.certificate_expiration_aeat:
+                    res['warning'] = REQUIRED_WARNING_AEAT
+                elif partner.certificate_expired_aeat:
+                    res['warning'] = EXPIRED_WARNING_AEAT
+                elif not partner.certificate_expiration_ss:
+                    res['warning'] = REQUIRED_WARNING_SS
+                elif partner.certificate_expired_ss:
+                    res['warning'] = EXPIRED_WARNING_SS
         return res
