@@ -9,8 +9,7 @@
     'depends': ['payment'],
     'data': [
         'views/redsys.xml',
-        'views/payment_acquirer.xml',
-        'data/redsys.xml',
+        'views/payment_acquirer.xml'
     ],
     'installable': True,
 }
