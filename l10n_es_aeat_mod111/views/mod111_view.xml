@@ -10,8 +10,10 @@
                     <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
                         <attribute name="name">%(action_wizard_aeat_mod111_export)d</attribute>
                     </button>
-                    <field name="fiscalyear_id" position="after">
-                        <field name="periodo"/>
+                    <field name="fiscalyear_id" position="replace">
+                        <field name="fiscalyear_id" domain="[('company_id','=',company_id)]" />
+                        <field name="period_ids" domain="[('special','=',False),('fiscalyear_id','=',fiscalyear_id)]"/>
+
                         <field name="currency_id" invisible="1"/>
                     </field>
                     <group string="Declaración" position="after">

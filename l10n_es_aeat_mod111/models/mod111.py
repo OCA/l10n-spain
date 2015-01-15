@@ -20,6 +20,7 @@
 #                                                                            #
 ##############################################################################
 
+from datetime import datetime
 from openerp.osv import fields, orm
 
 
@@ -99,15 +100,9 @@ class L10nEsAeatMod111Report(orm.Model):
             help='Número de justificante de la declaración anterior'
             ' (si se presentó en papel).'
             ' A cumplimentar sólo en el caso de declaración complementaria.'),
-        'periodo': fields.selection(
-            [('1T', 'Primer trimestre'), ('2T', 'Segundo trimestre'),
-                ('3T', 'Tercer trimestre'), ('4T', 'Cuarto trimestre'),
-                ('01', 'Enero'), ('02', 'Febrero'), ('03', 'Marzo'),
-                ('04', 'Abril'), ('05', 'Mayo'), ('06', 'Junio'),
-                ('07', 'Julio'), ('08', 'Agosto'), ('09', 'Septiembre'),
-                ('10', 'Octubre'), ('11', 'Noviembre'), ('12', 'Diciembre')],
-            'Período', readonly=True,
-            states={'draft': [('readonly', False)]}, required=True),
+        'period_ids': fields.many2one(
+            'account.period', 'Periodo', readonly=True,
+             states={'draft': [('readonly', False)]}, required=True),
         'state': fields.selection(
             [('draft', 'Borrador'), ('calculated', 'Procesada'),
                 ('done', 'Realizada'), ('cancelled', 'Cancelada')],
@@ -145,3 +140,22 @@ class L10nEsAeatMod111Report(orm.Model):
         'number': '111',
         'state': 'draft',
     }
+
+
+    def get_partners_and_data(self, cr, uid, period_id):
+        #1 recorrer apuntes contables, para el período dado (inherente el ejercicio fiscal)
+        # y para los diarios del tipo compras, para obtener rendimientos actividades económicas
+        move_line_model = self.pool.get('account.move.line')
+        filter = ['&','|',
+            ('period_id','=',period_id),
+            ('type','=',)
+            ('type','=',)
+        ]
+        move_line_ids = move_line_model.search(cr, uid, )
+        for move in move_line_ids.browse(cr, uid, move_line_ids):
+
+
+
+    def calculate(self, cr, uid, ids, context=None):
+        form = self.browse(cr,uid,ids)
+        print "entro!!!!!!!!"
