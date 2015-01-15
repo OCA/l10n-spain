@@ -100,7 +100,7 @@ class L10nEsAeatMod111Report(orm.Model):
             help='Número de justificante de la declaración anterior'
             ' (si se presentó en papel).'
             ' A cumplimentar sólo en el caso de declaración complementaria.'),
-        'period_ids': fields.many2one(
+        'period_id': fields.many2one(
             'account.period', 'Periodo', readonly=True,
              states={'draft': [('readonly', False)]}, required=True),
         'state': fields.selection(
@@ -142,20 +142,79 @@ class L10nEsAeatMod111Report(orm.Model):
     }
 
 
-    def get_partners_and_data(self, cr, uid, period_id):
-        #1 recorrer apuntes contables, para el período dado (inherente el ejercicio fiscal)
-        # y para los diarios del tipo compras, para obtener rendimientos actividades económicas
+
+    def get_account_child_ids(self, cr, uid, cuenta, company_id):
+        """
+        Para una determinada cuenta (tipo str) y compañía, devuelve sus hijas (ids)
+        Ejemplo cuentas_hijas = get_account_child_ids('4100')
+        """
+        account_model = self.pool.get('account.account')
+
+        cuenta_id = account_model.search(cr, uid, [
+            ('code','=',cuenta),
+            ('company_id','=',company_id)])
+        cuenta_obj = account_model.browse(cr, uid, cuenta_id)
+        cuentas_hijas = []
+        for cuenta in cuenta_obj:
+            cuentas_hijas.extend(c.id for c in cuenta.child_id)
+        return cuentas_hijas
+
+
+    def get_actividades_economicas(self, cr, uid, period_id, company_id):
+        """
+         Recorrer apuntes contables, para el período dado (inherente el ejercicio fiscal)
+         y para los diarios del tipo compras, para obtener rendimientos actividades económicas
+         además, sólo los referentes al código de cuenta 4751
+         para la base imponible, sobre cada apunte contable de la 4751, acudir al asiento
+         para obtener el valor del campo haber (credit) del apunte contra la cuenta padre 4100
+         y sus hijas
+        """
         move_line_model = self.pool.get('account.move.line')
-        filter = ['&','|',
-            ('period_id','=',period_id),
-            ('type','=',)
-            ('type','=',)
-        ]
-        move_line_ids = move_line_model.search(cr, uid, )
-        for move in move_line_ids.browse(cr, uid, move_line_ids):
+        journal_model = self.pool.get('account.journal')
+
+        cuentas_hijas_4751 = self.get_account_child_ids(cr, uid, '4751', company_id.id)
+
+        journal_ids = journal_model.search(cr, uid, ['|',
+            ('type', '=', 'purchase'),
+            ('type', '=', 'purchase_refund'),
+            ('company_id', '=', company_id.id)])
+
+        move_line_4751_ids = move_line_model.search(cr, uid, [
+            ('period_id','=',period_id.id),
+            ('account_id','in',cuentas_hijas_4751),
+            ('journal_id','in',journal_ids)])
+
+        partners = []
+        importes = 0.0
+        base_imponible = 0.0
+
+        for move in move_line_model.browse(cr, uid, move_line_4751_ids):
+            if not move.partner_id in partners:
+                partners.append(move.partner_id)
+            importes += move.tax_amount
+            # ahora la base imponible
+            # busco del asiento relacionado, apuntes con cuenta 4100 (proveedores)
+            cuentas_hijas_4100 = self.get_account_child_ids(cr, uid, '4100', company_id.id)
+            move_line_4100_hijas_ids = move_line_model.search(cr, uid, [
+                ('move_id','=', move.move_id.id),
+                ('account_id','in',cuentas_hijas_4100)])
+            move_line_4100_hijas_obj = move_line_model.browse(cr, uid, move_line_4100_hijas_ids)
+            for move4100 in move_line_4100_hijas_obj:
+                base_imponible += move4100.credit
+
+        return partners, base_imponible, importes
 
 
 
     def calculate(self, cr, uid, ids, context=None):
         form = self.browse(cr,uid,ids)
-        print "entro!!!!!!!!"
+        if isinstance(form, list):
+            form = form and form[0]
+        ae_partners, ae_base_imponible, ae_tax_amount = self.get_actividades_economicas(
+            cr, uid, form.period_id, form.company_id)
+        vals = {}
+        vals['casilla_07'] = len(ae_partners)
+        vals['casilla_08'] = abs(ae_base_imponible)
+        vals['casilla_09'] = abs(ae_tax_amount)
+        self.write(cr, uid, form.id, vals, context=context)
+

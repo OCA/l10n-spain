@@ -12,7 +12,7 @@
                     </button>
                     <field name="fiscalyear_id" position="replace">
                         <field name="fiscalyear_id" domain="[('company_id','=',company_id)]" />
-                        <field name="period_ids" domain="[('special','=',False),('fiscalyear_id','=',fiscalyear_id)]"/>
+                        <field name="period_id" domain="[('special','=',False),('fiscalyear_id','=',fiscalyear_id)]"/>
 
                         <field name="currency_id" invisible="1"/>
                     </field>
@@ -87,7 +87,7 @@
                     <attribute name="string">Declaraciones AEAT 111</attribute>
                 </tree>
                 <field name="fiscalyear_id" position="after">
-                    <field name="periodo"/>
+                    <field name="period_id"/>
                 </field>
             </field>
         </record>
