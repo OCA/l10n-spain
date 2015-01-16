@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Print wizard (osv.osv_memory) -->
+        <record model="ir.ui.view" id="wizard_account_balance_reporting_xls_print">
+            <field name="name">account.balance.reporting.print.wizard.form</field>
+            <field name="model">account.balance.reporting.print.wizard</field>
+            <field name="inherit_id" ref="account_balance_reporting.wizard_account_balance_reporting_print"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            	<xpath expr="/form/group/button[@name='print_report']" position="after">
+<!-- 	            	<button icon="gtk-print" name="print_report" string="Print" type="object"/> -->
+                    <button icon="gtk-execute" name="xls_export" string="Export" type="object" context="{'xls_export':1}"/>
+	            </xpath>
+        	</field>
+       	</record>
+    </data>
+</openerp>
