@@ -58,42 +58,48 @@ class AccountBalanceReportingXls(report_xls):
         self.rt_cell_style_decimal = xlwt.easyxf(
             rt_cell_format + _xs['right'],
             num_format_str=report_xls.decimal_format)
+
+    def _prepare_col_spec_lines_template(self):
+        # This is needed for translate tool to catch correctly lang handled
+        user = self.pool['res.users'].browse(self.cr, self.uid, self.uid)
+        context = {}
+        context.update({'lang': user.lang})
         # XLS Template
         # [Cell columns span, cell width, content type, ??]
-        self.col_specs_lines_template = {
+        return {
             'name': {
-                'header': [1, 80, 'text', _render("_('Concept')")],
+                'header': [1, 80, 'text', _('Concept')],
                 'lines': [1, 0, 'text', _render("l['name']")],
                 'totals': [1, 0, 'text', None],
             },
             'code': {
-                'header': [1, 10, 'text', _render("_('Code')")],
+                'header': [1, 10, 'text', _('Code')],
                 'lines': [1, 0, 'text', _render("l['code']")],
                 'totals': [1, 0, 'text', None],
             },
             'previous_value': {
-                'header': [1, 15, 'text', _render("_('Previous value')"),
+                'header': [1, 15, 'text', _('Previous value'),
                            None, self.rh_cell_style_right],
                 'lines': [1, 0, 'number', _render("l['previous_value']"),
                           None, self.aml_cell_style_decimal],
                 'totals': [1, 0, 'text', None]
             },
             'current_value': {
-                'header': [1, 15, 'text', _render("_('Current value')"),
+                'header': [1, 15, 'text', _('Current value'),
                            None, self.rh_cell_style_right],
                 'lines': [1, 0, 'number', _render("l['current_value']"),
                           None, self.aml_cell_style_decimal],
                 'totals': [1, 0, 'text', None]
             },
             'balance': {
-                'header': [1, 15, 'text', _render("_('Balance')"),
+                'header': [1, 15, 'text', _('Balance'),
                            None, self.rh_cell_style_right],
                 'lines': [1, 0, 'number', _render("l['balance']"),
                           None, self.aml_cell_style_decimal],
                 'totals': [1, 0, 'text', None]
             },
             'notes': {
-                'header': [1, 30, 'text', _render("_('Notes')")],
+                'header': [1, 30, 'text', _('Notes')],
                 'lines': [1, 0, 'text', _render("l['notes']")],
                 'totals': [1, 0, 'text', None],
             },
@@ -102,6 +108,7 @@ class AccountBalanceReportingXls(report_xls):
     def generate_xls_report(self, _p, _xs, data, objects, wb):
         wanted_list = _p.wanted_list
         self.wanted_list = wanted_list
+        self.col_specs_lines_template = self._prepare_col_spec_lines_template()
         self.col_specs_lines_template.update(_p.template_changes)
         sheet_name = _(_p.data['report_name'])
         ws = wb.add_sheet(sheet_name)
