@@ -4,6 +4,4 @@
 #    __openerp__.py file at the root folder of this module.    #
 ################################################################
 
-from . import models
-from . import report
-from . import wizard
+from . import account_balance_reporting

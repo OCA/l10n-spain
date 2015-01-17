@@ -3,9 +3,10 @@
 #
 #    OpenERP, Open Source Management Solution
 #
-#    Copyright (c) All rights reserved:
-#        (c) 2014      Anubía, soluciones en la nube,SL (http://www.anubia.es)
-#                      Juan Formoso <jfv@anubia.es>
+#    Copyright (c)
+#        2014 - Anubía, soluciones en la nube,SL (http://www.anubia.es)
+#                 Juan Formoso <jfv@anubia.es>
+#                 Alejandro Santana <alejandrosantana@anubia.es>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -24,26 +25,37 @@
 
 {
     "name": "Account Balance Reporting to XLS",
-    "version": "0.1",
-    "depends": [
-        "account_balance_reporting",
-        "report_xls",
-    ],
-    "author": "Juan Formoso <jfv@anubia.es>",
+    "version": "1.0",
+    "author": "Spanish Localization Team",
+    'website': 'http://odoo-spain.org',
     "category": "Accounting / Reports",
     "description": """
-    This module provides the opportunity of exporting financial reports to
-XLS files.
+Excel export for account balance reporting engine
+=================================================
+
+This module allows to export financial reports to XLS files from print dialog.
+
+**WARNING:** This module requires module *report_xls*, available on:
+
+  https://github.com/OCA/reporting-engine/
+
+Contributors
+------------
+* Alejandro Santana <alejandrosantana@anubia.es>
+* Juan Formoso <jfv@anubia.es>
+* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com
     """,
     'depends': [
         'account_balance_reporting',
         'report_xls',
     ],
-    'demo_xml': [],
-    'init_xml': [],
-    'update_xml': [
+    'contributors': [
+        'Alejandro Santana <alejandrosantana@anubia.es>',
+        'Juan Formoso <jfv@anubia.es>',
+        'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com',
+    ],
+    'data': [
         'wizard/account_balance_reporting_wizard.xml',
     ],
     'installable': True,
-    # 'certificate': 'certificate',
 }
