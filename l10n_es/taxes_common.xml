@@ -34,14 +34,17 @@
         Aumentada la secuencia del IRPF 2% para que en caso de acompañar al
         IVA agrario se compute incluyendo en la base el IVA
 
+        Angel Moya (Domatix) - angel.moya@domatix.com (2014-12-26)
+        Cambio de name por description para usar con name_get modificado
+
         -->
 
         <!-- IVA SOPORTADO -->
 
         <record id="iva_sop_4" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">4% IVA Soportado (operaciones corrientes)</field>
-            <field name="name">P_IVA4_BC</field>
+            <field name="name">4% IVA Soportado (operaciones corrientes)</field>
+            <field name="description">P_IVA4_BC</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -59,8 +62,8 @@
 
         <record id="iva_sop_4_inv" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">4% IVA Soportado (bienes de inversión)</field>
-            <field name="name">P_IVA4_BI</field>
+            <field name="name">4% IVA Soportado (bienes de inversión)</field>
+            <field name="description">P_IVA4_BI</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -78,8 +81,8 @@
 
         <record id="iva_sop_10" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">10% IVA Soportado (operaciones corrientes)</field>
-            <field name="name">P_IVA10_BC</field>
+            <field name="name">10% IVA Soportado (operaciones corrientes)</field>
+            <field name="description">P_IVA10_BC</field>
             <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -97,8 +100,8 @@
 
         <record id="iva_sop_10_inv" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">10% IVA Soportado (bienes de inversión)</field>
-            <field name="name">P_IVA10_BI</field>
+            <field name="name">10% IVA Soportado (bienes de inversión)</field>
+            <field name="description">P_IVA10_BI</field>
             <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -116,8 +119,8 @@
 
         <record id="iva_sop_12_agr" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">12% IVA Soportado régimen agricultura</field>
-            <field name="name">P_IVA12_AGR</field>
+            <field name="name">12% IVA Soportado régimen agricultura</field>
+            <field name="description">P_IVA12_AGR</field>
             <field eval="0.12" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -136,8 +139,8 @@
 
         <record id="iva_sop_21" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">21% IVA Soportado (operaciones corrientes)</field>
-            <field name="name">P_IVA21_BC</field>
+            <field name="name">21% IVA Soportado (operaciones corrientes)</field>
+            <field name="description">P_IVA21_BC</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -156,8 +159,8 @@
 
         <record id="iva_sop_21_inv" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">21% IVA Soportado (bienes de inversión)</field>
-            <field name="name">P_IVA21_BI</field>
+            <field name="name">21% IVA Soportado (bienes de inversión)</field>
+            <field name="description">P_IVA21_BI</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -178,8 +181,8 @@
         <!-- Compras -->
         <record id="iva_X0_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 0% Importaciones bienes corrientes</field>
-            <field name="name">P_IVAO_IBC</field>
+            <field name="name">IVA 0% Importaciones bienes corrientes</field>
+            <field name="description">P_IVAO_IBC</field>
             <field eval="0.00" name="amount"/>
             <field name="type">percent</field>
             <field name="base_code_id" ref="iva_ded_26"/>
@@ -192,8 +195,8 @@
         </record>
         <record id="iva_X0_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 0% Importaciones bienes de inversión</field>
-            <field name="name">P_IVAO_IBI</field>
+            <field name="name">IVA 0% Importaciones bienes de inversión</field>
+            <field name="description">P_IVAO_IBI</field>
             <field eval="0.00" name="amount"/>
             <field name="type">percent</field>
             <field name="base_code_id" ref="iva_ded_28"/>
@@ -207,8 +210,8 @@
 
         <record id="iva_X4_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 4% Importaciones bienes corrientes</field>
-            <field name="name">P_IVA4_IBC</field>
+            <field name="name">IVA 4% Importaciones bienes corrientes</field>
+            <field name="description">P_IVA4_IBC</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -225,8 +228,8 @@
         </record>
         <record id="iva_X4_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 4% Importaciones bienes de inversión</field>
-            <field name="name">P_IVA4_IBI</field>
+            <field name="name">IVA 4% Importaciones bienes de inversión</field>
+            <field name="description">P_IVA4_IBI</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -244,8 +247,8 @@
 
         <record id="iva_X10_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 10% Importaciones bienes corrientes</field>
-            <field name="name">P_IVA10_IBC</field>
+            <field name="name">IVA 10% Importaciones bienes corrientes</field>
+            <field name="description">P_IVA10_IBC</field>
             <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -262,8 +265,8 @@
         </record>
         <record id="iva_X10_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 10% Importaciones bienes de inversión</field>
-            <field name="name">P_IVA10_IBI</field>
+            <field name="name">IVA 10% Importaciones bienes de inversión</field>
+            <field name="description">P_IVA10_IBI</field>
             <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -281,8 +284,8 @@
 
         <record id="iva_X21_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 21% Importaciones bienes corrientes</field>
-            <field name="name">P_IVA21_IBC</field>
+            <field name="name">IVA 21% Importaciones bienes corrientes</field>
+            <field name="description">P_IVA21_IBC</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -299,8 +302,8 @@
         </record>
         <record id="iva_X21_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 21% Importaciones bienes de inversión</field>
-            <field name="name">P_IVA21_IBI</field>
+            <field name="name">IVA 21% Importaciones bienes de inversión</field>
+            <field name="description">P_IVA21_IBI</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -320,8 +323,8 @@
 
         <record id="iva_X0" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 0% Exportaciones</field>
-            <field name="name">S_IVAO</field>
+            <field name="name">IVA 0% Exportaciones</field>
+            <field name="description">S_IVAO</field>
             <field eval="0.00" name="amount"/>
             <field name="type">percent</field>
             <field name="base_code_id" ref="base_extra_43"/>
@@ -334,8 +337,8 @@
 
         <record id="iva_ISP_compras_21" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 21% Inversión del sujeto pasivo</field>
-            <field name="name">P_IVA21_SP</field>
+            <field name="name">IVA 21% Inversión del sujeto pasivo</field>
+            <field name="description">P_IVA21_SP</field>
             <field name="amount" eval="1.00"/>
             <field name="type">percent</field>
             <field name="child_depend" eval="1"/>
@@ -347,8 +350,8 @@
         </record>
         <record id="iva_ISP_compras_21_1" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 21% Inversión del sujeto pasivo (1)</field>
-            <field name="name">P_IVA21_SP_1</field>
+            <field name="name">IVA 21% Inversión del sujeto pasivo (1)</field>
+            <field name="description">P_IVA21_SP_1</field>
             <field name="parent_id" ref="iva_ISP_compras_21"/>
             <field name="amount" eval="0.00"/>
             <field name="type">percent</field>
@@ -362,8 +365,8 @@
         </record>
         <record id="iva_ISP_compras_21_2" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 21% Inversión del sujeto pasivo (2)</field>
-            <field name="name">P_IVA21_SP_2</field>
+            <field name="name">IVA 21% Inversión del sujeto pasivo (2)</field>
+            <field name="description">P_IVA21_SP_2</field>
             <field name="parent_id" ref="iva_ISP_compras_21"/>
             <field name="amount" eval="-0.21"/>
             <field name="type">percent</field>
@@ -381,8 +384,8 @@
         </record>
         <record id="iva_ISP_compras_21_3" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 21% Inversión del sujeto pasivo (3)</field>
-            <field name="name">P_IVA21_SP_3</field>
+            <field name="name">IVA 21% Inversión del sujeto pasivo (3)</field>
+            <field name="description">P_IVA21_SP_3</field>
             <field name="parent_id" ref="iva_ISP_compras_21"/>
             <field name="amount" eval="0.21"/>
             <field name="type">percent</field>
@@ -403,8 +406,8 @@
 
         <record id="iva_rep_4" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 4%</field>
-            <field name="name">S_IVA4</field>
+            <field name="name">IVA 4%</field>
+            <field name="description">S_IVA4</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_477_child"/>
@@ -422,8 +425,8 @@
 
         <record id="iva_rep_10" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 10%</field>
-            <field name="name">S_IVA10</field>
+            <field name="name">IVA 10%</field>
+            <field name="description">S_IVA10</field>
             <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_477_child"/>
@@ -441,8 +444,8 @@
 
         <record id="iva_rep_21" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 21%</field>
-            <field name="name">S_IVA21</field>
+            <field name="name">IVA 21%</field>
+            <field name="description">S_IVA21</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_477_child"/>
@@ -463,8 +466,8 @@
 
         <record id="re_05" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">0.50% Recargo Equivalencia Ventas</field>
-            <field name="name">S_REQ0.5</field>
+            <field name="name">0.50% Recargo Equivalencia Ventas</field>
+            <field name="description">S_REQ0.5</field>
             <field eval="0.005" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_477_child"/>
@@ -482,8 +485,8 @@
 
         <record id="re_14" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">1.4% Recargo Equivalencia Ventas</field>
-            <field name="name">S_REQ1.4</field>
+            <field name="name">1.4% Recargo Equivalencia Ventas</field>
+            <field name="description">S_REQ1.4</field>
             <field eval="0.014" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_477_child"/>
@@ -501,8 +504,8 @@
 
         <record id="re_52" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">5.2% Recargo Equivalencia Ventas</field>
-            <field name="name">S_REQ5.2</field>
+            <field name="name">5.2% Recargo Equivalencia Ventas</field>
+            <field name="description">S_REQ5.2</field>
             <field eval="0.052" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_477_child"/>
@@ -520,8 +523,8 @@
 
         <record id="re_buy_05" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">0.50% Recargo Equivalencia Compras</field>
-            <field name="name">P_REQ0.5</field>
+            <field name="name">0.50% Recargo Equivalencia Compras</field>
+            <field name="description">P_REQ0.5</field>
             <field eval="0.005" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -539,8 +542,8 @@
 
         <record id="re_buy_14" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">1.4% Recargo Equivalencia Compras</field>
-            <field name="name">P_REQ1.4</field>
+            <field name="name">1.4% Recargo Equivalencia Compras</field>
+            <field name="description">P_REQ1.4</field>
             <field eval="0.014" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -558,8 +561,8 @@
 
         <record id="re_buy_52" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">5.2% Recargo Equivalencia Compras</field>
-            <field name="name">P_REQ5.2</field>
+            <field name="name">5.2% Recargo Equivalencia Compras</field>
+            <field name="description">P_REQ5.2</field>
             <field eval="0.052" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_472_child"/>
@@ -581,8 +584,8 @@
 
         <record id="iva_IO" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 0% Intracomunitario</field>
-            <field name="name">S_IVA0_IC</field>
+            <field name="name">IVA 0% Intracomunitario</field>
+            <field name="description">S_IVA0_IC</field>
             <field eval="0.00" name="amount"/>
             <field name="type">percent</field>
             <field name="base_code_id" ref="base_intra_42"/>
@@ -596,8 +599,8 @@
 
         <record id="iva_IC_compras_4_bc" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 4% Intracomunitario. Bienes corrientes</field>
-            <field name="name">P_IVA4_IC_BC</field>
+            <field name="name">IVA 4% Intracomunitario. Bienes corrientes</field>
+            <field name="description">P_IVA4_IC_BC</field>
             <field eval="1.00" name="amount"/>
             <field name="type">percent</field>
             <field eval="1" name="child_depend"/>
@@ -606,8 +609,8 @@
         <record id="iva_IC_compras_4_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="parent_id" ref="iva_IC_compras_4_bc"/>
-            <field name="description">IVA 4% Intracomunitario. Bienes corrientes (1)</field>
-            <field name="name">P_IVA4_IC_BC_1</field>
+            <field name="name">IVA 4% Intracomunitario. Bienes corrientes (1)</field>
+            <field name="description">P_IVA4_IC_BC_1</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_472_child"/>
@@ -623,8 +626,8 @@
         <record id="iva_IC_compras_4_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="parent_id" ref="iva_IC_compras_4_bc"/>
-            <field name="description">IVA 4% Intracomunitario. Bienes corrientes (2)</field>
-            <field name="name">P_IVA4_IC_BC_2</field>
+            <field name="name">IVA 4% Intracomunitario. Bienes corrientes (2)</field>
+            <field name="description">P_IVA4_IC_BC_2</field>
             <field eval="-0.04" name="amount"/>
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_477_child"/>
@@ -641,8 +644,8 @@
 
         <record id="iva_IC_compras_4_bi" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 4% Intracomunitario. Bienes de inversión</field>
-            <field name="name">P_IVA4_IC_BI</field>
+            <field name="name">IVA 4% Intracomunitario. Bienes de inversión</field>
+            <field name="description">P_IVA4_IC_BI</field>
             <field eval="1.00" name="amount"/>
             <field name="type">percent</field>
             <field eval="1" name="child_depend"/>
@@ -651,8 +654,8 @@
         <record id="iva_IC_compras_4_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="parent_id" ref="iva_IC_compras_4_bi"/>
-            <field name="description">IVA 4% Intracomunitario. Bienes de inversión (1)</field>
-            <field name="name">P_IVA4_IC_BI_1</field>
+            <field name="name">IVA 4% Intracomunitario. Bienes de inversión (1)</field>
+            <field name="description">P_IVA4_IC_BI_1</field>
             <field eval="0.04" name="amount"/>
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_472_child"/>
@@ -668,8 +671,8 @@
         <record id="iva_IC_compras_4_bi_2" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="parent_id" ref="iva_IC_compras_4_bi"/>
-            <field name="description">IVA 4% Intracomunitario. Bienes de inversión (2)</field>
-            <field name="name">P_IVA4_IC_BI_2</field>
+            <field name="name">IVA 4% Intracomunitario. Bienes de inversión (2)</field>
+            <field name="description">P_IVA4_IC_BI_2</field>
             <field eval="-0.04" name="amount"/>
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_477_child"/>
@@ -686,8 +689,8 @@
 
         <record id="iva_IC_compras_10_bc" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 10% Intracomunitario. Bienes corrientes</field>
-            <field name="name">P_IVA10_IC_BC</field>
+            <field name="name">IVA 10% Intracomunitario. Bienes corrientes</field>
+            <field name="description">P_IVA10_IC_BC</field>
             <field eval="1.00" name="amount"/>
             <field name="type">percent</field>
             <field eval="1" name="child_depend"/>
@@ -696,8 +699,8 @@
         <record id="iva_IC_compras_10_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="parent_id" ref="iva_IC_compras_10_bc"/>
-            <field name="description">IVA 10% Intracomunitario. Bienes corrientes (1)</field>
-            <field name="name">P_IVA10_IC_BC_1</field>
+            <field name="name">IVA 10% Intracomunitario. Bienes corrientes (1)</field>
+            <field name="description">P_IVA10_IC_BC_1</field>
             <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_472_child"/>
@@ -713,8 +716,8 @@
         <record id="iva_IC_compras_10_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="parent_id" ref="iva_IC_compras_10_bc"/>
-            <field name="description">IVA 10% Intracomunitario. Bienes corrientes (2)</field>
-            <field name="name">P_IVA10_IC_BC_2</field>
+            <field name="name">IVA 10% Intracomunitario. Bienes corrientes (2)</field>
+            <field name="description">P_IVA10_IC_BC_2</field>
             <field eval="-0.10" name="amount"/>
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_477_child"/>
@@ -731,8 +734,8 @@
 
         <record id="iva_IC_compras_10_bi" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 10% Intracomunitario. Bienes de inversión</field>
-            <field name="name">P_IVA10_IC_BI</field>
+            <field name="name">IVA 10% Intracomunitario. Bienes de inversión</field>
+            <field name="description">P_IVA10_IC_BI</field>
             <field eval="1.00" name="amount"/>
             <field name="type">percent</field>
             <field eval="1" name="child_depend"/>
@@ -741,8 +744,8 @@
         <record id="iva_IC_compras_10_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="parent_id" ref="iva_IC_compras_10_bi"/>
-            <field name="description">IVA 10% Intracomunitario. Bienes de inversión (1)</field>
-            <field name="name">P_IVA10_IC_BI_1</field>
+            <field name="name">IVA 10% Intracomunitario. Bienes de inversión (1)</field>
+            <field name="description">P_IVA10_IC_BI_1</field>
             <field eval="0.10" name="amount"/>
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_472_child"/>
@@ -758,8 +761,8 @@
         <record id="iva_IC_compras_10_bi_2" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="parent_id" ref="iva_IC_compras_10_bi"/>
-            <field name="description">IVA 10% Intracomunitario. Bienes de inversión (2)</field>
-            <field name="name">P_IVA10_IC_BI_2</field>
+            <field name="name">IVA 10% Intracomunitario. Bienes de inversión (2)</field>
+            <field name="description">P_IVA10_IC_BI_2</field>
             <field eval="-0.10" name="amount"/>
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_477_child"/>
@@ -776,8 +779,8 @@
 
         <record id="iva_IC_compras_21_bc" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 21% Intracomunitario. Bienes corrientes</field>
-            <field name="name">P_IVA21_IC_BC</field>
+            <field name="name">IVA 21% Intracomunitario. Bienes corrientes</field>
+            <field name="description">P_IVA21_IC_BC</field>
             <field eval="1.00" name="amount"/>
             <field name="type">percent</field>
             <field eval="1" name="child_depend"/>
@@ -786,8 +789,8 @@
         <record id="iva_IC_compras_21_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="parent_id" ref="iva_IC_compras_21_bc"/>
-            <field name="description">IVA 21% Intracomunitario. Bienes corrientes (1)</field>
-            <field name="name">P_IVA21_IC_BC_1</field>
+            <field name="name">IVA 21% Intracomunitario. Bienes corrientes (1)</field>
+            <field name="description">P_IVA21_IC_BC_1</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_472_child"/>
@@ -803,8 +806,8 @@
         <record id="iva_IC_compras_21_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="parent_id" ref="iva_IC_compras_21_bc"/>
-            <field name="description">IVA 21% Intracomunitario. Bienes corrientes (2)</field>
-            <field name="name">P_IVA21_IC_BC_2</field>
+            <field name="name">IVA 21% Intracomunitario. Bienes corrientes (2)</field>
+            <field name="description">P_IVA21_IC_BC_2</field>
             <field eval="-0.21" name="amount"/>
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_477_child"/>
@@ -821,8 +824,8 @@
 
         <record id="iva_IC_compras_21_bi" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 21% Intracomunitario. Bienes de inversión</field>
-            <field name="name">P_IVA21_IC_BI</field>
+            <field name="name">IVA 21% Intracomunitario. Bienes de inversión</field>
+            <field name="description">P_IVA21_IC_BI</field>
             <field eval="1.00" name="amount"/>
             <field name="type">percent</field>
             <field eval="1" name="child_depend"/>
@@ -831,8 +834,8 @@
         <record id="iva_IC_compras_21_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="parent_id" ref="iva_IC_compras_21_bi"/>
-            <field name="description">IVA 21% Intracomunitario. Bienes de inversión (1)</field>
-            <field name="name">P_IVA21_IC_BI_1</field>
+            <field name="name">IVA 21% Intracomunitario. Bienes de inversión (1)</field>
+            <field name="description">P_IVA21_IC_BI_1</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_472_child"/>
@@ -848,8 +851,8 @@
         <record id="iva_IC_compras_21_bi_2" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="parent_id" ref="iva_IC_compras_21_bi"/>
-            <field name="description">IVA 21% Intracomunitario. Bienes de inversión (2)</field>
-            <field name="name">P_IVA21_IC_BI_2</field>
+            <field name="name">IVA 21% Intracomunitario. Bienes de inversión (2)</field>
+            <field name="description">P_IVA21_IC_BI_2</field>
             <field eval="-0.21" name="amount"/>
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_477_child"/>
@@ -866,8 +869,8 @@
 
         <record id="iva_IC_compras_21_sv" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA 21% Intracomunitario. Servicios</field>
-            <field name="name">P_IVA21_IC_SV</field>
+            <field name="name">IVA 21% Intracomunitario. Servicios</field>
+            <field name="description">P_IVA21_IC_SV</field>
             <field eval="1.00" name="amount"/>
             <field name="type">percent</field>
             <field eval="1" name="child_depend"/>
@@ -876,8 +879,8 @@
         <record id="iva_IC_compras_21_sv_1" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="parent_id" ref="iva_IC_compras_21_sv"/>
-            <field name="description">IVA 21% Intracomunitario. Servicios (1)</field>
-            <field name="name">P_IVA21_IC_SV_1</field>
+            <field name="name">IVA 21% Intracomunitario. Servicios (1)</field>
+            <field name="description">P_IVA21_IC_SV_1</field>
             <field eval="0.21" name="amount"/>
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_472_child"/>
@@ -893,8 +896,8 @@
         <record id="iva_IC_compras_21_sv_2" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
             <field name="parent_id" ref="iva_IC_compras_21_sv"/>
-            <field name="description">IVA 21% Intracomunitario. Servicios (2)</field>
-            <field name="name">P_IVA21_IC_SV_2</field>
+            <field name="name">IVA 21% Intracomunitario. Servicios (2)</field>
+            <field name="description">P_IVA21_IC_SV_2</field>
             <field eval="-0.21" name="amount"/>
             <field name="type">percent</field>
             <field name="account_paid_id" ref="pgc_477_child"/>
@@ -915,8 +918,8 @@
 
         <record id="iva_rep_ex" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA Exento</field>
-            <field name="name">S_IVA0</field>
+            <field name="name">IVA Exento</field>
+            <field name="description">S_IVA0</field>
             <field eval="0.0" name="amount"/>
             <field name="type">percent</field>
             <field name="base_code_id" ref="base_rep_ex"/>
@@ -932,8 +935,8 @@
 
         <record id="iva_sop_ex" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">IVA Soportado exento (operaciones corrientes)</field>
-            <field name="name">P_IVA0_BC</field>
+            <field name="name">IVA Soportado exento (operaciones corrientes)</field>
+            <field name="description">P_IVA0_BC</field>
             <field eval="0.0" name="amount"/>
             <field name="type">percent</field>
             <field eval="1.0" name="tax_sign"/>
@@ -962,8 +965,8 @@
         <!-- Retenciones soportadas -->
         <record id="irpf_1" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">Retenciones IRPF 1%</field>
-            <field name="name">P_IRPF1</field>
+            <field name="name">Retenciones IRPF 1%</field>
+            <field name="description">P_IRPF1</field>
             <field eval="-0.01" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_4751_child"/>
@@ -981,8 +984,8 @@
 
         <record id="irpf_2" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">Retenciones IRPF 2%</field>
-            <field name="name">P_IRPF2</field>
+            <field name="name">Retenciones IRPF 2%</field>
+            <field name="description">P_IRPF2</field>
             <field eval="-0.02" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_4751_child"/>
@@ -1001,8 +1004,8 @@
 
         <record id="irpf_7" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">Retenciones IRPF 7%</field>
-            <field name="name">P_IRPF7</field>
+            <field name="name">Retenciones IRPF 7%</field>
+            <field name="description">P_IRPF7</field>
             <field eval="-0.07" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_4751_child"/>
@@ -1020,8 +1023,8 @@
 
         <record id="irpf_9" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">Retenciones IRPF 9%</field>
-            <field name="name">P_IRPF9</field>
+            <field name="name">Retenciones IRPF 9%</field>
+            <field name="description">P_IRPF9</field>
             <field eval="-0.09" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_4751_child"/>
@@ -1039,8 +1042,8 @@
 
         <record id="irpf_15" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">Retenciones IRPF 15%</field>
-            <field name="name">P_IRPF15</field>
+            <field name="name">Retenciones IRPF 15%</field>
+            <field name="description">P_IRPF15</field>
             <field eval="-0.15" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_4751_child"/>
@@ -1058,8 +1061,8 @@
 
         <record id="irpf_20" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">Retenciones IRPF 20%</field>
-            <field name="name">P_IRPF20</field>
+            <field name="name">Retenciones IRPF 20%</field>
+            <field name="description">P_IRPF20</field>
             <field eval="-0.20" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_4751_child"/>
@@ -1077,8 +1080,8 @@
 
         <record id="irpf_21" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">Retenciones IRPF 21%</field>
-            <field name="name">P_IRPF21</field>
+            <field name="name">Retenciones IRPF 21%</field>
+            <field name="description">P_IRPF21</field>
             <field eval="-0.21" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_4751_child"/>
@@ -1099,8 +1102,8 @@
 
         <record id="irpf_sale_1" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">Retenciones a cuenta IRPF 1%</field>
-            <field name="name">S_IRPF1</field>
+            <field name="name">Retenciones a cuenta IRPF 1%</field>
+            <field name="description">S_IRPF1</field>
             <field eval="-0.01" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_473_child"/>
@@ -1118,8 +1121,8 @@
 
         <record id="irpf_sale_2" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">Retenciones a cuenta IRPF 2%</field>
-            <field name="name">S_IRPF2</field>
+            <field name="name">Retenciones a cuenta IRPF 2%</field>
+            <field name="description">S_IRPF2</field>
             <field eval="-0.02" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_473_child"/>
@@ -1137,8 +1140,8 @@
 
         <record id="irpf_sale_7" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">Retenciones a cuenta IRPF 7%</field>
-            <field name="name">S_IRPF7</field>
+            <field name="name">Retenciones a cuenta IRPF 7%</field>
+            <field name="description">S_IRPF7</field>
             <field eval="-0.07" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_473_child"/>
@@ -1156,8 +1159,8 @@
 
         <record id="irpf_sale_9" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">Retenciones a cuenta IRPF 9%</field>
-            <field name="name">S_IRPF9</field>
+            <field name="name">Retenciones a cuenta IRPF 9%</field>
+            <field name="description">S_IRPF9</field>
             <field eval="-0.09" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_473_child"/>
@@ -1175,8 +1178,8 @@
 
         <record id="irpf_sale_15" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">Retenciones a cuenta IRPF 15%</field>
-            <field name="name">S_IRPF15</field>
+            <field name="name">Retenciones a cuenta IRPF 15%</field>
+            <field name="description">S_IRPF15</field>
             <field eval="-0.15" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_473_child"/>
@@ -1194,8 +1197,8 @@
 
         <record id="irpf_sale_20" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">Retenciones a cuenta IRPF 20%</field>
-            <field name="name">S_IRPF20</field>
+            <field name="name">Retenciones a cuenta IRPF 20%</field>
+            <field name="description">S_IRPF20</field>
             <field eval="-0.20" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_473_child"/>
@@ -1213,8 +1216,8 @@
 
         <record id="irpf_sale_21" model="account.tax.template">
             <field name="chart_template_id" ref="account_chart_template_common"/>
-            <field name="description">Retenciones a cuenta IRPF 21%</field>
-            <field name="name">S_IRPF21</field>
+            <field name="name">Retenciones a cuenta IRPF 21%</field>
+            <field name="description">S_IRPF21</field>
             <field eval="-0.21" name="amount"/>
             <field name="type">percent</field>
             <field name="account_collected_id" ref="pgc_473_child"/>

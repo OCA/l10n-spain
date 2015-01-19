@@ -6,7 +6,6 @@ import urlparse
 from openerp import models, fields, api, _
 from openerp.addons.payment.models.payment_acquirer import ValidationError
 from openerp.tools.float_utils import float_compare
-from datetime import datetime
 _logger = logging.getLogger(__name__)
 
 
@@ -103,7 +102,6 @@ class AcquirerRedsys(models.Model):
     @api.model
     def redsys_form_generate_values(self, id, partner_values, tx_values):
         acquirer = self.browse(id)
-        tx_values['reference'] += datetime.now().strftime('%M%S')
         redsys_tx_values = dict(tx_values)
         redsys_tx_values.update({
             'Ds_Sermepa_Url':
@@ -158,7 +156,7 @@ class TxRedsys(models.Model):
     def _redsys_form_get_tx_from_data(self, data):
         """ Given a data dict coming from redsys, verify it and
         find the related transaction record. """
-        reference = data.get('Ds_Order', '')[:-4]
+        reference = data.get('Ds_Order', '')
         pay_id = data.get('Ds_AuthorisationCode')
         shasign = data.get('Ds_Signature')
         if not reference or not pay_id or not shasign:
@@ -214,6 +212,10 @@ class TxRedsys(models.Model):
                 'redsys_txnid': data.get('Ds_AuthorisationCode'),
                 'state_message': _('Ok: %s') % data.get('Ds_Response'),
             })
+            email_act = tx.sale_order_id.action_quotation_send()
+            # send the email
+            if email_act and email_act.get('context'):
+                self.send_mail(email_act['context'])
             return True
         if (status_code >= 101) and (status_code <= 202):
             # 'Payment error: code: %s.'
@@ -241,3 +243,13 @@ class TxRedsys(models.Model):
                 'state_message': error,
             })
             return False
+
+    def send_mail(self, email_ctx):
+        composer_values = {}
+        template = self.env.ref('sale.email_template_edi_sale', False)
+        if not template:
+            return True
+        email_ctx['default_template_id'] = template.id
+        composer_id = self.env['mail.compose.message'].with_context(
+            email_ctx).create(composer_values)
+        composer_id.with_context(email_ctx).send_mail()
