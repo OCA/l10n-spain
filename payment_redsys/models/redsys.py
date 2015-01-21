@@ -109,7 +109,8 @@ class AcquirerRedsys(models.Model):
                     ['redsys_form_url']),
             'Ds_Merchant_Amount': int(tx_values['amount'] * 100),
             'Ds_Merchant_Currency': acquirer.redsys_currency or '978',
-            'Ds_Merchant_Order': tx_values['reference'][:12],
+            'Ds_Merchant_Order': tx_values['reference'] and
+                tx_values['reference'][:12] or False,
             'Ds_Merchant_MerchantCode': acquirer.redsys_merchant_code and
                 acquirer.redsys_merchant_code[:9],
             'Ds_Merchant_Terminal': acquirer.redsys_terminal or '1',
@@ -120,8 +121,8 @@ class AcquirerRedsys(models.Model):
             'Ds_Merchant_MerchantName': acquirer.redsys_merchant_name and
                 acquirer.redsys_merchant_name[:25],
             'Ds_Merchant_MerchantURL':
-                (acquirer.redsys_merchant_url
-                 and acquirer.redsys_merchant_url[:250] or ''),
+                (acquirer.redsys_merchant_url and
+                 acquirer.redsys_merchant_url[:250] or ''),
             'Ds_Merchant_MerchantData': acquirer.redsys_merchant_data or '',
             'Ds_Merchant_ProductDescription': (
                 acquirer.redsys_merchant_description and
@@ -191,16 +192,16 @@ class TxRedsys(models.Model):
     def _redsys_form_get_invalid_parameters(self, tx, data):
         invalid_parameters = []
 
-        if (tx.acquirer_reference
-                and data.get('Ds_Order')) != tx.acquirer_reference:
+        if (tx.acquirer_reference and
+                data.get('Ds_Order')) != tx.acquirer_reference:
             invalid_parameters.append(
                 ('Transaction Id', data.get('Ds_Order'),
                  tx.acquirer_reference))
         # check what is buyed
-        if (float_compare(float(data.get('Ds_Amount', '0.0'))/100,
+        if (float_compare(float(data.get('Ds_Amount', '0.0')) / 100,
                           tx.amount, 2) != 0):
             invalid_parameters.append(('Amount', data.get('Ds_Amount'),
-                                      '%.2f' % tx.amount))
+                                       '%.2f' % tx.amount))
         return invalid_parameters
 
     @api.model
