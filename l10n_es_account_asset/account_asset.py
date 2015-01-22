@@ -21,6 +21,7 @@
 ##############################################################################
 import calendar
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 from openerp.osv import orm, fields
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as DSDF
 
@@ -67,6 +68,25 @@ class account_asset_category(orm.Model):
 class account_asset_asset(orm.Model):
     _inherit = 'account.asset.asset'
 
+    def _get_last_depreciation_date(self, cr, uid, ids, context=None):
+        """
+        @param id: ids of a account.asset.asset objects
+        @return: Returns a dictionary of the effective dates of the last
+        depreciation entry made for given asset ids. If there isn't any,
+        return the purchase date of this asset
+        """
+
+        last_depreciation_date = super(
+            account_asset_asset, self)._get_last_depreciation_date(
+                cr, uid, ids, context=context)
+        for asset in self.browse(cr, uid, ids, context=context):
+            if asset.start_depreciation_date and (
+                asset.start_depreciation_date >
+                    last_depreciation_date[asset.id]):
+                last_depreciation_date[asset.id] = \
+                    asset.start_depreciation_date
+        return last_depreciation_date
+
     _columns = {
         'move_end_period': fields.boolean(
             "At the end of the period",
@@ -90,6 +110,12 @@ class account_asset_asset(orm.Model):
                  "depreciations and the percentage to depreciate."),
         'method_percentage': fields.float('Depreciation percentage',
                                           digits=(3, 2)),
+        'start_depreciation_date': fields.date(
+            'Start Depreciation Date',
+            readonly=True,
+            states={'draft': [('readonly', False)]},
+            help="Only needed if not the same than purchase date"),
+
     }
 
     _defaults = {
@@ -141,7 +167,8 @@ class account_asset_asset(orm.Model):
                 _compute_board_undone_dotation_nb(cr, uid, asset,
                                                   depreciation_date,
                                                   total_days, context=context)
-            if depreciation_date.day == 1 and depreciation_date.month == 1:
+            if depreciation_date.day == 1 and depreciation_date.month == 1 \
+                    and asset.method_period == 12:
                 # Quitar una depreciación del nº total si el activo se compró
                 # el 1 de enero, ya que ese año sería completo
                 val -= 1
@@ -157,8 +184,13 @@ class account_asset_asset(orm.Model):
                 return residual_amount
             else:
                 if i == 1 and asset.prorata:
-                    days = (total_days -
-                            float(depreciation_date.strftime('%j'))) + 1
+                    if asset.method_period == 1:
+                        total_days = calendar.monthrange(
+                            depreciation_date.year, depreciation_date.month)[1]
+                        days = total_days - float(depreciation_date.day)
+                    else:
+                        days = (total_days - float(
+                            depreciation_date.strftime('%j'))) + 1
                     percentage = asset.method_percentage * days / total_days
                 else:
                     percentage = asset.method_percentage
@@ -166,10 +198,22 @@ class account_asset_asset(orm.Model):
         elif (asset.method == 'linear' and asset.prorata and
               i != undone_dotation_number):
             # Caso especial de cálculo que cambia
-            amount = amount_to_depr / asset.method_number
+            # Debemos considerar también las cantidades ya depreciadas
+            depreciated_amount = 0
+            depr_lin_obj = self.pool['account.asset.depreciation.line']
+            for line in depr_lin_obj.browse(cr, uid,
+                                            posted_depreciation_line_ids):
+                depreciated_amount += line.amount
+            amount = (amount_to_depr + depreciated_amount) \
+                / asset.method_number
             if i == 1:
-                days = (total_days -
-                        float(depreciation_date.strftime('%j'))) + 1
+                if asset.method_period == 1:
+                        total_days = calendar.monthrange(
+                            depreciation_date.year, depreciation_date.month)[1]
+                        days = total_days - float(depreciation_date.day) + 1
+                else:
+                    days = (total_days -
+                            float(depreciation_date.strftime('%j'))) + 1
                 amount *= days / total_days
             return amount
         else:
@@ -188,18 +232,46 @@ class account_asset_asset(orm.Model):
                 new_depr_line_ids = depr_lin_obj.search(
                     cr, uid, [('asset_id', '=', asset.id),
                               ('move_id', '=', False)], context=context)
+
+                # En el caso de que la fecha de última amortización no sea
+                # la de compra se debe generar el cuadro
+                # al período siguiente
+                depreciation_date = datetime.strptime(
+                    self._get_last_depreciation_date(cr, uid, [asset.id],
+                                                     context)[asset.id],
+                    '%Y-%m-%d')
+                fix_depreciation = False
+
+                initial_date = asset.start_depreciation_date or\
+                    asset.purchase_date
+
+                if (depreciation_date != datetime.strptime(
+                        initial_date, '%Y-%m-%d')):
+                    fix_depreciation = True
+                nb = 0
                 for depr_line in depr_lin_obj.browse(cr, uid,
                                                      new_depr_line_ids):
                     depr_date = datetime.strptime(
                         depr_line.depreciation_date, DSDF)
+                    if fix_depreciation:
+                        if depr_date.day != 1:
+                            depr_date = depr_date + relativedelta(
+                                months=+asset.method_period)
                     if asset.method_period == 12:
                         depr_date = depr_date.replace(depr_date.year, 12, 31)
                     else:
+                        if not asset.prorata:
+                            if depr_date.day != 1:
+                                depr_date = depreciation_date + relativedelta(
+                                    months=+ (asset.method_period * (nb+1)))
+                            else:
+                                depr_date = depreciation_date + relativedelta(
+                                    months=+ (asset.method_period * nb))
+                            nb += 1
                         last_month_day = calendar.monthrange(
                             depr_date.year, depr_date.month)[1]
-                        depr_date = depr_date.replace(depr_date.year,
-                                                      depr_date.month,
-                                                      last_month_day)
+                        depr_date = depr_date.replace(
+                            depr_date.year, depr_date.month, last_month_day)
                     depr_lin_obj.write(
                         cr, uid, depr_line.id,
                         {'depreciation_date': depr_date.strftime(DSDF)})

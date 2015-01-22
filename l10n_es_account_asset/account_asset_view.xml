@@ -48,6 +48,9 @@
             <field name="prorata" position="after">
                 <field name="move_end_period"/>
             </field>
+            <field name="purchase_date" position="after">
+                <field name="start_depreciation_date"/>
+            </field>
         </field>
     </record>
 

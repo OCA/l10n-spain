@@ -35,6 +35,11 @@ msgid "Wrong percentage!"
 msgstr "¡Porcentaje incorrecto!"
 
 #. module: l10n_es_account_asset
+#: help:account.asset.asset,start_depreciation_date:0
+msgid "Only needed if not the same than purchase date"
+msgstr "Sólo necesario si no es la misma que la fecha de compra"
+
+#. module: l10n_es_account_asset
 #: help:account.asset.asset,move_end_period:0
 msgid ""
 "Move the depreciation entry at the end of the period. If the period are 12 "
@@ -81,6 +86,11 @@ msgstr "Categoría de activo"
 #: selection:account.asset.category,ext_method_time:0
 msgid "Number of Depreciations"
 msgstr "Número de amortizaciones"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,start_depreciation_date:0
+msgid "Start Depreciation Date"
+msgstr "Fecha inicio de uso"
 
 #. module: l10n_es_account_asset
 #: selection:account.asset.asset,ext_method_time:0
