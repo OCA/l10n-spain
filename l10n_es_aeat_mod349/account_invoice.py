@@ -111,7 +111,7 @@ class AccountInvoice(orm.Model):
         invoice_type = ['in_invoice', 'out_invoice', 'in_refund', 'out_refund']
         fy_obj = self.pool['account.fiscalyear']
         fy = fy_obj.browse(cr, uid, fiscalyear_id, context=context)
-        domain = [('partner_id', '=', partner_id),
+        domain = [('partner_id', 'child_of', partner_id),
                   ('state', 'in', ['open', 'paid']),
                   ('type', 'in', invoice_type),
                   ('operation_key', '=', operation_key)]
