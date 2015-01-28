@@ -68,26 +68,6 @@
       <lineStyle kind="LINEBELOW" colorName="#000000" start="5,-1" stop="5,-1"/>
       <lineStyle kind="LINEBELOW" colorName="#000000" start="6,-1" stop="6,-1"/>
     </blockTableStyle>
-    <blockTableStyle id="Tabla1">
-      <blockAlignment value="LEFT"/>
-      <blockValign value="TOP"/>
-      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="0,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#000000" start="2,0" stop="2,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#000000" start="3,0" stop="3,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#000000" start="4,0" stop="4,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="4,-1" stop="4,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#000000" start="5,0" stop="5,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="5,-1" stop="5,-1"/>
-      <lineStyle kind="LINEAFTER" colorName="#000000" start="6,0" stop="6,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#000000" start="6,0" stop="6,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="6,-1" stop="6,-1"/>
-    </blockTableStyle>
     <blockTableStyle id="Taula5">
       <blockAlignment value="LEFT"/>
       <blockValign value="TOP"/>
@@ -126,26 +106,6 @@
       <lineStyle kind="LINEBELOW" colorName="#000000" start="5,-1" stop="5,-1"/>
       <lineStyle kind="LINEBELOW" colorName="#000000" start="6,-1" stop="6,-1"/>
     </blockTableStyle>
-    <blockTableStyle id="Tabla2">
-      <blockAlignment value="LEFT"/>
-      <blockValign value="TOP"/>
-      <lineStyle kind="LINEBEFORE" colorName="#000000" start="0,0" stop="0,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="0,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#000000" start="2,0" stop="2,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#000000" start="3,0" stop="3,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#000000" start="4,0" stop="4,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="4,-1" stop="4,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#000000" start="5,0" stop="5,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="5,-1" stop="5,-1"/>
-      <lineStyle kind="LINEAFTER" colorName="#000000" start="6,0" stop="6,-1"/>
-      <lineStyle kind="LINEABOVE" colorName="#000000" start="6,0" stop="6,0"/>
-      <lineStyle kind="LINEBELOW" colorName="#000000" start="6,-1" stop="6,-1"/>
-    </blockTableStyle>
     <initialize>
       <paraStyle name="all" alignment="justify"/>
     </initialize>
@@ -160,9 +120,10 @@
     <paraStyle name="P9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER"/>
     <paraStyle name="P10" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER"/>
     <paraStyle name="P11" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER"/>
-    <paraStyle name="P12" fontName="Helvetica-BoldOblique" alignment="CENTER"/>
+    <paraStyle name="P12" fontName="Helvetica"/>
+    <paraStyle name="P13" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER"/>
     <paraStyle name="Standard" fontName="Helvetica"/>
-    <paraStyle name="Header" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
     <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
     <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
     <paraStyle name="Caption" fontName="Helvetica-Oblique" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
@@ -175,7 +136,7 @@
     <images/>
   </stylesheet>
   <story>
-    <para style="Standard">[[repeatIn(objects,'o')]]</para>
+    <para style="Standard">[[repeatIn(objects, 'o')]]</para>
     <para style="terp_default_8">[[ setLang(o.company_id.partner_id.lang) ]]</para>
     <para style="P4">LIBRO DE IVA</para>
     <blockTable colWidths="117.0,219.0" style="Taula2">
@@ -276,40 +237,6 @@
         <font color="white"> </font>
       </para>
     </section>
-    <para style="P5">
-      <font color="white"> </font>
-    </para>
-    <blockTable colWidths="73.0,103.0,60.0,62.0,61.0,59.0,64.0" repeatRows="1" style="Tabla1">
-      <tr>
-        <td>
-          <para style="Table Heading">
-            <font color="white"> </font>
-          </para>
-        </td>
-        <td>
-          <para style="Table Heading">
-            <font color="white"> </font>
-          </para>
-        </td>
-        <td>
-          <para style="Table Heading">
-            <font color="white"> </font>
-          </para>
-        </td>
-        <td>
-          <para style="P12">Total</para>
-        </td>
-        <td>
-          <para style="P2">[[ o.total_taxable ]]</para>
-        </td>
-        <td>
-          <para style="P2">[[ o.total_sharetax ]]</para>
-        </td>
-        <td>
-          <para style="P2">[[ o.total ]]</para>
-        </td>
-      </tr>
-    </blockTable>
     <para style="P2">
       <font color="white"> </font>
     </para>
@@ -377,40 +304,6 @@
       </para>
     </section>
     <para style="P5">
-      <font color="white"> </font>
-    </para>
-    <blockTable colWidths="73.0,103.0,60.0,62.0,61.0,59.0,64.0" repeatRows="1" style="Tabla2">
-      <tr>
-        <td>
-          <para style="P12">
-            <font color="white"> </font>
-          </para>
-        </td>
-        <td>
-          <para style="Table Heading">
-            <font color="white"> </font>
-          </para>
-        </td>
-        <td>
-          <para style="Table Heading">
-            <font color="white"> </font>
-          </para>
-        </td>
-        <td>
-          <para style="P12">Total</para>
-        </td>
-        <td>
-          <para style="P2">[[ o.total_taxable_rec ]]</para>
-        </td>
-        <td>
-          <para style="P2">[[ o.total_sharetax_rec ]]</para>
-        </td>
-        <td>
-          <para style="P2">[[ o.total_rec ]]</para>
-        </td>
-      </tr>
-    </blockTable>
-    <para style="Standard">
       <font color="white"> </font>
     </para>
   </story>
