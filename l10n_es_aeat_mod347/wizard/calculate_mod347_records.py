@@ -245,7 +245,7 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                                     if line.invoice:
                                         invoices.append(line.invoice)
                             elif move_line_obj.reconcile_partial_id:
-                                for line in move_line_obj.reconcile_id.line_partial_ids:
+                                for line in move_line_obj.reconcile_partial_id.line_partial_ids:
                                     if line.invoice:
                                         invoices.append(line.invoice)
 
