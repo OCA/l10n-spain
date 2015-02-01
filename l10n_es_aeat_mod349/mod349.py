@@ -142,15 +142,7 @@ class Mod349(orm.Model):
         refund_obj = self.pool['l10n.es.aeat.mod349.partner_record']
         obj = self.pool['l10n.es.aeat.mod349.partner_refund']
         obj_detail = self.pool['l10n.es.aeat.mod349.partner_refund_detail']
-        partner_country = [address.country_id for address in
-                           partner_obj.address if address.type ==
-                           'invoice' and address.country_id]
-        if not partner_country:
-            partner_country = [address.country_id for
-                               address in partner_obj.address
-                               if address.type == 'default' and
-                               address.country_id]
-        partner_country = partner_country and partner_country[0] or False
+        partner_country = partner_obj.country_id
         record = {}
         for invoice in refunds:
             # goes around all refunded invoices
