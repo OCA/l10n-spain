@@ -87,7 +87,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                     if tax_line.base_code_id.mod340 is True:
                         include = True
             if include is True:
-                if invoice.partner_id.vat_type == 1:
+                if invoice.partner_id.vat_type == '1':
                     if not invoice.partner_id.vat:
                         raise orm.except_orm(
                             _('La siguiente empresa no tiene asignado nif:'),
