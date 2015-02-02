@@ -106,7 +106,7 @@ class l10n_es_aeat_mod340_calculate_records(osv.osv_memory):
                         if tax_line.base_code_id.mod340 == True:
                             include = True
                 if include == True:
-                    if invoice.partner_id.vat_type == 1:
+                    if invoice.partner_id.vat_type == "1":
                         if not invoice.partner_id.vat:
                             raise osv.except_osv(
                               _('La siguiente empresa no tiene asignado nif:'),
