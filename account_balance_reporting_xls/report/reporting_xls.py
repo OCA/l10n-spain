@@ -2,10 +2,17 @@
 # License, author and contributors information in:
 # __openerp__.py file at the root folder of this module.
 
-import xlwt
+try:
+    import xlwt
+except:
+    xlwt = None
 from datetime import datetime
-from openerp.addons.report_xls.report_xls import report_xls
-from openerp.addons.report_xls.utils import _render
+try:
+    from openerp.addons.report_xls.report_xls import report_xls
+    from openerp.addons.report_xls.utils import _render
+except ImportError:
+    report_xls = object
+    _render = None
 from .reporting import AccountBalanceReportingPrint
 from openerp.tools.translate import _
 
