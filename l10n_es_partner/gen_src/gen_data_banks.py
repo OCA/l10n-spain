@@ -74,7 +74,10 @@ if __name__ == "__main__":
                 output.write('            <field name="website">%s</field>\n' %
                              (row[19]))
                 output.write('            <field eval="1" name="active"/>\n')
-                output.write('            <field name="country_id"'
+                output.write('            <field name="state"'
+                             ' ref="l10n_es_toponyms.ES%s"/>\n' % (
+                                 row[11] and row[11][:-3].zfill(2) or False))
+                output.write('            <field name="country"'
                              ' ref="base.es"/>\n')
                 output.write('        </record>\n')
         output.write("    </data>\n")

@@ -14,7 +14,8 @@
             <field name="fax">0924846008</field>
             <field name="website">WWW.BANCAPUEYO.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES06"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancosabadell" model="res.bank">
             <field name="name">BANCO SABADELL</field>
@@ -29,7 +30,8 @@
             <field name="fax">0937271867</field>
             <field name="website">WWW.GRUPOBANCOSABADELL.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_renta4" model="res.bank">
             <field name="name">RENTA 4</field>
@@ -44,7 +46,8 @@
             <field name="fax">0913848507</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_banif" model="res.bank">
             <field name="name">BANIF</field>
@@ -59,7 +62,8 @@
             <field name="fax">0915208550</field>
             <field name="website">WWW.BANIF.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_rbcinvestor" model="res.bank">
             <field name="name">RBC INVESTOR</field>
@@ -74,7 +78,8 @@
             <field name="fax">0913609901</field>
             <field name="website">WWW.RBCIS.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_industbilbao" model="res.bank">
             <field name="name">INDUST. BILBAO</field>
@@ -89,7 +94,8 @@
             <field name="fax">0944874448</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES48"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_occidental" model="res.bank">
             <field name="name">OCCIDENTAL</field>
@@ -104,7 +110,8 @@
             <field name="fax">0944874448</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_citibankespana" model="res.bank">
             <field name="name">CITIBANK ESPAÑA</field>
@@ -119,7 +126,8 @@
             <field name="fax">0916631086</field>
             <field name="website">WWW.CITIBANK.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancofar" model="res.bank">
             <field name="name">BANCOFAR</field>
@@ -134,7 +142,8 @@
             <field name="fax">0917023194</field>
             <field name="website">WWW.BANCOFAR.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bankinter" model="res.bank">
             <field name="name">BANKINTER</field>
@@ -149,7 +158,8 @@
             <field name="fax">0913397522</field>
             <field name="website">WWW.EBANKINTER.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bbvabfinanc" model="res.bank">
             <field name="name">BBVA B.FINANC.</field>
@@ -164,7 +174,8 @@
             <field name="fax">0944874448</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES48"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bcaixageral" model="res.bank">
             <field name="name">B. CAIXA GERAL</field>
@@ -179,7 +190,8 @@
             <field name="fax">0986810710</field>
             <field name="website">WWW.BANCOCAIXAGERAL.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES36"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_promocionneg" model="res.bank">
             <field name="name">PROMOCION NEG.</field>
@@ -194,7 +206,8 @@
             <field name="fax">0944874448</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_microbank" model="res.bank">
             <field name="name">MICRO BANK</field>
@@ -209,7 +222,8 @@
             <field name="fax">0932813751</field>
             <field name="website">WWW.MICROBANKLACAIXA.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_aresbank" model="res.bank">
             <field name="name">ARESBANK</field>
@@ -224,7 +238,8 @@
             <field name="fax">0913149768</field>
             <field name="website">WWW.ARESBANK.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crlavall" model="res.bank">
             <field name="name">C.R. LA VALL</field>
@@ -239,7 +254,8 @@
             <field name="fax">0964697988</field>
             <field name="website">WWW.CAIXARURALLAVALL.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crsanjose" model="res.bank">
             <field name="name">C.R. SAN JOSE</field>
@@ -254,7 +270,8 @@
             <field name="fax">0964517350</field>
             <field name="website">WWW.CAJARURAL.COM/BURRIANA</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_sanjosealcora" model="res.bank">
             <field name="name">SAN JOSE ALCORA</field>
@@ -269,7 +286,8 @@
             <field name="fax">0964360976</field>
             <field name="website">WWW.RURALVIA.COM/ALCORA</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crnmadresol" model="res.bank">
             <field name="name">CR N. MADRE SOL</field>
@@ -284,7 +302,8 @@
             <field name="fax">0957166313</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES14"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crd'algemesi" model="res.bank">
             <field name="name">C.R.D'ALGEMESI</field>
@@ -299,7 +318,8 @@
             <field name="fax">0962484511</field>
             <field name="website">WWW.CAJARURAL.COM/RURALES/3117</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES46"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crtorrent" model="res.bank">
             <field name="name">C.R.TORRENT</field>
@@ -314,7 +334,8 @@
             <field name="fax">0961575952</field>
             <field name="website">WWW.RURALTORRENT.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES46"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crsjaime" model="res.bank">
             <field name="name">C.R. S. JAIME</field>
@@ -329,7 +350,8 @@
             <field name="fax">0964516001</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crdecheste" model="res.bank">
             <field name="name">C.R. DE CHESTE</field>
@@ -344,7 +366,8 @@
             <field name="fax">0962515646</field>
             <field name="website">WWW.RURALVIA.COM/CHESTE</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES46"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crdeturis" model="res.bank">
             <field name="name">C.R. DE TURIS</field>
@@ -359,7 +382,8 @@
             <field name="fax">0962526526</field>
             <field name="website">WWW.CAJARURAL.COM/RURALES/3123/</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES46"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crcasasibanez" model="res.bank">
             <field name="name">C.R.CASASIBAÑEZ</field>
@@ -374,7 +398,8 @@
             <field name="fax">0967460344</field>
             <field name="website">WWW.RURALVIA.COM/CASASIBANEZ</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES02"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_caixaalmassora" model="res.bank">
             <field name="name">CAIXA ALMASSORA</field>
@@ -389,7 +414,8 @@
             <field name="fax">0964550248</field>
             <field name="website">WWW.TUCAJARURAL.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cresperanza" model="res.bank">
             <field name="name">C.R. ESPERANZA</field>
@@ -404,7 +430,8 @@
             <field name="fax">0964600066</field>
             <field name="website">WWW.RURALVIA.COM/ONDA</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_sanjosenules" model="res.bank">
             <field name="name">SAN JOSE NULES</field>
@@ -419,7 +446,8 @@
             <field name="fax">0964673809</field>
             <field name="website">WWW.RURALVIA.COM/NULES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_caixarbetxi" model="res.bank">
             <field name="name">CAIXA R BETXI</field>
@@ -434,7 +462,8 @@
             <field name="fax">0964621122</field>
             <field name="website">WWW.CAJARURAL.COM/BETXI</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crdeguissona" model="res.bank">
             <field name="name">C.R.DE GUISSONA</field>
@@ -449,7 +478,8 @@
             <field name="fax">0973550788</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES25"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crvillamalea" model="res.bank">
             <field name="name">C.R. VILLAMALEA</field>
@@ -464,7 +494,8 @@
             <field name="fax">0967483672</field>
             <field name="website">WWW.RURALVIA.COM/VILLAMALEA</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES02"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_novanca" model="res.bank">
             <field name="name">NOVANCA</field>
@@ -479,7 +510,8 @@
             <field name="fax"></field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crdealbal" model="res.bank">
             <field name="name">C.R. DE ALBAL</field>
@@ -494,7 +526,8 @@
             <field name="fax">0961268683</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES46"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crdevillar" model="res.bank">
             <field name="name">C.R. DE VILLAR</field>
@@ -509,7 +542,8 @@
             <field name="fax">0961646159</field>
             <field name="website">WWW.CAJARURAL.COM/VILLAR</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES46"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_caixarxilxes" model="res.bank">
             <field name="name">CAIXA R. XILXES</field>
@@ -524,7 +558,8 @@
             <field name="fax">0964590404</field>
             <field name="website">WWW.RURALVIA.COM/CHILCHES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_caixapopular" model="res.bank">
             <field name="name">CAIXA POPULAR</field>
@@ -539,7 +574,8 @@
             <field name="fax">0961318182</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES46"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crvilavella" model="res.bank">
             <field name="name">C.R. VILAVELLA</field>
@@ -554,7 +590,8 @@
             <field name="fax">0964678133</field>
             <field name="website">WWW.RURALVIA.COM/VILAVELLA</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crbenicarlo" model="res.bank">
             <field name="name">C.R. BENICARLO</field>
@@ -569,7 +606,8 @@
             <field name="fax">0964472761</field>
             <field name="website">WWW.CAJARURAL.COM/BENICARLO</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crvilafames" model="res.bank">
             <field name="name">C.R. VILAFAMES</field>
@@ -584,7 +622,8 @@
             <field name="fax">0964329392</field>
             <field name="website">WWW.RURALVIA.COM/VILAFAMES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bankoa" model="res.bank">
             <field name="name">BANKOA</field>
@@ -599,7 +638,8 @@
             <field name="fax">0943429414</field>
             <field name="website">WWW.BANKOA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES20"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bbva" model="res.bank">
             <field name="name">BBVA</field>
@@ -614,7 +654,8 @@
             <field name="fax">0944876417</field>
             <field name="website">WWW.BBVA.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES48"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_europfinanzas" model="res.bank">
             <field name="name">EUROP. FINANZAS</field>
@@ -629,7 +670,8 @@
             <field name="fax">0952367956</field>
             <field name="website">WWW.BEF.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES29"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancomediolanum" model="res.bank">
             <field name="name">BANCOMEDIOLANUM</field>
@@ -644,7 +686,8 @@
             <field name="fax">0932535430</field>
             <field name="website">WWW.BANCOMEDIOLANUM.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancoalcala" model="res.bank">
             <field name="name">BANCO ALCALA</field>
@@ -659,7 +702,8 @@
             <field name="fax">0914357260</field>
             <field name="website">WWW.BANCOALCALA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cooperativo" model="res.bank">
             <field name="name">COOPERATIVO</field>
@@ -674,7 +718,8 @@
             <field name="fax">0915956800</field>
             <field name="website">WWW.BANCOCOOPERATIVO.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_privatbank" model="res.bank">
             <field name="name">PRIVAT BANK</field>
@@ -689,7 +734,8 @@
             <field name="fax">0934458501</field>
             <field name="website">WWW.PRIVATBANK.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_dbcredit" model="res.bank">
             <field name="name">DB-CREDIT</field>
@@ -704,7 +750,8 @@
             <field name="fax">0915893546</field>
             <field name="website">WWW.DB-CREDIT.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_ebnbanco" model="res.bank">
             <field name="name">EBN BANCO</field>
@@ -719,7 +766,8 @@
             <field name="fax">0917009895</field>
             <field name="website">WWW.EBNBANCO.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_targobanksa" model="res.bank">
             <field name="name">TARGOBANK, S.A.</field>
@@ -734,7 +782,8 @@
             <field name="fax">0915759510</field>
             <field name="website">WWW.TARGOBANK.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_lloydsbankint" model="res.bank">
             <field name="name">LLOYDS BANK INT</field>
@@ -749,7 +798,8 @@
             <field name="fax">0917820314</field>
             <field name="website">WWW.HALIFAX.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_unoe" model="res.bank">
             <field name="name">UNO-E</field>
@@ -764,7 +814,8 @@
             <field name="fax">0911842394</field>
             <field name="website">WWW.UNO-E.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_exelbank" model="res.bank">
             <field name="name">EXELBANK,</field>
@@ -779,7 +830,8 @@
             <field name="fax">0913244516</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancopopulare" model="res.bank">
             <field name="name">BANCOPOPULAR-E</field>
@@ -794,7 +846,8 @@
             <field name="fax">0913202072</field>
             <field name="website">WWW.BANCOPOPULAR-E.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancocaminos" model="res.bank">
             <field name="name">BANCO CAMINOS</field>
@@ -809,7 +862,8 @@
             <field name="fax">0913085459</field>
             <field name="website">WWW.BANCOCAMINOS.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancopichincha" model="res.bank">
             <field name="name">BANCO PICHINCHA</field>
@@ -824,7 +878,8 @@
             <field name="fax">0915758451</field>
             <field name="website">WWW.BANCOPICHINCHA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajasurbanco" model="res.bank">
             <field name="name">CAJASUR BANCO</field>
@@ -839,7 +894,8 @@
             <field name="fax">0944878225</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES48"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancopastor" model="res.bank">
             <field name="name">BANCO PASTOR</field>
@@ -854,7 +910,8 @@
             <field name="fax">0986228282</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES15"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_evobancosa" model="res.bank">
             <field name="name">EVO BANCO S.A.</field>
@@ -869,7 +926,8 @@
             <field name="fax">0915866056</field>
             <field name="website">www.evobanco.com</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancoceiss" model="res.bank">
             <field name="name">BANCO CEISS</field>
@@ -884,7 +942,8 @@
             <field name="fax">0915139129</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_lageneral" model="res.bank">
             <field name="name">LA GENERAL</field>
@@ -899,7 +958,8 @@
             <field name="fax">0958274400</field>
             <field name="website">WWW.CAJAGRANADA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES18"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajademurcia" model="res.bank">
             <field name="name">CAJA DE MURCIA</field>
@@ -914,7 +974,8 @@
             <field name="fax">0968306160</field>
             <field name="website">WWW.CAJAMURCIA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES30"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajaontinyent" model="res.bank">
             <field name="name">CAJA ONTINYENT</field>
@@ -929,7 +990,8 @@
             <field name="fax">0962387003</field>
             <field name="website">WWW.CAIXAONTINYENT.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES46"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_sanostra" model="res.bank">
             <field name="name">SA NOSTRA</field>
@@ -944,7 +1006,8 @@
             <field name="fax">0971726054</field>
             <field name="website">WWW.SANOSTRA.NET</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES07"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_colonya" model="res.bank">
             <field name="name">COLONYA</field>
@@ -959,7 +1022,8 @@
             <field name="fax">0971530409</field>
             <field name="website">WWW.COLONYA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES07"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cralmendralejo" model="res.bank">
             <field name="name">CR ALMENDRALEJO</field>
@@ -974,7 +1038,8 @@
             <field name="fax">0924664311</field>
             <field name="website">WWW.CAJALMENDRALEJO.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES06"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crdegijon" model="res.bank">
             <field name="name">C.R. DE GIJON</field>
@@ -989,7 +1054,8 @@
             <field name="fax">0985180402</field>
             <field name="website">WWW.RURALVIA.COM/GIJON</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES33"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crdenavarra" model="res.bank">
             <field name="name">C.R. DE NAVARRA</field>
@@ -1004,7 +1070,8 @@
             <field name="fax">0948244557</field>
             <field name="website">WWW.RURALVIA.COM/NAVARRA</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES31"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crextremadura" model="res.bank">
             <field name="name">C.R.EXTREMADURA</field>
@@ -1019,7 +1086,8 @@
             <field name="fax">0924234023</field>
             <field name="website">WWW.CREXTREMADURA.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES06"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crsalamanca" model="res.bank">
             <field name="name">C.R. SALAMANCA</field>
@@ -1034,7 +1102,8 @@
             <field name="fax">0923128615</field>
             <field name="website">WWW.CAJARURAL.COM/SALAMANCA</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES37"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajasoria" model="res.bank">
             <field name="name">CAJA SORIA</field>
@@ -1049,7 +1118,8 @@
             <field name="fax">0975228937</field>
             <field name="website">WWW.RURALVIA.COM/SORIA</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES42"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crrsagustin" model="res.bank">
             <field name="name">C.R.R.S.AGUSTIN</field>
@@ -1064,7 +1134,8 @@
             <field name="fax">0968597700</field>
             <field name="website">WWW.RURALREGIONAL.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES30"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crdeutrera" model="res.bank">
             <field name="name">C.R. DE UTRERA</field>
@@ -1079,7 +1150,8 @@
             <field name="fax">0954864610</field>
             <field name="website">WWW.CAJARURAL.COM/UTRERA</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES41"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crdegranada" model="res.bank">
             <field name="name">C.R.DE GRANADA</field>
@@ -1094,7 +1166,8 @@
             <field name="fax">0958242424</field>
             <field name="website">E-RURALGRANADA.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES18"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cd'enginyers" model="res.bank">
             <field name="name">C. D'ENGINYERS</field>
@@ -1109,7 +1182,8 @@
             <field name="fax">0933100060</field>
             <field name="website">WWW.CAJA-INGENIEROS.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_caixapetrer" model="res.bank">
             <field name="name">CAIXAPETRER</field>
@@ -1124,7 +1198,8 @@
             <field name="fax">0966952798</field>
             <field name="website">WWW.CAJARURAL.COM/RURALES/3029</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES03"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajalaboral" model="res.bank">
             <field name="name">CAJA LABORAL</field>
@@ -1139,7 +1214,8 @@
             <field name="fax">0943719778</field>
             <field name="website">WWW.CAJALABORAL.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES20"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_caixaltea" model="res.bank">
             <field name="name">CAIXALTEA</field>
@@ -1154,7 +1230,8 @@
             <field name="fax">0965842049</field>
             <field name="website">WWW.CAIXALTEA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES03"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajamar" model="res.bank">
             <field name="name">CAJAMAR</field>
@@ -1169,7 +1246,8 @@
             <field name="fax">0950266578</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES04"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crasturias" model="res.bank">
             <field name="name">C.R. ASTURIAS</field>
@@ -1184,7 +1262,8 @@
             <field name="fax">0985227149</field>
             <field name="website">WWW.RURALVIA.COM/ASTURIAS/</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES33"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crjaen" model="res.bank">
             <field name="name">C.R. JAEN</field>
@@ -1199,7 +1278,8 @@
             <field name="fax">0953265120</field>
             <field name="website">WWW.RURALVIA.COM/JAEN</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES23"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crgalega" model="res.bank">
             <field name="name">C.R. GALEGA</field>
@@ -1214,7 +1294,8 @@
             <field name="fax">0982280947</field>
             <field name="website">WWW.RURALVIA.COM/LUGO</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES27"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajasiete" model="res.bank">
             <field name="name">CAJASIETE</field>
@@ -1229,7 +1310,8 @@
             <field name="fax">0922608406</field>
             <field name="website">WWW.CAJASIETE.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES38"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crdeteruel" model="res.bank">
             <field name="name">C.R. DE TERUEL</field>
@@ -1244,7 +1326,8 @@
             <field name="fax">0978603278</field>
             <field name="website">WWW.CAJARURAL.COM/TERUEL/       HOME.HTML</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES44"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajarcastilla" model="res.bank">
             <field name="name">CAJA R.CASTILLA</field>
@@ -1259,7 +1342,8 @@
             <field name="fax">0925212951</field>
             <field name="website">WWW.CAJARURALCASTILLALAMANCHA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES45"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crdezamora" model="res.bank">
             <field name="name">C.R. DE ZAMORA</field>
@@ -1274,7 +1358,8 @@
             <field name="fax">0980534649</field>
             <field name="website">WWW.CAJARURAL.COM/ZAMORA</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES49"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crbaena" model="res.bank">
             <field name="name">C.R.BAENA</field>
@@ -1289,7 +1374,8 @@
             <field name="fax">0957670749</field>
             <field name="website">WWW.RURALVIA.COM/BAENA/</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES14"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crsroque" model="res.bank">
             <field name="name">C.R. S.ROQUE</field>
@@ -1304,7 +1390,8 @@
             <field name="fax">0962611103</field>
             <field name="website">WWW.RURALVIA.COM/ALMENARA</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crl'alcudia" model="res.bank">
             <field name="name">C.R. L'ALCUDIA</field>
@@ -1319,7 +1406,8 @@
             <field name="fax">0962540427</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES46"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_nsdelrosario" model="res.bank">
             <field name="name">N.S.DEL ROSARIO</field>
@@ -1334,7 +1422,8 @@
             <field name="fax">0957678054</field>
             <field name="website">WWW.RURALVIA.COM/CARTEYA/</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES14"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_csantvicent" model="res.bank">
             <field name="name">C. SANT VICENT</field>
@@ -1349,7 +1438,8 @@
             <field name="fax">0964661988</field>
             <field name="website">WWW.RURALVIA.COM/SANTVICENT</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crcanete" model="res.bank">
             <field name="name">C.R.CAÑETE</field>
@@ -1364,7 +1454,8 @@
             <field name="fax">0957183031</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES14"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_caixacallosa" model="res.bank">
             <field name="name">CAIXACALLOSA</field>
@@ -1379,7 +1470,8 @@
             <field name="fax">0965880001</field>
             <field name="website">WWW.RURALVIA.COM/CALLOSA</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES03"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crvillarreal" model="res.bank">
             <field name="name">C.R.VILLARREAL</field>
@@ -1394,7 +1486,8 @@
             <field name="fax">0964521798</field>
             <field name="website">WWW.CAJARURALVILLARREAL.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_allfundsbank" model="res.bank">
             <field name="name">ALLFUNDS BANK</field>
@@ -1409,7 +1502,8 @@
             <field name="fax">0912746464</field>
             <field name="website">WWW.ALLFUNDSBANK.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_dbsae" model="res.bank">
             <field name="name">DB-S.A.E.</field>
@@ -1424,7 +1518,8 @@
             <field name="fax"></field>
             <field name="website">WWW.DEUTSCHE-BANK.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancocondal" model="res.bank">
             <field name="name">BANCO CONDAL</field>
@@ -1439,7 +1534,8 @@
             <field name="fax">0915783002</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_banesto" model="res.bank">
             <field name="name">BANESTO</field>
@@ -1454,7 +1550,8 @@
             <field name="fax">0913382526</field>
             <field name="website">WWW.BANESTO.ES  WWW.IBANESTO.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_etcheverria" model="res.bank">
             <field name="name">ETCHEVERRIA</field>
@@ -1469,7 +1566,8 @@
             <field name="fax">0981220128</field>
             <field name="website">WWW.BANCOETCHEVERRIA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES15"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_santanderinv" model="res.bank">
             <field name="name">SANTANDER INV.</field>
@@ -1484,7 +1582,8 @@
             <field name="fax">0912571817</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_santandersecur" model="res.bank">
             <field name="name">SANTANDER SECUR</field>
@@ -1499,7 +1598,8 @@
             <field name="fax"></field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_santander" model="res.bank">
             <field name="name">SANTANDER</field>
@@ -1514,7 +1614,8 @@
             <field name="fax">0915813388</field>
             <field name="website">www.santander.com</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES39"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_depositariobbva" model="res.bank">
             <field name="name">DEPOSITARIOBBVA</field>
@@ -1529,7 +1630,8 @@
             <field name="fax">0913747197</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bnpparibassa" model="res.bank">
             <field name="name">BNP PARIBAS, SA</field>
@@ -1544,7 +1646,8 @@
             <field name="fax">0913888543</field>
             <field name="website">WWW.BANCAPRIVADA.BNPPARIBAS.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancodemadrid" model="res.bank">
             <field name="name">BANCO DE MADRID</field>
@@ -1559,7 +1662,8 @@
             <field name="fax">0917815364</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancamarch" model="res.bank">
             <field name="name">BANCA MARCH</field>
@@ -1574,7 +1678,8 @@
             <field name="fax">0971469929</field>
             <field name="website">WWW.BANCAMARCH.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES07"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_barclaysbank" model="res.bank">
             <field name="name">BARCLAYS BANK</field>
@@ -1589,7 +1694,8 @@
             <field name="fax">0913361282</field>
             <field name="website">WWW.BARCLAYS.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_openbank" model="res.bank">
             <field name="name">OPEN BANK</field>
@@ -1604,7 +1710,8 @@
             <field name="fax">0913421043</field>
             <field name="website">WWW.OPENBANK.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_popularespanol" model="res.bank">
             <field name="name">POPULAR ESPAÑOL</field>
@@ -1619,7 +1726,8 @@
             <field name="fax">0915752296</field>
             <field name="website">WWW.BANCOPOPULAR.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_norwich" model="res.bank">
             <field name="name">NORWICH</field>
@@ -1634,7 +1742,8 @@
             <field name="fax">0952348656</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES29"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crcovesvinrom" model="res.bank">
             <field name="name">CR COVES VINROM</field>
@@ -1649,7 +1758,8 @@
             <field name="fax">0964426299</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_ubsbank" model="res.bank">
             <field name="name">UBS BANK</field>
@@ -1664,7 +1774,8 @@
             <field name="fax">0915633666</field>
             <field name="website">WWW.UBS.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_dexiasabadell" model="res.bank">
             <field name="name">DEXIASABADELL</field>
@@ -1679,7 +1790,8 @@
             <field name="fax">0917213320</field>
             <field name="website">WWW.DEXIASABADELL.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_inversis" model="res.bank">
             <field name="name">INVERSIS</field>
@@ -1694,7 +1806,8 @@
             <field name="fax">0914001410</field>
             <field name="website">WWW.INVERSIS.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bcreditosoc" model="res.bank">
             <field name="name">B.CREDITO SOC.</field>
@@ -1709,7 +1822,8 @@
             <field name="fax">0914183163</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bmarenostrum" model="res.bank">
             <field name="name">B.MARE NOSTRUM</field>
@@ -1724,7 +1838,8 @@
             <field name="fax">0915227668</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancofyaho" model="res.bank">
             <field name="name">BANCO F. Y AHO.</field>
@@ -1739,7 +1854,8 @@
             <field name="fax">0963322400</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_selftradebank" model="res.bank">
             <field name="name">SELF TRADE BANK</field>
@@ -1754,7 +1870,8 @@
             <field name="fax">0917894019</field>
             <field name="website">WWW.SELFTRADE.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_andbanksa" model="res.bank">
             <field name="name">ANDBANK S.A.</field>
@@ -1769,7 +1886,8 @@
             <field name="fax">0912062879</field>
             <field name="website">WWW.ANDBANK.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cecabanksa" model="res.bank">
             <field name="name">CECABANK, S.A.</field>
@@ -1784,7 +1902,8 @@
             <field name="fax">0915965742</field>
             <field name="website">WWW.cecabank.es</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_catalunyabanc" model="res.bank">
             <field name="name">CATALUNYA BANC,</field>
@@ -1799,7 +1918,8 @@
             <field name="fax">0934845141</field>
             <field name="website">WWW.CATALUNYACAIXA.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bankiasa" model="res.bank">
             <field name="name">BANKIA, S.A</field>
@@ -1814,7 +1934,8 @@
             <field name="fax">0913915414</field>
             <field name="website">WWW.BANKIA.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES46"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_liberbank" model="res.bank">
             <field name="name">LIBERBANK</field>
@@ -1829,7 +1950,8 @@
             <field name="fax">0914225842</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_abancacorporac" model="res.bank">
             <field name="name">ABANCA CORPORAC</field>
@@ -1844,7 +1966,8 @@
             <field name="fax">0981223562</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES15"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_ibercajabanco" model="res.bank">
             <field name="name">IBERCAJA BANCO</field>
@@ -1859,7 +1982,8 @@
             <field name="fax">0976216637</field>
             <field name="website">WWW.IBERCAJA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES50"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancgcajatres" model="res.bank">
             <field name="name">BANC.G.CAJATRES</field>
@@ -1874,7 +1998,8 @@
             <field name="fax">0976718306</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES50"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_kutxabanksa" model="res.bank">
             <field name="name">KUTXABANK, S.A</field>
@@ -1889,7 +2014,8 @@
             <field name="fax">0944017326</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES48"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_caixabanksa" model="res.bank">
             <field name="name">CAIXABANK, S.A.</field>
@@ -1904,7 +2030,8 @@
             <field name="fax">0934046723</field>
             <field name="website">WWW.CAIXABANK.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_unicajabanco" model="res.bank">
             <field name="name">UNICAJA BANCO</field>
@@ -1919,7 +2046,8 @@
             <field name="fax">0952287698</field>
             <field name="website">WWW.UNICAJA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES29"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajadebadajoz" model="res.bank">
             <field name="name">CAJA DE BADAJOZ</field>
@@ -1934,7 +2062,8 @@
             <field name="fax">0924214073</field>
             <field name="website">WWW.CAJABADAJOZ.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES06"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajacirculo" model="res.bank">
             <field name="name">CAJA CIRCULO</field>
@@ -1949,7 +2078,8 @@
             <field name="fax">0947288210</field>
             <field name="website">WWW.CAJACIRCULO.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES09"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajacantabria" model="res.bank">
             <field name="name">CAJA CANTABRIA</field>
@@ -1964,7 +2094,8 @@
             <field name="fax">0942218315</field>
             <field name="website">WWW.CAJACANTABRIA.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES39"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_caixapenedes" model="res.bank">
             <field name="name">CAIXA PENEDES</field>
@@ -1979,7 +2110,8 @@
             <field name="fax">0938920816</field>
             <field name="website">WWW.CAIXAPENEDES.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajaespana" model="res.bank">
             <field name="name">CAJA ESPAÑA</field>
@@ -1994,7 +2126,8 @@
             <field name="fax">0987231026</field>
             <field name="website">WWW.CAJAESPANA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES24"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajaextremadura" model="res.bank">
             <field name="name">CAJAEXTREMADURA</field>
@@ -2009,7 +2142,8 @@
             <field name="fax">0927212571</field>
             <field name="website">WWW.CAJAEXTREMADURA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES10"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajaduero" model="res.bank">
             <field name="name">CAJA DUERO</field>
@@ -2024,7 +2158,8 @@
             <field name="fax">0923211646</field>
             <field name="website">WWW.CAJADUERO.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES37"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_castlamancha" model="res.bank">
             <field name="name">CAST.-LA MANCHA</field>
@@ -2039,7 +2174,8 @@
             <field name="fax">0969223568</field>
             <field name="website">WWW.CCM.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES16"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_popularbanca" model="res.bank">
             <field name="name">POPULARBANCA</field>
@@ -2054,7 +2190,8 @@
             <field name="fax">0914189328</field>
             <field name="website">WWW.POPULARBANCAPRIVADA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_montyglobal" model="res.bank">
             <field name="name">MONTY GLOBAL</field>
@@ -2069,7 +2206,8 @@
             <field name="fax">0915210656</field>
             <field name="website">WWW.MONTYGLOBAL.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bmce" model="res.bank">
             <field name="name">BMCE</field>
@@ -2084,7 +2222,8 @@
             <field name="fax">0915311522</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_charteredbank" model="res.bank">
             <field name="name">CHARTERED BANK</field>
@@ -2099,7 +2238,8 @@
             <field name="fax"></field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_newyorkmellon" model="res.bank">
             <field name="name">NEW YORK MELLON</field>
@@ -2114,7 +2254,8 @@
             <field name="fax">0913192247</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_banquecourtois" model="res.bank">
             <field name="name">BANQUE COURTOIS</field>
@@ -2129,7 +2270,8 @@
             <field name="fax"></field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_svenskahandels" model="res.bank">
             <field name="name">SVENSKA HANDELS</field>
@@ -2144,7 +2286,8 @@
             <field name="fax">0952817567</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES29"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_pkbprivatbank" model="res.bank">
             <field name="name">PKB PRIVATBANK</field>
@@ -2159,7 +2302,8 @@
             <field name="fax">0915829114</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_activeconext" model="res.bank">
             <field name="name">ACTIV.ECON.EXT.</field>
@@ -2174,7 +2318,8 @@
             <field name="fax"></field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bil" model="res.bank">
             <field name="name">BIL</field>
@@ -2189,7 +2334,8 @@
             <field name="fax">0934124221</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_carigespa" model="res.bank">
             <field name="name">CARIGE SPA</field>
@@ -2204,7 +2350,8 @@
             <field name="fax">0915646860</field>
             <field name="website">BANCACARIGE@WORLDONLINE.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_pnb" model="res.bank">
             <field name="name">P.N.B.</field>
@@ -2219,7 +2366,8 @@
             <field name="fax">0915324992</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_maccorp" model="res.bank">
             <field name="name">MACCORP</field>
@@ -2234,7 +2382,8 @@
             <field name="fax">0915971957</field>
             <field name="website">EXACT-TRANSFER.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bnl" model="res.bank">
             <field name="name">BNL</field>
@@ -2249,7 +2398,8 @@
             <field name="fax">0913498950</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_societegeneral" model="res.bank">
             <field name="name">SOCIETE GENERAL</field>
@@ -2264,7 +2414,8 @@
             <field name="fax">0915893805</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_novobancosa" model="res.bank">
             <field name="name">NOVO BANCO, S.A</field>
@@ -2279,7 +2430,8 @@
             <field name="fax">0914005053</field>
             <field name="website">WWW.BES.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bnpparibsec" model="res.bank">
             <field name="name">BNP PARIB.SEC</field>
@@ -2294,7 +2446,8 @@
             <field name="fax">0913888788</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_dbagse" model="res.bank">
             <field name="name">DB-A.G., S.E.</field>
@@ -2309,7 +2462,8 @@
             <field name="fax">0915753921</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bnpparibassa" model="res.bank">
             <field name="name">BNP PARIBAS S.A</field>
@@ -2324,7 +2478,8 @@
             <field name="fax">0913491282</field>
             <field name="website">WWW.BNPPARIBAS.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_barclaysse" model="res.bank">
             <field name="name">BARCLAYS, S.E.</field>
@@ -2339,7 +2494,8 @@
             <field name="fax">0913361485</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_creditagricole" model="res.bank">
             <field name="name">CREDIT AGRICOLE</field>
@@ -2354,7 +2510,8 @@
             <field name="fax">0914327500</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancodobrasil" model="res.bank">
             <field name="name">BANCO DO BRASIL</field>
@@ -2369,7 +2526,8 @@
             <field name="fax">0914232520</field>
             <field name="website">madrid@bb.com.br</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_royalbank" model="res.bank">
             <field name="name">ROYAL BANK</field>
@@ -2384,7 +2542,8 @@
             <field name="fax">0914385300</field>
             <field name="website">WWW.RBOS.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_commerzbank" model="res.bank">
             <field name="name">COMMERZBANK</field>
@@ -2399,7 +2558,8 @@
             <field name="fax">0915724850</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_lloydstsbbank" model="res.bank">
             <field name="name">LLOYDS TSB BANK</field>
@@ -2414,7 +2574,8 @@
             <field name="fax">0914314731</field>
             <field name="website">WWW.LLOYDSTSB.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_hsbcbank" model="res.bank">
             <field name="name">HSBC BANK</field>
@@ -2429,7 +2590,8 @@
             <field name="fax">0914566200</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bnpparibasf" model="res.bank">
             <field name="name">BNP PARIBAS F.</field>
@@ -2444,7 +2606,8 @@
             <field name="fax">0914365603</field>
             <field name="website">WWW.FORTISBANK.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_ingbelgiumse" model="res.bank">
             <field name="name">ING BELGIUM SE</field>
@@ -2459,7 +2622,8 @@
             <field name="fax">0917895200</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancobpise" model="res.bank">
             <field name="name">BANCO BPI, S.E.</field>
@@ -2474,7 +2638,8 @@
             <field name="fax">0915766387</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_fcebank" model="res.bank">
             <field name="name">FCE BANK</field>
@@ -2489,7 +2654,8 @@
             <field name="fax">0917145372</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_creditsudmed" model="res.bank">
             <field name="name">CREDIT SUDMED</field>
@@ -2504,7 +2670,8 @@
             <field name="fax">0932375309</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_newedge" model="res.bank">
             <field name="name">NEWEDGE</field>
@@ -2519,7 +2686,8 @@
             <field name="fax">0917486115</field>
             <field name="website">WWW.NEWEDGEGROUP.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_newcourt" model="res.bank">
             <field name="name">NEWCOURT</field>
@@ -2534,7 +2702,8 @@
             <field name="fax">0913834658</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_ingbank" model="res.bank">
             <field name="name">ING BANK</field>
@@ -2549,7 +2718,8 @@
             <field name="fax">0916349231</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_franfinance" model="res.bank">
             <field name="name">FRANFINANCE</field>
@@ -2564,7 +2734,8 @@
             <field name="fax">0917670919</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_hypothekenbank" model="res.bank">
             <field name="name">HYPOTHEKENBANK</field>
@@ -2579,7 +2750,8 @@
             <field name="fax">0917877490</field>
             <field name="website">WWW.EUROHYPO.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancosygma" model="res.bank">
             <field name="name">BANCO SYGMA</field>
@@ -2594,7 +2766,8 @@
             <field name="fax">0913753520</field>
             <field name="website">WWW.MEDIATIS.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_caleasing" model="res.bank">
             <field name="name">CA-LEASING</field>
@@ -2609,7 +2782,8 @@
             <field name="fax">0917820211</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_edmondrothschi" model="res.bank">
             <field name="name">EDMOND ROTHSCHI</field>
@@ -2624,7 +2798,8 @@
             <field name="fax">0913646663</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_citibankinter" model="res.bank">
             <field name="name">CITIBANK INTER.</field>
@@ -2639,7 +2814,8 @@
             <field name="fax">0915784412</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajacaminos" model="res.bank">
             <field name="name">CAJA CAMINOS</field>
@@ -2654,7 +2830,8 @@
             <field name="fax">0913085459</field>
             <field name="website">WWW.CAJACAMINOS.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_caixavinaros" model="res.bank">
             <field name="name">CAIXA VINAROS</field>
@@ -2669,7 +2846,8 @@
             <field name="fax">0964407281</field>
             <field name="website">WWW.RURALVIA.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES12"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_crdealginet" model="res.bank">
             <field name="name">C.R. DE ALGINET</field>
@@ -2684,7 +2862,8 @@
             <field name="fax">0961750433</field>
             <field name="website">WWW.RURALVIA.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES46"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_arquia" model="res.bank">
             <field name="name">ARQUIA</field>
@@ -2699,7 +2878,8 @@
             <field name="fax">0934826801</field>
             <field name="website">WWW.ARQUIA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_albalat" model="res.bank">
             <field name="name">ALBALAT</field>
@@ -2714,7 +2894,8 @@
             <field name="fax">0961495864</field>
             <field name="website">WWW.CAIXALBALAT.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES46"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cajarsur" model="res.bank">
             <field name="name">CAJA R. SUR</field>
@@ -2729,7 +2910,8 @@
             <field name="fax">0954228160</field>
             <field name="website">WWW.RURALVIA.COM/CRDELSUR</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES41"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_globalcaja" model="res.bank">
             <field name="name">GLOBALCAJA</field>
@@ -2744,7 +2926,8 @@
             <field name="fax">0925504275</field>
             <field name="website">WWW.GLOBALCAJA.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES45"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bantierra" model="res.bank">
             <field name="name">BANTIERRA</field>
@@ -2759,7 +2942,8 @@
             <field name="fax">0976763305</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES50"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_celeris" model="res.bank">
             <field name="name">CELERIS</field>
@@ -2774,7 +2958,8 @@
             <field name="fax">0912161190</field>
             <field name="website">WWW.GRUPOCELERIS.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_santanderbrasil" model="res.bank">
             <field name="name">SANTANDERBRASIL</field>
@@ -2789,7 +2974,8 @@
             <field name="fax"></field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_sudameris" model="res.bank">
             <field name="name">SUDAMERIS</field>
@@ -2804,7 +2990,8 @@
             <field name="fax">0915762662</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_scansuisse" model="res.bank">
             <field name="name">SCANSUISSE</field>
@@ -2819,7 +3006,8 @@
             <field name="fax">0952829476</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES29"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_espiritosanto" model="res.bank">
             <field name="name">ESPIRITO SANTO</field>
@@ -2834,7 +3022,8 @@
             <field name="fax">0914005072</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cuba" model="res.bank">
             <field name="name">CUBA</field>
@@ -2849,7 +3038,8 @@
             <field name="fax">0915646888</field>
             <field name="website">BANCUBAMAD@TELEFóNICA.NET</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_portigon" model="res.bank">
             <field name="name">PORTIGON</field>
@@ -2864,7 +3054,8 @@
             <field name="fax">0914328070</field>
             <field name="website">WWW.WESTLB.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_lagelandenint" model="res.bank">
             <field name="name">LAGE LANDEN INT</field>
@@ -2879,7 +3070,8 @@
             <field name="fax">0913848169</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_rabobanknederl" model="res.bank">
             <field name="name">RABOBANK NEDERL</field>
@@ -2894,7 +3086,8 @@
             <field name="fax">0914364020</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_accbankplc" model="res.bank">
             <field name="name">ACC BANK PLC</field>
@@ -2909,7 +3102,8 @@
             <field name="fax">0915305135</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_psafinance" model="res.bank">
             <field name="name">PSA FINANCE</field>
@@ -2924,7 +3118,8 @@
             <field name="fax">0913472009</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bpi" model="res.bank">
             <field name="name">BPI</field>
@@ -2939,7 +3134,8 @@
             <field name="fax">0917814607</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cortalconsors" model="res.bank">
             <field name="name">CORTAL CONSORS</field>
@@ -2954,7 +3150,8 @@
             <field name="fax">0915210900</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_merrillynch" model="res.bank">
             <field name="name">MERRIL LYNCH</field>
@@ -2969,7 +3166,8 @@
             <field name="fax">0915143001</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_natixis" model="res.bank">
             <field name="name">NATIXIS</field>
@@ -2984,7 +3182,8 @@
             <field name="fax">0915774562</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_volkswagenbank" model="res.bank">
             <field name="name">VOLKSWAGEN BANK</field>
@@ -2999,7 +3198,8 @@
             <field name="fax">0914535273</field>
             <field name="website">WWW.VWBSTOCK.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_pictetycie" model="res.bank">
             <field name="name">PICTET Y CIE</field>
@@ -3014,7 +3214,8 @@
             <field name="fax">0915783954</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_triodosbank" model="res.bank">
             <field name="name">TRIODOS BANK</field>
@@ -3029,7 +3230,8 @@
             <field name="fax">0916405444</field>
             <field name="website">WWW.TRIODOS.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_intesasanpaolo" model="res.bank">
             <field name="name">INTESA SANPAOLO</field>
@@ -3044,7 +3246,8 @@
             <field name="fax">0913197722</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_besi" model="res.bank">
             <field name="name">BESI</field>
@@ -3059,7 +3262,8 @@
             <field name="fax">0914005388</field>
             <field name="website">WWW.ESPIRITOSANTOIB.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_deutschepfandb" model="res.bank">
             <field name="name">DEUTSCHE PFANDB</field>
@@ -3074,7 +3278,8 @@
             <field name="fax">0913493320</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_ikbdeutsche" model="res.bank">
             <field name="name">IKB DEUTSCHE</field>
@@ -3089,7 +3294,8 @@
             <field name="fax">0917001463</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_europearabban" model="res.bank">
             <field name="name">EUROPE ARAB BAN</field>
@@ -3104,7 +3310,8 @@
             <field name="fax">0913086484</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_merrilllynch" model="res.bank">
             <field name="name">MERRILL LYNCH</field>
@@ -3119,7 +3326,8 @@
             <field name="fax">0915143001</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_efgbank(luxem" model="res.bank">
             <field name="name">EFG BANK (LUXEM</field>
@@ -3134,7 +3342,8 @@
             <field name="fax">0915760964</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_ubibanca" model="res.bank">
             <field name="name">UBI BANCA</field>
@@ -3149,7 +3358,8 @@
             <field name="fax">0913344062</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_banquechaabi" model="res.bank">
             <field name="name">BANQUE CHAABI</field>
@@ -3164,7 +3374,8 @@
             <field name="fax">0915630220</field>
             <field name="website">WWW.CHAABIBANK.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_kblbankers" model="res.bank">
             <field name="name">KBL BANKERS</field>
@@ -3179,7 +3390,8 @@
             <field name="fax">0914232270</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_icbc(europe)" model="res.bank">
             <field name="name">ICBC (EUROPE)</field>
@@ -3194,7 +3406,8 @@
             <field name="fax">0912168866</field>
             <field name="website">WWW.ICBC.COM.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bigbankascons" model="res.bank">
             <field name="name">BIGBANK AS CONS</field>
@@ -3209,7 +3422,8 @@
             <field name="fax"></field>
             <field name="website">INFO@BIGBANK.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_cal" model="res.bank">
             <field name="name">CAL</field>
@@ -3224,7 +3438,8 @@
             <field name="fax">0914327265</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancapopolare" model="res.bank">
             <field name="name">BANCA POPOLARE</field>
@@ -3239,7 +3454,8 @@
             <field name="fax">0944154286</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES48"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_jpmorganchase" model="res.bank">
             <field name="name">JPMORGAN CHASE</field>
@@ -3254,7 +3470,8 @@
             <field name="fax">0915161616</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_tokyomitsubish" model="res.bank">
             <field name="name">TOKYO-MITSUBISH</field>
@@ -3269,7 +3486,8 @@
             <field name="fax">0914328597</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_dbtrustcompan" model="res.bank">
             <field name="name">DB-TRUST COMPAN</field>
@@ -3284,7 +3502,8 @@
             <field name="fax">0915387599</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_nacionargent" model="res.bank">
             <field name="name">NACION ARGENT.</field>
@@ -3299,7 +3518,8 @@
             <field name="fax">0915766142</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_creditsuisse" model="res.bank">
             <field name="name">CREDIT SUISSE</field>
@@ -3314,7 +3534,8 @@
             <field name="fax">0917916010</field>
             <field name="website">WWW.CREDIT-SUISSE.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bankofamerica" model="res.bank">
             <field name="name">BANK OF AMERICA</field>
@@ -3329,7 +3550,8 @@
             <field name="fax">0913965123</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_privatbankihag" model="res.bank">
             <field name="name">PRIVATBANK IHAG</field>
@@ -3344,7 +3566,8 @@
             <field name="fax">0952469470</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES29"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_aarealbankag" model="res.bank">
             <field name="name">AAREAL BANK AG</field>
@@ -3359,7 +3582,8 @@
             <field name="fax">0915902436</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_attijariwafa" model="res.bank">
             <field name="name">ATTIJARIWAFA</field>
@@ -3374,7 +3598,8 @@
             <field name="fax">0934160952</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_buenosaires" model="res.bank">
             <field name="name">BUENOS AIRES</field>
@@ -3389,7 +3614,8 @@
             <field name="fax">0913915947</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_landesbank" model="res.bank">
             <field name="name">LANDESBANK</field>
@@ -3404,7 +3630,8 @@
             <field name="fax">0913911132</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_banintor" model="res.bank">
             <field name="name">BANINT,OR</field>
@@ -3419,7 +3646,8 @@
             <field name="fax"></field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_londonforfaiti" model="res.bank">
             <field name="name">LONDON FORFAITI</field>
@@ -3434,7 +3662,8 @@
             <field name="fax">0934948871</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancosbsagro" model="res.bank">
             <field name="name">BANCO SBS-AGRO</field>
@@ -3449,7 +3678,8 @@
             <field name="fax">0913992408</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_landesbank" model="res.bank">
             <field name="name">LANDESBANK</field>
@@ -3464,7 +3694,8 @@
             <field name="fax">0932016475</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_besinvestiment" model="res.bank">
             <field name="name">BES INVESTIMENT</field>
@@ -3479,7 +3710,8 @@
             <field name="fax">0915667160</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_wafabank" model="res.bank">
             <field name="name">WAFABANK</field>
@@ -3494,7 +3726,8 @@
             <field name="fax">0913746128</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_ico" model="res.bank">
             <field name="name">ICO</field>
@@ -3509,7 +3742,8 @@
             <field name="fax">0915921700</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bdepositos" model="res.bank">
             <field name="name">B. DEPOSITOS</field>
@@ -3524,7 +3758,8 @@
             <field name="fax">0915752296</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_marocainecoex" model="res.bank">
             <field name="name">MAROCAINE CO EX</field>
@@ -3539,7 +3774,8 @@
             <field name="fax">0914316310</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_finantia" model="res.bank">
             <field name="name">FINANTIA</field>
@@ -3554,7 +3790,8 @@
             <field name="fax">0915572301</field>
             <field name="website">WWW.BFS.ES.</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_gemoneybank" model="res.bank">
             <field name="name">GE MONEY BANK</field>
@@ -3569,7 +3806,8 @@
             <field name="fax">0934166813</field>
             <field name="website">WWW.GEMONEYBANK.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_sconsumerf" model="res.bank">
             <field name="name">S. CONSUMER F.</field>
@@ -3584,7 +3822,8 @@
             <field name="fax">0912571288</field>
             <field name="website">WWW.SANTANDERCONSUMERFINANCE.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_bancocetelem" model="res.bank">
             <field name="name">BANCO CETELEM</field>
@@ -3599,7 +3838,8 @@
             <field name="fax">0915287780</field>
             <field name="website">WWW.BANCOCETELEM.ES</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_unicreditbank" model="res.bank">
             <field name="name">UNICREDIT BANK</field>
@@ -3614,7 +3854,8 @@
             <field name="fax">0913198671</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_alliedbanking" model="res.bank">
             <field name="name">ALLIED BANKING</field>
@@ -3629,7 +3870,8 @@
             <field name="fax">0915311044</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_banqueregionale" model="res.bank">
             <field name="name">BANQUEREGIONALE</field>
@@ -3644,7 +3886,8 @@
             <field name="fax">0915780170</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_rheinhyp" model="res.bank">
             <field name="name">RHEINHYP</field>
@@ -3659,7 +3902,8 @@
             <field name="fax">0915724730</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_scs" model="res.bank">
             <field name="name">SCS</field>
@@ -3674,7 +3918,8 @@
             <field name="fax">0934161637</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES08"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_canariasvenez" model="res.bank">
             <field name="name">CANARIAS VENEZ.</field>
@@ -3689,7 +3934,8 @@
             <field name="fax">0922247977</field>
             <field name="website"></field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES38"/>
+            <field name="country" ref="base.es"/>
         </record>
         <record id="res_bank_ucisaefc" model="res.bank">
             <field name="name">U.C.I., SA, EFC</field>
@@ -3704,7 +3950,8 @@
             <field name="fax">0913373738</field>
             <field name="website">WWW.UCI.COM</field>
             <field eval="1" name="active"/>
-            <field name="country_id" ref="base.es"/>
+            <field name="state" ref="l10n_es_toponyms.ES28"/>
+            <field name="country" ref="base.es"/>
         </record>
     </data>
 </openerp>
