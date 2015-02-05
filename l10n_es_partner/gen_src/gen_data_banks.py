@@ -47,31 +47,31 @@ if __name__ == "__main__":
             if row[29]:
                 name = "res_bank_" + row[40].lower().replace(
                     ' ', '').replace(',', '').replace('.', '').replace(
-                    '-', '').replace(u'\xf1', 'n')
+                    '-', '').replace(u'\xf1', 'n').replace(u'\x26', 'y')
                 street = row[7] + '. ' + row[8] + ', ' + row[9] + ' ' + row[10]
                 output.write('        <record id="%s" model="res.bank">\n' %
                              name)
-                output.write('            <field name="name">%s<field/>\n' % (
-                             row[40]))
-                output.write('            <field name="lname">%s<field/>\n' % (
-                             row[4]))
-                output.write('            <field name="code">%s<field/>\n' % (
+                output.write('            <field name="name">%s</field>\n' % (
+                             row[40].replace(u'\x26', 'Y')))
+                output.write('            <field name="lname">%s</field>\n' % (
+                             row[4].replace(u'\x26', 'Y')))
+                output.write('            <field name="code">%s</field>\n' % (
                              row[1]))
-                output.write('            <field name="bic">%s<field/>\n' % (
+                output.write('            <field name="bic">%s</field>\n' % (
                              row[29]))
-                output.write('            <field name="vat">%s<field/>\n' % (
+                output.write('            <field name="vat">%s</field>\n' % (
                              row[6]))
-                output.write('            <field name="street">%s<field/>\n' %
+                output.write('            <field name="street">%s</field>\n' %
                              (street))
-                output.write('            <field name="city">%s<field/>\n' % (
+                output.write('            <field name="city">%s</field>\n' % (
                              row[12]))
-                output.write('            <field name="zip">%s<field/>\n' % (
+                output.write('            <field name="zip">%s</field>\n' % (
                              row[11]))
                 output.write('            <field name="phone">'
-                             '%s<field/>\n' % row[16])
-                output.write('            <field name="fax">%s<field/>\n' % (
+                             '%s</field>\n' % row[16])
+                output.write('            <field name="fax">%s</field>\n' % (
                              row[18]))
-                output.write('            <field name="website">%s<field/>\n' %
+                output.write('            <field name="website">%s</field>\n' %
                              (row[19]))
                 output.write('            <field eval="1" name="active"/>\n')
                 output.write('            <field name="country_id"'
