@@ -25,5 +25,25 @@
             </field>
         </record>
 
+		<record id="act_assign_quarter" model="ir.actions.server">
+        	<field name="name">Assign Quarter</field>
+        	<field name="state">code</field>
+            <field name="model_id" ref="account.model_account_period"/>
+            <field name="code">self.assign_quarter(cr, uid, context['active_ids'], context)</field>
+        </record>
+
+        <record model="ir.values" id="assign_quarter_act_menu">
+            <field name="model_id" ref="product.model_product_template"/>
+            <field name="name">"Assign Quarter" menu entry</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.server,%d'%act_assign_quarter"/>
+            <field name="key">action</field>
+            <field name="model">account.period</field>
+        </record>
+        
+        <record id="act_assign_quarter" model="ir.actions.server">
+        	<field name="menu_ir_values_id" ref="assign_quarter_act_menu"/>
+        </record>
+
     </data>
 </openerp>

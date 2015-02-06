@@ -262,6 +262,7 @@ class L10nEsAeatMod347Report(orm.Model):
                               '|',
                               ('customer', '=', True),
                               ('supplier', '=', True)])
+
             for partner in partner_obj.browse(cr, uid, partner_ids,
                                               context=context):
                 if partner.id not in visited_partners:
