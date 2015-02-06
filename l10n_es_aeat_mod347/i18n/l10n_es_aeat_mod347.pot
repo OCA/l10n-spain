@@ -4,33 +4,21 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: OpenERP Server 7.0-20130806-231058\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-04 02:37+0000\n"
-"PO-Revision-Date: 2014-02-04 03:38+0100\n"
-"Last-Translator: Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>\n"
+"POT-Creation-Date: 2015-02-06 10:46+0000\n"
+"PO-Revision-Date: 2015-02-06 10:46+0000\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:194
-#, python-format
-msgid "The type 2-D record (partner) must be 502 characters long"
-msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_partner_record
 #: view:l10n.es.aeat.mod347.partner_record:0
 msgid "Partner Record"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/mod347.py:398
-#, python-format
-msgid "All real state records state code field must be filled."
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -44,8 +32,8 @@ msgid "Declaración"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:res.partner,include_in_mod347:0
-msgid "Include in 347 Report"
+#: field:l10n.es.aeat.mod347.real_state_record,stairway:0
+msgid "Stairway"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -143,22 +131,18 @@ msgid "File name"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:99
-#, python-format
-msgid "The type 1 record must be 502 characters long"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,number:0
 msgid "Declaration number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/mod347.py:385
-#: code:addons/l10n_es_aeat_mod347/mod347.py:391
-#: code:addons/l10n_es_aeat_mod347/mod347.py:397
-#, python-format
-msgid "Error!"
+#: field:l10n.es.aeat.mod347.partner_record,first_quarter_real_state_transmission_amount:0
+msgid "First Quarter Real State Transmission Amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
+msgid "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores al límite (1)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -196,13 +180,8 @@ msgid "VAT"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:297
-#, python-format
-msgid "The type 2-I record (real state) must be 502 characters long"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_res_partner
+#: view:l10n.es.aeat.mod347.partner_record:0
 #: field:l10n.es.aeat.mod347.partner_record,partner_id:0
 #: field:l10n.es.aeat.mod347.real_state_record,partner_id:0
 #: report:report_l10n_es_aeat_mod347.report:0
@@ -245,14 +224,6 @@ msgid "3 - Spain, without catastral reference"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/mod347.py:392
-#, python-format
-msgid ""
-"All partner vat number field must be filled.\n"
-"Partner: %s (%s)"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,bussiness_real_state_rent:0
 msgid "Bussiness Real State Rent"
 msgstr ""
@@ -263,11 +234,8 @@ msgid "AEAT 347 model"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/mod347.py:386
-#, python-format
-msgid ""
-"All partner state code field must be filled.\n"
-"Partner: %s (%s)"
+#: view:l10n.es.aeat.mod347.partner_record:0
+msgid "Operation key"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -304,6 +272,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
 msgid "Calculation parameters"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
+msgid "838"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -357,11 +330,6 @@ msgid "State Code"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,stairway:0
-msgid "Stairway"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,only_supplier:0
 msgid "Only Suppliers"
 msgstr ""
@@ -369,6 +337,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,third_quarter:0
 msgid "Third Quarter"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.partner_record:0
+msgid "Record"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -422,8 +395,18 @@ msgid "Support type:"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Search records"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,insurance_operation:0
 msgid "Only for insurance companies. Set to identify insurance operations aside from the rest."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.partner_record:0
+msgid "Group by..."
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -473,11 +456,6 @@ msgid "DVD"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "455"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,state:0
 msgid "Draft"
 msgstr ""
@@ -495,6 +473,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.export_to_boe,state:0
 msgid "open"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.actions.server,name:l10n_es_aeat_mod347.act_assign_quarter
+msgid "Assign Quarter"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -559,6 +542,16 @@ msgid "Number:"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.report,received_cash_limit:0
+msgid "The declaration will show the total of cash operations over this limit"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: field:res.partner,not_in_mod347:0
+msgid "Not included in 347 report"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,cash_record_ids:0
 msgid "Payment records"
 msgstr ""
@@ -576,11 +569,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,partner_country_code:0
 msgid "Country Code"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: field:account.journal,cash_journal:0
-msgid "Cash payments journal"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -607,8 +595,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod347.action_l10n_es_aeat_mod347_report
-msgid ""
-"<p class=\"oe_view_nocontent_create\">\n"
+msgid "<p class=\"oe_view_nocontent_create\">\n"
 "                Click to create a AEAT Model 347 Reports.\n"
 "              </p><p>\n"
 "                Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban \n"
@@ -630,11 +617,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,third_quarter_real_state_transmission_amount:0
 msgid "Third Quarter Real State Transmission Amount"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: help:l10n.es.aeat.mod347.report,received_cash_limit:0
-msgid "The declaration will showthe total of cash operations over this limit"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -691,11 +673,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,city:0
 msgid "City"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: help:account.journal,cash_journal:0
-msgid "Payments of this journal will be considered as cash (used on the 347 report)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -769,8 +746,8 @@ msgid "PARTNER RECORD LINES"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,first_quarter_real_state_transmission_amount:0
-msgid "First Quarter Real State Transmission Amount"
+#: report:report_l10n_es_aeat_mod347.report:0
+msgid "Fiscal year:"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -804,16 +781,6 @@ msgid "Operation Key"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: help:res.partner,include_in_mod347:0
-msgid "Include in AEAT 347 Model report"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: report:report_l10n_es_aeat_mod347.report:0
-msgid "Fiscal year:"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,amount:0
 msgid "Operations amount"
 msgstr ""
@@ -830,6 +797,11 @@ msgid "RST amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model,name:l10n_es_aeat_mod347.model_account_fiscalyear
+msgid "Fiscal Year"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,total_real_state_records:0
 msgid "Real state records"
 msgstr ""
@@ -842,11 +814,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,received_cash_limit:0
 msgid "Received cash Limit (2)"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
-msgid "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores al límite (1)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -871,7 +838,7 @@ msgid "File"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.model,name:l10n_es_aeat_mod347.model_account_journal
-msgid "Journal"
+#: help:res.partner,not_in_mod347:0
+msgid "If you mark this field, this partner will not be included in any AEAT 347 model report, independently from the total amount of its operations."
 msgstr ""
 

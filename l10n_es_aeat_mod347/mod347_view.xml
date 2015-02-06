@@ -119,6 +119,23 @@
                 </form>
             </field>
         </record>
+        
+        <!-- Search view -->
+        <record id="partner_record_search_view" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.mod347.partner_record.search</field>
+            <field name="model">l10n.es.aeat.mod347.partner_record</field>
+            <field name="arch" type="xml">
+                <search string="Partner Record">
+                    <field name="partner_id" string="Partner" filter_domain="[('partner_id','ilike',self)]"/>
+                    <field name="operation_key" string="Operation key" filter_domain="[('operation_key','ilike',self)]"/>
+                    <field name="partner_vat" string="Record" filter_domain="['|',('partner_vat','ilike',self),('partner_id','ilike',self)]"/>
+                    <separator/>
+                    <group  expand='0' string='Group by...'>
+                       <filter string='Operation key' domain="[]" context="{'group_by' : 'operation_key'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
 
         <!-- ############################################
         ### AEAT MODEL 347 PARTNER REAL STATE RECORDS ###
@@ -263,6 +280,7 @@
                             </group>
                         </page>
                         <page string="Partner records">
+                        	<button name="btn_list_records" string="Search records" type="object" class="oe_link oe_inline" colspan="1"/>
                             <field name="partner_record_ids" nolabel="1" context="{'report_id': active_id}"
                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"/>
                         </page>
