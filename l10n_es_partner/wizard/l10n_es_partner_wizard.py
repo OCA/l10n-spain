@@ -19,7 +19,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, tools
+from openerp import models, api
+from openerp import tools
 import os
 
 
@@ -27,11 +28,11 @@ class L10nEsPartnerImportWizard(models.TransientModel):
     _name = 'l10n.es.partner.import.wizard'
     _inherit = 'res.config.installer'
 
-    def execute(self, cr, uid, ids, context=None):
-        super(L10nEsPartnerImportWizard, self).execute(cr, uid, ids,
-                                                       context=context)
+    @api.multi
+    def execute(self):
+        res = super(L10nEsPartnerImportWizard, self).execute()
         path = os.path.join('l10n_es_partner', 'wizard', 'data_banks.xml')
         with tools.file_open(path) as fp:
-            tools.convert_xml_import(cr, 'l10n_es_partner', fp, {}, 'init',
-                                     noupdate=True)
-        return {}
+            tools.convert_xml_import(
+                self._cr, 'l10n_es_partner', fp, {}, 'init', noupdate=True)
+        return res
