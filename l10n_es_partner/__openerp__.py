@@ -9,6 +9,8 @@
 #                       Ignacio Ibeas <ignacio@acysos.com>
 #    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+#    Copyright (c) 2015 Incaser (http://www.incaser.es)
+#                       Sergio Teruel <sergio@incaser.es>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -27,13 +29,14 @@
 
 {
     "name": "Adaptación de los clientes, proveedores y bancos para España",
-    "version": "1.1",
+    "version": "1.2",
     "author": "Spanish localization team",
     "website": "https://github.com/OCA/l10n-spain",
     "contributors": [
         'Jordi Esteve <jesteve@zikzakmedia.com>',
         'Ignacio Ibeas <ignacio@acysos.com>',
         'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
+        'Sergio Teruel <sergio@incaser.es>',
     ],
     "category": "Localisation/Europe",
     "description": """
@@ -44,7 +47,7 @@ Funcionalidad:
  * Convierte el NIF a mayúsculas.
  * Añade los campos nombre largo, NIF y web a los bancos.
  * Añade los datos de los bancos españoles extraídos del registro oficial del
-   Banco de España (http://goo.gl/mtx6ic). Ult. actualización: 2013.
+   Banco de España (http://goo.gl/mtx6ic). Ult. actualización: 2015-02-06.
  * Permite validar las cuentas bancarias españolas. Para ello, se añade un
    campo de país a las cuentas bancarias de las empresas y se realizan
    validaciones cuando el país es España.
