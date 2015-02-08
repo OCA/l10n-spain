@@ -69,6 +69,6 @@
 -
     Probar que se han importado los bancos
 -
-    !assert {model: res.bank, id: res_bank_caterpillar}:
-        - name == 'CATERPILLAR'
+    !assert {model: res.bank, id: res_bank_bbva}:
+        - name == 'BBVA'
 
