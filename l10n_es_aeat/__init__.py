@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
+#        Pexego Sistemas Informáticos. (http://pexego.es)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,9 +18,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-__author__ = "Luis Manuel Angueira Blanco (Pexego)"
-
 from . import aeat_report
 from . import wizard
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

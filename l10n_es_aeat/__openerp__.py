@@ -2,9 +2,10 @@
 ##############################################################################
 #
 #    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
+#        Pexego Sistemas Informáticos. (http://pexego.es)
+#        Luis Manuel Angueira Blanco
 #    Copyright (C) 2013
-#        Ignacio Ibeas - Acysos S.L. (http://acysos.com) All Rights Reserved
+#        Ignacio Ibeas - Acysos S.L. (http://acysos.com)
 #        Migración a OpenERP 7.0
 #
 #    This program is free software: you can redistribute it and/or modify
