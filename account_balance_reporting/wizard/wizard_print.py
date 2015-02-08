@@ -19,17 +19,15 @@
 #
 ##############################################################################
 from openerp.osv import orm, fields
-from openerp import pooler
 
 
-class print_wizard(orm.TransientModel):
+class PrintWizard(orm.TransientModel):
     _name = 'account.balance.reporting.print.wizard'
 
     def _get_current_report_id(self, cr, uid, context=None):
         if context is None:
             context = {}  # Ensuring a dict.
-        rpt_facade = pooler.get_pool(cr.dbname).get(
-            'account.balance.reporting')
+        rpt_facade = self.pool['account.balance.reporting']
         report_id = None
         if (context.get('active_model') == 'account.balance.reporting' and
                 context.get('active_ids') and context.get('active_ids')[0]):
@@ -42,8 +40,7 @@ class print_wizard(orm.TransientModel):
         if context is None:
             context = {}  # Ensuring a dict.
         report_id = self._get_current_report_id(cr, uid, context=context)
-        rpt_facade = pooler.get_pool(cr.dbname).get(
-            'account.balance.reporting')
+        rpt_facade = self.pool['account.balance.reporting']
         report = rpt_facade.browse(cr, uid, [report_id])[0]
         report_xml_id = None
         if report.template_id and report.template_id.report_xml_id:
@@ -54,20 +51,12 @@ class print_wizard(orm.TransientModel):
         if context is None:
             context = {}  # Ensuring a dict.
         data = self.read(cr, uid, ids)[-1]
-        # rpt_facade_lines = pooler.get_pool(
-        #     cr.dbname).get('account.balance.reporting.line')
-        # var = data.get('report_id') and data['report_id'][0] or None
-        # report_lines_ids = rpt_facade_lines.search(cr, uid,
-        #                                            [('report_id', '=', var)])
-        # print data
-        # print str(data.get('report_id'))
-        # print str(data['report_id'][0])
         datas = {
             'ids': [data.get('report_id') and data['report_id'][0] or None],
             'model': 'account.balance.reporting',
             'form': data
         }
-        rpt_facade = pooler.get_pool(cr.dbname).get('ir.actions.report.xml')
+        rpt_facade = self.pool['ir.actions.report.xml']
         report_xml = None
         if data.get('report_xml_id'):
             report_xml_id = data['report_xml_id']
