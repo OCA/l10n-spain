@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
-#                       Jordi Esteve <jesteve@zikzakmedia.com>
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
 #    by the Free Software Foundation, either version 3 of the License, or
@@ -20,5 +16,6 @@
 #
 ##############################################################################
 """Spanish Fiscal Year Closing"""
-from . import wizard
-from . import models
+from . import fiscalyear_closing
+from . import l10n_es_fiscalyear_closing
+from . import account_fiscalyear

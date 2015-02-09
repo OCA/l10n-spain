@@ -657,131 +657,28 @@ msgstr "Asientos creados por la operación de cierre"
 msgid "Loss & Profit"
 msgstr "Pérdidas y ganancias"
 
+
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/models/account_fiscalyear.py:22
 #, python-format
-#~ msgid "The Net L&P period must be defined"
-#~ msgstr "El periodo de pérdidas y ganancias patr. neto debe estar definido"
+msgid "Closing Period"
+msgstr "Periodo de cierre"
 
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/models/account_fiscalyear.py:23
 #, python-format
-#~ msgid "The closing journal must be defined"
-#~ msgstr "El diario de cierre debe estar definido"
+msgid "C"
+msgstr "C"
 
-#~ msgid "Other operations (for non Spanish charts of accounts)"
-#~ msgstr "Otras operaciones (para planes contables no españoles)"
-
-#~ msgid "Move created by the operation"
-#~ msgstr "Asiento creado por la operación"
-
-#~ msgid "Operation to perform"
-#~ msgstr "Operación a realizar"
-
-#~ msgid "Close fiscal year"
-#~ msgstr "Cerrar ejercicio fiscal"
-
-#~ msgid "Operations"
-#~ msgstr "Operaciones"
-
-#~ msgid "Account"
-#~ msgstr "Cuenta"
-
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/models/account_fiscalyear.py:29
 #, python-format
-#~ msgid "The L&P journal must be defined"
-#~ msgstr "El diario de pérdidas y ganancias debe estar definido"
+msgid "Profit and loss Period"
+msgstr "Periodo de pérdidas y ganancias"
 
+#. module: l10n_es_fiscal_year_closing
+#: code:addons/l10n_es_fiscal_year_closing/models/account_fiscalyear.py:30
 #, python-format
-#~ msgid "The closing description must be defined"
-#~ msgstr "La descripción de cierre debe estar definida"
+msgid "PL"
+msgstr "PG"
 
-#, python-format
-#~ msgid "The Net L&P description must be defined"
-#~ msgstr ""
-#~ "La descripción de pérdidas y ganancias patr. neto debe estar definida"
-
-#, python-format
-#~ msgid "The L&P period must be defined"
-#~ msgstr "El periodo de pérdidas y ganancias debe estar definido"
-
-#~ msgid "Close Fiscal Year"
-#~ msgstr "Cerrar ejercicio fiscal"
-
-#, python-format
-#~ msgid "The Net L&P date must be defined"
-#~ msgstr ""
-#~ "La fecha de pérdidas y ganancias de patrimonio neto debe estar definida"
-
-#~ msgid "Open next fiscal year"
-#~ msgstr "Abrir ejercicio fiscal siguiente"
-
-#~ msgid ""
-#~ "Please, select the company, fiscal year to close and fiscal year to open."
-#~ msgstr ""
-#~ "Por favor, seleccione la compañía, ejercicio fiscal a cerrar y ejercicio "
-#~ "fiscal a abrir."
-
-#~ msgid "Canceled"
-#~ msgstr "Cancelado"
-
-#, python-format
-#~ msgid "The L&P description must be defined"
-#~ msgstr "La descripción de pérdidas y ganancias debe estar definida"
-
-#, python-format
-#~ msgid "The closing date must be defined"
-#~ msgstr "La fecha de cierre debe estar definida"
-
-#, python-format
-#~ msgid "The opening description must be defined"
-#~ msgstr "La descripción de apertura debe estar definida"
-
-#, python-format
-#~ msgid "There is already a fiscal year closing with this name."
-#~ msgstr "Ya existe un cierre de ejercicio con este nombre."
-
-#~ msgid "Spanish Fiscal Year Closing"
-#~ msgstr "Cierre de ejercicio fiscal español"
-
-#, python-format
-#~ msgid "The closing period must be defined"
-#~ msgstr "El peridodo de cierre debe estar definido"
-
-#, python-format
-#~ msgid "There is already a fiscal year closing for the fiscal year to close."
-#~ msgstr "Ya existe un cierre de ejercicio para el ejercicio a cerrar."
-
-#, python-format
-#~ msgid "There is already a fiscal year closing for the fiscal year to open."
-#~ msgstr "Ya existe un cierre de ejercicio para el ejercicio a abrir."
-
-#, python-format
-#~ msgid "The L&P date must be defined"
-#~ msgstr "La fecha de pérdidas y ganancias debe estar definida"
-
-#, python-format
-#~ msgid "The opening journal must be defined"
-#~ msgstr "El diario de apertura debe estar definido"
-
-#~ msgid "In Progress"
-#~ msgstr "En progreso"
-
-#, python-format
-#~ msgid "The opening date must be defined"
-#~ msgstr "La fecha de apertura debe estar definida"
-
-#~ msgid "Fiscal Years Closings"
-#~ msgstr "Cierres de ejercicios fiscales"
-
-#, python-format
-#~ msgid "The Net L&P journal must be defined"
-#~ msgstr "El diario de pérdidas y ganancias patr. neto debe estar definido"
-
-#~ msgid "Perform the operations"
-#~ msgstr "Ejecutar las operaciones"
-
-#~ msgid "Create Net Loss & Profit"
-#~ msgstr "Crear asiento de pérdidas y ganancias patr. neto"
-
-#~ msgid "Spanish Fiscal Year Closing Wizard"
-#~ msgstr "Asistente de cierre de ejercicio fiscal español"
-
-#, python-format
-#~ msgid "The opening period must be defined"
-#~ msgstr "El periodo de apertura debe estar definido"
