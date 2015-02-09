@@ -27,9 +27,9 @@
 
 {
     "name": "Adaptación de los clientes, proveedores y bancos para España",
-    "version": "1.1",
+    "version": "1.2",
     "author": "Spanish localization team",
-    "website": "https://launchpad.net/openerp-spain",
+    "website": "https://github.com/OCA/l10n-spain",
     "contributors": [
         'Jordi Esteve <jesteve@zikzakmedia.com>',
         'Ignacio Ibeas <ignacio@acysos.com>',
@@ -44,7 +44,7 @@ Funcionalidad:
  * Convierte el NIF a mayúsculas.
  * Añade los campos nombre largo, NIF y web a los bancos.
  * Añade los datos de los bancos españoles extraídos del registro oficial del
-   Banco de España (http://goo.gl/mtx6ic). Ult. actualización: 2013.
+   Banco de España (http://goo.gl/mtx6ic). Últ. actualización: 06/02/2015.
  * Permite validar las cuentas bancarias españolas. Para ello, se añade un
    campo de país a las cuentas bancarias de las empresas y se realizan
    validaciones cuando el país es España.
