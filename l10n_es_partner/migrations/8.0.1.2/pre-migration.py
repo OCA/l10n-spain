@@ -23,12 +23,17 @@ __name__ = ("Limpia identificadores exernos de puntos, comas y guiones")
 
 
 def clear_identifiers(cr):
-    sql = """UPDATE ir.model.data
+    sql = """UPDATE ir_model_data
              SET name = replace(replace(replace(name,'.',''),',',''),'-','')
              WHERE (model='res.bank') AND (
-                    (name ilike '.') OR
-                    (name ilike ',') OR
-                    (name ilike '-')) """
+                    (name ilike '%.%') OR
+                    (name ilike '%,%') OR
+                    (name ilike '%-%')) """
+    cr.execute(sql)
+    sql = """UPDATE ir_model_data
+             SET name = 'res_bank_bnpparibassa'
+             WHERE (model='res.bank') AND (name='res_bank_bnpparibasse')
+             """
     cr.execute(sql)
 
 
