@@ -290,6 +290,12 @@ class L10nEsAeatMod347Report(orm.Model):
                     else:
                         partners_grouped = [partner.id]
                     visited_partners.extend(partners_grouped)
+                    address = self._get_default_address(cr, uid, partner,
+                                                        context=context)
+                    # Only national
+                    # Undefined are left so that they can be corrected
+                    if address.country_id and address.country_id.code != 'ES':
+                        continue
                     partner_record_id = self._calculate_partner_records(
                         cr, uid, partner, partners_grouped, period_ids, report,
                         context=context)

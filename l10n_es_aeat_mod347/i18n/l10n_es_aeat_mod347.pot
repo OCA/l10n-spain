@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20130806-231058\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 10:46+0000\n"
-"PO-Revision-Date: 2015-02-06 10:46+0000\n"
+"POT-Creation-Date: 2015-02-09 12:43+0000\n"
+"PO-Revision-Date: 2015-02-09 12:43+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,6 +29,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
 msgid "Declaración"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
+msgid "284"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -133,11 +138,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,number:0
 msgid "Declaration number"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,first_quarter_real_state_transmission_amount:0
-msgid "First Quarter Real State Transmission Amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -275,11 +275,6 @@ msgid "Calculation parameters"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "838"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_report
 #: field:l10n.es.aeat.mod347.partner_record,report_id:0
 #: field:l10n.es.aeat.mod347.real_state_record,report_id:0
@@ -395,11 +390,6 @@ msgid "Support type:"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "Search records"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,insurance_operation:0
 msgid "Only for insurance companies. Set to identify insurance operations aside from the rest."
 msgstr ""
@@ -473,11 +463,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.export_to_boe,state:0
 msgid "open"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.actions.server,name:l10n_es_aeat_mod347.act_assign_quarter
-msgid "Assign Quarter"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -620,6 +605,11 @@ msgid "Third Quarter Real State Transmission Amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Open list in new window"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,type:0
 msgid "Statement Type"
 msgstr ""
@@ -746,8 +736,8 @@ msgid "PARTNER RECORD LINES"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: report:report_l10n_es_aeat_mod347.report:0
-msgid "Fiscal year:"
+#: field:l10n.es.aeat.mod347.partner_record,first_quarter_real_state_transmission_amount:0
+msgid "First Quarter Real State Transmission Amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -778,6 +768,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "Operation Key"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: report:report_l10n_es_aeat_mod347.report:0
+msgid "Fiscal year:"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347

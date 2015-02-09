@@ -280,7 +280,7 @@
                             </group>
                         </page>
                         <page string="Partner records">
-                        	<button name="btn_list_records" string="Search records" type="object" class="oe_link oe_inline" colspan="1"/>
+                        	<button name="btn_list_records" string="Open list in new window" type="object" class="oe_link oe_inline" colspan="1"/>
                             <field name="partner_record_ids" nolabel="1" context="{'report_id': active_id}"
                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"/>
                         </page>

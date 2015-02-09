@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20130806-231058\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 10:33+0000\n"
-"PO-Revision-Date: 2015-02-06 10:33+0000\n"
+"POT-Creation-Date: 2015-02-09 12:36+0000\n"
+"PO-Revision-Date: 2015-02-09 12:36+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,11 @@ msgstr "Clave oper."
 #: view:l10n.es.aeat.mod347.report:0
 msgid "Declaración"
 msgstr "Declaración"
+
+#. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
+msgid "284"
+msgstr "284"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,stairway:0
@@ -136,11 +141,6 @@ msgid "Declaration number"
 msgstr "Nº declaración"
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,first_quarter_real_state_transmission_amount:0
-msgid "First Quarter Real State Transmission Amount"
-msgstr "Importe transmisión inmueble (T1)"
-
-#. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores al límite (1)"
 msgstr "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores al límite (1)"
@@ -177,7 +177,7 @@ msgstr "Trimestre"
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "VAT"
-msgstr "CIF/NIF"
+msgstr "NIF"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_res_partner
@@ -252,7 +252,7 @@ msgstr "Ejercicio fiscal origen de las operaciones en efectivo."
 #: help:l10n.es.aeat.mod347.partner_record,representative_vat:0
 #: help:l10n.es.aeat.mod347.real_state_record,representative_vat:0
 msgid "Legal Representative VAT number"
-msgstr "CIF/NIF del representante legal."
+msgstr "NIF del representante legal."
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,fourth_quarter:0
@@ -273,11 +273,6 @@ msgstr "Tercero"
 #: view:l10n.es.aeat.mod347.report:0
 msgid "Calculation parameters"
 msgstr "Parámetros de cálculo"
-
-#. module: l10n_es_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "838"
-msgstr "838"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_report
@@ -304,14 +299,14 @@ msgstr "MODELO AEAT 347"
 #. module: l10n_es_aeat_mod347
 #: model:ir.actions.report.xml,name:l10n_es_aeat_mod347.report_l10n_es_aeat_mod347
 msgid "AEAT 347 Model report"
-msgstr "Declaración modelo AEAT 347"
+msgstr "Declaración AEAT 347"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,partner_vat:0
 #: field:l10n.es.aeat.mod347.real_state_record,partner_vat:0
 #: field:l10n.es.aeat.mod347.report,company_vat:0
 msgid "VAT number"
-msgstr "CIF/NIF"
+msgstr "NIF"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,insurance_operation:0
@@ -395,11 +390,6 @@ msgid "Support type:"
 msgstr "Tipo de soporte:"
 
 #. module: l10n_es_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "Search records"
-msgstr "Buscar registros"
-
-#. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,insurance_operation:0
 msgid "Only for insurance companies. Set to identify insurance operations aside from the rest."
 msgstr "Sólo entidades aseguradoras. Las entidades aseguradoras marcarán esta casilla para identificar las operaciones de seguros, debiendo consignarlas separadamente del resto de operaciones."
@@ -476,11 +466,6 @@ msgid "open"
 msgstr "abierto"
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.actions.server,name:l10n_es_aeat_mod347.act_assign_quarter
-msgid "Assign Quarter"
-msgstr "Asignar trimestre"
-
-#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,number_type:0
 msgid "Number type"
 msgstr "Tipo de numeración"
@@ -544,12 +529,12 @@ msgstr "Número:"
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,received_cash_limit:0
 msgid "The declaration will show the total of cash operations over this limit"
-msgstr "La declaración mostrará el total de operaciones de caja por encima de este límite"
+msgstr "La declaración mostrará el total de las operaciones realizadas en efectivo superiores a este límite"
 
 #. module: l10n_es_aeat_mod347
 #: field:res.partner,not_in_mod347:0
 msgid "Not included in 347 report"
-msgstr "No incluido en el modelo 347"
+msgstr "No incluido en el informe 347"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,cash_record_ids:0
@@ -586,7 +571,7 @@ msgstr "Procesada"
 #: field:l10n.es.aeat.mod347.real_state_record,representative_vat:0
 #: field:l10n.es.aeat.mod347.report,representative_vat:0
 msgid "L.R. VAT number"
-msgstr "CIF/NIF R.L."
+msgstr "NIF R.L."
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
@@ -624,6 +609,11 @@ msgstr "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al
 #: field:l10n.es.aeat.mod347.partner_record,third_quarter_real_state_transmission_amount:0
 msgid "Third Quarter Real State Transmission Amount"
 msgstr "Importe transmisión inmueble (T3)"
+
+#. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
+msgid "Open list in new window"
+msgstr "Abrir lista en una nueva ventana"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,type:0
@@ -752,14 +742,14 @@ msgid "PARTNER RECORD LINES"
 msgstr "LÍNEAS DE REGISTRO DE EMPRESA"
 
 #. module: l10n_es_aeat_mod347
-#: report:report_l10n_es_aeat_mod347.report:0
-msgid "Fiscal year:"
-msgstr "Ejercicio fiscal:"
+#: field:l10n.es.aeat.mod347.partner_record,first_quarter_real_state_transmission_amount:0
+msgid "First Quarter Real State Transmission Amount"
+msgstr "Importe transmisión inmueble (T1)"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,representative_vat:0
 msgid "Legal Representative VAT number."
-msgstr "CIF/NIF del representante legal."
+msgstr "NIF del representante legal."
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,support_type:0
@@ -785,6 +775,11 @@ msgstr "Municipio"
 #: field:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "Operation Key"
 msgstr "Clave operación"
+
+#. module: l10n_es_aeat_mod347
+#: report:report_l10n_es_aeat_mod347.report:0
+msgid "Fiscal year:"
+msgstr "Ejercicio fiscal:"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,amount:0
