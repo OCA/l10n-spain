@@ -26,9 +26,9 @@ def clear_identifiers(cr):
     sql = """UPDATE ir_model_data
              SET name = replace(replace(replace(name,'.',''),',',''),'-','')
              WHERE (model='res.bank') AND (
-                    (name ilike '.') OR
-                    (name ilike ',') OR
-                    (name ilike '-')) """
+                    (name ilike '%.%') OR
+                    (name ilike '%,%') OR
+                    (name ilike '%-%')) """
     cr.execute(sql)
 
 
