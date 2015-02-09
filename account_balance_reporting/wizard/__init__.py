@@ -20,11 +20,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-"""
-Account balance reporting engine wizards
-"""
-__author__ = "Borja López Soilán (Pexego) - borjals@pexego.es"
-
-
 from . import wizard_print
