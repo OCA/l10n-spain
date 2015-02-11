@@ -305,7 +305,7 @@
             <field name="state" ref="l10n_es_toponyms.ES14"/>
             <field name="country" ref="base.es"/>
         </record>
-        <record id="res_bank_crd'algemesi" model="res.bank">
+        <record id="res_bank_crdalgemesi" model="res.bank">
             <field name="name">C.R.D'ALGEMESI</field>
             <field name="lname">CAIXA RURAL D'ALGEMESI, S. COOP. V. DE CREDIT</field>
             <field name="code">3117</field>
@@ -1169,7 +1169,7 @@
             <field name="state" ref="l10n_es_toponyms.ES18"/>
             <field name="country" ref="base.es"/>
         </record>
-        <record id="res_bank_cd'enginyers" model="res.bank">
+        <record id="res_bank_cdenginyers" model="res.bank">
             <field name="name">C. D'ENGINYERS</field>
             <field name="lname">CAIXA DE CREDIT DELS ENGINYERS- CAJA DE CREDITO DE LOS INGENIEROS,  S. COOP. DE CREDITO</field>
             <field name="code">3025</field>
@@ -1393,7 +1393,7 @@
             <field name="state" ref="l10n_es_toponyms.ES12"/>
             <field name="country" ref="base.es"/>
         </record>
-        <record id="res_bank_crl'alcudia" model="res.bank">
+        <record id="res_bank_crlalcudia" model="res.bank">
             <field name="name">C.R. L'ALCUDIA</field>
             <field name="lname">CAIXA RURAL DE L'ALCUDIA, SOCIEDAD COOPERATIVA VALENCIANA DE  CREDITO</field>
             <field name="code">3096</field>

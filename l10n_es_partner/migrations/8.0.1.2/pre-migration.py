@@ -30,6 +30,11 @@ def clear_identifiers(cr):
                     (name ilike '%,%') OR
                     (name ilike '%-%')) """
     cr.execute(sql)
+    sql = """UPDATE ir_model_data
+             SET name = 'res_bank_bnpparibassa'
+             WHERE (model='res.bank') AND (name='res_bank_bnpparibasse')
+             """
+    cr.execute(sql)
 
 
 def migrate(cr, version):
