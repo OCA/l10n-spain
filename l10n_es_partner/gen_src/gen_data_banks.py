@@ -47,7 +47,8 @@ if __name__ == "__main__":
             if row[29]:
                 name = "res_bank_" + row[40].lower().replace(
                     ' ', '').replace(',', '').replace('.', '').replace(
-                    '-', '').replace(u'\xf1', 'n').replace(u'\x26', 'y').replace(u'\x27', '')
+                    '-', '').replace(u'\xf1', 'n').replace(u'\x26', 'y')\
+                    .replace(u'\x27', '')
                 street = row[7] + '. ' + row[8] + ', ' + row[9] + ' ' + row[10]
                 output.write('        <record id="%s" model="res.bank">\n' %
                              name)
