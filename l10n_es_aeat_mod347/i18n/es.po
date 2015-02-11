@@ -45,7 +45,7 @@ msgstr "Cuarto"
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,community_vat:0
 msgid "Community vat number"
-msgstr "CIF/NIF comunitario"
+msgstr "NIF comunitario"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -65,7 +65,7 @@ msgstr "Registros de inmuebles"
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,community_vat:0
 msgid "VAT number for professionals established in other state member without national VAT"
-msgstr "CIF/NIF para profesionales establecidos en otros estados miembros sin CIF/NIF nacional"
+msgstr "NIF de profesionales establecidos en otros estados miembros sin NIF nacional"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
@@ -217,7 +217,7 @@ msgstr "Trimestre"
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "VAT"
-msgstr "CIF/NIF"
+msgstr "NIF"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -290,7 +290,7 @@ msgstr "3 - España, sin referencia catastral"
 #, python-format
 msgid "All partner vat number field must be filled.\n"
 "Partner: %s (%s)"
-msgstr "El número CIF/NIF de todos los registros de empresas debe estar rellenado.\n"
+msgstr "El número NIF de todos los registros de empresas debe estar rellenado.\n"
 "Empresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
@@ -315,7 +315,7 @@ msgstr "Ejercicio fiscal origen de las operaciones en efectivo."
 #: help:l10n.es.aeat.mod347.partner_record,representative_vat:0
 #: help:l10n.es.aeat.mod347.real_state_record,representative_vat:0
 msgid "Legal Representative VAT number"
-msgstr "CIF/NIF del representante legal."
+msgstr "NIF del representante legal."
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,fourth_quarter:0
@@ -379,7 +379,7 @@ msgstr "Declaración modelo AEAT 347"
 #: field:l10n.es.aeat.mod347.real_state_record,partner_vat:0
 #: field:l10n.es.aeat.mod347.report,company_vat:0
 msgid "VAT number"
-msgstr "CIF/NIF"
+msgstr "NIF"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,insurance_operation:0
@@ -710,7 +710,7 @@ msgstr "Operación inversión sujeto pasivo"
 #: field:l10n.es.aeat.mod347.real_state_record,representative_vat:0
 #: field:l10n.es.aeat.mod347.report,representative_vat:0
 msgid "L.R. VAT number"
-msgstr "CIF/NIF R.L."
+msgstr "NIF R.L."
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
@@ -898,7 +898,7 @@ msgstr "Ejercicio fiscal:"
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,representative_vat:0
 msgid "Legal Representative VAT number."
-msgstr "CIF/NIF del representante legal."
+msgstr "NIF del representante legal."
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,previous_number:0
