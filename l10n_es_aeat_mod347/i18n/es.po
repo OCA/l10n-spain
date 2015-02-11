@@ -441,13 +441,8 @@ msgstr "Tipo de soporte:"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,insurance_operation:0
-msgid ""
-"Only for insurance companies. Set to identify insurance operations aside "
-"from the rest."
-msgstr ""
-"Sólo entidades aseguradoras. Las entidades aseguradoras marcarán esta "
-"casilla para identificar las operaciones de seguros, debiendo consignarlas "
-"separadamente del resto de operaciones."
+msgid "Only for insurance companies. Set to identify insurance operations aside from the rest."
+msgstr "Sólo entidades aseguradoras. Las entidades aseguradoras marcarán esta casilla para identificar las operaciones de seguros, debiendo consignarlas separadamente del resto de operaciones."
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,situation:0
@@ -930,162 +925,48 @@ msgstr "Archivo"
 msgid "Journal"
 msgstr "Diario"
 
-#~ msgid "Calculation"
-#~ msgstr "Cálculo"
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,community_vat:0
+msgid "Community vat number"
+msgstr "NIF comunitario"
 
-#~ msgid "Confirm"
-#~ msgstr "Confirmar"
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,community_vat:0
+msgid "VAT number for professionals established in other state member without national VAT"
+msgstr "NIF de profesionales establecidos en otros estados miembros sin NIF nacional"
 
-#~ msgid "Canceled"
-#~ msgstr "Cancelada"
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,cash_basis_operation:0
+msgid "Only for cash basis operations. Set to identify cash basis operations aside from the rest."
+msgstr "Sólo para operaciones sujetas a criterio de caja. Marque para identificar las operaciones sujetas a criterio de caja."
 
-#~ msgid "Calculate"
-#~ msgstr "Calcular"
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,cash_basis_operation:0
+msgid "Cash Basis Operation"
+msgstr "Operación criterio de caja"
 
-#~ msgid "Identification"
-#~ msgstr "Identificación"
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,related_goods_operation:0
+msgid "Only for related goods operations. Set to identify related goods operations aside from the rest."
+msgstr "Sólo para operaciones de bienes vinculados o destinados a vincularse al régimen de depósito distinto del aduanero."
 
-#~ msgid "Processing"
-#~ msgstr "Procesando"
-
-#~ msgid ""
-#~ "The declaration will show the total of cash operations over this limit"
-#~ msgstr ""
-#~ "La declaración muestra el total de las operaciones realizadas en efectivo "
-#~ "superiores a este límite."
-
-#~ msgid "Declaration"
-#~ msgstr "Declaración"
-
-#~ msgid "Susbtitutive/complementary declaration"
-#~ msgstr "Declaración Complementaria / Sustitutiva"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
-
-#~ msgid "Previous Declaration Number"
-#~ msgstr "Número declaración anterior"
-
-#~ msgid "Group by cif"
-#~ msgstr "Agrupar por CIF"
-
-#~ msgid "Recalculate"
-#~ msgstr "Recalcular"
-
-#~ msgid "Fiscal Year"
-#~ msgstr "Ejercicio fiscal"
-
-#~ msgid "Error ! The duration of the Period(s) is/are invalid. "
-#~ msgstr "¡Error! La duración del periodo(s) no es válida. "
-
-#~ msgid "AEAT 347 Reports"
-#~ msgstr "Declaraciones AEAT 347"
-
-#~ msgid "The code of the journal must be unique per company !"
-#~ msgstr "¡El código del diario debe ser único por compañía!"
-
-#~ msgid "Export to BOE"
-#~ msgstr "Exportar a formato BOE"
-
-#~ msgid "AEAT 347 Model"
-#~ msgstr "Modelo AEAT 347"
-
-#~ msgid "Declaration Number"
-#~ msgstr "Número de declaración"
-
-#~ msgid "AEAT Model 347 Wizard - Calculate Records"
-#~ msgstr "Asistente modelo AEAT 347 - Cálculo de registros"
-
-#~ msgid "In process"
-#~ msgstr "En proceso"
-
-#~ msgid "Create and query AEAT Model 347 Reports"
-#~ msgstr "Permite crear y consultar las declaraciones sobre el modelo AEAT 347"
-
-#~ msgid ""
-#~ "Invalid period ! Some periods overlap or the date period is not in the scope "
-#~ "of the fiscal year. "
-#~ msgstr ""
-#~ "¡Periodo no válido! Algunos periodos se sobreponen o las fechas del periodo "
-#~ "no están dentro del ejercicio fiscal. "
-
-#~ msgid "Export AEAT Model 347 to BOE format"
-#~ msgstr "Exportar modelo 347 a formato BOE"
-
-#~ msgid "AEAT 347"
-#~ msgstr "AEAT 347"
-
-#~ msgid "The name of the journal must be unique per company !"
-#~ msgstr "¡El nombre del diaro debe ser único por compañía!"
-
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/mod347.py:131
 #, python-format
-#~ msgid "All real estate records state code field must be filled."
-#~ msgstr ""
-#~ "El código de provincia de todos los registros de inmuebles debe estar "
-#~ "rellenado."
+msgid "All partner state code field must be numeric.\nPartner: %s (%s)"
+msgstr "Todos los códigos de provincia de los registros de empresa deben de ser numéricos.\nEmpresa: %s (%s)"
 
-#~ msgid "Real Estate Records"
-#~ msgstr "Registros de inmuebles"
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,tax_person_operation:0
+msgid "Taxable Person Operation"
+msgstr "Operación inversión sujeto pasivo"
 
-#~ msgid "Fourth Quarter Real Estate Transmossion Amount"
-#~ msgstr "Importe transmisión inmueble (T4)"
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,tax_person_operation:0
+msgid "Only for taxable person operations. Set to identify taxable person operations aside from the rest."
+msgstr "Sólo para operaciones de inversión de sujeto pasivo. Marque para identificar las operaciones de inversión de sujeto pasivo."
 
-#~ msgid "Real Estate Record"
-#~ msgstr "Registros de inmuebles"
-
-#~ msgid "Real Estate Amount"
-#~ msgstr "Importe inmuebles"
-
-#~ msgid "Real Estate records"
-#~ msgstr "Registros de inmuebles"
-
-#~ msgid "Bussiness Real Estate Rent"
-#~ msgstr "Arrendamiento local negocio"
-
-#~ msgid "Real estate Situation"
-#~ msgstr "Situación de inmuebles"
-
-#~ msgid "Real estate info"
-#~ msgstr "Información de inmuebles"
-
-#~ msgid "Real Estate Transmisions amount"
-#~ msgstr "Importe transmisión inmueble"
-
-#~ msgid ""
-#~ "Set to identify real estate rent operations aside from the rest. You'll need "
-#~ "to fill in the real estate info only when you are the one that receives the "
-#~ "money."
-#~ msgstr ""
-#~ "(Sólo arrendadores y arrendatarios de Locales de Negocio). Marcarán esta "
-#~ "casilla para identificar las operaciones de arrendamiento de locales de "
-#~ "negocio, debiendo consignarlas separadamente del resto. Además los "
-#~ "arrendadores deberán cumplimentar los campos que componen el REGISTRO DE "
-#~ "INMUEBLE, consignando el Importe Total de cada arrendamiento correspondiente "
-#~ "al año natural al que se refiere la declaración, con independencia de que "
-#~ "éste ya haya sido incluido en la clave 'B' (ventas)."
-
-#~ msgid "Third Quarter Real Estate Transmission Amount"
-#~ msgstr "Importe transmisión inmueble (T3)"
-
-#~ msgid "Real Estate Transmission (Q1|Q2|Q3|Q4)"
-#~ msgstr "Importe transmisión inmueble (T1|T2|T3|T4)"
-
-#~ msgid "Real estate address"
-#~ msgstr "Dirección del inmueble"
-
-#~ msgid "First Quarter Real Estate Transmission Amount"
-#~ msgstr "Importe transmisión inmueble (T1)"
-
-#~ msgid "Second Quarter Real Estate Transmission Amount"
-#~ msgstr "Importe transmisión inmueble (T2)"
-
-#~ msgid "Real Estate Transmissions Amount"
-#~ msgstr "Importe transmisión inmueble"
-
-#~ msgid "Real estate records"
-#~ msgstr "Registros de inmuebles"
-
-#, python-format
-#~ msgid "The type 2-I record (real estate) must be 502 characters long"
-#~ msgstr ""
-#~ "El tipo de registro 2-I (estado real) debe ser de 502 caracteres de largo"
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,related_goods_operation:0
+msgid "Related Goods Operation"
+msgstr "Operación de bienes vinculados"

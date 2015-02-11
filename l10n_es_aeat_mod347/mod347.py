@@ -369,10 +369,19 @@ class L10nEsAeatMod347Report(orm.Model):
                           "Partner: %s (%s)") %
                         (partner_record.partner_id.name,
                          partner_record.partner_id.id))
-                if not partner_record.partner_vat:
+                if (not partner_record.partner_vat and
+                        not partner_record.community_vat):
                     raise orm.except_orm(
                         _('Error!'),
                         _("All partner vat number field must be filled.\n"
+                          "Partner: %s (%s)") %
+                        (partner_record.partner_id.name,
+                         partner_record.partner_id.id))
+                if (partner_record.partner_state_code and
+                        not partner_record.partner_state_code.isdigit()):
+                    raise orm.except_orm(
+                        _('Error!'),
+                        _("All partner state code field must be numeric.\n"
                           "Partner: %s (%s)") %
                         (partner_record.partner_id.name,
                          partner_record.partner_id.id))
@@ -481,6 +490,10 @@ class L10nEsAeatMod347PartnerRecord(orm.Model):
         'partner_vat': fields.char('VAT number', size=9),
         'representative_vat': fields.char(
             'L.R. VAT number', size=9, help="Legal Representative VAT number"),
+        'community_vat': fields.char(
+            'Community vat number', size=17,
+            help="VAT number for professionals established in other state "
+                 "member without national VAT"),
         'partner_country_code': fields.char('Country Code', size=2),
         'partner_state_code': fields.char('State Code', size=2),
         'first_quarter': fields.function(
@@ -551,6 +564,18 @@ class L10nEsAeatMod347PartnerRecord(orm.Model):
         'insurance_operation': fields.boolean(
             'Insurance Operation', help="Only for insurance companies. Set "
             "to identify insurance operations aside from the rest."),
+        'cash_basis_operation': fields.boolean(
+            'Cash Basis Operation',
+            help="Only for cash basis operations. Set to identify cash basis "
+                 "operations aside from the rest."),
+        'tax_person_operation': fields.boolean(
+            'Taxable Person Operation',
+            help="Only for taxable person operations. Set to identify taxable "
+                 "person operations aside from the rest."),
+        'related_goods_operation': fields.boolean(
+            'Related Goods Operation',
+            help="Only for related goods operations. Set to identify related "
+                 "goods operations aside from the rest."),
         'bussiness_real_state_rent': fields.boolean(
             'Bussiness Real State Rent', help="Set to identify real state "
             "rent operations aside from the rest. You'll need to fill in the "

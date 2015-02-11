@@ -875,3 +875,48 @@ msgstr ""
 msgid "Journal"
 msgstr ""
 
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,community_vat:0
+msgid "Community vat number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,community_vat:0
+msgid "VAT number for professionals established in other state member without national VAT"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,cash_basis_operation:0
+msgid "Only for cash basis operations. Set to identify cash basis operations aside from the rest."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,cash_basis_operation:0
+msgid "Cash Basis Operation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,related_goods_operation:0
+msgid "Only for related goods operations. Set to identify related goods operations aside from the rest."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/mod347.py:131
+#, python-format
+msgid "All partner state code field must be numeric.\nPartner: %s (%s)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,tax_person_operation:0
+msgid "Taxable Person Operation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,tax_person_operation:0
+msgid "Only for taxable person operations. Set to identify taxable person operations aside from the rest."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,related_goods_operation:0
+msgid "Related Goods Operation"
+msgstr ""
