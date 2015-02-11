@@ -61,12 +61,12 @@ class L10nEsAeatMod347Report(orm.Model):
             # (A and B operation keys)
             # Search for invoices to this partner (with account moves).
             invoice_ids = invoice_obj.search(
-                cr, uid, [('partner_id', 'in', partner_ids),
+                cr, uid, [('partner_id', 'child_of', partner_ids),
                           ('type', '=', invoice_type),
                           ('period_id', 'in', period_ids),
                           ('state', 'not in', ['draft', 'cancel'])])
             refund_ids = invoice_obj.search(
-                cr, uid, [('partner_id', 'in', partner_ids),
+                cr, uid, [('partner_id', 'child_of', partner_ids),
                           ('type', '=', refund_type),
                           ('period_id', 'in', period_ids),
                           ('state', 'not in', ['draft', 'cancel'])])
@@ -154,7 +154,7 @@ class L10nEsAeatMod347Report(orm.Model):
             return
         cash_account_move_line_ids = move_line_obj.search(
             cr, uid,
-            [('partner_id', 'in', partner_ids),
+            [('partner_id', 'child_of', partner_ids),
              ('account_id', '=', partner.property_account_receivable.id),
              ('journal_id', 'in', cash_journal_ids),
              ('period_id', 'in', period_ids)], context=context)
@@ -252,38 +252,32 @@ class L10nEsAeatMod347Report(orm.Model):
                           period.special]
             # We will check every partner with not_in_mod347 flag unchecked
             visited_partners = []
+            domain = [('not_in_mod347', '=', False),
+                      ('parent_id', '=', False)]
             if report.only_supplier:
-                partner_ids = partner_obj.search(
-                    cr, uid, [('not_in_mod347', '=', False),
-                              ('supplier', '=', True)])
+                domain.append(('supplier', '=', True))
             else:
-                partner_ids = partner_obj.search(
-                    cr, uid, [('not_in_mod347', '=', False),
-                              '|',
-                              ('customer', '=', True),
-                              ('supplier', '=', True)])
+                domain.extend(['|',
+                               ('customer', '=', True),
+                               ('supplier', '=', True)])
+            partner_ids = partner_obj.search(cr, uid, domain, context=context)
             for partner in partner_obj.browse(cr, uid, partner_ids,
                                               context=context):
                 if partner.id not in visited_partners:
                     if partner.vat and report.group_by_cif:
-                        if report.only_supplier:
-                            partners_grouped = partner_obj.search(
-                                cr, uid, [('vat', '=', partner.vat),
-                                          ('not_in_mod347', '=', False),
-                                          ('supplier', '=', True)])
-                        else:
-                            partners_grouped = partner_obj.search(
-                                cr, uid, [('vat', '=', partner.vat),
-                                          ('not_in_mod347', '=', False)])
+                        domain_group = domain.copy()
+                        domain_group.append(('vat', '=', partner.vat))
+                        partner_grouped_ids = partner_obj.search(
+                            cr, uid, domain_group, context=context)
                     else:
-                        partners_grouped = [partner.id]
-                    visited_partners.extend(partners_grouped)
+                        partner_grouped_ids = [partner.id]
+                    visited_partners.extend(partner_grouped_ids)
                     partner_record_id = self._calculate_partner_records(
-                        cr, uid, partner, partners_grouped, period_ids, report,
-                        context=context)
+                        cr, uid, partner, partner_grouped_ids, period_ids,
+                        report, context=context)
                     if partner.customer:
                         self._calculate_cash_records(
-                            cr, uid, partner, partners_grouped,
+                            cr, uid, partner, partner_grouped_ids,
                             partner_record_id, period_ids, report,
                             context=context)
         return True
