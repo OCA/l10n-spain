@@ -68,7 +68,7 @@ class l10n_es_aeat_mod347_report(osv.osv):
         """
         if context is None:
             context = {}
-      
+
         res = {}
 
         for report in self.browse(cr, uid, ids, context=context):
@@ -125,8 +125,10 @@ class l10n_es_aeat_mod347_report(osv.osv):
             for partner_record in item.partner_record_ids:
                 if not partner_record.partner_state_code:
                     raise osv.except_osv(_('Error!'), _("All partner state code field must be filled.\nPartner: %s (%s)") % ( partner_record.partner_id.name, partner_record.partner_id.id ) )
-                if not partner_record.partner_vat:
+                if not partner_record.partner_vat and not partner_record.community_vat:
                     raise osv.except_osv(_('Error!'), _("All partner vat number field must be filled.\nPartner: %s (%s)") % ( partner_record.partner_id.name, partner_record.partner_id.id ) )
+                if partner_record.partner_state_code and not partner_record.partner_state_code.isdigit():
+                    raise osv.except_osv(_('Error!'), _("All partner state code field must be numeric.\nPartner: %s (%s)") % ( partner_record.partner_id.name, partner_record.partner_id.id ) )
 
             for real_state_record in item.real_state_record_ids:
                 if not real_state_record.state_code:
@@ -163,7 +165,7 @@ class l10n_es_aeat_mod347_partner_record(osv.osv):
     _rec_name = "partner_vat"
 
     def _get_quarter_totals(self, cr, uid, ids, field_name, arg, context = None):
-        
+
         if context is None:
             context={}
 
@@ -189,17 +191,17 @@ class l10n_es_aeat_mod347_partner_record(osv.osv):
                 elif invoice.invoice_id.period_id.quarter == 'fourth':
                     result[record.id]['fourth_quarter'] += invoice.amount
 
-        return result                                        
+        return result
 
     def _get_lines( self, cr, uid, ids, context ):
         invoice_record_obj = self.pool.get('l10n.es.aeat.mod347.invoice_record')
 
-        res = []        
+        res = []
         for invoice_record in invoice_record_obj.browse(cr, uid, ids, context):
             res.append( invoice_record.partner_record_id.id )
         return list(set(res))
-                        
-        
+
+
     _columns = {
         'report_id': fields.many2one('l10n.es.aeat.mod347.report', 'AEAT 347 Report', ondelete="cascade", select=1),
         'operation_key': fields.selection([
@@ -214,54 +216,58 @@ class l10n_es_aeat_mod347_partner_record(osv.osv):
         'partner_id': fields.many2one('res.partner', 'Partner', required=True),
         'partner_vat': fields.char('VAT number', size=9),
         'representative_vat': fields.char('L.R. VAT number', size=9, help="Legal Representative VAT number"),
+        'community_vat': fields.char('Community vat number', size=17, help="VAT number for professionals established in other state member without national VAT"),
         'partner_country_code': fields.char('Country Code', size=2),
-        'partner_state_code': fields.char('State Code', size=2),        
+        'partner_state_code': fields.char('State Code', size=2),
         'first_quarter': fields.function(_get_quarter_totals, string="First Quarter",
                 method=True, type='float', multi="quarter_multi",digits=(13,2),
-                store= { 
+                store= {
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
                 }),
         'first_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="First Quarter Real Estate Transmission Amount",
                 method=True, type='float', multi="quarter_multi" ,digits=(13,2),
-                store= { 
+                store= {
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
                 }
                 ),
         'second_quarter': fields.function(_get_quarter_totals, string="Second Quarter", method=True,
-                type='float', multi="quarter_multi", digits=(13,2), 
-                store= { 
+                type='float', multi="quarter_multi", digits=(13,2),
+                store= {
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
                 }),
         'second_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="Second Quarter Real Estate Transmission Amount",
-                method=True, type='float', multi="quarter_multi",digits=(13,2), store= { 
+                method=True, type='float', multi="quarter_multi",digits=(13,2), store= {
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
                 }),
         'third_quarter': fields.function(_get_quarter_totals, string="Third Quarter", method=True, type='float',
-                multi="quarter_multi",digits=(13,2), store= { 
+                multi="quarter_multi",digits=(13,2), store= {
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
                 }),
         'third_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="Third Quarter Real Estate Transmission Amount",
-                method=True, type='float', multi="quarter_multi",digits=(13,2), store= { 
+                method=True, type='float', multi="quarter_multi",digits=(13,2), store= {
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
                 } ),
         'fourth_quarter': fields.function(_get_quarter_totals, string="Fourth Quarter",
-                method=True, type='float', multi="quarter_multi",digits=(13,2), store= { 
+                method=True, type='float', multi="quarter_multi",digits=(13,2), store= {
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
                 }),
         'fourth_quarter_real_state_transmission_amount':fields.function(_get_quarter_totals, string="Fourth Quarter Real Estate Transmossion Amount",
-                method=True, type='float', multi="quarter_multi",digits=(13,2), store= { 
+                method=True, type='float', multi="quarter_multi",digits=(13,2), store= {
                     'l10n.es.aeat.mod347.invoice_record': (_get_lines, ['amount'] , 10 )
-                }),        
+                }),
         'amount': fields.float('Operations amount', digits=(13,2)),
         'cash_amount': fields.float('Received cash amount', digits=(13,2)),
         'real_state_transmissions_amount': fields.float('Real Estate Transmisions amount', digits=(13,2)),
 
         'insurance_operation': fields.boolean('Insurance Operation', help="Only for insurance companies. Set to identify insurance operations aside from the rest."),
+        'cash_basis_operation': fields.boolean('Cash Basis Operation', help="Only for cash basis operations. Set to identify cash basis operations aside from the rest."),
+        'tax_person_operation': fields.boolean('Taxable Person Operation', help="Only for taxable person operations. Set to identify taxable person operations aside from the rest."),
+        'related_goods_operation': fields.boolean('Related Goods Operation', help="Only for related goods operations. Set to identify related goods operations aside from the rest."),
         'bussiness_real_state_rent': fields.boolean('Bussiness Real Estate Rent', help="Set to identify real estate rent operations aside from the rest. You'll need to fill in the real estate info only when you are the one that receives the money."),
         'origin_fiscalyear_id': fields.many2one('account.fiscalyear', 'Origin fiscal year', help="Origin cash operation fiscal year"),
         'invoice_record_ids': fields.one2many('l10n.es.aeat.mod347.invoice_record', 'partner_record_id', 'Invoice records',
                                                       states = {'done': [('readonly', True)]}),
-        
+
     }
     _defaults = {
         'report_id': lambda self, cr, uid, context: context.get('report_id', None),

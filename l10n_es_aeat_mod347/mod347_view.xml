@@ -38,6 +38,7 @@
                                 <field name="partner_id" on_change="on_change_partner_id(partner_id)" required="1" select="1" colspan="4"/>
                                 <field name="partner_vat" select="1"/>
                                 <field name="representative_vat" select="2"/>
+                                <field name="community_vat"/>
                                 <field name="partner_state_code"/>
                                 <field name="partner_country_code"/>
                                 <field name="operation_key" select="2" colspan="4"/>
@@ -62,6 +63,9 @@
                             <group colspan="4">
                                 <field name="insurance_operation"/>
                                 <field name="bussiness_real_state_rent"/>
+                                <field name="cash_basis_operation"/>
+                                <field name="tax_person_operation"/>
+                                <field name="related_goods_operation"/>
                             </group>
                         </page>
                         <page string="Real estate info" attrs="{'invisible': [('bussiness_real_state_rent','=',False)]}">
@@ -300,7 +304,7 @@
             <field name="view_mode">tree,form</field>
             <field name="help">Create and query AEAT Model 347 Reports</field>
         </record>
-        
+
 
 
         <!--
@@ -312,6 +316,6 @@
             action="action_l10n_es_aeat_mod347_report"
             sequence="50"
             name="AEAT 347 Model"/>
-                
+
     </data>
 </openerp>
