@@ -29,7 +29,8 @@ class Country(orm.Model):
         'code_3166': fields.char(
             'Country Code',
             size=3,
-            help='El código del país ISO 3166 (3 caractéres). Para España: "ESP".',
+            help='El código del país ISO 3166 (3 caractéres). '
+                 'Para España: "ESP".',
             required=True),
     }
 
