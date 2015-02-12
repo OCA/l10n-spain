@@ -3,8 +3,7 @@
 #
 #    Tecon Soluciones Informáticas, S.L.
 #    http://www.tecon.es
-#    All Rights Reserved
-#    
+#
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -22,10 +21,15 @@
 ##############################################################################
 from osv import orm, fields
 
+
 class ResCompany(orm.Model):
-  _name = 'res.company'
-  _inherit = 'res.company'
-  _columns = {
-              'facturae_cert':fields.binary(string='Certificado firma electrónica',filters='*.pfx'),
-              'facturae_cert_password':fields.char('Contraseña certificado',size=64),
-              }
+    _name = 'res.company'
+    _inherit = 'res.company'
+    _columns = {
+        'facturae_cert': fields.binary(
+            string='Certificado firma electrónica',
+            filters='*.pfx'),
+        'facturae_cert_password': fields.char(
+            'Contraseña certificado',
+            size=64),
+    }

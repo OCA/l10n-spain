@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Alejandro Sanchez (http://www.asr-oss.com) All Rights Reserved.
+#    Copyright (c) 2009 Alejandro Sanchez (http://www.asr-oss.com)
 #                       Alejandro Sanchez <alejandro@asr-oss.com>
 #    $Id$
 #
@@ -21,7 +21,7 @@
 #
 ##############################################################################
 
-import country
-import partner
-import res_company
-import wizard
+from . import country
+from  . import partner
+from . import res_company
+from . import wizard

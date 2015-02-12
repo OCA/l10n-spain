@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Alejandro Sanchez (http://www.asr-oss.com) All Rights Reserved.
+#    Copyright (c) 2009 Alejandro Sanchez (http://www.asr-oss.com)
 #                       Alejandro Sanchez <alejandro@asr-oss.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,23 +21,23 @@
 ##############################################################################
 
 {
-    "name" : "Factura-e File Creation",
-    "version" : "1.0",
-    "author" : "Alejandro Sanchez",
-    "category" : "Localisation/Accounting",
-    "description" : """This module creates Factura-e 3.1 files from invoices.
-3.1 -> 3.2 converter: http://sedeaplicaciones2.minetur.gob.es/FacturaECon/
-******* Module under development *******
-Successfully passes format and account validation tests from AEAT: http://sedeaplicaciones2.minetur.gob.es/FacturaE/index.jsp
+    "name": "Creación de Factura-e (FACe)",
+    "version": "1.0",
+    "author": "Alejandro Sanchez, Juanjo Algaz - Malagatic.com",
+    "category": "Localisation/Accounting",
+    "description": """
+            Este módulo crea el fichero .XML o el firmado, en formato 3.2 de
+            factura electrónica, desde las facturas.
+            ******* Módulo en desarrollo (wip) *******
 """,
-    "website" : "www.asr-oss.com",
-    "license" : "AGPL-3",
-    "depends" : ["base", "account"],
-    "update_xml" : [
+    "website": "www.asr-oss.com",
+    "license": "AGPL-3",
+    "depends": ["base", "account"],
+    "data": [
         "country_view.xml",
         "data_res_country.xml",
         "partner_view.xml",
         "res_company.xml",
         "wizard/create_facturae_view.xml"],
-    "installable" : True,
+    "installable": True,
 }

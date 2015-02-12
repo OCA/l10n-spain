@@ -2,8 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Alejandro Sanchez (http://www.asr-oss.com) All Rights Reserved.
-#                       Alejandro Sanchez <alejandro@asr-oss.com>
+#    Copyright (c) 2009 Alejandro Sanchez (http://www.asr-oss.com)
 #    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -30,13 +29,16 @@ class Country(orm.Model):
         'code_3166': fields.char(
             'Country Code',
             size=3,
-            help='The ISO 3166 country code in three chars.',
+            help='El código del país ISO 3166 (3 caractéres). Para España: "ESP".',
             required=True),
     }
 
     def _auto_init(self, cr, context=None):
         res = super(Country, self)._auto_init(cr, context=context)
-        cr.execute("select count(*) from pg_class as c inner join pg_attribute as a on a.attrelid = c.oid where a.attname = 'code_3166' and c.relkind = 'r' and c.relname = 'res_country'")
+        cr.execute("select count(*) from pg_class as c inner join "
+                   "pg_attribute as a on a.attrelid = c.oid where "
+                   "a.attname = 'code_3166' and c.relkind = 'r' and "
+                   "c.relname = 'res_country'")
         noupdate = True
         if not cr.rowcount:
             noupdate = False
@@ -46,10 +48,7 @@ class Country(orm.Model):
             if not code or not code[0]:
                 noupdate = False
         if not noupdate:
-            cr.execute("update ir_model_data set noupdate=false where module = 'base' and model = 'res.country'")
+            cr.execute("update ir_model_data set noupdate=false where "
+                       "module = 'base' and model = 'res.country'")
 
         return res
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-

@@ -27,6 +27,7 @@ class ResPartner(orm.Model):
     _columns = {
         'facturae': fields.boolean('Factura electrónica'),
         'organo_gestor': fields.char(size=100, string='Órgano gestor'),
-        'unidad_tramitadora': fields.char(size=100, string='Unidad tramitadora'),
+        'unidad_tramitadora': fields.char(size=100,
+                                          string='Unidad tramitadora'),
         'oficina_contable': fields.char(size=100, string='Oficina contable'),
     }

@@ -9,10 +9,11 @@
 	    <field name="type">form</field>
 	    <field name="arch" type="xml"> 
         <xpath expr="//notebook/page[@string='Configuration']" position="after">
-          <page string='Factura-e'>
+          <page string='FACe'>
+            <label for="facturae_cert" string="Certificado en formato .pfx con contraseña:"/>
             <field name="facturae_cert" />
             <newline />
-            <field name="facturae_cert_password" password="True"/>
+            <field name="facturae_cert_password" password="True" placeholder="Aquí la contraseña del certificado"/>
           </page>
         </xpath>           
       </field>		  

@@ -218,27 +218,27 @@ class CreateFacturae(orm.TransientModel):
                 else:
                     texto += '<Address>' + company_address_obj.street + '</Address>'
             else:
-                log.add(_('User error:\n\nCompany %s has no street.') % (company_partner_obj.name), True)
+                log.add(_('User error:\n\nCompany %s has no street.') % company_partner_obj.name, True)
                 raise log
             if company_address_obj.zip:
                 texto += '<PostCode>' + company_address_obj.zip + '</PostCode>'
             else:
-                log.add(_('User error:\n\nCompany %s has no zip code.') % (company_partner_obj.name), True)
+                log.add(_('User error:\n\nCompany %s has no zip code.') % company_partner_obj.name, True)
                 raise log
             if company_address_obj.city:
                 texto += '<Town>' + company_address_obj.city + '</Town>'
             else:
-                log.add(_('User error:\n\nCompany %s has no city.') % (company_partner_obj.name), True)
+                log.add(_('User error:\n\nCompany %s has no city.') % company_partner_obj.name, True)
                 raise log
-            if  company_address_obj.state_id.name:
+            if company_address_obj.state_id.name:
                 texto += '<Province>' + company_address_obj.state_id.name + '</Province>'
             else:
-                log.add(_('User error:\n\nCompany %s has no province.') % (company_partner_obj.name), True)
+                log.add(_('User error:\n\nCompany %s has no province.') % company_partner_obj.name, True)
                 raise log
             if company_address_obj.country_id.code_3166:
                 texto += '<CountryCode>' + company_address_obj.country_id.code_3166 + '</CountryCode>'
             else:
-                log.add(_('User error:\n\nCompany %s has no country.') % (company_partner_obj.name), True)
+                log.add(_('User error:\n\nCompany %s has no country.') % company_partner_obj.name, True)
                 raise log
             texto += '</AddressInSpain>'
 
@@ -267,8 +267,6 @@ class CreateFacturae(orm.TransientModel):
             texto += '<ResidenceTypeCode>U</ResidenceTypeCode>'
             texto += '<TaxIdentificationNumber>' + invoice_partner_obj.vat + '</TaxIdentificationNumber>'
             texto += '</TaxIdentification>'
-
-
 
             administrative = False
             if invoice_partner_address_obj.facturae:
@@ -302,28 +300,28 @@ class CreateFacturae(orm.TransientModel):
                     else:
                         texto += '<Address>' + address.street + '</Address>'
                 else:
-                    log.add(_('User error:\n\nPartner %s has no street.') % (address.name), True)
+                    log.add(_('User error:\n\nPartner %s has no street.') % address.name, True)
                     raise log
                 if address.zip:
                     texto += '<PostCode>' + address.zip + '</PostCode>'
                 else:
-                    log.add(_('User error:\n\nPartner %s has no zip code.') % (address.name), True)
+                    log.add(_('User error:\n\nPartner %s has no zip code.') % address.name, True)
                     raise log
 
                 if address.city:
                     texto += '<Town>' + address.city + '</Town>'
                 else:
-                    log.add(_('User error:\n\nPartner %s has no city.') % (address.name), True)
+                    log.add(_('User error:\n\nPartner %s has no city.') % address.name, True)
                     raise log
                 if address.state_id.name:
                     texto += '<Province>' + address.state_id.name + '</Province>'
                 else:
-                    log.add(_('User error:\n\nPartner %s has no province.') % (address.name), True)
+                    log.add(_('User error:\n\nPartner %s has no province.') % address.name, True)
                     raise log
                 if address.country_id.code_3166:
                     texto += '<CountryCode>' + address.country_id.code_3166 + '</CountryCode>'
                 else:
-                    log.add(_('User error:\n\nPartner %s has no country.') % (address.name), True)
+                    log.add(_('User error:\n\nPartner %s has no country.') % address.name, True)
                     raise log
                 texto += '</AddressInSpain>'
 
@@ -346,10 +344,16 @@ class CreateFacturae(orm.TransientModel):
                 return texto
 
             if administrative:
-                texto += create_administrative_centres(invoice_partner_address_obj, "01") # Oficina contable
-                texto += create_administrative_centres(contact_partner_address_obj or invoice_partner_address_obj, "02") # Órgano Gestor
-                texto += create_administrative_centres(invoice_partner_address_obj, "03") # Unidad tramitadora
-                #texto += create_administrative_centres(contact_partner_address_obj or invoice_partner_address_obj, "04") # Órgano proponente
+                # Oficina contable
+                texto += create_administrative_centres(invoice_partner_address_obj, "01")
+                # Órgano Gestor
+                texto += create_administrative_centres(contact_partner_address_obj or
+                                                       invoice_partner_address_obj, "02")
+                # Unidad tramitadora
+                texto += create_administrative_centres(invoice_partner_address_obj, "03")
+                # Órgano proponente
+                #texto += create_administrative_centres(contact_partner_address_obj or
+                # invoice_partner_address_obj, "04")
                 texto += "</AdministrativeCentres>"
 
             if tipo_buyer == 'F':
@@ -421,17 +425,23 @@ class CreateFacturae(orm.TransientModel):
                 total_gross_amount += line.price_subtotal
 
             texto += '<InvoiceTotals>'
-            texto += '<TotalGrossAmount>' + str('%.2f' % total_gross_amount) + '</TotalGrossAmount>'
+            texto += '<TotalGrossAmount>' + \
+                     str('%.2f' % total_gross_amount) + '</TotalGrossAmount>'
             #despues descuentos cabercera pero en OpenERP no se donde estan
             #despues gastos de envio no se como aplicar si se pueden
             #si se utilizaran los anteriores aqui se le restaria descuentos y sumarian gastos
-            texto += '<TotalGrossAmountBeforeTaxes>' + str('%.2f' % total_gross_amount) + '</TotalGrossAmountBeforeTaxes>'
-            texto += '<TotalTaxOutputs>' + str('%.2f' % invoice.amount_tax) + '</TotalTaxOutputs>'
+            texto += '<TotalGrossAmountBeforeTaxes>' + \
+                     str('%.2f' % total_gross_amount) + '</TotalGrossAmountBeforeTaxes>'
+            texto += '<TotalTaxOutputs>' + \
+                     str('%.2f' % invoice.amount_tax) + '</TotalTaxOutputs>'
             texto += '<TotalTaxesWithheld>0.00</TotalTaxesWithheld>'
-            texto += '<InvoiceTotal>' + str('%.2f' % invoice.amount_total) + '</InvoiceTotal>'
+            texto += '<InvoiceTotal>' + \
+                     str('%.2f' % invoice.amount_total) + '</InvoiceTotal>'
             #aqui se descontaria los pagos realizados a cuenta
-            texto += '<TotalOutstandingAmount>' + str('%.2f' % invoice.amount_total) + '</TotalOutstandingAmount>'
-            texto += '<TotalExecutableAmount>' + str('%.2f' % invoice.amount_total) + '</TotalExecutableAmount>'
+            texto += '<TotalOutstandingAmount>' + \
+                     str('%.2f' % invoice.amount_total) + '</TotalOutstandingAmount>'
+            texto += '<TotalExecutableAmount>' + \
+                     str('%.2f' % invoice.amount_total) + '</TotalExecutableAmount>'
 
             texto += '</InvoiceTotals>'
             return texto
@@ -513,12 +523,12 @@ class CreateFacturae(orm.TransientModel):
 
         def _run_java_sign(command):
             #call = [['java','-jar','temp.jar']]
-            res = subprocess.call(command,stdout=None,stderr=None)
+            res = subprocess.call(command, stdout=None, stderr=None)
             if res > 0 :
                 print "Warning - result was %d" % res
             return res
 
-        def _sign_document(xml_facturae,file_name,invoice):
+        def _sign_document(xml_facturae, file_name, invoice):
             path = os.path.realpath(os.path.dirname(__file__))
             path += '/../java/'
             # Almacenamos nuestra cadena XML en un fichero y creamos los ficheros auxiliares.
@@ -577,12 +587,13 @@ class CreateFacturae(orm.TransientModel):
             file_name = (_('facturae') + '_' + invoice.number + '.xml').replace('/', '-')
 
         file = base64.encodestring(invoice_file)
-        self.pool.get('ir.attachment').create(cr, uid, {
-            'name': file_name,
-            'datas': file,
-            'datas_fname': file_name,
-            'res_model': 'account.invoice',
-            'res_id': invoice.id,
+        self.pool.get('ir.attachment').create(cr, uid,
+            {
+                'name': file_name,
+                'datas': file,
+                'datas_fname': file_name,
+                'res_model': 'account.invoice',
+                'res_id': invoice.id,
             }, context=context)
         log.add(_("Export successful\n\nSummary:\nInvoice number: %s\n") % (invoice.number))
 
