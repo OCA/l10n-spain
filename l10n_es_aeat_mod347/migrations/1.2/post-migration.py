@@ -20,8 +20,6 @@
 #
 ##############################################################################
 
-from openerp.osv import orm
-from openerp.tools import SUPERUSER_ID
 
 def migrate(cr, version):
     cr.execute(
