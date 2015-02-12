@@ -37,6 +37,7 @@
                                     <field name="partner_id" on_change="on_change_partner_id(partner_id)" required="1" select="1"/>
                                     <field name="partner_vat" select="1"/>
                                     <field name="representative_vat" select="2"/>
+                                    <field name="community_vat"/>
                                 </group>
                                 <group>
                                     <field name="partner_state_code"/>
@@ -72,6 +73,9 @@
                             <group>
                                 <group>
                                     <field name="insurance_operation"/>
+                                    <field name="cash_basis_operation"/>
+                                    <field name="tax_person_operation"/>
+                                    <field name="related_goods_operation"/>
                                 </group>
                                 <group>
                                     <field name="bussiness_real_state_rent"/>

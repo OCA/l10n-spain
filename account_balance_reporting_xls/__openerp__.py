@@ -54,6 +54,9 @@ Contributors
         'Juan Formoso <jfv@anubia.es>',
         'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com',
     ],
+    'external_dependencies': {
+        'python': ['xlwt'],
+    },
     'data': [
         'wizard/account_balance_reporting_wizard.xml',
     ],

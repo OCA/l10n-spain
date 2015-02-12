@@ -66,7 +66,7 @@ class L10nEsAeatMod347ExportToBoe(orm.TransientModel):
         # Tipo de soporte
         text += self._formatString(report.support_type, 1)
         # Persona de contacto (Teléfono)
-        text += self._formatString(report.contact_phone, 9)
+        text += self._formatString(report.contact_phone or 0, 9)
         # Persona de contacto (Apellidos y nombre)
         text += self._formatString(report.contact_name, 40)
         # Número identificativo de la declaración
@@ -82,9 +82,10 @@ class L10nEsAeatMod347ExportToBoe(orm.TransientModel):
         # Número total de inmuebles
         text += self._formatNumber(report.total_real_state_records, 9)
         # Importe total de las operaciones de arrendamiento
-        text += self._formatNumber(report.total_real_state_amount, 13, 2)
+        text += self._formatNumber(report.total_real_state_amount, 13, 2,
+                                   True)
         # Blancos
-        text += 206 * ' '
+        text += 205 * ' '
         # NIF del representante legal
         text += self._formatString(report.representative_vat, 9)
         # Blancos
@@ -97,8 +98,7 @@ class L10nEsAeatMod347ExportToBoe(orm.TransientModel):
         return text
 
     def _get_formated_partner_record(self, report, partner_record):
-        """
-        Returns a type 2, partner, formated record
+        """Returns a type 2, partner, formated record
 
         Format of the record:
             Tipo de Registro 2 – Registro de declarado
@@ -123,20 +123,25 @@ class L10nEsAeatMod347ExportToBoe(orm.TransientModel):
             115-129     Importe percibido por transmisiones de inmuebles
                         sujetas a IVA
             130-134     Año de devengo de las operaciones en efectivo
-            135-151     Importe de las operaciones del primer trimestre
-            151-167     Importe percibido por transmisiones de inmuebles
-                        sujetas a IVA primer trimestre
+            136-151     Importe de las operaciones del primer trimestre
+            152-167     Importe percibido por transmisiones de inmuebles
+                        sujetas a IVA del primer trimestre
             168-183     Importe de las operaciones del segundo trimestre
-            183-199     Importe percibido por transmisiones de inmuebles
-                        sujetas a IVA segundo trimestre
+            184-199     Importe percibido por transmisiones de inmuebles
+                        sujetas a IVA del segundo trimestre
             200-215     Importe de las operaciones del tercer trimestre
-            215-231     Importe percibido por transmisiones de inmuebles
-                        sujetas a IVA tercer trimestre
-            231-247     Importe de las operaciones del cuarto trimestre
-            247-263     Importe percibido por transmisiones de inmuebles
-                        sujetAs a IVA cuarto trimestre
-            264-500     Blancos
-            488-500     Sello electrónico
+            216-231     Importe percibido por transmisiones de inmuebles
+                        sujetas a IVA del tercer trimestre
+            232-247     Importe de las operaciones del cuarto trimestre
+            248-263     Importe percibido por transmisiones de inmuebles
+                        sujetas a IVA del cuarto trimestre
+            264-280     NIF del operador comunitario
+            281         'X' si aplica el régimen especial de criterio de caja
+            282         'X' si son operaciones con inversión de sujeto pasivo
+            283         'X' si son operaciones vinculadas al régimen de
+                        depósito distinto del aduanero
+            284-299     Importe de la operaciones anuales de criterio de caja
+            300-500     Blancos
         """
         text = ''
         # Tipo de Registro
@@ -204,8 +209,14 @@ class L10nEsAeatMod347ExportToBoe(orm.TransientModel):
         text += self._formatNumber(
             partner_record.fourth_quarter_real_state_transmission_amount, 13,
             2, True)
+        text += self._formatString(partner_record.community_vat, 17)
+        text += self._formatBoolean(partner_record.cash_basis_operation)
+        text += self._formatBoolean(partner_record.tax_person_operation)
+        text += self._formatBoolean(partner_record.related_goods_operation)
+        # Importe en criterio de caja
+        text += self._formatNumber(0.0, 13, 2, True)
         # Blancos
-        text += 237 * ' '
+        text += 201 * ' '
         # Sello electrónico
         text += '\r\n'
         assert len(text) == 502, \
@@ -269,9 +280,9 @@ class L10nEsAeatMod347ExportToBoe(orm.TransientModel):
         # Tipo de hoja: Constante ‘I’.
         text += 'I'
         # Blancos
-        text += 23 * ' '
+        text += 22 * ' '
         # Importe de las operaciones
-        text += self._formatNumber(partner_record.amount, 13, 2)
+        text += self._formatNumber(partner_record.amount, 13, 2, True)
         # Situación del inmueble
         text += self._formatNumber(partner_record.situation, 1)
         # Referencia catastral
