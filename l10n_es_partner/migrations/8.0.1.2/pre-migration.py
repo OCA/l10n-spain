@@ -36,5 +36,6 @@ def clear_identifiers(cr):
              """
     cr.execute(sql)
 
+
 def migrate(cr, version):
     clear_identifiers(cr)
