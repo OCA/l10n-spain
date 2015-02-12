@@ -173,8 +173,9 @@ class CreateFacturae(orm.TransientModel):
             company_address_id = self.pool.get('res.partner').address_get(
                 cr, uid, [company_obj.partner_id.id], ['invoice'])
             if not company_address_id['invoice']:
-                log.add(_('User error:\n\nCompany %s does not have '
-                          'an invoicing address.') % company_partner_obj.name
+                log.add(
+                    _('User error:\n\nCompany %s does not have '
+                      'an invoicing address.') % company_partner_obj.name
                 )
                 raise log
 
@@ -217,12 +218,14 @@ class CreateFacturae(orm.TransientModel):
             # Fijo hasta que se tome una decision no son obligatorios
             # texto += '<RegistrationData>'
             # texto += '<Book>1</Book>'
-            # texto += '<RegisterOfCompaniesLocation>12AP22</RegisterOfCompaniesLocation>'
+            # texto += '<RegisterOfCompaniesLocation>12AP22'
+            # texto += '</RegisterOfCompaniesLocation>'
             # texto += '<Sheet>3</Sheet>'
             # texto += '<Folio>15</Folio>'
             # texto += '<Section>2</Section>'
             # texto += '<Volume>12</Volume>'
-            # texto += '<AdditionalRegistrationData>Sin datos</AdditionalRegistrationData>'
+            # texto += '<AdditionalRegistrationData>Sin datos'
+            # texto += '</AdditionalRegistrationData>'
             # texto += '</RegistrationData>'
             # fin
             texto += '<AddressInSpain>'
@@ -425,9 +428,7 @@ class CreateFacturae(orm.TransientModel):
             return texto
 
         def _taxes_output():
-
             texto = ''
-            rate = 0.0
             taxes_withhel = 0.0
 
             texto += '<TaxesOutputs>'
@@ -512,8 +513,9 @@ class CreateFacturae(orm.TransientModel):
                 texto += '<InvoiceLine>'
                 texto += '<ItemDescription>' + line.name + '</ItemDescription>'
                 texto += '<Quantity>' + str(line.quantity) + '</Quantity>'
-                texto += '<UnitPriceWithoutTax>' +\
-                         str('%.6f' % line.price_unit) + '</UnitPriceWithoutTax>'
+                texto += '<UnitPriceWithoutTax>'
+                texto += str('%.6f' % line.price_unit)
+                texto += '</UnitPriceWithoutTax>'
                 texto += '<TotalCost>' +\
                          str('%.6f' % (line.quantity * line.price_unit)) +\
                          '</TotalCost>'
@@ -547,8 +549,9 @@ class CreateFacturae(orm.TransientModel):
                     texto += '<TaxTypeCode>01</TaxTypeCode>'
                     texto += '<TaxRate>' + str(rate) + '</TaxRate>'
                     texto += '<TaxableBase>'
-                    texto += '<TotalAmount>' +\
-                             str('%.2f' % line.price_subtotal) + '</TotalAmount>'
+                    texto += '<TotalAmount>'
+                    texto += str('%.2f' % line.price_subtotal)
+                    texto += '</TotalAmount>'
                     texto += '</TaxableBase>'
                     texto += '</Tax>'
                 texto += '</TaxesOutputs>'
@@ -581,8 +584,9 @@ class CreateFacturae(orm.TransientModel):
             texto += _invoice_totals()
             texto += _invoice_items()
             texto += '<AdditionalData>'
-            texto += '<InvoiceAdditionalInformation>' +\
-                     (invoice.comment or "") + '</InvoiceAdditionalInformation>'
+            texto += '<InvoiceAdditionalInformation>'
+            texto += (invoice.comment or "")
+            texto += '</InvoiceAdditionalInformation>'
             texto += '</AdditionalData>'
             texto += '</Invoice>'
             texto += '</Invoices>'
