@@ -22,13 +22,12 @@
 #
 ##############################################################################
 
-from . import base64
-from . import netsvc
+import base64
+import netsvc
 from tools.translate import _
 from osv import orm, fields
-from . import base64
-from . import subprocess
-from . import os
+import subprocess
+import os
 
 logger = netsvc.Logger()
 
@@ -86,11 +85,11 @@ class CreateFacturae(orm.TransientModel):
     }
 
     def create_facturae_file(self, cr, uid, ids, context):
-        form = self.browse(cr, uid, ids)[0]
-        
+        # form = self.browse(cr, uid, ids)[0]
+
         def _format_xml():
             # formato y definicion del fichero xml
-            texto = '﻿<?xml version="1.0" encoding="UTF-8"?>'
+            # texto = '﻿<?xml version="1.0" encoding="UTF-8"?>'
             texto = '<fe:Facturae xmlns:fe=' \
                     '"http://www.facturae.es/Facturae/2009/v3.2/Facturae" ' \
                     'xmlns:ds="http://www.w3.org/2000/09/xmldsig#">'
@@ -153,7 +152,8 @@ class CreateFacturae(orm.TransientModel):
             texto += '<Modality>' + modality + '</Modality>'
             texto += '<InvoiceIssuerType>EM</InvoiceIssuerType>'
             texto += '<Batch>'
-            texto += '<BatchIdentifier>' + BatchIdentifier + '</BatchIdentifier>'
+            texto += '<BatchIdentifier>' + BatchIdentifier +\
+                     '</BatchIdentifier>'
             texto += '<InvoicesCount>1</InvoicesCount>'
             texto += _apoyo_batch()
             texto += '</Batch>'
@@ -168,19 +168,21 @@ class CreateFacturae(orm.TransientModel):
             invoice_partner_address_obj = invoice.partner_id
             contact_partner_address_obj = invoice.partner_id
 
-            #obtencion direccion company recogemos la de factura adress_get si no encuentra invoice devuelve primera
+            # obtencion direccion company recogemos la de factura adress_get
+            #  si no encuentra invoice devuelve primera
             company_address_id = self.pool.get('res.partner').address_get(
                 cr, uid, [company_obj.partner_id.id], ['invoice'])
             if not company_address_id['invoice']:
                 log.add(_('User error:\n\nCompany %s does not have '
-                          'an invoicing address.') % (company_partner_obj.name))
+                          'an invoicing address.') % company_partner_obj.name
+                )
                 raise log
 
             company_address_obj = self.pool.get('res.partner').browse(
                 cr, uid, company_address_id['invoice'])
 
-            #obtencion de la direccion del partner
-            partner_address_invoice = invoice.partner_id
+            # obtencion de la direccion del partner
+            # partner_address_invoice = invoice.partner_id
 
             tipo_seller = _persona(company_partner_obj.vat)
 
@@ -208,20 +210,21 @@ class CreateFacturae(orm.TransientModel):
                 texto += '<SecondSurname></SecondSurname>'
             else:
                 texto += '<LegalEntity>'
-                texto += '<CorporateName>' + company_obj.name + '</CorporateName>'
+                texto += '<CorporateName>' + company_obj.name +\
+                         '</CorporateName>'
                 texto += '<TradeName>' + company_obj.name + '</TradeName>'
 
-            #Fijo hasta que se tome una decision no son obligatorios
-            #texto += '<RegistrationData>'
-            #texto += '<Book>1</Book>'
-            #texto += '<RegisterOfCompaniesLocation>12AP22</RegisterOfCompaniesLocation>'
-            #texto += '<Sheet>3</Sheet>'
-            #texto += '<Folio>15</Folio>'
-            #texto += '<Section>2</Section>'
-            #texto += '<Volume>12</Volume>'
-            #texto += '<AdditionalRegistrationData>Sin datos</AdditionalRegistrationData>'
-            #texto += '</RegistrationData>'
-            #fin
+            # Fijo hasta que se tome una decision no son obligatorios
+            # texto += '<RegistrationData>'
+            # texto += '<Book>1</Book>'
+            # texto += '<RegisterOfCompaniesLocation>12AP22</RegisterOfCompaniesLocation>'
+            # texto += '<Sheet>3</Sheet>'
+            # texto += '<Folio>15</Folio>'
+            # texto += '<Section>2</Section>'
+            # texto += '<Volume>12</Volume>'
+            # texto += '<AdditionalRegistrationData>Sin datos</AdditionalRegistrationData>'
+            # texto += '</RegistrationData>'
+            # fin
             texto += '<AddressInSpain>'
             if company_address_obj.street:
                 if company_address_obj.street2:
@@ -255,7 +258,8 @@ class CreateFacturae(orm.TransientModel):
                 raise log
             if company_address_obj.country_id.code_3166:
                 texto += '<CountryCode>' + \
-                         company_address_obj.country_id.code_3166 + '</CountryCode>'
+                         company_address_obj.country_id.code_3166 +\
+                         '</CountryCode>'
             else:
                 log.add(_('User error:\n\nCompany %s has no country.') %
                         company_partner_obj.name, True)
@@ -264,7 +268,8 @@ class CreateFacturae(orm.TransientModel):
 
             texto += '<ContactDetails>'
             if company_address_obj.phone:
-                texto += '<Telephone>' + company_address_obj.phone + '</Telephone>'
+                texto += '<Telephone>' + company_address_obj.phone +\
+                         '</Telephone>'
             if company_address_obj.fax:
                 texto += '<TeleFax>' + company_address_obj.fax + '</TeleFax>'
             if company_partner_obj.website:
@@ -345,7 +350,8 @@ class CreateFacturae(orm.TransientModel):
                             address.name, True)
                     raise log
                 if address.state_id.name:
-                    texto += '<Province>' + address.state_id.name + '</Province>'
+                    texto += '<Province>' + address.state_id.name +\
+                             '</Province>'
                 else:
                     log.add(_('User error:\n\nPartner %s has no province.') %
                             address.name, True)
@@ -367,9 +373,11 @@ class CreateFacturae(orm.TransientModel):
                 if address.website:
                     texto += '<WebAddress>' + address.website + '</WebAddress>'
                 if address.email:
-                    texto += '<ElectronicMail>' + address.email + '</ElectronicMail>'
+                    texto += '<ElectronicMail>' + address.email +\
+                             '</ElectronicMail>'
                 if address.name:
-                    texto += '<ContactPersons>' + address.name + '</ContactPersons>'
+                    texto += '<ContactPersons>' + address.name +\
+                             '</ContactPersons>'
                 texto += '</ContactDetails>'
 
                 if administrative:
@@ -389,7 +397,8 @@ class CreateFacturae(orm.TransientModel):
                 texto += create_administrative_centres(
                     invoice_partner_address_obj, "03")
                 # Órgano proponente
-                #texto += create_administrative_centres(contact_partner_address_obj or
+                # texto +=
+                # create_administrative_centres(contact_partner_address_obj or
                 # invoice_partner_address_obj, "04")
                 texto += "</AdministrativeCentres>"
 
@@ -428,7 +437,7 @@ class CreateFacturae(orm.TransientModel):
                 texto += '<Tax>'
                 texto += '<TaxTypeCode>01</TaxTypeCode>'
                 cr.execute('SELECT t.amount FROM account_tax t '
-                           'WHERE t.tax_code_id =%s',(l.tax_code_id.id,))
+                           'WHERE t.tax_code_id =%s', (l.tax_code_id.id,))
                 res = cr.fetchone()
                 texto += '<TaxRate>' + str('%.2f' % (abs(res[0]) * 100)) +\
                          '</TaxRate>'
@@ -470,9 +479,10 @@ class CreateFacturae(orm.TransientModel):
             texto += '<InvoiceTotals>'
             texto += '<TotalGrossAmount>' + \
                      str('%.2f' % total_gross_amount) + '</TotalGrossAmount>'
-            #despues descuentos cabercera pero en OpenERP no se donde estan
-            #despues gastos de envio no se como aplicar si se pueden
-            #si se utilizaran los anteriores aqui se le restaria descuentos y sumarian gastos
+            # despues descuentos cabercera pero en OpenERP no se donde estan
+            # despues gastos de envio no se como aplicar si se pueden
+            # si se utilizaran los anteriores aqui se le restaria descuentos
+            #  y sumarian gastos
             texto += '<TotalGrossAmountBeforeTaxes>' + \
                      str('%.2f' % total_gross_amount) +\
                      '</TotalGrossAmountBeforeTaxes>'
@@ -481,7 +491,7 @@ class CreateFacturae(orm.TransientModel):
             texto += '<TotalTaxesWithheld>0.00</TotalTaxesWithheld>'
             texto += '<InvoiceTotal>' + \
                      str('%.2f' % invoice.amount_total) + '</InvoiceTotal>'
-            #aqui se descontaria los pagos realizados a cuenta
+            # aqui se descontaria los pagos realizados a cuenta
             texto += '<TotalOutstandingAmount>' + \
                      str('%.2f' % invoice.amount_total) +\
                      '</TotalOutstandingAmount>'
@@ -505,23 +515,28 @@ class CreateFacturae(orm.TransientModel):
                 texto += '<UnitPriceWithoutTax>' +\
                          str('%.6f' % line.price_unit) + '</UnitPriceWithoutTax>'
                 texto += '<TotalCost>' +\
-                         str('%.6f' % (line.quantity * line.price_unit)) + '</TotalCost>'
+                         str('%.6f' % (line.quantity * line.price_unit)) +\
+                         '</TotalCost>'
                 texto += '<DiscountsAndRebates>'
                 texto += '<Discount>'
                 texto += '<DiscountReason>Descuento</DiscountReason>'
                 texto += '<DiscountRate>' +\
                          str('%.4f' % line.discount) + '</DiscountRate>'
-                texto += '<DiscountAmount>' +\
-                         str('%.6f' % ((line.price_unit*line.quantity) - line.price_subtotal)) + '</DiscountAmount>'
+                texto += '<DiscountAmount>'
+                texto += str('%.6f' % (
+                    (line.price_unit*line.quantity) - line.price_subtotal))
+                texto += '</DiscountAmount>'
                 texto += '</Discount>'
                 texto += '</DiscountsAndRebates>'
-                texto += '<GrossAmount>' + str('%.6f' % line.price_subtotal) + '</GrossAmount>'
+                texto += '<GrossAmount>' + \
+                         str('%.6f' % line.price_subtotal) + '</GrossAmount>'
                 texto += '<TaxesWithheld>'
                 texto += '<Tax>'
                 texto += '<TaxTypeCode>01</TaxTypeCode>'
                 texto += '<TaxRate>0.00</TaxRate>'
                 texto += '<TaxableBase>'
-                texto += '<TotalAmount>' + str('%.2f' % line.price_subtotal) + '</TotalAmount>'
+                texto += '<TotalAmount>' + \
+                         str('%.2f' % line.price_subtotal) + '</TotalAmount>'
                 texto += '</TaxableBase>'
                 texto += '</Tax>'
                 texto += '</TaxesWithheld>'
@@ -577,10 +592,10 @@ class CreateFacturae(orm.TransientModel):
             return '</fe:Facturae>'
 
         def _run_java_sign(command):
-            #call = [['java','-jar','temp.jar']]
+            # call = [['java','-jar','temp.jar']]
             res = subprocess.call(command, stdout=None, stderr=None)
             if res > 0:
-                print "Warning - result was %d" % res
+                log.add(_("Warning - result was %d" % res))
             return res
 
         def _sign_document(xml_facturae, file_name, invoice):
@@ -590,7 +605,7 @@ class CreateFacturae(orm.TransientModel):
             # creamos los ficheros auxiliares.
             file_name_unsigned = path + 'unsigned_' + file_name
             file_name_signed = path + file_name
-            file_unsigned = open(file_name_unsigned,"w+")
+            file_unsigned = open(file_name_unsigned, "w+")
             file_unsigned.write(xml_facturae)
             file_unsigned.close()
             file_signed = open(file_name_signed, "w+")
@@ -625,12 +640,13 @@ class CreateFacturae(orm.TransientModel):
         invoice_ids = context.get('active_ids', [])
         if not invoice_ids or len(invoice_ids) > 1:
             raise orm.except_osv(
-                _('Error !'), _('Only can select one invoice to export'))
+                _('Error !'), _('Only can select one invoice to export')
+            )
 
         invoice = self.pool.get('account.invoice').browse(
             cr, uid, invoice_ids[0], context)
-        contador = 1
-        lines_issued = []
+        # contador = 1
+        # lines_issued = []
         xml_facturae += _format_xml()
         xml_facturae += _header_facturae(cr, context)
         xml_facturae += _parties_facturae(cr, context)
@@ -638,22 +654,27 @@ class CreateFacturae(orm.TransientModel):
         xml_facturae += _end_document()
         xml_facturae = conv_ascii(xml_facturae)
         if invoice.company_id.facturae_cert:
+            file_name = (_(
+                'facturae') + '_' + invoice.number + '.xsig').replace('/', '-')
             invoice_file = _sign_document(xml_facturae, file_name, invoice)
-            file_name = (_('facturae') + '_' + invoice.number + '.xsig').replace('/', '-')
         else:
             invoice_file = xml_facturae
-            file_name = (_('facturae') + '_' + invoice.number + '.xml').replace('/', '-')
+            file_name = (_(
+                'facturae') + '_' + invoice.number + '.xml').replace('/', '-')
 
         file = base64.encodestring(invoice_file)
-        self.pool.get('ir.attachment').create(cr, uid,
+        self.pool.get('ir.attachment').create(
+            cr, uid,
             {
                 'name': file_name,
                 'datas': file,
                 'datas_fname': file_name,
                 'res_model': 'account.invoice',
                 'res_id': invoice.id,
-            }, context=context)
-        log.add(_("Export successful\n\nSummary:\nInvoice number: %s\n") % invoice.number)
+            }, context=context
+        )
+        log.add(_("Export successful\n\nSummary:\nInvoice number: %s\n") %
+                invoice.number)
 
         obj.write({'note': log(),
                    'facturae': file,
