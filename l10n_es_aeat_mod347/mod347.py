@@ -25,6 +25,17 @@ class L10nEsAeatMod347Report(orm.Model):
     _name = "l10n.es.aeat.mod347.report"
     _description = "AEAT 347 Report"
 
+    def btn_list_records(self, cr, uid, ids, context=None):
+        value = {
+            'domain': "[('report_id','in',"+str(ids)+")]",
+            'name': _("Partner records"),
+            'view_mode': 'tree,form',
+            'view_type': 'form',
+            'res_model': 'l10n.es.aeat.mod347.partner_record',
+            'type': 'ir.actions.act_window',
+        }
+        return value
+
     def _calc_total_invoice(self, cr, uid, invoice, context=None):
         amount = invoice.cc_amount_untaxed
         for tax_line in invoice.tax_line:
@@ -492,65 +503,33 @@ class L10nEsAeatMod347PartnerRecord(orm.Model):
         'partner_state_code': fields.char('State Code', size=2),
         'first_quarter': fields.function(
             _get_quarter_totals, string="First Quarter", method=True,
-            type='float', multi="quarter_multi", digits=(13, 2),
-            store={
-                'l10n.es.aeat.mod347.invoice_record': (_get_lines,
-                                                       ['amount'], 10)
-            }),
+            type='float', multi="quarter_multi", digits=(13, 2)),
         'first_quarter_real_state_transmission_amount': fields.function(
             _get_quarter_totals, string="First Quarter Real State "
             "Transmission Amount", method=True, type='float',
-            multi="quarter_multi", digits=(13, 2),
-            store={
-                'l10n.es.aeat.mod347.invoice_record': (_get_lines,
-                                                       ['amount'], 10)
-            }),
+            multi="quarter_multi", digits=(13, 2)),
         'second_quarter': fields.function(
             _get_quarter_totals, string="Second Quarter", method=True,
-            type='float', multi="quarter_multi", digits=(13, 2),
-            store={
-                'l10n.es.aeat.mod347.invoice_record': (_get_lines,
-                                                       ['amount'], 10)
-            }),
+            type='float', multi="quarter_multi", digits=(13, 2)),
         'second_quarter_real_state_transmission_amount': fields.function(
             _get_quarter_totals, string="Second Quarter Real State "
             "Transmission Amount", method=True, type='float',
-            multi="quarter_multi", digits=(13, 2),
-            store={
-                'l10n.es.aeat.mod347.invoice_record': (_get_lines,
-                                                       ['amount'], 10)
-            }),
+            multi="quarter_multi", digits=(13, 2)),
         'third_quarter': fields.function(
             _get_quarter_totals, string="Third Quarter", method=True,
-            type='float', multi="quarter_multi", digits=(13, 2),
-            store={
-                'l10n.es.aeat.mod347.invoice_record': (_get_lines,
-                                                       ['amount'], 10)
-            }),
+            type='float', multi="quarter_multi", digits=(13, 2)),
         'third_quarter_real_state_transmission_amount': fields.function(
             _get_quarter_totals,
             string="Third Quarter Real State Transmission Amount",
             method=True, type='float',
-            multi="quarter_multi", digits=(13, 2),
-            store={
-                'l10n.es.aeat.mod347.invoice_record': (_get_lines,
-                                                       ['amount'], 10)
-            }),
+            multi="quarter_multi", digits=(13, 2)),
         'fourth_quarter': fields.function(
             _get_quarter_totals, string="Fourth Quarter", method=True,
-            type='float', multi="quarter_multi", digits=(13, 2),
-            store={
-                'l10n.es.aeat.mod347.invoice_record': (_get_lines,
-                                                       ['amount'], 10)
-            }),
+            type='float', multi="quarter_multi", digits=(13, 2)),
         'fourth_quarter_real_state_transmission_amount': fields.function(
             _get_quarter_totals, method=True, type='float',
             string="Fourth Quarter Real State Transmossion Amount",
-            multi="quarter_multi", digits=(13, 2),
-            store={
-                'l10n.es.aeat.mod347.invoice_record': (_get_lines,
-                                                       ['amount'], 10)
-            }),
+            multi="quarter_multi", digits=(13, 2)),
         'amount': fields.float('Operations amount', digits=(13, 2)),
         'cash_amount': fields.float('Received cash amount', digits=(13, 2)),
         'real_state_transmissions_amount': fields.float(

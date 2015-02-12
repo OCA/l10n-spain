@@ -25,7 +25,7 @@
 ##############################################################################
 {
     'name': "AEAT Model 347",
-    'version': "1.1",
+    'version': "1.2",
     'author': "Spanish Localization Team",
     'website': "https://launchpad.net/openerp-spain",
     'contributors': [
