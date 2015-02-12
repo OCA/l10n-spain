@@ -18,11 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-"""Account balance report print wizard"""
-__author__ = "Borja López Soilán (Pexego)"
-
-
 from openerp.osv import orm, fields
 
 

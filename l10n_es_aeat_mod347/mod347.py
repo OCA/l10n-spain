@@ -72,12 +72,12 @@ class L10nEsAeatMod347Report(orm.Model):
             # (A and B operation keys)
             # Search for invoices to this partner (with account moves).
             invoice_ids = invoice_obj.search(
-                cr, uid, [('partner_id', 'in', partner_ids),
+                cr, uid, [('partner_id', 'child_of', partner_ids),
                           ('type', '=', invoice_type),
                           ('period_id', 'in', period_ids),
                           ('state', 'not in', ['draft', 'cancel'])])
             refund_ids = invoice_obj.search(
-                cr, uid, [('partner_id', 'in', partner_ids),
+                cr, uid, [('partner_id', 'child_of', partner_ids),
                           ('type', '=', refund_type),
                           ('period_id', 'in', period_ids),
                           ('state', 'not in', ['draft', 'cancel'])])
@@ -165,7 +165,7 @@ class L10nEsAeatMod347Report(orm.Model):
             return
         cash_account_move_line_ids = move_line_obj.search(
             cr, uid,
-            [('partner_id', 'in', partner_ids),
+            [('partner_id', 'child_of', partner_ids),
              ('account_id', '=', partner.property_account_receivable.id),
              ('journal_id', 'in', cash_journal_ids),
              ('period_id', 'in', period_ids)], context=context)
@@ -263,39 +263,32 @@ class L10nEsAeatMod347Report(orm.Model):
                           period.special]
             # We will check every partner with not_in_mod347 flag unchecked
             visited_partners = []
+            domain = [('not_in_mod347', '=', False),
+                      ('parent_id', '=', False)]
             if report.only_supplier:
-                partner_ids = partner_obj.search(
-                    cr, uid, [('not_in_mod347', '=', False),
-                              ('supplier', '=', True)])
+                domain.append(('supplier', '=', True))
             else:
-                partner_ids = partner_obj.search(
-                    cr, uid, [('not_in_mod347', '=', False),
-                              '|',
-                              ('customer', '=', True),
-                              ('supplier', '=', True)])
-
+                domain.extend(['|',
+                               ('customer', '=', True),
+                               ('supplier', '=', True)])
+            partner_ids = partner_obj.search(cr, uid, domain, context=context)
             for partner in partner_obj.browse(cr, uid, partner_ids,
                                               context=context):
                 if partner.id not in visited_partners:
                     if partner.vat and report.group_by_cif:
-                        if report.only_supplier:
-                            partners_grouped = partner_obj.search(
-                                cr, uid, [('vat', '=', partner.vat),
-                                          ('not_in_mod347', '=', False),
-                                          ('supplier', '=', True)])
-                        else:
-                            partners_grouped = partner_obj.search(
-                                cr, uid, [('vat', '=', partner.vat),
-                                          ('not_in_mod347', '=', False)])
+                        domain_group = domain.copy()
+                        domain_group.append(('vat', '=', partner.vat))
+                        partner_grouped_ids = partner_obj.search(
+                            cr, uid, domain_group, context=context)
                     else:
-                        partners_grouped = [partner.id]
-                    visited_partners.extend(partners_grouped)
+                        partner_grouped_ids = [partner.id]
+                    visited_partners.extend(partner_grouped_ids)
                     partner_record_id = self._calculate_partner_records(
-                        cr, uid, partner, partners_grouped, period_ids, report,
-                        context=context)
+                        cr, uid, partner, partner_grouped_ids, period_ids,
+                        report, context=context)
                     if partner.customer:
                         self._calculate_cash_records(
-                            cr, uid, partner, partners_grouped,
+                            cr, uid, partner, partner_grouped_ids,
                             partner_record_id, period_ids, report,
                             context=context)
         return True
@@ -381,10 +374,19 @@ class L10nEsAeatMod347Report(orm.Model):
                           "Partner: %s (%s)") %
                         (partner_record.partner_id.name,
                          partner_record.partner_id.id))
-                if not partner_record.partner_vat:
+                if (not partner_record.partner_vat and
+                        not partner_record.community_vat):
                     raise orm.except_orm(
                         _('Error!'),
                         _("All partner vat number field must be filled.\n"
+                          "Partner: %s (%s)") %
+                        (partner_record.partner_id.name,
+                         partner_record.partner_id.id))
+                if (partner_record.partner_state_code and
+                        not partner_record.partner_state_code.isdigit()):
+                    raise orm.except_orm(
+                        _('Error!'),
+                        _("All partner state code field must be numeric.\n"
                           "Partner: %s (%s)") %
                         (partner_record.partner_id.name,
                          partner_record.partner_id.id))
@@ -493,6 +495,10 @@ class L10nEsAeatMod347PartnerRecord(orm.Model):
         'partner_vat': fields.char('VAT number', size=9),
         'representative_vat': fields.char(
             'L.R. VAT number', size=9, help="Legal Representative VAT number"),
+        'community_vat': fields.char(
+            'Community vat number', size=17,
+            help="VAT number for professionals established in other state "
+                 "member without national VAT"),
         'partner_country_code': fields.char('Country Code', size=2),
         'partner_state_code': fields.char('State Code', size=2),
         'first_quarter': fields.function(
@@ -531,6 +537,18 @@ class L10nEsAeatMod347PartnerRecord(orm.Model):
         'insurance_operation': fields.boolean(
             'Insurance Operation', help="Only for insurance companies. Set "
             "to identify insurance operations aside from the rest."),
+        'cash_basis_operation': fields.boolean(
+            'Cash Basis Operation',
+            help="Only for cash basis operations. Set to identify cash basis "
+                 "operations aside from the rest."),
+        'tax_person_operation': fields.boolean(
+            'Taxable Person Operation',
+            help="Only for taxable person operations. Set to identify taxable "
+                 "person operations aside from the rest."),
+        'related_goods_operation': fields.boolean(
+            'Related Goods Operation',
+            help="Only for related goods operations. Set to identify related "
+                 "goods operations aside from the rest."),
         'bussiness_real_state_rent': fields.boolean(
             'Bussiness Real State Rent', help="Set to identify real state "
             "rent operations aside from the rest. You'll need to fill in the "
