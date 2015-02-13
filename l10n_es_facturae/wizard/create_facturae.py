@@ -537,6 +537,7 @@ class CreateFacturae(orm.TransientModel):
                 texto += '<TaxTypeCode>01</TaxTypeCode>'
                 texto += '<TaxRate>0.00</TaxRate>'
                 texto += '<TaxableBase>'
+                # a cero según nota de Omar
                 texto += '<TotalAmount>0.00</TotalAmount>'
                 texto += '</TaxableBase>'
                 texto += '</Tax>'
