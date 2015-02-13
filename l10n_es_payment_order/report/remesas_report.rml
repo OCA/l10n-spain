@@ -58,7 +58,6 @@
     <blockTable colWidths="270.0,212.0" style="Taula2">
       <tr>
         <td>
-<<<<<<< HEAD:l10n_es_payment_order/report/remesas_report.rml
           <para style="P1">Company: [[o.mode.partner_id.name]]</para>
           <para style="P1">Bank: [[o.mode.bank_id.bank.name]]</para>
           <para style="P1">Account: [[o.mode.bank_id.acc_number]]</para>
@@ -75,19 +74,6 @@
             <font color="white"> </font>
           </para>
           <para style="P2">Total payment order: [[o.total]]</para>
-=======
-          <para style="P1">Compañía: [[o.cuenta_id.banco_id.owner_name]]</para>
-          <para style="P1">Banco: [[o.cuenta_id.banco_id.bank.name]]</para>
-          <para style="P1">C.C.: [[o.cuenta_id.banco_id.acc_number]]</para>
-          <para style="P1">Fecha confección: [[time.strftime('%d-%m-%Y', time.strptime(o.fecha, '%Y-%m-%d'))]]</para>
-          <para style="P1">Fecha cargo: [[time.strftime('%d-%m-%Y', time.strptime(o.fecha_cargo, '%Y-%m-%d'))]]</para>
-        </td>
-        <td>
-          <para style="P2">REMESA Nº: [[o.name]]</para>
-          <para style="P2">Tipo: [[o.cuenta_id.tipo]]</para>
-          <para style="P2">Recibos Agrupados: [[o.agrupar_recibos==1 and 'SI' or 'NO']]</para>
-          <para style="P2">Total Remesa: [[o.total]]</para>
->>>>>>> FETCH_HEAD:l10n_es_extras/l10n_ES_remesas/report/remesas_report.rml
         </td>
       </tr>
     </blockTable>
@@ -122,11 +108,7 @@
             <para style="P3">[[r.partner_id.name]]</para>
           </td>
           <td>
-<<<<<<< HEAD:l10n_es_payment_order/report/remesas_report.rml
             <para style="P8">[[r.communication]]</para>
-=======
-            <para style="P4">[[r.invoice_id.number]]</para>
->>>>>>> FETCH_HEAD:l10n_es_extras/l10n_ES_remesas/report/remesas_report.rml
           </td>
           <td>
             <para style="P8">[[r.amount]]</para>
