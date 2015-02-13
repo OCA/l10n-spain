@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<document filename="test.pdf">
+    <template pageSize="(1120.0,770.0)" title="Test" author="Martin Simon" allowSplitting="20">
+    <pageTemplate id="first">
+      <frame id="first" x1="15.0" y1="35.0" width="1080" height="650"/>
+			<pageGraphics>
+				<!--logo-->
+				<!--<fill color="darkblue"/>-->
+				<!--<stroke color="darkblue"/>-->
+
+				<!--TITLE COMPANY-->
+				<!-- <drawString x="4.6cm" y="28.7cm">[[ company.partner_id.name ]]</drawString> -->
+
+				<setFont name="Helvetica-Bold" size="9"/>
+
+
+				<!--COL 1-->
+				<drawString x="1.0cm" y="25.50cm">[[ company.name ]]</drawString>
+				<drawString x="34.70cm" y="25.50cm">Evolución balance de terceros - [[ get_currency(data['form']) ]]</drawString>
+
+				<!--COL 2-->
+				<setFont name="Helvetica" size="9"/>
+				<drawString x="1.0cm" y="0.90cm"> [[ time.strftime("%d-%m-%y %H:%M", time.localtime()) ]]</drawString>
+				<drawString x="37.30cm" y="0.90cm">Página <pageNumber/></drawString>
+
+				<!--<drawRightString x="19.8cm" y="28cm">[[ company.rml_header1 ]]</drawRightString>-->
+
+			    <lineMode width="0.7"/>
+				<lines>1cm 24.9cm 38cm 24.9cm</lines>
+				<setFont name="Helvetica" size="8"/>
+			    </pageGraphics>
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <blockBackground colorName="#e6e6e6" start="0,0" stop="0,0"/>
+      <blockBackground colorName="#e6e6e6" start="1,0" stop="1,0"/>
+      <blockBackground colorName="#e6e6e6" start="2,0" stop="2,0"/>
+      <blockBackground colorName="#e6e6e6" start="0,1" stop="0,1"/>
+      <blockBackground colorName="#e6e6e6" start="1,1" stop="1,1"/>
+      <blockBackground colorName="#e6e6e6" start="2,1" stop="2,1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tableau1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+   <blockTableStyle id="Table2">
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,0" stop="-1,0"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,1" stop="-1,-1"/>
+      
+      <blockValign value="TOP"/>
+      <blockAlignment value="RIGHT" start="2,1" stop="-1,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Tableau3">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="GRID" colorName="black"/>
+    </blockTableStyle>
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="P1" fontName="Helvetica" fontSize="20.0" leading="25" alignment="CENTER" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P2" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P3" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P4" fontName="Helvetica" alignment="CENTER" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P5" fontName="Helvetica" fontSize="8.0" leading="14" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P6" fontName="Helvetica" fontSize="8.0" leading="14" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P7" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P9" fontName="Helvetica" fontSize="8.0" leading="14" alignment="CENTER" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P10" fontName="Helvetica" fontSize="8.0" leading="14" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P11" fontName="Helvetica" fontSize="8.0" leading="14" alignment="CENTER" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P12" fontName="Helvetica" fontSize="8.0" leading="10" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P13" fontName="Helvetica" fontSize="8.0" leading="10" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P14" fontName="Helvetica" fontSize="8.0" leading="13" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="P10" fontName="Helvetica" alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Heading" fontName="Helvetica" fontSize="8.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Table Contents" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Table Heading" fontName="Helvetica" alignment="CENTER" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Caption" fontName="Helvetica" fontSize="8.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Index" fontName="Helvetica"/>
+  </stylesheet>
+  <story>
+    <blockTable colWidths="264.0,111.0,111.0,111.0,111.0,111.0,111.0,125.0" style="Table2" repeatRows="1">
+      <tr>
+        <td>
+          <para style="P2">Empresa</para>
+        </td>
+        <td>
+          <para style="P8">[[ data['form']['direction_selection'] == 'future' and 'Hecho' or 'No Hecho' ]] [[ data['form']['date1'] ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ data['form']['4']['name'] ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ data['form']['3']['name'] ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ data['form']['2']['name'] ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ data['form']['1']['name'] ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ data['form']['0']['name'] ]]</para>
+        </td>
+        <td>
+          <para style="P8">Total</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="P3">[[ repeatIn(get_lines(data['form']), 'partner') ]]</para>
+          <para style="P2">[[ partner['name'] ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(partner['direction']) or 0.0 ]] </para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(partner['4']) or 0.0 ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(partner['3']) or 0.0 ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(partner['2']) or 0.0 ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(partner['1']) or 0.0  ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(partner['0']) or 0.0 ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(partner['total']) or 0.0 ]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="264.0,111.0,111.0,111.0,111.0,111.0,111.0,125.0" style="Tableau3">
+      <tr>
+        <td>
+          <para style="P2">Total de cuenta</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(get_direction('6')) ]] </para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(get_for_period('4')) ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(get_for_period('3')) ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(get_for_period('2')) ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(get_for_period('1')) ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(get_for_period('0')) ]]</para>
+        </td>
+        <td>
+          <para style="P8">[[ comma_me(get_total('5')) ]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P9">
+      <font color="white"> </font>
+    </para>
+  </story>
+</document>
+

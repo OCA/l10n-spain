@@ -1,0 +1,555 @@
+<?xml version="1.0"?>
+<document filename="test.pdf">
+    <template pageSize="(1120.0,770.0)" title="Print invoices" author="Nicolas Bessi"
+        allowSplitting="20">
+        <pageTemplate id="first">
+            <frame id="first" x1="15.0" y1="15.0" width="1080" height="675"/>
+            <pageGraphics>
+                <!--logo-->
+                <!--<fill color="darkblue"/>-->
+                <!--<stroke color="darkblue"/>-->
+
+                <!--TITLE COMPANY-->
+                <!-- <drawString x="4.6cm" y="28.7cm">[[ company.partner_id.name ]]</drawString> -->
+
+                <setFont name="Helvetica-Bold" size="9"/>
+
+
+                <!--COL 1-->
+                <drawString x="1.0cm" y="25.50cm">[[ company.name ]]</drawString>
+                <drawString x="35.50cm" y="25.50cm">Listado de Facturas</drawString>
+
+                <!--COL 2-->
+                <setFont name="Helvetica" size="9"/>
+                <drawString x="1.0cm" y="0.90cm"> [[ time.strftime("%d-%m-%y %H:%M",time.localtime()) ]]</drawString>
+                <drawString x="35.50cm" y="0.90cm">Página <pageNumber/></drawString>
+
+                <!--<drawRightString x="19.8cm" y="28cm">[[ company.rml_header1 ]]</drawRightString>-->
+
+
+                <lineMode width="0.7"/>
+                <lines>1cm 24.9cm 38cm 24.9cm</lines>
+                <setFont name="Helvetica" size="8"/>
+            </pageGraphics>
+
+        </pageTemplate>
+    </template>
+    <stylesheet>
+        <blockTableStyle id="Standard_Outline">
+            <blockAlignment value="LEFT"/>
+            <blockValign value="TOP"/>
+        </blockTableStyle>
+        <blockTableStyle id="Table1">
+            <blockAlignment value="LEFT"/>
+            <blockValign value="TOP"/>
+            <blockBackground colorName="#e6e6e6" start="0,0" stop="0,0"/>
+            <blockBackground colorName="#e6e6e6" start="1,0" stop="1,0"/>
+            <blockBackground colorName="#e6e6e6" start="2,0" stop="2,0"/>
+            <blockBackground colorName="#e6e6e6" start="0,1" stop="0,1"/>
+            <blockBackground colorName="#e6e6e6" start="1,1" stop="1,1"/>
+            <blockBackground colorName="#e6e6e6" start="2,1" stop="2,1"/>
+        </blockTableStyle>
+        <blockTableStyle id="Table2">
+            <lineStyle kind="LINEBELOW" colorName="#000000" start="0,0" stop="-1,0"/>
+            <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,1" stop="-1,-1"/>
+
+            <blockValign value="TOP"/>
+            <blockAlignment value="RIGHT" start="2,1" stop="-1,-1"/>
+        </blockTableStyle>
+        <blockTableStyle id="Tableau3">
+            <blockAlignment value="LEFT"/>
+            <blockValign value="TOP"/>
+            <lineStyle kind="LINEBELOW" colorName="#e6e6e6"/>
+            <lineStyle kind="OUTLINE" colorName="#e6e6e6"/>
+
+
+            <blockBackground colorName="white" start="0,0" stop="-1,0"/>
+        </blockTableStyle>
+        <blockTableStyle id="Table5">
+            <blockAlignment value="LEFT"/>
+            <blockValign value="TOP"/>
+        </blockTableStyle>
+        <blockTableStyle id="Table4">
+            <blockAlignment value="LEFT"/>
+            <blockValign value="TOP"/>
+            <lineStyle kind="GRID" colorName="black"/>
+        </blockTableStyle>
+        <blockTableStyle id="Theader">
+            <blockAlignment value="LEFT"/>
+            <blockValign value="TOP"/>
+            <lineStyle kind="OUTLINE" colorName="#e6e6e6"/>
+            <blockBackground colorName="white" start="0,0" stop="-1,0"/>
+        </blockTableStyle>
+
+
+        <initialize>
+            <paraStyle name="all" alignment="justify"/>
+        </initialize>
+        <paraStyle name="P1" fontName="Helvetica" fontSize="20.0" leading="25" alignment="CENTER"
+            spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="P2" fontName="Helvetica" fontSize="8.0" leading="10" spaceBefore="0.0"
+            spaceAfter="6.0"/>
+        <paraStyle name="P3" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT"
+            spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="P4" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT"
+            spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="P5" fontName="Helvetica" fontSize="10.0" leading="13" alignment="RIGHT"
+            spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="P6" fontName="Helvetica" alignment="CENTER" spaceBefore="0.0"
+            spaceAfter="6.0"/>
+        <paraStyle name="P7" fontName="Helvetica" fontSize="11.0" leading="14" alignment="RIGHT"
+            spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="P8" fontName="Helvetica" fontSize="11.0" leading="14" alignment="RIGHT"
+            spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="P9" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT"
+            spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="P9b" fontName="Helvetica-Bold" fontSize="8.0" leading="10"
+            alignment="RIGHT" spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="P10" fontName="Helvetica" alignment="CENTER"/>
+        <paraStyle name="P11" fontName="Helvetica" fontSize="11.0" leading="14"/>
+        <paraStyle name="P12" fontName="Helvetica" fontSize="14.0" leading="17"/>
+        <paraStyle name="P13" fontName="Helvetica-Bold" fontSize="10.0" leading="8"
+            alignment="CENTER" spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="P14" fontName="Helvetica" fontSize="8.0" leading="10" spaceBefore="0.0"
+            spaceAfter="6.0"/>
+        <paraStyle name="P15" fontName="Helvetica-Bold" spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="P16" rightIndent="17.0" leftIndent="-0.0" fontName="Times-Roman"
+            fontSize="8.0" leading="10" spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="P17" fontName="Helvetica" alignment="LEFT" fontSize="12.0" spaceAfter="0.0"/>
+        <paraStyle name="Standard" fontName="Helvetica-Bold" size="9"/>
+        <paraStyle name="Account" fontName="Helvetica"/>
+        <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="Table Contents" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+        <paraStyle name="Table Heading" fontName="Helvetica" alignment="CENTER" spaceBefore="0.0"
+            spaceAfter="6.0"/>
+        <paraStyle name="Caption" fontName="Helvetica" fontSize="10.0" leading="13"
+            spaceBefore="6.0" spaceAfter="6.0"/>
+        <paraStyle name="Index" fontName="Helvetica"/>
+    </stylesheet>
+    <story>
+        <setFont name="Helvetica" size="9"/>
+        <para style="Standard">
+            <font color="white"> </font>
+        </para>
+        <para style="Standard">
+            <font color="white"> </font>
+        </para>
+        <para style="Standard">Facturas de Cliente</para>
+        <para style="Standard">
+            <font color="white"> </font>
+        </para>
+        <section>
+            <section> [[ repeatIn(out_invoices, 'obj') ]] <para> Divisa : [[ obj[0] ]] </para>
+                <para style="Standard">
+                    <font color="white"> </font>
+                </para>
+                <blockTable colWidths="50,80,80,250,250,60,130,130" repeatRows="1" style="Tableau3">
+                    <tr>
+                        <td>
+                            <para style="Standard" size="5"> Número </para>
+                        </td>
+                        <td>
+                            <para style="Standard" size="5">Fecha de Factura</para>
+                        </td>
+                        <td>
+                            <para style="Standard" size="5">Fecha de Vencimiento</para>
+                        </td>
+
+                        <td>
+                            <para style="Standard" size="5">Empresa</para>
+                        </td>
+
+
+                        <td>
+                            <para style="Standard" size="5">Descripción Factura</para>
+                        </td>
+                        <td>
+                            <para style="Standard" size="5">Estado</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT" style="Standard" size="5">Total sin impuestos</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT" style="Standard" size="5">Total</para>
+                        </td>
+
+
+                    </tr>
+                    <tr>[[ repeatIn(obj[1], 'inv') ]] <td>
+                            <para>[[inv.number]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.date_invoice]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.date_due]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.partner_id.name]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.name]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.state]]</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT">[[comma_me(inv.amount_untaxed)]]</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT">[[comma_me(inv.amount_total)]]</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT" style="Standard">Total</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT">[[comma_me(obj[2])]]</para>
+                        </td>
+                    </tr>
+                </blockTable>
+                <para style="Standard">
+                    <font color="white"> </font>
+                </para>
+            </section>
+        </section>
+
+
+
+
+
+        <para style="Standard">Abonos de Cliente</para>
+        <para style="Standard">
+            <font color="white"> </font>
+        </para>
+        <section>
+            <section> [[ repeatIn(out_refunds, 'obj') ]] <para> Divisa : [[ obj[0] ]] </para>
+                <para style="Standard">
+                    <font color="white"> </font>
+                </para>
+                <blockTable colWidths="50,80,80,250,250,60,130,130" repeatRows="1" style="Tableau3">
+                    <tr>
+                        <td>
+                            <para style="Standard" size="5"> Número </para>
+                        </td>
+                        <td>
+                            <para style="Standard" size="5">Fecha de Factura</para>
+                        </td>
+                        <td>
+                            <para style="Standard" size="5">Fecha de Vencimiento</para>
+                        </td>
+
+                        <td>
+                            <para style="Standard" size="5">Empresa</para>
+                        </td>
+
+
+                        <td>
+                            <para style="Standard" size="5">Descripción Factura</para>
+                        </td>
+                        <td>
+                            <para style="Standard" size="5">Estado</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT" style="Standard" size="5">Importe sin impuestos</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT" style="Standard" size="5">Total</para>
+                        </td>
+
+
+                    </tr>
+                    <tr>[[ repeatIn(obj[1], 'inv') ]] <td>
+                            <para>[[inv.number]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.date_invoice]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.date_due]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.partner_id.name]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.name]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.state]]</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT">[[comma_me(inv.amount_untaxed)]]</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT">[[comma_me(inv.amount_total)]]</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT" style="Standard">Total</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT">[[comma_me(obj[2])]]</para>
+                        </td>
+                    </tr>
+
+                </blockTable>
+                <para style="Standard">
+                    <font color="white"> </font>
+                </para>
+            </section>
+        </section>
+
+
+
+
+
+
+
+
+        <para style="Standard">Facturas de Proveedor</para>
+        <para style="Standard">
+            <font color="white"> </font>
+        </para>
+        <section>
+            <section> [[ repeatIn(in_invoices, 'obj') ]] <para> Divisa : [[ obj[0] ]] </para>
+                <para style="Standard">
+                    <font color="white"> </font>
+                </para>
+                <blockTable colWidths="50,80,80,250,250,60,130,130" repeatRows="1" style="Tableau3">
+                    <tr>
+                        <td>
+                            <para style="Standard" size="5"> Número </para>
+                        </td>
+                        <td>
+                            <para style="Standard" size="5">Fecha de Factura</para>
+                        </td>
+                        <td>
+                            <para style="Standard" size="5">Fecha de Vencimiento</para>
+                        </td>
+
+                        <td>
+                            <para style="Standard" size="5">Empresa</para>
+                        </td>
+
+
+                        <td>
+                            <para style="Standard" size="5">Descripción Factura</para>
+                        </td>
+                        <td>
+                            <para style="Standard" size="5">Estado</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT" style="Standard" size="5">Importe sin impuestos</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT" style="Standard" size="5">Total</para>
+                        </td>
+
+
+                    </tr>
+                    <tr>[[ repeatIn(obj[1], 'inv') ]] <td>
+                            <para>[[inv.number]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.date_invoice]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.date_due]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.partner_id.name]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.name]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.state]]</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT">[[comma_me(inv.amount_untaxed)]]</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT">[[comma_me(inv.amount_total)]]</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT" style="Standard">Total</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT">[[comma_me(obj[2])]]</para>
+                        </td>
+                    </tr>
+
+                </blockTable>
+                <para style="Standard">
+                    <font color="white"> </font>
+                </para>
+            </section>
+        </section>
+
+
+
+        <para style="Standard">Abonos de Proveedor</para>
+        <para style="Standard">
+            <font color="white"> </font>
+        </para>
+        <section>
+            <section> [[ repeatIn(in_refunds, 'obj') ]] <para> Divisa : [[ obj[0] ]] </para>
+                <para style="Standard">
+                    <font color="white"> </font>
+                </para>
+                <blockTable colWidths="50,80,80,250,250,60,130,130" repeatRows="1" style="Tableau3">
+                    <tr>
+                        <td>
+                            <para style="Standard" size="5"> Número </para>
+                        </td>
+                        <td>
+                            <para style="Standard" size="5">Fecha de Factura</para>
+                        </td>
+                        <td>
+                            <para style="Standard" size="5">Fecha de Vencimiento</para>
+                        </td>
+
+                        <td>
+                            <para style="Standard" size="5">Empresa</para>
+                        </td>
+
+
+                        <td>
+                            <para style="Standard" size="5">Descripción Factura</para>
+                        </td>
+                        <td>
+                            <para style="Standard" size="5">Estado</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT" style="Standard" size="5">Importe sin impuestos</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT" style="Standard" size="5">Total</para>
+                        </td>
+
+
+                    </tr>
+                    <tr>[[ repeatIn(obj[1], 'inv') ]] <td>
+                            <para>[[inv.number]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.date_invoice]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.date_due]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.partner_id.name]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.name]]</para>
+                        </td>
+                        <td>
+                            <para>[[inv.state]]</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT">[[comma_me(inv.amount_untaxed)]]</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT">[[comma_me(inv.amount_total)]]</para>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para/>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT" style="Standard">Total</para>
+                        </td>
+                        <td>
+                            <para alignment="RIGHT">[[comma_me(obj[2])]]</para>
+                        </td>
+                    </tr>
+
+                </blockTable>
+                <para style="Standard">
+                    <font color="white"> </font>
+                </para>
+            </section>
+        </section>
+
+    </story>
+</document>
