@@ -77,6 +77,12 @@ class l10n_es_aeat_report_export_to_boe(osv.osv_memory):
             (u'Û', 'U'),(u'û', 'U')]
 
         #
+        # String replacement
+        #
+        for a, b in replacements:
+            text = text.replace(a, b)
+
+        #
         # String uppercase
         #
         text = text.upper()
