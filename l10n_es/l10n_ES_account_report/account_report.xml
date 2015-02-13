@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<terp>
+	<data>
+		<wizard
+			string="Account balance"
+			model="account.report.bs"
+			name="account.account.balancesheet.report"
+			keyword="client_print_multi"
+			id="wizard_balance_report"/>
+
+	</data>
+</terp>
