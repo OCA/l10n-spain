@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <!--
-        <record id="view_partner_address_form1_add_dir3" model="ir.ui.view">
-            <field name="name">res.partner.address.form1.add_dir3</field>
-            <field name="model">res.partner.address</field>
-            <field name="inherit_id" ref="base.view_partner_address_form1"/>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <field name="type" position="after">
-                    <field name="dir3"/>
-                </field>
-            </field>
-        </record>
-
-        <record id="view_partner_address_form2_add_dir3" model="ir.ui.view">
-            <field name="name">res.partner.address.form2.add_dir3</field>
-            <field name="model">res.partner.address</field>
-            <field name="inherit_id" ref="base.view_partner_address_form2"/>
-            <field name="type">form</field>
-            <field name="arch" type="xml">
-                <field name="type" position="after">
-                    <field name="dir3"/>
-                </field>
-            </field>
-        </record>
-        -->
+      
         <record id="view_partner_form1" model="ir.ui.view">
             <field name="name">res.partner.form</field>
             <field name="model">res.partner</field>
