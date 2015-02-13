@@ -537,13 +537,8 @@ class CreateFacturae(orm.TransientModel):
                 texto += '<TaxTypeCode>01</TaxTypeCode>'
                 texto += '<TaxRate>0.00</TaxRate>'
                 texto += '<TaxableBase>'
-<<<<<<< HEAD
-                # a cero según nota de Omar
-                texto += '<TotalAmount>0.00</TotalAmount>'
-=======
                 texto += '<TotalAmount>' + \
                          str('%.2f' % line.price_subtotal) + '</TotalAmount>'
->>>>>>> parent of 6eb27ca... errores en pull
                 texto += '</TaxableBase>'
                 texto += '</Tax>'
                 texto += '</TaxesWithheld>'
