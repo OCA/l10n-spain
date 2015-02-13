@@ -90,10 +90,8 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                         raise orm.except_orm(
                             _('La siguiente empresa no tiene asignado nif:'),
                             invoice.partner_id.name)
-                nif = invoice.partner_id.vat and \
-                    re.match(r"([A-Z]{0,2})(.*)",
-                             invoice.partner_id.vat).groups()[1]
-                country_code = invoice.partner_id.country_id.code
+                country_code, nif = (re.match(r"([A-Z]{0,2})(.*)",
+                                              invoice.partner_id.vat).groups())
                 values = {
                     'mod340_id': mod340.id,
                     'partner_id': invoice.partner_id.id,
