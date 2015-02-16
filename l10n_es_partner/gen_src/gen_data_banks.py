@@ -21,7 +21,11 @@
 #
 ##############################################################################
 from xlrd import open_workbook
+import logging
 import codecs
+
+
+_logger = logging.getLogger(__name__)
 
 
 def gen_bank_data_xml(src_path, dest_path):
@@ -29,7 +33,7 @@ def gen_bank_data_xml(src_path, dest_path):
     try:
         book = open_workbook(src_path)
     except IOError:
-        print "Archivo REGBANESP_CONESTAB_A.XLS no encontrado."
+        _logger.info("Archivo REGBANESP_CONESTAB_A.XLS no encontrado.")
         return
     sheet = book.sheet_by_index(0)
     # Prepara el archivo resultante
@@ -78,7 +82,7 @@ def gen_bank_data_xml(src_path, dest_path):
     output.write("    </data>\n")
     output.write("</openerp>\n")
     output.close()
-    print "data_banks.xml generado correctamente."
+    _logger.info("data_banks.xml generado correctamente.")
 
 if __name__ == "__main__":
     gen_bank_data_xml('REGBANESP_CONESTAB_A.XLS', "../wizard/data_banks.xml")

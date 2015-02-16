@@ -121,8 +121,8 @@ class AcquirerRedsys(models.Model):
             'Ds_Merchant_MerchantName': acquirer.redsys_merchant_name and
                 acquirer.redsys_merchant_name[:25],
             'Ds_Merchant_MerchantURL':
-                (acquirer.redsys_merchant_url
-                 and acquirer.redsys_merchant_url[:250] or ''),
+                (acquirer.redsys_merchant_url and
+                 acquirer.redsys_merchant_url[:250] or ''),
             'Ds_Merchant_MerchantData': acquirer.redsys_merchant_data or '',
             'Ds_Merchant_ProductDescription': (
                 acquirer.redsys_merchant_description and
@@ -192,8 +192,8 @@ class TxRedsys(models.Model):
     def _redsys_form_get_invalid_parameters(self, tx, data):
         invalid_parameters = []
 
-        if (tx.acquirer_reference
-                and data.get('Ds_Order')) != tx.acquirer_reference:
+        if (tx.acquirer_reference and
+                data.get('Ds_Order')) != tx.acquirer_reference:
             invalid_parameters.append(
                 ('Transaction Id', data.get('Ds_Order'),
                  tx.acquirer_reference))
