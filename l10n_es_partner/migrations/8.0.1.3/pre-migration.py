@@ -19,8 +19,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-__name__ = ("Cambia identificadores de los bancos por nueva nomenclatura")
 from psycopg2 import IntegrityError
+__name__ = ("Cambia identificadores de los bancos por nueva nomenclatura")
 
 
 def clear_identifiers(cr):
