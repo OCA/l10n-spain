@@ -64,11 +64,10 @@
 -
     !python {model: l10n.es.partner.import.wizard}: |
         wiz_id = self.create(cr, uid, {})
-        self.execute(cr, uid, [wiz_id], context=None)
+        self.import_local(cr, uid, [wiz_id], context=None)
 
 -
     Probar que se han importado los bancos
 -
-    !assert {model: res.bank, id: res_bank_bbva}:
+    !assert {model: res.bank, id: res_bank_es_0182}:
         - name == 'BBVA'
-
