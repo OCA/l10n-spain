@@ -29,8 +29,8 @@
 
 {
     "name": "Adaptación de los clientes, proveedores y bancos para España",
-    "version": "1.2",
-    "author": "Spanish localization team",
+    "version": "8.0.1.3.0",
+    "author": "Spanish localization team,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Localisation/Europe",
     "license": "AGPL-3",
