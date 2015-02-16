@@ -23,24 +23,26 @@
 ##############################################################################
 
 {
-    "name" : "Factura-e File Creation",
-    "version" : "1.0",
-    "author" : "Alejandro Sanchez",
-    "category" : "Localisation/Accounting",
-    "description" : """This module creates Factura-e 3.1 files from invoices.
-3.1 -> 3.2 converter: http://sedeaplicaciones2.minetur.gob.es/FacturaECon/
-******* Module under development *******
-Successfully passes format and account validation tests from AEAT:
-http://sedeaplicaciones2.minetur.gob.es/FacturaE/index.jsp
+    "name": "Factura-e File Creation",
+    "version": "1.0",
+    "author": "Alejandro Sanchez",
+    "category": "Localisation/Accounting",
+    "description": """
+Este módulo permite crear desde el formulario de factura el archivo de factura
+electrónica necesario para presentar en el FACe (https://face.gob.es/es/).
+
+Se puede generar la factura sin firmar o firmada, para lo que será necesario
+establecer un certificado en formato .pfx con contraseña en la compañía.
 """,
-    "website" : "www.asr-oss.com",
-    "license" : "AGPL-3",
-    "depends" : ["base", "account"],
-    "update_xml" : [
+    "website": "www.asr-oss.com",
+    "license": "AGPL-3",
+    "depends": ["base", "account"],
+    "data": [],
+    "update_xml": [
         "country_view.xml",
         "data_res_country.xml",
         "partner_view.xml",
         "res_company.xml",
         "wizard/create_facturae_view.xml"],
-    "installable" : True,
+    "installable": True,
 }
