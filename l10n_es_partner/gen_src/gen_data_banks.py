@@ -23,66 +23,62 @@
 from xlrd import open_workbook
 import codecs
 
-if __name__ == "__main__":
+
+def gen_bank_data_xml(src_path, dest_path):
     # Abre el archivo que contine la información de los bancos
-    book = False
     try:
-        book = open_workbook('REGBANESP_CONESTAB_A.XLS')
+        book = open_workbook(src_path)
     except IOError:
         print "Archivo REGBANESP_CONESTAB_A.XLS no encontrado."
+        return
+    sheet = book.sheet_by_index(0)
+    # Prepara el archivo resultante
+    output = codecs.open(dest_path, mode='w', encoding='utf-8')
+    output.write("<?xml version='1.0' encoding='UTF-8'?>\n")
+    output.write("<openerp>\n")
+    output.write("    <data>\n")
+    # Genera los nuevos registros de los bancos
+    for row_index in range(1, sheet.nrows):
+        row = sheet.row_values(row_index)
+        if not row[29]:
+            continue
+        name = "res_bank_es_%s" % row[1]
+        street = row[7] + '. ' + row[8] + ', ' + row[9] + ' ' + row[10]
+        output.write('        <record id="%s" model="res.bank">\n' %
+                     name)
+        output.write('            <field name="name">%s</field>\n' % (
+                     row[40].replace(u'\x26', 'Y')))
+        output.write('            <field name="lname">%s</field>\n' % (
+                     row[4].replace(u'\x26', 'Y')))
+        output.write('            <field name="code">%s</field>\n' % (
+                     row[1]))
+        output.write('            <field name="bic">%s</field>\n' % (
+                     row[29]))
+        output.write('            <field name="vat">%s</field>\n' % (
+                     row[6]))
+        output.write('            <field name="street">%s</field>\n' %
+                     (street))
+        output.write('            <field name="city">%s</field>\n' % (
+                     row[12]))
+        output.write('            <field name="zip">%s</field>\n' % (
+                     row[11]))
+        output.write('            <field name="phone">'
+                     '%s</field>\n' % row[16])
+        output.write('            <field name="fax">%s</field>\n' % (
+                     row[18]))
+        output.write('            <field name="website">%s</field>\n' %
+                     (row[19]))
+        output.write('            <field eval="1" name="active"/>\n')
+        output.write('            <field name="state"'
+                     ' ref="l10n_es_toponyms.ES%s"/>\n' % (
+                         row[11] and row[11][:-3].zfill(2) or False))
+        output.write('            <field name="country"'
+                     ' ref="base.es"/>\n')
+        output.write('        </record>\n')
+    output.write("    </data>\n")
+    output.write("</openerp>\n")
+    output.close()
+    print "data_banks.xml generado correctamente."
 
-    if book:
-        sheet = book.sheet_by_index(0)
-
-        # Prepara el archivo resultante
-        output = codecs.open("../wizard/data_banks.xml", mode='w',
-                             encoding='utf-8')
-        output.write("<?xml version='1.0' encoding='UTF-8'?>\n")
-        output.write("<openerp>\n")
-        output.write("    <data noupdate='1'>\n")
-
-        # Genera los nuevos registros de los bancos
-        for row_index in range(1, sheet.nrows):
-            row = sheet.row_values(row_index)
-            if row[29]:
-                name = "res_bank_" + row[40].lower().replace(
-                    ' ', '').replace(',', '').replace('.', '').replace(
-                    '-', '').replace(u'\xf1', 'n').replace(u'\x26', 'y')\
-                    .replace(u'\x27', '')
-                street = row[7] + '. ' + row[8] + ', ' + row[9] + ' ' + row[10]
-                output.write('        <record id="%s" model="res.bank">\n' %
-                             name)
-                output.write('            <field name="name">%s</field>\n' % (
-                             row[40].replace(u'\x26', 'Y')))
-                output.write('            <field name="lname">%s</field>\n' % (
-                             row[4].replace(u'\x26', 'Y')))
-                output.write('            <field name="code">%s</field>\n' % (
-                             row[1]))
-                output.write('            <field name="bic">%s</field>\n' % (
-                             row[29]))
-                output.write('            <field name="vat">%s</field>\n' % (
-                             row[6]))
-                output.write('            <field name="street">%s</field>\n' %
-                             (street))
-                output.write('            <field name="city">%s</field>\n' % (
-                             row[12]))
-                output.write('            <field name="zip">%s</field>\n' % (
-                             row[11]))
-                output.write('            <field name="phone">'
-                             '%s</field>\n' % row[16])
-                output.write('            <field name="fax">%s</field>\n' % (
-                             row[18]))
-                output.write('            <field name="website">%s</field>\n' %
-                             (row[19]))
-                output.write('            <field eval="1" name="active"/>\n')
-                output.write('            <field name="state"'
-                             ' ref="l10n_es_toponyms.ES%s"/>\n' % (
-                                 row[11] and row[11][:-3].zfill(2) or False))
-                output.write('            <field name="country"'
-                             ' ref="base.es"/>\n')
-                output.write('        </record>\n')
-        output.write("    </data>\n")
-        output.write("</openerp>\n")
-
-        output.close()
-        print "data_banks.xml generado correctamente."
+if __name__ == "__main__":
+    gen_bank_data_xml('REGBANESP_CONESTAB_A.XLS', "../wizard/data_banks.xml")

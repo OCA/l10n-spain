@@ -29,7 +29,7 @@
 
 {
     "name": "Adaptación de los clientes, proveedores y bancos para España",
-    "version": "1.2",
+    "version": "1.3",
     "author": "Spanish localization team",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Localisation/Europe",

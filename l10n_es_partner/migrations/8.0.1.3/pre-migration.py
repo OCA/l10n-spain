@@ -19,22 +19,33 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-__name__ = ("Limpia identificadores exernos de puntos, comas y guiones")
+__name__ = ("Cambia identificadores de los bancos por nueva nomenclatura")
+from psycopg2 import IntegrityError
 
 
 def clear_identifiers(cr):
-    sql = """UPDATE ir_model_data
-             SET name = replace(replace(replace(name,'.',''),',',''),'-','')
-             WHERE (model='res.bank') AND (
-                    (name ilike '%.%') OR
-                    (name ilike '%,%') OR
-                    (name ilike '%-%')) """
+    sql = ("SELECT id, res_id FROM ir_model_data "
+           "WHERE model='res.bank' AND module='l10n_es_partner'")
     cr.execute(sql)
-    sql = """UPDATE ir_model_data
-             SET name = 'res_bank_bnpparibassa'
-             WHERE (model='res.bank') AND (name='res_bank_bnpparibasse')
-             """
-    cr.execute(sql)
+    for row in cr.fetchall():
+        sql = ("UPDATE ir_model_data "
+               "SET name='res_bank_es_' || (SELECT code "
+               "                            FROM res_bank "
+               "                            WHERE id=%s) "
+               "WHERE id=%s" % (row[1], row[0]))
+        try:
+            cr.execute(sql)
+            cr.commit()
+        except IntegrityError:
+            # XML-ID duplicado - Intentar eliminar
+            cr.rollback()
+            try:
+                cr.execute("DELETE FROM res_bank WHERE id=%s" % row[1])
+                cr.execute("DELETE FROM ir_model_data WHERE id=%s" % row[0])
+                cr.commit()
+            except IntegrityError:
+                # No se puede eliminar por dependencias - Ignorar error
+                cr.rollback()
 
 
 def migrate(cr, version):
