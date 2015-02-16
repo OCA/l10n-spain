@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data noupdate='1'>
-	<record id="base.ad" model="res.country">
+    <data noupdate='0'>
+        <record id="base.ad" model="res.country">
             <field eval="&quot;AND&quot;" name="code_3166"/>
         </record>
         <record id="base.ae" model="res.country">
@@ -28,7 +28,7 @@
         <record id="base.ao" model="res.country">
             <field eval="&quot;AGO&quot;" name="code_3166"/>
         </record>
-	<record id="base.aq" model="res.country">
+        <record id="base.aq" model="res.country">
             <field eval="&quot;ATA&quot;" name="code_3166"/>
         </record>
         <record id="base.ar" model="res.country">

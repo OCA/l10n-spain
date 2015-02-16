@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_partner_address_form1" model="ir.ui.view">
+            <field name="name">res.partner.address.form1</field>
+            <field name="model">res.partner.address</field>
+            <field name="inherit_id" ref="base.view_partner_address_form1"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//group[3]" position="after">
+                    <group colspan="2" col="2">
+                        <separator string="Factura-e"  colspan="4" col="4"/>
+                        <field name="facturae"/>
+                        <field name="organo_gestor" attrs="{'invisible': [('facturae', '=', False)], 'required': [('facturae', '=', True)]}"/>
+                        <field name="unidad_tramitadora" attrs="{'invisible': [('facturae', '=', False)], 'required': [('facturae', '=', True)]}"/>
+                        <field name="oficina_contable" attrs="{'invisible': [('facturae', '=', False)], 'required': [('facturae', '=', True)]}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_partner_address_form2" model="ir.ui.view">
+            <field name="name">res.partner.address.form2</field>
+            <field name="model">res.partner.address</field>
+            <field name="inherit_id" ref="base.view_partner_address_form2"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//group[3]" position="after">
+                    <group colspan="2" col="2">
+                        <separator string="Factura-e"  colspan="4" col="4"/>
+                        <field name="facturae"/>
+                        <field name="organo_gestor" attrs="{'invisible': [('facturae', '=', False)], 'required': [('facturae', '=', True)]}"/>
+                        <field name="unidad_tramitadora" attrs="{'invisible': [('facturae', '=', False)], 'required': [('facturae', '=', True)]}"/>
+                        <field name="oficina_contable" attrs="{'invisible': [('facturae', '=', False)], 'required': [('facturae', '=', True)]}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
