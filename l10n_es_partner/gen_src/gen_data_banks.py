@@ -20,7 +20,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from xlrd import open_workbook
 import logging
 import codecs
 
@@ -29,6 +28,7 @@ _logger = logging.getLogger(__name__)
 
 
 def gen_bank_data_xml(src_path, dest_path):
+    from xlrd import open_workbook
     # Abre el archivo que contine la información de los bancos
     try:
         book = open_workbook(src_path)
