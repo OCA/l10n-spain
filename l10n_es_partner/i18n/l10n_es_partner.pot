@@ -52,13 +52,26 @@ msgstr ""
 #. module: l10n_es_partner
 #: model:ir.actions.todo,note:l10n_es_partner.config_wizard_l10n_es_partner
 #: view:l10n.es.partner.import.wizard:0
-msgid "This wizard will import spanish bank data."
+msgid "This wizard will import spanish bank data. You can choose to import it from:"
 msgstr ""
 
 #. module: l10n_es_partner
+#: model:ir.actions.todo,note:l10n_es_partner.config_wizard_l10n_es_partner
 #: view:l10n.es.partner.import.wizard:0
-msgid "title"
+msgid "Internet (from Bank of Spain). Maybe this source will be not available from certain moment in time. You will need xlrd Python library."
 msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.actions.todo,note:l10n_es_partner.config_wizard_l10n_es_partner
+#: view:l10n.es.partner.import.wizard:0
+msgid "Local file mirror. This copy was updated last time on 16/02/2015."
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.actions.todo,note:l10n_es_partner.config_wizard_l10n_es_partner
+#: view:l10n.es.partner.import.wizard:0
+msgid "or"
+msgstr "o"
 
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_partner_bank
@@ -99,7 +112,12 @@ msgstr ""
 
 #. module: l10n_es_partner
 #: view:l10n.es.partner.import.wizard:0
-msgid "Import"
+msgid "Import from Internet"
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:0
+msgid "Import from local file"
 msgstr ""
 
 #. module: l10n_es_partner
