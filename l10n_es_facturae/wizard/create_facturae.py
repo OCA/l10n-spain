@@ -373,7 +373,7 @@ class create_facturae(osv.osv_memory):
             texto += '<TaxTypeCode>01</TaxTypeCode>'
             texto += '<TaxRate>0.00</TaxRate>'
             texto += '<TaxableBase>'
-            texto += '<TotalAmount>' + str('%.2f' % taxes_withhel) + '</TotalAmount>'
+            texto += '<TotalAmount>0.00</TotalAmount>'
             texto += '</TaxableBase>'
             texto += '<TaxAmount>'
             texto += '<TotalAmount>0.00</TotalAmount>'
@@ -432,7 +432,7 @@ class create_facturae(osv.osv_memory):
                 texto += '<TaxTypeCode>01</TaxTypeCode>'
                 texto += '<TaxRate>0.00</TaxRate>'
                 texto += '<TaxableBase>'
-                texto += '<TotalAmount>' + str('%.2f' % line.price_subtotal) + '</TotalAmount>'
+                texto += '<TotalAmount>0.00</TotalAmount>'
                 texto += '</TaxableBase>'
                 texto += '</Tax>'
                 texto += '</TaxesWithheld>'
@@ -481,14 +481,14 @@ class create_facturae(osv.osv_memory):
 
         def _end_document():
             return '</fe:Facturae>'
-    
+
         def _run_java_sign(command):
             #call = [['java','-jar','temp.jar']]
             res = subprocess.call(command,stdout=None,stderr=None)
             if res > 0 :
                 print "Warning - result was %d" % res
             return res
-    
+
         def _sign_document(xml_facturae,file_name,invoice):
             path = os.path.realpath(os.path.dirname(__file__))
             path += '/../java/'
@@ -496,8 +496,8 @@ class create_facturae(osv.osv_memory):
             file_name_unsigned = path + 'unsigned_' + file_name
             file_name_signed = path + file_name
             file_unsigned = open(file_name_unsigned,"w+")
-            file_unsigned.write(xml_facturae)
-            file_unsigned.close()      
+            file_unsigned.write(xml_facturae.encode('ascii', 'replace'))
+            file_unsigned.close()
             file_signed = open(file_name_signed,"w+")
 
             # Extraemos los datos del certificado para la firma electrónica.
@@ -515,7 +515,7 @@ class create_facturae(osv.osv_memory):
             call += [cert_path,cert_passwd]
             res = _run_java_sign(call)
 
-            # Cerramos y eliminamos ficheros temporales.           
+            # Cerramos y eliminamos ficheros temporales.
             file_content = file_signed.read()
             file_signed.close()
             os.remove(file_name_unsigned)
@@ -531,41 +531,37 @@ class create_facturae(osv.osv_memory):
         if not invoice_ids or len(invoice_ids) > 1:
             raise osv.except_osv(_('Error !'), _('Only can select one invoice to export'))
 
-        try:
-            invoice = self.pool.get('account.invoice').browse(cr, uid, invoice_ids[0], context)
-            contador = 1
-            lines_issued = []
-            xml_facturae += _format_xml()
-            xml_facturae += _header_facturae(cr, context)
-            xml_facturae += _parties_facturae(cr, context)
-            xml_facturae += _invoices_facturae()
-            xml_facturae += _end_document()
-            xml_facturae = conv_ascii(xml_facturae)
-            # I.AFG
-            file_name = (_('facturae') + '_' + invoice.number + '.xml').replace('/','-')
-            signed_invoice = _sign_document(xml_facturae,file_name,invoice)
-            #F.AFG
-        except Log:
-            obj.write({'note': log(),
-                       'state': 'second'})
-            return True
+        invoice = self.pool.get('account.invoice').browse(cr, uid, invoice_ids[0], context)
+        contador = 1
+        lines_issued = []
+        xml_facturae += _format_xml()
+        xml_facturae += _header_facturae(cr, context)
+        xml_facturae += _parties_facturae(cr, context)
+        xml_facturae += _invoices_facturae()
+        xml_facturae += _end_document()
+        xml_facturae = conv_ascii(xml_facturae)
+        if invoice.company_id.facturae_cert:
+            file_name = (_('facturae') + '_' + invoice.number + '.xsig').replace('/','-')
+            invoice_file = _sign_document(xml_facturae,file_name,invoice)
         else:
-            file = base64.encodestring(signed_invoice)
-            fname = (_('facturae') + '_' + invoice.number + '.xml').replace('/','-')
-            self.pool.get('ir.attachment').create(cr, uid, {
-                'name': '%s %s' % (_('FacturaE'), invoice.number),
-                'datas': file,
-                'datas_fname': fname,
-                'res_model': 'account.invoice',
-                'res_id': invoice.id,
-                }, context=context)
-            log.add(_("Export successful\n\nSummary:\nInvoice number: %s\n") % (invoice.number))
+            invoice_file = xml_facturae
+            file_name = (_('facturae') + '_' + invoice.number + '.xml').replace('/','-')
 
-            obj.write({'note': log(),
-                       'facturae': file,
-                       'facturae_fname': fname,
-                       'state': 'second'})
-            return True
+        file = base64.encodestring(invoice_file)
+        self.pool.get('ir.attachment').create(cr, uid, {
+            'name': file_name,
+            'datas': file,
+            'datas_fname': file_name,
+            'res_model': 'account.invoice',
+            'res_id': invoice.id,
+            }, context=context)
+        log.add(_("Export successful\n\nSummary:\nInvoice number: %s\n") % (invoice.number))
+
+        obj.write({'note': log(),
+                   'facturae': file,
+                   'facturae_fname': file_name,
+                   'state': 'second'})
+        return True
 
 
 create_facturae()

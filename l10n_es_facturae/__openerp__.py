@@ -37,12 +37,9 @@ http://sedeaplicaciones2.minetur.gob.es/FacturaE/index.jsp
     "license" : "AGPL-3",
     "depends" : ["base", "account"],
     "update_xml" : [
-        "account_invoice_view.xml",
-        "account_wizard.xml",
         "country_view.xml",
         "data_res_country.xml",
         "partner_view.xml",
-        "res_currency.xml",
         "res_company.xml",
         "wizard/create_facturae_view.xml"],
     "installable" : True,
