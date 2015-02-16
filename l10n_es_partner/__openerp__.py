@@ -3,13 +3,12 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2008 Spanish Localization Team
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
@@ -24,7 +23,7 @@
 
 {
     "name" : "Adaptación de partner para Estado Español",
-    "version" : "1.0",
+    "version" : "1.3",
     "author" : "Spanish Localization Team",
     "website" : "https://launchpad.net/openerp-spain",
     "category" : "Localisation/Europe",
@@ -41,7 +40,7 @@ Funcionamiento de la validación de la cuenta bancaria:
         Presenta el resultado con el formato "1234 5678 06 1234567890"
     * Si el número de dígitos es diferente de 18 0 20 deja el valor inalterado
 NOTA
-Se ha eliminado la validación de CIF/NIF españoles, pues el módulo base_vat de OpenERP 5.0 añade un campo CIF/NIF en la pestaña de contabilidad de las empresas y la validación automática de los CIF de 27 paises europeos. Los CIFs deben introducirse añadiendo al principio los 2 caracteres que identifican cada país en mayúsculas (ES para España), por ejemplo ESB64425879
+Se ha eliminado la validación de NIF españoles, pues el módulo base_vat de OpenERP 5.0 añade un campo CIF/NIF en la pestaña de contabilidad de las empresas y la validación automática de los CIF de 27 paises europeos. Los CIFs deben introducirse añadiendo al principio los 2 caracteres que identifican cada país en mayúsculas (ES para España), por ejemplo ESB64425879
 
 NOTA: Éste módulo añade un asistente en Empresas/Configuración/Bancos para la importación de todos los bancos y cajas de España. Antes de ejecutar éste asistente deberá tener importadas las provincias disponibles en el módulo l10n_es_toponyms.
 """,
