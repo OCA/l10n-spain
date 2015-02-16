@@ -255,7 +255,7 @@ class create_facturae(osv.osv_memory):
 
 
             administrative = False
-            if invoice_partner_address_obj.dir3:
+            if invoice_partner_address_obj.facturae:
                 texto += "<AdministrativeCentres>"
                 administrative = True
 
