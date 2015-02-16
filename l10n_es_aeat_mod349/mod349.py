@@ -186,8 +186,8 @@ class Mod349(orm.Model):
                      country=partner_country, context=context),
                  'operation_key': operation_key,
                  'country_id': partner_country and partner_country.id or False,
-                 'total_operation_amount': partner_rec.total_operation_amount
-                    - sum([x.cc_amount_untaxed for x in record[line]]),
+                 'total_operation_amount': partner_rec.total_operation_amount -
+                    sum([x.cc_amount_untaxed for x in record[line]]),
                  'total_origin_amount': partner_rec.total_operation_amount,
                  'period_selection': partner_rec.report_id.period_selection,
                  'month_selection': partner_rec.report_id.month_selection,
