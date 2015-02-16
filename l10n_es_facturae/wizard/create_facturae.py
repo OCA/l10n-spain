@@ -262,9 +262,16 @@ class create_facturae(osv.osv_memory):
             def create_administrative_centres(address, code):
                 texto = ""
                 if administrative:
-                     texto += "<AdministrativeCentre>"
-                     texto += "<CentreCode>" + address.dir3 + "</CentreCode>"
-                     texto += "<RoleTypeCode>" + code + "</RoleTypeCode>"
+                    texto += "<AdministrativeCentre>"
+                    if code == '01':
+                        texto += "<CentreCode>" + address.oficina_contable + "</CentreCode>"
+                    elif code == '02':
+                        texto += "<CentreCode>" + address.organo_gestor + "</CentreCode>"
+                    elif code == '03':
+                        texto += "<CentreCode>" + address.unidad_tramitadora + "</CentreCode>"
+                    else:
+                        texto += "<CentreCode></CentreCode>"
+                    texto += "<RoleTypeCode>" + code + "</RoleTypeCode>"
 
                 texto += '<AddressInSpain>'
                 if address.street:
