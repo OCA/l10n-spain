@@ -8,7 +8,9 @@ Funcionalidad:
  * Convierte el NIF a mayúsculas.
  * Añade los campos nombre largo, NIF y web a los bancos.
  * Añade los datos de los bancos españoles extraídos del registro oficial del
-   Banco de España (http://goo.gl/mtx6ic). Últ. actualización: 06/02/2015.
+   Banco de España (http://goo.gl/mtx6ic). El asistente realiza la descarga
+   automática de Internet, pero si por cualquier razón hay algún problema,
+   existe una copia local cuya última actualización fue el 16/02/2015.
  * Permite validar las cuentas bancarias españolas. Para ello, se añade un
    campo de país a las cuentas bancarias de las empresas y se realizan
    validaciones cuando el país es España.
