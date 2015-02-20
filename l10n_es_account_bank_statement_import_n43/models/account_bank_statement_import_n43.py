@@ -1,48 +1,46 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
-#
-#    Copyright (c) All rights reserved:
-#        2009      Zikzakmedia S.L. (http://zikzakmedia.com)
-#                       Jordi Esteve <jesteve@zikzakmedia.com>
-#        2010      Pexego Sistemas Informáticos
-#                       Borja López Soilán <borjals@pexego.es>
-#                       Alberto Luengo Cabanillas <alberto@pexego.es>
-#        2013-2014 Servicios Tecnológicos Avanzados (http://serviciosbaeza.com)
-#                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+# For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp.osv import orm
-from openerp.tools.translate import _
-from account_statement_base_import.parser import BankStatementImportParser
+from openerp import models, fields, api, exceptions, _
 from datetime import datetime
 
+account_concept_mapping = {
+    '01': '4300%00',
+    '02': '4100%00',
+    '03': '4100%00',
+    '04': '4300%00',
+    '05': '6800%00',
+    '06': '4010%00',
+    '07': '5700%00',
+    '08': '6800%00',
+    '09': '2510%00',
+    '10': '5700%00',
+    '11': '5700%00',
+    '12': '5700%00',
+    '13': '5730%00',
+    '14': '4300%00',
+    '15': '6400%00',
+    '16': '6690%00',
+    '17': '6690%00',
+    '98': '5720%00',
+    '99': '5720%00',
+}
 
-class c43_parser(BankStatementImportParser):
-    """Class for defining parser for AEB C43 file format."""
+
+class AccountBankStatementImport(models.TransientModel):
+    _inherit = 'account.bank.statement.import'
 
     def _process_record_11(self, line):
         """11 - Registro cabecera de cuenta (obligatorio)"""
         st_group = {
-            'entidad':line[2:6],
+            'entidad': line[2:6],
             'oficina': line[6:10],
             'cuenta': line[10:20],
             'fecha_ini': datetime.strptime(line[20:26], '%y%m%d'),
             'fecha_fin': datetime.strptime(line[26:32], '%y%m%d'),
             'divisa': line[47:50],
-            'modalidad': line[50:51], # 1,2 o 3
+            'modalidad': line[50:51],  # 1, 2 o 3
             'nombre_propietario': line[51:77],
             'saldo_ini': float("%s.%s" % (line[33:45], line[45:47])),
             'saldo_fin': 0,
@@ -61,7 +59,7 @@ class c43_parser(BankStatementImportParser):
         """22 - Registro principal de movimiento (obligatorio)"""
         st_line = {
             'of_origen': line[6:10],
-            'fecha_operación': datetime.strptime(line[10:16], '%y%m%d'),
+            'fecha_oper': datetime.strptime(line[10:16], '%y%m%d'),
             'fecha_valor': datetime.strptime(line[16:22], '%y%m%d'),
             'concepto_c': line[22:24],
             'concepto_p': line[24:27],
@@ -85,7 +83,7 @@ class c43_parser(BankStatementImportParser):
         return st_line
 
     def _process_record_24(self, st_line, line):
-        """24 - Registro complementario de información de equivalencia del 
+        """24 - Registro complementario de información de equivalencia del
         importe (opcional y sin valor contable)"""
         st_line['divisa_eq'] = line[4:7]
         st_line['importe_eq'] = float(line[7:19]) + (float(line[19:21]) / 100)
@@ -114,19 +112,21 @@ class c43_parser(BankStatementImportParser):
                 credit_count += 1
                 credit += st_line['importe']
         if st_group['num_debe'] != debit_count:
-            raise orm.except_orm(_('Error in C43 file'),
+            raise exceptions.Warning(
                 _("Number of debit records doesn't match with the defined in "
                   "the last record of account."))
-        if  st_group['num_haber'] != credit_count:
-            raise orm.except_orm(_('Error in C43 file'),
+        if st_group['num_haber'] != credit_count:
+            raise exceptions.Warning(
+                _('Error in C43 file'),
                 _("Number of credit records doesn't match with the defined "
                   "in the last record of account."))
         if abs(st_group['debe'] - debit) > 0.005:
-            raise orm.except_orm(_('Error in C43 file'),
+            raise exceptions.Warning(
+                _('Error in C43 file'),
                 _("Debit amount doesn't match with the defined in the last "
                   "record of account."))
         if abs(st_group['haber'] - credit) > 0.005:
-            raise orm.except_orm(_('Error in C43 file'),
+            raise exceptions.Warning(
                 _("Credit amount doesn't match with the defined in the last "
                   "record of account."))
         # Note: Only perform this check if the balance is defined on the file
@@ -135,7 +135,7 @@ class c43_parser(BankStatementImportParser):
         if st_group['saldo_fin']:
             balance = st_group['saldo_ini'] + credit - debit
             if abs(st_group['saldo_fin'] - balance) > 0.005:
-                raise orm.except_orm(_('Error in C43 file'),
+                raise exceptions.Warning(
                     _("Final balance amount = (initial balance + credit "
                       "- debit) doesn't match with the defined in the last "
                       "record of account."))
@@ -146,31 +146,18 @@ class c43_parser(BankStatementImportParser):
         st_data['num_registros'] = int(line[20:26])
         # File level checks
         if st_data['num_registros'] != st_data['_num_records']:
-            raise orm.except_orm(_('Error in C43 file'),
+            raise exceptions.Warning(
                 _("Number of records doesn't match with the defined in the "
                   "last record."))
         return st_data
 
-    @classmethod
-    def parser_for(cls, parser_name):
-        """
-        Used by the new_bank_statement_parser class factory.
-        @return: True if the providen name is 'aeb_c43'.
-        """
-        return parser_name == 'aeb_c43'
-
-    def _pre(self, *args, **kwargs):
-        """Decode and re-encode to avoid pg errors on string codification."""
-        self.filebuffer = self.filebuffer.decode('iso-8859-1').encode('utf-8')
-
-    def _parse(self, *args, **kwargs):
-        """Launch the parsing itself."""
+    def _parse(self, data_file):
         # st_data will contain data read from the file
         st_data = {
-            '_num_records': 0, # Number of records really counted
-            'groups': [], # Info about each of the groups (account groups)
+            '_num_records': 0,  # Number of records really counted
+            'groups': [],  # Info about each of the groups (account groups)
         }
-        for raw_line in self.filebuffer.split("\n"):
+        for raw_line in data_file.split("\n"):
             if not raw_line:
                 continue
             code = raw_line[0:2]
@@ -189,42 +176,24 @@ class c43_parser(BankStatementImportParser):
             elif code == '88':
                 self._process_record_88(st_data, raw_line)
             elif ord(raw_line[0]) == 26:
-                 # CTRL-Z (^Z), is often used as an end-of-file marker in DOS
+                # CTRL-Z (^Z), is often used as an end-of-file marker in DOS
                 continue
             else:
-                raise orm.except_orm(
-                            _('Error in C43 file'),
-                            _('Record type %s is not valid.') % raw_line[0:2])
+                raise exceptions.ValidationError(
+                    _('Record type %s is not valid.') % raw_line[0:2])
             # Update the record counter
             st_data['_num_records'] += 1
-        self.result_row_list = []
-        for st_group in st_data['groups']:
-            self.result_row_list += st_group['lines']
-        return True
+        return st_data['groups']
 
-    def _validate(self, *args, **kwargs):
-        """Nothing to do here."""
-        return True
+    def _check_n43(self, data_file):
+        data_file = data_file.decode('iso-8859-1').encode('utf-8')
+        try:
+            n43 = self._parse(data_file)
+        except exceptions.ValidationError:
+            return False
+        return n43
 
-    def get_st_line_vals(self, line, *args, **kwargs):
-        """
-        This method must return a dict of vals that can be passed to create
-        method of statement line in order to record it. It is the
-        responsibility of every parser to give this dict of vals, so each one
-        can implement his own way of recording the lines.
-            :param: line: a dict of vals that represent a line of
-                result_row_list
-            :return: dict of values to give to the create method of statement
-                line
-        """
-        vals = {
-            'name': line['conceptos'],
-            'date': line['fecha_operación'],
-            'amount': line['importe'],
-            'label': line['concepto_p'],
-            'c43_concept': line['concepto_c'],
-        }
-        # Discard references like '00000000'
+    def _get_ref(self, line):
         try:
             ref1 = int(line['referencia1'])
         except:
@@ -234,10 +203,84 @@ class c43_parser(BankStatementImportParser):
         except:
             ref2 = line['referencia2']
         if not ref1:
-            vals['ref'] = line['referencia2'] or '/'
+            return line['referencia2'] or '/'
         elif not ref2:
-            vals['ref'] = line['referencia1'] or '/'
+            return line['referencia1'] or '/'
         else:
-            vals['ref'] = "%s / %s" % (line['referencia1'],
-                                       line['referencia2'])
-        return vals
+            return "%s / %s" % (line['referencia1'], line['referencia2'])
+
+    def _get_partner_from_caixabank(self, conceptos):
+        partner_obj = self.env['res.partner']
+        partners = []
+        # Try to match from VAT included in concept complementary record #02
+        if conceptos.get('02'):
+            vat = conceptos['02'][0][:2] + conceptos['02'][0][7:]
+            if vat:
+                partners = partner_obj.search([('vat', '=', vat)])
+        if not partners:
+            # Try to match from partner name
+            if conceptos.get('01'):
+                name = conceptos['01'][0][4:] + conceptos['01'][1]
+                if name:
+                    partners = partner_obj.search([('name', 'ilike', name)])
+        return partners and partners[0].id or False
+
+    def _get_partner_from_santander(self, conceptos):
+        partner_obj = self.env['res.partner']
+        partners = []
+        # Try to match from VAT included in concept complementary record #01
+        if conceptos.get('01'):
+            if conceptos['01'][1]:
+                vat = conceptos['01'][1]
+                if vat:
+                    partners = partner_obj.search([('vat', 'ilike', vat)])
+        if not partners:
+            # Try to match from partner name
+            if conceptos.get('01'):
+                name = conceptos['01'][0]
+                if name:
+                    partners = partner_obj.search([('name', 'ilike', name)])
+        return partners and partners[0].id or False
+
+    def _get_partner(self, line):
+        partner_id = self._get_partner_from_caixabank(line['conceptos'])
+        if not partner_id:
+            partner_id = self._get_partner_from_santander(line['conceptos'])
+        return partner_id
+
+    def _get_account(self, line):
+        accounts = []
+        if line['concepto_c']:
+            accounts = self.env['account.account'].search(
+                [('code', 'like',
+                  account_concept_mapping[line['concepto_c']])])
+        return accounts and accounts[0].id or False
+
+    @api.model
+    def _parse_file(self, data_file):
+        n43 = self._check_n43(data_file)
+        if not n43:
+            return super(AccountBankStatementImport, self)._parse_file(
+                data_file)
+        transactions = []
+        for group in n43:
+            for line in group['lines']:
+                conceptos = []
+                for concept_line in line['conceptos']:
+                    conceptos.extend(x.strip()
+                                     for x in line['conceptos'][concept_line]
+                                     if x.strip())
+                vals_line = {
+                    'date': fields.Date.to_string(line['fecha_valor']),
+                    'name': ' '.join(conceptos),
+                    'ref': self._get_ref(line),
+                    'amount': line['importe'],
+                    'partner_id': self._get_partner(line),
+                }
+                transactions.append(vals_line)
+        vals_bank_statement = {
+            'transactions': transactions,
+            'balance_start': n43 and n43[0]['saldo_ini'] or 0.0,
+            'balance_end_real': n43 and n43[-1]['saldo_fin'] or 0.0,
+        }
+        return 'EUR', False, [vals_bank_statement]
