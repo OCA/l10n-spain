@@ -34,7 +34,7 @@
                         <page string="Partner info">
                             <group>
                                 <group>
-                                    <field name="partner_id" on_change="on_change_partner_id(partner_id)" required="1" select="1"/>
+                                    <field name="partner_id"/>
                                     <field name="partner_vat" select="1"/>
                                     <field name="representative_vat" select="2"/>
                                     <field name="community_vat"/>
@@ -171,11 +171,11 @@
                     <field name="report_id" invisible="1"/>
                     <group string="Partner info">
                         <group>
-                            <field name="partner_id" on_change="on_change_partner_id(partner_id)" required="1" select="1"/>
+                            <field name="partner_id"/>
                         </group>
                         <group>
-                            <field name="partner_vat" select="1"/>
-                            <field name="representative_vat" select="2"/>
+                            <field name="partner_vat"/>
+                            <field name="representative_vat"/>
                         </group>
                     </group>
                     <group string="Real state info">
@@ -272,7 +272,7 @@
                                     <field name="operations_limit" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                                     <field name="received_cash_limit" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                                     <field name="charges_obtp_limit" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-                                    <field name="group_by_cif" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                                    <field name="group_by_vat" attrs="{'readonly': [('state', '!=', 'draft')]}" />
                                     <field name="only_supplier" attrs="{'readonly': [('state', '!=', 'draft')]}" />
                                 </group>
                                 <group string="Summary">
