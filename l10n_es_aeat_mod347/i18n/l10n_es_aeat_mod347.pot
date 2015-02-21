@@ -549,7 +549,7 @@ msgid "Date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,group_by_cif:0
+#: field:l10n.es.aeat.mod347.report,group_by_vat:0
 msgid "Group by VAT"
 msgstr ""
 
@@ -873,5 +873,10 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_account_journal
 msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: field:res.partner,not_in_mod347:0
+msgid "Not included in 347 report"
 msgstr ""
 
