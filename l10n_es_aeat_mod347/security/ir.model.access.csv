@@ -1,15 +1,6 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"access_l10n_es_aeat_mod347","l10n_es_aeat_mod347","model_l10n_es_aeat_mod347_report","account.group_account_user",1,0,0,0
-"access_l10n_es_aeat_mod347_manager","l10n_es_aeat_mod347 manager","model_l10n_es_aeat_mod347_report","account.group_account_manager",1,1,1,1
-"access_l10n_es_aeat_mod347_partner","l10n_es_aeat_mod347_partner","model_l10n_es_aeat_mod347_partner_record","account.group_account_user",1,0,0,0
-"access_l10n_es_aeat_mod347_partner_manager","l10n_es_aeat_mod347_partner manager","model_l10n_es_aeat_mod347_partner_record","account.group_account_manager",1,1,1,1
-"access_l10n_es_aeat_mod347_real_state","l10n_es_aeat_mod347_real_state","model_l10n_es_aeat_mod347_real_state_record","account.group_account_user",1,0,0,0
-"access_l10n_es_aeat_mod347_real_state_manager","l10n_es_aeat_mod347_real_state manager","model_l10n_es_aeat_mod347_real_state_record","account.group_account_manager",1,1,1,1
-"access_l10n_es_aeat_mod347_invoice","l10n_es_aeat_mod347_invoice","model_l10n_es_aeat_mod347_invoice_record","account.group_account_user",1,0,0,0
-"access_l10n_es_aeat_mod347_invoice_manager","l10n_es_aeat_mod347_invoice manager","model_l10n_es_aeat_mod347_invoice_record","account.group_account_manager",1,1,1,1
-"access_l10n_es_aeat_mod347_cash","l10n_es_aeat_mod347_cash","model_l10n_es_aeat_mod347_cash_record","account.group_account_user",1,0,0,0
-"access_l10n_es_aeat_mod347_cash_manager","l10n_es_aeat_mod347_cash manager","model_l10n_es_aeat_mod347_cash_record","account.group_account_manager",1,1,1,1
-"access_l10n_es_aeat_mod347_calculate_records","l10n_es_aeat_mod347_calculate_records","model_l10n_es_aeat_mod347_calculate_records","account.group_account_user",1,0,0,0
-"access_l10n_es_aeat_mod347_calculate_records_manager","l10n_es_aeat_mod347_calculate_record manager","model_l10n_es_aeat_mod347_calculate_records","account.group_account_manager",1,1,1,1
-"access_l10n_es_aeat_mod347_export_to_boe","l10n_es_aeat_mod347_export_to_boe","model_l10n_es_aeat_mod347_export_to_boe","account.group_account_user",1,0,0,0
-"access_l10n_es_aeat_mod347_export_to_boe_manager","l10n_es_aeat_mod347_export_to_boe manager","model_l10n_es_aeat_mod347_export_to_boe","account.group_account_manager",1,1,1,1
+"access_l10n_es_aeat_mod347_manager","l10n_es_aeat_mod347 manager","model_l10n_es_aeat_mod347_report","l10n_es_aeat.group_account_aeat",1,1,1,1
+"access_l10n_es_aeat_mod347_partner_manager","l10n_es_aeat_mod347_partner manager","model_l10n_es_aeat_mod347_partner_record","l10n_es_aeat.group_account_aeat",1,1,1,1
+"access_l10n_es_aeat_mod347_real_state_manager","l10n_es_aeat_mod347_real_state manager","model_l10n_es_aeat_mod347_real_state_record","l10n_es_aeat.group_account_aeat",1,1,1,1
+"access_l10n_es_aeat_mod347_invoice_manager","l10n_es_aeat_mod347_invoice manager","model_l10n_es_aeat_mod347_invoice_record","l10n_es_aeat.group_account_aeat",1,1,1,1
+"access_l10n_es_aeat_mod347_cash_manager","l10n_es_aeat_mod347_cash manager","model_l10n_es_aeat_mod347_cash_record","l10n_es_aeat.group_account_aeat",1,1,1,1
