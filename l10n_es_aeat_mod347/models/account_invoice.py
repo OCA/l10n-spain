@@ -18,17 +18,17 @@
 from openerp import fields, models, api
 
 
-class ResPartner(models.Model):
-    _inherit = "res.partner"
+class AccountInvoice(models.Model):
+    _inherit = 'account.invoice'
 
-    not_in_mod347 = fields.Boolean(
-        "Not included in 347 report",
-        help="If you mark this field, this partner will not be included in "
-             "any AEAT 347 model report, independently from the total "
-             "amount of its operations.", default=False)
+    @api.one
+    @api.depends('cc_amount_untaxed', 'tax_line.amount')
+    def _get_amount_total_wo_irpf(self):
+        self.amount_total_wo_irpf = self.cc_amount_untaxed
+        for tax_line in self.tax_line:
+            if 'IRPF' not in tax_line.name:
+                self.amount_total_wo_irpf += tax_line.amount
 
-    @api.model
-    def _commercial_fields(self):
-        res = super(ResPartner, self)._commercial_fields()
-        res += ['not_in_mod347']
-        return res
+    amount_total_wo_irpf = fields.Float(
+        compute="_get_amount_total_wo_irpf",
+        string="Total amount without IRPF taxes")
