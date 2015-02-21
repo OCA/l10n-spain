@@ -41,5 +41,10 @@ class website_sale(website_sale):
                 auth="public", website=True)
     def payment_transaction(self, acquirer_id):
         tx_id = super(website_sale, self).payment_transaction(acquirer_id)
-        request.website.sale_reset(context=request.context)
+        cr, context = request.cr, request.context
+        acquirer_obj = request.registry.get('payment.acquirer')
+        acquirer = acquirer_obj.browse(
+            cr, SUPERUSER_ID, acquirer_id, context=context)
+        if acquirer.provider == 'redsys':
+            request.website.sale_reset(context=request.context)
         return tx_id
