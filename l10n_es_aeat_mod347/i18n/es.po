@@ -44,24 +44,8 @@ msgstr "Clave oper."
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
-<<<<<<< HEAD
-#, fuzzy
-msgid "Group By..."
-msgstr "Agrupar por CIF"
-
-#. module: l10n_es_aeat_mod347
-#: selection:account.period,quarter:0
-msgid "Fourth"
-msgstr "Cuarto"
-
-#. module: l10n_es_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "Calculate"
-msgstr "Calcular"
-=======
 msgid "Declaración"
 msgstr "Declaración"
->>>>>>> Launchpad automatic translations update.
 
 #. module: l10n_es_aeat_mod347
 #: field:res.partner,include_in_mod347:0
@@ -152,19 +136,6 @@ msgid "Mod"
 msgstr "Mod"
 
 #. module: l10n_es_aeat_mod347
-<<<<<<< HEAD
-#: view:l10n.es.aeat.mod347.report:0
-msgid "AEAT 347 Reports"
-msgstr "Declaraciones AEAT 347"
-
-#. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,group_by_cif:0
-msgid "Group by cif"
-msgstr "Agrupar por CIF"
-
-#. module: l10n_es_aeat_mod347
-=======
->>>>>>> Launchpad automatic translations update.
 #: selection:l10n.es.aeat.mod347.real_state_record,situation:0
 msgid "1 - Spain but Basque Country and Navarra"
 msgstr "1 - España excepto País Vasco y Navarra"
@@ -230,25 +201,10 @@ msgstr "Trimestre"
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "VAT"
-msgstr "CIF/NIF"
+msgstr "NIF"
 
 #. module: l10n_es_aeat_mod347
-<<<<<<< HEAD
-#: help:account.journal,cash_journal:0
-#, fuzzy
-msgid "Payments of this journal will be considered as cash(used on the 347 report)"
-msgstr "Los pagos realizados con este diario serán considerados como efectivo (utilizado en la declaración 347)."
-
-#. module: l10n_es_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "Calculation"
-msgstr "Cálculo"
-
-#. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:306
-=======
 #: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:297
->>>>>>> Launchpad automatic translations update.
 #, python-format
 msgid "The type 2-I record (real state) must be 502 characters long"
 msgstr ""
@@ -308,7 +264,7 @@ msgid ""
 "All partner vat number field must be filled.\n"
 "Partner: %s (%s)"
 msgstr ""
-"El número CIF/NIF de todos los registros de empresas debe estar rellenado.\n"
+"El NIF de todos los registros de empresas debe estar rellenado.\n"
 "Empresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
@@ -346,7 +302,7 @@ msgstr "Ejercicio fiscal origen de las operaciones en efectivo."
 #: help:l10n.es.aeat.mod347.partner_record,representative_vat:0
 #: help:l10n.es.aeat.mod347.real_state_record,representative_vat:0
 msgid "Legal Representative VAT number"
-msgstr "CIF/NIF del representante legal."
+msgstr "NIF del representante legal."
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,fourth_quarter:0
@@ -393,14 +349,14 @@ msgstr "MODELO AEAT 347"
 #. module: l10n_es_aeat_mod347
 #: model:ir.actions.report.xml,name:l10n_es_aeat_mod347.report_l10n_es_aeat_mod347
 msgid "AEAT 347 Model report"
-msgstr "Declaración modelo AEAT 347"
+msgstr "Declaración AEAT 347"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,partner_vat:0
 #: field:l10n.es.aeat.mod347.real_state_record,partner_vat:0
 #: field:l10n.es.aeat.mod347.report,company_vat:0
 msgid "VAT number"
-msgstr "CIF/NIF"
+msgstr "NIF"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,insurance_operation:0
@@ -434,14 +390,6 @@ msgid "Third Quarter"
 msgstr "Tercer trimestre"
 
 #. module: l10n_es_aeat_mod347
-<<<<<<< HEAD
-#: model:ir.ui.menu,name:l10n_es_aeat_mod347.menu_aeat_mod347_report
-msgid "AEAT 347 Model"
-msgstr "Modelo AEAT 347"
-
-#. module: l10n_es_aeat_mod347
-=======
->>>>>>> Launchpad automatic translations update.
 #: field:l10n.es.aeat.mod347.report,total_partner_records:0
 msgid "Partners records"
 msgstr "Registros de empresas"
@@ -644,30 +592,6 @@ msgid "Number:"
 msgstr "Número:"
 
 #. module: l10n_es_aeat_mod347
-<<<<<<< HEAD
-#: model:ir.actions.act_window,help:l10n_es_aeat_mod347.action_l10n_es_aeat_mod347_report
-msgid ""
-"<p class=\"oe_view_nocontent_create\">\n"
-"                Click to create a AEAT Model 347 Reports.\n"
-"                \n"
-"              </p><p>\n"
-"                Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban \n"
-"                los diseños físicos y lógicos del 347.\n"
-"              </p>\n"
-"              "
-msgstr ""
-"<p class=\"oe_view_nocontent_create\">\n"
-"                Click to create a AEAT Model 347 Reports.\n"
-"                \n"
-"              </p><p>\n"
-"                Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban \n"
-"                los diseños físicos y lógicos del 347.\n"
-"              </p>\n"
-"              "
-
-#. module: l10n_es_aeat_mod347
-=======
->>>>>>> Launchpad automatic translations update.
 #: field:l10n.es.aeat.mod347.partner_record,cash_record_ids:0
 msgid "Payment records"
 msgstr "Registros de pago"
@@ -707,7 +631,7 @@ msgstr "Procesada"
 #: field:l10n.es.aeat.mod347.real_state_record,representative_vat:0
 #: field:l10n.es.aeat.mod347.report,representative_vat:0
 msgid "L.R. VAT number"
-msgstr "CIF/NIF R.L."
+msgstr "NIF R.L."
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
@@ -903,7 +827,7 @@ msgstr "Importe transmisión inmueble (T1)"
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,representative_vat:0
 msgid "Legal Representative VAT number."
-msgstr "CIF/NIF del representante legal."
+msgstr "NIF del representante legal."
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,support_type:0
