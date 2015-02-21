@@ -125,6 +125,7 @@ class AcquirerRedsys(models.Model):
                  acquirer.redsys_merchant_url[:250] or ''),
             'Ds_Merchant_MerchantData': acquirer.redsys_merchant_data or '',
             'Ds_Merchant_ProductDescription': (
+                self._product_description(tx_values['reference']) or
                 acquirer.redsys_merchant_description and
                 acquirer.redsys_merchant_description[:125]),
             'Ds_Merchant_ConsumerLanguage': (
@@ -142,6 +143,17 @@ class AcquirerRedsys(models.Model):
     @api.multi
     def redsys_get_form_action_url(self):
         return self._get_redsys_urls(self.environment)['redsys_form_url']
+
+    def _product_description(self, order_ref):
+        sale_order = self.env['sale.order'].search([('name', '=', order_ref)])
+        res = ''
+        if sale_order:
+            description = []
+            for line in sale_order.order_line:
+                description.append(line.name)
+            description = '|'.join(description)
+            res = description[:125]
+        return res
 
 
 class TxRedsys(models.Model):
