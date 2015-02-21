@@ -6,7 +6,7 @@
 #        2012:       NaN·Tic  (http://www.nan-tic.com)
 #        2013:       Acysos (http://www.acysos.com)
 #                    Joaquín Pedrosa Gutierrez (http://gutierrezweb.es)
-#        2014:       Serv. Tecnol. Avanzados - Pedro M. Baeza
+#        2014-2015:  Serv. Tecnol. Avanzados - Pedro M. Baeza
 #                    (http://www.serviciosbaeza.com)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 #
 ##############################################################################
 {
-    'name': "AEAT Model 347",
+    'name': "Modelo 347 AEAT",
     'version': "1.2",
     'author': "Spanish Localization Team,Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-spain",
@@ -44,15 +44,16 @@
         "account_invoice_currency",
     ],
     'data': [
-        "account_period_view.xml",
-        "res_partner_view.xml",
-        "wizard/export_mod347_to_boe.xml",
-        "report/mod347_report.xml",
         "security/ir.model.access.csv",
         "security/mod_347_security.xml",
-        "mod347_view.xml",
+        "wizard/export_mod347_to_boe.xml",
+        "views/account_period_view.xml",
+        "views/res_partner_view.xml",
+        "views/mod347_view.xml",
+        "report/mod347_report.xml",
     ],
     'installable': True,
+    "post_init_hook": "post_init_hook",
     'images': [
         'images/l10n_es_aeat_mod347.png',
     ],
