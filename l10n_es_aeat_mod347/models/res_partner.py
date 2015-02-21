@@ -17,14 +17,17 @@
 ##############################################################################
 from openerp.osv import fields, orm
 
-class account_period(orm.Model):
-    _inherit = "account.period"
 
+class ResPartner(orm.Model):
+    _inherit = "res.partner"
     _columns = {
-        'quarter': fields.selection([
-                                    ('first', 'First'),
-                                    ('second', 'Second'),
-                                    ('third', 'Third'),
-                                    ('fourth', 'Fourth')
-                                    ], 'Quarter'),
+        'not_in_mod347': fields.boolean(
+            "Not included in 347 report",
+            help="If you mark this field, this partner will not be included "
+            "in any AEAT 347 model report, independently from the total "
+            "amount of its operations."),
+    }
+
+    _defaults = {
+        'not_in_mod347': False,
     }
