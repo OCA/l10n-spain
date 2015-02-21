@@ -15,16 +15,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import orm
-from openerp.tools.translate import _
+from openerp import models, api, fields, _
 
 
-class L10nEsAeatMod347ExportToBoe(orm.TransientModel):
+class L10nEsAeatMod347ExportToBoe(models.TransientModel):
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = "l10n.es.aeat.mod347.export_to_boe"
 
-    def _get_formatted_declaration_record(self, cr, uid, report,
-                                          context=None):
+    @api.model
+    def _get_formatted_declaration_record(self, report):
         """
         Returns a type 1, declaration/company, formated record.
 
@@ -58,7 +57,8 @@ class L10nEsAeatMod347ExportToBoe(orm.TransientModel):
         # Modelo Declaración
         text += '347'
         # Ejercicio
-        text += self._formatString(report.fiscalyear_id.code, 4)
+        text += self._formatString(fields.Date.from_string(
+            report.fiscalyear_id.date_start).year, 4)
         # NIF del declarante
         text += self._formatString(report.company_vat, 9)
         # Apellidos y nombre o razón social del declarante
@@ -327,7 +327,8 @@ class L10nEsAeatMod347ExportToBoe(orm.TransientModel):
             _("The type 2-I record (real state) must be 502 characters long")
         return text
 
-    def _get_formatted_main_record(self, cr, uid, report, context=None):
+    @api.model
+    def _get_formatted_main_record(self, report):
         res = ''
         for partner_record in report.partner_record_ids:
             res += self._get_formated_partner_record(report, partner_record)
