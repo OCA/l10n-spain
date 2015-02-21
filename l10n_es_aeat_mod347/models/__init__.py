@@ -17,7 +17,5 @@
 ##############################################################################
 from . import account_period
 from . import res_partner
+from . import account_invoice
 from . import mod347
-from . import wizard
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
