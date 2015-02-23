@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="report_export_invoice_xls" model="ir.actions.report.xml">
+          <field name="name">Export Selected Lines</field>
+          <field name="model">xls.invoice.report.wizard</field>
+          <field name="type">ir.actions.report.xml</field>
+          <field name="report_name">account.invoice.export.xls</field>
+          <field name="report_type">xls</field>
+          <field name="auto" eval="False"/>
+        </record>
+    </data>
+</openerp>

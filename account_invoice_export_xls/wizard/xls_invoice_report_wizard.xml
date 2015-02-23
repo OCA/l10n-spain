@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="xls_invoice_report_wizard_form_view" model="ir.ui.view">
+            <field name="name">xls.invoice.report.wizard.form</field>
+            <field name="model">xls.invoice.report.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Invoice Report XLS" version="7.0">
+                    <group>
+                        <field name="invoice_type"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="period_ids" colspan="4"/>
+                    </group>
+                    <footer>
+                        <button name="xls_export" type="object"
+                            string="Export" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="xls_invoice_report_wizard_action" model="ir.actions.act_window">
+            <field name="name">Invoice Report XLS</field>
+            <field name="res_model">xls.invoice.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="xls_invoice_report_wizard_form_view"/>
+        </record>
+
+        <menuitem id="xls_invoice_report_wizard_menu" action="xls_invoice_report_wizard_action"
+            parent="account.menu_finance_generic_reporting"/>
+
+    </data>
+</openerp>
