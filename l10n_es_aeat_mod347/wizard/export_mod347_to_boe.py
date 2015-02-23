@@ -40,26 +40,26 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
 
         Format of the record:
             Tipo registro 1 – Registro de declarante:
-            Posiciones 	Descripción
+            Posiciones  Descripción
             1           Tipo de Registro
-            2-4 	Modelo Declaración
-            5-8 	Ejercicio
-            9-17 	NIF del declarante
-            18-57 	Apellidos y nombre o razón social del declarante
+            2-4     Modelo Declaración
+            5-8     Ejercicio
+            9-17    NIF del declarante
+            18-57   Apellidos y nombre o razón social del declarante
             58          Tipo de soporte
-            59-67 	Teléfono contacto
+            59-67   Teléfono contacto
             68-107      Apellidos y nombre contacto
-            108-120 	Número identificativo de la declaración
-            121-122 	Declaración complementaria o substitutiva
-            123-135 	Número identificativo de la declaración anterior
-            136-144 	Número total de personas y entidades
-            145-159 	Importe total de las operaciones
-            160-168 	Número total de inmuebles
-            169-183 	Importe total de las operaciones de arrendamiento
-            184-390 	Blancos
-            391-399 	NIF del representante legal
-            400-487 	Blancos
-            488-500 	Sello electrónico
+            108-120     Número identificativo de la declaración
+            121-122     Declaración complementaria o substitutiva
+            123-135     Número identificativo de la declaración anterior
+            136-144     Número total de personas y entidades
+            145-160     Importe total de las operaciones
+            161-169     Número total de inmuebles
+            170-185     Importe total de las operaciones de arrendamiento
+            186-390     Blancos
+            391-399     NIF del representante legal
+            400-487     Blancos
+            488-500     Sello electrónico
         """
         text = ''
 
@@ -69,7 +69,7 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
         text += self._formatString(report.company_vat, 9)          # NIF del declarante
         text += self._formatString(report.company_id.name, 40)     # Apellidos y nombre o razón social del declarante
         text += self._formatString(report.support_type, 1)         # Tipo de soporte
-        text += self._formatString(report.contact_phone, 9)       # Persona de contacto (Teléfono)
+        text += self._formatNumber(report.contact_phone or 0, 9)       # Persona de contacto (Teléfono)
         text += self._formatString(report.contact_name, 40)        # Persona de contacto (Apellidos y nombre)
         text += self._formatNumber(report.number, 13)              # Número identificativo de la declaración
         text += self._formatString(report.type, 2).replace('N', ' ')                # Declaración complementaria o substitutiva
@@ -77,8 +77,8 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
         text += self._formatNumber(report.total_partner_records, 9)          # Número total de personas y entidades
         text += self._formatNumber(report.total_amount, 13, 2,True)               # Importe total de las operaciones
         text += self._formatNumber(report.total_real_state_records, 9)       # Número total de inmuebles
-        text += self._formatNumber(report.total_real_state_amount, 13, 2)    # Importe total de las operaciones de arrendamiento
-        text += 206*' '                                       # Blancos
+        text += self._formatNumber(report.total_real_state_amount, 13, 2, True)    # Importe total de las operaciones de arrendamiento
+        text += 205*' '                                       # Blancos
         text += self._formatString(report.representative_vat, 9)   # NIF del representante legal
         text += 88*' '                                        # Blancos
         text += 13*' '                                        # Sello electrónico
@@ -95,34 +95,38 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
 
         Format of the record:
             Tipo de Registro 2 – Registro de declarado
-            Posiciones 	Descripción
+            Posiciones  Descripción
             1           Tipo de Registro
-            2-4 	Modelo Declaración
-            5-8 	Ejercicio
-            9-17 	NIF del declarante
-            18-26 	NIF del declarado
-            27-35 	NIF del representante legal
-            36-75 	Apellidos y nombre, razón social o denominación del declarado
+            2-4     Modelo Declaración
+            5-8     Ejercicio
+            9-17    NIF del declarante
+            18-26   NIF del declarado
+            27-35   NIF del representante legal
+            36-75   Apellidos y nombre, razón social o denominación del declarado
             76          Tipo de hoja
-            77-80 	Código provincia/país
+            77-80   Código provincia/país
             81          Blancos
             82          Clave de operación
-            83-98 	Importe de las operaciones
-            98          Operación de seguro
-            99          Arrendamiento local negocio
-            100-114 	Importe percibido en metálico
-            115-129 	Importe percibido por transmisiones de inmuebles sujetas a IVA
-            130-134     Año de devengo de las operaciones en efectivo
-            135-151     Importe de las operaciones del primer trimestre
-            151-167     Importe percibido por transmisiones de inmuebles sujates a Iva Primer Trimestre
+            83-98   Importe de las operaciones
+            99          Operación de seguro
+            100          Arrendamiento local negocio
+            101-115     Importe percibido en metálico
+            116-131     Importe percibido por transmisiones de inmuebles sujetas a IVA
+            132-135     Año de devengo de las operaciones en efectivo
+            133-151     Importe de las operaciones del primer trimestre
+            152-167     Importe percibido por transmisiones de inmuebles sujates a Iva Primer Trimestre
             168-183     Importe de las operaciones del Segundo trimestre
-            183-199     Importe percibido por transmisiones de inmuebles sujates a Iva segundo Trimestre
+            184-199     Importe percibido por transmisiones de inmuebles sujates a Iva segundo Trimestre
             200-215     Importe de las operaciones del tercer trimestre
-            215-231     Importe percibido por transmisiones de inmuebles sujates a Iva tercer Trimestre
-            231-247     Importe de las operaciones del quarto trimestre
-            247-263     Importe percibido por transmisiones de inmuebles sujates a Iva quarto Trimestre
-            264-500 	Blancos
-            488-500 	Sello electrónico
+            216-231     Importe percibido por transmisiones de inmuebles sujates a Iva tercer Trimestre
+            232-247     Importe de las operaciones del quarto trimestre
+            248-263     Importe percibido por transmisiones de inmuebles sujates a Iva quarto Trimestre
+            264-280     NIF del operador comunitario
+            281         'X' si aplica el régimen especial de criterio de caja
+            282         'X' si son operaciones con inversión de sujeto pasivo
+            283         'X' si son operaciones vinculadas al régimen de depósito distinto del aduanero
+            284-299     Importe de la operaciones anuales de criterio de caja
+            300-500     Blancos
         """
         text = ''
 
@@ -150,8 +154,13 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
         text += self._formatNumber(partner_record.third_quarter,13,2,True)
         text += self._formatNumber(partner_record.third_quarter_real_state_transmission_amount,13,2,True)
         text += self._formatNumber(partner_record.fourth_quarter,13,2,True)
-        text += self._formatNumber(partner_record.fourth_quarter_real_state_transmission_amount,13,2,True)        
-        text += 237*' '                                                 # Blancos
+        text += self._formatNumber(partner_record.fourth_quarter_real_state_transmission_amount,13,2,True)
+        text += self._formatString(partner_record.community_vat, 17)
+        text += self._formatBoolean(partner_record.cash_basis_operation)
+        text += self._formatBoolean(partner_record.tax_person_operation)
+        text += self._formatBoolean(partner_record.related_goods_operation)
+        text += self._formatNumber(0.0,13,2,True)                       # Importe en criterio de caja
+        text += 201*' '
         text += '\r\n'                                                  # Sello electrónico
 
         assert len(text) == 502, _("The type 2-D record (partner) must be 502 characters long")
@@ -164,20 +173,20 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
 
         Format of the record:
             Tipo de Registro 2 – Registro de inmueble
-            Posiciones 	Descripción
+            Posiciones  Descripción
             1           Tipo de Registro
-            2-4 	Modelo Declaración
-            5-8 	Ejercicio
-            9-17 	NIF del declarante
-            18-26 	NIF del arrendatario
-            27-35 	NIF del representante legal
-            36-75 	Apellidos y nombre, razón social o denominación del declarado
+            2-4     Modelo Declaración
+            5-8     Ejercicio
+            9-17    NIF del declarante
+            18-26   NIF del arrendatario
+            27-35   NIF del representante legal
+            36-75   Apellidos y nombre, razón social o denominación del declarado
             76          Tipo de hoja
-            77-99 	Blancos
-            100-114 	Importe de la operación
-            115 	Situación del inmueble
-            116-140 	Referencia catastral
-            141-333 	Dirección y datos del inmueble
+            77-98   Blancos
+            99-114     Importe de la operación
+            115     Situación del inmueble
+            116-140     Referencia catastral
+            141-333     Dirección y datos del inmueble
                 141–145 TIPO DE VÍA
                 146–195 NOMBRE VÍA PUBLICA
                 196–198 TIPO DE NUMERACIÓN
@@ -194,7 +203,7 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
                 322–326 CODIGO DE MUNICIPIO
                 327-328 CODIGO PROVINCIA
                 329-333 CODIGO POSTAL
-            334-500 	Blancos
+            334-500     Blancos
         """
         text = ''
 
@@ -206,8 +215,8 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
         text += self._formatString(partner_record.representative_vat, 9)     # NIF del representante legal
         text += self._formatString(partner_record.partner_id.name, 40)       # Apellidos y nombre, razón social o denominación del declarado
         text += 'I'                                                     # Tipo de hoja: Constante ‘I’.
-        text += 23*' '                                                   # Blancos
-        text += self._formatNumber(partner_record.amount, 13, 2)  # Importe de las operaciones
+        text += 22*' '                                                   # Blancos
+        text += self._formatNumber(partner_record.amount, 13, 2, True)  # Importe de las operaciones
         text += self._formatNumber(partner_record.situation, 1)   # Situación del inmueble
         text += self._formatString(partner_record.reference, 25)  # Referencia catastral
         text += self._formatString(partner_record.address_type, 5)        # TIPO DE VÍA
@@ -240,7 +249,7 @@ class l10n_es_aeat_mod347_export_to_boe(osv.osv_memory):
             file_contents += self._get_formated_real_state_record(report, real_state_record)
 
         return file_contents
-    
+
 
     def _export_boe_file(self, cr, uid, ids, object_to_export, model=None, context=None):
         return super(l10n_es_aeat_mod347_export_to_boe, self)._export_boe_file(cr, uid, ids, object_to_export, model='347')

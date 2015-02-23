@@ -61,7 +61,7 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
 
             partner_obj = self.pool.get('res.partner')
             partner_address_obj = self.pool.get('res.partner.address')
-            
+
             invoice_obj = self.pool.get('account.invoice')
 
             report_obj = self.pool.get('l10n.es.aeat.mod347.report')
@@ -80,7 +80,7 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
             ##
             ## Delete previous partner records
             partner_record_obj.unlink(cr, uid, [r.id for r in report_obj.partner_record_ids])
-    
+
             ##
             ## Get the cash journals (moves on this journals will be considered cash)
             cash_journal_ids = self.pool.get('account.journal').search(cr, uid, [('cash_journal', '=', True)])
@@ -123,14 +123,14 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                                     ('type', '=', invoice_type),
                                     ('period_id', 'in', period_ids),
                                     ('move_id', '!=', None),
-				    ('state', 'not in', ['draft','cancel']),
+                    ('state', 'not in', ['draft','cancel']),
                                 ])
                         refund_ids = invoice_obj.search(cr, uid, [
                                     ('partner_id', 'in', partner_grouped_cif),
                                     ('type', '=', refund_type),
                                     ('period_id', 'in', period_ids),
                                     ('move_id', '!=', None),
-				    ('state', 'not in', ['draft','cancel']),
+                    ('state', 'not in', ['draft','cancel']),
                                 ])
                         invoices = invoice_obj.browse(cr, uid, invoice_ids)
                         refunds = invoice_obj.browse(cr, uid, refund_ids)
@@ -245,7 +245,7 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                                     if line.invoice:
                                         invoices.append(line.invoice)
                             elif move_line_obj.reconcile_partial_id:
-                                for line in move_line_obj.reconcile_id.line_partial_ids:
+                                for line in move_line_obj.reconcile_partial_id.line_partial_ids:
                                     if line.invoice:
                                         invoices.append(line.invoice)
 
@@ -302,7 +302,7 @@ class l10n_es_aeat_mod347_calculate_records(osv.osv_memory):
                     'state' : 'calculated',
                     'calculation_date' : time.strftime('%Y-%m-%d %H:%M:%S')
                 })
-        
+
         except Exception, ex:
             raise
 
