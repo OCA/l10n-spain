@@ -31,3 +31,9 @@ class ResPartner(orm.Model):
     _defaults = {
         'not_in_mod347': False,
     }
+
+    def _commercial_fields(self, cr, uid, context=None):
+        res = super(ResPartner, self)._commercial_fields(
+            cr, uid, context=context)
+        res += ['not_in_mod347']
+        return res
