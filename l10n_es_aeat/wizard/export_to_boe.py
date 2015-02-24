@@ -32,7 +32,7 @@ from osv import osv
 class l10n_es_aeat_report_export_to_boe(osv.osv_memory):
     _name = "l10n.es.aeat.report.export_to_boe"
     _description = "Export Report to BOE Format"
-    
+
     ########################
     ### HELPER FUNCTIONS ###
     ########################
@@ -74,7 +74,11 @@ class l10n_es_aeat_report_export_to_boe(osv.osv_memory):
             (u'Ê', 'E'),(u'ê', 'E'),
             (u'Î', 'I'),(u'î', 'I'),
             (u'Ô', 'O'),(u'ô', 'O'),
-            (u'Û', 'U'),(u'û', 'U')]
+            (u'Û', 'U'),(u'û', 'U'),
+            (u'(',''),(u')','')]
+
+        for a, b in replacements:
+            text = text.replace(a, b)
 
         #
         # String uppercase
@@ -131,13 +135,13 @@ class l10n_es_aeat_report_export_to_boe(osv.osv_memory):
         ascii_string = ''
         if include_sign:
             ascii_string += sign
-            
+
         if dec_length > 0:
             ascii_string += '%0*.*f' % (int_length+dec_length+1,dec_length, number)
             ascii_string = ascii_string.replace('.','')
         elif int_length > 0:
             ascii_string += '%.*d' % (int_length, int_part)
-            
+
         # Sanity-check
         assert len(ascii_string) == (include_sign and 1 or 0) + int_length + dec_length, \
                             _("The formated string must match the given length")
