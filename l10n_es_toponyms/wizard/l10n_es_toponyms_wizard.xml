@@ -20,13 +20,18 @@
                         <group col="2" colspan="4" string="Associate city and state information to zip codes">
                             <label colspan="2" string="'State', 'City', 'ZIP' and 'Country' fields can be filled automatically in partner, contact and company screens when you enter a zip code or the city name if this information is associated. Do you want to associate this data?"/>
                             <field name="city_info"/>
-                            <label colspan="2" string="Warning! Adding more than 54000 records can take a lot of time. If you are behind a SSL proxy, check your timeout."/>
+                            <label colspan="2" string="Warning! Adding this bunch of records can take a lot of time. If you are behind a SSL proxy, check your timeout."/>
                         </group>
                     </separator>
 
-                    <xpath expr="//button[@string='Install Modules']" position="attributes">
-                        <attribute name="string">Configure</attribute>
-                    </xpath>
+                    <button string="Install Modules" position="after">
+                        <button string="Configure from local"
+                                type="object"
+                                name="execute_local" />
+                    </button>
+                    <button string="Install Modules" position="attributes">
+                        <attribute name="string">Configure from GeoNames</attribute>
+                    </button>
                 </data>
             </field>
         </record>
