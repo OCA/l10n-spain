@@ -28,8 +28,13 @@ msgstr "Configuración de las ciudades y provincias españolas"
 
 #. module: l10n_es_toponyms
 #: view:config.es.toponyms:0
-msgid "Configure"
-msgstr "Configurar"
+msgid "Configure from GeoName"
+msgstr "Configurar desde GeoNames"
+
+#. module: l10n_es_toponyms
+#: view:config.es.toponyms:0
+msgid "Configure from local"
+msgstr "Configurar desde local"
 
 #. module: l10n_es_toponyms
 #: selection:config.es.toponyms,city_info:0
@@ -71,11 +76,9 @@ msgstr ""
 #. module: l10n_es_toponyms
 #: view:config.es.toponyms:0
 msgid ""
-"Warning! Adding more than 54000 records can take a lot of time. If you are "
-"behind a SSL proxy, check your timeout."
+"Warning! Adding this bunch of records can take a lot of time. If you are behind a SSL proxy, check your timeout."
 msgstr ""
-"¡Aviso! Añadir más de 54000 registros puede tardar mucho tiempo. Si está "
-"detrás de un proxy SSL, compruebe el timeout."
+"¡Aviso! Añadir esta cantidad de registros puede tardar mucho tiempo. Si está detrás de un proxy SSL, compruebe el timeout."
 
 #. module: l10n_es_toponyms
 #: field:config.es.toponyms,state:0
