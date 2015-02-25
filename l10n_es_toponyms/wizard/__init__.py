@@ -2,8 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
+#    Copyright (c) 2013-2015 Serv. Tecnol. Avanzados
+#                            Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -20,4 +20,5 @@
 #
 ##############################################################################
 
+from . import geonames_import
 from . import l10n_es_toponyms_wizard

@@ -22,7 +22,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, tools
+from openerp import models, fields, api, tools
 import os
 
 
@@ -49,33 +49,45 @@ class ConfigEsToponyms(models.TransientModel):
         string='City information',
         default='yes')
 
-    def create_states(self, cr, uid, state_type, context=None):
+    @api.model
+    def create_states(self, state_type):
         """Import spanish states information through an XML file."""
         file_name = 'l10n_es_toponyms_states_%s.xml' % state_type
         path = os.path.join('l10n_es_toponyms', 'wizard', file_name)
         with tools.file_open(path) as fp:
-            tools.convert_xml_import(cr, 'l10n_es_toponyms', fp, {},
+            tools.convert_xml_import(self.env.cr, 'l10n_es_toponyms', fp, {},
                                      'init', noupdate=True)
             return True
-
         return False
 
-    def create_zipcodes(self, cr, uid, context=None):
+    @api.model
+    def create_zipcodes(self):
         """Import spanish zipcodes information through an XML file."""
         file_name = 'l10n_es_toponyms_zipcodes.xml'
         path = os.path.join('l10n_es_toponyms', 'wizard', file_name)
         with tools.file_open(path) as fp:
-            tools.convert_xml_import(cr, 'l10n_es_toponyms', fp, {},
+            tools.convert_xml_import(self.env.cr, 'l10n_es_toponyms', fp, {},
                                      'init', noupdate=True)
             return True
-
         return False
 
-    def execute(self, cr, uid, ids, context=None):
-        super(ConfigEsToponyms, self).execute(cr, uid, ids, context=context)
-        res = self.read(cr, uid, ids)[0]
+    @api.multi
+    def execute(self):
+        res = super(ConfigEsToponyms, self).execute()
         # Import spanish states (official, Spanish or both)
-        self.create_states(cr, uid, res['state'], context=context)
+        self.create_states(self.state)
         # Import spanish cities and zip codes
-        if res['city_info'] == 'yes':
-            self.create_zipcodes(cr, uid, context=context)
+        if self.city_info == 'yes':
+            wizard_obj = self.env['better.zip.geonames.import']
+            country_es = self.env['res.country'].search([('code', '=', 'ES')])
+            wizard = wizard_obj.create({'country_id': country_es.id})
+            wizard.run_import()
+        return res
+
+    @api.multi
+    def execute_local(self):
+        # Import spanish states (official, Spanish or both)
+        self.create_states(self.state)
+        # Import spanish cities and zip codes
+        if self.city_info == 'yes':
+            self.create_zipcodes()
