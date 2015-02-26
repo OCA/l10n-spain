@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<record model="ir.sequence.type" id="es_balance_abreviado">
+    		<field name="code">account.journal</field>
+    		<field name="name">Account Journal</field>
+    	</record>
+    </data>
+</openerp>
