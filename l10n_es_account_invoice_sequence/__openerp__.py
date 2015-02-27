@@ -33,7 +33,6 @@
     ],
     "data": [
         'views/account_view.xml',
-        'data/sequence.xml'
     ],
     "demo": [],
     "test": [
