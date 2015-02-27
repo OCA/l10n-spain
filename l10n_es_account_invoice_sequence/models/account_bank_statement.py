@@ -28,23 +28,27 @@ from openerp.osv import osv
 import logging
 _logger = logging.getLogger("Starlab:Custom")
 
+
 class account_bank_statement(osv.osv):
     _inherit = 'account.bank.statement'
 
     def _prepare_move(self, cr, uid, st_line, st_line_number, context=None):
         """Prepare the dict of values to create the move from a
-           statement line. This method overrides the generic method on 
+           statement line. This method overrides the generic method on
            account bank statement module in order to adapt it to l10n_es.
 
            :param browse_record st_line: account.bank.statement.line record to
                   create the move from.
-           :param char st_line_number: will be used as the name of the generated account move
+           :param char st_line_number: will be used as the name of the
+                                        generated account move
            :return: dict of value to create() the account.move
         """
-        re = super(account_bank_statement, self)._prepare_move(cr, uid, st_line, st_line_number, context)
+        re = super(account_bank_statement, self)._prepare_move(cr, uid,
+                                                               st_line,
+                                                               st_line_number,
+                                                               context)
 
-        #Retrieving spanish journal sequence
+        # Retrieving spanish journal sequence
         re['name'] = st_line.journal_id.sequence_id.id
 
         return re
-
