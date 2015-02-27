@@ -42,14 +42,9 @@ class account_bank_statement(osv.osv):
            :return: dict of value to create() the account.move
         """
         re = super(account_bank_statement, self)._prepare_move(cr, uid, st_line, st_line_number, context)
-        
-        account_journal_type = self.pool.get('ir.sequence.type').search(cr, uid, [('code','=','account.journal')])
-        account_journal_type_name = self.pool.get('ir.sequence.type').browse(cr, uid, account_journal_type, context).name
-        account_journal_sequence = self.pool.get('ir.sequence').search(cr, uid, [('name','=',account_journal_type_name)])
-        account_journal_sequence_id = account_journal_sequence[0]
 
-        next_seq_num = self.pool.get('ir.sequence').next_by_id(cr, uid, account_journal_sequence_id, context=context)
-        re['name'] = next_seq_num
+        #Retrieving spanish journal sequence
+        re['name'] = st_line.journal_id.sequence_id.id
 
         return re
 
