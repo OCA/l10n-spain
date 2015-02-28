@@ -17,6 +17,8 @@
 ##############################################################################
 from openerp.osv import orm
 from openerp.tools.translate import _
+from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+from datetime import datetime
 
 
 class L10nEsAeatMod347ExportToBoe(orm.TransientModel):
@@ -58,7 +60,9 @@ class L10nEsAeatMod347ExportToBoe(orm.TransientModel):
         # Modelo Declaración
         text += '347'
         # Ejercicio
-        text += self._formatString(report.fiscalyear_id.code, 4)
+        text += self._formatString(
+            datetime.strptime(report.fiscalyear_id.date_start,
+                              DEFAULT_SERVER_DATE_FORMAT).year, 4)
         # NIF del declarante
         text += self._formatString(report.company_vat, 9)
         # Apellidos y nombre o razón social del declarante
