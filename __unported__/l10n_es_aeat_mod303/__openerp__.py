@@ -26,7 +26,7 @@
 {
     "name" : "AEAT modelo 303",
     "version" : "1.1",
-    "author" : "GuadalTech",
+    "author" : "GuadalTech,Odoo Community Association (OCA)",
     "license" : "AGPL-3",
     "website" : "http://www.guadaltech.es",
     'contributors': ["Pedro M. Baeza <pedro.baeza@serviciosbaeza.com"],

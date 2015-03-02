@@ -26,7 +26,7 @@
 {
     'name': "AEAT Model 347",
     'version': "1.1",
-    'author': "Spanish Localization Team",
+    'author': "Spanish Localization Team,Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-spain",
     'contributors': [
         'Pexego (http://www.pexego.es)',

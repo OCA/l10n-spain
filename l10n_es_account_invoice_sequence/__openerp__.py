@@ -24,7 +24,7 @@
 {
     "name": "Secuencia para facturas separada de la secuencia de asientos",
     "version": "1.1",
-    "author": "Localización española de OpenERP",
+    "author": "Localización española de OpenERP,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting",
     "license": "AGPL-3",

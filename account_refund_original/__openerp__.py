@@ -24,7 +24,7 @@
 {
     "name": "Relationship refund - origin invoice",
     "version": "1.0",
-    "author": "Spanish Localization Team",
+    "author": "Spanish Localization Team,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "contributors": [
         'Pexego <www.pexego.es>',
