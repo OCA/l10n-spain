@@ -23,7 +23,7 @@
 {
     "name" : "City information",
     "version" : "2.1",
-    "author" : "Acysos S.L., Pedro Manuel Baeza, Pablo Rocandio",
+    "author" : "Acysos S.L., Pedro Manuel Baeza, Pablo Rocandio,Odoo Community Association (OCA)",
     "website" : "www.acysos.com, www.serviciosbaeza.com",
     "license" : "AGPL-3",
     "category" : "Hidden",

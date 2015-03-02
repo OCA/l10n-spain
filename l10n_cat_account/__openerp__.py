@@ -24,7 +24,7 @@
 {
     "name" : "Account names in Catalan",
     "version" : "1.0",
-    "author" : "Zikzakmedia SL",
+    "author" : "Zikzakmedia SL,Odoo Community Association (OCA)",
     "website" : "www.zikzakmedia.com",
     "category" : "Localisation/Europe",
     "description": """This module translates the account name in the account templates from Spanish to Catalan (for Spanish 2008 chart of accounts, general or PYMES versions).

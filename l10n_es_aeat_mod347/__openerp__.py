@@ -22,7 +22,7 @@
 {
     "name" : "AEAT Model 347",
     "version" : "1.0",
-    "author" : "Pexego, ASR-OSS, NaN·tic, Acysos",
+    "author" : "Pexego, ASR-OSS, NaN·tic, Acysos,Odoo Community Association (OCA)",
     "license" : "AGPL-3",
     "website" : "http://www.pexego.es, www.asr-oss.com, www.nan-tic.com, www.acysos.com",
     "category" : "Localisation/Accounting",

@@ -29,7 +29,7 @@
 {
     "name" : "Spanish fiscal year closing",
     "version" : "1.1",
-    "author" : "Pexego / Pedro M. Baeza",
+    "author" : "Pexego / Pedro M. Baeza,Odoo Community Association (OCA)",
     "website" : "http://www.pexego.es / http://www.serviciosbaeza.com",
     "category" : "Localisation/Accounting",
     "description": """

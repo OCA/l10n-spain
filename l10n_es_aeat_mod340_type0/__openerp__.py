@@ -25,7 +25,7 @@
 {
     'name' : 'Generación de fichero modelo 340. Registro tipo 0',
     'version' : '1.0',
-    'author' : 'Acysos S.L.',
+    'author' : "Acysos S.L.,Odoo Community Association (OCA)",
     'website' : 'www.acysos.com',
     'category' : 'Localisation/Accounting',
     'description' : '''

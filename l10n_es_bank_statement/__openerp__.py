@@ -28,7 +28,7 @@
 {
     "name" : "Spanish Bank Statements Importation",
     "version" : "2.0",
-    "author" : "Zikzakmedia, Pexego, Acysos, NaN·tic",
+    "author" : "Zikzakmedia, Pexego, Acysos, NaN·tic,Odoo Community Association (OCA)",
     "category" : "Localisation/Accounting",
     "description" : """
 Module for the importation of Spanish bank statements following the C43 normative of the 'Asociación Española de la Banca'.

@@ -26,7 +26,7 @@
 {
     "name": "Account Balance Reporting to XLS",
     "version": "0.2",
-    "author": "Juan Formoso <jfv@anubia.es>",
+    "author": "Juan Formoso <jfv@anubia.es>,Odoo Community Association (OCA)",
     "category": "Accounting / Reports",
     "description": """
 This module provides the opportunity of exporting financial reports to

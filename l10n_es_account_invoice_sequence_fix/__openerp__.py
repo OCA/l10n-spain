@@ -23,7 +23,7 @@
 {
         "name" : "Account invoice sequence fix",
         "version" : "0.1",
-        "author" : "Eficent",
+        "author" : "Eficent,Odoo Community Association (OCA)",
         "website" : "http://www.eficent.com",
         "category" : "Enterprise Specific Modules",
         "description": """

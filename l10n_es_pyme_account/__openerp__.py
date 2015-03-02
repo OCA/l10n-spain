@@ -25,7 +25,7 @@
 {
     "name" : "Instalación PYME estándar sólo contabilidad",
     "version" : "1.0",
-    "author" : "Zikzakmedia SL",
+    "author" : "Zikzakmedia SL,Odoo Community Association (OCA)",
     "category" : "Generic Modules/Others",
     "website": "www.zikzakmedia.com",
     "description": """

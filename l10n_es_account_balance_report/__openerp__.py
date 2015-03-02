@@ -23,7 +23,7 @@
 {
         "name" : "Spanish account balance reports",
         "version" : "0.1",
-        "author" : "Pexego, Zikzakmedia",
+        "author" : "Pexego, Zikzakmedia,Odoo Community Association (OCA)",
         "license" : "AGPL-3",
         "website" : "http://www.pexego.es",
         "category" : "Localisation/Accounting",

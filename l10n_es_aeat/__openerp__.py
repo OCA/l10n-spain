@@ -22,7 +22,7 @@
 {
     'name' : "AEAT Base",
     'version' : "1.0",
-    'author' : "Pexego",
+    'author' : "Pexego,Odoo Community Association (OCA)",
     'license' : "AGPL-3",
     'website' : "http://www.pexego.es",
     'category' : "Localisation/Accounting",

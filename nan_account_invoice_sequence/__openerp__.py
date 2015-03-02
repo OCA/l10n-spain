@@ -30,7 +30,7 @@
 {
     "name" : "NaN Account Invoice Sequence",
     "version" : "1.0",
-    "author" : "NaN·tic",
+    "author" : "NaN·tic,Odoo Community Association (OCA)",
     "category" : "Accounting",
     "website": "http://www.NaN-tic.com",
     "description": """\

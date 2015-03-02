@@ -22,7 +22,7 @@
 {
     "name": "Account Financial Report Web",
     "version": "0.1",
-    "author": "Factor Libre",
+    "author": "Factor Libre,Odoo Community Association (OCA)",
     "category": "Others",
     "website": "http://www.factorlibre.com",
     "description": "Update Account Financial Report (Factor Libre Project)",

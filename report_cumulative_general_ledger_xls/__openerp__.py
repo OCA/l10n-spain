@@ -23,7 +23,7 @@
 	"name" : "Report cumulative general ledger xls",
 	"description": """Allows get cumulative general ledger in xls""",
 	"version" : "1.0",
-	"author" : "Factor Libre S.L",
+	"author" : "Factor Libre S.L,Odoo Community Association (OCA)",
 	"category" : "Accounting",
 	"module": "",
 	"website": "http://www.factorlibre.com/",

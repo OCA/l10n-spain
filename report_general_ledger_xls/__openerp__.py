@@ -24,7 +24,7 @@
 	"name" : "report general ledger xls",
 	"description": """Allows get general ledger in xls""",
 	"version" : "1.0",
-	"author" : "Factor Libre S.L",
+	"author" : "Factor Libre S.L,Odoo Community Association (OCA)",
 	"category" : "Generic Modules",
 	"module": "",
 	"website": "http://www.factorlibre.com/",

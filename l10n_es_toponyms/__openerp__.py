@@ -26,7 +26,7 @@
 {
     "name" : "Topónimos del Estado español",
     "version" : "1.2",
-    "author" : "Localización española",
+    "author" : "Localización española,Odoo Community Association (OCA)",
     "website" : "https://launchpad.net/openerp-spain",
     "category" : "Localisation/Spain",
     "description": """

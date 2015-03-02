@@ -25,7 +25,7 @@
 {
     "name" : "Datos iniciales para módulo base",
     "version" : "1.0",
-    "author" : "Pablo Rocandio, Zikzakmedia SL",
+    "author" : "Pablo Rocandio, Zikzakmedia SL,Odoo Community Association (OCA)",
     "website" : "www.zikzakmedia.com",
     "category" : "Localisation/Europe",
     "description": """Añade datos iniciales a las tablas:

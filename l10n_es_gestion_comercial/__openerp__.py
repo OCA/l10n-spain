@@ -20,7 +20,7 @@
 {
     "name" : "Gestión Comercial de efectos de facturación",
     "version" : "1.0",
-    "author" : "Soluntec",
+    "author" : "Soluntec,Odoo Community Association (OCA)",
     "website" : "http://www.soluntec.es",
     "category" : "Localisation/Europe",
     "description":

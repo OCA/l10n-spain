@@ -27,7 +27,7 @@
                 "account_payment",
                 "account_payment_extension",
                 ],
-    "author": "Avanzosc S.L.",
+    "author": "Avanzosc S.L.,Odoo Community Association (OCA)",
     "website": "http://www.avanzosc.com",
     "category": "Accounting",
     "description": """

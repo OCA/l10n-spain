@@ -23,7 +23,7 @@
 {
     "name" : "Partner Auto fiscal position",
     "version" : "0.1",
-    "author" : "Factor Libre SL",
+    "author" : "Factor Libre SL,Odoo Community Association (OCA)",
     "category" : "Localisation/Europe",
     "description": """Auto fiscal position depending on invoice address.""",
     "depends" : ["base","account","base_vat_vies"],

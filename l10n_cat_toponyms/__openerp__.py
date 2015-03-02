@@ -24,7 +24,7 @@
 {
     "name" : "Topònims dels Països Catalans",
     "version" : "1.0",
-    "author" : "Zikzakmedia SL",
+    "author" : "Zikzakmedia SL,Odoo Community Association (OCA)",
     "website" : "www.zikzakmedia.com",
     "category" : "Localisation/Europe",
     "description": """Comarques dels Països Catalans (Catalunya, País Valencià i Illes Balears)

@@ -22,7 +22,7 @@
 {
     "name" : "AEAT Model 349",
     "version" : "1.0",
-    "author" : "Pexego",
+    "author" : "Pexego,Odoo Community Association (OCA)",
     "license" : "AGPL-3",
     "category": 'Localisation/Accounting',
     "description": """

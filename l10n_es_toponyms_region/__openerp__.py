@@ -24,7 +24,7 @@
 {
     "name" : "Comunidades Autónomas de España",
     "version" : "1.0",
-    "author" : "Zikzakmedia SL",
+    "author" : "Zikzakmedia SL,Odoo Community Association (OCA)",
     "website" : "www.zikzakmedia.com",
     "category" : "Localisation/Europe",
     "description": """Comunidades Autónomas del Estado Español

@@ -24,7 +24,7 @@
 {
     "name": "Adaptación de partner para Estado Español",
     "version": "1.3",
-    "author": "Spanish Localization Team",
+    "author": "Spanish Localization Team,Odoo Community Association (OCA)",
     "website": "https://launchpad.net/openerp-spain",
     "category": "Localisation/Europe",
     "description": """Funcionalidades:

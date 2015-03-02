@@ -23,7 +23,7 @@
 {
     "name" : "AEAT Model 303",
     "version" : "1.0",
-    "author" : "GuadalTech",
+    "author" : "GuadalTech,Odoo Community Association (OCA)",
     "license" : "AGPL-3",
     "website" : "http://www.guadaltech.es",
     "category" : "Localisation/Accounting",

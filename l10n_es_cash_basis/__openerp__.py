@@ -24,7 +24,7 @@
 {
     "name" : "Criterio de caja para España",
     "version" : "0.2",
-    "author" : "Spanish Localization Team",
+    "author" : "Spanish Localization Team,Odoo Community Association (OCA)",
     "contributors": [
         'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>'
     ],
