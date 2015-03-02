@@ -24,7 +24,7 @@
 {
     "name": "AEAT modelo 130",
     "version": "0.8",
-    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza",
+    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "http://www.serviciosbaeza.com",
     "category": "Localisation/Accounting",

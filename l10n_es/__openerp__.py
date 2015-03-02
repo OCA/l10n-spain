@@ -27,7 +27,7 @@
 {
     "name": "Spanish Charts of Accounts (PGCE 2008)",
     "version": "4.0",
-    "author": "Spanish Localization Team",
+    "author": "Spanish Localization Team,Odoo Community Association (OCA)",
     'website': 'https://launchpad.net/openerp-spain',
     "category": "Localization/Account Charts",
     "description": """

@@ -24,7 +24,7 @@
 {
     "name" : "Export partners to a txt file compatible with the Correos Virtual Office",
     "version" : "1.0",
-    "author" : "Acysos S.L.",
+    "author" : "Acysos S.L.,Odoo Community Association (OCA)",
     "website" : "www.acysos.com",
     "description": """Only 300 companies can be exported by file. All partners must have street, zip, city, state and country. Select the partners and click action.""",
     "license" : "AGPL-3",

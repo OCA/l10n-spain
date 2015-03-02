@@ -33,7 +33,7 @@
             resultado = client.service.probarXml(envio)
             #resultado = client.service.registrarXml(envio)
         """,
-        "author" : "LambdaSoftware development team",
+        "author" : "LambdaSoftware development team,Odoo Community Association (OCA)",
         "website" : "http://www.lambdasoftware.net",
         'depends': ['base','hr','l10n_es_toponyms'],
         'init_xml': [

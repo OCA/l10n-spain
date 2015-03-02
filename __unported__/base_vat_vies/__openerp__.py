@@ -20,7 +20,7 @@
 {
     "name" : "Validate Vat (Vies Webservice)",
     "version" : "1.0",
-    "author" : "Factor Libre SL",
+    "author" : "Factor Libre SL,Odoo Community Association (OCA)",
     "category" : "Localisation/Europe",
     "description": """This addon validates the vat number in the vies webservice (http://ec.europa.eu/taxation_customs/vies/)""",
     "depends" : ["base", "base_vat"],

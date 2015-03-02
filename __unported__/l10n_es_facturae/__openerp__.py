@@ -24,7 +24,7 @@
 {
     "name" : "Factura-e File Creation",
     "version" : "1.0",
-    "author" : "Alejandro Sanchez",
+    "author" : "Alejandro Sanchez,Odoo Community Association (OCA)",
     "category" : "Localisation/Accounting",
     "description" : """NOTA: NO ADAPTADO TODAVÍA A LA VERSIÓN 6.0
 This module creates Factura-e files from invoices.

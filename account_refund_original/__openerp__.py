@@ -25,7 +25,7 @@
 Manages refund invoice and origin invoice relationship.
     """,
     "version": "1.0",
-    "author": "Pexego",
+    "author": "Pexego,Odoo Community Association (OCA)",
     "website": "http://www.pexego.es",
     "category": "Localisation/Accounting",
     "depends": [

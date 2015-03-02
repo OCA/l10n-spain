@@ -36,7 +36,7 @@
 {
     "name": "Exportación de ficheros bancarios CSB 19, 32, 34 y 58",
     "version": "1.6",
-    "author": "Acysos SL, Zikzakmedia SL, Pablo Rocandio, NaN·tic",
+    "author": "Acysos SL, Zikzakmedia SL, Pablo Rocandio, NaN·tic,Odoo Community Association (OCA)",
     "category": "Localisation/Accounting",
     "description": """
 Módulo para la exportación de ficheros bancarios según las normas CSB 19

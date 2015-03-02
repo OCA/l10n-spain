@@ -30,7 +30,7 @@
                 "hr",
                 "account",
                 ],
-    "author": "Ting!, Acysos S.L., AvanzOSC",
+    "author": "Ting!, Acysos S.L., AvanzOSC,Odoo Community Association (OCA)",
     "category": "Generic Modules/Human Resources",
     "description": """
                 Recursos Humanos: Gestión de Nóminas

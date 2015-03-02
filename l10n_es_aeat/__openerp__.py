@@ -25,7 +25,7 @@
 {
     'name': "AEAT Base",
     'version': "1.1",
-    'author': "Pexego",
+    'author': "Pexego,Odoo Community Association (OCA)",
     'license': "AGPL-3",
     'contributors': [
         'Ignacio Ibeas (Acysos S.L.)',

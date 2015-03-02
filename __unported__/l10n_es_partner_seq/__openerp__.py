@@ -25,7 +25,7 @@
 {
     "name" : "Secuencia empresa",
     "version" : "0.1",
-    "author" : "Pablo Rocandio, Zikzakmedia SL",
+    "author" : "Pablo Rocandio, Zikzakmedia SL,Odoo Community Association (OCA)",
     "website" : "www.zikzakmedia.com",
     "category" : "Localisation/Europe",
     "description": """Este módulo:

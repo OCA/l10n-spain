@@ -24,7 +24,7 @@
 {
     "name" : "Dades inicials per al mòdul base",
     "version" : "1.0",
-    "author" : "Zikzakmedia SL",
+    "author" : "Zikzakmedia SL,Odoo Community Association (OCA)",
     "website" : "www.zikzakmedia.com",
     "category" : "Localisation/Europe",
     "description": """Afegeix dades inicials a les taules:

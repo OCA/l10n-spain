@@ -28,7 +28,7 @@
 {
     "name": "Adaptación de los clientes, proveedores y bancos para España",
     "version": "1.3",
-    "author": "Spanish localization team",
+    "author": "Spanish localization team,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "contributors": [
         'Jordi Esteve <jesteve@zikzakmedia.com>',

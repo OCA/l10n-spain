@@ -26,7 +26,7 @@
 {
     "name": "Account Balance Reporting to XLS",
     "version": "1.0",
-    "author": "Spanish Localization Team",
+    "author": "Spanish Localization Team,Odoo Community Association (OCA)",
     'website': 'http://odoo-spain.org',
     "category": "Accounting / Reports",
     "description": """
