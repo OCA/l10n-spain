@@ -22,7 +22,7 @@
 {
     "name" : "IGIC",
     "version" : "1.0",
-    "author" : "Pexego",
+    "author" : "Pexego,Odoo Community Association (OCA)",
     'website' : 'https://launchpad.net/openerp-spain',
     "category" : "Localisation/Account Charts",
     "description": """Añade las cuentas y impuestos del IGIC a las plantillas.
