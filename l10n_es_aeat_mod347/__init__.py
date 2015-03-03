@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -18,6 +15,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import export_mod347_to_boe
+from . import models
+from . import wizard
+from openerp import SUPERUSER_ID
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+def post_init_hook(cr, registry):
+    # Assign quarters on first time
+    period_obj = registry['account.period']
+    period_ids = period_obj.search(cr, SUPERUSER_ID, [])
+    period_obj.assign_quarter(cr, SUPERUSER_ID, period_ids)
