@@ -47,15 +47,17 @@ def map_account_types(cr):
                    "FROM ir_model_data "
                    "WHERE module=%s AND name=%s "
                    "LIMIT 1", (old_module, old_name))
-        old_id = cr.fetchone()[0]
-        cr.execute("SELECT res_id "
-                   "FROM ir_model_data "
-                   "WHERE module=%s AND name=%s "
-                   "LIMIT 1", (new_module, new_name))
-        new_id = cr.fetchone()[0]
-        cr.execute("UPDATE account_account "
-                   "SET user_type=%s "
-                   "WHERE user_type=%s", (new_id, old_id))
+        row = cr.fetchone()
+        if row:
+            old_id = row[0]
+            cr.execute("SELECT res_id "
+                       "FROM ir_model_data "
+                       "WHERE module=%s AND name=%s "
+                       "LIMIT 1", (new_module, new_name))
+            new_id = cr.fetchone()[0]
+            cr.execute("UPDATE account_account "
+                       "SET user_type=%s "
+                       "WHERE user_type=%s", (new_id, old_id))
 
 
 def migrate(cr, version):
