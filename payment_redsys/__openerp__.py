@@ -5,7 +5,7 @@
     'category': 'Hidden',
     'summary': 'Payment Acquirer: Redsys Implementation',
     'version': '1.0',
-    'author': 'Incaser Informatica S.L.',
+    'author': "Incaser Informatica S.L.,Odoo Community Association (OCA)",
     'depends': ['payment'],
     'data': [
         'views/redsys.xml',

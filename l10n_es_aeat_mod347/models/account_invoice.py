@@ -15,16 +15,20 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import fields, orm
+from openerp import fields, models, api
 
-class account_period(orm.Model):
-    _inherit = "account.period"
 
-    _columns = {
-        'quarter': fields.selection([
-                                    ('first', 'First'),
-                                    ('second', 'Second'),
-                                    ('third', 'Third'),
-                                    ('fourth', 'Fourth')
-                                    ], 'Quarter'),
-    }
+class AccountInvoice(models.Model):
+    _inherit = 'account.invoice'
+
+    @api.one
+    @api.depends('cc_amount_untaxed', 'tax_line.amount')
+    def _get_amount_total_wo_irpf(self):
+        self.amount_total_wo_irpf = self.cc_amount_untaxed
+        for tax_line in self.tax_line:
+            if 'IRPF' not in tax_line.name:
+                self.amount_total_wo_irpf += tax_line.amount
+
+    amount_total_wo_irpf = fields.Float(
+        compute="_get_amount_total_wo_irpf",
+        string="Total amount without IRPF taxes")

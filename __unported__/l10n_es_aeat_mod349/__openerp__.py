@@ -28,7 +28,7 @@
 {
     "name": "AEAT modelo 349",
     "version": "2.0",
-    "author": "Pexego",
+    "author": "Pexego,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     'contributors': [
         'Miguel López (Top Consultant)',

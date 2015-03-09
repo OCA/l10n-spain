@@ -23,7 +23,7 @@
 {
     "name" : "Extractos bancarios españoles (Norma 43)",
     "version" : "3.0",
-    "author" : "Spanish localization team",
+    "author" : "Spanish localization team,Odoo Community Association (OCA)",
     "website" : "https://github.com/OCA/l10n-spain",
     "category" : "Localisation/Accounting",
     "description" : """

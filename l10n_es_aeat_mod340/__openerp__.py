@@ -24,7 +24,10 @@
 {
     'name': 'Generación de fichero modelo 340 y libro de IVA',
     'version': '2.0',
-    'author': 'Acysos S.L., Francisco Pascual (Ting), Nan-tic',
+    'author': "Acysos S.L., "
+              "Francisco Pascual (Ting), "
+              "Nan-tic, "
+              "Odoo Community Association (OCA)",
     'website': 'www.acysos.com, www.ting.es, www.nan-tic.com',
     'category': 'Localisation/Accounting',
     'description': '''

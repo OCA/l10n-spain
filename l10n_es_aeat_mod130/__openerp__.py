@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) All rights reserved:
+#    Copyright (c)
 #       2014      Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #                 Pedro M. Baeza <pedro.baeza@serviciobaeza.com>
 #
@@ -24,7 +24,8 @@
 {
     "name": "AEAT modelo 130",
     "version": "0.8",
-    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza",
+    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "http://www.serviciosbaeza.com",
     "category": "Localisation/Accounting",
