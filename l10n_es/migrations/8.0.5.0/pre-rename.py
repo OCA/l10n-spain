@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2014 Domatix (http://www.domatix.com)
-#                       Ángel Moya <angel.moya@domatix.com>
-#    Copyright (c) 2015 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2015 Serv. Tecnol. Avanz. (<http://www.serviciosbaeza.com>)
 #                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,12 +20,16 @@
 #
 ##############################################################################
 
-from openerp import models, api
+
+def rename_fiscal_positions(cr):
+    cr.execute("""
+        UPDATE account_fiscal_position
+        SET name='Régimen Extracomunitario / Canarias, Ceuta y Melilla'
+        WHERE name='Régimen Extracomunitario'
+        """)
 
 
-class AccountTax(models.Model):
-    _inherit = 'account.tax'
-
-    @api.multi
-    def name_get(self):
-        return [(tax.id, tax.name or tax.description) for tax in self]
+def migrate(cr, version):
+    if not version:
+        return
+    rename_fiscal_positions(cr)
