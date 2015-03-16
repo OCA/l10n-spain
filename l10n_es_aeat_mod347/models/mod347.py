@@ -77,7 +77,7 @@ class L10nEsAeatMod347Report(models.Model):
             total_amount = invoice_amount - refund_amount
             # If the invoiced amount is greater than the limit
             # we will add a partner record to the report.
-            if total_amount > self.operations_limit:
+            if abs(total_amount) > self.operations_limit:
                 if invoice_type == 'out_invoice':
                     operation_key = 'B'  # Note: B = Sale operations
                 else:
