@@ -24,7 +24,7 @@
 ##############################################################################
 
 {
-    "name": "AEAT modelo 349",
+    "name": "Modelo 349 AEAT",
     "version": "2.0",
     "author": "Pexego, "
               "Top Consultant, "
