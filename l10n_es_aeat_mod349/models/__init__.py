@@ -1,17 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C)
-#        2004-2011: Pexego Sistemas Informáticos. (http://pexego.es)
-#        2013:      Top Consultant Software Creations S.L.
-#                   (http://www.topconsultant.es/)
-#        2014:      Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com> 
-#
-#    Autores originales: Luis Manuel Angueira Blanco (Pexego)
-#                        Omar Castiñeira Saavedra(omar@pexego.es)
-#    Migración OpenERP 7.0: Ignacio Martínez y Miguel López.
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -26,4 +15,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import export_mod349_to_boe
+
+from . import account_fiscal_position
+from . import account_invoice
+from . import mod349

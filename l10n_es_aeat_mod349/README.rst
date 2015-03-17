@@ -1,42 +1,6 @@
-# -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C)
-#        2004-2011: Pexego Sistemas Informáticos. (http://pexego.es)
-#        2013:      Top Consultant Software Creations S.L.
-#                   (http://www.topconsultant.es/)
-#
-#    Autores originales: Luis Manuel Angueira Blanco (Pexego)
-#                        Omar Castiñeira Saavedra(omar@pexego.es)
-#    Migración OpenERP 7.0: Ignacio Martínez y Miguel López.
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+Modelo 349 de la AEAT
+=====================
 
-{
-    "name": "AEAT modelo 349",
-    "version": "2.0",
-    "author": "Pexego,Odoo Community Association (OCA)",
-    "license": "AGPL-3",
-    'contributors': [
-        'Miguel López (Top Consultant)',
-        'Ignacio Martínez (Top Consultant)',
-        'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
-    ],
-    "category": 'Localisation/Accounting',
-    "description": """
 Módulo para la presentación del Modelo AEAT 349 (Declaración Recapitulativa de
 Operaciones Intracomunitarias)
 
@@ -91,26 +55,37 @@ presentar el modelo 349:
    35.000 € y el importe total de las entregas de bienes a otro Estado
    Miembro (salvo medios de transporte nuevos) exentas de IVA no sea superior
    a 15.000 €.
-    """,
-    
-    'website': 'http://www.pexego.es',
-    "depends": [
-        "account",
-        "account_invoice_currency",
-        "account_refund_original",
-        "l10n_es",
-        "l10n_es_aeat",
-    ],
-    'data': [
-        "wizard/export_mod349_to_boe.xml",
-        "account_fiscal_position_view.xml",
-        "account_invoice_view.xml",
-        "mod349_view.xml",
-        "report/mod349_report.xml",
-        "security/ir.model.access.csv",
-        "security/mod_349_security.xml",
-        "data/assign_invoices_op_keys.xml",
-    ],
-    'installable': True,
-}
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+Installation
+============
+
+Para instalar este módulo, es necesario instalar el módulo
+*account_invoice_currency*, que se encuentra en el repositorio de GitHub:
+
+https://github.com/OCA/account-financial-tools
+
+Credits
+=======
+
+Contributors
+------------
+* Luis Manuel Angueira Blanco (Pexego)
+* Omar Castiñeira Saavedra<omar@pexego.es>
+* Miguel López (Top Consultant)
+* Ignacio Martínez (Top Consultant)
+* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+
+Maintainer
+----------
+
+.. image:: http://odoo-community.org/logo.png
+   :alt: Odoo Community Association
+   :target: http://odoo-community.org
+
+This module is maintained by the OCA.
+
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
+
+To contribute to this module, please visit http://odoo-community.org.
