@@ -420,15 +420,30 @@ class L10nEsAeatMod347PartnerRecord(orm.Model):
                 'fourth_quarter': 0,
                 'fourth_quarter_real_state_transmission_amount': 0,
             }
-            for invoice in record.invoice_record_ids:
-                if invoice.invoice_id.period_id.quarter == 'first':
-                    result[record.id]['first_quarter'] += invoice.amount
-                elif invoice.invoice_id.period_id.quarter == 'second':
-                    result[record.id]['second_quarter'] += invoice.amount
-                elif invoice.invoice_id.period_id.quarter == 'third':
-                    result[record.id]['third_quarter'] += invoice.amount
-                elif invoice.invoice_id.period_id.quarter == 'fourth':
-                    result[record.id]['fourth_quarter'] += invoice.amount
+            invoices = [x for x in record.invoice_record_ids
+                        if x.type in ('out_invoice', 'in_invoice')]
+            refunds = [x for x in record.invoice_record_ids
+                       if x.type in ('out_refund', 'in_refund')]
+            result[record.id]['first_quarter'] = (
+                sum(x.amount for x in invoices
+                    if x.period_id.quarter == 'first') -
+                sum(x.amount for x in refunds
+                    if x.period_id.quarter == 'first'))
+            result[record.id]['second_quarter'] = (
+                sum(x.amount for x in invoices
+                    if x.period_id.quarter == 'second') -
+                sum(x.amount for x in refunds
+                    if x.period_id.quarter == 'second'))
+            result[record.id]['third_quarter'] = (
+                sum(x.amount for x in invoices
+                    if x.period_id.quarter == 'third') -
+                sum(x.amount for x in refunds
+                    if x.period_id.quarter == 'third'))
+            result[record.id]['fourth_quarter'] = (
+                sum(x.amount for x in invoices
+                    if x.period_id.quarter == 'fourth') -
+                sum(x.amount for x in refunds
+                    if x.period_id.quarter == 'fourth'))
         return result
 
     def _get_lines(self, cr, uid, ids, context):
