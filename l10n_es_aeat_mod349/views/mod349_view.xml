@@ -24,9 +24,11 @@
             <field name="model">l10n.es.aeat.mod349.partner_record_detail</field>
             <field name="arch" type="xml">
                 <form string="AEAT 349 Partner record">
-                    <field name="invoice_id"/>
-                    <field name="amount_untaxed"/>
-                    <field name="date"/>
+                    <group>
+                        <field name="invoice_id"/>
+                        <field name="amount_untaxed"/>
+                        <field name="date"/>
+                    </group>
                 </form>
             </field>
         </record>
@@ -58,11 +60,13 @@
                 <form string="AEAT 349 Partner records">
                     <notebook colspan="4">
                         <page string="Info">
-                            <field name="operation_key"/>
-                            <field name="partner_id"/>
-                            <field name="country_id"/>
-                            <field name="partner_vat" on_change="onchange_format_partner_vat(partner_vat,country_id)"/>
-                            <field name="total_operation_amount"/>
+                            <group>
+                                <field name="operation_key"/>
+                                <field name="partner_id"/>
+                                <field name="country_id"/>
+                                <field name="partner_vat" on_change="onchange_format_partner_vat(partner_vat,country_id)"/>
+                                <field name="total_operation_amount"/>
+                            </group>
                         </page>
                         <page string="Detail lines">
                             <field name="record_detail_ids" nolabel="1"/>
@@ -94,9 +98,11 @@
             <field name="model">l10n.es.aeat.mod349.partner_refund_detail</field>
             <field name="arch" type="xml">
                 <form string="AEAT 349 Partner refund">
-                    <field name="invoice_id"/>
-                    <field name="amount_untaxed"/>
-                    <field name="date"/>
+                    <group>
+                        <field name="invoice_id"/>
+                        <field name="amount_untaxed"/>
+                        <field name="date"/>
+                    </group>
                 </form>
             </field>
         </record>
@@ -131,17 +137,19 @@
                 <form string="AEAT 349 Partner refunds">
                     <notebook>
                         <page string="Info">
-                            <field name="operation_key"/>
-                            <field name="partner_id"/>
-                            <field name="country_id"/>
-                            <field name="partner_vat" on_change="onchange_format_partner_vat(partner_vat,country_id)"/>
-                            <field name="total_operation_amount"/>
-                            <field name="total_origin_amount"/>
-                            <separator string="Refund data" colspan="4"/>
-                            <field name="fiscalyear_id"/>
-                            <field name="period_selection"/>
-                            <group colspan="2" col="2" attrs="{'invisible':[('period_selection','!=','MO')]}">
-                                <field name="month_selection" attrs="{'required':[('period_selection','==','MO')]}"/>
+                            <group colspan="4">
+                                <field name="operation_key"/>
+                                <field name="partner_id"/>
+                                <field name="country_id"/>
+                                <field name="partner_vat" on_change="onchange_format_partner_vat(partner_vat,country_id)"/>
+                                <field name="total_operation_amount"/>
+                                <field name="total_origin_amount"/>
+                            </group>
+                            <group string="Refund data" colspan="4">
+                                <field name="fiscalyear_id"/>
+                                <field name="period_selection"/>
+                                <field name="month_selection"
+                                       attrs="{'required': [('period_selection', '==', 'MO')], 'invisible': [('period_selection', '!=', 'MO')]}"/>
                             </group>
                         </page>
                         <page string="Details">
@@ -259,6 +267,6 @@
             action="action_l10n_es_aeat_mod349_report"
             sequence="349"
             name="AEAT 349 Model"/>
-                
+
     </data>
 </openerp>

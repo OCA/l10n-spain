@@ -5,11 +5,8 @@
 #        2004-2011: Pexego Sistemas Informáticos. (http://pexego.es)
 #        2013:      Top Consultant Software Creations S.L.
 #                   (http://www.topconsultant.es/)
-#        2014:      Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com> 
-#
-#    Autor original: Luis Manuel Angueira Blanco (Pexego)
-#    Migración OpenERP 7.0: Ignacio Martínez y Miguel López.
+#        2014-2015: Serv. Tecnol. Avanzados - Pedro M. Baeza
+#                   (http://www.serviciosbaeza.com)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -25,17 +22,34 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp.osv import fields, orm
 
-
-class account_fiscal_position(orm.Model):
-    """
-    Inheritance of Account fiscal position to add field 'include_in_mod349'.
-    This fields let us map fiscal position, taxes and accounts to create an
-    AEAT 349 Report
-    """
-    _inherit = 'account.fiscal.position'
-    _columns = {
-        'intracommunity_operations': fields.boolean(
-                                                'Intra-Community operations'),
-    }
+{
+    "name": "Modelo 349 AEAT",
+    "version": "2.0",
+    "author": "Pexego, "
+              "Top Consultant, "
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Antiun Ingeniería S.L.,"
+              "Odoo Community Association (OCA)",
+    "license": "AGPL-3",
+    "category": 'Localisation/Accounting',
+    'website': 'https://github.com/OCA/l10n-spain',
+    "depends": [
+        "account",
+        "account_invoice_currency",
+        "account_refund_original",
+        "l10n_es",
+        "l10n_es_aeat",
+    ],
+    'data': [
+        "wizard/export_mod349_to_boe.xml",
+        "views/account_fiscal_position_view.xml",
+        "views/account_invoice_view.xml",
+        "views/mod349_view.xml",
+        "report/mod349_report.xml",
+        "security/ir.model.access.csv",
+        "security/mod_349_security.xml",
+    ],
+    'post_init_hook': '_assign_invoice_operation_keys',
+    'installable': True,
+}
