@@ -14,6 +14,8 @@ virtualenv:
 install:
   - pip install unidecode
   - pip install xlrd
+  - pip install unicodecsv
+  - pip install requests
   - git clone https://github.com/OCA/partner-contact ${HOME}/partner-contact -b ${VERSION}
   - git clone https://github.com/OCA/account-financial-tools ${HOME}/account-financial-tools -b ${VERSION}
   - git clone https://github.com/OCA/reporting-engines ${HOME}/reporting-engines -b ${VERSION}

@@ -24,28 +24,22 @@
 
 {
     "name": "Topónimos españoles",
-    "version": "1.0",
-    "author": "Spanish Localization Team,Odoo Community Association (OCA)",
+    "version": "2.0",
+    "author": "Spanish Localization Team, "
+              "ZikZakMedia, "
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Localisation/Europe",
-    "description": """
-Provincias, municipios y códigos postales de España.
-
-  * Añade las 52 provincias actuales de España con posibilidad de escoger
-    entre versión oficial, española o ambas.
-  * Proporciona un asistente para dar de alta los municipios y provincias por
-    defecto asociados a los códigos postales españoles.
-  * Utilizando el módulo base_location, permite rellenar automáticamente los
-    campos ciudad y provincia del formulario de empresa, de contacto y de
-    compañía a partir del código postal o el nombre de la ciudad.
-
-Los datos han sido obtenidos de GeoNames (http://www.geonames.org).
-
-**AVISO:** Este módulo requiere el módulo *base_location*, disponible en:
-
-https://github.com/OCA/partner-contact
-""",
-    "depends": ["base", "base_location"],
+    "depends": [
+        "base",
+        "base_location",
+        "base_location_geonames_import",
+    ],
+    'contributors': [
+        'Jordi Esteve <jesteve@zikzakmedia.com>',
+        'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
+    ],
     "license": "AGPL-3",
     "data": [
         "wizard/l10n_es_toponyms_wizard.xml",
