@@ -13,6 +13,7 @@ virtualenv:
 
 install:
   - pip install unidecode
+  - pip install unicodecsv
   - pip install xlrd
   - git clone https://github.com/OCA/partner-contact ${HOME}/partner-contact -b ${VERSION}
   - git clone https://github.com/OCA/account-financial-tools ${HOME}/account-financial-tools -b ${VERSION}
