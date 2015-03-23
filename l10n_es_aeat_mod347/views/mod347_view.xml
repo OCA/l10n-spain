@@ -255,15 +255,6 @@
                 <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
                     <attribute name="name">%(action_wizard_aeat_mod347_export)d</attribute>
                 </button>
-                <field name="fiscalyear_id" position="before">
-                    <field name="contact_name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-                    <field name="contact_phone" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-                    <field name="representative_vat" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-                </field>
-                <field name="calculation_date" position="before">
-                    <field name="type" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-                    <field name="previous_number" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-                </field>
                 <group string="Declaración" position="after">
                     <notebook>
                         <page string="General">
