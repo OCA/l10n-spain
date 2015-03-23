@@ -428,12 +428,12 @@ class create_facturae(osv.osv_memory):
                     tax_amount = line.invoice_line_tax_id[0].amount
                     price_unit = line.price_unit/(1+tax_amount)
                     if line.discount:
-                        discount_amount = price_unit * line.quantity
+                        discount_amount = price_unit * line.quantity - line.price_subtotal
                     else:
                         discount_amount = 0.0
                 else:
                     price_unit = line.price_unit
-                    discount_amount = line.price_unit*line.quantity - line.price_subtotal
+                    discount_amount = line.price_unit * line.quantity - line.price_subtotal
                 texto += '<InvoiceLine>'
                 texto += '<ItemDescription>' + line.name + '</ItemDescription>'
                 texto += '<Quantity>' + str(line.quantity) + '</Quantity>'
