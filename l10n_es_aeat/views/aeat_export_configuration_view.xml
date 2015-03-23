@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="aeat_model_export_config_tree" model="ir.ui.view">
+            <field name="name">aeat.model.export.config.tree</field>
+            <field name="model">aeat.model.export.config</field>
+            <field name="arch" type="xml">
+                <tree string="AEAT export configuration">
+                    <field name="name"/>
+                    <field name="model_number"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="aeat_model_export_config_form" model="ir.ui.view">
+            <field name="name">aeat.model.export.config.form</field>
+            <field name="model">aeat.model.export.config</field>
+            <field name="arch" type="xml">
+                <form string="AEAT export configuration">
+                    <group>
+	                    <field name="name"/>
+	                    <field name="model_number"/>
+	                    <field name="date_start"/>
+	                    <field name="date_end"/>
+                    </group>
+                    <separator string="Config lines"/>
+                    <field name="config_lines" context="{'default_model':model}"/>
+                    <group>
+                        <field name="model"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="aeat_model_export_config_line_tree" model="ir.ui.view">
+            <field name="name">aeat.model.export.config.line.tree</field>
+            <field name="model">aeat.model.export.config.line</field>
+            <field name="arch" type="xml">
+                <tree string="AEAT export configurationline">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                    <field name="position"/>
+                    <field name="repeat"/>
+                    <field name="export_type"/>
+                    <field name="sub_config"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="aeat_model_export_config_line_form" model="ir.ui.view">
+            <field name="name">aeat.model.export.config.line.form</field>
+            <field name="model">aeat.model.export.config.line</field>
+            <field name="arch" type="xml">
+                <form string="AEAT export configuration line">
+                    <group>
+                        <group>
+                            <field name="sequence"/>
+                            <field name="name" />
+                        </group>
+                        <group string='Basic configuration' colspan="2" col="6">
+	                        <field name="position"/>
+	                        <field name="size"/>
+	                        <field name="alignment"/>
+                        </group>
+                        <field name='export_config_id' invisible="1"/>
+                        <group string='Value' colspan="2" col="4">
+                            <field name="fixed_value" colspan="4"/>
+		                    <field name="expression" colspan="4"/>
+	                    </group>
+	                    <group string='Field especification' colspan="2" col="4">
+		                    <field name="export_type" colspan="4"/>
+		                    <field name="repeat"/>
+		                    <field name="sub_config" domain="[('id', '!=', export_config_id)]" attrs="{'required':[('repeat', '=', True)]}"/>
+	                    </group>
+	                    <group string="Advanced configuration">
+	                       <group attrs="{'invisible':[('export_type', 'not in', ('float', 'integer'))]}" col="4" colspan="2">
+		                       <field name="apply_sign"/>
+		                       <field name="sign" attrs="{'invisible':[('apply_sign', '=', False)]}"/>
+		                       <field name="decimal_size" attrs="{'invsible':[('export_type', '!=', 'float')]}"/>
+	                       </group>
+	                       <group attrs="{'invisible':[('export_type', '!=', 'boolean')]}" col="4" colspan="2">
+                               <field name="bool_no"/>
+                               <field name="bool_yes"/>
+                           </group>
+	                    </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_aeat_export_config">
+            <field name="name">Export config</field>
+            <field name="res_model">aeat.model.export.config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_aeat_export_config"
+            parent="menu_l10n_es_aeat_config"
+            action="action_aeat_export_config"
+            name="Export config"/>
+
+    </data>
+</openerp>
