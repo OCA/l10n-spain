@@ -63,7 +63,7 @@ responsabilidad derivada de su uso. Carencias conocidas:
     ],
     "data": [
         "wizard/export_mod130_to_boe.xml",
-        "mod130_view.xml",
+        "views/mod130_view.xml",
         "security/ir.model.access.csv",
     ],
     "installable": True,
