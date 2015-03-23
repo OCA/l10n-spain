@@ -15,5 +15,5 @@
 #    along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 ##############################################################################
-from . import mod130
+from . import models
 from . import wizard
