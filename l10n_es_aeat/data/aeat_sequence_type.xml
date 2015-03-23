@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="seq_aeat_type" model="ir.sequence.type">
+            <field name="name">Aeat Sequence</field>
+            <field name="code">aeat.sequence.type</field>
+        </record>
+    </data>
+</openerp>
