@@ -299,13 +299,6 @@ class Mod349(models.Model):
         states={'confirmed': [('readonly', True)]})
     frequency_change = fields.Boolean(
         string='Frequency change', states={'confirmed': [('readonly', True)]})
-    contact_name = fields.Char(
-        string="Full Name", size=40, help="Must have name and surname.",
-        states={'calculated': [('required', True)],
-                'confirmed': [('readonly', True)]})
-    contact_phone = fields.Char(
-        "Phone", size=9, states={'calculated': [('required', True)],
-                                 'confirmed': [('readonly', True)]})
     total_partner_records = fields.Integer(
         compute="_get_report_totals", string="Partners records")
     total_partner_records_amount = fields.Float(

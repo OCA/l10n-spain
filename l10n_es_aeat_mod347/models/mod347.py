@@ -255,8 +255,6 @@ class L10nEsAeatMod347Report(models.Model):
         self.total_real_state_records = len(self.real_state_record_ids)
 
     number = fields.Char(default='347')
-    contact_name = fields.Char(string="Full Name", size=40)
-    contact_phone = fields.Char(string="Phone", size=9)
     group_by_vat = fields.Boolean(
         string='Group by VAT number', oldname='group_by_cif')
     only_supplier = fields.Boolean(string='Only Suppliers')

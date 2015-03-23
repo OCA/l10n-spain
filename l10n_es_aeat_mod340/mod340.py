@@ -75,10 +75,6 @@ class L10nEsAeatMod340Report(orm.Model):
     _columns = {
         'name': fields.function(_name_get, method=True, type="char",
                                 size=64, string="Name"),
-        'declaration_number': fields.char("Declaration number", size=64,
-                                          readonly=True),
-        'phone_contact': fields.char('Phone Contact', size=9),
-        'name_contact': fields.char('Name And Surname Contact', size=40),
         'period_from': fields.many2one('account.period', 'Start period',
                                        states={'done': [('readonly', True)]}),
         'period_to': fields.many2one('account.period', 'End period',
@@ -130,7 +126,6 @@ class L10nEsAeatMod340Report(orm.Model):
             type='float', string="Total", multi='recalc',
             help="The declaration will include partners with the total "
             "of operations over this limit"),
-        'calculation_date': fields.date('Calculation date', readonly=True),
     }
 
     _defaults = {
