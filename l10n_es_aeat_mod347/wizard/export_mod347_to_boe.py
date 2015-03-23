@@ -15,14 +15,14 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, api, fields, _
+from openerp import models, api, _
 
 
 class L10nEsAeatMod347ExportToBoe(models.TransientModel):
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = "l10n.es.aeat.mod347.export_to_boe"
 
-    @api.model
+    @api.multi
     def _get_formatted_declaration_record(self, report):
         """
         Returns a type 1, declaration/company, formated record.
@@ -51,30 +51,8 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
             400-487 	Blancos
             488-500 	Sello electrónico
         """
-        text = ''
-        # Tipo de Registro
-        text += '1'
-        # Modelo Declaración
-        text += '347'
-        # Ejercicio
-        text += self._formatString(fields.Date.from_string(
-            report.fiscalyear_id.date_start).year, 4)
-        # NIF del declarante
-        text += self._formatString(report.company_vat, 9)
-        # Apellidos y nombre o razón social del declarante
-        text += self._formatString(report.company_id.name, 40)
-        # Tipo de soporte
-        text += self._formatString(report.support_type, 1)
-        # Persona de contacto (Teléfono)
-        text += self._formatString(report.contact_phone or 0, 9)
-        # Persona de contacto (Apellidos y nombre)
-        text += self._formatString(report.contact_name, 40)
-        # Número identificativo de la declaración
-        text += self._formatNumber(report.number, 13)
-        # Declaración complementaria o substitutiva
-        text += self._formatString(report.type, 2).replace('N', ' ')
-        # Número identificativo de la declaración anterior
-        text += self._formatNumber(report.previous_number, 13)
+        text = super(L10nEsAeatMod347ExportToBoe,
+                     self)._get_formatted_declaration_record(report)
         # Número total de personas y entidades
         text += self._formatNumber(report.total_partner_records, 9)
         # Importe total de las operaciones
@@ -97,6 +75,7 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
             _("The type 1 record must be 502 characters long")
         return text
 
+    @api.multi
     def _get_formated_partner_record(self, report, partner_record):
         """Returns a type 2, partner, formated record
 
@@ -223,6 +202,7 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
             _("The type 2-D record (partner) must be 502 characters long")
         return text
 
+    @api.multi
     def _get_formated_real_state_record(self, report, partner_record):
         """
         Returns a type 2, real state, formated record
@@ -327,7 +307,7 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
             _("The type 2-I record (real state) must be 502 characters long")
         return text
 
-    @api.model
+    @api.multi
     def _get_formatted_main_record(self, report):
         res = ''
         for partner_record in report.partner_record_ids:

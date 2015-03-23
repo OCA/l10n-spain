@@ -23,7 +23,4 @@
 ##############################################################################
 from openerp import report
 from . import wizard
-from . import mod340
-from . import res_partner
-from . import account_invoice
-from . import account
+from . import models

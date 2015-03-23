@@ -7,15 +7,6 @@
             <field name="priority" eval="5"/>
             <field name="inherit_id" ref="l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_form"/>
             <field name="arch" type="xml">
-                <field name="phone_contact" position="replace">
-                    <field name="phone_contact" on_change="on_change_phone_contact(phone_contact)"/>
-                </field>
-                <field name="name_contact" position="replace">
-                    <field name="name_contact" colspan="4" on_change="on_change_name_contact(name_contact)"/>
-                </field>
-                <field name="representative_vat" position="replace">
-                    <field name="representative_vat" on_change="on_change_representative_vat(representative_vat)"/>
-                </field>
                 <notebook position="inside">
                     <page string="Presenter">
                         <separator string="This information is only for the company that have to present registry type 0. For the moment, only in Comunidad Foral de Navarra" colspan="4"/>
