@@ -362,7 +362,10 @@ class create_facturae(osv.osv_memory):
                 taxes_withhel += l.base_amount
                 texto += '<Tax>'
                 texto += '<TaxTypeCode>01</TaxTypeCode>'
-                cr.execute('SELECT t.amount FROM account_tax t WHERE t.tax_code_id =%s',(l.tax_code_id.id,))
+                if l.tax_code_id:
+                    cr.execute('SELECT t.amount FROM account_tax t WHERE t.tax_code_id =%s',(l.tax_code_id.id,))
+                else:
+                    raise osv.except_osv(_('Error !'), _('The tax line "%s" has no tax code' % l.name))
                 res = cr.fetchone()
                 texto += '<TaxRate>' + str('%.2f' % (abs(res[0]) * 100)) + '</TaxRate>'
                 texto += '<TaxableBase>'
@@ -421,16 +424,26 @@ class create_facturae(osv.osv_memory):
             texto += '<Items>'
 
             for line in invoice.invoice_line:
+                if line.invoice_line_tax_id and line.invoice_line_tax_id[0].price_include:
+                    tax_amount = line.invoice_line_tax_id[0].amount
+                    price_unit = line.price_unit/(1+tax_amount)
+                    if line.discount:
+                        discount_amount = price_unit * line.quantity
+                    else:
+                        discount_amount = 0.0
+                else:
+                    price_unit = line.price_unit
+                    discount_amount = line.price_unit*line.quantity - line.price_subtotal
                 texto += '<InvoiceLine>'
                 texto += '<ItemDescription>' + line.name + '</ItemDescription>'
                 texto += '<Quantity>' + str(line.quantity) + '</Quantity>'
-                texto += '<UnitPriceWithoutTax>' + str('%.6f' % line.price_unit) + '</UnitPriceWithoutTax>'
-                texto += '<TotalCost>' + str('%.6f' % (line.quantity * line.price_unit)) + '</TotalCost>'
+                texto += '<UnitPriceWithoutTax>' + str('%.6f' % price_unit) + '</UnitPriceWithoutTax>'
+                texto += '<TotalCost>' + str('%.6f' % (line.quantity * price_unit)) + '</TotalCost>'
                 texto += '<DiscountsAndRebates>'
                 texto += '<Discount>'
                 texto += '<DiscountReason>Descuento</DiscountReason>'
                 texto += '<DiscountRate>' + str('%.4f' % line.discount) + '</DiscountRate>'
-                texto += '<DiscountAmount>' + str('%.6f' % ( (line.price_unit*line.quantity) - line.price_subtotal)) + '</DiscountAmount>'
+                texto += '<DiscountAmount>' + str('%.6f' % discount_amount) + '</DiscountAmount>'
                 texto += '</Discount>'
                 texto += '</DiscountsAndRebates>'
                 texto += '<GrossAmount>' + str('%.6f' % line.price_subtotal) + '</GrossAmount>'
