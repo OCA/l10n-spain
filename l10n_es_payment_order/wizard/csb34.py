@@ -79,7 +79,7 @@ class csb_34(orm.Model):
 
     def _start_34(self, cr, uid, context):
         converter = self.pool.get('payment.converter.spain')
-        return converter.convert(cr, uid, self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo, 12, context)
+        return converter.convert(cr, uid, self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.csb_suffix, 12, context)
 
     def _cabecera_ordenante_34(self, cr, uid, context):
         converter = self.pool.get('payment.converter.spain')
@@ -189,33 +189,33 @@ class csb_34(orm.Model):
         # Si la orden se emite para pagaré, cheque o pago certificado
         else:
             text += 17*'0'
-            send_type = self.order.mode.send_type
+            send_type = self.order.mode.csb34_send_type
             if send_type == 'mail':
                 text += '1'
             elif send_type == 'certified_mail':
                 text += '2'
             else:
                 text += '3'
-            if self.order.mode.not_to_the_order:
+            if self.order.mode.csb34_not_to_the_order:
                 text += '1'
             else:
                 text += '0'
-            if self.order.mode.barred:
+            if self.order.mode.csb34_barred:
                 text += '9'
             else:
                 text += '0'
-        if self.order.mode.cost_key == 'payer':
+        if self.order.mode.csb34_cost_key == 'payer':
             text += '1'
         else:
             text += '2'
-        concept = self.order.mode.concept
+        concept = self.order.mode.csb34_concept
         if concept == 'payroll':
             text += '1'
         elif concept == 'pension':
             text += '8'
         else:
             text += '9'
-        if self.order.mode.direct_pay_order:
+        if self.order.mode.csb34_direct_pay_order:
             text += '1'
         else:
             text += '2'
@@ -261,7 +261,7 @@ class csb_34(orm.Model):
             text += '\r\n'
 
         # Si la orden se emite por carta (sólo tiene sentido si no son transferencias)
-        send_type = self.order.mode.send_type
+        send_type = self.order.mode.csb34_send_type
         if csb34_type != 'transfer' and (send_type == 'mail' or send_type == 'certified_mail'):
 
             # Sexto Registro
@@ -280,7 +280,7 @@ class csb_34(orm.Model):
             if self.order.mode.csb34_type in ('promissory_note','cheques','certified_payments'):
 
                 # Séptimo Registro
-                if self.order.mode.payroll_check:
+                if self.order.mode.csb34_payroll_check:
                     text += '06'
                     text += csb34_code[csb34_type] 
                     text += self._start_34(cr, uid, context)
@@ -296,7 +296,7 @@ class csb_34(orm.Model):
                 text += self._start_34(cr, uid, context)
                 text += converter.convert(cr, uid, recibo['partner_id'].vat, 12, context)
                 text += '101'
-                message = self.get_message(cr, uid, recibo, self.order.mode.text1)
+                message = self.get_message(cr, uid, recibo, self.order.mode.csb34_text1)
                 text += converter.convert(cr, uid, message, 36, context)
                 text += 5*' '
                 text += '\r\n'
@@ -307,7 +307,7 @@ class csb_34(orm.Model):
                 text += self._start_34(cr, uid, context)
                 text += converter.convert(cr, uid, recibo['partner_id'].vat, 12, context)
                 text += '102'
-                message = self.get_message(cr, uid, recibo, self.order.mode.text2)
+                message = self.get_message(cr, uid, recibo, self.order.mode.csb34_text2)
                 text += converter.convert(cr, uid, message, 36, context)
                 text += 5*' '
                 text += '\r\n'
@@ -318,13 +318,13 @@ class csb_34(orm.Model):
                 text += self._start_34(cr, uid, context)
                 text += converter.convert(cr, uid, recibo['partner_id'].vat, 12, context)
                 text += '103'
-                message = self.get_message(cr, uid, recibo, self.order.mode.text3)
+                message = self.get_message(cr, uid, recibo, self.order.mode.csb34_text3)
                 text += converter.convert(cr, uid, message, 36, context)
                 text += 5*' '
                 text += '\r\n'
 
                 # Registro novecientos diez (registro usados por algunos bancos como fecha de la carta)
-                if self.order.mode.add_date:
+                if self.order.mode.csb34_add_date:
                     if recibo['date']:
                         date = recibo['date']
                     elif self.order.date_scheduled:

@@ -38,80 +38,78 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
+from openerp import models, fields, api
 
-class payment_mode(orm.Model):
-    _inherit = 'payment.mode'
 
-    def onchange_partner(self, cr, uid, ids, partner_id):
-        if partner_id:
-            obj = self.pool['res.partner']
-            field = ['name']
-            ids = [partner_id]
-            filas = obj.read(cr, uid, ids, field) 
-            return {'value':{'nombre': filas[0]["name"][:40]}}
-        return {'value':{'nombre': ""}}
+class PaymentMode(models.Model):
+    _inherit = "payment.mode"
 
-    _columns = {
-        'tipo': fields.selection([('none','None'),('csb_19','CSB 19'),('csb_32','CSB 32'),('csb_34','CSB 34'),('34_01','CSB 34-01'),('csb_58','CSB 58')], 'Type of payment file', size=6, select=True, required=True),
-        'sufijo': fields.char('suffix',size=3, select=True),
-        'partner_id': fields.many2one('res.partner', 'Partner', select=True),
-        'nombre': fields.char('Company name in file', size=40),
-        'cif': fields.related('partner_id','vat', type='char', string='VAT code', select=True),
-        # Código INE (9 dígitos)
-        'ine': fields.char('INE code',size=9),
-        'cedente': fields.char('Cedente', size=15),
-        # Incluir registro obligatorio de domicilio (para no domiciliados)
-        'inc_domicile': fields.boolean('Include domicile', help='Add partner domicile records to the exported file (CSB 58)'),
-        # Usar formato alternativo para el registro de domicilio
-        'alt_domicile_format': fields.boolean('Alt. domicile format', help='Alternative domicile record format'),
-        # Require bank account?
-        'require_bank_account': fields.boolean('Require bank account', help='If your bank allows you to send orders without the bank account info, you may disable this option'),
-        'csb34_type': fields.selection([('transfer', 'Transfer'),('promissory_note', 'Promissory Note'),('cheques', 'Cheques'),('certified_payments', 'Certified Payments')], 'Type of CSB 34 payment'),
-        'text1': fields.char('Line 1', size=36, help='Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}'),
-        'text2': fields.char('Line 2', size=36, help='Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}'),
-        'text3': fields.char('Line 3', size=36, help='Enter text and/or select a field of the invoice to include as a description in the letter. The possible values ​​are: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}'),
-        'payroll_check': fields.boolean('Payroll Check', help='Check it if you want to add the 018 data type in the file (the vat of the recipient is added in the 018 data type).'),
-        'add_date': fields.boolean('Add Date', help='Check it if you want to add the 910 data type in the file to include the payment date.'),
-        'send_type':fields.selection([
-            ('mail','Ordinary Mail'),
-            ('certified_mail','Certified Mail'),
-            ('other','Other'),
-        ],'Send Type', help="The sending type of the payment file"),
-        'not_to_the_order':fields.boolean('Not to the Order'),
-        'barred':fields.boolean('Barred'),
-        'cost_key':fields.selection([
-            ('payer','Expense of the Payer'),
-            ('recipient','Expense of the Recipient'),
-        ],'Cost Key'),
-        'concept':fields.selection([
-            ('payroll','Payroll'),
-            ('pension','Pension'),
-            ('other','Other'),
-        ],'Concept of the Order', help="Concept of the Order."),
-        'direct_pay_order':fields.boolean('Direct Pay Order', help="By default 'Not'."),
-        'csb19_extra_concepts': fields.boolean('Extra Concepts', help='Check it if you want to add the invoice lines to the extra concepts (Max. 15 lines)'),
-    }
+    csb_suffix = fields.Char(string='Suffix', size=3, default='000')
+    csb32_assignor = fields.Char(string='Assignor', size=15) #CSB58
+    csb58_include_address = fields.Boolean(
+        string='Include address', default=False,
+        help='Add partner domicile records to the exported file (CSB 58)')
+    csb58_alt_address_format = fields.Boolean(
+        string='Alt. address format', default=False,
+        help='Alternative domicile record format')
+    csb58_ine = fields.Char('INE code',size=9)
+    csb_require_bank_account = fields.Boolean(
+        string='Require bank account', default=True,
+        help='If your bank allows you to send orders without the bank account '
+        'info, you may disable this option')
+    csb34_type = fields.Selection(
+        string='Type of CSB 34 payment', default='transfer',
+        selection=[('transfer', 'Transfer'),
+                   ('promissory_note', 'Promissory Note'),
+                   ('cheques', 'Cheques'),
+                   ('certified_payments', 'Certified Payments')])
+    csb34_text1 = fields.Char(
+        string='Line 1', size=36,
+        help='Enter text and/or select a field of the invoice to include as a '
+        'description in the letter. The possible values ​​are: ${amount}, '
+        '${communication}, {communication2}, {date}, {ml_maturity_date}, '
+        '{create_date}, {ml_date_created}')
+    csb34_text2 = fields.Char(
+        string='Line 2', size=36,
+        help='Enter text and/or select a field of the invoice to include as a '
+        'description in the letter. The possible values ​​are: ${amount}, '
+        '${communication}, {communication2}, {date}, {ml_maturity_date}, '
+        '{create_date}, {ml_date_created}')
+    csb34_text3 = fields.Char(
+        string='Line 3', size=36,
+        help='Enter text and/or select a field of the invoice to include as a '
+        'description in the letter. The possible values ​​are: ${amount}, '
+        '${communication}, {communication2}, {date}, {ml_maturity_date}, '
+        '{create_date}, {ml_date_created}')
+    csb34_payroll_check = fields.Boolean( 
+        string='Payroll Check',
+        help='Check it if you want to add the 018 data type in the file (the '
+        'vat of the recipient is added in the 018 data type).')
+    csb34_add_date = fields.Boolean(
+        string='Add Date',
+        help='Check it if you want to add the 910 data type in the file to '
+        'include the payment date.')
+    csb34_send_type = fields.Selection(
+        string = 'Send type', default = 'mail',
+        help='The sending type of the payment file',
+        selection=[('mail','Ordinary Mail'),
+                   ('certified_mail','Certified Mail'),
+                   ('other','Other')])
+    csb34_not_to_the_order = fields.Boolean(string='Not to the Order',
+                                            default=True)
+    csb34_barred = fields.Boolean(string='Barred', default=True)
+    csb34_cost_key = fields.Selection(
+        string='Concept of the Order', default='payer',
+        selection=[('payer','Expense of the Payer'),
+                   ('recipient','Expense of the Recipient')])
+    csb34_concept = fields.Selection(
+        string='Concepto of the order', default='other',
+        selection=[('payroll','Payroll'), ('pension','Pension'),
+                   ('other','Other')])
+    csb34_direct_pay_order = fields.Boolean(
+        string='Direct Pay Order', default=False, help='By default "Not"')
+    csb19_extra_concepts = fields.Boolean(
+        string='Extra Concepts', default=False,
+        help='Check it if you want to add the invoice lines to the extra '
+        'concepts (Max. 15 lines)')
 
-    _defaults = {
-        'tipo': lambda *a: 'none',
-        'sufijo': lambda *a: '000',
-        'inc_domicile': lambda *a: False,
-        'alt_domicile_format': lambda *a: False,
-
-        # Override default: We want to be safe so we require bank account by default
-        'require_bank_account': lambda *a: True, 
-        'csb34_type': lambda *a: 'transfer',
-        'text1': lambda self,cr,uid,context: _('Dear Sir'),
-        'text2': lambda self,cr,uid,context: _('Payment ref.')+' ${communication}',
-        'text3': lambda self,cr,uid,context: _('Total:')+' ${amount}',
-        'send_type': lambda *a: 'mail',
-        'not_to_the_order': lambda *a: True,
-        'barred': lambda *a: True,
-        'cost_key': lambda *a: 'payer',
-        'concept': lambda *a: 'other',
-        'direct_pay_order': lambda *a: False,
-    }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

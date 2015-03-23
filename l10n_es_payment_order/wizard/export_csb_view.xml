@@ -1,38 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-       <record id="view_wizard_payment_file_spain_form" model="ir.ui.view">
-            <field name="name">wizard.payment.file.spain.form</field>
-            <field name="model">wizard.payment.file.spain</field>
+       <record id="view_banking_export_csb_wizard_form" model="ir.ui.view">
+            <field name="name">banking.export.csb.wizard.form</field>
+            <field name="model">banking.export.csb.wizard</field>
             <field name="arch" type="xml">
-                <form string="Payment order export">
-                    <field name="join"/>
-                    <newline />
-                    <field name="attach_id" colspan="4" />
-                    <field name="note" colspan="4" nolabel="1"/>
-                    <separator string="" colspan="4" />
-                    <group colspan="4" col="6">
-                        <button icon="gtk-cancel" special="cancel" string="Cancel"/>
-                        <button  icon="gtk-execute" string="_Export" name="create_payment_file" type="object"/>
-                   </group>
+                <form string="CSB file generation">
+                    <field name="state" invisible="True"/>
+                    <group states="create">
+                        <field name="join"/>
+                        <field name="note" nolabel="1"/>
+                    </group>
+                    <group states="finish">
+                        <field name="file" filename="filename" />
+                        <field name="filename" invisible="True"/>
+                    </group>
+                    <footer>
+                        <button string="Generate" name="create_csb" type="object" class="oe_highlight" states="create"/>
+                        <button string="Cancel" special="cancel" class="oe_link" states="create"/>
+                        <button string="Validate" name="save_csb" type="object" class="oe_highlight" states="finish"/>
+                        <button string="Cancel" name="cancel_csb" type="object" class="oe_link" states="finish"/>
+                    </footer>
                 </form>
             </field>
         </record>
 
-        <record id="action_wizard_payment_file_spain" model="ir.actions.act_window">
-            <field name="name">Create payments file</field>
-            <field name="res_model">wizard.payment.file.spain</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_wizard_payment_file_spain_form"/>
-            <field name="target">new</field>
-        </record>
-        <record id="action_wizard_payment_file_spain2" model="ir.values">
-            <field name="name">Create payments file</field>
-            <field name="key2">client_action_multi</field>
-            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_wizard_payment_file_spain'))"/>
-            <field name="key">action</field>
-            <field name="model">payment.order</field>
-        </record>
     </data>
 </openerp>

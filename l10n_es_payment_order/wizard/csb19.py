@@ -51,25 +51,25 @@ class csb_19(orm.Model):
     _auto = False
     def _cabecera_presentador_19(self,cr,uid):
         converter = self.pool.get('payment.converter.spain')
-        texto = '5180'
-        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
-        texto += datetime.today().strftime('%d%m%y')
-        texto += 6*' '
-        texto += converter.to_ascii(cr,uid,self.order.mode.nombre).ljust(40)
-        texto += 20*' '
+        text = '5180'
+        text += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.csb_suffix).zfill(12)
+        text += datetime.today().strftime('%d%m%y')
+        text += 6*' '
+        text += converter.to_ascii(cr,uid,self.order.mode.bank_id.partner_id.name).ljust(40)
+        text += 20*' '
         cc = converter.digits_only(cr,uid,self.order.mode.bank_id.acc_number)
-        texto += cc[0:8]
-        texto += 66*' '
-        texto += '\r\n'
-        if len(texto) != 164:
-            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Cabecera presentador 19', texto), True)
-        return texto
+        text += cc[0:8]
+        text += 66*' '
+        text += '\r\n'
+        if len(text) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Cabecera presentador 19', text), True)
+        return text
 
     def _cabecera_ordenante_19(self,cr,uid, recibo=None):
         converter = self.pool.get('payment.converter.spain')
-        texto = '5380'
-        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
-        texto += datetime.today().strftime('%d%m%y')
+        text = '5380'
+        text += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.csb_suffix).zfill(12)
+        text += datetime.today().strftime('%d%m%y')
 
         if self.order.date_prefered == 'due':
             assert recibo
@@ -86,64 +86,64 @@ class csb_19(orm.Model):
                 raise Log(_('User error:\n\nFixed date of charge has not been defined.'), True)
             date_cargo = datetime.strptime(self.order.date_scheduled,'%Y-%m-%d')
 
-        texto += date_cargo.strftime('%d%m%y')
-        texto += converter.to_ascii(cr,uid,self.order.mode.nombre).ljust(40)
+        text += date_cargo.strftime('%d%m%y')
+        text += converter.to_ascii(cr,uid,self.order.mode.bank_id.partner_id.name).ljust(40)
         cc = converter.digits_only(cr,uid,self.order.mode.bank_id.acc_number)
-        texto += cc[0:20]
-        texto += 8*' '
-        texto += '01'
-        texto += 64*' '
-        texto += '\r\n'
-        if len(texto) != 164:
-            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Cabecera ordenante 19', texto), True)
-        return texto
+        text += cc[0:20]
+        text += 8*' '
+        text += '01'
+        text += 64*' '
+        text += '\r\n'
+        if len(text) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Cabecera ordenante 19', text), True)
+        return text
 
     def _individual_obligatorio_19(self,cr,uid, recibo):
         converter = self.pool.get('payment.converter.spain')
-        texto = '5680'
-        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
-        texto += str(recibo['name'])[-12:].zfill(12)
+        text = '5680'
+        text += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.csb_suffix).zfill(12)
+        text += str(recibo['name'])[-12:].zfill(12)
         nombre = converter.to_ascii(cr,uid,recibo['partner_id'].name)
-        texto += nombre[0:40].ljust(40)
+        text += nombre[0:40].ljust(40)
         ccc = recibo['bank_id'] and recibo['bank_id'].acc_number or ''
         ccc = converter.digits_only(cr,uid,ccc)
-        texto += str(ccc)[0:20].zfill(20)
+        text += str(ccc)[0:20].zfill(20)
         importe = int(round(abs(recibo['amount'])*100,0))
-        texto += str(importe).zfill(10)
+        text += str(importe).zfill(10)
         ###### Referencia para devolución (sólo válida si no se agrupa) ######
         if len(recibo['ml_inv_ref']) == 1:
-            texto += str(recibo['ml_inv_ref'][0].id)[-16:].zfill(16)
+            text += str(recibo['ml_inv_ref'][0].id)[-16:].zfill(16)
         else:
-            texto += 16*' '
+            text += 16*' '
         ######################################################################
         concepto = ''
         if recibo['communication']:
             concepto = recibo['communication']
-        texto += converter.to_ascii(cr,uid,concepto)[0:48].ljust(48)
-        texto += '\r\n'
-        if len(texto) != 164:
-            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual obligatorio 19', texto), True)
-        return texto
+        text += converter.to_ascii(cr,uid,concepto)[0:48].ljust(48)
+        text += '\r\n'
+        if len(text) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual obligatorio 19', text), True)
+        return text
 
     def _individual_opcional_19(self,cr,uid, recibo):
-        """Para poner el segundo texto de comunicación (en lugar de nombre, domicilio y localidad opcional)"""
+        """Para poner el segundo text de comunicación (en lugar de nombre, domicilio y localidad opcional)"""
         converter = self.pool.get('payment.converter.spain')
-        texto = '5686'
-        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
-        texto += str(recibo['name'])[-12:].zfill(12)
-        texto += converter.to_ascii(cr,uid,recibo['communication2'])[0:115].ljust(115)
-        texto += '00000' # Campo de código postal ficticio
-        texto += 14*' '
-        texto += '\r\n'
-        if len(texto) != 164:
-            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 19', texto), True)
-        return texto
+        text = '5686'
+        text += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.csb_suffix).zfill(12)
+        text += str(recibo['name'])[-12:].zfill(12)
+        text += converter.to_ascii(cr,uid,recibo['communication2'])[0:115].ljust(115)
+        text += '00000' # Campo de código postal ficticio
+        text += 14*' '
+        text += '\r\n'
+        if len(text) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 19', text), True)
+        return text
 
     def _extra_opcional_19(self,cr,uid, recibo):
         """Para poner los 15 conceptos opcional de los registros 5681-5685 utilizando las lineas de facturación (Máximo 15 lineas)"""
         converter = self.pool.get('payment.converter.spain')
         res = {}
-        res['texto'] = ''
+        res['text'] = ''
         res['total_lines'] = 0
         counter = 1
         registry_counter = 1
@@ -157,80 +157,80 @@ class csb_19(orm.Model):
                     if counter <= length:
                         if counter <= 15:
                             if (counter-1)%3 == 0:
-                                res['texto'] += '568'+str(registry_counter)
-                                res['texto'] += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
-                                res['texto'] += str(recibo['name']).zfill(12)
+                                res['text'] += '568'+str(registry_counter)
+                                res['text'] += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.csb_suffix).zfill(12)
+                                res['text'] += str(recibo['name']).zfill(12)
                             price = ' %(#).2f ' % {'#' : invoice_line.price_subtotal}
-                            res['texto'] += converter.to_ascii(cr,uid,invoice_line.name)[0:(40-len(price))].ljust(40-len(price))
-                            res['texto'] += converter.to_ascii(cr,uid,price.replace('.',','))
+                            res['text'] += converter.to_ascii(cr,uid,invoice_line.name)[0:(40-len(price))].ljust(40-len(price))
+                            res['text'] += converter.to_ascii(cr,uid,price.replace('.',','))
                             if counter % 3 == 0:
-                                res['texto'] += 14*' '+'\r\n'
+                                res['text'] += 14*' '+'\r\n'
                                 res['total_lines'] += 1
-                                if len(res['texto']) != registry_counter*164:
-                                    raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 19', res['texto']), True)
+                                if len(res['text']) != registry_counter*164:
+                                    raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 19', res['text']), True)
                                 registry_counter += 1
                             elif counter == length:
-                                res['texto'] += (3-(counter % 3))*40*' '+14*' '+'\r\n'
+                                res['text'] += (3-(counter % 3))*40*' '+14*' '+'\r\n'
                                 res['total_lines'] += 1
-                                if len(res['texto']) != registry_counter*164:
-                                    raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 19', res['texto']), True)
+                                if len(res['text']) != registry_counter*164:
+                                    raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Individual opcional 19', res['text']), True)
                             counter += 1
         return res
 
     def _total_ordenante_19(self,cr,uid):
-        texto = '5880'
-        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
-        texto += 72*' '
+        text = '5880'
+        text += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.csb_suffix).zfill(12)
+        text += 72*' '
         totalordenante = int(round(abs(self.group_amount) * 100,0))
-        texto += str(totalordenante).zfill(10)
-        texto += 6*' '
-        texto += str(self.group_payments).zfill(10)
-        texto += str(self.group_payments + self.group_optional_lines + 2).zfill(10)
-        texto += 38*' '
-        texto += '\r\n'
-        if len(texto) != 164:
-            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Total ordenante 19', texto), True)
-        return texto
+        text += str(totalordenante).zfill(10)
+        text += 6*' '
+        text += str(self.group_payments).zfill(10)
+        text += str(self.group_payments + self.group_optional_lines + 2).zfill(10)
+        text += 38*' '
+        text += '\r\n'
+        if len(text) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Total ordenante 19', text), True)
+        return text
 
     def _total_general_19(self,cr,uid):
-        texto = '5980'
-        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
-        texto += 52*' '
+        text = '5980'
+        text += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.csb_suffix).zfill(12)
+        text += 52*' '
         if self.order.date_prefered == 'due':
             # Tantos ordenantes como pagos
-            texto += str(self.total_payments).zfill(4)
+            text += str(self.total_payments).zfill(4)
         else:
             # Sólo un ordenante
-            texto += '0001'
-        texto += 16*' '
+            text += '0001'
+        text += 16*' '
         totalremesa = int(round(abs(self.order.total) * 100,0))
-        texto += str(totalremesa).zfill(10)
-        texto += 6*' '
-        texto += str(self.total_payments).zfill(10)
+        text += str(totalremesa).zfill(10)
+        text += 6*' '
+        text += str(self.total_payments).zfill(10)
         if self.order.date_prefered == 'due':
             # Tantos ordenantes como pagos
-            texto += str(self.total_payments*3 + self.total_optional_lines + 2).zfill(10)
+            text += str(self.total_payments*3 + self.total_optional_lines + 2).zfill(10)
         else:
             # Sólo un ordenante
-            texto += str(self.total_payments + self.total_optional_lines + 4).zfill(10)
-        texto += 38*' '
-        texto += '\r\n'
-        if len(texto) != 164:
-            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Total general 19', texto), True)
-        return texto
+            text += str(self.total_payments + self.total_optional_lines + 4).zfill(10)
+        text += 38*' '
+        text += '\r\n'
+        if len(text) != 164:
+            raise Log(_('Configuration error:\n\nThe line "%s" is not 162 characters long:\n%s') % ('Total general 19', text), True)
+        return text
 
 
     def create_file(self, cr, uid, order, lines, context):
         self.order = order
 
-        txt_remesa = ''
+        txt_file = ''
         self.total_payments = 0
         self.total_optional_lines = 0
         self.group_payments = 0
         self.group_optional_lines = 0
         self.group_amount = 0.0
 
-        txt_remesa += self._cabecera_presentador_19(cr,uid)
+        txt_file += self._cabecera_presentador_19(cr,uid)
 
         if order.date_prefered == 'due':
             # Tantos ordenantes como pagos
@@ -239,45 +239,45 @@ class csb_19(orm.Model):
                 self.group_optional_lines = 0
                 self.group_amount = 0.0
 
-                txt_remesa += self._cabecera_ordenante_19(cr,uid,recibo)
-                txt_remesa += self._individual_obligatorio_19(cr,uid,recibo)
+                txt_file += self._cabecera_ordenante_19(cr,uid,recibo)
+                txt_file += self._individual_obligatorio_19(cr,uid,recibo)
                 self.total_payments += 1
                 self.group_payments += 1
                 self.group_amount += abs( recibo['amount'] )
                 if order.mode.csb19_extra_concepts:
                     extra_concepts = self._extra_opcional_19(cr,uid,recibo)
-                    txt_remesa += extra_concepts['texto']
+                    txt_file += extra_concepts['text']
                     self.total_optional_lines += extra_concepts['total_lines']
                     self.group_optional_lines += extra_concepts['total_lines']
 
                 if recibo['communication2']:
-                    txt_remesa += self._individual_opcional_19(cr,uid,recibo)
+                    txt_file += self._individual_opcional_19(cr,uid,recibo)
                     self.total_optional_lines += 1
                     self.group_optional_lines += 1
-                txt_remesa += self._total_ordenante_19(cr,uid)
+                txt_file += self._total_ordenante_19(cr,uid)
         else:
             # Sólo un ordenante
-            txt_remesa += self._cabecera_ordenante_19(cr,uid)
+            txt_file += self._cabecera_ordenante_19(cr,uid)
             self.group_payments = 0
             self.group_optional_lines = 0
             self.group_amount = 0.0
 
             for recibo in lines:
-                txt_remesa += self._individual_obligatorio_19(cr,uid,recibo)
+                txt_file += self._individual_obligatorio_19(cr,uid,recibo)
                 self.total_payments += 1
                 self.group_payments += 1
                 self.group_amount += abs( recibo['amount'] )
                 if order.mode.csb19_extra_concepts:
                     extra_concepts = self._extra_opcional_19(cr,uid,recibo)
-                    txt_remesa += extra_concepts['texto']
+                    txt_file += extra_concepts['text']
                     self.total_optional_lines += extra_concepts['total_lines']
                     self.group_optional_lines += extra_concepts['total_lines']
                 if recibo['communication2']:
-                    txt_remesa += self._individual_opcional_19(cr,uid,recibo)
+                    txt_file += self._individual_opcional_19(cr,uid,recibo)
                     self.total_optional_lines += 1
                     self.group_optional_lines += 1
 
-            txt_remesa += self._total_ordenante_19(cr,uid)
+            txt_file += self._total_ordenante_19(cr,uid)
 
-        txt_remesa += self._total_general_19(cr,uid)
-        return txt_remesa
+        txt_file += self._total_general_19(cr,uid)
+        return txt_file

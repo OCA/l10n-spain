@@ -72,7 +72,7 @@ class csb_32(orm.Model):
         texto += ' '*12
 
         # C
-        texto += converter.convert(cr, uid, self.order.mode.cedente, 15, context) # TODO: Identificador del cedente. Qué es?
+        texto += converter.convert(cr, uid, self.order.mode.csb32_assignor, 15, context) # TODO: Identificador del cedente. Qué es?
         texto += '1' # Identificativo de efectos truncados
         texto += ' '*21
 
@@ -235,17 +235,17 @@ class csb_32(orm.Model):
     def create_file(self, cr, uid, order, lines, context):
         self.order = order
 
-        txt_remesa = ''
+        txt_file = ''
         self.num_recibos = 0
-        self.num_lineas_opc = 0
+        self.num_lines_opc = 0
 
-        txt_remesa += self._cabecera_fichero_32(cr,uid)
-        txt_remesa += self._cabecera_remesa_32(cr, uid, context)
+        txt_file += self._cabecera_fichero_32(cr,uid)
+        txt_file += self._cabecera_remesa_32(cr, uid, context)
         for recibo in lines:
-            txt_remesa += self._registro_individual_i_32(cr, uid, recibo, context)
-            txt_remesa += self._registro_individual_ii_32(cr, uid, recibo, context)
-            txt_remesa += self._registro_individual_iii_32(cr, uid, recibo, context)
+            txt_file += self._registro_individual_i_32(cr, uid, recibo, context)
+            txt_file += self._registro_individual_ii_32(cr, uid, recibo, context)
+            txt_file += self._registro_individual_iii_32(cr, uid, recibo, context)
             self.num_recibos = self.num_recibos + 1
-        txt_remesa += self._registro_fin_remesa_32(cr, uid, context)
-        txt_remesa += self._registro_fin_fichero_32(cr, uid, context)
-        return txt_remesa
+        txt_file += self._registro_fin_remesa_32(cr, uid, context)
+        txt_file += self._registro_fin_fichero_32(cr, uid, context)
+        return txt_file

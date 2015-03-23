@@ -2,91 +2,52 @@
 <openerp>
     <data>
 
-        <record id="view_payment_mode_tree_remesas" model="ir.ui.view">
-            <field name="name">payment.mode.tree</field>
+        <!--
+             Add the payment mode type settings
+        -->
+        <record id="view_payment_mode_form_inherit" model="ir.ui.view">
+            <field name="name">payment.mode.form.inherit</field>
             <field name="model">payment.mode</field>
-            <field name="inherit_id" ref="account_payment.view_payment_mode_tree"/>
-            <field name="arch" type="xml">
-                <field name="journal" position="after">
-                    <field name="tipo"/>
-                    <field name="sufijo"/>
-                    <field name="partner_id"/>
-                    <field name="bank_id"/>
-                </field>
-            </field>
-        </record>
-        <record id="view_payment_mode_form_remesas" model="ir.ui.view">
-            <field name="name">payment.mode.form</field>
-            <field name="model">payment.mode</field>
+            <field name="priority" eval="100"/>
             <field name="inherit_id" ref="account_payment.view_payment_mode_form"/>
             <field name="arch" type="xml">
-                <field name="bank_id" position="replace"/>
-                <field name="partner_id" position="replace"/>
-                <field name="company_id" position="after">
-                    <field name="tipo"/>
-                    <newline/>
-                    <separator string="Presenter data" colspan="4"/>
-                    <field name="partner_id" attrs="{'required':[('tipo','!=','none')]}" on_change="onchange_partner(partner_id)"/>
-                    <field name="bank_id" domain="[('partner_id','=',partner_id)]"/>
-                    <field name="cif"/>
-                    <field name="nombre" attrs="{'required':[('tipo','!=','none')]}"/>
-                    <field name="sufijo" attrs="{'required':[('tipo','!=','none')]}"/>
-                    <field name="ine"/>
-                    <newline/>
-                    <group colspan="4" attrs="{'invisible': [('tipo', '=', 'none')]}">
-                        <group colspan="2" col="2" attrs="{'invisible': [('tipo', '!=', 'csb_58')]}">
-                            <separator string="CSB 58 Options" colspan="2"/>
-                            <field name="inc_domicile"/>
-                            <field name="alt_domicile_format"/>
+                <field name="partner_id" position="after">
+                    <group colspan="4" col="1">
+                        <group col="4" string="CSB 58 Options">
+                            <field name="csb58_include_address"/>
+                            <field name="csb58_alt_address_format"/>
+                            <field name="csb58_ine"/>
                         </group>
-                        <group colspan="2" col="2" attrs="{'invisible': [('tipo', '!=', 'csb_32')]}">
-                            <separator string="CSB 32 Options" colspan="2"/>
-                            <field name="cedente"/>
+                        <group col="4" string="CSB 32 Options">
+                            <field name="csb32_assignor"/>
                         </group>
-                        <group colspan="2" col="2" attrs="{ 'invisible': [('tipo', '!=', 'csb_19')] }">
-                            <separator string="CSB 19 Options" colspan="2"/>
+                        <group col="4" string="CSB 19 Options">
                             <field name="csb19_extra_concepts"/>
                         </group>
-                        <group colspan="2" col="4" attrs="{'invisible': [('tipo', '!=', 'csb_34')]}">
-                            <separator string="CSB 34 Options" colspan="4"/>
-                            <field name="csb34_type" colspan="1"/>
-                            <group colspan="4" col="6">
-                                <separator string="Additional data for CSB 34 type of payment file." colspan="6"/>
-                                <field name="cost_key"/>
-                                <field name="concept"/>
-                                <field name="direct_pay_order"/>
+                        <group col="4" string="CSB 34 Options">
+                            <field name="csb34_type"/><newline />
+                            <group string="Additional data for CSB 34 type of payment file." colspan="4">
+                                <field name="csb34_cost_key"/>
+                                <field name="csb34_concept"/>
+                                <field name="csb34_direct_pay_order"/>
                             </group>
-                            <group  colspan="4" col="6" attrs="{'invisible': [('csb34_type', '=', 'transfer')]}">
-                                <separator string="Additional data for promissory notes, checks, and certified payments." colspan="6"/>
-                                <field name="send_type" attrs="{'required':[('csb34_type','!=','transfer')]}"/>
-                                <field name="not_to_the_order"/>
-                                <field name="barred"/>
-                                <group colspan="4" col="4" attrs="{'invisible': [('send_type', '=', 'other')]}">
-                                    <separator string="Optional Text for the Letter (adds 101, 102, 103, data tipes in the file)" colspan="4"/>
-                                    <field name="text1" colspan="4"/>
-                                    <field name="text2" colspan="4"/>
-                                    <field name="text3" colspan="4"/>
-                                    <field name="payroll_check"/>
-                                    <field name="add_date"/>
+                            <group attrs="{'invisible': [('csb34_type', '=', 'transfer')]}" string="Additional data for promissory notes, checks, and certified payments." colspan="4">
+                                <field name="csb34_send_type" attrs="{'required':[('csb34_type','!=','transfer')]}"/>
+                                <field name="csb34_not_to_the_order"/>
+                                <field name="csb34_barred"/>
+                                <group attrs="{'invisible': [('csb34_send_type', '=', 'other')]}" string="Optional Text for the Letter (adds 101, 102, 103, data tipes in the file)">
+                                    <field name="csb34_text1" colspan="4"/>
+                                    <field name="csb34_text2" colspan="4"/>
+                                    <field name="csb34_text3" colspan="4"/>
+                                    <field name="csb34_payroll_check"/>
+                                    <field name="csb34_add_date"/>
                                 </group>
                             </group>
                         </group>
                     </group>
-                    <newline/>
-                    </field>
                 </field>
+            </field>
         </record>
-
-         <record model="ir.ui.view" id="view_payment_order_form_ext1_export">
-                <field name="name">view.payment.order.form.ext1.export</field>
-                <field name="model">payment.order</field>
-                <field name="inherit_id" ref="account_payment_extension.view_payment_order_form_ext1"/>
-                <field name="arch" type="xml">
-                    <button name="cancel_from_done" position="after">
-                        <button name='%(action_wizard_payment_file_spain)d' type='action' string='Create payments file' states='done' icon="gtk-file"/>
-                    </button>
-                </field>
-            </record>
 
     </data>
 </openerp>

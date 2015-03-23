@@ -50,10 +50,10 @@ class csb_58(orm.Model):
     def _cabecera_presentador_58(self, cr, uid):
         converter = self.pool.get('payment.converter.spain')
         texto = '5170'
-        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
+        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.csb_suffix).zfill(12)
         texto += datetime.today().strftime('%d%m%y')
         texto += 6*' '
-        texto += converter.to_ascii(cr, uid, self.order.mode.nombre).ljust(40)
+        texto += converter.to_ascii(cr, uid, self.order.mode.bank_id.partner_id.name).ljust(40)
         texto += 20*' '
         cc = converter.digits_only(cr, uid, self.order.mode.bank_id.acc_number)
         texto += cc[0:8]
@@ -66,16 +66,16 @@ class csb_58(orm.Model):
     def _cabecera_ordenante_58(self, cr, uid):
         converter = self.pool.get('payment.converter.spain')
         texto = '5370'
-        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
+        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.csb_suffix).zfill(12)
         texto += datetime.today().strftime('%d%m%y')
         texto += 6*' '
-        texto += converter.to_ascii(cr, uid, self.order.mode.nombre).ljust(40)
+        texto += converter.to_ascii(cr, uid, self.order.mode.bank_id.partner_id.name).ljust(40)
         cc = converter.digits_only(cr, uid, self.order.mode.bank_id.acc_number)
         texto += cc[0:20]
         texto += 8*' '
         texto += '06'
         texto += 52*' '
-        texto += self.order.mode.ine and converter.to_ascii(cr, uid, self.order.mode.ine)[:9].zfill(9) or 9*' '
+        texto += self.order.mode.csb58_ine and converter.to_ascii(cr, uid, self.order.mode.csb58_ine)[:9].zfill(9) or 9*' '
         texto += 3*' '
         texto += '\r\n'
         if len(texto) != 164:
@@ -85,7 +85,7 @@ class csb_58(orm.Model):
     def _individual_obligatorio_58(self, cr, uid, recibo):
         converter = self.pool.get('payment.converter.spain')
         texto = '5670'
-        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
+        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.csb_suffix).zfill(12)
         texto += str(recibo['name'])[-12:].zfill(12)
         nombre = converter.to_ascii(cr, uid, recibo['partner_id'].name)
         texto += nombre[0:40].ljust(40)
@@ -121,7 +121,7 @@ class csb_58(orm.Model):
         """Para poner el segundo texto de comunicación"""
         converter = self.pool.get('payment.converter.spain')
         texto = '5671'
-        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
+        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.csb_suffix).zfill(12)
         texto += str(recibo['name'])[-12:].zfill(12)
         texto += converter.to_ascii(cr, uid, recibo['communication2'])[0:134].ljust(134)
         texto += '\r\n'
@@ -153,7 +153,7 @@ class csb_58(orm.Model):
          F2    Libre                                         155     8        Alfanumérico
         """
         converter = self.pool.get('payment.converter.spain')
-        alt_format = self.order.mode.alt_domicile_format
+        alt_format = self.order.mode.csb58_alt_address_format
 
         #
         # Obtenemos la dirección (por defecto) del partner, a imagen
@@ -223,7 +223,7 @@ class csb_58(orm.Model):
         # Componemos la línea formateada
         #
         texto = '5676'
-        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
+        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.csb_suffix).zfill(12)
         texto += str(recibo['name'])[-12:].zfill(12)
         texto += converter.to_ascii(cr, uid, st)[:40].ljust(40)          # Domicilio
         texto += converter.to_ascii(cr, uid, city)[:35].ljust(35)        # Plaza (ciudad)
@@ -252,13 +252,13 @@ class csb_58(orm.Model):
 
     def _total_ordenante_58(self, cr, uid):
         texto = '5870'
-        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
+        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.csb_suffix).zfill(12)
         texto += 72*' '
         totalordenante = int(round(abs(self.order.total) * 100,0))
         texto += str(totalordenante).zfill(10)
         texto += 6*' '
         texto += str(self.num_recibos).zfill(10)
-        texto += str(self.num_recibos + self.num_lineas_opc + 2).zfill(10)
+        texto += str(self.num_recibos + self.num_lines_opc + 2).zfill(10)
         texto += 38*' '
         texto += '\r\n'
         if len(texto) != 164:
@@ -267,7 +267,7 @@ class csb_58(orm.Model):
 
     def _total_general_58(self, cr, uid):
         texto = '5970'
-        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.sufijo).zfill(12)
+        texto += (self.order.mode.bank_id.partner_id.vat[2:] + self.order.mode.csb_suffix).zfill(12)
         texto += 52*' '
         texto += '0001'
         texto += 16*' '
@@ -275,7 +275,7 @@ class csb_58(orm.Model):
         texto += str(totalremesa).zfill(10)
         texto += 6*' '
         texto += str(self.num_recibos).zfill(10)
-        texto += str(self.num_recibos + self.num_lineas_opc + 4).zfill(10)
+        texto += str(self.num_recibos + self.num_lines_opc + 4).zfill(10)
         texto += 38*' '
         texto += '\r\n'
         if len(texto) != 164:
@@ -285,29 +285,29 @@ class csb_58(orm.Model):
     def create_file(self, cr, uid, order, lines, context):
         self.order = order
 
-        txt_remesa = ''
+        txt_file = ''
         self.num_recibos = 0
-        self.num_lineas_opc = 0
+        self.num_lines_opc = 0
 
-        txt_remesa += self._cabecera_presentador_58(cr, uid)
-        txt_remesa += self._cabecera_ordenante_58(cr, uid)
+        txt_file += self._cabecera_presentador_58(cr, uid)
+        txt_file += self._cabecera_ordenante_58(cr, uid)
 
         for recibo in lines:
-            txt_remesa += self._individual_obligatorio_58(cr, uid, recibo)
+            txt_file += self._individual_obligatorio_58(cr, uid, recibo)
             self.num_recibos = self.num_recibos + 1
             
             # Sólo emitimos el registro individual si communication2 contiene texto
             if recibo['communication2'] and len(recibo['communication2'].strip()) > 0:
-                txt_remesa += self._individual_opcional_58(cr, uid, recibo)
-                self.num_lineas_opc = self.num_lineas_opc + 1
+                txt_file += self._individual_opcional_58(cr, uid, recibo)
+                self.num_lines_opc = self.num_lines_opc + 1
 
             # Para recibos no domiciliados, añadimos el registro obligatorio
             # de domicilio (necesario con algunos bancos/cajas).
-            if self.order.mode.inc_domicile:
-                txt_remesa += self._registro_obligatorio_domicilio_58(cr, uid, recibo)
-                self.num_lineas_opc = self.num_lineas_opc + 1
+            if self.order.mode.csb58_include_address:
+                txt_file += self._registro_obligatorio_domicilio_58(cr, uid, recibo)
+                self.num_lines_opc = self.num_lines_opc + 1
 
-        txt_remesa += self._total_ordenante_58(cr, uid)
-        txt_remesa += self._total_general_58(cr, uid)
+        txt_file += self._total_ordenante_58(cr, uid)
+        txt_file += self._total_general_58(cr, uid)
 
-        return txt_remesa
+        return txt_file

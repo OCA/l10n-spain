@@ -29,6 +29,9 @@
 # Migración OpenERP 7.0. Acysos S.L. (http://www.acysos.com) 2013
 #   Ignacio Ibeas <ignacio@acysos.com>
 #
+# Migración OpenERP 8.0. Acysos S.L. (http://www.acysos.com) 2015
+#   Ignacio Ibeas <ignacio@acysos.com>
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -43,70 +46,71 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from openerp.osv import orm, fields
+from openerp import models, fields, api, _
+from openerp import workflow
 import base64
-from openerp.tools.translate import _
 from log import *
 
-def _reopen(self, res_id, model):
-    return {'type': 'ir.actions.act_window',
-            'view_mode': 'form',
-            'view_type': 'form',
-            'res_id': res_id,
-            'res_model': self._name,
-            'target': 'new',
-            # save original model in context, because selecting the list of available
-            # templates requires a model in context
-            'context': {
-                'default_model': model,
-            },
-    }
+class BankingExportCsbWizard(models.TransientModel):
+    _name = 'banking.export.csb.wizard'
+    _description = 'Export CSB File'
 
+    join = fields.Boolean(
+        string='Join payment lines of the same partner and bank account')
+    note = fields.Text('Log')
+    file_id = fields.Many2one('banking.export.csb', 'Payment order file',
+                                readonly=True)
+    file = fields.Binary(string="File", readonly=True, related='file_id.file')
+    filename = fields.Char(string="Filename", readonly=True,
+                           related='file_id.filename')
+    payment_order_ids = fields.Many2many('payment.order', readonly=True)
+    state = fields.Selection(
+       string='State', readonly=True, default='create',
+       selection=[('create', 'Create'), ('finish', 'Finish')])
+    
+    def create(self, cr, uid, vals, context=None):
+        payment_order_ids = context.get('active_ids', [])
+        print payment_order_ids
+        vals.update({
+            'payment_order_ids': [[6, 0, payment_order_ids]],
+        })
+        print vals
+        return super(BankingExportCsbWizard, self).create(
+            cr, uid, vals, context=context)
 
-class wizard_payment_file_spain(orm.TransientModel):
-    _name = 'wizard.payment.file.spain'
-    _columns = {
-        'join': fields.boolean('Join payment lines of the same partner and bank account'),
-        'note': fields.text('Log'),
-        'attach_id':fields.many2one('ir.attachment', 'Payment order file', readonly=True), 
-    }
-
-    def create_payment_file(self, cr, uid, ids, context):
+    def create_csb(self, cr, uid, ids, context):
+        print "CSB Create"
         converter = self.pool.get('payment.converter.spain')
-        txt_remesa = ''
-        num_lineas_opc = 0
+        txt_file = ''
+        num_lines_opc = 0
 
         form_obj = self.browse(cr, uid, ids)[0]
         try:
-            orden = self.pool.get('payment.order').browse(cr, uid, context['active_id'], context)
-            if not orden.line_ids:
+            payment_order = self.pool.get('payment.order').browse(cr, uid, context['active_id'], context)
+            if not payment_order.line_ids:
                 raise Log( _('User error:\n\nWizard can not generate export file, there are not payment lines.'), True )
-            if orden.create_account_moves == 'direct-payment' and (orden.state != 'open' and orden.state != 'done'):
-                raise Log( _('User error:\n\nIf direct payment is selected to create the account moves, you should confirm payments befores. Creating the files will make the payments.'), True )
-
 
             # Comprobamos que exista número de C.C. y que tenga 20 dígitos
-            if not orden.mode.bank_id:
-                raise Log( _('User error:\n\nThe bank account of the company %s is not defined.') % (orden.mode.partner_id.name), True )
-            cc = converter.digits_only(cr,uid,orden.mode.bank_id.acc_number)
+            if not payment_order.mode.bank_id:
+                raise Log( _('User error:\n\nThe bank account of the company %s is not defined.') % (payment_order.mode.partner_id.name), True )
+            cc = converter.digits_only(cr,uid,payment_order.mode.bank_id.acc_number)
             if len(cc) != 20:
-                raise Log( _('User error:\n\nThe bank account number of the company %s has not 20 digits.') % (orden.mode.partner_id.name), True)
+                raise Log( _('User error:\n\nThe bank account number of the company %s has not 20 digits.') % (payment_order.mode.partner_id.name), True)
 
             # Comprobamos que exista el CIF de la compañía asociada al C.C. del modo de pago
-            if not orden.mode.bank_id.partner_id.vat:
+            if not payment_order.mode.bank_id.partner_id.vat:
                 raise Log(_('User error:\n\nThe company VAT number related to the bank account of the payment mode is not defined.'), True)
 
-            recibos = []
+            pay_lines = []
             if form_obj.join:
                 # Lista con todos los partners+bancos diferentes de la remesa
                 partner_bank_l = reduce(lambda l, x: x not in l and l.append(x) or l,
-                                         [(recibo.partner_id,recibo.bank_id) for recibo in orden.line_ids], [])
-                # Cómputo de la lista de recibos agrupados por mismo partner+banco.
+                                         [(line.partner_id,line.bank_id) for line in payment_order.line_ids], [])
+                # Cómputo de la lista de pay_lines agrupados por mismo partner+banco.
                 # Los importes se suman, los textos se concatenan con un espacio en blanco y las fechas se escoge el máximo
                 for partner,bank in partner_bank_l:
-                    lineas = [recibo for recibo in orden.line_ids if recibo.partner_id==partner and recibo.bank_id==bank]
-                    recibos.append({
+                    lineas = [recibo for recibo in payment_order.line_ids if recibo.partner_id==partner and recibo.bank_id==bank]
+                    pay_lines.append({
                         'partner_id': partner,
                         'bank_id': bank,
                         'name': partner.ref or str(partner.id),
@@ -121,8 +125,8 @@ class wizard_payment_file_spain(orm.TransientModel):
                     })
             else:
                 # Cada línea de pago es un recibo
-                for l in orden.line_ids:
-                    recibos.append({
+                for l in payment_order.line_ids:
+                    pay_lines.append({
                         'partner_id': l.partner_id,
                         'bank_id': l.bank_id,
                         'name': l.partner_id.ref or str(l.partner_id.id),
@@ -136,8 +140,8 @@ class wizard_payment_file_spain(orm.TransientModel):
                         'ml_inv_ref':[l.ml_inv_ref]
                     })
 
-            if orden.mode.require_bank_account:
-                for line in recibos:
+            if payment_order.mode.csb_require_bank_account:
+                for line in pay_lines:
                     ccc = line['bank_id'] and line['bank_id'].acc_number or False
                     if not ccc:
                         raise Log(_('User error:\n\nThe bank account number of the customer %s is not defined and current payment mode enforces all lines to have a bank account.') % (line['partner_id'].name), True)
@@ -145,45 +149,86 @@ class wizard_payment_file_spain(orm.TransientModel):
                     if len(ccc) != 20:
                         raise Log(_('User error:\n\nThe bank account number of the customer %s has not 20 digits.') % (line['partner_id'].name), True)
 
-            if orden.mode.tipo == 'csb_19':
+            if payment_order.mode.type.code == 'csb19':
                 csb = self.pool.get('csb.19')
-            elif orden.mode.tipo == 'csb_32':
+            elif payment_order.mode.type.code == 'csb32':
                 csb = self.pool.get('csb.32')
-            elif orden.mode.tipo == 'csb_34':
+            elif payment_order.mode.type.code == 'csb34':
                 csb = self.pool.get('csb.34')
-            elif orden.mode.tipo == '34_01':
+            elif payment_order.mode.type.code == 'csb3401':
                 csb = self.pool.get('csb.3401')
-            elif orden.mode.tipo == 'csb_58':
+            elif payment_order.mode.type.code == 'csb58':
                 csb = self.pool.get('csb.58')
             else:
                 raise Log(_('User error:\n\nThe payment mode is not CSB 19, CSB 32, CSB 34 or CSB 58'), True)
-            txt_remesa = csb.create_file(cr, uid, orden, recibos, context)
+            txt_file = csb.create_file(cr, uid, payment_order, pay_lines, context)
 
         except Log, log:
-            form_obj.write({'note': unicode(log),'pay': False})
-            return _reopen(self, form_obj.id, 'wizard.payment.file.spain')
+            form_obj.write({'note': unicode(log),'state': 'create'})
+            action = {
+                'name': 'CSB File',
+                'type': 'ir.actions.act_window',
+                'view_type': 'form',
+                'view_mode': 'form,tree',
+                'res_model': self._name,
+                'res_id': ids[0],
+                'target': 'new',
+            }
+            return action
         else:
             # Ensure line breaks use MS-DOS (CRLF) format as standards require.
-            txt_remesa = txt_remesa.replace('\r\n','\n').replace('\n','\r\n')
+            txt_file = txt_file.replace('\r\n','\n').replace('\n','\r\n')
 
-            file_remesa = base64.encodestring(txt_remesa.encode('utf-8'))
-            fname = (_('Remittance_%s_%s.txt') %(orden.mode.tipo, orden.reference)).replace('/','-')
+            file_payment_order = base64.encodestring(txt_file.encode('utf-8'))
+            #fname = (_('Remittance_%s_%s.txt') %(payment_order.mode.type.code, payment_order.reference)).replace('/','-')
             # Borrar posible anterior adjunto de la exportación
-            obj_attachment = self.pool.get('ir.attachment')
-            attachment_ids = obj_attachment.search(cr, uid, [('name', '=', fname), ('res_model', '=', 'payment.order')])
-            if len(attachment_ids):
-                obj_attachment.unlink(cr, uid, attachment_ids)
+            export_csb_obj = self.pool.get('banking.export.csb')
+            #export_csb_ids = obj_attachment.search(cr, uid, [('name', '=', fname), ('res_model', '=', 'payment.order')])
+            #if len(attachment_ids):
+            #    obj_attachment.unlink(cr, uid, attachment_ids)
             # Adjuntar nuevo archivo de remesa
-            attach_id = obj_attachment.create(cr, uid, {
-                'name': fname,
-                'datas': file_remesa,
-                'datas_fname': fname,
-                'res_model': 'payment.order',
-                'res_id': orden.id,
+            file_id = export_csb_obj.create(cr, uid, {
+                    'file': file_payment_order, 'state': 'draft',
                 }, context=context)
-            log = _("Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n") % (orden.total, len(recibos))
-            self.pool.get('payment.order').set_done(cr, uid, [orden.id], context)
+            log = _("Successfully Exported\n\nSummary:\n Total amount paid: %.2f\n Total Number of Payments: %d\n") % (payment_order.total, len(pay_lines))
+            #self.pool.get('payment.order').set_done(cr, uid, [payment_order.id], context)
 
-            form_obj.write({'note': log,'attach_id':attach_id})
+            self.write(
+                cr, uid, ids, {
+                    'file_id': file_id,
+                    'state': 'finish',
+                }, context=context)
 
-            return _reopen(self, form_obj.id, 'wizard.payment.file.spain')
+        action = {
+            'name': 'CSB File',
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form,tree',
+            'res_model': self._name,
+            'res_id': ids[0],
+            'target': 'new',
+        }
+        return action
+    
+    def cancel_csb(self, cr, uid, ids, context=None):
+        """Cancel the CSB file: just drop the file"""
+        sepa_export = self.browse(cr, uid, ids[0], context=context)
+        self.pool['banking.export.csb'].unlink(
+            cr, uid, sepa_export.file_id.id, context=context)
+        return {'type': 'ir.actions.act_window_close'}
+
+    def save_csb(self, cr, uid, ids, context=None):
+        """Save the CSB file: send the done signal to all payment
+        orders in the file. With the default workflow, they will
+        transition to 'done', while with the advanced workflow in
+        account_banking_payment they will transition to 'sent' waiting
+        reconciliation.
+        """
+        csb_export = self.browse(cr, uid, ids[0], context=context)
+        self.pool['banking.export.csb'].write(
+            cr, uid, csb_export.file_id.id, {'state': 'sent'},
+            context=context)
+        for order in csb_export.payment_order_ids:
+            workflow.trg_validate(uid, 'payment.order', order.id, 'done', cr)
+        return {'type': 'ir.actions.act_window_close'}
+
