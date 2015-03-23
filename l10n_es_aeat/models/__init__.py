@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2012 Acysos S.L. (http://acysos.com)
-#                       Ignacio Ibeas <ignacio@acysos.com>
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
 #    by the Free Software Foundation, either version 3 of the License, or
@@ -19,17 +16,4 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
-
-
-class AccountInvoice(orm.Model):
-    _inherit = 'account.invoice'
-
-    _columns = {
-        'is_ticket_summary': fields.boolean(
-            'Ticket Summary',
-            help='Check if this invoice is a ticket summary'),
-        'number_tickets': fields.integer('Number of tickets', digits=(12, 0)),
-        'first_ticket': fields.char('First ticket', size=40),
-        'last_ticket': fields.char('Last ticket', size=40)
-    }
+from . import aeat_report

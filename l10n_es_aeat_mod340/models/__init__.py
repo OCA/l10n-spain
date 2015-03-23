@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2013 Acysos S.L. (http://acysos.com)
-#                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
 #    by the Free Software Foundation, either version 3 of the License, or
@@ -19,20 +16,7 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
-
-
-class AccountTaxCodeTemplate(orm.Model):
-    _inherit = 'account.tax.code.template'
-
-    _columns = {
-        'mod340': fields.boolean("Include in mod340"),
-    }
-
-
-class AccountTaxCode(orm.Model):
-    _inherit = 'account.tax.code'
-
-    _columns = {
-        'mod340': fields.boolean("Include in mod340"),
-    }
+from . import account_invoice
+from . import account
+from . import res_partner
+from . import mod340

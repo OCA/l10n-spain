@@ -29,22 +29,9 @@
                     <field name="period_from" select="1" required="1" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
                     <field name="period_to" select="1" required="1" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
                 </field>
-                <field name="calculation_date" position="after">
-                      <field name="declaration_number"/>
-                       <field name="support_type"/>
-                </field>
                 <group string="Declaración" position="after">
                     <notebook colspan="4">
                         <page string="General">
-                            <group string="Identification" colspan="4">
-                                <field name="phone_contact" />
-                                <field name="name_contact" />
-                                <field name="representative_vat" />
-                            </group>
-                            <group string="Susbtitutive/complementary declaration" colspan="4">
-                                <field name="type"/>
-                                <field name="previous_number"/>
-                            </group>
                             <group string="Electronic Code VAT reverse charge" colspan="4">
                                 <field name="ean13" nolabel="1"/>
                             </group>
