@@ -25,25 +25,18 @@
 ##############################################################################
 import base64
 import time
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
+from openerp import models, fields, api, _
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
-class L10nEsAeatReportExportToBoe(orm.TransientModel):
+class L10nEsAeatReportExportToBoe(models.TransientModel):
     _name = "l10n.es.aeat.report.export_to_boe"
     _description = "Export Report to BOE Format"
 
-    _columns = {
-        'name': fields.char('File name', readonly=True),
-        'data': fields.binary('File', readonly=True),
-        'state': fields.selection([('open', 'open'),   # open wizard
-                                   ('get', 'get')]),    # get file
-    }
-
-    _defaults = {
-        'state': 'open',
-    }
+    name = fields.Char(string='File name', readonly=True)
+    data = fields.Binary(string='File', readonly=True)
+    state = fields.Selection([('open', 'open'), ('get', 'get')],
+                             string="State", default='open')
 
     def _formatString(self, text, length, fill=' ', align='<'):
         """
@@ -58,7 +51,6 @@ class L10nEsAeatReportExportToBoe(orm.TransientModel):
             valor ASCII 209 (Hex. D1) y la “Ç”(cedilla mayúscula) el valor
             ASCII 199 (Hex. C7).'
         """
-
         if not text:
             return fill * length
         # Replace accents and convert to upper
@@ -127,39 +119,81 @@ class L10nEsAeatReportExportToBoe(orm.TransientModel):
         """
         return value and yes or no
 
-    def _get_formatted_declaration_record(self, cr, uid, report, context=None):
+    @api.multi
+    def _get_formatted_declaration_record(self, report):
+        """
+        Returns a type 1, declaration/company, formated record.
+        Format of the record:
+            Tipo registro 1 – Registro de declarante:
+            Posiciones   Descripción
+            1            Tipo de Registro
+            2-4          Modelo Declaración
+            5-8          Ejercicio
+            9-17         NIF del declarante
+            18-57        Apellidos y nombre o razón social del declarante
+            58           Tipo de soporte
+            59-67        Teléfono contacto
+            68-107       Apellidos y nombre contacto
+            108-120      Número identificativo de la declaración
+            121-122      Declaración complementaria o substitutiva
+            123-135      Número identificativo de la declaración anterior
+        """
+        modelo_declaracion = getattr(report, '_aeat_number')
+        text = ''
+        # Tipo de Registro
+        text += '1'
+        # Modelo Declaración
+        text += modelo_declaracion
+        # Ejercicio
+        text += self._formatString(report.fiscalyear_id.code, 4)
+        # NIF del declarante
+        text += self._formatString(report.company_vat, 9)
+        # Apellidos y nombre o razón social del declarante
+        text += self._formatString(report.company_id.name, 40)
+        # Tipo de soporte
+        text += self._formatString(report.support_type, 1)
+        # Persona de contacto (Teléfono)
+        text += self._formatString(report.contact_phone, 9)
+        # Persona de contacto (Apellidos y nombre)
+        text += self._formatString(report.contact_name, 40)
+        # Número identificativo de la declaración
+        text += self._formatNumber(report.number, 13)
+        # Declaración complementaria
+        text += self._formatString(report.type, 2).replace('N', ' ')
+        # Número identificativo de la declaración anterior
+        text += self._formatNumber(report.previous_number, 13)
+        return text
+
+    @api.multi
+    def _get_formatted_main_record(self, record):
         return ''
 
-    def _get_formatted_main_record(self, cr, uid, report, context=None):
+    @api.multi
+    def _get_formatted_other_records(self, record):
         return ''
 
-    def _get_formatted_other_records(self, cr, uid, report, context=None):
-        return ''
-
-    def _do_global_checks(self, report, contents, context=None):
+    @api.multi
+    def _do_global_checks(self, record, contents):
         return True
 
-    def action_get_file(self, cr, uid, ids, context=None):
+    @api.multi
+    def action_get_file(self):
         """
         Action that exports the data into a BOE formatted text file.
         @return: Action dictionary for showing exported file.
         """
-        if not context.get('active_id') or not context.get('active_model'):
+        active_id = self.env.context.get('active_id', False)
+        active_model = self.env.context.get('active_model', False)
+        if not active_id or not active_model:
             return False
-        report = self.pool[context['active_model']].browse(
-            cr, uid,
-            context['active_id'], context=context
-        )
+        report = self.env[active_model].browse(active_id)
         contents = ''
         # Add header record
-        contents += self._get_formatted_declaration_record(cr, uid, report,
-                                                           context=context)
+        contents += self._get_formatted_declaration_record(report)
         # Add main record
-        contents += self._get_formatted_main_record(cr, uid, report,
-                                                    context=context)
+        contents += self._get_formatted_main_record(report)
         # Adds other fields
-        contents += self._get_formatted_other_records(cr, uid, report,
-                                                      context=context)
+        contents += self._get_formatted_other_records(report)
         # Generate the file and save as attachment
         file = base64.encodestring(contents)
         file_name = _("%s_report_%s.txt") % (
@@ -167,37 +201,27 @@ class L10nEsAeatReportExportToBoe(orm.TransientModel):
             time.strftime(_(DEFAULT_SERVER_DATE_FORMAT))
         )
         # Delete old files
-        attachment_obj = self.pool['ir.attachment']
+        attachment_obj = self.env['ir.attachment']
         attachment_ids = attachment_obj.search(
-            cr, uid,
-            [
-                ('name', '=', file_name),
-                ('res_model', '=', report._model._name)
-            ], context=context)
-        if attachment_ids:
-            attachment_obj.unlink(cr, uid, attachment_ids, context=context)
-        attachment_obj.create(cr, uid, {
-            "name": file_name,
-            "datas": file,
-            "datas_fname": file_name,
-            "res_model": report._model._name,
-            "res_id": report.id,
-        }, context=context)
-        self.write(cr, uid, ids,
-                   {'state': 'get', 'data': file, 'name': file_name},
-                   context=context)
+            [('name', '=', file_name),
+             ('res_model', '=', report._model._name)])
+        attachment_ids.unlink()
+        attachment_obj.create({"name": file_name,
+                               "datas": file,
+                               "datas_fname": file_name,
+                               "res_model": report._model._name,
+                               "res_id": report.id,
+                               })
+        self.write({'state': 'get', 'data': file, 'name': file_name})
         # Force view to be the parent one
-        data_obj = self.pool['ir.model.data']
-        result = data_obj._get_id(cr, uid, 'l10n_es_aeat',
-                                  'wizard_aeat_export')
-        view_id = data_obj.browse(cr, uid, result, context=context).res_id
+        data_obj = self.env.ref('l10n_es_aeat.wizard_aeat_export')
         # TODO: Permitir si se quiere heredar la vista padre
         return {
             'type': 'ir.actions.act_window',
             'res_model': self._name,
             'view_mode': 'form',
             'view_type': 'form',
-            'view_id': [view_id],
-            'res_id': ids[0],
+            'view_id': [data_obj.id],
+            'res_id': self.id,
             'target': 'new',
         }
