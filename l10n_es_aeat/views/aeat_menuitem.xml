@@ -7,5 +7,10 @@
             parent="account.menu_finance_legal_statement"
             name="AEAT reports"/>
 
+        <menuitem id="menu_l10n_es_aeat_config"
+            parent="menu_root_aeat"
+            sequence="999"
+            name="Config"/>
+
     </data>
 </openerp>
