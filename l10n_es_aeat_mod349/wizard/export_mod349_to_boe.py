@@ -34,6 +34,7 @@ class Mod349ExportToBoe(models.TransientModel):
     _name = "l10n.es.aeat.mod349.export_to_boe"
     _description = "Export AEAT Model 349 to BOE format"
 
+    @api.multi
     def _get_company_name_with_title(self, company_obj):
         """Returns company name with title."""
         if company_obj.partner_id and company_obj.partner_id.title:
@@ -41,7 +42,7 @@ class Mod349ExportToBoe(models.TransientModel):
                 company_obj.partner_id.title.name.capitalize()
         return company_obj.name
 
-    @api.model
+    @api.multi
     def _get_formatted_declaration_record(self, report):
         """Returns a type 1, declaration/company, formated record.
 
@@ -96,34 +97,10 @@ class Mod349ExportToBoe(models.TransientModel):
             488-500     Sello electrónico
         """
         assert report, 'No Report defined'
-        try:
-            fiscal_year = int((report.fiscalyear_id.code or '')[:4])
-        except:
-            raise exceptions.Warning(
-                _('First four characters of fiscal year code must be numeric '
-                  'and contain the fiscal year number. Please, fix it and try '
-                  'again.'))
-        company_name = self._get_company_name_with_title(report.company_id)
         period = (report.period_selection == 'MO' and report.month_selection or
                   report.period_selection)
-        text = ''  # Empty text
-        text += '1'  # Tipo de Registro
-        text += '349'  # Modelo Declaración
-        text += self._formatNumber(fiscal_year, 4)  # Ejercicio
-        text += self._formatString(report.company_vat, 9)  # NIF del declarante
-        # Apellidos y nombre o razón social del declarante
-        text += self._formatString(company_name, 40)
-        text += self._formatString(report.support_type, 1)  # Tipo de soporte
-        # Persona de contacto (Teléfono)
-        text += self._formatString(report.contact_phone.replace(' ', ''), 9)
-        # Persona de contacto (Apellidos y nombre)
-        text += self._formatString(report.contact_name, 40)
-        # Número identificativo de la declaración
-        text += self._formatNumber(report.number, 13)
-        # Declaración complementaria o substitutiva
-        text += self._formatString(report.type, 2).replace('N', ' ')
-        # Número identificativo de la declaración anterior
-        text += self._formatNumber(report.previous_number, 13)
+        text = super(Mod349ExportToBoe,
+                     self)._get_formatted_declaration_record(report)
         text += self._formatString(period, 2)  # Período
         # Número total de operadores intracomunitarios
         text += self._formatNumber(report.total_partner_records, 9)
@@ -146,7 +123,7 @@ class Mod349ExportToBoe(models.TransientModel):
             _("The type 1 record must be 502 characters long")
         return text
 
-    @api.model
+    @api.multi
     def _get_formatted_main_record(self, report):
         file_contents = ''
         for partner_record in report.partner_record_ids:
@@ -157,6 +134,7 @@ class Mod349ExportToBoe(models.TransientModel):
                 report, refund_record)
         return file_contents
 
+    @api.multi
     def _get_formated_partner_record(self, report, partner_record):
         """Returns a type 2, partner record
 
@@ -214,6 +192,7 @@ class Mod349ExportToBoe(models.TransientModel):
             _("The type 2 record must be 502 characters long")
         return text
 
+    @api.multi
     def _get_formatted_partner_refund(self, report, refund_record):
         """Returns a type 2, refund record
 
