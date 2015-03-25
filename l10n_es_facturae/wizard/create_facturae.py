@@ -417,28 +417,25 @@ class create_facturae(osv.osv_memory):
             texto += '</InvoiceTotals>'
             return texto
 
-        def _invoice_items():
+        def _invoice_items(self, cr, uid, context=None):
+
+            tax_pool = self.pool.get('account.tax')
 
             rate = 0.0
             texto = ''
             texto += '<Items>'
 
             for line in invoice.invoice_line:
-                if line.invoice_line_tax_id and line.invoice_line_tax_id[0].price_include:
-                    tax_amount = line.invoice_line_tax_id[0].amount
-                    price_unit = line.price_unit/(1+tax_amount)
-                    if line.discount:
-                        discount_amount = price_unit * line.quantity - line.price_subtotal
-                    else:
-                        discount_amount = 0.0
-                else:
-                    price_unit = line.price_unit
-                    discount_amount = line.price_unit * line.quantity - line.price_subtotal
+                taxes = tax_pool.compute_all(
+                    cr, uid, line.invoice_line_tax_id, line.price_unit,
+                    line.quantity, product=line.product_id,
+                    partner=line.invoice_id.partner_id)
+                discount_amount = taxes['total'] - line.price_subtotal
                 texto += '<InvoiceLine>'
                 texto += '<ItemDescription>' + line.name + '</ItemDescription>'
                 texto += '<Quantity>' + str(line.quantity) + '</Quantity>'
-                texto += '<UnitPriceWithoutTax>' + str('%.6f' % price_unit) + '</UnitPriceWithoutTax>'
-                texto += '<TotalCost>' + str('%.6f' % (line.quantity * price_unit)) + '</TotalCost>'
+                texto += '<UnitPriceWithoutTax>' + str('%.6f' % (taxes['total'] / line.quantity)) + '</UnitPriceWithoutTax>'
+                texto += '<TotalCost>' + str('%.6f' % (taxes['total'])) + '</TotalCost>'
                 texto += '<DiscountsAndRebates>'
                 texto += '<Discount>'
                 texto += '<DiscountReason>Descuento</DiscountReason>'
@@ -472,7 +469,7 @@ class create_facturae(osv.osv_memory):
             texto += '</Items>'
             return texto
 
-        def _invoices_facturae():
+        def _invoices_facturae(self, cr, uid, context=None):
 
             texto = ''
             texto += '<Invoices>'
@@ -491,7 +488,7 @@ class create_facturae(osv.osv_memory):
             texto += '</InvoiceIssueData>'
             texto += _taxes_output()
             texto += _invoice_totals()
-            texto += _invoice_items()
+            texto += _invoice_items(self, cr, uid, context=context)
             texto += '<AdditionalData>'
             texto += '<InvoiceAdditionalInformation>' + (invoice.comment or "") + '</InvoiceAdditionalInformation>'
             texto += '</AdditionalData>'
@@ -557,7 +554,7 @@ class create_facturae(osv.osv_memory):
         xml_facturae += _format_xml()
         xml_facturae += _header_facturae(cr, context)
         xml_facturae += _parties_facturae(cr, context)
-        xml_facturae += _invoices_facturae()
+        xml_facturae += _invoices_facturae(self, cr, uid, context=context)
         xml_facturae += _end_document()
         xml_facturae = conv_ascii(xml_facturae)
         if invoice.company_id.facturae_cert:
