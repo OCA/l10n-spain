@@ -28,7 +28,7 @@ import time
 import re
 
 
-class L10nEsAeatReport(models.Model):
+class L10nEsAeatReport(models.AbstractModel):
     _name = "l10n.es.aeat.report"
     _description = "AEAT report base module"
 
@@ -60,7 +60,7 @@ class L10nEsAeatReport(models.Model):
                               states={'draft': [('readonly', False)]})
     phone = fields.Char(string="Phone", size=9,
                         states={'calculated': [('required', True)],
-                                 'confirmed': [('readonly', True)]})
+                                'confirmed': [('readonly', True)]})
     number = fields.Char(string='Declaration number', size=13,
                          required=True, readonly=True)
     previous_number = fields.Char(string='Previous declaration number',
@@ -145,3 +145,12 @@ class L10nEsAeatReport(models.Model):
                 raise exceptions.Warning(_("Only reports in 'draft' or "
                                            "'cancelled' state can be removed"))
         return super(L10nEsAeatReport, self).unlink()
+
+    def __init__(self, pool, cr):
+        super(L10nEsAeatReport, self).__init__(pool, cr)
+        try:
+            getattr(self, '_aeat_number')
+        except:
+            pass
+            # raise exceptions.Warning(
+            #    "Modelo no válido. Debe declarar una variable '_aeat_number'")

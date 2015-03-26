@@ -34,63 +34,56 @@ class L10nEsAeatMod130Report(models.Model):
                                          relation='company_id.partner_id',
                                          store=True)
     currency_id = fields.Many2one('res.currency', string='Currency',
-                                         relation='company_id.currency_id',
-                                         store=True)
-    period = fields.Selection([
-            ('1T', 'First quarter'), ('2T', 'Second quarter'),
-            ('3T', 'Third quarter'), ('4T', 'Fourth quarter')],
-            string='Period', states={'draft': [('readonly', False)]},
-            readonly=True, required=True)
-    activity_type = fields.Selection([
-            ('primary', 'Actividad agrícola, ganadera, forestal o pesquera'),
-            ('other', 'Actividad distinta a las anteriores')],
-            string='Tipo de actividad',
-            states={'draft': [('readonly', False)]},
-            readonly=True, required=True, default='other')
+                                  relation='company_id.currency_id',
+                                  store=True)
+    period = fields.Selection(
+        [('1T', 'First quarter'), ('2T', 'Second quarter'),
+         ('3T', 'Third quarter'), ('4T', 'Fourth quarter')], string='Period',
+        states={'draft': [('readonly', False)]}, readonly=True, required=True)
+    activity_type = fields.Selection(
+        [('primary', 'Actividad agrícola, ganadera, forestal o pesquera'),
+         ('other', 'Actividad distinta a las anteriores')],
+        string='Tipo de actividad', states={'draft': [('readonly', False)]},
+        readonly=True, required=True, default='other')
     has_deduccion_80 = fields.Boolean(
-            string="¿Deducción por art. 80 bis?",
-            states={'draft': [('readonly', False)]}, readonly=True,
-            help="Permite indicar si puede beneficiarse de la deducción por "
-                 "obtención de rendimientos de actividades económicas a "
-                 "efectos del pago fraccionado por cumplir el siguiente "
-                 "requisito:\n"
-                 "Que, en el primer trimestre del ejercicio o en el primer "
-                 "trimestre de inicio de actividades, la suma del resultado "
-                 "de elevar al año el importe de la casilla 03 y/o, en su "
-                 "caso, el resultado de elevar al año el 25 por 100 de la "
-                 "casilla 08, sea igual o inferior a 12.000 euros. En los "
-                 "supuestos de inicio de la actividad a lo largo del "
-                 "ejercicio en la elevación al año se tendrán en "
-                 "consideración los días que resten hasta el final del año.",
-                 default=False)
+        string="¿Deducción por art. 80 bis?",
+        states={'draft': [('readonly', False)]}, readonly=True,
+        help="Permite indicar si puede beneficiarse de la deducción por "
+        "obtención de rendimientos de actividades económicas a efectos del "
+        "pago fraccionado por cumplir el siguiente requisito:\n Que, en el "
+        "primer trimestre del ejercicio o en el primer trimestre de inicio de "
+        "actividades, la suma del resultado de elevar al año el importe de la "
+        "casilla 03 y/o, en su caso, el resultado de elevar al año el 25 por "
+        "100 de la casilla 08, sea igual o inferior a 12.000 euros. En los "
+        "supuestos de inicio de la actividad a lo largo del ejercicio en la "
+        "elevación al año se tendrán en consideración los días que resten "
+        "hasta el final del año.", default=False)
     has_prestamo = fields.Boolean(
-            string="¿Préstamo para vivienda habitual?",
-            states={'draft': [('readonly', False)]}, readonly=True,
-            help="Permite indicar si destina cantidades al pago de préstamos "
-                 "para la adquisición o rehabilitación de la vivienda "
-                 "habitual. Si marca la casilla, se podrá realiza un 2% de "
-                 "deducción sobre el importe de la casilla [03], con un "
-                 "máximo de 660,14 € por trimestre, o del 2% de la casilla "
-                 "[08], con un máximo de 660,14 euros anuales. \nDebe "
-                 "consultar las excepciones para las que no se computaría "
-                 "la deducción a pesar del préstamo.", default=False)
+        string="¿Préstamo para vivienda habitual?",
+        states={'draft': [('readonly', False)]}, readonly=True,
+        help="Permite indicar si destina cantidades al pago de préstamos "
+        "para la adquisición o rehabilitación de la vivienda habitual. Si "
+        "marca la casilla, se podrá realiza un 2% de deducción sobre el "
+        "importe de la casilla [03], con un máximo de 660,14 € por trimestre, "
+        "o del 2% de la casilla [08], con un máximo de 660,14 euros anuales. "
+        "\nDebe consultar las excepciones para las que no se computaría "
+        "la deducción a pesar del préstamo.", default=False)
     complementary = fields.Boolean(
-            string="Presentación complementaria",
-            states={'draft': [('readonly', False)]}, readonly=True,
-            help="Se marcará si esta declaración es complementaria de "
-                 "otra u otras declaraciones presentadas anteriormente "
-                 "por el mismo concepto y correspondientes al mismo "
-                 "ejercicio y período.", default=False)
+        string="Presentación complementaria",
+        states={'draft': [('readonly', False)]}, readonly=True,
+        help="Se marcará si esta declaración es complementaria de otra u otras"
+        " declaraciones presentadas anteriormente por el mismo concepto y "
+        "correspondientes al mismo ejercicio y período.", default=False)
     previous_electronic_code = fields.Char(
-            string="Cód. electr. declaración anterior", size=16,
-            help="Código electrónico de la declaración anterior (si se "
-                 "presentó telemáticamente). A cumplimentar sólo en el caso "
-                 "de declaración complementaria", readonly=False,
-                 states={'done': [('readonly', True)]})
+        string="Cód. electr. declaración anterior", size=16,
+        help="Código electrónico de la declaración anterior (si se "
+        "presentó telemáticamente). A cumplimentar sólo en el caso de "
+        "declaración complementaria", readonly=False,
+        states={'done': [('readonly', True)]})
     comments = fields.Char(
-            string="Observaciones", size=350, readonly=True,
-            help="Observaciones que se adjuntarán con el modelo",
-            states={'draft': [('readonly', False)]})
+        string="Observaciones", size=350, readonly=True,
+        help="Observaciones que se adjuntarán con el modelo",
+        states={'draft': [('readonly', False)]})
     casilla_01 = fields.Float(string="Casilla [01] - Ingresos", readonly=True)
     casilla_02 = fields.Float(string="Casilla [02] - Gastos", readonly=True)
     casilla_03 = fields.Float(string="Casilla [03] - Rendimiento",
@@ -100,18 +93,18 @@ class L10nEsAeatMod130Report(models.Model):
     casilla_06 = fields.Float(string="Casilla [06]", readonly=True)
     casilla_07 = fields.Float(string="Casilla [07]", readonly=True)
     casilla_08 = fields.Float(string="Casilla [08] - Ingresos primario",
-                                   readonly=True)
+                              readonly=True)
     casilla_09 = fields.Float(string="Casilla [09] - IRPF primario",
-                                   readonly=True)
+                              readonly=True)
     casilla_10 = fields.Float(string="Casilla [10]", readonly=True)
     casilla_11 = fields.Float(string="Casilla [11]", readonly=True)
     casilla_12 = fields.Float(string="Casilla [12]", readonly=True)
     casilla_13 = fields.Float(string="Casilla [13] - Deducción art. 80 bis",
-                                   readonly=True)
+                              readonly=True)
     casilla_14 = fields.Float(string="Casilla [14]", readonly=True)
     casilla_15 = fields.Float(string="Casilla [15]", readonly=True)
     casilla_16 = fields.Float(string="Casilla [16] - Deducción por pago "
-                                   "de hipoteca", readonly=True)
+                              "de hipoteca", readonly=True)
     casilla_17 = fields.Float(string="Casilla [17]", readonly=True)
     casilla_18 = fields.Float(string="Casilla [18]", readonly=True)
     result = fields.Float(string="Resultado", readonly=True)
@@ -255,7 +248,7 @@ class L10nEsAeatMod130Report(models.Model):
                     if deduccion > 660.14:
                         deduccion = 660.14
                 else:
-                    raise orm.except_orm('No implementado')
+                    raise exceptions.Warning('No implementado')
                 dif = vals['casilla_14'] - vals['casilla_15']
                 if deduccion > dif:
                     deduccion = dif
@@ -299,3 +292,7 @@ class L10nEsAeatMod130Report(models.Model):
         if msg:
             raise exceptions.Warning(msg)
         return super(L10nEsAeatMod130Report, self).button_confirm()
+
+    def __init__(self, pool, cr):
+        self._aeat_number = '130'
+        super(L10nEsAeatMod130Report, self).__init__(pool, cr)

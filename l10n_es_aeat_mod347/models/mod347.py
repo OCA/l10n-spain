@@ -324,6 +324,10 @@ class L10nEsAeatMod347Report(models.Model):
                           "filled."))
         return super(L10nEsAeatMod347Report, self).button_confirm()
 
+    def __init__(self, pool, cr):
+        self._aeat_number = '347'
+        super(L10nEsAeatMod347Report, self).__init__(pool, cr)
+
 
 class L10nEsAeatMod347PartnerRecord(models.Model):
     _name = 'l10n.es.aeat.mod347.partner_record'

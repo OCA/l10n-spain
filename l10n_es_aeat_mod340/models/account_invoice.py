@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 20011 Ting (http://www.ting.es)
-#    Copyright (c) 2011-2013 Acysos S.L. (http://acysos.com)
-#                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
-#
+#    Copyright (c) 2012 Acysos S.L. (http://acysos.com)
+#                       Ignacio Ibeas <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -21,6 +18,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import report
-from . import wizard
-from . import models
+
+from openerp import models, fields
+
+
+class AccountInvoice(models.Model):
+    _inherit = 'account.invoice'
+
+    is_ticket_summary = fields.Boolean(string='Ticket Summary',
+                                       help='Check if this invoice is a '
+                                       'ticket summary')
+    number_tickets = fields.Integer(string='Number of tickets', digits=(12, 0))
+    first_ticket = fields.Char(string='First ticket', size=40)
+    last_ticket = fields.Char(string='Last ticket', size=40)

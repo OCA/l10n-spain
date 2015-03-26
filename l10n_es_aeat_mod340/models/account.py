@@ -19,30 +19,25 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
+from openerp import models, fields, _
 
 
-class AccountTaxCodeTemplate(orm.Model):
+class AccountTaxCodeTemplate(models.Model):
     _inherit = 'account.tax.code.template'
 
-    _columns = {
-        'mod340': fields.boolean("Include in mod340"),
-    }
+    mod340 = fields.Boolean(string="Include in mod340")
 
 
-class AccountTaxCode(orm.Model):
+class AccountTaxCode(models.Model):
     _inherit = 'account.tax.code'
 
-    _columns = {
-        'mod340': fields.boolean("Include in mod340"),
-    }
+    mod340 = fields.Boolean(string="Include in mod340")
 
 
-class WizardUpdateChartsAccounts(orm.TransientModel):
+class WizardUpdateChartsAccounts(models.TransientModel):
     _inherit = 'wizard.update.charts.accounts'
 
-    def _find_tax_codes(self, cr, uid, wizard, chart_template_ids,
+    def _find_tax_codes(self, chart_template_ids,
                         context=None):
         """Search for, and load, tax code templates to create/update.
 

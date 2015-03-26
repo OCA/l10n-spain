@@ -146,8 +146,11 @@ class L10nEsAeatMod340Report(orm.Model):
         """set to done the report and check its records"""
         self.check_report(cr, uid, ids, context)
         self.write(cr, uid, ids, {'state': 'done'})
-
         return True
+
+    def __init__(self, pool, cr):
+        self._aeat_number = '340'
+        super(L10nEsAeatMod340Report, self).__init__(pool, cr)
 
 
 class L10nEsAeatMod340Issued(orm.Model):

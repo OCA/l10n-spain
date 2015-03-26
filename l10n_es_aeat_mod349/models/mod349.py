@@ -314,6 +314,10 @@ class Mod349(models.Model):
         ondelete='cascade', states={'confirmed': [('readonly', True)]})
     number = fields.Char(default='349')
 
+    def __init__(self, pool, cr):
+        self._aeat_number = '349'
+        super(Mod349, self).__init__(pool, cr)
+
 
 class Mod349PartnerRecord(models.Model):
     """AEAT 349 Model - Partner record
