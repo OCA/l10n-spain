@@ -134,6 +134,11 @@
             <field name="chart_template_id" ref="account_chart_template_common"/>
         </record>
 
+        <record id="fp_rnrisp" model="account.fiscal.position.template">
+            <field name="name">Régimen Nacional Revendedor con Inversión del sujeto pasivo</field>
+            <field name="chart_template_id" ref="account_chart_template_common"/>
+        </record>
+
         <!-- ************************************************************* -->
         <!-- Fiscal Position Tax Templates -->
         <!-- ************************************************************* -->
@@ -2552,6 +2557,13 @@
         <record id="fptt_ispn_s_iva21s" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_ispn"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva21s"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_iva0_isp"/>
+        </record>
+
+        <!-- Revendedor inversion sujeto pasivo -->
+        <record id="fptt_rnrisp_s_iva21isp" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_rnrisp"/>
+            <field name="tax_src_id" ref="account_tax_template_s_iva21isp"/>
             <field name="tax_dest_id" ref="account_tax_template_s_iva0_isp"/>
         </record>
 
