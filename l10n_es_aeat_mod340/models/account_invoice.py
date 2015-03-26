@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2013 Acysos S.L. (http://acysos.com)
-#                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
+#    Copyright (c) 2012 Acysos S.L. (http://acysos.com)
+#                       Ignacio Ibeas <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,20 +19,15 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import models, fields
 
 
-class AccountTaxCodeTemplate(orm.Model):
-    _inherit = 'account.tax.code.template'
+class AccountInvoice(models.Model):
+    _inherit = 'account.invoice'
 
-    _columns = {
-        'mod340': fields.boolean("Include in mod340"),
-    }
-
-
-class AccountTaxCode(orm.Model):
-    _inherit = 'account.tax.code'
-
-    _columns = {
-        'mod340': fields.boolean("Include in mod340"),
-    }
+    is_ticket_summary = fields.Boolean(string='Ticket Summary',
+                                       help='Check if this invoice is a '
+                                       'ticket summary')
+    number_tickets = fields.Integer(string='Number of tickets', digits=(12, 0))
+    first_ticket = fields.Char(string='First ticket', size=40)
+    last_ticket = fields.Char(string='Last ticket', size=40)
