@@ -1827,7 +1827,7 @@
           <field name="name">IVA 21% Compra con Inversión del Sujeto Pasivo Nacional (1)</field>
           <field name="description">P_IVA21_ISP_1</field>
           <field name="type_tax_use">purchase</field>
-          <field name="parent_id" ref="account_tax_template_p_iva10_isp"/>
+          <field name="parent_id" ref="account_tax_template_p_iva21_isp"/>
           <field name="type">percent</field>
           <field name="amount" eval="0.21"/>
           <field name="sequence" eval="10"/>
@@ -1847,7 +1847,7 @@
           <field name="name">IVA 21% Compra con Inversión del Sujeto Pasivo Nacional (2)</field>
           <field name="description">P_IVA21_ISP_2</field>
           <field name="type_tax_use">purchase</field>
-          <field name="parent_id" ref="account_tax_template_p_iva10_isp"/>
+          <field name="parent_id" ref="account_tax_template_p_iva21_isp"/>
           <field name="type">percent</field>
           <field name="amount" eval="-0.21"/>
           <field name="sequence" eval="20"/>
