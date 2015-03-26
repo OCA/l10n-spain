@@ -871,7 +871,7 @@
     </record>
     <record id="account_tax_code_template_IRPF_RET_PRA_TRA_21_BI_E" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_IRPBI"/>
-      <field name="code">IRPT21BIE</field>
+      <field name="code">IRPTBIE</field>
       <field name="name">[05] IRPF retenciones practicadas a trabajadores. Base imponible (en especie)</field>
       <field name="sign">1.0</field>
     </record>
