@@ -17,3 +17,5 @@
 ##############################################################################
 
 from . import aeat_report
+from . import aeat_export_configuration
+from . import aeat_tax_code_mapping

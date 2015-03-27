@@ -36,6 +36,7 @@
                                 <field name="company_vat" required="1"/>
                                 <field name="number" />
                                 <field name="fiscalyear_id"/>
+                                <field name="export_config" />
                             </group>
                             <group>
                                 <field name="representative_vat"/>
