@@ -61,7 +61,7 @@ def _check_valid_string(text_to_check):
 
 def _format_partner_vat(partner_vat=None, country=None):
     """Formats VAT to match XXVATNUMBER (where XX is country code)."""
-    if country:
+    if country and country.code:
         country_pattern = "[" + country.code + country.code.lower() + "]{2}.*"
         vat_regex = re.compile(country_pattern, re.UNICODE | re.X)
         if partner_vat and not vat_regex.match(partner_vat):

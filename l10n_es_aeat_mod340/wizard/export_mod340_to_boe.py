@@ -94,7 +94,6 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
         # Blancos
         text += 84 * ' '
         text += '\r\n'
-
         assert len(text) == 502, \
             _("The type 1 record must be 500 characters long")
         return text
@@ -222,7 +221,7 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             # Identificación de la factura
             text += self._formatString(invoice_issued.invoice_id.number, 40)
             # Número de registro
-            sequence_obj = self.pool.get('ir.sequence')
+            sequence_obj = self.env['ir.sequence']
             text += self._formatString(sequence_obj.get('mod340'), 18)
             # Número de facturas
             if invoice_issued.invoice_id.is_ticket_summary == 1:
@@ -388,7 +387,7 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             text += self._formatString(invoice_received.invoice_id.reference,
                                        40)
             # Número de registro
-            sequence_obj = self.pool.get('ir.sequence')
+            sequence_obj = self.env['ir.sequence']
             text += self._formatString(sequence_obj.get('mod340'), 18)
             # Número de facturas
             text += self._formatNumber(1, 18)

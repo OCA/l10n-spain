@@ -20,7 +20,6 @@
 #
 ##############################################################################
 
-from openerp import netsvc
 import time
 import re
 from openerp.tools.translate import _
@@ -31,12 +30,6 @@ from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
     _name = "l10n.es.aeat.mod340.calculate_records"
     _description = u"AEAT Model 340 Wizard - Calculate Records"
-
-    def _wkf_calculate_records(self, cr, uid, ids, context=None):
-        self._calculate_records(cr, uid, ids, context, recalculate=False)
-        wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(uid, 'l10n.es.aeat.mod340.report',
-                                ids and ids[0], 'calculate', cr)
 
     def _calculate_records(self, cr, uid, ids, context=None, recalculate=True):
         report_obj = self.pool['l10n.es.aeat.mod340.report']
@@ -53,9 +46,6 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
         if not mod340.company_id.partner_id.vat:
             raise orm.except_orm(mod340.company_id.partner_id.name,
                                  _('This company dont have NIF'))
-        wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(uid, 'l10n.es.aeat.mod347.report',
-                                ids and ids[0], 'calculate', cr)
         code = '340' + mod340.fiscalyear_id.code + ''
         code += mod340.period_to.date_stop[5:7] + '0001'
         account_period_ids = period_obj.build_ctx_periods(
