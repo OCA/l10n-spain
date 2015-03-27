@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- PARTNERS -->
+        <record id="view_partner_form_mod296" model="ir.ui.view">
+            <field name="name">view.partner.form.mod296</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base_vat.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="last_reconciliation_date" position="after">
+                    <field name="is_resident"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
