@@ -26,7 +26,6 @@
 import base64
 import time
 from openerp import models, fields, api, _
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
 
 
 class L10nEsAeatReportExportToBoe(models.TransientModel):
@@ -138,12 +137,11 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             121-122      Declaración complementaria o substitutiva
             123-135      Número identificativo de la declaración anterior
         """
-        modelo_declaracion = getattr(report, '_aeat_number')
         text = ''
         # Tipo de Registro
         text += '1'
         # Modelo Declaración
-        text += modelo_declaracion
+        text += getattr(report._model, '_aeat_number')
         # Ejercicio
         text += self._formatString(report.fiscalyear_id.code, 4)
         # NIF del declarante
@@ -196,10 +194,8 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         contents += self._get_formatted_other_records(report)
         # Generate the file and save as attachment
         file = base64.encodestring(contents)
-        file_name = _("%s_report_%s.txt") % (
-            report.number,
-            time.strftime(_(DEFAULT_SERVER_DATE_FORMAT))
-        )
+        file_name = _("%s_report_%s.txt") % (report.number,
+                                             fields.Date.today())
         # Delete old files
         attachment_obj = self.env['ir.attachment']
         attachment_ids = attachment_obj.search(
