@@ -93,6 +93,8 @@ class L10nEsAeatReport(models.AbstractModel):
          ('cancelled', 'Cancelled')], string='State', readonly=True,
         default='draft')
     sequence = fields.Char(string="Sequence", size=16)
+    export_config = fields.Many2one('aeat.model.export.config',
+                                    string='Export config')
 
     @api.model
     def create(self, values):
@@ -153,17 +155,16 @@ class L10nEsAeatReport(models.AbstractModel):
 
     def init(self, cr):
         seq_obj = self.pool['ir.sequence']
-        seq_type_obj = self.pool['ir.sequence.type']
         try:
             aeat_num = getattr(self, '_aeat_number')
             sequence = "aeat%s-sequence" % aeat_num
             if not seq_obj.search(cr, SUPERUSER_ID, [('name', '=', sequence)]):
                 seq_vals = {'name': sequence,
                             'code': 'aeat.sequence.type',
-                            'number_increment':1,
+                            'number_increment': 1,
                             'implementation': 'standard',
-                            'padding':5,
-                            'number_next_actual':1,
+                            'padding': 5,
+                            'number_next_actual': 1,
                             'prefix': aeat_num + '-'
                             }
                 seq_obj.create(cr, SUPERUSER_ID, seq_vals)

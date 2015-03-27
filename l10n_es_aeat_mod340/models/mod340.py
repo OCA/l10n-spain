@@ -24,15 +24,13 @@
 ##############################################################################
 
 from openerp.osv import orm, fields
-import time
-from openerp import netsvc
 
 
 class L10nEsAeatMod340Report(orm.Model):
 
     def button_calculate(self, cr, uid, ids, args, context=None):
         calculate_obj = self.pool.get('l10n.es.aeat.mod340.calculate_records')
-        calculate_obj._wkf_calculate_records(cr, uid, ids, context)
+        calculate_obj._calculate_records(cr, uid, ids, context)
         return True
 
     def button_recalculate(self, cr, uid, ids, context=None):
@@ -137,21 +135,6 @@ class L10nEsAeatMod340Report(orm.Model):
         'number': '340',
         'declaration_number': '340',
     }
-
-    def set_done(self, cr, uid, id, *args):
-        self.write(
-            cr, uid, id,
-            {'calculation_date': time.strftime('%Y-%m-%d'), 'state': 'done'})
-        wf_service = netsvc.LocalService("workflow")
-        wf_service.trg_validate(uid, 'l10n.es.aeat.mod340.report',
-                                id, 'done', cr)
-        return True
-
-    def action_confirm(self, cr, uid, ids, context=None):
-        """set to done the report and check its records"""
-        self.check_report(cr, uid, ids, context)
-        self.write(cr, uid, ids, {'state': 'done'})
-        return True
 
     def __init__(self, pool, cr):
         self._aeat_number = '340'
