@@ -24,7 +24,6 @@
 #
 ##############################################################################
 import base64
-import time
 from openerp import models, fields, api, _
 
 
