@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
+#    Copyright (c) 2015 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
+#                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,4 +19,12 @@
 #
 ##############################################################################
 
-from . import models
+from openerp.osv import orm
+
+
+class AccountTax(orm.Model):
+    _inherit = 'account.tax'
+
+    def name_get(self, cr, uid, ids, context=None):
+        return [(tax.id, tax.name or tax.description) for tax in
+                self.browse(cr, uid, ids, context=context)]
