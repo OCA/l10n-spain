@@ -21,6 +21,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+__name__ = u"Renombrar códigos de impuestos y posiciones fiscales"
 
 
 def rename_fiscal_positions(cr):
@@ -33,22 +34,23 @@ def rename_fiscal_positions(cr):
 
 def rename_tax_codes(cr):
     tax_code_mapping = [
-        # Régimen general
-        {'previous_code': '[01]', 'code': 'RGIDC4'},
-        {'previous_code': '[04]', 'code': 'RGIDC10'},
-        {'previous_code': '[07]', 'code': 'RGIDC21'},
-        # IVA devengado. Cuota
+        # IVA devengado. Base
         {'previous_code': '--',
          'previous_name': 'IVA devengado. Base imponible', 'code': 'IDBI'},
+        {'previous_code': '[01]', 'code': 'RGIDBI4'},
+        {'previous_code': '[04]', 'code': 'RGIDBI10'},
+        {'previous_code': '[07]', 'code': 'RGIDBI21'},
+        # IVA devengado. Cuota
         {'previous_code': '[21]', 'code': 'ITDC'},
         {'previous_code': '[03]', 'code': 'RGIDC4'},
         {'previous_code': '[06]', 'code': 'RGIDC10'},
         {'previous_code': '[09]', 'code': 'RGIDC21'},
         # Adquisiciones intracomunitarias
+        {'previous_code': '[19]', 'code': 'AIDBYSBI'},
         {'previous_code': '[20]', 'code': 'AIDBYSC'},
         # IVA deducible. Base Imponible
         {'previous_code': '--',
-         'previous_name': 'IVA deducible. Base imponible', 'code': 'ITADC'},
+         'previous_name': 'IVA deducible. Base imponible', 'code': 'ISBI'},
         {'previous_code': '--',
          'previous_name': 'Base de compensaciones Régimen Especial A., G. y'
          ' P. 12%', 'code': 'CREAGYP12'},
@@ -129,7 +131,7 @@ def rename_tax_codes(cr):
          'previous_name': 'Recargo equivalencia ded. Base imponible 5.2%',
          'code': 'REDBI52'},
         # Iva deducible cuotas
-        {'previous_code': '[37]', 'code': 'ITDC'},
+        {'previous_code': '[37]', 'code': 'ITADC'},
         {'previous_code': '34', 'code': 'CREAGYPBI12'},
         # Cuotas operaciones interiores corrientes
         {'previous_code': '[23]', 'code': 'OICBI'},
@@ -259,18 +261,27 @@ def rename_tax_codes(cr):
         {'previous_code': 'IRPF9', 'code': 'IRPC9'},
         {'previous_code': 'IRPF15', 'code': 'IRPC15'},
         {'previous_code': 'IRPF20', 'code': 'IRPC20'},
-        {'previous_code': 'IRPF21', 'code': 'IRPC21'}
+        {'previous_code': 'IRPF21', 'code': 'IRPC21'},
+        # IVA exento
+        {'previous_code': '--',
+         'previous_name': 'Base adquisiciones exentas',
+         'code': 'AEBI'},
+        {'previous_code': '--',
+         'previous_name': 'Base ventas exentas',
+         'code': 'OESDAD'},
     ]
 
     for mapping in tax_code_mapping:
         sql = """
         UPDATE account_tax_code
-        SET code='%s'
-        WHERE code='%s'""" % (mapping['code'], mapping['previous_code'])
-
+        SET code=%s
+        WHERE code=%s"""
         if mapping.get('previous_name'):
-            sql = "%s AND name='%s'" % (sql, mapping['previous_name'])
-        cr.execute(sql)
+            sql += " AND name=%s"
+            cr.execute(sql, (mapping['code'], mapping['previous_code'],
+                             mapping['previous_name']))
+        else:
+            cr.execute(sql, (mapping['code'], mapping['previous_code']))
 
 
 def migrate(cr, version):
