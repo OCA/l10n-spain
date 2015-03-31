@@ -61,3 +61,28 @@ class ResPartner(models.Model):
             }
             dict_recursive_update(result, changes)
         return result
+
+    @api.onchange('substate', 'region')
+    def onchange_substate_or_region(self):
+        result = super(ResPartner, self).onchange_substate_or_region()
+        if (self.state_id.country_id.code == 'ES' or
+                self.substate.country_id.code == 'ES' or
+                self.region.country_id.code == 'ES'):
+            changes = {
+                'domain': {
+                    'substate': [('country_id', '=', 'ES'),
+                                 ('level', '=', 3)],
+                    'region': [('country_id', '=', 'ES'),
+                               ('level', '=', 2)],
+                }
+            }
+            if self.substate.country_id.code == 'ES':
+                self.region = self.substate.parent_id
+                self.country_id = self.substate.country_id
+            if self.region.country_id.code == 'ES':
+                self.country_id = self.region.country_id
+            if self.state_id.country_id.code == 'ES':
+                self.country_id = self.state_id.country_id
+
+            dict_recursive_update(result, changes)
+        return result
