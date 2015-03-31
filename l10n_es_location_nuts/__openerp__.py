@@ -39,8 +39,8 @@
     'qweb': [
     ],
     # Your information
-    'author': 'Antiun Ingeniería, SL',
-    'maintainer': 'Antiun Ingeniería, SL',
+    'author': 'Antiun Ingeniería S.L.',
+    'maintainer': 'Antiun Ingeniería S.L.',
     'website': 'http://www.antiun.com',
     'license': 'AGPL-3',
     # Technical options
