@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="account_journal_entries_report_view" model="ir.ui.view">
+            <field name="name">Print journal by entries</field>
+            <field name="model">account.journal.entries.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Print journal by entries" version="7.0">
+                    <group>
+                        <group>
+                            <field name="sort_selection"/>
+                        </group>
+                        <group>
+                            <field name="landscape"/>
+                        </group>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Journals">
+                            <field name="journal_ids" />
+                        </page>
+                        <page string="Periods">
+                            <field name="period_ids" />
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="print_report" string="Print" type="object" default_focus="1" class="oe_highlight" />
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link" />
+                    </footer>
+                </form>
+            </field>
+         </record>
+
+        <record id="wizard_account_journal_entries_report_new" model="ir.actions.act_window">
+            <field name="name">Print journal by entries</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.journal.entries.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account_journal_entries_report_view"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Journal by entries"
+                  parent="account.final_accounting_reports"
+                  action="wizard_account_journal_entries_report_new"
+                  id="menu_journal_entries_report"/>
+
+    </data>
+</openerp>
