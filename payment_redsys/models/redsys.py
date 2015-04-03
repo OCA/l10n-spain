@@ -104,25 +104,29 @@ class AcquirerRedsys(models.Model):
         acquirer = self.browse(id)
         redsys_tx_values = dict(tx_values)
         redsys_tx_values.update({
-            'Ds_Sermepa_Url':
-                (self._get_redsys_urls(acquirer.environment)
-                    ['redsys_form_url']),
+            'Ds_Sermepa_Url': (
+                self._get_redsys_urls(acquirer.environment)[
+                    'redsys_form_url']),
             'Ds_Merchant_Amount': int(tx_values['amount'] * 100),
             'Ds_Merchant_Currency': acquirer.redsys_currency or '978',
-            'Ds_Merchant_Order': tx_values['reference'] and
-                tx_values['reference'][:12] or False,
-            'Ds_Merchant_MerchantCode': acquirer.redsys_merchant_code and
-                acquirer.redsys_merchant_code[:9],
+            'Ds_Merchant_Order': (
+                tx_values['reference'] and tx_values['reference'][:12] or
+                False),
+            'Ds_Merchant_MerchantCode': (
+                acquirer.redsys_merchant_code and
+                acquirer.redsys_merchant_code[:9]),
             'Ds_Merchant_Terminal': acquirer.redsys_terminal or '1',
             'Ds_Merchant_TransactionType': (
                 acquirer.redsys_transaction_type or '0'),
-            'Ds_Merchant_Titular': acquirer.redsys_merchant_titular[:60] and
-                acquirer.redsys_merchant_titular[:60],
-            'Ds_Merchant_MerchantName': acquirer.redsys_merchant_name and
-                acquirer.redsys_merchant_name[:25],
-            'Ds_Merchant_MerchantURL':
-                (acquirer.redsys_merchant_url and
-                 acquirer.redsys_merchant_url[:250] or ''),
+            'Ds_Merchant_Titular': (
+                acquirer.redsys_merchant_titular[:60] and
+                acquirer.redsys_merchant_titular[:60]),
+            'Ds_Merchant_MerchantName': (
+                acquirer.redsys_merchant_name and
+                acquirer.redsys_merchant_name[:25]),
+            'Ds_Merchant_MerchantURL': (
+                acquirer.redsys_merchant_url and
+                acquirer.redsys_merchant_url[:250] or ''),
             'Ds_Merchant_MerchantData': acquirer.redsys_merchant_data or '',
             'Ds_Merchant_ProductDescription': (
                 self._product_description(tx_values['reference']) or
