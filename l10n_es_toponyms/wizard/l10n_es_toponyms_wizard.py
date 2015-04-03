@@ -37,17 +37,13 @@ class ConfigEsToponyms(models.TransientModel):
             ('spanish', 'Spanish'),
             ('both', 'Both')
         ],
-        required=True,
-        string='State names',
-        default='official')
+        required=True, string='State names', default='both')
     city_info = fields.Selection(
         selection=[
             ('yes', 'Yes'),
             ('no', 'No')
         ],
-        required=True,
-        string='City information',
-        default='yes')
+        required=True, string='City information', default='yes')
 
     @api.model
     def create_states(self, state_type):
@@ -57,8 +53,7 @@ class ConfigEsToponyms(models.TransientModel):
         with tools.file_open(path) as fp:
             tools.convert_xml_import(self.env.cr, 'l10n_es_toponyms', fp, {},
                                      'init', noupdate=True)
-            return True
-        return False
+        return True
 
     @api.model
     def create_zipcodes(self):
@@ -68,8 +63,7 @@ class ConfigEsToponyms(models.TransientModel):
         with tools.file_open(path) as fp:
             tools.convert_xml_import(self.env.cr, 'l10n_es_toponyms', fp, {},
                                      'init', noupdate=True)
-            return True
-        return False
+        return True
 
     @api.multi
     def execute(self):
