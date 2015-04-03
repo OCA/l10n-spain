@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data >
+
+        <report id="report_account_journal_entries_report"
+                string="Print journal by entries"
+                model="account.journal.period"
+                name="account.journal.entries.report.wzd"
+                rml="l10n_es_account_financial_report/report/account_move_line_record.rml"
+                header="0"
+                auto="0"/>
+
+        <report id="report_account_journal_entries_report1"
+                string="Print journal by entries"
+                model="account.journal.period"
+                name="account.journal.entries.report.wzd1"
+                rml="l10n_es_account_financial_report/report/account_move_line_record_h.rml"
+                header="0"
+                auto="0"/>
+
+    </data>
+</openerp>
