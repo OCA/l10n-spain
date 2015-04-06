@@ -44,9 +44,7 @@ class ResPartner(models.Model):
                 substate = nuts_state[0].parent_id
                 if substate:
                     substate_id = substate.id
-                    region = substate.parent_id
-                    if region:
-                        region_id = region.id
+                    region_id = substate.parent_id.id
             changes = {
                 'domain': {
                     'substate': [('country_id', '=', 'ES'),
