@@ -23,7 +23,6 @@
 ##############################################################################
 
 {
-    # Addon information
     'name': 'NUTS Regions for Spain',
     'category': 'Localisation/Europe',
     'version': '1.0',
@@ -31,22 +30,8 @@
         'base_location_nuts',
         'l10n_es_toponyms',
     ],
-    'external_dependencies': {},
-    # Views templates, pages, menus, options and snippets
-    'data': [
-    ],
-    # Qweb templates
-    'qweb': [
-    ],
-    # Your information
     'author': 'Antiun Ingeniería S.L.',
-    'maintainer': 'Antiun Ingeniería S.L.',
     'website': 'http://www.antiun.com',
     'license': 'AGPL-3',
-    # Technical options
-    'demo': [],
-    'test': [],
     'installable': True,
-    # 'auto_install':False,
-    # 'active':True,
 }
