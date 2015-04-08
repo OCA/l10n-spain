@@ -78,7 +78,7 @@ class account_asset_asset(orm.Model):
 
         last_depreciation_date = super(
             account_asset_asset, self)._get_last_depreciation_date(
-                cr, uid, ids, context=context)
+            cr, uid, ids, context=context)
         for asset in self.browse(cr, uid, ids, context=context):
             if asset.start_depreciation_date and (
                 asset.start_depreciation_date >
