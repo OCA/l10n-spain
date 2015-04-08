@@ -335,6 +335,7 @@ class ExecuteFyc(orm.TransientModel):
                                 'credit': balance > 0 and balance,
                                 'name': description,
                                 'date': date,
+                                'partner_id': False,
                                 'period_id': period_id,
                                 'journal_id': journal_id,
                             })
@@ -391,6 +392,7 @@ class ExecuteFyc(orm.TransientModel):
                 'credit': balance > 0 and balance,
                 'name': description,
                 'date': date,
+                'partner_id': False,
                 'period_id': period_id,
                 'journal_id': journal_id,
             })
