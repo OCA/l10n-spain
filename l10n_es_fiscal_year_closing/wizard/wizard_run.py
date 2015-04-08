@@ -318,6 +318,7 @@ class ExecuteFyc(orm.TransientModel):
                                  'credit': balance > 0 and balance,
                                  'name': description,
                                  'date': date,
+                                 'partner_id': False,
                                  'period_id': period_id,
                                  'journal_id': journal_id})
                             # Update the dest account total (with the inverse
@@ -371,6 +372,7 @@ class ExecuteFyc(orm.TransientModel):
                  'credit': balance > 0 and balance,
                  'name': description,
                  'date': date,
+                 'partner_id': False,
                  'period_id': period_id,
                  'journal_id': journal_id})
         # Finally create the account move with all the lines (if needed)
