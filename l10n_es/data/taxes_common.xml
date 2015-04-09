@@ -276,12 +276,12 @@
           <field name="account_paid_id" ref="pgc_477_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="sequence" eval="20"/>
-          <field name="base_code_id" ref="account_tax_code_template_AIBBI"/>
+          <field name="base_code_id" ref="account_tax_code_template_AIBIBIA"/>
           <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">IVA 21% Intracomunitario. Bienes de inversión (2)</field>
           <field name="account_collected_id" ref="pgc_477_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
-          <field name="tax_code_id" ref="account_tax_code_template_AIBC"/>
+          <field name="tax_code_id" ref="account_tax_code_template_AIBICA"/>
           <field name="parent_id" ref="account_tax_template_p_iva21_ic_bi"/>
           <field name="amount" eval="-0.21"/>
           <field name="tax_sign" eval="-1.0"/>
@@ -575,12 +575,12 @@
           <field name="account_paid_id" ref="pgc_477_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="sequence" eval="20"/>
-          <field name="base_code_id" ref="account_tax_code_template_AIBBI"/>
+          <field name="base_code_id" ref="account_tax_code_template_AIBIBIA"/>
           <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">IVA 4% Intracomunitario. Bienes de inversión (2)</field>
           <field name="account_collected_id" ref="pgc_477_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
-          <field name="tax_code_id" ref="account_tax_code_template_AIBC"/>
+          <field name="tax_code_id" ref="account_tax_code_template_AIBICA"/>
           <field name="parent_id" ref="account_tax_template_p_iva4_ic_bi"/>
           <field name="amount" eval="-0.04"/>
           <field name="tax_sign" eval="-1.0"/>
@@ -673,12 +673,12 @@
           <field name="account_paid_id" ref="pgc_477_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="sequence" eval="20"/>
-          <field name="base_code_id" ref="account_tax_code_template_AIBBI"/>
+          <field name="base_code_id" ref="account_tax_code_template_AIBIBIA"/>
           <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">IVA 10% Intracomunitario. Bienes de inversión (2)</field>
           <field name="account_collected_id" ref="pgc_477_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
-          <field name="tax_code_id" ref="account_tax_code_template_AIBC"/>
+          <field name="tax_code_id" ref="account_tax_code_template_AIBICA"/>
           <field name="parent_id" ref="account_tax_template_p_iva10_ic_bi"/>
           <field name="amount" eval="-0.1"/>
           <field name="tax_sign" eval="-1.0"/>
