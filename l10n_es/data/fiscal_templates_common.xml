@@ -197,37 +197,37 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_extra"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva4b"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_iva0"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_iva0_e"/>
         </record>
         <record id="fptt_extra_ventas_4s"
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_extra"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva4s"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_iva0"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_iva_e"/>
         </record>
         <record id="fptt_extra_ventas_10b"
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_extra"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva10b"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_iva0"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_iva0_e"/>
         </record>
         <record id="fptt_extra_ventas_10s"
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_extra"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva10s"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_iva0"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_iva_e"/>
         </record>
         <record id="fptt_extra_ventas_21b"
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_extra"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva21b"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_iva0"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_iva0_e"/>
         </record>
         <record id="fptt_extra_ventas_21s"
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_extra"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva21s"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_iva0"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_iva_e"/>
         </record>
 
         <!-- Intracomunitarios -->
