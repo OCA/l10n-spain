@@ -84,16 +84,22 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
             include = False
             for tax_line in invoice.tax_line:
                 if tax_line.base_code_id and tax_line.base:
-                    if tax_line.base_code_id.mod340 is True:
+                    if tax_line.base_code_id.mod340:
                         include = True
-            if include is True:
+                        break
+            if include:
                 if invoice.partner_id.vat_type == '1':
                     if not invoice.partner_id.vat:
                         raise orm.except_orm(
                             _('La siguiente empresa no tiene asignado nif:'),
                             invoice.partner_id.name)
-                country_code, nif = (re.match(r"([A-Z]{0,2})(.*)",
-                                              invoice.partner_id.vat).groups())
+                if invoice.partner_id.vat:
+                    country_code, nif = (
+                        re.match(r"([A-Z]{0,2})(.*)",
+                                 invoice.partner_id.vat).groups())
+                else:
+                    country_code = False
+                    nif = False
                 values = {
                     'mod340_id': mod340.id,
                     'partner_id': invoice.partner_id.id,
@@ -155,7 +161,6 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                           'correspond to AmountUntaxed on Invoice %.2f') %
                         (invoice.number, check_base,
                          invoice.amount_untaxed * sign))
-
         if recalculate:
             mod340.write({
                 'state': 'calculated',

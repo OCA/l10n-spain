@@ -58,7 +58,8 @@ if __name__ == "__main__":
     for row in unicodecsv.reader(
             data_file, encoding='utf-8', delimiter='	'):
         cont += 1
-        output.write(' ' * 8 + '<record id="city_ES_%s" model="city.city">\n' %
+        output.write(' ' * 8 +
+                     '<record id="city_ES_%s" model="res.better.zip">\n' %
                      cont)
         output.write(' ' * 12 + '<field name="state_id" ref="'
                                 'l10n_es_toponyms.ES%s"/>\n' % row[1][:2])
