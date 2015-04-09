@@ -1100,12 +1100,12 @@
           <field name="description">S_IRPF9</field>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRACC9"/>
           <field name="type_tax_use">sale</field>
-          <field name="account_paid_id" ref="pgc_473"/>
+          <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI9"/>
           <field name="ref_tax_sign" eval="-1.0"/>
           <field name="name">Retenciones a cuenta IRPF 9%</field>
-          <field name="account_collected_id" ref="pgc_473"/>
+          <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC9"/>
           <field name="amount" eval="-0.09"/>
@@ -1118,12 +1118,12 @@
           <field name="description">S_IRPF18</field>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRACC18"/>
           <field name="type_tax_use">sale</field>
-          <field name="account_paid_id" ref="pgc_473"/>
+          <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI18"/>
           <field name="ref_tax_sign" eval="-1.0"/>
           <field name="name">Retenciones a cuenta IRPF 18%</field>
-          <field name="account_collected_id" ref="pgc_473"/>
+          <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC18"/>
           <field name="amount" eval="-0.18"/>
@@ -1136,12 +1136,12 @@
           <field name="description">S_IRPF19</field>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRACC19"/>
           <field name="type_tax_use">sale</field>
-          <field name="account_paid_id" ref="pgc_473"/>
+          <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI19"/>
           <field name="ref_tax_sign" eval="-1.0"/>
           <field name="name">Retenciones a cuenta IRPF 19%</field>
-          <field name="account_collected_id" ref="pgc_473"/>
+          <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC19"/>
           <field name="amount" eval="-0.19"/>
@@ -1260,12 +1260,12 @@
           <field name="description">S_IRPF20</field>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRACC20"/>
           <field name="type_tax_use">sale</field>
-          <field name="account_paid_id" ref="pgc_473"/>
+          <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI20"/>
           <field name="ref_tax_sign" eval="-1.0"/>
           <field name="name">Retenciones a cuenta IRPF 20%</field>
-          <field name="account_collected_id" ref="pgc_473"/>
+          <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC20"/>
           <field name="amount" eval="-0.2"/>
@@ -1378,12 +1378,12 @@
           <field name="description">S_IRPF1</field>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRACC1"/>
           <field name="type_tax_use">sale</field>
-          <field name="account_paid_id" ref="pgc_473"/>
+          <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI1"/>
           <field name="ref_tax_sign" eval="-1.0"/>
           <field name="name">Retenciones a cuenta IRPF 1%</field>
-          <field name="account_collected_id" ref="pgc_473"/>
+          <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC1"/>
           <field name="amount" eval="-0.01"/>
@@ -1396,12 +1396,12 @@
           <field name="description">S_IRPF2</field>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRACC2"/>
           <field name="type_tax_use">sale</field>
-          <field name="account_paid_id" ref="pgc_473"/>
+          <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI2"/>
           <field name="ref_tax_sign" eval="-1.0"/>
           <field name="name">Retenciones a cuenta IRPF 2%</field>
-          <field name="account_collected_id" ref="pgc_473"/>
+          <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC2"/>
           <field name="amount" eval="-0.02"/>
@@ -1414,12 +1414,12 @@
           <field name="description">S_IRPF21</field>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRACC21"/>
           <field name="type_tax_use">sale</field>
-          <field name="account_paid_id" ref="pgc_473"/>
+          <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI21"/>
           <field name="ref_tax_sign" eval="-1.0"/>
           <field name="name">Retenciones a cuenta IRPF 21%</field>
-          <field name="account_collected_id" ref="pgc_473"/>
+          <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC21"/>
           <field name="amount" eval="-0.21"/>
@@ -1432,12 +1432,12 @@
           <field name="description">S_IRPF7</field>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRACC7"/>
           <field name="type_tax_use">sale</field>
-          <field name="account_paid_id" ref="pgc_473"/>
+          <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI7"/>
           <field name="ref_tax_sign" eval="-1.0"/>
           <field name="name">Retenciones a cuenta IRPF 7%</field>
-          <field name="account_collected_id" ref="pgc_473"/>
+          <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC7"/>
           <field name="amount" eval="-0.07"/>
@@ -1450,12 +1450,12 @@
           <field name="description">S_IRPF15</field>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRACC15"/>
           <field name="type_tax_use">sale</field>
-          <field name="account_paid_id" ref="pgc_473"/>
+          <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI15"/>
           <field name="ref_tax_sign" eval="-1.0"/>
           <field name="name">Retenciones a cuenta IRPF 15%</field>
-          <field name="account_collected_id" ref="pgc_473"/>
+          <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC15"/>
           <field name="amount" eval="-0.15"/>
