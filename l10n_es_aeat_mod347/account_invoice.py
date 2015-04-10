@@ -18,6 +18,7 @@
 
 from openerp.osv import fields, orm
 
+
 class AccountInvoice(orm.Model):
     _inherit = "account.invoice"
     
