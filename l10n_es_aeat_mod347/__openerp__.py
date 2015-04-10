@@ -94,9 +94,11 @@ https://github.com/OCA/account-financial-tools
         "base_vat",
         "l10n_es_aeat",
         "account_invoice_currency",
+        "account",
     ],
     'data': [
         "account_period_view.xml",
+        "account_invoice_view.xml",
         "res_partner_view.xml",
         "wizard/export_mod347_to_boe.xml",
         "report/mod347_report.xml",

@@ -532,6 +532,7 @@ msgid "The declaration will show the total of cash operations over this limit"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: field:account.invoice,not_in_mod347:0
 #: field:res.partner,not_in_mod347:0
 msgid "Not included in 347 report"
 msgstr ""
@@ -881,4 +882,9 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,related_goods_operation:0
 msgid "Related Goods Operation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: help:account.invoice,not_in_mod347:0
+msgid "If you mark this field, this invoice will not be included in any AEAT 347 model report."
 msgstr ""

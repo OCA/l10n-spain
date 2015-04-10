@@ -15,8 +15,20 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import account_period
-from . import res_partner
-from . import mod347
-from . import wizard
-from . import account_invoice
+
+from openerp.osv import fields, orm
+
+
+class AccountInvoice(orm.Model):
+    _inherit = "account.invoice"
+
+    _columns = {
+        'not_in_mod347': fields.boolean(
+            "Not included in 347 report",
+            help="If you mark this field, this invoice will not be included "
+            "in any AEAT 347 model report."),
+    }
+
+    _defaults = {
+        'not_in_mod347': False,
+    }
