@@ -21,7 +21,7 @@ from openerp.osv import fields, orm
 
 class AccountInvoice(orm.Model):
     _inherit = "account.invoice"
-    
+
     _columns = {
         'not_in_mod347': fields.boolean(
             "Not included in 347 report",
