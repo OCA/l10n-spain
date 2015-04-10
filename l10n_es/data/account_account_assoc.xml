@@ -230,7 +230,7 @@
         </record>
         <record id="pgc_assoc_1301_child" model="account.account.template">
             <field name="code">1301</field>
-            <field name="reconcile" eval="False"/>    
+            <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_assoc_1301"/>
             <field name="type">other</field>
             <field name="name">Subvenciones de otras Administraciones Públicas</field>
@@ -266,7 +266,7 @@
         </record>
         <record id="pgc_assoc_1321_child" model="account.account.template">
             <field name="code">1321</field>
-            <field name="reconcile" eval="False"/>    
+            <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_assoc_1321"/>
             <field name="type">other</field>
             <field name="name">Otras donaciones y legados</field>
@@ -560,7 +560,7 @@
             <field name="name">Cesiones de uso de las inversiones inmobiliarias</field>
             <field name="user_type" ref="l10n_es.account_type_inmo"/>
             <field name="chart_template_id" ref="l10n_es.account_chart_template_assoc"/>
-        </record>       
+        </record>
         <record id="pgc_assoc_2907" model="account.account.template">
             <field name="code">2907</field>
             <field name="reconcile" eval="False"/>
@@ -725,7 +725,7 @@
         </record>
         <record id="pgc_assoc_412_child" model="account.account.template">
             <field name="code">412</field>
-            <field name="reconcile" eval="True"/> 
+            <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="pgc_assoc_412"/>
             <field name="type">other</field>
             <field name="name">Beneficiarios, acreedores</field>
@@ -787,10 +787,10 @@
             <field name="chart_template_id" ref="l10n_es.account_chart_template_assoc"/>
         </record>
         <record id="pgc_assoc_4482_child" model="account.account.template">
-            <field name="code">4482</field> 
+            <field name="code">4482</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="pgc_assoc_4482"/>
-            <field name="type">other</field> 
+            <field name="type">other</field>
             <field name="name">Afiliados</field>
             <field name="user_type" ref="account.data_account_type_receivable"/>
             <field name="chart_template_id" ref="l10n_es.account_chart_template_assoc"/>
@@ -1211,7 +1211,7 @@
         </record>
         <record id="pgc_assoc_6561" model="account.account.template">
             <field name="code">6561</field>
-            <field name="reconcile" eval="False"/>    
+            <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_assoc_656"/>
             <field name="type">view</field>
             <field name="name">Pérdida soportada (partícipe o asociado no gestor)</field>
@@ -1220,7 +1220,7 @@
         </record>
         <record id="pgc_assoc_6561_child" model="account.account.template">
             <field name="code">6561</field>
-            <field name="reconcile" eval="False"/>    
+            <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_assoc_6561"/>
             <field name="type">other</field>
             <field name="name">Pérdida soportada(partícipe o asociado no gestor)</field>
@@ -1395,7 +1395,7 @@
             <field name="parent_id" ref="pgc_assoc_72"/>
             <field name="type">view</field>
             <field name="name">Cuotas de usuarios</field>
-            <field name="user_type" ref="account.data_account_type_income"/> 
+            <field name="user_type" ref="account.data_account_type_income"/>
             <field name="chart_template_id" ref="l10n_es.account_chart_template_assoc"/>
         </record>
         <record id="pgc_assoc_721_child" model="account.account.template">
@@ -1445,7 +1445,7 @@
         </record>
         <record id="pgc_assoc_7230_child" model="account.account.template">
             <field name="code">7230</field>
-            <field name="reconcile" eval="False"/>    
+            <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_assoc_7230"/>
             <field name="type">other</field>
             <field name="name">Patrocinio</field>
@@ -1458,12 +1458,12 @@
             <field name="parent_id" ref="pgc_assoc_723"/>
             <field name="type">view</field>
             <field name="name">Patrocinio publicitario</field>
-            <field name="user_type" ref="account.data_account_type_income"/> 
+            <field name="user_type" ref="account.data_account_type_income"/>
             <field name="chart_template_id" ref="l10n_es.account_chart_template_assoc"/>
         </record>
         <record id="pgc_assoc_7231_child" model="account.account.template">
             <field name="code">7231</field>
-            <field name="reconcile" eval="False"/>     
+            <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_assoc_7231"/>
             <field name="type">other</field>
             <field name="name">Patrocinio publicitario</field>
@@ -1472,20 +1472,20 @@
         </record>
         <record id="pgc_assoc_7233" model="account.account.template">
             <field name="code">7233</field>
-            <field name="reconcile" eval="False"/>    
+            <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_assoc_723"/>
             <field name="type">view</field>
             <field name="name">Colaboraciones empresariales</field>
-            <field name="user_type" ref="account.data_account_type_income"/>  
+            <field name="user_type" ref="account.data_account_type_income"/>
             <field name="chart_template_id" ref="l10n_es.account_chart_template_assoc"/>
         </record>
         <record id="pgc_assoc_7233_child" model="account.account.template">
             <field name="code">7233</field>
-            <field name="reconcile" eval="False"/>     
+            <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_assoc_7233"/>
             <field name="type">other</field>
             <field name="name">Colaboraciones empresariales</field>
-            <field name="user_type" ref="account.data_account_type_income"/>  
+            <field name="user_type" ref="account.data_account_type_income"/>
             <field name="chart_template_id" ref="l10n_es.account_chart_template_assoc"/>
         </record>
         <record id="pgc_assoc_728" model="account.account.template">
