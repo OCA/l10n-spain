@@ -598,6 +598,7 @@ msgid "The declaration will show the total of cash operations over this limit"
 msgstr "La declaración mostrará el total de las operaciones realizadas en efectivo superiores a este límite"
 
 #. module: l10n_es_aeat_mod347
+#: field:account.invoice,not_in_mod347:0
 #: field:res.partner,not_in_mod347:0
 msgid "Not included in 347 report"
 msgstr "No incluido en el informe 347"
@@ -937,4 +938,9 @@ msgstr "Archivo"
 #: help:res.partner,not_in_mod347:0
 msgid "If you mark this field, this partner will not be included in any AEAT 347 model report, independently from the total amount of its operations."
 msgstr "Si marca este campo, esta empresa no se incluirá en los informes del modelo AEAT 347, independientemente del importe total de sus operaciones."
+
+#. module: l10n_es_aeat_mod347
+#: help:account.invoice,not_in_mod347:0
+msgid "If you mark this field, this invoice will not be included in any AEAT 347 model report."
+msgstr "Si marca este campo, esta factura no se incluirá en los informes del modelo AEAT 347."
 
