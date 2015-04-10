@@ -2,7 +2,7 @@
 <openerp>
     <data noupdate="0">
 
-        <!-- Plantilla de códigos de impuestos según fiscalidad española. 
+        <!-- Plantilla de códigos de impuestos según fiscalidad española.
 
         Pedro M. Baeza (Serv. Tecnol. Avanzados) - pedro.baeza@serviciosbaeza.com (2013-05-19)
           Refactorización general
@@ -35,14 +35,8 @@
       <field name="name">&lt;Mod. 303&gt; Impuesto sobre el valor añadido</field>
       <field name="sign">1.0</field>
     </record>
-    <record id="account_tax_code_template_RDLL303" model="account.tax.code.template">
-      <field name="parent_id" ref="account_tax_code_template_303"/>
-      <field name="code">RDLL303</field>
-      <field name="name">[71] Resultado de la liquidación (303)</field>
-      <field name="sign">1.0</field>
-    </record>
     <record id="account_tax_code_template_ITDC" model="account.tax.code.template">
-      <field name="parent_id" ref="account_tax_code_template_RDLL303"/>
+      <field name="parent_id" ref="account_tax_code_template_303"/>
       <field name="code">ITDC</field>
       <field name="name">[27] IVA total devengado. Cuota</field>
       <field name="sign">1.0</field>
@@ -120,33 +114,33 @@
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_ITADC" model="account.tax.code.template">
-      <field name="parent_id" ref="account_tax_code_template_RDLL303"/>
+      <field name="parent_id" ref="account_tax_code_template_303"/>
       <field name="code">ITADC</field>
       <field name="name">[45] IVA total a deducir. Cuota.</field>
-      <field name="sign">-1.0</field>
+      <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_SOICC" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ITADC"/>
       <field name="code">SOICC</field>
-      <field name="name">[29] Soporte operaciones interiores corrientes. Cuota.</field>
+      <field name="name">[29] Soportado operaciones interiores corrientes. Cuota.</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_SOICC4" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_SOICC"/>
       <field name="code">SOICC4</field>
-      <field name="name">Soporte operaciones interiores corrientes. Cuota. (4%)</field>
+      <field name="name">Soportado operaciones interiores corrientes. Cuota. (4%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_SOICC10" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_SOICC"/>
       <field name="code">SOICC10</field>
-      <field name="name">Soporte operaciones interiores corrientes. Cuota. (10%)</field>
+      <field name="name">Soportado operaciones interiores corrientes. Cuota. (10%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_SOICC21" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_SOICC"/>
       <field name="code">SOICC21</field>
-      <field name="name">Soporte operaciones interiores corrientes. Cuota. (21%)</field>
+      <field name="name">Soportado operaciones interiores corrientes. Cuota. (21%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_REDC05" model="account.tax.code.template">
@@ -170,31 +164,31 @@
     <record id="account_tax_code_template_SOIBIC" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ITADC"/>
       <field name="code">SOIBIC</field>
-      <field name="name">[31] Soporte operaciones interiores bienes inversión. Cuota.</field>
+      <field name="name">[31] Soportado operaciones interiores bienes inversión. Cuota.</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_SOIBIC4" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_SOIBIC"/>
       <field name="code">SOIBIC4</field>
-      <field name="name">Soporte operaciones interiores bienes inversión. Cuota. (4%)</field>
+      <field name="name">Soportado operaciones interiores bienes inversión. Cuota. (4%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_SOIBIC10" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_SOIBIC"/>
       <field name="code">SOIBIC10</field>
-      <field name="name">Soporte operaciones interiores bienes inversión. Cuota. (10%)</field>
+      <field name="name">Soportado operaciones interiores bienes inversión. Cuota. (10%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_SOIBIC21" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_SOIBIC"/>
       <field name="code">SOIBIC21</field>
-      <field name="name">Soporte operaciones interiores bienes inversión. Cuota. (21%)</field>
+      <field name="name">Soportado operaciones interiores bienes inversión. Cuota. (21%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_DIBCC" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ITADC"/>
       <field name="code">DIBCC</field>
-      <field name="name">[33] Devengo importaciones bienes corrientes. Cuota.</field>
+      <field name="name">[33] Devengo importaciones bienes y serv. corr. Cuota.</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_DIBYSCC4" model="account.tax.code.template">
@@ -348,13 +342,13 @@
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IERCDCC" model="account.tax.code.template">
-      <field name="parent_id" ref="account_tax_code_template_RDLL303"/>
+      <field name="parent_id" ref="account_tax_code_template_303"/>
       <field name="code">IERCDCC</field>
       <field name="name">[63] Importes entregas rég. criterio de caja. Cuota.</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IARCDCC" model="account.tax.code.template">
-      <field name="parent_id" ref="account_tax_code_template_RDLL303"/>
+      <field name="parent_id" ref="account_tax_code_template_303"/>
       <field name="code">IARCDCC</field>
       <field name="name">[75] Importes adquisiciones rég. criterio de caja. Cuota.</field>
       <field name="sign">1.0</field>
@@ -489,7 +483,7 @@
       <field name="parent_id" ref="account_tax_code_template_RYSBI"/>
       <field name="code">ISBI</field>
       <field name="name">IVA soportado. Base Imponible.</field>
-      <field name="sign">-1.0</field>
+      <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_OICBI" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ISBI"/>
@@ -560,7 +554,7 @@
     <record id="account_tax_code_template_IBCBI" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ISBI"/>
       <field name="code">IBCBI</field>
-      <field name="name">[32] Importaciones bienes corrientes. Base Imponible.</field>
+      <field name="name">[32] Importaciones bienes y servicios corrientes. Base Imponible.</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IBYSCBI4" model="account.tax.code.template">
@@ -1149,6 +1143,20 @@
       <field name="parent_id" ref="account_tax_code_template_ITRACC"/>
       <field name="code">IRACC21</field>
       <field name="name">IRPF retenciones a cuenta. Cuota (21%)</field>
+      <field name="sign">1.0</field>
+    </record>
+
+    <record id="account_tax_code_template_AIBIBIA" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_AIDBYSBI"/>
+      <field name="code">AIBIBIA</field>
+      <field name="name">Adquisiciones intracomunitarias Bienes Inversión. Base imponible. AutoRepercutido</field>
+      <field name="sign">1.0</field>
+    </record>
+
+    <record id="account_tax_code_template_AIBICA" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_AIDBYSC"/>
+      <field name="code">AIBICA</field>
+      <field name="name">Adquisiciones intracomunitarias Bienes Inversión. Cuota. AutoRepercutido</field>
       <field name="sign">1.0</field>
     </record>
 
