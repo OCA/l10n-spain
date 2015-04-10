@@ -35,14 +35,8 @@
       <field name="name">&lt;Mod. 303&gt; Impuesto sobre el valor añadido</field>
       <field name="sign">1.0</field>
     </record>
-    <record id="account_tax_code_template_RDLL303" model="account.tax.code.template">
-      <field name="parent_id" ref="account_tax_code_template_303"/>
-      <field name="code">RDLL303</field>
-      <field name="name">[71] Resultado de la liquidación (303)</field>
-      <field name="sign">1.0</field>
-    </record>
     <record id="account_tax_code_template_ITDC" model="account.tax.code.template">
-      <field name="parent_id" ref="account_tax_code_template_RDLL303"/>
+      <field name="parent_id" ref="account_tax_code_template_303"/>
       <field name="code">ITDC</field>
       <field name="name">[27] IVA total devengado. Cuota</field>
       <field name="sign">1.0</field>
@@ -120,7 +114,7 @@
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_ITADC" model="account.tax.code.template">
-      <field name="parent_id" ref="account_tax_code_template_RDLL303"/>
+      <field name="parent_id" ref="account_tax_code_template_303"/>
       <field name="code">ITADC</field>
       <field name="name">[45] IVA total a deducir. Cuota.</field>
       <field name="sign">-1.0</field>
@@ -348,13 +342,13 @@
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IERCDCC" model="account.tax.code.template">
-      <field name="parent_id" ref="account_tax_code_template_RDLL303"/>
+      <field name="parent_id" ref="account_tax_code_template_303"/>
       <field name="code">IERCDCC</field>
       <field name="name">[63] Importes entregas rég. criterio de caja. Cuota.</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IARCDCC" model="account.tax.code.template">
-      <field name="parent_id" ref="account_tax_code_template_RDLL303"/>
+      <field name="parent_id" ref="account_tax_code_template_303"/>
       <field name="code">IARCDCC</field>
       <field name="name">[75] Importes adquisiciones rég. criterio de caja. Cuota.</field>
       <field name="sign">1.0</field>
@@ -1149,6 +1143,20 @@
       <field name="parent_id" ref="account_tax_code_template_ITRACC"/>
       <field name="code">IRACC21</field>
       <field name="name">IRPF retenciones a cuenta. Cuota (21%)</field>
+      <field name="sign">1.0</field>
+    </record>
+
+    <record id="account_tax_code_template_AIBIBIA" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_AIDBYSBI"/>
+      <field name="code">AIBIBIA</field>
+      <field name="name">Adquisiciones intracomunitarias Bienes Inversión. Base imponible. AutoRepercutido</field>
+      <field name="sign">1.0</field>
+    </record>
+
+    <record id="account_tax_code_template_AIBICA" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_AIDBYSC"/>
+      <field name="code">AIBICA</field>
+      <field name="name">Adquisiciones intracomunitarias Bienes Inversión. Cuota. AutoRepercutido</field>
       <field name="sign">1.0</field>
     </record>
 
