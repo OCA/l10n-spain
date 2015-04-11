@@ -7,9 +7,9 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
-                <field name="payment_term" options="{'no_create': True}" position="after">
+                <xpath expr="//field[@name='payment_term']" position="after">
                     <field name="not_in_mod347"/>
-                </field>
+                </xpath>
             </field>
         </record>
 
@@ -18,9 +18,9 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                <field name="date_due" position="after">
+                <xpath expr="//field[@name='date_due']" position="after">
                     <field name="not_in_mod347"/>
-                </field>
+                </xpath>
             </field>
         </record>
 
