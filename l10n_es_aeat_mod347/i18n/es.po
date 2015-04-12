@@ -931,7 +931,13 @@ msgid "Journal"
 msgstr "Diario"
 
 #. module: l10n_es_aeat_mod347
+#: field:account.invoice,not_in_mod347:0
 #: field:res.partner,not_in_mod347:0
 msgid "Not included in 347 report"
 msgstr "No incluida en el modelo 347"
+
+#. module: l10n_es_aeat_mod347
+#: help:account.invoice,not_in_mod347:0
+msgid "If you mark this field, this invoice will not be included in any AEAT 347 model report."
+msgstr "Si marca este campo, esta factura no se incluirá en los informes del modelo AEAT 347."
 
