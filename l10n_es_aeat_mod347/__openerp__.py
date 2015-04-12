@@ -42,7 +42,6 @@
         "base_vat",
         "l10n_es_aeat",
         "account_invoice_currency",
-        "account",
     ],
     'data': [
         "security/ir.model.access.csv",
