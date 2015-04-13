@@ -238,30 +238,14 @@ class AccountBankStatementImport(models.TransientModel):
             # Try to match from partner name
             if conceptos.get('01'):
                 name = conceptos['01'][0]
-                partners = partner_obj.search([('name', 'ilike', name)])
-        return partners and partners[0].id or False
-
-    def _get_partner_from_generic_c43(self, line):
-        invoice_obj = self.env['account.invoice']
-        partners = []
-        # Finally, try to match from invoice amount
-        if line['importe'] > 0.0:
-            domain = [('type', 'in', ['out_invoice', 'in_refund'])]
-        else:
-            domain = [('type', 'in', ['in_invoice', 'out_refund'])]
-        domain.append(('amount_total', '=', abs(line['importe'])))
-        domain.append(('state', '=', 'open'))
-        invoices = invoice_obj.search(domain)
-        if invoices:
-            partners = invoices[0].partner_id
+                if name:
+                    partners = partner_obj.search([('name', 'ilike', name)])
         return partners and partners[0].id or False
 
     def _get_partner(self, line):
         partner_id = self._get_partner_from_caixabank(line['conceptos'])
         if not partner_id:
             partner_id = self._get_partner_from_santander(line['conceptos'])
-        if not partner_id:
-            partner_id = self._get_partner_from_generic_c43(line)
         return partner_id
 
     def _get_account(self, line):

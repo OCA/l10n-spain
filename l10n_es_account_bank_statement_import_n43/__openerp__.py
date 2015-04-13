@@ -23,7 +23,10 @@
     'category': 'Accounting & Finance',
     'version': '4.0',
     'license': 'AGPL-3',
-    'author': 'Serv. Tecnol. Avanzados - Pedro M. Baeza',
+    'author': 'Spanish Localization Team,'
+              'Serv. Tecnol. Avanzados - Pedro M. Baeza,'
+              'Antiun Ingenería S.L.,'
+              'Odoo Community Association (OCA)',
     "website": "https://github.com/OCA/l10n-spain",
     'depends': [
         'account_bank_statement_import',
