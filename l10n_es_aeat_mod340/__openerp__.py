@@ -78,7 +78,7 @@ Exportación de asientos resumen de facturas
         'mod340_sequence.xml',
         'account_invoice_view.xml',
         'account_view.xml',
-        'taxes_data.xml',
+        # 'taxes_data.xml',
     ],
     'installable': True,
 }
