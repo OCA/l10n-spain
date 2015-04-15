@@ -28,55 +28,106 @@ class L10nEsAeatMod111Report(models.Model):
     _name = 'l10n.es.aeat.mod111.report'
 
     number = fields.Char(default='111')
-    apellidos_razon_social = fields.Char(
-        'Apellidos o razón social', size=30, readonly=True,
-        states={'draft': [('readonly', False)]}, required=True)
-    casilla_01 = fields.Integer('Casilla [01]', readonly=True)
-    casilla_02 = fields.Float('Casilla [02]', readonly=True)
-    casilla_03 = fields.Float('Casilla [03]', readonly=True)
-    casilla_04 = fields.Integer('Casilla [04]', readonly=True)
-    casilla_05 = fields.Float('Casilla [05]', readonly=True)
-    casilla_06 = fields.Float('Casilla [06]', readonly=True)
-    casilla_07 = fields.Integer('Casilla [07]', readonly=True)
-    casilla_08 = fields.Float('Casilla [08]', readonly=True)
-    casilla_09 = fields.Float('Casilla [09]', readonly=True)
-    casilla_10 = fields.Integer('Casilla [10]', readonly=True)
-    casilla_11 = fields.Float('Casilla [11]', readonly=True)
-    casilla_12 = fields.Float('Casilla [12]', readonly=True)
-    casilla_13 = fields.Integer('Casilla [13]', readonly=True)
-    casilla_14 = fields.Float('Casilla [14]', readonly=True)
-    casilla_15 = fields.Float('Casilla [15]', readonly=True)
-    casilla_16 = fields.Integer('Casilla [16]', readonly=True)
-    casilla_17 = fields.Float('Casilla [17]', readonly=True)
-    casilla_18 = fields.Float('Casilla [18]', readonly=True)
-    casilla_19 = fields.Integer('Casilla [19]', readonly=True)
-    casilla_20 = fields.Float('Casilla [20]', readonly=True)
-    casilla_21 = fields.Float('Casilla [21]', readonly=True)
-    casilla_22 = fields.Integer('Casilla [22]', readonly=True)
-    casilla_23 = fields.Float('Casilla [23]', readonly=True)
-    casilla_24 = fields.Float('Casilla [24]', readonly=True)
-    casilla_25 = fields.Integer('Casilla [25]', readonly=True)
-    casilla_26 = fields.Float('Casilla [26]', readonly=True)
-    casilla_27 = fields.Float('Casilla [27]', readonly=True)
-    casilla_28 = fields.Float('Casilla [28]', readonly=True)
-    casilla_29 = fields.Float('Casilla [29]', readonly=True)
-    casilla_30 = fields.Float('Casilla [30]', readonly=True)
+    casilla_01 = fields.Integer('Casilla [01]', readonly=True,
+                                help='Rendim. del trabajo - Rendimientos '
+                                'dinerarios - Nº de perceptores')
+    casilla_02 = fields.Float('Casilla [02]', readonly=True,
+                              help='Rendim. del trabajo - Rendimientos '
+                              'dinerarios - Importe percepciones')
+    casilla_03 = fields.Float('Casilla [03]', readonly=True,
+                              help='Rendim. del trabajo - Rendimientos '
+                              'dinerarios - Importe retenciones')
+    casilla_04 = fields.Integer('Casilla [04]', readonly=True,
+                                help='Rendim. del trabajo - Rendimientos '
+                                'en especie - Nº de perceptores')
+    casilla_05 = fields.Float('Casilla [05]', readonly=True,
+                              help='Rendim. del trabajo - Rendimientos '
+                              'en especie - Valor percepciones en especie')
+    casilla_06 = fields.Float('Casilla [06]', readonly=True,
+                              help='Rendim. del trabajo - Rendimientos '
+                              'en especie - Importe ingresos en cuenta')
+    casilla_07 = fields.Integer('Casilla [07]', readonly=True,
+                                help='Rendim. actividades económicas - '
+                                'Rendimientos dinerarios - Nº de perceptores')
+    casilla_08 = fields.Float('Casilla [08]', readonly=True,
+                              help='Rendim. actividades económicas - '
+                              'Rendimientos dinerarios - Importe percepciones')
+    casilla_09 = fields.Float('Casilla [09]', readonly=True,
+                              help='Rendim. actividades económicas - '
+                              'Rendimientos dinerarios - Importe retenciones')
+    casilla_10 = fields.Integer('Casilla [10]', readonly=True,
+                                help='Rendim. actividades económicas - '
+                                'Rendimientos en especie - Nº de perceptores')
+    casilla_11 = fields.Float('Casilla [11]', readonly=True,
+                              help='Rendim. actividades económicas - '
+                              'Rendimientos en especie - Valor percepciones en'
+                              ' especie')
+    casilla_12 = fields.Float('Casilla [12]', readonly=True,
+                              help='Rendim. actividades económicas - '
+                              'Rendimientos en especie - Importe de los '
+                              'ingresos en cuenta')
+    casilla_13 = fields.Integer('Casilla [13]', readonly=True,
+                                help='Premios - Premios dinerarios - Nº de '
+                                'perceptores')
+    casilla_14 = fields.Float('Casilla [14]', readonly=True,
+                              help='Premios - Premios dinerarios - Importe de '
+                              'las percepciones')
+    casilla_15 = fields.Float('Casilla [15]', readonly=True,
+                              help='Premios - Premios dinerarios - Importe de '
+                              'las retenciones')
+    casilla_16 = fields.Integer('Casilla [16]', readonly=True,
+                                help='Premios - Premios en especie - Nº de '
+                                'perceptores')
+    casilla_17 = fields.Float('Casilla [17]', readonly=True,
+                              help='Premios - Premios en especie - Importe de '
+                              'las percepciones')
+    casilla_18 = fields.Float('Casilla [18]', readonly=True,
+                              help='Premios - Premios en especie - Importe de '
+                              'los ingresos a cuenta')
+    casilla_19 = fields.Integer('Casilla [19]', readonly=True,
+                                help='Ganancias patrim. Aprovecham. Forestales'
+                                ' - Percep. dinerarias - Nº perceptores')
+    casilla_20 = fields.Float('Casilla [20]', readonly=True,
+                              help='Ganancias patrim. Aprovecham. Forestales'
+                              ' - Percep. dinerarias - Importe percepciones')
+    casilla_21 = fields.Float('Casilla [21]', readonly=True,
+                              help='Ganancias patrim. Aprovecham. Forestales'
+                              ' - Percep. dinerarias - Importe retenciones')
+    casilla_22 = fields.Integer('Casilla [22]', readonly=True,
+                                help='Ganancias patrim. Aprovecham. Forestales'
+                                ' - Percep. en especie - Nº perceptores')
+    casilla_23 = fields.Float('Casilla [23]', readonly=True,
+                              help='Ganancias patrim. Aprovecham. Forestales -'
+                              ' Percep. en especie - Importe percepciones')
+    casilla_24 = fields.Float('Casilla [24]', readonly=True,
+                              help='Ganancias patrim. Aprovecham. Forestales'
+                              ' - Percep. en especie - Importe ingresos a '
+                              'cuenta')
+    casilla_25 = fields.Integer('Casilla [25]', readonly=True,
+                                help='Contraprest. cesión dchos. imagen - Nº '
+                                'de perceptores')
+    casilla_26 = fields.Float('Casilla [26]', readonly=True,
+                              help='Contraprest. cesión dchos. imagen - '
+                              'Contraprestaciones satisfechas')
+    casilla_27 = fields.Float('Casilla [27]', readonly=True,
+                              help='Contraprest. cesión dchos. imagen - '
+                              'Importe de los ingresos a cuenta')
+    casilla_28 = fields.Float('Casilla [28]', readonly=True,
+                              help='Total liquidación - Suma retencones e '
+                              'ingresos a cuenta')
+    casilla_29 = fields.Float('Casilla [29]', readonly=True,
+                              help='Total liquidación - Resultado de '
+                              'anteriores declaraciones')
+    casilla_30 = fields.Float('Casilla [30]', readonly=True,
+                              help='Total liquidación - Resultado a ingresar')
     codigo_electronico_anterior = fields.Char(
         'Código electrónico', size=16, readonly=True,
         states={'draft': [('readonly', False)]},
         help='Código electrónico de la declaración anterior (si se presentó '
         'telemáticamente). A cumplimentar sólo en el caso de declaración '
         'complementaria.')
-    complementaria = fields.Boolean(
-        'Declaración complementaria', readonly=True,
-        states={'draft': [('readonly', False)]}, default=False,
-        help='Si esta predeclaración es complementaria de otra autoliquidación'
-        ' anterior correspondiente al mismo concepto, ejercicio y período, '
-        'indíquelo marcando esta casilla')
     currency_id = fields.Many2one('res.currency', string='Moneda',
                                   related='company_id.currency_id', store=True)
-    nombre = fields.Char('Nombre', size=15, readonly=True, required=True,
-                         states={'draft': [('readonly', False)]})
     period_id = fields.Many2one('account.period', 'Periodo', readonly=True,
                                 states={'draft': [('readonly', False)]},
                                 required=True)
@@ -85,13 +136,21 @@ class L10nEsAeatMod111Report(models.Model):
          ('G', 'Ingreso a anotar en CCT'), ('N', 'Negativa')],
         string='Tipo de declaración', readonly=True,
         states={'draft': [('readonly', False)]}, required=True)
+    contact_mobile_phone = fields.Char(
+        string="Mobile Phone", size=9,
+        states={'calculated': [('required', True)],
+                'confirmed': [('readonly', True)]})
+    colegio_concertado = fields.Boolean('Colegio Concertado', readonly=True,
+                                        states={'draft': [('readonly',
+                                                           False)]},
+                                        default=False)
 
     @api.one
     @api.constrains('codigo_electronico_anterior', 'previous_number')
     def _check_complementary(self):
-        if (self.complementaria
+        if (self.type == 'C'
                 and not self.codigo_electronico_anterior
-                and not self.numero_justificante_anterior):
+                and not self.previous_number):
             raise exceptions.Warning(
                 _('Si se marca la casilla de liquidación complementaria,'
                   ' debe rellenar el código electrónico o'

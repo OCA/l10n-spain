@@ -49,6 +49,7 @@ class L10nEsAeatReport(models.AbstractModel):
                 comp_vat = re.match("(ES){0,1}(.*)",
                                     self.company_id.partner_id.vat).groups()[1]
         self.company_vat = comp_vat
+        self.company_name = self.company_id.name
 
     company_id = fields.Many2one(
         'res.company', string='Company', required=True, readonly=True,
@@ -56,6 +57,9 @@ class L10nEsAeatReport(models.AbstractModel):
     company_vat = fields.Char(
         string='VAT number', size=9, required=True, readonly=True,
         states={'draft': [('readonly', False)]})
+    company_name = fields.Char(
+        string='Company name', readonly=True,
+        states={'draft': [('readonly', False)]}, default=company_id.name)
     phone = fields.Char(
         string="Phone", size=9, states={'calculated': [('required', True)],
                                         'confirmed': [('readonly', True)]})
