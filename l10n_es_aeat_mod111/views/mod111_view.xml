@@ -6,67 +6,78 @@
                 <field name="model">l10n.es.aeat.mod111.report</field>
                 <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
                 <field name="arch" type="xml">
+                    <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
+                        <attribute name="name">%(action_wizard_aeat_mod111_export)d</attribute>
+                    </button>
                     <field name="fiscalyear_id" position="after">
                         <field name="period_id" domain="[('special','=',False),('fiscalyear_id','=',fiscalyear_id)]"/>
                         <field name="currency_id" invisible="1"/>
                     </field>
+                    <field name="contact_phone" position="after">
+                        <field name="contact_mobile_phone"/>
+                    </field>
+                    <field name="previous_number" position="after">
+                            <field name="tipo_declaracion"/>
+                            <field name="codigo_electronico_anterior" attrs="{'invisible': [('type','==','N')]}"/>
+                            <field name="colegio_concertado"/>
+                    </field>
+                    <field name="previous_number" position="attributes">
+                        <attribute name="attrs">{'invisible': [('type','==','N')]}</attribute>
+                    </field>
                     <group string="Declaración" position="after">
-                        <group string="Datos a completar" colspan="4">
-                            <group>
-                                <field name="nombre"/>
-                                <field name="apellidos_razon_social"/>
-                                <field name="tipo_declaracion"/>
-                            </group>
-                        <group>
-                            <field name="complementaria"/>
-                            <field name="codigo_electronico_anterior"/>
-                        </group>
-                    </group>
                     <group string="Resultado" colspan="4" states="calculated,done,cancelled">
-                        <group>
+                        <group string="Rendim. del trabajo">
+                            <label string="Rendimientos dinerarios:" class="oe_force_bold" colspan="2"/>
                             <field name="casilla_01"/>
                             <field name="casilla_02" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                             <field name="casilla_03" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <label string="Rendimientos en especies:" class="oe_force_bold" colspan="2"/>
                             <field name="casilla_04"/>
                             <field name="casilla_05" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                             <field name="casilla_06" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                         </group>
-                        <group>
+                        <group string="Rendim. actividades económicas">
+                            <label string="Rendimientos dinerarios:" class="oe_force_bold" colspan="2"/>
                             <field name="casilla_07"/>
                             <field name="casilla_08" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                             <field name="casilla_09" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <label string="Rendimientos en especie:" class="oe_force_bold" colspan="2"/>
                             <field name="casilla_10"/>
                             <field name="casilla_11" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                             <field name="casilla_12" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                         </group>
-                        <group>
+                        <group string="Premios">
+                            <label string="Premios dinerarios:" class="oe_force_bold" colspan="2"/>
                             <field name="casilla_13"/>
                             <field name="casilla_14" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                             <field name="casilla_15" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+	                        <label string="Premios en especie:" class="oe_force_bold" colspan="2"/>
                             <field name="casilla_16"/>
                             <field name="casilla_17" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                             <field name="casilla_18" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                         </group>
-                        <group>
+                        <group string="Ganancias patrim. Aprovecham. Forestales">
+                            <label string="Percep.dinerarias:" class="oe_force_bold" colspan="2"/>
                             <field name="casilla_19"/>
                             <field name="casilla_20" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                             <field name="casilla_21" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <label string="Percep. en especie:" class="oe_force_bold" colspan="2"/>
                             <field name="casilla_22"/>
                             <field name="casilla_23" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                             <field name="casilla_24" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                         </group>
-                        <group>
+                        <group string="Contraprest. cesión dchos. imagen">
                             <field name="casilla_25"/>
                             <field name="casilla_26" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                             <field name="casilla_27" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                         </group>
-                        <group>
+                        <group string="Total liquidación">
                             <field name="casilla_28" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                             <field name="casilla_29" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                             <field name="casilla_30" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                         </group>
                     </group>
-                </group>
+                    </group>
             </field>
         </record>
 
