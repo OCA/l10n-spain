@@ -133,11 +133,11 @@ class L10nEsAeatMod130Report(models.Model):
 
     @api.multi
     def _get_periods(self, period):
-        self.ensure_one()
         """
         Obtiene el periodo o periodos contables asociados al trimestre del
         informe asociado.
         """
+        self.ensure_one()
         period_obj = self.env["account.period"]
         year = self.fiscalyear_id.date_start.split('-')[0]
         # Obtener el primer mes del trimestre
