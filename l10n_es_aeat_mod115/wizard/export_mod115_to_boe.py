@@ -41,6 +41,8 @@ class L10nEsAeatMod115ExportToBoe(models.TransientModel):
         res += self._formatString('C' if report.type == 'C' else ' ', 1)
         # Tipo de declaración: I (ingreso), U (domiciliación),
         #                      G (ingreso a anotar en CCT), N (negativa)
+        res += self._formatString(report.tipo_declaracion, 1)
+        # Identificación. Sujeto pasivo. NIF
         res += self._formatString(report.company_vat, 9)
         # Identificación. Sujeto pasivo. Denominación (o Apellidos y Nombre)
         res += self._formatString(report.company_name, 60)

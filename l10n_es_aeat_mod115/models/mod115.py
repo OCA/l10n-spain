@@ -44,6 +44,11 @@ class L10nEsAeatMod115Report(models.Model):
                                 help='Retenciones e ingresos a cuenta. '
                                 'Resultado a ingresar.',
                                 compute='get_casilla05')
+    tipo_declaracion = fields.Selection(
+        [('I', 'Ingreso'), ('U', 'Domiciliación'),
+         ('G', 'Ingreso a anotar en CCT'), ('N', 'Negativa')],
+        string='Tipo de declaración', readonly=True,
+        states={'draft': [('readonly', False)]}, required=True)
     currency_id = fields.Many2one('res.currency', string='Moneda',
                                   related='company_id.currency_id', store=True)
     period_id = fields.Many2one('account.period', 'Periodo', readonly=True,

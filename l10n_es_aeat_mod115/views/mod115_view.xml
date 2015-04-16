@@ -13,6 +13,9 @@
                         <field name="period_id" domain="[('special','=',False),('fiscalyear_id','=',fiscalyear_id)]"/>
                         <field name="currency_id" invisible="1"/>
                     </field>
+                    <field name="previous_number" position="after">
+                        <field name="tipo_declaracion"/>
+                    </field>
                     <group string="Declaración" position="after">
 	                    <group string="Resultado" colspan="4" states="calculated,done,cancelled">
 	                        <field name="casilla_01"/>
