@@ -61,7 +61,7 @@ def _check_valid_string(text_to_check):
 
 def _format_partner_vat(partner_vat=None, country=None):
     """Formats VAT to match XXVATNUMBER (where XX is country code)."""
-    if country:
+    if country and country.code:
         country_pattern = "[" + country.code + country.code.lower() + "]{2}.*"
         vat_regex = re.compile(country_pattern, re.UNICODE | re.X)
         if partner_vat and not vat_regex.match(partner_vat):
@@ -296,13 +296,6 @@ class Mod349(models.Model):
         states={'confirmed': [('readonly', True)]})
     frequency_change = fields.Boolean(
         string='Frequency change', states={'confirmed': [('readonly', True)]})
-    contact_name = fields.Char(
-        string="Full Name", size=40, help="Must have name and surname.",
-        states={'calculated': [('required', True)],
-                'confirmed': [('readonly', True)]})
-    contact_phone = fields.Char(
-        "Phone", size=9, states={'calculated': [('required', True)],
-                                 'confirmed': [('readonly', True)]})
     total_partner_records = fields.Integer(
         compute="_get_report_totals", string="Partners records")
     total_partner_records_amount = fields.Float(
@@ -320,6 +313,10 @@ class Mod349(models.Model):
         inverse_name='report_id', string='Partner refund IDS',
         ondelete='cascade', states={'confirmed': [('readonly', True)]})
     number = fields.Char(default='349')
+
+    def __init__(self, pool, cr):
+        self._aeat_number = '349'
+        super(Mod349, self).__init__(pool, cr)
 
 
 class Mod349PartnerRecord(models.Model):

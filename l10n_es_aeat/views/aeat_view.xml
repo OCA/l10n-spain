@@ -32,12 +32,26 @@
                     <sheet>
                         <group string="Declaración" colspan="4">
                             <group>
+                                <field name="sequence" readonly="1" />
+                                <field name="company_name" required="1"/>
                                 <field name="company_vat" required="1"/>
-                                <field name="fiscalyear_id" select="1"/>
+                                <field name="number" />
+                                <field name="fiscalyear_id"/>
                             </group>
                             <group>
+                                <field name="representative_vat"/>
+                                <field name="phone"/>
+                                <field name="support_type"/>
                                 <field name="calculation_date" readonly="1"/>
-                                <field name="company_id" on_change="on_change_company_id(company_id)" required="1" select="1" groups="base.group_multi_company"/>
+                                <field name="company_id" required="1" select="1" groups="base.group_multi_company"/>
+                            </group>
+                            <group string="Contact data">
+                                <field name="contact_name"/>
+                                <field name="contact_phone"/>
+                            </group>
+                            <group string="Susbtitutive/complementary declaration">
+                                <field name="type"/>
+                                <field name="previous_number" attrs="{'invisible': [('type','==','N')], 'required': ['|', ('type','==','S'), ('type','==','C')]}"/>
                             </group>
                         </group>
                     </sheet>
