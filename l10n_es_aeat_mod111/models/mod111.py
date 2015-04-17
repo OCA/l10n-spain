@@ -29,96 +29,126 @@ class L10nEsAeatMod111Report(models.Model):
 
     number = fields.Char(default='111')
     casilla_01 = fields.Integer('Casilla [01]', readonly=True,
+                                states={'calculated': [('readonly', False)]},
                                 help='Rendim. del trabajo - Rendimientos '
                                 'dinerarios - Nº de perceptores')
     casilla_02 = fields.Float('Casilla [02]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Rendim. del trabajo - Rendimientos '
                               'dinerarios - Importe percepciones')
     casilla_03 = fields.Float('Casilla [03]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Rendim. del trabajo - Rendimientos '
                               'dinerarios - Importe retenciones')
     casilla_04 = fields.Integer('Casilla [04]', readonly=True,
+                                states={'calculated': [('readonly', False)]},
                                 help='Rendim. del trabajo - Rendimientos '
                                 'en especie - Nº de perceptores')
     casilla_05 = fields.Float('Casilla [05]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Rendim. del trabajo - Rendimientos '
                               'en especie - Valor percepciones en especie')
     casilla_06 = fields.Float('Casilla [06]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Rendim. del trabajo - Rendimientos '
                               'en especie - Importe ingresos en cuenta')
     casilla_07 = fields.Integer('Casilla [07]', readonly=True,
+                                states={'calculated': [('readonly', False)]},
                                 help='Rendim. actividades económicas - '
                                 'Rendimientos dinerarios - Nº de perceptores')
     casilla_08 = fields.Float('Casilla [08]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Rendim. actividades económicas - '
                               'Rendimientos dinerarios - Importe percepciones')
     casilla_09 = fields.Float('Casilla [09]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Rendim. actividades económicas - '
                               'Rendimientos dinerarios - Importe retenciones')
     casilla_10 = fields.Integer('Casilla [10]', readonly=True,
+                                states={'calculated': [('readonly', False)]},
                                 help='Rendim. actividades económicas - '
                                 'Rendimientos en especie - Nº de perceptores')
     casilla_11 = fields.Float('Casilla [11]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Rendim. actividades económicas - '
                               'Rendimientos en especie - Valor percepciones en'
                               ' especie')
     casilla_12 = fields.Float('Casilla [12]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Rendim. actividades económicas - '
                               'Rendimientos en especie - Importe de los '
                               'ingresos en cuenta')
     casilla_13 = fields.Integer('Casilla [13]', readonly=True,
+                                states={'calculated': [('readonly', False)]},
                                 help='Premios - Premios dinerarios - Nº de '
                                 'perceptores')
     casilla_14 = fields.Float('Casilla [14]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Premios - Premios dinerarios - Importe de '
                               'las percepciones')
     casilla_15 = fields.Float('Casilla [15]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Premios - Premios dinerarios - Importe de '
                               'las retenciones')
     casilla_16 = fields.Integer('Casilla [16]', readonly=True,
+                                states={'calculated': [('readonly', False)]},
                                 help='Premios - Premios en especie - Nº de '
                                 'perceptores')
     casilla_17 = fields.Float('Casilla [17]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Premios - Premios en especie - Importe de '
                               'las percepciones')
     casilla_18 = fields.Float('Casilla [18]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Premios - Premios en especie - Importe de '
                               'los ingresos a cuenta')
     casilla_19 = fields.Integer('Casilla [19]', readonly=True,
+                                states={'calculated': [('readonly', False)]},
                                 help='Ganancias patrim. Aprovecham. Forestales'
                                 ' - Percep. dinerarias - Nº perceptores')
     casilla_20 = fields.Float('Casilla [20]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Ganancias patrim. Aprovecham. Forestales'
                               ' - Percep. dinerarias - Importe percepciones')
     casilla_21 = fields.Float('Casilla [21]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Ganancias patrim. Aprovecham. Forestales'
                               ' - Percep. dinerarias - Importe retenciones')
     casilla_22 = fields.Integer('Casilla [22]', readonly=True,
+                                states={'calculated': [('readonly', False)]},
                                 help='Ganancias patrim. Aprovecham. Forestales'
                                 ' - Percep. en especie - Nº perceptores')
     casilla_23 = fields.Float('Casilla [23]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Ganancias patrim. Aprovecham. Forestales -'
                               ' Percep. en especie - Importe percepciones')
     casilla_24 = fields.Float('Casilla [24]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Ganancias patrim. Aprovecham. Forestales'
                               ' - Percep. en especie - Importe ingresos a '
                               'cuenta')
     casilla_25 = fields.Integer('Casilla [25]', readonly=True,
+                                states={'calculated': [('readonly', False)]},
                                 help='Contraprest. cesión dchos. imagen - Nº '
                                 'de perceptores')
     casilla_26 = fields.Float('Casilla [26]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Contraprest. cesión dchos. imagen - '
                               'Contraprestaciones satisfechas')
     casilla_27 = fields.Float('Casilla [27]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Contraprest. cesión dchos. imagen - '
                               'Importe de los ingresos a cuenta')
     casilla_28 = fields.Float('Casilla [28]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Total liquidación - Suma retencones e '
                               'ingresos a cuenta')
     casilla_29 = fields.Float('Casilla [29]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Total liquidación - Resultado de '
                               'anteriores declaraciones')
     casilla_30 = fields.Float('Casilla [30]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Total liquidación - Resultado a ingresar')
     codigo_electronico_anterior = fields.Char(
         'Código electrónico', size=16, readonly=True,
@@ -144,6 +174,14 @@ class L10nEsAeatMod111Report(models.Model):
                                         states={'draft': [('readonly',
                                                            False)]},
                                         default=False)
+    move_lines_08 = fields.Many2many(comodel_name='account.move.line',
+                                     relation='mod111_account_move_line08_rel',
+                                     column1='mod111',
+                                     column2='account_move_line')
+    move_lines_09 = fields.Many2many(comodel_name='account.move.line',
+                                     relation='mod111_account_move_line09_rel',
+                                     column1='mod111',
+                                     column2='account_move_line')
 
     @api.one
     @api.constrains('codigo_electronico_anterior', 'previous_number')
@@ -161,63 +199,33 @@ class L10nEsAeatMod111Report(models.Model):
         super(L10nEsAeatMod111Report, self).__init__(pool, cr)
 
     @api.multi
-    def get_account_child_ids(self, cuenta, company_id):
-        """
-        Para una determinada cuenta (tipo str) y compañía, devuelve sus hijas
-        (ids) Ejemplo cuentas_hijas = get_account_child_ids('4100')
-        """
-        account_model = self.env['account.account']
-        cuenta_lst = account_model.search([('code', '=', cuenta),
-                                           ('company_id', '=', company_id)])
-        cuentas_hijas = []
-        for cuenta in cuenta_lst:
-            cuentas_hijas.extend(cuenta.child_id.ids)
-        return cuentas_hijas
+    def _get_partner_domain(self):
+        return []
 
     @api.multi
-    def get_actividades_economicas(self, period_id, company_id):
-        """
-         Recorrer apuntes contables, para el período dado (inherente el
-          ejercicio fiscal) y para los diarios del tipo compras, para obtener
-          rendimientos actividades económicas además, sólo los referentes al
-          código de cuenta 4751 para la base imponible, sobre cada apunte
-          contable de la 4751, acudir al asiento para obtener el valor del
-          campo haber (credit) del apunte contra la cuenta padre 4100 y sus
-          hijas
-        """
-        move_line_model = self.env['account.move.line']
-        journal_model = self.env['account.journal']
-        cuentas_hijas_4751 = self.get_account_child_ids('4751', company_id.id)
-        journal_ids = journal_model.search(
-            ['|', ('type', '=', 'purchase'), ('type', '=', 'purchase_refund'),
-             ('company_id', '=', company_id.id)])
-        move_line_4751_ids = move_line_model.search(
-            [('period_id', '=', period_id.id),
-             ('account_id', 'in', cuentas_hijas_4751),
-             ('journal_id', 'in', journal_ids.ids)])
-        partners = []
-        importes = 0.0
-        base_imponible = 0.0
-        for move in move_line_4751_ids:
-            if move.partner_id not in partners:
-                partners.append(move.partner_id)
-            importes += move.tax_amount
-            cuentas_hijas_4100 = self.get_account_child_ids('4100',
-                                                            company_id.id)
-            move_line_4100_hijas_ids = move_line_model.search([
-                ('move_id', '=', move.move_id.id),
-                ('account_id', 'in', cuentas_hijas_4100)])
-            for move4100 in move_line_4100_hijas_ids:
-                base_imponible += move4100.credit
-        return partners, base_imponible, importes
+    def _get_tax_code_lines(self, tax_code):
+        self.ensure_one()
+        tax_code_obj = self.env['account.tax.code']
+        move_line_obj = self.env['account.move.line']
+        code_list = tax_code_obj.search([('code', '=', tax_code),
+                                        ('company_id', '=',
+                                         self.company_id.id)])
+        move_line_domain = [('company_id', '=', self.company_id.id),
+                            ('tax_code_id', 'child_of', code_list.id)]
+        if self.period_id:
+            move_line_domain += [('period_id', '=', self.period_id.id)]
+        move_line_domain += self._get_partner_domain()
+        move_lines = move_line_obj.search(move_line_domain)
+        return move_lines
 
     @api.multi
     def calculate(self):
         self.ensure_one()
-        ae_partners, ae_base_imponible, ae_tax_amount = (
-            self.get_actividades_economicas(self.period_id, self.company_id))
-        vals = {}
-        vals['casilla_07'] = len(ae_partners)
-        vals['casilla_08'] = abs(ae_base_imponible)
-        vals['casilla_09'] = abs(ae_tax_amount)
-        self.write(vals)
+        move_lines08 = self._get_tax_code_lines('IRPBI')
+        move_lines09 = self._get_tax_code_lines('ITRPC')
+        self.move_lines_08 = move_lines08.ids
+        self.move_lines_09 = move_lines09.ids
+        self.casilla_08 = sum([x.tax_amount for x in move_lines08])
+        self.casilla_09 = sum([x.tax_amount for x in move_lines09])
+        self.casilla_07 = len(set([x.partner_id for x in (move_lines08 +
+                                                          move_lines09)]))
