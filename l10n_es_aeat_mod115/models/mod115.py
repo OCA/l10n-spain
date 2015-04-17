@@ -28,32 +28,26 @@ class L10nEsAeatMod115Report(models.Model):
     _name = 'l10n.es.aeat.mod115.report'
 
     number = fields.Char(default='115')
-    casilla_01 = fields.Integer('Casilla [01]',
+    casilla_01 = fields.Integer('Casilla [01]', readonly=True,
+                                states={'calculated': [('readonly', False)]},
                                 help='Retenciones e ingresos a cuenta. '
                                 'Número perceptores.')
-    casilla_02 = fields.Float('Casilla [02]',
+    casilla_02 = fields.Float('Casilla [02]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Retenciones e ingresos a cuenta. '
                               'Base retenciones e ingresos a cuenta.')
-    casilla_03 = fields.Float('Casilla [03]',
+    casilla_03 = fields.Float('Casilla [03]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Retenciones e ingresos a cuenta. '
                               'Retenciones e ingresos a cuenta.')
-    casilla_04 = fields.Integer('Casilla [04]',
+    casilla_04 = fields.Integer('Casilla [04]', readonly=True,
+                                states={'calculated': [('readonly', False)]},
                                 help='Retenciones e ingresos a cuenta. '
                                 'Resultado anteriores declaraciones.')
     casilla_05 = fields.Integer('Casilla [05]',
                                 help='Retenciones e ingresos a cuenta. '
                                 'Resultado a ingresar.',
                                 compute='get_casilla05')
-    tipo_declaracion = fields.Selection(
-        [('I', 'Ingreso'), ('U', 'Domiciliación'),
-         ('G', 'Ingreso a anotar en CCT'), ('N', 'Negativa')],
-        string='Tipo de declaración', readonly=True,
-        states={'draft': [('readonly', False)]}, required=True)
-    currency_id = fields.Many2one('res.currency', string='Moneda',
-                                  related='company_id.currency_id', store=True)
-    period_id = fields.Many2one('account.period', 'Periodo', readonly=True,
-                                states={'draft': [('readonly', False)]},
-                                required=True)
     move_lines_02 = fields.Many2many(comodel_name='account.move.line',
                                      relation='mod115_account_move_line02_rel',
                                      column1='mod115',
@@ -62,6 +56,16 @@ class L10nEsAeatMod115Report(models.Model):
                                      relation='mod115_account_move_line03_rel',
                                      column1='mod115',
                                      column2='account_move_line')
+    currency_id = fields.Many2one('res.currency', string='Moneda',
+                                  related='company_id.currency_id', store=True)
+    period_id = fields.Many2one('account.period', 'Periodo', readonly=True,
+                                states={'draft': [('readonly', False)]},
+                                required=True)
+    tipo_declaracion = fields.Selection(
+        [('I', 'Ingreso'), ('U', 'Domiciliación'),
+         ('G', 'Ingreso a anotar en CCT'), ('N', 'Negativa')],
+        string='Tipo de declaración', readonly=True,
+        states={'draft': [('readonly', False)]}, required=True)
 
     @api.one
     @api.depends('casilla_03', 'casilla_04')
@@ -96,6 +100,34 @@ class L10nEsAeatMod115Report(models.Model):
         return amount
 
     @api.multi
+    def _get_tax_code_lines(self, tax_code):
+        self.ensure_one()
+        tax_code_obj = self.env['account.tax.code']
+        move_line_obj = self.env['account.move.line']
+        code_list = tax_code_obj.search([('code', '=', tax_code),
+                                        ('company_id', '=',
+                                         self.company_id.id)])
+        move_line_domain = [('company_id', '=', self.company_id.id),
+                            ('tax_code_id', 'child_of', code_list.id)]
+        if self.period_id:
+            move_line_domain += [('period_id', '=', self.period_id.id)]
+        move_lines = move_line_obj.search(move_line_domain)
+        return move_lines
+
+    @api.multi
+    def calculate(self):
+        self.ensure_one()
+        move_lines02 = self._get_tax_code_lines('RBI')
+        move_lines03 = self._get_tax_code_lines('RLC115')
+        self.move_lines_02 = move_lines02.ids
+        self.move_lines_03 = move_lines03.ids
+        self.casilla_02 = sum([x.tax_amount for x in move_lines02])
+        self.casilla_03 = sum([x.tax_amount for x in move_lines03])
+        self.casilla_04 = self._calc_prev_trimesters_data()
+        self.casilla_01 = len(set([x.partner_id for x in (move_lines02 +
+                                                          move_lines03)]))
+
+    @api.multi
     def show_move_lines(self):
         move_lines = []
         if self.env.context.get('move_lines02', False):
@@ -109,30 +141,3 @@ class L10nEsAeatMod115Report(models.Model):
                 'res_model': 'account.move.line',
                 'domain': [('id', 'in', move_lines)]
                 }
-
-    @api.multi
-    def calculate(self):
-        self.ensure_one()
-        tax_code_obj = self.env['account.tax.code']
-        move_line_obj = self.env['account.move.line']
-        code_base_02 = tax_code_obj.search([('code', '=', 'RBI'),
-                                            ('company_id', '=',
-                                             self.company_id.id)])
-        code_cuota_03 = tax_code_obj.search([('code', '=', 'RLC115'),
-                                             ('company_id', '=',
-                                              self.company_id.id)])
-        move_lines02 = move_line_obj.search(
-            [('tax_code_id', 'child_of', code_base_02.id),
-             ('period_id', '=', self.period_id.id),
-             ('company_id', '=', self.company_id.id)])
-        move_lines03 = move_line_obj.search(
-            [('tax_code_id', 'child_of', code_cuota_03.id),
-             ('period_id', '=', self.period_id.id),
-             ('company_id', '=', self.company_id.id)])
-        self.move_lines_02 = move_lines02.ids
-        self.move_lines_03 = move_lines03.ids
-        self.casilla_02 = sum([x.tax_amount for x in move_lines02])
-        self.casilla_03 = sum([x.tax_amount for x in move_lines03])
-        self.casilla_04 = self._calc_prev_trimesters_data()
-        self.casilla_01 = len(set([x.partner_id for x in (move_lines02 +
-                                                          move_lines03)]))
