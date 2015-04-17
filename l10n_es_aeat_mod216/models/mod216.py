@@ -28,23 +28,30 @@ class L10nEsAeatMod216Report(models.Model):
     _name = 'l10n.es.aeat.mod216.report'
 
     number = fields.Char(default='216')
-    casilla_01 = fields.Integer('Casilla [01]',
+    casilla_01 = fields.Integer('Casilla [01]', readonly=True,
+                                states={'calculated': [('readonly', False)]},
                                 help='Liquidación - Partida 1 - Núm. Rentas')
-    casilla_02 = fields.Float('Casilla [02]',
+    casilla_02 = fields.Float('Casilla [02]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Liquidación - Partida 2 - Base ret. ing. '
                               'cuenta')
-    casilla_03 = fields.Float('Casilla [03]',
+    casilla_03 = fields.Float('Casilla [03]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Liquidación - Partida 3 - Retenciones '
                               'ingresos a cuenta')
-    casilla_04 = fields.Integer('Casilla [04]',
+    casilla_04 = fields.Integer('Casilla [04]', readonly=True,
+                                states={'calculated': [('readonly', False)]},
                                 help='Liquidación - Partida 4 - Núm. Rentas')
-    casilla_05 = fields.Float('Casilla [05]',
+    casilla_05 = fields.Float('Casilla [05]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Liquidación - Partida 5 - Base ret. ing. '
                               'cuenta.')
-    casilla_06 = fields.Float('Casilla [06]',
+    casilla_06 = fields.Float('Casilla [06]', readonly=True,
+                              states={'calculated': [('readonly', False)]},
                               help='Liquidación - Partida 6 - Resultado ing. '
                               'anteriores declaraciones')
-    casilla_07 = fields.Integer('Casilla [07]',
+    casilla_07 = fields.Integer('Casilla [07]', readonly=True,
+                                states={'calculated': [('readonly', False)]},
                                 help='Liquidación - Partida 7 - Resultado '
                                 'ingresar')
     currency_id = fields.Many2one('res.currency', string='Moneda',

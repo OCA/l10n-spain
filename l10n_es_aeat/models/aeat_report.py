@@ -93,6 +93,8 @@ class L10nEsAeatReport(models.AbstractModel):
          ('cancelled', 'Cancelled')], string='State', readonly=True,
         default='draft')
     sequence = fields.Char(string="Sequence", size=16)
+    export_config = fields.Many2one('aeat.model.export.config',
+                                    string='Export config')
 
     @api.model
     def create(self, values):
