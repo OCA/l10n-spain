@@ -182,4 +182,3 @@ class WizardUpdateChartsAccounts(orm.TransientModel):
             'updated': updated_tax_codes,
             'mapping': tax_code_template_mapping
         }
-

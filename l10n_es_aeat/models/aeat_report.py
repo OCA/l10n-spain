@@ -35,9 +35,6 @@ class L10nEsAeatReport(models.AbstractModel):
         company_obj = self.env['res.company']
         return company_obj._company_default_get('l10n.es.aeat.report')
 
-    def _get_company_name(self):
-        return self.company_id.name
-
     @api.onchange('company_id')
     def on_change_company_id(self):
         """
@@ -52,7 +49,6 @@ class L10nEsAeatReport(models.AbstractModel):
                 comp_vat = re.match("(ES){0,1}(.*)",
                                     self.company_id.partner_id.vat).groups()[1]
         self.company_vat = comp_vat
-        self.company_name = self.company_id.name
 
     company_id = fields.Many2one(
         'res.company', string='Company', required=True, readonly=True,
@@ -60,9 +56,6 @@ class L10nEsAeatReport(models.AbstractModel):
     company_vat = fields.Char(
         string='VAT number', size=9, required=True, readonly=True,
         states={'draft': [('readonly', False)]})
-    company_name = fields.Char(
-        string='Company name', readonly=True,
-        states={'draft': [('readonly', False)]}, default=_get_company_name)
     phone = fields.Char(
         string="Phone", size=9, states={'calculated': [('required', True)],
                                         'confirmed': [('readonly', True)]})
@@ -100,6 +93,8 @@ class L10nEsAeatReport(models.AbstractModel):
          ('cancelled', 'Cancelled')], string='State', readonly=True,
         default='draft')
     sequence = fields.Char(string="Sequence", size=16)
+    export_config = fields.Many2one('aeat.model.export.config',
+                                    string='Export config')
 
     @api.model
     def create(self, values):

@@ -33,10 +33,10 @@
                         <group string="Declaración" colspan="4">
                             <group>
                                 <field name="sequence" readonly="1" />
-                                <field name="company_name" required="1"/>
                                 <field name="company_vat" required="1"/>
                                 <field name="number" />
                                 <field name="fiscalyear_id"/>
+                                <field name="export_config" />
                             </group>
                             <group>
                                 <field name="representative_vat"/>
