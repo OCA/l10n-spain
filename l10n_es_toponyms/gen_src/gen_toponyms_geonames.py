@@ -19,47 +19,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import sys
 import os.path
-import urllib2
-import xml.sax
-import xml.sax.handler
-import argparse
-
-
-class GeoNameXmlHandler(xml.sax.handler.ContentHandler):
-    def __init__(self):
-        self.__cpNumber = 0
-        self.__isTotalResultsCount = 0
-        self.__isName = 0
-        self.__curCity = ""
-        self.isServiceOk = True
-        self.message = ""
-        self.citys = []
-
-    def startElement(self, name, attrs):
-        if name == "totalResultsCount":
-            self.__isTotalResultsCount = 1
-        elif name == "name":
-            self.__isName = 1
-        elif name == "status":
-            self.isServiceOk = False
-            self.message = unicode("%s: %s" % (attrs.get("value"),
-                                               attrs.get("message")))
-
-    def characters(self, ch):
-        if self.__isTotalResultsCount == 1:
-            self.__cpNumber = int(ch)
-        elif self.__isName:
-            self.__curCity += ch
-
-    def endElement(self, name):
-        if name == "totalResultsCount":
-            self.__isTotalResultsCount = 0
-        elif name == "name":
-            self.citys.append(unicode(self.__curCity))
-            self.__curCity = ""
-            self.__isName = 0
+import requests
+import tempfile
+import StringIO
+import unicodecsv
+import zipfile
 
 
 def filterCity(originalName):
@@ -72,79 +37,40 @@ def filterCity(originalName):
         replace(' El ', ' el ').replace(' Los ', ' los ')
 
 if __name__ == "__main__":
-    # Parsear argumentos de la línea de comandos
-    argparser = argparse.ArgumentParser(description=u'Descarga los datos de '
-                                                    u'CPs de GeoNames.')
-    argparser.add_argument('--start', dest='start', type=int, default=1000,
-                           help=u'CP de inicio de la consulta')
-    argparser.add_argument('--ine_code', dest='ine_code', type=str, default='',
-                           help=u'Archivo codigos INE')
-    args = argparser.parse_args()
-    start = args.start
-    # Preparar archivo en el que escribir
-    if start == 1000:
-        output = open("l10n_es_toponyms_zipcodes.xml", 'w')
-        output.write("<?xml version='1.0' encoding='UTF-8'?>\n")
-        output.write("<openerp>\n")
-        output.write("    <data noupdate='1'>\n")
-    else:
-        output = open("l10n_es_toponyms_zipcodes.xml", 'a')
-
-    # Descargamos el fichero desde la web del INE apartado "Callejero del censo
-    # electoral"
-    # Descomprimimos el archivo y pasamos como parametro ine_code la ruta del
-    # archivo mas grande "TRAMOS-NAL.Fxxxxxx"
-    ine_dic = {}
-    if args.ine_code != '':
-        if os.path.exists(args.ine_code):
-            fCPs = open(args.ine_code, 'r')
-            # Creamos un diccionario con clave Código postal y valor codigo INE
-            # de municipio
-            for lineCP in fCPs:
-                ine_dic[lineCP[42:47]] = lineCP[0:5]
-
-    # Iterar por el rango de CPs
+    url = "http://download.geonames.org/export/zip/ES.zip"
+    print 'Comenzando descarga de %s' % url
+    res_request = requests.get(url)
+    if res_request.status_code != requests.codes.ok:
+        print 'Error descargando archivo: %s.' % res_request.status_code
+        exit(res_request.status_code)
+    f_geonames = zipfile.ZipFile(StringIO.StringIO(res_request.content))
+    tempdir = tempfile.mkdtemp(prefix='openerp')
+    f_geonames.extract('ES.txt', tempdir)
+    print 'Archivo descomprimido'
+    data_file = open(os.path.join(tempdir, 'ES.txt'), 'r')
+    data_file.seek(0)
+    print 'Generando XML...'
+    output = open("l10n_es_toponyms_zipcodes.xml", 'w')
+    output.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+    output.write('<openerp>\n')
+    output.write(' ' * 4 + '<data noupdate="1">\n')
     cont = 0
-    for cp in range(start, 53000):
-        try:
-            xml_string = urllib2.urlopen("http://ws.geonames.org/"
-                                         "postalCodeSearch?postalcode="
-                                         "%05d&country=ES" % cp).read()
-            handler = GeoNameXmlHandler()
-            xml.sax.parseString(xml_string, handler)
-        except:
-            print ("Ha ocurrido un error inesperado. Pruebe a lanzar de "
-                   "nuevo el script con el parámetro --start y el número %s." %
-                   cp)
-            sys.exit()
-        if handler.isServiceOk:
-            cp_str = "%05d" % cp
-            print "%05d: %s" % (cp, handler.citys)
-            for city in handler.citys:
-                cont += 1
-                output.write('        <record id="city_ES_%s" '
-                             'model="city.city">\n' % cont)
-                output.write('            <field name="state_id" ref="'
-                             'l10n_es_toponyms.ES%s"/>\n' % cp_str[:2])
-                output.write('            <field name="name">%s</field>\n' %
-                             filterCity(city).encode('utf-8'))
-                output.write('            <field name="zip">%s</field>\n' %
-                             cp_str)
-                output.write('            <field name="country_id" '
-                             'ref="base.es"/>\n')
-                output.write('            <field name="code">%s</field>\n' %
-                             ine_dic.get(cp, ''))
-                output.write('        </record>\n')
-        else:
-            print "No se puede continuar la extracción de datos.\n%s\n" \
-                  "Continúe después del tiempo indicado utilizando el " \
-                  "parámetro --start con el número %s." %\
-                  (handler.message.encode('utf-8'), cp)
-            output.close()
-            sys.exit()
-    # Se ha terminado ya con todos los códigos postales
-    output.write("    </data>\n")
-    output.write("</openerp>\n")
+    for row in unicodecsv.reader(
+            data_file, encoding='utf-8', delimiter='	'):
+        cont += 1
+        output.write(' ' * 8 +
+                     '<record id="city_ES_%s" model="res.better.zip">\n' %
+                     cont)
+        output.write(' ' * 12 + '<field name="state_id" ref="'
+                                'l10n_es_toponyms.ES%s"/>\n' % row[1][:2])
+        output.write(' ' * 12 + '<field name="city">%s</field>\n' %
+                     filterCity(row[2]).encode('utf-8'))
+        output.write(' ' * 12 + '<field name="name">%s</field>\n' % row[1])
+        output.write(' ' * 12 + '<field name="country_id" ref="base.es"/>\n')
+        output.write(' ' * 8 + '</record>\n')
+    data_file.close()
+    output.write(' ' * 4 + '</data>\n')
+    output.write('</openerp>\n')
     # Cerrar archivo
     output.close()
     print "Proceso terminado"
