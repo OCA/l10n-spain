@@ -64,12 +64,14 @@ class L10nEsAeatMod347Report(models.Model):
                 [('partner_id', 'child_of', partners.ids),
                  ('type', '=', invoice_type),
                  ('period_id', 'in', periods.ids),
-                 ('state', 'not in', ['draft', 'cancel'])])
+                 ('state', 'not in', ['draft', 'cancel']),
+                 ('not_in_mod347', '=', False)])
             refunds = invoice_obj.search(
                 [('partner_id', 'child_of', partners.ids),
                  ('type', '=', refund_type),
                  ('period_id', 'in', periods.ids),
-                 ('state', 'not in', ['draft', 'cancel'])])
+                 ('state', 'not in', ['draft', 'cancel']),
+                 ('not_in_mod347', '=', False)])
             # Calculate the invoiced amount
             # Remove IRPF tax for invoice amount
             invoice_amount = sum(x.amount_total_wo_irpf for x in invoices)
