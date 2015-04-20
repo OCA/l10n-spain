@@ -63,9 +63,9 @@ if __name__ == "__main__":
                      cont)
         output.write(' ' * 12 + '<field name="state_id" ref="'
                                 'l10n_es_toponyms.ES%s"/>\n' % row[1][:2])
-        output.write(' ' * 12 + '<field name="name">%s</field>\n' %
+        output.write(' ' * 12 + '<field name="city">%s</field>\n' %
                      filterCity(row[2]).encode('utf-8'))
-        output.write(' ' * 12 + '<field name="zip">%s</field>\n' % row[1])
+        output.write(' ' * 12 + '<field name="name">%s</field>\n' % row[1])
         output.write(' ' * 12 + '<field name="country_id" ref="base.es"/>\n')
         output.write(' ' * 8 + '</record>\n')
     data_file.close()
