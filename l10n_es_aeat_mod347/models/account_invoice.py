@@ -32,3 +32,7 @@ class AccountInvoice(models.Model):
     amount_total_wo_irpf = fields.Float(
         compute="_get_amount_total_wo_irpf",
         string="Total amount without IRPF taxes")
+    not_in_mod347 = fields.Boolean(
+        "Not included in 347 report",
+        help="If you mark this field, this invoice will not be included in "
+             "any AEAT 347 model report.", default=False)
