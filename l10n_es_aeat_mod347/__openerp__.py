@@ -48,6 +48,7 @@
         "security/mod_347_security.xml",
         "wizard/export_mod347_to_boe.xml",
         "views/account_period_view.xml",
+        "views/account_invoice_view.xml",
         "views/res_partner_view.xml",
         "views/mod347_view.xml",
         "report/mod347_report.xml",
