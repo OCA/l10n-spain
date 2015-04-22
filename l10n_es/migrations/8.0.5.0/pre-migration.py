@@ -37,6 +37,8 @@ def rename_tax_codes(cr):
         # IVA devengado. Base
         {'previous_code': '--',
          'previous_name': 'IVA devengado. Base imponible', 'code': 'IDBI'},
+        {'previous_code': '--',
+         'previous_name': 'IVA Devengado Base Imponible', 'code': 'IDBI'},
         {'previous_code': '[01]', 'code': 'RGIDBI4'},
         {'previous_code': '[04]', 'code': 'RGIDBI10'},
         {'previous_code': '[07]', 'code': 'RGIDBI21'},
@@ -52,74 +54,76 @@ def rename_tax_codes(cr):
         {'previous_code': '--',
          'previous_name': 'IVA deducible. Base imponible', 'code': 'ISBI'},
         {'previous_code': '--',
+         'previous_name': 'IVA Deducible Base Imponible', 'code': 'ISBI'},
+        {'previous_code': '--',
          'previous_name': 'Base de compensaciones Régimen Especial A., G. y'
-         ' P. 12%', 'code': 'CREAGYP12'},
+         ' P. 12%', 'code': 'CREAGYPBI12'},
         # Base operaciones interiores corrientes
-        {'previous_code': '[22]', 'code': 'SOICC'},
+        {'previous_code': '[22]', 'code': 'OICBI'},
         {'previous_code': '--',
          'previous_name': 'Base operaciones interiores corrientes (4%)',
-         'code': 'SOICC4'},
+         'code': 'OICBI4'},
         {'previous_code': '--',
          'previous_name': 'Base operaciones interiores corrientes (10%)',
-         'code': 'SOICC10'},
+         'code': 'OICBI10'},
         {'previous_code': '--',
          'previous_name': 'Base operaciones interiores corrientes (21%)',
-         'code': 'SOICC21'},
+         'code': 'OICBI21'},
         # Base operaciones interiores bienes de inversión
-        {'previous_code': '[24]', 'code': 'SOIBIC'},
+        {'previous_code': '[24]', 'code': 'OIBIBI'},
         {'previous_code': '--',
          'previous_name': 'Base operaciones interiores bienes inversión (4%)',
-         'code': 'SOIBIC4'},
+         'code': 'OIBIBI4'},
         {'previous_code': '--',
          'previous_name': 'Base operaciones interiores bienes inversión (10%)',
-         'code': 'SOIBIC10'},
+         'code': 'OIBIBI10'},
         {'previous_code': '--',
          'previous_name': 'Base operaciones interiores bienes inversión (21%)',
-         'code': 'SOIBIC21'},
+         'code': 'OIBIBI21'},
         # Base importaciones de bienes corrientes
-        {'previous_code': '[26]', 'code': 'DIBCC'},
+        {'previous_code': '[26]', 'code': 'IBCBI'},
         {'previous_code': '--',
          'previous_name': 'Base importaciones bienes y servicios corrientes'
-         ' (4%)', 'code': 'DIBYSCC4'},
+         ' (4%)', 'code': 'IBYSCBI4'},
         {'previous_code': '--',
          'previous_name': 'Base importaciones bienes y servicios corrientes'
-         ' (10%)', 'code': 'DIBYSCC10'},
+         ' (10%)', 'code': 'IBYSCBI10'},
         {'previous_code': '--',
          'previous_name': 'Base importaciones bienes y servicios corrientes'
-         ' (21%)', 'code': 'DIBYSCC21'},
+         ' (21%)', 'code': 'IBYSCBI21'},
         # Base importaciones de bienes de inversión
-        {'previous_code': '[28]', 'code': 'DIBIC'},
+        {'previous_code': '[28]', 'code': 'IBIBI'},
         {'previous_code': '--',
          'previous_name': 'Base importaciones bienes inversión (4%)',
-         'code': 'DIBIC4'},
+         'code': 'IBIBI4'},
         {'previous_code': '--',
          'previous_name': 'Base importaciones bienes inversión (10%)',
-         'code': 'DIBIC10'},
+         'code': 'IBIBI10'},
         {'previous_code': '--',
          'previous_name': 'Base importaciones bienes inversión (21%)',
-         'code': 'DIBIC21'},
+         'code': 'IBIBI21'},
         # Adquisiciones intracomunitarias de bienes corrientes
-        {'previous_code': '[30]', 'code': 'AIBYSCC'},
+        {'previous_code': '[30]', 'code': 'AIBYSCBI'},
         {'previous_code': '--',
          'previous_name': 'Base adquisiciones intracomunitarias bienes y'
-         ' serv. corr. (4%)', 'code': 'AIBYSCC4'},
+         ' serv. corr. (4%)', 'code': 'AIBYSCBI4'},
         {'previous_code': '--',
          'previous_name': 'Base adquisiciones intracomunitarias bienes y'
-         ' serv. corr. (10%)', 'code': 'AIBYSCC10'},
+         ' serv. corr. (10%)', 'code': 'AIBYSCBI10'},
         {'previous_code': '--',
          'previous_name': 'Base adquisiciones intracomunitarias bienes y'
-         ' serv. corr. (21%)', 'code': 'AIBYSCC21'},
+         ' serv. corr. (21%)', 'code': 'AIBYSCBI21'},
         # Adquisiciones intracomunitarias de bienes de inversión
-        {'previous_code': '[32]', 'code': 'AIBIC'},
+        {'previous_code': '[32]', 'code': 'AIBIBI'},
         {'previous_code': '--',
          'previous_name': 'Base adquisiciones intracomunitarias bienes'
-         ' inversión (4%)', 'code': 'AIBIC4'},
+         ' inversión (4%)', 'code': 'AIBIBI4'},
         {'previous_code': '--',
          'previous_name': 'Base adquisiciones intracomunitarias bienes'
-         ' inversión (10%)', 'code': 'AIBIC10'},
+         ' inversión (10%)', 'code': 'AIBIBI10'},
         {'previous_code': '--',
          'previous_name': 'Base adquisiciones intracomunitarias bienes'
-         ' inversión (21%)', 'code': 'AIBIC21'},
+         ' inversión (21%)', 'code': 'AIBIBI21'},
         # Base recargo de equivalencia
         {'previous_code': '--',
          'previous_name': 'Recargo equivalencia ded. Base imponible 0.5%',
@@ -132,73 +136,73 @@ def rename_tax_codes(cr):
          'code': 'REDBI52'},
         # Iva deducible cuotas
         {'previous_code': '[37]', 'code': 'ITADC'},
-        {'previous_code': '34', 'code': 'CREAGYPBI12'},
+        {'previous_code': '34', 'code': 'CREAGYP12'},
         # Cuotas operaciones interiores corrientes
-        {'previous_code': '[23]', 'code': 'OICBI'},
+        {'previous_code': '[23]', 'code': 'SOICC'},
         {'previous_code': '--',
          'previous_name': 'Cuotas soportadas operaciones interiores corrientes'
-         ' (4%)', 'code': 'OICBI4'},
+         ' (4%)', 'code': 'SOICC4'},
         {'previous_code': '--',
          'previous_name': 'Cuotas soportadas operaciones interiores corrientes'
-         ' (10%)', 'code': 'OICBI10'},
+         ' (10%)', 'code': 'SOICC10'},
         {'previous_code': '--',
          'previous_name': 'Cuotas soportadas operaciones interiores corrientes'
-         ' (21%)', 'code': 'OICBI21'},
+         ' (21%)', 'code': 'SOICC21'},
         # Cuotas operaciones interiores con bienes de inversión
-        {'previous_code': '[25]', 'code': 'OIBIBI'},
+        {'previous_code': '[25]', 'code': 'SOIBIC'},
         {'previous_code': '--',
          'previous_name': 'Cuotas soportadas operaciones interiores bienes'
-         ' inversión (4%)', 'code': 'OIBIBI4'},
+         ' inversión (4%)', 'code': 'SOIBIC4'},
         {'previous_code': '--',
          'previous_name': 'Cuotas soportadas operaciones interiores bienes'
-         ' inversión (10%)', 'code': 'OIBIBI10'},
+         ' inversión (10%)', 'code': 'SOIBIC10'},
         {'previous_code': '--',
          'previous_name': 'Cuotas soportadas operaciones interiores bienes'
-         ' inversión (21%)', 'code': 'OIBIBI21'},
+         ' inversión (21%)', 'code': 'SOIBIC21'},
         # Cuotas devengadas en importaciones de bienes y serv. corr.
-        {'previous_code': '[27]', 'code': 'IBCBI'},
+        {'previous_code': '[27]', 'code': 'DIBCC'},
         {'previous_code': '--',
          'previous_name': 'Cuotas devengadas importaciones bienes y serv.'
-         ' corr. (4%)', 'code': 'IBYSCBI4'},
+         ' corr. (4%)', 'code': 'DIBYSCC4'},
         {'previous_code': '--',
          'previous_name': 'Cuotas devengadas importaciones bienes y serv.'
-         ' corr. (10%)', 'code': 'IBYSCBI10'},
+         ' corr. (10%)', 'code': 'DIBYSCC10'},
         {'previous_code': '--',
          'previous_name': 'Cuotas devengadas importaciones bienes y serv.'
-         ' corr. (21%)', 'code': 'IBYSCBI21'},
+         ' corr. (21%)', 'code': 'DIBYSCC21'},
         # Cuotas devengadas en importaciones de bienes de inversión
-        {'previous_code': '[29]', 'code': 'IBIBI'},
+        {'previous_code': '[29]', 'code': 'DIBIC'},
         {'previous_code': '--',
          'previous_name': 'Cuotas devengadas importaciones bienes inversión'
-         ' (4%)', 'code': 'IBIBI4'},
+         ' (4%)', 'code': 'DIBIC4'},
         {'previous_code': '--',
          'previous_name': 'Cuotas devengadas importaciones bienes inversión'
-         ' (10%)', 'code': 'IBIBI10'},
+         ' (10%)', 'code': 'DIBIC10'},
         {'previous_code': '--',
          'previous_name': 'Cuotas devengadas importaciones bienes inversión'
-         ' (21%)', 'code': 'IBIBI21'},
-        # Adquisiciones intracomunitarias de bienes corrientes
-        {'previous_code': '[31]', 'code': 'AIBYSCBI'},
+         ' (21%)', 'code': 'DIBIC21'},
+        # Adquisiciones intracomunitarias de bienes corrientes - Cuota
+        {'previous_code': '[31]', 'code': 'AIBYSCC'},
         {'previous_code': '--',
          'previous_name': 'En adquisiciones intracomunitarias bienes y serv.'
-         ' corr. (4%)', 'code': 'AIBYSCBI4'},
+         ' corr. (4%)', 'code': 'AIBYSCC4'},
         {'previous_code': '--',
          'previous_name': 'En adquisiciones intracomunitarias bienes y serv.'
-         ' corr. (10%)', 'code': 'AIBYSCBI10'},
+         ' corr. (10%)', 'code': 'AIBYSCC10'},
         {'previous_code': '--',
          'previous_name': 'En adquisiciones intracomunitarias bienes y serv.'
-         ' corr. (21%)', 'code': 'AIBYSCBI21'},
-        # Adquisiciones intracomunitarias bienes de inversión
-        {'previous_code': '[33]', 'code': 'AIBIBI'},
+         ' corr. (21%)', 'code': 'AIBYSCC21'},
+        # Adquisiciones intracomunitarias bienes de inversión - Cuota
+        {'previous_code': '[33]', 'code': 'AIBIC'},
         {'previous_code': '--',
          'previous_name': 'En adquisiciones intracomunitarias bienes inversión'
-         ' (4%)', 'code': 'AIBIBI4'},
+         ' (4%)', 'code': 'AIBIC4'},
         {'previous_code': '--',
          'previous_name': 'En adquisiciones intracomunitarias bienes inversión'
-         ' (10%)', 'code': 'AIBIBI10'},
+         ' (10%)', 'code': 'AIBIC10'},
         {'previous_code': '--',
          'previous_name': 'En adquisiciones intracomunitarias bienes inversión'
-         ' (21%)', 'code': 'AIBIBI21'},
+         ' (21%)', 'code': 'AIBIC21'},
         # Otros códigos de impuestos
         {'previous_code': '[42]', 'code': 'EIDBYS'},
         {'previous_code': '[43]', 'code': 'EYOA'},

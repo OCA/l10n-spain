@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data noupdate="0">
-        
+
         <!-- Plantilla común de impuestos para España.
 
         Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com (2009-11-28)
@@ -1103,13 +1103,13 @@
           <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI9"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">Retenciones a cuenta IRPF 9%</field>
           <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC9"/>
           <field name="amount" eval="-0.09"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_s_irpf18" model="account.tax.template">
@@ -1121,13 +1121,13 @@
           <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI18"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">Retenciones a cuenta IRPF 18%</field>
           <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC18"/>
           <field name="amount" eval="-0.18"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_s_irpf19" model="account.tax.template">
@@ -1139,13 +1139,13 @@
           <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI19"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">Retenciones a cuenta IRPF 19%</field>
           <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC19"/>
           <field name="amount" eval="-0.19"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_p_irpf19" model="account.tax.template">
@@ -1154,16 +1154,16 @@
           <field name="type_tax_use">purchase</field>
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
-          <field name="base_code_id" ref="account_tax_code_template_IRACBI19"/>
-          <field name="ref_base_code_id" ref="account_tax_code_template_IRACBI19"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="base_code_id" ref="account_tax_code_template_IRPBI19"/>
+          <field name="ref_base_code_id" ref="account_tax_code_template_IRPBI19"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">Retenciones IRPF 19%</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
-          <field name="tax_code_id" ref="account_tax_code_template_IRACC19"/>
-          <field name="ref_tax_code_id" ref="account_tax_code_template_IRACC19"/>
+          <field name="tax_code_id" ref="account_tax_code_template_IRPC19"/>
+          <field name="ref_tax_code_id" ref="account_tax_code_template_IRPC19"/>
           <field name="amount" eval="-0.19"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_p_irpf20a" model="account.tax.template">
@@ -1175,13 +1175,13 @@
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPAABI20"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">Retenciones IRPF 20% (Arrendamientos)</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPAAC20"/>
           <field name="amount" eval="-0.2"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_p_irpf18" model="account.tax.template">
@@ -1192,14 +1192,14 @@
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPBI18"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRPC18"/>
           <field name="name">Retenciones IRPF 18%</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPC18"/>
           <field name="amount" eval="-0.18"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_p_irpf19a" model="account.tax.template">
@@ -1211,13 +1211,13 @@
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPAABI19"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">Retenciones IRPF 19% (Arrendamientos)</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPAAC19"/>
           <field name="amount" eval="-0.19"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_p_irpf7" model="account.tax.template">
@@ -1228,14 +1228,14 @@
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPBI7"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRPC7"/>
           <field name="name">Retenciones IRPF 7%</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPC7"/>
           <field name="amount" eval="-0.07"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_p_irpf9" model="account.tax.template">
@@ -1246,14 +1246,14 @@
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPBI9"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRPC9"/>
           <field name="name">Retenciones IRPF 9%</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPC9"/>
           <field name="amount" eval="-0.09"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_s_irpf20" model="account.tax.template">
@@ -1265,13 +1265,13 @@
           <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI20"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">Retenciones a cuenta IRPF 20%</field>
           <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC20"/>
           <field name="amount" eval="-0.2"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_p_iva12_agr" model="account.tax.template">
@@ -1383,13 +1383,13 @@
           <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI1"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">Retenciones a cuenta IRPF 1%</field>
           <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC1"/>
           <field name="amount" eval="-0.01"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_s_irpf2" model="account.tax.template">
@@ -1401,13 +1401,13 @@
           <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI2"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">Retenciones a cuenta IRPF 2%</field>
           <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC2"/>
           <field name="amount" eval="-0.02"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_s_irpf21" model="account.tax.template">
@@ -1419,13 +1419,13 @@
           <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI21"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">Retenciones a cuenta IRPF 21%</field>
           <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC21"/>
           <field name="amount" eval="-0.21"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_s_irpf7" model="account.tax.template">
@@ -1437,13 +1437,13 @@
           <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI7"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">Retenciones a cuenta IRPF 7%</field>
           <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC7"/>
           <field name="amount" eval="-0.07"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_s_irpf15" model="account.tax.template">
@@ -1455,13 +1455,13 @@
           <field name="account_paid_id" ref="pgc_473_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRACBI15"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">Retenciones a cuenta IRPF 15%</field>
           <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRACC15"/>
           <field name="amount" eval="-0.15"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_p_irpf1" model="account.tax.template">
@@ -1472,14 +1472,14 @@
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPBI1"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRPC1"/>
           <field name="name">Retenciones IRPF 1%</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPC1"/>
           <field name="amount" eval="-0.01"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_p_irpf15" model="account.tax.template">
@@ -1490,14 +1490,14 @@
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPBI15"/>
           <field name="ref_base_code_id" ref="account_tax_code_template_IRPBI15"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRPC15"/>
           <field name="name">Retenciones IRPF 15%</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPC15"/>
           <field name="amount" eval="-0.15"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_p_irpf21t" model="account.tax.template">
@@ -1508,13 +1508,13 @@
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPATBI"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRPATC"/>
           <field name="name">Retenciones IRPF 21% (Trabajadores)</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="amount" eval="-0.21"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPATC"/>
           <field name="type">percent</field>
         </record>
@@ -1625,13 +1625,13 @@
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPF_RET_PRA_TRA_21_BI_E"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">Retenciones IRPF (Trabajadores) en especie</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPATCE"/>
           <field name="amount" eval="-0.21"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_p_irpf20" model="account.tax.template">
@@ -1642,13 +1642,13 @@
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPBI20"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRPC20"/>
           <field name="name">Retenciones IRPF 20%</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="amount" eval="-0.2"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPC20"/>
           <field name="type">percent</field>
         </record>
@@ -1661,13 +1661,13 @@
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPAABI21"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="name">Retenciones IRPF 21% (Arrendamientos)</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPAAC21"/>
           <field name="amount" eval="-0.21"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_p_irpf21p" model="account.tax.template">
@@ -1678,13 +1678,13 @@
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPBI21"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRPC21"/>
           <field name="name">Retenciones IRPF 21%</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="amount" eval="-0.21"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPC21"/>
           <field name="type">percent</field>
         </record>
@@ -1696,13 +1696,13 @@
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPBI2"/>
-          <field name="ref_tax_sign" eval="-1.0"/>
+          <field name="ref_tax_sign" eval="1.0"/>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRPC2"/>
           <field name="name">Retenciones IRPF 2%</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="amount" eval="-0.02"/>
-          <field name="tax_sign" eval="1.0"/>
+          <field name="tax_sign" eval="-1.0"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPC2"/>
           <field name="type">percent</field>
         </record>
