@@ -287,15 +287,18 @@ def rename_tax_codes(cr):
             cr.execute(sql, (mapping['code'], mapping['previous_code']))
 
 
-def rename_taxs(cr):
+def rename_taxes(cr):
     tax_mapping = [
         # IVA Ventas
         {'previous_description': 'S_IVA4', 'description': 'S_IVA4B'},
         {'previous_description': 'S_IVA10', 'description': 'S_IVA10B'},
         {'previous_description': 'S_IVA21', 'description': 'S_IVA21B'},
-        {'previous_description': 'P_IVA21_IC_SV', 'description': 'P_IVA21_SP_IN'},
-        {'previous_description': 'P_IVA21_IC_SV_1', 'description': 'P_IVA21_SP_IN_1'},
-        {'previous_description': 'P_IVA21_IC_SV_2', 'description': 'P_IVA21_SP_IN_2'},
+        {'previous_description': 'P_IVA21_IC_SV',
+         'description': 'P_IVA21_SP_IN'},
+        {'previous_description': 'P_IVA21_IC_SV_1',
+         'description': 'P_IVA21_SP_IN_1'},
+        {'previous_description': 'P_IVA21_IC_SV_2',
+         'description': 'P_IVA21_SP_IN_2'},
     ]
     for mapping in tax_mapping:
         sql = """
@@ -311,4 +314,4 @@ def migrate(cr, version):
         return
     rename_fiscal_positions(cr)
     rename_tax_codes(cr)
-    rename_taxs(cr)
+    rename_taxes(cr)
