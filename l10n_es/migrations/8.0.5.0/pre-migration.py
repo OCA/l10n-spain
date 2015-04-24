@@ -21,7 +21,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-__name__ = u"Renombrar códigos de impuestos y posiciones fiscales"
+__name__ = u"Renombrar impuestos, códigos de impuestos y posiciones fiscales"
 
 
 def rename_fiscal_positions(cr):
@@ -274,7 +274,6 @@ def rename_tax_codes(cr):
          'previous_name': 'Base ventas exentas',
          'code': 'OESDAD'},
     ]
-
     for mapping in tax_code_mapping:
         sql = """
         UPDATE account_tax_code
@@ -288,8 +287,31 @@ def rename_tax_codes(cr):
             cr.execute(sql, (mapping['code'], mapping['previous_code']))
 
 
+def rename_taxes(cr):
+    tax_mapping = [
+        # IVA Ventas
+        {'previous_description': 'S_IVA4', 'description': 'S_IVA4B'},
+        {'previous_description': 'S_IVA10', 'description': 'S_IVA10B'},
+        {'previous_description': 'S_IVA21', 'description': 'S_IVA21B'},
+        {'previous_description': 'P_IVA21_IC_SV',
+         'description': 'P_IVA21_SP_IN'},
+        {'previous_description': 'P_IVA21_IC_SV_1',
+         'description': 'P_IVA21_SP_IN_1'},
+        {'previous_description': 'P_IVA21_IC_SV_2',
+         'description': 'P_IVA21_SP_IN_2'},
+    ]
+    for mapping in tax_mapping:
+        sql = """
+        UPDATE account_tax
+        SET description=%s
+        WHERE description=%s"""
+        cr.execute(sql, (mapping['description'],
+                         mapping['previous_description']))
+
+
 def migrate(cr, version):
     if not version:
         return
     rename_fiscal_positions(cr)
     rename_tax_codes(cr)
+    rename_taxes(cr)
