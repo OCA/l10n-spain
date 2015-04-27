@@ -713,7 +713,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf19a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva21b"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf19"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf19a"/>
         </record>
         <record id="fptt_irpf19asale_21s"
             model="account.fiscal.position.tax.template">
@@ -725,7 +725,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf19a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva21s"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf19"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf19a"/>
         </record>
         <record id="fptt_irpf19asale_21isp"
             model="account.fiscal.position.tax.template">
@@ -737,7 +737,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf19a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva21isp"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf19"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf19a"/>
         </record>
         <record id="fptt_irpf19asale_10b"
             model="account.fiscal.position.tax.template">
@@ -749,7 +749,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf19a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva10b"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf19"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf19a"/>
         </record>
         <record id="fptt_irpf19asale_10s"
             model="account.fiscal.position.tax.template">
@@ -761,7 +761,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf19a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva10s"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf19"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf19a"/>
         </record>
         <record id="fptt_irpf19asale_4b"
             model="account.fiscal.position.tax.template">
@@ -773,7 +773,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf19a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva4b"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf19"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf19a"/>
         </record>
         <record id="fptt_irpf19asale_4s"
             model="account.fiscal.position.tax.template">
@@ -785,7 +785,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf19a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva4s"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf19"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf19a"/>
         </record>
         <record id="fptt_irpf19a_21b" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf19a"/>
@@ -861,7 +861,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf19a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva0"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf19"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf19a"/>
         </record>
         <record id="fptt_irpf19a_0" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf19a"/>
@@ -886,7 +886,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf20a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva21b"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf20"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf20a"/>
         </record>
         <record id="fptt_irpf20asale_21s"
             model="account.fiscal.position.tax.template">
@@ -898,7 +898,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf20a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva21s"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf20"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf20a"/>
         </record>
         <record id="fptt_irpf20asale_21isp"
             model="account.fiscal.position.tax.template">
@@ -910,7 +910,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf20a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva21isp"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf20"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf20a"/>
         </record>
         <record id="fptt_irpf20asale_10b"
             model="account.fiscal.position.tax.template">
@@ -922,7 +922,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf20a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva10b"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf20"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf20a"/>
         </record>
         <record id="fptt_irpf20asale_10s"
             model="account.fiscal.position.tax.template">
@@ -934,7 +934,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf20a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva10s"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf20"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf20a"/>
         </record>
         <record id="fptt_irpf20asale_4b"
             model="account.fiscal.position.tax.template">
@@ -946,7 +946,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf20a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva4b"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf20"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf20a"/>
         </record>
         <record id="fptt_irpf20asale_4s"
             model="account.fiscal.position.tax.template">
@@ -958,7 +958,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf20a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva4s"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf20"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf20a"/>
         </record>
         <record id="fptt_irpf20a_21b" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf20a"/>
@@ -1034,7 +1034,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf20a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva0"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf20"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf20a"/>
         </record>
         <record id="fptt_irpf20a_0" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf20a"/>
@@ -1059,7 +1059,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf21a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva21b"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf21"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf21a"/>
         </record>
         <record id="fptt_irpf21asale_21isp"
             model="account.fiscal.position.tax.template">
@@ -1071,7 +1071,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf21a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva21isp"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf21"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf21a"/>
         </record>
         <record id="fptt_irpf21asale_21s"
             model="account.fiscal.position.tax.template">
@@ -1083,7 +1083,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf21a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva21s"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf21"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf21a"/>
         </record>
         <record id="fptt_irpf21asale_10b"
             model="account.fiscal.position.tax.template">
@@ -1095,7 +1095,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf21a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva10b"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf21"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf21a"/>
         </record>
         <record id="fptt_irpf21asale_10s"
             model="account.fiscal.position.tax.template">
@@ -1107,7 +1107,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf21a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva10s"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf21"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf21a"/>
         </record>
         <record id="fptt_irpf21asale_4b"
             model="account.fiscal.position.tax.template">
@@ -1119,7 +1119,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf21a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva4b"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf21"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf21a"/>
         </record>
         <record id="fptt_irpf21asale_4s"
             model="account.fiscal.position.tax.template">
@@ -1131,7 +1131,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf21a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva4s"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf21"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf21a"/>
         </record>
         <record id="fptt_irpf21a_21b" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf21a"/>
@@ -1207,7 +1207,7 @@
             model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf21a"/>
             <field name="tax_src_id" ref="account_tax_template_s_iva0"/>
-            <field name="tax_dest_id" ref="account_tax_template_s_irpf21"/>
+            <field name="tax_dest_id" ref="account_tax_template_s_irpf21a"/>
         </record>
         <record id="fptt_irpf21a_0" model="account.fiscal.position.tax.template">
             <field name="position_id" ref="fp_irpf21a"/>
