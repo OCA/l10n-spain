@@ -327,34 +327,38 @@ class ExecuteFyc(orm.TransientModel):
                                 dest_id = account_map.dest_account_id.id
                                 dest_accounts_totals[dest_id] -= balance
                     elif account.user_type.close_method == 'unreconciled':
-                        found_lines = move_line_obj.search(
-                            cr, uid, [('period_id', 'in', period_ids),
-                                      ('account_id', '=', account.id),
-                                      ('company_id', '=', company_id)])
-                        lines_by_partner = {}
-                        for line in move_line_obj.browse(cr, uid, found_lines):
-                            balance = line.debit - line.credit
-                            if line.partner_id.id in lines_by_partner:
-                                lines_by_partner[line.partner_id.id] += balance
-                            else:
-                                lines_by_partner[line.partner_id.id] = balance
-                        for partner_id in lines_by_partner.keys():
-                            balance = lines_by_partner[partner_id]
-                            if balance:
-                                move_lines.append(
-                                    {'account_id': account.id,
-                                     'debit': balance < 0 and -balance,
-                                     'credit': balance > 0 and balance,
-                                     'name': description,
-                                     'date': date,
-                                     'period_id': period_id,
-                                     'journal_id': journal_id,
-                                     'partner_id': partner_id})
-                            # Update the dest account total (with the inverse
-                            # of the balance)
-                            if account_map.dest_account_id:
-                                dest_id = account_map.dest_account_id.id
-                                dest_accounts_totals[dest_id] -= balance
+                        if account.balance:
+                            found_lines = move_line_obj.search(
+                                cr, uid, [('period_id', 'in', period_ids),
+                                          ('account_id', '=', account.id),
+                                          ('company_id', '=', company_id)])
+                            lines_by_partner = {}
+                            for line in move_line_obj.browse(
+                                    cr, uid, found_lines):
+                                balance = line.debit - line.credit
+                                if line.partner_id.id in lines_by_partner:
+                                    lines_by_partner[
+                                        line.partner_id.id] += balance
+                                else:
+                                    lines_by_partner[
+                                        line.partner_id.id] = balance
+                            for partner_id in lines_by_partner.keys():
+                                balance = lines_by_partner[partner_id]
+                                if balance:
+                                    move_lines.append(
+                                        {'account_id': account.id,
+                                         'debit': balance < 0 and -balance,
+                                         'credit': balance > 0 and balance,
+                                         'name': description,
+                                         'date': date,
+                                         'period_id': period_id,
+                                         'journal_id': journal_id,
+                                         'partner_id': partner_id})
+                                # Update the dest account total (with the
+                                # inverse of the balance)
+                                if account_map.dest_account_id:
+                                    dest_id = account_map.dest_account_id.id
+                                    dest_accounts_totals[dest_id] -= balance
                     elif account.user_type.close_method == 'detail':
                         raise orm.except_orm(
                             _('UserError'),
