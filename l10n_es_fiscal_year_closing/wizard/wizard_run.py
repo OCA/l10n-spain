@@ -25,6 +25,7 @@
 from openerp import netsvc
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
+from openerp.tools import float_is_zero
 
 
 class CancelFyc(orm.TransientModel):
@@ -285,6 +286,7 @@ class ExecuteFyc(orm.TransientModel):
         account_obj = self.pool['account.account']
         move_line_obj = self.pool['account.move.line']
         decimal_precision_obj = self.pool['decimal.precision']
+        precision = decimal_precision_obj.precision_get(cr, uid, 'Account')
 
         # For each (parent) account in the mapping list
         for account_map in account_mapping_ids:
@@ -302,7 +304,8 @@ class ExecuteFyc(orm.TransientModel):
             # computed balanced is based on this filter)
             for account in account_obj.browse(cr, uid, child_ids, ctx):
                 # Check if the children account needs to (and can) be closed
-                if account.type != 'view':
+                if (account.type != 'view' and not float_is_zero(
+                        account.balance, precision_rounding=precision)):
                     if account.user_type.close_method == 'balance':
                         # Compute the balance for the account (uses the
                         # previous browse context filter)
@@ -327,38 +330,34 @@ class ExecuteFyc(orm.TransientModel):
                                 dest_id = account_map.dest_account_id.id
                                 dest_accounts_totals[dest_id] -= balance
                     elif account.user_type.close_method == 'unreconciled':
-                        if account.balance:
-                            found_lines = move_line_obj.search(
-                                cr, uid, [('period_id', 'in', period_ids),
-                                          ('account_id', '=', account.id),
-                                          ('company_id', '=', company_id)])
-                            lines_by_partner = {}
-                            for line in move_line_obj.browse(
-                                    cr, uid, found_lines):
-                                balance = line.debit - line.credit
-                                if line.partner_id.id in lines_by_partner:
-                                    lines_by_partner[
-                                        line.partner_id.id] += balance
-                                else:
-                                    lines_by_partner[
-                                        line.partner_id.id] = balance
-                            for partner_id in lines_by_partner.keys():
-                                balance = lines_by_partner[partner_id]
-                                if balance:
-                                    move_lines.append(
-                                        {'account_id': account.id,
-                                         'debit': balance < 0 and -balance,
-                                         'credit': balance > 0 and balance,
-                                         'name': description,
-                                         'date': date,
-                                         'period_id': period_id,
-                                         'journal_id': journal_id,
-                                         'partner_id': partner_id})
-                                # Update the dest account total (with the
-                                # inverse of the balance)
-                                if account_map.dest_account_id:
-                                    dest_id = account_map.dest_account_id.id
-                                    dest_accounts_totals[dest_id] -= balance
+                        found_lines = move_line_obj.search(
+                            cr, uid, [('period_id', 'in', period_ids),
+                                      ('account_id', '=', account.id),
+                                      ('company_id', '=', company_id)])
+                        lines_by_partner = {}
+                        for line in move_line_obj.browse(cr, uid, found_lines):
+                            balance = line.debit - line.credit
+                            if line.partner_id.id in lines_by_partner:
+                                lines_by_partner[line.partner_id.id] += balance
+                            else:
+                                lines_by_partner[line.partner_id.id] = balance
+                        for partner_id in lines_by_partner.keys():
+                            balance = lines_by_partner[partner_id]
+                            if balance:
+                                move_lines.append(
+                                    {'account_id': account.id,
+                                     'debit': balance < 0 and -balance,
+                                     'credit': balance > 0 and balance,
+                                     'name': description,
+                                     'date': date,
+                                     'period_id': period_id,
+                                     'journal_id': journal_id,
+                                     'partner_id': partner_id})
+                            # Update the dest account total (with the inverse
+                            # of the balance)
+                            if account_map.dest_account_id:
+                                dest_id = account_map.dest_account_id.id
+                                dest_accounts_totals[dest_id] -= balance
                     elif account.user_type.close_method == 'detail':
                         raise orm.except_orm(
                             _('UserError'),
@@ -382,7 +381,7 @@ class ExecuteFyc(orm.TransientModel):
         # Finally create the account move with all the lines (if needed)
         if len(move_lines):
             move_id = self.pool['account.move'].create(
-                cr, uid, {'line_id': map(lambda x: (0, 0, x), move_lines),
+                cr, uid, {'line_id': [(0, 0, x) for x in move_lines],
                           'ref': description,
                           'date': date,
                           'period_id': period_id,
