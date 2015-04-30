@@ -24,6 +24,7 @@
 #############################################################################
 
 from tools.translate import _
+from tools import float_is_zero
 import pooler
 import netsvc
 from osv import fields
@@ -413,6 +414,8 @@ class execute_fyc(osv.osv_memory):
         journal_id = None
         company_id = fyc.company_id.id
         fiscalyear_id = fyc.closing_fiscalyear_id.id
+        precision = pool.get('decimal.precision').precision_get(
+            cr, uid, 'Account')
 
         # Depending on the operation we will use different data
         if operation == 'loss_and_profit':
@@ -506,7 +509,8 @@ class execute_fyc(osv.osv_memory):
             # For each children account. (Notice the context filter! the computed balanced is based on this filter)
             for account in pool.get('account.account').browse(cr, uid, child_ids, ctx):
                 # Check if the children account needs to (and can) be closed
-                if account.type != 'view': 
+                if (account.type != 'view' and not float_is_zero(
+                        account.balance, precision_rounding=precision)):
                     if account.user_type.close_method == 'balance':
                         # Compute the balance for the account (uses the previous browse context filter)
                         balance = account.balance
