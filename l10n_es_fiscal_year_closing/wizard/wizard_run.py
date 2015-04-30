@@ -25,6 +25,7 @@
 from openerp import netsvc
 from openerp.osv import fields, orm
 from openerp.tools.translate import _
+from openerp.tools import float_is_zero
 
 
 class CancelFyc(orm.TransientModel):
@@ -285,6 +286,7 @@ class ExecuteFyc(orm.TransientModel):
         account_obj = self.pool['account.account']
         move_line_obj = self.pool['account.move.line']
         decimal_precision_obj = self.pool['decimal.precision']
+        precision = decimal_precision_obj.precision_get(cr, uid, 'Account')
 
         # For each (parent) account in the mapping list
         for account_map in account_mapping_ids:
@@ -302,7 +304,8 @@ class ExecuteFyc(orm.TransientModel):
             # computed balanced is based on this filter)
             for account in account_obj.browse(cr, uid, child_ids, ctx):
                 # Check if the children account needs to (and can) be closed
-                if account.type != 'view':
+                if (account.type != 'view' and not float_is_zero(
+                        account.balance, precision_rounding=precision)):
                     if account.user_type.close_method == 'balance':
                         # Compute the balance for the account (uses the
                         # previous browse context filter)
@@ -378,7 +381,7 @@ class ExecuteFyc(orm.TransientModel):
         # Finally create the account move with all the lines (if needed)
         if len(move_lines):
             move_id = self.pool['account.move'].create(
-                cr, uid, {'line_id': map(lambda x: (0, 0, x), move_lines),
+                cr, uid, {'line_id': [(0, 0, x) for x in move_lines],
                           'ref': description,
                           'date': date,
                           'period_id': period_id,
