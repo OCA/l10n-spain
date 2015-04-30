@@ -1,0 +1,21 @@
+<openerp>
+    <data>
+        <template id="pos_l10n_es_assets_backend"
+                  name="pos_l10n_es_assets_backend"
+                  inherit_id="point_of_sale.assets_backend">
+            <xpath expr="." position="inside">
+                <script src="/l10n_es_pos_simplified_invoice/static/src/js/screens.js"
+                        type="text/javascript"></script>
+                <script src="/l10n_es_pos_simplified_invoice/static/src/js/main.js"
+                        type="text/javascript"></script>
+            </xpath>
+        </template>
+
+        <template id="pos_l10n_es_assets" name="pos_l10n_es_css" inherit_id="point_of_sale.index">
+            <xpath expr="//script[@id='loading-script']" position="before">
+                <link rel="stylesheet" href="/l10n_es_pos_simplified_invoice/static/src/css/pos.css"/>
+            </xpath>
+        </template>
+
+    </data>
+</openerp>
