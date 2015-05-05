@@ -140,7 +140,10 @@ class Mod349(models.Model):
                         # creates a dictionary key with partner_record id to
                         # after recover it
                         key = refund_details.partner_record_id
-                        record[key] = record.get(key, []).append(refund)
+                        if record.get(key, False):
+                            record[key].append(refund)
+                        else:
+                            record[key] = [refund]
                         break
         # recorremos nuestro diccionario y vamos creando registros
         for partner_rec in record:
