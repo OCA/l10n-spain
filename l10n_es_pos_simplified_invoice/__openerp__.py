@@ -25,10 +25,12 @@
 {
     "name": "Point of sale simplified invoice",
     "version": "1.0",
-    'author': 'Antiun Ingenieria S.L.',
-    'maintainer': 'Antiun Ingenieria S.L.',
-    'website': 'http://www.antiun.com',
-    'license': 'AGPL-3',
+    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Antiun Ingeniería S.L., "
+              "Spanish Localization Team, "
+              "Odoo Community Association (OCA)",
+    "website": "http://www.antiun.com",
+    "license": "AGPL-3",
     "category": "Point Of Sale",
     "description": """
 Point of sale simplified invoice
