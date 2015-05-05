@@ -32,7 +32,7 @@
     "category": "Point Of Sale",
     "description": """
 Point of sale simplified invoice
-=====================
+================================
 
 This module adapts the ticket of the POS to the Spanish rule.
 Add in tikect the logo of the company and user data.
