@@ -25,8 +25,8 @@
 {
     "name": "Point of sale simplified invoice",
     "version": "1.0",
-    "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Antiun Ingeniería S.L., "
+    "author": "Antiun Ingeniería S.L., "
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Spanish Localization Team, "
               "Odoo Community Association (OCA)",
     "website": "http://www.antiun.com",

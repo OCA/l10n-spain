@@ -9,11 +9,13 @@
 	            <img t-att-src="order.pos.company_logo_base64" t-attf-class="desaturate"/><br />
 	            <t t-esc="widget.pos.company.name"/><br />
 	            Phone: <t t-esc="widget.pos.company.phone || ''"/><br />
-	            Vendedor: <t t-esc="widget.pos.cashier ? widget.pos.cashier.name : widget.pos.user.name"/><br />
-	            Cliente: <t t-esc="order.attributes.client ? order.attributes.client.name : ''"/><br />
-	            NIF cliente: <t t-esc="order.attributes.client ? order.attributes.client.vat : ''"/><br />
-	            Dirección del cliente: <t t-esc="order.attributes.client ? order.attributes.client.street : ''"/><br />
-	            <!--Shop: <t t-esc="widget.pos.shop.name"/><br />-->
+	            Seller: <t t-esc="widget.pos.cashier ? widget.pos.cashier.name : widget.pos.user.name"/><br />
+	            <t t-if="order.attributes.client">
+	            Customer data<br />
+	            Name: <t t-esc="order.attributes.client ? order.attributes.client.name : ''"/><br />
+	            VAT: <t t-esc="order.attributes.client ? order.attributes.client.vat : ''"/><br />
+	            Address: <t t-esc="order.attributes.client ? order.attributes.client.street : ''"/><br />
+	           	</t>
 	            <br />
 	            <t t-if="widget.pos.config.receipt_header">
 	                <div style='text-align:center'>
