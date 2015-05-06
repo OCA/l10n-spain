@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="PosTicket">
+        <t t-jquery=".pos-center-align t:first" t-operation="after">
+            <br/><t t-esc="order.name" />
+        </t>
+        <t t-jquery="[t-esc='widget.pos.company.name']" t-operation="after">
+            <br />VAT: <t t-esc="widget.pos.company.vat || ''"/>
+        </t>
+        <t t-jquery="[t-esc='widget.pos.shop.name']" t-operation="after">
+            <t t-if="order.attributes.client">
+                <br/><br/>
+                <span class="customer_title">Customer data</span><br />
+                Name: <t t-esc="order.attributes.client.name ? order.attributes.client.name : ''"/><br />
+                VAT: <t t-esc="order.attributes.client.vat ? order.attributes.client.vat : ''"/><br />
+                Address: <t t-esc="order.attributes.client.street ? order.attributes.client.street : ''"/>
+            </t>
+        </t>
+        <t t-jquery="[t-esc='widget.format_currency(order.getSubtotal())']" t-operation="replace">
+            <t t-esc="widget.format_currency(order.getTotalTaxExcluded())"/>
+        </t>
+    </t>
+</templates>
