@@ -28,11 +28,9 @@ Account Invoice Posting
 
 from openerp.osv import fields, osv
 
+
 class account_invoice(osv.osv):
     _inherit = 'account.invoice'
-    
     _columns = {
         'date_posting': fields.date('Posting Date', select=True),
     }
-    
-account_invoice()

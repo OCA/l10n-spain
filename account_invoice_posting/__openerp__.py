@@ -33,7 +33,7 @@
     "website": "http://www.openmindsystems.com.es",
     "depends": ["account"],
     "data": [],
-    "update_xml" : ["account_invoice_view.xml"],
+    "update_xml": ["account_invoice_view.xml"],
     "active": True,
     "installable": True
 }
