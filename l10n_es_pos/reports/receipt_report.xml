@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="l10n_es_pos_report_receipt"
+          inherit_id="point_of_sale.report_receipt">
+
+    <xpath expr="//div[@class='col-xs-12 text-center']/h2" position="before">
+        <span>
+            <!-- TODO: For use this way we have to inyect this translate items manually
+                       and this is not compatible with Transifex right now -->
+            <!--t t-esc="translate('Simplified invoice') if o.simplified else translate('Invoice')"/-->
+            <t t-if="o.simplified">
+                Simplified invoice
+            </t>
+            <t t-if="not o.simplified">
+                Invoice
+            </t>
+        </span>
+        <t t-esc="o.name"/><br />
+        <t t-esc="o.pos_reference"/>
+    </xpath>
+
+    <xpath expr="//div[@class='col-xs-12 text-center']/h2" position="after">
+        <t t-esc="o.user_id.company_id.name"/><br />
+        VAT: <t t-esc="o.user_id.company_id.vat"/><br />
+    </xpath>
+    <xpath expr="//div[@class='col-xs-12 text-center']" position="inside">
+        <div class="customer" t-if="o.partner_id">
+            <div class="customer_title">
+                <span class="customer_title_lbl">Customer data</span>
+            </div>
+            <div class="customer_name">
+                <span class="customer_name_lbl">Name:</span>
+                <span t-if="o.partner_id.name" class="customer_name_value">
+                    <t t-esc="o.partner_id.name"/>
+                </span>
+            </div>
+            <div class="customer_vat">
+                <span class="customer_vat_lbl">VAT:</span>
+                <span t-if="o.partner_id.vat" class="customer_vat_value">
+                    <t t-esc="o.partner_id.vat"/>
+                </span>
+            </div>
+            <div class="customer_street">
+                <span class="customer_street_lbl">Address:</span>
+                <span t-if="o.partner_id.street" class="customer_street_value">
+                    <t t-esc="o.partner_id.street"/>
+                </span>
+            </div>
+        </div>
+    </xpath>
+    <!-- Hide company name, it was showed before -->
+    <xpath expr="//div[@class='col-xs-12 text-center']/h2" position="attributes">
+        <attribute name="style">display:none;</attribute>
+    </xpath>
+    <!-- Hide partner data as Odoo shows it. It was showed before -->
+    <xpath expr="//div[@class='col-xs-12 text-center']/div[@t-field='o.partner_id']" position="attributes">
+        <attribute name="style">display:none;</attribute>
+    </xpath>
+
+</template>
+</data>
+</openerp>
