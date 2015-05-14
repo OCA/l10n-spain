@@ -1,13 +1,22 @@
-sudo: required
 language: python
 
 python:
   - "2.7"
 
+addons:
+  apt:
+    packages:
+      - expect-dev  # provides unbuffer utility
+      - python-lxml  # because pip installation is slow
+      - python-xlrd
+
 env:
-  - VERSION="8.0" LINT_CHECK="1"
-  - VERSION="8.0" ODOO_REPO="odoo/odoo" OPTIONS="--test-commit" LINT_CHECK="0"
-  - VERSION="8.0" ODOO_REPO="OCA/OCB" OPTIONS="--test-commit" LINT_CHECK="0"
+  global:
+  - VERSION="8.0" TESTS="0" LINT_CHECK="0"
+  matrix:
+  - LINT_CHECK="1"
+  - TESTS="1" ODOO_REPO="odoo/odoo" OPTIONS="--test-commit" EXCLUDE="l10n_es_toponyms,l10n_es_partner"
+  - TESTS="1" ODOO_REPO="OCA/OCB" OPTIONS="--test-commit" EXCLUDE="l10n_es_toponyms,l10n_es_partner"
 
 virtualenv:
   system_site_packages: true
@@ -15,13 +24,7 @@ virtualenv:
 install:
   - pip install unidecode
   - pip install unicodecsv
-  - pip install xlrd
-  - pip install unicodecsv
   - pip install requests
-  - git clone https://github.com/OCA/partner-contact ${HOME}/partner-contact -b ${VERSION}
-  - git clone https://github.com/OCA/account-financial-tools ${HOME}/account-financial-tools -b ${VERSION}
-  - git clone https://github.com/OCA/reporting-engines ${HOME}/reporting-engines -b ${VERSION}
-  - git clone https://github.com/OCA/bank-statement-import ${HOME}/bank-statement-import -b ${VERSION}
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
@@ -30,4 +33,4 @@ script:
   - travis_run_tests
 
 after_success:
-  coveralls
+  - travis_after_tests_success
