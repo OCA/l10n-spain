@@ -22,7 +22,6 @@ from . import exceptions as ex
 
 class Partner(models.Model):
     """Partners with contribution account code."""
-
     _inherit = "res.partner"
 
     # Saved as Char because it can have leading zeroes
@@ -34,7 +33,6 @@ class Partner(models.Model):
     @api.constrains("contribution_account")
     def _check_contribution_account(self):
         """Ensure a good code is saved."""
-
         # Skip empty codes
         if not self.contribution_account:
             return
@@ -52,9 +50,7 @@ class Partner(models.Model):
         # Perform control digit validation
         code, control = (self.contribution_account[:-2],
                          self.contribution_account[-2:])
-
         if code[2] == "0":
             code = code[:2] + code[3:]
-
         if "%02d" % (int(code) % 97) != control:
             raise ex.ControlDigitValidationFailed(self)
