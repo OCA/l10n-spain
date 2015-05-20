@@ -980,19 +980,19 @@
     <record id="account_tax_code_template_IRPAABI19" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_RBI"/>
       <field name="code">IRPAABI19</field>
-      <field name="name">IRPF retenciones practicadas a arrendamiento. Base imponible (19%)</field>
+      <field name="name">Retenciones practicadas a arrendamientos. Base imponible (19%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRPAABI20" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_RBI"/>
       <field name="code">IRPAABI20</field>
-      <field name="name">IRPF retenciones practicadas a arrendamiento. Base imponible (20%)</field>
+      <field name="name">Retenciones practicadas a arrendamientos. Base imponible (20%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRPAABI21" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_RBI"/>
       <field name="code">IRPAABI21</field>
-      <field name="name">IRPF retenciones practicadas a arrendamiento. Base imponible (21%)</field>
+      <field name="name">Retenciones practicadas a arrendamientos. Base imponible (21%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_RLC115" model="account.tax.code.template">
@@ -1004,19 +1004,19 @@
     <record id="account_tax_code_template_IRPAAC19" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_RLC115"/>
       <field name="code">IRPAAC19</field>
-      <field name="name">IRPF retenciones practicadas a arrendamientos. Cuota (19%)</field>
+      <field name="name">Retenciones practicadas a arrendamientos. Cuota (19%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRPAAC20" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_RLC115"/>
       <field name="code">IRPAAC20</field>
-      <field name="name">IRPF retenciones practicadas a arrendamientos. Cuota (20%)</field>
+      <field name="name">Retenciones practicadas a arrendamientos. Cuota (20%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRPAAC21" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_RLC115"/>
       <field name="code">IRPAAC21</field>
-      <field name="name">IRPF retenciones practicadas a arrendamientos. Cuota (21%)</field>
+      <field name="name">Retenciones practicadas a arrendamientos. Cuota (21%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_123" model="account.tax.code.template">

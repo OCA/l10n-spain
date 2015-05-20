@@ -105,7 +105,7 @@
         </record>
 
         <record id="fp_irpf19a" model="account.fiscal.position.template">
-            <field name="name">Retención IRPF 19% Arrendamientos</field>
+            <field name="name">Retención 19% arrendamientos</field>
             <field name="chart_template_id" ref="account_chart_template_common"/>
         </record>
 
@@ -115,7 +115,7 @@
         </record>
 
         <record id="fp_irpf20a" model="account.fiscal.position.template">
-            <field name="name">Retención IRPF 20% Arrendamientos</field>
+            <field name="name">Retención 20% arrendamientos</field>
             <field name="chart_template_id" ref="account_chart_template_common"/>
         </record>
 
@@ -125,7 +125,7 @@
         </record>
 
         <record id="fp_irpf21a" model="account.fiscal.position.template">
-            <field name="name">Retención IRPF 21% Arrendamientos</field>
+            <field name="name">Retención 21% arrendamientos</field>
             <field name="chart_template_id" ref="account_chart_template_common"/>
         </record>
 
@@ -701,7 +701,7 @@
             <field name="tax_dest_id" ref="account_tax_template_p_req52"/>
         </record>
 
-        <!-- Retenciones IRPF 19% Arrendamientos -->
+        <!-- Retención 19% arrendamientos -->
 
         <record id="fptt_irpf19asale_21b"
             model="account.fiscal.position.tax.template">
@@ -874,7 +874,7 @@
             <field name="tax_dest_id" ref="account_tax_template_p_irpf19a"/>
         </record>
 
-        <!-- Retenciones IRPF 20% Arrendamientos -->
+        <!-- Retención 20% arrendamientos -->
 
         <record id="fptt_irpf20asale_21b"
             model="account.fiscal.position.tax.template">
@@ -1047,7 +1047,7 @@
             <field name="tax_dest_id" ref="account_tax_template_p_irpf20a"/>
         </record>
 
-        <!-- Retenciones IRPF 21% Arrendamientos -->
+        <!-- Retención 21% arrendamientos -->
 
         <record id="fptt_irpf21asale_21b"
             model="account.fiscal.position.tax.template">

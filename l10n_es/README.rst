@@ -20,6 +20,8 @@ encuentra en la versión estándar de Odoo, por lo que es conveniente instalar
 Historial
 ---------
 
+* v5.1: Renombrado todo lo relacionado con arrendamientos para no incluir la
+  palabra "IRPF", ya que no es como tal IRPF.
 * v5.0: Se ha rehecho toda la parte de impuestos para dar mayor facilidad de
   consulta de los datos para las declaraciones de la AEAT y para cubrir todas
   las casuísticas fiscales españolas actuales. Éstas son las características
