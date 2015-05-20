@@ -1149,10 +1149,10 @@
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_s_irpf19a" model="account.tax.template">
-          <field name="description">S_IRPF19A</field>
+          <field name="description">S_RAC19A</field>
           <field name="type_tax_use">sale</field>
           <field name="account_paid_id" ref="pgc_473_child"/>
-          <field name="name">Retenciones a cuenta IRPF 19% (Arrendamientos)</field>
+          <field name="name">Retenciones a cuenta 19% (Arrendamientos)</field>
           <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="amount" eval="-0.19"/>
@@ -1179,14 +1179,14 @@
         <record id="account_tax_template_p_irpf20a" model="account.tax.template">
           <field name="ref_base_code_id" ref="account_tax_code_template_IRPAABI20"/>
           <field name="ref_base_sign" eval="-1.0"/>
-          <field name="description">P_IRPF20A</field>
+          <field name="description">P_RAC20A</field>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRPAAC20"/>
           <field name="type_tax_use">purchase</field>
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPAABI20"/>
           <field name="ref_tax_sign" eval="1.0"/>
-          <field name="name">Retenciones IRPF 20% (Arrendamientos)</field>
+          <field name="name">Retenciones 20% (Arrendamientos)</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPAAC20"/>
@@ -1215,14 +1215,14 @@
         <record id="account_tax_template_p_irpf19a" model="account.tax.template">
           <field name="ref_base_code_id" ref="account_tax_code_template_IRPAABI19"/>
           <field name="ref_base_sign" eval="-1.0"/>
-          <field name="description">P_IRPF19A</field>
+          <field name="description">P_RAC19A</field>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRPAAC19"/>
           <field name="type_tax_use">purchase</field>
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPAABI19"/>
           <field name="ref_tax_sign" eval="1.0"/>
-          <field name="name">Retenciones IRPF 19% (Arrendamientos)</field>
+          <field name="name">Retenciones 19% (Arrendamientos)</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPAAC19"/>
@@ -1285,10 +1285,10 @@
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_s_irpf20a" model="account.tax.template">
-          <field name="description">S_IRPF20A</field>
+          <field name="description">S_RAC20A</field>
           <field name="type_tax_use">sale</field>
           <field name="account_paid_id" ref="pgc_473_child"/>
-          <field name="name">Retenciones a cuenta IRPF 20% (Arrendamientos)</field>
+          <field name="name">Retenciones a cuenta 20% (Arrendamientos)</field>
           <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="amount" eval="-0.2"/>
@@ -1449,10 +1449,10 @@
           <field name="type">percent</field>
         </record>
         <record id="account_tax_template_s_irpf21a" model="account.tax.template">
-          <field name="description">S_IRPF21A</field>
+          <field name="description">S_RAC21A</field>
           <field name="type_tax_use">sale</field>
           <field name="account_paid_id" ref="pgc_473_child"/>
-          <field name="name">Retenciones a cuenta IRPF 21% (Arrendamientos)</field>
+          <field name="name">Retenciones a cuenta 21% (Arrendamientos)</field>
           <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="amount" eval="-0.21"/>
@@ -1685,14 +1685,14 @@
         <record id="account_tax_template_p_irpf21a" model="account.tax.template">
           <field name="ref_base_code_id" ref="account_tax_code_template_IRPAABI21"/>
           <field name="ref_base_sign" eval="-1.0"/>
-          <field name="description">P_IRPF21A</field>
+          <field name="description">P_RAC21A</field>
           <field name="ref_tax_code_id" ref="account_tax_code_template_IRPAAC21"/>
           <field name="type_tax_use">purchase</field>
           <field name="account_paid_id" ref="pgc_4751_child"/>
           <field name="base_sign" eval="1.0"/>
           <field name="base_code_id" ref="account_tax_code_template_IRPAABI21"/>
           <field name="ref_tax_sign" eval="1.0"/>
-          <field name="name">Retenciones IRPF 21% (Arrendamientos)</field>
+          <field name="name">Retenciones 21% (Arrendamientos)</field>
           <field name="account_collected_id" ref="pgc_4751_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="tax_code_id" ref="account_tax_code_template_IRPAAC21"/>

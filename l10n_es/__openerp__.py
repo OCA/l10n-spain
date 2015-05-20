@@ -31,7 +31,7 @@
 
 {
     "name": "Spanish Charts of Accounts (PGCE 2008)",
-    "version": "5.0",
+    "version": "5.1",
     "author": "Spanish Localization Team,"
               # "Zikzakmedia S.L.,"
               # "Grupo Opentia,"
@@ -72,6 +72,8 @@ al actualizar el plan de cuentas, como crear a mano la cuenta 472000.
 Historial
 ---------
 
+* v5.1: Renombrado todo lo relacionado con arrendamientos para no incluir la
+  palabra "IRPF", ya que no es como tal IRPF.
 * v5.0: Se ha rehecho toda la parte de impuestos para dar mayor facilidad de
   consulta de los datos para las declaraciones de la AEAT y para cubrir todas
   las casuísticas fiscales españolas actuales. Éstas son las características
@@ -110,7 +112,7 @@ Historial
         "data/account_account_assoc.xml",
         "data/tax_codes_common.xml",
         "data/taxes_common.xml",
-        "data/fiscal_templates_common.xml",
+        "data/fiscal_positions_common.xml",
         "data/account_chart_template_post.xml",
         "data/l10n_es_wizard.xml",
     ],
