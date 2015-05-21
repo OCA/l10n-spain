@@ -16,21 +16,18 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-{
-    "name": "Código de Cuenta de Cotización",
-    "version": "1.0",
-    "category": "Project",
-    "author": "Odoo Community Association (OCA), Grupo ESOC",
-    "license": "AGPL-3",
-    "website": "https://odoospain.odoo.com/",
-    "installable": True,
-    "application": False,
-    "summary": "Añadir CCC/NAF de la TGSS a los contactos",
-    "depends": [
-        "hr",
-    ],
-    "data": [
-        "views/res_partner.xml",
-        "views/hr_employee.xml",
-    ],
-}
+from . import base
+
+
+class BadInputCase(base.Company, base.BadInput):
+    pass
+
+
+class GoodControlDigitCase(base.Company,
+                           base.GoodControlDigit):
+    pass
+
+
+class WrongControlDigitCase(base.Company,
+                            base.WrongControlDigit):
+    pass

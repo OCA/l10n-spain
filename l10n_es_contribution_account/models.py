@@ -20,9 +20,8 @@ from openerp import api, fields, models
 from . import exceptions as ex
 
 
-class Partner(models.Model):
-    """Partners with contribution account code."""
-    _inherit = "res.partner"
+class ContributionAccountModel:
+    """Models with contribution account code."""
 
     # Saved as Char because it can have leading zeroes
     contribution_account = fields.Char(
@@ -37,15 +36,16 @@ class Partner(models.Model):
         if not self.contribution_account:
             return
 
-        # Ensure it has the right length
-        if self.is_company and len(self.contribution_account) != 11:
-            raise ex.BadLengthCompany(self)
-        elif not self.is_company and len(self.contribution_account) != 12:
-            raise ex.BadLengthPerson(self)
-
         # Ensure it is numeric
         if not self.contribution_account.isnumeric():
             raise ex.NonNumericCode(self)
+
+        # Ensure it has the right length
+        is_company = getattr(self, "is_company", False)
+        if is_company and len(self.contribution_account) != 11:
+            raise ex.BadLengthCompany(self)
+        elif not is_company and len(self.contribution_account) != 12:
+            raise ex.BadLengthPerson(self)
 
         # Perform control digit validation
         code, control = (self.contribution_account[:-2],
@@ -54,3 +54,11 @@ class Partner(models.Model):
             code = code[:2] + code[3:]
         if "%02d" % (int(code) % 97) != control:
             raise ex.ControlDigitValidationFailed(self)
+
+
+class Partner(models.Model, ContributionAccountModel):
+    _inherit = "res.partner"
+
+
+class Employee(models.Model, ContributionAccountModel):
+    _inherit = "hr.employee"
