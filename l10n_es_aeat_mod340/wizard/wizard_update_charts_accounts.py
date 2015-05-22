@@ -15,6 +15,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import calculate_mod340_records
-from . import export_mod340_to_boe
-from . import wizard_update_charts_accounts
+
+from openerp import models, fields, _
+
+
+class WizardUpdateChartsAccounts(models.TransientModel):
+    _inherit = 'wizard.update.charts.accounts'
+
+    def _is_different_tax_code(self, tax_code, tax_code_template,
+                               mapping_tax_codes):
+        notes = super(WizardUpdateChartsAccounts, self)._is_different_tax_code(
+            tax_code, tax_code_template, mapping_tax_codes)
+        if tax_code.mod340 != tax_code_template.mod340:
+            notes += _("The 340 model field is different.\n")
+        return notes
+
+    def _prepare_tax_code_vals(self, tax_code_template, mapping_tax_codes):
+        res = super(WizardUpdateChartsAccounts, self)._prepare_tax_code_vals(
+            tax_code_template, mapping_tax_codes)
+        res['mod340'] = tax_code_template.mod340
+        return res

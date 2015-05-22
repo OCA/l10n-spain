@@ -52,12 +52,6 @@ msgid "Export AEAT 340 BOE file"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/account.py:89
-#, python-format
-msgid "The code field is different.\n"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:0
 msgid "Declaración"
 msgstr ""
@@ -217,9 +211,9 @@ msgid "End period"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/account.py:98
+#: code:addons/l10n_es_aeat_mod340/wizard/wizard_update_charts_accounts.py:98
 #, python-format
-msgid "The Mod 340 field is different.\n"
+msgid "The 340 model field is different.\n"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
@@ -400,12 +394,6 @@ msgstr ""
 #: report:report mod340:0
 #: report:report_mod340:0
 msgid "MODELO AEAT 340"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/account.py:95
-#, python-format
-msgid "The sign field is different.\n"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
@@ -807,12 +795,6 @@ msgstr ""
 #: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340_received
 #: field:l10n.es.aeat.mod340.report,received:0
 msgid "Invoices Received"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/account.py:92
-#, python-format
-msgid "The info field is different.\n"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340

@@ -52,12 +52,6 @@ msgid "Export AEAT 340 BOE file"
 msgstr "Exportar Modelo AEAT 340 al formato del BOE"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/account.py:89
-#, python-format
-msgid "The code field is different.\n"
-msgstr "El campo código es diferente.\n"
-
-#. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:0
 msgid "Declaración"
 msgstr "Declaración"
@@ -221,10 +215,10 @@ msgid "End period"
 msgstr "Periodo final"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/account.py:98
+#: code:addons/l10n_es_aeat_mod340/wizard/wizard_update_charts_accounts.py:98
 #, python-format
-msgid "The Mod 340 field is different.\n"
-msgstr "El campo Mod 340 es diferente.\n"
+msgid "The 340 model field is different.\n"
+msgstr "El campo modelo 340 es diferente.\n"
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:0
@@ -405,12 +399,6 @@ msgstr "Líneas de impuestos recibidos"
 #: report:report_mod340:0
 msgid "MODELO AEAT 340"
 msgstr "MODELO AEAT 340"
-
-#. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/account.py:95
-#, python-format
-msgid "The sign field is different.\n"
-msgstr "El campo signo es diferente.\n"
 
 #. module: l10n_es_aeat_mod340
 #: report:report mod340:0
@@ -815,12 +803,6 @@ msgstr "Pagos"
 #: field:l10n.es.aeat.mod340.report,received:0
 msgid "Invoices Received"
 msgstr "Facturas recibidas"
-
-#. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/account.py:92
-#, python-format
-msgid "The info field is different.\n"
-msgstr "El campo descripción es diferente.\n"
 
 #. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340.report,support_type:0
