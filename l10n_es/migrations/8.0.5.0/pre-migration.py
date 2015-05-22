@@ -39,14 +39,35 @@ def rename_tax_codes(cr):
          'previous_name': 'IVA devengado. Base imponible', 'code': 'IDBI'},
         {'previous_code': '--',
          'previous_name': 'IVA Devengado Base Imponible', 'code': 'IDBI'},
-        {'previous_code': '[01]', 'code': 'RGIDBI4'},
-        {'previous_code': '[04]', 'code': 'RGIDBI10'},
-        {'previous_code': '[07]', 'code': 'RGIDBI21'},
+        {'previous_code': '[01]',
+         'code': 'RGIDBI4'},
+        {'previous_code': '[04]',
+         'previous_name': 'Régimen general IVA devengado. Base imponible 10%',
+         'code': 'RGIDBI10'},
+        {'previous_code': '[04]',
+         'previous_name': 'Régimen general IVA Devengado. Base Imponible 10%',
+         'code': 'RGIDBI10'},
+        {'previous_code': '[07]',
+         'previous_name': 'Régimen general IVA devengado. Base imponible 21%',
+         'code': 'RGIDBI21'},
+        {'previous_code': '[07]',
+         'previous_name': 'Régimen general IVA Devengado. Base Imponible 21%',
+         'code': 'RGIDBI21'},
         # IVA devengado. Cuota
         {'previous_code': '[21]', 'code': 'ITDC'},
         {'previous_code': '[03]', 'code': 'RGIDC4'},
-        {'previous_code': '[06]', 'code': 'RGIDC10'},
-        {'previous_code': '[09]', 'code': 'RGIDC21'},
+        {'previous_code': '[06]',
+         'previous_name': 'Régimen general IVA devengado. Cuota 10%',
+         'code': 'RGIDC10'},
+        {'previous_code': '[06]',
+         'previous_name': 'Régimen general IVA Devengado. Cuota 10%',
+         'code': 'RGIDC10'},
+        {'previous_code': '[09]',
+         'previous_name': 'Régimen general IVA devengado. Cuota 21%',
+         'code': 'RGIDC21'},
+        {'previous_code': '[09]',
+         'previous_name': 'Régimen general IVA Devengado. Cuota 21%',
+         'code': 'RGIDC21'},
         # Adquisiciones intracomunitarias
         {'previous_code': '[19]', 'code': 'AIDBYSBI'},
         {'previous_code': '[20]', 'code': 'AIDBYSC'},
@@ -288,25 +309,134 @@ def rename_tax_codes(cr):
 
 
 def rename_taxes(cr):
-    tax_mapping = [
-        # IVA Ventas
-        {'previous_description': 'S_IVA4', 'description': 'S_IVA4B'},
-        {'previous_description': 'S_IVA10', 'description': 'S_IVA10B'},
-        {'previous_description': 'S_IVA21', 'description': 'S_IVA21B'},
-        {'previous_description': 'P_IVA21_IC_SV',
-         'description': 'P_IVA21_SP_IN'},
-        {'previous_description': 'P_IVA21_IC_SV_1',
-         'description': 'P_IVA21_SP_IN_1'},
-        {'previous_description': 'P_IVA21_IC_SV_2',
-         'description': 'P_IVA21_SP_IN_2'},
-    ]
-    for mapping in tax_mapping:
+    tax_mapping = {
+        'S_IVA4': 'S_IVA4B',
+        'S_IVA10': 'S_IVA10B',
+        'S_IVA21': 'S_IVA21B',
+        'P_IVA21_IC_SV': 'P_IVA21_SP_IN',
+        'P_IVA21_IC_SV_1': 'P_IVA21_SP_IN_1',
+        'P_IVA21_IC_SV_2': 'P_IVA21_SP_IN_2',
+    }
+    for old_description, new_description in tax_mapping.iteritems():
         sql = """
         UPDATE account_tax
         SET description=%s
         WHERE description=%s"""
-        cr.execute(sql, (mapping['description'],
-                         mapping['previous_description']))
+        cr.execute(sql, (new_description, old_description))
+
+
+def change_refunds_tax_codes(cr):
+    """Cambia los códigos de impuestos de los abonos posteriores a 2014 para
+    que vayan a la parte de modificación de bases/cuotas en lugar de minorar
+    las bases/cuotas normales.
+    """
+    refund_tax_codes = {
+        # IVA repercutido
+        'RGIDBI4': 'MBYCRBI',
+        'RGIDBI10': 'MBYCRBI',
+        'RGIDBI21': 'MBYCRBI',
+        'RGIDC4': 'MBYCRC',
+        'RGIDC10': 'MBYCRC',
+        'RGIDC21': 'MBYCRC',
+        # Recargo equivalencia compras
+        'REDBI05': 'RDDSBI',
+        'REDBI014': 'RDDSBI',
+        'REDBI52': 'RDDSBI',
+        'REDC05': 'RDDSC',
+        'REDC014': 'RDDSC',
+        'REDC52': 'RDDSC',
+        # Recargo equivalencia ventas
+        'REBI05': 'MBYCDRDERBI',
+        'REBI014': 'MBYCDRDERBI',
+        'REBI52': 'MBYCDRDERBI',
+        'REC05': 'MBYCDRDERC',
+        'REC014': 'MBYCDRDERC',
+        'REC52': 'MBYCDRDERC',
+        # IVA soportado
+        'OICBI4': 'RDDSBI',
+        'OIBIBI4': 'RDDSBI',
+        'OICBI10': 'RDDSBI',
+        'OIBIBI10': 'RDDSBI',
+        'OICBI21': 'RDDSBI',
+        'OIBIBI21': 'RDDSBI',
+        'SOICC4': 'RDDSC',
+        'SOIBIC4': 'RDDSC',
+        'SOICC10': 'RDDSC',
+        'SOIBIC10': 'RDDSC',
+        'SOICC21': 'RDDSC',
+        'SOIBIC21': 'RDDSC',
+        # Importaciones
+        'IBYSCBI4': 'RDDSBI',
+        'IBYSCBI10': 'RDDSBI',
+        'IBYSCBI21': 'RDDSBI',
+        'IBIBI4': 'RDDSBI',
+        'IBIBI10': 'RDDSBI',
+        'IBIBI21': 'RDDSBI',
+        'DIBYSCC4': 'RDDSC',
+        'DIBYSCC10': 'RDDSC',
+        'DIBYSCC21': 'RDDSC',
+        'DIBIC4': 'RDDSC',
+        'DIBIC10': 'RDDSC',
+        'DIBIC21': 'RDDSC',
+        # Intracomunitario
+        'AIBYSCBI4': 'RDDSBI',
+        'AIBYSCBI10': 'RDDSBI',
+        'AIBYSCBI21': 'RDDSBI',
+        'AISCBI4': 'RDDSBI',
+        'AISCBI10': 'RDDSBI',
+        'AISCBI21': 'RDDSBI',
+        'AIBIBI4': 'RDDSBI',
+        'AIBIBI10': 'RDDSBI',
+        'AIBIBI21': 'RDDSBI',
+        'AIBYSCC4': 'RDDSC',
+        'AIBYSCC10': 'RDDSC',
+        'AIBYSCC21': 'RDDSC',
+        'AISCC4': 'RDDSC',
+        'AISCC10': 'RDDSC',
+        'AISCC21': 'RDDSC',
+        'AIBIC4': 'RDDSC',
+        'AIBIC10': 'RDDSC',
+        'AIBIC21': 'RDDSC',
+        'AIDBYSBI': 'MBYCRBI',
+        'AIBBI': 'MBYCRBI',
+        'AIBIBIA': 'MBYCRBI',
+        'OCIDSPEAIBI': 'MBYCRBI',
+        'AISBI': 'MBYCRBI',
+        'AIDBYSC': 'MBYCRC',
+        'AIBC': 'MBYCRC',
+        'AIBICA': 'MBYCRC',
+        'OOCIDSPEAIC': 'MBYCRC',
+        'AISC': 'MBYCRC',
+    }
+    cr.execute("SELECT id FROM res_company")
+    for record in cr.fetchall():
+        company_id = record[0]
+        for old_tax_code, new_tax_code in refund_tax_codes.iteritems():
+            cr.execute(
+                "SELECT id FROM account_tax_code WHERE code=%s",
+                (new_tax_code, ))
+            new_tax_code_id = cr.fetchone()
+            if not new_tax_code_id:
+                # Create fake tax code
+                cr.execute(
+                    """
+                    INSERT INTO account_tax_code
+                    (code, name, sign, company_id)
+                    VALUES (%s, %s, %s, %s)
+                    RETURNING id
+                    """, (new_tax_code, new_tax_code, 1.0, company_id))
+                new_tax_code_id = cr.fetchone()[0]
+            cr.execute(
+                """
+                UPDATE account_move_line aml
+                SET tax_code_id=%s
+                FROM account_tax_code atc
+                WHERE aml.tax_code_id=atc.id
+                  AND atc.code=%s
+                  AND aml.tax_amount < 0
+                  AND aml.date>='2014-01-01'
+                  AND aml.company_id=%s
+                """, (new_tax_code_id, old_tax_code, company_id))
 
 
 def migrate(cr, version):
@@ -315,3 +445,4 @@ def migrate(cr, version):
     rename_fiscal_positions(cr)
     rename_tax_codes(cr)
     rename_taxes(cr)
+    change_refunds_tax_codes(cr)
