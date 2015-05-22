@@ -26,6 +26,8 @@
     'version': '2.0',
     'author': "Acysos S.L., Francisco Pascual (Ting), "
               "Nan-tic, "
+              "OpenMind Systems, "
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Odoo Community Association (OCA)",
     'website': 'www.acysos.com, www.ting.es, www.nan-tic.com',
     'category': 'Localisation/Accounting',

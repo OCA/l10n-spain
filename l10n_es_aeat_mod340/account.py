@@ -42,7 +42,7 @@ class AccountTaxCode(orm.Model):
 class WizardUpdateChartsAccounts(orm.TransientModel):
     _inherit = 'wizard.update.charts.accounts'
 
-    def _find_tax_codes(self, cr, uid, wizard, chart_template_ids,
+    def _find_tax_codes2(self, cr, uid, wizard, chart_template_ids,
                         context=None):
         """Search for, and load, tax code templates to create/update.
         @param chart_template_ids: IDs of the chart templates to look on,
@@ -113,7 +113,7 @@ class WizardUpdateChartsAccounts(orm.TransientModel):
             'mapping': tax_code_template_mapping
         }
 
-    def _update_tax_codes(self, cr, uid, wizard, log, context=None):
+    def _update_tax_codes2(self, cr, uid, wizard, log, context=None):
         """Search for, and load, tax code templates to create/update."""
         tax_code_obj = self.pool['account.tax.code']
         root_tax_code_id = wizard.chart_template_id.tax_code_root_id.id
