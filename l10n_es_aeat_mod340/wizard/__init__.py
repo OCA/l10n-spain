@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2011 Ting (www.ting.es)
-#    Copyright (c) 2011 Acysos S.L. (http://acysos.com)
-#                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
 #    by the Free Software Foundation, either version 3 of the License, or
@@ -22,3 +17,4 @@
 ##############################################################################
 from . import calculate_mod340_records
 from . import export_mod340_to_boe
+from . import wizard_update_charts_accounts

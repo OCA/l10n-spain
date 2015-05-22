@@ -2,7 +2,9 @@
 ##############################################################################
 #
 #    Copyright (c) 2014 Domatix (http://www.domatix.com)
-#                       Angel Moya <angel.moya@domatix.com>
+#                       Ángel Moya <angel.moya@domatix.com>
+#    Copyright (c) 2015 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
+#                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -27,7 +29,4 @@ class AccountTax(models.Model):
 
     @api.multi
     def name_get(self):
-        result = []
-        for tax in self:
-            result.append((tax.id, tax.name))
-        return result
+        return [(tax.id, tax.name or tax.description) for tax in self]

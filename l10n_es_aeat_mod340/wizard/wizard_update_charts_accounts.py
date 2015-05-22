@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2013 Acysos S.L. (http://acysos.com)
-#                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
 #    by the Free Software Foundation, either version 3 of the License, or
@@ -19,20 +16,22 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp import models, _
 
 
-class AccountTaxCodeTemplate(orm.Model):
-    _inherit = 'account.tax.code.template'
+class WizardUpdateChartsAccounts(models.TransientModel):
+    _inherit = 'wizard.update.charts.accounts'
 
-    _columns = {
-        'mod340': fields.boolean("Include in mod340"),
-    }
+    def _is_different_tax_code(self, tax_code, tax_code_template,
+                               mapping_tax_codes):
+        notes = super(WizardUpdateChartsAccounts, self)._is_different_tax_code(
+            tax_code, tax_code_template, mapping_tax_codes)
+        if tax_code.mod340 != tax_code_template.mod340:
+            notes += _("The 340 model field is different.\n")
+        return notes
 
-
-class AccountTaxCode(orm.Model):
-    _inherit = 'account.tax.code'
-
-    _columns = {
-        'mod340': fields.boolean("Include in mod340"),
-    }
+    def _prepare_tax_code_vals(self, tax_code_template, mapping_tax_codes):
+        res = super(WizardUpdateChartsAccounts, self)._prepare_tax_code_vals(
+            tax_code_template, mapping_tax_codes)
+        res['mod340'] = tax_code_template.mod340
+        return res
