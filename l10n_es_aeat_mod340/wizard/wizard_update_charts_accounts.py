@@ -16,7 +16,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, _
+from openerp import models, _
 
 
 class WizardUpdateChartsAccounts(models.TransientModel):
