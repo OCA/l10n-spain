@@ -20,8 +20,9 @@ from openerp import api, fields, models
 from . import exceptions as ex
 
 
-class ContributionAccountModel:
+class ContributionAccountModel(models.AbstractModel):
     """Models with contribution account code."""
+    _name = "l10n_es_contribution_account.abc"
 
     # Saved as Char because it can have leading zeroes
     contribution_account = fields.Char(
@@ -56,9 +57,11 @@ class ContributionAccountModel:
             raise ex.ControlDigitValidationFailed(self)
 
 
-class Partner(models.Model, ContributionAccountModel):
-    _inherit = "res.partner"
+class Partner(models.Model):
+    _name = "res.partner"
+    _inherit = [_name, ContributionAccountModel._name]
 
 
-class Employee(models.Model, ContributionAccountModel):
-    _inherit = "hr.employee"
+class Employee(models.Model):
+    _name = "hr.employee"
+    _inherit = [_name, ContributionAccountModel._name]
