@@ -74,7 +74,6 @@ Exportación de asientos resumen de facturas
         'report/report_view.xml',
         'wizard/export_mod340_to_boe.xml',
         'views/mod340_view.xml',
-        'data/mod340_workflow.xml',
         'security/ir.model.access.csv',
         'views/res_partner_view.xml',
         'data/mod340_sequence.xml',

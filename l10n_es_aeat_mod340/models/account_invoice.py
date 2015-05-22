@@ -19,15 +19,17 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp.osv import orm, fields
 
 
-class AccountInvoice(models.Model):
+class AccountInvoice(orm.Model):
     _inherit = 'account.invoice'
 
-    is_ticket_summary = fields.Boolean(string='Ticket Summary',
-                                       help='Check if this invoice is a '
-                                       'ticket summary')
-    number_tickets = fields.Integer(string='Number of tickets', digits=(12, 0))
-    first_ticket = fields.Char(string='First ticket', size=40)
-    last_ticket = fields.Char(string='Last ticket', size=40)
+    _columns = {
+        'is_ticket_summary': fields.boolean(
+            'Ticket Summary',
+            help='Check if this invoice is a ticket summary'),
+        'number_tickets': fields.integer('Number of tickets', digits=(12, 0)),
+        'first_ticket': fields.char('First ticket', size=40),
+        'last_ticket': fields.char('Last ticket', size=40)
+    }

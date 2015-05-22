@@ -24,9 +24,12 @@
 #
 ##############################################################################
 import base64
-import time
+from openerp import tools
+import re
+from openerp.tools.safe_eval import safe_eval as eval
 from openerp import models, fields, api, _
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
+
+EXPRESSION_PATTERN = re.compile('(\$\{.+?\})')
 
 
 class L10nEsAeatReportExportToBoe(models.TransientModel):
@@ -138,12 +141,11 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             121-122      Declaración complementaria o substitutiva
             123-135      Número identificativo de la declaración anterior
         """
-        modelo_declaracion = getattr(report, '_aeat_number')
         text = ''
         # Tipo de Registro
         text += '1'
         # Modelo Declaración
-        text += modelo_declaracion
+        text += getattr(report._model, '_aeat_number')
         # Ejercicio
         text += self._formatString(report.fiscalyear_id.code, 4)
         # NIF del declarante
@@ -188,18 +190,19 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             return False
         report = self.env[active_model].browse(active_id)
         contents = ''
-        # Add header record
-        contents += self._get_formatted_declaration_record(report)
-        # Add main record
-        contents += self._get_formatted_main_record(report)
-        # Adds other fields
-        contents += self._get_formatted_other_records(report)
-        # Generate the file and save as attachment
+        if report.export_config:
+            contents += self.action_get_file_from_config(report)
+        else:
+            # Add header record
+            contents += self._get_formatted_declaration_record(report)
+            # Add main record
+            contents += self._get_formatted_main_record(report)
+            # Adds other fields
+            contents += self._get_formatted_other_records(report)
+            # Generate the file and save as attachment
         file = base64.encodestring(contents)
-        file_name = _("%s_report_%s.txt") % (
-            report.number,
-            time.strftime(_(DEFAULT_SERVER_DATE_FORMAT))
-        )
+        file_name = _("%s_report_%s.txt") % (report.number,
+                                             fields.Date.today())
         # Delete old files
         attachment_obj = self.env['ir.attachment']
         attachment_ids = attachment_obj.search(
@@ -225,3 +228,59 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             'res_id': self.id,
             'target': 'new',
         }
+
+    @api.multi
+    def action_get_file_from_config(self, report):
+        contents = ''
+        for line in report.export_config.config_lines:
+            if line.position and (len(contents) + 1 < line.position):
+                contents = self._formatString(contents,
+                                              (line.position - 1))
+            contents += self._export_line_process(report, line)
+        return contents
+
+    @api.multi
+    def _export_line_process(self, obj, line):
+        def merge(match):
+            exp = str(match.group()[2:-1]).strip()
+            result = eval(exp, {
+                'user': self.env.user,
+                'object': obj,
+                # copy context to prevent side-effects of eval
+                'context': self.env.context.copy(),
+            })
+            return result and tools.ustr(result) or ''
+        val = ''
+        field_val = False
+        if line.fixed_value:
+            field_val = line.fixed_value
+        elif line.expression:
+            field_val = line.expression and \
+                EXPRESSION_PATTERN.sub(merge, line.expression) or False
+        if line.repeat:
+            for report_line in field_val:
+                if line.sub_config:
+                    for subline in line.sub_config.config_lines:
+                        val += self._export_line_process(report_line, subline)
+        else:
+            if line.sub_config:
+                for subline in line.sub_config.config_lines:
+                    val += self._export_line_process(obj, subline)
+            else:
+                val += self._export_simple_record(line, field_val)
+        return val
+
+    @api.multi
+    def _export_simple_record(self, line, val):
+        if line.export_type == 'string':
+            align = '<'
+            if line.alignment == 'right':
+                align = '>'
+            return self._formatString(val or '', line.size, align=align)
+        elif line.export_type == 'boolean':
+            return self._formatBoolean(val, line.bool_yes, line.bool_no)
+        else:
+            return self._formatNumber(val or 0,
+                                      (line.size - line.decimal_size -
+                                       (line.apply_sign and 1 or 0)),
+                                      line.decimal_size, line.apply_sign)

@@ -21,7 +21,7 @@
 #
 ##############################################################################
 
-from openerp import models, api, exceptions
+from openerp import models, api, exceptions, _
 
 
 class L10nEsAeatMod340ExportToBoe(models.TransientModel):
@@ -58,7 +58,7 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             416-500 	Blancos
         """
         text = super(L10nEsAeatMod340ExportToBoe,
-                    self)._get_formatted_declaration_record(report)
+                     self)._get_formatted_declaration_record(report)
         period_stop = report.period_to.date_stop[5:7]
         period_start = report.period_to.date_start[5:7]
         if period_start == period_stop:
@@ -94,7 +94,6 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
         # Blancos
         text += 84 * ' '
         text += '\r\n'
-
         assert len(text) == 502, \
             _("The type 1 record must be 500 characters long")
         return text
@@ -222,8 +221,8 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             # Identificación de la factura
             text += self._formatString(invoice_issued.invoice_id.number, 40)
             # Número de registro
-            sequence_obj = self.pool.get('ir.sequence')
-            text += self._formatString(sequence_obj.get(cr, uid, 'mod340'), 18)
+            sequence_obj = self.env['ir.sequence']
+            text += self._formatString(sequence_obj.get('mod340'), 18)
             # Número de facturas
             if invoice_issued.invoice_id.is_ticket_summary == 1:
                 text += self._formatNumber(
@@ -388,8 +387,8 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             text += self._formatString(invoice_received.invoice_id.reference,
                                        40)
             # Número de registro
-            sequence_obj = self.pool.get('ir.sequence')
-            text += self._formatString(sequence_obj.get(cr, uid, 'mod340'), 18)
+            sequence_obj = self.env['ir.sequence']
+            text += self._formatString(sequence_obj.get('mod340'), 18)
             # Número de facturas
             text += self._formatNumber(1, 18)
             # Número de registros (Desglose)

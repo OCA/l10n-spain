@@ -23,8 +23,7 @@
 #
 ##############################################################################
 from openerp import fields, models, api, exceptions, _
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
-import time
+from openerp import SUPERUSER_ID
 import re
 
 
@@ -51,61 +50,70 @@ class L10nEsAeatReport(models.AbstractModel):
                                     self.company_id.partner_id.vat).groups()[1]
         self.company_vat = comp_vat
 
-    company_id = fields.Many2one('res.company', string='Company',
-                                 required=True, readonly=True,
-                                 default=_default_company,
-                                 states={'draft': [('readonly', False)]})
-    company_vat = fields.Char(string='VAT number', size=9, required=True,
-                              readonly=True,
-                              states={'draft': [('readonly', False)]})
-    phone = fields.Char(string="Phone", size=9,
-                        states={'calculated': [('required', True)],
-                                'confirmed': [('readonly', True)]})
+    company_id = fields.Many2one(
+        'res.company', string='Company', required=True, readonly=True,
+        default=_default_company, states={'draft': [('readonly', False)]})
+    company_vat = fields.Char(
+        string='VAT number', size=9, required=True, readonly=True,
+        states={'draft': [('readonly', False)]})
+    phone = fields.Char(
+        string="Phone", size=9, states={'calculated': [('required', True)],
+                                        'confirmed': [('readonly', True)]})
     number = fields.Char(string='Declaration number', size=13,
                          required=True, readonly=True)
-    previous_number = fields.Char(string='Previous declaration number',
-                                  size=13,
-                                  states={'done': [('readonly', True)]})
-    contact_name = fields.Char(string="Full Name", size=40,
-                               help="Must have name and surname.",
-                               states={'calculated': [('required', True)],
-                                       'confirmed': [('readonly', True)]})
-    contact_phone = fields.Char(string="Phone", size=9,
-                                states={'calculated': [('required', True)],
+    previous_number = fields.Char(
+        string='Previous declaration number', size=13,
+        states={'done': [('readonly', True)]})
+    contact_name = fields.Char(
+        string="Full Name", size=40, help="Must have name and surname.",
+        states={'calculated': [('required', True)],
+                'confirmed': [('readonly', True)]})
+    contact_phone = fields.Char(
+        string="Phone", size=9, states={'calculated': [('required', True)],
                                         'confirmed': [('readonly', True)]})
-    representative_vat = fields.Char(string='L.R. VAT number', size=9,
-                                     help="Legal Representative VAT number.",
-                                     states={'confirmed': [('readonly',
-                                                            True)]})
-    fiscalyear_id = fields.Many2one('account.fiscalyear', string='Fiscal year',
-                                    required=True, readonly=True,
-                                    states={'draft': [('readonly', False)]})
-
-    type = fields.Selection([('N', 'Normal'), ('C', 'Complementary'),
-                             ('S', 'Substitutive')], string='Statement Type',
-                            states={'calculated': [('required', True)],
-                                    'done': [('readonly', True)]}, default='N')
-    support_type = fields.Selection([('C', 'DVD'), ('T', 'Telematics')],
-                                    string='Support Type', default='T',
-                                    states={'calculated': [('required', True)],
-                                            'done': [('readonly', True)]})
+    representative_vat = fields.Char(
+        string='L.R. VAT number', size=9,
+        help="Legal Representative VAT number.",
+        states={'confirmed': [('readonly', True)]})
+    fiscalyear_id = fields.Many2one(
+        'account.fiscalyear', string='Fiscal year', required=True,
+        readonly=True, states={'draft': [('readonly', False)]})
+    type = fields.Selection(
+        [('N', 'Normal'), ('C', 'Complementary'), ('S', 'Substitutive')],
+        string='Statement Type', default='N',
+        states={'calculated': [('required', True)],
+                'done': [('readonly', True)]})
+    support_type = fields.Selection(
+        [('C', 'DVD'), ('T', 'Telematics')], string='Support Type',
+        default='T', states={'calculated': [('required', True)],
+                             'done': [('readonly', True)]})
     calculation_date = fields.Datetime(string="Calculation date")
-    state = fields.Selection([('draft', 'Draft'), ('calculated', 'Processed'),
-                              ('done', 'Done'), ('cancelled', 'Cancelled')],
-                             string='State', readonly=True, default='draft')
+    state = fields.Selection(
+        [('draft', 'Draft'), ('calculated', 'Processed'), ('done', 'Done'),
+         ('cancelled', 'Cancelled')], string='State', readonly=True,
+        default='draft')
+    sequence = fields.Char(string="Sequence", size=16)
+    export_config = fields.Many2one('aeat.model.export.config',
+                                    string='Export config')
+
+    @api.model
+    def create(self, values):
+        seq_obj = self.env['ir.sequence']
+        sequence = "aeat%s-sequence" % self._model._aeat_number
+        seq = seq_obj.next_by_id(seq_obj.search([('name', '=', sequence)]).id)
+        values['sequence'] = seq
+        return super(L10nEsAeatReport, self).create(values)
 
     @api.multi
     def button_calculate(self):
         res = self.calculate()
         self.write({'state': 'calculated',
-                    'calculation_date': time.strftime(
-                        DEFAULT_SERVER_DATETIME_FORMAT)})
+                    'calculation_date': fields.Datetime.now()})
         return res
 
     @api.multi
     def button_recalculate(self):
-        self.write({'calculation_date':
-                    time.strftime(DEFAULT_SERVER_DATETIME_FORMAT)})
+        self.write({'calculation_date': fields.Datetime.now()})
         return self.calculate()
 
     @api.multi
@@ -140,17 +148,28 @@ class L10nEsAeatReport(models.AbstractModel):
 
     @api.multi
     def unlink(self):
-        for item in self:
-            if item.state not in ['draft', 'cancelled']:
-                raise exceptions.Warning(_("Only reports in 'draft' or "
-                                           "'cancelled' state can be removed"))
+        if any(item.state not in ['draft', 'cancelled'] for item in self):
+            raise exceptions.Warning(_("Only reports in 'draft' or "
+                                       "'cancelled' state can be removed"))
         return super(L10nEsAeatReport, self).unlink()
 
-    def __init__(self, pool, cr):
-        super(L10nEsAeatReport, self).__init__(pool, cr)
+    def init(self, cr):
+        seq_obj = self.pool['ir.sequence']
         try:
-            getattr(self, '_aeat_number')
+            aeat_num = getattr(self, '_aeat_number')
+            sequence = "aeat%s-sequence" % aeat_num
+            if not seq_obj.search(cr, SUPERUSER_ID, [('name', '=', sequence)]):
+                seq_vals = {'name': sequence,
+                            'code': 'aeat.sequence.type',
+                            'number_increment': 1,
+                            'implementation': 'standard',
+                            'padding': 5,
+                            'number_next_actual': 1,
+                            'prefix': aeat_num + '-'
+                            }
+                seq_obj.create(cr, SUPERUSER_ID, seq_vals)
         except:
-            pass
-            # raise exceptions.Warning(
-            #    "Modelo no válido. Debe declarar una variable '_aeat_number'")
+            if self._name != 'l10n.es.aeat.report':
+                raise exceptions.Warning(
+                    "Modelo no válido: %s. Debe declarar una variable "
+                    "'_aeat_number'" % self)

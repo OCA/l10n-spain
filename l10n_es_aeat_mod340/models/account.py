@@ -19,34 +19,30 @@
 #
 ##############################################################################
 
-<<<<<<< HEAD:l10n_es_aeat_mod340/account.py
 from openerp.osv import orm, fields
-=======
-from openerp import models, fields, _
->>>>>>> [IMP] change code to new api + _aeat_number attribute:l10n_es_aeat_mod340/models/account.py
+from openerp.tools.translate import _
 
 
-class AccountTaxCodeTemplate(models.Model):
+class AccountTaxCodeTemplate(orm.Model):
     _inherit = 'account.tax.code.template'
 
-    mod340 = fields.Boolean(string="Include in mod340")
-
-
-class AccountTaxCode(models.Model):
-    _inherit = 'account.tax.code'
-
-<<<<<<< HEAD:l10n_es_aeat_mod340/account.py
     _columns = {
         'mod340': fields.boolean("Include in mod340"),
     }
-=======
-    mod340 = fields.Boolean(string="Include in mod340")
 
 
-class WizardUpdateChartsAccounts(models.TransientModel):
+class AccountTaxCode(orm.Model):
+    _inherit = 'account.tax.code'
+
+    _columns = {
+        'mod340': fields.boolean("Include in mod340"),
+    }
+
+
+class WizardUpdateChartsAccounts(orm.TransientModel):
     _inherit = 'wizard.update.charts.accounts'
 
-    def _find_tax_codes(self, chart_template_ids,
+    def _find_tax_codes(self, cr, uid, wizard, chart_template_ids,
                         context=None):
         """Search for, and load, tax code templates to create/update.
 
@@ -186,4 +182,3 @@ class WizardUpdateChartsAccounts(models.TransientModel):
             'updated': updated_tax_codes,
             'mapping': tax_code_template_mapping
         }
->>>>>>> [IMP] change code to new api + _aeat_number attribute:l10n_es_aeat_mod340/models/account.py
