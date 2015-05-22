@@ -20,9 +20,9 @@ from openerp import api, fields, models
 from . import exceptions as ex
 
 
-class ContributionAccountModel(models.AbstractModel):
+class ABC(models.AbstractModel):
     """Models with contribution account code."""
-    _name = "l10n_es_contribution_account.abc"
+    _name = "l10n_es_tgss_ccc.abc"
 
     # Saved as Char because it can have leading zeroes
     contribution_account = fields.Char(
@@ -59,9 +59,9 @@ class ContributionAccountModel(models.AbstractModel):
 
 class Partner(models.Model):
     _name = "res.partner"
-    _inherit = [_name, ContributionAccountModel._name]
+    _inherit = [_name, ABC._name]
 
 
 class Employee(models.Model):
     _name = "hr.employee"
-    _inherit = [_name, ContributionAccountModel._name]
+    _inherit = [_name, ABC._name]
