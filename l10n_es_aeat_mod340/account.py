@@ -43,7 +43,7 @@ class WizardUpdateChartsAccounts(orm.TransientModel):
     _inherit = 'wizard.update.charts.accounts'
 
     def _find_tax_codes2(self, cr, uid, wizard, chart_template_ids,
-                        context=None):
+                         context=None):
         """Search for, and load, tax code templates to create/update.
         @param chart_template_ids: IDs of the chart templates to look on,
             calculated once in the calling method.
