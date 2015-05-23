@@ -3,6 +3,7 @@ addons:
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
+      - python-xlrd
 
 language: python
 
@@ -10,22 +11,22 @@ python:
   - "2.7"
 
 env:
-  - VERSION="7.0" LINT_CHECK=1
-  - VERSION="7.0" ODOO_REPO="odoo/odoo" LINT_CHECK=0
-  - VERSION="7.0" ODOO_REPO="OCA/OCB" LINT_CHECK=0
+  global:
+  - VERSION="7.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+  - TRANSIFEX_USER='transbot@odoo-community.org'
+  - secure: "XLhGdCIh86zcqww9qBpnk8Xqsf1Pcgw9SKr7X0KYBHJofHj4Z6Kq/oVFjpZ1LSjadsaABKbwY7h4hvKEpxZwptCv+fNTOKYy7hXFLGYnDeNeWu4zA4LI7TA5uPvyZjZ+g2xc+9dzR/VbfRHNqjvmgiEidxxqLeOnNFZ5CHdOdCw="
+  matrix:
+  - LINT_CHECK="1"
+  - TRANSIFEX="1"
+  - TESTS="1" ODOO_REPO="odoo/odoo"
+  - TESTS="1" ODOO_REPO="OCA/OCB"
 
 virtualenv:
   system_site_packages: true
 
 install:
   - pip install unidecode
-  - pip install xlrd
-  - git clone https://github.com/OCA/partner-contact ${HOME}/partner-contact -b ${VERSION}
-  - git clone https://github.com/OCA/account-financial-tools ${HOME}/account-financial-tools -b ${VERSION}
-  - git clone https://github.com/OCA/bank-statement-reconcile ${HOME}/bank-statement-reconcile -b ${VERSION}
-  - git clone https://github.com/OCA/account-payment ${HOME}/account-payment -b ${VERSION}
-  - git clone https://github.com/OCA/reporting-engine ${HOME}/reporting-engine -b ${VERSION}
-  - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
+  - git clone https://github.com/savoirfairelinux/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools -b transifex_create_options
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
 
@@ -33,4 +34,4 @@ script:
   - travis_run_tests
 
 after_success:
-  coveralls
+  - travis_after_tests_success
