@@ -23,3 +23,4 @@
 ##############################################################################
 from . import calculate_mod340_records
 from . import export_mod340_to_boe
+from . import wizard_update_charts_accounts
