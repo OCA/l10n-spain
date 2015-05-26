@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!-- Views -->
+<record id="category_list" model="ir.ui.view">
+    <field name="name">Professional Category List</field>
+    <field name="model">l10n_es_professional_category.category</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+        <tree string="Professional Category List" editable="bottom">
+            <field name="number"/>
+            <field name="name"/>
+        </tree>
+    </field>
+</record>
+
+<record id="category_search" model="ir.ui.view">
+    <field name="name">Professional Category Search</field>
+    <field name="model">l10n_es_professional_category.category</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+        <search>
+            <field name="number"/>
+            <field name="name"/>
+        </search>
+    </field>
+</record>
+
+<!-- Menus -->
+<record id="category_list_action" model="ir.actions.act_window">
+    <field name="name">Professional Category List</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">l10n_es_professional_category.category</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="category_list"/>
+    <field name="search_view_id" ref="category_search"/>
+</record>
+
+<menuitem
+    id="category_menu"
+    name="Professional Categories"
+    parent="base.menu_config_address_book"
+    groups="base.group_no_one"
+    action="category_list_action"/>
+
+</data>
+</openerp>

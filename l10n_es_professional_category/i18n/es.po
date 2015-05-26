@@ -1,0 +1,109 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_professional_category
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0-20150514\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-26 11:23+0000\n"
+"PO-Revision-Date: 2015-05-26 13:35+0100\n"
+"Last-Translator: Jairo Llopis <j.llopis@grupoesoc.es>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.7.6\n"
+"Language: es_ES\n"
+
+#. module: l10n_es_professional_category
+#: field:l10n_es_professional_category.category,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_professional_category
+#: field:l10n_es_professional_category.category,create_date:0
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: l10n_es_professional_category
+#: sql_constraint:l10n_es_professional_category.category:0
+msgid "Each name must be unique."
+msgstr "Cada nombre debe ser único."
+
+#. module: l10n_es_professional_category
+#: sql_constraint:l10n_es_professional_category.category:0
+msgid "Each number must be unique."
+msgstr "Cada número debe ser único."
+
+#. module: l10n_es_professional_category
+#: model:l10n_es_professional_category.category,name:l10n_es_professional_category.category_executive
+msgid "Executive"
+msgstr "Directivo/a"
+
+#. module: l10n_es_professional_category
+#: field:l10n_es_professional_category.category,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_professional_category
+#: model:l10n_es_professional_category.category,name:l10n_es_professional_category.category_intermediate_head
+msgid "Intermediate head"
+msgstr "Mando intermedio"
+
+#. module: l10n_es_professional_category
+#: field:l10n_es_professional_category.category,write_uid:0
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: l10n_es_professional_category
+#: field:l10n_es_professional_category.category,write_date:0
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: l10n_es_professional_category
+#: model:l10n_es_professional_category.category,name:l10n_es_professional_category.category_low_qualified_worker
+msgid "Low-qualified worker"
+msgstr "Trabajador/a de baja cualificación"
+
+#. module: l10n_es_professional_category
+#: field:l10n_es_professional_category.category,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_es_professional_category
+#: field:l10n_es_professional_category.category,number:0
+msgid "Number"
+msgstr "Número"
+
+#. module: l10n_es_professional_category
+#: model:ir.model,name:l10n_es_professional_category.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_professional_category
+#: model:ir.ui.menu,name:l10n_es_professional_category.category_menu
+msgid "Professional Categories"
+msgstr "Categorías profesionales"
+
+#. module: l10n_es_professional_category
+#: model:ir.actions.act_window,name:l10n_es_professional_category.category_list_action
+#: view:l10n_es_professional_category.category:l10n_es_professional_category.category_list
+msgid "Professional Category List"
+msgstr "Lista de categorías profesionales"
+
+#. module: l10n_es_professional_category
+#: field:res.partner,professional_category:0
+msgid "Professional category"
+msgstr "Categoría profesional"
+
+#. module: l10n_es_professional_category
+#: model:l10n_es_professional_category.category,name:l10n_es_professional_category.category_qualified_worker
+msgid "Qualified worker"
+msgstr "Trabajador/a cualificado/a"
+
+#. module: l10n_es_professional_category
+#: model:l10n_es_professional_category.category,name:l10n_es_professional_category.category_technician
+msgid "Technician"
+msgstr "Técnico/a"
