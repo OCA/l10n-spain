@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<record id="partner_form" model="ir.ui.view">
+    <field name="name">Study level field</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id"
+           ref="partner_contact_personal_information_page.personal_information"/>
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//group[@name='personal_information_group']">
+                <field name="study_level"/>
+            </xpath>
+        </data>
+    </field>
+</record>
+
+</data>
+</openerp>
