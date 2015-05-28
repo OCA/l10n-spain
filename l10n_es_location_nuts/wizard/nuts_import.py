@@ -84,11 +84,11 @@ class NutsImport(models.TransientModel):
         'ES630': 'l10n_es_toponyms.ES51',  # Ceuta
         'ES640': 'l10n_es_toponyms.ES52',  # Melilla
         'ES703': 'l10n_es_toponyms.ES38',  # El Hierro
-        'ES704': 'l10n_es_toponyms.ES38',  # Fuerteventura
-        'ES705': 'l10n_es_toponyms.ES38',  # Gran Canaria
+        'ES704': 'l10n_es_toponyms.ES35',  # Fuerteventura
+        'ES705': 'l10n_es_toponyms.ES35',  # Gran Canaria
         'ES706': 'l10n_es_toponyms.ES38',  # La Gomera
         'ES707': 'l10n_es_toponyms.ES38',  # La Palma
-        'ES708': 'l10n_es_toponyms.ES38',  # Lanzarote
+        'ES708': 'l10n_es_toponyms.ES35',  # Lanzarote
         'ES709': 'l10n_es_toponyms.ES38',  # Tenerife
         'ESZZZ': False,  # Extra-Regio NUTS 3
     }
