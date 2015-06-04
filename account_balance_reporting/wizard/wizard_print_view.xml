@@ -54,7 +54,6 @@ Author: Borja López Soilán (Pexego) - borjals@pexego.es
             id="account_balance_reporting_print_wizard_act_window" />
 
         <record id="account_balance_reporting_print_wizard_ir_values" model="ir.values">
-            <field name="object" eval="1" />
             <field name="name">Financial report</field>
             <field name="key2">client_print_multi</field>
             <field name="value" eval="'ir.actions.act_window,' + str(ref('account_balance_reporting_print_wizard_act_window'))"/>
