@@ -5,7 +5,6 @@
         <record id="account_journal_entries_report_view" model="ir.ui.view">
             <field name="name">Print journal by entries</field>
             <field name="model">account.journal.entries.report</field>
-            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Print journal by entries" version="7.0">
                     <group>
