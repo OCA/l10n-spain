@@ -357,7 +357,7 @@ class Mod349PartnerRecord(models.Model):
 
     report_id = fields.Many2one(
         comodel_name='l10n.es.aeat.mod349.report',
-        string='AEAT 349 Report ID')
+        string='AEAT 349 Report ID', ondelete="cascade")
     name = fields.Char(compute="get_record_name")
     partner_id = fields.Many2one(
         comodel_name='res.partner', string='Partner', required=True)
@@ -371,8 +371,7 @@ class Mod349PartnerRecord(models.Model):
         help='Checked if partner record is OK')
     record_detail_ids = fields.One2many(
         comodel_name='l10n.es.aeat.mod349.partner_record_detail',
-        inverse_name='partner_record_id', string='Partner record detail IDS',
-        ondelete='cascade')
+        inverse_name='partner_record_id', string='Partner record detail IDS')
 
 
 class Mod349PartnerRecordDetail(models.Model):
@@ -387,7 +386,7 @@ class Mod349PartnerRecordDetail(models.Model):
         default=lambda self: self.env.context.get('partner_record_id'),
         string='Partner record', required=True, ondelete='cascade', select=1)
     invoice_id = fields.Many2one(
-        comodel_name='account.invoice', string='Invoice')
+        comodel_name='account.invoice', string='Invoice', required=True)
     amount_untaxed = fields.Float(string='Amount untaxed')
     date = fields.Date(related='invoice_id.date_invoice', string="Date",
                        readonly=True)
@@ -410,7 +409,8 @@ class Mod349PartnerRefund(models.Model):
             self.period_selection and self.fiscalyear_id)
 
     report_id = fields.Many2one(
-        comodel_name='l10n.es.aeat.mod349.report', string='AEAT 349 Report ID')
+        comodel_name='l10n.es.aeat.mod349.report', string='AEAT 349 Report ID',
+        ondelete="cascade")
     partner_id = fields.Many2one(
         comodel_name='res.partner', string='Partner', required=1, select=1)
     partner_vat = fields.Char(string='VAT', size=15)
@@ -435,8 +435,7 @@ class Mod349PartnerRefund(models.Model):
     month_selection = fields.Selection(selection=MONTH_MAPPING, string='Month')
     refund_detail_ids = fields.One2many(
         comodel_name='l10n.es.aeat.mod349.partner_refund_detail',
-        inverse_name='refund_id', string='Partner refund detail IDS',
-        ondelete='cascade')
+        inverse_name='refund_id', string='Partner refund detail IDS')
 
     @api.multi
     def onchange_format_partner_vat(self, partner_vat, country_id):
@@ -454,9 +453,10 @@ class Mod349PartnerRefundDetail(models.Model):
 
     refund_id = fields.Many2one(
         comodel_name='l10n.es.aeat.mod349.partner_refund',
-        string='Partner refund ID')
+        string='Partner refund ID', ondelete="cascade")
     invoice_id = fields.Many2one(
-        comodel_name='account.invoice', string='Invoice ID')
+        comodel_name='account.invoice', string='Invoice ID',
+        required=True)
     amount_untaxed = fields.Float(string='Amount untaxed')
     date = fields.Date(related='invoice_id.date_invoice', string="Date",
                        readonly=True)
