@@ -23,12 +23,21 @@
 ##############################################################################
 
 from openerp import models, api
+from openerp.tools.translate import _
 from openerp.addons.base_location_nuts.models.res_partner \
     import dict_recursive_update
 
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
+
+    @api.one
+    @api.depends('country_id')
+    def _labels_get(self):
+        super(ResPartner, self)._labels_get()
+        if self.country_id.code == 'ES':
+            self.lbl_substate = _('Autonomous Community')
+            self.lbl_region = _('Region')
 
     @api.multi
     def onchange_state(self, state_id):
