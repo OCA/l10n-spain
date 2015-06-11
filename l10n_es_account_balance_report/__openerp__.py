@@ -38,11 +38,11 @@
 
 Based on the annual accounts deposit models for the "Registro Mercantil":
 
-NORMAL: http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&blobheader=application%2Fpdf&blobkey=id&blobnocache=true&blobtable=Documento&blobwhere=1161679576351&ssbinary=true
+NORMAL: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306020
 
-ABREVIADO: http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&blobheader=application%2Fpdf&blobkey=id&blobnocache=true&blobtable=Documento&blobwhere=1161679576346&ssbinary=true
+ABREVIADO: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306005
 
-PYMES: http://www.mjusticia.es/cs/Satellite?blobcol=urldocumento&blobheader=application%2Fpdf&blobkey=id&blobnocache=true&blobtable=Documento&blobwhere=1161679576359&ssbinary=true
+PYMES: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306035
             """,
         "depends" : [
                 'base',
