@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="l10n_es.account_tax_code_template_RGIDC4" model="account.tax.code.template">
+          <field name="prorrata_tax_type">b_dedu</field>
+        </record>
+        <record id="l10n_es.account_tax_code_template_RGIDC10" model="account.tax.code.template">
+          <field name="prorrata_tax_type">b_dedu</field>
+        </record>
+        <record id="l10n_es.account_tax_code_template_RGIDC21" model="account.tax.code.template">
+          <field name="prorrata_tax_type">b_dedu</field>
+        </record>
+        <record id="l10n_es.account_tax_code_template_SOICC4" model="account.tax.code.template">
+          <field name="prorrata_tax_type">c_dedu</field>
+        </record>
+        <record id="l10n_es.account_tax_code_template_SOICC10" model="account.tax.code.template">
+          <field name="prorrata_tax_type">c_dedu</field>
+        </record>
+        <record id="l10n_es.account_tax_code_template_SOICC21" model="account.tax.code.template">
+          <field name="prorrata_tax_type">c_dedu</field>
+        </record>
+        <record id="l10n_es.account_tax_code_template_SOIBIC4" model="account.tax.code.template">
+           <field name="prorrata_tax_type">c_dedu</field>
+        </record>
+        <record id="l10n_es.account_tax_code_template_SOIBIC10" model="account.tax.code.template">
+           <field name="prorrata_tax_type">c_dedu</field>
+        </record>
+        <record id="l10n_es.account_tax_code_template_SOIBIC21" model="account.tax.code.template">
+           <field name="prorrata_tax_type">c_dedu</field>
+        </record>
+        <record id="l10n_es.account_tax_code_template_DIBYSCC4" model="account.tax.code.template">
+          <field name="prorrata_tax_type">c_dedu</field>
+        </record>
+        <record id="l10n_es.account_tax_code_template_DIBYSCC10" model="account.tax.code.template">
+          <field name="prorrata_tax_type">c_dedu</field>
+        </record>
+        <record id="l10n_es.account_tax_code_template_DIBYSCC21" model="account.tax.code.template">
+          <field name="prorrata_tax_type">c_dedu</field>
+        </record>
+        <record id="l10n_es.account_tax_code_template_DIBIC4" model="account.tax.code.template">
+          <field name="prorrata_tax_type">c_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_DIBIC10" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">c_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_DIBIC21" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">c_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_RGIDBI4" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_RGIDBI10" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_RGIDBI21" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_OICBI4" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_OICBI10" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_OICBI21" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_OIBIBI4" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_OIBIBI10" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_OIBIBI21" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_IBYSCBI4" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_IBYSCBI10" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_dedu</field>
+        </record>
+	    <record id="l10n_es.account_tax_code_template_IBYSCBI21" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_dedu</field>
+        </record>
+	    <record id="l10n_es.account_tax_code_template_IBIBI4" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_dedu</field>
+        </record>
+	    <record id="l10n_es.account_tax_code_template_IBIBI10" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_dedu</field>
+        </record>
+	    <record id="l10n_es.account_tax_code_template_IBIBI21" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_dedu</field>
+        </record>
+	    <record id="l10n_es.account_tax_code_template_SNDBI" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_no_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_SNDC" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">c_no_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_OESDAD" model="account.tax.code.template">
+	       <field name="prorrata_tax_type">b_no_dedu</field>
+	    </record>
+	    <record id="l10n_es.account_tax_code_template_AEBI" model="account.tax.code.template">
+	      <field name="prorrata_tax_type">b_no_dedu</field>
+        </record>
+    </data>
+</openerp>
