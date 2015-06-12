@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="l10n_es_aeat_mod303_prorrata_form">
+            <field name="name">l10n.es.aeat.mod303.prorrata.form</field>
+            <field name="model">l10n.es.aeat.mod303.report</field>
+            <field name="inherit_id" ref="l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form"/>
+            <field name="arch" type="xml">
+                <group string="Resultado" position="inside">
+                    <group colspan="6">
+                        <field name="prorrata_type"/>
+                    </group>
+                    <group colspan="6" col="6" attrs="{'invisible':[('prorrata_type', '=', 'none')]}">
+                        <field name="prorrata_deducible"/>
+                        <field name="prorrata_no_deducible"/>
+                        <field name="prorrata_porcentaje"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+    </data>
+</openerp>
