@@ -29,42 +29,25 @@
 {
     "name": "Account balance reporting engine",
     "version": "0.3",
-    "author": "Pexego,Odoo Community Association (OCA)",
-    "website": "http://www.pexego.es",
+    "author": "Pexego,"
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+              "Aserti,"
+              "MalagaTIC,"
+              "AvanzOSC,"
+              "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting",
     "contributors": [
         "Juanjo Algaz <juanjoa@malagatic.com>",
         "Joaquín Gutierrez <joaquing.pedrosa@gmail.com>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
+        "Pablo Cayuela <pablo.cayuela@aserti.es>",
     ],
-    "description": """
-The module allows the user to create account balance reports and templates,
-comparing the values of 'accounting concepts' between two fiscal years
-or a set of fiscal periods.
-
-Accounting concepts values can be calculated as the sum of some account
-balances, the sum of its children, other account concepts or constant values.
-
-Generated reports are stored as objects on the server,
-so you can check them anytime later or edit them
-(to add notes for example) before printing.
-
-The module lets the user add new templates of the reports concepts,
-and associate them an specific "XML report" (OpenERP RML files for example)
-with the design used when printing.
-So it is very easy to add predefined country-specific official reports.
-
-The user interface has been designed to be as much user-friendly as it can be.
-
-Note: It has been designed to meet Spanish/Spain localization needs,
-but it might be used as a generic accounting report engine.
-    """,
     "depends": [
         "base",
         "account",
     ],
-    "demo": [],
     "data": [
         "security/ir.model.access.csv",
         "views/account_balance_reporting_template_view.xml",
