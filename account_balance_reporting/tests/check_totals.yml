@@ -1,0 +1,129 @@
+-
+  Create and use a financial manager user
+-
+  !record {model: res.users, id: financial_manager_user, view: False}:
+    company_id: base.main_company
+    name: Financial Manager User
+    login: fmu
+    password: fmu
+    email: fmu@yourcompany.com
+    groups_id:
+      -  account.group_account_manager
+-
+  !context
+    uid: 'financial_manager_user'
+
+-
+  Create accounts and a movement to avoid completely relying 
+  on other modules demo data. Journal items could be added to existent
+  accounts, interfering with the amount checks we make.
+  We only use the demo root account, journal and period, less prone to change.
+  user_type 5 = cash
+-
+  !record {model: account.account, id: test_acc_view, view: False}:
+    code: "X7"
+    name: "Balance report test"
+    parent_id: account.chart0
+    user_type: 5
+    type: view
+-
+  !record {model: account.account, id: test_acc_1, view: False}:
+    code: "X70001"
+    name: "Balance report test acc. 1"
+    parent_id: test_acc_view
+    user_type: 5
+    type: liquidity
+-
+  !record {model: account.account, id: test_acc_2, view: False}:
+    code: "X70002"
+    name: "Balance report test acc. 2"
+    parent_id: test_acc_view
+    user_type: 5
+    type: liquidity
+-
+  !record {model: account.account, id: test_acc_cp, view: False}:
+    code: "X70009"
+    name: "Balance report test counterpart acc."
+    parent_id: test_acc_view
+    user_type: 5
+    type: liquidity
+-
+  !record {model: account.move, id: test_move1, view: False}:
+    journal_id: account.cash_journal
+    period_id: account.period_1
+    line_id:
+      -  name: "Test move line 1"
+         account_id: test_acc_1
+         debit: 100.00
+      -  name: "Test counterpart move line 1"
+         account_id: test_acc_cp
+         credit: 100.00
+-
+  !record {model: account.move, id: test_move2, view: False}:
+    journal_id: account.cash_journal
+    period_id: account.period_1
+    line_id:
+      -  name: "Test move line 2"
+         account_id: test_acc_2
+         credit: 30.00
+      -  name: "Test counterpart move line 2"
+         account_id: test_acc_cp
+         debit: 30.00
+-
+  Create a Debit-Credit test report template
+-
+  !record {model: account.balance.reporting.template, id: test_report_template_dc, view: False}:
+    name: "Test report template"
+    balance_mode: "0"
+-
+  !record {model: account.balance.reporting.template.line, id: test_report_template_dc_line1, view: False}:
+    name: "Test report template line 1"
+    code: "X0001"
+    current_value: "X70001, X70002"
+    template_id: test_report_template_dc
+-
+  Create and calculate the test report
+-
+  !record {model: account.balance.reporting, id: test_report_dc, view: False}:
+    name: "Test report Debit-Credit"
+    current_fiscalyear_id: account.data_fiscalyear
+    template_id: test_report_template_dc
+-
+  !workflow {model: account.balance.reporting, action: calculate, ref: test_report_dc}
+-
+  Check the amount calculated is correct.
+  With balance_mode 0, it should be Debit-Credit
+-
+  !python {model: account.balance.reporting.line}: |
+    line_id = self.search(cr, uid, [('report_id','=',ref('test_report_dc')),('code','=','X0001')], context=context)
+    line = self.browse(cr, uid, line_id[0], context)
+    assert line.current_value == 70.00, "Calculated amount is wrong."
+-
+  Create a Credit-Debit test report template
+-
+  !record {model: account.balance.reporting.template, id: test_report_template_cd, view: False}:
+    name: "Test report template"
+    balance_mode: "2"
+-
+  !record {model: account.balance.reporting.template.line, id: test_report_template_cd_line1, view: False}:
+    name: "Test report template line 1"
+    code: "X0001"
+    current_value: "X70001, X70002"
+    template_id: test_report_template_cd
+-
+  Create and calculate the test report
+-
+  !record {model: account.balance.reporting, id: test_report_cd, view: False}:
+    name: "Test report"
+    current_fiscalyear_id: account.data_fiscalyear
+    template_id: test_report_template_cd
+-
+  !workflow {model: account.balance.reporting, action: calculate, ref: test_report_cd}
+-
+  Check the amount calculated is correct.
+  With balance_mode 2, it should be Credit-Debit
+-
+  !python {model: account.balance.reporting.line}: |
+    line_id = self.search(cr, uid, [('report_id','=',ref('test_report_cd')),('code','=','X0001')], context=context)
+    line = self.browse(cr, uid, line_id[0], context)
+    assert line.current_value == -70.00, "Calculated amount is wrong."
