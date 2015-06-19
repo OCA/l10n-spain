@@ -1,0 +1,25 @@
+-
+    Create Tax NAME
+-
+    !record {model: account.tax, id: tax_name}:
+        name: NAME
+        description: DESCRIPTION
+
+-
+  name_get return NAME
+-
+    !python {model: account.tax, id: tax_name}: |
+        assert self.name_get()[0][1] == 'NAME', 'The tax name by name_get is not valid, expected name field'
+
+-
+    Create Tax DESCRIPTION
+-
+    !record {model: account.tax, id: tax_description}:
+        name: ''
+        description: DESCRIPTION
+
+-
+    name_get return DESCRIPTION
+-
+    !python {model: account.tax, id: tax_description}: |
+        assert self.name_get()[0][1] == 'DESCRIPTION', 'The tax name by name_get is not valid, expected description field'
