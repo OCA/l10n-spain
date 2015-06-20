@@ -56,6 +56,9 @@
         "data/account_chart_template_post.xml",
         "data/l10n_es_wizard.xml",
     ],
+    'test': [
+        'test/tax.yml'
+    ],
     "installable": True,
     'images': [
         'images/config_chart_l10n_es.png',
