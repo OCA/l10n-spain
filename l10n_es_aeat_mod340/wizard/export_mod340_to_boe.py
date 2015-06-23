@@ -110,11 +110,14 @@ class l10n_es_aeat_mod340_export_to_boe(osv.osv_memory):
         # Número total de registros 
         text += self._formatNumber(report.number_records, 9)
         # Importe total de la base imponible     
-        text += self._formatNumber(report.total_taxable, 15, 2,True)
+        text += self._formatNumber(
+            report.total_taxable + report.total_taxable_rec, 15, 2, True)
         # Importe Total de la cuota del impuesto
-        text += self._formatNumber(report.total_sharetax, 15, 2,True)
+        text += self._formatNumber(
+            report.total_sharetax + report.total_sharetax_rec, 15, 2, True)
         # Importe total de las facturas
-        text += self._formatNumber(report.total, 15, 2,True)
+        text += self._formatNumber(
+            report.total + report.total_rec, 15, 2, True)
         # Blancos   
         text += 190*' '
         # NIF del representante legal
