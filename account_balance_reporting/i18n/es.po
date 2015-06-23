@@ -1,22 +1,24 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * account_balance_reporting
-# 
-# Translators:
-# Alejandro Santana <alejandrosantana@anubia.es>, 2015
+#	* account_balance_reporting
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-spain (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:58+0000\n"
-"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
+"POT-Creation-Date: 2016-06-05 14:56+0000\n"
+"PO-Revision-Date: 2016-06-05 14:56+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
+
+#. module: account_balance_reporting
+#: model:ir.model,name:account_balance_reporting.model_account_account
+msgid "Account"
+msgstr "Cuenta"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
@@ -24,9 +26,24 @@ msgid "Account balance report"
 msgstr "Informe de saldo de cuentas"
 
 #. module: account_balance_reporting
+#: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_line
+msgid "Account balance report line / Accounting concept. One line of detail of the balance report representing an accounting concept with its values. The accounting concepts follow a parent-children hierarchy. Its values (current and previous) are calculated based on the 'value' formula of the linked template line."
+msgstr "Account balance report line / Accounting concept. One line of detail of the balance report representing an accounting concept with its values. The accounting concepts follow a parent-children hierarchy. Its values (current and previous) are calculated based on the 'value' formula of the linked template line."
+
+#. module: account_balance_reporting
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
 msgid "Account balance report template"
 msgstr "Plantilla de informe de saldo de cuentas"
+
+#. module: account_balance_reporting
+#: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template_line
+msgid "Account balance report template line / Accounting concept template One line of detail of the balance report representing an accounting concept with the formulas to calculate its values. The accounting concepts follow a parent-children hierarchy."
+msgstr "Account balance report template line / Accounting concept template One line of detail of the balance report representing an accounting concept with the formulas to calculate its values. The accounting concepts follow a parent-children hierarchy."
+
+#. module: account_balance_reporting
+#: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template
+msgid "Account balance report template. It stores the header fields of an account balance report template, and the linked lines of detail with the formulas to calculate the accounting concepts of the report."
+msgstr "Account balance report template. It stores the header fields of an account balance report template, and the linked lines of detail with the formulas to calculate the accounting concepts of the report."
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_tree
@@ -49,6 +66,7 @@ msgstr "Plantillas de saldo de cuentas"
 msgid "Balance mode"
 msgstr "Modo de saldo"
 
+#. module: account_balance_reporting
 #. module: account_balance_reporting
 #: report:report_account_balance_reporting.generic:0
 #: report:report_account_balance_reporting.generic_non_zero:0
@@ -107,6 +125,11 @@ msgid "Company"
 msgstr "Compañía"
 
 #. module: account_balance_reporting
+#: field:account.balance.reporting,check_filter:0
+msgid "Compute by"
+msgstr "Calculado por"
+
+#. module: account_balance_reporting
 #: help:account.balance.reporting.template.line,code:0
 msgid "Concept code, may be used on formulas to reference this line"
 msgstr "Código de concepto, podrá usarse en fórmulas para referenciar esta línea"
@@ -155,6 +178,28 @@ msgid "Credit-Debit, reversed with brackets"
 msgstr "Haber-Debe, invertido con paréntesis"
 
 #. module: account_balance_reporting
+#: field:account.balance.reporting.line,current_move_line_count:0
+msgid "Current move line count"
+msgstr "Current move line count"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,current_date_from:0
+#: field:account.balance.reporting,previous_date_from:0
+msgid "Date From"
+msgstr "Fecha desde"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,current_date_to:0
+#: field:account.balance.reporting,previous_date_to:0
+msgid "Date To"
+msgstr "Fecha hasta"
+
+#. module: account_balance_reporting
+#: selection:account.balance.reporting,check_filter:0
+msgid "Dates"
+msgstr "Fechas"
+
+#. module: account_balance_reporting
 #: selection:account.balance.reporting.template,balance_mode:0
 msgid "Debit-Credit"
 msgstr "Debe-Haber"
@@ -180,6 +225,19 @@ msgstr "Descripción"
 #: field:account.balance.reporting.print.wizard,report_xml_id:0
 msgid "Design"
 msgstr "Diseño"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,display_name:0
+#: field:account.balance.reporting.print.wizard,display_name:0
+#: field:account.balance.reporting.template,display_name:0
+#: field:account.balance.reporting.template.line,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: account_balance_reporting
+#: field:account.account,not_level_expand:0
+msgid "Don't show this account on financial reports level detail"
+msgstr "No mostrar en el detalle de niveles de los informes financieros"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
@@ -239,14 +297,16 @@ msgstr "Periodos del ejercicio fiscal 2"
 
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template,balance_mode:0
-msgid ""
-"Formula calculation mode: Depending on it, the balance is calculated as\n"
-"    follows:\n"
-"      Mode 0: debit-credit (default);\n"
-"      Mode 1: debit-credit, credit-debit for accounts in brackets;\n"
-"      Mode 2: credit-debit;\n"
-"      Mode 3: credit-debit, debit-credit for accounts in brackets."
-msgstr "Modo de fórmula de cálculo: Basado en él, el saldo es calculado:\nModo 0: Debe - Haber (por defecto);\nModo 1: Debe - Haber, Haber - Debe para cuentas entre paréntesis;\nModo 2: Haber - Debe;\nModo 3: Haber - Debe, Debe - Haber para cuentas entre paréntesis;"
+msgid "Formula calculation mode: Depending on it, the balance is calculated as follows:\n"
+"Mode 0: debit-credit (default);\n"
+"Mode 1: debit-credit, credit-debit for accounts in brackets;\n"
+"Mode 2: credit-debit;\n"
+"Mode 3: credit-debit, debit-credit for accounts in brackets."
+msgstr "Formula calculation mode: Depending on it, the balance is calculated as follows:\n"
+"Mode 0: debit-credit (default);\n"
+"Mode 1: debit-credit, credit-debit for accounts in brackets;\n"
+"Mode 2: credit-debit;\n"
+"Mode 3: credit-debit, debit-credit for accounts in brackets."
 
 #. module: account_balance_reporting
 #: model:ir.actions.report.xml,name:account_balance_reporting.report_account_balance_reporting_generic
@@ -268,9 +328,44 @@ msgid "ID"
 msgstr "ID"
 
 #. module: account_balance_reporting
+#: help:account.account,not_level_expand:0
+msgid "If you mark this field, when expanding account balances by levels on financial reports, this account won't be shown. This only serves when displaying the account itself, but not when showing parent accounts, which will include this account balance as part of the result."
+msgstr "Si marca esta casilla, cuando expanda los saldos de cuenta por niveles en los informes financieros, esta cuenta no será mostrada. Esto sólo sirve cuando se muestre la cuenta en si, no cuando se muestren cuentas padres, que incluirán el saldo de esta cuenta como parte del resultado."
+
+#. module: account_balance_reporting
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
 msgid "Information"
 msgstr "Información"
+
+#. module: account_balance_reporting
+#: model:ir.model,name:account_balance_reporting.model_account_balance_reporting
+msgid "It stores the configuration/header fields of an account balance report, and the linked lines of detail with the values of the accounting concepts (values generated from the selected template lines of detail formulas)"
+msgstr "It stores the configuration/header fields of an account balance report, and the linked lines of detail with the values of the accounting concepts (values generated from the selected template lines of detail formulas)"
+
+#. module: account_balance_reporting
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:528
+#, python-format
+msgid "Journal Items"
+msgstr "Apuntes contables"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting.line,current_move_line_ids:0
+msgid "Journal items (current)"
+msgstr "Apuntes contables (actual)"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting.line,previous_move_line_ids:0
+msgid "Journal items (previous)"
+msgstr "Apuntes contables (previo)"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,__last_update:0
+#: field:account.balance.reporting.line,__last_update:0
+#: field:account.balance.reporting.print.wizard,__last_update:0
+#: field:account.balance.reporting.template,__last_update:0
+#: field:account.balance.reporting.template.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,write_uid:0
@@ -289,6 +384,11 @@ msgstr "Última actualización por"
 #: field:account.balance.reporting.template.line,write_date:0
 msgid "Last Updated on"
 msgstr "Última actualización en"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,level:0
+msgid "Level"
+msgstr "Nivel"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.line,css_class:0
@@ -345,6 +445,7 @@ msgstr "NOTAS"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,name:0
+#: field:account.balance.reporting.line,display_name:0
 #: field:account.balance.reporting.line,name:0
 #: field:account.balance.reporting.template,name:0
 #: field:account.balance.reporting.template.line,name:0
@@ -373,6 +474,16 @@ msgid "Parent"
 msgstr "Padre"
 
 #. module: account_balance_reporting
+#: selection:account.balance.reporting,check_filter:0
+msgid "Periods"
+msgstr "Periodos"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting.line,previous_move_line_count:0
+msgid "Previous move line count"
+msgstr "Previous move line count"
+
+#. module: account_balance_reporting
 #: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Print"
 msgstr "Imprimir"
@@ -385,12 +496,7 @@ msgstr "Imprimir informe"
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
 msgid "Processed"
-msgstr "Calculada"
-
-#. module: account_balance_reporting
-#: selection:account.balance.reporting,state:0
-msgid "Processing"
-msgstr "Calculando"
+msgstr "Calculado"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
@@ -421,6 +527,11 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: account_balance_reporting
+#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+msgid "Show journal items"
+msgstr "Mostrar apuntes contables"
+
+#. module: account_balance_reporting
 #: field:account.balance.reporting,state:0
 msgid "State"
 msgstr "Estado"
@@ -449,8 +560,8 @@ msgstr "Líneas de plantilla"
 #. module: account_balance_reporting
 #: sql_constraint:account.balance.reporting.line:0
 #: sql_constraint:account.balance.reporting.template.line:0
-#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:236
-#: code:addons/account_balance_reporting/models/account_balance_reporting_template.py:191
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:189
+#: code:addons/account_balance_reporting/models/account_balance_reporting_template.py:150
 #, python-format
 msgid "The code must be unique for this report!"
 msgstr "¡El código debe ser único para este informe!"
@@ -468,8 +579,7 @@ msgstr "Usuario"
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template.line,current_value:0
 #: help:account.balance.reporting.template.line,previous_value:0
-msgid ""
-"Value calculation formula: Depending on this formula the final value is\n"
+msgid "Value calculation formula: Depending on this formula the final value is\n"
 "    calculated as follows:\n"
 "      Empy template value: sum of (this concept) children values.\n"
 "      Number with decimal point (\"10.2\"): that value (constant).\n"
@@ -478,4 +588,9 @@ msgid ""
 "      Concept codes separated by \"+\" (\"11000+12000\"): Sum of those concepts\n"
 "      values.\n"
 "    "
-msgstr "Fórmula de cálculo: Basándose en esta fórmula el valor final se calculará:\nValor de plantilla vacía: sumatorio de los valores hijos (de este concepto).\nNúmero con coma decinal (\"10.2\"): ese valor (constante).\nNúmeros de cuenta separados por comas (\"430,431,(437)\"): Sumatorio de los saldos de las cuentas (el signo del saldo depende del modo de saldo).\nCódigos de concepto separados por \"+\" (\"11000+12000\"): Sumatorio de los valores de los conceptos."
+msgstr "Fórmula de cálculo: Basándose en esta fórmula el valor final se calculará:\n"
+"Valor de plantilla vacía: sumatorio de los valores hijos (de este concepto).\n"
+"Número con coma decinal (\"10.2\"): ese valor (constante).\n"
+"Números de cuenta separados por comas (\"430,431,(437)\"): Sumatorio de los saldos de las cuentas (el signo del saldo depende del modo de saldo).\n"
+"Códigos de concepto separados por \"+\" (\"11000+12000\"): Sumatorio de los valores de los conceptos."
+
