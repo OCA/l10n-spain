@@ -287,3 +287,8 @@ class AccountBankStatementImport(models.TransientModel):
             'balance_end_real': n43 and n43[-1]['saldo_fin'] or 0.0,
         }
         return 'EUR', False, [vals_bank_statement]
+
+    @api.model
+    def _get_hide_journal_field(self):
+        # Show the journal_id field if not coming from a context where is set
+        return bool(self.env.context.get('journal_id'))
