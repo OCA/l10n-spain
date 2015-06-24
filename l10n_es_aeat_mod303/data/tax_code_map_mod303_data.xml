@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="aeat_mod303_map" model="aeat.mod.map.tax.code">
+            <field name="date_from"></field>
+            <field name="date_to"></field>
+            <field name="model">303</field>
+        </record>
+
+        <record id="aeat_mod303_map_line_01" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">01</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_RGIDBI4"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_03" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">03</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_RGIDC4"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_04" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">04</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_RGIDBI10"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_06" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">06</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_RGIDC10"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_07" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">07</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_RGIDBI21"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_09" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">09</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_RGIDC21"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_10" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">10</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_AIDBYSBI"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_11" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">11</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_AIDBYSC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_12" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">12</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_OCIDSPEAIBI"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_13" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">13</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_OOCIDSPEAIC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_14" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">14</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_MBYCRBI"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_15" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">15</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_MBYCRC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_16" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">16</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_REBI05"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_18" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">18</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_REC05"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_19" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">19</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_REBI014"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_21" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">21</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_REC014"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_22" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">22</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_REBI52"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_24" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">24</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_REC52"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_25" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">25</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_MBYCDRDERBI"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_26" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">26</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_MBYCDRDERC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_27" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">27</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_ITDC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_28" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">28</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_OICBI"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_29" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">29</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_SOICC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_30" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">30</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_OIBIBI"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_31" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">31</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_SOIBIC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_32" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">32</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_IBCBI"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_33" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">33</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_DIBCC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_34" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">34</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_IBIBI"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_35" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">35</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_DIBIC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_36" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">36</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_AIBYSCBI"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_37" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">37</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_AIBYSCC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_38" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">38</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_AIBIBI"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_39" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">39</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_AIBIC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_40" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">40</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_RDDSBI"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_41" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">41</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_RDDSC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_42" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">42</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_CREAGYP12"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_43" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">43</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_RBDIC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_44" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">44</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_RPADPDDPC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_45" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">45</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_ITADC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_59" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">59</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_EIDBYS"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_60" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">60</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_EYOA"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_61" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">61</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_ONSOCIDSPQOEDAD"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_62" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">62</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_ERCDCBI"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_63" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">63</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_IERCDCC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_74" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">74</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_IARCDCBI"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+        <record id="aeat_mod303_map_line_75" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">75</field>
+            <field name="tax_code" ref="l10n_es.account_tax_code_template_IARCDCC"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+        </record>
+    </data>
+</openerp>
