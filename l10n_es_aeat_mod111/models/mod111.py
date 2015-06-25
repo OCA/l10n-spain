@@ -170,7 +170,7 @@ class L10nEsAeatMod111Report(models.Model):
         string="Mobile Phone", size=9,
         states={'calculated': [('required', True)],
                 'confirmed': [('readonly', True)]})
-    colegio_concertado = fields.Boolean('Colegio Concertado', readonly=True,
+    colegio_concertado = fields.Boolean('Colegio concertado', readonly=True,
                                         states={'draft': [('readonly',
                                                            False)]},
                                         default=False)
@@ -199,30 +199,12 @@ class L10nEsAeatMod111Report(models.Model):
         super(L10nEsAeatMod111Report, self).__init__(pool, cr)
 
     @api.multi
-    def _get_partner_domain(self):
-        return []
-
-    @api.multi
-    def _get_tax_code_lines(self, tax_code):
-        self.ensure_one()
-        tax_code_obj = self.env['account.tax.code']
-        move_line_obj = self.env['account.move.line']
-        code_list = tax_code_obj.search([('code', '=', tax_code),
-                                        ('company_id', '=',
-                                         self.company_id.id)])
-        move_line_domain = [('company_id', '=', self.company_id.id),
-                            ('tax_code_id', 'child_of', code_list.id)]
-        if self.period_id:
-            move_line_domain += [('period_id', '=', self.period_id.id)]
-        move_line_domain += self._get_partner_domain()
-        move_lines = move_line_obj.search(move_line_domain)
-        return move_lines
-
-    @api.multi
     def calculate(self):
         self.ensure_one()
-        move_lines08 = self._get_tax_code_lines('IRPBI')
-        move_lines09 = self._get_tax_code_lines('ITRPC')
+        move_lines08 = self._get_tax_code_lines(
+            'IRPBI', periods=self.period_id)
+        move_lines09 = self._get_tax_code_lines(
+            'ITRPC', periods=self.period_id)
         self.move_lines_08 = move_lines08.ids
         self.move_lines_09 = move_lines09.ids
         self.casilla_08 = sum([x.tax_amount for x in move_lines08])
