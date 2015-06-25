@@ -129,8 +129,8 @@ class L10nEsAeatMod130ExportToBoe(models.TransientModel):
         # Persona de contacto
         res += self._formatString(report.company_id.name, 100)
         # Teléfono
-        res += self._formatString(self._cleanString(report.phone or ''),
-                                  9)
+        res += self._formatString(
+            self._cleanString(report.contact_phone or ''), 9)
         # Observaciones
         res += self._formatString(report.comments, 350)
         # Localidad
