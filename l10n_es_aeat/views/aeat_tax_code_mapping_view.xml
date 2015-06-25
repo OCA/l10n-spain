@@ -36,7 +36,7 @@
             <field name="arch" type="xml">
                 <tree string="Tax code mapping lines" editable="bottom">
                     <field name="field_number"/>
-                    <field name="tax_code"/>
+                    <field name="tax_codes" widget="many2many_tags"/>
                 </tree>
             </field>
         </record>
@@ -47,8 +47,8 @@
             <field name="arch" type="xml">
                 <form string="Tax code mapping line">
                     <group col="4">
-                        <field name="field_number" required="1"/>
-                        <field name="tax_code" required="1"/>
+                        <field name="field_number"/>
+                        <field name="tax_codes"/>
                     </group>
                 </form>
             </field>
@@ -62,9 +62,9 @@
         </record>
 
         <menuitem id="menu_aeat_mod_map_tax_code"
-            parent="menu_l10n_es_aeat_config"
-            action="action_aeat_mod_map_tax_code"
-            name="Tax code mapping"/>
+                  parent="menu_l10n_es_aeat_config"
+                  action="action_aeat_mod_map_tax_code"
+                  name="Tax code mapping"/>
 
     </data>
 </openerp>

@@ -2,15 +2,16 @@
 <openerp>
     <data>
 
-        <menuitem
-            id="menu_root_aeat"
-            parent="account.menu_finance_legal_statement"
-            name="AEAT reports"/>
+        <menuitem id="menu_root_aeat"
+                  parent="account.menu_finance_legal_statement"
+                  groups="group_account_aeat"
+                  name="AEAT reports"/>
 
         <menuitem id="menu_l10n_es_aeat_config"
-            parent="menu_root_aeat"
-            sequence="999"
-            name="Config"/>
+                  parent="account.menu_finance_configuration"
+                  sequence="35"
+                  groups="group_account_aeat"
+                  name="AEAT"/>
 
     </data>
 </openerp>
