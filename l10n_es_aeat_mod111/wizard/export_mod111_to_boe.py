@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp import models, api
+from openerp import models, api, fields
 
 
 class L10nEsAeatMod111ExportToBoe(models.TransientModel):
@@ -45,11 +45,14 @@ class L10nEsAeatMod111ExportToBoe(models.TransientModel):
         #  Identificación. Sujeto pasivo. NIF
         res += self._formatString(report.company_vat, 9)
         # Identificación. Sujeto pasivo. Denominación (o Apellidos y Nombre)
-        res += self._formatString(report.company_name, 45)
+        res += self._formatString(report.company_id.name, 45)
         # Num Identificación. Ejercicio
-        res += self._formatNumber(report.fiscalyear_id.code, 4)
+        res += self._formatString(
+            fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
         # Identificación. Periodo: "01" ... "12" o "1T" … "4T"
-        res += self._formatString(report.period_id.code[0:2], 2)
+        res += self._formatString(
+            fields.Date.from_string(report.period_id.date_start).month, 2,
+            fill='0', align='>')
         return res
 
     @api.multi
