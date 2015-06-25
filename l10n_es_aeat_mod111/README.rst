@@ -1,12 +1,20 @@
 Presentación del Modelo AEAT 111
 ================================
-Modelo 111 de la AEAT.
 
-Credits
-=======
+Modelo 111 de la AEAT. Retenciones e ingresos a cuenta. Rendimientos del
+trabajo y de actividades económicas, premios y determinadas ganancias
+patrimoniales e imputaciones de Renta. Autoliquidación.
 
-Contributors
-------------
+Problemas conocidos / Hoja de ruta
+==================================
+
+* Permitir periodos trimestrales.
+
+Créditos
+========
+
+Contribuidores
+--------------
 
 * MálagaTIC (http://www.malagatic.com)
 * Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
