@@ -1,15 +1,22 @@
 Presentación del Modelo AEAT 115
 ================================
-Modelo 115 de la AEAT.
 
-Credits
-=======
+Modelo 115 de la AEAT. Retenciones e ingresos a cuenta. Rentas o rendimientos
+procedentes del arrendamiento o subarrendamiento de inmuebles urbanos.
 
-Contributors
-------------
+Problemas conocidos / Hoja de ruta
+==================================
+
+* Permitir periodos trimestrales.
+
+Créditos
+========
+
+Contribuidores
+--------------
 
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-* AvanzOSC (http://www.avanzosc.es)
+* Ainara Galdona <ainaragaldona@avanzosc.es>
 
 Maintainer
 ----------
