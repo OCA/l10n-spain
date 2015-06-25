@@ -1,3 +1,4 @@
+[![Runbot Status](https://runbot.odoo-community.org/runbot/badge/flat/189/8.0.svg)](https://runbot.odoo-community.org/runbot/repo/github-com-oca-web-189)
 [![Build Status](https://travis-ci.org/OCA/l10n-spain.svg?branch=8.0)](https://travis-ci.org/OCA/l10n-spain)
 [![Coverage Status](https://coveralls.io/repos/OCA/l10n-spain/badge.png?branch=8.0)](https://coveralls.io/r/OCA/l10n-spain?branch=8.0)
 
