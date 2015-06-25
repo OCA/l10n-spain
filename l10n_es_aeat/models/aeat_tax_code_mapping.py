@@ -21,11 +21,11 @@ from openerp import models, fields, api, exceptions, _
 class AeatModMapTaxCode(models.Model):
     _name = 'aeat.mod.map.tax.code'
 
-    date_from = fields.Date(string="From Date")
-    date_to = fields.Date(string="To Date")
+    date_from = fields.Date(string="From Date", required=True)
+    date_to = fields.Date(string="To Date", required=True)
     map_lines = fields.One2many('aeat.mod.map.tax.code.line', 'map_parent_id',
-                                string="Map lines")
-    model = fields.Char("Aeat Model", size=3)
+                                string="Map lines", required=True)
+    model = fields.Integer(string="AEAT Model", required=True)
 
     @api.one
     @api.constrains('date_from', 'date_to')
@@ -59,15 +59,18 @@ class AeatModMapTaxCode(models.Model):
 class AeatModMapTaxCodeLine(models.Model):
     _name = 'aeat.mod.map.tax.code.line'
 
-    field_number = fields.Integer(string="Field number")
-    tax_code = fields.Many2one('account.tax.code.template', string="Tax code")
+    field_number = fields.Integer(string="Field number", required=True)
+    tax_codes = fields.Many2many(
+        comodel_name='account.tax.code.template', string="Tax codes",
+        required=True)
     map_parent_id = fields.Many2one('aeat.mod.map.tax.code')
 
     @api.multi
     def name_get(self):
         vals = []
         for record in self:
-            name = "Field: " + str(record.field_number) + '   Code: ' + \
-                str(record.tax_code.code)
+            name = _("Field: %s - Code(s): %s") % (
+                record.field_number,
+                ", ".join(x.code for x in record.tax_codes))
             vals.append(tuple([record.id, name]))
         return vals
