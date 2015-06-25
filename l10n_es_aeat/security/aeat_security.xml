@@ -4,7 +4,7 @@
 
     <record model="res.groups" id="group_account_aeat">
         <field name="name">AEAT manager</field>
-        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+        <field name="category_id" ref="base.module_category_hidden"/>
     </record>
 
 </data>

@@ -1,2 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_l10n_es_aeat_report_manager,l10n.es.aeat.report manager,model_l10n_es_aeat_report,group_account_aeat,1,1,1,1
+access_aeat_model_export_config_admin,aeat.model.export.config admin,model_aeat_model_export_config,base.group_system,1,1,1,1
+access_aeat_model_export_config_aeat,aeat.model.export.config aeat,model_aeat_model_export_config,group_account_aeat,1,0,0,0
+access_aeat_model_export_config_line_admin,aeat.model.export.config admin,model_aeat_model_export_config_line,base.group_system,1,1,1,1
+access_aeat_model_export_config_line_aeat,aeat.model.export.config aeat,model_aeat_model_export_config_line,group_account_aeat,1,0,0,0
+access_model_aeat_mod_map_tax_code_admin,aeat.mod.map.tax.code admin,model_aeat_mod_map_tax_code,base.group_system,1,1,1,1
+access_model_aeat_mod_map_tax_code_aeat,aeat.mod.map.tax.code aeat,model_aeat_mod_map_tax_code,group_account_aeat,1,0,0,0
+access_model_aeat_mod_map_tax_code_line_admin,aeat.mod.map.tax.code.line admin,model_aeat_mod_map_tax_code_line,base.group_system,1,1,1,1
+access_model_aeat_mod_map_tax_code_line_aeat,aeat.mod.map.tax.code.line aeat,model_aeat_mod_map_tax_code_line,group_account_aeat,1,0,0,0
