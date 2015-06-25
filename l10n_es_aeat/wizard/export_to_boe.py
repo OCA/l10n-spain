@@ -24,12 +24,11 @@
 #
 ##############################################################################
 import base64
-from openerp import tools
 import re
 from openerp.tools.safe_eval import safe_eval as eval
-from openerp import models, fields, api, _
+from openerp import tools, models, fields, api, _
 
-EXPRESSION_PATTERN = re.compile('(\$\{.+?\})')
+EXPRESSION_PATTERN = re.compile(r'(\$\{.+?\})')
 
 
 class L10nEsAeatReportExportToBoe(models.TransientModel):
@@ -42,8 +41,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
                              string="State", default='open')
 
     def _formatString(self, text, length, fill=' ', align='<'):
-        """
-        Formats the string into a fixed length ASCII (iso-8859-1) record.
+        """Formats the string into a fixed length ASCII (iso-8859-1) record.
 
         Note:
             'Todos los campos alfanuméricos y alfabéticos se presentarán
@@ -147,7 +145,8 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         # Modelo Declaración
         text += getattr(report._model, '_aeat_number')
         # Ejercicio
-        text += self._formatString(report.fiscalyear_id.code, 4)
+        text += self._formatString(
+            fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
         # NIF del declarante
         text += self._formatString(report.company_vat, 9)
         # Apellidos y nombre o razón social del declarante
