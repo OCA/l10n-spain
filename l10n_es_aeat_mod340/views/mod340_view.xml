@@ -218,14 +218,10 @@
             <field name="act_window_id" ref="action_l10n_es_aeat_mod340_report"/>
         </record>
 
-        <!--
-        ### MENU ACCESS ###
-        -->
-        <menuitem
-            id="menu_aeat_mod340_report"
-            parent="l10n_es_aeat.menu_root_aeat"
-            action="action_l10n_es_aeat_mod340_report"
-            sequence="50"
-            name="AEAT 340 Model"/>
+        <menuitem id="menu_aeat_mod340_report"
+                  parent="l10n_es_aeat.menu_root_aeat"
+                  action="action_l10n_es_aeat_mod340_report"
+                  sequence="340"
+                  name="AEAT 340 Model"/>
     </data>
 </openerp>
