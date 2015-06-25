@@ -192,12 +192,7 @@
                 <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
                     <attribute name="name">%(action_wizard_aeat_mod349_export)d</attribute>
                 </button>
-                <field name="company_vat" position="after">
-                    <field name="contact_phone"/>
-                    <field name="contact_name"/>
-                    <field name="representative_vat"/>
-                </field>
-                <field name="calculation_date" position="after">
+                <field name="fiscalyear_id" position="after">
                     <field name="period_selection" on_change="onchange_period_selection(period_selection, fiscalyear_id)"/>
                     <field name="period_ids"
                             attrs="{'required': [('period_selection', 'in', ['1T','2T','3T','4T'])], 'invisible':[('period_selection', 'not in', ['1T','2T','3T','4T'])]}"
@@ -206,11 +201,6 @@
                             attrs="{'required': [('period_selection','==','MO')], 'invisible': [('period_selection','!=','MO')]}"/>
                 </field>
                 <group string="Declaración" position="after">
-                    <group string="Complementaria" colspan="4">
-                        <field name="type"/>
-                        <field name="previous_number"
-                                attrs="{'invisible': [('type','==','N')], 'required': ['|', ('type','==','S'), ('type','==','C')]}"/>
-                    </group>
                     <notebook colspan="4">
                         <page string="General">
                             <group string="Resultado">
@@ -224,7 +214,6 @@
                                 </group>
                             </group>
                             <group string="Options" colspan="4">
-                                <field name="support_type"/>
                                 <field name="frequency_change"/>
                             </group>
                         </page>
