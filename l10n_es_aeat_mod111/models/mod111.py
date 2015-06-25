@@ -170,7 +170,7 @@ class L10nEsAeatMod111Report(models.Model):
         string="Mobile Phone", size=9,
         states={'calculated': [('required', True)],
                 'confirmed': [('readonly', True)]})
-    colegio_concertado = fields.Boolean('Colegio Concertado', readonly=True,
+    colegio_concertado = fields.Boolean('Colegio concertado', readonly=True,
                                         states={'draft': [('readonly',
                                                            False)]},
                                         default=False)
@@ -207,9 +207,9 @@ class L10nEsAeatMod111Report(models.Model):
         self.ensure_one()
         tax_code_obj = self.env['account.tax.code']
         move_line_obj = self.env['account.move.line']
-        code_list = tax_code_obj.search([('code', '=', tax_code),
-                                        ('company_id', '=',
-                                         self.company_id.id)])
+        code_list = tax_code_obj.search(
+            [('code', '=', tax_code),
+             ('company_id', '=', self.company_id.id)])[:1]
         move_line_domain = [('company_id', '=', self.company_id.id),
                             ('tax_code_id', 'child_of', code_list.id)]
         if self.period_id:
