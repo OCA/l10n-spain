@@ -26,14 +26,18 @@
 {
     'name': "AEAT Base",
     'version': "1.1",
-    'author': "Pexego,Odoo Community Association (OCA)",
+    'author': "Pexego,"
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+              "AvanzOSC,"
+              "Odoo Community Association (OCA)",
     'license': "AGPL-3",
     'contributors': [
         'Ignacio Ibeas (Acysos S.L.)',
+        'Ainara Galdona',
         'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
     ],
-    'website': "http://www.pexego.es, http://www.acysos.com",
-    'category': "Localisation/Accounting",
+    'website': "https://github.com/OCA/l10n-spain",
+    'category': "Accounting & Finance",
     'depends': [
         "account",
     ],
