@@ -1,3 +1,4 @@
+[![Runbot Status](https://runbot.odoo-community.org/runbot/badge/flat/189/7.0.svg)](https://runbot.odoo-community.org/runbot/repo/github-com-oca-web-189)
 [![Build Status](https://travis-ci.org/OCA/l10n-spain.svg?branch=7.0)](https://travis-ci.org/OCA/l10n-spain)
 [![Coverage Status](https://coveralls.io/repos/OCA/l10n-spain/badge.png?branch=7.0)](https://coveralls.io/r/OCA/l10n-spain?branch=7.0)
 
@@ -18,3 +19,7 @@ Para más información, dirigirse al portal http://odoospain.org.
 Para dudas funcionales o soporte de la comunidad, dirigirse a:
 
 https://odoospain.odoo.com/forum/ayuda-1
+
+Estado de las traducciones
+--------------------------
+[![Transifex Status](https://www.transifex.com/projects/p/OCA-l10n-spain-7-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-l10n-spain-7-0)
