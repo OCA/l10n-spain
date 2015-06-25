@@ -20,6 +20,7 @@
 #
 ##############################################################################
 from openerp.osv import orm, fields
+from openerp.tools.safe_eval import safe_eval
 from openerp.tools.translate import _
 
 
@@ -55,7 +56,7 @@ class AccountStatementCompletionRule(orm.Model):
         """
         partner_obj = self.pool['res.partner']
         st_line_obj = self.pool['account.bank.statement.line']
-        conceptos = eval(st_line['name'])
+        conceptos = safe_eval(st_line['name'])
         ids = []
         res = {}
         # Try to match from VAT included in concept complementary record #02
@@ -103,7 +104,7 @@ class AccountStatementCompletionRule(orm.Model):
         """
         partner_obj = self.pool['res.partner']
         st_line_obj = self.pool['account.bank.statement.line']
-        conceptos = eval(st_line['name'])
+        conceptos = safe_eval(st_line['name'])
         ids = []
         res = {}
         # Try to match from VAT included in concept complementary record #01
