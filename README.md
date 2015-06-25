@@ -19,3 +19,7 @@ Para más información, dirigirse al portal http://odoospain.org.
 Para dudas funcionales o soporte de la comunidad, dirigirse a:
 
 https://odoospain.odoo.com/forum/ayuda-1
+
+Estado de las traducciones
+--------------------------
+[![Transifex Status](https://www.transifex.com/projects/p/OCA-l10n-spain-8-0/chart/image_png)](https://www.transifex.com/projects/p/OCA-l10n-spain-8-0)
