@@ -1,23 +1,31 @@
 AEAT Base
 =========
-Módulo base para declaraciones de la AEAT.
-* Crea campos base de los modelos aeat.
-* Especifica un esqueleto base para todos los modelos.
+
+Módulo base para declaraciones de la AEAT, que incluye:
+
+* Campos base para todo los modelos AEAT.
+* Vista base para todos los modelos.
 * Crea una secuencia automática para los registros diferenciando por modelo.
-* La exportación del BOE. Define una exportación básica, definiendo los diferentes registros del fichero.
-  Genera el registro del declarante con los campos genericos de los modelos.
+* Exportación del BOE. Define una exportación básica, con los diferentes
+  registros del fichero.
+* Generación del registro del declarante con los campos genéricos de los
+  modelos.
+* Motor de exportación paramétrica basado en una configuración que puede ser
+  introducida por datos XML o por interfaz.
+* Motor de cálculo de importes por códigos de impuestos.
 
 Configuration
 =============
 
-Todos aquellos modelos que se especifiquen en los módulos adicionales y hereden el AEAT base, deberán
-definir una variable interna que se llame '_aeat_number' asignándole como valor, el nombre del modelo.
+Todos aquellos modelos que se especifiquen en los módulos adicionales y
+hereden el AEAT base, deberán definir una variable interna que se llame
+'_aeat_number' asignándole como valor, el número del modelo (130, 340, 347...).
 
-Credits
-=======
+Créditos
+========
 
-Contributors
-------------
+Contribudores
+-------------
 
 * Pexego (http://www.pexego.es)
 * Acysos (http://www.acysos.com)

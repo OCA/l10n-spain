@@ -6,7 +6,7 @@
             <field name="name">aeat.model.export.config.tree</field>
             <field name="model">aeat.model.export.config</field>
             <field name="arch" type="xml">
-                <tree string="AEAT export configuration">
+                <tree string="BOE export configurations">
                     <field name="name"/>
                     <field name="model_number"/>
                     <field name="date_start"/>
@@ -19,14 +19,14 @@
             <field name="name">aeat.model.export.config.form</field>
             <field name="model">aeat.model.export.config</field>
             <field name="arch" type="xml">
-                <form string="AEAT export configuration">
+                <form string="BOE export configuration">
                     <group>
 	                    <field name="name"/>
 	                    <field name="model_number"/>
 	                    <field name="date_start"/>
 	                    <field name="date_end"/>
                     </group>
-                    <separator string="Config lines"/>
+                    <separator string="Configuration lines"/>
                     <field name="config_lines" context="{'default_model':model}"/>
                     <group>
                         <field name="model"/>
@@ -40,7 +40,7 @@
             <field name="model">aeat.model.export.config.line</field>
             <field name="arch" type="xml">
                 <tree string="AEAT export configurationline">
-                    <field name="sequence"/>
+                    <field name="sequence" widget="handle"/>
                     <field name="name"/>
                     <field name="position"/>
                     <field name="repeat"/>
@@ -99,9 +99,9 @@
         </record>
 
         <menuitem id="menu_aeat_export_config"
-            parent="menu_l10n_es_aeat_config"
-            action="action_aeat_export_config"
-            name="Export config"/>
+                  parent="menu_l10n_es_aeat_config"
+                  action="action_aeat_export_config"
+                  name="BOE export configuration"/>
 
     </data>
 </openerp>
