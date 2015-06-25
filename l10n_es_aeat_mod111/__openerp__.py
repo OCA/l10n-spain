@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#  OpenERP, Open Source Management Solution.
-#
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU Affero General Public License as
 #  published by the Free Software Foundation, either version 3 of the
@@ -22,7 +20,12 @@
     'name': 'AEAT modelo 111',
     'version': '1.0',
     'category': "Localisation/Accounting",
-    'author': "Spanish Localization Team,Odoo Community Association (OCA)",
+    'author': "Spanish Localization Team,"
+              "AvanzOSC,"
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+              "MálagaTIC,"
+              "Grupo Vermon,"
+              "Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-spain",
     'license': 'AGPL-3',
     'depends': ['l10n_es_aeat'],
@@ -30,6 +33,5 @@
         'wizard/export_mod111_to_boe.xml',
         'views/mod111_view.xml',
         'security/ir.model.access.csv'],
-    'active': False,
     'installable': True,
 }
