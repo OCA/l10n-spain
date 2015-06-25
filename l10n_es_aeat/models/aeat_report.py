@@ -30,6 +30,7 @@ import re
 class L10nEsAeatReport(models.AbstractModel):
     _name = "l10n.es.aeat.report"
     _description = "AEAT report base module"
+    _rec_name = 'sequence'
 
     def _default_company(self):
         company_obj = self.env['res.company']
@@ -37,18 +38,16 @@ class L10nEsAeatReport(models.AbstractModel):
 
     @api.onchange('company_id')
     def on_change_company_id(self):
-        """
-        Loads some company data (the VAT number) when the selected
+        """Loads some company data (the VAT number) when the selected
         company changes.
         """
-        comp_vat = ''
-        if self.company_id:
-            if self.company_id.partner_id and self.company_id.partner_id.vat:
-                # Remove the ES part from spanish vat numbers
-                # (ES12345678Z => 12345678Z)
-                comp_vat = re.match("(ES){0,1}(.*)",
-                                    self.company_id.partner_id.vat).groups()[1]
-        self.company_vat = comp_vat
+        if self.company_id.vat:
+            # Remove the ES part from spanish vat numbers
+            #  (ES12345678Z => 12345678Z)
+            self.company_vat = re.match(
+                "(ES){0,1}(.*)", self.company_id.vat).groups()[1]
+        self.contact_name = self.env.user.name
+        self.contact_phone = self.env.user.partner_id.phone
 
     company_id = fields.Many2one(
         'res.company', string='Company', required=True, readonly=True,
@@ -56,9 +55,6 @@ class L10nEsAeatReport(models.AbstractModel):
     company_vat = fields.Char(
         string='VAT number', size=9, required=True, readonly=True,
         states={'draft': [('readonly', False)]})
-    phone = fields.Char(
-        string="Phone", size=9, states={'calculated': [('required', True)],
-                                        'confirmed': [('readonly', True)]})
     number = fields.Char(string='Declaration number', size=13,
                          required=True, readonly=True)
     previous_number = fields.Char(
@@ -95,6 +91,11 @@ class L10nEsAeatReport(models.AbstractModel):
     sequence = fields.Char(string="Sequence", size=16)
     export_config = fields.Many2one('aeat.model.export.config',
                                     string='Export config')
+
+    _sql_constraints = [
+        ('sequence_uniq', 'unique(sequence)',
+         'AEAT report sequence must be unique'),
+    ]
 
     @api.model
     def create(self, values):
@@ -154,22 +155,23 @@ class L10nEsAeatReport(models.AbstractModel):
         return super(L10nEsAeatReport, self).unlink()
 
     def init(self, cr):
-        seq_obj = self.pool['ir.sequence']
-        try:
-            aeat_num = getattr(self, '_aeat_number')
-            sequence = "aeat%s-sequence" % aeat_num
-            if not seq_obj.search(cr, SUPERUSER_ID, [('name', '=', sequence)]):
-                seq_vals = {'name': sequence,
-                            'code': 'aeat.sequence.type',
-                            'number_increment': 1,
-                            'implementation': 'standard',
-                            'padding': 5,
-                            'number_next_actual': 1,
-                            'prefix': aeat_num + '-'
-                            }
-                seq_obj.create(cr, SUPERUSER_ID, seq_vals)
-        except:
-            if self._name != 'l10n.es.aeat.report':
+        if self._name != 'l10n.es.aeat.report':
+            seq_obj = self.pool['ir.sequence']
+            try:
+                aeat_num = getattr(self, '_aeat_number')
+                sequence = "aeat%s-sequence" % aeat_num
+                if not seq_obj.search(cr, SUPERUSER_ID,
+                                      [('name', '=', sequence)]):
+                    seq_vals = {'name': sequence,
+                                'code': 'aeat.sequence.type',
+                                'number_increment': 1,
+                                'implementation': 'no_gap',
+                                'padding': 5,
+                                'number_next_actual': 1,
+                                'prefix': aeat_num + '-'
+                                }
+                    seq_obj.create(cr, SUPERUSER_ID, seq_vals)
+            except:
                 raise exceptions.Warning(
                     "Modelo no válido: %s. Debe declarar una variable "
-                    "'_aeat_number'" % self)
+                    "'_aeat_number'" % self._name)
