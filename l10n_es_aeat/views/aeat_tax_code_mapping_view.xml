@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Tree view -->
+        <record id="aeat_mod_map_tax_code_tree" model="ir.ui.view">
+            <field name="name">aeat.mod.map.tax.code.tree</field>
+            <field name="model">aeat.mod.map.tax.code</field>
+            <field name="arch" type="xml">
+                <tree string="Tax code mapping">
+                    <field name="model"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </tree>
+            </field>
+        </record>
+    
+        <record id="aeat_mod_map_tax_code_form" model="ir.ui.view">
+            <field name="name">aeat.mod.map.tax.code.form</field>
+            <field name="model">aeat.mod.map.tax.code</field>
+            <field name="arch" type="xml">
+                <form string="Tax code mapping">
+                    <group col="4">
+                        <field name="model" colspan="4"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <separator string="Mapping Lines"/>
+                    <field name="map_lines"/>
+                </form>
+            </field>
+        </record>
+        
+         <record id="aeat_mod_map_tax_code_line_tree" model="ir.ui.view">
+            <field name="name">aeat.mod.map.tax.code.line.tree</field>
+            <field name="model">aeat.mod.map.tax.code.line</field>
+            <field name="arch" type="xml">
+                <tree string="Tax code mapping lines" editable="bottom">
+                    <field name="field_number"/>
+                    <field name="tax_codes" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+    
+        <record id="aeat_mod_map_tax_code_line_form" model="ir.ui.view">
+            <field name="name">aeat.mod.map.tax.code.line.form</field>
+            <field name="model">aeat.mod.map.tax.code.line</field>
+            <field name="arch" type="xml">
+                <form string="Tax code mapping line">
+                    <group col="4">
+                        <field name="field_number"/>
+                        <field name="tax_codes"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+    
+        <record model="ir.actions.act_window" id="action_aeat_mod_map_tax_code">
+            <field name="name">Tax code mapping</field>
+            <field name="res_model">aeat.mod.map.tax.code</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_aeat_mod_map_tax_code"
+                  parent="menu_l10n_es_aeat_config"
+                  action="action_aeat_mod_map_tax_code"
+                  name="Tax code mapping"/>
+
+    </data>
+</openerp>

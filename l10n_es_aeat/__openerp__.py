@@ -26,29 +26,33 @@
 {
     'name': "AEAT Base",
     'version': "1.1",
-    'author': "Pexego,Odoo Community Association (OCA)",
+    'author': "Pexego,"
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+              "AvanzOSC,"
+              "Odoo Community Association (OCA)",
     'license': "AGPL-3",
     'contributors': [
         'Ignacio Ibeas (Acysos S.L.)',
+        'Ainara Galdona',
         'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
     ],
-    'website': "http://www.pexego.es, http://www.acysos.com",
-    'category': "Localisation/Accounting",
+    'website': "https://github.com/OCA/l10n-spain",
+    'category': "Accounting & Finance",
     'depends': [
         "account",
     ],
     'external_dependencies': {
         'python': ['unidecode'],
     },
-    'description': """
-Módulo base para declaraciones de la AEAT.
-    """,
     'data': [
         'security/aeat_security.xml',
         'security/ir.model.access.csv',
+        'data/aeat_sequence_type.xml',
         'wizard/export_to_boe_wizard.xml',
-        'aeat_menuitem.xml',
-        'aeat_view.xml',
+        'views/aeat_menuitem.xml',
+        'views/aeat_view.xml',
+        'views/aeat_export_configuration_view.xml',
+        'views/aeat_tax_code_mapping_view.xml'
     ],
     'installable': True,
 }

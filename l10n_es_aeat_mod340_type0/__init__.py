@@ -21,4 +21,4 @@
 ##############################################################################
 
 from . import wizard
-from . import mod340
+from . import models

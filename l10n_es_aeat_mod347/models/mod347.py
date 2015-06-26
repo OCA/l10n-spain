@@ -255,8 +255,6 @@ class L10nEsAeatMod347Report(models.Model):
         self.total_real_state_records = len(self.real_state_record_ids)
 
     number = fields.Char(default='347')
-    contact_name = fields.Char(string="Full Name", size=40)
-    contact_phone = fields.Char(string="Phone", size=9)
     group_by_vat = fields.Boolean(
         string='Group by VAT number', oldname='group_by_cif')
     only_supplier = fields.Boolean(string='Only Suppliers')
@@ -325,6 +323,10 @@ class L10nEsAeatMod347Report(models.Model):
                         _("All real state records state code field must be "
                           "filled."))
         return super(L10nEsAeatMod347Report, self).button_confirm()
+
+    def __init__(self, pool, cr):
+        self._aeat_number = '347'
+        super(L10nEsAeatMod347Report, self).__init__(pool, cr)
 
 
 class L10nEsAeatMod347PartnerRecord(models.Model):

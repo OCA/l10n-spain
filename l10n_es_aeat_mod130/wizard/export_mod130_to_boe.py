@@ -16,19 +16,19 @@
 #
 ##############################################################################
 from datetime import datetime
-from openerp.tools.translate import _
-from openerp.osv import orm
+from openerp import models, api, _
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
-class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
+class L10nEsAeatMod130ExportToBoe(models.TransientModel):
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = 'l10n.es.aeat.mod130.export_to_boe'
 
     def _cleanString(self, string):
         return string.replace("-", "").replace(" ", "").replace("/", "")
 
-    def _get_formatted_declaration_record(self, cr, uid, report, context=None):
+    @api.multi
+    def _get_formatted_declaration_record(self, report):
         res = ''
         # cabecera
         res += "13001 "
@@ -51,7 +51,8 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
         res += self._formatString(report.period, 2)
         return res
 
-    def _get_formatted_main_record(self, cr, uid, report, context=None):
+    @api.multi
+    def _get_formatted_main_record(self, report):
         res = ''
         # I. Activ. económicas estimac. Directa - Ingresos computables [01]
         res += self._formatNumber(report.casilla_01, 11, 2)
@@ -104,7 +105,8 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
         res += self._formatNumber(report.result, 11, 2)
         return res
 
-    def _get_formatted_other_records(self, cr, uid, report, context=None):
+    @api.multi
+    def _get_formatted_other_records(self, report):
         res = ''
         # Ingreso (4) Importe del ingreso
         res += self._formatNumber(report.result if report.result > 0 else 0,
@@ -127,8 +129,8 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
         # Persona de contacto
         res += self._formatString(report.company_id.name, 100)
         # Teléfono
-        res += self._formatString(self._cleanString(report.company_id.phone),
-                                  9)
+        res += self._formatString(
+            self._cleanString(report.contact_phone or ''), 9)
         # Observaciones
         res += self._formatString(report.comments, 350)
         # Localidad
@@ -144,7 +146,8 @@ class L10nEsAeatMod130ExportToBoe(orm.TransientModel):
         res += "\r\n".encode("ascii")
         return res
 
-    def _do_global_checks(self, report, contents, context=None):
+    @api.multi
+    def _do_global_checks(self, report, contents):
         assert len(contents) == 880, (
             "The 130 report must be 880 characters long and are %s" %
             len(contents)

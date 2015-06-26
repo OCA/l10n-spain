@@ -21,15 +21,15 @@
 #
 ##############################################################################
 
-from openerp.tools.translate import _
-from openerp.osv import orm
+from openerp import models, api, exceptions, _
 
 
-class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
+class L10nEsAeatMod340ExportToBoe(models.TransientModel):
     _inherit = "l10n.es.aeat.report.export_to_boe"
     _name = "l10n.es.aeat.mod340.export_to_boe"
 
-    def _get_formatted_declaration_record(self, cr, uid, report, context=None):
+    @api.multi
+    def _get_formatted_declaration_record(self, report):
         """
         Returns a type 1, declaration/company, formated record.
 
@@ -57,37 +57,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             400-415 	Sello electrónico
             416-500 	Blancos
         """
-        text = ''
-        # Tipo de Registro
-        text += '1'
-        # Modelo Declaración
-        text += '340'
-        # Ejercicio
-        text += self._formatString(report.fiscalyear_id.code, 4)
-        # NIF del declarante
-        text += self._formatString(report.company_vat, 9)
-        # Apellidos y nombre o razón social del declarante
-        text += self._formatString(report.company_id.name, 40)
-        # Tipo de soporte
-        text += self._formatString(report.support_type, 1)
-        # Persona de contacto (Teléfono)
-        text += self._formatString(report.phone_contact, 9)
-        # Persona de contacto (Apellidos y nombre)
-        text += self._formatString(report.name_contact, 40)
-        # Número identificativo de la declaración
-        text += self._formatNumber(report.declaration_number, 13)
-        # Declaración complementaria
-        if (report.type == 'C'):
-            text += 'C'
-        else:
-            text += ' '
-        # Declaración substitutiva
-        if (report.type == 'S'):
-            text += 'S'
-        else:
-            text += ' '
-        # Número identificativo de la declaración anterior
-        text += self._formatNumber(report.previous_number, 13)
+        text = super(L10nEsAeatMod340ExportToBoe,
+                     self)._get_formatted_declaration_record(report)
         period_stop = report.period_to.date_stop[5:7]
         period_start = report.period_to.date_start[5:7]
         if period_start == period_stop:
@@ -102,8 +73,7 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             elif period_stop == '12':
                 period = '4T'
             else:
-                raise orm.except_orm(
-                    "ERROR",
+                raise exceptions.Warning(
                     _("The period hasn't a valid Mod340 period"))
         # Periodo
         text += self._formatString(period, 2)
@@ -127,12 +97,12 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
         # Blancos
         text += 84 * ' '
         text += '\r\n'
-
         assert len(text) == 502, \
             _("The type 1 record must be 500 characters long")
         return text
 
-    def _get_formatted_invoice_issued(self, cr, uid, report, invoice_issued):
+    @api.multi
+    def _get_formatted_invoice_issued(self, report, invoice_issued):
         """
         Returns a type 2, invoice issued, formated record
 
@@ -254,8 +224,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             # Identificación de la factura
             text += self._formatString(invoice_issued.invoice_id.number, 40)
             # Número de registro
-            sequence_obj = self.pool.get('ir.sequence')
-            text += self._formatString(sequence_obj.get(cr, uid, 'mod340'), 18)
+            sequence_obj = self.env['ir.sequence']
+            text += self._formatString(sequence_obj.get('mod340'), 18)
             # Número de facturas
             if invoice_issued.invoice_id.is_ticket_summary == 1:
                 text += self._formatNumber(
@@ -306,7 +276,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
               "Vat registry"))
         return text
 
-    def _get_formatted_invoice_received(self, cr, uid, report,
+    @api.multi
+    def _get_formatted_invoice_received(self, report,
                                         invoice_received):
         """Returns a type 2, invoice received, formated record
 
@@ -419,8 +390,8 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
             text += self._formatString(invoice_received.invoice_id.reference,
                                        40)
             # Número de registro
-            sequence_obj = self.pool.get('ir.sequence')
-            text += self._formatString(sequence_obj.get(cr, uid, 'mod340'), 18)
+            sequence_obj = self.env['ir.sequence']
+            text += self._formatString(sequence_obj.get('mod340'), 18)
             # Número de facturas
             text += self._formatNumber(1, 18)
             # Número de registros (Desglose)
@@ -445,12 +416,13 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
               "each Vat registry"))
         return text
 
-    def _get_formatted_other_records(self, cr, uid, report, context=None):
+    @api.multi
+    def _get_formatted_other_records(self, report):
         file_contents = ''
         for invoice_issued in report.issued:
-            file_contents += self._get_formatted_invoice_issued(
-                cr, uid, report, invoice_issued)
+            file_contents += self._get_formatted_invoice_issued(report,
+                                                                invoice_issued)
         for invoice_received in report.received:
             file_contents += self._get_formatted_invoice_received(
-                cr, uid, report, invoice_received)
+                report, invoice_received)
         return file_contents

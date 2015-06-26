@@ -7,6 +7,7 @@
             <field name="model">l10n.es.aeat.report</field>
             <field name="arch" type="xml">
                 <tree string="AEAT report">
+                    <field name="sequence"/>
                     <field name="fiscalyear_id"/>
                     <field name="state"/>
                     <field name="company_id" groups="base.group_multi_company"/>
@@ -19,7 +20,7 @@
             <field name="name">l10n_es.aeat.report.form</field>
             <field name="model">l10n.es.aeat.report</field>
             <field name="arch" type="xml">
-                <form string="AEAT report" version="7.0">
+                <form string="AEAT report">
                     <header>
                         <button name="button_calculate" type="object" string="Calculate" states="draft" icon="terp-stock_format-scientific"/>
                         <button name="button_recalculate" type="object" string="Recalculate" states="calculated" icon="gtk-execute"/>
@@ -30,14 +31,30 @@
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>
+                        <field name="number" invisible="1"/>
+                        <h1>
+                            <label string="Report "/>
+                            <field name="sequence" class="oe_inline" readonly="1"/>
+                        </h1>
                         <group string="Declaración" colspan="4">
                             <group>
                                 <field name="company_vat" required="1"/>
-                                <field name="fiscalyear_id" select="1"/>
+                                <field name="fiscalyear_id"/>
+                                <field name="export_config" />
                             </group>
                             <group>
+                                <field name="representative_vat"/>
+                                <field name="support_type"/>
                                 <field name="calculation_date" readonly="1"/>
-                                <field name="company_id" on_change="on_change_company_id(company_id)" required="1" select="1" groups="base.group_multi_company"/>
+                                <field name="company_id" required="1" select="1" groups="base.group_multi_company"/>
+                            </group>
+                            <group string="Contact data">
+                                <field name="contact_name"/>
+                                <field name="contact_phone"/>
+                            </group>
+                            <group string="Susbtitutive/complementary declaration">
+                                <field name="type"/>
+                                <field name="previous_number" attrs="{'invisible': [('type','==','N')], 'required': ['|', ('type','==','S'), ('type','==','C')]}"/>
                             </group>
                         </group>
                     </sheet>
