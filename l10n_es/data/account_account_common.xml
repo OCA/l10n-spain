@@ -3376,7 +3376,7 @@
             <field name="code">404</field>
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_404"/>
-            <field name="type">other</field>
+            <field name="type">payable</field>
             <field name="name">Proveedores, empresas asociadas</field>
             <field name="user_type" ref="account.data_account_type_payable"/>
         </record>
@@ -3392,7 +3392,7 @@
             <field name="code">405</field>
             <field name="reconcile" eval="False"/>
             <field name="parent_id" ref="pgc_405"/>
-            <field name="type">other</field>
+            <field name="type">payable</field>
             <field name="name">Proveedores, otras partes vinculadas</field>
             <field name="user_type" ref="account.data_account_type_payable"/>
         </record>
