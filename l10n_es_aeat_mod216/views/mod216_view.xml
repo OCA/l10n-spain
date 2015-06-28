@@ -67,6 +67,10 @@
         </record>
 
         <!-- MENU ACCESS -->
-        <menuitem id="menu_aeat_mod216_report" parent="l10n_es_aeat.menu_root_aeat" action="action_l10n_es_aeat_mod216_report" sequence="216" name="Declaración AEAT 216"/>
+        <menuitem id="menu_aeat_mod216_report"
+                  parent="l10n_es_aeat.menu_root_aeat"
+                  action="action_l10n_es_aeat_mod216_report"
+                  sequence="216"
+                  name="Modelo 216"/>
     </data>
 </openerp>
