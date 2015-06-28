@@ -90,24 +90,20 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         #
         if number == '':
             number = 0.0
-
         number = float(number)
         sign = number >= 0 and ' ' or 'N'
         number = abs(number)
         int_part = int(number)
-
         # Format the string
         ascii_string = ''
         if include_sign:
             ascii_string += sign
-
         if dec_length > 0:
             ascii_string += '%0*.*f' % (int_length + dec_length + 1,
                                         dec_length, number)
             ascii_string = ascii_string.replace('.', '')
         elif int_length > 0:
             ascii_string += '%.*d' % (int_length, int_part)
-
         # Sanity-check
         assert len(ascii_string) == (include_sign and 1 or 0) + int_length + \
             dec_length, _("The formated string must match the given length")
@@ -158,7 +154,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         # Persona de contacto (Apellidos y nombre)
         text += self._formatString(report.contact_name, 40)
         # Número identificativo de la declaración
-        text += self._formatNumber(report.number, 13)
+        text += self._formatString(report.sequence, 13)
         # Declaración complementaria
         text += self._formatString(report.type, 2).replace('N', ' ')
         # Número identificativo de la declaración anterior
