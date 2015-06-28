@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp import models, api
+from openerp import models, api, fields
 
 
 class L10nEsAeatMod216ExportToBoe(models.TransientModel):
@@ -36,9 +36,12 @@ class L10nEsAeatMod216ExportToBoe(models.TransientModel):
         # Discriminante: Constante "01"
         res += self._formatString('0', 1)
         # Devengado. Ejercicio
-        res += self._formatNumber(report.fiscalyear_id.code, 4)
+        res += self._formatString(
+            fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
         # Devengado. Periodo: "01" ... "12" o "1T" … "4T"
-        res += self._formatString(report.period_id.code[0:2], 2)
+        res += self._formatString(
+            fields.Date.from_string(report.period_id.date_start).month, 2,
+            fill='0', align='>')
         # Tipo y cierre
         res += self._formatString('0000>', 5)
         return res
@@ -65,8 +68,11 @@ class L10nEsAeatMod216ExportToBoe(models.TransientModel):
         res += self._formatString('</T', 3)
         res += self._formatString('216', 3)
         res += self._formatString('0', 1)
-        res += self._formatNumber(report.fiscalyear_id.code, 4)
-        res += self._formatString(report.period_id.code[0:2], 2)
+        res += self._formatString(
+            fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
+        res += self._formatString(
+            fields.Date.from_string(report.period_id.date_start).month, 2,
+            fill='0', align='>')
         res += self._formatString('0000>', 5)
         # Fin de registro Constante CRLF(Hexadecimal 0D0A, Decimal 1310)
         res += '\x0A\x0D'
@@ -91,13 +97,16 @@ class L10nEsAeatMod216ExportToBoe(models.TransientModel):
         #  Identificación. Sujeto pasivo. NIF
         res += self._formatString(report.company_vat, 9)
         # Identificación. Sujeto pasivo. Denominación (o Apellidos y Nombre)
-        res += self._formatString(report.company_name, 60)
+        res += self._formatString(report.company_id.name, 60)
         # Identificación. Nombre (solo personas fisicas)
         res += self._formatString('', 20)
         # Devengado. Ejercicio
-        res += self._formatNumber(report.fiscalyear_id.code, 4)
+        res += self._formatString(
+            fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
         # Devengado. Periodo: "01" ... "12" o "1T" … "4T"
-        res += self._formatString(report.period_id.code[0:2], 2)
+        res += self._formatString(
+            fields.Date.from_string(report.period_id.date_start).month, 2,
+            fill='0', align='>')
         return res
 
     @api.multi
