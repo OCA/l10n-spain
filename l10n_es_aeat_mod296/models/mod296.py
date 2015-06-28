@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#  OpenERP, Open Source Management Solution.
-#
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU Affero General Public License as
 #  published by the Free Software Foundation, either version 3 of the
@@ -47,8 +45,8 @@ class L10nEsAeatMod296Report(models.Model):
     @api.multi
     def _get_partner_domain(self):
         res = []
-        partner_lst = self.env['res.partner'].search([('is_resident', '=',
-                                                       True)])
+        partner_lst = self.env['res.partner'].search(
+            [('is_resident', '=', True)])
         res += [('partner_id', 'in', partner_lst.ids)]
         return res
 
@@ -58,11 +56,11 @@ class L10nEsAeatMod296Report(models.Model):
         tax_code_obj = self.env['account.tax.code']
         move_line_obj = self.env['account.move.line']
         period_obj = self.env['account.period']
-        period_lst = period_obj.search([('fiscalyear_id', '=',
-                                         self.fiscalyear_id.id)])
-        code_list = tax_code_obj.search([('code', '=', tax_code),
-                                        ('company_id', '=',
-                                         self.company_id.id)])
+        period_lst = period_obj.search(
+            [('fiscalyear_id', '=', self.fiscalyear_id.id)])
+        code_list = tax_code_obj.search(
+            [('code', '=', tax_code),
+             ('company_id', '=', self.company_id.id)])
         move_line_domain = [('company_id', '=', self.company_id.id),
                             ('tax_code_id', 'child_of', code_list.ids),
                             ('period_id', 'in', period_lst.ids)]
