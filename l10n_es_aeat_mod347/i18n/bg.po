@@ -8,34 +8,34 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:57+0000\n"
+"PO-Revision-Date: 2015-07-10 10:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
+"Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
+"Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,situation:0
 msgid "1 - Spain but Basque Country and Navarra"
-msgstr "1 - Espanya excepte País Basc i Navarra"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,situation:0
 msgid "2 - Basque Country and Navarra"
-msgstr "2 - País Basc o Navarra"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,situation:0
 msgid "3 - Spain, without catastral reference"
-msgstr "3 - Espanya, sense referència cadastral"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,situation:0
 msgid "4 - Foreign"
-msgstr "4 - Estranger"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod347.action_l10n_es_aeat_mod347_report
@@ -52,24 +52,24 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "A - Adquisiciones de bienes y servicios superiores al límite (1)"
-msgstr "A - Adquisicions de bens i serveis superiors al límit (1)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "AEAT 347 MODEL"
-msgstr "DECLARACIÓ AEAT 347"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.actions.report.xml,name:l10n_es_aeat_mod347.report_l10n_es_aeat_mod347
 msgid "AEAT 347 Model report"
-msgstr "Declaració model AEAT 347"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_report
 #: field:l10n.es.aeat.mod347.partner_record,report_id:0
 #: field:l10n.es.aeat.mod347.real_state_record,report_id:0
 msgid "AEAT 347 Report"
-msgstr "Declaració AEAT 347"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.menu,name:l10n_es_aeat_mod347.menu_aeat_mod347_report
@@ -79,27 +79,27 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod347.action_l10n_es_aeat_mod347_report
 msgid "AEAT Model 347"
-msgstr "Model AEAT 347"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,move_line_id:0
 msgid "Account move line"
-msgstr "Moviment"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_account_period
 msgid "Account period"
-msgstr "Període comptable"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,address:0
 msgid "Address"
-msgstr "Adreça"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,address_type:0
 msgid "Address type"
-msgstr "Tipus de via"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:304
@@ -107,7 +107,7 @@ msgstr "Tipus de via"
 msgid ""
 "All partner state code field must be filled.\n"
 "Partner: %s (%s)"
-msgstr "El codi de província de tots els registres d'empreses han d'estar introduïts.\nEmpresa: %s (%s)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:318
@@ -123,60 +123,60 @@ msgstr ""
 msgid ""
 "All partner vat number field must be filled.\n"
 "Partner: %s (%s)"
-msgstr "El número CIF/NIF de tots els registres d'empreses han d'estar introduïts.\nEmpresa: %s (%s)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:325
 #, python-format
 msgid "All real state records state code field must be filled."
-msgstr "El codi de província de tots els registres d'immobles han d'estar introduïts."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,amount:0
 #: field:l10n.es.aeat.mod347.invoice_record,amount:0
 #: field:l10n.es.aeat.mod347.real_state_record,amount:0
 msgid "Amount"
-msgstr "Import"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Amount (Q1|Q2|Q3|Q4)"
-msgstr "Import (T1|T2|T3|T4)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,number_calification:0
 msgid "Ant"
-msgstr "Ant"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "B - Entregas de bienes y servicios superiores al límite (1)"
-msgstr "B - Entregues de bens i serveis superiors al límit (1)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,number_calification:0
 msgid "Bis"
-msgstr "Bis"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,block:0
 msgid "Block"
-msgstr "Bloc"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,bussiness_real_state_rent:0
 msgid "Bussiness Real State Rent"
-msgstr "Arrendament local negoci"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "C - Cobros por cuenta de terceros superiores al límite (3)"
-msgstr "C - Cobraments per compte de tercers superiors al límit (3)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,calculation_date:0
 msgid "Calculation date"
-msgstr "Data de càlcul"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
@@ -186,7 +186,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,state:0
 msgid "Cancelled"
-msgstr "Cancel·lada"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,cash_basis_operation:0
@@ -196,37 +196,37 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_cash_record
 msgid "Cash Record"
-msgstr "Registre d'efectiu"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Cash amount"
-msgstr "Import en efectiu"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
 msgid "Cash record"
-msgstr "Registre d'efectiu"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
 msgid "Cash records"
-msgstr "Registres d'efectiu"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,reference:0
 msgid "Catastral Reference"
-msgstr "Referència cadastral"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,charges_obtp_limit:0
 msgid "Charges on behalf of third parties Limit (3)"
-msgstr "Càrrecs a compte de tercers superiors al límit (3)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,city:0
 msgid "City"
-msgstr "Població"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,community_vat:0
@@ -236,27 +236,27 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,company_id:0
 msgid "Company"
-msgstr "Companyia"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,complement:0
 msgid "Complement"
-msgstr "Complement"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.real_state_record,complement:0
 msgid "Complement (urbanization, industrial park...)"
-msgstr "Complement (urbanització, centre comercial, ...)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,type:0
 msgid "Complementary"
-msgstr "Complementària"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,partner_country_code:0
 msgid "Country Code"
-msgstr "Codi de país"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,create_uid:0
@@ -283,18 +283,18 @@ msgstr ""
 msgid ""
 "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al "
 "límite (1)"
-msgstr "D - Adquisicions efectuades per Entitats Públiques (...) superiors al límit (1)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,support_type:0
 msgid "DVD"
-msgstr "DVD"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,date:0
 #: field:l10n.es.aeat.mod347.invoice_record,date:0
 msgid "Date"
-msgstr "Data"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
@@ -309,34 +309,34 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
 msgid "Details"
-msgstr "Detalls"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,state:0
 msgid "Done"
-msgstr "Realitzada"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,door:0
 msgid "Door"
-msgstr "Porta"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,state:0
 msgid "Draft"
-msgstr "Esborrany"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,number_calification:0
 msgid "Dup"
-msgstr "Dup"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid ""
 "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores "
 "al límite (1)"
-msgstr "E - Subvencions, auxilis i ajuts satisfets per Ad. Públiques superiors al límit (1)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod347.action_wizard_aeat_mod347_export
@@ -346,7 +346,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_export_to_boe
 msgid "Export Report to BOE Format"
-msgstr "Exporta a fitxer BOE"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,export_config:0
@@ -356,7 +356,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "F - Ventas agencia viaje"
-msgstr "F - Vendes agència viatge"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.export_to_boe,data:0
@@ -371,12 +371,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: selection:account.period,quarter:0
 msgid "First"
-msgstr "Primer"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_account_fiscalyear
 msgid "Fiscal Year"
-msgstr "Exercici fiscal"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,fiscalyear_id:0
@@ -386,32 +386,32 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Fiscal year:"
-msgstr "Exercici fiscal:"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,floor:0
 msgid "Floor"
-msgstr "Planta"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:account.period,quarter:0
 msgid "Fourth"
-msgstr "Quart"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,contact_name:0
 msgid "Full Name"
-msgstr "Cognoms i nom"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "G - Compras agencia viaje"
-msgstr "G - Compres agència viatge"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
 msgid "General"
-msgstr "General"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,group_by_vat:0
@@ -438,7 +438,7 @@ msgstr ""
 msgid ""
 "If you mark this field, this invoice will not be included in any AEAT 347 "
 "model report."
-msgstr "Si marca aquest camp, aquesta factura no s'inclourà als informes del model AEAT 347."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: help:res.partner,not_in_mod347:0
@@ -450,44 +450,44 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Ins. Oper"
-msgstr "Op. asseg."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,insurance_operation:0
 msgid "Insurance Operation"
-msgstr "Operació assegurança"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_account_invoice
 #: field:l10n.es.aeat.mod347.invoice_record,invoice_id:0
 msgid "Invoice"
-msgstr "Factura"
+msgstr "Фактура"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_invoice_record
 msgid "Invoice Record"
-msgstr "Registre de factura"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
 msgid "Invoice record"
-msgstr "Registre de factura"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
 #: field:l10n.es.aeat.mod347.partner_record,invoice_record_ids:0
 msgid "Invoice records"
-msgstr "Registres de factures"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,operations_limit:0
 msgid "Invoiced Limit (1)"
-msgstr "Límit facturat (1)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Invoiced amount"
-msgstr "Import facturat"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.invoice_record,date:0
@@ -497,19 +497,19 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Key Oper."
-msgstr "Clau op."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,number_type:0
 msgid "Kilometer"
-msgstr "Quilòmetre"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,representative_vat:0
 #: field:l10n.es.aeat.mod347.real_state_record,representative_vat:0
 #: field:l10n.es.aeat.mod347.report,representative_vat:0
 msgid "L.R. VAT number"
-msgstr "NIF R.L."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,write_uid:0
@@ -535,17 +535,17 @@ msgstr ""
 #: help:l10n.es.aeat.mod347.partner_record,representative_vat:0
 #: help:l10n.es.aeat.mod347.real_state_record,representative_vat:0
 msgid "Legal Representative VAT number"
-msgstr "NIF del representant legal."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,representative_vat:0
 msgid "Legal Representative VAT number."
-msgstr "NIF del representant legal."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,number_calification:0
 msgid "Mod"
-msgstr "Mod"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,contact_name:0
@@ -555,33 +555,33 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,type:0
 msgid "Normal"
-msgstr "Normal"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:account.invoice,not_in_mod347:0 field:res.partner,not_in_mod347:0
 msgid "Not included in 347 report"
-msgstr "No inclosa en el model 347"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,number:0
 #: selection:l10n.es.aeat.mod347.real_state_record,number_type:0
 msgid "Number"
-msgstr "Número"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,number_calification:0
 msgid "Number calification"
-msgstr "Qualificador del número"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,number_type:0
 msgid "Number type"
-msgstr "Tipus de numeració"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Number:"
-msgstr "Número:"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,only_supplier:0
@@ -600,7 +600,7 @@ msgstr ""
 msgid ""
 "Only for insurance companies. Set to identify insurance operations aside "
 "from the rest."
-msgstr "Només entitats asseguradores. Les entitats asseguradores marcaran aquesta casella per identificar les operacions d'assegurances, i s'hauran de consignar separadament de la resta d'operacions."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,related_goods_operation:0
@@ -624,32 +624,32 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,operation_key:0
 msgid "Operation Key"
-msgstr "Clau operació"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.partner_record_search_view
 msgid "Operation key"
-msgstr "Clau operació"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,amount:0
 msgid "Operations amount"
-msgstr "Import operacions"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
 msgid "Origin cash operation fiscal year"
-msgstr "Exercici fiscal origen de les operacions en efectiu."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,origin_fiscalyear_id:0
 msgid "Origin fiscal year"
-msgstr "Exercici fiscal origen"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "PARTNER RECORD LINES"
-msgstr "LÍNIES DE REGISTRE D'EMPRESA"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_res_partner
@@ -658,44 +658,44 @@ msgstr "LÍNIES DE REGISTRE D'EMPRESA"
 #: field:l10n.es.aeat.mod347.real_state_record,partner_id:0
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Partner"
-msgstr "Empresa"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_partner_record
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.partner_record_search_view
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
 msgid "Partner Record"
-msgstr "Registres d'empreses"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_tree
 #: field:l10n.es.aeat.mod347.report,partner_record_ids:0
 msgid "Partner Records"
-msgstr "Registres d'empreses"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
 #: view:l10n.es.aeat.mod347.real_state_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_real_state_record_form
 msgid "Partner info"
-msgstr "Informació empresa"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,partner_record_id:0
 #: field:l10n.es.aeat.mod347.invoice_record,partner_record_id:0
 msgid "Partner record"
-msgstr "Registre d'empresa"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:31
 #: view:l10n.es.aeat.mod347.report:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
 #, python-format
 msgid "Partner records"
-msgstr "Registres d'empresa"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,cash_record_ids:0
 msgid "Payment records"
-msgstr "Registres de pagament"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,period_type:0
@@ -710,17 +710,17 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,contact_phone:0
 msgid "Phone"
-msgstr "Telèfon"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,portal:0
 msgid "Portal"
-msgstr "Portal"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,postal_code:0
 msgid "Postal code"
-msgstr "Codi Postal"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,previous_number:0
@@ -730,75 +730,75 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,state:0
 msgid "Processed"
-msgstr "Processada"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:account.period,quarter:0
 msgid "Quarter"
-msgstr "Quart"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "RS Rent"
-msgstr "Lloguer immoble negoci"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "RST amount"
-msgstr "Import T.I."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_real_state_record
 #: view:l10n.es.aeat.mod347.real_state_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_real_state_record_form
 msgid "Real State Record"
-msgstr "Registre d'immoble"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.real_state_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_real_state_record_tree
 #: field:l10n.es.aeat.mod347.report,real_state_record_ids:0
 msgid "Real State Records"
-msgstr "Registres d'immobles"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,real_state_transmissions_amount:0
 msgid "Real State Transmisions amount"
-msgstr "Import transmissió immoble"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Real State Transmission (Q1|Q2|Q3|Q4)"
-msgstr "Import transmissió immoble (T1|T2|T3|T4)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
 msgid "Real State records"
-msgstr "Registres d'immobles"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,situation:0
 msgid "Real state Situation"
-msgstr "Situació d'immobles"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.real_state_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_real_state_record_form
 msgid "Real state address"
-msgstr "Adreça de l'immoble"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
 #: view:l10n.es.aeat.mod347.real_state_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_real_state_record_form
 msgid "Real state info"
-msgstr "Informació Immobles"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,received_cash_limit:0
 msgid "Received cash Limit (2)"
-msgstr "Límit efectiu (2)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,cash_amount:0
 msgid "Received cash amount"
-msgstr "Import rebut en metàl·lic"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.partner_record_search_view
@@ -813,7 +813,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: selection:account.period,quarter:0
 msgid "Second"
-msgstr "Segon"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,sequence:0
@@ -826,49 +826,49 @@ msgid ""
 "Set to identify real state rent operations aside from the rest. You'll need "
 "to fill in the real state info only when you are the one that receives the "
 "money."
-msgstr "(Només arrendadors i arrendataris de Locals de Negoci). Marcaran aquesta casella per identificar les operacions d'arrendament de locals de negoci, i s'han de consignar separadament de la resta. A més a més els arrendadors han d'emplenar els camps que componen el REGISTRE D'IMMOBLE, consignant l'Import Total de cada arrendament corresponent a l'any natural al qual es refereix la declaració, amb independència que aquest ja hagi estat inclòs en la clau 'B' (vendes)."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,stairway:0
 msgid "Stairway"
-msgstr "Escala"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.export_to_boe,state:0
 #: field:l10n.es.aeat.mod347.report,state:0
 msgid "State"
-msgstr "Estat"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,partner_state_code:0
 #: field:l10n.es.aeat.mod347.real_state_record,state_code:0
 msgid "State Code"
-msgstr "Codi de província"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,type:0
 msgid "Statement Type"
-msgstr "Tipus declaració"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,type:0
 msgid "Substitutive"
-msgstr "Substitutiva"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
 msgid "Summary"
-msgstr "Resum"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,support_type:0
 msgid "Support Type"
-msgstr "Tipus de suport"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Support type:"
-msgstr "Tipus de suport:"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,tax_lines:0
@@ -883,21 +883,21 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,support_type:0
 msgid "Telematics"
-msgstr "Telemàtica"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,charges_obtp_limit:0
 msgid ""
 "The declaration will include partners from which we received payments, on "
 "behalf of third parties, over this limit"
-msgstr "La declaració inclourà les empreses que la seva suma d'operacions superi aquest límit."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,operations_limit:0
 msgid ""
 "The declaration will include partners with the total of operations over this"
 " limit"
-msgstr "La declaració inclourà les empreses que la suma d'operacions superi aquest límit."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,received_cash_limit:0
@@ -908,46 +908,46 @@ msgstr ""
 #: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:75
 #, python-format
 msgid "The type 1 record must be 502 characters long"
-msgstr "El tipus de registre 1 ha de ser de 502 caràcters de llargada"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:202
 #, python-format
 msgid "The type 2-D record (partner) must be 502 characters long"
-msgstr "El tipus de registre 2-D (empresa) ha de ser de 502 caràcters de llargada"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:307
 #, python-format
 msgid "The type 2-I record (real state) must be 502 characters long"
-msgstr "El tipus de registre 2-I (estat real) ha de ser de 502 caràcters de llargada"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:account.period,quarter:0
 msgid "Third"
-msgstr "Tercer"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,township:0
 msgid "Township"
-msgstr "Municipi"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_state_record,township_code:0
 msgid "Township Code"
-msgstr "Codi de municipi"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "VAT"
-msgstr "NIF/CIF"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,partner_vat:0
 #: field:l10n.es.aeat.mod347.real_state_record,partner_vat:0
 #: field:l10n.es.aeat.mod347.report,company_vat:0
 msgid "VAT number"
-msgstr "NIF / CIF"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,community_vat:0
@@ -959,7 +959,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_state_record,number_type:0
 msgid "Without number"
-msgstr "Sense número"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.export_to_boe,state:0
