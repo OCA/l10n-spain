@@ -30,13 +30,11 @@
     'license': 'AGPL-3',
     'depends': [
         'l10n_es_aeat',
-        'l10n_es_aeat_mod111',
-        'hr'
+        'l10n_es_aeat_mod216',
     ],
     'data': [
         'wizard/export_mod296_to_boe.xml',
         'views/mod296_view.xml',
-        'views/res_partner_view.xml',
         'security/ir.model.access.csv'],
     'installable': True,
 }

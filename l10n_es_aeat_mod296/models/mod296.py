@@ -44,29 +44,11 @@ class L10nEsAeatMod296Report(models.Model):
 
     @api.multi
     def _get_partner_domain(self):
-        res = []
-        partner_lst = self.env['res.partner'].search(
+        res = super(L10nEsAeatMod296Report, self)._get_partner_domain()
+        partners = self.env['res.partner'].search(
             [('is_resident', '=', True)])
-        res += [('partner_id', 'in', partner_lst.ids)]
+        res += [('partner_id', 'in', partners.ids)]
         return res
-
-    @api.multi
-    def _get_tax_code_lines(self, tax_code):
-        self.ensure_one()
-        tax_code_obj = self.env['account.tax.code']
-        move_line_obj = self.env['account.move.line']
-        period_obj = self.env['account.period']
-        period_lst = period_obj.search(
-            [('fiscalyear_id', '=', self.fiscalyear_id.id)])
-        code_list = tax_code_obj.search(
-            [('code', '=', tax_code),
-             ('company_id', '=', self.company_id.id)])
-        move_line_domain = [('company_id', '=', self.company_id.id),
-                            ('tax_code_id', 'child_of', code_list.ids),
-                            ('period_id', 'in', period_lst.ids)]
-        move_line_domain += self._get_partner_domain()
-        move_lines = move_line_obj.search(move_line_domain)
-        return move_lines
 
     @api.multi
     def calculate(self):
@@ -105,7 +87,6 @@ class L10nEsAeatMod296Report(models.Model):
 
 
 class L10nEsAeatMod296ReportLine(models.Model):
-
     _description = 'AEAT 296 report line'
     _name = 'l10n.es.aeat.mod296.report.line'
 

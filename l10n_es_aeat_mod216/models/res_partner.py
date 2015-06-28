@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#  OpenERP, Open Source Management Solution.
-#
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU Affero General Public License as
 #  published by the Free Software Foundation, either version 3 of the
@@ -18,22 +16,10 @@
 #
 ##############################################################################
 
-from openerp import models, api
+from openerp import models, fields
 
 
-class L10nEsAeatMod111Report(models.Model):
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
 
-    _description = 'AEAT 111 report'
-    _inherit = 'l10n.es.aeat.mod111.report'
-
-    @api.multi
-    def _get_partner_domain(self):
-        res = super(L10nEsAeatMod111Report, self)._get_partner_domain()
-        no_resident_partners = []
-        employee_lst = self.env['hr.employee'].search([('is_resident', '=',
-                                                        False)])
-        for employee in employee_lst:
-            if employee.user_id and employee.user_id.partner_id:
-                no_resident_partners.append(employee.user_id.partner_id.id)
-        res += [('partner_id', 'not in', no_resident_partners)]
-        return res
+    is_resident = fields.Boolean(string='Is resident')

@@ -2,7 +2,7 @@
 <openerp>
     <data>
         <!-- PARTNERS -->
-        <record id="view_partner_form_mod296" model="ir.ui.view">
+        <record id="view_partner_form_mod216" model="ir.ui.view">
             <field name="name">view.partner.form.mod296</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base_vat.view_partner_form"/>

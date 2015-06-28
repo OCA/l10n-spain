@@ -18,11 +18,16 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import models, api
 
 
-class ResPartner(models.Model):
+class L10nEsAeatMod111Report(models.Model):
+    _inherit = 'l10n.es.aeat.mod111.report'
 
-    _inherit = 'res.partner'
-
-    is_resident = fields.Boolean(string='Is resident')
+    @api.multi
+    def _get_partner_domain(self):
+        res = super(L10nEsAeatMod111Report, self)._get_partner_domain()
+        partners = self.env['res.partner'].search(
+            [('is_resident', '=', False)])
+        res += [('partner_id', 'in', partners.ids)]
+        return res
