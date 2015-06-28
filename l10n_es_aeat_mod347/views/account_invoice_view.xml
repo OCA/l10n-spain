@@ -7,7 +7,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
-                <field name="payment_term" options="{'no_create': True}" position="after">
+                <field name="payment_term" position="before">
                     <field name="not_in_mod347"/>
                 </field>
             </field>
