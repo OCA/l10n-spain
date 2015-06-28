@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
+#  OpenERP, Open Source Management Solution.
+#
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU Affero General Public License as
 #  published by the Free Software Foundation, either version 3 of the
@@ -16,25 +18,16 @@
 #
 ##############################################################################
 
-{
-    'name': 'AEAT modelo 216',
-    'version': '1.0',
-    'category': "Localisation/Accounting",
-    'author': "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
-              "AvanzOSC,"
-              "Antiun Ingeniería S.L.,"
-              "Odoo Community Association (OCA)",
-    'website': "https://github.com/OCA/l10n-spain",
-    'license': 'AGPL-3',
-    'depends': [
-        'l10n_es_aeat',
-        'l10n_es_aeat_mod111',
-    ],
-    'data': [
-        'wizard/export_mod216_to_boe.xml',
-        'views/mod216_view.xml',
-        'views/res_partner_view.xml',
-        'security/ir.model.access.csv'
-    ],
-    'installable': True,
-}
+from openerp import models, api
+
+
+class L10nEsAeatMod111Report(models.Model):
+    _inherit = 'l10n.es.aeat.mod111.report'
+
+    @api.multi
+    def _get_partner_domain(self):
+        res = super(L10nEsAeatMod111Report, self)._get_partner_domain()
+        partners = self.env['res.partner'].search(
+            [('is_resident', '=', False)])
+        res += [('partner_id', 'in', partners.ids)]
+        return res
