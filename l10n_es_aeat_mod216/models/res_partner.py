@@ -16,25 +16,10 @@
 #
 ##############################################################################
 
-{
-    'name': 'AEAT modelo 216',
-    'version': '1.0',
-    'category': "Localisation/Accounting",
-    'author': "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
-              "AvanzOSC,"
-              "Antiun Ingeniería S.L.,"
-              "Odoo Community Association (OCA)",
-    'website': "https://github.com/OCA/l10n-spain",
-    'license': 'AGPL-3',
-    'depends': [
-        'l10n_es_aeat',
-        'l10n_es_aeat_mod111',
-    ],
-    'data': [
-        'wizard/export_mod216_to_boe.xml',
-        'views/mod216_view.xml',
-        'views/res_partner_view.xml',
-        'security/ir.model.access.csv'
-    ],
-    'installable': True,
-}
+from openerp import models, fields
+
+
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    is_resident = fields.Boolean(string='Is resident')
