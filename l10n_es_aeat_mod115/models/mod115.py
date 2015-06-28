@@ -79,9 +79,9 @@ class L10nEsAeatMod115Report(models.Model):
     @api.multi
     def _calc_prev_trimesters_data(self):
         self.ensure_one()
-        periods = self.env['account.period'].search([('fiscalyear_id', '=',
-                                                      self.fiscalyear_id.id),
-                                                     ('special', '=', False)])
+        periods = self.env['account.period'].search(
+            [('fiscalyear_id', '=', self.fiscalyear_id.id),
+             ('special', '=', False)])
         amount = 0
         for period in periods:
             if period == self.period_id:
@@ -92,33 +92,19 @@ class L10nEsAeatMod115Report(models.Model):
                  ('company_id', '=', self.company_id.id)])
             if not report_ids:
                 raise exceptions.Warning(
-                    "No se ha encontrado la "
-                    "declaracion mod. 115 para el periodo %s. No se "
-                    "puede continuar el calculo si no existe dicha "
-                    "declaracion." % period.code)
+                    "No se ha encontrado la declaracion mod. 115 para el "
+                    "periodo %s. No se puede continuar el calculo si no "
+                    "existe dicha declaracion." % period.code)
             amount = report_ids[0].casilla_05 or 0
         return amount
 
     @api.multi
-    def _get_tax_code_lines(self, tax_code):
-        self.ensure_one()
-        tax_code_obj = self.env['account.tax.code']
-        move_line_obj = self.env['account.move.line']
-        code_list = tax_code_obj.search([('code', '=', tax_code),
-                                        ('company_id', '=',
-                                         self.company_id.id)])
-        move_line_domain = [('company_id', '=', self.company_id.id),
-                            ('tax_code_id', 'child_of', code_list.id)]
-        if self.period_id:
-            move_line_domain += [('period_id', '=', self.period_id.id)]
-        move_lines = move_line_obj.search(move_line_domain)
-        return move_lines
-
-    @api.multi
     def calculate(self):
         self.ensure_one()
-        move_lines02 = self._get_tax_code_lines('RBI')
-        move_lines03 = self._get_tax_code_lines('RLC115')
+        move_lines02 = self._get_tax_code_lines(
+            'RBI', periods=self.period_id)
+        move_lines03 = self._get_tax_code_lines(
+            'RLC115', periods=self.period_id)
         self.move_lines_02 = move_lines02.ids
         self.move_lines_03 = move_lines03.ids
         self.casilla_02 = sum([x.tax_amount for x in move_lines02])
