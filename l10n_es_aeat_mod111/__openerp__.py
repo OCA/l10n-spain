@@ -20,8 +20,7 @@
     'name': 'AEAT modelo 111',
     'version': '1.0',
     'category': "Localisation/Accounting",
-    'author': "Spanish Localization Team,"
-              "AvanzOSC,"
+    'author': "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "MálagaTIC,"
               "Grupo Vermon,"
