@@ -166,7 +166,7 @@ class L10nEsAeatReport(models.AbstractModel):
                                 'code': 'aeat.sequence.type',
                                 'number_increment': 1,
                                 'implementation': 'no_gap',
-                                'padding': 5,
+                                'padding': 9,
                                 'number_next_actual': 1,
                                 'prefix': aeat_num + '-'
                                 }
@@ -175,3 +175,27 @@ class L10nEsAeatReport(models.AbstractModel):
                 raise exceptions.Warning(
                     "Modelo no válido: %s. Debe declarar una variable "
                     "'_aeat_number'" % self._name)
+
+    # Helper functions
+    @api.multi
+    def _get_partner_domain(self):
+        return []
+
+    @api.multi
+    def _get_tax_code_lines(self, tax_code, periods=None):
+        self.ensure_one()
+        tax_code_obj = self.env['account.tax.code']
+        tax_codes = tax_code_obj.search(
+            [('code', '=', tax_code),
+             ('company_id', '=', self.company_id.id)])
+        move_line_obj = self.env['account.move.line']
+        if not periods:
+            period_obj = self.env['account.period']
+            periods = period_obj.search(
+                [('fiscalyear_id', '=', self.fiscalyear_id.id)])
+        move_line_domain = [('company_id', '=', self.company_id.id),
+                            ('tax_code_id', 'child_of', tax_codes.ids),
+                            ('period_id', 'in', periods.ids)]
+        move_line_domain += self._get_partner_domain()
+        move_lines = move_line_obj.search(move_line_domain)
+        return move_lines
