@@ -22,16 +22,19 @@
     'name': 'AEAT modelo 296',
     'version': '8.0.1.0.0',
     'category': "Localisation/Accounting",
-    'author': "Spanish Localization Team,Odoo Community Association (OCA)",
+    'author': "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+              "AvanzOSC,"
+              "Antiun Ingeniería S.L.,"
+              "Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-spain",
     'license': 'AGPL-3',
-    'depends': ['l10n_es_aeat',
-                'hr'],
+    'depends': [
+        'l10n_es_aeat',
+        'l10n_es_aeat_mod216',
+    ],
     'data': [
         'wizard/export_mod296_to_boe.xml',
         'views/mod296_view.xml',
-        'views/res_partner_view.xml',
         'security/ir.model.access.csv'],
-    'active': False,
     'installable': True,
 }

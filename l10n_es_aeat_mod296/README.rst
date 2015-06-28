@@ -1,15 +1,18 @@
 Presentación del Modelo AEAT 296
 ================================
-Modelo 296 de la AEAT.
 
-Credits
-=======
+Modelo 296 de la AEAT. Declaración Informativa. Retenciones e ingresos a
+cuenta del Impuesto sobre la Renta de no Residentes (sin establecimiento
+permanente). Resumen anual.
 
-Contributors
-------------
+Créditos
+========
+
+Contribuidores
+--------------
 
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-* AvanzOSC (http://www.avanzosc.es)
+* Ainara Galdona <ainara.galdona@avanzosc.es>
 
 Maintainer
 ----------
