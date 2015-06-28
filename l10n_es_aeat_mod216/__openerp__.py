@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#  OpenERP, Open Source Management Solution.
-#
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU Affero General Public License as
 #  published by the Free Software Foundation, either version 3 of the
@@ -22,14 +20,21 @@
     'name': 'AEAT modelo 216',
     'version': '1.0',
     'category': "Localisation/Accounting",
-    'author': "Spanish Localization Team,Odoo Community Association (OCA)",
+    'author': "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+              "AvanzOSC,"
+              "Antiun Ingeniería S.L.,"
+              "Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-spain",
     'license': 'AGPL-3',
-    'depends': ['l10n_es_aeat'],
+    'depends': [
+        'l10n_es_aeat',
+        'l10n_es_aeat_mod111',
+    ],
     'data': [
         'wizard/export_mod216_to_boe.xml',
         'views/mod216_view.xml',
-        'security/ir.model.access.csv'],
-    'active': False,
+        'views/res_partner_view.xml',
+        'security/ir.model.access.csv'
+    ],
     'installable': True,
 }

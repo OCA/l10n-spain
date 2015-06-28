@@ -1,17 +1,23 @@
 Presentación del Modelo AEAT 216
 ================================
-Modelo 216 de la AEAT.
 
-Credits
-=======
+Modelo 216 de la AEAT. IRNR. Impuesto sobre la Renta de no Residentes. Rentas
+obtenidas sin mediación de establecimiento permanente. Retenciones e ingresos
+a cuenta.
 
-Contributors
-------------
+Problemas conocidos / Hoja de ruta
+==================================
 
-* MálagaTIC (http://www.malagatic.com)
-* Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
+* Permitir periodos trimestrales.
+
+Créditos
+========
+
+Contribuidores
+--------------
+
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-* AvanzOSC (http://www.avanzosc.es)
+* Ainara Galdona <ainara.galdona@avanzosc.es>
 
 Maintainer
 ----------
