@@ -19,5 +19,3 @@
 ##############################################################################
 
 from . import mod296
-from . import mod111
-from . import res_partner
