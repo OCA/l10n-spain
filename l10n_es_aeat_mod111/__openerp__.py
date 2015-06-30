@@ -22,8 +22,9 @@
     'category': "Localisation/Accounting",
     'author': "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+              "Antiun Ingeniería S.L.,"
               "MálagaTIC,"
-              "Grupo Vermon,"
+              "G. Vermon,"
               "Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-spain",
     'license': 'AGPL-3',
