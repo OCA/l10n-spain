@@ -186,9 +186,9 @@ class L10nEsAeatMod111Report(models.Model):
     @api.one
     @api.constrains('codigo_electronico_anterior', 'previous_number')
     def _check_complementary(self):
-        if (self.type == 'C'
-                and not self.codigo_electronico_anterior
-                and not self.previous_number):
+        if (self.type == 'C' and
+                not self.codigo_electronico_anterior and
+                not self.previous_number):
             raise exceptions.Warning(
                 _('Si se marca la casilla de liquidación complementaria,'
                   ' debe rellenar el código electrónico o'
