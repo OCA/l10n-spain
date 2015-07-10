@@ -15,4 +15,5 @@
 #    along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 ##############################################################################
-from . import export_mod303_to_boe
+
+from . import mod303

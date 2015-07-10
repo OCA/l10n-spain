@@ -9,6 +9,7 @@
                 <tree string="BOE export configurations">
                     <field name="name"/>
                     <field name="model_number"/>
+                    <field name="model"/>
                     <field name="date_start"/>
                     <field name="date_end"/>
                 </tree>
@@ -21,15 +22,20 @@
             <field name="arch" type="xml">
                 <form string="BOE export configuration">
                     <group>
-	                    <field name="name"/>
-	                    <field name="model_number"/>
-	                    <field name="date_start"/>
-	                    <field name="date_end"/>
+                        <group>
+                            <field name="name"/>
+                            <field name="model_number"/>
+                            <field name="model"/>
+                        </group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
                     </group>
-                    <separator string="Configuration lines"/>
-                    <field name="config_lines" context="{'default_model':model}"/>
-                    <group>
-                        <field name="model"/>
+                    <group string="Configuration lines">
+                        <field name="config_lines"
+                               nolabel="1"
+                                />
                     </group>
                 </form>
             </field>
@@ -43,8 +49,11 @@
                     <field name="sequence" widget="handle"/>
                     <field name="name"/>
                     <field name="position"/>
-                    <field name="repeat"/>
+                    <field name="size"/>
                     <field name="export_type"/>
+                    <field name="value"/>
+                    <field name="repeat"/>
+                    <field name="conditional"/>
                     <field name="sub_config"/>
                 </tree>
             </field>
@@ -55,36 +64,64 @@
             <field name="model">aeat.model.export.config.line</field>
             <field name="arch" type="xml">
                 <form string="AEAT export configuration line">
+                    <h1>
+                        <field name="name"/>
+                    </h1>
                     <group>
-                        <group>
+                        <group string='Basic configuration' colspan="2" col="4">
+                            <field name="position"/>
                             <field name="sequence"/>
-                            <field name="name" />
-                        </group>
-                        <group string='Basic configuration' colspan="2" col="6">
-	                        <field name="position"/>
 	                        <field name="size"/>
 	                        <field name="alignment"/>
                         </group>
-                        <field name='export_config_id' invisible="1"/>
-                        <group string='Value' colspan="2" col="4">
-                            <field name="fixed_value" colspan="4"/>
-		                    <field name="expression" colspan="4"/>
+                        <field name="export_config_id" invisible="1"/>
+	                    <group name="group_field_specification"
+                               string='Field especification'
+                               colspan="2"
+                                >
+		                    <field name="export_type"/>
+		                    <field name="sub_config"
+                                   domain="[('id', '!=', export_config_id)]"
+                                   attrs="{'invisible': [('export_type', '!=', 'subconfig')], 'required': [('export_type', '=', 'subconfig')]}"
+                                    />
+		                    <field name="repeat_expression"/>
+                            <field name="conditional_expression"/>
 	                    </group>
-	                    <group string='Field especification' colspan="2" col="4">
-		                    <field name="export_type" colspan="4"/>
-		                    <field name="repeat"/>
-		                    <field name="sub_config" domain="[('id', '!=', export_config_id)]" attrs="{'required':[('repeat', '=', True)]}"/>
+                        <group name="group_value"
+                               string='Value'
+                               colspan="4"
+                               col="4"
+                               attrs="{'invisible': [('export_type', '=', 'subconfig')]}"
+                                >
+                            <field name="fixed_value"
+                                   attrs="{'readonly': [('expression', '!=', False)]}"
+                                    />
+                            <field name="expression"
+                                   attrs="{'readonly': [('fixed_value', '!=', False)]}"
+                                    />
 	                    </group>
-	                    <group string="Advanced configuration">
-	                       <group attrs="{'invisible':[('export_type', 'not in', ('float', 'integer'))]}" col="4" colspan="2">
+	                    <group name="group_advanced_configuration"
+                               string="Advanced configuration"
+                               colspan="4"
+                               attrs="{'invisible': [('export_type', 'in', ('string', 'subconfig'))]}"
+                                >
+	                       <group attrs="{'invisible': [('export_type', 'not in', ('float', 'integer'))]}"
+                                  col="4"
+                                  colspan="2"
+                                   >
 		                       <field name="apply_sign"/>
 		                       <field name="sign" attrs="{'invisible':[('apply_sign', '=', False)]}"/>
-		                       <field name="decimal_size" attrs="{'invsible':[('export_type', '!=', 'float')]}"/>
+		                       <field name="decimal_size"
+                                      attrs="{'invisible':[('export_type', '!=', 'float')]}"/>
 	                       </group>
-	                       <group attrs="{'invisible':[('export_type', '!=', 'boolean')]}" col="4" colspan="2">
-                               <field name="bool_no"/>
-                               <field name="bool_yes"/>
-                           </group>
+                            <group attrs="{'invisible':[('export_type', '!=', 'boolean')]}">
+                                <group>
+                                    <field name="bool_no"/>
+                                </group>
+                                <group>
+                                    <field name="bool_yes"/>
+                                </group>
+                            </group>
 	                    </group>
                     </group>
                 </form>

@@ -1,12 +1,13 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution    
-#    Copyright (c) All rights reserved:
+#    Copyright (c)
 #       2013      Guadaltech (http://www.guadaltech.es)
 #                 Alberto Martín Cortada
-#       2014      Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
+#       2014-2015 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
 #                 Pedro M. Baeza <pedro.baeza@serviciobaeza.com>
+#       2015      AvanzOSC (http://www.avanzosc.es)
+#                 Ainara Galdona
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -24,28 +25,25 @@
 ##############################################################################
 
 {
-    "name" : "AEAT modelo 303",
-    "version" : "1.1",
-    "author" : "GuadalTech,Odoo Community Association (OCA)",
-    "license" : "AGPL-3",
-    "website" : "http://www.guadaltech.es",
-    'contributors': ["Pedro M. Baeza <pedro.baeza@serviciosbaeza.com"],
-    "category" : "Localisation/Accounting",
-    "description" : """
-Módulo para la presentación del modelo 303 (IVA - Autodeclaración) de la
-Agencia Española de Administración Tributaria.
-
-Instrucciones del modelo: http://goo.gl/pgVbXH
-
-Incluye la exportación al formato BOE para su uso telemático.
-        """,
-    "depends" : [
+    "name": "AEAT modelo 303",
+    "version": "1.1",
+    'category': "Accounting & Finance",
+    'author': "Guadaltech,"
+              "AvanzOSC,"
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+              "Antiun Ingeniería S.L.,"
+              "Odoo Community Association (OCA)",
+    'website': "https://github.com/OCA/l10n-spain",
+    "license": "AGPL-3",
+    "depends": [
+        "l10n_es",
         "l10n_es_aeat",
     ],
-    "data" : [
-        "wizard/export_mod303_to_boe.xml",
-        "mod303_view.xml",
+    "data": [
+        "data/tax_code_map_mod303_data.xml",
+        "data/aeat_export_mod303_data.xml",
+        "views/mod303_view.xml",
         "security/ir.model.access.csv",
     ],
-    "installable" : True,
+    "installable": True,
 }

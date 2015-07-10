@@ -21,10 +21,11 @@ from openerp import models, fields, api, exceptions, _
 class AeatModMapTaxCode(models.Model):
     _name = 'aeat.mod.map.tax.code'
 
-    date_from = fields.Date(string="From Date", required=True)
-    date_to = fields.Date(string="To Date", required=True)
-    map_lines = fields.One2many('aeat.mod.map.tax.code.line', 'map_parent_id',
-                                string="Map lines", required=True)
+    date_from = fields.Date(string="From Date")
+    date_to = fields.Date(string="To Date")
+    map_lines = fields.One2many(
+        comodel_name='aeat.mod.map.tax.code.line',
+        inverse_name='map_parent_id', string="Map lines", required=True)
     model = fields.Integer(string="AEAT Model", required=True)
 
     @api.one
@@ -55,6 +56,20 @@ class AeatModMapTaxCode(models.Model):
                 _("Error! The dates of the record overlap with an existing "
                   "record."))
 
+    @api.multi
+    def name_get(self):
+        vals = []
+        for record in self:
+            name = "%s" % record.model
+            if record.date_from or record.date_to:
+                name += " (%s-%s)" % (
+                    record.date_from and
+                    fields.Date.from_string(record.date_from) or '',
+                    record.date_to and
+                    fields.Date.from_string(record.date_to) or '')
+            vals.append(tuple([record.id, name]))
+        return vals
+
 
 class AeatModMapTaxCodeLine(models.Model):
     _name = 'aeat.mod.map.tax.code.line'
@@ -63,14 +78,12 @@ class AeatModMapTaxCodeLine(models.Model):
     tax_codes = fields.Many2many(
         comodel_name='account.tax.code.template', string="Tax codes",
         required=True)
-    map_parent_id = fields.Many2one('aeat.mod.map.tax.code')
+    name = fields.Char(required=True)
+    map_parent_id = fields.Many2one('aeat.mod.map.tax.code', required=True)
 
-    @api.multi
-    def name_get(self):
-        vals = []
-        for record in self:
-            name = _("Field: %s - Code(s): %s") % (
-                record.field_number,
-                ", ".join(x.code for x in record.tax_codes))
-            vals.append(tuple([record.id, name]))
-        return vals
+    def get_taxes_amount(self, report, periods):
+        tax_amount = 0
+        for tax_code in self.tax_codes:
+            move_lines = report._get_tax_code_lines(tax_code, periods=periods)
+            tax_amount += sum([x.tax_amount for x in move_lines])
+        return tax_amount
