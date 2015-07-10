@@ -9,6 +9,7 @@
                 <tree string="AEAT report">
                     <field name="sequence"/>
                     <field name="fiscalyear_id"/>
+                    <field name="period_type"/>
                     <field name="state"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                 </tree>
@@ -32,30 +33,61 @@
                     </header>
                     <sheet>
                         <field name="number" invisible="1"/>
+                        <field name="model" invisible="1"/>
                         <h1>
                             <label string="Report "/>
                             <field name="sequence" class="oe_inline" readonly="1"/>
                         </h1>
-                        <group string="Declaración" colspan="4">
+                        <group string="Declaración"
+                               colspan="4"
+                               name="group_declaration"
+                                >
                             <group>
                                 <field name="company_vat" required="1"/>
                                 <field name="fiscalyear_id"/>
+                                <field name="period_type"/>
+                                <field name="periods" widget="many2many_tags"/>
                                 <field name="export_config" />
                             </group>
                             <group>
                                 <field name="representative_vat"/>
                                 <field name="support_type"/>
                                 <field name="calculation_date" readonly="1"/>
-                                <field name="company_id" required="1" select="1" groups="base.group_multi_company"/>
+                                <field name="company_id"
+                                       required="1"
+                                       groups="base.group_multi_company"
+                                        />
                             </group>
-                            <group string="Contact data">
+                            <group string="Contact data"
+                                   name="group_contact_data"
+                                    >
                                 <field name="contact_name"/>
                                 <field name="contact_phone"/>
                             </group>
-                            <group string="Susbtitutive/complementary declaration">
+                            <group string="Other parameters"
+                                   name="group_other_parameters">
                                 <field name="type"/>
-                                <field name="previous_number" attrs="{'invisible': [('type','==','N')], 'required': ['|', ('type','==','S'), ('type','==','C')]}"/>
+                                <field name="previous_number"
+                                       attrs="{'invisible': [('type', '==', 'N')], 'required': [('type', 'in', ('S', 'C'))]}"
+                                        />
                             </group>
+                        </group>
+                        <group string="Tax lines"
+                               name="group_tax_lines"
+                               colspan="4"
+                               attrs="{'invisible': [('tax_lines', '=', [])]}">
+                            <field name="tax_lines" nolabel="1">
+                                <!-- Se pone editable y el campo es readonly para evitar que se despliegue popup para evitar error por modelos cruzados -->
+                                <tree string="Tax lines" editable="bottom">
+                                    <field name="field_number"/>
+                                    <field name="name"/>
+                                    <field name="amount"/>
+                                    <button name="get_calculated_move_lines"
+                                            type="object"
+                                            help="Show journal items"
+                                            icon="gtk-find"/>
+                                </tree>
+                            </field>
                         </group>
                     </sheet>
                 </form>
