@@ -13,13 +13,20 @@ Módulo base para declaraciones de la AEAT, que incluye:
 * Motor de exportación paramétrica basado en una configuración que puede ser
   introducida por datos XML o por interfaz.
 * Motor de cálculo de importes por códigos de impuestos.
+* Las partes específicas de las Diputaciones Forales no están incluidas.
 
-Configuration
+Configuración
 =============
 
 Todos aquellos modelos que se especifiquen en los módulos adicionales y
 hereden el AEAT base, deberán definir una variable interna que se llame
 '_aeat_number' asignándole como valor, el número del modelo (130, 340, 347...).
+
+Problemas conocidos / Hoja de ruta
+==================================
+
+* La configuración de exportación a BOE no se filtran ni se auto-selecciona por
+  fechas de validez.
 
 Créditos
 ========
