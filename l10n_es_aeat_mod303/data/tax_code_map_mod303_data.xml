@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="aeat_mod303_map" model="aeat.mod.map.tax.code">
+            <field name="model">303</field>
+        </record>
+        <record id="aeat_mod303_map_line_01" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">01</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_RGIDBI4'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Régimen General - Base imponible 4%</field>
+        </record>
+        <record id="aeat_mod303_map_line_03" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">03</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_RGIDC4'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Régimen General - Cuota 4%</field>
+        </record>
+        <record id="aeat_mod303_map_line_04" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">04</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_RGIDBI10'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Régimen General - Base imponible 10%</field>
+        </record>
+        <record id="aeat_mod303_map_line_06" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">06</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_RGIDC10'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Régimen General - Cuota 10%</field>
+        </record>
+        <record id="aeat_mod303_map_line_07" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">07</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_RGIDBI21'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Régimen General - Base imponible 21%</field>
+        </record>
+        <record id="aeat_mod303_map_line_09" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">09</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_RGIDC21'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Régimen General - Cuota 21%</field>
+        </record>
+        <record id="aeat_mod303_map_line_10" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">10</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_AIDBYSBI'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Adquisiciones intracomunitarias de bienes y servicios - Base imponible</field>
+        </record>
+        <record id="aeat_mod303_map_line_11" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">11</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_AIDBYSC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Adquisiciones intracomunitarias de bienes y servicios - Cuota</field>
+        </record>
+        <record id="aeat_mod303_map_line_12" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">12</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_OCIDSPEAIBI'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Otras operac. con inversión del suj. pasivo (excepto adq. intracom.) - Base imponible</field>
+        </record>
+        <record id="aeat_mod303_map_line_13" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">13</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_OOCIDSPEAIC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Otras operac. con inversión del suj. pasivo (excepto adq. intracom.) - Cuota</field>
+        </record>
+        <record id="aeat_mod303_map_line_14" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">14</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_MBYCRBI'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Modificación bases y cuotas - Base imponible</field>
+        </record>
+        <record id="aeat_mod303_map_line_15" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">15</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_MBYCRC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Modificación bases y cuotas - Cuota</field>
+        </record>
+        <record id="aeat_mod303_map_line_16" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">16</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_REBI05'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Recargo equivalencia - Base imponible 0.5%</field>
+        </record>
+        <record id="aeat_mod303_map_line_18" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">18</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_REC05'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Recargo equivalencia - Cuota 0.5%</field>
+        </record>
+        <record id="aeat_mod303_map_line_19" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">19</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_REBI014'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Recargo equivalencia - Base imponible 1.2%</field>
+        </record>
+        <record id="aeat_mod303_map_line_21" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">21</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_REC014'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Recargo equivalencia - Cuota 1.2%</field>
+        </record>
+        <record id="aeat_mod303_map_line_22" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">22</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_REBI52'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Recargo equivalencia - Base imponible 5.2%</field>
+        </record>
+        <record id="aeat_mod303_map_line_24" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">24</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_REC52'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Recargo equivalencia - Cuota 5.2%</field>
+        </record>
+        <record id="aeat_mod303_map_line_25" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">25</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_MBYCDRDERBI'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Modificación bases y cuotas del recargo de equivalencia - Base imponible</field>
+        </record>
+        <record id="aeat_mod303_map_line_26" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">26</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_MBYCDRDERC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Modificación bases y cuotas del recargo de equivalencia - Cuota</field>
+        </record>
+        <record id="aeat_mod303_map_line_27" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">27</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_ITDC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Total cuota devengada ([03]+[06]+[09]+[11]+[13]+[15]+[18]+[21]+[24]+[26])</field>
+        </record>
+        <record id="aeat_mod303_map_line_28" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">28</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_OICBI'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Por cuotas soportadas en operaciones interiores corrientes - Base</field>
+        </record>
+        <record id="aeat_mod303_map_line_29" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">29</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_SOICC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Por cuotas soportadas en operaciones interiores corrientes - Cuota</field>
+        </record>
+        <record id="aeat_mod303_map_line_30" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">30</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_OIBIBI'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Por cuotas soportadas en operaciones interiores con bienes de inversión - Base</field>
+        </record>
+        <record id="aeat_mod303_map_line_31" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">31</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_SOIBIC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Por cuotas soportadas en operaciones interiores con bienes de inversión - Cuota</field>
+        </record>
+        <record id="aeat_mod303_map_line_32" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">32</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_IBCBI'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Por cuotas soportadas en las importaciones de bienes corrientes - Base</field>
+        </record>
+        <record id="aeat_mod303_map_line_33" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">33</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_DIBCC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Por cuotas soportadas en las importaciones de bienes corrientes - Cuota</field>
+        </record>
+        <record id="aeat_mod303_map_line_34" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">34</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_IBIBI'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Por cuotas soportadas en las importaciones de bienes de inversión - Base</field>
+        </record>
+        <record id="aeat_mod303_map_line_35" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">35</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_DIBIC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Por cuotas soportadas en las importaciones de bienes de inversión - Cuota</field>
+        </record>
+        <record id="aeat_mod303_map_line_36" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">36</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_AIBYSCBI'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">En adquisiciones intracomunitarias de bienes y servicios corrientes - Base</field>
+        </record>
+        <record id="aeat_mod303_map_line_37" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">37</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_AIBYSCC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">En adquisiciones intracomunitarias de bienes y servicios corrientes - Cuota</field>
+        </record>
+        <record id="aeat_mod303_map_line_38" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">38</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_AIBIBI'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">En adquisiciones intracomunitarias de bienes de inversión - Base</field>
+        </record>
+        <record id="aeat_mod303_map_line_39" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">39</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_AIBIC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">En adquisiciones intracomunitarias de bienes de inversión - Cuota</field>
+        </record>
+        <record id="aeat_mod303_map_line_40" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">40</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_RDDSBI'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Rectificación de deducciones - Base</field>
+        </record>
+        <record id="aeat_mod303_map_line_41" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">41</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_RDDSC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Rectificación de deducciones - Cuota</field>
+        </record>
+        <record id="aeat_mod303_map_line_42" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">42</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_CREAGYP12'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Compensaciones Régimen especial A. G. y P.</field>
+        </record>
+        <record id="aeat_mod303_map_line_43" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">43</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_RBDIC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Regularización bienes de inversión</field>
+        </record>
+        <record id="aeat_mod303_map_line_44" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">44</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_RPADPDDPC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Regularización por aplicación del porcentaje definitivo de prorrata</field>
+        </record>
+        <record id="aeat_mod303_map_line_45" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">45</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_ITADC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Total a deducir ([29]+[31]+[33]+[35]+[37]+[39]+[41]+[42]+[43]+[44])</field>
+        </record>
+        <record id="aeat_mod303_map_line_59" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">59</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_EIDBYS'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Entregas intracomunitarias de bienes y servicios</field>
+        </record>
+        <record id="aeat_mod303_map_line_60" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">60</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_EYOA'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Exportaciones y operaciones asimiladas</field>
+        </record>
+        <record id="aeat_mod303_map_line_61" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">61</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_ONSOCIDSPQOEDAD'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Operaciones no sujetas o con inversión del sujeto pasivo que originan derecho a dedución</field>
+        </record>
+        <record id="aeat_mod303_map_line_62" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">62</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_ERCDCBI'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Importes de las entregas de bienes y prestaciones de servicios a las que habiéndoles sido aplicado el régimen especial del criterio de caja hubieran resultado devengadas conforme a la regla general de devengo contenida en el art. 75 LIVA - Base imponible</field>
+        </record>
+        <record id="aeat_mod303_map_line_63" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">63</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_IERCDCC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Importes de las entregas de bienes y prestaciones de servicios a las que habiéndoles sido aplicado el régimen especial del criterio de caja hubieran resultado devengadas conforme a la regla general de devengo contenida en el art. 75 LIVA - Cuota</field>
+        </record>
+        <record id="aeat_mod303_map_line_74" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">74</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_IARCDCBI'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Importe de las adquisiciones de bienes y servicios a las que sea de aplicación o afecte el régimen especial del criterio de caja conforme a la ley general de devengo contenida en el artículo 75 de LIVA - Base imponible</field>
+        </record>
+        <record id="aeat_mod303_map_line_75" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">75</field>
+            <field name="tax_codes" eval="[(4, ref('l10n_es.account_tax_code_template_IARCDCC'))]"/>
+            <field name="map_parent_id" ref="aeat_mod303_map"/>
+            <field name="name">Importe de las adquisiciones de bienes y servicios a las que sea de aplicación o afecte el régimen especial del criterio de caja conforme a la ley general de devengo contenida en el artículo 75 de LIVA - Cuota</field>
+        </record>
+    </data>
+</openerp>
