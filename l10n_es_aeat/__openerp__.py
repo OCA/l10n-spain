@@ -7,6 +7,10 @@
 #    Copyright (C) 2013
 #        Ignacio Ibeas - Acysos S.L. (http://acysos.com)
 #        Migración a OpenERP 7.0
+#    Copyright (C) 2013-2015
+#        Serv. Tecnol. Avanzados - Pedro M. Baeza (www.serviciosbaeza.com)
+#    Copyright (C) 2015
+#        Ainara Galdona - AvanzOSC (https://www.avanzosc.es)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -22,7 +26,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 {
     'name': "AEAT Base",
     'version': "1.1",
