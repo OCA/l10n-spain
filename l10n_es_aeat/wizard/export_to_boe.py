@@ -226,56 +226,63 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
 
     @api.multi
     def action_get_file_from_config(self, report):
+        self.ensure_one()
+        return self._export_config(report, report.export_config)
+
+    @api.multi
+    def _export_config(self, obj, export_config):
+        self.ensure_one()
         contents = ''
-        for line in report.export_config.config_lines:
-            if line.position and (len(contents) + 1 < line.position):
-                contents = self._formatString(contents,
-                                              (line.position - 1))
-            contents += self._export_line_process(report, line)
+        for line in export_config.config_lines:
+            contents += self._export_line_process(obj, line)
         return contents
 
     @api.multi
     def _export_line_process(self, obj, line):
+        # usar esta variable para resolver las expresiones
+        obj_merge = obj
+
         def merge(match):
             exp = str(match.group()[2:-1]).strip()
             result = eval(exp, {
                 'user': self.env.user,
-                'object': obj,
+                'object': obj_merge,
                 # copy context to prevent side-effects of eval
                 'context': self.env.context.copy(),
             })
             return result and tools.ustr(result) or ''
+
         val = ''
-        field_val = False
-        if line.fixed_value:
-            field_val = line.fixed_value
-        elif line.expression:
-            field_val = line.expression and \
-                EXPRESSION_PATTERN.sub(merge, line.expression) or False
-        if line.repeat:
-            for report_line in field_val:
-                if line.sub_config:
-                    for subline in line.sub_config.config_lines:
-                        val += self._export_line_process(report_line, subline)
+        if line.conditional_expression:
+            if (not EXPRESSION_PATTERN.sub(
+                    merge, line.conditional_expression)):
+                return ''
+        if line.repeat_expression:
+            obj_list = EXPRESSION_PATTERN.sub(merge, line.expression)
         else:
-            if line.sub_config:
-                for subline in line.sub_config.config_lines:
-                    val += self._export_line_process(obj, subline)
+            obj_list = [obj]
+        for obj_merge in obj_list:
+            if line.export_type == 'subconfig':
+                val += self._export_config(obj_merge, line.sub_config)
             else:
+                if line.expression:
+                    field_val = EXPRESSION_PATTERN.sub(merge, line.expression)
+                else:
+                    field_val = line.fixed_value
                 val += self._export_simple_record(line, field_val)
         return val
 
     @api.multi
     def _export_simple_record(self, line, val):
         if line.export_type == 'string':
-            align = '<'
-            if line.alignment == 'right':
-                align = '>'
+            align = '>' if line.alignment == 'right' else '<'
             return self._formatString(val or '', line.size, align=align)
         elif line.export_type == 'boolean':
             return self._formatBoolean(val, line.bool_yes, line.bool_no)
         else:
-            return self._formatNumber(val or 0,
-                                      (line.size - line.decimal_size -
-                                       (line.apply_sign and 1 or 0)),
-                                      line.decimal_size, line.apply_sign)
+            decimal_size = (0 if line.export_type == 'integer' else
+                            line.decimal_size)
+            return self._formatNumber(
+                float(val or 0),
+                line.size - decimal_size - (line.apply_sign and 1 or 0),
+                decimal_size, line.apply_sign)
