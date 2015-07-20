@@ -1,19 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_aeat
-#
+# * l10n_es_aeat
+# 
+# Translators:
+# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-10 07:46+0000\n"
-"PO-Revision-Date: 2015-07-10 07:46+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-08-14 00:52+0000\n"
+"PO-Revision-Date: 2015-07-10 10:58+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:199
@@ -374,11 +377,9 @@ msgid "Full Name"
 msgstr "Nombre completo"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code,id:0
-#: field:aeat.mod.map.tax.code.line,id:0
+#: field:aeat.mod.map.tax.code,id:0 field:aeat.mod.map.tax.code.line,id:0
 #: field:aeat.model.export.config,id:0
-#: field:aeat.model.export.config.line,id:0
-#: field:l10n.es.aeat.report,id:0
+#: field:aeat.model.export.config.line,id:0 field:l10n.es.aeat.report,id:0
 #: field:l10n.es.aeat.report.export_to_boe,id:0
 #: field:l10n.es.aeat.tax.line,id:0
 msgid "ID"
@@ -386,12 +387,16 @@ msgstr "ID"
 
 #. module: l10n_es_aeat
 #: help:aeat.model.export.config.line,repeat_expression:0
-msgid "If set, this expression will be used for getting the list of elements to iterate on"
+msgid ""
+"If set, this expression will be used for getting the list of elements to "
+"iterate on"
 msgstr "Si está establecida, esta expresión se usará para obtener una lista de los elementos por los que iterar"
 
 #. module: l10n_es_aeat
 #: help:aeat.model.export.config.line,conditional_expression:0
-msgid "If set, this expression will be used to evaluate if this line should be added"
+msgid ""
+"If set, this expression will be used to evaluate if this line should be "
+"added"
 msgstr "Si está establecida, esta expresión será usada para evaluar si la línea debe ser añadida"
 
 #. module: l10n_es_aeat
@@ -410,9 +415,12 @@ msgid "Informativas"
 msgstr "Informativas"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:196
+#: code:addons/l10n_es_aeat/models/aeat_report.py:203
 #, python-format
-msgid "It seems that you have defined quarterly periods or periods in the middle of the month. This cannot be automatically handled. You should select manually the periods."
+msgid ""
+"It seems that you have defined quarterly periods or periods in the middle of"
+" the month. This cannot be automatically handled. You should select manually"
+" the periods."
 msgstr "Parece que ha definido periodos trimestrales o periodos en mitad del mes. Esto no se puede gestionar automáticamente, por lo que deberá seleccionar a mano los periodos."
 
 #. module: l10n_es_aeat
@@ -524,7 +532,7 @@ msgid "Odoo model"
 msgstr "Modelo Odoo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:290
+#: code:addons/l10n_es_aeat/models/aeat_report.py:297
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr "Sólo los informes en estado 'borrador' or 'cancelado' pueden ser eliminados"
@@ -556,7 +564,9 @@ msgstr "Teléfono"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
-msgid "Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el programa"
+msgid ""
+"Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el "
+"programa"
 msgstr "Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el programa"
 
 #. module: l10n_es_aeat
@@ -617,9 +627,11 @@ msgid "Sign character"
 msgstr "Carácter del signo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:156
+#: code:addons/l10n_es_aeat/models/aeat_report.py:163
 #, python-format
-msgid "Split fiscal years cannot be automatically handled. You should select manually the periods."
+msgid ""
+"Split fiscal years cannot be automatically handled. You should select "
+"manually the periods."
 msgstr "Los ejercicios fiscales separados no pueden ser gestionados automáticamente. Debe seleccionar manualmente los periodos."
 
 #. module: l10n_es_aeat
@@ -756,4 +768,3 @@ msgstr "o"
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "para iniciar el proceso de exportación del archivo BOE de la AEAT."
 msgstr "para iniciar el proceso de exportación del archivo BOE de la AEAT."
-
