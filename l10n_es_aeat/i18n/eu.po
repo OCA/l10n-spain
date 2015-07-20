@@ -10,18 +10,18 @@ msgstr ""
 "POT-Creation-Date: 2015-08-14 00:52+0000\n"
 "PO-Revision-Date: 2015-07-10 10:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
+"Language-Team: Basque (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
+"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:199
 #, python-format
 msgid "%s_report_%s.txt"
-msgstr "%s_report_%s.txt"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:110
@@ -53,7 +53,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model:res.groups,name:l10n_es_aeat.group_account_aeat
 msgid "AEAT manager"
-msgstr "Responsable AEAT"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -94,7 +94,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,amount:0
 msgid "Amount"
-msgstr "Import"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,apply_sign:0
@@ -130,24 +130,24 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Calculate"
-msgstr "Calcula"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,calculation_date:0
 msgid "Calculation date"
-msgstr "Data del càlcul"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Cancel"
-msgstr "Cancel·la"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: selection:l10n.es.aeat.report,state:0
 msgid "Cancelled"
-msgstr "Cancel·lada"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -163,12 +163,12 @@ msgstr ""
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: field:l10n.es.aeat.report,company_id:0
 msgid "Company"
-msgstr "Companyia"
+msgstr "Enpresa"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
 msgid "Complementary"
-msgstr "Complementària"
+msgstr "Osagarria"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,conditional:0
@@ -193,7 +193,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Confirm"
-msgstr "Confirma"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -228,7 +228,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,support_type:0
 msgid "DVD"
-msgstr "DVD"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -244,14 +244,14 @@ msgstr ""
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: selection:l10n.es.aeat.report,state:0
 msgid "Done"
-msgstr "Realitzada"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: selection:l10n.es.aeat.report,state:0
 msgid "Draft"
-msgstr "Esborrany"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -283,7 +283,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_export_to_boe
 msgid "Export Report to BOE Format"
-msgstr "Exporta a fitxer BOE"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.actions.act_window,name:l10n_es_aeat.action_aeat_export_config
@@ -430,7 +430,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,representative_vat:0
 msgid "L.R. VAT number"
-msgstr "NIF R.L."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,write_uid:0
@@ -460,7 +460,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,representative_vat:0
 msgid "Legal Representative VAT number."
-msgstr "NIF del representant legal."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,config_lines:0
@@ -508,7 +508,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
 msgid "Normal"
-msgstr "Normal"
+msgstr "Arrunta"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,decimal_size:0
@@ -576,7 +576,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,state:0
 msgid "Processed"
-msgstr "Calculada"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
@@ -642,12 +642,12 @@ msgstr ""
 #: field:l10n.es.aeat.report,state:0
 #: field:l10n.es.aeat.report.export_to_boe,state:0
 msgid "State"
-msgstr "Estat"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,type:0
 msgid "Statement Type"
-msgstr "Tipus declaració"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
@@ -658,12 +658,12 @@ msgstr ""
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
 msgid "Substitutive"
-msgstr "Substitutiva"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,support_type:0
 msgid "Support Type"
-msgstr "Tipus de suport"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.mod.map.tax.code:l10n_es_aeat.aeat_mod_map_tax_code_form
@@ -697,14 +697,14 @@ msgstr ""
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,support_type:0
 msgid "Telematics"
-msgstr "Telemàtica"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:74
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:109
 #, python-format
 msgid "The formated string must match the given length"
-msgstr "La cadena formatejada ha de satisfer la llargada donada."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,date_to:0
@@ -714,7 +714,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,company_vat:0
 msgid "VAT number"
-msgstr "NIF / CIF"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.model.export.config.line:l10n_es_aeat.aeat_model_export_config_line_form
@@ -736,7 +736,7 @@ msgstr ""
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:71
 #, python-format
 msgid "Wrong aling option. It should be < or >"
-msgstr "Opció d'alineament errònia. Hauria de ser < o >"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
