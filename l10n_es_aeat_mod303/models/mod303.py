@@ -24,8 +24,11 @@ class L10nEsAeatMod303Report(models.Model):
     _description = "AEAT 303 Report"
 
     def _get_export_conf(self):
-        return self.env.ref(
-            'l10n_es_aeat_mod303.aeat_mod303_main_export_config').id
+        try:
+            return self.env.ref(
+                'l10n_es_aeat_mod303.aeat_mod303_main_export_config').id
+        except ValueError:
+            return self.env['aeat.model.export.config']
 
     currency_id = fields.Many2one(
         comodel_name='res.currency', string='Currency',
