@@ -343,7 +343,8 @@ class ExecuteFyc(orm.TransientModel):
                                 lines_by_partner[line.partner_id.id] = balance
                         for partner_id in lines_by_partner.keys():
                             balance = lines_by_partner[partner_id]
-                            if balance:
+                            if not float_is_zero(
+                                    balance, precision_rounding=precision):
                                 move_lines.append(
                                     {'account_id': account.id,
                                      'debit': balance < 0 and -balance,
