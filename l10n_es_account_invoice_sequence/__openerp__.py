@@ -23,22 +23,26 @@
 
 {
     "name": "Secuencia para facturas separada de la secuencia de asientos",
-    "version": "1.1",
+    "version": "8.0.1.2.0",
     "author": "Spanish Localization Team, "
+              "NaN·Tic, "
+              "Trey, "
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting",
     "license": "AGPL-3",
     "depends": [
-        'account',
+        'l10n_es',
     ],
     "data": [
+        'data/sequence_data.xml',
         'views/account_view.xml',
     ],
     "demo": [],
     "test": [
         'test/sequence.yml'
     ],
-    "active": False,
+    "post_init_hook": "fill_invoice_sequences",
     "installable": True,
 }
