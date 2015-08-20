@@ -53,3 +53,11 @@ msgstr "Secuencia de la factura"
 #: help:account.journal,invoice_sequence_id:0
 msgid "The sequence used for invoice numbers in this journal."
 msgstr "La secuencia utilizada para los números de factura en este diario."
+
+#. module: l10n_es_account_invoice_sequence
+#: code:addons/l10n_es_account_invoice_sequence/__init__.py:31
+#: code:addons/l10n_es_account_invoice_sequence/wizard/wizard_multi_charts_accounts.py:32
+#, python-format
+msgid "Journal Entries Sequence"
+msgstr "Secuencia de asientos contables"
+

@@ -23,7 +23,7 @@
 from openerp import models, fields, api, exceptions, _
 
 
-class account_journal(models.Model):
+class AccountJournal(models.Model):
     _inherit = 'account.journal'
 
     invoice_sequence_id = fields.Many2one(
