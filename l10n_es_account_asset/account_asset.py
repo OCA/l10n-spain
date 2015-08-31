@@ -20,7 +20,6 @@
 #
 ##############################################################################
 import calendar
-from datetime import datetime
 from openerp.osv import orm, fields
 from dateutil.relativedelta import relativedelta
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as DSDF
@@ -199,27 +198,25 @@ class account_asset_asset(orm.Model):
 
                 # En el caso de que la fecha de última amortización no sea
                 # la de compra se debe generar el cuadro al período siguiente
-                depreciation_date = datetime.strptime(
-                    self._get_last_depreciation_date(cr, uid, [asset.id],
-                                                     context)[asset.id],
-                    '%Y-%m-%d')
-                fix_depreciation = False
+                depreciation_date = fields.Date.\
+                    from_string(self.
+                                _get_last_depreciation_date(cr, uid,
+                                                            [asset.id],
+                                                            context)[asset.id])
 
                 initial_date = asset.purchase_date
+                fixed_depreciation = depreciation_date != fields.Date.\
+                    from_string(initial_date)
 
-                if (depreciation_date != datetime.strptime(
-                        initial_date, '%Y-%m-%d')):
-                    fix_depreciation = True
                 nb = 0
                 for depr_line in depr_lin_obj.browse(cr, uid,
                                                      new_depr_line_ids):
-                    depr_date = datetime.strptime(
-                        depr_line.depreciation_date,
-                        DSDF)
+                    depr_date = fields.Date.from_string(
+                        depr_line.depreciation_date)
 
-                    if fix_depreciation:
+                    if fixed_depreciation:
                         if depr_date.day != 1:
-                            depr_date = depr_date + relativedelta(
+                            depr_date += relativedelta(
                                 months=+asset.method_period)
                     if asset.method_period == 12:
                         depr_date = depr_date.replace(depr_date.year, 12, 31)
