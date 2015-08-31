@@ -22,6 +22,7 @@
 import calendar
 from datetime import datetime
 from openerp.osv import orm, fields
+from dateutil.relativedelta import relativedelta
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as DSDF
 
 
@@ -145,7 +146,8 @@ class account_asset_asset(orm.Model):
                 _compute_board_undone_dotation_nb(cr, uid, asset,
                                                   depreciation_date,
                                                   total_days, context=context)
-            if depreciation_date.day == 1 and depreciation_date.month == 1:
+            if depreciation_date.day == 1 and depreciation_date.month == 1 \
+                    and asset.method_period == 12:
                 # Quitar una depreciación del nº total si el activo se compró
                 # el 1 de enero, ya que ese año sería completo
                 val -= 1
@@ -195,15 +197,41 @@ class account_asset_asset(orm.Model):
                     cr, uid,
                     [('asset_id', '=', asset.id), ('move_id', '=', False)])
 
+                # En el caso de que la fecha de última amortización no sea
+                # la de compra se debe generar el cuadro al período siguiente
+                depreciation_date = datetime.strptime(
+                    self._get_last_depreciation_date(cr, uid, [asset.id],
+                                                     context)[asset.id],
+                    '%Y-%m-%d')
+                fix_depreciation = False
+
+                initial_date = asset.purchase_date
+
+                if (depreciation_date != datetime.strptime(
+                        initial_date, '%Y-%m-%d')):
+                    fix_depreciation = True
+                nb = 0
                 for depr_line in depr_lin_obj.browse(cr, uid,
                                                      new_depr_line_ids):
                     depr_date = datetime.strptime(
                         depr_line.depreciation_date,
                         DSDF)
 
+                    if fix_depreciation:
+                        if depr_date.day != 1:
+                            depr_date = depr_date + relativedelta(
+                                months=+asset.method_period)
                     if asset.method_period == 12:
                         depr_date = depr_date.replace(depr_date.year, 12, 31)
                     else:
+                        if not asset.prorata:
+                            if depr_date.day != 1:
+                                depr_date = depreciation_date + relativedelta(
+                                    months=+ (asset.method_period * (nb+1)))
+                            else:
+                                depr_date = depreciation_date + relativedelta(
+                                    months=+ (asset.method_period * nb))
+                            nb += 1
                         last_month_day = calendar.monthrange(
                             depr_date.year, depr_date.month)[1]
                         depr_date = depr_date.replace(depr_date.year,
