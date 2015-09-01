@@ -23,7 +23,7 @@
 
 {
     "name": "AEAT modelo 130",
-    "version": "0.8",
+    "version": "8.0.0.8.0",
     "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
