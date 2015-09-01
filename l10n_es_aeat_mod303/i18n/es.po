@@ -1,19 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_aeat_mod303
-#
+# * l10n_es_aeat_mod303
+# 
+# Translators:
+# Alejandro Santana <alejandrosantana@anubia.es>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-10 08:10+0000\n"
-"PO-Revision-Date: 2015-07-10 08:10+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-08-14 00:52+0000\n"
+"PO-Revision-Date: 2015-08-20 18:33+0000\n"
+"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,casilla_46:0
@@ -24,11 +27,6 @@ msgstr "(IVA devengado - IVA deducible)"
 #: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report
 msgid "AEAT 303 Report"
 msgstr "Declaración AEAT 303"
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report_line
-msgid "AEAT 303 Report Line"
-msgstr "Línea de declaración AEAT 303"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.ui.menu,name:l10n_es_aeat_mod303.menu_aeat_mod303_report
@@ -47,7 +45,9 @@ msgstr "Modelo AEAT 303"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,casilla_69:0
-msgid "Atribuible a la Administración [66] - Cuotas a compensar [67] + Regularización anual [68]"
+msgid ""
+"Atribuible a la Administración [66] - Cuotas a compensar [67] + "
+"Regularización anual [68]"
 msgstr "Atribuible a la Administración [66] - Cuotas a compensar [67] + Regularización anual [68]"
 
 #. module: l10n_es_aeat_mod303
@@ -97,8 +97,10 @@ msgstr "Creado en"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,cuota_compensar:0
-msgid "Cuota a compensar de periodos anteriores, en los que en su declaración"
-msgstr "Cuota a compensar de periodos anteriores, en los que en su declaración"
+msgid ""
+"Cuota a compensar de periodos anteriores, en los que su declaración fue a "
+"devolver y se escogió la opción de compensación posterior"
+msgstr "Cuota a compensar de periodos anteriores, en los que su declaración fue a devolver y se escogió la opción de compensación posterior"
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,currency_id:0
@@ -132,13 +134,13 @@ msgstr "Borrador"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,regularizacion_anual:0
-msgid "En la última autoliquidación del año (la del período 4T o mes 12) se hará constar, con el signo que corresponda, el resultado de la regularización anual conforme disponen las Leyes por las que se aprueban el Concierto Económico entre el Estado y la Comunidad Autónoma del País Vasco y el Convenio Económico entre el Estado y la Comunidad Foral de Navarra."
+msgid ""
+"En la última autoliquidación del año (la del período 4T o mes 12) se hará "
+"constar, con el signo que corresponda, el resultado de la regularización "
+"anual conforme disponen las Leyes por las que se aprueban el Concierto "
+"Económico entre el Estado y la Comunidad Autónoma del País Vasco y el "
+"Convenio Económico entre el Estado y la Comunidad Foral de Navarra."
 msgstr "En la última autoliquidación del año (la del período 4T o mes 12) se hará constar, con el signo que corresponda, el resultado de la regularización anual conforme disponen las Leyes por las que se aprueban el Concierto Económico entre el Estado y la Comunidad Autónoma del País Vasco y el Convenio Económico entre el Estado y la Comunidad Foral de Navarra."
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_export_to_boe
-msgid "Export Report to BOE Format"
-msgstr "Exportar a formato BOE"
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,export_config:0
@@ -187,7 +189,12 @@ msgstr "Nombre del representante legal."
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,porcentaje_atribuible_estado:0
-msgid "Los sujetos pasivos que tributen conjuntamente a la Administración del Estado y a las Diputaciones Forales del País Vasco o a la Comunidad Foral de Navarra, consignarán en esta casilla el porcentaje del volumen de operaciones en territorio común. Los demás sujetos pasivos consignarán en esta casilla el 100%"
+msgid ""
+"Los sujetos pasivos que tributen conjuntamente a la Administración del "
+"Estado y a las Diputaciones Forales del País Vasco o a la Comunidad Foral de"
+" Navarra, consignarán en esta casilla el porcentaje del volumen de "
+"operaciones en territorio común. Los demás sujetos pasivos consignarán en "
+"esta casilla el 100%"
 msgstr "Los sujetos pasivos que tributen conjuntamente a la Administración del Estado y a las Diputaciones Forales del País Vasco o a la Comunidad Foral de Navarra, consignarán en esta casilla el porcentaje del volumen de operaciones en territorio común. Los demás sujetos pasivos consignarán en esta casilla el 100%"
 
 #. module: l10n_es_aeat_mod303
@@ -237,17 +244,19 @@ msgstr "Resultado"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,previous_result:0
-msgid "Resultado de la anterior o anteriores declaraciones del mismo concepto, ejercicio y periodo"
+msgid ""
+"Resultado de la anterior o anteriores declaraciones del mismo concepto, "
+"ejercicio y periodo"
 msgstr "Resultado de la anterior o anteriores declaraciones del mismo concepto, ejercicio y periodo"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:159
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:160
 #, python-format
 msgid "Select an account for making the charge"
 msgstr "Seleccione una cuenta bancaria para realizar el cargo"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:161
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:162
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr "Seleccione una cuenta bancaria para recibir el dinero"
@@ -259,7 +268,9 @@ msgstr "Secuencia"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,compensate:0
-msgid "Si se marca, indicará que el importe a devolver se compensará en posteriores declaraciones"
+msgid ""
+"Si se marca, indicará que el importe a devolver se compensará en posteriores"
+" declaraciones"
 msgstr "Si se marca, indicará que el importe a devolver se compensará en posteriores declaraciones"
 
 #. module: l10n_es_aeat_mod303
@@ -346,4 +357,3 @@ msgstr "[70] A deducir"
 #: field:l10n.es.aeat.mod303.report,resultado_liquidacion:0
 msgid "[71] Resultado de la liquidación"
 msgstr "[71] Resultado de la liquidación"
-

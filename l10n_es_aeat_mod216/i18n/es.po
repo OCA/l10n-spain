@@ -1,19 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_aeat_mod216
-#
+# * l10n_es_aeat_mod216
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-28 13:20+0000\n"
-"PO-Revision-Date: 2015-06-28 13:20+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-08-14 00:52+0000\n"
+"PO-Revision-Date: 2015-07-10 10:58+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model,name:l10n_es_aeat_mod216.model_l10n_es_aeat_mod111_report
@@ -189,6 +191,11 @@ msgid "Ingreso a anotar en CCT"
 msgstr "Ingreso a anotar en CCT"
 
 #. module: l10n_es_aeat_mod216
+#: field:res.partner,is_resident:0
+msgid "Is resident"
+msgstr "Es residente"
+
+#. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,representative_vat:0
 msgid "L.R. VAT number"
 msgstr "NIF representante legal"
@@ -281,6 +288,16 @@ msgid "Partner"
 msgstr "Empresa"
 
 #. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,period_type:0
+msgid "Period type"
+msgstr "Tipo de periodo"
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,periods:0
+msgid "Period(s)"
+msgstr "Periodo(s)"
+
+#. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,period_id:0
 msgid "Periodo"
 msgstr "Periodo"
@@ -327,6 +344,11 @@ msgid "Support Type"
 msgstr "Tipo de soporte"
 
 #. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,tax_lines:0
+msgid "Tax lines"
+msgstr "Lineas de impuestos"
+
+#. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,support_type:0
 msgid "Telematics"
 msgstr "Telemático"
@@ -342,7 +364,11 @@ msgid "VAT number"
 msgstr "NIF"
 
 #. module: l10n_es_aeat_mod216
-#: field:res.partner,is_resident:0
-msgid "Is resident"
-msgstr "Es residente"
+#: selection:l10n.es.aeat.mod216.export_to_boe,state:0
+msgid "get"
+msgstr "obtener"
 
+#. module: l10n_es_aeat_mod216
+#: selection:l10n.es.aeat.mod216.export_to_boe,state:0
+msgid "open"
+msgstr "abierto"
