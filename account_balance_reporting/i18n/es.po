@@ -1,24 +1,28 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* account_balance_reporting
-#
+# * account_balance_reporting
+# 
+# Translators:
+# Alejandro Santana <alejandrosantana@anubia.es>, 2015
+# javialgios <javi.algios@gmail.com>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-23 09:51+0000\n"
-"PO-Revision-Date: 2015-06-23 09:51+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2016-04-23 00:48+0000\n"
+"PO-Revision-Date: 2016-04-18 12:36+0000\n"
+"Last-Translator: javialgios <javi.algios@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
 msgid "Account balance report"
-msgstr "Informe financiero"
+msgstr "Plantilla de informe"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
@@ -44,12 +48,13 @@ msgstr "Plantilla de balances contables"
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template,balance_mode:0
 msgid "Balance mode"
-msgstr "Modo de balance"
+msgstr "Modo de saldo"
 
 #. module: account_balance_reporting
 #: report:report_account_balance_reporting.generic:0
 #: report:report_account_balance_reporting.generic_non_zero:0
 msgid "CODE"
+<<<<<<< 65ecbfcbe3c89f5437623488c56780d903551ca0
 msgstr "CODIGO"
 
 #. module: account_balance_reporting
@@ -172,6 +177,130 @@ msgstr "Hasta"
 #: selection:account.balance.reporting,check_filter:0
 msgid "Dates"
 msgstr "Fechas"
+=======
+msgstr "CÓDIGO"
+
+#. module: account_balance_reporting
+#: report:report_account_balance_reporting.generic:0
+#: report:report_account_balance_reporting.generic_non_zero:0
+msgid "CONCEPT"
+msgstr "CONCEPTO"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting.line,css_class:0
+#: field:account.balance.reporting.template.line,css_class:0
+msgid "CSS Class"
+msgstr "Clase CSS"
+
+#. module: account_balance_reporting
+#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+msgid "Calculate"
+msgstr "Calcular"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,calc_date:0
+#: field:account.balance.reporting.line,calc_date:0
+msgid "Calculation date"
+msgstr "Fecha de cálculo"
+
+#. module: account_balance_reporting
+#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+#: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: account_balance_reporting
+#: selection:account.balance.reporting,state:0
+msgid "Canceled"
+msgstr "Cancelado"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting.line,child_ids:0
+#: field:account.balance.reporting.template.line,child_ids:0
+msgid "Children"
+msgstr "Hijos"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting.line,code:0
+#: field:account.balance.reporting.template.line,code:0
+msgid "Code"
+msgstr "Código"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,company_id:0
+msgid "Company"
+msgstr "Compañía"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,check_filter:0
+msgid "Compute by"
+msgstr ""
+
+#. module: account_balance_reporting
+#: help:account.balance.reporting.template.line,code:0
+msgid "Concept code, may be used on formulas to reference this line"
+msgstr "Código de concepto, podrá usarse en fórmulas para referenciar esta línea"
+
+#. module: account_balance_reporting
+#: help:account.balance.reporting.template.line,name:0
+msgid "Concept name/description"
+msgstr "Nombre/descripción del concepto"
+
+#. module: account_balance_reporting
+#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: account_balance_reporting
+#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,create_uid:0
+#: field:account.balance.reporting.line,create_uid:0
+#: field:account.balance.reporting.print.wizard,create_uid:0
+#: field:account.balance.reporting.template,create_uid:0
+#: field:account.balance.reporting.template.line,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,create_date:0
+#: field:account.balance.reporting.line,create_date:0
+#: field:account.balance.reporting.print.wizard,create_date:0
+#: field:account.balance.reporting.template,create_date:0
+#: field:account.balance.reporting.template.line,create_date:0
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: account_balance_reporting
+#: selection:account.balance.reporting.template,balance_mode:0
+msgid "Credit-Debit"
+msgstr "Haber-Debe"
+
+#. module: account_balance_reporting
+#: selection:account.balance.reporting.template,balance_mode:0
+msgid "Credit-Debit, reversed with brackets"
+msgstr "Haber-Debe, invertido con paréntesis"
+>>>>>>> OCA Transbot updated translations from Transifex
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,current_date_from:0
+#: field:account.balance.reporting,previous_date_from:0
+msgid "Date From"
+msgstr "Fecha desde"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,current_date_to:0
+#: field:account.balance.reporting,previous_date_to:0
+msgid "Date To"
+msgstr "Fecha hasta"
+
+#. module: account_balance_reporting
+#: selection:account.balance.reporting,check_filter:0
+msgid "Dates"
+msgstr "Fechas"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,balance_mode:0
@@ -181,7 +310,11 @@ msgstr "Debe-Haber"
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,balance_mode:0
 msgid "Debit-Credit, reversed with brackets"
+<<<<<<< 65ecbfcbe3c89f5437623488c56780d903551ca0
 msgstr "Debe-Haber, al contrario entre parentesis"
+=======
+msgstr "Debe-Haber, invertido con paréntesis"
+>>>>>>> OCA Transbot updated translations from Transifex
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.line,css_class:0
@@ -203,7 +336,11 @@ msgstr "Diseño"
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
 msgid "Done"
+<<<<<<< 65ecbfcbe3c89f5437623488c56780d903551ca0
 msgstr "Hecho"
+=======
+msgstr "Realizada"
+>>>>>>> OCA Transbot updated translations from Transifex
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
@@ -249,12 +386,17 @@ msgstr "Ejercicio fiscal 2"
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template.line,previous_value:0
 msgid "Fiscal year 2 formula"
+<<<<<<< 65ecbfcbe3c89f5437623488c56780d903551ca0
 msgstr "Fórmula ejercicio fiscal 2"
+=======
+msgstr "Fórmula del ejercicio fiscal 2"
+>>>>>>> OCA Transbot updated translations from Transifex
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,previous_period_ids:0
 msgid "Fiscal year 2 periods"
 msgstr "Periodos del ejercicio fiscal 2"
+<<<<<<< 65ecbfcbe3c89f5437623488c56780d903551ca0
 
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template,balance_mode:0
@@ -317,6 +459,66 @@ msgstr "Última actulización el"
 #: field:account.balance.reporting,level:0
 msgid "Level"
 msgstr "Nivel"
+=======
+
+#. module: account_balance_reporting
+#: help:account.balance.reporting.template,balance_mode:0
+msgid ""
+"Formula calculation mode: Depending on it, the balance is calculated as\n"
+"    follows:\n"
+"      Mode 0: debit-credit (default);\n"
+"      Mode 1: debit-credit, credit-debit for accounts in brackets;\n"
+"      Mode 2: credit-debit;\n"
+"      Mode 3: credit-debit, debit-credit for accounts in brackets."
+msgstr "Modo de fórmula de cálculo: Basado en él, el saldo es calculado:\nModo 0: Debe - Haber (por defecto);\nModo 1: Debe - Haber, Haber - Debe para cuentas entre paréntesis;\nModo 2: Haber - Debe;\nModo 3: Haber - Debe, Debe - Haber para cuentas entre paréntesis;"
+
+#. module: account_balance_reporting
+#: model:ir.actions.report.xml,name:account_balance_reporting.report_account_balance_reporting_generic
+msgid "Generic balance report"
+msgstr "Informe genérico de saldo"
+
+#. module: account_balance_reporting
+#: model:ir.actions.report.xml,name:account_balance_reporting.report_account_balance_reporting_default_non_zero
+msgid "Generic balance report (non zero lines)"
+msgstr "Informe genérico de saldo (sin líneas a cero)"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,id:0
+#: field:account.balance.reporting.line,id:0
+#: field:account.balance.reporting.print.wizard,id:0
+#: field:account.balance.reporting.template,id:0
+#: field:account.balance.reporting.template.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: account_balance_reporting
+#: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
+msgid "Information"
+msgstr "Información"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,write_uid:0
+#: field:account.balance.reporting.line,write_uid:0
+#: field:account.balance.reporting.print.wizard,write_uid:0
+#: field:account.balance.reporting.template,write_uid:0
+#: field:account.balance.reporting.template.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,write_date:0
+#: field:account.balance.reporting.line,write_date:0
+#: field:account.balance.reporting.print.wizard,write_date:0
+#: field:account.balance.reporting.template,write_date:0
+#: field:account.balance.reporting.template.line,write_date:0
+msgid "Last Updated on"
+msgstr "Última actualización en"
+>>>>>>> OCA Transbot updated translations from Transifex
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,level:0
+msgid "Level"
+msgstr "Nivel"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.line,css_class:0
@@ -351,7 +553,11 @@ msgstr "Nivel 5"
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,template_line_id:0
 msgid "Line template"
+<<<<<<< 65ecbfcbe3c89f5437623488c56780d903551ca0
 msgstr "Linea de plantilla"
+=======
+msgstr "Plantilla de línea"
+>>>>>>> OCA Transbot updated translations from Transifex
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,line_ids:0
@@ -363,7 +569,11 @@ msgstr "Líneas"
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template.line,sequence:0
 msgid "Lines will be sorted/grouped by this field"
+<<<<<<< 65ecbfcbe3c89f5437623488c56780d903551ca0
 msgstr "Las líneas seran ordenadas/agrupadas por este campo"
+=======
+msgstr "Las líneas se ordenarán/agruparán por este campo"
+>>>>>>> OCA Transbot updated translations from Transifex
 
 #. module: account_balance_reporting
 #: report:report_account_balance_reporting.generic:0
@@ -382,12 +592,20 @@ msgstr "Nombre"
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template.line,negate:0
 msgid "Negate"
+<<<<<<< 65ecbfcbe3c89f5437623488c56780d903551ca0
 msgstr "Poner negativo"
+=======
+msgstr "Negar"
+>>>>>>> OCA Transbot updated translations from Transifex
 
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template.line,negate:0
 msgid "Negate the value (change the sign of the balance)"
+<<<<<<< 65ecbfcbe3c89f5437623488c56780d903551ca0
 msgstr "Hacer negativo el valor (cambia el signo del balance)"
+=======
+msgstr "Negar el valor (cambiar el signo del saldo)"
+>>>>>>> OCA Transbot updated translations from Transifex
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,notes:0
@@ -401,11 +619,22 @@ msgid "Parent"
 msgstr "Padre"
 
 #. module: account_balance_reporting
+<<<<<<< 69dc19825610ddaa51e4292c5a9d654396a0c61e
+<<<<<<< 65ecbfcbe3c89f5437623488c56780d903551ca0
 #: selection:account.balance.reporting,check_filter:0
 msgid "Periods"
 msgstr "Períodos"
 
 #. module: account_balance_reporting
+=======
+>>>>>>> OCA Transbot updated translations from Transifex
+=======
+#: selection:account.balance.reporting,check_filter:0
+msgid "Periods"
+msgstr "Periods"
+
+#. module: account_balance_reporting
+>>>>>>> OCA Transbot updated translations from Transifex
 #: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Print"
 msgstr "Imprimir"
@@ -418,6 +647,7 @@ msgstr "Imprimir informe"
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
 msgid "Processed"
+<<<<<<< 65ecbfcbe3c89f5437623488c56780d903551ca0
 msgstr "Procesado"
 
 #. module: account_balance_reporting
@@ -446,6 +676,36 @@ msgstr "Diseño de informe"
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
 msgid "Report lines"
 msgstr "Líneas de informe"
+=======
+msgstr "Calculada"
+
+#. module: account_balance_reporting
+#: selection:account.balance.reporting,state:0
+msgid "Processing"
+msgstr "Calculando"
+
+#. module: account_balance_reporting
+#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+msgid "Recalculate"
+msgstr "Recalcular"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting.line,report_id:0
+#: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
+#: field:account.balance.reporting.print.wizard,report_id:0
+msgid "Report"
+msgstr "Informe"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting.template,report_xml_id:0
+msgid "Report design"
+msgstr "Diseño del informe"
+
+#. module: account_balance_reporting
+#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+msgid "Report lines"
+msgstr "Líneas del informe"
+>>>>>>> OCA Transbot updated translations from Transifex
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,sequence:0
@@ -477,16 +737,32 @@ msgstr "Plantilla"
 #. module: account_balance_reporting
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
 msgid "Template lines"
+<<<<<<< 65ecbfcbe3c89f5437623488c56780d903551ca0
 msgstr "Template lines"
+=======
+msgstr "Líneas de plantilla"
+>>>>>>> OCA Transbot updated translations from Transifex
 
 #. module: account_balance_reporting
 #: sql_constraint:account.balance.reporting.line:0
 #: sql_constraint:account.balance.reporting.template.line:0
+<<<<<<< 69dc19825610ddaa51e4292c5a9d654396a0c61e
+<<<<<<< 65ecbfcbe3c89f5437623488c56780d903551ca0
 #: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:257
 #: code:addons/account_balance_reporting/models/account_balance_reporting_template.py:191
 #, python-format
 msgid "The code must be unique for this report!"
 msgstr "The code must be unique for this report!"
+=======
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:236
+=======
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:257
+>>>>>>> OCA Transbot updated translations from Transifex
+#: code:addons/account_balance_reporting/models/account_balance_reporting_template.py:191
+#, python-format
+msgid "The code must be unique for this report!"
+msgstr "¡El código debe ser único para este informe!"
+>>>>>>> OCA Transbot updated translations from Transifex
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template,type:0
@@ -497,6 +773,7 @@ msgstr "Tipo"
 #: selection:account.balance.reporting.template,type:0
 msgid "User"
 msgstr "Usuario"
+<<<<<<< 65ecbfcbe3c89f5437623488c56780d903551ca0
 
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template.line,current_value:0
@@ -519,4 +796,20 @@ msgstr "Fórmula de cálculo: Dependiendo de esta fórmula el valor final se\n"
 "      Códigos de conceptos separados por \"+\" (\"11000+12000\"): Suma de los valores\n"
 "      de esos conceptos.\n"
 "    "
+=======
+>>>>>>> OCA Transbot updated translations from Transifex
 
+#. module: account_balance_reporting
+#: help:account.balance.reporting.template.line,current_value:0
+#: help:account.balance.reporting.template.line,previous_value:0
+msgid ""
+"Value calculation formula: Depending on this formula the final value is\n"
+"    calculated as follows:\n"
+"      Empy template value: sum of (this concept) children values.\n"
+"      Number with decimal point (\"10.2\"): that value (constant).\n"
+"      Account numbers separated by commas (\"430,431,(437)\"): Sum of the account\n"
+"          balances (the sign of the balance depends on the balance mode).\n"
+"      Concept codes separated by \"+\" (\"11000+12000\"): Sum of those concepts\n"
+"      values.\n"
+"    "
+msgstr "Fórmula de cálculo: Basándose en esta fórmula el valor final se calculará:\nValor de plantilla vacía: sumatorio de los valores hijos (de este concepto).\nNúmero con coma decinal (\"10.2\"): ese valor (constante).\nNúmeros de cuenta separados por comas (\"430,431,(437)\"): Sumatorio de los saldos de las cuentas (el signo del saldo depende del modo de saldo).\nCódigos de concepto separados por \"+\" (\"11000+12000\"): Sumatorio de los valores de los conceptos."
