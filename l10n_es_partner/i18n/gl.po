@@ -1,21 +1,22 @@
-# Galician translation for openerp-spain
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
-# This file is distributed under the same license as the openerp-spain package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
-#
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * l10n_es_partner
+# 
+# Translators:
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: openerp-spain\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-03-06 00:49+0000\n"
-"PO-Revision-Date: 2014-01-31 03:30+0000\n"
-"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
-"Language-Team: Galician <gl@li.org>\n"
+"Project-Id-Version: l10n-spain (7.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-14 00:36+0000\n"
+"PO-Revision-Date: 2015-05-23 16:52+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-22 05:56+0000\n"
-"X-Generator: Launchpad (build 17058)\n"
+"Content-Transfer-Encoding: \n"
+"Language: gl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_partner
 #: help:res.partner.bank,acc_country_id:0
@@ -25,8 +26,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_partner
-#: view:res.partner:0
-#: field:res.partner,comercial:0
+#: view:res.partner:0 field:res.partner,comercial:0
 msgid "Trade name"
 msgstr "Nome comercial"
 
@@ -47,7 +47,6 @@ msgid "Import spanish bank data"
 msgstr "Importa-los datos dos bancos españois"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/l10n_es_partner.py:130
 #: code:addons/l10n_es_partner/l10n_es_partner.py:135
 #, python-format
 msgid "IBAN account is not valid"
@@ -80,8 +79,7 @@ msgid "Value Added Tax number"
 msgstr "Nº de identificación fiscal"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/l10n_es_partner.py:99
-#: code:addons/l10n_es_partner/l10n_es_partner.py:104
+#: code:addons/l10n_es_partner/l10n_es_partner.py:101
 #, python-format
 msgid "Bank account should have 20 digits."
 msgstr "A conta bancaria debe ter 20 díxitos."
@@ -107,22 +105,23 @@ msgid "Import"
 msgstr "Importar"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/l10n_es_partner.py:98
-#: code:addons/l10n_es_partner/l10n_es_partner.py:103
-#: code:addons/l10n_es_partner/l10n_es_partner.py:105
-#: code:addons/l10n_es_partner/l10n_es_partner.py:110
-#: code:addons/l10n_es_partner/l10n_es_partner.py:129
+#: code:addons/l10n_es_partner/l10n_es_partner.py:100
+#: code:addons/l10n_es_partner/l10n_es_partner.py:108
 #: code:addons/l10n_es_partner/l10n_es_partner.py:134
 #, python-format
 msgid "Warning"
 msgstr "Aviso"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/l10n_es_partner.py:106
-#: code:addons/l10n_es_partner/l10n_es_partner.py:111
+#: code:addons/l10n_es_partner/l10n_es_partner.py:109
 #, python-format
 msgid "Invalid bank account."
 msgstr "Conta bancaria non válida."
+
+#. module: l10n_es_partner
+#: view:res.partner.bank:0
+msgid "onchange_banco(acc_number, acc_country_id, state)"
+msgstr ""
 
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_bank
@@ -133,22 +132,3 @@ msgstr "Banco"
 #: field:res.bank,website:0
 msgid "Website"
 msgstr "Sitio web"
-
-#~ msgid ""
-#~ "If the country of the bank is Spain, it validates the bank code. It only "
-#~ "reads the digit characters of the bank code:\n"
-#~ "- If the number of digits is 18, computes the two digits of control.\n"
-#~ "- If the number of digits is 20, computes the two digits of control and "
-#~ "ignores the current ones.\n"
-#~ "- If the number of digits is different from 18 or 20, it leaves the bank "
-#~ "code unaltered.\n"
-#~ "The result is shown in the '1234 5678 06 1234567890' format."
-#~ msgstr ""
-#~ "Se o país da conta bancaria é España, valídase o número da conta. Só "
-#~ "comproba os díxitos da conta:\n"
-#~ "- Se o número de díxitos é 18, calcula os dous díxitos de control.\n"
-#~ "- Se o número de díxitos é 20, calcula os dous díxitos de control e ignora "
-#~ "os actuais.\n"
-#~ "- Se o número de díxitos é diferente de 18 ou 20, deixa o código sen "
-#~ "cambios.\n"
-#~ "O resultado móstrase no formato '1234 5678 06 1234567890'."

@@ -1,22 +1,24 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_aeat_mod347
-#
+# * l10n_es_aeat_mod347
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-12 14:51+0000\n"
-"PO-Revision-Date: 2015-02-12 14:51+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-08-14 00:36+0000\n"
+"PO-Revision-Date: 2015-05-23 16:52+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:223
+#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:227
 #, python-format
 msgid "The type 2-D record (partner) must be 502 characters long"
 msgstr "El tipo de registro 2-D (empresa) debe ser de 502 caracteres de largo"
@@ -28,9 +30,11 @@ msgid "Partner Record"
 msgstr "Registro de empresa"
 
 #. module: l10n_es_aeat_mod347
-#: report:report_l10n_es_aeat_mod347.report:0
-msgid "Key Oper."
-msgstr "Clave oper."
+#: help:account.invoice,not_in_mod347:0
+msgid ""
+"If you mark this field, this invoice will not be included in any AEAT 347 "
+"model report."
+msgstr "Si marca este campo, esta factura no se incluirá en los informes del modelo AEAT 347."
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
@@ -83,7 +87,9 @@ msgstr "Registros de inmuebles"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,operations_limit:0
-msgid "The declaration will include partners with the total of operations over this limit"
+msgid ""
+"The declaration will include partners with the total of operations over this"
+" limit"
 msgstr "La declaración incluirá las empresas cuya suma de operaciones supere este límite."
 
 #. module: l10n_es_aeat_mod347
@@ -144,7 +150,7 @@ msgid "File name"
 msgstr "Nombre de archivo"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:97
+#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:101
 #, python-format
 msgid "The type 1 record must be 502 characters long"
 msgstr "The type 1 record must be 502 characters long"
@@ -156,7 +162,9 @@ msgstr "Nº declaración"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
-msgid "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores al límite (1)"
+msgid ""
+"E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores "
+"al límite (1)"
 msgstr "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores al límite (1)"
 
 #. module: l10n_es_aeat_mod347
@@ -194,14 +202,16 @@ msgid "VAT"
 msgstr "NIF"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:327
+#: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:331
 #, python-format
 msgid "The type 2-I record (real state) must be 502 characters long"
 msgstr "El tipo de registro 2-I (inmuebles) debe ser de 502 caracteres de largo"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,community_vat:0
-msgid "VAT number for professionals established in other state member without national VAT"
+msgid ""
+"VAT number for professionals established in other state member without "
+"national VAT"
 msgstr "NIF de profesionales establecidos en otros estados miembros sin NIF nacional"
 
 #. module: l10n_es_aeat_mod347
@@ -217,11 +227,6 @@ msgstr "Empresa"
 #: view:l10n.es.aeat.mod347.report:0
 msgid "Real State records"
 msgstr "Registros de inmuebles"
-
-#. module: l10n_es_aeat_mod347
-#: view:l10n.es.aeat.mod347.report:0
-msgid "293"
-msgstr "293"
 
 #. module: l10n_es_aeat_mod347
 #: selection:account.period,quarter:0
@@ -240,7 +245,9 @@ msgstr "Ejercicio fiscal origen"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,charges_obtp_limit:0
-msgid "The declaration will include partners from which we received payments, on behalf of third parties, over this limit"
+msgid ""
+"The declaration will include partners from which we received payments, on "
+"behalf of third parties, over this limit"
 msgstr "La declaración incluirá las empresas a las que hemos realizado cobros por cuenta de terceros superiores al límite."
 
 #. module: l10n_es_aeat_mod347
@@ -254,12 +261,12 @@ msgid "3 - Spain, without catastral reference"
 msgstr "3 - España, sin referencia catastral"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/mod347.py:381
+#: code:addons/l10n_es_aeat_mod347/mod347.py:383
 #, python-format
-msgid "All partner vat number field must be filled.\n"
+msgid ""
+"All partner vat number field must be filled.\n"
 "Partner: %s (%s)"
-msgstr "El NIF de todos los registros de empresas debe estar rellenado.\n"
-"Empresa: %s (%s)"
+msgstr "El NIF de todos los registros de empresas debe estar rellenado.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,bussiness_real_state_rent:0
@@ -272,14 +279,12 @@ msgid "AEAT 347 model"
 msgstr "Declaración AEAT 347"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/mod347.py:373
+#: code:addons/l10n_es_aeat_mod347/mod347.py:375
 #, python-format
-msgid "All partner state code field must be filled.\n"
+msgid ""
+"All partner state code field must be filled.\n"
 "Partner: %s (%s)"
-msgstr ""
-"El código de provincia de todos los registros de empresas debe estar "
-"rellenado.\n"
-"Empresa: %s (%s)"
+msgstr "El código de provincia de todos los registros de empresas debe estar rellenado.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
@@ -318,12 +323,12 @@ msgid "Calculation parameters"
 msgstr "Parámetros de cálculo"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/mod347.py:389
+#: code:addons/l10n_es_aeat_mod347/mod347.py:391
 #, python-format
-msgid "All partner state code field must be numeric.\n"
+msgid ""
+"All partner state code field must be numeric.\n"
 "Partner: %s (%s)"
-msgstr "Todos los códigos de provincia de los registros de empresa deben de ser numéricos.\n"
-"Empresa: %s (%s)"
+msgstr "Todos los códigos de provincia de los registros de empresa deben de ser numéricos.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_report
@@ -442,7 +447,9 @@ msgstr "Tipo de soporte:"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,insurance_operation:0
-msgid "Only for insurance companies. Set to identify insurance operations aside from the rest."
+msgid ""
+"Only for insurance companies. Set to identify insurance operations aside "
+"from the rest."
 msgstr "Sólo entidades aseguradoras. Las entidades aseguradoras marcarán esta casilla para identificar las operaciones de seguros, debiendo consignarlas separadamente del resto de operaciones."
 
 #. module: l10n_es_aeat_mod347
@@ -502,8 +509,15 @@ msgid "DVD"
 msgstr "DVD"
 
 #. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:0
+msgid "336"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,tax_person_operation:0
-msgid "Only for taxable person operations. Set to identify taxable person operations aside from the rest."
+msgid ""
+"Only for taxable person operations. Set to identify taxable person "
+"operations aside from the rest."
 msgstr "Sólo para operaciones de inversión de sujeto pasivo. Marque para identificar las operaciones de inversión de sujeto pasivo."
 
 #. module: l10n_es_aeat_mod347
@@ -523,7 +537,9 @@ msgstr "Registro de factura"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,cash_basis_operation:0
-msgid "Only for cash basis operations. Set to identify cash basis operations aside from the rest."
+msgid ""
+"Only for cash basis operations. Set to identify cash basis operations aside "
+"from the rest."
 msgstr "Sólo para operaciones sujetas a criterio de caja. Marque para identificar las operaciones sujetas a criterio de caja."
 
 #. module: l10n_es_aeat_mod347
@@ -568,7 +584,10 @@ msgstr "Portal"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,bussiness_real_state_rent:0
-msgid "Set to identify real state rent operations aside from the rest. You'll need to fill in the real state info only when you are the one that receives the money."
+msgid ""
+"Set to identify real state rent operations aside from the rest. You'll need "
+"to fill in the real state info only when you are the one that receives the "
+"money."
 msgstr "(Sólo arrendadores y arrendatarios de Locales de Negocio). Marcarán esta casilla para identificar las operaciones de arrendamiento de locales de negocio, debiendo consignarlas separadamente del resto. Además los arrendadores deberán cumplimentar los campos que componen el REGISTRO DE INMUEBLE, consignando el Importe Total de cada arrendamiento correspondiente al año natural al que se refiere la declaración, con independencia de que éste ya haya sido incluido en la clave 'B' (ventas)."
 
 #. module: l10n_es_aeat_mod347
@@ -598,8 +617,7 @@ msgid "The declaration will show the total of cash operations over this limit"
 msgstr "La declaración mostrará el total de las operaciones realizadas en efectivo superiores a este límite"
 
 #. module: l10n_es_aeat_mod347
-#: field:account.invoice,not_in_mod347:0
-#: field:res.partner,not_in_mod347:0
+#: field:account.invoice,not_in_mod347:0 field:res.partner,not_in_mod347:0
 msgid "Not included in 347 report"
 msgstr "No incluido en el informe 347"
 
@@ -652,20 +670,15 @@ msgstr "Registro de efectivo"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod347.action_l10n_es_aeat_mod347_report
-msgid "<p class=\"oe_view_nocontent_create\">\n"
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
 "                Click to create a AEAT Model 347 Reports.\n"
 "              </p><p>\n"
 "                Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban \n"
 "                los diseños físicos y lógicos del 347.\n"
 "              </p>\n"
 "              "
-msgstr "<p class=\"oe_view_nocontent_create\">\n"
-"                Click to create a AEAT Model 347 Reports.\n"
-"              </p><p>\n"
-"                Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban \n"
-"                los diseños físicos y lógicos del 347.\n"
-"              </p>\n"
-"              "
+msgstr "<p class=\"oe_view_nocontent_create\">\n                Click to create a AEAT Model 347 Reports.\n              </p><p>\n                Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban \n                los diseños físicos y lógicos del 347.\n              </p>\n              "
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
@@ -674,7 +687,9 @@ msgstr "G - Compras agencia viaje"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
-msgid "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al límite (1)"
+msgid ""
+"D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al "
+"límite (1)"
 msgstr "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al límite (1)"
 
 #. module: l10n_es_aeat_mod347
@@ -724,6 +739,7 @@ msgid "Done"
 msgstr "Realizada"
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model,name:l10n_es_aeat_mod347.model_account_invoice
 #: field:l10n.es.aeat.mod347.invoice_record,invoice_id:0
 msgid "Invoice"
 msgstr "Factura"
@@ -825,7 +841,9 @@ msgstr "LÍNEAS DE REGISTRO DE EMPRESA"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,related_goods_operation:0
-msgid "Only for related goods operations. Set to identify related goods operations aside from the rest."
+msgid ""
+"Only for related goods operations. Set to identify related goods operations "
+"aside from the rest."
 msgstr "Sólo para operaciones de bienes vinculados o destinados a vincularse al régimen de depósito distinto del aduanero."
 
 #. module: l10n_es_aeat_mod347
@@ -905,10 +923,10 @@ msgid "Received cash Limit (2)"
 msgstr "Límite efectivo (2)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/mod347.py:372
-#: code:addons/l10n_es_aeat_mod347/mod347.py:380
-#: code:addons/l10n_es_aeat_mod347/mod347.py:388
-#: code:addons/l10n_es_aeat_mod347/mod347.py:396
+#: code:addons/l10n_es_aeat_mod347/mod347.py:374
+#: code:addons/l10n_es_aeat_mod347/mod347.py:382
+#: code:addons/l10n_es_aeat_mod347/mod347.py:390
+#: code:addons/l10n_es_aeat_mod347/mod347.py:398
 #, python-format
 msgid "Error!"
 msgstr "¡Error!"
@@ -935,12 +953,13 @@ msgid "File"
 msgstr "Archivo"
 
 #. module: l10n_es_aeat_mod347
-#: help:res.partner,not_in_mod347:0
-msgid "If you mark this field, this partner will not be included in any AEAT 347 model report, independently from the total amount of its operations."
-msgstr "Si marca este campo, esta empresa no se incluirá en los informes del modelo AEAT 347, independientemente del importe total de sus operaciones."
+#: report:report_l10n_es_aeat_mod347.report:0
+msgid "Key Oper."
+msgstr "Clave oper."
 
 #. module: l10n_es_aeat_mod347
-#: help:account.invoice,not_in_mod347:0
-msgid "If you mark this field, this invoice will not be included in any AEAT 347 model report."
-msgstr "Si marca este campo, esta factura no se incluirá en los informes del modelo AEAT 347."
-
+#: help:res.partner,not_in_mod347:0
+msgid ""
+"If you mark this field, this partner will not be included in any AEAT 347 "
+"model report, independently from the total amount of its operations."
+msgstr "Si marca este campo, esta empresa no se incluirá en los informes del modelo AEAT 347, independientemente del importe total de sus operaciones."

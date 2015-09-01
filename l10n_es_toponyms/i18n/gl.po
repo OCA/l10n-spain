@@ -1,21 +1,22 @@
-# Galician translation for openerp-spain
-# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
-# This file is distributed under the same license as the openerp-spain package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
-#
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * l10n_es_toponyms
+# 
+# Translators:
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: openerp-spain\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-07-11 15:36+0000\n"
-"PO-Revision-Date: 2014-05-02 11:11+0000\n"
-"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
-"Language-Team: Galician <gl@li.org>\n"
+"Project-Id-Version: l10n-spain (7.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-14 00:36+0000\n"
+"PO-Revision-Date: 2015-05-23 16:52+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-22 05:56+0000\n"
-"X-Generator: Launchpad (build 17058)\n"
+"Content-Transfer-Encoding: \n"
+"Language: gl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_toponyms
 #: selection:config.es.toponyms,state:0
@@ -26,6 +27,11 @@ msgstr "Ámbalas dúas"
 #: view:config.es.toponyms:0
 msgid "Spanish states and cities configuration"
 msgstr "Configuración de cidades e provincias españolas"
+
+#. module: l10n_es_toponyms
+#: view:config.es.toponyms:0
+msgid "title"
+msgstr "título"
 
 #. module: l10n_es_toponyms
 #: view:config.es.toponyms:0
@@ -51,9 +57,7 @@ msgstr "Oficial"
 #: view:config.es.toponyms:0
 msgid ""
 "For example: Official (Girona), Spanish (Gerona), Both (Gerona / Girona)"
-msgstr ""
-"Exemplo: Oficial (Salvaterra do Miño), Español (Salvatierra de Miño), "
-"Ámbolos dous (Salvatierra de Miño / Salvaterra do Miño)"
+msgstr "Exemplo: Oficial (Salvaterra do Miño), Español (Salvatierra de Miño), Ámbolos dous (Salvatierra de Miño / Salvaterra do Miño)"
 
 #. module: l10n_es_toponyms
 #: field:config.es.toponyms,city_info:0
@@ -66,21 +70,7 @@ msgid ""
 "'State', 'City', 'ZIP' and 'Country' fields can be filled automatically in "
 "partner, contact and company screens when you enter a zip code or the city "
 "name if this information is associated. Do you want to associate this data?"
-msgstr ""
-"Os campos 'Provincia', 'Cidade', 'CP' e 'País' pódense encher "
-"automáticamente nas fichas de empresa, contacto e compañía se asocia dita "
-"información. ¿Desexa asociar estes datos?\r\n"
-"pueden rellenarse automáticamente en las pantallas de empresa, contacto y "
-"compañía si asocia esta información. ¿Desea asociar estos datos?"
-
-#. module: l10n_es_toponyms
-#: view:config.es.toponyms:0
-msgid ""
-"Warning! Adding more than 54000 records can take a lot of time. If you are "
-"behind a SSL proxy, check your timeout."
-msgstr ""
-"¡Aviso! Engadir máis de 54000 rexistros pode  tardar moito tempo. Se está "
-"detrás dun proxy SSL, comprobe o 'timeout'."
+msgstr "Os campos 'Provincia', 'Cidade', 'CP' e 'País' pódense encher automáticamente nas fichas de empresa, contacto e compañía se asocia dita información. ¿Desexa asociar estes datos?\r\npueden rellenarse automáticamente en las pantallas de empresa, contacto y compañía si asocia esta información. ¿Desea asociar estos datos?"
 
 #. module: l10n_es_toponyms
 #: field:config.es.toponyms,state:0
@@ -89,8 +79,10 @@ msgstr "Nome das provincias"
 
 #. module: l10n_es_toponyms
 #: view:config.es.toponyms:0
-msgid "title"
-msgstr "título"
+msgid ""
+"Warning! Adding more than 54000 records can take a lot of time. If you are "
+"behind a SSL proxy, check your timeout."
+msgstr "¡Aviso! Engadir máis de 54000 rexistros pode  tardar moito tempo. Se está detrás dun proxy SSL, comprobe o 'timeout'."
 
 #. module: l10n_es_toponyms
 #: selection:config.es.toponyms,state:0
@@ -100,11 +92,9 @@ msgstr "Español"
 #. module: l10n_es_toponyms
 #: model:ir.actions.todo,note:l10n_es_toponyms.config_wizard_toponyms_es
 msgid ""
-"You can select the toponym version of the spanish states and add the spanish "
-"cities associated to the zip codes."
-msgstr ""
-"Pode elexi-la versión dos topónimos das provincias e se desexa asocia-la "
-"información das cidades ós códigos postais."
+"You can select the toponym version of the spanish states and add the spanish"
+" cities associated to the zip codes."
+msgstr "Pode elexi-la versión dos topónimos das provincias e se desexa asocia-la información das cidades ós códigos postais."
 
 #. module: l10n_es_toponyms
 #: view:config.es.toponyms:0
@@ -130,10 +120,3 @@ msgstr "Sí"
 #: field:config.es.toponyms,name:0
 msgid "Name"
 msgstr "Nome"
-
-#~ msgid ""
-#~ "Warning! Adding more than 56000 records can take a lot of time. If you are "
-#~ "behind a SSL proxy, check your timeout."
-#~ msgstr ""
-#~ "¡Aviso! Engadir máis de 56000 rexistros pode  tardar moito tempo. Se está "
-#~ "detrás dun proxy SSL, comprobe o 'timeout'."
