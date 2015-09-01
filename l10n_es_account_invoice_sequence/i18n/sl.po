@@ -3,7 +3,7 @@
 # * l10n_es_account_invoice_sequence
 # 
 # Translators:
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
@@ -11,47 +11,47 @@ msgstr ""
 "POT-Creation-Date: 2016-04-14 05:15+0000\n"
 "PO-Revision-Date: 2016-03-24 14:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_invoice
 msgid "Invoice"
-msgstr "Factura"
+msgstr "Račun"
 
 #. module: l10n_es_account_invoice_sequence
 #: field:account.invoice,invoice_number:0
 msgid "Invoice number"
-msgstr "Número de factura"
+msgstr "Številka računa"
 
 #. module: l10n_es_account_invoice_sequence
 #: field:account.journal,invoice_sequence_id:0
 msgid "Invoice sequence"
-msgstr "Secuencia de la factura"
+msgstr "Zaporedje računa"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_journal
 msgid "Journal"
-msgstr "Diario"
+msgstr "Dnevnik"
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/hooks.py:27
 #: code:addons/l10n_es_account_invoice_sequence/wizard/wizard_multi_charts_accounts.py:32
 #, python-format
 msgid "Journal Entries Sequence"
-msgstr "Secuencia de asientos contables"
+msgstr "Zaporedje dnevniških vnosov"
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:41
 #, python-format
 msgid "Journal company and invoice sequence company do not match."
-msgstr "La compañía del diario no es la misma que la de la secuencia de factura."
+msgstr "Družba dnevnika in družba zaporedja računov se ne ujemata."
 
 #. module: l10n_es_account_invoice_sequence
 #: help:account.journal,invoice_sequence_id:0
 msgid "The sequence used for invoice numbers in this journal."
-msgstr "La secuencia utilizada para los números de factura en este diario."
+msgstr "Zaporedje uporabljeno za številke računov v tem dnevniku."
