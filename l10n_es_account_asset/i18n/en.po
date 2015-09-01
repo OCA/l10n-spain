@@ -3,8 +3,6 @@
 # * l10n_es_account_asset
 # 
 # Translators:
-# Alejandro Santana <alejandrosantana@anubia.es>, 2015
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
@@ -12,38 +10,38 @@ msgstr ""
 "POT-Creation-Date: 2016-07-01 00:54+0000\n"
 "PO-Revision-Date: 2016-06-30 15:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: gl\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_account_asset
 #: field:account.asset.asset,annual_percentage:0
 msgid "Annual depreciation percentage"
-msgstr ""
+msgstr "Annual depreciation percentage"
 
 #. module: l10n_es_account_asset
 #: model:ir.model,name:l10n_es_account_asset.model_account_asset_asset
 msgid "Asset"
-msgstr "Activo"
+msgstr "Asset"
 
 #. module: l10n_es_account_asset
 #: model:ir.model,name:l10n_es_account_asset.model_account_asset_category
 msgid "Asset category"
-msgstr "Categoría de activo"
+msgstr "Asset category"
 
 #. module: l10n_es_account_asset
 #: field:account.asset.asset,move_end_period:0
 msgid "At the end of the period"
-msgstr "Ó final do período"
+msgstr "At the end of the period"
 
 #. module: l10n_es_account_asset
 #: field:account.asset.asset,method_percentage:0
 #: field:account.asset.category,method_percentage:0
 msgid "Depreciation percentage"
-msgstr "Porcentaxe de amortización"
+msgstr "Depreciation percentage"
 
 #. module: l10n_es_account_asset
 #: help:account.asset.asset,move_end_period:0
@@ -51,30 +49,30 @@ msgid ""
 "Move the depreciation entry at the end of the period. If the period are 12 "
 "months, it is put on 31st of December, and in the end of the month in other "
 "case."
-msgstr "Move o apunte de amortización ó final do período. Se o período é de 12 meses, pono o 31 de decembro, e ó final do mes no resto dos casos."
+msgstr "Move the depreciation entry at the end of the period. If the period are 12 months, it is put on 31st of December, and in the end of the month in other case."
 
 #. module: l10n_es_account_asset
 #: help:account.asset.asset,start_depreciation_date:0
 msgid "Only needed if not the same than purchase date"
-msgstr ""
+msgstr "Only needed if not the same than purchase date"
 
 #. module: l10n_es_account_asset
 #: constraint:account.asset.asset:0
 msgid ""
 "Prorata temporis can be applied only for time method \"number of "
 "depreciations\"."
-msgstr ""
+msgstr "Prorata temporis can be applied only for time method \"number of depreciations\"."
 
 #. module: l10n_es_account_asset
 #: field:account.asset.asset,start_depreciation_date:0
 msgid "Start Depreciation Date"
-msgstr ""
+msgstr "Start Depreciation Date"
 
 #. module: l10n_es_account_asset
 #: sql_constraint:account.asset.asset:0
 #: sql_constraint:account.asset.category:0
 msgid "Wrong percentage!"
-msgstr "¡Porcentaxe incorrecta!"
+msgstr "Wrong percentage!"
 
 #. module: l10n_es_account_asset
 #: view:account.asset.asset:l10n_es_account_asset.view_account_asset_asset_form_l10n_es
@@ -82,7 +80,7 @@ msgstr "¡Porcentaxe incorrecta!"
 msgid ""
 "{'invisible':[('method_time','!=','end')], "
 "'required':[('method_time','=','end')]}"
-msgstr ""
+msgstr "{'invisible':[('method_time','!=','end')], 'required':[('method_time','=','end')]}"
 
 #. module: l10n_es_account_asset
 #: view:account.asset.asset:l10n_es_account_asset.view_account_asset_asset_form_l10n_es
@@ -90,4 +88,4 @@ msgstr ""
 msgid ""
 "{'invisible':[('method_time','!=','number')], "
 "'required':[('method_time','=','number')]}"
-msgstr ""
+msgstr "{'invisible':[('method_time','!=','number')], 'required':[('method_time','=','number')]}"
