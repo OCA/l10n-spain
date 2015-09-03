@@ -139,7 +139,7 @@ class L10nEsAeatMod303Report(models.Model):
                 casilla_46 * mod303.porcentaje_atribuible_estado / 100)
             casilla_69 = (atribuible_estado - mod303.cuota_compensar +
                           mod303.regularizacion_anual)
-            resultado_liquidacion = casilla_46 - mod303.previous_result
+            resultado_liquidacion = casilla_69 - mod303.previous_result
             vals = {
                 'total_devengado': total_devengado,
                 'total_deducir': total_deducir,

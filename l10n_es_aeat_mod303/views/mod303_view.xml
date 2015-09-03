@@ -65,7 +65,7 @@
                                    options="{'currency_field': 'currency_id'}"
                                    attrs="{'readonly': [('period_type', 'not in', ('4T', '12'))]}"
                                     />
-                            <field name="casilla_46"
+                            <field name="casilla_69"
                                    widget="monetary"
                                    options="{'currency_field': 'currency_id'}"
                                     />
