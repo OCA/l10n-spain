@@ -241,7 +241,7 @@ class L10nEsAeatMod347Report(models.Model):
         return True
 
     @api.one
-    @api.depends('partner_record_ids', 'real_state_record_ids')
+    @api.depends('partner_record_ids', 'real_estate_record_ids')
     def _get_totals(self):
         """Calculates the total_* fields from the line values."""
         self.total_partner_records = len(self.partner_record_ids)
@@ -249,12 +249,12 @@ class L10nEsAeatMod347Report(models.Model):
                                  self.partner_record_ids])
         self.total_cash_amount = sum([x.cash_amount for x in
                                       self.partner_record_ids])
-        self.total_real_state_transmissions_amount = (
-            sum([x.real_state_transmissions_amount for x in
+        self.total_real_estate_transmissions_amount = (
+            sum([x.real_estate_transmissions_amount for x in
                  self.partner_record_ids]))
-        self.total_real_state_amount = sum([x.amount for x in
-                                            self.real_state_record_ids])
-        self.total_real_state_records = len(self.real_state_record_ids)
+        self.total_real_estate_amount = sum([x.amount for x in
+                                            self.real_estate_record_ids])
+        self.total_real_estate_records = len(self.real_estate_record_ids)
 
     number = fields.Char(default='347')
     group_by_vat = fields.Boolean(
@@ -279,18 +279,22 @@ class L10nEsAeatMod347Report(models.Model):
         compute="_get_totals", string="Amount")
     total_cash_amount = fields.Float(
         compute="_get_totals", string="Cash Amount")
-    total_real_state_transmissions_amount = fields.Float(
-        compute="_get_totals", string="Real State Transmissions Amount")
-    total_real_state_records = fields.Integer(
-        compute="_get_totals", string="Real state records")
-    total_real_state_amount = fields.Float(
-        compute="_get_totals", string="Real State Amount")
+    total_real_estate_transmissions_amount = fields.Float(
+        compute="_get_totals", string="Real Estate Transmissions Amount",
+        oldname='total_real_state_transmissions_amount')
+    total_real_estate_records = fields.Integer(
+        compute="_get_totals", string="Real estate records",
+        oldname='total_real_state_records')
+    total_real_estate_amount = fields.Float(
+        compute="_get_totals", string="Real Estate Amount",
+        oldname='total_real_state_amount')
     partner_record_ids = fields.One2many(
         comodel_name='l10n.es.aeat.mod347.partner_record',
         inverse_name='report_id', string='Partner Records')
-    real_state_record_ids = fields.One2many(
-        comodel_name='l10n.es.aeat.mod347.real_state_record',
-        inverse_name='report_id', string='Real State Records')
+    real_estate_record_ids = fields.One2many(
+        comodel_name='l10n.es.aeat.mod347.real_estate_record',
+        inverse_name='report_id', string='Real Estate Records',
+        oldname='real_state_record_ids')
 
     @api.multi
     def button_confirm(self):
@@ -319,10 +323,10 @@ class L10nEsAeatMod347Report(models.Model):
                           "Partner: %s (%s)") %
                         (partner_record.partner_id.name,
                          partner_record.partner_id.id))
-            for real_state_record in item.real_state_record_ids:
-                if not real_state_record.state_code:
+            for real_estate_record in item.real_estate_record_ids:
+                if not real_estate_record.state_code:
                     raise exceptions.ValidationError(
-                        _("All real state records state code field must be "
+                        _("All real estate records state code field must be "
                           "filled."))
         return super(L10nEsAeatMod347Report, self).button_confirm()
 
@@ -339,10 +343,10 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     @api.one
     @api.depends('invoice_record_ids.invoice_id.period_id.quarter')
     def _get_quarter_totals(self):
-        self.first_quarter_real_state_transmission_amount = 0
-        self.second_quarter_real_state_transmission_amount = 0
-        self.third_quarter_real_state_transmission_amount = 0
-        self.fourth_quarter_real_state_transmission_amount = 0
+        self.first_quarter_real_estate_transmission_amount = 0
+        self.second_quarter_real_estate_transmission_amount = 0
+        self.third_quarter_real_estate_transmission_amount = 0
+        self.fourth_quarter_real_estate_transmission_amount = 0
         invoices = self.invoice_record_ids.filtered(
             lambda rec: rec.invoice_id.type in ('out_invoice', 'in_invoice'))
         refunds = self.invoice_record_ids.filtered(
@@ -369,28 +373,28 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
                 if x.invoice_id.period_id.quarter == 'fourth'))
 
     @api.one
-    def _get_real_state_record_ids(self):
-        """Get the real state records from this record parent report for this
+    def _get_real_estate_record_ids(self):
+        """Get the real estate records from this record parent report for this
         partner.
         """
-        self.real_state_record_ids = self.env[
-            'l10n.es.aeat.mod347.real_state_record']
+        self.real_estate_record_ids = self.env[
+            'l10n.es.aeat.mod347.real_estate_record']
         if self.partner_id:
-            self.real_state_record_ids = self.real_state_record_ids.search(
+            self.real_estate_record_ids = self.real_estate_record_ids.search(
                 [('report_id', '=', self.report_id.id),
                  ('partner_id', '=', self.partner_id.id)])
 
     @api.one
-    def _set_real_state_record_ids(self, vals):
-        """Set the real state records from this record parent report for this
+    def _set_real_estate_record_ids(self, vals):
+        """Set the real estate records from this record parent report for this
         partner.
         """
         if vals:
-            real_state_record_obj = self.env[
-                'l10n.es.aeat.mod347.real_state_record']
+            real_estate_record_obj = self.env[
+                'l10n.es.aeat.mod347.real_estate_record']
             for value in vals:
                 o_action, o_id, o_vals = value
-                rec = real_state_record_obj.browse(o_id)
+                rec = real_estate_record_obj.browse(o_id)
                 if o_action == 1:
                     rec.write(o_vals)
                 elif o_action == 2:
@@ -434,30 +438,35 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     partner_state_code = fields.Char(string='State Code', size=2)
     first_quarter = fields.Float(
         compute="_get_quarter_totals", string="First Quarter", digits=(13, 2))
-    first_quarter_real_state_transmission_amount = fields.Float(
+    first_quarter_real_estate_transmission_amount = fields.Float(
         compute="_get_quarter_totals", digits=(13, 2),
-        string="First Quarter Real State Transmission Amount")
+        string="First Quarter Real Estate Transmission Amount",
+        oldname="first_quarter_real_state_transmission_amount")
     second_quarter = fields.Float(
         compute="_get_quarter_totals", string="Second Quarter", digits=(13, 2))
-    second_quarter_real_state_transmission_amount = fields.Float(
+    second_quarter_real_estate_transmission_amount = fields.Float(
         compute="_get_quarter_totals", digits=(13, 2),
-        string="Second Quarter Real State Transmission Amount")
+        string="Second Quarter Real Estate Transmission Amount",
+        oldname="second_quarter_real_state_transmission_amount")
     third_quarter = fields.Float(
         compute="_get_quarter_totals", string="Third Quarter", digits=(13, 2))
-    third_quarter_real_state_transmission_amount = fields.Float(
+    third_quarter_real_estate_transmission_amount = fields.Float(
         compute="_get_quarter_totals", digits=(13, 2),
-        string="Third Quarter Real State Transmission Amount")
+        string="Third Quarter Real Estate Transmission Amount",
+        oldname="third_quarter_real_state_transmission_amount")
     fourth_quarter = fields.Float(
         compute="_get_quarter_totals", string="Fourth Quarter", digits=(13, 2))
-    fourth_quarter_real_state_transmission_amount = fields.Float(
+    fourth_quarter_real_estate_transmission_amount = fields.Float(
         compute="_get_quarter_totals", digits=(13, 2),
-        string="Fourth Quarter Real State Transmission Amount")
+        string="Fourth Quarter Real Estate Transmission Amount",
+        oldname="fourth_quarter_real_state_transmission_amount")
     amount = fields.Float(
         string='Operations amount', digits=(13, 2))
     cash_amount = fields.Float(
         string='Received cash amount', digits=(13, 2))
-    real_state_transmissions_amount = fields.Float(
-        string='Real State Transmisions amount', digits=(13, 2))
+    real_estate_transmissions_amount = fields.Float(
+        string='Real Estate Transmisions amount', digits=(13, 2),
+        oldname='real_state_transmissions_amount')
     insurance_operation = fields.Boolean(
         string='Insurance Operation',
         help="Only for insurance companies. Set to identify insurance "
@@ -474,22 +483,24 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         string='Related Goods Operation',
         help="Only for related goods operations. Set to identify related "
              "goods operations aside from the rest.")
-    bussiness_real_state_rent = fields.Boolean(
-        string='Bussiness Real State Rent',
-        help="Set to identify real state rent operations aside from the rest. "
-             "You'll need to fill in the real state info only when you are "
-             "the one that receives the money.")
+    bussiness_real_estate_rent = fields.Boolean(
+        string='Bussiness Real Estate Rent',
+        help="Set to identify real estate rent operations aside from the rest."
+             " You'll need to fill in the real estate info only when you are "
+             "the one that receives the money.",
+        oldname='bussiness_real_state_rent')
     origin_fiscalyear_id = fields.Many2one(
         comodel_name='account.fiscalyear', string='Origin fiscal year',
         help="Origin cash operation fiscal year")
     invoice_record_ids = fields.One2many(
         comodel_name='l10n.es.aeat.mod347.invoice_record',
         inverse_name='partner_record_id', string='Invoice records')
-    real_state_record_ids = fields.One2many(
-        compute="_get_real_state_record_ids",
-        # inverse="_set_real_state_record_ids",
-        comodel_name="l10n.es.aeat.mod347.real_state_record",
-        string='Real State Records', store=False)
+    real_estate_record_ids = fields.One2many(
+        compute="_get_real_estate_record_ids",
+        # inverse="_set_real_estate_record_ids",
+        comodel_name="l10n.es.aeat.mod347.real_estate_record",
+        string='Real Estate Records', store=False,
+        oldname='real_state_record_ids')
     cash_record_ids = fields.One2many(
         comodel_name='l10n.es.aeat.mod347.cash_record',
         inverse_name='partner_record_id', string='Payment records')
@@ -519,8 +530,8 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
 
 
 class L10nEsAeatMod347RealStateRecord(models.Model):
-    _name = 'l10n.es.aeat.mod347.real_state_record'
-    _description = 'Real State Record'
+    _name = 'l10n.es.aeat.mod347.real_estate_record'
+    _description = 'Real Estate Record'
     _rec_name = "reference"
 
     @api.model
@@ -556,7 +567,7 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
                    ('2', '2 - Basque Country and Navarra'),
                    ('3', '3 - Spain, without catastral reference'),
                    ('4', '4 - Foreign')],
-        string='Real state Situation')
+        string='Real estate Situation')
     reference = fields.Char(
         string='Catastral Reference', size=25)
     address_type = fields.Char(

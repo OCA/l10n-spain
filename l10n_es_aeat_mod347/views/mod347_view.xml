@@ -16,9 +16,9 @@
                     <field name="partner_id" select="1"/>
                     <field name="amount" select="2"/>
                     <field name="insurance_operation" select="2"/>
-                    <field name="bussiness_real_state_rent" select="2"/>
+                    <field name="bussiness_real_estate_rent" select="2"/>
                     <field name="cash_amount" select="2"/>
-                    <field name="real_state_transmissions_amount" select="2"/>
+                    <field name="real_estate_transmissions_amount" select="2"/>
                 </tree>
             </field>
         </record>
@@ -52,7 +52,7 @@
                                 </group>
                                 <group>
                                     <field name="cash_amount"/>
-                                    <field name="real_state_transmissions_amount"/>
+                                    <field name="real_estate_transmissions_amount"/>
                                 </group>
                             </group>
                             <group >
@@ -63,10 +63,10 @@
                                     <field name="fourth_quarter"/>
                                 </group>
                                 <group>
-                                    <field name="first_quarter_real_state_transmission_amount"/>
-                                    <field name="second_quarter_real_state_transmission_amount"/>
-                                    <field name="third_quarter_real_state_transmission_amount"/>
-                                    <field name="fourth_quarter_real_state_transmission_amount"/>
+                                    <field name="first_quarter_real_estate_transmission_amount"/>
+                                    <field name="second_quarter_real_estate_transmission_amount"/>
+                                    <field name="third_quarter_real_estate_transmission_amount"/>
+                                    <field name="fourth_quarter_real_estate_transmission_amount"/>
                                 </group>
                             </group>
 
@@ -78,12 +78,12 @@
                                     <field name="related_goods_operation"/>
                                 </group>
                                 <group>
-                                    <field name="bussiness_real_state_rent"/>
+                                    <field name="bussiness_real_estate_rent"/>
                                 </group>
                             </group>
                         </page>
-                        <page string="Real state info" attrs="{'invisible': [('bussiness_real_state_rent','=',False)]}">
-                            <field name="real_state_record_ids" nolabel="1" context="{'report_id': report_id, 'partner_id': partner_id, 'partner_vat': partner_vat, 'representative_vat': representative_vat}"/>
+                        <page string="Real estate info" attrs="{'invisible': [('bussiness_real_estate_rent','=',False)]}">
+                            <field name="real_estate_record_ids" nolabel="1" context="{'report_id': report_id, 'partner_id': partner_id, 'partner_vat': partner_vat, 'representative_vat': representative_vat}"/>
                         </page>
                         <page string="Details">
                             <field name="invoice_record_ids" context="{'partner_record_id': active_id}" readonly="True">
@@ -141,15 +141,15 @@
             </field>
         </record>
 
-        <!-- ############################################
-        ### AEAT MODEL 347 PARTNER REAL STATE RECORDS ###
-        ############################################# -->
+        <!-- #############################################
+        ### AEAT MODEL 347 PARTNER REAL ESTATE RECORDS ###
+        ############################################## -->
         <!-- Tree view -->
-        <record id="view_l10n_es_aeat_mod347_real_state_record_tree" model="ir.ui.view">
-            <field name="name">l10n.es.aeat.mod347.real_state_record.tree</field>
-            <field name="model">l10n.es.aeat.mod347.real_state_record</field>
+        <record id="view_l10n_es_aeat_mod347_real_estate_record_tree" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.mod347.real_estate_record.tree</field>
+            <field name="model">l10n.es.aeat.mod347.real_estate_record</field>
             <field name="arch" type="xml">
-                <tree string="Real State Records" colors="">
+                <tree string="Real Estate Records" colors="">
                     <field name="partner_vat" select="1"/>
                     <field name="partner_id" select="1"/>
                     <field name="reference" select="2"/>
@@ -163,11 +163,11 @@
         </record>
 
         <!-- Form view -->
-        <record id="view_l10n_es_aeat_mod347_real_state_record_form" model="ir.ui.view">
-            <field name="name">l10n.es.aeat.mod347.real_state_record.form</field>
-            <field name="model">l10n.es.aeat.mod347.real_state_record</field>
+        <record id="view_l10n_es_aeat_mod347_real_estate_record_form" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.mod347.real_estate_record.form</field>
+            <field name="model">l10n.es.aeat.mod347.real_estate_record</field>
             <field name="arch" type="xml">
-                <form string="Real State Record" version="7.0">
+                <form string="Real Estate Record" version="7.0">
                     <field name="report_id" invisible="1"/>
                     <group string="Partner info">
                         <group>
@@ -178,7 +178,7 @@
                             <field name="representative_vat"/>
                         </group>
                     </group>
-                    <group string="Real state info">
+                    <group string="Real estate info">
                         <group>
                             <field name="situation"/>
                             <field name="reference"/>
@@ -187,7 +187,7 @@
                             <field name="amount"/>
                         </group>
                     </group>
-                    <group string="Real state address">
+                    <group string="Real estate address">
                         <group>
                             <field name="address_type"/>
                             <field name="address"/>
@@ -240,9 +240,9 @@
                     <field name="total_partner_records"/>
                     <field name="total_amount"/>
                     <field name="total_cash_amount"/>
-                    <field name="total_real_state_transmissions_amount"/>
-                    <field name="total_real_state_records"/>
-                    <field name="total_real_state_amount"/>
+                    <field name="total_real_estate_transmissions_amount"/>
+                    <field name="total_real_estate_records"/>
+                    <field name="total_real_estate_amount"/>
                 </field>
             </field>
         </record>
@@ -269,8 +269,8 @@
                                 <group string="Summary">
                                     <field name="total_partner_records"/>
                                     <field name="total_amount"/>
-                                    <field name="total_real_state_records"/>
-                                    <field name="total_real_state_amount"/>
+                                    <field name="total_real_estate_records"/>
+                                    <field name="total_real_estate_amount"/>
                                 </group>
                             </group>
                         </page>
@@ -279,8 +279,8 @@
                             <field name="partner_record_ids" nolabel="1" context="{'report_id': active_id}"
                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"/>
                         </page>
-                        <page string="Real State records">
-                            <field name="real_state_record_ids" nolabel="1" context="{'report_id': active_id}"
+                        <page string="Real Estate records">
+                            <field name="real_estate_record_ids" nolabel="1" context="{'report_id': active_id}"
                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"/>
                         </page>
                     </notebook>
