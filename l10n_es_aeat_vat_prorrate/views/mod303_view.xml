@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="l10n_es_aeat_mod303_prorrata_form">
+            <field name="name">l10n.es.aeat.mod303.prorrata.form</field>
+            <field name="model">l10n.es.aeat.mod303.report</field>
+            <field name="inherit_id" ref="l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form"/>
+            <field name="arch" type="xml">
+                <field name="total_deducir" position="before">
+                    <field name="casilla_44"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"
+                           attrs="{'invisible': ['|', ('vat_prorrate_type', '!=', 'general'), ('period_type', 'not in', ['4T', '12'])]}"
+                            />
+                </field>
+                <field name="type" position="after">
+                    <field name="vat_prorrate_type"/>
+                    <label for="vat_prorrate_percent"
+                           attrs="{'invisible': [('vat_prorrate_type', '!=', 'general')]}"
+                            />
+                    <div class="oe_inline"
+                         attrs="{'invisible': [('vat_prorrate_type', '!=', 'general')]}">
+                        <field name="vat_prorrate_percent"
+                               attrs="{'required': [('vat_prorrate_type', '=', 'general')]}"
+                               class="oe_inline"
+                                />
+                        <button string="(compute prorrate percentage)"
+                                type="action"
+                                name="%(action_compute_vat_prorrate)d"
+                                attrs="{'invisible': [('state', '!=', 'draft')]}"
+                                class="oe_inline oe_link"
+                                />
+                    </div>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
