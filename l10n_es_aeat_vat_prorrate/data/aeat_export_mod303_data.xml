@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="l10n_es_aeat_mod303.aeat_mod303_sub01_export_line_64" model="aeat.model.export.config.line">
+            <field name="fixed_value"/>
+            <field name="expression">${object.casilla_44}</field>
+        </record>
+
+    </data>
+</openerp>
