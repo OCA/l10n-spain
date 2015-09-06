@@ -158,10 +158,10 @@
                  <td><para style="DataLineCenter">[[partner_record.partner_vat or '-----']]</para></td>
                  <td><para style="DataLineRight">[[partner_record.amount or 0.0]]</para></td>
                  <td><para style="DataLineRight">[[partner_record.cash_amount or 0.0]]</para></td>
-                 <td><para style="DataLineRight">[[partner_record.real_state_transmissions_amount or 0.0]]</para></td>
+                 <td><para style="DataLineRight">[[partner_record.real_estate_transmissions_amount or 0.0]]</para></td>
                  <td><para style="DataLineCenter">[[partner_record.operation_key and partner_record.operation_key[:1] or '']]</para></td>
                  <td><para style="DataLineCenter">[[partner_record.insurance_operation and 'X' or '']]</para></td>
-                 <td><para style="DataLineCenter">[[partner_record.bussiness_real_state_rent and 'X' or '']]</para></td>
+                 <td><para style="DataLineCenter">[[partner_record.bussiness_real_estate_rent and 'X' or '']]</para></td>
                </tr>
              </blockTable>
              <blockTable colWidths="13cm,3.5cm,3.5cm,3.5cm,3.5cm" style="DataLineTable">
@@ -173,11 +173,11 @@
                  <td><para style="DataLine">[[partner_record.fourth_quarter]]</para></td>
                </tr>
                <tr>
-                 <td><para style="DataLineRight"> Real State Transmission (Q1|Q2|Q3|Q4)  </para></td>
-                 <td><para style="DataLine">[[partner_record.first_quarter_real_state_transmission_amount]]</para></td>
-                 <td><para style="DataLine">[[partner_record.second_quarter_real_state_transmission_amount]]</para></td>
-                 <td><para style="DataLine">[[partner_record.third_quarter_real_state_transmission_amount]]</para></td>
-                 <td><para style="DataLine">[[partner_record.fourth_quarter_real_state_transmission_amount]]</para></td>
+                 <td><para style="DataLineRight"> Real Estate Transmission (Q1|Q2|Q3|Q4)  </para></td>
+                 <td><para style="DataLine">[[partner_record.first_quarter_real_estate_transmission_amount]]</para></td>
+                 <td><para style="DataLine">[[partner_record.second_quarter_real_estate_transmission_amount]]</para></td>
+                 <td><para style="DataLine">[[partner_record.third_quarter_real_estate_transmission_amount]]</para></td>
+                 <td><para style="DataLine">[[partner_record.fourth_quarter_real_estate_transmission_amount]]</para></td>
                </tr>
              </blockTable>
            </section>
