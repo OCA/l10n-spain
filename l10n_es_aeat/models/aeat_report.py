@@ -22,8 +22,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import fields, models, api, exceptions, _
-from openerp import SUPERUSER_ID
+from openerp import fields, models, api, exceptions, SUPERUSER_ID, _
+import openerp.addons.decimal_precision as dp
 from datetime import datetime
 import re
 
@@ -251,6 +251,40 @@ class L10nEsAeatReport(models.AbstractModel):
         return self.calculate()
 
     @api.multi
+    def _prepare_tax_line_vals(self, map_line):
+        self.ensure_one()
+        move_lines = self._get_tax_code_lines(
+            map_line.mapped('tax_codes.code'), periods=self.periods)
+        return {
+            'map_line': map_line.id,
+            'amount': sum(move_lines.mapped('tax_amount')),
+            'move_lines': [(6, 0, move_lines.ids)],
+        }
+
+    @api.multi
+    def _get_previous_fiscalyear_reports(self, date):
+        """Get the AEAT reports previous to the given date.
+        :param date: Date for looking for previous reports.
+        :return: Recordset of the previous AEAT reports. None if there is no
+        previous reports.
+        """
+        self.ensure_one()
+        prev_periods = self.fiscalyear_id.period_ids.filtered(
+            lambda x: not x.special and x.date_start < date)
+        prev_reports = None
+        for period in prev_periods:
+            reports = self.search([('periods', '=', period.id)])
+            if not reports:
+                raise exceptions.Warning(
+                    _("There's a missing previous declaration for the period "
+                      "%s.") % period.name)
+            if not prev_reports:
+                prev_reports = reports
+            else:
+                prev_reports |= reports
+        return prev_reports
+
+    @api.multi
     def calculate(self):
         for report in self:
             if not report.periods:
@@ -274,14 +308,8 @@ class L10nEsAeatReport(models.AbstractModel):
                  ('date_to', '=', False)], limit=1)
             if tax_code_map:
                 tax_lines = []
-                for line in tax_code_map.map_lines:
-                    move_lines = report._get_tax_code_lines(
-                        line.mapped('tax_codes.code'), periods=report.periods)
-                    tax_lines.append({
-                        'map_line': line.id,
-                        'amount': sum([x.tax_amount for x in move_lines]),
-                        'move_lines': [(6, 0, move_lines.ids)],
-                    })
+                for map_line in tax_code_map.map_lines:
+                    tax_lines.append(report._prepare_tax_line_vals(map_line))
                 report.tax_lines = [(0, 0, x) for x in tax_lines]
         return True
 
@@ -303,13 +331,25 @@ class L10nEsAeatReport(models.AbstractModel):
         }
 
     @api.model
-    def _prepare_move_line(self, account_group):
+    def _prepare_regularization_move_line(self, account_group):
         return {
             'name': account_group['account_id'][1],
             'account_id': account_group['account_id'][0],
             'debit': account_group['credit'],
             'credit': account_group['debit'],
         }
+
+    @api.multi
+    def _process_tax_line_regularization(self, tax_line):
+        self.ensure_one()
+        groups = self.env['account.move.line'].read_group(
+            [('id', 'in', tax_line.move_lines.ids)],
+            ['debit', 'credit', 'account_id'],
+            ['account_id'])
+        lines = []
+        for group in groups:
+            lines.append(self._prepare_regularization_move_line(group))
+        return lines
 
     @api.model
     def _prepare_counterpart_move_line(self, account, debit, credit):
@@ -320,26 +360,29 @@ class L10nEsAeatReport(models.AbstractModel):
         }
         precision = self.env['decimal.precision'].precision_get('Account')
         balance = round(debit - credit, precision)
-        vals['debit'] = balance if debit > credit else 0.0
-        vals['credit'] = 0.0 if debit > credit else -balance
+        vals['debit'] = 0.0 if debit > credit else -balance
+        vals['credit'] = balance if debit > credit else 0.0
         return vals
 
     @api.multi
-    def _prepare_move_lines(self):
+    def _prepare_regularization_extra_move_lines(self):
+        return []
+
+    @api.multi
+    def _prepare_regularization_move_lines(self):
+        """Prepare the list of dictionaries for the regularization move lines.
+        """
         self.ensure_one()
         lines = []
-        src_lines = self.tax_lines.filtered('to_regularize').mapped(
-            'move_lines')
-        groups = self.env['account.move.line'].read_group(
-            [('id', 'in', src_lines.ids)],
-            ['debit', 'credit', 'account_id'],
-            ['account_id'])
-        debit = credit = 0
-        for group in groups:
-            debit += group['debit']
-            credit += group['credit']
-            lines.append(self._prepare_move_line(group))
+        for tax_line in self.tax_lines.filtered('to_regularize'):
+            result = self._process_tax_line_regularization(tax_line)
+            # TODO: Ver si alguna vez se desglosa una cuenta en varias líneas
+            # y agrupar en consecuencia
+            lines += result
+        lines += self._prepare_regularization_extra_move_lines()
         # Write counterpart with the remaining
+        debit = sum(x['debit'] for x in lines)
+        credit = sum(x['credit'] for x in lines)
         lines.append(self._prepare_counterpart_move_line(
             self.counterpart_account, debit, credit))
         return lines
@@ -350,7 +393,7 @@ class L10nEsAeatReport(models.AbstractModel):
             raise exceptions.Warning(
                 _("You must fill both journal and counterpart account."))
         move_vals = self._prepare_move_vals()
-        line_vals_list = self._prepare_move_lines()
+        line_vals_list = self._prepare_regularization_move_lines()
         move_vals['line_id'] = [(0, 0, x) for x in line_vals_list]
         self.move_id = self.env['account.move'].create(move_vals)
 
@@ -479,9 +522,10 @@ class L10nEsAeatTaxLine(models.Model):
         store=True)
     name = fields.Char(
         string="Name", related="map_line.name", store=True)
-    amount = fields.Float()
+    amount = fields.Float(digits=dp.get_precision('Account'))
     map_line = fields.Many2one(
-        comodel_name='aeat.mod.map.tax.code.line', required=True)
+        comodel_name='aeat.mod.map.tax.code.line', required=True,
+        ondelete="cascade")
     move_lines = fields.Many2many(
         comodel_name='account.move.line', string='Journal items')
     to_regularize = fields.Boolean(related='map_line.to_regularize')
