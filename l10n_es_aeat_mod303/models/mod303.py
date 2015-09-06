@@ -82,7 +82,7 @@ class L10nEsAeatMod303Report(models.Model):
              "concepto, ejercicio y periodo",
         states={'done': [('readonly', True)]})
     resultado_liquidacion = fields.Float(
-        string="[71] Resultado de la liquidación", readonly=True)
+        string="[71] Result. liquidación", readonly=True)
     result_type = fields.Selection(
         selection=[('I', 'A ingresar'),
                    ('D', 'A devolver'),
