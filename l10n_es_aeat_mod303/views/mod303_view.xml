@@ -31,6 +31,7 @@
                     <field name="currency_id" invisible="1"/>
                     <group string="Resultado"
                            name="group_result"
+                           attrs="{'invisible': [('state', '=', 'draft')]}"
                            colspan="4"
                            col="6"
                             >
@@ -77,7 +78,7 @@
                         </group>
                     </group>
                     <group class="oe_subtotal_footer oe_right"
-                           attrs="{'invisible': [('tax_lines', '=', [])]}"
+                           attrs="{'invisible': ['|', ('tax_lines', '=', []), ('state', '=', 'draft')]}"
                            colspan="2">
                         <field name="resultado_liquidacion"
                                class="oe_subtotal_footer_separator"
