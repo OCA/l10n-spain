@@ -24,6 +24,8 @@
           Refatorización completa de códigos de impuestos
           Estructura segun modelos de Hacienda
 
+        Vicent Cubells <vicent@vcubells.net> (2015-09-01)
+          Nuevos códigos de impuesto para 19,5% arrendamientos
         -->
 
     <record id="account_tax_code_template_root" model="account.tax.code.template">
@@ -1085,12 +1087,6 @@
       <field name="name">IRPF retenciones a cuenta. Base imponible (19%)</field>
       <field name="sign">1.0</field>
     </record>
-    <record id="account_tax_code_template_IRACBI195" model="account.tax.code.template">
-      <field name="parent_id" ref="account_tax_code_template_IRACBI"/>
-      <field name="code">IRACBI195</field>
-      <field name="name">IRPF retenciones a cuenta. Base imponible (19,5%)</field>
-      <field name="sign">1.0</field>
-    </record>
     <record id="account_tax_code_template_IRACBI20" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_IRACBI"/>
       <field name="code">IRACBI20</field>
@@ -1151,12 +1147,6 @@
       <field name="name">IRPF retenciones a cuenta. Cuota (19%)</field>
       <field name="sign">1.0</field>
     </record>
-    <record id="account_tax_code_template_IRACC195" model="account.tax.code.template">
-      <field name="parent_id" ref="account_tax_code_template_ITRACC"/>
-      <field name="code">IRACC195</field>
-      <field name="name">IRPF retenciones a cuenta. Cuota (19,5%)</field>
-      <field name="sign">1.0</field>
-    </record>
     <record id="account_tax_code_template_IRACC20" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ITRACC"/>
       <field name="code">IRACC20</field>
@@ -1186,3 +1176,4 @@
 
     </data>
 </openerp>
+
