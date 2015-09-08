@@ -983,6 +983,12 @@
       <field name="name">Retenciones practicadas a arrendamientos. Base imponible (19%)</field>
       <field name="sign">1.0</field>
     </record>
+    <record id="account_tax_code_template_IRPAABI195" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RBI"/>
+      <field name="code">IRPAABI195</field>
+      <field name="name">Retenciones practicadas a arrendamientos. Base imponible (19,5%)</field>
+      <field name="sign">1.0</field>
+    </record>
     <record id="account_tax_code_template_IRPAABI20" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_RBI"/>
       <field name="code">IRPAABI20</field>
@@ -1005,6 +1011,12 @@
       <field name="parent_id" ref="account_tax_code_template_RLC115"/>
       <field name="code">IRPAAC19</field>
       <field name="name">Retenciones practicadas a arrendamientos. Cuota (19%)</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_IRPAAC195" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RLC115"/>
+      <field name="code">IRPAAC195</field>
+      <field name="name">Retenciones practicadas a arrendamientos. Cuota (19,5%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRPAAC20" model="account.tax.code.template">
@@ -1073,6 +1085,12 @@
       <field name="name">IRPF retenciones a cuenta. Base imponible (19%)</field>
       <field name="sign">1.0</field>
     </record>
+    <record id="account_tax_code_template_IRACBI195" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_IRACBI"/>
+      <field name="code">IRACBI195</field>
+      <field name="name">IRPF retenciones a cuenta. Base imponible (19,5%)</field>
+      <field name="sign">1.0</field>
+    </record>
     <record id="account_tax_code_template_IRACBI20" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_IRACBI"/>
       <field name="code">IRACBI20</field>
@@ -1131,6 +1149,12 @@
       <field name="parent_id" ref="account_tax_code_template_ITRACC"/>
       <field name="code">IRACC19</field>
       <field name="name">IRPF retenciones a cuenta. Cuota (19%)</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_IRACC195" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_ITRACC"/>
+      <field name="code">IRACC195</field>
+      <field name="name">IRPF retenciones a cuenta. Cuota (19,5%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACC20" model="account.tax.code.template">
