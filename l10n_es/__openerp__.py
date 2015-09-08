@@ -31,7 +31,7 @@
 
 {
     "name": "Spanish Charts of Accounts (PGCE 2008)",
-    "version": "5.1",
+    "version": "8.0.5.2.0",
     "author": "Spanish Localization Team,"
               # "Zikzakmedia S.L.,"
               # "Grupo Opentia,"
