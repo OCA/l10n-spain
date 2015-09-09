@@ -1168,7 +1168,7 @@
           <field name="description">S_RAC195A</field>
           <field name="type_tax_use">sale</field>
           <field name="account_paid_id" ref="pgc_473_child"/>
-          <field name="name">Retenciones a cuenta IRPF 19,5% (Arrendamientos)</field>
+          <field name="name">Retenciones a cuenta 19,5% (Arrendamientos)</field>
           <field name="account_collected_id" ref="pgc_473_child"/>
           <field name="chart_template_id" ref="account_chart_template_common"/>
           <field name="amount" eval="-0.195"/>
