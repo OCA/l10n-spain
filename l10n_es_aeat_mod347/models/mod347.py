@@ -226,7 +226,7 @@ class L10nEsAeatMod347Report(models.Model):
             for partner in partner_obj.search(domain):
                 if partner not in visited_partners:
                     if partner.vat and report.group_by_vat:
-                        domain_group = domain.copy()
+                        domain_group = list(domain)
                         domain_group.append(('vat', '=', partner.vat))
                         partners_grouped = partner_obj.search(
                             domain_group)
