@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-08-10 00:32+0000\n"
-"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
+"POT-Creation-Date: 2015-09-09 15:09+0000\n"
+"PO-Revision-Date: 2015-09-08 10:12+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -104,7 +104,7 @@ msgid "Address type"
 msgstr "Tipo de enderezo"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:304
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:308
 #, python-format
 msgid ""
 "All partner state code field must be filled.\n"
@@ -112,7 +112,7 @@ msgid ""
 msgstr "O código da provincia de tódolos rexistros de empresas debe estar cuberto.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:318
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:322
 #, python-format
 msgid ""
 "All partner state code field must be numeric.\n"
@@ -120,7 +120,7 @@ msgid ""
 msgstr "O código da provincia de tódolos rexistros de empresas debe ser numérico.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:311
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:315
 #, python-format
 msgid ""
 "All partner vat number field must be filled.\n"
@@ -128,7 +128,7 @@ msgid ""
 msgstr "O NIF de tódolos rexistros de empresas debe estar cuberto.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:325
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:329
 #, python-format
 msgid "All real estate records state code field must be filled."
 msgstr "Os registros de propiedades inmobiliarias débense encher manualmente."
@@ -825,9 +825,9 @@ msgstr "Secuencia"
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,bussiness_real_estate_rent:0
 msgid ""
-"Set to identify real estate rent operations aside from the rest. You'll need "
-"to fill in the real estate info only when you are the one that receives the "
-"money."
+"Set to identify real estate rent operations aside from the rest. You'll need"
+" to fill in the real estate info only when you are the one that receives the"
+" money."
 msgstr "(Só arrendadores e arrendatarios de locais de negocio). Marcarán esta opción para identifica-las operacións de arrendamento de locais de negocio, debendo consignalas separadamente do resto. Ademáis os arrendadores deberán cumplimenta-los campos que compoñen o REXISTRO DE INMOBLE, consignando o Importe Total de cada arrendamento correspondente ó ano natural ó que se refire a declaración, independentemente de que este xa teña sido incluído na clave 'B' (ventas)."
 
 #. module: l10n_es_aeat_mod347
