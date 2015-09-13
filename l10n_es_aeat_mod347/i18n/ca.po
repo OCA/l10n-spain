@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:57+0000\n"
+"POT-Creation-Date: 2015-09-09 15:09+0000\n"
+"PO-Revision-Date: 2015-09-07 01:02+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgid "Address type"
 msgstr "Tipus de via"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:304
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:308
 #, python-format
 msgid ""
 "All partner state code field must be filled.\n"
@@ -110,7 +110,7 @@ msgid ""
 msgstr "El codi de província de tots els registres d'empreses han d'estar introduïts.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:318
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:322
 #, python-format
 msgid ""
 "All partner state code field must be numeric.\n"
@@ -118,7 +118,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:311
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:315
 #, python-format
 msgid ""
 "All partner vat number field must be filled.\n"
@@ -126,7 +126,7 @@ msgid ""
 msgstr "El número CIF/NIF de tots els registres d'empreses han d'estar introduïts.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:325
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:329
 #, python-format
 msgid "All real estate records state code field must be filled."
 msgstr "El codi de província de tots els registres d'immobles han d'estar introduïts."
@@ -823,9 +823,9 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,bussiness_real_estate_rent:0
 msgid ""
-"Set to identify real estate rent operations aside from the rest. You'll need "
-"to fill in the real estate info only when you are the one that receives the "
-"money."
+"Set to identify real estate rent operations aside from the rest. You'll need"
+" to fill in the real estate info only when you are the one that receives the"
+" money."
 msgstr "(Només arrendadors i arrendataris de Locals de Negoci). Marcaran aquesta casella per identificar les operacions d'arrendament de locals de negoci, i s'han de consignar separadament de la resta. A més a més els arrendadors han d'emplenar els camps que componen el REGISTRE D'IMMOBLE, consignant l'Import Total de cada arrendament corresponent a l'any natural al qual es refereix la declaració, amb independència que aquest ja hagi estat inclòs en la clau 'B' (vendes)."
 
 #. module: l10n_es_aeat_mod347

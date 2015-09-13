@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-03 08:24+0000\n"
-"Last-Translator: Oihane Crucelaegui <oihanecruce@gmail.com>\n"
+"POT-Creation-Date: 2015-09-09 15:09+0000\n"
+"PO-Revision-Date: 2015-09-01 23:46+0000\n"
+"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,7 +55,7 @@ msgstr "Francés"
 #. module: payment_redsys
 #: field:payment.acquirer,redsys_merchant_lang:0
 msgid "Merchant Consumer Language"
-msgstr ""
+msgstr "Idioma del consumidor del comerciante"
 
 #. module: payment_redsys
 #: field:payment.acquirer,redsys_merchant_data:0
@@ -70,7 +70,7 @@ msgstr "Nombre del comerciante"
 #. module: payment_redsys
 #: field:payment.acquirer,redsys_merchant_titular:0
 msgid "Merchant Titular"
-msgstr ""
+msgstr "Titular del comerciante"
 
 #. module: payment_redsys
 #: field:payment.acquirer,redsys_merchant_url:0

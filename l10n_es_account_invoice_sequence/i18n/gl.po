@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-06-25 23:31+0000\n"
+"POT-Creation-Date: 2015-09-09 15:09+0000\n"
+"PO-Revision-Date: 2015-09-06 23:51+0000\n"
 "Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -44,6 +44,13 @@ msgstr "Diario"
 #, python-format
 msgid "Journal %s has no sequence defined for invoices."
 msgstr "O diario %s non ten unha secuencia definida para as facturas."
+
+#. module: l10n_es_account_invoice_sequence
+#: code:addons/l10n_es_account_invoice_sequence/__init__.py:29
+#: code:addons/l10n_es_account_invoice_sequence/wizard/wizard_multi_charts_accounts.py:32
+#, python-format
+msgid "Journal Entries Sequence"
+msgstr "Secuencia de asentos contables"
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:41

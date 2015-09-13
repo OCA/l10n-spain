@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-05-23 09:20+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"POT-Creation-Date: 2015-09-09 15:09+0000\n"
+"PO-Revision-Date: 2015-09-04 08:28+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,6 +45,13 @@ msgid "Journal %s has no sequence defined for invoices."
 msgstr "El diario %s no tiene una secuencia definida para las facturas."
 
 #. module: l10n_es_account_invoice_sequence
+#: code:addons/l10n_es_account_invoice_sequence/__init__.py:29
+#: code:addons/l10n_es_account_invoice_sequence/wizard/wizard_multi_charts_accounts.py:32
+#, python-format
+msgid "Journal Entries Sequence"
+msgstr "Secuencia de asientos contables"
+
+#. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:41
 #, python-format
 msgid "Journal company and invoice sequence company do not match."
@@ -54,11 +61,3 @@ msgstr "La compañía del diario no es la misma que la de la secuencia de factur
 #: help:account.journal,invoice_sequence_id:0
 msgid "The sequence used for invoice numbers in this journal."
 msgstr "La secuencia utilizada para los números de factura en este diario."
-
-#. module: l10n_es_account_invoice_sequence
-#: code:addons/l10n_es_account_invoice_sequence/__init__.py:31
-#: code:addons/l10n_es_account_invoice_sequence/wizard/wizard_multi_charts_accounts.py:32
-#, python-format
-msgid "Journal Entries Sequence"
-msgstr "Secuencia de asientos contables"
-
