@@ -23,7 +23,7 @@
 
 {
     "name": "Secuencia para facturas separada de la secuencia de asientos",
-    "version": "8.0.1.2.0",
+    "version": "8.0.1.2.1",
     "author": "Spanish Localization Team, "
               "NaN·Tic, "
               "Trey, "
