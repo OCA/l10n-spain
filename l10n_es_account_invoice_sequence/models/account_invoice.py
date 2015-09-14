@@ -51,10 +51,13 @@ class AccountInvoice(models.Model):
                 inv.write({
                     'number': inv.invoice_number,
                 })
+            if inv.move_id.ref:
+                inv.move_id.ref += " - %s" % inv.invoice_number
+            else:
+                inv.move_id.ref = inv.invoice_number
         re = super(AccountInvoice, self).action_number()
         for inv in self:
             inv.write({'internal_number': inv.move_id.name})
-
         return re
 
     @api.multi
