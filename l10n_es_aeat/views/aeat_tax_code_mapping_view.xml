@@ -37,6 +37,7 @@
                 <tree string="Tax code mapping lines" editable="bottom">
                     <field name="field_number"/>
                     <field name="name"/>
+                    <field name="to_regularize"/>
                     <field name="tax_codes" widget="many2many_tags"/>
                 </tree>
             </field>
@@ -51,6 +52,7 @@
                         <group>
                             <field name="name"/>
                             <field name="field_number"/>
+                            <field name="to_regularize"/>
                         </group>
                         <group>
                             <field name="tax_codes"/>
