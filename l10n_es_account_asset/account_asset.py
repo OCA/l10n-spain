@@ -21,6 +21,7 @@
 ##############################################################################
 import calendar
 from openerp.osv import orm, fields
+from openerp import fields as new_fields
 from dateutil.relativedelta import relativedelta
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as DSDF
 
@@ -198,20 +199,20 @@ class account_asset_asset(orm.Model):
 
                 # En el caso de que la fecha de última amortización no sea
                 # la de compra se debe generar el cuadro al período siguiente
-                depreciation_date = fields.Date.\
+                depreciation_date = new_fields.Date.\
                     from_string(self.
                                 _get_last_depreciation_date(cr, uid,
                                                             [asset.id],
                                                             context)[asset.id])
 
                 initial_date = asset.purchase_date
-                fixed_depreciation = depreciation_date != fields.Date.\
+                fixed_depreciation = depreciation_date != new_fields.Date.\
                     from_string(initial_date)
 
                 nb = 0
                 for depr_line in depr_lin_obj.browse(cr, uid,
                                                      new_depr_line_ids):
-                    depr_date = fields.Date.from_string(
+                    depr_date = new_fields.Date.from_string(
                         depr_line.depreciation_date)
 
                     if fixed_depreciation:
