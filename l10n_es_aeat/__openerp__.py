@@ -28,7 +28,7 @@
 ##############################################################################
 {
     'name': "AEAT Base",
-    'version': "1.1",
+    'version': "8.0.1.2.0",
     'author': "Pexego,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "AvanzOSC,"
@@ -51,6 +51,7 @@
         'security/aeat_security.xml',
         'security/ir.model.access.csv',
         'data/aeat_sequence_type.xml',
+        'data/aeat_partner.xml',
         'wizard/export_to_boe_wizard.xml',
         'views/aeat_menuitem.xml',
         'views/aeat_view.xml',
