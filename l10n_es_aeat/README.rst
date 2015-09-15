@@ -13,7 +13,8 @@ Módulo base para declaraciones de la AEAT, que incluye:
 * Motor de exportación paramétrica basado en una configuración que puede ser
   introducida por datos XML o por interfaz.
 * Motor de cálculo de importes por códigos de impuestos.
-* Las partes específicas de las Diputaciones Forales no están incluidas.
+* Generador del asiento de regularización con cargo a un proveedor "Agencia
+  Estatal de Administración Tributaria" creado al efecto.
 
 Configuración
 =============
@@ -22,11 +23,17 @@ Todos aquellos modelos que se especifiquen en los módulos adicionales y
 hereden el AEAT base, deberán definir una variable interna que se llame
 '_aeat_number' asignándole como valor, el número del modelo (130, 340, 347...).
 
+Para activar la creación del asiento de regularización en un modelo, hay que
+poner en el modelo correspondiente el campo allow_posting a True, y establecer
+en la configuración de impuestos los conceptos que se regularizarán con el
+flag "to_regularize".
+
 Problemas conocidos / Hoja de ruta
 ==================================
 
 * La configuración de exportación a BOE no se filtran ni se auto-selecciona por
   fechas de validez.
+* Las partes específicas de las Diputaciones Forales no están incluidas.
 
 Créditos
 ========
