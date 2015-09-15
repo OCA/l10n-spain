@@ -41,6 +41,10 @@ class L10nEsAeatReport(models.AbstractModel):
         company_obj = self.env['res.company']
         return company_obj._company_default_get('l10n.es.aeat.report')
 
+    def _default_journal(self):
+        return self.env['account.journal'].search(
+            [('type', '=', 'general')])[:1]
+
     def get_period_type_selection(self):
         period_types = []
         if self._period_yearly:
@@ -104,7 +108,10 @@ class L10nEsAeatReport(models.AbstractModel):
                              'done': [('readonly', True)]})
     calculation_date = fields.Datetime(string="Calculation date")
     state = fields.Selection(
-        [('draft', 'Draft'), ('calculated', 'Processed'), ('done', 'Done'),
+        [('draft', 'Draft'),
+         ('calculated', 'Processed'),
+         ('done', 'Done'),
+         ('posted', 'Posted'),
          ('cancelled', 'Cancelled')], string='State', readonly=True,
         default='draft')
     sequence = fields.Char(string="Sequence", size=16)
@@ -123,6 +130,17 @@ class L10nEsAeatReport(models.AbstractModel):
     tax_lines = fields.One2many(
         comodel_name='l10n.es.aeat.tax.line', inverse_name='report',
         readonly=True)
+    allow_posting = fields.Boolean(compute="_compute_allow_posting")
+    counterpart_account = fields.Many2one(
+        comodel_name="account.account",
+        help="This account will be the counterpart for all the journal items "
+             "that are regularized when posting the report.")
+    journal_id = fields.Many2one(
+        comodel_name="account.journal", string="Journal",
+        domain=[('type', '=', 'general')], default=_default_journal,
+        help="Journal in which post the move.")
+    move_id = fields.Many2one(
+        comodel_name="account.move", string="Account entry")
 
     _sql_constraints = [
         ('sequence_uniq', 'unique(sequence)',
@@ -132,6 +150,10 @@ class L10nEsAeatReport(models.AbstractModel):
     @api.one
     def _compute_report_model(self):
         self.model = self.env['ir.model'].search([('model', '=', self._name)])
+
+    @api.one
+    def _compute_allow_posting(self):
+        self.allow_posting = False
 
     @api.onchange('company_id')
     def on_change_company_id(self):
@@ -272,8 +294,85 @@ class L10nEsAeatReport(models.AbstractModel):
         return True
 
     @api.multi
+    def _prepare_move_vals(self):
+        self.ensure_one()
+        return {
+            'date': fields.Date.today(),
+            'journal_id': self.journal_id.id,
+            'period_id': self.env['account.period'].find().id,
+            'ref': self.sequence,
+            'company_id': self.company_id.id,
+        }
+
+    @api.model
+    def _prepare_move_line(self, account_group):
+        return {
+            'name': account_group['account_id'][1],
+            'account_id': account_group['account_id'][0],
+            'debit': account_group['credit'],
+            'credit': account_group['debit'],
+        }
+
+    @api.model
+    def _prepare_counterpart_move_line(self, account, debit, credit):
+        vals = {
+            'name': _('Regularization'),
+            'account_id': account.id,
+            'partner_id': self.env.ref('l10n_es_aeat.res_partner_aeat').id,
+        }
+        precision = self.env['decimal.precision'].precision_get('Account')
+        balance = round(debit - credit, precision)
+        vals['debit'] = balance if debit > credit else 0.0
+        vals['credit'] = 0.0 if debit > credit else -balance
+        return vals
+
+    @api.multi
+    def _prepare_move_lines(self):
+        self.ensure_one()
+        lines = []
+        src_lines = self.tax_lines.filtered('to_regularize').mapped(
+            'move_lines')
+        groups = self.env['account.move.line'].read_group(
+            [('id', 'in', src_lines.ids)],
+            ['debit', 'credit', 'account_id'],
+            ['account_id'])
+        debit = credit = 0
+        for group in groups:
+            debit += group['debit']
+            credit += group['credit']
+            lines.append(self._prepare_move_line(group))
+        # Write counterpart with the remaining
+        lines.append(self._prepare_counterpart_move_line(
+            self.counterpart_account, debit, credit))
+        return lines
+
+    @api.one
+    def create_regularization_move(self):
+        if not self.counterpart_account or not self.journal_id:
+            raise exceptions.Warning(
+                _("You must fill both journal and counterpart account."))
+        move_vals = self._prepare_move_vals()
+        line_vals_list = self._prepare_move_lines()
+        move_vals['line_id'] = [(0, 0, x) for x in line_vals_list]
+        self.move_id = self.env['account.move'].create(move_vals)
+
+    @api.multi
+    def button_post(self):
+        """Create any possible account move and set state to posted."""
+        self.create_regularization_move()
+        self.write({'state': 'posted'})
+        return True
+
+    @api.multi
     def button_cancel(self):
         """Set report status to cancelled."""
+        self.write({'state': 'cancelled'})
+        return True
+
+    @api.multi
+    def button_unpost(self):
+        """Remove created account move and set state to done."""
+        self.mapped('move_id').unlink()
         self.write({'state': 'cancelled'})
         return True
 
@@ -290,6 +389,16 @@ class L10nEsAeatReport(models.AbstractModel):
                 "l10n.es.aeat.report.%s.export_to_boe" % report.number]
             export_obj.export_boe_file(report)
         return True
+
+    @api.multi
+    def button_open_move(self):
+        self.ensure_one()
+        action = self.env.ref('account.action_move_line_form').read()[0]
+        action['view_mode'] = 'form'
+        action['res_id'] = self.move_id.id
+        del action['view_id']
+        del action['views']
+        return action
 
     @api.multi
     def unlink(self):
@@ -374,6 +483,7 @@ class L10nEsAeatTaxLine(models.Model):
         comodel_name='aeat.mod.map.tax.code.line', required=True)
     move_lines = fields.Many2many(
         comodel_name='account.move.line', string='Journal items')
+    to_regularize = fields.Boolean(related='map_line.to_regularize')
 
     def _get_move_line_act_window_dict(self):
         return self.env.ref('account.action_tax_code_line_open').read()[0]
