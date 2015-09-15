@@ -30,6 +30,10 @@ class L10nEsAeatMod303Report(models.Model):
         except ValueError:
             return self.env['aeat.model.export.config']
 
+    def _default_counterpart_303(self):
+        return self.env['account.account'].search(
+            [('code', 'like', '4750%'), ('type', '!=', 'view')])[:1]
+
     currency_id = fields.Many2one(
         comodel_name='res.currency', string='Currency',
         related='company_id.currency_id', store=True)
@@ -95,10 +99,16 @@ class L10nEsAeatMod303Report(models.Model):
     bank_account = fields.Many2one(
         comodel_name="res.partner.bank", string="Bank account",
         states={'done': [('readonly', True)]})
+    counterpart_account = fields.Many2one(default=_default_counterpart_303)
+    allow_posting = fields.Boolean(default=True)
 
     def __init__(self, pool, cr):
         self._aeat_number = '303'
         super(L10nEsAeatMod303Report, self).__init__(pool, cr)
+
+    @api.one
+    def _compute_allow_posting(self):
+        self.allow_posting = True
 
     @api.one
     @api.depends('resultado_liquidacion')
@@ -156,9 +166,9 @@ class L10nEsAeatMod303Report(models.Model):
         """Check records"""
         msg = ""
         for mod303 in self:
-            if mod303.result_type == ('I') and not mod303.bank_account:
+            if mod303.result_type == 'I' and not mod303.bank_account:
                 msg = _('Select an account for making the charge')
-            if mod303.result_type == ('B') and not not mod303.bank_account:
+            if mod303.result_type == 'B' and not not mod303.bank_account:
                 msg = _('Select an account for receiving the money')
         if msg:
             raise exceptions.Warning(msg)
