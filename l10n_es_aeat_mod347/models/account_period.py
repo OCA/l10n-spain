@@ -43,7 +43,12 @@ class AccountFiscalyear(models.Model):
     def create_period3(self):
         return self.create_period(interval=3)
 
-    @api.multi
+    @api.v7
+    def create_period(self, cr, uid, ids, context=None, interval=1):
+        recs = self.browse(cr, uid, ids, context=context)
+        recs.create_period(interval=interval)
+
+    @api.v8
     def create_period(self, interval=1):
         period_obj = self.env['account.period']
         periods_before = period_obj.search([])
