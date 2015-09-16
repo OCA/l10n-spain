@@ -2,739 +2,725 @@
 <openerp>
     <data noupdate='0'>
         <record id="base.ad" model="res.country">
-            <field eval="&quot;AND&quot;" name="code_3166"/>
+            <field name="code_3166">AND</field>
         </record>
         <record id="base.ae" model="res.country">
-            <field eval="&quot;ARE&quot;" name="code_3166"/>
+            <field name="code_3166">ARE</field>
         </record>
         <record id="base.af" model="res.country">
-            <field eval="&quot;AFG&quot;" name="code_3166"/>
+            <field name="code_3166">AFG</field>
         </record>
         <record id="base.ag" model="res.country">
-            <field eval="&quot;ATG&quot;" name="code_3166"/>
+            <field name="code_3166">ATG</field>
         </record>
         <record id="base.ai" model="res.country">
-            <field eval="&quot;AIA&quot;" name="code_3166"/>
+            <field name="code_3166">AIA</field>
         </record>
         <record id="base.al" model="res.country">
-            <field eval="&quot;ALB&quot;" name="code_3166"/>
+            <field name="code_3166">ALB</field>
         </record>
         <record id="base.am" model="res.country">
-            <field eval="&quot;ARM&quot;" name="code_3166"/>
+            <field name="code_3166">ARM</field>
         </record>
         <record id="base.an" model="res.country">
-            <field eval="&quot;ANT&quot;" name="code_3166"/>
+            <field name="code_3166">ANT</field>
         </record>
         <record id="base.ao" model="res.country">
-            <field eval="&quot;AGO&quot;" name="code_3166"/>
+            <field name="code_3166">AGO</field>
         </record>
         <record id="base.aq" model="res.country">
-            <field eval="&quot;ATA&quot;" name="code_3166"/>
+            <field name="code_3166">ATA</field>
         </record>
         <record id="base.ar" model="res.country">
-            <field eval="&quot;ARG&quot;" name="code_3166"/>
+            <field name="code_3166">ARG</field>
         </record>
         <record id="base.as" model="res.country">
-            <field eval="&quot;ASM&quot;" name="code_3166"/>
+            <field name="code_3166">ASM</field>
         </record>
         <record id="base.at" model="res.country">
-            <field eval="&quot;AUT&quot;" name="code_3166"/>
+            <field name="code_3166">AUT</field>
         </record>
         <record id="base.au" model="res.country">
-            <field eval="&quot;AUS&quot;" name="code_3166"/>
+            <field name="code_3166">AUS</field>
         </record>
         <record id="base.aw" model="res.country">
-            <field eval="&quot;ABW&quot;" name="code_3166"/>
+            <field name="code_3166">ABW</field>
         </record>
         <record id="base.az" model="res.country">
-            <field eval="&quot;AZE&quot;" name="code_3166"/>
+            <field name="code_3166">AZE</field>
         </record>
         <record id="base.ba" model="res.country">
-            <field eval="&quot;BIH&quot;" name="code_3166"/>
+            <field name="code_3166">BIH</field>
         </record>
         <record id="base.bb" model="res.country">
-            <field eval="&quot;BRB&quot;" name="code_3166"/>
+            <field name="code_3166">BRB</field>
         </record>
         <record id="base.bd" model="res.country">
-            <field eval="&quot;BGD&quot;" name="code_3166"/>
+            <field name="code_3166">BGD</field>
         </record>
         <record id="base.be" model="res.country">
-            <field eval="&quot;BEL&quot;" name="code_3166"/>
+            <field name="code_3166">BEL</field>
         </record>
         <record id="base.bf" model="res.country">
-            <field eval="&quot;BFA&quot;" name="code_3166"/>
+            <field name="code_3166">BFA</field>
         </record>
         <record id="base.bg" model="res.country">
-            <field eval="&quot;BGR&quot;" name="code_3166"/>
+            <field name="code_3166">BGR</field>
         </record>
         <record id="base.bh" model="res.country">
-            <field eval="&quot;BHR&quot;" name="code_3166"/>
+            <field name="code_3166">BHR</field>
         </record>
         <record id="base.bi" model="res.country">
-            <field eval="&quot;BDI&quot;" name="code_3166"/>
+            <field name="code_3166">BDI</field>
         </record>
         <record id="base.bj" model="res.country">
-            <field eval="&quot;BEN&quot;" name="code_3166"/>
+            <field name="code_3166">BEN</field>
         </record>
         <record id="base.bm" model="res.country">
-            <field eval="&quot;BMU&quot;" name="code_3166"/>
+            <field name="code_3166">BMU</field>
         </record>
         <record id="base.bn" model="res.country">
-            <field eval="&quot;BRN&quot;" name="code_3166"/>
+            <field name="code_3166">BRN</field>
         </record>
         <record id="base.bo" model="res.country">
-            <field eval="&quot;BOL&quot;" name="code_3166"/>
+            <field name="code_3166">BOL</field>
         </record>
         <record id="base.br" model="res.country">
-            <field eval="&quot;ASM&quot;" name="code_3166"/>
+            <field name="code_3166">ASM</field>
         </record>
         <record id="base.bs" model="res.country">
-            <field eval="&quot;BRA&quot;" name="code_3166"/>
+            <field name="code_3166">BRA</field>
         </record>
         <record id="base.bt" model="res.country">
-            <field eval="&quot;BTN&quot;" name="code_3166"/>
+            <field name="code_3166">BTN</field>
         </record>
         <record id="base.bv" model="res.country">
-            <field eval="&quot;Bvt&quot;" name="code_3166"/>
+            <field name="code_3166">BVT</field>
         </record>
         <record id="base.bw" model="res.country">
-            <field eval="&quot;BWA&quot;" name="code_3166"/>
+            <field name="code_3166">BWA</field>
         </record>
         <record id="base.by" model="res.country">
-            <field eval="&quot;BLR&quot;" name="code_3166"/>
+            <field name="code_3166">BLR</field>
         </record>
         <record id="base.bz" model="res.country">
-            <field eval="&quot;BLZ&quot;" name="code_3166"/>
+            <field name="code_3166">BLZ</field>
         </record>
         <record id="base.ca" model="res.country">
-            <field eval="&quot;CAN&quot;" name="code_3166"/>
+            <field name="code_3166">CAN</field>
         </record>
         <record id="base.cc" model="res.country">
-            <field eval="&quot;CCK&quot;" name="code_3166"/>
+            <field name="code_3166">CCK</field>
         </record>
         <record id="base.cf" model="res.country">
-            <field eval="&quot;CAF&quot;" name="code_3166"/>
+            <field name="code_3166">CAF</field>
         </record>
         <record id="base.cd" model="res.country">
-            <field eval="&quot;COD&quot;" name="code_3166"/>
+            <field name="code_3166">COD</field>
         </record>
         <record id="base.cg" model="res.country">
-            <field eval="&quot;COG&quot;" name="code_3166"/>
+            <field name="code_3166">COG</field>
         </record>
         <record id="base.ch" model="res.country">
-            <field eval="&quot;CHE&quot;" name="code_3166"/>
+            <field name="code_3166">CHE</field>
         </record>
         <record id="base.ci" model="res.country">
-            <field eval="&quot;CIV&quot;" name="code_3166"/>
+            <field name="code_3166">CIV</field>
         </record>
         <record id="base.ck" model="res.country">
-            <field eval="&quot;COK&quot;" name="code_3166"/>
+            <field name="code_3166">COK</field>
         </record>
         <record id="base.cl" model="res.country">
-            <field eval="&quot;CHL&quot;" name="code_3166"/>
+            <field name="code_3166">CHL</field>
         </record>
         <record id="base.cm" model="res.country">
-            <field eval="&quot;CMR&quot;" name="code_3166"/>
+            <field name="code_3166">CMR</field>
         </record>
         <record id="base.cn" model="res.country">
-            <field eval="&quot;CHN&quot;" name="code_3166"/>
+            <field name="code_3166">CHN</field>
         </record>
         <record id="base.co" model="res.country">
-            <field eval="&quot;COL&quot;" name="code_3166"/>
+            <field name="code_3166">COL</field>
         </record>
         <record id="base.cr" model="res.country">
-            <field eval="&quot;CRI&quot;" name="code_3166"/>
+            <field name="code_3166">CRI</field>
         </record>
         <record id="base.rs" model="res.country">
-            <field eval="&quot;SRB&quot;" name="code_3166"/>
+            <field name="code_3166">SRB</field>
         </record>
         <record id="base.me" model="res.country">
-            <field eval="&quot;MNE&quot;" name="code_3166"/>
+            <field name="code_3166">MNE</field>
         </record>
         <record id="base.cu" model="res.country">
-            <field eval="&quot;CUB&quot;" name="code_3166"/>
+            <field name="code_3166">CUB</field>
         </record>
         <record id="base.cv" model="res.country">
-            <field eval="&quot;CPV&quot;" name="code_3166"/>
+            <field name="code_3166">CPV</field>
         </record>
         <record id="base.cx" model="res.country">
-            <field eval="&quot;CXR&quot;" name="code_3166"/>
+            <field name="code_3166">CXR</field>
         </record>
         <record id="base.cy" model="res.country">
-            <field eval="&quot;CYP&quot;" name="code_3166"/>
+            <field name="code_3166">CYP</field>
         </record>
         <record id="base.cz" model="res.country">
-            <field eval="&quot;CZE&quot;" name="code_3166"/>
+            <field name="code_3166">CZE</field>
         </record>
         <record id="base.de" model="res.country">
-            <field eval="&quot;DEU&quot;" name="code_3166"/>
+            <field name="code_3166">DEU</field>
         </record>
         <record id="base.dj" model="res.country">
-            <field eval="&quot;DJI&quot;" name="code_3166"/>
+            <field name="code_3166">DJI</field>
         </record>
         <record id="base.dk" model="res.country">
-            <field eval="&quot;DNK&quot;" name="code_3166"/>
+            <field name="code_3166">DNK</field>
         </record>
         <record id="base.dm" model="res.country">
-            <field eval="&quot;DMA&quot;" name="code_3166"/>
+            <field name="code_3166">DMA</field>
         </record>
         <record id="base.do" model="res.country">
-            <field eval="&quot;DOM&quot;" name="code_3166"/>
+            <field name="code_3166">DOM</field>
         </record>
         <record id="base.dz" model="res.country">
-            <field eval="&quot;DZA&quot;" name="code_3166"/>
+            <field name="code_3166">DZA</field>
         </record>
         <record id="base.ec" model="res.country">
-            <field eval="&quot;ECU&quot;" name="code_3166"/>
+            <field name="code_3166">ECU</field>
         </record>
         <record id="base.ee" model="res.country">
-            <field eval="&quot;EST&quot;" name="code_3166"/>
+            <field name="code_3166">EST</field>
         </record>
         <record id="base.eg" model="res.country">
-            <field eval="&quot;EGY&quot;" name="code_3166"/>
+            <field name="code_3166">EGY</field>
         </record>
         <record id="base.eh" model="res.country">
-            <field eval="&quot;ESH&quot;" name="code_3166"/>
+            <field name="code_3166">ESH</field>
         </record>
         <record id="base.er" model="res.country">
-            <field eval="&quot;ERI&quot;" name="code_3166"/>
+            <field name="code_3166">ERI</field>
         </record>
         <record id="base.es" model="res.country">
-            <field eval="&quot;ESP&quot;" name="code_3166"/>
+            <field name="code_3166">ESP</field>
         </record>
         <record id="base.et" model="res.country">
-            <field eval="&quot;ETH&quot;" name="code_3166"/>
+            <field name="code_3166">ETH</field>
         </record>
         <record id="base.fi" model="res.country">
-            <field eval="&quot;FIN&quot;" name="code_3166"/>
+            <field name="code_3166">FIN</field>
         </record>
         <record id="base.fj" model="res.country">
-            <field eval="&quot;FJI&quot;" name="code_3166"/>
+            <field name="code_3166">FJI</field>
         </record>
         <record id="base.fk" model="res.country">
-            <field eval="&quot;FLK&quot;" name="code_3166"/>
+            <field name="code_3166">FLK</field>
         </record>
         <record id="base.fm" model="res.country">
-            <field eval="&quot;FSM&quot;" name="code_3166"/>
+            <field name="code_3166">FSM</field>
         </record>
         <record id="base.fo" model="res.country">
-            <field eval="&quot;FRO&quot;" name="code_3166"/>
+            <field name="code_3166">FRO</field>
         </record>
         <record id="base.fr" model="res.country">
-            <field eval="&quot;FRA&quot;" name="code_3166"/>
+            <field name="code_3166">FRA</field>
         </record>
         <record id="base.ga" model="res.country">
-            <field eval="&quot;GAB&quot;" name="code_3166"/>
+            <field name="code_3166">GAB</field>
         </record>
         <record id="base.gd" model="res.country">
-            <field eval="&quot;GRD&quot;" name="code_3166"/>
+            <field name="code_3166">GRD</field>
         </record>
         <record id="base.ge" model="res.country">
-            <field eval="&quot;GEO&quot;" name="code_3166"/>
+            <field name="code_3166">GEO</field>
         </record>
         <record id="base.gf" model="res.country">
-            <field eval="&quot;GUF&quot;" name="code_3166"/>
+            <field name="code_3166">GUF</field>
         </record>
         <record id="base.gh" model="res.country">
-            <field eval="&quot;GHA&quot;" name="code_3166"/>
+            <field name="code_3166">GHA</field>
         </record>
         <record id="base.gi" model="res.country">
-            <field eval="&quot;GIB&quot;" name="code_3166"/>
+            <field name="code_3166">GIB</field>
         </record>
         <record id="base.gl" model="res.country">
-            <field eval="&quot;GRL&quot;" name="code_3166"/>
+            <field name="code_3166">GRL</field>
         </record>
         <record id="base.gm" model="res.country">
-            <field eval="&quot;GMB&quot;" name="code_3166"/>
+            <field name="code_3166">GMB</field>
         </record>
         <record id="base.gn" model="res.country">
-            <field eval="&quot;GIN&quot;" name="code_3166"/>
+            <field name="code_3166">GIN</field>
         </record>
         <record id="base.gp" model="res.country">
-            <field eval="&quot;GLP&quot;" name="code_3166"/>
+            <field name="code_3166">GLP</field>
         </record>
         <record id="base.gq" model="res.country">
-            <field eval="&quot;GNQ&quot;" name="code_3166"/>
+            <field name="code_3166">GNQ</field>
         </record>
         <record id="base.gr" model="res.country">
-            <field eval="&quot;GRC&quot;" name="code_3166"/>
+            <field name="code_3166">GRC</field>
         </record>
         <record id="base.gs" model="res.country">
-            <field eval="&quot;SGS&quot;" name="code_3166"/>
+            <field name="code_3166">SGS</field>
         </record>
         <record id="base.gt" model="res.country">
-            <field eval="&quot;GTM&quot;" name="code_3166"/>
+            <field name="code_3166">GTM</field>
         </record>
         <record id="base.gu" model="res.country">
-            <field eval="&quot;GUM&quot;" name="code_3166"/>
+            <field name="code_3166">GUM</field>
         </record>
         <record id="base.gw" model="res.country">
-            <field eval="&quot;GNB&quot;" name="code_3166"/>
+            <field name="code_3166">GNB</field>
         </record>
         <record id="base.gy" model="res.country">
-            <field eval="&quot;GUY&quot;" name="code_3166"/>
+            <field name="code_3166">GUY</field>
         </record>
         <record id="base.hk" model="res.country">
-            <field eval="&quot;HKG&quot;" name="code_3166"/>
+            <field name="code_3166">HKG</field>
         </record>
         <record id="base.hm" model="res.country">
-            <field eval="&quot;HMD&quot;" name="code_3166"/>
+            <field name="code_3166">HMD</field>
         </record>
         <record id="base.hn" model="res.country">
-            <field eval="&quot;HND&quot;" name="code_3166"/>
+            <field name="code_3166">HND</field>
         </record>
         <record id="base.hr" model="res.country">
-            <field eval="&quot;HRV&quot;" name="code_3166"/>
+            <field name="code_3166">HRV</field>
         </record>
         <record id="base.ht" model="res.country">
-            <field eval="&quot;HTI&quot;" name="code_3166"/>
+            <field name="code_3166">HTI</field>
         </record>
         <record id="base.hu" model="res.country">
-            <field eval="&quot;HUN&quot;" name="code_3166"/>
+            <field name="code_3166">HUN</field>
         </record>
         <record id="base.id" model="res.country">
-            <field eval="&quot;IDN&quot;" name="code_3166"/>
+            <field name="code_3166">IDN</field>
         </record>
         <record id="base.ie" model="res.country">
-            <field eval="&quot;IRL&quot;" name="code_3166"/>
+            <field name="code_3166">IRL</field>
         </record>
         <record id="base.il" model="res.country">
-            <field eval="&quot;ISR&quot;" name="code_3166"/>
+            <field name="code_3166">ISR</field>
         </record>
         <record id="base.in" model="res.country">
-            <field eval="&quot;IND&quot;" name="code_3166"/>
+            <field name="code_3166">IND</field>
         </record>
         <record id="base.io" model="res.country">
-            <field eval="&quot;IOT&quot;" name="code_3166"/>
+            <field name="code_3166">IOT</field>
         </record>
         <record id="base.iq" model="res.country">
-            <field eval="&quot;IRQ&quot;" name="code_3166"/>
+            <field name="code_3166">IRQ</field>
         </record>
         <record id="base.ir" model="res.country">
-            <field eval="&quot;IRN&quot;" name="code_3166"/>
+            <field name="code_3166">IRN</field>
         </record>
         <record id="base.is" model="res.country">
-            <field eval="&quot;ISL&quot;" name="code_3166"/>
+            <field name="code_3166">ISL</field>
         </record>
         <record id="base.it" model="res.country">
-            <field eval="&quot;ITA&quot;" name="code_3166"/>
+            <field name="code_3166">ITA</field>
         </record>
         <record id="base.jm" model="res.country">
-            <field eval="&quot;JAM&quot;" name="code_3166"/>
+            <field name="code_3166">JAM</field>
         </record>
         <record id="base.jo" model="res.country">
-            <field eval="&quot;JOR&quot;" name="code_3166"/>
+            <field name="code_3166">JOR</field>
         </record>
         <record id="base.jp" model="res.country">
-            <field eval="&quot;JPN&quot;" name="code_3166"/>
+            <field name="code_3166">JPN</field>
         </record>
         <record id="base.ke" model="res.country">
-            <field eval="&quot;KEN&quot;" name="code_3166"/>
+            <field name="code_3166">KEN</field>
         </record>
         <record id="base.kg" model="res.country">
-            <field eval="&quot;KGZ&quot;" name="code_3166"/>
+            <field name="code_3166">KGZ</field>
         </record>
         <record id="base.kh" model="res.country">
-            <field eval="&quot;KHM&quot;" name="code_3166"/>
+            <field name="code_3166">KHM</field>
         </record>
         <record id="base.ki" model="res.country">
-            <field eval="&quot;KIR&quot;" name="code_3166"/>
+            <field name="code_3166">KIR</field>
         </record>
         <record id="base.km" model="res.country">
-            <field eval="&quot;COM&quot;" name="code_3166"/>
+            <field name="code_3166">COM</field>
         </record>
         <record id="base.kn" model="res.country">
-            <field eval="&quot;KNA&quot;" name="code_3166"/>
+            <field name="code_3166">KNA</field>
         </record>
         <record id="base.kp" model="res.country">
-            <field eval="&quot;PRK&quot;" name="code_3166"/>
+            <field name="code_3166">PRK</field>
         </record>
         <record id="base.kr" model="res.country">
-            <field eval="&quot;KOR&quot;" name="code_3166"/>
+            <field name="code_3166">KOR</field>
         </record>
         <record id="base.kw" model="res.country">
-            <field eval="&quot;KWT&quot;" name="code_3166"/>
+            <field name="code_3166">KWT</field>
         </record>
         <record id="base.ky" model="res.country">
-            <field eval="&quot;CYM&quot;" name="code_3166"/>
+            <field name="code_3166">CYM</field>
         </record>
         <record id="base.kz" model="res.country">
-            <field eval="&quot;KAZ&quot;" name="code_3166"/>
+            <field name="code_3166">KAZ</field>
         </record>
         <record id="base.la" model="res.country">
-            <field eval="&quot;LAO&quot;" name="code_3166"/>
+            <field name="code_3166">LAO</field>
         </record>
         <record id="base.lb" model="res.country">
-            <field eval="&quot;LBN&quot;" name="code_3166"/>
+            <field name="code_3166">LBN</field>
         </record>
         <record id="base.lc" model="res.country">
-            <field eval="&quot;LCA&quot;" name="code_3166"/>
+            <field name="code_3166">LCA</field>
         </record>
         <record id="base.li" model="res.country">
-            <field eval="&quot;LIE&quot;" name="code_3166"/>
+            <field name="code_3166">LIE</field>
         </record>
         <record id="base.lk" model="res.country">
-            <field eval="&quot;LKA&quot;" name="code_3166"/>
+            <field name="code_3166">LKA</field>
         </record>
         <record id="base.lr" model="res.country">
-            <field eval="&quot;LBR&quot;" name="code_3166"/>
+            <field name="code_3166">LBR</field>
         </record>
         <record id="base.ls" model="res.country">
-            <field eval="&quot;LSO&quot;" name="code_3166"/>
+            <field name="code_3166">LSO</field>
         </record>
         <record id="base.lt" model="res.country">
-            <field eval="&quot;LTU&quot;" name="code_3166"/>
+            <field name="code_3166">LTU</field>
         </record>
         <record id="base.lu" model="res.country">
-            <field eval="&quot;LUX&quot;" name="code_3166"/>
+            <field name="code_3166">LUX</field>
         </record>
         <record id="base.lv" model="res.country">
-            <field eval="&quot;LVA&quot;" name="code_3166"/>
+            <field name="code_3166">LVA</field>
         </record>
         <record id="base.ly" model="res.country">
-            <field eval="&quot;LBY&quot;" name="code_3166"/>
+            <field name="code_3166">LBY</field>
         </record>
         <record id="base.ma" model="res.country">
-            <field eval="&quot;MAR&quot;" name="code_3166"/>
+            <field name="code_3166">MAR</field>
         </record>
         <record id="base.mc" model="res.country">
-            <field eval="&quot;MCO&quot;" name="code_3166"/>
+            <field name="code_3166">MCO</field>
         </record>
         <record id="base.md" model="res.country">
-            <field eval="&quot;MDA&quot;" name="code_3166"/>
+            <field name="code_3166">MDA</field>
         </record>
         <record id="base.mg" model="res.country">
-            <field eval="&quot;MDG&quot;" name="code_3166"/>
+            <field name="code_3166">MDG</field>
         </record>
         <record id="base.mh" model="res.country">
-            <field eval="&quot;MHL&quot;" name="code_3166"/>
+            <field name="code_3166">MHL</field>
         </record>
         <record id="base.mk" model="res.country">
-            <field eval="&quot;MKD&quot;" name="code_3166"/>
+            <field name="code_3166">MKD</field>
         </record>
         <record id="base.ml" model="res.country">
-            <field eval="&quot;MLI&quot;" name="code_3166"/>
+            <field name="code_3166">MLI</field>
         </record>
         <record id="base.mm" model="res.country">
-            <field eval="&quot;MMR&quot;" name="code_3166"/>
+            <field name="code_3166">MMR</field>
         </record>
         <record id="base.mn" model="res.country">
-            <field eval="&quot;MNG&quot;" name="code_3166"/>
+            <field name="code_3166">MNG</field>
         </record>
         <record id="base.mo" model="res.country">
-            <field eval="&quot;MAC&quot;" name="code_3166"/>
+            <field name="code_3166">MAC</field>
         </record>
         <record id="base.mp" model="res.country">
-            <field eval="&quot;MNP&quot;" name="code_3166"/>
+            <field name="code_3166">MNP</field>
         </record>
         <record id="base.mq" model="res.country">
-            <field eval="&quot;MTQ&quot;" name="code_3166"/>
+            <field name="code_3166">MTQ</field>
         </record>
         <record id="base.mr" model="res.country">
-            <field eval="&quot;MRT&quot;" name="code_3166"/>
+            <field name="code_3166">MRT</field>
         </record>
         <record id="base.ms" model="res.country">
-            <field eval="&quot;MSR&quot;" name="code_3166"/>
+            <field name="code_3166">MSR</field>
         </record>
         <record id="base.mt" model="res.country">
-            <field eval="&quot;MLT&quot;" name="code_3166"/>
+            <field name="code_3166">MLT</field>
         </record>
         <record id="base.mu" model="res.country">
-            <field eval="&quot;MUS&quot;" name="code_3166"/>
+            <field name="code_3166">MUS</field>
         </record>
         <record id="base.mv" model="res.country">
-            <field eval="&quot;MDV&quot;" name="code_3166"/>
+            <field name="code_3166">MDV</field>
         </record>
         <record id="base.mw" model="res.country">
-            <field eval="&quot;MWI&quot;" name="code_3166"/>
+            <field name="code_3166">MWI</field>
         </record>
         <record id="base.mx" model="res.country">
-            <field eval="&quot;MEX&quot;" name="code_3166"/>
+            <field name="code_3166">MEX</field>
         </record>
         <record id="base.my" model="res.country">
-            <field eval="&quot;MYS&quot;" name="code_3166"/>
+            <field name="code_3166">MYS</field>
         </record>
         <record id="base.mz" model="res.country">
-            <field eval="&quot;MOZ&quot;" name="code_3166"/>
+            <field name="code_3166">MOZ</field>
         </record>
         <record id="base.na" model="res.country">
-            <field eval="&quot;NAM&quot;" name="code_3166"/>
+            <field name="code_3166">NAM</field>
         </record>
         <record id="base.nc" model="res.country">
-            <field eval="&quot;NCL&quot;" name="code_3166"/>
+            <field name="code_3166">NCL</field>
         </record>
         <record id="base.ne" model="res.country">
-            <field eval="&quot;NER&quot;" name="code_3166"/>
+            <field name="code_3166">NER</field>
         </record>
         <record id="base.nf" model="res.country">
-            <field eval="&quot;NFK&quot;" name="code_3166"/>
+            <field name="code_3166">NFK</field>
         </record>
         <record id="base.ng" model="res.country">
-            <field eval="&quot;NGA&quot;" name="code_3166"/>
+            <field name="code_3166">NGA</field>
         </record>
         <record id="base.ni" model="res.country">
-            <field eval="&quot;NIC&quot;" name="code_3166"/>
+            <field name="code_3166">NIC</field>
         </record>
         <record id="base.nl" model="res.country">
-            <field eval="&quot;NLD&quot;" name="code_3166"/>
+            <field name="code_3166">NLD</field>
         </record>
         <record id="base.no" model="res.country">
-            <field eval="&quot;NOR&quot;" name="code_3166"/>
+            <field name="code_3166">NOR</field>
         </record>
         <record id="base.np" model="res.country">
-            <field eval="&quot;NPL&quot;" name="code_3166"/>
+            <field name="code_3166">NPL</field>
         </record>
         <record id="base.nr" model="res.country">
-            <field eval="&quot;NRU&quot;" name="code_3166"/>
+            <field name="code_3166">NRU</field>
         </record>
-<!--
-        <record id="base.nt" model="res.country">
-            <field name="name">Neutral Zone</field>
-            <field name="code">nt</field>
-            <field eval="&quot;BRA&quot;" name="code_3166"/>
-        </record>
--->
         <record id="base.nu" model="res.country">
-            <field eval="&quot;NIU&quot;" name="code_3166"/>
+            <field name="code_3166">NIU</field>
         </record>
         <record id="base.nz" model="res.country">
-            <field eval="&quot;NZL&quot;" name="code_3166"/>
+            <field name="code_3166">NZL</field>
         </record>
         <record id="base.om" model="res.country">
-            <field eval="&quot;OMN&quot;" name="code_3166"/>
+            <field name="code_3166">OMN</field>
         </record>
         <record id="base.pa" model="res.country">
-            <field eval="&quot;PAN&quot;" name="code_3166"/>
+            <field name="code_3166">PAN</field>
         </record>
         <record id="base.pe" model="res.country">
-            <field eval="&quot;PER&quot;" name="code_3166"/>
+            <field name="code_3166">PER</field>
         </record>
         <record id="base.pf" model="res.country">
-            <field eval="&quot;PYF&quot;" name="code_3166"/>
+            <field name="code_3166">PYF</field>
         </record>
         <record id="base.pg" model="res.country">
-            <field eval="&quot;PNG&quot;" name="code_3166"/>
+            <field name="code_3166">PNG</field>
         </record>
         <record id="base.ph" model="res.country">
-            <field eval="&quot;PHL&quot;" name="code_3166"/>
+            <field name="code_3166">PHL</field>
         </record>
         <record id="base.pk" model="res.country">
-            <field eval="&quot;PAK&quot;" name="code_3166"/>
+            <field name="code_3166">PAK</field>
         </record>
         <record id="base.pl" model="res.country">
-            <field eval="&quot;POL&quot;" name="code_3166"/>
+            <field name="code_3166">POL</field>
         </record>
         <record id="base.pm" model="res.country">
-            <field eval="&quot;SPM&quot;" name="code_3166"/>
+            <field name="code_3166">SPM</field>
         </record>
         <record id="base.pn" model="res.country">
-            <field eval="&quot;PCN&quot;" name="code_3166"/>
+            <field name="code_3166">PCN</field>
         </record>
         <record id="base.pr" model="res.country">
-            <field eval="&quot;PRI&quot;" name="code_3166"/>
+            <field name="code_3166">PRI</field>
         </record>
         <record id="base.pt" model="res.country">
-            <field eval="&quot;PRT&quot;" name="code_3166"/>
+            <field name="code_3166">PRT</field>
         </record>
         <record id="base.pw" model="res.country">
-            <field eval="&quot;PLW&quot;" name="code_3166"/>
+            <field name="code_3166">PLW</field>
         </record>
         <record id="base.py" model="res.country">
-            <field eval="&quot;PRY&quot;" name="code_3166"/>
+            <field name="code_3166">PRY</field>
         </record>
         <record id="base.qa" model="res.country">
-            <field eval="&quot;QAT&quot;" name="code_3166"/>
+            <field name="code_3166">QAT</field>
         </record>
         <record id="base.re" model="res.country">
-            <field eval="&quot;REU&quot;" name="code_3166"/>
+            <field name="code_3166">REU</field>
         </record>
         <record id="base.ro" model="res.country">
-            <field eval="&quot;ROU&quot;" name="code_3166"/>
+            <field name="code_3166">ROU</field>
         </record>
         <record id="base.ru" model="res.country">
-            <field eval="&quot;RUS&quot;" name="code_3166"/>
+            <field name="code_3166">RUS</field>
         </record>
         <record id="base.rw" model="res.country">
-            <field eval="&quot;RWA&quot;" name="code_3166"/>
+            <field name="code_3166">RWA</field>
         </record>
         <record id="base.sa" model="res.country">
-            <field eval="&quot;SAU&quot;" name="code_3166"/>
+            <field name="code_3166">SAU</field>
         </record>
         <record id="base.sb" model="res.country">
-            <field eval="&quot;SLB&quot;" name="code_3166"/>
+            <field name="code_3166">SLB</field>
         </record>
         <record id="base.sc" model="res.country">
-            <field eval="&quot;SYC&quot;" name="code_3166"/>
+            <field name="code_3166">SYC</field>
         </record>
         <record id="base.sd" model="res.country">
-            <field eval="&quot;SDN&quot;" name="code_3166"/>
+            <field name="code_3166">SDN</field>
         </record>
         <record id="base.se" model="res.country">
-            <field eval="&quot;SWE&quot;" name="code_3166"/>
+            <field name="code_3166">SWE</field>
         </record>
         <record id="base.sg" model="res.country">
-            <field eval="&quot;SGP&quot;" name="code_3166"/>
+            <field name="code_3166">SGP</field>
         </record>
         <record id="base.sh" model="res.country">
-            <field eval="&quot;SHN&quot;" name="code_3166"/>
+            <field name="code_3166">SHN</field>
         </record>
         <record id="base.si" model="res.country">
-            <field eval="&quot;SVN&quot;" name="code_3166"/>
+            <field name="code_3166">SVN</field>
         </record>
         <record id="base.sj" model="res.country">
-            <field eval="&quot;SJM&quot;" name="code_3166"/>
+            <field name="code_3166">SJM</field>
         </record>
         <record id="base.sk" model="res.country">
-            <field eval="&quot;SVK&quot;" name="code_3166"/>
+            <field name="code_3166">SVK</field>
         </record>
         <record id="base.sl" model="res.country">
-            <field eval="&quot;SLE&quot;" name="code_3166"/>
+            <field name="code_3166">SLE</field>
         </record>
         <record id="base.sm" model="res.country">
-            <field eval="&quot;SMR&quot;" name="code_3166"/>
+            <field name="code_3166">SMR</field>
         </record>
         <record id="base.sn" model="res.country">
-            <field eval="&quot;SEN&quot;" name="code_3166"/>
+            <field name="code_3166">SEN</field>
         </record>
         <record id="base.so" model="res.country">
-            <field eval="&quot;SOM&quot;" name="code_3166"/>
+            <field name="code_3166">SOM</field>
         </record>
         <record id="base.sr" model="res.country">
-            <field eval="&quot;SUR&quot;" name="code_3166"/>
+            <field name="code_3166">SUR</field>
         </record>
         <record id="base.st" model="res.country">
-            <field eval="&quot;STP&quot;" name="code_3166"/>
+            <field name="code_3166">STP</field>
         </record>
         <record id="base.sv" model="res.country">
-            <field eval="&quot;SLV&quot;" name="code_3166"/>
+            <field name="code_3166">SLV</field>
         </record>
         <record id="base.sy" model="res.country">
-            <field eval="&quot;SYR&quot;" name="code_3166"/>
+            <field name="code_3166">SYR</field>
         </record>
         <record id="base.sz" model="res.country">
-            <field eval="&quot;SWZ&quot;" name="code_3166"/>
+            <field name="code_3166">SWZ</field>
         </record>
         <record id="base.tc" model="res.country">
-            <field eval="&quot;TCA&quot;" name="code_3166"/>
+            <field name="code_3166">TCA</field>
         </record>
         <record id="base.td" model="res.country">
-            <field eval="&quot;TCD&quot;" name="code_3166"/>
+            <field name="code_3166">TCD</field>
         </record>
         <record id="base.tf" model="res.country">
-            <field eval="&quot;ATF&quot;" name="code_3166"/>
+            <field name="code_3166">ATF</field>
         </record>
         <record id="base.tg" model="res.country">
-            <field eval="&quot;TGO&quot;" name="code_3166"/>
+            <field name="code_3166">TGO</field>
         </record>
         <record id="base.th" model="res.country">
-            <field eval="&quot;THA&quot;" name="code_3166"/>
+            <field name="code_3166">THA</field>
         </record>
         <record id="base.tj" model="res.country">
-            <field eval="&quot;TJK&quot;" name="code_3166"/>
+            <field name="code_3166">TJK</field>
         </record>
         <record id="base.tk" model="res.country">
-            <field eval="&quot;TKL&quot;" name="code_3166"/>
+            <field name="code_3166">TKL</field>
         </record>
         <record id="base.tm" model="res.country">
-            <field eval="&quot;TKM&quot;" name="code_3166"/>
+            <field name="code_3166">TKM</field>
         </record>
         <record id="base.tn" model="res.country">
-            <field eval="&quot;TUN&quot;" name="code_3166"/>
+            <field name="code_3166">TUN</field>
         </record>
         <record id="base.to" model="res.country">
-            <field eval="&quot;TON&quot;" name="code_3166"/>
+            <field name="code_3166">TON</field>
         </record>
         <record id="base.tp" model="res.country">
-            <field eval="&quot;TLS&quot;" name="code_3166"/>
+            <field name="code_3166">TLS</field>
         </record>
         <record id="base.tr" model="res.country">
-            <field eval="&quot;TUR&quot;" name="code_3166"/>
+            <field name="code_3166">TUR</field>
         </record>
         <record id="base.tt" model="res.country">
-            <field eval="&quot;TTO&quot;" name="code_3166"/>
+            <field name="code_3166">TTO</field>
         </record>
         <record id="base.tv" model="res.country">
-            <field eval="&quot;TUV&quot;" name="code_3166"/>
+            <field name="code_3166">TUV</field>
         </record>
         <record id="base.tw" model="res.country">
-            <field eval="&quot;TWN&quot;" name="code_3166"/>
+            <field name="code_3166">TWN</field>
         </record>
         <record id="base.tz" model="res.country">
-            <field eval="&quot;TZA&quot;" name="code_3166"/>
+            <field name="code_3166">TZA</field>
         </record>
         <record id="base.ua" model="res.country">
-            <field eval="&quot;UKR&quot;" name="code_3166"/>
+            <field name="code_3166">UKR</field>
         </record>
         <record id="base.ug" model="res.country">
-            <field eval="&quot;UGA&quot;" name="code_3166"/>
+            <field name="code_3166">UGA</field>
         </record>
         <record id="base.uk" model="res.country">
-            <field eval="&quot;GBR&quot;" name="code_3166"/>
+            <field name="code_3166">GBR</field>
         </record>
         <record id="base.um" model="res.country">
-            <field eval="&quot;UMI&quot;" name="code_3166"/>
+            <field name="code_3166">UMI</field>
         </record>
         <record id="base.us" model="res.country">
-            <field eval="&quot;USA&quot;" name="code_3166"/>
+            <field name="code_3166">USA</field>
         </record>
         <record id="base.uy" model="res.country">
-            <field eval="&quot;URY&quot;" name="code_3166"/>
+            <field name="code_3166">URY</field>
         </record>
         <record id="base.uz" model="res.country">
-            <field eval="&quot;UZB&quot;" name="code_3166"/>
+            <field name="code_3166">UZB</field>
         </record>
         <record id="base.va" model="res.country">
-            <field eval="&quot;VAT&quot;" name="code_3166"/>
+            <field name="code_3166">VAT</field>
         </record>
         <record id="base.vc" model="res.country">
-            <field eval="&quot;VCT&quot;" name="code_3166"/>
+            <field name="code_3166">VCT</field>
         </record>
         <record id="base.ve" model="res.country">
-            <field eval="&quot;VEN&quot;" name="code_3166"/>
+            <field name="code_3166">VEN</field>
         </record>
         <record id="base.vg" model="res.country">
-            <field eval="&quot;VGB&quot;" name="code_3166"/>
+            <field name="code_3166">VGB</field>
         </record>
         <record id="base.vi" model="res.country">
-            <field eval="&quot;VIR&quot;" name="code_3166"/>
+            <field name="code_3166">VIR</field>
         </record>
         <record id="base.vn" model="res.country">
-            <field eval="&quot;VNM&quot;" name="code_3166"/>
+            <field name="code_3166">VNM</field>
         </record>
         <record id="base.vu" model="res.country">
-            <field eval="&quot;VUT&quot;" name="code_3166"/>
+            <field name="code_3166">VUT</field>
         </record>
         <record id="base.wf" model="res.country">
-            <field eval="&quot;WLF&quot;" name="code_3166"/>
+            <field name="code_3166">WLF</field>
         </record>
         <record id="base.ws" model="res.country">
-            <field eval="&quot;WSM&quot;" name="code_3166"/>
+            <field name="code_3166">WSM</field>
         </record>
         <record id="base.ye" model="res.country">
-            <field eval="&quot;YEM&quot;" name="code_3166"/>
+            <field name="code_3166">YEM</field>
         </record>
         <record id="base.yt" model="res.country">
-            <field eval="&quot;MYT&quot;" name="code_3166"/>
+            <field name="code_3166">MYT</field>
         </record>
-<!--
-        <record id="base.yu" model="res.country">
-            <field name="name">Yugoslavia</field>
-            <field name="code">yu</field>
-            <field eval="&quot;BRA&quot;" name="code_3166"/>
-        </record>
--->
         <record id="base.za" model="res.country">
-            <field eval="&quot;ZAF&quot;" name="code_3166"/>
+            <field name="code_3166">ZAF</field>
         </record>
         <record id="base.zm" model="res.country">
-            <field eval="&quot;ZMB&quot;" name="code_3166"/>
+            <field name="code_3166">ZMB</field>
         </record>
         <!-- DEPRECATED, News name of Zaire is Democratic Republic of the Congo ! -->
         <record id="base.zr" model="res.country">
-            <field eval="&quot;ZAR&quot;" name="code_3166"/>
+            <field name="code_3166">ZAR</field>
         </record>
         <record id="base.zw" model="res.country">
-            <field eval="&quot;ZWE&quot;" name="code_3166"/>
+            <field name="code_3166">ZWE</field>
         </record>
 
     </data>
