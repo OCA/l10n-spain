@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_payment_mode_form_add_face_code" model="ir.ui.view">
+            <field name="name">payment.mode.form.add_face_code</field>
+            <field name="model">payment.mode</field>
+            <field name="inherit_id" ref="account_payment.view_payment_mode_form"/>
+            <field name="arch" type="xml">
+                <field name="bank_id" position="after">
+                    <field name="face_code_id"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
