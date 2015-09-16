@@ -44,5 +44,6 @@
         "data/l10n_es_facturae_data.xml",
         "security/ir.model.access.csv"],
     "pre_init_hook": "pre_init_hook",
+    "post_init_hook": "post_init_hook",
     "installable": True,
 }
