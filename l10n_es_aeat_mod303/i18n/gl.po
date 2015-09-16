@@ -1,41 +1,28 @@
-# Galician translation for openerp-spain
-# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
-# This file is distributed under the same license as the openerp-spain package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
-#
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_aeat_mod303
+# 
+# Translators:
+# Alejandro Santana <alejandrosantana@anubia.es>, 2015
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: openerp-spain\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-01-23 16:12+0000\n"
-"PO-Revision-Date: 2014-01-31 03:24+0000\n"
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-09 15:09+0000\n"
+"PO-Revision-Date: 2015-09-06 23:50+0000\n"
 "Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
-"Language-Team: Galician <gl@li.org>\n"
+"Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-22 05:57+0000\n"
-"X-Generator: Launchpad (build 17058)\n"
+"Content-Transfer-Encoding: \n"
+"Language: gl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,sin_actividad:0
-msgid "Sin actividad"
-msgstr "Sen actividade"
-
-#. module: l10n_es_aeat_mod303
-#: view:l10n.es.aeat.mod303.report:0
-msgid "Declaración"
-msgstr "Declaración"
-
-#. module: l10n_es_aeat_mod303
-#: help:l10n.es.aeat.mod303.report,diferencia:0
-msgid "( IVA devengado - IVA deducible )"
-msgstr "( IVA devindicado - IVA deducible )"
-
-#. module: l10n_es_aeat_mod303
-#: view:l10n.es.aeat.mod303.report:0
-msgid "Devolución"
-msgstr "Devolución"
+#: help:l10n.es.aeat.mod303.report,casilla_46:0
+msgid "(IVA devengado - IVA deducible)"
+msgstr "(IVE devindicado - IVE deducible)"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report
@@ -43,365 +30,14 @@ msgid "AEAT 303 Report"
 msgstr "Declaración AEAT 303"
 
 #. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "March"
-msgstr "Marzo"
+#: model:ir.ui.menu,name:l10n_es_aeat_mod303.menu_aeat_mod303_report
+msgid "AEAT 303 model"
+msgstr "Declaración AEAT 303"
 
 #. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,company_id:0
-msgid "Company"
-msgstr "Compañía"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,devolver:0
-msgid "Devolver"
-msgstr "Devolver"
-
-#. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/mod303.py:209
-#: code:addons/l10n_es_aeat_mod303/mod303.py:223
-#, python-format
-msgid "Seleccione una cuenta para ingresar el importe"
-msgstr "Seleccione unha conta para ingresa-lo importe"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,type:0
-msgid "Substitutive"
-msgstr "Substitutiva"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,previous_number:0
-msgid "Previous declaration number"
-msgstr "Nº da declaración anterior"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,contact_name:0
-msgid "Full name"
-msgstr "Nome completo"
-
-#. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/mod303.py:136
-#: code:addons/l10n_es_aeat_mod303/mod303.py:153
-#, python-format
-msgid ""
-"El periodo seleccionado no coincide con los periodos del ejercicio fiscal: "
-msgstr "O período seleccionado non cadra cos períodos do exercicio fiscal: "
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.export_to_boe,state:0
-msgid "get"
-msgstr "obter"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.export_to_boe,name:0
-msgid "File name"
-msgstr "Nome do ficheiro"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,number:0
-msgid "Declaration number"
-msgstr "Nº declaración"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,previus_result:0
-msgid "A deducir"
-msgstr "A deducir"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,state:0
-msgid "Cancelled"
-msgstr "Cancelada"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,complementaria:0
-msgid "Autoliquidación complementaria"
-msgstr "Autoliquidación complementaria"
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.actions.act_window,name:l10n_es_aeat_mod303.action_wizard_aeat_mod303_export
-msgid "Export AEAT 303 BOE file"
-msgstr "Exportar ficheiro BOE AEAT 303"
-
-#. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/wizard/export_mod303_to_boe.py:126
-#: code:addons/l10n_es_aeat_mod303/wizard/export_mod303_to_boe.py:146
-#, python-format
-msgid "Warning"
-msgstr "Aviso"
-
-#. module: l10n_es_aeat_mod303
-#: view:l10n.es.aeat.mod303.report:0
-msgid "413"
-msgstr "413"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,company_partner_id:0
-msgid "Partner"
-msgstr "Empresa"
-
-#. module: l10n_es_aeat_mod303
-#: help:l10n.es.aeat.mod303.report,previus_result:0
-msgid ""
-"Resultado de la anterior o anteriores del mismo concepto, ejercicio y periodo"
-msgstr ""
-"Resultado da anterior ou anteriores do mesmo concepto, exercicio e período"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "February"
-msgstr "febreiro"
-
-#. module: l10n_es_aeat_mod303
-#: help:l10n.es.aeat.mod303.report,porcentaje_atribuible_estado:0
-msgid ""
-"Los sujetos pasivos que tributen conjuntamente a la Administración del "
-"Estado y a las Diputaciones Forales del País Vasco o a la Comunidad Foral de "
-"Navarra, consignarán en esta casilla el porcentaje del volumen de "
-"operaciones en territorio común. Los demás sujetos pasivos consignarán en "
-"esta casilla el 100%"
-msgstr ""
-"Os suxeitos pasivos que tributen conxuntamente á Administración do Estado e "
-"ás Diputacións Forais do País Vasco ou á Comunidade Foral de Navarra, "
-"consignarán nesta casa a porcentaxe do volumen de operacións no territorio "
-"común. Os demáis suxeitos pasivos consignarán nesta casa o 100%"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,state:0
-msgid "State"
-msgstr "Provincia"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "First quarter"
-msgstr "Primeiro trimestre"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,support_type:0
-msgid "Support Type"
-msgstr "Tipo de soporte"
-
-#. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/wizard/export_mod303_to_boe.py:193
-#, python-format
-msgid "%Y-%m-%d"
-msgstr "%Y-%m-%d"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "July"
-msgstr "xullo"
-
-#. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/mod303.py:211
-#: code:addons/l10n_es_aeat_mod303/mod303.py:225
-#, python-format
-msgid "Seleccione una cuenta para realizar la devolución"
-msgstr "Seleccione unha conta para realiza-la devolución"
-
-#. module: l10n_es_aeat_mod303
-#: help:l10n.es.aeat.mod303.report,devolucion_mensual:0
-msgid "Inscrito en el Registro de Devolución Mensual"
-msgstr "Inscrito no Rexistro de Devolución Mensual"
-
-#. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/wizard/export_mod303_to_boe.py:127
-#, python-format
-msgid ""
-"CCC de devolución no válida \n"
-"%s"
-msgstr ""
-"CCC de devolución non válido \n"
-"%s"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,calculation_date:0
-msgid "Calculation date"
-msgstr "Data de cálculo"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,cuenta_devolucion_id:0
-msgid "CCC devolución"
-msgstr "CCC devolución"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,ingresar:0
-msgid "Ingresar"
-msgstr "Ingresar"
-
-#. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/mod303.py:198
-#: code:addons/l10n_es_aeat_mod303/mod303.py:212
-#, python-format
-msgid ""
-"El valor añadido para la regularizacion anual no se ha tenido en cuenta por "
-"no ser un periodo de cierre (12 o 4T)"
-msgstr ""
-"Non se tivo en conta o valor engadido para a regularización anual por non "
-"ser un período de peche (12 ou 4T)"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "September"
-msgstr "setembro"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "December"
-msgstr "decembro"
-
-#. module: l10n_es_aeat_mod303
-#: view:l10n.es.aeat.mod303.report:0
-msgid "Compensación"
-msgstr "Compensación"
-
-#. module: l10n_es_aeat_mod303
-#: view:l10n.es.aeat.mod303.report:0
-msgid "Ingreso"
-msgstr "Ingreso"
-
-#. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/wizard/export_mod303_to_boe.py:175
-#, python-format
-msgid "AEAT Model is necessary"
-msgstr "É necesario o modelo AEAT"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,support_type:0
-msgid "DVD"
-msgstr "DVD"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,state:0
-msgid "Draft"
-msgstr "Borrador"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,company_vat:0
-msgid "VAT number"
-msgstr "NIF"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,diferencia:0
-msgid "Diferencia"
-msgstr "Diferencia"
-
-#. module: l10n_es_aeat_mod303
-#: help:l10n.es.aeat.mod303.report,cuota_compensar:0
-msgid "Cuota a compensar de periodos anteriores"
-msgstr "Cota a compensar de períodos anteriores"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.export_to_boe,state:0
-msgid "open"
-msgstr "aberto"
-
-#. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/wizard/export_mod303_to_boe.py:43
-#: code:addons/l10n_es_aeat_mod303/wizard/export_mod303_to_boe.py:44
-#, python-format
-msgid "The identification (1) and income (2) must be 72 characters long"
-msgstr "A identificación (1) e os ingresos (2) deben ocupar 72 caracteres"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,resultado_liquidacion:0
-msgid "Resultado liquidación"
-msgstr "Resultado liquidación"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "August"
-msgstr "agosto"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,type:0
-msgid "Normal"
-msgstr "Normal"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.export_to_boe,state:0
-msgid "unknown"
-msgstr "descoñecido"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "June"
-msgstr "xuño"
-
-#. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/wizard/export_mod303_to_boe.py:115
-#, python-format
-msgid "The vat records must be 749 characters long and are %s"
-msgstr "Os rexistros de impostos deben ocupar 749 caracteres e ocupan %s"
-
-#. module: l10n_es_aeat_mod303
-#: view:l10n.es.aeat.mod303.report:0
+#: view:l10n.es.aeat.mod303.report:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_tree
 msgid "AEAT 303 reports"
 msgstr "Declaracións AEAT 303"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "November"
-msgstr "novembro"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "October"
-msgstr "outubro"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "January"
-msgstr "xaneiro"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,state:0
-msgid "Processed"
-msgstr "Procesada"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "Third quarter"
-msgstr "Terceiro trimestre"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,representative_vat:0
-msgid "L.R. VAT number"
-msgstr "NIF repr. legal"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,compensar:0
-msgid "Compensar"
-msgstr "Compensar"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,cuota_compensar:0
-msgid "Cuotas a compensar"
-msgstr "Cotas a compensar"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,type:0
-msgid "Statement Type"
-msgstr "Tipo de declaración"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,period:0
-msgid "Period"
-msgstr "Período"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,atribuible_estado:0
-msgid "Atribuible a la Administración"
-msgstr "Atribuíble á Administración"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,fiscalyear_id:0
-msgid "Fiscal year"
-msgstr "Exercicio fiscal"
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,state:0
-msgid "Done"
-msgstr "Realizado"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod303.action_l10n_es_aeat_mod303_report
@@ -409,28 +45,36 @@ msgid "AEAT model 303"
 msgstr "Modelo AEAT 303"
 
 #. module: l10n_es_aeat_mod303
-#: view:l10n.es.aeat.mod303.report:0
-msgid "Importe"
-msgstr "Importe"
+#: help:l10n.es.aeat.mod303.report,casilla_69:0
+msgid ""
+"Atribuible a la Administración [66] - Cuotas a compensar [67] + "
+"Regularización anual [68]"
+msgstr "Atribuible á Administración [66] - Cuotas a compensar [67] + Regularización anual [68]"
 
 #. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "Fourth quarter"
-msgstr "Carto trimestre"
+#: field:l10n.es.aeat.mod303.report,bank_account:0
+msgid "Bank account"
+msgstr "Conta bancaria"
 
 #. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,devolucion_mensual:0
-msgid "Devolución Mensual"
-msgstr "Devolución mensual"
+#: field:l10n.es.aeat.mod303.report,calculation_date:0
+msgid "Calculation date"
+msgstr "Data de cálculo"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/wizard/export_mod303_to_boe.py:171
-#: code:addons/l10n_es_aeat_mod303/wizard/export_mod303_to_boe.py:187
-#, python-format
-msgid "The 303 report must be 1353 characters long and are %s"
-msgstr ""
-"A declaración do modelo 303 debe ocupar 1353 caracteres e actualmente ocupa "
-"%s"
+#: selection:l10n.es.aeat.mod303.report,state:0
+msgid "Cancelled"
+msgstr "Cancelada"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,company_id:0
+msgid "Company"
+msgstr "Compañía"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,compensate:0
+msgid "Compensate"
+msgstr "Compensar"
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,type:0
@@ -438,14 +82,106 @@ msgid "Complementary"
 msgstr "Complementaria"
 
 #. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,total_devengado:0
-msgid "IVA devengado"
-msgstr "IVA devindicado"
+#: model:ir.actions.act_window,help:l10n_es_aeat_mod303.action_l10n_es_aeat_mod303_report
+msgid "Create and query AEAT Model 303 reports"
+msgstr "Crea e consulta as declaracións do modelo AEAT 303"
 
 #. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,cuenta_ingreso_id:0
-msgid "CCC Ingreso"
-msgstr "CCC ingreso"
+#: field:l10n.es.aeat.mod303.report,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,create_date:0
+msgid "Created on"
+msgstr "Creado o"
+
+#. module: l10n_es_aeat_mod303
+#: help:l10n.es.aeat.mod303.report,cuota_compensar:0
+msgid ""
+"Cuota a compensar de periodos anteriores, en los que su declaración fue a "
+"devolver y se escogió la opción de compensación posterior"
+msgstr "Cota a compensar de períodos anteriores, nos que a súa declaración foi a devolver e escolleuse a opción de compensación posterior"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,currency_id:0
+msgid "Currency"
+msgstr "Moeda"
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,support_type:0
+msgid "DVD"
+msgstr "DVD"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,number:0
+msgid "Declaration number"
+msgstr "Nº declaración"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,devolucion_mensual:0
+msgid "Devolución mensual"
+msgstr "Devolución mensual"
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,state:0
+msgid "Done"
+msgstr "Realizado"
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: l10n_es_aeat_mod303
+#: help:l10n.es.aeat.mod303.report,regularizacion_anual:0
+msgid ""
+"En la última autoliquidación del año (la del período 4T o mes 12) se hará "
+"constar, con el signo que corresponda, el resultado de la regularización "
+"anual conforme disponen las Leyes por las que se aprueban el Concierto "
+"Económico entre el Estado y la Comunidad Autónoma del País Vasco y el "
+"Convenio Económico entre el Estado y la Comunidad Foral de Navarra."
+msgstr "Na última autoliquidación do ano (a do período 4T ou mes 12) farase constar, co signo que corresponda, o resultado da regularización anual conforme dispoñen as Leis polas que se aproban o Concerto Económico entre o Estado e a Comunidade Autónoma do País Vasco e o Convenio Económico entre o Estado e a Comunidade Foral de Navarra."
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,export_config:0
+msgid "Export config"
+msgstr "Padrón de exportación"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,fiscalyear_id:0
+msgid "Fiscal year"
+msgstr "Exercicio fiscal"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,contact_name:0
+msgid "Full Name"
+msgstr "Nome completo"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_aeat_mod303
+#: help:l10n.es.aeat.mod303.report,devolucion_mensual:0
+msgid "Inscrito en el Registro de Devolución Mensual"
+msgstr "Inscrito no Rexistro de Devolución Mensual"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,representative_vat:0
+msgid "L.R. VAT number"
+msgstr "NIF repr. legal"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,write_uid:0
+msgid "Last Updated by"
+msgstr "Derradeira actualización feita por"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,write_date:0
+msgid "Last Updated on"
+msgstr "Actualizado por derradeira vez o"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,representative_vat:0
@@ -453,56 +189,115 @@ msgid "Legal Representative VAT number."
 msgstr "NIF do representante legal."
 
 #. module: l10n_es_aeat_mod303
-#: view:l10n.es.aeat.mod303.report:0
-msgid "Complementaria"
-msgstr "Complementaria"
+#: help:l10n.es.aeat.mod303.report,porcentaje_atribuible_estado:0
+msgid ""
+"Los sujetos pasivos que tributen conjuntamente a la Administración del "
+"Estado y a las Diputaciones Forales del País Vasco o a la Comunidad Foral de"
+" Navarra, consignarán en esta casilla el porcentaje del volumen de "
+"operaciones en territorio común. Los demás sujetos pasivos consignarán en "
+"esta casilla el 100%"
+msgstr "Os suxeitos pasivos que tributen conxuntamente á Administración do Estado e ás Diputacións Forais do País Vasco ou á Comunidade Foral de Navarra, consignarán nesta casa a porcentaxe do volumen de operacións no territorio común. Os demáis suxeitos pasivos consignarán nesta casa o 100%"
 
 #. module: l10n_es_aeat_mod303
-#: view:l10n.es.aeat.mod303.report:0
-#: field:l10n.es.aeat.mod303.report,resultado_casilla_46:0
+#: help:l10n.es.aeat.mod303.report,contact_name:0
+msgid "Must have name and surname."
+msgstr "Debe conter nome e apelidos"
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,type:0
+msgid "Normal"
+msgstr "Normal"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,company_partner_id:0
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,period_type:0
+msgid "Period type"
+msgstr "Tipo de período"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,periods:0
+msgid "Period(s)"
+msgstr "Período(s)"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,contact_phone:0
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,previous_number:0
+msgid "Previous declaration number"
+msgstr "Nº da declaración anterior"
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,state:0
+msgid "Processed"
+msgstr "Procesada"
+
+#. module: l10n_es_aeat_mod303
+#: view:l10n.es.aeat.mod303.report:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Resultado"
 msgstr "Resultado"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/wizard/export_mod303_to_boe.py:192
-#, python-format
-msgid "%s_report_%s.txt"
-msgstr "%s_report_%s.txt"
-
-#. module: l10n_es_aeat_mod303
-#: help:l10n.es.aeat.mod303.report,regularizacion_anual:0
+#: help:l10n.es.aeat.mod303.report,previous_result:0
 msgid ""
-"En la última autoliquidación del  año (la del período 4T o mes 12) se hará "
-"constar, con el signo que corresponda, el resultado de la regularización "
-"anual conforme disponen las Leyes por las que se aprueban el Concierto "
-"Económico entre el Estado y la Comunidad Autónoma del País Vasco y el "
-"Convenio Económico entre el Estado y la Comunidad Foral de Navarra."
-msgstr ""
-"Na derradeira autoliquidación do año (a do período 4T ou mes 12) farase "
-"constar, co signo que lle corresponda, o resultado da regularización anual "
-"conforme dispoñen as Leis polas que se aproba o Concerto Económico entre o "
-"Estado e a Comunidade Autónoma do País Vasco e o Convenio Económico entre o "
-"Estado e a Comunidade Foral de Navarra."
+"Resultado de la anterior o anteriores declaraciones del mismo concepto, "
+"ejercicio y periodo"
+msgstr "Resultado da anterior ou anteriores declaracións do mesmo concepto, exercicio e período"
 
 #. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,total_deducir:0
-msgid "IVA a deducir"
-msgstr "IVA a deducir"
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:160
+#, python-format
+msgid "Select an account for making the charge"
+msgstr "Seleccione unha conta bancaria para realiza-lo cargo"
 
 #. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "April"
-msgstr "abril"
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:162
+#, python-format
+msgid "Select an account for receiving the money"
+msgstr "Seleccione unha conta bancaria para recibi-lo diñeiro"
 
 #. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,regularizacion_anual:0
-msgid "Regularización anual"
-msgstr "Regularización anual"
+#: field:l10n.es.aeat.mod303.report,sequence:0
+msgid "Sequence"
+msgstr "Secuencia"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.actions.act_window,help:l10n_es_aeat_mod303.action_l10n_es_aeat_mod303_report
-msgid "Create and query AEAT Model 303 reports"
-msgstr "Crea e consulta as declaracións do modelo AEAT 303"
+#: help:l10n.es.aeat.mod303.report,compensate:0
+msgid ""
+"Si se marca, indicará que el importe a devolver se compensará en posteriores"
+" declaraciones"
+msgstr "Se se marca, indicará que o importe a devolver compensarase en declaracións posteriores"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,state:0
+msgid "State"
+msgstr "Provincia"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,type:0
+msgid "Statement Type"
+msgstr "Tipo de declaración"
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,type:0
+msgid "Substitutive"
+msgstr "Substitutiva"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,support_type:0
+msgid "Support Type"
+msgstr "Tipo de soporte"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,tax_lines:0
+msgid "Tax lines"
+msgstr "Liñas de impostos"
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,support_type:0
@@ -510,50 +305,56 @@ msgid "Telematics"
 msgstr "Telemática"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/wizard/export_mod303_to_boe.py:147
-#, python-format
-msgid "CCC de ingreso no válido %s"
-msgstr "CCC de ingreso non válida %s"
+#: field:l10n.es.aeat.mod303.report,company_vat:0
+msgid "VAT number"
+msgstr "NIF"
 
 #. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "Second quarter"
-msgstr "Segundo trimestre"
+#: field:l10n.es.aeat.mod303.report,total_devengado:0
+msgid "[27] IVA devengado"
+msgstr "[27] IVE devindicado"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.ui.menu,name:l10n_es_aeat_mod303.menu_aeat_mod303_report
-msgid "AEAT 303 model"
-msgstr "Declaración AEAT 303"
+#: field:l10n.es.aeat.mod303.report,total_deducir:0
+msgid "[45] IVA a deducir"
+msgstr "[45] IVE a deducir"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_export_to_boe
-msgid "Export Report to BOE Format"
-msgstr "Exportar a formato BOE"
+#: field:l10n.es.aeat.mod303.report,casilla_46:0
+msgid "[46] Resultado régimen general"
+msgstr "[46] Resultado réxime xeral"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/mod303.py:213
-#: code:addons/l10n_es_aeat_mod303/mod303.py:227
-#, python-format
-msgid ""
-"No hay actividad en el periodo seleccionado. Marque la casilla correspondinte"
-msgstr ""
-"Non hai actividade no período seleccionado. Marque a casa que corresponde."
+#: field:l10n.es.aeat.mod303.report,porcentaje_atribuible_estado:0
+msgid "[65] % atribuible al Estado"
+msgstr "[65] % atribuible ó Estado"
 
 #. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,period:0
-msgid "May"
-msgstr "maio"
+#: field:l10n.es.aeat.mod303.report,atribuible_estado:0
+msgid "[66] Atribuible a la Administración"
+msgstr "[66] Atribuible á Administración"
 
 #. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.export_to_boe,data:0
-msgid "File"
-msgstr "Ficheiro"
+#: field:l10n.es.aeat.mod303.report,cuota_compensar:0
+msgid "[67] Cuotas a compensar"
+msgstr "[67] Cotas a compensar"
 
 #. module: l10n_es_aeat_mod303
-#: help:l10n.es.aeat.mod303.report,resultado_casilla_46:0
-msgid ""
-"Atribuible a la Administración [40] - Cuotas a compensar [41] + "
-"Regularización anual [45]"
-msgstr ""
-"Atribuíble á Administración [40] - Cotas a compensar [41] + Regularización "
-"anual [45]"
+#: field:l10n.es.aeat.mod303.report,regularizacion_anual:0
+msgid "[68] Regularización anual"
+msgstr "[68] Regularización anual"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,casilla_69:0
+msgid "[69] Resultado"
+msgstr "[69] Resultado"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,previous_result:0
+msgid "[70] A deducir"
+msgstr "[70] A deducir"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,resultado_liquidacion:0
+msgid "[71] Result. liquidación"
+msgstr "[71] Result. liquidación"

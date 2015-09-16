@@ -1,19 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_aeat_mod111
-#
+# * l10n_es_aeat_mod111
+# 
+# Translators:
+# Alejandro Santana <alejandrosantana@anubia.es>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-25 21:59+0000\n"
-"PO-Revision-Date: 2015-06-25 21:59+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2015-09-09 15:09+0000\n"
+"PO-Revision-Date: 2015-09-04 08:29+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model,name:l10n_es_aeat_mod111.model_l10n_es_aeat_mod111_report
@@ -239,7 +242,10 @@ msgstr "Código electrónico"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,codigo_electronico_anterior:0
-msgid "Código electrónico de la declaración anterior (si se presentó telemáticamente). A cumplimentar sólo en el caso de declaración complementaria."
+msgid ""
+"Código electrónico de la declaración anterior (si se presentó "
+"telemáticamente). A cumplimentar sólo en el caso de declaración "
+"complementaria."
 msgstr "Código electrónico de la declaración anterior (si se presentó telemáticamente). A cumplimentar sólo en el caso de declaración complementaria."
 
 #. module: l10n_es_aeat_mod111
@@ -324,32 +330,44 @@ msgstr "Ganancias patrim. Aprovecham. Forestales"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_20:0
-msgid "Ganancias patrim. Aprovecham. Forestales - Percep. dinerarias - Importe percepciones"
+msgid ""
+"Ganancias patrim. Aprovecham. Forestales - Percep. dinerarias - Importe "
+"percepciones"
 msgstr "Ganancias patrim. Aprovecham. Forestales - Percep. dinerarias - Importe percepciones"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_21:0
-msgid "Ganancias patrim. Aprovecham. Forestales - Percep. dinerarias - Importe retenciones"
+msgid ""
+"Ganancias patrim. Aprovecham. Forestales - Percep. dinerarias - Importe "
+"retenciones"
 msgstr "Ganancias patrim. Aprovecham. Forestales - Percep. dinerarias - Importe retenciones"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_19:0
-msgid "Ganancias patrim. Aprovecham. Forestales - Percep. dinerarias - Nº perceptores"
+msgid ""
+"Ganancias patrim. Aprovecham. Forestales - Percep. dinerarias - Nº "
+"perceptores"
 msgstr "Ganancias patrim. Aprovecham. Forestales - Percep. dinerarias - Nº perceptores"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_24:0
-msgid "Ganancias patrim. Aprovecham. Forestales - Percep. en especie - Importe ingresos a cuenta"
+msgid ""
+"Ganancias patrim. Aprovecham. Forestales - Percep. en especie - Importe "
+"ingresos a cuenta"
 msgstr "Ganancias patrim. Aprovecham. Forestales - Percep. en especie - Importe ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_23:0
-msgid "Ganancias patrim. Aprovecham. Forestales - Percep. en especie - Importe percepciones"
+msgid ""
+"Ganancias patrim. Aprovecham. Forestales - Percep. en especie - Importe "
+"percepciones"
 msgstr "Ganancias patrim. Aprovecham. Forestales - Percep. en especie - Importe percepciones"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_22:0
-msgid "Ganancias patrim. Aprovecham. Forestales - Percep. en especie - Nº perceptores"
+msgid ""
+"Ganancias patrim. Aprovecham. Forestales - Percep. en especie - Nº "
+"perceptores"
 msgstr "Ganancias patrim. Aprovecham. Forestales - Percep. en especie - Nº perceptores"
 
 #. module: l10n_es_aeat_mod111
@@ -441,6 +459,16 @@ msgid "Percep.dinerarias:"
 msgstr "Percep. dinerarias:"
 
 #. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,period_type:0
+msgid "Period type"
+msgstr "Tipo de periodo"
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,periods:0
+msgid "Period(s)"
+msgstr "Periodo(s)"
+
+#. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,period_id:0
 msgid "Periodo"
 msgstr "Periodo"
@@ -512,32 +540,42 @@ msgstr "Rendim. actividades económicas"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_08:0
-msgid "Rendim. actividades económicas - Rendimientos dinerarios - Importe percepciones"
+msgid ""
+"Rendim. actividades económicas - Rendimientos dinerarios - Importe "
+"percepciones"
 msgstr "Rendim. actividades económicas - Rendimientos dinerarios - Importe percepciones"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_09:0
-msgid "Rendim. actividades económicas - Rendimientos dinerarios - Importe retenciones"
+msgid ""
+"Rendim. actividades económicas - Rendimientos dinerarios - Importe "
+"retenciones"
 msgstr "Rendim. actividades económicas - Rendimientos dinerarios - Importe retenciones"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_07:0
-msgid "Rendim. actividades económicas - Rendimientos dinerarios - Nº de perceptores"
+msgid ""
+"Rendim. actividades económicas - Rendimientos dinerarios - Nº de perceptores"
 msgstr "Rendim. actividades económicas - Rendimientos dinerarios - Nº de perceptores"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_12:0
-msgid "Rendim. actividades económicas - Rendimientos en especie - Importe de los ingresos en cuenta"
+msgid ""
+"Rendim. actividades económicas - Rendimientos en especie - Importe de los "
+"ingresos en cuenta"
 msgstr "Rendim. actividades económicas - Rendimientos en especie - Importe de los ingresos en cuenta"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_10:0
-msgid "Rendim. actividades económicas - Rendimientos en especie - Nº de perceptores"
+msgid ""
+"Rendim. actividades económicas - Rendimientos en especie - Nº de perceptores"
 msgstr "Rendim. actividades económicas - Rendimientos en especie - Nº de perceptores"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_11:0
-msgid "Rendim. actividades económicas - Rendimientos en especie - Valor percepciones en especie"
+msgid ""
+"Rendim. actividades económicas - Rendimientos en especie - Valor "
+"percepciones en especie"
 msgstr "Rendim. actividades económicas - Rendimientos en especie - Valor percepciones en especie"
 
 #. module: l10n_es_aeat_mod111
@@ -562,7 +600,8 @@ msgstr "Rendim. del trabajo - Rendimientos dinerarios - Nº de perceptores"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_06:0
-msgid "Rendim. del trabajo - Rendimientos en especie - Importe ingresos en cuenta"
+msgid ""
+"Rendim. del trabajo - Rendimientos en especie - Importe ingresos en cuenta"
 msgstr "Rendim. del trabajo - Rendimientos en especie - Importe ingresos en cuenta"
 
 #. module: l10n_es_aeat_mod111
@@ -572,7 +611,9 @@ msgstr "Rendim. del trabajo - Rendimientos en especie - Nº de perceptores"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_05:0
-msgid "Rendim. del trabajo - Rendimientos en especie - Valor percepciones en especie"
+msgid ""
+"Rendim. del trabajo - Rendimientos en especie - Valor percepciones en "
+"especie"
 msgstr "Rendim. del trabajo - Rendimientos en especie - Valor percepciones en especie"
 
 #. module: l10n_es_aeat_mod111
@@ -603,7 +644,9 @@ msgstr "Secuencia"
 #. module: l10n_es_aeat_mod111
 #: code:addons/l10n_es_aeat_mod111/models/mod111.py:193
 #, python-format
-msgid "Si se marca la casilla de liquidación complementaria, debe rellenar el código electrónico o el número de justificante de la declaración anterior."
+msgid ""
+"Si se marca la casilla de liquidación complementaria, debe rellenar el "
+"código electrónico o el número de justificante de la declaración anterior."
 msgstr "Si se marca la casilla de liquidación complementaria, debe rellenar el código electrónico o el número de justificante de la declaración anterior."
 
 #. module: l10n_es_aeat_mod111
@@ -626,6 +669,11 @@ msgstr "Sustitutiva"
 #: field:l10n.es.aeat.mod111.report,support_type:0
 msgid "Support Type"
 msgstr "Tipo de soporte"
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,tax_lines:0
+msgid "Tax lines"
+msgstr "Lineas de impuestos"
 
 #. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.report,support_type:0
@@ -661,3 +709,18 @@ msgstr "Total liquidación - Suma retencones e ingresos a cuenta"
 #: field:l10n.es.aeat.mod111.report,company_vat:0
 msgid "VAT number"
 msgstr "NIF"
+
+#. module: l10n_es_aeat_mod111
+#: selection:l10n.es.aeat.mod111.export_to_boe,state:0
+msgid "get"
+msgstr "obtener"
+
+#. module: l10n_es_aeat_mod111
+#: selection:l10n.es.aeat.mod111.export_to_boe,state:0
+msgid "open"
+msgstr "abierto"
+
+#. module: l10n_es_aeat_mod111
+#: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
+msgid "{'invisible': [('type','==','N')]}"
+msgstr "{'invisible': [('type','==','N')]}"

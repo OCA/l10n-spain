@@ -65,7 +65,7 @@
                                    options="{'currency_field': 'currency_id'}"
                                    attrs="{'readonly': [('period_type', 'not in', ('4T', '12'))]}"
                                     />
-                            <field name="casilla_46"
+                            <field name="casilla_69"
                                    widget="monetary"
                                    options="{'currency_field': 'currency_id'}"
                                     />
@@ -76,7 +76,9 @@
                                     />
                         </group>
                     </group>
-                    <group class="oe_subtotal_footer oe_right" colspan="2">
+                    <group class="oe_subtotal_footer oe_right"
+                           attrs="{'invisible': [('tax_lines', '=', [])]}"
+                           colspan="2">
                         <field name="resultado_liquidacion"
                                class="oe_subtotal_footer_separator"
                                widget="monetary"

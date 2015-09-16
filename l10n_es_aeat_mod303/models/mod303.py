@@ -24,8 +24,11 @@ class L10nEsAeatMod303Report(models.Model):
     _description = "AEAT 303 Report"
 
     def _get_export_conf(self):
-        return self.env.ref(
-            'l10n_es_aeat_mod303.aeat_mod303_main_export_config').id
+        try:
+            return self.env.ref(
+                'l10n_es_aeat_mod303.aeat_mod303_main_export_config').id
+        except ValueError:
+            return self.env['aeat.model.export.config']
 
     currency_id = fields.Many2one(
         comodel_name='res.currency', string='Currency',
@@ -79,7 +82,7 @@ class L10nEsAeatMod303Report(models.Model):
              "concepto, ejercicio y periodo",
         states={'done': [('readonly', True)]})
     resultado_liquidacion = fields.Float(
-        string="[71] Resultado de la liquidación", readonly=True)
+        string="[71] Result. liquidación", readonly=True)
     result_type = fields.Selection(
         selection=[('I', 'A ingresar'),
                    ('D', 'A devolver'),
@@ -136,7 +139,7 @@ class L10nEsAeatMod303Report(models.Model):
                 casilla_46 * mod303.porcentaje_atribuible_estado / 100)
             casilla_69 = (atribuible_estado - mod303.cuota_compensar +
                           mod303.regularizacion_anual)
-            resultado_liquidacion = casilla_46 - mod303.previous_result
+            resultado_liquidacion = casilla_69 - mod303.previous_result
             vals = {
                 'total_devengado': total_devengado,
                 'total_deducir': total_deducir,
