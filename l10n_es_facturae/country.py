@@ -26,6 +26,6 @@ class Country(models.Model):
 
     _inherit = 'res.country'
 
-    code_3166 = fields.Char('Code ISO 3166', size=3, required=True,
+    code_3166 = fields.Char('Code ISO 3166', size=3,
                             help='El código del país ISO 3166 (3 caractéres). '
                                  'Para España: "ESP".')
