@@ -27,6 +27,6 @@ from . import payment_mode
 from . import wizard
 
 
-def pre_init_hook(cr, registry):
+def pre_init_hook(cr):
     cr.execute("update ir_model_data set noupdate=false where "
                "module = 'base' and model = 'res.country'")
