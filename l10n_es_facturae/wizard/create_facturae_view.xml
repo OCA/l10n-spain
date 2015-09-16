@@ -10,16 +10,19 @@
                 <form string="Crear Factura-E">
                     <label string="Este proceso creará la factura electrónica" colspan="4"/>
                     <field name="state" invisible="1"/>
-                    <field name="firmar_facturae" />
+                    <group attrs="{'invisible': [('state', '=', 'second')]}" colspan="4">
+                        <field name="firmar_facturae" />
+                    </group>
                     <group attrs="{'invisible': [('state', '=', 'first')]}" colspan="4">
                         <field name="facturae" filename="facturae_fname"/>
                         <field name="facturae_fname" invisible="1"/>
                         <field name="note" colspan="4" nolabel="1"/>
                     </group>
-                    <group colspan="4">
-                        <button icon="gtk-cancel" special="cancel" string="Cerrar"/>
-                        <button icon="gtk-print" name="create_facturae_file" string="Exportar" type="object" states="first"/>
-                    </group>
+                    <footer>
+                        <button icon="gtk-print" name="create_facturae_file" string="Exportar" type="object" states="first" class="oe_highlight"/>
+                        o
+                        <button string="Cerrar" class="oe_link" special="cancel"/>
+                    </footer>
                 </form>
             </field>
         </record>

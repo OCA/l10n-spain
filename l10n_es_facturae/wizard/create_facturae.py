@@ -3,7 +3,6 @@
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2009 Alejandro Sanchez (http://www.asr-oss.com)
-#    All Rights Reserved.
 #    Alejandro Sanchez <alejandro@asr-oss.com>
 #    Copyright (c) 2015 Comunitea Servicios Tecnológicos
 #    Omar Castiñeira Saavedra <omar@comunitea.com>
@@ -28,25 +27,9 @@ from openerp import models, fields, _, api, exceptions
 import logging
 import subprocess
 import os
+from unidecode import unidecode
 
 logger = logging.Logger("facturae")
-
-
-def conv_ascii(text):
-    """
-       Convierte vocales accentuadas, ñ y ç a sus caracteres equivalentes ASCII
-    """
-    old_chars = ['á', 'é', 'í', 'ó', 'ú', 'à', 'è', 'ì', 'ò', 'ù', 'ä', 'ë',
-                 'ï', 'ö', 'ü', 'â', 'ê', 'î', 'ô', 'û', 'Á', 'É', 'Í', 'Ú',
-                 'Ó', 'À', 'È', 'Ì', 'Ò', 'Ù', 'Ä', 'Ë', 'Ï', 'Ö', 'Ü', 'Â',
-                 'Ê', 'Î', 'Ô', 'Û', 'ñ', 'Ñ', 'ç', 'Ç', 'ª', 'º', '€']
-    new_chars = ['a', 'e', 'i', 'o', 'u', 'a', 'e', 'i', 'o', 'u', 'a', 'e',
-                 'i', 'o', 'u', 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O',
-                 'U', 'A', 'E', 'I', 'O', 'U', 'A', 'E', 'I', 'O', 'U', 'A',
-                 'E', 'I', 'O', 'U', 'n', 'N', 'c', 'C', 'a', 'o', 'EUR']
-    for old, new in zip(old_chars, new_chars):
-        text = text.replace(unicode(old, 'UTF-8'), new)
-    return text
 
 
 class Log(Exception):
@@ -199,19 +182,6 @@ class CreateFacturae(models.TransientModel):
                 texto += '<TradeName>' + company_partner_obj.name +\
                          '</TradeName>'
 
-            # Fijo hasta que se tome una decision no son obligatorios
-            # texto += '<RegistrationData>'
-            # texto += '<Book>1</Book>'
-            # texto += '<RegisterOfCompaniesLocation>12AP22'
-            # texto += '</RegisterOfCompaniesLocation>'
-            # texto += '<Sheet>3</Sheet>'
-            # texto += '<Folio>15</Folio>'
-            # texto += '<Section>2</Section>'
-            # texto += '<Volume>12</Volume>'
-            # texto += '<AdditionalRegistrationData>Sin datos'
-            # texto += '</AdditionalRegistrationData>'
-            # texto += '</RegistrationData>'
-            # fin
             texto += '<AddressInSpain>'
             if company_partner_obj.street:
                 if company_partner_obj.street2:
@@ -424,11 +394,9 @@ class CreateFacturae(models.TransientModel):
                 texto += '<Tax>'
                 texto += '<TaxTypeCode>01</TaxTypeCode>'
                 if l.tax_code_id:
-                    self.env.cr.execute('SELECT t.amount FROM account_tax t '
-                                        'WHERE t.tax_code_id =%s',
-                                        (l.tax_code_id.id,))
-                    res = self.env.cr.fetchone()
-                    amount = abs(res[0])
+                    taxes = self.env["account.tax"].\
+                        search([("tax_code_id", "=", l.tax_code_id.id)])
+                    amount = abs(taxes[0].amount)
                 else:
                     amount = 0
                 texto += '<TaxRate>' + str('%.2f' % (amount * 100)) +\
@@ -678,8 +646,8 @@ class CreateFacturae(models.TransientModel):
         xml_facturae += _parties_facturae()
         xml_facturae += _invoices_facturae()
         xml_facturae += _end_document()
-        xml_facturae = conv_ascii(xml_facturae)
-        if invoice.company_id.facturae_cert:
+        xml_facturae = unidecode(unicode(xml_facturae))
+        if invoice.company_id.facturae_cert and self.firmar_facturae:
             file_name = (_(
                 'facturae') + '_' + invoice.number + '.xsig').replace('/', '-')
             invoice_file = _sign_document()

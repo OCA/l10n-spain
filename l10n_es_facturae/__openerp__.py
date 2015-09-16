@@ -22,7 +22,7 @@
 
 {
     "name": "Creación de Factura-e (FACe)",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "author": "ASR-OSS, "
               "FactorLibre, "
               "Tecon, "
@@ -30,7 +30,7 @@
               "Malagatic, "
               "Comunitea, "
               "Odoo Community Association (OCA)",
-    "category": "Localisation/Accounting",
+    "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": ["base", "account", "account_payment"],
@@ -43,5 +43,6 @@
         "wizard/create_facturae_view.xml",
         "data/l10n_es_facturae_data.xml",
         "security/ir.model.access.csv"],
+    "pre_init_hook": "pre_init_hook",
     "installable": True,
 }
