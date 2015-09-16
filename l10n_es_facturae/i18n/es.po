@@ -1,215 +1,208 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* l10n_ES_facturae
+#       * l10n_es_facturae
 #
-# Albert Cervera i Areny <albert@nan-tic.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 5.0.5-bzr\n"
-"Report-Msgid-Bugs-To: support@openerp.com\n"
-"POT-Creation-Date: 2010-02-27 12:21:56+0000\n"
-"PO-Revision-Date: 2009-09-13 13:33+0200\n"
-"Last-Translator: Albert Cervera i Areny <albert@nan-tic.com>\n"
-"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-16 16:34+0000\n"
+"PO-Revision-Date: 2015-09-16 16:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Lokalize 1.0\n"
 
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "User error:\n\nCan not create Factura-E file if invoice has no number."
-msgstr "Error de usuario:\n\nNo se puede crear el fichero Factura-e si la factura no tiene número."
+#. module: l10n_es_facturae
+#: view:res.company:l10n_es_facturae.res_company_form
+msgid "Aquí la contraseña del certificado"
+msgstr "Aquí la contraseña del certificado"
 
-#. module: l10n_ES_facturae
-#: wizard_field:create_facturae_file,export,note:0
-msgid "Log"
-msgstr "Información"
+#. module: l10n_es_facturae
+#: view:create.facturae:l10n_es_facturae.wizard_create_facturae
+msgid "Cerrar"
+msgstr "Cerrar"
 
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "User error:\n\nPartner %s does not have a VAT number."
-msgstr "Error de usuario:\n\nLa empresa %s no tiene NIF/CIF. "
+#. module: l10n_es_facturae
+#: view:res.company:l10n_es_facturae.res_company_form
+msgid "Certificado en formato .pfx con contraseña:"
+msgstr "Certificado en formato .pfx con contraseña:"
 
-#. module: l10n_ES_facturae
-#: wizard_field:create_facturae_file,export,facturae:0
-msgid "Factura-E file"
-msgstr "Fichero Factura-e"
+#. module: l10n_es_facturae
+#: field:res.company,facturae_cert:0
+msgid "Certificado firma electrónica"
+msgstr "Certificado firma electrónica"
 
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "User error:\n\nPartner %s has no city."
-msgstr "Error de usuario:\n\nLa empresa %s no tiene ciudad."
+#. module: l10n_es_facturae
+#: field:payment.mode.face.code,code:0
+msgid "Code"
+msgstr "Código"
 
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "Export successful\n\nSummary:\nInvoice number: %s\n"
-msgstr "La exportación se ha realizado correctamente\n\nResumen:\nNúmero de factura: %s\n"
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_res_company
+msgid "Companies"
+msgstr "Compañías"
 
-#. module: l10n_ES_facturae
-#: model:ir.module.module,shortdesc:l10n_ES_facturae.module_meta_information
-msgid "Factura-e File Creation"
-msgstr "Creación de ficheros Factura-e"
+#. module: l10n_es_facturae
+#: field:res.company,facturae_cert_password:0
+msgid "Contraseña certificado"
+msgstr "Contraseña certificado"
 
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "User error:\n\nCompany %s has no VAT number."
-msgstr "Error de usuario:\n\nLa compañía %s no tiene CIF/NIF."
-
-#. module: l10n_ES_facturae
-#: help:res.country,code_3166:0
-msgid "The ISO 3166 country code in three chars."
-msgstr "El código de país ISO 3166 en tres carácteres."
-
-#. module: l10n_ES_facturae
-#: wizard_view:create_facturae_file,init:0
-#, fuzzy
-msgid "Do you want to Create Factura-E?"
-msgstr "Quiere crear la Factura-e?"
-
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "facturae"
-msgstr "facturae"
-
-#. module: l10n_ES_facturae
-#: model:ir.module.module,description:l10n_ES_facturae.module_meta_information
-msgid ""
-"This module creates Factura-e files from invoices.\n"
-"******* Module under development *******\n"
-"Successfully passes format and account validation tests from AEAT: http://"
-"www11.mityc.es/FacturaE/ValidarCompleto\n"
-msgstr ""
-"Este módulo crea ficheros Factura-e de las facturas.\n"
-"******* Módulo en desarrollo *******\n"
-"Supera con éxito los tests de formato y validación contable de la AEAT: "
-"http://www11.mityc.es/FacturaE/ValidarCompleto\n"
-
-#. module: l10n_ES_facturae
-#: constraint:ir.ui.view:0
-msgid "Invalid XML for View Architecture!"
-msgstr "XML inválido en la arquitectura de la vista!"
-
-#. module: l10n_ES_facturae
-#: wizard_button:create_facturae_file,export,end:0
-msgid "Ok"
-msgstr "Aceptar"
-
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "User error:\n\nCompany %s has no country."
-msgstr "Error de usuario:\n\nLa compañía %s no tiene país."
-
-#. module: l10n_ES_facturae
-#: view:res.country:0
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_res_country
+#: view:res.country:l10n_es_facturae.view_country_form_ext
 msgid "Country"
 msgstr "País"
 
-#. module: l10n_ES_facturae
-#: wizard_field:create_facturae_file,export,facturae_fname:0
-msgid "File name"
-msgstr "Nombre del fichero"
-
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "User error:\n\nPartner %s has no street."
-msgstr "Error de usuario:\n\nLa empresa %s no tiene calle."
-
-#. module: l10n_ES_facturae
+#. module: l10n_es_facturae
 #: field:res.country,code_3166:0
 msgid "Country Code"
 msgstr "Código de país"
 
-#. module: l10n_ES_facturae
-#: wizard_view:create_facturae_file,init:0
-msgid "Create Factura-E"
-msgstr "Crear Factura-e"
+#. module: l10n_es_facturae
+#: view:create.facturae:l10n_es_facturae.wizard_create_facturae
+msgid "Crear Factura-E"
+msgstr "Crear Factura-E"
 
-#. module: l10n_ES_facturae
-#: wizard_view:create_facturae_file,export:0
-msgid "Payment order export"
-msgstr "Exportar orden de pago"
+#. module: l10n_es_facturae
+#: model:ir.actions.act_window,name:l10n_es_facturae.wizard_create_facturae_act_window
+msgid "Create Factura-e file"
+msgstr "Crear fichero facturae"
 
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "User error:\n\nCompany %s has no street."
-msgstr "Error de usuario:\n\nLa compañía %s no tiene calle."
+#. module: l10n_es_facturae
+#: field:create.facturae,create_uid:0
+#: field:payment.mode.face.code,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
 
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "User error:\n\nCompany %s has no city."
-msgstr "Error de usuario:\n\nLa compañía %s no tiene ciudad."
+#. module: l10n_es_facturae
+#: field:create.facturae,create_date:0
+#: field:payment.mode.face.code,create_date:0
+msgid "Created on"
+msgstr "Creado el"
 
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "User error:\n\nPartner %s has no province."
-msgstr "Error de usuario:\n\nLa empresa %s no tiene provincia."
+#. module: l10n_es_facturae
+#: help:res.country,code_3166:0
+msgid "El código del país ISO 3166 (3 caractéres). Para España: \"ESP\"."
+msgstr "El código del país ISO 3166 (3 caractéres). Para España: \"ESP\"."
 
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "User error:\n\nCompany %s has no province."
-msgstr "Error de usuario:\n\nLa compañía %s no tiene provincia."
+#. module: l10n_es_facturae
+#: view:create.facturae:l10n_es_facturae.wizard_create_facturae
+msgid "Este proceso creará la factura electrónica"
+msgstr "Este proceso creará la factura electrónica"
 
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "User error:\n\nCompany %s does not have an invoicing address."
-msgstr "Error de usuario:\n\nLa compañía %s no tiene dirección de facturación."
-
-#. module: l10n_ES_facturae
-#: view:account.invoice:0
-msgid "Tax amount"
-msgstr "Total impuestos"
-
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "User error:\n\nPartner %s has no zip code."
-msgstr "Error de usuario:\n\nLa empresa %s no tiene código postal."
-
-#. module: l10n_ES_facturae
-#: wizard_button:create_facturae_file,init,export:0
-msgid "Export"
+#. module: l10n_es_facturae
+#: view:create.facturae:l10n_es_facturae.wizard_create_facturae
+msgid "Exportar"
 msgstr "Exportar"
 
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "FacturaE"
-msgstr "factura-e"
+#. module: l10n_es_facturae
+#: view:res.company:l10n_es_facturae.res_company_form
+#: view:res.partner:l10n_es_facturae.view_partner_form1
+msgid "FACe"
+msgstr "FACe"
 
-#. module: l10n_ES_facturae
-#: wizard_button:create_facturae_file,init,end:0
-msgid "Cancel"
-msgstr "Cancelar"
+#. module: l10n_es_facturae
+#: field:payment.mode,face_code_id:0
+msgid "FACe code"
+msgstr "Código FACe"
 
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "User error:\n\nPartner %s has no country."
-msgstr "Error de usuario:\n\nLa empresa %s no tiene país."
+#. module: l10n_es_facturae
+#: field:res.partner,facturae:0
+msgid "Factura electrónica"
+msgstr "Factura electrónica"
 
-#. module: l10n_ES_facturae
-#: code:addons/l10n_ES_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "User error:\n\nCompany %s has no zip code."
-msgstr "Error de usuario:\n\nLa compañía %s no tiene código postal."
+#. module: l10n_es_facturae
+#: field:create.facturae,facturae:0
+msgid "Factura-E file"
+msgstr "Fichero facturae"
 
-#. module: l10n_ES_facturae
-#: model:ir.actions.wizard,name:l10n_ES_facturae.wizard_create_facturae_file
-#, fuzzy
-msgid "Create Factura-E file "
-msgstr "Crear fichero Factura-e"
+#. module: l10n_es_facturae
+#: field:create.facturae,facturae_fname:0
+msgid "File name"
+msgstr "Nombre fichero"
+
+#. module: l10n_es_facturae
+#: selection:create.facturae,state:0
+msgid "First"
+msgstr "Primero"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,id:0
+#: field:payment.mode.face.code,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,write_uid:0
+#: field:payment.mode.face.code,write_uid:0
+msgid "Last Updated by"
+msgstr "Últ. actualización por"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,write_date:0
+#: field:payment.mode.face.code,write_date:0
+msgid "Last Updated on"
+msgstr "Últ. actualización el"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,note:0
+msgid "Log"
+msgstr "Log"
+
+#. module: l10n_es_facturae
+#: field:payment.mode.face.code,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_es_facturae
+#: field:res.partner,oficina_contable:0
+msgid "Oficina contable"
+msgstr "Oficina contable"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_res_partner_address
+msgid "Partner Addresses"
+msgstr "Direcciones de empresa"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_payment_mode
+msgid "Payment Mode"
+msgstr "Modo de pago"
+
+#. module: l10n_es_facturae
+#: help:create.facturae,firmar_facturae:0
+msgid "Requiere certificado en la ficha de la compañía"
+msgstr "Requiere certificado en la ficha de la compañía"
+
+#. module: l10n_es_facturae
+#: selection:create.facturae,state:0
+msgid "Second"
+msgstr "Segundo"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,state:0
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_es_facturae
+#: field:res.partner,unidad_tramitadora:0
+msgid "Unidad tramitadora"
+msgstr "Unidad tramitadora"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,firmar_facturae:0
+msgid "¿Desea firmar digitalmente el fichero generado?"
+msgstr "¿Desea firmar digitalmente el fichero generado?"
+
+#. module: l10n_es_facturae
+#: field:res.partner,organo_gestor:0
+msgid "Órgano gestor"
+msgstr "Órgano gestor"
