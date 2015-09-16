@@ -23,15 +23,15 @@
 {
     "name": "Creación de Factura-e (FACe)",
     "version": "1.0",
-    "author": "Alejandro Sanchez, Juanjo Algaz - Malagatic.com",
+    "author": "ASR-OSS, "
+              "FactorLibre, "
+              "Tecon, "
+              "Pexego, "
+              "Malagatic, "
+              "Comunitea, "
+              "Odoo Community Association (OCA)",
     "category": "Localisation/Accounting",
-    "description": """
-            Este módulo crea el fichero .XML o el firmado, en formato 3.2 de
-            factura electrónica, desde las facturas de venta.
-            ******* Módulo en desarrollo (wip) *******
-            No soporta facturas rectificativas
-""",
-    "website": "www.asr-oss.com",
+    "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": ["base", "account", "account_payment"],
     "data": [
