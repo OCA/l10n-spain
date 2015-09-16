@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==============
+========
 Facturae
-==============
+========
 
 En virtud de la Ley 25/2013, de 27 de diciembre, de impulso de la factura
 electrónica y creación del registro contable de facturas en el Sector Público,
@@ -27,7 +27,7 @@ a su destino. La administración le proporcionará estos datos.
 Installation
 ============
 
-La única depedencia en el caso de querer firmar el formato facturae desde
+La única dependencia en el caso de querer firmar el formato facturae desde
 Odoo es tener instalado el jre de java en el servidor que hospeda al Odoo.
 
 Configuration

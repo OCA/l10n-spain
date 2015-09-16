@@ -27,6 +27,6 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     facturae = fields.Boolean('Factura electrónica')
-    organo_gestor = fields.Char('Órgano gestor')
-    unidad_tramitadora = fields.Char('Unidad tramitadora')
-    oficina_contable = fields.Char('Oficina contable')
+    organo_gestor = fields.Char('Órgano gestor', size=10)
+    unidad_tramitadora = fields.Char('Unidad tramitadora', size=10)
+    oficina_contable = fields.Char('Oficina contable', size=10)
