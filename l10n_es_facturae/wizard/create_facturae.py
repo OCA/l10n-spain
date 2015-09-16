@@ -166,7 +166,7 @@ class CreateFacturae(models.TransientModel):
             if company_partner_obj.vat:
                 tipo_seller = _persona(company_partner_obj.vat)
             else:
-                log.add(_('User error:\n\Company %s does not have '
+                log.add(_('User error:\n\nCompany %s does not have '
                           'a VAT number.') % company_partner_obj.name, True)
                 raise log
 
@@ -699,15 +699,14 @@ class CreateFacturae(models.TransientModel):
                 invoice.number)
 
         self.write({'note': log(),
-                   'facturae': file,
-                   'facturae_fname': file_name,
-                   'state': 'second'})
+                    'facturae': file,
+                    'facturae_fname': file_name,
+                    'state': 'second'})
 
-        return {
-            'type': 'ir.actions.act_window',
-            'res_model': 'create.facturae',
-            'view_mode': 'form',
-            'view_type': 'form',
-            'res_id': self.id,
-            'views': [(False, 'form')],
-            'target': 'new'}
+        return {'type': 'ir.actions.act_window',
+                'res_model': 'create.facturae',
+                'view_mode': 'form',
+                'view_type': 'form',
+                'res_id': self.id,
+                'views': [(False, 'form')],
+                'target': 'new'}
