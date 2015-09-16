@@ -37,7 +37,7 @@ Configuration
   códigos de FACe
 * La dirección a la que se remite la factura de venta que queremos exportar
   debe estar marcada como facturae y debe tener cubiertos los datos de
-  Oficina contable, Órgano gestor y Unidad tramitadora
+  Oficina contable, Órgano gestor y Unidad tramitadora.
 * Si se desea firmar el xml generado desde Odoo, tenemos que irnos al
   formulario de las compañías y subir el certificado en formato *.pfx y
   escribir la contraseña de acceso al certificado.
@@ -51,8 +51,8 @@ nombre "Crear fichero facturae"
 Known issues / Roadmap
 ======================
 
-* No está soportada la exportación de facturas rectificativas
-* Sólo se exportan ivas repercutidos
+* No está soportada la exportación de facturas rectificativas.
+* Sólo se exportan ivas repercutidos.
 * No se controla el ancho de varios campos cuando se exportan.
 * El certificado y la contraseña de acceso al certificado no se guardan
   cifrados en la base de datos.
