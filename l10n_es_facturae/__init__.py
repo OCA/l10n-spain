@@ -4,7 +4,6 @@
 #    OpenERP, Open Source Management Solution
 #    Copyright (c) 2009 Alejandro Sanchez (http://www.asr-oss.com)
 #                       Alejandro Sanchez <alejandro@asr-oss.com>
-#    $Id$
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -26,3 +25,8 @@ from . import partner
 from . import res_company
 from . import payment_mode
 from . import wizard
+
+
+def pre_init_hook(cr, registry):
+    cr.execute("update ir_model_data set noupdate=false where "
+               "module = 'base' and model = 'res.country'")
