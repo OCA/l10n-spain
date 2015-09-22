@@ -50,5 +50,5 @@ https://code.launchpad.net/~banking-addons-team/banking-addons/bank-statement-re
         "views/account_bank_statement_view.xml",
         "data/account_statement_completion_rule_data.xml",
     ],
-    "installable" : True,
+    "installable" : False,
 }

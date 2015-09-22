@@ -7,10 +7,10 @@
 #    Copyright (c) 2008 Acysos SL. All Rights Reserved.
 #                       Ignacio Ibeas <ignacio@acysos.com>
 #    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
-#    AvanzOSC, Advanced Open Source Consulting 
+#    AvanzOSC, Advanced Open Source Consulting
 #    Copyright (C) 2011-2012 Ainara Galdona (www.avanzosc.com). All Rights Reserved
 #    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com> 
+#                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 #    $Id$
 #
 # Refactorización. Acysos S.L. (http://www.acysos.com) 2012
@@ -66,10 +66,10 @@ https://launchpad.net/account-payment
     "demo_xml" : [],
     "update_xml" : [
                 "wizard/export_remesas_view.xml",
-                "remesas_report.xml", 
+                "remesas_report.xml",
                 "remesas_view.xml",
                 "security/ir.model.access.csv"
                 ],
-    "installable" : True,
+    "installable" : False,
     "active" : False,
 }
