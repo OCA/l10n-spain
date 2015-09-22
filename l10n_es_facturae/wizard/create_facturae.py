@@ -62,6 +62,11 @@ class CreateFacturae(models.TransientModel):
         Boolean('¿Desea firmar digitalmente el fichero generado?',
                 help='Requiere certificado en la ficha de la compañía')
 
+
+    @api.multi
+    def end_document_hook(self, xml_facturae):
+        return xml_facturae
+
     @api.multi
     def create_facturae_file(self):
 
@@ -165,7 +170,7 @@ class CreateFacturae(models.TransientModel):
             texto += '<SellerParty>'
             texto += '<TaxIdentification>'
             texto += '<PersonTypeCode>' + tipo_seller + '</PersonTypeCode>'
-            texto += '<ResidenceTypeCode>U</ResidenceTypeCode>'
+            texto += '<ResidenceTypeCode>R</ResidenceTypeCode>'
             texto += '<TaxIdentificationNumber>' + company_partner_obj.vat \
                      + '</TaxIdentificationNumber>'
             texto += '</TaxIdentification>'
@@ -249,7 +254,7 @@ class CreateFacturae(models.TransientModel):
             texto += '<BuyerParty>'
             texto += '<TaxIdentification>'
             texto += '<PersonTypeCode>' + tipo_buyer + '</PersonTypeCode>'
-            texto += '<ResidenceTypeCode>U</ResidenceTypeCode>'
+            texto += '<ResidenceTypeCode>R</ResidenceTypeCode>'
             texto += '<TaxIdentificationNumber>' + \
                      invoice_partner_obj.vat + '</TaxIdentificationNumber>'
             texto += '</TaxIdentification>'
@@ -558,8 +563,7 @@ class CreateFacturae(models.TransientModel):
             texto += '<Invoice>'
             texto += '<InvoiceHeader>'
             texto += '<InvoiceNumber>' + invoice.number + '</InvoiceNumber>'
-            texto += '<InvoiceSeriesCode>' + invoice.number +\
-                     '</InvoiceSeriesCode>'
+            texto += '<InvoiceSeriesCode></InvoiceSeriesCode>'
             texto += '<InvoiceDocumentType>FC</InvoiceDocumentType>'
             texto += '<InvoiceClass>OO</InvoiceClass>'
             texto += '</InvoiceHeader>'
@@ -646,6 +650,7 @@ class CreateFacturae(models.TransientModel):
         xml_facturae += _parties_facturae()
         xml_facturae += _invoices_facturae()
         xml_facturae += _end_document()
+        xml_facturae = self.end_document_hook(xml_facturae)
         xml_facturae = unidecode(unicode(xml_facturae))
         if invoice.company_id.facturae_cert and self.firmar_facturae:
             file_name = (_(
