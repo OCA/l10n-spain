@@ -650,8 +650,8 @@ class CreateFacturae(models.TransientModel):
         xml_facturae += _parties_facturae()
         xml_facturae += _invoices_facturae()
         xml_facturae += _end_document()
-        xml_facturae = self.end_document_hook(xml_facturae)
         xml_facturae = unidecode(unicode(xml_facturae))
+        xml_facturae = self.end_document_hook(xml_facturae)
         if invoice.company_id.facturae_cert and self.firmar_facturae:
             file_name = (_(
                 'facturae') + '_' + invoice.number + '.xsig').replace('/', '-')
