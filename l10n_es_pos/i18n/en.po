@@ -1,0 +1,117 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_pos
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-25 13:20+0000\n"
+"PO-Revision-Date: 2015-09-25 13:23+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:15
+#: view:website:point_of_sale.report_receipt
+#, python-format
+msgid "Address:"
+msgstr "Address:"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/js/main.js:99
+#, python-format
+msgid "An anonymous order cannot be invoiced"
+msgstr "An anonymous order cannot be invoiced"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:13
+#: view:website:point_of_sale.report_receipt
+#, python-format
+msgid "Customer data"
+msgstr "Customer data"
+
+#. module: l10n_es_pos
+#: view:website:point_of_sale.report_receipt
+msgid "Invoice"
+msgstr "Invoice"
+
+#. module: l10n_es_pos
+#: view:pos.order:l10n_es_pos.view_pos_order_filter
+msgid "Invoices"
+msgstr "Invoices"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:13
+#: view:website:point_of_sale.report_receipt
+#, python-format
+msgid "Name:"
+msgstr "Name:"
+
+#. module: l10n_es_pos
+#: help:pos.config,simplified_invoice_limit:0
+msgid "Over this amount is not legally posible to create a simplified invoice"
+msgstr "Over this amount is not legally posible to create a simplified invoice"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/js/main.js:100
+#, python-format
+msgid ""
+"Please select a client for this order. This can be done by clicking the "
+"order tab"
+msgstr "Please select a client for this order. This can be done by clicking the order tab"
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_pos_order
+msgid "Point of Sale"
+msgstr "Point of Sale"
+
+#. module: l10n_es_pos
+#: view:pos.order:l10n_es_pos.view_pos_order_filter
+msgid "Posted"
+msgstr "Posted"
+
+#. module: l10n_es_pos
+#: view:pos.order:l10n_es_pos.view_pos_order_tree
+msgid "Simplified"
+msgstr "Simplified"
+
+#. module: l10n_es_pos
+#: field:pos.order,simplified:0 view:website:point_of_sale.report_receipt
+msgid "Simplified invoice"
+msgstr "Simplified invoice"
+
+#. module: l10n_es_pos
+#: field:pos.config,simplified_invoice_limit:0
+msgid "Simplified invoice limit"
+msgstr "Simplified invoice limit"
+
+#. module: l10n_es_pos
+#: view:pos.order:l10n_es_pos.view_pos_order_filter
+msgid "Simplified invoices"
+msgstr "Simplified invoices"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:8
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:14
+#: view:website:point_of_sale.report_receipt
+#, python-format
+msgid "VAT:"
+msgstr "VAT:"
+
+#. module: l10n_es_pos
+#: view:website:point_of_sale.report_receipt
+msgid "display:none;"
+msgstr "display:none;"
