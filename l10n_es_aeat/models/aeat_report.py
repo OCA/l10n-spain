@@ -333,7 +333,7 @@ class L10nEsAeatReport(models.AbstractModel):
         self.ensure_one()
         tax_code_model = self.env['account.tax.code']
         tax_code = tax_code_model.search(
-            [('code', '=', tax_code_template.code),
+            [('code', '=', tax_code_template),
              ('company_id', '=', self.company_id.id)], limit=1)
         if include_children and tax_code:
             tax_codes = tax_code_model.search(
