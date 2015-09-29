@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 15:09+0000\n"
-"PO-Revision-Date: 2015-09-04 08:29+0000\n"
-"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
+"POT-Creation-Date: 2015-10-01 08:00+0000\n"
+"PO-Revision-Date: 2015-10-01 08:02+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -260,6 +260,11 @@ msgid "AEAT 296 report line"
 msgstr "Liña da declaración AEAT 296"
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,move_id:0
+msgid "Account entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: help:l10n.es.aeat.mod296.report,casilla_02:0
 msgid "Base de retenciones e ingresos a cuenta"
 msgstr "Base de retencións e ingresos a conta"
@@ -333,6 +338,11 @@ msgstr "Complementaria"
 #: field:l10n.es.aeat.mod296.report.line,complemento_domicilio:0
 msgid "Complemento del domicilio"
 msgstr "Complemento do enderezo"
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,counterpart_account:0
+msgid "Counterpart account"
+msgstr ""
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod296.action_l10n_es_aeat_mod296_report
@@ -513,6 +523,16 @@ msgid "Identificación con el Código Cuenta Valores (C.C.V.)"
 msgstr "Identificación co Código Conta Valores (CCV)"
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,journal_id:0
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_es_aeat_mod296
+#: help:l10n.es.aeat.mod296.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report,representative_vat:0
 msgid "L.R. VAT number"
 msgstr "NIF repr. legal"
@@ -652,6 +672,11 @@ msgid "Phone"
 msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,state:0
+msgid "Posted"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report,previous_number:0
 msgid "Previous declaration number"
 msgstr "Nº da declaración anterior"
@@ -732,6 +757,13 @@ msgstr "Liñas de impostos"
 #: selection:l10n.es.aeat.mod296.report,support_type:0
 msgid "Telematics"
 msgstr "Telemática"
+
+#. module: l10n_es_aeat_mod296
+#: help:l10n.es.aeat.mod296.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
 
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,tipo_codigo:0
