@@ -68,6 +68,25 @@ class account_asset_category(orm.Model):
 class account_asset_asset(orm.Model):
     _inherit = 'account.asset.asset'
 
+    def _get_last_depreciation_date(self, cr, uid, ids, context=None):
+        """
+        @param id: ids of a account.asset.asset objects
+        @return: Returns a dictionary of the effective dates of the last
+        depreciation entry made for given asset ids. If there isn't any,
+        return the purchase date of this asset
+        """
+
+        last_depreciation_date = super(
+            account_asset_asset, self)._get_last_depreciation_date(
+            cr, uid, ids, context=context)
+        for asset in self.browse(cr, uid, ids, context=context):
+            if asset.start_depreciation_date and (
+                asset.start_depreciation_date >
+                    last_depreciation_date[asset.id]):
+                last_depreciation_date[asset.id] = \
+                    asset.start_depreciation_date
+        return last_depreciation_date
+
     _columns = {
         'move_end_period': fields.boolean("At the end of the period",
                                           help='Move the depreciation entry at'
@@ -92,6 +111,12 @@ class account_asset_asset(orm.Model):
                  "depreciations and the percentage to depreciate."),
         'method_percentage': fields.float('Depreciation percentage',
                                           digits=(3, 2)),
+        'start_depreciation_date': fields.date(
+            'Start Depreciation Date',
+            readonly=True,
+            states={'draft': [('readonly', False)]},
+            help="Only needed if not the same than purchase date"),
+
     }
 
     _defaults = {
@@ -163,8 +188,13 @@ class account_asset_asset(orm.Model):
                 return residual_amount
             else:
                 if i == 1 and asset.prorata:
-                    days = (total_days -
-                            float(depreciation_date.strftime('%j'))) + 1
+                    if asset.method_period == 1:
+                        total_days = calendar.monthrange(
+                            depreciation_date.year, depreciation_date.month)[1]
+                        days = total_days - float(depreciation_date.day)
+                    else:
+                        days = (total_days - float(
+                            depreciation_date.strftime('%j'))) + 1
                     percentage = asset.method_percentage * days / total_days
                 else:
                     percentage = asset.method_percentage
@@ -172,10 +202,22 @@ class account_asset_asset(orm.Model):
         elif (asset.method == 'linear' and asset.prorata and
               i != undone_dotation_number):
             # Caso especial de cálculo que cambia
-            amount = amount_to_depr / asset.method_number
+            # Debemos considerar también las cantidades ya depreciadas
+            depreciated_amount = 0
+            depr_lin_obj = self.pool['account.asset.depreciation.line']
+            for line in depr_lin_obj.browse(cr, uid,
+                                            posted_depreciation_line_ids):
+                depreciated_amount += line.amount
+            amount = (amount_to_depr + depreciated_amount) \
+                / asset.method_number
             if i == 1:
-                days = (total_days -
-                        float(depreciation_date.strftime('%j'))) + 1
+                if asset.method_period == 1:
+                        total_days = calendar.monthrange(
+                            depreciation_date.year, depreciation_date.month)[1]
+                        days = total_days - float(depreciation_date.day) + 1
+                else:
+                    days = (total_days -
+                            float(depreciation_date.strftime('%j'))) + 1
                 amount *= days / total_days
             return amount
         else:
