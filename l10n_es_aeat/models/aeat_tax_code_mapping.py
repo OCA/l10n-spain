@@ -80,6 +80,7 @@ class AeatModMapTaxCodeLine(models.Model):
         required=True)
     name = fields.Char(required=True)
     map_parent_id = fields.Many2one('aeat.mod.map.tax.code', required=True)
+    to_regularize = fields.Boolean()
 
     def get_taxes_amount(self, report, periods):
         tax_amount = 0
