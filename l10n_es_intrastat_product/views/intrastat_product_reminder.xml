@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2013-2015 Akretion (http://www.akretion.com/)
+    @author Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __openerp__.py
+-->
+
+<openerp>
+
+<data noupdate="1"> <!-- noupdate = 1 for the 'active' field -->
+<record id="l10n_es_intrastat_product_cron" model="ir.cron">
+    <field name="name">Intrastat Product Reminder</field>
+    <field name="active" eval="False"/>
+    <field name="user_id" ref="base.user_root"/>
+    <field name="interval_number">1</field>
+    <field name="interval_type">months</field>
+    <field name="numbercall">-1</field> <!-- don't limit the number of calls -->
+    <field name="doall" eval="False"/>
+    <field name="model" eval="'l10n.es.report.intrastat.product'"/>
+    <field name="function" eval="'_scheduler_reminder'" />
+    <field name="args" eval="'()'"/>
+</record>
+
+</data>
+<data>
+
+<record id="l10n_es_intrastat_product_reminder_email_template" model="email.template">
+    <field name="name">Intrastat Product Reminder</field>
+    <field name="model_id" ref="l10n_es_intrastat_product.model_l10n_es_report_intrastat_product"/>
+    <field name="auto_delete" eval="False"/>
+    <field name="email_from">${object.company_id.email or 'openerp@example.com'}</field>
+    <field name="email_to">${object.company_id.intrastat_email_list}</field>
+    <field name="subject">${object.type} Intrastat Product ${object.year_month} for ${object.company_id.name}</field>
+    <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+<p>I would like to remind you that we are approaching the deadline for the Intrastat Product declaration for month ${object.year_month}.</p>
+
+<p>As there were no ${object.type} Intrastat Product declaration for that month in Odoo, a draft declaration has been generated automatically by Odoo.</p>
+
+% if ctx.get('exception'):
+<p>When trying to generate the lines of the ${object.type} Intrastat Product declaration, the following error was encountered:</p>
+
+<p>${ctx.get('error_msg')}</p>
+
+<p>You should solve this error, then go to the menu "Accounting > Reporting > Legal Reports > Intrastat reporting > Intrastat Product", open the ${object.type} declaration for month ${object.year_month} and click on the button "Generate lines from invoices".</p>
+
+% else:
+% if object.num_lines and object.num_lines > 0:
+<p>This draft ${object.type} Intrastat Product declaration contains ${object.num_lines} ${object.num_lines == 1 and 'line' or 'lines'} and the total fiscal amount is ${object.total_fiscal_amount} ${object.currency_id.symbol}.</p>
+% else:
+<p>This draft ${object.type} Intrastat Product declaration generated automatically by Odoo doesn't contain any line.</p>
+% endif
+
+<p>Go and check this declaration in Odoo in the menu "Accounting > Reporting > Legal Reports > Intrastat reporting > Intrastat Product".</p>
+
+% endif
+
+<p>
+-- 
+Automatic e-mail sent by Odoo.
+<!-- TODO : print database name (we used object._cr.dbname in openerp 6.1, but it's not possible in OpenERP 7 because the executing of jinja2 is sandboxed and private attributes can't be accessed). -->
+</p>
+</div>
+]]></field>
+</record>
+
+</data>
+</openerp>

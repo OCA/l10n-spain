@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2014 Akretion (http://www.akretion.com/)
+    @author: Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data noupdate="1">
+
+<record id="customer_sale" model="report.intrastat.type">
+    <field name="name">Vente Client</field>
+    <field name="object_type">out_invoice</field>
+    <field name="procedure_code">21</field>
+    <field name="transaction_code">11</field>
+</record>
+
+<record id="supplier_purchase" model="report.intrastat.type">
+    <field name="name">Achat Fournisseur</field>
+    <field name="object_type">in_invoice</field>
+    <field name="procedure_code">11</field>
+    <field name="transaction_code">11</field>
+</record>
+
+<record id="customer_refund" model="report.intrastat.type">
+    <field name="name">Avoir Client</field>
+    <field name="object_type">out_refund</field>
+    <field name="procedure_code">25</field>
+</record>
+
+</data>
+</openerp>

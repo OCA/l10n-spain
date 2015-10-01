@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2011-2014 Akretion (http://www.akretion.com/)
+    @author Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data noupdate="1">
+
+<record id="base.main_company" model="res.company">
+    <!-- <field name="customs_accreditation">A12B</field> -->
+    <!-- <field name="export_obligation_level">detailed</field> -->
+    <!-- <field name="import_obligation_level">detailed</field> -->
+    <field name="default_intrastat_department">94</field>
+    <field name="default_intrastat_transport" eval="int(3)" />
+    <field name="default_intrastat_type_out_invoice" ref="customer_sale"/>
+    <field name="default_intrastat_type_in_invoice" ref="supplier_purchase"/>
+    <field name="default_intrastat_type_out_refund" ref="customer_refund"/>
+    <field name="country_id" ref="base.fr"/>
+</record>
+
+<record id="base.main_partner" model="res.partner">
+    <!-- <field name="siren">441019213</field> -->
+    <field name="nic">00013</field>
+</record>
+
+<record id="product.product_uom_unit" model="product.uom">
+    <field name="intrastat_label">PCE</field>
+</record>
+
+<!-- Elec import is the fiscal rep of Asustek -->
+<record id="base.res_partner_1" model="res.partner">
+    <field name="intrastat_fiscal_representative" ref="base.res_partner_2" />
+</record>
+
+<record id="stock.stock_location_stock" model="stock.location">
+    <field name="intrastat_department">69</field>
+</record>
+
+<record id="base.user_root" model="res.users">
+    <field name="groups_id" eval="[(4, ref('l10n_es_intrastat_product.group_detailed_intrastat_product'))]"/>
+</record>
+
+</data>
+</openerp>

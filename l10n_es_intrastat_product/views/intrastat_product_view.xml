@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2010-2014 Akretion (http://www.akretion.com/)
+    @author Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data>
+
+<!-- Form view of declaration, with integrated form+tree view of lines -->
+<record id="l10n_es_intrastat_product_form" model="ir.ui.view">
+    <field name="name">l10n.es.intrastat.product.form</field>
+    <field name="model">l10n.es.report.intrastat.product</field>
+    <field name="arch" type="xml">
+        <form string="Intrastat Product">
+            <header>
+                <button name="done" string="Done" type="object" class="oe_highlight" states="draft" />
+                <button name="back2draft" string="Back to draft" type="object" states="done" />
+                <button name="generate_product_lines_from_invoice" string="Generate lines from invoices" type="object" states="draft" class="oe_highlight"/>
+                <button name="generate_csv" string="Attach AEAT file" type="object" />
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet string="Intrastat Product">
+                <div class="oe_title">
+                    <h1>
+                        <label string="Intrastat Product" />
+                        <field name="year_month" class="oe_inline" />
+                    </h1>
+                </div>
+                <group name="top-block">
+                    <group name="properties-1">
+                        <field name="start_date" />
+                        <field name="end_date" />
+                        <field name="type" on_change="type_on_change(company_id, type, context)" />
+                        <!-- <field name="obligation_level" /> -->
+                    </group>
+                    <group name="properties-2">
+                        <field name="num_lines" />
+                        <field name="total_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="total_fiscal_amount" widget="monetary" options="{'currency_field': 'currency_id'}" />
+                        <field name="company_id" groups="base.group_multi_company" widget="selection" />
+                        <field name="currency_id" invisible="1"/>
+                    </group>
+                </group>
+                <group name="lines">
+                    <field name="intrastat_line_ids" nolabel="1">
+                        <!-- START of form view for declaration lines -->
+                        <form string="Intrastat product lines">
+                            <group col="4" string="Information to declare" colspan="4">
+                                <field name="intrastat_type_id" required="1" domain="[('intrastat_product_type', '=', parent.type)]" />
+                                <field name="procedure_code" />
+                                <field name="intrastat_code_id" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+                                <field name="intrastat_code" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+                                <field name="partner_country_id" domain="[('intrastat', '=', True)]" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" /> <!-- I don't know why, but OpenERP doesn't want to display "partner_country_code" in Form view -->
+                                <field name="amount_company_currency" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                                <field name="company_currency_id" invisible="1"/>
+                                <field name="weight" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
+                                <field name="quantity" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
+                                <field name="intrastat_uom_id" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
+                                <field name="transaction_code" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
+                                <field name="product_origin_country_id" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/> <!-- TODO : put readonly for exports -->
+                                <field name="transport" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
+                                <field name="incoterm_code" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
+                                <field name="department" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
+                                <field name="partner_id" on_change="partner_on_change(partner_id, context)" attrs="{'readonly': [('type', '=', 'import')]}" /> <!-- TODO : filter on UE partners ? -->
+                                <field name="partner_vat" attrs="{'readonly': [('is_vat_required', '=', False)], 'required': [('is_vat_required', '=', True)]}" />
+                            </group>
+                            <group col="4" colspan="4" string="Additionnal information">
+                                <field name="invoice_id" />
+                                <field name="amount_invoice_currency" widget="monetary" options="{'currency_field': 'invoice_currency_id'}" />
+                                <field name="invoice_currency_id" invisible="1"/>
+                                <field name="amount_product_value_inv_cur" widget="monetary" options="{'currency_field': 'invoice_currency_id'}"/>
+                                <field name="amount_accessory_cost_inv_cur" widget="monetary" options="{'currency_field': 'invoice_currency_id'}"/>
+                                <field name="source_uom_id" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
+                                <field name="is_fiscal_only" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+                                <field name="parent_id" invisible="1"  />
+                                <field name="type" invisible="1"  />
+                                <field name="is_vat_required" invisible="1"  />
+                            </group>
+                        </form>
+                        <tree string="Intrastat product lines">
+                            <field name="intrastat_code" string="H.S. code" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+                            <field name="partner_country_code" string="Partner C." groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+                            <field name="amount_company_currency" string="Value CC" />
+                            <field name="company_currency_id" string="Comp. Cur." />
+                            <field name="procedure_code" string="Procedure" />
+                            <field name="weight" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+                            <field name="quantity" string="Qty" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+                            <field name="intrastat_uom_id" string="Intra. UoM" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+                            <field name="transaction_code" string="Transac." groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+                            <field name="transport" string="Transport" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+                            <field name="department" string="Dpt" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+                            <field name="product_country_origin_code" string="Product C/O" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+                            <field name="partner_vat"/>
+                            <field name="partner_id" />
+                            <field name="invoice_id" />
+                        </tree>
+                    </field>
+                </group>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+        </form>
+    </field>
+</record>
+
+<!-- Tree view for declaration -->
+<record id="l10n_es_intrastat_product_tree" model="ir.ui.view">
+    <field name="name">l10n.es.intrastat.product.tree</field>
+    <field name="model">l10n.es.report.intrastat.product</field>
+    <field name="arch" type="xml">
+        <tree string="Intrastat Product" colors="blue:state=='draft'">
+            <field name="year_month" />
+            <field name="type" />
+            <!-- <field name="obligation_level" /> -->
+            <field name="num_lines" />
+            <field name="total_amount" sum="Total Amount" />
+            <field name="total_fiscal_amount" sum="Total Fiscal Amount" />
+            <field name="currency_id" />
+            <field name="state" />
+            <button icon="gtk-ok" name="done" string="Done" type="object" colspan="1" states="draft" />
+        </tree>
+    </field>
+</record>
+
+
+<!-- Search view for declaration -->
+<record id="l10n_es_intrastat_product_search" model="ir.ui.view">
+    <field name="name">l10n.es.intrastat.product.search</field>
+    <field name="model">l10n.es.report.intrastat.product</field>
+    <field name="arch" type="xml">
+        <search string="Search Intrastat Products">
+            <filter name="import" string="Import" domain="[('type', '=', 'import')]" />
+            <filter name="export" string="Export" domain="[('type', '=', 'export')]" />
+            <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]" />
+            <filter name="done" string="Done" domain="[('state', '=', 'done')]" />
+            <group string="Group By" name="group_by">
+               <filter name="date_group_by" string="Date" context="{'group_by': 'start_date'}" />
+               <filter name="type_group_by" string="Type" context="{'group_by': 'type'}" />
+            </group>
+        </search>
+    </field>
+</record>
+
+<!-- Graph view for declaration -->
+<record id="l10n_es_intrastat_product_graph" model="ir.ui.view">
+    <field name="name">l10n.es.intrastat.product.graph</field>
+    <field name="model">l10n.es.report.intrastat.product</field>
+    <field name="arch" type="xml">
+        <graph string="Intrastat Product" type="bar">
+            <field name="start_date" type="row"/>
+            <field name="type" type="row"/>
+            <field name="total_amount" type="measure"/>
+        </graph>
+    </field>
+</record>
+
+<!-- Action related -->
+<record id="l10n_es_intrastat_product_tree_action" model="ir.actions.act_window">
+    <field name="name">AEAT Intrastat Product</field>
+    <field name="res_model">l10n.es.report.intrastat.product</field>
+    <field name="view_mode">tree,form,graph</field>
+</record>
+
+
+<!-- Intrastat product menu -->
+<menuitem id="l10n_es_intrastat_product_menu"
+    parent="intrastat_base.menu_intrastat_base_root"
+    action="l10n_es_intrastat_product_tree_action" />
+
+
+<!-- Notification in the chatter -->
+<record id="l10n_es_declaration_done" model="mail.message.subtype">
+    <field name="name">Intrastat Product Validated</field>
+    <field name="res_model">l10n.es.report.intrastat.product</field>
+    <field name="default" eval="False"/>
+    <field name="description">Intrastat Product Validated</field>
+</record>
+
+</data>
+</openerp>

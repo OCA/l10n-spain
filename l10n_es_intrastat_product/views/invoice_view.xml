@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2010-2014 Akretion (http://www.akretion.com/)
+    @author Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data>
+
+<!-- Add field on supplier invoice -->
+<record id="invoice_supplier_form" model="ir.ui.view">
+    <field name="name">fr.intrastat.product.supplier.invoice.in</field>
+    <field name="model">account.invoice</field>
+    <field name="inherit_id" ref="account.invoice_supplier_form"/>
+    <field name="arch" type="xml">
+        <notebook>
+            <page string="Intrastat" name="intrastat" position="inside" groups="l10n_es_intrastat_product.group_detailed_intrastat_product">
+                <group>
+                    <field name="intrastat_type_id" domain="[('object_type', '=', type)]" />
+                    <field name="intrastat_country_id" string="Origin country" />
+                    <field name="intrastat_transport" />
+                    <field name="intrastat_department" />
+                    <field name="incoterm_id"/>
+                </group>
+            </page>
+        </notebook>
+    </field>
+</record>
+
+<!-- Add field on customer invoice -->
+<record id="invoice_form" model="ir.ui.view">
+    <field name="name">fr.intrastat.product.invoice.out</field>
+    <field name="model">account.invoice</field>
+    <field name="inherit_id" ref="account.invoice_form"/>
+    <field name="arch" type="xml">
+        <notebook>
+            <page string="Intrastat" name="intrastat" position="inside">
+                <group>
+                    <field name="intrastat_type_id" domain="[('object_type', '=', type)]" />
+                    <field name="intrastat_country_id" string="Destination country" />
+                    <field name="intrastat_transport" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
+                    <field name="intrastat_department" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+                    <field name="incoterm_id"/>
+                </group>
+            </page>
+        </notebook>
+    </field>
+</record>
+
+</data>
+</openerp>
