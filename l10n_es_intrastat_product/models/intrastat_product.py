@@ -274,6 +274,7 @@ class L10nEsReportIntrastatProduct(models.Model):
                                 line.product_id.name,
                                 line.product_id.categ_id.complete_name))
                 intrastat_code_id_to_write = product_intrastat_code.id
+                print "intrastat_code_id_to_write:", intrastat_code_id_to_write
 
                 if not product_intrastat_code.hs_code:
                     raise Warning(
@@ -402,7 +403,7 @@ class L10nEsReportIntrastatProduct(models.Model):
                     'product_origin_country_id':
                     product_origin_country_id_to_write,
                     'transport': parent_values['transport_to_write'],
-                    'department': parent_values['department_to_write'],
+                    'state': parent_values['state_to_write'],
                     'intrastat_type_id':
                     parent_values['intrastat_type_id_to_write'],
                     'procedure_code': parent_values['procedure_code_to_write'],
@@ -505,6 +506,7 @@ class L10nEsReportIntrastatProduct(models.Model):
                 if line_to_create[value]:
                     line_to_create[value] = str(
                         int(round(line_to_create[value], 0)))
+            print "line_to_create:", line_to_create
             line_obj.create(line_to_create)
         return True
 
@@ -539,21 +541,21 @@ class L10nEsReportIntrastatProduct(models.Model):
                 parent_values['transport_to_write'] =\
                     invoice.intrastat_transport
 
-            if not invoice.intrastat_department:
-                if not self.company_id.default_intrastat_department:
+            if not invoice.intrastat_state:
+                if not self.company_id.default_intrastat_state:
                     raise Warning(
-                        _("The intrastat department hasn't been set on "
+                        _("The intrastat state hasn't been set on "
                             "invoice '%s' and the default intrastat "
-                            "department is missing on the company '%s'.")
+                            "state is missing on the company '%s'.")
                         % (invoice.number, self.company_id.name))
                 else:
-                    parent_values['department_to_write'] =\
-                        self.company_id.default_intrastat_department
+                    parent_values['state_to_write'] =\
+                        self.company_id.default_intrastat_state.id
             else:
-                parent_values['department_to_write'] =\
-                    invoice.intrastat_department
+                parent_values['state_to_write'] =\
+                    invoice.intrastat_state.id
         else:
-            parent_values['department_to_write'] = False
+            parent_values['state_to_write'] = False
             parent_values['transport_to_write'] = False
             parent_values['transaction_code_to_write'] = False
             parent_values['partner_country_id_to_write'] = False
@@ -580,11 +582,12 @@ class L10nEsReportIntrastatProduct(models.Model):
         elif self.type == 'export':
             invoice_type = ('out_invoice', 'out_refund')
         invoices = invoice_obj.search([
-            ('type', 'in', invoice_type),
-            ('date_invoice', '<=', self.end_date),
-            ('date_invoice', '>=', self.start_date),
-            ('state', 'in', ('open', 'paid')),
-            ('company_id', '=', self.company_id.id)
+            # ('type', 'in', invoice_type),
+            # ('date_invoice', '<=', self.end_date),
+            # ('date_invoice', '>=', self.start_date),
+            # ('state', 'in', ('open', 'paid')),
+            # ('company_id', '=', self.company_id.id)
+            ('id', '=', 13)
         ], order='date_invoice')
         for invoice in invoices:
             parent_values = {}
@@ -659,6 +662,18 @@ class L10nEsReportIntrastatProduct(models.Model):
                                 "type for supplier invoice' is missing "
                                 "for the company '%s'.")
                             % (invoice.number, self.company_id.name))
+                elif invoice.type == 'in_refund':
+                    if self.company_id.default_intrastat_type_in_refund:
+                        parent_values['intrastat_type_id_to_write'] =\
+                            self.company_id.\
+                            default_intrastat_type_in_refund.id
+                    else:
+                        raise Warning(
+                            _("The intrastat type hasn't been set on "
+                                "invoice '%s' and the 'Default intrastat "
+                                "type for supplier refund' is missing "
+                                "for the company '%s'.")
+                            % (invoice.number, self.company_id.name))
 
             else:
                 parent_values['intrastat_type_id_to_write'] =\
@@ -710,7 +725,7 @@ class L10nEsReportIntrastatProduct(models.Model):
             # TO DO port/airport
             rows.append((
                 line.partner_country_code,  # Estado destino/origen
-                line.department,  # Provincia destino/origen # state_code
+                line.state.code,  # Provincia destino/origen # state_code
                 line.incoterm_code,  # Condiciones de entrega
                 line.transaction_code,  # Naturaleza de la transacción
                 line.transport,  # Modalidad de transporte
@@ -848,7 +863,7 @@ class L10nFrReportIntrastatProductLine(models.Model):
         readonly=True)
     intrastat_code = fields.Char(string='Intrastat Code', size=9)
     intrastat_code_id = fields.Many2one(
-        'report.intrastat.type', string='Intrastat Code (not used in XML)')
+        'hs.code', string='Intrastat Code (not used in XML)')
     # Weight should be an integer... but I want to be able to display
     # nothing in tree view when the value is False (if weight is an
     # integer, a False value would be displayed as 0), that's why weight
@@ -895,7 +910,7 @@ class L10nFrReportIntrastatProductLine(models.Model):
         (8, '8. Transport par navigation intérieure'),
         (9, '9. Propulsion propre')
     ], string='Type of transport')
-    department = fields.Char(string='Department', size=2)
+    state = fields.Many2one('res.country.state', string='State')
     intrastat_type_id = fields.Many2one(
         'report.intrastat.type', string='Intrastat Type', required=True)
     is_vat_required = fields.Boolean(
@@ -962,4 +977,4 @@ class L10nFrReportIntrastatProductLine(models.Model):
             self.weight = False
             self.product_origin_country_id = False
             self.transport = False
-            self.department = False
+            self.state = False

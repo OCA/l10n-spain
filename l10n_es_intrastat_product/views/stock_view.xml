@@ -9,7 +9,7 @@
 <openerp>
 <data>
 
-<!-- Add Type of transport and department on picking form view -->
+<!-- Add Type of transport and state on picking form view -->
 <record id="view_picking_form" model="ir.ui.view">
     <field name="name">fr.intrastat.product.picking.form</field>
     <field name="model">stock.picking</field>
@@ -19,20 +19,20 @@
             <field name="intrastat_transport" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
         </field>
         <field name="company_id" position="after">
-            <field name="intrastat_department" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
+            <field name="intrastat_state" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
         </field>
     </field>
 </record>
 
 
-<!-- Add department on stock location form view -->
+<!-- Add state on stock location form view -->
 <record id="view_location_form" model="ir.ui.view">
-    <field name="name">fr.intrastat.product.stock.location.department</field>
+    <field name="name">fr.intrastat.product.stock.location.state</field>
     <field name="model">stock.location</field>
     <field name="inherit_id" ref="stock.view_location_form" />
     <field name="arch" type="xml">
         <field name="partner_id" position="after">
-            <field name="intrastat_department" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
+            <field name="intrastat_state" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
         </field>
     </field>
 </record>

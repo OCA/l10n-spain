@@ -40,11 +40,11 @@ class AccountInvoice(models.Model):
     ], string='Type of transport',
         help="Type of transport of the goods. This information is "
         "required for the product intrastat report (DEB).")
-    intrastat_department = fields.Char(
-        string='Department', size=2,
-        help="For a customer invoice, contains Spain's department "
+    intrastat_state = fields.Many2one(
+        'res.country.state', string='State',
+        help="For a customer invoice, contains Spain's state "
         "number from which the goods have be shipped. For a supplier "
-        "invoice, contains Spain's department number of reception "
+        "invoice, contains Spain's state number of reception "
         "of the goods. This information is required for the product "
         "intrastat report.")
     intrastat_country_id = fields.Many2one(
@@ -57,7 +57,7 @@ class AccountInvoice(models.Model):
     incoterm_id = fields.Many2one('stock.incoterms', string='Incoterm')
 
     @api.one
-    @api.constrains('intrastat_department')
-    def _check_intrastat_department(self):
-        self.env['res.company'].real_department_check(
-            self.intrastat_department)
+    @api.constrains('intrastat_state')
+    def _check_intrastat_state(self):
+        self.env['res.company'].real_state_check(
+            self.intrastat_state)

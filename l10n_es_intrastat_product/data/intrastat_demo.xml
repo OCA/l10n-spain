@@ -13,7 +13,7 @@
     <!-- <field name="customs_accreditation">A12B</field> -->
     <!-- <field name="export_obligation_level">detailed</field> -->
     <!-- <field name="import_obligation_level">detailed</field> -->
-    <field name="default_intrastat_department">94</field>
+    <field name="default_intrastat_state">94</field>
     <field name="default_intrastat_transport" eval="int(3)" />
     <field name="default_intrastat_type_out_invoice" ref="customer_sale"/>
     <field name="default_intrastat_type_in_invoice" ref="supplier_purchase"/>
@@ -36,7 +36,7 @@
 </record>
 
 <record id="stock.stock_location_stock" model="stock.location">
-    <field name="intrastat_department">69</field>
+    <field name="intrastat_state">69</field>
 </record>
 
 <record id="base.user_root" model="res.users">

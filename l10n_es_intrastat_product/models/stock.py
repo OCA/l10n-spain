@@ -28,16 +28,16 @@ from openerp import models, fields, api
 class StockLocation(models.Model):
     _inherit = "stock.location"
 
-    intrastat_department = fields.Char(
-        string='Department', size=2,
-        help="Spain's department where the stock location is located. "
+    intrastat_state = fields.Char(
+        string='State', size=2,
+        help="Spain's state where the stock location is located. "
         "This parameter is required for the declaration).")
 
     @api.one
-    @api.constrains('intrastat_department')
-    def _check_intrastat_department(self):
-        self.env['res.company'].real_department_check(
-            self.intrastat_department)
+    @api.constrains('intrastat_state')
+    def _check_intrastat_state(self):
+        self.env['res.company'].real_state_check(
+            self.intrastat_state)
 
 
 class StockPicking(models.Model):
@@ -47,8 +47,8 @@ class StockPicking(models.Model):
     @api.depends(
         'picking_type_id', 'move_lines', 'move_lines.location_dest_id',
         'move_lines.location_id')
-    def _compute_department(self):
-        intrastat_department = False
+    def _compute_state(self):
+        intrastat_state = False
         start_point = False
         if self.move_lines:
             if (self.picking_type_id.code == 'outgoing'
@@ -60,15 +60,15 @@ class StockPicking(models.Model):
                     'internal'):
                 start_point = self.move_lines[0].location_dest_id
             while start_point:
-                if start_point.intrastat_department:
-                    intrastat_department = start_point.intrastat_department
+                if start_point.intrastat_state:
+                    intrastat_state = start_point.intrastat_state
                     break
                 elif start_point.location_id:
                     start_point = start_point.location_id
                     continue
                 else:
                     break
-        self.intrastat_department = intrastat_department
+        self.intrastat_state = intrastat_state
 
     intrastat_transport = fields.Selection([
         (1, 'Transport maritime'),
@@ -81,16 +81,16 @@ class StockPicking(models.Model):
         (9, 'Propulsion propre')], 'Type of transport',
         help="Select the type of transport of the goods. This information "
         "is required for the product intrastat report (DEB).")
-    intrastat_department = fields.Char(
-        compute='_compute_department', size=2, string='Intrastat Department',
+    intrastat_state = fields.Char(
+        compute='_compute_state', size=2, string='Intrastat State',
         help='Compute the source departement for a Delivery Order, '
-        'or the destination department for an Incoming Shipment.')
+        'or the destination state for an Incoming Shipment.')
 
     def _create_invoice_from_picking(
             self, cr, uid, picking, vals, context=None):
-        '''Copy transport and department from picking to invoice'''
+        '''Copy transport and state from picking to invoice'''
         vals['intrastat_transport'] = picking.intrastat_transport
-        vals['intrastat_department'] = picking.intrastat_department
+        vals['intrastat_state'] = picking.intrastat_state
         if picking.partner_id and picking.partner_id.country_id:
             vals['intrastat_country_id'] = picking.partner_id.country_id.id
         return super(StockPicking, self)._create_invoice_from_picking(

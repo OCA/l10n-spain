@@ -21,10 +21,11 @@
                 <!-- <field name="import_obligation_level"/> -->
                 <label string="Don't forget to add users to the 'Detailed Intrastat Product' group." colspan="2" />
                 <field name="default_intrastat_transport" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
-                <field name="default_intrastat_department" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+                <field name="default_intrastat_state" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
                 <field name="default_intrastat_type_out_invoice" domain="[('object_type', '=', 'out_invoice')]" />
                 <field name="default_intrastat_type_out_refund" domain="[('object_type', '=', 'out_refund')]" />
                 <field name="default_intrastat_type_in_invoice" domain="[('object_type', '=', 'in_invoice')]" />
+                <field name="default_intrastat_type_in_refund" domain="[('object_type', '=', 'in_refund')]" />
                 <field name="default_incoterm"/>
             </group>
         </group>

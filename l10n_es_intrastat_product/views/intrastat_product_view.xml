@@ -63,7 +63,7 @@
                                 <field name="product_origin_country_id" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/> <!-- TODO : put readonly for exports -->
                                 <field name="transport" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
                                 <field name="incoterm_code" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
-                                <field name="department" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
+                                <field name="state" attrs="{'readonly': [('is_fiscal_only', '=', True)]}" groups="l10n_es_intrastat_product.group_detailed_intrastat_product" />
                                 <field name="partner_id" on_change="partner_on_change(partner_id, context)" attrs="{'readonly': [('type', '=', 'import')]}" /> <!-- TODO : filter on UE partners ? -->
                                 <field name="partner_vat" attrs="{'readonly': [('is_vat_required', '=', False)], 'required': [('is_vat_required', '=', True)]}" />
                             </group>
@@ -91,7 +91,7 @@
                             <field name="intrastat_uom_id" string="Intra. UoM" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
                             <field name="transaction_code" string="Transac." groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
                             <field name="transport" string="Transport" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
-                            <field name="department" string="Dpt" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+                            <field name="state" string="Dpt" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
                             <field name="product_country_origin_code" string="Product C/O" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
                             <field name="partner_vat"/>
                             <field name="partner_id" />
