@@ -32,7 +32,7 @@ class BadInput:
             self.assertEqual(self.record.contribution_account, code[:-1])
 
         if self.is_company:
-            with self.assertRaises(ex.BadLengthCompany):
+            with self.assertRaises(ex.BadLengthCompanyError):
                 write_long_code()
         else:
             write_long_code()
@@ -41,9 +41,9 @@ class BadInput:
         "Try to set a code with less than the allowed digits."
 
         if self.is_company:
-            code, exception = "1212345608", ex.BadLengthCompany
+            code, exception = "1212345608", ex.BadLengthCompanyError
         else:
-            code, exception = "12123456787", ex.BadLengthPerson
+            code, exception = "12123456787", ex.BadLengthPersonError
 
         with self.assertRaises(exception):
             self.record.contribution_account = code
@@ -51,7 +51,7 @@ class BadInput:
     def test_non_numeric(self):
         "Try to set a non-numeric code."
 
-        with self.assertRaises(ex.NonNumericCode):
+        with self.assertRaises(ex.NonNumericCodeError):
             self.record.contribution_account = "bad"
 
 
@@ -81,7 +81,7 @@ class GoodControlDigit:
 class WrongControlDigit:
     def tearDown(self, *args, **kwargs):
         # Ensure the exception is raised
-        with self.assertRaises(ex.ControlDigitValidationFailed):
+        with self.assertRaises(ex.ControlDigitValidationError):
             self.record.contribution_account = self.code
 
         super(WrongControlDigit, self).tearDown(*args, **kwargs)

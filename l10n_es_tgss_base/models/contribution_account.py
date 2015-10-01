@@ -26,14 +26,14 @@ class ABC(models.AbstractModel):
 
         # Ensure it is numeric
         if not self.contribution_account.isnumeric():
-            raise ex.NonNumericCode(self)
+            raise ex.NonNumericCodeError(self)
 
         # Ensure it has the right length
         is_company = getattr(self, "is_company", False)
         if is_company and len(self.contribution_account) != 11:
-            raise ex.BadLengthCompany(self)
+            raise ex.BadLengthCompanyError(self)
         elif not is_company and len(self.contribution_account) != 12:
-            raise ex.BadLengthPerson(self)
+            raise ex.BadLengthPersonError(self)
 
         # Perform control digit validation
         code, control = (self.contribution_account[:-2],
@@ -41,4 +41,4 @@ class ABC(models.AbstractModel):
         if code[2] == "0":
             code = code[:2] + code[3:]
         if "%02d" % (int(code) % 97) != control:
-            raise ex.ControlDigitValidationFailed(self)
+            raise ex.ControlDigitValidationError(self)
