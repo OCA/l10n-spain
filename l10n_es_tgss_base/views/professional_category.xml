@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!-- Views -->
+<record id="professional_category_list" model="ir.ui.view">
+    <field name="name">Professional Category List</field>
+    <field name="model">l10n_es_tgss_base.professional_category</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+        <tree string="Professional Category List" editable="bottom">
+            <field name="number"/>
+            <field name="name"/>
+        </tree>
+    </field>
+</record>
+
+<record id="professional_category_search" model="ir.ui.view">
+    <field name="name">Professional Category Search</field>
+    <field name="model">l10n_es_tgss_base.professional_category</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+        <search>
+            <field name="number"/>
+            <field name="name"/>
+        </search>
+    </field>
+</record>
+
+<!-- Menus -->
+<record id="professional_category_list_action" model="ir.actions.act_window">
+    <field name="name">Professional categories</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">l10n_es_tgss_base.professional_category</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="professional_category_list"/>
+    <field name="search_view_id" ref="professional_category_search"/>
+</record>
+
+<menuitem
+    id="professional_category_menu"
+    parent="base.menu_config_address_book"
+    groups="base.group_no_one"
+    action="professional_category_list_action"/>
+
+</data>
+</openerp>

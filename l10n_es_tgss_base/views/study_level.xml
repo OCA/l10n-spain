@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!-- Views -->
+<record id="study_level_list" model="ir.ui.view">
+    <field name="name">Study Level List</field>
+    <field name="model">l10n_es_tgss_base.study_level</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+        <tree string="Study Level List" editable="bottom">
+            <field name="number"/>
+            <field name="name"/>
+        </tree>
+    </field>
+</record>
+
+<record id="study_level_search" model="ir.ui.view">
+    <field name="name">Study Level Search</field>
+    <field name="model">l10n_es_tgss_base.study_level</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+        <search>
+            <field name="number"/>
+            <field name="name"/>
+        </search>
+    </field>
+</record>
+
+<!-- Menus -->
+<record id="study_level_list_action" model="ir.actions.act_window">
+    <field name="name">Study levels</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">l10n_es_tgss_base.study_level</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="study_level_list"/>
+    <field name="search_view_id" ref="study_level_search"/>
+</record>
+
+<menuitem
+    id="study_level_menu"
+    parent="base.menu_config_address_book"
+    groups="base.group_no_one"
+    action="study_level_list_action"/>
+
+</data>
+</openerp>
