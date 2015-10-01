@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 10:29+0200\n"
-"PO-Revision-Date: 2015-10-01 10:32+0200\n"
+"POT-Creation-Date: 2015-10-01 12:23+0200\n"
+"PO-Revision-Date: 2015-10-01 12:25+0200\n"
+"Last-Translator: Jairo Llopis <j.llopis@grupoesoc.es>\n"
 "Language-Team: \n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.4\n"
-"Last-Translator: Jairo Llopis <j.llopis@grupoesoc.es>\n"
-"Language: es_ES\n"
 
 #. module: l10n_es_tgss_base
 #: help:l10n_es_tgss_base.ccc_abc,contribution_account:0
@@ -41,6 +41,18 @@ msgid "Administrative officers"
 msgstr "Oficiales administrativos"
 
 #. module: l10n_es_tgss_base
+#: field:l10n_es_tgss_base.full_abc,affected_by_gender_violence:0
+#: field:l10n_es_tgss_base.special_situations_abc,affected_by_gender_violence:0
+msgid "Affected by gender violence"
+msgstr "Afectado por violencia de género"
+
+#. module: l10n_es_tgss_base
+#: field:l10n_es_tgss_base.full_abc,affected_by_terrorism:0
+#: field:l10n_es_tgss_base.special_situations_abc,affected_by_terrorism:0
+msgid "Affected by terrorism"
+msgstr "Afectado por terrorismo"
+
+#. module: l10n_es_tgss_base
 #: view:l10n_es_tgss_base.contribution_group:l10n_es_tgss_base.contribution_group_list
 msgid "Contribution Group List"
 msgstr "Lista de grupos de cotización"
@@ -64,10 +76,14 @@ msgid "Contribution groups"
 msgstr "Grupos de cotización"
 
 #. module: l10n_es_tgss_base
-#: code:addons/l10n_es_tgss_base/exceptions.py:24
+#: code:addons/l10n_es_tgss_base/exceptions.py:34
 #, python-format
-msgid "Control digit validation failed. This code is not valid."
-msgstr "El dígito de control ha fallado. Este código no es válido."
+msgid ""
+"Control digit validation failed. The code {record.contribution_account} is "
+"not valid."
+msgstr ""
+"El dígito de control ha fallado. El código {record.contribution_account} no "
+"es válido."
 
 #. module: l10n_es_tgss_base
 #: field:l10n_es_tgss_base.contribution_group,create_uid:0
@@ -82,6 +98,22 @@ msgstr "Creado por"
 #: field:l10n_es_tgss_base.study_level,create_date:0
 msgid "Created on"
 msgstr "Creado el"
+
+#. module: l10n_es_tgss_base
+#: field:l10n_es_tgss_base.full_abc,disability_percentage:0
+#: field:l10n_es_tgss_base.special_situations_abc,disability_percentage:0
+msgid "Disability percentage"
+msgstr "Porcentaje de discapacidad"
+
+#. module: l10n_es_tgss_base
+#: code:addons/l10n_es_tgss_base/exceptions.py:50
+#, python-format
+msgid ""
+"Disability {record.disability_percentage}% of {record.name} must be between "
+"0 and 100."
+msgstr ""
+"El porcentaje de discapacidad {record.disability_percentage}% de {record."
+"name} debería estar entre 0 y 100."
 
 #. module: l10n_es_tgss_base
 #: sql_constraint:l10n_es_tgss_base.contribution_group:0
@@ -103,7 +135,8 @@ msgid "Engineers and graduates"
 msgstr "Ingenieros y licenciados"
 
 #. module: l10n_es_tgss_base
-#: code:addons/l10n_es_tgss_base/exceptions.py:11
+#: code:addons/l10n_es_tgss_base/exceptions.py:20
+#: code:addons/l10n_es_tgss_base/exceptions.py:46
 #, python-format
 msgid "Error(s) with the contribution account."
 msgstr "Error(es) con la cuenta de cotización."
@@ -125,6 +158,7 @@ msgstr "Oficiales de primera y segunda"
 #: field:l10n_es_tgss_base.full_abc,id:0
 #: field:l10n_es_tgss_base.professional_category,id:0
 #: field:l10n_es_tgss_base.professional_category_abc,id:0
+#: field:l10n_es_tgss_base.special_situations_abc,id:0
 #: field:l10n_es_tgss_base.study_level,id:0
 #: field:l10n_es_tgss_base.study_level_abc,id:0
 msgid "ID"
@@ -271,23 +305,30 @@ msgid "Technicians, experts and graduated assistants"
 msgstr "Ingenieros técnicos, peritos y ayudantes titulados"
 
 #. module: l10n_es_tgss_base
-#: code:addons/l10n_es_tgss_base/exceptions.py:16
+#: code:addons/l10n_es_tgss_base/exceptions.py:39
 #, python-format
-msgid "The code must have 11 digits because it is a company."
-msgstr "El código debe tener 11 dígitos porque se trata de una empresa."
+msgid "The code {record.contribution_account} is not numeric."
+msgstr "El código {record.contribution_account} no es numérico."
 
 #. module: l10n_es_tgss_base
-#: code:addons/l10n_es_tgss_base/exceptions.py:20
+#: code:addons/l10n_es_tgss_base/exceptions.py:24
 #, python-format
-msgid "The code must have 12 digits because it is a person."
+msgid ""
+"The code {record.contribution_account} must have 11 digits because it is a "
+"company."
 msgstr ""
-"El código debe tener 12 dígitos porque se trata de una persona física."
+"El código {record.contribution_account} debería tener 11 dígitos porque se "
+"trata de una empresa."
 
 #. module: l10n_es_tgss_base
-#: code:addons/l10n_es_tgss_base/exceptions.py:28
+#: code:addons/l10n_es_tgss_base/exceptions.py:29
 #, python-format
-msgid "The code must only contain numbers."
-msgstr "El código debe ser numérico."
+msgid ""
+"The code {record.contribution_account} must have 12 digits because it is a "
+"person."
+msgstr ""
+"El código {record.contribution_account} debería tener 12 dígitos porque se "
+"trata de una persona física."
 
 #. module: l10n_es_tgss_base
 #: model:l10n_es_tgss_base.contribution_group,name:l10n_es_tgss_base.contribution_group_9

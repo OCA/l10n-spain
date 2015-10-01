@@ -1,25 +1,33 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* l10n_es_tgss_partner
+#	* l10n_es_tgss_partner
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 10:33+0200\n"
-"PO-Revision-Date: 2015-10-01 08:32+0000\n"
+"POT-Creation-Date: 2015-10-01 10:23+0000\n"
+"PO-Revision-Date: 2015-10-01 10:23+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 1.8.4\n"
 
 #. module: l10n_es_tgss_partner
 #: help:res.partner,contribution_account:0
 msgid "Account to interact with the Social Security."
+msgstr ""
+
+#. module: l10n_es_tgss_partner
+#: field:res.partner,affected_by_gender_violence:0
+msgid "Affected by gender violence"
+msgstr ""
+
+#. module: l10n_es_tgss_partner
+#: field:res.partner,affected_by_terrorism:0
+msgid "Affected by terrorism"
 msgstr ""
 
 #. module: l10n_es_tgss_partner
@@ -30,6 +38,11 @@ msgstr ""
 #. module: l10n_es_tgss_partner
 #: field:res.partner,contribution_group_id:0
 msgid "Contribution group"
+msgstr ""
+
+#. module: l10n_es_tgss_partner
+#: field:res.partner,disability_percentage:0
+msgid "Disability percentage"
 msgstr ""
 
 #. module: l10n_es_tgss_partner
@@ -46,3 +59,4 @@ msgstr ""
 #: field:res.partner,study_level_id:0
 msgid "Study level"
 msgstr ""
+
