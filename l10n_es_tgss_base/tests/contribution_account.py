@@ -11,7 +11,7 @@ supposed to inherit these tests in your module to check all is working.
 Any instance of any of these classes must have an :attr:`record` attribute that
 points to the record being tested. The record can be empty if you want.
 
-See module ``l10n_es_tgss_partner`` tests to know how to use this.
+See module :mod:`l10n_es_tgss_partner` tests to know how to use this.
 """
 
 from .. import exceptions as ex

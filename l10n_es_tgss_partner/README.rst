@@ -11,6 +11,9 @@ Este módulo añade los siguientes campos a las empresas y contactos
 
 * Códigos de cuenta de cotización, o CCC.
 * Campos tan sólo para contactos (no empresas):
+    * ¿Afectado/a por terrorismo?
+    * ¿Afectado/a por violencia de género?
+    * Porcentaje de discapacidad.
     * Grupo de cotización.
     * Categoría profesional.
     * Nivel de estudios.

@@ -39,3 +39,13 @@ class NonNumericCodeError(ContributionAccountError):
     _value = _("The code {record.contribution_account} is not numeric.")
 
 
+class DisabilityError(TGSSError):
+    """Base class for disability percentage validation errors."""
+    def __init__(self, *args, **kwargs):
+        super(DisabilityError, self).__init__(*args, **kwargs)
+        self.name = _("Error(s) with the contribution account.")
+
+
+class OutOfRangeError(DisabilityError):
+    _value = _("Disability {record.disability_percentage}% of {record.name} "
+               "must be between 0 and 100.")

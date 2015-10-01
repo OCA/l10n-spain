@@ -16,9 +16,16 @@
 
             <!-- Fields only for contact partners -->
             <xpath expr="//group[@name='personal_information_group']">
-                <field name="contribution_group_id"/>
-                <field name="professional_category_id"/>
-                <field name="study_level_id"/>
+                <group>
+                    <field name="affected_by_terrorism"/>
+                    <field name="affected_by_gender_violence"/>
+                    <field name="disability_percentage" class="oe_inline"/>
+                </group>
+                <group>
+                    <field name="contribution_group_id"/>
+                    <field name="professional_category_id"/>
+                    <field name="study_level_id"/>
+                </group>
             </xpath>
         </data>
     </field>

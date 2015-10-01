@@ -41,10 +41,15 @@ Este módulo proporciona clases abstractas para:
 * Grupos de cotización (*contribution_group*).
 * Categoría profesional (*professional_category*).
 * Nivel de estudios (*study_level*).
+* Situaciones especiales (*special_situations*), que incluyen:
+    * ¿Afectado/a por terrorismo?
+    * ¿Afectado/a por violencia de género?
+    * Porcentaje de discapacidad.
 * Todo eso junto (*FullABC*).
 
 También proporciona una base para hacer tests de los códigos de cuenta de
-cotización, que deberá heredar para comprobar que su submódulo funciona bien.
+cotización y el porcentaje de discapacidad, que deberá heredar para comprobar
+que su submódulo funciona bien.
 
 Lea el código, está todo documentado.
 

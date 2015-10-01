@@ -5,6 +5,7 @@
 from . import (contribution_account,
                contribution_group,
                professional_category,
+               special_situations,
                study_level)
 from .common import _NS
 from openerp import models
@@ -16,4 +17,5 @@ class FullABC(models.AbstractModel):
     _inherit = [module.ABC._name for module in (contribution_account,
                                                 contribution_group,
                                                 professional_category,
+                                                special_situations,
                                                 study_level)]
