@@ -901,14 +901,14 @@ class L10nFrReportIntrastatProductLine(models.Model):
         related='product_origin_country_id.code',
         string='Product Country of Origin', readonly=True)
     transport = fields.Selection([
-        (1, '1. Transport maritime'),
-        (2, '2. Transport par chemin de fer'),
-        (3, '3. Transport par route'),
-        (4, '4. Transport par air'),
-        (5, '5. Envois postaux'),
-        (7, '7. Installations de transport fixes'),
-        (8, '8. Transport par navigation intérieure'),
-        (9, '9. Propulsion propre')
+        (1, '1. Transporte marítimo'),
+        (2, '2. Transporte por ferrocarril'),
+        (3, '3. Transporte por carretera'),
+        (4, '4. Transporte aéreo'),
+        (5, '5. Envíos postales'),
+        (7, '7. Instalaciones fijas de transporte'),
+        (8, '8. Transporte de navegación interior'),
+        (9, '9. Autopropulsión')
     ], string='Type of transport')
     state = fields.Many2one('res.country.state', string='State')
     intrastat_type_id = fields.Many2one(
