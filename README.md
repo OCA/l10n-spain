@@ -33,13 +33,13 @@ addon | version | summary
 [l10n_es_account_balance_report](l10n_es_account_balance_report/) | 0.1 | Informes de cuentas anuales españoles
 [l10n_es_account_bank_statement_import_n43](l10n_es_account_bank_statement_import_n43/) | 4.0 | Importación de extractos bancarios españoles (Norma 43)
 [l10n_es_account_invoice_sequence](l10n_es_account_invoice_sequence/) | 8.0.1.2.1 | Secuencia para facturas separada de la secuencia de asientos
-[l10n_es_aeat](l10n_es_aeat/) | 1.1 | AEAT Base
+[l10n_es_aeat](l10n_es_aeat/) | 8.0.1.2.0 | AEAT Base
 [l10n_es_aeat_mod111](l10n_es_aeat_mod111/) | 1.0 | AEAT modelo 111
 [l10n_es_aeat_mod115](l10n_es_aeat_mod115/) | 1.0 | AEAT modelo 115
 [l10n_es_aeat_mod130](l10n_es_aeat_mod130/) | 0.8 | AEAT modelo 130
 [l10n_es_aeat_mod216](l10n_es_aeat_mod216/) | 1.0 | AEAT modelo 216
 [l10n_es_aeat_mod296](l10n_es_aeat_mod296/) | 1.0 | AEAT modelo 296
-[l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 1.1 | AEAT modelo 303
+[l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 8.0.1.2.0 | AEAT modelo 303
 [l10n_es_aeat_mod340](l10n_es_aeat_mod340/) | 2.0 | Generación de fichero modelo 340 y libro de IVA
 [l10n_es_aeat_mod340_type0](l10n_es_aeat_mod340_type0/) | 1.0 | Generación de fichero modelo 340. Registro tipo 0
 [l10n_es_aeat_mod347](l10n_es_aeat_mod347/) | 8.0.1.3.0 | Modelo 347 AEAT
@@ -47,6 +47,7 @@ addon | version | summary
 [l10n_es_fiscal_year_closing](l10n_es_fiscal_year_closing/) | 1.0 | Cierre de ejercicio fiscal para España
 [l10n_es_partner](l10n_es_partner/) | 1.3 | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 1.0 | Partner Mercantil
+[l10n_es_pos](l10n_es_pos/) | 1.0 | Punto de venta adaptado a la legislación española
 [l10n_es_subcontractor_certificate](l10n_es_subcontractor_certificate/) | 1.0 | Certificado de subcontratista
 [l10n_es_toponyms](l10n_es_toponyms/) | 2.0 | Topónimos españoles
 [payment_redsys](payment_redsys/) | 1.0 | Payment Acquirer: Redsys Implementation
