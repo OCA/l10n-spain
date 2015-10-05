@@ -14,7 +14,7 @@
     "application": False,
     "installable": True,
     "depends": [
-        "l10n_es_tgss_base",
+        "l10n_es_tgss",
         "partner_contact_personal_information_page",
     ],
     "data": [

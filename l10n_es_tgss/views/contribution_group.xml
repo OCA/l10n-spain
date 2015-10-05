@@ -5,7 +5,7 @@
 <!-- Views -->
 <record id="contribution_group_list" model="ir.ui.view">
     <field name="name">Contribution Group List</field>
-    <field name="model">l10n_es_tgss_base.contribution_group</field>
+    <field name="model">l10n_es_tgss.contribution_group</field>
     <field name="priority" eval="1"/>
     <field name="arch" type="xml">
         <tree string="Contribution Group List" editable="bottom">
@@ -17,7 +17,7 @@
 
 <record id="contribution_group_search" model="ir.ui.view">
     <field name="name">Contribution Group Search</field>
-    <field name="model">l10n_es_tgss_base.contribution_group</field>
+    <field name="model">l10n_es_tgss.contribution_group</field>
     <field name="priority" eval="1"/>
     <field name="arch" type="xml">
         <search>
@@ -31,7 +31,7 @@
 <record id="contribution_group_list_action" model="ir.actions.act_window">
     <field name="name">Contribution groups</field>
     <field name="type">ir.actions.act_window</field>
-    <field name="res_model">l10n_es_tgss_base.contribution_group</field>
+    <field name="res_model">l10n_es_tgss.contribution_group</field>
     <field name="view_type">form</field>
     <field name="view_mode">tree</field>
     <field name="view_id" ref="contribution_group_list"/>

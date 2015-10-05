@@ -7,4 +7,4 @@ from openerp import models
 
 class Partner(models.Model):
     _name = "res.partner"
-    _inherit = [_name, "l10n_es_tgss_base.full_abc"]
+    _inherit = [_name, "l10n_es_tgss.full_abc"]

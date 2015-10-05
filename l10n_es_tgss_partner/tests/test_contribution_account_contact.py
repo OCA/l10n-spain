@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from .base import Contact
-from openerp.addons.l10n_es_tgss_base.tests import contribution_account
+from openerp.addons.l10n_es_tgss.tests import contribution_account
 
 
 class BadInputCase(Contact,

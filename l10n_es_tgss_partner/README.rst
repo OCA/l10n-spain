@@ -24,7 +24,7 @@ de la Seguridad Social de España, en determinadas circunstancias.
 Configuración
 =============
 
-Vea la documentación de configuración del módulo ``l10n_es_tgss_base``.
+Vea la documentación de configuración del módulo ``l10n_es_tgss``.
 
 Uso
 ===

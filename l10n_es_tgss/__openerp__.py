@@ -17,9 +17,9 @@
         "base",
     ],
     "data": [
-        "data/l10n_es_tgss_base.contribution_group.csv",
-        "data/l10n_es_tgss_base.professional_category.csv",
-        "data/l10n_es_tgss_base.study_level.csv",
+        "data/l10n_es_tgss.contribution_group.csv",
+        "data/l10n_es_tgss.professional_category.csv",
+        "data/l10n_es_tgss.study_level.csv",
         "security/ir.model.access.csv",
         "views/contribution_group.xml",
         "views/professional_category.xml",
