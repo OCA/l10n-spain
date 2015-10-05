@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:58+0000\n"
+"POT-Creation-Date: 2015-10-01 08:00+0000\n"
+"PO-Revision-Date: 2015-10-01 08:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -74,6 +74,11 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
 msgid "AEAT reports"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,move_id:0
+msgid "Account entry"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -203,6 +208,16 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Contact data"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,counterpart_account:0
+msgid "Counterpart account"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Create move"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -414,12 +429,22 @@ msgid "Informativas"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:203
+#: code:addons/l10n_es_aeat/models/aeat_report.py:225
 #, python-format
 msgid ""
 "It seems that you have defined quarterly periods or periods in the middle of"
 " the month. This cannot be automatically handled. You should select manually"
 " the periods."
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,journal_id:0
+msgid "Journal"
+msgstr "Diari"
+
+#. module: l10n_es_aeat
+#: help:l10n.es.aeat.report,journal_id:0
+msgid "Journal in which post the move."
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -531,7 +556,7 @@ msgid "Odoo model"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:297
+#: code:addons/l10n_es_aeat/models/aeat_report.py:406
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
@@ -569,6 +594,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat
+#: selection:l10n.es.aeat.report,state:0
+msgid "Posted"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,previous_number:0
 msgid "Previous declaration number"
 msgstr ""
@@ -586,6 +616,12 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Recalculate"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_report.py:319
+#, python-format
+msgid "Regularization"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -621,12 +657,17 @@ msgid "Show journal items"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Show move"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,sign:0
 msgid "Sign character"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:163
+#: code:addons/l10n_es_aeat/models/aeat_report.py:185
 #, python-format
 msgid ""
 "Split fiscal years cannot be automatically handled. You should select "
@@ -707,8 +748,25 @@ msgid "The formated string must match the given length"
 msgstr "La cadena formatejada ha de satisfer la llargada donada."
 
 #. module: l10n_es_aeat
+#: help:l10n.es.aeat.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "This button creates the regularization move for the selected report"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,date_to:0
 msgid "To Date"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:aeat.mod.map.tax.code.line,to_regularize:0
+msgid "To regularize"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -737,6 +795,12 @@ msgstr ""
 #, python-format
 msgid "Wrong aling option. It should be < or >"
 msgstr "Opció d'alineament errònia. Hauria de ser < o >"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_report.py:353
+#, python-format
+msgid "You must fill both journal and counterpart account."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
