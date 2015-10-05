@@ -1,16 +1,16 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat_mod303
-#
+# 
 # Translators:
 # Alejandro Santana <alejandrosantana@anubia.es>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-08-20 18:33+0000\n"
-"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
+"POT-Creation-Date: 2015-10-16 07:49+0000\n"
+"PO-Revision-Date: 2015-10-14 16:43+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,6 +42,11 @@ msgstr "Declaraciones AEAT 303"
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod303.action_l10n_es_aeat_mod303_report
 msgid "AEAT model 303"
 msgstr "Modelo AEAT 303"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,move_id:0
+msgid "Account entry"
+msgstr "Entrada cuenta"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,casilla_69:0
@@ -79,6 +84,11 @@ msgstr "Compensar"
 #: selection:l10n.es.aeat.mod303.report,type:0
 msgid "Complementary"
 msgstr "Complementaria"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,counterpart_account:0
+msgid "Counterpart account"
+msgstr "Cuenta contrapartida"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod303.action_l10n_es_aeat_mod303_report
@@ -168,6 +178,16 @@ msgid "Inscrito en el Registro de Devolución Mensual"
 msgstr "Inscrito en el Registro de Devolución Mensual"
 
 #. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,journal_id:0
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_es_aeat_mod303
+#: help:l10n.es.aeat.mod303.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr "Diario en el que publicar el movimiento."
+
+#. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,representative_vat:0
 msgid "L.R. VAT number"
 msgstr "Nombre del representante legal"
@@ -228,6 +248,11 @@ msgid "Phone"
 msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,state:0
+msgid "Posted"
+msgstr "Contabilizado"
+
+#. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,previous_number:0
 msgid "Previous declaration number"
 msgstr "Nº previo declaración"
@@ -250,13 +275,13 @@ msgid ""
 msgstr "Resultado de la anterior o anteriores declaraciones del mismo concepto, ejercicio y periodo"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:160
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:170
 #, python-format
 msgid "Select an account for making the charge"
 msgstr "Seleccione una cuenta bancaria para realizar el cargo"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:162
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:172
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr "Seleccione una cuenta bancaria para recibir el dinero"
@@ -302,6 +327,13 @@ msgstr "Líneas de impuestos"
 #: selection:l10n.es.aeat.mod303.report,support_type:0
 msgid "Telematics"
 msgstr "Telemática"
+
+#. module: l10n_es_aeat_mod303
+#: help:l10n.es.aeat.mod303.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr "Esta cuenta será la contrapartida para todos los elementos del diario que están regularizados al contabilizar el informe."
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,company_vat:0
