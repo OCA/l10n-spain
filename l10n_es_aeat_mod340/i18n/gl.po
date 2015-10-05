@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-08-10 00:32+0000\n"
-"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
+"POT-Creation-Date: 2015-10-01 08:00+0000\n"
+"PO-Revision-Date: 2015-10-01 08:02+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,6 +69,11 @@ msgstr "Modelo 340 - Asistente para cálculo de rexistros"
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod340.action_l10n_es_aeat_mod340_report
 msgid "AEAT model 340"
 msgstr "AEAT modelo 340"
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.report,move_id:0
+msgid "Account entry"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: reportreport mod340:0 reportvat book:0
@@ -164,6 +169,11 @@ msgstr "Complementaria"
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_report_search
 msgid "Confirmed models"
 msgstr "Declaracións confirmadas"
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.report,counterpart_account:0
+msgid "Counterpart account"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.intracomunitarias,partner_country_code:0
@@ -430,6 +440,16 @@ msgid "Issued invoices"
 msgstr "Facturas emitidas"
 
 #. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.report,journal_id:0
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_es_aeat_mod340
+#: help:l10n.es.aeat.mod340.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.intracomunitarias,representative_vat:0
 #: field:l10n.es.aeat.mod340.investment,representative_vat:0
 #: field:l10n.es.aeat.mod340.issued,representative_vat:0
@@ -601,6 +621,11 @@ msgid "Phone"
 msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod340
+#: selection:l10n.es.aeat.mod340.report,state:0
+msgid "Posted"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,previous_number:0
 msgid "Previous declaration number"
 msgstr "Nº da declaración anterior"
@@ -770,6 +795,13 @@ msgstr "O rexistro de tipo 2 debe ter unha lonxitude de 500 caracteres por cada 
 msgid ""
 "The type 2 received record must be 500 characters long for each Vat registry"
 msgstr "O rexistro de tipo 2 debe ter unha lonxitude de 500 caracteres por cada rexistro de IVE"
+
+#. module: l10n_es_aeat_mod340
+#: help:l10n.es.aeat.mod340.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:48

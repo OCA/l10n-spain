@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:58+0000\n"
+"POT-Creation-Date: 2015-10-01 08:00+0000\n"
+"PO-Revision-Date: 2015-10-01 08:02+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -27,6 +27,11 @@ msgstr "Declaración AEAT 115"
 #, python-format
 msgid "Account Move Lines"
 msgstr "Apuntes contables"
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,move_id:0
+msgid "Account entry"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,calculation_date:0
@@ -67,6 +72,11 @@ msgstr "Compañía"
 #: selection:l10n.es.aeat.mod115.report,type:0
 msgid "Complementary"
 msgstr "Complementaria"
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,counterpart_account:0
+msgid "Counterpart account"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod115.action_l10n_es_aeat_mod115_report
@@ -177,6 +187,16 @@ msgid "Ingreso a anotar en CCT"
 msgstr "Ingreso a anotar en CCT"
 
 #. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,journal_id:0
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,representative_vat:0
 msgid "L.R. VAT number"
 msgstr "NIF representante legal"
@@ -254,6 +274,11 @@ msgid "Phone"
 msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,state:0
+msgid "Posted"
+msgstr "Contabilizado"
+
+#. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,previous_number:0
 msgid "Previous declaration number"
 msgstr "Nº declaración previa"
@@ -323,6 +348,13 @@ msgstr "Lineas de impuestos"
 #: selection:l10n.es.aeat.mod115.report,support_type:0
 msgid "Telematics"
 msgstr "Telemático"
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,tipo_declaracion:0

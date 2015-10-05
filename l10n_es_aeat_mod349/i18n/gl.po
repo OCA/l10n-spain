@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-08-20 18:33+0000\n"
-"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
+"POT-Creation-Date: 2015-10-01 08:00+0000\n"
+"PO-Revision-Date: 2015-10-01 08:03+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -146,6 +146,11 @@ msgid "AEAT Model 349 Report"
 msgstr "Declaración modelo AEAT 349"
 
 #. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,move_id:0
+msgid "Account entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:222
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:231
 #, python-format
@@ -239,6 +244,11 @@ msgstr "Complementaria"
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
 msgstr "O nome do contacto (Nome completo) debe conter nome e apelidos"
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,counterpart_account:0
+msgid "Counterpart account"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record,country_id:0
@@ -443,6 +453,16 @@ msgstr "ID factura"
 #: selection:l10n.es.aeat.mod349.report,month_selection:0
 msgid "January"
 msgstr "xaneiro"
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,journal_id:0
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_es_aeat_mod349
+#: help:l10n.es.aeat.mod349.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
@@ -685,6 +705,11 @@ msgid "Phone"
 msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod349
+#: selection:l10n.es.aeat.mod349.report,state:0
+msgid "Posted"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,previous_number:0
 msgid "Previous declaration number"
 msgstr "Nº da declaración anterior"
@@ -788,6 +813,13 @@ msgstr "O tipo de rexistro 1 debe ter 502 caracteres de longo"
 #, python-format
 msgid "The type 2 record must be 502 characters long"
 msgstr "O tipo de rexistro 2 debe ter 502 caracteres de longo"
+
+#. module: l10n_es_aeat_mod349
+#: help:l10n.es.aeat.mod349.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
