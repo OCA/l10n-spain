@@ -132,7 +132,7 @@ class AccountBankStatementImport(models.TransientModel):
         # Note: Only perform this check if the balance is defined on the file
         # record, as some banks may leave it empty (zero) on some circumstances
         # (like CaixaNova extracts for VISA credit cards).
-        if st_group['saldo_fin']:
+        if st_group['saldo_fin'] and st_group['saldo_ini']:
             balance = st_group['saldo_ini'] + credit - debit
             if abs(st_group['saldo_fin'] - balance) > 0.005:
                 raise exceptions.Warning(
