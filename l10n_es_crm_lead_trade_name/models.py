@@ -20,7 +20,6 @@ class Lead(models.Model):
     @api.multi
     def on_change_partner_id(self, partner_id):
         """Recover trade name from partner if available."""
-        self.ensure_one()
         result = super(Lead, self).on_change_partner_id(partner_id)
 
         if result.get("value"):
