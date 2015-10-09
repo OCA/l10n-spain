@@ -3,13 +3,14 @@
 # * l10n_es_pos
 # 
 # Translators:
+# Eric Antones <eantones@users.noreply.github.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-25 13:20+0000\n"
-"PO-Revision-Date: 2015-09-25 13:23+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-02-29 13:42+0000\n"
+"Last-Translator: Eric Antones <eantones@users.noreply.github.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 #: view:website:point_of_sale.report_receipt
 #, python-format
 msgid "Address:"
-msgstr ""
+msgstr "Adreça:"
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -38,7 +39,7 @@ msgstr ""
 #: view:website:point_of_sale.report_receipt
 #, python-format
 msgid "Customer data"
-msgstr ""
+msgstr "Dades del client"
 
 #. module: l10n_es_pos
 #: view:website:point_of_sale.report_receipt
@@ -48,7 +49,7 @@ msgstr "Factura"
 #. module: l10n_es_pos
 #: view:pos.order:l10n_es_pos.view_pos_order_filter
 msgid "Invoices"
-msgstr ""
+msgstr "Factures"
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -56,7 +57,7 @@ msgstr ""
 #: view:website:point_of_sale.report_receipt
 #, python-format
 msgid "Name:"
-msgstr ""
+msgstr "Nom:"
 
 #. module: l10n_es_pos
 #: help:pos.config,simplified_invoice_limit:0
@@ -75,7 +76,7 @@ msgstr ""
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_pos_order
 msgid "Point of Sale"
-msgstr ""
+msgstr "Punt de Venda"
 
 #. module: l10n_es_pos
 #: view:pos.order:l10n_es_pos.view_pos_order_filter
@@ -90,7 +91,7 @@ msgstr ""
 #. module: l10n_es_pos
 #: field:pos.order,simplified:0 view:website:point_of_sale.report_receipt
 msgid "Simplified invoice"
-msgstr ""
+msgstr "Factura simplificada"
 
 #. module: l10n_es_pos
 #: field:pos.config,simplified_invoice_limit:0
