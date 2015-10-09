@@ -23,7 +23,7 @@
 
 {
     'name': 'Generación de fichero modelo 340 y libro de IVA',
-    'version': '2.0',
+    'version': '8.0.2.0.0',
     'author': "Acysos S.L., "
               "Ting, "
               "Nan-tic, "

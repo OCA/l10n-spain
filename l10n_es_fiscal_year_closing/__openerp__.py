@@ -32,7 +32,7 @@
 
 {
     'name': "Cierre de ejercicio fiscal para España",
-    'version': "1.0",
+    'version': "8.0.1.0.0",
     'author': "Pexego,Odoo Community Association (OCA)",
     'website': "http://www.pexego.es",
     'contributors': ['Pedro M. Baeza', 'Joaquín Gutierrez'],
