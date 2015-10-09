@@ -23,7 +23,7 @@
 
 {
     "name": "Certificado de subcontratista",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "author": "Domatix,Odoo Community Association (OCA)",
     "website": "www.domatix.com",
     "category": "Accounting",
