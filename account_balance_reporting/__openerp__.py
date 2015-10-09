@@ -28,7 +28,7 @@
 
 {
     "name": "Account balance reporting engine",
-    "version": "0.3",
+    "version": "8.0.0.3.0",
     "author": "Pexego,Odoo Community Association (OCA)",
     "website": "http://www.pexego.es",
     "category": "Accounting",
