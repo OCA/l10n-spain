@@ -89,6 +89,7 @@ class L10nEsReportIntrastatProduct(models.Model):
         ('export', 'Export')
     ], 'Type', required=True, states={'done': [('readonly', True)]},
         track_visibility='always', help="Select the type of DEB.")
+    # ¿Es necesario tener en cuenta el 'oblication_level' para España?
     # obligation_level = fields.Selection([
     #     ('detailed', 'Detailed'),
     #     ('simplified', 'Simplified')
@@ -127,35 +128,39 @@ class L10nEsReportIntrastatProduct(models.Model):
         "the parameters become read-only.")
     # No more need for date_done, because chatter does the job
 
-    # @api.multi
-    # def type_on_change(
-    #         self, company_id=False, type=False, context=None):
-    #     result = {}
-    #     result['value'] = {}
-    #     if type and company_id:
-    #         company = self.env['res.company'].browse(company_id)
-    #         if type == 'import':
-    #             if company.import_obligation_level:
-    #                 if company.import_obligation_level == 'detailed':
-    #                     result['value']['obligation_level'] =\
-    #                         company.import_obligation_level
-    #                 elif company.import_obligation_level == 'none':
-    #                     result['warning'] = {
-    #                         'title': _("Warning on the Obligation Level"),
-    #                         'message':
-    #                         _("You are tying to make an "
-    #                             "Intrastat Product of type 'Import', "
-    #                             "but the Import Obligation Level set "
-    #                             "for your company is 'None'. If this "
-    #                             "parameter on your company is correct, "
-    #                             "you should NOT create an Import Intrastat "
-    #                             "Product."),
-    #                     }
-    #         if type == 'export':
-    #             if company.export_obligation_level:
-    #                 result['value']['obligation_level'] =\
-    #                     company.export_obligation_level
-    #     return result
+    @api.multi
+    def type_on_change(
+            self, company_id=False, type=False, context=None):
+        pass
+
+        # ¿Es necesario tener en cuenta el 'oblication_level' para España?
+
+        # result = {}
+        # result['value'] = {}
+        # if type and company_id:
+        #     company = self.env['res.company'].browse(company_id)
+        #     if type == 'import':
+        #         if company.import_obligation_level:
+        #             if company.import_obligation_level == 'detailed':
+        #                 result['value']['obligation_level'] =\
+        #                     company.import_obligation_level
+        #             elif company.import_obligation_level == 'none':
+        #                 result['warning'] = {
+        #                     'title': _("Warning on the Obligation Level"),
+        #                     'message':
+        #                     _("You are tying to make an "
+        #                         "Intrastat Product of type 'Import', "
+        #                         "but the Import Obligation Level set "
+        #                         "for your company is 'None'. If this "
+        #                         "parameter on your company is correct, "
+        #                         "you should NOT create an Import Intrastat "
+        #                         "Product."),
+        #                 }
+        #     if type == 'export':
+        #         if company.export_obligation_level:
+        #             result['value']['obligation_level'] =\
+        #                 company.export_obligation_level
+        # return result
 
     @api.constrains('start_date')
     def _product_check_start_date(self):
