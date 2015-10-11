@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 08:00+0000\n"
-"PO-Revision-Date: 2015-10-01 08:02+0000\n"
+"POT-Creation-Date: 2015-10-09 13:57+0000\n"
+"PO-Revision-Date: 2015-10-08 14:10+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "AEAT 115 report"
 msgstr "AEAT 115 report"
 
 #. module: l10n_es_aeat_mod115
-#: code:addons/l10n_es_aeat_mod115/models/mod115.py:124
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:135
 #, python-format
 msgid "Account Move Lines"
 msgstr "Account Move Lines"
@@ -338,6 +338,13 @@ msgstr "Substitutive"
 #: field:l10n.es.aeat.mod115.report,support_type:0
 msgid "Support Type"
 msgstr "Support Type"
+
+#. module: l10n_es_aeat_mod115
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:108
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:115
+#, python-format
+msgid "Tabla de impuestos desactualizada."
+msgstr "Tabla de impuestos desactualizada."
 
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,tax_lines:0
