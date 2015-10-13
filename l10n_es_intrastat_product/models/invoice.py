@@ -55,9 +55,3 @@ class AccountInvoice(models.Model):
     intrastat_type_id = fields.Many2one(
         'report.intrastat.type', string='Intrastat type', ondelete='restrict')
     incoterm_id = fields.Many2one('stock.incoterms', string='Incoterm')
-
-    @api.one
-    @api.constrains('intrastat_state')
-    def _check_intrastat_state(self):
-        self.env['res.company'].real_state_check(
-            self.intrastat_state)

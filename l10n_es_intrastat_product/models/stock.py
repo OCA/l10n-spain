@@ -33,12 +33,6 @@ class StockLocation(models.Model):
         help="Spain's state where the stock location is located. "
         "This parameter is required for the declaration).")
 
-    @api.one
-    @api.constrains('intrastat_state')
-    def _check_intrastat_state(self):
-        self.env['res.company'].real_state_check(
-            self.intrastat_state)
-
 
 class StockPicking(models.Model):
     _inherit = "stock.picking"
