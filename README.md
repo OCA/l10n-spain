@@ -56,9 +56,9 @@ Unported addons
 ---------------
 addon | version | summary
 --- | --- | ---
-[l10n_es_account](__unported__/l10n_es_account/) | 3.0 (unported) | Spanish account tools
-[l10n_es_bank_statement](__unported__/l10n_es_bank_statement/) | 3.0 (unported) | Extractos bancarios españoles (Norma 43)
-[l10n_es_payment_order](__unported__/l10n_es_payment_order/) | 1.6 (unported) | Exportación de ficheros bancarios CSB 19, 32, 34 y 58
+[l10n_es_account](l10n_es_account/) | 3.0 (unported) | Spanish account tools
+[l10n_es_bank_statement](l10n_es_bank_statement/) | 3.0 (unported) | Extractos bancarios españoles (Norma 43)
+[l10n_es_payment_order](l10n_es_payment_order/) | 1.6 (unported) | Exportación de ficheros bancarios CSB 19, 32, 34 y 58
 
 [//]: # (end addons)
 
