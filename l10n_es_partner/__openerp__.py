@@ -47,5 +47,5 @@
     "test": [
         "test/l10n_es_partner.yml",
     ],
-    "installable": True,
+    'installable': False,
 }

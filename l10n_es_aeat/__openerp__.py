@@ -58,5 +58,5 @@
         'views/aeat_export_configuration_view.xml',
         'views/aeat_tax_code_mapping_view.xml'
     ],
-    'installable': True,
+    'installable': False,
 }

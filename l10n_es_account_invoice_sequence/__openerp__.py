@@ -44,5 +44,5 @@
         'test/sequence.yml'
     ],
     "post_init_hook": "fill_invoice_sequences",
-    "installable": True,
+    'installable': False,
 }

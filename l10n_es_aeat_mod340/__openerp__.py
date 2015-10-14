@@ -81,5 +81,5 @@ Exportación de asientos resumen de facturas
         'views/account_view.xml',
         'data/taxes_data.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

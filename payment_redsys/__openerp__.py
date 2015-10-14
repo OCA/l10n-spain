@@ -11,5 +11,5 @@
         'views/redsys.xml',
         'views/payment_acquirer.xml'
     ],
-    'installable': True,
+    'installable': False,
 }

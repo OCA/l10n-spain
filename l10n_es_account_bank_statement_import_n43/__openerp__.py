@@ -32,5 +32,5 @@
         'account_bank_statement_import',
     ],
     'data': [],
-    'installable': True,
+    'installable': False,
 }

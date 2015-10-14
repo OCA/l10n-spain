@@ -74,5 +74,5 @@ but it might be used as a generic accounting report engine.
         "report/account_balance_reporting_reports.xml",
         "wizard/wizard_print_view.xml",
     ],
-    "installable": True,
+    'installable': False,
 }

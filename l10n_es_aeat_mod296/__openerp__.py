@@ -36,5 +36,5 @@
         'wizard/export_mod296_to_boe.xml',
         'views/mod296_view.xml',
         'security/ir.model.access.csv'],
-    'installable': True,
+    'installable': False,
 }

@@ -59,7 +59,7 @@
         "views/mod347_view.xml",
         "report/mod347_report.xml",
     ],
-    'installable': True,
+    'installable': False,
     "post_init_hook": "post_init_hook",
     'images': [
         'images/l10n_es_aeat_mod347.png',
