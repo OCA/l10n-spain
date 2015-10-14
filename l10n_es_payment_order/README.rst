@@ -19,3 +19,32 @@ También se proporciona un informe para imprimir un listado de los pagos/cobros 
 **AVISO:** Si está realizando la instalación de forma local (no desde Aplicaciones), este módulo requiere el módulo *account_banking_payment_export*, disponible en:
 
 https://github.com/OCA/bank-payment
+
+Créditos
+========
+
+Contribuidores
+--------------
+
+* Ignacio Ibeas <ignacio@acysos.com>
+* Jordi Esteve <jesteve@zikzakmedia.com
+* Pablo Rocandio 
+* Nan·tic
+* Ainara Galdona <comercial@avanzosc.es>
+* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Alexis de Lattre <alexis.delattre@akretion.com>
+
+Maintainer
+----------
+
+.. image:: http://odoo-community.org/logo.png
+   :alt: Odoo Community Association
+   :target: http://odoo-community.org
+
+This module is maintained by the OCA.
+
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
+
+To contribute to this module, please visit http://odoo-community.org.

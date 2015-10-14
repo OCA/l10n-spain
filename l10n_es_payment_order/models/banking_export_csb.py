@@ -21,8 +21,8 @@
 #
 ##############################################################################
 from openerp import models, fields, api
-from openerp.addons.decimal_precision import decimal_precision as dp
 from unidecode import unidecode
+
 
 class BankingExportCsb(models.Model):
     """CSB export"""
@@ -40,11 +40,11 @@ class BankingExportCsb(models.Model):
         else:
             filename = 'csb.txt'
         self.filename = filename
-        
+
     payment_order_ids = fields.Many2many(
         comodel_name='payment.order',
         relation='account_payment_order_csb_rel',
-        column1='banking_export_sepa_id', column2='account_order_id',
+        column1='banking_export_csb_id', column2='account_order_id',
         string='Payment Orders',
         readonly=True)
     create_date = fields.Datetime(string='Generation Date', readonly=True)

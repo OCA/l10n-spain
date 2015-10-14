@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2013 Akretion (http://www.akretion.com)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  The licence is in the file __openerp__.py
+  Copyright (C) 2015 Acysos S.L. (http://www.acysos.com)
+  @author: Ignacio Ibeas <ignacio@acysos.com>
+-->
+<openerp>
+	<data>
+	
+		<record id="view_banking_export_sdd_form" model="ir.ui.view">
+		    <field name="name">account.banking.export.csb.form</field>
+		    <field name="model">banking.export.csb</field>
+		    <field name="arch" type="xml">
+		        <form string="CSB Exports" version="7.0">
+		            <header>
+		                <field name="state" widget="statusbar"/>
+		            </header>
+		            <notebook>
+		                <page string="General Information">
+		                    <group name="main">
+		                        <field name="create_date" />
+		                        <field name="file" filename="filename"/>
+		                        <field name="filename" invisible="True"/>
+		                    </group>
+		                </page>
+		                <page string="Payment Orders">
+		                    <field name="payment_order_ids" nolabel="1"/>
+		                </page>
+		            </notebook>
+		        </form>
+		    </field>
+		</record>
+		
+		
+		<record id="view_banking_export_csb_tree" model="ir.ui.view">
+		    <field name="name">account.banking.export.csb.tree</field>
+		    <field name="model">banking.export.csb</field>
+		    <field name="arch" type="xml">
+		        <tree string="CSB Exports">
+		            <field name="filename"/>
+		            <field name="create_date"/>
+		            <field name="state"/>
+		        </tree>
+		    </field>
+		</record>
+		
+		
+		<record id="action_account_banking_csb" model="ir.actions.act_window">
+		    <field name="name">CSB Files</field>
+		    <field name="res_model">banking.export.csb</field>
+		    <field name="view_type">form</field>
+		    <field name="view_mode">tree,form</field>
+		</record>
+		
+		
+		<menuitem id="menu_account_banking_csb"
+		          parent="account_payment.menu_main_payment"
+		          action="action_account_banking_csb"
+		          sequence="20"
+		          />
+		
+		<act_window id="act_banking_export_csb_payment_order"
+		    name="Generated CSB Files"
+		    domain="[('payment_order_ids', '=', active_id)]"
+		    res_model="banking.export.csb"
+		    src_model="payment.order"
+		    view_type="form"
+		    view_mode="tree,form"
+		/>
+	
+	</data>
+</openerp>
