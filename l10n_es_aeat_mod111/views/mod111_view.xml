@@ -10,7 +10,6 @@
                         <attribute name="name">%(action_wizard_aeat_mod111_export)d</attribute>
                     </button>
                     <field name="fiscalyear_id" position="after">
-                        <field name="period_id" domain="[('special','=',False),('fiscalyear_id','=',fiscalyear_id)]"/>
                         <field name="currency_id" invisible="1"/>
                     </field>
                     <field name="contact_phone" position="after">
@@ -89,9 +88,6 @@
                 <tree position="attributes">
                     <attribute name="string">Declaraciones AEAT 111</attribute>
                 </tree>
-                <field name="fiscalyear_id" position="after">
-                    <field name="period_id"/>
-                </field>
             </field>
         </record>
 

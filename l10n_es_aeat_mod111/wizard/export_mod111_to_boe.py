@@ -50,9 +50,7 @@ class L10nEsAeatMod111ExportToBoe(models.TransientModel):
         res += self._formatString(
             fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
         # Identificación. Periodo: "01" ... "12" o "1T" … "4T"
-        res += self._formatString(
-            fields.Date.from_string(report.period_id.date_start).month, 2,
-            fill='0', align='>')
+        res += self._formatString(report.period_type, 2)
         return res
 
     @api.multi
@@ -65,11 +63,11 @@ class L10nEsAeatMod111ExportToBoe(models.TransientModel):
         # Rendimientos del trabajo.
         # Rendimientos dinerarios.
         # Importe de las percepciones (17).
-        res += self._formatNumber(report.casilla_02, 17)
+        res += self._formatNumber(report.casilla_02, 15, dec_length=2)
         # Rendimientos del trabajo.
         # Rendimientos dinerarios.
         # Importe de las retenciones (17).
-        res += self._formatNumber(report.casilla_03, 17)
+        res += self._formatNumber(report.casilla_03, 15, dec_length=2)
         # Rendimientos del trabajo.
         # Rendimientos en especie.
         # N.º perceptores (8).
@@ -77,11 +75,11 @@ class L10nEsAeatMod111ExportToBoe(models.TransientModel):
         # Rendimientos del trabajo.
         # Rendimientos en especie.
         # Importe de las percepciones (17).
-        res += self._formatNumber(report.casilla_05, 17)
+        res += self._formatNumber(report.casilla_05, 15, dec_length=2)
         # Rendimientos del trabajo.
         # Rendimientos en especie.
         # Importe de las retenciones (17).
-        res += self._formatNumber(report.casilla_06, 17)
+        res += self._formatNumber(report.casilla_06, 15, dec_length=2)
         # Rendimientos de actividades económicas.
         # Rendimientos dinerarios.
         # N.º perceptores (8).
@@ -89,11 +87,11 @@ class L10nEsAeatMod111ExportToBoe(models.TransientModel):
         # Rendimientos de actividades económicas.
         # Rendimientos dinerarios.
         # Importe de las percepciones (17).
-        res += self._formatNumber(report.casilla_08, 17)
+        res += self._formatNumber(report.casilla_08, 15, dec_length=2)
         # Rendimientos de actividades económicas.
         # Rendimientos dinerarios.
         # Importe de las retenciones (17).
-        res += self._formatNumber(report.casilla_09, 17)
+        res += self._formatNumber(report.casilla_09, 15, dec_length=2)
         # Rendimientos de actividades económicas.
         # Rendimientos en especie.
         # N.º perceptores (8).
@@ -101,11 +99,11 @@ class L10nEsAeatMod111ExportToBoe(models.TransientModel):
         # Rendimientos de actividades económicas.
         # Rendimientos en especie.
         # Importe de las percepciones (17).
-        res += self._formatNumber(report.casilla_11, 17)
+        res += self._formatNumber(report.casilla_11, 15, dec_length=2)
         # Rendimientos de actividades económicas.
         # Rendimientos en especie.
         # Importe de las retenciones (17).
-        res += self._formatNumber(report.casilla_12, 17)
+        res += self._formatNumber(report.casilla_12, 15, dec_length=2)
         # Premios por la participación en juegos, concursos, rifas
         # o combinaciones aleatorias.
         # Rendimientos dinerarios.
@@ -115,12 +113,12 @@ class L10nEsAeatMod111ExportToBoe(models.TransientModel):
         # o combinaciones aleatorias.
         # Rendimientos dinerarios.
         # Importe de las percepciones (17).
-        res += self._formatNumber(report.casilla_14, 17)
+        res += self._formatNumber(report.casilla_14, 15, dec_length=2)
         # Premios por la participación en juegos, concursos, rifas
         # o combinaciones aleatorias.
         # Rendimientos dinerarios.
         # Importe de las retenciones (17).
-        res += self._formatNumber(report.casilla_15, 17)
+        res += self._formatNumber(report.casilla_15, 15, dec_length=2)
         # Premios por la participación en juegos, concursos, rifas
         # o combinaciones aleatorias.
         # Rendimientos en especie.
@@ -130,12 +128,12 @@ class L10nEsAeatMod111ExportToBoe(models.TransientModel):
         # o combinaciones aleatorias.
         # Rendimientos en especie.
         # Importe de las percepciones (17).
-        res += self._formatNumber(report.casilla_17, 17)
+        res += self._formatNumber(report.casilla_17, 15, dec_length=2)
         # Premios por la participación en juegos, concursos, rifas
         # o combinaciones aleatorias.
         # Rendimientos en especie.
         # Importe de las retenciones (17).
-        res += self._formatNumber(report.casilla_18, 17)
+        res += self._formatNumber(report.casilla_18, 15, dec_length=2)
         # Ganancias patrimoniales derivadas de los aprovechamientos
         # forestales de los vecinos en los montes públicos.
         # Rendimientos dinerarios.
@@ -145,12 +143,12 @@ class L10nEsAeatMod111ExportToBoe(models.TransientModel):
         # forestales de los vecinos en los montes públicos.
         # Rendimientos dinerarios.
         # Importe de las percepciones (17).
-        res += self._formatNumber(report.casilla_20, 17)
+        res += self._formatNumber(report.casilla_20, 15, dec_length=2)
         # Ganancias patrimoniales derivadas de los aprovechamientos
         # forestales de los vecinos en los montes públicos.
         # Rendimientos dinerarios.
         # Importe de las retenciones (17).
-        res += self._formatNumber(report.casilla_21, 17)
+        res += self._formatNumber(report.casilla_21, 15, dec_length=2)
         # Ganancias patrimoniales derivadas de los aprovechamientos
         # forestales de los vecinos en los montes públicos.
         # Rendimientos en especie.
@@ -160,12 +158,12 @@ class L10nEsAeatMod111ExportToBoe(models.TransientModel):
         # forestales de los vecinos en los montes públicos
         # Rendimientos en especie
         # Importe de las percepciones (17)
-        res += self._formatNumber(report.casilla_23, 17)
+        res += self._formatNumber(report.casilla_23, 15, dec_length=2)
         # Ganancias patrimoniales derivadas de los aprovechamientos
         # forestales de los vecinos en los montes públicos.
         # Rendimientos en especie.
         # Importe de las retenciones (17).
-        res += self._formatNumber(report.casilla_24, 17)
+        res += self._formatNumber(report.casilla_24, 15, dec_length=2)
         # Contraprestaciones por la cesión de derechos de imagen,
         # ingresos a cuenta previstos en el artículo 92.8 de
         # la Ley del Impuesto.
@@ -177,24 +175,24 @@ class L10nEsAeatMod111ExportToBoe(models.TransientModel):
         # la Ley del Impuesto.
         # Contrapartidas dinerarias o en especie.
         # Contraprestaciones satisfechas (17).
-        res += self._formatNumber(report.casilla_26, 17)
+        res += self._formatNumber(report.casilla_26, 15, dec_length=2)
         # Contraprestaciones por la cesión de derechos de imagen,
         # ingresos a cuenta previstos en el artículo 92.8 de
         # la Ley del Impuesto.
         # Contrapartidas dinerarias o en especie.
         # Importe de los ingresos a cuenta (17).
-        res += self._formatNumber(report.casilla_27, 17)
+        res += self._formatNumber(report.casilla_27, 15, dec_length=2)
         # Total liquidación.
         # Suma de las retenciones e ingresos a cuenta (17).
-        res += self._formatNumber(report.casilla_28, 17)
+        res += self._formatNumber(report.casilla_28, 15, dec_length=2)
         # Total liquidación.
         # Resultado a ingresar de la anterior o anteriores
         # autoliquidaciones por el mismo concepto, ejercicio
         # y período (17).
-        res += self._formatNumber(report.casilla_29, 17)
+        res += self._formatNumber(report.casilla_29, 15, dec_length=2)
         # Total liquidación.
         # Resultado a ingresar (17).
-        res += self._formatNumber(report.casilla_30, 17)
+        res += self._formatNumber(report.casilla_30, 15, dec_length=2)
         return res
 
     @api.multi
