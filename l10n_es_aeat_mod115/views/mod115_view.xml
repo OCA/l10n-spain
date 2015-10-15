@@ -10,7 +10,6 @@
                         <attribute name="name">%(action_wizard_aeat_mod115_export)d</attribute>
                     </button>
                     <field name="fiscalyear_id" position="after">
-                        <field name="period_id" domain="[('special','=',False),('fiscalyear_id','=',fiscalyear_id)]"/>
                         <field name="currency_id" invisible="1"/>
                     </field>
                     <field name="previous_number" position="after">
@@ -25,7 +24,11 @@
 	                        <field name="casilla_03" widget="monetary" options="{'currency_field': 'currency_id'}"/>
 	                        <button name="show_move_lines" string="Ver lineas de Cuota" type="object" class="oe_link" context="{'move_lines03': True}"/>
 	                        <separator/>
-	                        <field name="casilla_04" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+	                        <field name="casilla_04"
+                                   widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"
+                                   attrs="{'readonly': ['|', ('state', '!=', 'calculated'), ('type', '!=', 'C')]}"
+                                    />
 	                        <field name="casilla_05" widget="monetary" options="{'currency_field': 'currency_id'}"/>
 	                    </group>
                     </group>
@@ -40,9 +43,6 @@
                 <tree position="attributes">
                     <attribute name="string">Declaraciones AEAT 115</attribute>
                 </tree>
-                <field name="fiscalyear_id" position="after">
-                    <field name="period_id"/>
-                </field>
             </field>
         </record>
 
