@@ -158,9 +158,6 @@ class L10nEsAeatMod111Report(models.Model):
         'complementaria.')
     currency_id = fields.Many2one('res.currency', string='Moneda',
                                   related='company_id.currency_id', store=True)
-    period_id = fields.Many2one('account.period', 'Periodo', readonly=True,
-                                states={'draft': [('readonly', False)]},
-                                required=True)
     tipo_declaracion = fields.Selection(
         [('I', 'Ingreso'), ('U', 'Domiciliación'),
          ('G', 'Ingreso a anotar en CCT'), ('N', 'Negativa')],
@@ -204,18 +201,12 @@ class L10nEsAeatMod111Report(models.Model):
         tax_code_obj = self.env['account.tax.code']
         tax_code = tax_code_obj.search([('code', '=', 'IRPBI')])
         if not tax_code:
-            raise exceptions.Warning(
-                _('Tabla de impuestos desactualizada.')
-            )
-        move_lines08 = self._get_tax_code_lines(
-            tax_code, periods=self.period_id)
+            raise exceptions.Warning(_('Tabla de impuestos desactualizada.'))
+        move_lines08 = self._get_tax_code_lines(tax_code, periods=self.periods)
         tax_code = tax_code_obj.search([('code', '=', 'ITRPC')])
         if not tax_code:
-            raise exceptions.Warning(
-                _('Tabla de impuestos desactualizada.')
-            )
-        move_lines09 = self._get_tax_code_lines(
-            tax_code, periods=self.period_id)
+            raise exceptions.Warning(_('Tabla de impuestos desactualizada.'))
+        move_lines09 = self._get_tax_code_lines(tax_code, periods=self.periods)
         self.move_lines_08 = move_lines08.ids
         self.move_lines_09 = move_lines09.ids
         self.casilla_08 = sum([x.tax_amount for x in move_lines08])
