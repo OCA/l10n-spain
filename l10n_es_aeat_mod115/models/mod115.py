@@ -28,42 +28,41 @@ class L10nEsAeatMod115Report(models.Model):
     _name = 'l10n.es.aeat.mod115.report'
 
     number = fields.Char(default='115')
-    casilla_01 = fields.Integer('Casilla [01]', readonly=True,
-                                states={'calculated': [('readonly', False)]},
-                                help='Retenciones e ingresos a cuenta. '
-                                'Número perceptores.')
-    casilla_02 = fields.Float('Casilla [02]', readonly=True,
-                              states={'calculated': [('readonly', False)]},
-                              help='Retenciones e ingresos a cuenta. '
-                              'Base retenciones e ingresos a cuenta.')
-    casilla_03 = fields.Float('Casilla [03]', readonly=True,
-                              states={'calculated': [('readonly', False)]},
-                              help='Retenciones e ingresos a cuenta. '
-                              'Retenciones e ingresos a cuenta.')
-    casilla_04 = fields.Integer('Casilla [04]', readonly=True,
-                                states={'calculated': [('readonly', False)]},
-                                help='Retenciones e ingresos a cuenta. '
-                                'Resultado anteriores declaraciones.')
-    casilla_05 = fields.Integer('Casilla [05]',
-                                help='Retenciones e ingresos a cuenta. '
-                                'Resultado a ingresar.',
-                                compute='get_casilla05')
-    move_lines_02 = fields.Many2many(comodel_name='account.move.line',
-                                     relation='mod115_account_move_line02_rel',
-                                     column1='mod115',
-                                     column2='account_move_line')
-    move_lines_03 = fields.Many2many(comodel_name='account.move.line',
-                                     relation='mod115_account_move_line03_rel',
-                                     column1='mod115',
-                                     column2='account_move_line')
-    currency_id = fields.Many2one('res.currency', string='Moneda',
-                                  related='company_id.currency_id', store=True)
-    period_id = fields.Many2one('account.period', 'Periodo', readonly=True,
-                                states={'draft': [('readonly', False)]},
-                                required=True)
+    casilla_01 = fields.Integer(
+        string='Casilla [01] - Retenciones e ingresos a cuenta. Número '
+               'perceptores.',
+        readonly=True, states={'calculated': [('readonly', False)]})
+    casilla_02 = fields.Float(
+        string='Casilla [02] - Retenciones e ingresos a cuenta. Base '
+               'retenciones e ingresos a cuenta.',
+        readonly=True, states={'calculated': [('readonly', False)]})
+    casilla_03 = fields.Float(
+        string='Casilla [03] - Retenciones e ingresos a cuenta. Retenciones e '
+               'ingresos a cuenta.',
+        readonly=True, states={'calculated': [('readonly', False)]})
+    casilla_04 = fields.Float(
+        string='Casilla [04] - Retenciones e ingresos a cuenta. Resultado '
+               'anteriores declaraciones.')
+    casilla_05 = fields.Float(
+        string='Casilla [05] - Retenciones e ingresos a cuenta. Resultado a '
+               'ingresar.',
+        compute='get_casilla05')
+    move_lines_02 = fields.Many2many(
+        comodel_name='account.move.line',
+        relation='mod115_account_move_line02_rel',
+        column1='mod115', column2='account_move_line')
+    move_lines_03 = fields.Many2many(
+        comodel_name='account.move.line',
+        relation='mod115_account_move_line03_rel',
+        column1='mod115', column2='account_move_line')
+    currency_id = fields.Many2one(
+        comodel_name='res.currency', string='Moneda',
+        related='company_id.currency_id', store=True)
     tipo_declaracion = fields.Selection(
-        [('I', 'Ingreso'), ('U', 'Domiciliación'),
-         ('G', 'Ingreso a anotar en CCT'), ('N', 'Negativa')],
+        selection=[('I', 'Ingreso'),
+                   ('U', 'Domiciliación'),
+                   ('G', 'Ingreso a anotar en CCT'),
+                   ('N', 'Negativa')],
         string='Tipo de declaración', readonly=True,
         states={'draft': [('readonly', False)]}, required=True)
 
@@ -77,52 +76,23 @@ class L10nEsAeatMod115Report(models.Model):
         super(L10nEsAeatMod115Report, self).__init__(pool, cr)
 
     @api.multi
-    def _calc_prev_trimesters_data(self):
-        self.ensure_one()
-        periods = self.env['account.period'].search(
-            [('fiscalyear_id', '=', self.fiscalyear_id.id),
-             ('special', '=', False)])
-        amount = 0
-        for period in periods:
-            if period == self.period_id:
-                break
-            report_ids = self.search(
-                [('period_id', '=', period.id),
-                 ('fiscalyear_id', '=', self.fiscalyear_id.id),
-                 ('company_id', '=', self.company_id.id)])
-            if not report_ids:
-                raise exceptions.Warning(
-                    "No se ha encontrado la declaracion mod. 115 para el "
-                    "periodo %s. No se puede continuar el calculo si no "
-                    "existe dicha declaracion." % period.code)
-            amount = report_ids[0].casilla_05 or 0
-        return amount
-
-    @api.multi
     def calculate(self):
         self.ensure_one()
         tax_code_obj = self.env['account.tax.code']
         tax_code = tax_code_obj.search([('code', '=', 'RBI')])
         if not tax_code:
-            raise exceptions.Warning(
-                _('Tabla de impuestos desactualizada.')
-            )
-        move_lines02 = self._get_tax_code_lines(
-            tax_code, periods=self.period_id)
+            raise exceptions.Warning(_('Tabla de impuestos desactualizada.'))
+        move_lines02 = self._get_tax_code_lines(tax_code, periods=self.periods)
         tax_code = tax_code_obj.search([('code', '=', 'RLC115')])
         if not tax_code:
-            raise exceptions.Warning(
-                _('Tabla de impuestos desactualizada.')
-            )
-        move_lines03 = self._get_tax_code_lines(
-            tax_code, periods=self.period_id)
+            raise exceptions.Warning(_('Tabla de impuestos desactualizada.'))
+        move_lines03 = self._get_tax_code_lines(tax_code, periods=self.periods)
         self.move_lines_02 = move_lines02.ids
         self.move_lines_03 = move_lines03.ids
-        self.casilla_02 = sum([x.tax_amount for x in move_lines02])
-        self.casilla_03 = sum([x.tax_amount for x in move_lines03])
-        self.casilla_04 = self._calc_prev_trimesters_data()
-        self.casilla_01 = len(set([x.partner_id for x in (move_lines02 +
-                                                          move_lines03)]))
+        self.casilla_02 = sum(move_lines02.mapped('tax_amount'))
+        self.casilla_03 = sum(move_lines03.mapped('tax_amount'))
+        partners = (move_lines02 + move_lines03).mapped('partner_id')
+        self.casilla_01 = len(set(partners.ids))
 
     @api.multi
     def show_move_lines(self):
