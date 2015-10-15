@@ -52,9 +52,7 @@ class L10nEsAeatMod115ExportToBoe(models.TransientModel):
         res += self._formatString(
             fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
         # Identificación. Periodo: "01" ... "12" o "1T" … "4T"
-        res += self._formatString(
-            fields.Date.from_string(report.period_id.date_start).month, 2,
-            fill='0', align='>')
+        res += self._formatString(report.period_type, 2)
         return res
 
     @api.multi
@@ -65,16 +63,16 @@ class L10nEsAeatMod115ExportToBoe(models.TransientModel):
         res += self._formatNumber(report.casilla_01, 15)
         # Retenciones e ingresos a cuenta
         # Base retenciones e ingresos a cuenta (17).
-        res += self._formatNumber(report.casilla_02, 17)
+        res += self._formatNumber(report.casilla_02, 15, dec_length=2)
         # Retenciones e ingresos a cuenta
         # Retenciones e ingresos a cuenta (17).
-        res += self._formatNumber(report.casilla_03, 17)
+        res += self._formatNumber(report.casilla_03, 15, dec_length=2)
         # Retenciones e ingresos a cuenta
         # Resultado anteriores declaraciones (17).
-        res += self._formatNumber(report.casilla_04, 17)
+        res += self._formatNumber(report.casilla_04, 15, dec_length=2)
         # Retenciones e ingresos a cuenta
         # Resultado a ingresar (17).
-        res += self._formatNumber(report.casilla_05, 17)
+        res += self._formatNumber(report.casilla_05, 15, dec_length=2)
         return res
 
     @api.multi
