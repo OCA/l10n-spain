@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+       <record id="view_banking_export_csb_wizard_form" model="ir.ui.view">
+            <field name="name">banking.export.csb.wizard.form</field>
+            <field name="model">banking.export.csb.wizard</field>
+            <field name="arch" type="xml">
+                <form string="CSB file generation">
+                    <field name="state" invisible="True"/>
+                    <group states="create">
+                        <field name="join"/>
+                        <field name="note" nolabel="1"/>
+                    </group>
+                    <group states="finish">
+                        <field name="file" filename="filename" />
+                        <field name="filename" invisible="True"/>
+                    </group>
+                    <footer>
+                        <button string="Generate" name="create_csb" type="object" class="oe_highlight" states="create"/>
+                        <button string="Cancel" special="cancel" class="oe_link" states="create"/>
+                        <button string="Validate" name="save_csb" type="object" class="oe_highlight" states="finish"/>
+                        <button string="Cancel" name="cancel_csb" type="object" class="oe_link" states="finish"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>
