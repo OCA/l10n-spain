@@ -2,12 +2,11 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2006 ACYSOS S.L. (http://acysos.com) All Rights Reserved.
+#    Copyright (c) 2006 ACYSOS S.L. (http://acysos.com)
 #                       Pedro Tarrafeta <pedro@acysos.com>
 #                       Ignacio Ibeas <ignacio@acysos.com>
-#    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights
-#                       Reserved.
+#    Copyright (c) 2008 Pablo Rocandio.
+#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
 #                       Jordi Esteve <jesteve@zikzakmedia.com>
 #
 # Corregido para instalación TinyERP estándar 4.2.0: Zikzakmedia S.L. 2008
@@ -84,8 +83,6 @@ class BankingExportCsbWizard(models.TransientModel):
     @api.multi
     def create_csb(self):
         converter = self.env['payment.converter.spain']
-        txt_file = ''
-
         form_obj = self
         try:
             payment_order = self.env['payment.order'].browse(
@@ -104,14 +101,12 @@ class BankingExportCsbWizard(models.TransientModel):
                 raise Log(_('User error:\n\nThe bank account number of the '
                             'company %s has not 20 digits.') %
                           (payment_order.mode.partner_id.name), True)
-
             # Comprobamos que exista el CIF de la compañía asociada al C.C.
             # del modo de pago
             if not payment_order.mode.bank_id.partner_id.vat:
                 raise Log(_('User error:\n\nThe company VAT number related to'
                             ' the bank account of the payment mode is not '
                             'defined.'), True)
-
             pay_lines = []
             if form_obj.join:
                 # Lista con todos los partners+bancos diferentes de la remesa
@@ -163,7 +158,6 @@ class BankingExportCsbWizard(models.TransientModel):
                         'ml_date_created': l.ml_date_created,
                         'ml_inv_ref': [l.ml_inv_ref]
                     })
-
             if payment_order.mode.csb_require_bank_account:
                 for line in pay_lines:
                     bank = line['bank_id']
@@ -179,7 +173,6 @@ class BankingExportCsbWizard(models.TransientModel):
                         raise Log(_('User error:\n\nThe bank account number '
                                     'of the customer %s has not 20 digits.') %
                                   (line['partner_id'].name), True)
-
             if payment_order.mode.type.code == 'csb19':
                 csb = self.env['csb.19']
             elif payment_order.mode.type.code == 'csb32':
@@ -227,11 +220,9 @@ class BankingExportCsbWizard(models.TransientModel):
             log = _('Successfully Exported\n\nSummary:\n Total amount paid: '
                     '%.2f\n Total Number of Payments: %d\n') % (
                         payment_order.total, len(pay_lines))
-
             self.filename = filename
             self.file_id = file_id
             self.state = 'finish'
-
         action = {
             'name': 'CSB File',
             'type': 'ir.actions.act_window',
@@ -248,7 +239,7 @@ class BankingExportCsbWizard(models.TransientModel):
         """Cancel the CSB file: just drop the file"""
         csb_export = self.browse(ids[0])
         csb_export.file_id.unlink()
-        return {'type': 'ir.actions.act_window_close'}
+        return True
 
     @api.model
     def save_csb(self, ids):
@@ -263,5 +254,4 @@ class BankingExportCsbWizard(models.TransientModel):
         for order in csb_export.payment_order_ids:
             workflow.trg_validate(self.env.uid, 'payment.order', order.id,
                                   'done', self.env.cr)
-
-        return {'type': 'ir.actions.act_window_close'}
+        return True

@@ -39,7 +39,8 @@
 {
     'name': 'Exportación de ficheros bancarios CSB 19, 32, 34 y 58',
     'version': '8.0.1.7.0',
-    'author': 'Spanish Localization Team, '
+    'author': 'Acysos, '
+              'Serv. Tecnol. Avanzados - Pedro M. Baeza,'
               'Odoo Community Association (OCA)',
     'contributors': [
         'Ignacio Ibeas <ignacio@acysos.com>',
@@ -54,9 +55,7 @@
     'website': 'https://github.com/OCA/l10n-spain',
     'license': 'AGPL-3',
     'depends': [
-        'base',
-        'account',
-        'account_banking_payment_export'
+        'account_direct_debit',
     ],
     'data': [
         'security/ir.model.access.csv',

@@ -6,7 +6,7 @@
         <field name="name">CSB 19</field>
         <field name="code">csb19</field>
         <field name="suitable_bank_types"
-            eval="[(6,0,[ref('base.bank_normal')])]" />
+               eval="[(6,0,[ref('base.bank_normal')])]" />
         <field name="ir_model_id" ref="model_banking_export_csb_wizard"/>
         <field name="payment_order_type">debit</field>
     </record>
@@ -15,7 +15,7 @@
         <field name="name">CSB 32</field>
         <field name="code">csb32</field>
         <field name="suitable_bank_types"
-            eval="[(6,0,[ref('base.bank_normal')])]" />
+               eval="[(6,0,[ref('base.bank_normal')])]" />
         <field name="ir_model_id" ref="model_banking_export_csb_wizard"/>
         <field name="payment_order_type">debit</field>
     </record>
@@ -24,7 +24,7 @@
         <field name="name">CSB 34</field>
         <field name="code">csb34</field>
         <field name="suitable_bank_types"
-            eval="[(6,0,[ref('base.bank_normal')])]" />
+               eval="[(6,0,[ref('base.bank_normal')])]" />
         <field name="ir_model_id" ref="model_banking_export_csb_wizard"/>
         <field name="payment_order_type">payment</field>
     </record>
@@ -33,7 +33,7 @@
         <field name="name">CSB 34-01</field>
         <field name="code">csb3401</field>
         <field name="suitable_bank_types"
-            eval="[(6,0,[ref('base.bank_normal')])]" />
+               eval="[(6,0,[ref('base.bank_normal')])]" />
         <field name="ir_model_id" ref="model_banking_export_csb_wizard"/>
         <field name="payment_order_type">payment</field>
     </record>
@@ -42,7 +42,7 @@
         <field name="name">CSB 58</field>
         <field name="code">csb58</field>
         <field name="suitable_bank_types"
-            eval="[(6,0,[ref('base.bank_normal')])]" />
+               eval="[(6,0,[ref('base.bank_normal')])]" />
         <field name="ir_model_id" ref="model_banking_export_csb_wizard"/>
         <field name="payment_order_type">debit</field>
     </record>

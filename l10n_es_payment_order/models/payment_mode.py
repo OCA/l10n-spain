@@ -21,8 +21,6 @@
 # Añadidos conceptos extras del CSB 19: Acysos S.L. 2011
 #   Ignacio Ibeas <ignacio@acysos.com>
 #
-#    $Id$
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
 #    by the Free Software Foundation, either version 3 of the License, or
@@ -38,7 +36,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 
 class PaymentMode(models.Model):
@@ -112,3 +110,43 @@ class PaymentMode(models.Model):
         string='Extra Concepts', default=False,
         help='Check it if you want to add the invoice lines to the extra '
         'concepts (Max. 15 lines)')
+    is_csb19 = fields.Boolean(compute="_compute_is_csb19")
+    is_csb32 = fields.Boolean(compute="_compute_is_csb32")
+    is_csb34 = fields.Boolean(compute="_compute_is_csb34")
+    is_csb3401 = fields.Boolean(compute="_compute_is_csb3401")
+    is_csb58 = fields.Boolean(compute="_compute_is_csb58")
+
+    @api.multi
+    @api.depends('type')
+    def _compute_is_csb19(self):
+        csb19_type = self.env.ref('l10n_es_payment_order.export_csb19')
+        for record in self:
+            record.is_csb19 = record.type == csb19_type
+
+    @api.multi
+    @api.depends('type')
+    def _compute_is_csb32(self):
+        csb32_type = self.env.ref('l10n_es_payment_order.export_csb32')
+        for record in self:
+            record.is_csb32 = record.type == csb32_type
+
+    @api.multi
+    @api.depends('type')
+    def _compute_is_csb34(self):
+        csb34_type = self.env.ref('l10n_es_payment_order.export_csb34')
+        for record in self:
+            record.is_csb34 = record.type == csb34_type
+
+    @api.multi
+    @api.depends('type')
+    def _compute_is_csb3401(self):
+        csb3401_type = self.env.ref('l10n_es_payment_order.export_csb34_01')
+        for record in self:
+            record.is_csb3401 = record.type == csb3401_type
+
+    @api.multi
+    @api.depends('type')
+    def _compute_is_csb58(self):
+        csb58_type = self.env.ref('l10n_es_payment_order.export_csb58')
+        for record in self:
+            record.is_csb58 = record.type == csb58_type
