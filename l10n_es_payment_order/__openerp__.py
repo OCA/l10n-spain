@@ -61,7 +61,6 @@
         'security/ir.model.access.csv',
         'data/payment_type_csb.xml',
         'views/payment_mode_view.xml',
-        'views/account_banking_csb_view.xml',
         'wizard/export_csb_view.xml'
     ],
     'installable': True,

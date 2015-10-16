@@ -61,11 +61,8 @@ class BankingExportCsbWizard(models.TransientModel):
     join = fields.Boolean(
         string='Join payment lines of the same partner and bank account')
     note = fields.Text('Log')
-    file_id = fields.Many2one('banking.export.csb', 'Payment order file',
-                              readonly=True)
-    file = fields.Binary(string="File", readonly=True, related='file_id.file')
-    filename = fields.Char(string="Filename", readonly=True,
-                           related='file_id.filename')
+    file = fields.Binary(string="File", readonly=True)
+    filename = fields.Char(string="Filename", readonly=True)
     payment_order_ids = fields.Many2many('payment.order', readonly=True)
     state = fields.Selection(
        string='State', readonly=True, default='create',
@@ -74,7 +71,6 @@ class BankingExportCsbWizard(models.TransientModel):
     @api.model
     def create(self, vals):
         payment_order_ids = self._context.get('active_ids', [])
-
         vals.update({
             'payment_order_ids': [(6, 0, payment_order_ids)],
         })
@@ -90,7 +86,6 @@ class BankingExportCsbWizard(models.TransientModel):
             if not payment_order.line_ids:
                 raise Log(_('User error:\n\nWizard can not generate export '
                             'file, there are not payment lines.'), True)
-
             # Comprobamos que exista número de C.C. y que tenga 20 dígitos
             if not payment_order.mode.bank_id:
                 raise Log(_('User error:\n\nThe bank account of the company '
@@ -206,22 +201,16 @@ class BankingExportCsbWizard(models.TransientModel):
             txt_file = txt_file.replace('\r\n', '\n').replace('\n', '\r\n')
 
             file_payment_order = base64.encodestring(txt_file.encode('utf-8'))
-            # Borrar posible anterior adjunto de la exportación
-            export_csb_obj = self.env['banking.export.csb']
             # Adjuntar nuevo archivo de remesa
             filename = payment_order.mode.type.code + '_'
             filename += payment_order.reference
-            file_id = export_csb_obj.create({
-                'file': file_payment_order,
-                'filename': filename,
-                'payment_order_ids': [
-                    (6, 0, [order.id for order in self.payment_order_ids])],
-                'state': 'draft'})
-            log = _('Successfully Exported\n\nSummary:\n Total amount paid: '
-                    '%.2f\n Total Number of Payments: %d\n') % (
-                        payment_order.total, len(pay_lines))
+            self.env['ir.attachment'].create(
+                {'res_model': 'payment.order',
+                 'res_id': payment_order.id,
+                 'name': filename,
+                 'datas': file_payment_order})
             self.filename = filename
-            self.file_id = file_id
+            self.file = file_payment_order
             self.state = 'finish'
         action = {
             'name': 'CSB File',
@@ -234,24 +223,16 @@ class BankingExportCsbWizard(models.TransientModel):
         }
         return action
 
-    @api.model
-    def cancel_csb(self, ids):
-        """Cancel the CSB file: just drop the file"""
-        csb_export = self.browse(ids[0])
-        csb_export.file_id.unlink()
-        return True
-
-    @api.model
-    def save_csb(self, ids):
+    @api.multi
+    def save_csb(self):
         """Save the CSB file: send the done signal to all payment
         orders in the file. With the default workflow, they will
         transition to 'done', while with the advanced workflow in
-        account_banking_payment they will transition to 'sent' waiting
+        account_banking_payment_transfer they will transition to 'sent' waiting
         reconciliation.
         """
-        csb_export = self.browse(ids[0])
-        csb_export.file_id.state = 'sent'
-        for order in csb_export.payment_order_ids:
+        self.ensure_one()
+        for order in self.payment_order_ids:
             workflow.trg_validate(self.env.uid, 'payment.order', order.id,
                                   'done', self.env.cr)
         return True

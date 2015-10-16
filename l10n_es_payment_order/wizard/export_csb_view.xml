@@ -19,7 +19,7 @@
                         <button string="Generate" name="create_csb" type="object" class="oe_highlight" states="create"/>
                         <button string="Cancel" special="cancel" class="oe_link" states="create"/>
                         <button string="Validate" name="save_csb" type="object" class="oe_highlight" states="finish"/>
-                        <button string="Cancel" name="cancel_csb" type="object" class="oe_link" states="finish"/>
+                        <button string="Cancel" class="oe_link" special="cancel" states="finish"/>
                     </footer>
                 </form>
             </field>
