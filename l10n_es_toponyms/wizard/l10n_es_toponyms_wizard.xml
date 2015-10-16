@@ -11,7 +11,7 @@
                     <form position="attributes">
                         <attribute name="string">Spanish states and cities configuration</attribute>
                     </form>
-                    <separator string="title" position="replace">
+                    <separator position="replace">
                         <group col="2" colspan="4" string="Select the toponym version of the spanish states">
                             <field name="state"/>
                             <label colspan="2" string="For example: Official (Girona), Spanish (Gerona), Both (Gerona / Girona)" align="0.0"/>
@@ -24,12 +24,12 @@
                         </group>
                     </separator>
 
-                    <button string="Install Modules" position="after">
+                    <button name="action_next" position="after">
                         <button string="Configure from local"
                                 type="object"
                                 name="execute_local" />
                     </button>
-                    <button string="Install Modules" position="attributes">
+                    <button name="action_next" position="attributes">
                         <attribute name="string">Configure from GeoNames</attribute>
                     </button>
                 </data>
