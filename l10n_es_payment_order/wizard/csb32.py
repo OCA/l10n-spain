@@ -42,18 +42,18 @@
 #
 ##############################################################################
 
-from openerp import models, api, _
+from openerp import _
 from datetime import datetime
-from log import *
+from .log import Log
+from .converter import PaymentConverterSpain
 
 
-class Csb32(models.Model):
-    _name = 'csb.32'
-    _auto = False
+class Csb32(object):
+    def __init__(self, env):
+        self.env = env
 
-    @api.model
     def _cabecera_fichero_32(self):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         texto = '0265'
         texto += '  '
         texto += datetime.today().strftime('%d%m%y')
@@ -70,9 +70,8 @@ class Csb32(models.Model):
                                                    texto), True)
         return texto
 
-    @api.model
     def _cabecera_remesa_32(self):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         # A:
         texto = '1165'
         texto += '  '
@@ -100,9 +99,8 @@ class Csb32(models.Model):
                                                    texto), True)
         return texto
 
-    @api.model
     def _registro_individual_i_32(self, recibo):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         # A
         texto = '2565'
         texto += '  '
@@ -136,9 +134,8 @@ class Csb32(models.Model):
                                                    texto), True)
         return texto
 
-    @api.model
     def _registro_individual_ii_32(self, recibo):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         # A: Identificacion de la operacion
         texto = '2665'
         texto += '  '
@@ -171,9 +168,8 @@ class Csb32(models.Model):
                                                    texto), True)
         return texto
 
-    @api.model
     def _registro_individual_iii_32(self, recibo):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         # A: Identificacion de la operacion
         texto = '2765'
         texto += '  '
@@ -203,9 +199,8 @@ class Csb32(models.Model):
                                                    '32', texto), True)
         return texto
 
-    @api.model
     def _registro_fin_remesa_32(self):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         # A: Identificación de la operación
         texto = '7165'
         texto += '  '
@@ -235,9 +230,8 @@ class Csb32(models.Model):
                       True)
         return texto
 
-    @api.model
     def _registro_fin_fichero_32(self):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         # A: Identificación de la operación
         texto = '9865'
         texto += '  '
@@ -265,7 +259,6 @@ class Csb32(models.Model):
                       True)
         return texto
 
-    @api.model
     def create_file(self, order, lines):
         self.order = order
 

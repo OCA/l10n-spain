@@ -51,7 +51,13 @@
 from openerp import models, fields, api, _
 from openerp import workflow
 import base64
-from log import *
+from .log import Log
+from .converter import PaymentConverterSpain
+from .csb19 import Csb19
+from .csb32 import Csb32
+from .csb34 import Csb34
+from .csb3401 import Csb3401
+from .csb58 import Csb58
 
 
 class BankingExportCsbWizard(models.TransientModel):
@@ -65,8 +71,8 @@ class BankingExportCsbWizard(models.TransientModel):
     filename = fields.Char(string="Filename", readonly=True)
     payment_order_ids = fields.Many2many('payment.order', readonly=True)
     state = fields.Selection(
-       string='State', readonly=True, default='create',
-       selection=[('create', 'Create'), ('finish', 'Finish')])
+        string='State', readonly=True, default='create',
+        selection=[('create', 'Create'), ('finish', 'Finish')])
 
     @api.model
     def create(self, vals):
@@ -78,7 +84,8 @@ class BankingExportCsbWizard(models.TransientModel):
 
     @api.multi
     def create_csb(self):
-        converter = self.env['payment.converter.spain']
+        self.ensure_one()
+        converter = PaymentConverterSpain()
         form_obj = self
         try:
             payment_order = self.env['payment.order'].browse(
@@ -169,15 +176,15 @@ class BankingExportCsbWizard(models.TransientModel):
                                     'of the customer %s has not 20 digits.') %
                                   (line['partner_id'].name), True)
             if payment_order.mode.type.code == 'csb19':
-                csb = self.env['csb.19']
+                csb = Csb19(self.env)
             elif payment_order.mode.type.code == 'csb32':
-                csb = self.env['csb.32']
+                csb = Csb32(self.env)
             elif payment_order.mode.type.code == 'csb34':
-                csb = self.env['csb.34']
+                csb = Csb34(self.env)
             elif payment_order.mode.type.code == 'csb3401':
-                csb = self.env['csb.3401']
+                csb = Csb3401(self.env)
             elif payment_order.mode.type.code == 'csb58':
-                csb = self.env['csb.58']
+                csb = Csb58(self.env)
             else:
                 raise Log(_('User error:\n\nThe payment mode is not CSB 19, '
                             'CSB 32, CSB 34 or CSB 58'), True)

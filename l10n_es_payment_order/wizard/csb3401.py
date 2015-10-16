@@ -45,24 +45,23 @@
 #
 ##############################################################################
 
-from openerp import models, api, _
+from openerp import _
 from datetime import datetime
-from log import *
+from .log import Log
+from .converter import PaymentConverterSpain
 
 
-class Csb3401(models.Model):
-    _name = 'csb.3401'
-    _auto = False
+class Csb3401(object):
+    def __init__(self, env):
+        self.env = env
 
-    @api.model
     def _start_34(self):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         return converter.convert(self.order.mode.bank_id.partner_id.vat[2:],
                                  10, 'right')
 
-    @api.model
     def _cabecera_ordenante_34(self):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         today = datetime.today().strftime('%d%m%y')
 
         text = ''
@@ -111,33 +110,31 @@ class Csb3401(models.Model):
         text += 7*' '
         text += '003'
         # Direccion
-        partner = self.env['res.partner']
-        address_id = partner.address_get(
-            [self.order.mode.bank_id.partner_id.id], ['invoice'])['invoice']
+        partner_model = self.env['res.partner']
+        address_id = self.order.mode.bank_id.partner_id.address_get(
+            ['invoice'])['invoice']
         if not address_id:
             raise Log(_('User error:\n\nCompany %s has no invoicing '
                         'address.') % address_id)
-
-        street = partner.read([address_id], ['street'])[0]['street']
+        address = partner_model.browse(address_id)
+        street = address.street
         text += converter.convert(street, 36)
         text += 7*' '
         text += '\n'
-
         # Cuarto Tipo
         text += '0356'
         text += self._start_34()
         text += '34016'
         text += 7*' '
         text += '004'
-        city = partner.read([address_id], ['city'])[0]['city']
+        city = address.city
         text += converter.convert(city, 36)
         text += 7*' '
         text += '\n'
         return text
 
-    @api.model
     def _detalle_nacionales_34(self, recibo):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         # Primer Registro
         text = ''
         text += '0656'
@@ -174,9 +171,8 @@ class Csb3401(models.Model):
         text += '\n'
         return text
 
-    @api.model
     def _totales_nacionales_34(self):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         text = '0856'
         text += self._start_34()
         text += 12*' '
@@ -189,12 +185,10 @@ class Csb3401(models.Model):
         text += '\n'
         return text
 
-    def create_file(self, cr, uid, order, lines, context):
+    def create_file(self, order, lines):
         self.order = order
-
         self.payment_line_count = 0
         self.record_count = 0
-
         txt_file = ''
         txt_file += self._cabecera_ordenante_34()
         self.record_count += 4
@@ -204,5 +198,4 @@ class Csb3401(models.Model):
             self.record_count += 2
         self.record_count += 1
         txt_file += self._totales_nacionales_34()
-
         return txt_file

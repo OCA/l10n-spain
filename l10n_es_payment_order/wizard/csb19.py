@@ -47,18 +47,18 @@
 #
 ##############################################################################
 
-from openerp import models, api, _
+from openerp import _
 from datetime import datetime
-from log import *
+from .log import Log
+from .converter import PaymentConverterSpain
 
 
-class Csb19(models.Model):
-    _name = 'csb.19'
-    _auto = False
+class Csb19(object):
+    def __init__(self, env):
+        self.env = env
 
-    @api.model
     def _cabecera_presentador_19(self):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         text = '5180'
         text += (self.order.mode.bank_id.partner_id.vat[2:] +
                  self.order.mode.csb_suffix).zfill(12)
@@ -77,9 +77,8 @@ class Csb19(models.Model):
                                                    text), True)
         return text
 
-    @api.model
     def _cabecera_ordenante_19(self, recibo=None):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         text = '5380'
         text += (self.order.mode.bank_id.partner_id.vat[2:] +
                  self.order.mode.csb_suffix).zfill(12)
@@ -118,9 +117,8 @@ class Csb19(models.Model):
                                                    text), True)
         return text
 
-    @api.model
     def _individual_obligatorio_19(self, recibo):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         text = '5680'
         text += (self.order.mode.bank_id.partner_id.vat[2:] +
                  self.order.mode.csb_suffix).zfill(12)
@@ -149,11 +147,10 @@ class Csb19(models.Model):
                                                    text), True)
         return text
 
-    @api.model
     def _individual_opcional_19(self, recibo):
         """Para poner el segundo text de comunicación (en lugar de nombre, '
         'domicilio y localidad opcional)"""
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         text = '5686'
         text += (self.order.mode.bank_id.partner_id.vat[2:] +
                  self.order.mode.csb_suffix).zfill(12)
@@ -168,11 +165,10 @@ class Csb19(models.Model):
                                                    text), True)
         return text
 
-    @api.model
     def _extra_opcional_19(self, recibo):
         """Para poner los 15 conceptos opcional de los registros 5681-5685 '
         'utilizando las lineas de facturación (Máximo 15 lineas)"""
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         res = {}
         res['text'] = ''
         res['total_lines'] = 0
@@ -189,15 +185,16 @@ class Csb19(models.Model):
                         if counter <= 15:
                             if (counter-1) % 3 == 0:
                                 res['text'] += '568'+str(registry_counter)
+                                partner = self.order.mode.bank_id.partner_id
                                 res['text'] += (
-                                   self.order.mode.bank_id.partner_id.vat[2:] +
-                                   self.order.mode.csb_suffix).zfill(12)
+                                    partner.vat[2:] +
+                                    self.order.mode.csb_suffix).zfill(12)
                                 res['text'] += str(recibo['name']).zfill(12)
                             price = ' %(#).2f ' % {
                                 '#': invoice_line.price_subtotal}
                             res['text'] += converter.to_ascii(
                                 invoice_line.name)[0:(40-len(price))].ljust(
-                                                                40-len(price))
+                                40-len(price))
                             res['text'] += converter.to_ascii(
                                 price.replace('.', ','))
                             if counter % 3 == 0:
@@ -207,8 +204,8 @@ class Csb19(models.Model):
                                     raise Log(_('Configuration error:\n\nThe '
                                                 'line "%s" is not 162 '
                                                 'characters long:\n%s') % (
-                                                'Individual opcional 19',
-                                                res['text']), True)
+                                        'Individual opcional 19',
+                                        res['text']), True)
                                 registry_counter += 1
                             elif counter == length:
                                 tmp_txt = (3 - (counter % 3)) * 40 * ' '
@@ -219,12 +216,11 @@ class Csb19(models.Model):
                                     raise Log(_('Configuration error:\n\nThe '
                                                 'line "%s" is not 162 '
                                                 'characters long:\n%s') % (
-                                                'Individual opcional 19',
-                                                res['text']), True)
+                                        'Individual opcional 19',
+                                        res['text']), True)
                             counter += 1
         return res
 
-    @api.model
     def _total_ordenante_19(self):
         text = '5880'
         text += (self.order.mode.bank_id.partner_id.vat[2:] +
@@ -244,7 +240,6 @@ class Csb19(models.Model):
                                                    text), True)
         return text
 
-    @api.model
     def _total_general_19(self):
         text = '5980'
         text += (self.order.mode.bank_id.partner_id.vat[2:] +
@@ -277,7 +272,6 @@ class Csb19(models.Model):
                       True)
         return text
 
-    @api.model
     def create_file(self, order, lines):
         self.order = order
 

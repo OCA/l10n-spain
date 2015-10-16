@@ -44,18 +44,18 @@
 #
 ##############################################################################
 
-from openerp import models, api, _
+from openerp import _
 from datetime import datetime
-from log import *
+from .log import Log
+from .converter import PaymentConverterSpain
 
 
-class Csb58(models.Model):
-    _name = 'csb.58'
-    _auto = False
+class Csb58(object):
+    def __init__(self, env):
+        self.env = env
 
-    @api.model
     def _cabecera_presentador_58(self):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         texto = '5170'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] +
                   self.order.mode.csb_suffix).zfill(12)
@@ -74,9 +74,8 @@ class Csb58(models.Model):
                                                    texto), True)
         return texto
 
-    @api.model
     def _cabecera_ordenante_58(self):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         texto = '5370'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] +
                   self.order.mode.csb_suffix).zfill(12)
@@ -99,9 +98,8 @@ class Csb58(models.Model):
                                                    texto), True)
         return texto
 
-    @api.model
     def _individual_obligatorio_58(self, recibo):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         texto = '5670'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] +
                   self.order.mode.csb_suffix).zfill(12)
@@ -139,9 +137,9 @@ class Csb58(models.Model):
                                                    texto), True)
         return texto
 
-    def _individual_opcional_58(self, cr, uid, recibo):
+    def _individual_opcional_58(self, recibo):
         """Para poner el segundo texto de comunicación"""
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         texto = '5671'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] +
                   self.order.mode.csb_suffix).zfill(12)
@@ -154,7 +152,6 @@ class Csb58(models.Model):
                                                    texto), True)
         return texto
 
-    @api.model
     def _registro_obligatorio_domicilio_58(self, recibo):
         """
         Registro obligatorio domicilio 58 para no domiciliados.
@@ -179,7 +176,7 @@ class Csb58(models.Model):
                formalizó el Cto.(DDMMAA)
          F2    Libre                          155     8        Alfanumérico
         """
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         alt_format = self.order.mode.csb58_alt_address_format
 
         #
@@ -285,7 +282,6 @@ class Csb58(models.Model):
                                                    texto), True)
         return texto
 
-    @api.model
     def _total_ordenante_58(self):
         texto = '5870'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] +
@@ -304,7 +300,6 @@ class Csb58(models.Model):
                                                    texto), True)
         return texto
 
-    @api.model
     def _total_general_58(self):
         texto = '5970'
         texto += (self.order.mode.bank_id.partner_id.vat[2:] +
@@ -325,7 +320,6 @@ class Csb58(models.Model):
                       True)
         return texto
 
-    @api.model
     def create_file(self, order, lines):
         self.order = order
 

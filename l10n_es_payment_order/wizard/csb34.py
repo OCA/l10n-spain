@@ -42,17 +42,17 @@
 #
 ##############################################################################
 
-from openerp import models, api, _
+from openerp import _
 from datetime import datetime
-from log import *
+from .log import Log
 import time
+from .converter import PaymentConverterSpain
 
 
-class Csb34(models.Model):
-    _name = 'csb.34'
-    _auto = False
+class Csb34(object):
+    def __init__(self, env):
+        self.env = env
 
-    @api.model
     def get_message(self, recibo, message=None):
         """
         Evaluates an expression and returns its value
@@ -82,16 +82,14 @@ class Csb34(models.Model):
             message = message.replace('${' + field + '}', value)
         return message
 
-    @api.model
     def _start_34(self):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         vat = self.order.mode.bank_id.partner_id.vat[2:]
         suffix = self.order.mode.csb_suffix
         return converter.convert(vat + suffix, 12)
 
-    @api.model
     def _cabecera_ordenante_34(self):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         today = datetime.today().strftime('%d%m%y')
 
         text = ''
@@ -129,31 +127,27 @@ class Csb34(models.Model):
         text += 12*' '
         text += '003'
         # Direccion
-        address = None
-        partner = self.env['res.partner']
-        partner_id = self.order.mode.bank_id.partner_id.i
-        address_ids = partner.address_get([partner_id], ['invoice', 'default'])
+        partner_model = self.env['res.partner']
+        address_ids = self.order.mode.bank_id.partner_id.address_get(
+            ['invoice', 'default'])
         if address_ids.get('invoice'):
-            address = partner.read([address_ids.get('invoice')],
-                                   ['street', 'zip', 'city'])[0]
+            address = partner_model.browse(address_ids['invoice'])
         elif address_ids.get('default'):
-            address = partner.read([address_ids.get('default')],
-                                   ['street', 'zip', 'city'])[0]
+            address = partner_model.browse(address_ids['default'])
         else:
             raise Log(_('User error:\n\nCompany %s has no invoicing or '
                         'default address.') %
                       self.order.mode.bank_id.partner_id.name)
-        text += converter.convert(address['street'], 36)
+        text += converter.convert(address.street, 36)
         text += 5*' '
         text += '\r\n'
-
         # Cuarto Tipo
         text += '0362'
         text += self._start_34()
         text += 12*' '
         text += '004'
-        text += converter.convert(address['zip'], 6)
-        text += converter.convert(address['city'], 30)
+        text += converter.convert(address.zip, 6)
+        text += converter.convert(address.city, 30)
         text += 5*' '
         text += '\r\n'
         if len(text) % 74 != 0:
@@ -162,7 +156,6 @@ class Csb34(models.Model):
                                                    text), True)
         return text
 
-    @api.model
     def _cabecera_nacionales_34(self):
         text = '0456'
         text += self._start_34()
@@ -176,27 +169,24 @@ class Csb34(models.Model):
                                                    text), True)
         return text
 
-    @api.model
     def _detalle_nacionales_34(self, recibo, csb34_type):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         csb34_code = {
             'transfer': '56',
             'cheques': '57',
             'promissory_note': '58',
             'certified_payments': '59',
         }
-        address = None
-        partner = self.env['res.partner']
-        address_ids = partner.address_get([recibo['partner_id'].id],
-                                          ['invoice', 'default'])
+        partner_model = self.env['res.partner']
+        address_ids = self.order.mode.bank_id.partner_id.address_get(
+            ['invoice', 'default'])
         if address_ids.get('invoice'):
-            address = partner.browse(address_ids.get('invoice'))
+            address = partner_model.browse(address_ids['invoice'])
         elif address_ids.get('default'):
-            address = partner.browse(address_ids.get('default'))
+            address = partner_model.browse(address_ids['default'])
         else:
             raise Log(_('User error:\n\nPartner %s has no invoicing or '
                         'default address.') % recibo['partner_id'].name)
-
         # Primer Registro
         text = ''
         text += '06'
@@ -205,7 +195,6 @@ class Csb34(models.Model):
         text += converter.convert(recibo['partner_id'].vat, 12)
         text += '010'
         text += converter.convert(abs(recibo['amount']), 12)
-
         # Si la orden se emite para transferencia
         csb34_type = self.order.mode.csb34_type
         if csb34_type == 'transfer':
@@ -247,7 +236,6 @@ class Csb34(models.Model):
             text += '2'
         text += 6*' '
         text += '\r\n'
-
         # Segundo Registro
         text += '06'
         text += csb34_code[csb34_type]
@@ -257,7 +245,6 @@ class Csb34(models.Model):
         text += converter.convert(recibo['partner_id'].name, 36)
         text += 5*' '
         text += '\r\n'
-
         # Tercer y Cuarto Registro
         lines = []
         if address.street:
@@ -273,7 +260,6 @@ class Csb34(models.Model):
             text += converter.convert(street, 36)
             text += 5*' '
             text += '\r\n'
-
         # Quinto Registro
         if address.zip or address.city:
             text += '06'
@@ -285,13 +271,11 @@ class Csb34(models.Model):
             text += converter.convert(address.city, 30)
             text += 5*' '
             text += '\r\n'
-
         # Si la orden se emite por carta (sólo tiene sentido si no son
         # transferencias)
         send_type = self.order.mode.csb34_send_type
         if csb34_type != 'transfer' and (send_type == 'mail' or
                                          send_type == 'certified_mail'):
-
             # Sexto Registro
             text += '06'
             text += csb34_code[csb34_type]
@@ -304,10 +288,8 @@ class Csb34(models.Model):
             text += converter.convert(state, 34)
             text += 5*' '
             text += '\r\n'
-
             if self.order.mode.csb34_type in ('promissory_note', 'cheques',
                                               'certified_payments'):
-
                 # Séptimo Registro
                 if self.order.mode.csb34_payroll_check:
                     text += '06'
@@ -318,7 +300,6 @@ class Csb34(models.Model):
                     text += converter.convert(recibo['partner_id'].vat, 36)
                     text += 5*' '
                     text += '\r\n'
-
                 # Registro ciento uno (registro usados por algunos bancos como
                 # texto de la carta)
                 text += '06'
@@ -330,7 +311,6 @@ class Csb34(models.Model):
                 text += converter.convert(message, 36)
                 text += 5*' '
                 text += '\r\n'
-
                 # Registro ciento dos (registro usados por algunos bancos como
                 # texto de la carta)
                 text += '06'
@@ -342,7 +322,6 @@ class Csb34(models.Model):
                 text += converter.convert(message, 36)
                 text += 5*' '
                 text += '\r\n'
-
                 # Registro ciento tres (registro usados por algunos bancos
                 # como texto de la carta)
                 text += '06'
@@ -354,7 +333,6 @@ class Csb34(models.Model):
                 text += converter.convert(message, 36)
                 text += 5*' '
                 text += '\r\n'
-
                 # Registro novecientos diez (registro usados por algunos bancos
                 # como fecha de la carta)
                 if self.order.mode.csb34_add_date:
@@ -374,16 +352,14 @@ class Csb34(models.Model):
                     text += converter.convert(message, 36)
                     text += 5*' '
                     text += '\r\n'
-
         if len(text) % 74 != 0:
             raise Log(_('Configuration error:\n\nA line in "%s" is not 72 '
                         'characters long:\n%s') % ('Detalle nacionales 34',
                                                    text), True)
         return text
 
-    @api.model
     def _totales_nacionales_34(self, values):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         text = '0856'
         text += self._start_34()
         text += 12*' '
@@ -400,9 +376,8 @@ class Csb34(models.Model):
                                                    text), True)
         return text
 
-    @api.model
     def _total_general_34(self, values):
-        converter = self.env['payment.converter.spain']
+        converter = PaymentConverterSpain()
         text = '0962'
         text += self._start_34()
         text += 12*' '
@@ -419,24 +394,21 @@ class Csb34(models.Model):
                                                    text), True)
         return text
 
-    @api.model
     def create_file(self, order, lines):
         self.order = order
-
         payment_line_count = 0
         record_count = 0
-
         txt_file = ''
         txt_file += self._cabecera_ordenante_34()
         txt_file += self._cabecera_nacionales_34()
         for recibo in lines:
             text = self._detalle_nacionales_34(recibo, order.mode.csb34_type)
-            file += text
+            txt_file += text
             record_count += len(text.split('\r\n'))-1
             payment_line_count += 1
         values = (payment_line_count, record_count + 2)
         txt_file += self._totales_nacionales_34(values)
-        record_count = len(file.split('\r\n'))
+        record_count = len(txt_file.split('\r\n'))
         values = (payment_line_count, record_count)
         txt_file += self._total_general_34(values)
         return txt_file

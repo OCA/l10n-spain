@@ -31,15 +31,11 @@
 #
 ##############################################################################
 
-from openerp import models, api, _
-from log import *
+from openerp import _
+from .log import Log
 
 
-class PaymentConverterSpain(models.Model):
-    _name = 'payment.converter.spain'
-    _auto = False
-
-    @api.model
+class PaymentConverterSpain(object):
     def digits_only(self, cc_in):
         """Discards non-numeric chars"""
         cc = ""
@@ -51,7 +47,6 @@ class PaymentConverterSpain(models.Model):
                 pass
         return cc
 
-    @api.model
     def to_ascii(self, text):
         """Converts special characters such as those with accents to their
         ASCII equivalents"""
@@ -69,14 +64,12 @@ class PaymentConverterSpain(models.Model):
             text = text.replace(unicode(old, 'UTF-8'), new)
         return text
 
-    @api.model
     def convert_text(self, text, size, justified='left'):
         if justified == 'left':
             return self.to_ascii(text)[:size].ljust(size)
         else:
             return self.to_ascii(text)[:size].rjust(size)
 
-    @api.model
     def convert_float(self, number, size):
         text = str(int(round(number * 100, 0)))
         if len(text) > size:
@@ -87,7 +80,6 @@ class PaymentConverterSpain(models.Model):
             })
         return text.zfill(size)
 
-    @api.model
     def convert_int(self, number, size):
         text = str(number)
         if len(text) > size:
@@ -98,7 +90,6 @@ class PaymentConverterSpain(models.Model):
             })
         return text.zfill(size)
 
-    @api.model
     def convert(self, value, size, justified='left'):
         if not value:
             return self.convert_text('', size)
@@ -109,7 +100,6 @@ class PaymentConverterSpain(models.Model):
         else:
             return self.convert_text(value, size, justified)
 
-    @api.model
     def convert_bank_account(self, value, partner_name):
         if not isinstance(value, basestring):
             raise Log(_('User error:\n\nThe bank account number of %s is not '
@@ -120,7 +110,6 @@ class PaymentConverterSpain(models.Model):
                         ' have 20 digits.') % partner_name)
         return ccc
 
-    @api.model
     def bank_account_parts(self, value, partner_name):
         if not isinstance(value, basestring):
             raise Log(_('User error:\n\nThe bank account number of %s is not '

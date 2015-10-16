@@ -58,7 +58,6 @@
         'account_direct_debit',
     ],
     'data': [
-        'security/ir.model.access.csv',
         'data/payment_type_csb.xml',
         'views/payment_mode_view.xml',
         'wizard/export_csb_view.xml'
