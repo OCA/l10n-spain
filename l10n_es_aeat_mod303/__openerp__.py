@@ -38,6 +38,10 @@ Agencia Española de Administración Tributaria.
 Instrucciones del modelo: http://goo.gl/pgVbXH
 
 Incluye la exportación al formato BOE para su uso telemático.
+
+**AVISO**: Módulo no actualizado para esta versión, por lo que no funciona para
+presentaciones a partir del 1 de enero de 2014. La versión válida es la que hay
+para Odoo 8.
         """,
     "depends": [
         "l10n_es_aeat",
