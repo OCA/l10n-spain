@@ -441,7 +441,7 @@ class L10nEsAeatReport(models.AbstractModel):
         tax_code_model = self.env['account.tax.code']
         tax_codes = tax_code_model.search(
             [('code', 'in', codes),
-             ('company_id', 'child_of', self.company_id.id)], limit=1)
+             ('company_id', 'child_of', self.company_id.id)])
         if include_children and tax_codes:
             tax_codes = tax_code_model.search(
                 [('id', 'child_of', tax_codes.ids),
