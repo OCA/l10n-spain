@@ -78,15 +78,9 @@ class L10nEsAeatMod115Report(models.Model):
     @api.multi
     def calculate(self):
         self.ensure_one()
-        tax_code_obj = self.env['account.tax.code']
-        tax_code = tax_code_obj.search([('code', '=', 'RBI')])
-        if not tax_code:
-            raise exceptions.Warning(_('Tabla de impuestos desactualizada.'))
-        move_lines02 = self._get_tax_code_lines(tax_code, periods=self.periods)
-        tax_code = tax_code_obj.search([('code', '=', 'RLC115')])
-        if not tax_code:
-            raise exceptions.Warning(_('Tabla de impuestos desactualizada.'))
-        move_lines03 = self._get_tax_code_lines(tax_code, periods=self.periods)
+        move_lines02 = self._get_tax_code_lines(['RBI'], periods=self.periods)
+        move_lines03 = self._get_tax_code_lines(
+            ['RLC115'], periods=self.periods)
         self.move_lines_02 = move_lines02.ids
         self.move_lines_03 = move_lines03.ids
         self.casilla_02 = sum(move_lines02.mapped('tax_amount'))

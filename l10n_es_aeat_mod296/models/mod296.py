@@ -55,27 +55,15 @@ class L10nEsAeatMod296Report(models.Model):
         self.ensure_one()
         self.lines296.unlink()
         line_lst = []
-        tax_code_obj = self.env['account.tax.code']
-        tax_code = tax_code_obj.search([('code', '=', 'IRPBI')])
-        if not tax_code:
-            raise exceptions.Warning(
-                _('Tabla de impuestos desactualizada.')
-            )
-        move_lines_base = self._get_tax_code_lines(tax_code)
-        tax_code = tax_code_obj.search([('code', '=', 'ITRPC')])
-        if not tax_code:
-            raise exceptions.Warning(
-                _('Tabla de impuestos desactualizada.')
-            )
-        move_lines_cuota = self._get_tax_code_lines(tax_code)
+        move_lines_base = self._get_tax_code_lines(['IRPBI'])
+        move_lines_cuota = self._get_tax_code_lines(['ITRPC'])
         partner_lst = set([x.partner_id for x in
                            (move_lines_base + move_lines_cuota)])
         for partner in partner_lst:
-            part_base_lines = move_lines_base.filtered(lambda x:
-                                                       x.partner_id == partner)
-            part_cuota_lines = move_lines_cuota.filtered(lambda x:
-                                                         x.partner_id ==
-                                                         partner)
+            part_base_lines = move_lines_base.filtered(
+                lambda x: x.partner_id == partner)
+            part_cuota_lines = move_lines_cuota.filtered(
+                lambda x: x.partner_id == partner)
             line_lst.append({
                 'mod296_id': self.id,
                 'partner_id': partner.id,
