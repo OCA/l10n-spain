@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp import fields, models, api, exceptions, _
+from openerp import fields, models, api
 
 
 class L10nEsAeatMod216Report(models.Model):
