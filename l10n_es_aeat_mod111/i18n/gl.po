@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 08:00+0000\n"
-"PO-Revision-Date: 2015-10-01 08:01+0000\n"
+"POT-Creation-Date: 2015-10-16 07:49+0000\n"
+"PO-Revision-Date: 2015-10-15 12:40+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -489,11 +489,6 @@ msgid "Period(s)"
 msgstr "Período(s)"
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,period_id:0
-msgid "Periodo"
-msgstr "Período"
-
-#. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,contact_phone:0
 msgid "Phone"
 msgstr "Teléfono"
@@ -667,7 +662,7 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: l10n_es_aeat_mod111
-#: code:addons/l10n_es_aeat_mod111/models/mod111.py:193
+#: code:addons/l10n_es_aeat_mod111/models/mod111.py:190
 #, python-format
 msgid ""
 "Si se marca la casilla de liquidación complementaria, debe rellenar el "
@@ -694,6 +689,13 @@ msgstr "Substitutiva"
 #: field:l10n.es.aeat.mod111.report,support_type:0
 msgid "Support Type"
 msgstr "Tipo de soporte"
+
+#. module: l10n_es_aeat_mod111
+#: code:addons/l10n_es_aeat_mod111/models/mod111.py:204
+#: code:addons/l10n_es_aeat_mod111/models/mod111.py:208
+#, python-format
+msgid "Tabla de impuestos desactualizada."
+msgstr ""
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,tax_lines:0
