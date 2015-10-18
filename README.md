@@ -52,14 +52,6 @@ addon | version | summary
 [l10n_es_subcontractor_certificate](l10n_es_subcontractor_certificate/) | 8.0.1.0.0 | Certificado de subcontratista
 [l10n_es_toponyms](l10n_es_toponyms/) | 8.0.2.0.0 | Topónimos españoles
 [payment_redsys](payment_redsys/) | 8.0.1.0.0 | Payment Acquirer: Redsys Implementation
-
-Unported addons
----------------
-addon | version | summary
---- | --- | ---
-[l10n_es_account](l10n_es_account/) | 3.0 (unported) | Spanish account tools
-[l10n_es_bank_statement](l10n_es_bank_statement/) | 3.0 (unported) | Extractos bancarios españoles (Norma 43)
-
 [//]: # (end addons)
 
 Estado de las traducciones
