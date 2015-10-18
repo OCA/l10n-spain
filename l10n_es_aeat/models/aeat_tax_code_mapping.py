@@ -83,8 +83,6 @@ class AeatModMapTaxCodeLine(models.Model):
     to_regularize = fields.Boolean()
 
     def get_taxes_amount(self, report, periods):
-        tax_amount = 0
-        for tax_code in self.tax_codes:
-            move_lines = report._get_tax_code_lines(tax_code, periods=periods)
-            tax_amount += sum([x.tax_amount for x in move_lines])
-        return tax_amount
+        move_lines = report._get_tax_code_lines(
+            self.mapped('tax_codes.code'), periods=periods)
+        return sum(move_lines.mapped('tax_amount'))
