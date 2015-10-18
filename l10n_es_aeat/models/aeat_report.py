@@ -255,8 +255,8 @@ class L10nEsAeatReport(models.AbstractModel):
         for report in self:
             if not report.periods:
                 raise exceptions.Warning(
-                    'There is no period defined for the report. Please set '
-                    'at least one period and try again.')
+                    _('There is no period defined for the report. Please set '
+                      'at least one period and try again.'))
             report.tax_lines.unlink()
             # Buscar configuración de mapeo de impuestos
             tax_code_map_obj = self.env['aeat.mod.map.tax.code']
@@ -275,10 +275,8 @@ class L10nEsAeatReport(models.AbstractModel):
             if tax_code_map:
                 tax_lines = []
                 for line in tax_code_map.map_lines:
-                    move_lines = self.env['account.move.line']
-                    for tax_code in line.tax_codes:
-                        move_lines += report._get_tax_code_lines(
-                            tax_code, periods=report.periods)
+                    move_lines = report._get_tax_code_lines(
+                        line.mapped('tax_codes.code'), periods=report.periods)
                     tax_lines.append({
                         'map_line': line.id,
                         'amount': sum([x.tax_amount for x in move_lines]),
@@ -437,35 +435,38 @@ class L10nEsAeatReport(models.AbstractModel):
         return []
 
     @api.multi
-    def _get_move_line_domain(self, tax_code_template, periods=None,
+    def _get_move_line_domain(self, codes, periods=None,
                               include_children=True):
         self.ensure_one()
         tax_code_model = self.env['account.tax.code']
-        tax_code = tax_code_model.search(
-            [('code', '=', tax_code_template.code),
-             ('company_id', '=', self.company_id.id)], limit=1)
-        if include_children and tax_code:
+        tax_codes = tax_code_model.search(
+            [('code', 'in', codes),
+             ('company_id', 'child_of', self.company_id.id)], limit=1)
+        if include_children and tax_codes:
             tax_codes = tax_code_model.search(
-                [('id', 'child_of', tax_code.id),
-                 ('company_id', '=', self.company_id.id)])
-        else:
-            tax_codes = tax_code
+                [('id', 'child_of', tax_codes.ids),
+                 ('company_id', 'child_of', self.company_id.id)])
         if not periods:
             periods = self.env['account.period'].search(
                 [('fiscalyear_id', '=', self.fiscalyear_id.id)])
-        move_line_domain = [('company_id', '=', self.company_id.id),
+        move_line_domain = [('company_id', 'child_of', self.company_id.id),
                             ('tax_code_id', 'child_of', tax_codes.ids),
                             ('period_id', 'in', periods.ids)]
         move_line_domain += self._get_partner_domain()
         return move_line_domain
 
-    @api.multi
-    def _get_tax_code_lines(self, tax_code_template, periods=None,
-                            include_children=True):
-        self.ensure_one()
+    @api.model
+    def _get_tax_code_lines(self, codes, periods=None, include_children=True):
+        """
+        Get the move lines for the codes and periods associated
+        :param codes: List of strings for the tax codes
+        :param periods: Periods to include
+        :param include_children: True (default) if it also searches on
+          children tax codes.
+        :return: Move lines recordset that matches the criteria.
+        """
         domain = self._get_move_line_domain(
-            tax_code_template, periods=periods,
-            include_children=include_children)
+            codes, periods=periods, include_children=include_children)
         return self.env['account.move.line'].search(domain)
 
 
