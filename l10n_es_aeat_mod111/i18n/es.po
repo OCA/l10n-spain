@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Alejandro Santana <alejandrosantana@anubia.es>, 2015
+# Carles Antolí <carlesantoli@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 08:00+0000\n"
-"PO-Revision-Date: 2015-10-01 08:01+0000\n"
+"POT-Creation-Date: 2015-10-16 07:49+0000\n"
+"PO-Revision-Date: 2015-10-15 12:40+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +27,7 @@ msgstr "Declaración AEAT 111"
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,move_id:0
 msgid "Account entry"
-msgstr ""
+msgstr "Entrada cuenta"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,calculation_date:0
@@ -226,7 +227,7 @@ msgstr "Contraprest. cesión dchos. imagen - Nº de perceptores"
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,counterpart_account:0
 msgid "Counterpart account"
-msgstr ""
+msgstr "Cuenta contrapartida"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod111.action_l10n_es_aeat_mod111_report
@@ -404,7 +405,7 @@ msgstr "Diario"
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,journal_id:0
 msgid "Journal in which post the move."
-msgstr ""
+msgstr "Diario en el que publicar el movimiento."
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,representative_vat:0
@@ -487,11 +488,6 @@ msgstr "Tipo de periodo"
 #: field:l10n.es.aeat.mod111.report,periods:0
 msgid "Period(s)"
 msgstr "Periodo(s)"
-
-#. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,period_id:0
-msgid "Periodo"
-msgstr "Periodo"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,contact_phone:0
@@ -667,7 +663,7 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: l10n_es_aeat_mod111
-#: code:addons/l10n_es_aeat_mod111/models/mod111.py:193
+#: code:addons/l10n_es_aeat_mod111/models/mod111.py:190
 #, python-format
 msgid ""
 "Si se marca la casilla de liquidación complementaria, debe rellenar el "
@@ -696,6 +692,13 @@ msgid "Support Type"
 msgstr "Tipo de soporte"
 
 #. module: l10n_es_aeat_mod111
+#: code:addons/l10n_es_aeat_mod111/models/mod111.py:204
+#: code:addons/l10n_es_aeat_mod111/models/mod111.py:208
+#, python-format
+msgid "Tabla de impuestos desactualizada."
+msgstr "Tabla de impuestos desactualizada."
+
+#. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,tax_lines:0
 msgid "Tax lines"
 msgstr "Lineas de impuestos"
@@ -710,7 +713,7 @@ msgstr "Telemático"
 msgid ""
 "This account will be the counterpart for all the journal items that are "
 "regularized when posting the report."
-msgstr ""
+msgstr "Esta cuenta será la contrapartida para todos los elementos del diario que están regularizados al contabilizar el informe."
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,tipo_declaracion:0
