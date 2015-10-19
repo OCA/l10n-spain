@@ -22,7 +22,8 @@
             <field name="parent_id" ref="igic_dev_base"/>
             <field name="sign">1.0</field>
         </record>
-	<record id="igic_dev_03" model="account.tax.code.template">
+	
+		<record id="igic_dev_03" model="account.tax.code.template">
             <field name="name">Régimen general IGIC Devengado. Base Imponible 3%</field>
             <field name="code">[02]</field>
             <field name="parent_id" ref="igic_dev_base"/>
@@ -36,7 +37,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_dev_07" model="account.tax.code.template">
+		<record id="igic_dev_07" model="account.tax.code.template">
             <field name="name">Régimen general IGIC Devengado. Base Imponible 7%</field>
             <field name="code">[03]</field>
             <field name="parent_id" ref="igic_dev_base"/>
@@ -50,7 +51,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_dev_09_5" model="account.tax.code.template">
+		<record id="igic_dev_09_5" model="account.tax.code.template">
             <field name="name">Régimen general IGIC Devengado. Base Imponible 9,5%</field>
             <field name="code">[04]</field>
             <field name="parent_id" ref="igic_dev_base"/>
@@ -64,7 +65,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_dev_13_5" model="account.tax.code.template">
+		<record id="igic_dev_13_5" model="account.tax.code.template">
             <field name="name">Régimen general IGIC Devengado. Base Imponible 13,5%</field>
             <field name="code">[05]</field>
             <field name="parent_id" ref="igic_dev_base"/>
@@ -92,7 +93,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_dev_21_03" model="account.tax.code.template">
+		<record id="igic_dev_21_03" model="account.tax.code.template">
             <field name="name">Régimen general IGIC Devengado. Cuota 3%</field>
             <field name="code">[08]</field>
             <field name="parent_id" ref="igic_dev_21"/>
@@ -106,7 +107,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_dev_21_07" model="account.tax.code.template">
+		<record id="igic_dev_21_07" model="account.tax.code.template">
             <field name="name">Régimen general IGIC Devengado. Cuota 7%</field>
             <field name="code">[09]</field>
             <field name="parent_id" ref="igic_dev_21"/>
@@ -120,7 +121,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_dev_21_09_5" model="account.tax.code.template">
+		<record id="igic_dev_21_09_5" model="account.tax.code.template">
             <field name="name">Régimen general IGIC Devengado. Cuota 9,5%</field>
             <field name="code">[10]</field>
             <field name="parent_id" ref="igic_dev_21"/>
@@ -134,7 +135,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_dev_21_13_5" model="account.tax.code.template">
+		<record id="igic_dev_21_13_5" model="account.tax.code.template">
             <field name="name">Régimen general IGIC Devengado. Cuota 13,5%</field>
             <field name="code">[11]</field>
             <field name="parent_id" ref="igic_dev_21"/>
@@ -169,7 +170,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_22_03" model="account.tax.code.template">
+		<record id="igic_ded_22_03" model="account.tax.code.template">
             <field name="name">Base operaciones interiores corrientes IGIC (3%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_22"/>
@@ -183,7 +184,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_22_07" model="account.tax.code.template">
+		<record id="igic_ded_22_07" model="account.tax.code.template">
             <field name="name">Base operaciones interiores corrientes IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_22"/>
@@ -197,7 +198,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_22_09_5" model="account.tax.code.template">
+		<record id="igic_ded_22_09_5" model="account.tax.code.template">
             <field name="name">Base operaciones interiores corrientes IGIC (9,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_22"/>
@@ -211,7 +212,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_22_13_5" model="account.tax.code.template">
+		<record id="igic_ded_22_13_5" model="account.tax.code.template">
             <field name="name">Base operaciones interiores corrientes IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_22"/>
@@ -239,7 +240,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_24_03" model="account.tax.code.template">
+		<record id="igic_ded_24_03" model="account.tax.code.template">
             <field name="name">Base operaciones interiores bienes inversión IGIC (3%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_24"/>
@@ -253,7 +254,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_24_07" model="account.tax.code.template">
+		<record id="igic_ded_24_07" model="account.tax.code.template">
             <field name="name">Base operaciones interiores bienes inversión IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_24"/>
@@ -267,7 +268,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_24_09_5" model="account.tax.code.template">
+		<record id="igic_ded_24_09_5" model="account.tax.code.template">
             <field name="name">Base operaciones interiores bienes inversión IGIC (9,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_24"/>
@@ -281,7 +282,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_24_13_5" model="account.tax.code.template">
+		<record id="igic_ded_24_13_5" model="account.tax.code.template">
             <field name="name">Base operaciones interiores bienes inversión IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_24"/>
@@ -309,7 +310,7 @@
             <field name="sign">1.0</field>
         </record>
 
- 	<record id="igic_ded_26_03" model="account.tax.code.template">
+ 		<record id="igic_ded_26_03" model="account.tax.code.template">
             <field name="name">Base importaciones bienes corrientes IGIC (3%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_26"/>
@@ -323,7 +324,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_26_07" model="account.tax.code.template">
+		<record id="igic_ded_26_07" model="account.tax.code.template">
             <field name="name">Base importaciones bienes corrientes IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_26"/>
@@ -337,7 +338,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_26_09_5" model="account.tax.code.template">
+		<record id="igic_ded_26_09_5" model="account.tax.code.template">
             <field name="name">Base importaciones bienes corrientes IGIC (9,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_26"/>
@@ -351,7 +352,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_26_13_5" model="account.tax.code.template">
+		<record id="igic_ded_26_13_5" model="account.tax.code.template">
             <field name="name">Base importaciones bienes corrientes IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_26"/>
@@ -379,7 +380,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_28_03" model="account.tax.code.template">
+		<record id="igic_ded_28_03" model="account.tax.code.template">
             <field name="name">Base importaciones bienes inversión IGIC (3%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_28"/>
@@ -393,7 +394,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_28_07" model="account.tax.code.template">
+		<record id="igic_ded_28_07" model="account.tax.code.template">
             <field name="name">Base importaciones bienes inversión IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_28"/>
@@ -407,7 +408,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_28_09_5" model="account.tax.code.template">
+		<record id="igic_ded_28_09_5" model="account.tax.code.template">
             <field name="name">Base importaciones bienes inversión IGIC (9,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_28"/>
@@ -421,7 +422,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_28_13_5" model="account.tax.code.template">
+		<record id="igic_ded_28_13_5" model="account.tax.code.template">
             <field name="name">Base importaciones bienes inversión IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_28"/>
@@ -449,7 +450,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_30_03" model="account.tax.code.template">
+		<record id="igic_ded_30_03" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes corrientes IGIC (3%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_30"/>
@@ -463,7 +464,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_30_07" model="account.tax.code.template">
+		<record id="igic_ded_30_07" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes corrientes IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_30"/>
@@ -477,7 +478,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_30_09_5" model="account.tax.code.template">
+		<record id="igic_ded_30_09_5" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes corrientes IGIC (9,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_30"/>
@@ -491,7 +492,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_30_13_5" model="account.tax.code.template">
+		<record id="igic_ded_30_13_5" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes corrientes IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_30"/>
@@ -519,7 +520,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_32_03" model="account.tax.code.template">
+		<record id="igic_ded_32_03" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes inversión IGIC (3%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_32"/>
@@ -533,7 +534,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_32_07" model="account.tax.code.template">
+		<record id="igic_ded_32_07" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes inversión IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_32"/>
@@ -547,7 +548,7 @@
             <field name="sign">1.0</field>
         </record>
 
- 	<record id="igic_ded_32_09_5" model="account.tax.code.template">
+ 		<record id="igic_ded_32_09_5" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes inversión IGIC (9,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_32"/>
@@ -561,7 +562,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_32_13_5" model="account.tax.code.template">
+		<record id="igic_ded_32_13_5" model="account.tax.code.template">
             <field name="name">Base adquisiciones intracomunitarias bienes inversión IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_32"/>
@@ -632,7 +633,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_23_03" model="account.tax.code.template">
+		<record id="igic_ded_23_03" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores corrientes IGIC (3%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_23"/>
@@ -646,7 +647,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_23_07" model="account.tax.code.template">
+		<record id="igic_ded_23_07" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores corrientes IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_23"/>
@@ -660,7 +661,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_23_09_5" model="account.tax.code.template">
+		<record id="igic_ded_23_09_5" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores corrientes IGIC (9,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_23"/>
@@ -674,7 +675,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_23_13_5" model="account.tax.code.template">
+		<record id="igic_ded_23_13_5" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores corrientes IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_23"/>
@@ -702,7 +703,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_25_03" model="account.tax.code.template">
+		<record id="igic_ded_25_03" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores bienes inversión IGIC (3%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_25"/>
@@ -716,7 +717,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_25_07" model="account.tax.code.template">
+		<record id="igic_ded_25_07" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores bienes inversión IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_25"/>
@@ -730,7 +731,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_25_09_5" model="account.tax.code.template">
+		<record id="igic_ded_25_09_5" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores bienes inversión IGIC (9,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_25"/>
@@ -744,7 +745,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_25_13_5" model="account.tax.code.template">
+		<record id="igic_ded_25_13_5" model="account.tax.code.template">
             <field name="name">Cuotas soportadas operaciones interiores bienes inversión IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_25"/>
@@ -772,7 +773,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_27_03" model="account.tax.code.template">
+		<record id="igic_ded_27_03" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes corrientes IGIC (3%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_27"/>
@@ -786,7 +787,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_27_07" model="account.tax.code.template">
+		<record id="igic_ded_27_07" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes corrientes IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_27"/>
@@ -800,7 +801,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_27_09_5" model="account.tax.code.template">
+		<record id="igic_ded_27_09_5" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes corrientes IGIC (9,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_27"/>
@@ -814,7 +815,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_27_13_5" model="account.tax.code.template">
+		<record id="igic_ded_27_13_5" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes corrientes IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_27"/>
@@ -842,7 +843,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_29_03" model="account.tax.code.template">
+		<record id="igic_ded_29_03" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes inversión IGIC (3%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_29"/>
@@ -856,7 +857,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_29_07" model="account.tax.code.template">
+		<record id="igic_ded_29_07" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes inversión IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_29"/>
@@ -870,7 +871,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_29_09_5" model="account.tax.code.template">
+		<record id="igic_ded_29_09_5" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes inversión IGIC (9,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_29"/>
@@ -884,7 +885,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_29_13_5" model="account.tax.code.template">
+		<record id="igic_ded_29_13_5" model="account.tax.code.template">
             <field name="name">Cuotas devengadas importaciones bienes inversión IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_29"/>
@@ -912,7 +913,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_31_03" model="account.tax.code.template">
+		<record id="igic_ded_31_03" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes corrientes IGIC (3%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_31"/>
@@ -926,7 +927,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_31_07" model="account.tax.code.template">
+		<record id="igic_ded_31_07" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes corrientes IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_31"/>
@@ -940,7 +941,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_31_09_5" model="account.tax.code.template">
+		<record id="igic_ded_31_09_5" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes corrientes IGIC (9,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_31"/>
@@ -954,7 +955,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_31_13_5" model="account.tax.code.template">
+		<record id="igic_ded_31_13_5" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes corrientes IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_31"/>
@@ -982,7 +983,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_33_03" model="account.tax.code.template">
+		<record id="igic_ded_33_03" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes inversión IGIC (3%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_33"/>
@@ -996,7 +997,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_33_07" model="account.tax.code.template">
+		<record id="igic_ded_33_07" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes inversión IGIC (7%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_33"/>
@@ -1010,7 +1011,7 @@
             <field name="sign">1.0</field>
         </record>
 
-	<record id="igic_ded_33_09_5" model="account.tax.code.template">
+		<record id="igic_ded_33_09_5" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes inversión IGIC (9,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_33"/>
@@ -1024,7 +1025,7 @@
             <field name="sign">1.0</field>
         </record>
 
-<record id="igic_ded_33_13_5" model="account.tax.code.template">
+		<record id="igic_ded_33_13_5" model="account.tax.code.template">
             <field name="name">En adquisiciones intracomunitarias bienes inversión IGIC (13,5%)</field>
             <field name="code">--</field>
             <field name="parent_id" ref="igic_ded_33"/>
@@ -1049,7 +1050,7 @@
             <field name="user_type" ref="account.conf_account_type_tax"/>
         </record>
 
-	<record id="pgc_472703" model="account.account.template">
+		<record id="pgc_472703" model="account.account.template">
             <field name="code">472703</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="l10n_es.pgc_472"/>
@@ -1067,7 +1068,7 @@
             <field name="user_type" ref="account.conf_account_type_tax"/>
         </record>
 
-	<record id="pgc_472707" model="account.account.template">
+		<record id="pgc_472707" model="account.account.template">
             <field name="code">472706</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="l10n_es.pgc_472"/>
@@ -1085,7 +1086,7 @@
             <field name="user_type" ref="account.conf_account_type_tax"/>
         </record>
 
-	<record id="pgc_472795" model="account.account.template">
+		<record id="pgc_472795" model="account.account.template">
             <field name="code">472795</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="l10n_es.pgc_472"/>
@@ -1103,7 +1104,7 @@
             <field name="user_type" ref="account.conf_account_type_tax"/>
         </record>
 
-    <record id="pgc_472735" model="account.account.template">
+    	<record id="pgc_472735" model="account.account.template">
             <field name="code">472735</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="l10n_es.pgc_472"/>
@@ -1130,7 +1131,7 @@
             <field name="user_type" ref="account.conf_account_type_tax"/>
         </record>
 
-	<record id="pgc_477703" model="account.account.template">
+		<record id="pgc_477703" model="account.account.template">
             <field name="code">477703</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="l10n_es.pgc_477"/>
@@ -1148,7 +1149,7 @@
             <field name="user_type" ref="account.conf_account_type_tax"/>
         </record>
 
-	<record id="pgc_477707" model="account.account.template">
+		<record id="pgc_477707" model="account.account.template">
             <field name="code">477707</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="l10n_es.pgc_477"/>
@@ -1166,7 +1167,7 @@
             <field name="user_type" ref="account.conf_account_type_tax"/>
         </record>
 
- 	<record id="pgc_477795" model="account.account.template">
+ 		<record id="pgc_477795" model="account.account.template">
             <field name="code">477795</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="l10n_es.pgc_477"/>
@@ -1184,7 +1185,7 @@
             <field name="user_type" ref="account.conf_account_type_tax"/>
         </record>
 
-	<record id="pgc_477735" model="account.account.template">
+		<record id="pgc_477735" model="account.account.template">
             <field name="code">477735</field>
             <field name="reconcile" eval="True"/>
             <field name="parent_id" ref="l10n_es.pgc_477"/>
@@ -1301,7 +1302,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-	<record id="igic_sop_3" model="account.tax.template">
+		<record id="igic_sop_3" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">3% IGIC Soportado (operaciones corrientes)</field>
             <field eval="0.03" name="amount"/>
@@ -1373,7 +1374,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-	<record id="igic_sop_7" model="account.tax.template">
+		<record id="igic_sop_7" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">7% IGIC Soportado (operaciones corrientes)</field>
             <field eval="0.07" name="amount"/>
@@ -1428,7 +1429,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-<record id="igic_sop_9_5" model="account.tax.template">
+		<record id="igic_sop_9_5" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">9,5% IGIC Soportado (operaciones corrientes)</field>
             <field eval="0.095" name="amount"/>
@@ -1464,7 +1465,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-<record id="igic_sop_9_5_inv" model="account.tax.template">
+		<record id="igic_sop_9_5_inv" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">9,5% IGIC Soportado (bienes de inversión)</field>
             <field eval="0.095" name="amount"/>
@@ -1500,7 +1501,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-	<record id="igic_sop_13_5" model="account.tax.template">
+		<record id="igic_sop_13_5" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">13,5% IGIC Soportado (operaciones corrientes)</field>
             <field eval="0.135" name="amount"/>
@@ -1536,7 +1537,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-	<record id="igic_sop_13_5_inv" model="account.tax.template">
+		<record id="igic_sop_13_5_inv" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">13,5% IGIC Soportado (bienes de inversión)</field>
             <field eval="0.135" name="amount"/>
@@ -1602,6 +1603,7 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_X2_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 2% Importaciones bienes de inversión</field>
@@ -1621,7 +1623,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-	<record id="igic_X3_compras_bc" model="account.tax.template">
+		<record id="igic_X3_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 3% Importaciones bienes corrientes</field>
             <field name="description">IGIC 3% Importaciones bienes corrientes</field>
@@ -1639,6 +1641,7 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_X3_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 3% Importaciones bienes de inversión</field>
@@ -1676,6 +1679,7 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_X5_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 5% Importaciones bienes de inversión</field>
@@ -1695,7 +1699,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-	<record id="igic_X7_compras_bc" model="account.tax.template">
+		<record id="igic_X7_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 7% Importaciones bienes corrientes</field>
             <field name="description">IGIC 7% Importaciones bienes corrientes</field>
@@ -1713,6 +1717,7 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_X7_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 7% Importaciones bienes de inversión</field>
@@ -1750,6 +1755,7 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_X9_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 9% Importaciones bienes de inversión</field>
@@ -1769,7 +1775,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
- 	<record id="igic_X9_5_compras_bc" model="account.tax.template">
+ 		<record id="igic_X9_5_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 9,5% Importaciones bienes corrientes</field>
             <field name="description">IGIC 9,5% Importaciones bienes corrientes</field>
@@ -1787,6 +1793,7 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_X9_5_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 9,5% Importaciones bienes de inversión</field>
@@ -1844,7 +1851,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
- 	<record id="igic_X13_5_compras_bc" model="account.tax.template">
+ 		<record id="igic_X13_5_compras_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 13,5% Importaciones bienes corrientes</field>
             <field name="description">IGIC 13,5% Importaciones bienes corrientes</field>
@@ -1862,6 +1869,7 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_X13_5_compras_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 13,5% Importaciones bienes de inversión</field>
@@ -1906,6 +1914,7 @@
             <field name="ref_tax_sign" eval="-1.0"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_ISP_compras_05_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 5% Inversión del sujeto pasivo (1)</field>
@@ -1920,6 +1929,7 @@
             <field name="ref_tax_sign" eval="-1.0"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_ISP_compras_05_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 5% Inversión del sujeto pasivo (2)</field>
@@ -1938,6 +1948,7 @@
             <field name="ref_base_sign" eval="1.0"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_ISP_compras_05_3" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 5% Inversión del sujeto pasivo (3)</field>
@@ -1957,7 +1968,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-	<record id="igic_ISP_compras_07" model="account.tax.template">
+		<record id="igic_ISP_compras_07" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 7% Inversión del sujeto pasivo</field>
             <field name="description">IGIC 7% Inversión del sujeto pasivo</field>
@@ -1970,6 +1981,7 @@
             <field name="ref_tax_sign" eval="-1.0"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_ISP_compras_07_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 7% Inversión del sujeto pasivo (1)</field>
@@ -1984,6 +1996,7 @@
             <field name="ref_tax_sign" eval="-1.0"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_ISP_compras_07_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 7% Inversión del sujeto pasivo (2)</field>
@@ -2002,6 +2015,7 @@
             <field name="ref_base_sign" eval="1.0"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_ISP_compras_07_3" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 7% Inversión del sujeto pasivo (3)</field>
@@ -2057,7 +2071,7 @@
             <field name="type_tax_use">sale</field>
         </record>
 
-	<record id="igic_rep_3" model="account.tax.template">
+		<record id="igic_rep_3" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 3%</field>
             <field eval="0.03" name="amount"/>
@@ -2093,7 +2107,7 @@
             <field name="type_tax_use">sale</field>
         </record>
 
-	<record id="igic_rep_7" model="account.tax.template">
+		<record id="igic_rep_7" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 7%</field>
             <field eval="0.07" name="amount"/>
@@ -2129,7 +2143,8 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
         </record>
-	<record id="igic_rep_9_5" model="account.tax.template">
+        
+		<record id="igic_rep_9_5" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 9,5%</field>
             <field eval="0.095" name="amount"/>
@@ -2164,7 +2179,8 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
         </record>
-	<record id="igic_rep_13_5" model="account.tax.template">
+        
+		<record id="igic_rep_13_5" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 13,5%</field>
             <field eval="0.135" name="amount"/>
@@ -2181,6 +2197,7 @@
             <field eval="-1.0" name="ref_base_sign"/>
             <field name="type_tax_use">sale</field>
         </record>
+        
         <record id="igic_IO" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 0% Intracomunitario</field>
@@ -2203,6 +2220,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_05_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_05_bc"/>
@@ -2219,6 +2237,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_05_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_05_bc"/>
@@ -2236,7 +2255,8 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-	 <record id="igic_IC_compras_07_bc" model="account.tax.template">
+        
+	 	<record id="igic_IC_compras_07_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 7% Intracomunitario. Bienes corrientes</field>
             <field name="description">IGIC 7% Intracomunitario. Bienes corrientes</field>
@@ -2245,6 +2265,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_07_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_07_bc"/>
@@ -2261,6 +2282,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_07_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_07_bc"/>
@@ -2288,6 +2310,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_02_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_02_bc"/>
@@ -2304,6 +2327,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_02_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_02_bc"/>
@@ -2321,7 +2345,8 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-	<record id="igic_IC_compras_03_bc" model="account.tax.template">
+        
+		<record id="igic_IC_compras_03_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 3% Intracomunitario. Bienes corrientes</field>
             <field name="description">IGIC 3% Intracomunitario. Bienes corrientes</field>
@@ -2330,6 +2355,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_03_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_03_bc"/>
@@ -2346,6 +2372,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_03_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_02_bc"/>
@@ -2373,6 +2400,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_09_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_09_bc"/>
@@ -2389,6 +2417,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_09_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_09_bc"/>
@@ -2407,7 +2436,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-	 <record id="igic_IC_compras_09_5_bc" model="account.tax.template">
+	 	<record id="igic_IC_compras_09_5_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 9,5% Intracomunitario. Bienes corrientes</field>
             <field name="description">IGIC 9,5% Intracomunitario. Bienes corrientes</field>
@@ -2416,6 +2445,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_09_5_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_09_5_bc"/>
@@ -2432,6 +2462,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_09_5_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_09_5_bc"/>
@@ -2459,6 +2490,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_13_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_13_bc"/>
@@ -2475,6 +2507,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_13_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_13_bc"/>
@@ -2492,7 +2525,8 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
-	<record id="igic_IC_compras_13_5_bc" model="account.tax.template">
+        
+		<record id="igic_IC_compras_13_5_bc" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 13,5% Intracomunitario. Bienes corrientes</field>
             <field name="description">IGIC 13,5% Intracomunitario. Bienes corrientes</field>
@@ -2501,6 +2535,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_13_5_bc_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_13_5_bc"/>
@@ -2517,6 +2552,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_13_5_bc_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_13_5_bc"/>
@@ -2544,6 +2580,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_02_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_02_bi"/>
@@ -2560,6 +2597,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_02_bi_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_02_bi"/>
@@ -2577,7 +2615,8 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
- 	<record id="igic_IC_compras_03_bi" model="account.tax.template">
+        
+ 		<record id="igic_IC_compras_03_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 3% Intracomunitario. Bienes de inversión</field>
             <field name="description">IGIC 3% Intracomunitario. Bienes de inversión</field>
@@ -2586,6 +2625,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_03_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_03_bi"/>
@@ -2602,6 +2642,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_03_bi_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_03_bi"/>
@@ -2629,6 +2670,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_05_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_05_bi"/>
@@ -2645,6 +2687,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_05_bi_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_05_bi"/>
@@ -2662,7 +2705,8 @@
             <field eval="1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
- <record id="igic_IC_compras_07_bi" model="account.tax.template">
+        
+ 		<record id="igic_IC_compras_07_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 7% Intracomunitario. Bienes de inversión</field>
             <field name="description">IGIC 7% Intracomunitario. Bienes de inversión</field>
@@ -2671,6 +2715,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_07_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_07_bi"/>
@@ -2687,6 +2732,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_07_bi_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_05_bi"/>
@@ -2714,6 +2760,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_09_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_09_bi"/>
@@ -2730,6 +2777,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_09_bi_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_09_bi"/>
@@ -2748,7 +2796,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
-<record id="igic_IC_compras_09_5_bi" model="account.tax.template">
+		<record id="igic_IC_compras_09_5_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 9,5% Intracomunitario. Bienes de inversión</field>
             <field name="description">IGIC 9,5% Intracomunitario. Bienes de inversión</field>
@@ -2757,6 +2805,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_09_5_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_09_5_bi"/>
@@ -2773,6 +2822,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_09_5_bi_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_09_5_bi"/>
@@ -2801,6 +2851,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_13_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_13_bi"/>
@@ -2817,6 +2868,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_13_bi_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_13_bi"/>
@@ -2835,7 +2887,7 @@
             <field name="type_tax_use">purchase</field>
         </record>
 
- <record id="igic_IC_compras_13_5_bi" model="account.tax.template">
+ 		<record id="igic_IC_compras_13_5_bi" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="name">IGIC 13,5% Intracomunitario. Bienes de inversión</field>
             <field name="description">IGIC 13,5% Intracomunitario. Bienes de inversión</field>
@@ -2844,6 +2896,7 @@
             <field eval="1" name="child_depend"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_13_5_bi_1" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_13_5_bi"/>
@@ -2860,6 +2913,7 @@
             <field eval="-1.0" name="ref_tax_sign"/>
             <field name="type_tax_use">purchase</field>
         </record>
+        
         <record id="igic_IC_compras_13_5_bi_2" model="account.tax.template">
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="parent_id" ref="igic_IC_compras_13_5_bi"/>
