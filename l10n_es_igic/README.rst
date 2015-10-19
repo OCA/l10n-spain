@@ -26,6 +26,5 @@ Créditos
 
 Contribuidores
 --------------
-* Pexego (versión openerp 6.1)
 * David Diz Martínez <daviddiz@gmail.com>
 
