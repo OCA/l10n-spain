@@ -20,23 +20,20 @@
 ##############################################################################
 
 {
-    "name" : "IGIC",
-    "version" : "1.0",
-    "author" : "Pexego",
-    'website' : 'https://launchpad.net/openerp-spain',
-    "category" : "Localisation/Account Charts",
-    "description": """Añade las cuentas y impuestos del IGIC a las plantillas.
-    Se usa el módulo account_chart_update para la actualización de las propias cuentas e impuestos-
-    Instalación:
-        - Ejecutar el primer asistente de configuración parta que actualice los impuestos y cuentas en nuetyro plan contable y nuetrs tablla de impuestos.
-        - Si eres una empresa canaria, ejecuta el segundo asistente de configuración para poner como impuestos por defecto IGIC 5% y quizás renombrar la posición fiscal de Régimen Nacional a Régimen Canario.
-        Sino saltad para seguir conservando por defecto el IVA 18%.""",
-    "license" : "AGPL-3",
-    "depends" : ["base","l10n_es","account","account_chart_update"],
-    "init_xml" : ['taxes_data.xml',
-                    'taxes_pymes_data.xml'],
-    "demo_xml" : [],
-    "update_xml" : ['install_igic_view.xml'],
-    "active": False,
-    "installable": True
+    "name": "IGIC (Impuesto General Indirecto Canario)",
+    "version": "8.0.0.1",
+    "author": "David Diz Martínez <daviddiz@gmail.com>",
+    "website": "https://github.com/daviddiz/igic",
+    "category": "Localisation/Europe",
+    "depends": [
+        "l10n_es",
+    ],
+    "license": "AGPL-3",
+    "data": [
+        "data/taxes_igic.xml",
+    ],
+    'images': [],
+    "demo": [],
+    'test': [],
+    'installable': True
 }
