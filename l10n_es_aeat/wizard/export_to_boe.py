@@ -91,7 +91,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         if number == '':
             number = 0.0
         number = float(number)
-        sign = number >= 0 and ' ' or 'N'
+        sign = number >= 0 and '0' or 'N'
         number = abs(number)
         int_part = int(number)
         # Format the string
