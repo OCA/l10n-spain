@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 08:00+0000\n"
-"PO-Revision-Date: 2015-10-01 08:01+0000\n"
+"POT-Creation-Date: 2015-10-20 19:02+0000\n"
+"PO-Revision-Date: 2015-10-18 17:09+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -558,7 +558,7 @@ msgid "Odoo model"
 msgstr "Modelo Odoo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:406
+#: code:addons/l10n_es_aeat/models/aeat_report.py:404
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr "Só se poden elimina-las declaracións en estado 'borrador' ou 'cancelada'"
@@ -621,7 +621,7 @@ msgid "Recalculate"
 msgstr "Recalcular"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:319
+#: code:addons/l10n_es_aeat/models/aeat_report.py:317
 #, python-format
 msgid "Regularization"
 msgstr ""
@@ -750,6 +750,14 @@ msgid "The formated string must match the given length"
 msgstr "A cadea formateada debe satisface-lo tamaño dado."
 
 #. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_report.py:258
+#, python-format
+msgid ""
+"There is no period defined for the report. Please set at least one period "
+"and try again."
+msgstr ""
+
+#. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,counterpart_account:0
 msgid ""
 "This account will be the counterpart for all the journal items that are "
@@ -799,7 +807,7 @@ msgid "Wrong aling option. It should be < or >"
 msgstr "Opción de aliñamento errada. Debería ser < ou >"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:353
+#: code:addons/l10n_es_aeat/models/aeat_report.py:351
 #, python-format
 msgid "You must fill both journal and counterpart account."
 msgstr ""
