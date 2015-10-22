@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+
+<record id="fp_irpfnr2475" model="account.fiscal.position.template">
+    <field name="name">Retención IRPF No residentes 24,75%</field>
+    <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+</record>
+
+<record id="fp_irpfnrnue24" model="account.fiscal.position.template">
+    <field name="name">Retención IRPF No residentes no-UE 24%</field>
+    <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+</record>
+
+<record id="fp_irpfnrue20" model="account.fiscal.position.template">
+    <field name="name">Retención IRPF No residentes UE 20%</field>
+    <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+</record>
+
+<record id="fp_irpfnrue195" model="account.fiscal.position.template">
+    <field name="name">Retención IRPF No residentes UE 19,5%</field>
+    <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+</record>
+
+<record id="fp_irpfnrue19" model="account.fiscal.position.template">
+    <field name="name">Retención IRPF No residentes UE 19%</field>
+    <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+</record>
+
+</data>
+</openerp>
