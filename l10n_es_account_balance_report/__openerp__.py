@@ -27,7 +27,7 @@
 
 {
     "name": "Informes de cuentas anuales españoles",
-    "version": "0.1",
+    "version": "8.0.0.1.0",
     "author": "Pexego, Zikzakmedia,Odoo Community Association (OCA)",
     "contributors": [
         "Juanjo Algaz <juanjoa@malagatic.com>",

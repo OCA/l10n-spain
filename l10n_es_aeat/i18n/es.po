@@ -3,14 +3,15 @@
 # * l10n_es_aeat
 # 
 # Translators:
+# Carles Antolí <carlesantoli@hotmail.com>, 2015
 # Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:58+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2015-10-16 07:49+0000\n"
+"PO-Revision-Date: 2015-10-14 16:43+0000\n"
+"Last-Translator: Carles Antolí <carlesantoli@hotmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,6 +77,11 @@ msgstr "La secuencia de la declaración AEAT debe ser única"
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
 msgid "AEAT reports"
 msgstr "Declaraciones AEAT"
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,move_id:0
+msgid "Account entry"
+msgstr "Entrada cuenta"
 
 #. module: l10n_es_aeat
 #: view:aeat.model.export.config.line:l10n_es_aeat.aeat_model_export_config_line_form
@@ -205,6 +211,16 @@ msgstr "Declaraciones confirmadas"
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Contact data"
 msgstr "Datos de contacto"
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,counterpart_account:0
+msgid "Counterpart account"
+msgstr "Cuenta contrapartida"
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Create move"
+msgstr "Crear movimiento"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,create_uid:0
@@ -415,13 +431,23 @@ msgid "Informativas"
 msgstr "Informativas"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:203
+#: code:addons/l10n_es_aeat/models/aeat_report.py:225
 #, python-format
 msgid ""
 "It seems that you have defined quarterly periods or periods in the middle of"
 " the month. This cannot be automatically handled. You should select manually"
 " the periods."
 msgstr "Parece que ha definido periodos trimestrales o periodos en mitad del mes. Esto no se puede gestionar automáticamente, por lo que deberá seleccionar a mano los periodos."
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,journal_id:0
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_es_aeat
+#: help:l10n.es.aeat.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr "Diario en el que publicar el movimiento."
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,move_lines:0
@@ -532,7 +558,7 @@ msgid "Odoo model"
 msgstr "Modelo Odoo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:297
+#: code:addons/l10n_es_aeat/models/aeat_report.py:406
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr "Sólo los informes en estado 'borrador' or 'cancelado' pueden ser eliminados"
@@ -570,6 +596,11 @@ msgid ""
 msgstr "Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el programa"
 
 #. module: l10n_es_aeat
+#: selection:l10n.es.aeat.report,state:0
+msgid "Posted"
+msgstr "Contabilizado"
+
+#. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,previous_number:0
 msgid "Previous declaration number"
 msgstr "Nº previo de declaración"
@@ -588,6 +619,12 @@ msgstr "Pulse el botón"
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Recalculate"
 msgstr "Recalcular"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_report.py:319
+#, python-format
+msgid "Regularization"
+msgstr "Regularización"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,repeat:0
@@ -622,12 +659,17 @@ msgid "Show journal items"
 msgstr "Mostrar apuntes contables"
 
 #. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Show move"
+msgstr "Ver movimiento"
+
+#. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,sign:0
 msgid "Sign character"
 msgstr "Carácter del signo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:163
+#: code:addons/l10n_es_aeat/models/aeat_report.py:185
 #, python-format
 msgid ""
 "Split fiscal years cannot be automatically handled. You should select "
@@ -708,9 +750,26 @@ msgid "The formated string must match the given length"
 msgstr "La cadena formateada debe satisfacer el tamaño dado."
 
 #. module: l10n_es_aeat
+#: help:l10n.es.aeat.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr "Esta cuenta será la contrapartida para todos los elementos del diario que están regularizados al contabilizar el informe."
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "This button creates the regularization move for the selected report"
+msgstr "Este botón crea el movimiento de regularización para el informe seleccionado"
+
+#. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,date_to:0
 msgid "To Date"
 msgstr "Hasta la fecha"
+
+#. module: l10n_es_aeat
+#: field:aeat.mod.map.tax.code.line,to_regularize:0
+msgid "To regularize"
+msgstr "Para regularizar"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,company_vat:0
@@ -738,6 +797,12 @@ msgstr "Value para el sí"
 #, python-format
 msgid "Wrong aling option. It should be < or >"
 msgstr "Opción de alineamiento errónea. Debería ser < o >"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_report.py:353
+#, python-format
+msgid "You must fill both journal and counterpart account."
+msgstr "Debe rellenar a la vez diario y cuenta de contrapartida."
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export

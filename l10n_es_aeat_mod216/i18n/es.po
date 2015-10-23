@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:58+0000\n"
+"POT-Creation-Date: 2015-10-16 07:49+0000\n"
+"PO-Revision-Date: 2015-10-14 16:44+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,11 @@ msgstr "Declaración AEAT 111"
 #: model:ir.model,name:l10n_es_aeat_mod216.model_l10n_es_aeat_mod216_report
 msgid "AEAT 216 report"
 msgstr "Declaración AEAT 216"
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,move_id:0
+msgid "Account entry"
+msgstr "Entrada cuenta"
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,calculation_date:0
@@ -81,6 +86,11 @@ msgstr "Compañía"
 #: selection:l10n.es.aeat.mod216.report,type:0
 msgid "Complementary"
 msgstr "Complementaria"
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,counterpart_account:0
+msgid "Counterpart account"
+msgstr "Cuenta contrapartida"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod216.action_l10n_es_aeat_mod216_report
@@ -196,6 +206,16 @@ msgid "Is resident"
 msgstr "Es residente"
 
 #. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,journal_id:0
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_es_aeat_mod216
+#: help:l10n.es.aeat.mod216.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr "Diario en el que publicar el movimiento."
+
+#. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,representative_vat:0
 msgid "L.R. VAT number"
 msgstr "NIF representante legal"
@@ -308,6 +328,11 @@ msgid "Phone"
 msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod216
+#: selection:l10n.es.aeat.mod216.report,state:0
+msgid "Posted"
+msgstr "Contabilizado"
+
+#. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,previous_number:0
 msgid "Previous declaration number"
 msgstr "Nº declaración previa"
@@ -344,6 +369,13 @@ msgid "Support Type"
 msgstr "Tipo de soporte"
 
 #. module: l10n_es_aeat_mod216
+#: code:addons/l10n_es_aeat_mod216/models/mod216.py:91
+#: code:addons/l10n_es_aeat_mod216/models/mod216.py:98
+#, python-format
+msgid "Tabla de impuestos desactualizada."
+msgstr "Tabla de impuestos desactualizada."
+
+#. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,tax_lines:0
 msgid "Tax lines"
 msgstr "Lineas de impuestos"
@@ -352,6 +384,13 @@ msgstr "Lineas de impuestos"
 #: selection:l10n.es.aeat.mod216.report,support_type:0
 msgid "Telematics"
 msgstr "Telemático"
+
+#. module: l10n_es_aeat_mod216
+#: help:l10n.es.aeat.mod216.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr "Esta cuenta será la contrapartida para todos los elementos del diario que están regularizados al contabilizar el informe."
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,tipo_declaracion:0

@@ -85,11 +85,11 @@ class L10nEsAeatMod216Report(models.Model):
     def calculate(self):
         self.ensure_one()
         move_lines_base = self._get_tax_code_lines(
-            'IRPBI', periods=self.period_id)
+            ['IRPBI'], periods=self.period_id)
         move_lines_cuota = self._get_tax_code_lines(
-            'ITRPC', periods=self.period_id)
+            ['ITRPC'], periods=self.period_id)
         partner_lst = set([x.partner_id for x in
                            (move_lines_base + move_lines_cuota)])
         self.casilla_01 = len(partner_lst)
-        self.casilla_02 = sum([x.tax_amount for x in move_lines_base])
-        self.casilla_03 = sum([x.tax_amount for x in move_lines_cuota])
+        self.casilla_02 = sum(move_lines_base.mapped('tax_amount'))
+        self.casilla_03 = sum(move_lines_cuota.mapped('tax_amount'))

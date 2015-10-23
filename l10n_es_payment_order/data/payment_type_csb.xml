@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="1">
+
+    <record id="export_csb19" model="payment.mode.type">
+        <field name="name">CSB 19</field>
+        <field name="code">csb19</field>
+        <field name="suitable_bank_types"
+               eval="[(6,0,[ref('base.bank_normal')])]" />
+        <field name="ir_model_id" ref="model_banking_export_csb_wizard"/>
+        <field name="payment_order_type">debit</field>
+    </record>
+    
+    <record id="export_csb32" model="payment.mode.type">
+        <field name="name">CSB 32</field>
+        <field name="code">csb32</field>
+        <field name="suitable_bank_types"
+               eval="[(6,0,[ref('base.bank_normal')])]" />
+        <field name="ir_model_id" ref="model_banking_export_csb_wizard"/>
+        <field name="payment_order_type">debit</field>
+    </record>
+    
+    <record id="export_csb34" model="payment.mode.type">
+        <field name="name">CSB 34</field>
+        <field name="code">csb34</field>
+        <field name="suitable_bank_types"
+               eval="[(6,0,[ref('base.bank_normal')])]" />
+        <field name="ir_model_id" ref="model_banking_export_csb_wizard"/>
+        <field name="payment_order_type">payment</field>
+    </record>
+    
+    <record id="export_csb34_01" model="payment.mode.type">
+        <field name="name">CSB 34-01</field>
+        <field name="code">csb3401</field>
+        <field name="suitable_bank_types"
+               eval="[(6,0,[ref('base.bank_normal')])]" />
+        <field name="ir_model_id" ref="model_banking_export_csb_wizard"/>
+        <field name="payment_order_type">payment</field>
+    </record>
+    
+    <record id="export_csb58" model="payment.mode.type">
+        <field name="name">CSB 58</field>
+        <field name="code">csb58</field>
+        <field name="suitable_bank_types"
+               eval="[(6,0,[ref('base.bank_normal')])]" />
+        <field name="ir_model_id" ref="model_banking_export_csb_wizard"/>
+        <field name="payment_order_type">debit</field>
+    </record>
+
+</data>
+</openerp>

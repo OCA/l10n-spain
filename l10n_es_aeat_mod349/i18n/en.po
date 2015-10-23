@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:58+0000\n"
+"POT-Creation-Date: 2015-10-01 08:00+0000\n"
+"PO-Revision-Date: 2015-10-01 08:03+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -144,6 +144,11 @@ msgid "AEAT Model 349 Report"
 msgstr "AEAT Model 349 Report"
 
 #. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,move_id:0
+msgid "Account entry"
+msgstr "Account entry"
+
+#. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:222
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:231
 #, python-format
@@ -237,6 +242,11 @@ msgstr "Complementary"
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
 msgstr "Contact name (Full name) must have name and surname"
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,counterpart_account:0
+msgid "Counterpart account"
+msgstr "Counterpart account"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record,country_id:0
@@ -441,6 +451,16 @@ msgstr "Invoice ID"
 #: selection:l10n.es.aeat.mod349.report,month_selection:0
 msgid "January"
 msgstr "January"
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,journal_id:0
+msgid "Journal"
+msgstr "Journal"
+
+#. module: l10n_es_aeat_mod349
+#: help:l10n.es.aeat.mod349.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr "Journal in which post the move."
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
@@ -683,6 +703,11 @@ msgid "Phone"
 msgstr "Phone"
 
 #. module: l10n_es_aeat_mod349
+#: selection:l10n.es.aeat.mod349.report,state:0
+msgid "Posted"
+msgstr "Posted"
+
+#. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,previous_number:0
 msgid "Previous declaration number"
 msgstr "Previous declaration number"
@@ -786,6 +811,13 @@ msgstr "The type 1 record must be 502 characters long"
 #, python-format
 msgid "The type 2 record must be 502 characters long"
 msgstr "The type 2 record must be 502 characters long"
+
+#. module: l10n_es_aeat_mod349
+#: help:l10n.es.aeat.mod349.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr "This account will be the counterpart for all the journal items that are regularized when posting the report."
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
