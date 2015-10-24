@@ -82,10 +82,59 @@ class BankingExportCsbWizard(models.TransientModel):
         })
         return super(BankingExportCsbWizard, self).create(vals)
 
+    @api.model
+    def _get_csb_exporter(self, payment_order):
+        if payment_order.mode.type.code == 'csb19':
+            csb = Csb19(self.env)
+        elif payment_order.mode.type.code == 'csb32':
+            csb = Csb32(self.env)
+        elif payment_order.mode.type.code == 'csb34':
+            csb = Csb34(self.env)
+        elif payment_order.mode.type.code == 'csb3401':
+            csb = Csb3401(self.env)
+        elif payment_order.mode.type.code == 'csb58':
+            csb = Csb58(self.env)
+        else:
+            raise Log(_('User error:\n\nThe payment mode is not CSB 19, '
+                        'CSB 32, CSB 34 or CSB 58'), True)
+        return csb
+
+    @api.model
+    def _check_company_bank_account(self, payment_order):
+        converter = PaymentConverterSpain()
+        # Comprobamos que exista número de C.C. y que tenga 20 dígitos
+        if not payment_order.mode.bank_id:
+            raise Log(_('User error:\n\nThe bank account of the company '
+                        '%s is not defined.') %
+                      payment_order.mode.partner_id.name, True)
+        cc = converter.digits_only(payment_order.mode.bank_id.acc_number)
+        if len(cc) != 20:
+            raise Log(_('User error:\n\nThe bank account number of the '
+                        'company %s has not 20 digits.') %
+                      payment_order.mode.partner_id.name, True)
+
+    @api.model
+    def _check_required_bank_account(self, payment_order, pay_lines):
+        if payment_order.mode.csb_require_bank_account:
+            converter = PaymentConverterSpain()
+            for line in pay_lines:
+                bank = line['bank_id']
+                ccc = bank and bank.acc_number or False
+                if not ccc:
+                    raise Log(_('User error:\n\nThe bank account number '
+                                'of the customer %s is not defined and '
+                                'current payment mode enforces all lines '
+                                'to have a bank account.') %
+                              line['partner_id'].name, True)
+                ccc = converter.digits_only(ccc)
+                if len(ccc) != 20:
+                    raise Log(_('User error:\n\nThe bank account number '
+                                'of the customer %s has not 20 digits.') %
+                              line['partner_id'].name, True)
+
     @api.multi
     def create_csb(self):
         self.ensure_one()
-        converter = PaymentConverterSpain()
         form_obj = self
         try:
             payment_order = self.env['payment.order'].browse(
@@ -93,17 +142,8 @@ class BankingExportCsbWizard(models.TransientModel):
             if not payment_order.line_ids:
                 raise Log(_('User error:\n\nWizard can not generate export '
                             'file, there are not payment lines.'), True)
-            # Comprobamos que exista número de C.C. y que tenga 20 dígitos
-            if not payment_order.mode.bank_id:
-                raise Log(_('User error:\n\nThe bank account of the company '
-                            '%s is not defined.') %
-                          (payment_order.mode.partner_id.name), True)
-            cc = converter.digits_only(payment_order.mode.bank_id.acc_number)
-            if len(cc) != 20:
-                raise Log(_('User error:\n\nThe bank account number of the '
-                            'company %s has not 20 digits.') %
-                          (payment_order.mode.partner_id.name), True)
-            # Comprobamos que exista el CIF de la compañía asociada al C.C.
+            self._check_company_bank_account(payment_order)
+            # Comprobamos que exista el NIF de la compañía asociada al C.C.
             # del modo de pago
             if not payment_order.mode.bank_id.partner_id.vat:
                 raise Log(_('User error:\n\nThe company VAT number related to'
@@ -160,36 +200,9 @@ class BankingExportCsbWizard(models.TransientModel):
                         'ml_date_created': l.ml_date_created,
                         'ml_inv_ref': [l.ml_inv_ref]
                     })
-            if payment_order.mode.csb_require_bank_account:
-                for line in pay_lines:
-                    bank = line['bank_id']
-                    ccc = bank and bank.acc_number or False
-                    if not ccc:
-                        raise Log(_('User error:\n\nThe bank account number '
-                                    'of the customer %s is not defined and '
-                                    'current payment mode enforces all lines '
-                                    'to have a bank account.') %
-                                  (line['partner_id'].name), True)
-                    ccc = converter.digits_only(ccc)
-                    if len(ccc) != 20:
-                        raise Log(_('User error:\n\nThe bank account number '
-                                    'of the customer %s has not 20 digits.') %
-                                  (line['partner_id'].name), True)
-            if payment_order.mode.type.code == 'csb19':
-                csb = Csb19(self.env)
-            elif payment_order.mode.type.code == 'csb32':
-                csb = Csb32(self.env)
-            elif payment_order.mode.type.code == 'csb34':
-                csb = Csb34(self.env)
-            elif payment_order.mode.type.code == 'csb3401':
-                csb = Csb3401(self.env)
-            elif payment_order.mode.type.code == 'csb58':
-                csb = Csb58(self.env)
-            else:
-                raise Log(_('User error:\n\nThe payment mode is not CSB 19, '
-                            'CSB 32, CSB 34 or CSB 58'), True)
+            self._check_required_bank_account(payment_order, pay_lines)
+            csb = self._get_csb_exporter(payment_order)
             txt_file = csb.create_file(payment_order, pay_lines)
-
         except Log, log:
             form_obj.note = unicode(log)
             form_obj.state = 'create'
@@ -206,7 +219,6 @@ class BankingExportCsbWizard(models.TransientModel):
         else:
             # Ensure line breaks use MS-DOS (CRLF) format as standards require.
             txt_file = txt_file.replace('\r\n', '\n').replace('\n', '\r\n')
-
             file_payment_order = base64.encodestring(txt_file.encode('utf-8'))
             # Adjuntar nuevo archivo de remesa
             filename = payment_order.mode.type.code + '_'

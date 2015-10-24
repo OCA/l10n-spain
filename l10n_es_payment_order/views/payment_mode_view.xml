@@ -12,7 +12,7 @@
             <field name="inherit_id" ref="account_payment.view_payment_mode_form"/>
             <field name="arch" type="xml">
                 <field name="partner_id" position="after">
-                    <group colspan="4" col="1">
+                    <group name="group_csb_options" colspan="4" col="1">
                         <group col="4"
                                string="CSB 58 Options"
                                attrs="{'invisible': [('is_csb58', '=', False)]}"
