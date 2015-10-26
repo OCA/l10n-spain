@@ -58,9 +58,9 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
         # Importe total de las operaciones
         text += self._formatNumber(report.total_amount, 13, 2, True)
         # Número total de inmuebles
-        text += self._formatNumber(report.total_real_state_records, 9)
+        text += self._formatNumber(report.total_real_estate_records, 9)
         # Importe total de las operaciones de arrendamiento
-        text += self._formatNumber(report.total_real_state_amount, 13, 2,
+        text += self._formatNumber(report.total_real_estate_amount, 13, 2,
                                    True)
         # Blancos
         text += 205 * ' '
@@ -150,12 +150,12 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
         # Operación de seguro
         text += self._formatBoolean(partner_record.insurance_operation)
         # Arrendamiento local negocio
-        text += self._formatBoolean(partner_record.bussiness_real_state_rent)
+        text += self._formatBoolean(partner_record.bussiness_real_estate_rent)
         # Importe percibido en metálico
         text += self._formatNumber(partner_record.cash_amount, 13, 2)
         # Importe percibido por transmisiones de inmuebles sujetas a IVA
         text += self._formatNumber(
-            partner_record.real_state_transmissions_amount, 13, 2, True)
+            partner_record.real_estate_transmissions_amount, 13, 2, True)
         # Año de devengo de las operaciones en efectivo
         text += (partner_record.origin_fiscalyear_id and
                  self._formatString(partner_record.origin_fiscalyear_id.code,
@@ -165,28 +165,28 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
         # Importe percibido por transmisiones de inmuebles sujates a Iva Primer
         # Trimestre
         text += self._formatNumber(
-            partner_record.first_quarter_real_state_transmission_amount, 13,
+            partner_record.first_quarter_real_estate_transmission_amount, 13,
             2, True)
         # Importe de las operaciones del segundo trimestre
         text += self._formatNumber(partner_record.second_quarter, 13, 2, True)
         # Importe percibido por transmisiones de inmuebles sujates a Iva
         # Segundo Trimestre
         text += self._formatNumber(
-            partner_record.second_quarter_real_state_transmission_amount, 13,
+            partner_record.second_quarter_real_estate_transmission_amount, 13,
             2, True)
         # Importe de las operaciones del tercer trimestre
         text += self._formatNumber(partner_record.third_quarter, 13, 2, True)
         # Importe percibido por transmisiones de inmuebles sujates a Iva Tercer
         # Trimestre
         text += self._formatNumber(
-            partner_record.third_quarter_real_state_transmission_amount, 13,
+            partner_record.third_quarter_real_estate_transmission_amount, 13,
             2, True)
         # Importe de las operaciones del cuarto trimestre
         text += self._formatNumber(partner_record.fourth_quarter, 13, 2, True)
         # Importe percibido por transmisiones de inmuebles sujates a Iva Cuarto
         # Trimestre
         text += self._formatNumber(
-            partner_record.fourth_quarter_real_state_transmission_amount, 13,
+            partner_record.fourth_quarter_real_estate_transmission_amount, 13,
             2, True)
         text += self._formatString(partner_record.community_vat, 17)
         text += self._formatBoolean(partner_record.cash_basis_operation)
@@ -203,9 +203,9 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
         return text
 
     @api.multi
-    def _get_formated_real_state_record(self, report, partner_record):
+    def _get_formated_real_estate_record(self, report, partner_record):
         """
-        Returns a type 2, real state, formated record
+        Returns a type 2, real estate, formated record
         Format of the record:
             Tipo de Registro 2 – Registro de inmueble
 
@@ -304,7 +304,7 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
         # Sello electrónico
         text += '\r\n'
         assert len(text) == 502, \
-            _("The type 2-I record (real state) must be 502 characters long")
+            _("The type 2-I record (real estate) must be 502 characters long")
         return text
 
     @api.multi
@@ -312,7 +312,7 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
         res = ''
         for partner_record in report.partner_record_ids:
             res += self._get_formated_partner_record(report, partner_record)
-        for real_state_record in report.real_state_record_ids:
-            res += self._get_formated_real_state_record(report,
-                                                        real_state_record)
+        for real_estate_record in report.real_estate_record_ids:
+            res += self._get_formated_real_estate_record(report,
+                                                         real_estate_record)
         return res

@@ -25,8 +25,14 @@
 ##############################################################################
 {
     'name': "Modelo 347 AEAT",
-    'version': "1.2",
-    'author': "Spanish Localization Team,Odoo Community Association (OCA)",
+    'version': "8.0.1.3.0",
+    'author': "Pexego,"
+              "ASR-OSS,"
+              "NaN·tic,"
+              "Acysos,"
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+              "Antiun Ingeniería S.L.,"
+              "Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-spain",
     'contributors': [
         'Pexego (http://www.pexego.es)',
@@ -48,6 +54,7 @@
         "security/mod_347_security.xml",
         "wizard/export_mod347_to_boe.xml",
         "views/account_period_view.xml",
+        "views/account_invoice_view.xml",
         "views/res_partner_view.xml",
         "views/mod347_view.xml",
         "report/mod347_report.xml",

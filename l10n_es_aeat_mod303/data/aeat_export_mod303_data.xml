@@ -1,0 +1,2609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+
+        <!--  SUB-303-01  -->
+        <record id="aeat_mod303_sub01_export_config" model="aeat.model.export.config">
+            <field name="name">Exportación modelo 303 2014 - Régimen general/simplificado</field>
+            <field name="model_number">303</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_01" model="aeat.model.export.config.line">
+            <field name="sequence">1</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Constante: &lt;T</field>
+            <field name="fixed_value">&lt;T</field>
+            <field name="export_type">string</field>
+            <field name="size">2</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_02" model="aeat.model.export.config.line">
+            <field name="sequence">2</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Modelo: 303</field>
+            <field name="fixed_value">303</field>
+            <field name="export_type">string</field>
+            <field name="size">3</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_03" model="aeat.model.export.config.line">
+            <field name="sequence">3</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Constante: 01</field>
+            <field name="fixed_value">01</field>
+            <field name="export_type">string</field>
+            <field name="size">2</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_04" model="aeat.model.export.config.line">
+            <field name="sequence">4</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Constante: &gt;</field>
+            <field name="fixed_value">&gt;</field>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_05" model="aeat.model.export.config.line">
+            <field name="sequence">5</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Tipo de declaración</field>
+            <field name="expression">${(object.result_type == 'D' and object.compensate and 'C') or object.result_type}</field>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_06" model="aeat.model.export.config.line">
+            <field name="sequence">6</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Identificación: NIF</field>
+            <field name="expression">${object.company_vat}</field>
+            <field name="export_type">string</field>
+            <field name="size">9</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_07" model="aeat.model.export.config.line">
+            <field name="sequence">7</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Identificación: Apellidos o Razón social</field>
+            <field name="expression">${object.company_id.name}</field>
+            <field name="export_type">string</field>
+            <field name="size">30</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_08" model="aeat.model.export.config.line">
+            <field name="sequence">8</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Identificación: Nombre</field>
+            <field name="expression">${object.company_id.name}</field>
+            <field name="export_type">string</field>
+            <field name="size">15</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_09" model="aeat.model.export.config.line">
+            <field name="sequence">9</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Identificación: Inscrito en el Registro de devolución mensual (Art. 30 RIVA)</field>
+            <field name="expression">${object.devolucion_mensual}</field>
+            <field name="export_type">boolean</field>
+            <field name="size">1</field>
+            <field name="bool_yes">1</field>
+            <field name="bool_no">2</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_10" model="aeat.model.export.config.line">
+            <field name="sequence">10</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Identificación: Tributa exclusivamente en Régimen Simplificado (RS) - Forzado a no</field>
+            <field name="fixed_value">3</field>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_11" model="aeat.model.export.config.line">
+            <field name="sequence">11</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Identificación: Autoliquidación conjunta - Forzado a no</field>
+            <field name="fixed_value">2</field>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_12" model="aeat.model.export.config.line">
+            <field name="sequence">12</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Identificación: Declarado en concurso de acreedores en el presente período de liquidación - Forzado a no</field>
+            <field name="fixed_value">2</field>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_13" model="aeat.model.export.config.line">
+            <field name="sequence">13</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Identificación: Fecha en que se dictó el auto de declaración de concurso</field>
+            <field name="fixed_value"/>
+            <field name="export_type">string</field>
+            <field name="size">8</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_14" model="aeat.model.export.config.line">
+            <field name="sequence">14</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Identificación: Auto de declaración de concurso dictado en el período - Forzado a blanco</field>
+            <field name="fixed_value"/>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_15" model="aeat.model.export.config.line">
+            <field name="sequence">15</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Identificación: Opción por el régimen especial de criterio de Caja - Forzado a no</field>
+            <field name="fixed_value">2</field>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_16" model="aeat.model.export.config.line">
+            <field name="sequence">16</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Identificación: Destinatario de las operaciones a las que se aplique el régimen especial del criterio de Caja - Forzado a no</field>
+            <field name="fixed_value">2</field>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_17" model="aeat.model.export.config.line">
+            <field name="sequence">17</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Identificación: Opción por la aplicación de la prorrata especial - Forzado a no</field>
+            <field name="fixed_value">2</field>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_18" model="aeat.model.export.config.line">
+            <field name="sequence">18</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Identificación: Revocación de la opción por la aplicación de la prorrata especial - Forzado a no</field>
+            <field name="fixed_value">2</field>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_19" model="aeat.model.export.config.line">
+            <field name="sequence">19</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Devengo: Ejercicio</field>
+            <field name="expression">${object.fiscalyear_id.date_start[:4]}</field>
+            <field name="export_type">string</field>
+            <field name="size">4</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_20" model="aeat.model.export.config.line">
+            <field name="sequence">20</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Devengo: Periodo</field>
+            <field name="expression">${object.period_type}</field>
+            <field name="export_type">string</field>
+            <field name="size">2</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_21" model="aeat.model.export.config.line">
+            <field name="sequence">21</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado 4% - Base imponible [01]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==1).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_22" model="aeat.model.export.config.line">
+            <field name="sequence">22</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado 4% - Tipo % [02]</field>
+            <field name="fixed_value">4</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">5</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_23" model="aeat.model.export.config.line">
+            <field name="sequence">23</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado 4% - Cuota [03]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==3).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_24" model="aeat.model.export.config.line">
+            <field name="sequence">24</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado 10% - Base imponible [04]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==4).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_25" model="aeat.model.export.config.line">
+            <field name="sequence">25</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado 10% - Tipo % [05]</field>
+            <field name="fixed_value">10</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">5</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_26" model="aeat.model.export.config.line">
+            <field name="sequence">26</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado 10% - Cuota [06]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==6).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_27" model="aeat.model.export.config.line">
+            <field name="sequence">27</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado 21% - Base imponible [07]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==7).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_28" model="aeat.model.export.config.line">
+            <field name="sequence">28</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado 21% - Tipo % [08]</field>
+            <field name="expression">21</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">5</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_29" model="aeat.model.export.config.line">
+            <field name="sequence">29</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado 21% - Cuota [09]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==9).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_30" model="aeat.model.export.config.line">
+            <field name="sequence">30</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Adquisiciones intracomunitarias de bienes y servicios - Base imponible [10]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==10).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_31" model="aeat.model.export.config.line">
+            <field name="sequence">31</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Adquisiciones intracomunitarias de bienes y servicios - Cuota [11]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==11).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_32" model="aeat.model.export.config.line">
+            <field name="sequence">32</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Otras operaciones con inversión del sujeto pasivo (excepto. adq. intracom) - Base imponible [12]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==12).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_33" model="aeat.model.export.config.line">
+            <field name="sequence">33</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Otras operaciones con inversión del sujeto pasivo (excepto. adq. intracom) - Cuota [13]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==13).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_34" model="aeat.model.export.config.line">
+            <field name="sequence">34</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Modificación bases y cuotas - Base imponible [14]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==14).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_35" model="aeat.model.export.config.line">
+            <field name="sequence">35</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Modificación bases y cuotas - Cuota [15]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==15).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_36" model="aeat.model.export.config.line">
+            <field name="sequence">36</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Recargo equivalencia 0.5% - Base imponible [16]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==16).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_37" model="aeat.model.export.config.line">
+            <field name="sequence">37</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Recargo equivalencia 0.5% - Tipo % [17]</field>
+            <field name="fixed_value">0.5</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">5</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_38" model="aeat.model.export.config.line">
+            <field name="sequence">38</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Recargo equivalencia 0.5% - Cuota [18]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==18).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_39" model="aeat.model.export.config.line">
+            <field name="sequence">39</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Recargo equivalencia 1.2% - Base imponible [19]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==19).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_40" model="aeat.model.export.config.line">
+            <field name="sequence">40</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Recargo equivalencia 1.2% - Tipo % [20]</field>
+            <field name="fixed_value">1.2</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">5</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_41" model="aeat.model.export.config.line">
+            <field name="sequence">41</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Recargo equivalencia 1.2% - Cuota [21]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==21).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_42" model="aeat.model.export.config.line">
+            <field name="sequence">42</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Recargo equivalencia 5.2% - Base imponible [22]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==22).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_43" model="aeat.model.export.config.line">
+            <field name="sequence">43</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Recargo equivalencia 5.2% - Tipo % [23]</field>
+            <field name="expression">5.2</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">5</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_44" model="aeat.model.export.config.line">
+            <field name="sequence">44</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Recargo equivalencia 5.2% - Cuota [24]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==24).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_45" model="aeat.model.export.config.line">
+            <field name="sequence">45</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Modificaciones bases y cuotas de recargo de equivalencia - Base imponible [25]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==25).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_46" model="aeat.model.export.config.line">
+            <field name="sequence">46</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Modificaciones bases y cuotas de recargo de equivalencia - Cuota [26]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==26).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_47" model="aeat.model.export.config.line">
+            <field name="sequence">47</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Devengado - Total cuota devengada [27]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==27).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_48" model="aeat.model.export.config.line">
+            <field name="sequence">48</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - Por cuotas soportadas en operaciones interiores corrientes - Base [28]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==28).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_49" model="aeat.model.export.config.line">
+            <field name="sequence">49</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - Por cuotas soportadas en operaciones interiores corrientes - Cuota [29]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==29).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_50" model="aeat.model.export.config.line">
+            <field name="sequence">50</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - Por cuotas soportadas en operaciones con bienes de inversión - Base [30]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==30).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_51" model="aeat.model.export.config.line">
+            <field name="sequence">51</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - Por cuotas soportadas en operaciones con bienes de inversión - Cuota [31]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==31).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_52" model="aeat.model.export.config.line">
+            <field name="sequence">52</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - Por cuotas soportadas en las importaciones de bienes corrientes - Base [32]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==32).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_53" model="aeat.model.export.config.line">
+            <field name="sequence">53</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - Por cuotas soportadas en las importaciones de bienes corrientes - Cuota [33]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==33).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_54" model="aeat.model.export.config.line">
+            <field name="sequence">54</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - Por las cuotas soportadas en las importaciones de bienes de inversión - Base [34]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==34).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_55" model="aeat.model.export.config.line">
+            <field name="sequence">55</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - Por las cuotas soportadas en las importaciones de bienes de inversión - Cuota [35]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==35).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_56" model="aeat.model.export.config.line">
+            <field name="sequence">56</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - En adquisiciones intracomunitarias de bienes y servicios corrientes - Base [36]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==36).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_57" model="aeat.model.export.config.line">
+            <field name="sequence">57</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - En adquisiciones intracomunitarias de bienes y servicios corrientes - Cuota [37]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==37).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_58" model="aeat.model.export.config.line">
+            <field name="sequence">58</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - En adquisiciones intracomunitarias de bienes de inversión - Base [38]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==38).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_59" model="aeat.model.export.config.line">
+            <field name="sequence">59</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - En adquisiciones intracomunitarias de bienes de inversión - Cuota [39]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==39).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_60" model="aeat.model.export.config.line">
+            <field name="sequence">60</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - Rectificación de deducciones - Base [40]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==40).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_61" model="aeat.model.export.config.line">
+            <field name="sequence">61</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - Rectificación de deducciones - Cuota [41]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==41).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_62" model="aeat.model.export.config.line">
+            <field name="sequence">62</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - Compensaciones Régimen Especial A.G. y P. - Cuota [42]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==42).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_63" model="aeat.model.export.config.line">
+            <field name="sequence">63</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - Regularización inversiones - Cuota [43]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==43).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_64" model="aeat.model.export.config.line">
+            <field name="sequence">64</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - Regularización por aplicación del porcentaje definitivo de prorrata - Cuota [44]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==44).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_65" model="aeat.model.export.config.line">
+            <field name="sequence">65</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - Total a deducir - Cuota [45]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==45).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_66" model="aeat.model.export.config.line">
+            <field name="sequence">66</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Liquidación: Regimen General - IVA Deducible - Resultado régimen general - Cuota [46]</field>
+            <field name="expression">${object.casilla_46}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_67" model="aeat.model.export.config.line">
+            <field name="sequence">67</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Reservado para la AEAT</field>
+            <field name="fixed_value"> </field>
+            <field name="export_type">string</field>
+            <field name="size">582</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_68" model="aeat.model.export.config.line">
+            <field name="sequence">68</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Reservado para la AEAT: Sello electrónico reservado para la AEAT</field>
+            <field name="fixed_value"> </field>
+            <field name="export_type">string</field>
+            <field name="size">13</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub01_export_line_69" model="aeat.model.export.config.line">
+            <field name="sequence">69</field>
+            <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
+            <field name="name">Indicador de fin de registro: &lt;/T30301&gt;</field>
+            <field name="fixed_value">&lt;/T30301&gt;</field>
+            <field name="export_type">string</field>
+            <field name="size">9</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <!--  SUB-303-02  -->
+        <record id="aeat_mod303_sub02_export_config" model="aeat.model.export.config">
+            <field name="name">Exportación modelo 303 2014 - Régimen agrícola, ganadero y forestal (No implementado)</field>
+            <field name="model_number">303</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_01" model="aeat.model.export.config.line">
+            <field name="sequence">1</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Constante: &lt;T</field>
+            <field name="fixed_value">&lt;T</field>
+            <field name="export_type">string</field>
+            <field name="size">2</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_02" model="aeat.model.export.config.line">
+            <field name="sequence">2</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Modelo: 303</field>
+            <field name="fixed_value">303</field>
+            <field name="export_type">string</field>
+            <field name="size">3</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_03" model="aeat.model.export.config.line">
+            <field name="sequence">3</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Página: 02</field>
+            <field name="fixed_value">02</field>
+            <field name="export_type">string</field>
+            <field name="size">2</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_04" model="aeat.model.export.config.line">
+            <field name="sequence">4</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Constante: &gt;</field>
+            <field name="fixed_value">&gt;</field>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_05" model="aeat.model.export.config.line">
+            <field name="sequence">5</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Indicador de página complementaria</field>
+            <field name="expression">${object.type == 'C'}</field>
+            <field name="export_type">boolean</field>
+            <field name="size">1</field>
+            <field name="bool_yes">C</field>
+            <field name="bool_no"> </field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_06" model="aeat.model.export.config.line">
+            <field name="sequence">6</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 1 - Código</field>
+            <field name="expression"/>
+            <field name="export_type">integer</field>
+            <field name="size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_07" model="aeat.model.export.config.line">
+            <field name="sequence">7</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 1 - Volumen de ingresos</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_08" model="aeat.model.export.config.line">
+            <field name="sequence">8</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 1 - Indice de cuota</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">6</field>
+            <field name="decimal_size">5</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_09" model="aeat.model.export.config.line">
+            <field name="sequence">9</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 1 - Cuota devengada</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_10" model="aeat.model.export.config.line">
+            <field name="sequence">10</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 1 - 1T/2T/3T - Porcentaje trimestral</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">5</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_11" model="aeat.model.export.config.line">
+            <field name="sequence">11</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 1 - 1T/2T/3T - Ingreso a cuenta [A]</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_12" model="aeat.model.export.config.line">
+            <field name="sequence">12</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 1 - 4T - Cuota soportada</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_13" model="aeat.model.export.config.line">
+            <field name="sequence">13</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 1 - 4T - Cuota anual derivada del regimen simplificado [B]</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_14" model="aeat.model.export.config.line">
+            <field name="sequence">14</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Epigrafe IAE</field>
+            <field name="expression"/>
+            <field name="export_type">string</field>
+            <field name="size">4</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_15" model="aeat.model.export.config.line">
+            <field name="sequence">15</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Módulo 1 - Nº Unidades</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">10</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_16" model="aeat.model.export.config.line">
+            <field name="sequence">16</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Módulo 1 - Importe</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_17" model="aeat.model.export.config.line">
+            <field name="sequence">17</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Módulo 2 - Nº Unidades</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">10</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_18" model="aeat.model.export.config.line">
+            <field name="sequence">18</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Módulo 2 - Importe</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_19" model="aeat.model.export.config.line">
+            <field name="sequence">19</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Módulo 3 - Nº Unidades</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">10</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_20" model="aeat.model.export.config.line">
+            <field name="sequence">20</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Módulo 3 - Importe</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_21" model="aeat.model.export.config.line">
+            <field name="sequence">21</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Módulo 4 - Nº Unidades</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">10</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_22" model="aeat.model.export.config.line">
+            <field name="sequence">22</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Módulo 4 - Importe</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_23" model="aeat.model.export.config.line">
+            <field name="sequence">23</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Módulo 5 - Nº Unidades</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">10</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_24" model="aeat.model.export.config.line">
+            <field name="sequence">24</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Módulo 5 - Importe</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_25" model="aeat.model.export.config.line">
+            <field name="sequence">25</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Módulo 6 - Nº Unidades</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">10</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_26" model="aeat.model.export.config.line">
+            <field name="sequence">26</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Módulo 6 - Importe</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_27" model="aeat.model.export.config.line">
+            <field name="sequence">27</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Módulo 7 - Nº Unidades</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">10</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_28" model="aeat.model.export.config.line">
+            <field name="sequence">28</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Módulo 7 - Importe</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_29" model="aeat.model.export.config.line">
+            <field name="sequence">29</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Cuota devengada operaciones corrientes [C]</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_30" model="aeat.model.export.config.line">
+            <field name="sequence">30</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Reducciones [D]</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_31" model="aeat.model.export.config.line">
+            <field name="sequence">31</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - 1T/2T/3T - Indice corrector activ. de temporada [Z]</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">3</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_32" model="aeat.model.export.config.line">
+            <field name="sequence">32</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - 1T/2T/3T - Porcentaje ingreso a cuenta [E]</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">5</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_33" model="aeat.model.export.config.line">
+            <field name="sequence">33</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - 1T/2T/3T - Ingreso a cuenta [F]</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_34" model="aeat.model.export.config.line">
+            <field name="sequence">34</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 2 - Código</field>
+            <field name="expression"/>
+            <field name="export_type">integer</field>
+            <field name="size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_35" model="aeat.model.export.config.line">
+            <field name="sequence">35</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 2 - Volumen de ingresos</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_36" model="aeat.model.export.config.line">
+            <field name="sequence">36</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 2 - Indice de cuota</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">6</field>
+            <field name="decimal_size">5</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_37" model="aeat.model.export.config.line">
+            <field name="sequence">37</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 2 - Cuota devengada</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_38" model="aeat.model.export.config.line">
+            <field name="sequence">38</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 2 - 1T/2T/3T - Porcentaje trimestral</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">5</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_39" model="aeat.model.export.config.line">
+            <field name="sequence">39</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 2 - 1T/2T/3T - Ingreso a cuenta [A]</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_40" model="aeat.model.export.config.line">
+            <field name="sequence">40</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 2 - 4T - Cuota soportada</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_41" model="aeat.model.export.config.line">
+            <field name="sequence">41</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A) Actividades agrícolas, ganaderas y forestales - Actividad 2 - 4T - Cuota anual derivada del regimen simplificado [B]</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_42" model="aeat.model.export.config.line">
+            <field name="sequence">42</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Epigrafe IAE</field>
+            <field name="expression"/>
+            <field name="export_type">string</field>
+            <field name="size">4</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_43" model="aeat.model.export.config.line">
+            <field name="sequence">43</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Módulo 1 - Nº Unidades</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">10</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_44" model="aeat.model.export.config.line">
+            <field name="sequence">44</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Módulo 1 - Importe</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_45" model="aeat.model.export.config.line">
+            <field name="sequence">45</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Módulo 2 - Nº Unidades</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">10</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_46" model="aeat.model.export.config.line">
+            <field name="sequence">46</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Módulo 2 - Importe</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_47" model="aeat.model.export.config.line">
+            <field name="sequence">47</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Módulo 3 - Nº Unidades</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">10</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_48" model="aeat.model.export.config.line">
+            <field name="sequence">48</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Módulo 3 - Importe</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_49" model="aeat.model.export.config.line">
+            <field name="sequence">49</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Módulo 4 - Nº Unidades</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">10</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_50" model="aeat.model.export.config.line">
+            <field name="sequence">50</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Módulo 4 - Importe</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_51" model="aeat.model.export.config.line">
+            <field name="sequence">51</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Módulo 5 - Nº Unidades</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">10</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_52" model="aeat.model.export.config.line">
+            <field name="sequence">52</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Módulo 5 - Importe</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_53" model="aeat.model.export.config.line">
+            <field name="sequence">53</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Módulo 6 - Nº Unidades</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">10</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_54" model="aeat.model.export.config.line">
+            <field name="sequence">54</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Módulo 6 - Importe</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_55" model="aeat.model.export.config.line">
+            <field name="sequence">55</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Módulo 7 - Nº Unidades</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">10</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_56" model="aeat.model.export.config.line">
+            <field name="sequence">56</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Módulo 7 - Importe</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_57" model="aeat.model.export.config.line">
+            <field name="sequence">57</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Cuota devengada operaciones corrientes [C]</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_58" model="aeat.model.export.config.line">
+            <field name="sequence">58</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Reducciones [D]</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_59" model="aeat.model.export.config.line">
+            <field name="sequence">59</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - 1T/2T/3T - Indice corrector activ. de temporada [Z]</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">3</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_60" model="aeat.model.export.config.line">
+            <field name="sequence">60</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - 1T/2T/3T - Porcentaje ingreso a cuenta [E]</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">5</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_61" model="aeat.model.export.config.line">
+            <field name="sequence">61</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - 1T/2T/3T - Ingreso a cuenta [F]</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_62" model="aeat.model.export.config.line">
+            <field name="sequence">62</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS - 1T/2T/3T - Suma de ingresos a cuenta del conjunto de actividades [47]</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_63" model="aeat.model.export.config.line">
+            <field name="sequence">63</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g, y f) - Actividad 1 - 4T - Cuotas soportadas operaciones corrientes [G])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_64" model="aeat.model.export.config.line">
+            <field name="sequence">64</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g, y f) - Actividad 1 - 4T - Índice corrector de actividades de temporada [H])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">3</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_65" model="aeat.model.export.config.line">
+            <field name="sequence">65</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g, y f) - Actividad 1 - 4T - RESULTADO [I])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_66" model="aeat.model.export.config.line">
+            <field name="sequence">66</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g, y f) - Actividad 1 - 4T - Porcentaje cuota mínima [J])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">5</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_67" model="aeat.model.export.config.line">
+            <field name="sequence">67</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g, y f) - Actividad 1 - 4T - Devolución cuotas soportadas otros países [K])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_68" model="aeat.model.export.config.line">
+            <field name="sequence">68</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g, y f) - Actividad 1 - 4T - Cuota mínima [L])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_69" model="aeat.model.export.config.line">
+            <field name="sequence">69</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g, y f) - Actividad 1 - 4T - Cuota anual derivada RS [M])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_70" model="aeat.model.export.config.line">
+            <field name="sequence">70</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g, y f) - Actividad 2 - 4T - Cuotas soportadas operaciones corrientes [G])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_71" model="aeat.model.export.config.line">
+            <field name="sequence">71</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g, y f) - Actividad 2 - 4T - Índice corrector de actividades de temporada [H])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">3</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_72" model="aeat.model.export.config.line">
+            <field name="sequence">72</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g, y f) - Actividad 2 - 4T - RESULTADO [I])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_73" model="aeat.model.export.config.line">
+            <field name="sequence">73</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g, y f) - Actividad 2 - 4T - Porcentaje cuota mínima [J])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">5</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_74" model="aeat.model.export.config.line">
+            <field name="sequence">74</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g, y f) - Actividad 2 - 4T - Devolución cuotas soportadas otros países [K])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_75" model="aeat.model.export.config.line">
+            <field name="sequence">75</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g, y f) - Actividad 2 - 4T - Cuota mínima [L])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_76" model="aeat.model.export.config.line">
+            <field name="sequence">76</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g, y f) - Actividad 2 - 4T - Cuota anual derivada RS [M])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_77" model="aeat.model.export.config.line">
+            <field name="sequence">77</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A + B) Actividades en RS - 4T - Suma de cuotas derivadas RS del conjunto de actividades [48])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_78" model="aeat.model.export.config.line">
+            <field name="sequence">78</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A + B) Actividades en RS - 4T - Suma de ingresos a cuenta realizados en el ejercicio [49])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_79" model="aeat.model.export.config.line">
+            <field name="sequence">79</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (A + B) Actividades en RS - 4T - Resultado [50])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_80" model="aeat.model.export.config.line">
+            <field name="sequence">80</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - Cuotas devengadas - Adquisiciones intracomunitarias de bienes [51])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_81" model="aeat.model.export.config.line">
+            <field name="sequence">81</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - Cuotas devengadas - Entregas de activos fijos [52])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_82" model="aeat.model.export.config.line">
+            <field name="sequence">82</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - Cuotas devengadas - IVA devengado por inversión del sujeto pasivo [53])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_83" model="aeat.model.export.config.line">
+            <field name="sequence">83</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - Cuotas devengadas - Total cuota resultante [54])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_84" model="aeat.model.export.config.line">
+            <field name="sequence">84</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - IVA deducible - Adquisición o importación de activos fijos [55])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_85" model="aeat.model.export.config.line">
+            <field name="sequence">85</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - IVA deducible - Regularización bienes de inversión [56])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_86" model="aeat.model.export.config.line">
+            <field name="sequence">86</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - IVA deducible - Total IVA deducible [57])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_87" model="aeat.model.export.config.line">
+            <field name="sequence">87</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - Resultado RS [58])</field>
+            <field name="expression"/>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_88" model="aeat.model.export.config.line">
+            <field name="sequence">88</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 1 - Epígrafe IAE - Indicador auxiliar de actrividad en el caso de epígrafes 453, 691.9 y 722)</field>
+            <field name="expression"/>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_89" model="aeat.model.export.config.line">
+            <field name="sequence">89</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Liquidación - RS - (B) Actividades en RS (exc. a, g y f) - Actividad 2 - Epígrafe IAE - Indicador auxiliar de actrividad en el caso de epígrafes 453, 691.9 y 722)</field>
+            <field name="expression"/>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_90" model="aeat.model.export.config.line">
+            <field name="sequence">90</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Reservado para la AEAT</field>
+            <field name="fixed_value"> </field>
+            <field name="export_type">string</field>
+            <field name="size">590</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub02_export_line_91" model="aeat.model.export.config.line">
+            <field name="sequence">91</field>
+            <field name="export_config_id" ref="aeat_mod303_sub02_export_config"/>
+            <field name="name">Indicador de fin de registro: &lt;/T30302&gt;</field>
+            <field name="fixed_value">&lt;/T30302&gt;</field>
+            <field name="export_type">string</field>
+            <field name="size">9</field>
+            <field name="alignment">left</field>
+        </record>
+
+
+        <!--  SUB-303-03  -->
+        <record id="aeat_mod303_sub03_export_config" model="aeat.model.export.config">
+            <field name="name">Exportación modelo 303 2014 - Información adicional + Resultado</field>
+            <field name="model_number">303</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_01" model="aeat.model.export.config.line">
+            <field name="sequence">1</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Constante: &lt;T</field>
+            <field name="fixed_value">&lt;T</field>
+            <field name="export_type">string</field>
+            <field name="size">2</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_02" model="aeat.model.export.config.line">
+            <field name="sequence">2</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Modelo: 303</field>
+            <field name="fixed_value">303</field>
+            <field name="export_type">string</field>
+            <field name="size">3</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_03" model="aeat.model.export.config.line">
+            <field name="sequence">3</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Página: 03</field>
+            <field name="fixed_value">03</field>
+            <field name="export_type">string</field>
+            <field name="size">2</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_04" model="aeat.model.export.config.line">
+            <field name="sequence">4</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Constante: &gt;</field>
+            <field name="fixed_value">&gt;</field>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_05" model="aeat.model.export.config.line">
+            <field name="sequence">5</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Entregas intracomunitarias de bienes y servicios [59]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==59).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_06" model="aeat.model.export.config.line">
+            <field name="sequence">6</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Exportaciones y operaciones asimiladas [60]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==60).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_07" model="aeat.model.export.config.line">
+            <field name="sequence">7</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Operaciones no sujetas o con inversión del sujeto pasivo que originan el derecho a deducción [61]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==61).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_08" model="aeat.model.export.config.line">
+            <field name="sequence">8</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Resultado - Suma de resultados [64] - Sólo coge el de RG</field>
+            <field name="expression">${object.casilla_46}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_09" model="aeat.model.export.config.line">
+            <field name="sequence">9</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Resultado - % Atribuible a la Administración del Estado [65]</field>
+            <field name="expression">${object.porcentaje_atribuible_estado}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">5</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_10" model="aeat.model.export.config.line">
+            <field name="sequence">10</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Resultado - Atribuible a la Administración del Estado [66]</field>
+            <field name="expression">${object.atribuible_estado}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_11" model="aeat.model.export.config.line">
+            <field name="sequence">11</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Resultado - Cuotas a compensar de periodos anteriores [67]</field>
+            <field name="expression">${object.cuota_compensar}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="False"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_12" model="aeat.model.export.config.line">
+            <field name="sequence">12</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Resultado - Exclusivamente para sujetos pasivos que tributan conjuntamente a la Administración del Estado y a las Diputaciones Forales Resultado de la regularización anual [68]</field>
+            <field name="expression">${object.regularizacion_anual}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_13" model="aeat.model.export.config.line">
+            <field name="sequence">13</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Resultado - Resultado [69]</field>
+            <field name="expression">${object.casilla_69}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_14" model="aeat.model.export.config.line">
+            <field name="sequence">14</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Resultado - A deducir [70]</field>
+            <field name="expression">${object.previous_result}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_15" model="aeat.model.export.config.line">
+            <field name="sequence">15</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Resultado - Resultado de la liquidación [71]</field>
+            <field name="expression">${object.resultado_liquidacion}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_16" model="aeat.model.export.config.line">
+            <field name="sequence">16</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Importes devengados en período de liquidación sgún art. 75 LIVA. - Base Imponible [62]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==62).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_17" model="aeat.model.export.config.line">
+            <field name="sequence">17</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Importes devengados en período de liquiación sgún art. 75 LIVA. - Cuota [63]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==63).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_18" model="aeat.model.export.config.line">
+            <field name="sequence">18</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Cuotas de IVA soportados en operaciones que tributen por el régimen especial del criterio de caja conforme a la regla general de devengo contenida en el artículo 75 LIVA. - Base Imponible [74]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==74).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_19" model="aeat.model.export.config.line">
+            <field name="sequence">19</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Cuotas de IVA soportados en operaciones que tributen por el régimen especial del criterio de caja conforme a la regla general de devengo contenida en el artículo 75 LIVA. - Cuota [75]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==75).amount}</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_20" model="aeat.model.export.config.line">
+            <field name="sequence">20</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Declaración complementaria</field>
+            <field name="expression">${object.type == 'C'}</field>
+            <field name="export_type">boolean</field>
+            <field name="size">1</field>
+            <field name="bool_yes">X</field>
+            <field name="bool_no"> </field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_21" model="aeat.model.export.config.line">
+            <field name="sequence">21</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Numero justificante declaración anterior</field>
+            <field name="expression">${object.previous_number}</field>
+            <field name="export_type">string</field>
+            <field name="size">13</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_22" model="aeat.model.export.config.line">
+            <field name="sequence">22</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Declaración sin actividad</field>
+            <field name="expression">${object.result_type == 'N'}</field>
+            <field name="export_type">boolean</field>
+            <field name="size">1</field>
+            <field name="bool_yes">X</field>
+            <field name="bool_no"> </field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_23" model="aeat.model.export.config.line">
+            <field name="sequence">23</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Domiciliación/Devolución - IBAN</field>
+            <field name="fixed_value"/>
+            <field name="export_type">string</field>
+            <field name="size">34</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_24" model="aeat.model.export.config.line">
+            <field name="sequence">24</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - B- Clave - Principal</field>
+            <field name="fixed_value"/>
+            <field name="export_type">integer</field>
+            <field name="size">1</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_25" model="aeat.model.export.config.line">
+            <field name="sequence">25</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - C- Epígrafe IAE - Principal</field>
+            <field name="fixed_value"/>
+            <field name="export_type">string</field>
+            <field name="size">4</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_26" model="aeat.model.export.config.line">
+            <field name="sequence">26</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - B- Clave - Otras 1ª</field>
+            <field name="fixed_value"/>
+            <field name="export_type">integer</field>
+            <field name="size">1</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_27" model="aeat.model.export.config.line">
+            <field name="sequence">27</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - C- Epígrafe IAE - Otras 1ª</field>
+            <field name="fixed_value"/>
+            <field name="export_type">string</field>
+            <field name="size">4</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_28" model="aeat.model.export.config.line">
+            <field name="sequence">28</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - B- Clave - Otras 2ª</field>
+            <field name="fixed_value"/>
+            <field name="export_type">integer</field>
+            <field name="size">1</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_29" model="aeat.model.export.config.line">
+            <field name="sequence">29</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - C- Epígrafe IAE - Otras 2ª</field>
+            <field name="fixed_value"/>
+            <field name="export_type">string</field>
+            <field name="size">4</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_30" model="aeat.model.export.config.line">
+            <field name="sequence">30</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - B- Clave - Otras 3ª</field>
+            <field name="fixed_value"/>
+            <field name="export_type">integer</field>
+            <field name="size">1</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_31" model="aeat.model.export.config.line">
+            <field name="sequence">31</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - C- Epígrafe IAE - Otras 3ª</field>
+            <field name="fixed_value"/>
+            <field name="export_type">string</field>
+            <field name="size">4</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_32" model="aeat.model.export.config.line">
+            <field name="sequence">32</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - B- Clave - Otras 4ª</field>
+            <field name="fixed_value"/>
+            <field name="export_type">integer</field>
+            <field name="size">1</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_33" model="aeat.model.export.config.line">
+            <field name="sequence">33</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - C- Epígrafe IAE - Otras 4ª</field>
+            <field name="fixed_value"/>
+            <field name="export_type">string</field>
+            <field name="size">4</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_34" model="aeat.model.export.config.line">
+            <field name="sequence">34</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - B- Clave - Otras 5ª</field>
+            <field name="fixed_value"/>
+            <field name="export_type">integer</field>
+            <field name="size">1</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_35" model="aeat.model.export.config.line">
+            <field name="sequence">35</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - C- Epígrafe IAE - Otras 5ª</field>
+            <field name="fixed_value"/>
+            <field name="export_type">string</field>
+            <field name="size">4</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_36" model="aeat.model.export.config.line">
+            <field name="sequence">36</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - D- Marque si ha efectuado operaciones por las que tenga obligación de presentar la declaración anual de operaciones con terceras personas</field>
+            <field name="fixed_value"/>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_37" model="aeat.model.export.config.line">
+            <field name="sequence">37</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Operaciones en régimen general [80]</field>
+            <field name="fixed_value">0</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_38" model="aeat.model.export.config.line">
+            <field name="sequence">38</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Operaciones en régimen especial del criterio de caja conforme art.75 LIVA [81]</field>
+            <field name="fixed_value">0</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_39" model="aeat.model.export.config.line">
+            <field name="sequence">39</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Exportaciones, entregas intracomunitarias y otras operaciones con derecho a deducción [82]</field>
+            <field name="fixed_value">0</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_40" model="aeat.model.export.config.line">
+            <field name="sequence">40</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Operaciones exentas sin derecho a deducción [83]</field>
+            <field name="fixed_value">0</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_41" model="aeat.model.export.config.line">
+            <field name="sequence">41</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Operaciones no sujetas por reglas de localización o con inversión del sujeto pasivo [84]</field>
+            <field name="fixed_value">0</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_42" model="aeat.model.export.config.line">
+            <field name="sequence">42</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Entregas de bienes objeto de instalación o montaje en otros Estados miembros [85]</field>
+            <field name="fixed_value">0</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_43" model="aeat.model.export.config.line">
+            <field name="sequence">43</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Operaciones de régimen simplificado [86]</field>
+            <field name="fixed_value">0</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_44" model="aeat.model.export.config.line">
+            <field name="sequence">44</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Entregas de bienes inmuebles y de inversión y operaciones financieras no habituales [87]</field>
+            <field name="fixed_value">0</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_45" model="aeat.model.export.config.line">
+            <field name="sequence">45</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Total volumen de operaciones [88]</field>
+            <field name="fixed_value">0</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_46" model="aeat.model.export.config.line">
+            <field name="sequence">46</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Resultado - Regularización cuotas rt. 80 cinco. 5ª LIVA [76]</field>
+            <field name="fixed_value">0</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_47" model="aeat.model.export.config.line">
+            <field name="sequence">47</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Resultado - IVA a la importación liquidado por la Aduana pendiente de ingreso [77]</field>
+            <field name="fixed_value">0</field>
+            <field name="export_type">float</field>
+            <field name="apply_sign" eval="True"/>
+            <field name="size">17</field>
+            <field name="decimal_size">2</field>
+            <field name="alignment">right</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_48" model="aeat.model.export.config.line">
+            <field name="sequence">48</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Reservado para la AEAT</field>
+            <field name="fixed_value"> </field>
+            <field name="export_type">string</field>
+            <field name="size">573</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_sub03_export_line_49" model="aeat.model.export.config.line">
+            <field name="sequence">49</field>
+            <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
+            <field name="name">Indicador de fin de registro: &lt;/T30303&gt;</field>
+            <field name="fixed_value">&lt;/T30303&gt;</field>
+            <field name="export_type">string</field>
+            <field name="size">9</field>
+            <field name="alignment">left</field>
+        </record>
+
+
+        <!--  MAIN-303  -->
+        <record id="aeat_mod303_main_export_config" model="aeat.model.export.config">
+            <field name="name">Exportación modelo 303 2014-actualidad</field>
+            <field name="date_start">2014-01-01</field>
+            <field name="model_number">303</field>
+            <field name="model" ref="l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report"/>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_01" model="aeat.model.export.config.line">
+            <field name="sequence">1</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Constante: &lt;T</field>
+            <field name="fixed_value">&lt;T</field>
+            <field name="export_type">string</field>
+            <field name="size">2</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_02" model="aeat.model.export.config.line">
+            <field name="sequence">2</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Modelo: 303</field>
+            <field name="fixed_value">303</field>
+            <field name="export_type">string</field>
+            <field name="size">3</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_03" model="aeat.model.export.config.line">
+            <field name="sequence">3</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Constante: 0</field>
+            <field name="fixed_value">0</field>
+            <field name="export_type">string</field>
+            <field name="size">1</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_04" model="aeat.model.export.config.line">
+            <field name="sequence">4</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Ejercicio devengo: AAAA</field>
+            <field name="expression">${object.fiscalyear_id.date_start[:4]}</field>
+            <field name="export_type">string</field>
+            <field name="size">4</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_05" model="aeat.model.export.config.line">
+            <field name="sequence">5</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Periodo: PP</field>
+            <field name="expression">${object.period_type}</field>
+            <field name="export_type">string</field>
+            <field name="size">2</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_06" model="aeat.model.export.config.line">
+            <field name="sequence">6</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Constante: 0000&gt;</field>
+            <field name="fixed_value">0000&gt;</field>
+            <field name="export_type">string</field>
+            <field name="size">5</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_07" model="aeat.model.export.config.line">
+            <field name="sequence">7</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Constante: &lt;AUX&gt;</field>
+            <field name="fixed_value">&lt;AUX&gt;</field>
+            <field name="export_type">string</field>
+            <field name="size">5</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_08" model="aeat.model.export.config.line">
+            <field name="sequence">8</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Reservado para la Administración: Rellenar con blancos</field>
+            <field name="fixed_value"/>
+            <field name="export_type">string</field>
+            <field name="size">70</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_09" model="aeat.model.export.config.line">
+            <field name="sequence">9</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Versión del Programa: </field>
+            <field name="fixed_value">8.0</field>
+            <field name="export_type">string</field>
+            <field name="size">4</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_10" model="aeat.model.export.config.line">
+            <field name="sequence">10</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Reservado para la Administración: Rellenar con blancos</field>
+            <field name="fixed_value"/>
+            <field name="export_type">string</field>
+            <field name="size">4</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_11" model="aeat.model.export.config.line">
+            <field name="sequence">11</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">NIF Empresa Desarrollo</field>
+            <field name="fixed_value">Odoo</field>
+            <field name="export_type">string</field>
+            <field name="size">9</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_12" model="aeat.model.export.config.line">
+            <field name="sequence">12</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Reservado para la Administración: Rellenar con blancos</field>
+            <field name="fixed_value"/>
+            <field name="export_type">string</field>
+            <field name="size">213</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_13" model="aeat.model.export.config.line">
+            <field name="sequence">13</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Constante: &lt;/AUX&gt;</field>
+            <field name="fixed_value">&lt;/AUX&gt;</field>
+            <field name="export_type">string</field>
+            <field name="size">6</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_14" model="aeat.model.export.config.line">
+            <field name="sequence">14</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Régimen general/simplificado</field>
+            <field name="conditional_expression">True</field>
+            <field name="sub_config" ref="aeat_mod303_sub01_export_config"/>
+            <field name="export_type">subconfig</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_15" model="aeat.model.export.config.line">
+            <field name="sequence">15</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Régimen agrícola, ganadero y forestal</field>
+            <field name="conditional_expression">False</field>
+            <field name="sub_config" ref="aeat_mod303_sub02_export_config"/>
+            <field name="export_type">subconfig</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_16" model="aeat.model.export.config.line">
+            <field name="sequence">16</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Informacion adicional + resultado</field>
+            <field name="sub_config" ref="aeat_mod303_sub03_export_config"/>
+            <field name="export_type">subconfig</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_17" model="aeat.model.export.config.line">
+            <field name="sequence">17</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Constante. &lt;/T3030+Ejercicio+periodo+0000&gt;</field>
+            <field name="expression">&lt;/T3030${object.fiscalyear_id.date_start[:4]}${object.period_type}&gt;</field>
+            <field name="export_type">string</field>
+            <field name="size">18</field>
+            <field name="alignment">left</field>
+        </record>
+
+        <record id="aeat_mod303_main_export_line_18" model="aeat.model.export.config.line">
+            <field name="sequence">18</field>
+            <field name="export_config_id" ref="aeat_mod303_main_export_config"/>
+            <field name="name">Fin de Registro. Constante CRLF( Hexadecimal 0D0A, Decimal 1310)</field>
+            <field name="expression">"\r\n".encode("ascii")</field>
+            <field name="export_type">string</field>
+            <field name="size">2</field>
+            <field name="alignment">left</field>
+        </record>
+
+    </data>
+</openerp>

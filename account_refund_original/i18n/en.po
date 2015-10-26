@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_refund_original
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-14 00:52+0000\n"
+"PO-Revision-Date: 2015-05-23 08:55+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: account_refund_original
+#: view:account.invoice:account_refund_original.view_customer_account_invoice_add_refunds_details_form
+#: view:account.invoice:account_refund_original.view_supplier_account_invoice_add_refunds_details_form
+msgid "Description"
+msgstr "Description"
+
+#. module: account_refund_original
+#: model:ir.model,name:account_refund_original.model_account_invoice
+msgid "Invoice"
+msgstr "Invoice"
+
+#. module: account_refund_original
+#: model:ir.model,name:account_refund_original.model_account_invoice_refund
+msgid "Invoice Refund"
+msgstr "Invoice Refund"
+
+#. module: account_refund_original
+#: help:account.invoice,origin_invoices_ids:0
+msgid "Links to original invoice which is referred by current refund invoice"
+msgstr "Links to original invoice which is referred by current refund invoice"
+
+#. module: account_refund_original
+#: view:account.invoice:account_refund_original.view_customer_account_invoice_add_refunds_details_form
+#: view:account.invoice:account_refund_original.view_supplier_account_invoice_add_refunds_details_form
+msgid "Payments"
+msgstr "Payments"
+
+#. module: account_refund_original
+#: field:account.invoice,origin_invoices_ids:0
+msgid "Refund invoice"
+msgstr "Refund invoice"
+
+#. module: account_refund_original
+#: field:account.invoice,refund_invoices_description:0
+msgid "Refund invoices description"
+msgstr "Refund invoices description"
+
+#. module: account_refund_original
+#: view:account.invoice:account_refund_original.view_customer_account_invoice_add_refunds_details_form
+#: view:account.invoice:account_refund_original.view_supplier_account_invoice_add_refunds_details_form
+msgid "Refunded invoices"
+msgstr "Refunded invoices"
+
+#. module: account_refund_original
+#: view:account.invoice:account_refund_original.view_customer_account_invoice_add_refunds_details_form
+#: view:account.invoice:account_refund_original.view_supplier_account_invoice_add_refunds_details_form
+msgid "Refunds"
+msgstr "Refunds"

@@ -18,13 +18,13 @@
 
 {
     'name': 'AEAT modelo 111',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'category': "Localisation/Accounting",
-    'author': "Spanish Localization Team,"
-              "AvanzOSC,"
+    'author': "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+              "Antiun Ingeniería S.L.,"
               "MálagaTIC,"
-              "Grupo Vermon,"
+              "G. Vermon,"
               "Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-spain",
     'license': 'AGPL-3',

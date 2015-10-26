@@ -13,7 +13,7 @@
                 </tree>
             </field>
         </record>
-    
+
         <record id="aeat_mod_map_tax_code_form" model="ir.ui.view">
             <field name="name">aeat.mod.map.tax.code.form</field>
             <field name="model">aeat.mod.map.tax.code</field>
@@ -29,31 +29,39 @@
                 </form>
             </field>
         </record>
-        
+
          <record id="aeat_mod_map_tax_code_line_tree" model="ir.ui.view">
             <field name="name">aeat.mod.map.tax.code.line.tree</field>
             <field name="model">aeat.mod.map.tax.code.line</field>
             <field name="arch" type="xml">
                 <tree string="Tax code mapping lines" editable="bottom">
                     <field name="field_number"/>
+                    <field name="name"/>
+                    <field name="to_regularize"/>
                     <field name="tax_codes" widget="many2many_tags"/>
                 </tree>
             </field>
         </record>
-    
+
         <record id="aeat_mod_map_tax_code_line_form" model="ir.ui.view">
             <field name="name">aeat.mod.map.tax.code.line.form</field>
             <field name="model">aeat.mod.map.tax.code.line</field>
             <field name="arch" type="xml">
                 <form string="Tax code mapping line">
                     <group col="4">
-                        <field name="field_number"/>
-                        <field name="tax_codes"/>
+                        <group>
+                            <field name="name"/>
+                            <field name="field_number"/>
+                            <field name="to_regularize"/>
+                        </group>
+                        <group>
+                            <field name="tax_codes"/>
+                        </group>
                     </group>
                 </form>
             </field>
         </record>
-    
+
         <record model="ir.actions.act_window" id="action_aeat_mod_map_tax_code">
             <field name="name">Tax code mapping</field>
             <field name="res_model">aeat.mod.map.tax.code</field>

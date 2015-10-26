@@ -158,9 +158,6 @@ class L10nEsAeatMod111Report(models.Model):
         'complementaria.')
     currency_id = fields.Many2one('res.currency', string='Moneda',
                                   related='company_id.currency_id', store=True)
-    period_id = fields.Many2one('account.period', 'Periodo', readonly=True,
-                                states={'draft': [('readonly', False)]},
-                                required=True)
     tipo_declaracion = fields.Selection(
         [('I', 'Ingreso'), ('U', 'Domiciliación'),
          ('G', 'Ingreso a anotar en CCT'), ('N', 'Negativa')],
@@ -186,9 +183,9 @@ class L10nEsAeatMod111Report(models.Model):
     @api.one
     @api.constrains('codigo_electronico_anterior', 'previous_number')
     def _check_complementary(self):
-        if (self.type == 'C'
-                and not self.codigo_electronico_anterior
-                and not self.previous_number):
+        if (self.type == 'C' and
+                not self.codigo_electronico_anterior and
+                not self.previous_number):
             raise exceptions.Warning(
                 _('Si se marca la casilla de liquidación complementaria,'
                   ' debe rellenar el código electrónico o'
@@ -199,30 +196,12 @@ class L10nEsAeatMod111Report(models.Model):
         super(L10nEsAeatMod111Report, self).__init__(pool, cr)
 
     @api.multi
-    def _get_partner_domain(self):
-        return []
-
-    @api.multi
-    def _get_tax_code_lines(self, tax_code):
-        self.ensure_one()
-        tax_code_obj = self.env['account.tax.code']
-        move_line_obj = self.env['account.move.line']
-        code_list = tax_code_obj.search(
-            [('code', '=', tax_code),
-             ('company_id', '=', self.company_id.id)])[:1]
-        move_line_domain = [('company_id', '=', self.company_id.id),
-                            ('tax_code_id', 'child_of', code_list.id)]
-        if self.period_id:
-            move_line_domain += [('period_id', '=', self.period_id.id)]
-        move_line_domain += self._get_partner_domain()
-        move_lines = move_line_obj.search(move_line_domain)
-        return move_lines
-
-    @api.multi
     def calculate(self):
         self.ensure_one()
-        move_lines08 = self._get_tax_code_lines('IRPBI')
-        move_lines09 = self._get_tax_code_lines('ITRPC')
+        move_lines08 = self._get_tax_code_lines(
+            ['IRPBI'], periods=self.periods)
+        move_lines09 = self._get_tax_code_lines(
+            ['ITRPC'], periods=self.periods)
         self.move_lines_08 = move_lines08.ids
         self.move_lines_09 = move_lines09.ids
         self.casilla_08 = sum([x.tax_amount for x in move_lines08])

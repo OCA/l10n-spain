@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="invoice_supplier_form_mod347" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.mod347</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="payment_term" position="before">
+                    <field name="not_in_mod347"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="invoice_form_mod347" model="ir.ui.view">
+            <field name="name">account.invoice.form.mod347</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="date_due" position="after">
+                    <field name="not_in_mod347"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

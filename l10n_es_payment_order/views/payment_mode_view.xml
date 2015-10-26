@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--
+             Add the payment mode type settings
+        -->
+        <record id="view_payment_mode_form_inherit" model="ir.ui.view">
+            <field name="name">payment.mode.form.inherit</field>
+            <field name="model">payment.mode</field>
+            <field name="priority" eval="100"/>
+            <field name="inherit_id" ref="account_payment.view_payment_mode_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <group colspan="4" col="1">
+                        <group col="4"
+                               string="CSB 58 Options"
+                               attrs="{'invisible': [('is_csb58', '=', False)]}"
+                                >
+                            <field name="is_csb58" invisible="1"/>
+                            <field name="csb58_include_address"/>
+                            <field name="csb58_alt_address_format"/>
+                            <field name="csb58_ine"/>
+                        </group>
+                        <group col="4"
+                               string="CSB 32 Options"
+                               attrs="{'invisible': [('is_csb32', '=', False)]}"
+                                >
+                            <field name="is_csb32" invisible="1"/>
+                            <field name="csb32_assignor"/>
+                        </group>
+                        <group col="4"
+                               string="CSB 19 Options"
+                               attrs="{'invisible': [('is_csb19', '=', False)]}"
+                                >
+                            <field name="is_csb19" invisible="1"/>
+                            <field name="csb19_extra_concepts"/>
+                        </group>
+                        <group string="CSB 34 Options"
+                               attrs="{'invisible': [('is_csb34', '=', False), ('is_csb3401', '=', False)]}"
+                                >
+                            <field name="is_csb34" invisible="1"/>
+                            <field name="is_csb3401" invisible="1"/>
+                            <field name="csb34_type" colspan="2"/>
+                            <group string="Additional data for CSB 34 type of payment file.">
+                                <field name="csb34_cost_key"/>
+                                <field name="csb34_concept"/>
+                                <field name="csb34_direct_pay_order"/>
+                            </group>
+                            <group attrs="{'invisible': [('csb34_type', '=', 'transfer')]}"
+                                   string="Additional data for promissory notes, checks, and certified payments.">
+                                <field name="csb34_send_type" attrs="{'required': [('csb34_type','!=','transfer')]}"/>
+                                <field name="csb34_not_to_the_order"/>
+                                <field name="csb34_barred"/>
+                            </group>
+                            <group attrs="{'invisible': [('csb34_send_type', '=', 'other')]}"
+                                   string="Optional Text for the Letter (adds 101, 102, 103, data types in the file)">
+                                <field name="csb34_text1"/>
+                                <field name="csb34_text2"/>
+                                <field name="csb34_text3"/>
+                                <field name="csb34_payroll_check"/>
+                                <field name="csb34_add_date"/>
+                            </group>
+                        </group>
+                    </group>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

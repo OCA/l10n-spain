@@ -30,7 +30,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/mod347.py:398
 #, python-format
-msgid "All real state records state code field must be filled."
+msgid "All real estate records state code field must be filled."
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -49,15 +49,15 @@ msgid "Include in 347 Report"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,real_state_record_ids:0
-#: view:l10n.es.aeat.mod347.real_state_record:0
-#: field:l10n.es.aeat.mod347.report,real_state_record_ids:0
-msgid "Real State Records"
+#: field:l10n.es.aeat.mod347.partner_record,real_estate_record_ids:0
+#: view:l10n.es.aeat.mod347.real_estate_record:0
+#: field:l10n.es.aeat.mod347.report,real_estate_record_ids:0
+msgid "Real Estate Records"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,fourth_quarter_real_state_transmission_amount:0
-msgid "Fourth Quarter Real State Transmossion Amount"
+#: field:l10n.es.aeat.mod347.partner_record,fourth_quarter_real_estate_transmission_amount:0
+msgid "Fourth Quarter Real Estate Transmossion Amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -67,7 +67,7 @@ msgid "Partner Records"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,township_code:0
+#: field:l10n.es.aeat.mod347.real_estate_record,township_code:0
 msgid "Township Code"
 msgstr ""
 
@@ -77,9 +77,9 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_real_state_record
-#: view:l10n.es.aeat.mod347.real_state_record:0
-msgid "Real State Record"
+#: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_real_estate_record
+#: view:l10n.es.aeat.mod347.real_estate_record:0
+msgid "Real Estate Record"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -88,7 +88,7 @@ msgid "The declaration will include partners with the total of operations over t
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,number_calification:0
+#: field:l10n.es.aeat.mod347.real_estate_record,number_calification:0
 msgid "Number calification"
 msgstr ""
 
@@ -108,27 +108,27 @@ msgid "Previous declaration number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,total_real_state_amount:0
-msgid "Real State Amount"
+#: field:l10n.es.aeat.mod347.report,total_real_estate_amount:0
+msgid "Real Estate Amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: selection:l10n.es.aeat.mod347.real_state_record,number_calification:0
+#: selection:l10n.es.aeat.mod347.real_estate_record,number_calification:0
 msgid "Bis"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: selection:l10n.es.aeat.mod347.real_state_record,situation:0
+#: selection:l10n.es.aeat.mod347.real_estate_record,situation:0
 msgid "4 - Foreign"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: selection:l10n.es.aeat.mod347.real_state_record,number_calification:0
+#: selection:l10n.es.aeat.mod347.real_estate_record,number_calification:0
 msgid "Mod"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: selection:l10n.es.aeat.mod347.real_state_record,situation:0
+#: selection:l10n.es.aeat.mod347.real_estate_record,situation:0
 msgid "1 - Spain but Basque Country and Navarra"
 msgstr ""
 
@@ -164,7 +164,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,amount:0
 #: field:l10n.es.aeat.mod347.invoice_record,amount:0
-#: field:l10n.es.aeat.mod347.real_state_record,amount:0
+#: field:l10n.es.aeat.mod347.real_estate_record,amount:0
 #: field:l10n.es.aeat.mod347.report,total_amount:0
 msgid "Amount"
 msgstr ""
@@ -198,20 +198,20 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:297
 #, python-format
-msgid "The type 2-I record (real state) must be 502 characters long"
+msgid "The type 2-I record (real estate) must be 502 characters long"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_res_partner
 #: field:l10n.es.aeat.mod347.partner_record,partner_id:0
-#: field:l10n.es.aeat.mod347.real_state_record,partner_id:0
+#: field:l10n.es.aeat.mod347.real_estate_record,partner_id:0
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Partner"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.report:0
-msgid "Real State records"
+msgid "Real Estate records"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -220,8 +220,8 @@ msgid "Fourth"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,total_real_state_transmissions_amount:0
-msgid "Real State Transmissions Amount"
+#: field:l10n.es.aeat.mod347.report,total_real_estate_transmissions_amount:0
+msgid "Real Estate Transmissions Amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -240,7 +240,7 @@ msgid "Invoiced Limit (1)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: selection:l10n.es.aeat.mod347.real_state_record,situation:0
+#: selection:l10n.es.aeat.mod347.real_estate_record,situation:0
 msgid "3 - Spain, without catastral reference"
 msgstr ""
 
@@ -253,8 +253,8 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,bussiness_real_state_rent:0
-msgid "Bussiness Real State Rent"
+#: field:l10n.es.aeat.mod347.partner_record,bussiness_real_estate_rent:0
+msgid "Bussiness Real Estate Rent"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -282,7 +282,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,representative_vat:0
-#: help:l10n.es.aeat.mod347.real_state_record,representative_vat:0
+#: help:l10n.es.aeat.mod347.real_estate_record,representative_vat:0
 msgid "Legal Representative VAT number"
 msgstr ""
 
@@ -292,7 +292,7 @@ msgid "Fourth Quarter"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,door:0
+#: field:l10n.es.aeat.mod347.real_estate_record,door:0
 msgid "Door"
 msgstr ""
 
@@ -309,7 +309,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_report
 #: field:l10n.es.aeat.mod347.partner_record,report_id:0
-#: field:l10n.es.aeat.mod347.real_state_record,report_id:0
+#: field:l10n.es.aeat.mod347.real_estate_record,report_id:0
 msgid "AEAT 347 Report"
 msgstr ""
 
@@ -335,7 +335,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,partner_vat:0
-#: field:l10n.es.aeat.mod347.real_state_record,partner_vat:0
+#: field:l10n.es.aeat.mod347.real_estate_record,partner_vat:0
 #: field:l10n.es.aeat.mod347.report,company_vat:0
 msgid "VAT number"
 msgstr ""
@@ -352,12 +352,12 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,partner_state_code:0
-#: field:l10n.es.aeat.mod347.real_state_record,state_code:0
+#: field:l10n.es.aeat.mod347.real_estate_record,state_code:0
 msgid "State Code"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,stairway:0
+#: field:l10n.es.aeat.mod347.real_estate_record,stairway:0
 msgid "Stairway"
 msgstr ""
 
@@ -387,7 +387,7 @@ msgid "Amount (Q1|Q2|Q3|Q4)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,block:0
+#: field:l10n.es.aeat.mod347.real_estate_record,block:0
 msgid "Block"
 msgstr ""
 
@@ -397,8 +397,8 @@ msgid "First"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,situation:0
-msgid "Real state Situation"
+#: field:l10n.es.aeat.mod347.real_estate_record,situation:0
+msgid "Real estate Situation"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -412,7 +412,7 @@ msgid "Invoiced amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,reference:0
+#: field:l10n.es.aeat.mod347.real_estate_record,reference:0
 msgid "Catastral Reference"
 msgstr ""
 
@@ -427,12 +427,12 @@ msgid "Only for insurance companies. Set to identify insurance operations aside 
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: selection:l10n.es.aeat.mod347.real_state_record,situation:0
+#: selection:l10n.es.aeat.mod347.real_estate_record,situation:0
 msgid "2 - Basque Country and Navarra"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,postal_code:0
+#: field:l10n.es.aeat.mod347.real_estate_record,postal_code:0
 msgid "Postal code"
 msgstr ""
 
@@ -443,13 +443,13 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
-#: view:l10n.es.aeat.mod347.real_state_record:0
-msgid "Real state info"
+#: view:l10n.es.aeat.mod347.real_estate_record:0
+msgid "Real estate info"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,real_state_transmissions_amount:0
-msgid "Real State Transmisions amount"
+#: field:l10n.es.aeat.mod347.partner_record,real_estate_transmissions_amount:0
+msgid "Real Estate Transmisions amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -483,7 +483,7 @@ msgid "Draft"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: selection:l10n.es.aeat.mod347.real_state_record,number_calification:0
+#: selection:l10n.es.aeat.mod347.real_estate_record,number_calification:0
 msgid "Dup"
 msgstr ""
 
@@ -498,7 +498,7 @@ msgid "open"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,number_type:0
+#: field:l10n.es.aeat.mod347.real_estate_record,number_type:0
 msgid "Number type"
 msgstr ""
 
@@ -513,7 +513,7 @@ msgid "unknown"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,complement:0
+#: field:l10n.es.aeat.mod347.real_estate_record,complement:0
 msgid "Complement"
 msgstr ""
 
@@ -528,13 +528,13 @@ msgid "Phone"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,portal:0
+#: field:l10n.es.aeat.mod347.real_estate_record,portal:0
 msgid "Portal"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: help:l10n.es.aeat.mod347.partner_record,bussiness_real_state_rent:0
-msgid "Set to identify real state rent operations aside from the rest. You'll need to fill in the real state info only when you are the one that receives the money."
+#: help:l10n.es.aeat.mod347.partner_record,bussiness_real_estate_rent:0
+msgid "Set to identify real estate rent operations aside from the rest. You'll need to fill in the real estate info only when you are the one that receives the money."
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -564,12 +564,12 @@ msgid "Payment records"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,address_type:0
+#: field:l10n.es.aeat.mod347.real_estate_record,address_type:0
 msgid "Address type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: selection:l10n.es.aeat.mod347.real_state_record,number_type:0
+#: selection:l10n.es.aeat.mod347.real_estate_record,number_type:0
 msgid "Without number"
 msgstr ""
 
@@ -595,7 +595,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,representative_vat:0
-#: field:l10n.es.aeat.mod347.real_state_record,representative_vat:0
+#: field:l10n.es.aeat.mod347.real_estate_record,representative_vat:0
 #: field:l10n.es.aeat.mod347.report,representative_vat:0
 msgid "L.R. VAT number"
 msgstr ""
@@ -628,8 +628,8 @@ msgid "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al 
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,third_quarter_real_state_transmission_amount:0
-msgid "Third Quarter Real State Transmission Amount"
+#: field:l10n.es.aeat.mod347.partner_record,third_quarter_real_estate_transmission_amount:0
+msgid "Third Quarter Real Estate Transmission Amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -643,8 +643,8 @@ msgid "Statement Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,number:0
-#: selection:l10n.es.aeat.mod347.real_state_record,number_type:0
+#: field:l10n.es.aeat.mod347.real_estate_record,number:0
+#: selection:l10n.es.aeat.mod347.real_estate_record,number_type:0
 msgid "Number"
 msgstr ""
 
@@ -654,7 +654,7 @@ msgid "General"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: selection:l10n.es.aeat.mod347.real_state_record,number_calification:0
+#: selection:l10n.es.aeat.mod347.real_estate_record,number_calification:0
 msgid "Ant"
 msgstr ""
 
@@ -680,7 +680,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
-msgid "Real State Transmission (Q1|Q2|Q3|Q4)"
+msgid "Real Estate Transmission (Q1|Q2|Q3|Q4)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -689,7 +689,7 @@ msgid "Export AEAT 347 BOE file"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,city:0
+#: field:l10n.es.aeat.mod347.real_estate_record,city:0
 msgid "City"
 msgstr ""
 
@@ -699,7 +699,7 @@ msgid "Payments of this journal will be considered as cash (used on the 347 repo
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,floor:0
+#: field:l10n.es.aeat.mod347.real_estate_record,floor:0
 msgid "Floor"
 msgstr ""
 
@@ -709,7 +709,7 @@ msgid "B - Entregas de bienes y servicios superiores al límite (1)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: help:l10n.es.aeat.mod347.real_state_record,complement:0
+#: help:l10n.es.aeat.mod347.real_estate_record,complement:0
 msgid "Complement (urbanization, industrial park...)"
 msgstr ""
 
@@ -719,7 +719,7 @@ msgid "Cash records"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: selection:l10n.es.aeat.mod347.real_state_record,number_type:0
+#: selection:l10n.es.aeat.mod347.real_estate_record,number_type:0
 msgid "Kilometer"
 msgstr ""
 
@@ -739,8 +739,8 @@ msgid "AEAT Model 347"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: view:l10n.es.aeat.mod347.real_state_record:0
-msgid "Real state address"
+#: view:l10n.es.aeat.mod347.real_estate_record:0
+msgid "Real estate address"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -769,8 +769,8 @@ msgid "PARTNER RECORD LINES"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,first_quarter_real_state_transmission_amount:0
-msgid "First Quarter Real State Transmission Amount"
+#: field:l10n.es.aeat.mod347.partner_record,first_quarter_real_estate_transmission_amount:0
+msgid "First Quarter Real Estate Transmission Amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -784,17 +784,17 @@ msgid "Support Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.partner_record,second_quarter_real_state_transmission_amount:0
-msgid "Second Quarter Real State Transmission Amount"
+#: field:l10n.es.aeat.mod347.partner_record,second_quarter_real_estate_transmission_amount:0
+msgid "Second Quarter Real Estate Transmission Amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,address:0
+#: field:l10n.es.aeat.mod347.real_estate_record,address:0
 msgid "Address"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.real_state_record,township:0
+#: field:l10n.es.aeat.mod347.real_estate_record,township:0
 msgid "Township"
 msgstr ""
 
@@ -820,7 +820,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:0
-#: view:l10n.es.aeat.mod347.real_state_record:0
+#: view:l10n.es.aeat.mod347.real_estate_record:0
 msgid "Partner info"
 msgstr ""
 
@@ -830,8 +830,8 @@ msgid "RST amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,total_real_state_records:0
-msgid "Real state records"
+#: field:l10n.es.aeat.mod347.report,total_real_estate_records:0
+msgid "Real estate records"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -876,7 +876,13 @@ msgid "Journal"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: field:account.invoice,not_in_mod347:0
 #: field:res.partner,not_in_mod347:0
 msgid "Not included in 347 report"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: help:account.invoice,not_in_mod347:0
+msgid "If you mark this field, this invoice will not be included in any AEAT 347 model report."
 msgstr ""
 

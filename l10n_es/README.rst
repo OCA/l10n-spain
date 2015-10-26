@@ -1,6 +1,8 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License
 
+===============================================
 Plan contable e impuestos de España (PGCE 2008)
 ===============================================
 
@@ -20,6 +22,7 @@ encuentra en la versión estándar de Odoo, por lo que es conveniente instalar
 Historial
 ---------
 
+* v5.2: Añadida retención 19,5% arrendamientos.
 * v5.1: Renombrado todo lo relacionado con arrendamientos para no incluir la
   palabra "IRPF", ya que no es como tal IRPF.
 * v5.0: Se ha rehecho toda la parte de impuestos para dar mayor facilidad de
@@ -55,11 +58,11 @@ Instalación
 Si en la base de datos a aplicar ya se encuentra instalado el plan contable de
 la compañía, será necesario actualizarlo con el módulo *account_chart_update*,
 disponible en https://github.com/OCA/account-financial-tools. **AVISO:**
-Después de actualizar, será necesario cambiar el impuesto de venta por
-defecto en la pestaña Configuración > Contabilidad, y además sustituir en los
-productos el mismo por "x% IVA (servicios)" o "x% IVA (bienes)" según
-corresponda en cada caso. Se puede utilizar para ello el módulo *mass_editing*
-del repositorio https://github.com/OCA/server-tools.
+Después de actualizar de una version <5.0, será necesario cambiar el impuesto
+de venta por defecto en la pestaña Configuración > Contabilidad, y además
+sustituir en los productos el mismo por "x% IVA (servicios)" o
+"x% IVA (bienes)" según corresponda en cada caso. Se puede utilizar para ello
+el módulo *mass_editing* del repositorio https://github.com/OCA/server-tools.
 
 Por último, si se procede del l10n_es v3.0, serán necesarios ajustes manuales
 al actualizar el plan de cuentas, como crear a mano la cuenta 472000.

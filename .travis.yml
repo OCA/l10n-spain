@@ -3,6 +3,9 @@ language: python
 python:
   - "2.7"
 
+sudo: false
+cache: pip
+
 addons:
   apt:
     packages:
@@ -33,7 +36,7 @@ install:
   - travis_install_nightly
 
 script:
-  - travis_run_tests
+  - travis_wait travis_run_tests
 
 after_success:
   - travis_after_tests_success
