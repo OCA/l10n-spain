@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-16 07:49+0000\n"
-"PO-Revision-Date: 2015-10-01 08:01+0000\n"
+"POT-Creation-Date: 2015-10-20 19:02+0000\n"
+"PO-Revision-Date: 2015-10-18 17:09+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -556,7 +556,7 @@ msgid "Odoo model"
 msgstr "Odoo model"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:406
+#: code:addons/l10n_es_aeat/models/aeat_report.py:404
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr "Only reports in 'draft' or 'cancelled' state can be removed"
@@ -619,7 +619,7 @@ msgid "Recalculate"
 msgstr "Recalculate"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:319
+#: code:addons/l10n_es_aeat/models/aeat_report.py:317
 #, python-format
 msgid "Regularization"
 msgstr "Regularization"
@@ -748,6 +748,14 @@ msgid "The formated string must match the given length"
 msgstr "The formated string must match the given length"
 
 #. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_report.py:258
+#, python-format
+msgid ""
+"There is no period defined for the report. Please set at least one period "
+"and try again."
+msgstr "There is no period defined for the report. Please set at least one period and try again."
+
+#. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,counterpart_account:0
 msgid ""
 "This account will be the counterpart for all the journal items that are "
@@ -797,7 +805,7 @@ msgid "Wrong aling option. It should be < or >"
 msgstr "Wrong aling option. It should be < or >"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:353
+#: code:addons/l10n_es_aeat/models/aeat_report.py:351
 #, python-format
 msgid "You must fill both journal and counterpart account."
 msgstr "You must fill both journal and counterpart account."
