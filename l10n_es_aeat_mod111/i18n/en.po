@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-16 07:49+0000\n"
-"PO-Revision-Date: 2015-10-15 12:40+0000\n"
+"POT-Creation-Date: 2015-10-20 19:02+0000\n"
+"PO-Revision-Date: 2015-10-18 17:09+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -688,13 +688,6 @@ msgstr "Substitutive"
 #: field:l10n.es.aeat.mod111.report,support_type:0
 msgid "Support Type"
 msgstr "Support Type"
-
-#. module: l10n_es_aeat_mod111
-#: code:addons/l10n_es_aeat_mod111/models/mod111.py:204
-#: code:addons/l10n_es_aeat_mod111/models/mod111.py:208
-#, python-format
-msgid "Tabla de impuestos desactualizada."
-msgstr "Tabla de impuestos desactualizada."
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,tax_lines:0
