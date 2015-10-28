@@ -22,7 +22,8 @@
 {
     "name": "IGIC (Impuesto General Indirecto Canario)",
     "version": "8.0.0.1",
-    "author": "David Diz Martínez <daviddiz@gmail.com>",
+    "author": "David Diz Martínez <daviddiz@gmail.com>,"
+              "Odoo Community Association (OCA)",
     "website": "https://github.com/daviddiz/igic",
     "category": "Localisation/Europe",
     "depends": [
