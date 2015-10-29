@@ -31,7 +31,9 @@
     ],
     "license": "AGPL-3",
     "data": [
-        "data/taxes_igic.xml",
+        "data/tax_codes_common_igic.xml",
+        "data/account_account_common_igic.xml",
+        "data/taxes_common_igic.xml",
     ],
     'images': [],
     "demo": [],
