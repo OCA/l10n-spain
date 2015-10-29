@@ -88,7 +88,9 @@
                         <field name="compensate"
                                attrs="{'invisible': [('result_type', '!=', 'B')]}"
                                 />
+                        <field name="company_partner_id" invisible="1"/>
                         <field name="bank_account"
+                               domain="[('partner_id', '=', company_partner_id)]"
                                attrs="{'invisible': [('result_type', 'not in', ('B', 'I')), ('compensate', '=', False)]}"
                                 />
                     </group>
