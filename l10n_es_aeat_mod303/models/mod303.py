@@ -15,7 +15,7 @@
 #    along with this program.  If not, see http://www.gnu.org/licenses/.
 #
 ##############################################################################
-from openerp import models, fields, api, exceptions, _
+from openerp import models, fields, api, _
 
 
 class L10nEsAeatMod303Report(models.Model):
@@ -171,5 +171,7 @@ class L10nEsAeatMod303Report(models.Model):
             if mod303.result_type == 'B' and not not mod303.bank_account:
                 msg = _('Select an account for receiving the money')
         if msg:
-            raise exceptions.Warning(msg)
+            # Don't raise error, because data is not used
+            # raise exceptions.Warning(msg)
+            pass
         return super(L10nEsAeatMod303Report, self).button_confirm()
