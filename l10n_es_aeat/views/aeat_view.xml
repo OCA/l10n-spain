@@ -26,7 +26,7 @@
                         <button name="button_calculate" type="object" string="Calculate" states="draft" icon="terp-stock_format-scientific"/>
                         <button name="button_recalculate" type="object" string="Recalculate" states="calculated" icon="gtk-execute"/>
                         <button name="button_confirm" string="Confirm" type="object" states="calculated" icon="gtk-ok"/>
-                        <button name="%(action_wizard_aeat_export)d" type="action" string="Export to BOE" states="done" icon="gtk-execute"/>
+                        <button name="%(action_wizard_aeat_export)d" type="action" string="Export to BOE" states="done,posted" icon="gtk-execute"/>
                         <button name="button_recover" string="Draft" type="object" states="cancelled" icon="gtk-undo"/>
                         <button name="button_open_move"
                                 string="Show move"
