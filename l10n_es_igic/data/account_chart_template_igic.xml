@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <!-- Plantillas del plan contable para Canarias con los IGIC -->
+        
+        <record id="account_chart_template_pymes_canarias" model="account.chart.template">
+            <field name="name">PGCE PYMEs 2008 Canarias</field>
+            <field name="complete_tax_set" eval="True"/>
+            <field name="parent_id" ref="l10n_es.account_chart_template_pymes"/>
+        </record>
+
+        <record id="account_chart_template_pymes_canarias_value" model="ir.values">
+            <field name="name">PGCE PYMEs 2008 Canarias</field>
+            <field name="model">account.chart.template</field>
+            <field name="key">default</field>
+            <field name="res_id" ref="account_chart_template_pymes_canarias"/>
+            <field name="value" ref="base.EUR"/>
+        </record>
+
+    </data>
+</openerp>
