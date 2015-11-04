@@ -29,24 +29,33 @@ class L10nEsAeatMod115Report(models.Model):
 
     number = fields.Char(default='115')
     casilla_01 = fields.Integer(
-        string='Casilla [01] - Retenciones e ingresos a cuenta. Número '
-               'perceptores.',
-        readonly=True, states={'calculated': [('readonly', False)]})
+        string='[01] Número de perceptores', readonly=True,
+        states={'calculated': [('readonly', False)]},
+        help="Casilla [01] Liquidación - Retenciones e ingresos a cuenta - "
+             "Número de perceptores")
     casilla_02 = fields.Float(
-        string='Casilla [02] - Retenciones e ingresos a cuenta. Base '
-               'retenciones e ingresos a cuenta.',
-        readonly=True, states={'calculated': [('readonly', False)]})
+        string='[02] Base retenciones', readonly=True,
+        states={'calculated': [('readonly', False)]},
+        help="Casilla [02] Liquidación - Retenciones e ingresos a cuenta - "
+             "Base de las retenciones e ingresos a cuenta")
     casilla_03 = fields.Float(
-        string='Casilla [03] - Retenciones e ingresos a cuenta. Retenciones e '
-               'ingresos a cuenta.',
-        readonly=True, states={'calculated': [('readonly', False)]})
+        string='[03] Retenciones', readonly=True,
+        states={'calculated': [('readonly', False)]},
+        help="Casilla [03] Liquidación - Retenciones e ingresos a cuenta - "
+             "Retenciones e ingresos a cuenta")
     casilla_04 = fields.Float(
-        string='Casilla [04] - Retenciones e ingresos a cuenta. Resultado '
-               'anteriores declaraciones.')
+        string='[04] Resultados a ingresar anteriores', readonly=True,
+        states={'calculated': [('readonly', False)]},
+        help="Casilla [04] Liquidación - Retenciones e ingresos a cuenta - "
+             "A deducir (exclusivamente en caso de declaración "
+             "complementaria) Resultado a ingresar de la anterior o "
+             "anteriores declaraciones del mismo concepto, ejercicio y "
+             "período")
     casilla_05 = fields.Float(
-        string='Casilla [05] - Retenciones e ingresos a cuenta. Resultado a '
-               'ingresar.',
-        compute='get_casilla05')
+        string='[05] Resultado a ingresar', readonly=True,
+        compute='get_casilla05',
+        help='Casilla [04] Liquidación - Retenciones e ingresos a cuenta - '
+             'Resultado a ingresar: ([03] - [04])')
     move_lines_02 = fields.Many2many(
         comodel_name='account.move.line',
         relation='mod115_account_move_line02_rel',
