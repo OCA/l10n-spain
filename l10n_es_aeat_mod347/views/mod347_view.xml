@@ -252,6 +252,9 @@
             <field name="model">l10n.es.aeat.mod347.report</field>
             <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
             <field name="arch" type="xml">
+                <field name="periods" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
                 <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
                     <attribute name="name">%(action_wizard_aeat_mod347_export)d</attribute>
                 </button>
