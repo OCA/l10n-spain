@@ -23,6 +23,9 @@ class L10nEsAeatMod347Report(models.Model):
     _inherit = "l10n.es.aeat.report"
     _name = "l10n.es.aeat.mod347.report"
     _description = "AEAT 347 Report"
+    _period_yearly = True
+    _period_quarterly = False
+    _period_monthly = False
 
     @api.multi
     def btn_list_records(self):
