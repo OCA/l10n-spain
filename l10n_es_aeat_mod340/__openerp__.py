@@ -23,7 +23,7 @@
 
 {
     'name': 'Generación de fichero modelo 340 y libro de IVA',
-    'version': '8.0.2.0.0',
+    'version': '8.0.2.1.0',
     'author': "Acysos S.L., "
               "Ting, "
               "Nan-tic, "
@@ -32,35 +32,6 @@
               "Odoo Community Association (OCA)",
     'website': 'https://github.com/OCA/l10n-spain',
     'category': 'Localisation/Accounting',
-    'description': '''
-Módulo para la presentación del modelo 340. Exportación a formato AEAT. Libro
-de IVA
-
-Los impuestos incluidos en este modelo se indican en el Código base cuenta. Por
-defecto actualiza todos los código base que deban incluirse.
-Si el plan contable esta instalado recuerde utilizar account_chart_update para
-actualizar
-los códigos. Contabilidad y Finanzas -> Configuración -> Contabilidad
-Financiera -> Actualizar plan contable a partir de una plantila de plan
-contable
-
-Búsqueda de facturas emitidas y recibidas.
-Exportación a formato de AEAT de facturas emitidas y recibidas.
-Exportación de facturas con varios tipos impositivos. Clave de operación C.
-Facturas intracomunitarias excepto las operaciones a las que hace referencia el
-artículo 66 del RIVA que tienen un tratamiento especial.
-Facturas rectificativas.
-Facturas resumen de tiques.
-Permite imprimir el libro de IVA, basado en la misma legislación.
-
----- COSAS PENDIENTES (TODO LIST) ---------------------------------------------
-
-Facturas bienes de inversión
-Facturas intracomunitarias. Operaciones a las que hace referencia el artículo
-66 del RIVA.
-Asientos contables de resumen de tiques
-Exportación de asientos resumen de facturas
-''',
     'license': 'AGPL-3',
     'depends': [
         'account',
