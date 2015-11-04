@@ -22,4 +22,5 @@ from openerp import models, fields
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    is_resident = fields.Boolean(string='Is resident')
+    is_non_resident = fields.Boolean(string='Is non-resident',
+                                     oldname='is_resident')
