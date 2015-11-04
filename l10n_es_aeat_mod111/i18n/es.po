@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-03 11:08+0000\n"
-"PO-Revision-Date: 2015-11-03 11:08+0000\n"
+"POT-Creation-Date: 2015-11-04 16:35+0000\n"
+"PO-Revision-Date: 2015-11-04 16:35+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,12 @@ msgstr ""
 #: model:ir.model,name:l10n_es_aeat_mod111.model_l10n_es_aeat_mod111_report
 msgid "AEAT 111 report"
 msgstr "Declaración AEAT 111"
+
+#. module: l10n_es_aeat_mod111
+#: code:addons/l10n_es_aeat_mod111/models/mod111.py:296
+#, python-format
+msgid "Account Move Lines"
+msgstr "Apuntes contables"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,move_id:0
@@ -402,7 +408,7 @@ msgstr "Percep. en especie:"
 #. module: l10n_es_aeat_mod111
 #: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Percep.dinerarias:"
-msgstr "Percep. dinerarias:"
+msgstr "Percep.dinerarias:"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,period_type:0
@@ -485,7 +491,17 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: l10n_es_aeat_mod111
-#: code:addons/l10n_es_aeat_mod111/models/mod111.py:190
+#: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
+msgid "Show account move lines for amount"
+msgstr "Mostrar apuntes de la cuota"
+
+#. module: l10n_es_aeat_mod111
+#: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
+msgid "Show account move lines for base"
+msgstr "Mostrar apuntes de la base"
+
+#. module: l10n_es_aeat_mod111
+#: code:addons/l10n_es_aeat_mod111/models/mod111.py:237
 #, python-format
 msgid "Si se marca la casilla de liquidación complementaria, debe rellenar el código electrónico o el número de justificante de la declaración anterior."
 msgstr "Si se marca la casilla de liquidación complementaria, debe rellenar el código electrónico o el número de justificante de la declaración anterior."
@@ -718,6 +734,10 @@ msgstr "abierto"
 
 #. module: l10n_es_aeat_mod111
 #: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
+msgid "{'invisible': 1}"
+msgstr "{'invisible': 1}"
+
+#. module: l10n_es_aeat_mod111
+#: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "{'invisible': [('type','==','N')]}"
 msgstr "{'invisible': [('type','==','N')]}"
-
