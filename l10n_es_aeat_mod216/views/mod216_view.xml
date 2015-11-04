@@ -1,32 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-            <record id="view_l10n_es_aeat_mod216_report_form" model="ir.ui.view">
-                <field name="name">l10n_es.aeat.mod216.report.form</field>
-                <field name="model">l10n.es.aeat.mod216.report</field>
-                <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
-                <field name="arch" type="xml">
-                    <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
-                        <attribute name="name">%(action_wizard_aeat_mod216_export)d</attribute>
-                    </button>
-                    <field name="fiscalyear_id" position="after">
-                        <field name="period_id" domain="[('special','=',False),('fiscalyear_id','=',fiscalyear_id)]"/>
-                        <field name="currency_id" invisible="1"/>
-                    </field>
-                    <field name="previous_number" position="after">
-                            <field name="tipo_declaracion"/>
-                    </field>
-                    <group string="Declaración" position="after">
-                        <group string="Liquidación" colspan="4" states="calculated,done,cancelled">
+        <record id="view_l10n_es_aeat_mod216_report_form" model="ir.ui.view">
+            <field name="name">l10n_es.aeat.mod216.report.form</field>
+            <field name="model">l10n.es.aeat.mod216.report</field>
+            <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
+            <field name="arch" type="xml">
+                <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
+                    <attribute name="name">%(action_wizard_aeat_mod216_export)d</attribute>
+                </button>
+                <field name="fiscalyear_id" position="after">
+                    <field name="currency_id" invisible="1"/>
+                </field>
+                <field name="previous_number" position="after">
+                        <field name="tipo_declaracion"/>
+                </field>
+                <group string="Declaración" position="after">
+                    <group string="Resultado" colspan="4" states="calculated,done,cancelled">
+                        <group string="Rentas sometidas a retención">
                             <field name="casilla_01"/>
-                            <field name="casilla_02" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                            <field name="casilla_03" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_02" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <button name="show_move_lines"
+                                    string="Show account move lines for base"
+                                    type="object" class="oe_link"
+                                    context="{'move_lines_base': True}"/>
+                            <separator/>
+                            <field name="casilla_03" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <button name="show_move_lines"
+                                    string="Show account move lines for amount"
+                                    type="object" class="oe_link"
+                                    context="{'move_lines_cuota': True}"/>
+                            <separator/>
+                        </group>
+                        <group string="Rentas no sometidas a retención">
                             <field name="casilla_04"/>
-                            <field name="casilla_05" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                            <field name="casilla_06" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                            <field name="casilla_07"/>
+                            <field name="casilla_05" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <group string="Liquidación">
+                            <field name="casilla_06" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_07" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
                         </group>
                     </group>
+                </group>
+                <group name="group_tax_lines" position="attributes">
+                    <attribute name="attrs">{'invisible': 1}</attribute>
+                </group>
             </field>
         </record>
 
@@ -38,9 +61,6 @@
                 <tree position="attributes">
                     <attribute name="string">Declaraciones AEAT 216</attribute>
                 </tree>
-                <field name="fiscalyear_id" position="after">
-                    <field name="period_id"/>
-                </field>
             </field>
         </record>
 
