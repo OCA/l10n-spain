@@ -25,4 +25,5 @@ class ABC(models.AbstractModel):
         """Can only be a value from 0 to 100."""
         if self.disability_percentage:
             if not 0 <= self.disability_percentage <= 100:
-                raise ex.OutOfRangeError(self)
+                raise ex.OutOfRangeError(percent=self.disability_percentage,
+                                         name=self.name_get()[0][1])

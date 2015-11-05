@@ -7,45 +7,32 @@ from openerp import _, exceptions
 
 class TGSSError(exceptions.ValidationError):
     """Base class for this module's validation errors."""
-    def __init__(self, record, value=None, *args, **kwargs):
-        value = (value or self._value).format(record=record)
-        super(TGSSError, self).__init__(value, *args, **kwargs)
-        self.record = record
+    def __init__(self, *args, **kwargs):
+        self._args, self._kwargs = args, kwargs
+        value = self._message()
+        super(TGSSError, self).__init__(value)
+
+    @staticmethod
+    def _message(self):
+        """Format the message."""
+        return self.__doc__.format(*self._args, **self._kwargs)
 
 
 class ContributionAccountError(TGSSError):
     """Base class for contribution account validation errors."""
-    def __init__(self, *args, **kwargs):
-        super(ContributionAccountError, self).__init__(*args, **kwargs)
-        self.name = _("Error(s) with the contribution account.")
 
 
-class BadLengthCompanyError(ContributionAccountError):
-    _value = _("The code {record.contribution_account} must have 11 digits "
-               "because it is a company.")
-
-
-class BadLengthPersonError(ContributionAccountError):
-    _value = _("The code {record.contribution_account} must have 12 digits "
-               "because it is a person.")
+class BadLengthError(ContributionAccountError):
+    __doc__ = _("The code {code} must have {expected} digits.")
 
 
 class ControlDigitValidationError(ContributionAccountError):
-    _value = _("Control digit validation failed. "
-               "The code {record.contribution_account} is not valid.")
+    __doc__ = _("Control digit validation failed. The code {} is not valid.")
 
 
 class NonNumericCodeError(ContributionAccountError):
-    _value = _("The code {record.contribution_account} is not numeric.")
+    __doc__ = _("The code {} is not numeric.")
 
 
-class DisabilityError(TGSSError):
-    """Base class for disability percentage validation errors."""
-    def __init__(self, *args, **kwargs):
-        super(DisabilityError, self).__init__(*args, **kwargs)
-        self.name = _("Error(s) with the contribution account.")
-
-
-class OutOfRangeError(DisabilityError):
-    _value = _("Disability {record.disability_percentage}% of {record.name} "
-               "must be between 0 and 100.")
+class OutOfRangeError(TGSSError):
+    __doc__ = _("Disability {percent}% of {name} must be between 0 and 100.")
