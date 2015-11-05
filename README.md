@@ -29,7 +29,6 @@ addon | version | summary
 [account_balance_reporting_xls](account_balance_reporting_xls/) | 8.0.1.0.0 (unported) | Account balance reporting to XLS
 [account_refund_original](account_refund_original/) | 8.0.1.0.0 (unported) | Relationship refund - origin invoice
 [l10n_es](l10n_es/) | 8.0.5.2.0 (unported) | Spanish Charts of Accounts (PGCE 2008)
-[l10n_es_account](l10n_es_account/) | 3.0 (unported) | Spanish account tools
 [l10n_es_account_asset](l10n_es_account_asset/) | 8.0.1.0.0 (unported) | Gestión de activos fijos para España
 [l10n_es_account_balance_report](l10n_es_account_balance_report/) | 8.0.0.1.0 (unported) | Informes de cuentas anuales españoles
 [l10n_es_account_bank_statement_import_n43](l10n_es_account_bank_statement_import_n43/) | 8.0.4.0.0 (unported) | Importación de extractos bancarios españoles (Norma 43)
@@ -45,7 +44,6 @@ addon | version | summary
 [l10n_es_aeat_mod340_type0](l10n_es_aeat_mod340_type0/) | 8.0.1.0.0 (unported) | Generación de fichero modelo 340. Registro tipo 0
 [l10n_es_aeat_mod347](l10n_es_aeat_mod347/) | 8.0.1.3.0 (unported) | Modelo 347 AEAT
 [l10n_es_aeat_mod349](l10n_es_aeat_mod349/) | 8.0.2.0.0 (unported) | Modelo 349 AEAT
-[l10n_es_bank_statement](l10n_es_bank_statement/) | 3.0 (unported) | Extractos bancarios españoles (Norma 43)
 [l10n_es_fiscal_year_closing](l10n_es_fiscal_year_closing/) | 8.0.1.0.0 (unported) | Cierre de ejercicio fiscal para España
 [l10n_es_partner](l10n_es_partner/) | 8.0.1.3.0 (unported) | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 8.0.1.0.0 (unported) | Partner Mercantil
