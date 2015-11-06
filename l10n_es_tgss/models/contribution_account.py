@@ -2,23 +2,30 @@
 # © 2015 Grupo ESOC Ingeniería de servicios, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models
+from openerp import _, api, fields, models
 from .common import _NS
 from .. import exceptions as ex
 
 
 class ContributionAccountABC(models.Model):
+    """Store unique codes for companies.
+
+    Companies can have multiple contribution account codes, that is why this
+    auxiliar table is needed.
+
+    Persons can only have one, so for persons you will not need this.
+    """
     _name = "%s.contribution_account_abc" % _NS
     _rec_name = "code"
+    _sql_constraints = [
+        ("code_unique", "unique(code)", _("Duplicated code.")),
+    ]
 
     # Saved as Char because it can have leading zeroes
     code = fields.Char(
-        size=12,
+        size=11,
         required=True,
-        help="Company account to interact with the Social Security as person, "
-             "or account where the person is hired.")
-    is_company = fields.Boolean(
-        help="Know if the code belongs to a company.")
+        help="Company account code to interact with the Social Security.")
     owner_id = fields.Many2one(
         "%s.ccc_company_abc" % _NS,  # Overwrite this in subclasses
         "Owner document",
@@ -27,12 +34,12 @@ class ContributionAccountABC(models.Model):
         help="Database object that owns this contribution account.")
 
     @api.multi
-    @api.constrains("is_company", "code")
+    @api.constrains("code")
     def _check_code(self):
         """Ensure a good contribution account code is saved."""
         for s in self:
             if s.code:
-                s.check_code(s.code, s.is_company)
+                s.check_code(s.code, True)
 
     @api.model
     def check_code(self, code, is_company):
@@ -52,7 +59,7 @@ class ContributionAccountABC(models.Model):
 
         # Ensure it has the right length
         expected_length = 11 if is_company else 12
-        if is_company and len(code) != expected_length:
+        if len(code) != expected_length:
             raise ex.BadLengthError(code=code, expected=expected_length)
 
         # Perform control digit validation
@@ -65,41 +72,51 @@ class ContributionAccountABC(models.Model):
 
 
 class CompanyABC(models.AbstractModel):
-    """Models inheriting this ABC will have a company contribution account."""
+    """Models inheriting this ABC will have a company contribution account.
+
+    You will have to redeclare the field :attr:`~.contribution_account_ids`
+    overwriting its ``comodel`` param to match the subclass of
+    :class:`~.ContributionAccountABC` that you create in your submodule.
+    """
     _name = "%s.ccc_company_abc" % _NS
 
     contribution_account_ids = fields.One2many(
         ContributionAccountABC._name,  # Overwrite this in subclasses
         "owner_id",
         "Contribution accounts",
-        context={"default_is_company": True},
         help="Company accounts to interact with the Social Security.")
 
 
 class PersonABC(models.AbstractModel):
-    """Models inheriting this ABC will have a personal affiliation number."""
+    """Models inheriting this ABC will have a personal affiliation number.
+
+    They will be able to belong to a company's account code too.
+
+    You will have to redeclare the field :attr:`~.contribution_account_ids`
+    overwriting its ``comodel`` param to match the subclass of
+    :class:`~.ContributionAccountABC` that you create in your submodule, and
+    you will probably want to add a domain to it too.
+    """
     _name = "%s.ccc_person_abc" % _NS
 
     contribution_account_id = fields.Many2one(
         ContributionAccountABC._name,  # Overwrite this in subclasses
         "Contribution account",
         ondelete="set null",
-        context={"default_is_company": False},
         help="Company account where this person is hired.")
-    affiliation_number_id = fields.Many2one(
-        ContributionAccountABC._name,  # Overwrite this in subclasses
-        "Affiliation number",
-        ondelete="set null",
-        context={"default_is_company": False},
-        help="Person account to interact with the Social Security.")
+    affiliation_number = fields.Char(
+        size=12,
+        help="Personal account code to interact with the Social Security.")
 
     @api.multi
     @api.constrains("affiliation_number")
     def _check_affiliation_number(self):
         """Ensure a good affiliation number is saved."""
         for s in self:
-            if s.affiliation_number_id:
-                s.check_code(s.affiliation_number_id, s.is_company)
+            if s.affiliation_number:
+                s.contribution_account_id.check_code(
+                    s.affiliation_number,
+                    getattr(s, "is_company", False))
 
 
 class ABC(models.AbstractModel):
