@@ -7,30 +7,44 @@ from .common import _NS
 from .. import exceptions as ex
 
 
-class ABC(models.AbstractModel):
-    """Models inheriting this ABC will have a contribution account code."""
-    _name = "%s.ccc_abc" % _NS
+class ContributionAccountABC(models.Model):
+    _name = "%s.contribution_account_abc" % _NS
+    _rec_name = "code"
 
     # Saved as Char because it can have leading zeroes
-    contribution_account = fields.Char(
-        size=11,
+    code = fields.Char(
+        size=12,
+        required=True,
         help="Company account to interact with the Social Security as person, "
              "or account where the person is hired.")
-    affiliation_number = fields.Char(
-        size=12,
-        help="Number to interact with the Social Security as person.")
+    is_company = fields.Boolean(
+        help="Know if the code belongs to a company.")
+    owner_id = fields.Many2one(
+        "%s.ccc_company_abc" % _NS,  # Overwrite this in subclasses
+        "Owner document",
+        required=True,
+        ondelete="cascade",
+        help="Database object that owns this contribution account.")
+
+    @api.multi
+    @api.constrains("is_company", "code")
+    def _check_code(self):
+        """Ensure a good contribution account code is saved."""
+        for s in self:
+            if s.code:
+                s.check_code(s.code, s.is_company)
 
     @api.model
-    def check_ss_code(self, code, is_company):
+    def check_code(self, code, is_company):
         """Check validity of contribution account code.
 
         :param str code:
-            Code to be evaluated. It must be a numeric string.
+           Code to be evaluated. It must be a numeric string.
 
         :param bool is_company:
-            Indicates if the code belongs to a company. In such case, it is
-            evaluated as a contribution account code. Otherwise, it is
-            evaluated as an affiliation number code.
+           Indicates if the code belongs to a company. In such case, it is
+           evaluated as a contribution account code. Otherwise, it is
+           evaluated as an affiliation number code.
         """
         # Ensure it is numeric
         if not code.isnumeric():
@@ -49,18 +63,46 @@ class ABC(models.AbstractModel):
             raise ex.ControlDigitValidationError(code)
         return True
 
-    @api.multi
-    @api.constrains("contribution_account")
-    def _check_contribution_account(self):
-        """Ensure a good contribution account code is saved."""
-        for s in self:
-            if s.contribution_account:
-                s.check_ss_code(s.contribution_account, s.is_company)
+
+class CompanyABC(models.AbstractModel):
+    """Models inheriting this ABC will have a company contribution account."""
+    _name = "%s.ccc_company_abc" % _NS
+
+    contribution_account_ids = fields.One2many(
+        ContributionAccountABC._name,  # Overwrite this in subclasses
+        "owner_id",
+        "Contribution accounts",
+        context={"default_is_company": True},
+        help="Company accounts to interact with the Social Security.")
+
+
+class PersonABC(models.AbstractModel):
+    """Models inheriting this ABC will have a personal affiliation number."""
+    _name = "%s.ccc_person_abc" % _NS
+
+    contribution_account_id = fields.Many2one(
+        ContributionAccountABC._name,  # Overwrite this in subclasses
+        "Contribution account",
+        ondelete="set null",
+        context={"default_is_company": False},
+        help="Company account where this person is hired.")
+    affiliation_number_id = fields.Many2one(
+        ContributionAccountABC._name,  # Overwrite this in subclasses
+        "Affiliation number",
+        ondelete="set null",
+        context={"default_is_company": False},
+        help="Person account to interact with the Social Security.")
 
     @api.multi
     @api.constrains("affiliation_number")
     def _check_affiliation_number(self):
         """Ensure a good affiliation number is saved."""
         for s in self:
-            if s.affiliation_number:
-                s.check_ss_code(s.affiliation_number, s.is_company)
+            if s.affiliation_number_id:
+                s.check_code(s.affiliation_number_id, s.is_company)
+
+
+class ABC(models.AbstractModel):
+    """Models inheriting this ABC will have a contribution account code."""
+    _name = "%s.ccc_abc" % _NS
+    _inherit = [CompanyABC._name, PersonABC._name]
