@@ -17,22 +17,47 @@ See module :mod:`l10n_es_tgss_partner` tests to know how to use this.
 from .. import exceptions as ex
 
 
-class BadInput:
+class Company(object):
+    """Test submodels of :class:`~.contribution_account.CompanyABC`."""
+    is_company = True
+
+    def write_code(self, code):
+        return self.record.contribution_account_ids.create({
+            "owner_id": self.record.id,
+            "code": code,
+        })
+
+    def read_code(self):
+        return self.record.contribution_account_ids.code
+
+
+class Person(object):
+    """Test submodels of :class:`~.contribution_account.PersonABC`."""
+    is_company = False
+
+    def write_code(self, code):
+        self.record.affiliation_number = code
+
+    def read_code(self):
+        return self.record.affiliation_number
+
+
+class BadInput(object):
     def test_upper_limit(self):
         "Try to set a code with more than 12 digits."
 
-        code = "1234567890021"
+        code = "1234567890123"
 
         def write_long_code():
-            self.record.contribution_account = code
+            self.write_code(code)
 
             # Right now there is no warning or exception when the ORM truncates
             # input, so the only thing I can check here is that it gets
             # truncated. See https://github.com/odoo/odoo/issues/6698
-            self.assertEqual(self.record.contribution_account, code[:-1])
+            self.assertEqual(self.read_code(), code[:-1])
 
         if self.is_company:
-            with self.assertRaises(ex.BadLengthCompanyError):
+            with self.assertRaises(ex.BadLengthError):
                 write_long_code()
         else:
             write_long_code()
@@ -41,23 +66,23 @@ class BadInput:
         "Try to set a code with less than the allowed digits."
 
         if self.is_company:
-            code, exception = "1212345608", ex.BadLengthCompanyError
+            code, exception = "1212345608", ex.BadLengthError
         else:
-            code, exception = "12123456787", ex.BadLengthPersonError
+            code, exception = "12123456787", ex.BadLengthError
 
         with self.assertRaises(exception):
-            self.record.contribution_account = code
+            self.write_code(code)
 
     def test_non_numeric(self):
         "Try to set a non-numeric code."
 
         with self.assertRaises(ex.NonNumericCodeError):
-            self.record.contribution_account = "bad"
+            self.write_code("bad")
 
 
-class GoodControlDigit:
+class GoodControlDigit(object):
     def tearDown(self, *args, **kwargs):
-        self.record.contribution_account = self.code
+        self.write_code(self.code)
         self.assertEqual(self.record.contribution_account, self.code)
 
         super(GoodControlDigit, self).tearDown(*args, **kwargs)
@@ -78,11 +103,11 @@ class GoodControlDigit:
         self.code = "05000789071" if self.is_company else "050007890031"
 
 
-class WrongControlDigit:
+class WrongControlDigit(object):
     def tearDown(self, *args, **kwargs):
         # Ensure the exception is raised
         with self.assertRaises(ex.ControlDigitValidationError):
-            self.record.contribution_account = self.code
+            self.write_code(self.code)
 
         super(WrongControlDigit, self).tearDown(*args, **kwargs)
 

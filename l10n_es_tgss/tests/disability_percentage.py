@@ -17,7 +17,7 @@ See module :mod:`l10n_es_tgss_partner` tests to know how to use this.
 from .. import exceptions as ex
 
 
-class DisabilityPercentageCase:
+class DisabilityPercentageCase(object):
     def test_good(self):
         self.record.disability_percentage = 0
         self.record.disability_percentage = 33
