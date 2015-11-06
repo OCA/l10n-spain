@@ -13,6 +13,5 @@ class ResPartner(models.Model):
     contribution_account_ids = fields.One2many(
         M % "contribution_account")
     contribution_account_id = fields.Many2one(
-        M % "contribution_account")
-    affiliation_number_id = fields.Many2one(
-        M % "contribution_account")
+        M % "contribution_account",
+        domain="[('owner_id', 'in', (parent_id, id))]")

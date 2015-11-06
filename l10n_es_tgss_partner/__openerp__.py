@@ -14,6 +14,8 @@
     "application": False,
     "installable": True,
     "depends": [
+        "account",
+        "base_vat",
         "l10n_es_tgss",
         "partner_contact_personal_information_page",
     ],
