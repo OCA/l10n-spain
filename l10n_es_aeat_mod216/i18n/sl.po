@@ -3,36 +3,35 @@
 # * l10n_es_aeat_mod216
 # 
 # Translators:
-# Alejandro Santana <alejandrosantana@anubia.es>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-05 19:24+0000\n"
-"PO-Revision-Date: 2015-11-04 16:44+0000\n"
+"PO-Revision-Date: 2015-11-05 13:07+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: gl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model,name:l10n_es_aeat_mod216.model_l10n_es_aeat_mod111_report
 msgid "AEAT 111 report"
-msgstr "Declaración AEAT 111"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model,name:l10n_es_aeat_mod216.model_l10n_es_aeat_mod216_report
 msgid "AEAT 216 report"
-msgstr "Declaración AEAT 216"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: code:addons/l10n_es_aeat_mod216/models/mod216.py:131
 #, python-format
 msgid "Account Move Lines"
-msgstr "Apuntes contables"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,move_id:0
@@ -52,22 +51,22 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,calculation_date:0
 msgid "Calculation date"
-msgstr "Data de cálculo"
+msgstr "Datum izračuna"
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,state:0
 msgid "Cancelled"
-msgstr "Cancelada"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,company_id:0
 msgid "Company"
-msgstr "Compañía"
+msgstr "Družba"
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,type:0
 msgid "Complementary"
-msgstr "Complementaria"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,counterpart_account:0
@@ -77,94 +76,94 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod216.action_l10n_es_aeat_mod216_report
 msgid "Crea y consulta las declaraciones del modelo 216 de la AEAT."
-msgstr "Crea e consulta as declaracións do modelo 216 da AEAT."
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.mod216.report,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Ustvaril"
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.export_to_boe,create_date:0
 #: field:l10n.es.aeat.mod216.report,create_date:0
 msgid "Created on"
-msgstr "Creado o"
+msgstr "Ustvarjeno"
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,support_type:0
 msgid "DVD"
-msgstr "DVD"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_tree
 msgid "Declaraciones AEAT 216"
-msgstr "Declaracións AEAT 216"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
 msgid "Declaración"
-msgstr "Declaración"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod216.action_l10n_es_aeat_mod216_report
 msgid "Declaración AEAT 216"
-msgstr "Declaración AEAT 216"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,number:0
 msgid "Declaration number"
-msgstr "Nº declaración"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
 msgid "Domiciliación"
-msgstr "Domiciliación"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,state:0
 msgid "Done"
-msgstr "Realizado"
+msgstr "Opravljeno"
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,state:0
 msgid "Draft"
-msgstr "Borrador"
+msgstr "Osnutek"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model,name:l10n_es_aeat_mod216.model_l10n_es_aeat_mod216_export_to_boe
 msgid "Export Report to BOE Format"
-msgstr "Exportar a formato BOE"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,export_config:0
 msgid "Export config"
-msgstr "Padrón de exportación"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod216.action_wizard_aeat_mod216_export
 msgid "Exportar archivo BOE AEAT 216"
-msgstr "Exportar arquivo BOE AEAT 216"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.export_to_boe,data:0
 msgid "File"
-msgstr "Ficheiro"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.export_to_boe,name:0
 msgid "File name"
-msgstr "Nome do ficheiro"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,fiscalyear_id:0
 msgid "Fiscal year"
-msgstr "Exercicio fiscal"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,contact_name:0
 msgid "Full Name"
-msgstr "Nome completo"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.export_to_boe,id:0
@@ -175,12 +174,12 @@ msgstr "ID"
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
 msgid "Ingreso"
-msgstr "Ingreso"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
 msgid "Ingreso a anotar en CCT"
-msgstr "Ingreso a anotar na CCT"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:res.partner,is_non_resident:0
@@ -190,7 +189,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,journal_id:0
 msgid "Journal"
-msgstr "Diario"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: help:l10n.es.aeat.mod216.report,journal_id:0
@@ -200,29 +199,29 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,representative_vat:0
 msgid "L.R. VAT number"
-msgstr "NIF repr. legal"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod216.report,write_uid:0
 msgid "Last Updated by"
-msgstr "Derradeira actualización feita por"
+msgstr "Zadnji posodobil"
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.export_to_boe,write_date:0
 #: field:l10n.es.aeat.mod216.report,write_date:0
 msgid "Last Updated on"
-msgstr "Actualizado por derradeira vez o"
+msgstr "Zadnjič posodobljeno"
 
 #. module: l10n_es_aeat_mod216
 #: help:l10n.es.aeat.mod216.report,representative_vat:0
 msgid "Legal Representative VAT number."
-msgstr "NIF do representante legal."
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
 msgid "Liquidación"
-msgstr "Liquidación"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: help:l10n.es.aeat.mod216.report,casilla_06:0
@@ -270,47 +269,47 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.menu,name:l10n_es_aeat_mod216.menu_aeat_mod216_report
 msgid "Modelo 216"
-msgstr "Modelo 216"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,currency_id:0
 msgid "Moneda"
-msgstr "Divisa"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: help:l10n.es.aeat.mod216.report,contact_name:0
 msgid "Must have name and surname."
-msgstr "Debe conter nome e apelidos"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
 msgid "Negativa"
-msgstr "Negativa"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,type:0
 msgid "Normal"
-msgstr "Normal"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model,name:l10n_es_aeat_mod216.model_res_partner
 msgid "Partner"
-msgstr "Empresa"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,period_type:0
 msgid "Period type"
-msgstr "Tipo de período"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,periods:0
 msgid "Period(s)"
-msgstr "Período(s)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,contact_phone:0
 msgid "Phone"
-msgstr "Teléfono"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,state:0
@@ -320,12 +319,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,previous_number:0
 msgid "Previous declaration number"
-msgstr "Nº da declaración anterior"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,state:0
 msgid "Processed"
-msgstr "Procesada"
+msgstr "Obdelano"
 
 #. module: l10n_es_aeat_mod216
 #: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
@@ -340,12 +339,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
 msgid "Resultado"
-msgstr "Resultado"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,sequence:0
 msgid "Sequence"
-msgstr "Secuencia"
+msgstr "Zaporedje"
 
 #. module: l10n_es_aeat_mod216
 #: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
@@ -361,32 +360,32 @@ msgstr ""
 #: field:l10n.es.aeat.mod216.export_to_boe,state:0
 #: field:l10n.es.aeat.mod216.report,state:0
 msgid "State"
-msgstr "Provincia"
+msgstr "Stanje"
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,type:0
 msgid "Statement Type"
-msgstr "Tipo de declaración"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,type:0
 msgid "Substitutive"
-msgstr "Substitutiva"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,support_type:0
 msgid "Support Type"
-msgstr "Tipo de soporte"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,tax_lines:0
 msgid "Tax lines"
-msgstr "Liñas de impostos"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,support_type:0
 msgid "Telematics"
-msgstr "Telemática"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: help:l10n.es.aeat.mod216.report,counterpart_account:0
@@ -398,12 +397,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,tipo_declaracion:0
 msgid "Tipo de declaración"
-msgstr "Tipo de declaración"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,company_vat:0
 msgid "VAT number"
-msgstr "NIF"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,casilla_01:0
@@ -438,12 +437,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.export_to_boe,state:0
 msgid "get"
-msgstr "obter"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.export_to_boe,state:0
 msgid "open"
-msgstr "aberto"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form

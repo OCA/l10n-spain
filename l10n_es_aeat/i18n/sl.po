@@ -3,224 +3,222 @@
 # * l10n_es_aeat
 # 
 # Translators:
-# Carles Antolí <carlesantoli@hotmail.com>, 2015
-# Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-05 19:24+0000\n"
-"PO-Revision-Date: 2015-11-05 11:42+0000\n"
+"PO-Revision-Date: 2015-11-05 13:12+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:199
 #, python-format
 msgid "%s_report_%s.txt"
-msgstr "%s_report_%s.txt"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:110
 #, python-format
 msgid "<blank>"
-msgstr "<blank>"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_l10n_es_aeat_config
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "AEAT"
-msgstr "AEAT"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,model:0
 msgid "AEAT Model"
-msgstr "Declaración AEAT"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.model.export.config.line:l10n_es_aeat.aeat_model_export_config_line_form
 msgid "AEAT export configuration line"
-msgstr "Línea de configuración de exportación de la AEAT"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.model.export.config.line:l10n_es_aeat.aeat_model_export_config_line_tree
 msgid "AEAT export configurationline"
-msgstr "Línea de configuración de exportación de la AEAT"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:res.groups,name:l10n_es_aeat.group_account_aeat
 msgid "AEAT manager"
-msgstr "Responsable AEAT"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_tree
 msgid "AEAT report"
-msgstr "Informe AEAT"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report
 msgid "AEAT report base module"
-msgstr "Módulo base para declaraciones AEAT"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: sql_constraint:l10n.es.aeat.report:0
 msgid "AEAT report sequence must be unique"
-msgstr "La secuencia de la declaración AEAT debe ser única"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
 msgid "AEAT reports"
-msgstr "Declaraciones AEAT"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,move_id:0
 msgid "Account entry"
-msgstr "Entrada cuenta"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.model.export.config.line:l10n_es_aeat.aeat_model_export_config_line_form
 msgid "Advanced configuration"
-msgstr "Configuración avanzada"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,alignment:0
 msgid "Alignment"
-msgstr "Alineación"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
 msgid "Alphanumeric"
-msgstr "Alfanumérico"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,amount:0
 msgid "Amount"
-msgstr "Importe"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,apply_sign:0
 msgid "Apply sign"
-msgstr "Aplicar signo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Aquí está el archivo BOE de la AEAT exportado:"
-msgstr "Aquí está el archivo BOE de la AEAT exportado:"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.model.export.config:l10n_es_aeat.aeat_model_export_config_form
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_aeat_export_config
 msgid "BOE export configuration"
-msgstr "Configuración de exportación a BOE"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.model.export.config:l10n_es_aeat.aeat_model_export_config_tree
 msgid "BOE export configurations"
-msgstr "Configuraciones de exportación a BOE"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.model.export.config.line:l10n_es_aeat.aeat_model_export_config_line_form
 msgid "Basic configuration"
-msgstr "Configuración básica"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
 msgid "Boolean"
-msgstr "Booleano"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Calculate"
-msgstr "Calcular"
+msgstr "Izračunaj"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,calculation_date:0
 msgid "Calculation date"
-msgstr "Fecha de cálculo"
+msgstr "Datum izračuna"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Preklic"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: selection:l10n.es.aeat.report,state:0
 msgid "Cancelled"
-msgstr "Cancelada"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "Cancelled models"
-msgstr "Declaraciones canceladas"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Close"
-msgstr "Cerrar"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: field:l10n.es.aeat.report,company_id:0
 msgid "Company"
-msgstr "Compañía"
+msgstr "Družba"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
 msgid "Complementary"
-msgstr "Complementaria"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,conditional:0
 msgid "Conditional"
-msgstr "Condicional"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,conditional_expression:0
 msgid "Conditional expression"
-msgstr "Expresión condicional"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,export_config_id:0
 msgid "Config parent"
-msgstr "Configuración padre"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.model.export.config:l10n_es_aeat.aeat_model_export_config_form
 msgid "Configuration lines"
-msgstr "Líneas de configuración"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Confirm"
-msgstr "Confirmar"
+msgstr "Potrdi"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "Confirmed models"
-msgstr "Declaraciones confirmadas"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Contact data"
-msgstr "Datos de contacto"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,counterpart_account:0
 msgid "Counterpart account"
-msgstr "Cuenta contrapartida"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Create move"
-msgstr "Crear movimiento"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,create_uid:0
@@ -230,7 +228,7 @@ msgstr "Crear movimiento"
 #: field:l10n.es.aeat.report.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.tax.line,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Ustvaril"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,create_date:0
@@ -240,157 +238,157 @@ msgstr "Creado por"
 #: field:l10n.es.aeat.report.export_to_boe,create_date:0
 #: field:l10n.es.aeat.tax.line,create_date:0
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Ustvarjeno"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,support_type:0
 msgid "DVD"
-msgstr "DVD"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Declaración"
-msgstr "Declaración"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,number:0
 msgid "Declaration number"
-msgstr "Nº declaración"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: selection:l10n.es.aeat.report,state:0
 msgid "Done"
-msgstr "Realizada"
+msgstr "Opravljeno"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: selection:l10n.es.aeat.report,state:0
 msgid "Draft"
-msgstr "Borrador"
+msgstr "Osnutek"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "Draft models"
-msgstr "Declaraciones borrador"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,date_end:0
 msgid "End date"
-msgstr "Fecha final"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_tax_code_mapping.py:56
 #, python-format
 msgid "Error! The dates of the record overlap with an existing record."
-msgstr "Error! Las fechas de los registros se solapan con un registro existente."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Export"
-msgstr "Exportar"
+msgstr "Izvoz"
 
 #. module: l10n_es_aeat
 #: model:ir.actions.act_window,name:l10n_es_aeat.action_wizard_aeat_export
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Export AEAT BOE file"
-msgstr "Exportar archivo AEAT BOE"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_export_to_boe
 msgid "Export Report to BOE Format"
-msgstr "Exportar a formato BOE"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.actions.act_window,name:l10n_es_aeat.action_aeat_export_config
 #: field:l10n.es.aeat.report,export_config:0
 msgid "Export config"
-msgstr "Configuración de exportación"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,export_type:0
 msgid "Export field type"
-msgstr "Tipo de campo de exportación"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Export to BOE"
-msgstr "Exportar a BOE"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Exportación completada"
-msgstr "Exportación completada"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Exportar"
-msgstr "Exportar"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,expression:0
 msgid "Expression"
-msgstr "Expresión"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:104
 #, python-format
 msgid "Expression: "
-msgstr "Expresión: "
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.model.export.config.line:l10n_es_aeat.aeat_model_export_config_line_form
 msgid "Field especification"
-msgstr "Especificación de campo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code.line,field_number:0
 #: field:l10n.es.aeat.tax.line,field_number:0
 msgid "Field number"
-msgstr "Nº de casilla"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,size:0
 msgid "Field size"
-msgstr "Tamaño del campo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report.export_to_boe,data:0
 msgid "File"
-msgstr "Archivo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report.export_to_boe,name:0
 msgid "File name"
-msgstr "Nombre de archivo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: field:l10n.es.aeat.report,fiscalyear_id:0
 msgid "Fiscal year"
-msgstr "Ejercicio fiscal"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,fixed_value:0
 msgid "Fixed value"
-msgstr "Valor fijo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:110
 #, python-format
 msgid "Fixed: %s"
-msgstr "Fijo: %s"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,date_from:0
 msgid "From Date"
-msgstr "Desde la fecha"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,contact_name:0
 msgid "Full Name"
-msgstr "Nombre completo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,id:0 field:aeat.mod.map.tax.code.line,id:0
@@ -406,29 +404,29 @@ msgstr "ID"
 msgid ""
 "If set, this expression will be used for getting the list of elements to "
 "iterate on"
-msgstr "Si está establecida, esta expresión se usará para obtener una lista de los elementos por los que iterar"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: help:aeat.model.export.config.line,conditional_expression:0
 msgid ""
 "If set, this expression will be used to evaluate if this line should be "
 "added"
-msgstr "Si está establecida, esta expresión será usada para evaluar si la línea debe ser añadida"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "In process"
-msgstr "En proceso"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "In process models"
-msgstr "Declaraciones en proceso"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Informativas"
-msgstr "Informativas"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_report.py:225
@@ -437,27 +435,27 @@ msgid ""
 "It seems that you have defined quarterly periods or periods in the middle of"
 " the month. This cannot be automatically handled. You should select manually"
 " the periods."
-msgstr "Parece que ha definido periodos trimestrales o periodos en mitad del mes. Esto no se puede gestionar automáticamente, por lo que deberá seleccionar a mano los periodos."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,journal_id:0
 msgid "Journal"
-msgstr "Diario"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,journal_id:0
 msgid "Journal in which post the move."
-msgstr "Diario en el que publicar el movimiento."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,move_lines:0
 msgid "Journal items"
-msgstr "Apuntes contables"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,representative_vat:0
 msgid "L.R. VAT number"
-msgstr "NIF repr. legal"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,write_uid:0
@@ -467,7 +465,7 @@ msgstr "NIF repr. legal"
 #: field:l10n.es.aeat.report.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.tax.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Zadnji posodobil"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,write_date:0
@@ -477,52 +475,52 @@ msgstr "Última actualización por"
 #: field:l10n.es.aeat.report.export_to_boe,write_date:0
 #: field:l10n.es.aeat.tax.line,write_date:0
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Zadnjič posodobljeno"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,alignment:0
 msgid "Left"
-msgstr "Izquierda"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,representative_vat:0
 msgid "Legal Representative VAT number."
-msgstr "NIF del representante legal."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,config_lines:0
 msgid "Lines"
-msgstr "Líneas"
+msgstr "Postavke"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,map_line:0
 msgid "Map line"
-msgstr "Línea de mapeo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,map_lines:0
 msgid "Map lines"
-msgstr "Líneas de mapeo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code.line,map_parent_id:0
 msgid "Map parent id"
-msgstr "Padre del mapeo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.mod.map.tax.code:l10n_es_aeat.aeat_mod_map_tax_code_form
 msgid "Mapping Lines"
-msgstr "Líneas de mapeo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,model_number:0
 msgid "Model number"
-msgstr "Nº modelo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,contact_name:0
 msgid "Must have name and surname."
-msgstr "Debe tener apellidos y nombre."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code.line,name:0
@@ -530,143 +528,143 @@ msgstr "Debe tener apellidos y nombre."
 #: field:aeat.model.export.config.line,name:0
 #: field:l10n.es.aeat.tax.line,name:0
 msgid "Name"
-msgstr "Nombre"
+msgstr "Naziv"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
 msgid "Normal"
-msgstr "Normal"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,decimal_size:0
 msgid "Number of char for decimals"
-msgstr "Número de caracteres para los decimales"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
 msgid "Number with decimals"
-msgstr "Número con decimales"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
 msgid "Number without decimals"
-msgstr "Número sin decimales"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,model:0
 msgid "Odoo model"
-msgstr "Modelo Odoo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_report.py:404
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
-msgstr "Sólo los informes en estado 'borrador' or 'cancelado' pueden ser eliminados"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Optativo: Importar datos de fichero"
-msgstr "Optativo: Importar datos de fichero"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Other parameters"
-msgstr "Otros parámetros"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,period_type:0
 msgid "Period type"
-msgstr "Tipo de periodo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,periods:0
 msgid "Period(s)"
-msgstr "Periodo(s)"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,contact_phone:0
 msgid "Phone"
-msgstr "Teléfono"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid ""
 "Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el "
 "programa"
-msgstr "Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el programa"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,state:0
 msgid "Posted"
-msgstr "Contabilizado"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,previous_number:0
 msgid "Previous declaration number"
-msgstr "Nº previo de declaración"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,state:0
 msgid "Processed"
-msgstr "Calculada"
+msgstr "Obdelano"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Pulse el botón"
-msgstr "Pulse el botón"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Recalculate"
-msgstr "Recalcular"
+msgstr "Preračunaj"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_report.py:317
 #, python-format
 msgid "Regularization"
-msgstr "Regularización"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,repeat:0
 msgid "Repeat"
-msgstr "Repetir"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,repeat_expression:0
 msgid "Repeat expression"
-msgstr "Expresión de repetición"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 #: field:l10n.es.aeat.tax.line,report:0
 msgid "Report"
-msgstr "Declaración"
+msgstr "Poročilo"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,alignment:0
 msgid "Right"
-msgstr "Derecha"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,sequence:0
 #: field:l10n.es.aeat.report,sequence:0
 msgid "Sequence"
-msgstr "Secuencia"
+msgstr "Zaporedje"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Show journal items"
-msgstr "Mostrar apuntes contables"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Show move"
-msgstr "Ver movimiento"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,sign:0
 msgid "Sign character"
-msgstr "Carácter del signo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_report.py:185
@@ -674,39 +672,39 @@ msgstr "Carácter del signo"
 msgid ""
 "Split fiscal years cannot be automatically handled. You should select "
 "manually the periods."
-msgstr "Los ejercicios fiscales separados no pueden ser gestionados automáticamente. Debe seleccionar manualmente los periodos."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,date_start:0
 msgid "Start date"
-msgstr "Fecha de inicio"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,state:0
 #: field:l10n.es.aeat.report.export_to_boe,state:0
 msgid "State"
-msgstr "Estado"
+msgstr "Stanje"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,type:0
 msgid "Statement Type"
-msgstr "Tipo de declaración"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
 #: field:aeat.model.export.config.line,sub_config:0
 msgid "Sub-configuration"
-msgstr "Sub-configuración"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
 msgid "Substitutive"
-msgstr "Sustitutiva"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,support_type:0
 msgid "Support Type"
-msgstr "Tipo de soporte"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.mod.map.tax.code:l10n_es_aeat.aeat_mod_map_tax_code_form
@@ -714,40 +712,40 @@ msgstr "Tipo de soporte"
 #: model:ir.actions.act_window,name:l10n_es_aeat.action_aeat_mod_map_tax_code
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_aeat_mod_map_tax_code
 msgid "Tax code mapping"
-msgstr "Mapeo de códigos de impuesto"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.mod.map.tax.code.line:l10n_es_aeat.aeat_mod_map_tax_code_line_form
 msgid "Tax code mapping line"
-msgstr "Línea de mapeo de códigos de impuesto"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.mod.map.tax.code.line:l10n_es_aeat.aeat_mod_map_tax_code_line_tree
 msgid "Tax code mapping lines"
-msgstr "Líneas de mapeo de códigos de impuesto"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code.line,tax_codes:0
 msgid "Tax codes"
-msgstr "Códigos de impuesto"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 #: field:l10n.es.aeat.report,tax_lines:0
 msgid "Tax lines"
-msgstr "Líneas de impuestos"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,support_type:0
 msgid "Telematics"
-msgstr "Telemática"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:74
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:109
 #, python-format
 msgid "The formated string must match the given length"
-msgstr "La cadena formateada debe satisfacer el tamaño dado."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_report.py:258
@@ -755,89 +753,89 @@ msgstr "La cadena formateada debe satisfacer el tamaño dado."
 msgid ""
 "There is no period defined for the report. Please set at least one period "
 "and try again."
-msgstr "No hay periodo definido para el informe. Establezca un periodo y vuelva a intentarlo."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,counterpart_account:0
 msgid ""
 "This account will be the counterpart for all the journal items that are "
 "regularized when posting the report."
-msgstr "Esta cuenta será la contrapartida para todos los elementos del diario que están regularizados al contabilizar el informe."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "This button creates the regularization move for the selected report"
-msgstr "Este botón crea el movimiento de regularización para el informe seleccionado"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,date_to:0
 msgid "To Date"
-msgstr "Hasta la fecha"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code.line,to_regularize:0
 msgid "To regularize"
-msgstr "Para regularizar"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,company_vat:0
 msgid "VAT number"
-msgstr "NIF"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.model.export.config.line:l10n_es_aeat.aeat_model_export_config_line_form
 #: field:aeat.model.export.config.line,value:0
 msgid "Value"
-msgstr "Valor"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,bool_no:0
 msgid "Value for no"
-msgstr "Valor para el no"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,bool_yes:0
 msgid "Value for yes"
-msgstr "Value para el sí"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:71
 #, python-format
 msgid "Wrong aling option. It should be < or >"
-msgstr "Opción de alineamiento errónea. Debería ser < o >"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_report.py:351
 #, python-format
 msgid "You must fill both journal and counterpart account."
-msgstr "Debe rellenar a la vez diario y cuenta de contrapartida."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "en el formulario on-line."
-msgstr "en el formulario on-line."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report.export_to_boe,state:0
 msgid "get"
-msgstr "obtener"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "o pulsando en el botón"
-msgstr "o pulsando en el botón"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report.export_to_boe,state:0
 msgid "open"
-msgstr "abierto"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "or"
-msgstr "o"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "para iniciar el proceso de exportación del archivo BOE de la AEAT."
-msgstr "para iniciar el proceso de exportación del archivo BOE de la AEAT."
+msgstr ""
