@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-22 16:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model,name:l10n_es_aeat_mod115.model_l10n_es_aeat_mod115_report
@@ -39,9 +39,14 @@ msgid "Allow posting"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,partner_bank_id:0
+msgid "Bank account"
+msgstr "Bančni račun"
+
+#. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,calculation_date:0
 msgid "Calculation date"
-msgstr ""
+msgstr "Datum izračuna"
 
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,state:0
@@ -88,6 +93,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,company_id:0
 msgid "Company"
+msgstr "Družba"
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -109,13 +119,13 @@ msgstr ""
 #: field:l10n.es.aeat.mod115.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.mod115.report,create_uid:0
 msgid "Created by"
-msgstr "Creat per"
+msgstr "Ustvaril"
 
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.export_to_boe,create_date:0
 #: field:l10n.es.aeat.mod115.report,create_date:0
 msgid "Created on"
-msgstr "Creat el"
+msgstr "Ustvarjeno"
 
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,support_type:0
@@ -146,7 +156,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod115.export_to_boe,display_name:0
 #: field:l10n.es.aeat.mod115.report,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazni naziv"
 
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,tipo_declaracion:0
@@ -156,12 +166,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,state:0
 msgid "Done"
-msgstr ""
+msgstr "Opravljeno"
 
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Osnutek"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model,name:l10n_es_aeat_mod115.model_l10n_es_aeat_mod115_export_to_boe
@@ -217,7 +227,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,journal_id:0
 msgid "Journal"
-msgstr "Diari"
+msgstr "Dnevnik"
 
 #. module: l10n_es_aeat_mod115
 #: help:l10n.es.aeat.mod115.report,journal_id:0
@@ -233,19 +243,19 @@ msgstr ""
 #: field:l10n.es.aeat.mod115.export_to_boe,__last_update:0
 #: field:l10n.es.aeat.mod115.report,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zadnjič spremenjeno"
 
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod115.report,write_uid:0
 msgid "Last Updated by"
-msgstr "Darrera Actualització per"
+msgstr "Zadnji posodobil"
 
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.export_to_boe,write_date:0
 #: field:l10n.es.aeat.mod115.report,write_date:0
 msgid "Last Updated on"
-msgstr "Darrera Actualització el"
+msgstr "Zadnjič posodobljeno"
 
 #. module: l10n_es_aeat_mod115
 #: help:l10n.es.aeat.mod115.report,representative_vat:0
@@ -255,7 +265,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,model:0
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.ui.menu,name:l10n_es_aeat_mod115.menu_aeat_mod115_report
@@ -320,7 +330,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,state:0
 msgid "Processed"
-msgstr ""
+msgstr "Obdelano"
 
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,name:0
@@ -341,7 +351,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod115.export_to_boe,state:0
 #: field:l10n.es.aeat.mod115.report,state:0
 msgid "State"
-msgstr ""
+msgstr "Stanje"
 
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,type:0
