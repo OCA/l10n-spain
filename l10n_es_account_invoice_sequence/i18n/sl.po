@@ -1,0 +1,62 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_account_invoice_sequence
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-05 19:24+0000\n"
+"PO-Revision-Date: 2015-11-05 13:16+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_invoice
+msgid "Invoice"
+msgstr "Račun"
+
+#. module: l10n_es_account_invoice_sequence
+#: field:account.invoice,invoice_number:0
+msgid "Invoice number"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: field:account.journal,invoice_sequence_id:0
+msgid "Invoice sequence"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: code:addons/l10n_es_account_invoice_sequence/models/account_invoice.py:41
+#, python-format
+msgid "Journal %s has no sequence defined for invoices."
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: code:addons/l10n_es_account_invoice_sequence/__init__.py:29
+#: code:addons/l10n_es_account_invoice_sequence/wizard/wizard_multi_charts_accounts.py:32
+#, python-format
+msgid "Journal Entries Sequence"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:41
+#, python-format
+msgid "Journal company and invoice sequence company do not match."
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: help:account.journal,invoice_sequence_id:0
+msgid "The sequence used for invoice numbers in this journal."
+msgstr ""
