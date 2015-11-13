@@ -727,6 +727,12 @@
       <field name="name">[232] Bases imponibles del I.V.A. soportado no deducible</field>
       <field name="sign">1.0</field>
     </record>
+     <record id="account_tax_code_template_SNJBI" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_390"/>
+      <field name="code">SNJBI</field>
+      <field name="name">Bases imponibles del I.V.A. soportado no sujetas</field>
+      <field name="sign">1.0</field>
+    </record>
     <record id="account_tax_code_template_SNDC" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_390"/>
       <field name="code">SNDC</field>
