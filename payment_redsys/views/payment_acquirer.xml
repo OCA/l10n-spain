@@ -21,6 +21,7 @@
                         <field name="redsys_pay_method" attrs="{'required': [('provider', '=', 'redsys')]}"/>
                         <field name="redsys_merchant_data" attrs="{'required': [('provider', '=', 'redsys')]}"/>
                         <field name="redsys_merchant_description" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                        <field name="redsys_signature_version" attrs="{'required': [('provider', '=', 'redsys')]}"/>
                         <field name="redsys_url_ok" attrs="{'required': [('provider', '=', 'redsys')]}"/>
                         <field name="redsys_url_ko" attrs="{'required': [('provider', '=', 'redsys')]}"/>
                     </group>
