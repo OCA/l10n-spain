@@ -36,7 +36,7 @@ class RedsysController(http.Controller):
         return werkzeug.utils.redirect(return_url)
 
 
-class website_sale(website_sale):
+class WebsiteSale(website_sale):
     @http.route(['/shop/payment/transaction/<int:acquirer_id>'], type='json',
                 auth="public", website=True)
     def payment_transaction(self, acquirer_id):
