@@ -11,5 +11,6 @@
         'views/redsys.xml',
         'views/payment_acquirer.xml'
     ],
+    'license': 'AGPL-3',
     'installable': True,
 }

@@ -178,7 +178,6 @@ class TxRedsys(models.Model):
         find the related transaction record. """
         parameters = data.get('Ds_MerchantParameters', '')
         parameters_dic = json.loads(base64.b64decode(parameters))
-        print parameters_dic
         reference = parameters_dic.get('Ds_Order', '')
         pay_id = parameters_dic.get('Ds_AuthorisationCode')
         shasign = data.get(
