@@ -2,6 +2,22 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
+===================================
+Nombre comercial en las iniciativas
+===================================
+
+Este módulo se escribió para extender la funcionalidad de las iniciativas del
+CRM y permitir establecerles un nombre comercial.
+
+Usage
+=====
+
+Para usar este módulo:
+
+* Vaya a *Ventas > Iniciativas*.
+* Abra una iniciativa.
+* Ahí verá el nuevo campo.
+
 ===================
 Trade name in leads
 ===================
