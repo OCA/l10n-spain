@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 try:
     from Crypto.Cipher import DES3
 except ImportError:
-    _logger.info("Missing dependency. See README.")
+    _logger.info("Missing dependency (pycrypto). See README.")
 
 
 class AcquirerRedsys(models.Model):
