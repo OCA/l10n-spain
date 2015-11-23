@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
-from hashlib import sha1
+from Crypto.Cipher import DES3
+import hashlib
+import hmac
+import base64
 import logging
-import urlparse
+import json
 
 from openerp import models, fields, api, _
 from openerp.addons.payment.models.payment_acquirer import ValidationError
@@ -59,58 +62,20 @@ class AcquirerRedsys(models.Model):
                                           ('D', 'Domiciliacion'),
                                           ], 'Payment Method',
                                          default='T')
+    redsys_signature_version = fields.Selection(
+        [('HMAC_SHA256_V1', 'HMAC SHA256 V1')], default='HMAC_SHA256_V1')
     redsys_url_ok = fields.Char('URL OK')
     redsys_url_ko = fields.Char('URL KO')
 
-    def _redsys_generate_digital_sign(self, acquirer, inout, values):
-        """ Generate the shasign for incoming or outgoing communications.
-        :param browse acquirer: the payment.acquirer browse record. It should
-                                have a shakey in shaky out
-        :param string inout: 'in' (encoding) or 'out' (decoding).
-        :param dict values: transaction values
-
-        :return string: shasign
-        """
-        assert acquirer.provider == 'redsys'
-
-        def get_value(key):
-            if values.get(key):
-                return values[key]
-            return ''
-
-        if inout == 'out':
-            keys = ['Ds_Amount',
-                    'Ds_Order',
-                    'Ds_MerchantCode',
-                    'Ds_Currency',
-                    'Ds_Response']
-        else:
-            keys = ['Ds_Merchant_Amount',
-                    'Ds_Merchant_Order',
-                    'Ds_Merchant_MerchantCode',
-                    'Ds_Merchant_Currency',
-                    'Ds_Merchant_TransactionType',
-                    'Ds_Merchant_MerchantURL']
-        sign = ''.join('%s' % (get_value(k)) for k in keys)
-        # Add the pre-shared secret key at the end of the signature
-        sign = sign + acquirer.redsys_secret_key
-        if isinstance(sign, str):
-            sign = urlparse.parse_qsl(sign)
-        shasign = sha1(sign).hexdigest().upper()
-        return shasign
-
-    @api.model
-    def redsys_form_generate_values(self, id, partner_values, tx_values):
-        acquirer = self.browse(id)
-        redsys_tx_values = dict(tx_values)
-        redsys_tx_values.update({
+    def _prepare_merchant_parameters(self, acquirer, tx_values):
+        values = {
             'Ds_Sermepa_Url': (
                 self._get_redsys_urls(acquirer.environment)[
                     'redsys_form_url']),
-            'Ds_Merchant_Amount': int(tx_values['amount'] * 100),
+            'Ds_Merchant_Amount': str(int(tx_values['amount'] * 100)),
             'Ds_Merchant_Currency': acquirer.redsys_currency or '978',
             'Ds_Merchant_Order': (
-                tx_values['reference'] and tx_values['reference'][:12] or
+                tx_values['reference'] and tx_values['reference'][-12:] or
                 False),
             'Ds_Merchant_MerchantCode': (
                 acquirer.redsys_merchant_code and
@@ -124,7 +89,7 @@ class AcquirerRedsys(models.Model):
             'Ds_Merchant_MerchantName': (
                 acquirer.redsys_merchant_name and
                 acquirer.redsys_merchant_name[:25]),
-            'Ds_Merchant_MerchantURL': (
+            'Ds_Merchant_MerchantUrl': (
                 acquirer.redsys_merchant_url and
                 acquirer.redsys_merchant_url[:250] or ''),
             'Ds_Merchant_MerchantData': acquirer.redsys_merchant_data or '',
@@ -134,14 +99,51 @@ class AcquirerRedsys(models.Model):
                 acquirer.redsys_merchant_description[:125]),
             'Ds_Merchant_ConsumerLanguage': (
                 acquirer.redsys_merchant_lang or '001'),
-            'Ds_Merchant_UrlOK': acquirer.redsys_url_ok or '',
-            'Ds_Merchant_UrlKO': acquirer.redsys_url_ko or '',
-            'Ds_Merchant_PayMethods': acquirer.redsys_pay_method or 'T',
-        })
+            'Ds_Merchant_UrlOk': acquirer.redsys_url_ok or '',
+            'Ds_Merchant_UrlKo': acquirer.redsys_url_ko or '',
+            'Ds_Merchant_Paymethods': acquirer.redsys_pay_method or 'T',
+        }
+        return self._url_encode64(json.dumps(values))
 
-        redsys_tx_values['Ds_Merchant_MerchantSignature'] = (
-            self._redsys_generate_digital_sign(
-                acquirer, 'in', redsys_tx_values))
+    def _url_encode64(self, data):
+        data = unicode(base64.encodestring(data), 'utf-8')
+        return ''.join(data.splitlines())
+
+    def _url_decode64(self, data):
+        return json.loads(base64.b64decode(data))
+
+    def sign_parameters(self, secret_key, params64):
+        params_dic = self._url_decode64(params64)
+        if 'Ds_Merchant_Order' in params_dic:
+            order = str(params_dic['Ds_Merchant_Order'])
+        else:
+            order = str(params_dic.get('Ds_Order', 'Not found'))
+        cipher = DES3.new(
+            key=base64.b64decode(secret_key),
+            mode=DES3.MODE_CBC,
+            IV=b'\0\0\0\0\0\0\0\0')
+        diff_block = len(order) % 8
+        zeros = diff_block and (b'\0' * (8 - diff_block)) or ''
+        key = cipher.encrypt(order + zeros.encode('UTF-8'))
+        dig = hmac.new(
+            key=key,
+            msg=params64,
+            digestmod=hashlib.sha256).digest()
+        return self._url_encode64(dig)
+
+    @api.model
+    def redsys_form_generate_values(self, id, partner_values, tx_values):
+        acquirer = self.browse(id)
+        redsys_tx_values = dict(tx_values)
+
+        merchant_parameters = self._prepare_merchant_parameters(
+            acquirer, tx_values)
+        redsys_tx_values.update({
+            'Ds_SignatureVersion': str(acquirer.redsys_signature_version),
+            'Ds_MerchantParameters': merchant_parameters,
+            'Ds_Signature': self.sign_parameters(
+                acquirer.redsys_secret_key, merchant_parameters),
+        })
         return partner_values, redsys_tx_values
 
     @api.multi
@@ -162,6 +164,10 @@ class TxRedsys(models.Model):
 
     redsys_txnid = fields.Char('Transaction ID')
 
+    def merchant_params_json2dict(self, data):
+        parameters = data.get('Ds_MerchantParameters', '').decode('base64')
+        return json.loads(parameters)
+
     # --------------------------------------------------
     # FORM RELATED METHODS
     # --------------------------------------------------
@@ -170,9 +176,13 @@ class TxRedsys(models.Model):
     def _redsys_form_get_tx_from_data(self, data):
         """ Given a data dict coming from redsys, verify it and
         find the related transaction record. """
-        reference = data.get('Ds_Order', '')
-        pay_id = data.get('Ds_AuthorisationCode')
-        shasign = data.get('Ds_Signature')
+        parameters = data.get('Ds_MerchantParameters', '')
+        parameters_dic = json.loads(base64.b64decode(parameters))
+        reference = parameters_dic.get('Ds_Order', '')
+        pay_id = parameters_dic.get('Ds_AuthorisationCode')
+        shasign = data.get(
+            'Ds_Signature', '').replace('_', '/').replace('-', '+')
+
         if not reference or not pay_id or not shasign:
             error_msg = 'Redsys: received data with missing reference' \
                 ' (%s) or pay_id (%s) or shashign (%s)' % (reference,
@@ -191,10 +201,9 @@ class TxRedsys(models.Model):
             raise ValidationError(error_msg)
 
         # verify shasign
-        acquirer = self.env['payment.acquirer']
-        shasign_check = acquirer._redsys_generate_digital_sign(
-            tx.acquirer_id, 'out', data)
-        if shasign_check.upper() != shasign.upper():
+        shasign_check = tx.acquirer_id.sign_parameters(
+            tx.acquirer_id.redsys_secret_key, parameters)
+        if shasign_check != shasign:
             error_msg = 'Redsys: invalid shasign, received %s, computed %s,' \
                 ' for data %s' % (shasign, shasign_check, data)
             _logger.error(error_msg)
@@ -204,27 +213,30 @@ class TxRedsys(models.Model):
     @api.model
     def _redsys_form_get_invalid_parameters(self, tx, data):
         invalid_parameters = []
-
+        parameters_dic = self.merchant_params_json2dict(data)
         if (tx.acquirer_reference and
-                data.get('Ds_Order')) != tx.acquirer_reference:
+                parameters_dic.get('Ds_Order')) != tx.acquirer_reference:
             invalid_parameters.append(
-                ('Transaction Id', data.get('Ds_Order'),
+                ('Transaction Id', parameters_dic.get('Ds_Order'),
                  tx.acquirer_reference))
         # check what is buyed
-        if (float_compare(float(data.get('Ds_Amount', '0.0')) / 100,
+        if (float_compare(float(parameters_dic.get('Ds_Amount', '0.0')) / 100,
                           tx.amount, 2) != 0):
-            invalid_parameters.append(('Amount', data.get('Ds_Amount'),
-                                       '%.2f' % tx.amount))
+            invalid_parameters.append(
+                ('Amount', parameters_dic.get('Ds_Amount'),
+                 '%.2f' % tx.amount))
         return invalid_parameters
 
     @api.model
     def _redsys_form_validate(self, tx, data):
-        status_code = int(data.get('Ds_Response', '29999'))
+        parameters_dic = self.merchant_params_json2dict(data)
+        status_code = int(parameters_dic.get('Ds_Response', '29999'))
         if (status_code >= 0) and (status_code <= 99):
             tx.write({
                 'state': 'done',
-                'redsys_txnid': data.get('Ds_AuthorisationCode'),
-                'state_message': _('Ok: %s') % data.get('Ds_Response'),
+                'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
+                'state_message': _('Ok: %s') % parameters_dic.get(
+                    'Ds_Response'),
             })
             email_act = tx.sale_order_id.action_quotation_send()
             # send the email
@@ -235,17 +247,18 @@ class TxRedsys(models.Model):
             # 'Payment error: code: %s.'
             tx.write({
                 'state': 'pending',
-                'redsys_txnid': data.get('Ds_AuthorisationCode'),
-                'state_message': _('Error: %s') % data.get('Ds_Response'),
+                'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
+                'state_message': _('Error: %s') % parameters_dic.get(
+                    'Ds_Response'),
             })
             return True
         if (status_code == 912) and (status_code == 9912):
             # 'Payment error: bank unavailable.'
             tx.write({
                 'state': 'cancel',
-                'redsys_txnid': data.get('Ds_AuthorisationCode'),
+                'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
                 'state_message': (_('Bank Error: %s')
-                                  % data.get('Ds_Response')),
+                                  % parameters_dic.get('Ds_Response')),
             })
             return True
         else:
@@ -253,7 +266,7 @@ class TxRedsys(models.Model):
             _logger.info(error)
             tx.write({
                 'state': 'error',
-                'redsys_txnid': data.get('Ds_AuthorisationCode'),
+                'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
                 'state_message': error,
             })
             return False
