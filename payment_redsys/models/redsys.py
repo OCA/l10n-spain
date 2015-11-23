@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from Crypto.Cipher import DES3
 import hashlib
 import hmac
 import base64
@@ -10,6 +9,11 @@ from openerp import models, fields, api, _
 from openerp.addons.payment.models.payment_acquirer import ValidationError
 from openerp.tools.float_utils import float_compare
 _logger = logging.getLogger(__name__)
+
+try:
+    from Crypto.Cipher import DES3
+except ImportError:
+    _logger.info("Missing dependency. See README.")
 
 
 class AcquirerRedsys(models.Model):
