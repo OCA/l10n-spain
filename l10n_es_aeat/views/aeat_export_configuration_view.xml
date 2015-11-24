@@ -106,13 +106,16 @@
                                attrs="{'invisible': [('export_type', 'in', ('string', 'subconfig'))]}"
                                 >
 	                       <group attrs="{'invisible': [('export_type', 'not in', ('float', 'integer'))]}"
-                                  col="4"
-                                  colspan="2"
-                                   >
-		                       <field name="apply_sign"/>
-		                       <field name="sign" attrs="{'invisible':[('apply_sign', '=', False)]}"/>
-		                       <field name="decimal_size"
-                                      attrs="{'invisible':[('export_type', '!=', 'float')]}"/>
+                                  colspan="2">
+		                       <group>
+                                   <field name="apply_sign"/>
+                               </group>
+		                       <group attrs="{'invisible':[('apply_sign', '=', False)]}">
+		                           <field name="positive_sign"/>
+                                   <field name="negative_sign"/>
+		                           <field name="decimal_size"
+                                          attrs="{'invisible':[('export_type', '!=', 'float')]}"/>
+                               </group>
 	                       </group>
                             <group attrs="{'invisible':[('export_type', '!=', 'boolean')]}">
                                 <group>

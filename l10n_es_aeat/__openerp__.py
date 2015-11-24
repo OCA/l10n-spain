@@ -28,7 +28,7 @@
 ##############################################################################
 {
     'name': "AEAT Base",
-    'version': "8.0.1.3.0",
+    'version': "8.0.1.4.0",
     'author': "Pexego,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "AvanzOSC,"
