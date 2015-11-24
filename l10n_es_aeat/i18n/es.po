@@ -664,9 +664,14 @@ msgid "Show move"
 msgstr "Ver movimiento"
 
 #. module: l10n_es_aeat
-#: field:aeat.model.export.config.line,sign:0
-msgid "Sign character"
-msgstr "Carácter del signo"
+#: field:aeat.model.export.config.line,negative_sign:0
+msgid "Negative sign character"
+msgstr "Carácter del signo negativo"
+
+#. module: l10n_es_aeat
+#: field:aeat.model.export.config.line,positive_sign:0
+msgid "Positive sign character"
+msgstr "Carácter del signo positivo"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_report.py:185
