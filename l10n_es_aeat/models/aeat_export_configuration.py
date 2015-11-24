@@ -62,7 +62,9 @@ class AeatModelExportConfigLine(models.Model):
                    ('subconfig', 'Sub-configuration')],
         default='string', string="Export field type", required=True)
     apply_sign = fields.Boolean("Apply sign", default=True)
-    sign = fields.Char("Sign character", size=1, default='N')
+    positive_sign = fields.Char("Positive sign character", size=1, default='0')
+    negative_sign = fields.Char(
+        "Negative sign character", size=1, default='N', oldname='sign')
     size = fields.Integer("Field size")
     alignment = fields.Selection(
         [('left', 'Left'), ('right', 'Right')],

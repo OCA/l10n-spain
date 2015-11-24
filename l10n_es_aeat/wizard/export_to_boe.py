@@ -76,7 +76,8 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         return ascii_string
 
     def _formatNumber(self, number, int_length, dec_length=0,
-                      include_sign=False):
+                      include_sign=False, positive_sign=' ',
+                      negative_sign='N'):
         """
         Formats the number into a fixed length ASCII (iso-8859-1) record.
         Note:
@@ -91,7 +92,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         if number == '':
             number = 0.0
         number = float(number)
-        sign = number >= 0 and '0' or 'N'
+        sign = number >= 0 and positive_sign or negative_sign
         number = abs(number)
         int_part = int(number)
         # Format the string
@@ -285,4 +286,6 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             return self._formatNumber(
                 float(val or 0),
                 line.size - decimal_size - (line.apply_sign and 1 or 0),
-                decimal_size, line.apply_sign)
+                decimal_size, line.apply_sign,
+                positive_sign=line.positive_sign,
+                negative_sign=line.negative_sign)
