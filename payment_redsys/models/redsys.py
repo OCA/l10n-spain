@@ -59,8 +59,20 @@ class AcquirerRedsys(models.Model):
                                           required_if_provider='redsys')
     redsys_merchant_data = fields.Char('Merchant Data')
     redsys_merchant_lang = fields.Selection([('001', 'Castellano'),
-                                             ('004', 'Frances'),
-                                             ], 'Merchant Consumer Language')
+                                             ('002', 'Inglés'),
+                                             ('003', 'Catalán'),
+                                             ('004', 'Francés'),
+                                             ('005', 'Alemán'),
+                                             ('006', 'Holandés'),
+                                             ('007', 'Italiano'),
+                                             ('008', 'Sueco'),
+                                             ('009', 'Portugués'),
+                                             ('010', 'Valenciano'),
+                                             ('011', 'Polaco'),
+                                             ('012', 'Gallego'),
+                                             ('013', 'Euskera'),
+                                             ], 'Merchant Consumer Language',
+                                             default='001')
     redsys_pay_method = fields.Selection([('T', 'Pago con Tarjeta'),
                                           ('R', 'Pago por Transferencia'),
                                           ('D', 'Domiciliacion'),
