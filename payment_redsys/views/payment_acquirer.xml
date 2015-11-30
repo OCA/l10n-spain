@@ -8,23 +8,32 @@
             <field name="inherit_id" ref="payment.acquirer_form"/>
             <field name="arch" type="xml">
                 <xpath expr='//group[@name="acquirer_display"]' position='after'>
-                    <group attrs="{'invisible': [('provider', '!=', 'redsys')]}">
-                        <field name="redsys_merchant_url" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_merchant_titular" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_merchant_name" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_merchant_code" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_secret_key" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_terminal" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_currency" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_transaction_type" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_merchant_lang" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_pay_method" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_merchant_data" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_merchant_description" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_signature_version" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_url_ok" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_url_ko" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                    </group>
+                    <notebook attrs="{'invisible': [('provider', '!=', 'redsys')]}">
+                        <page string="Parameters">
+                            <group>
+                                <field name="redsys_merchant_url" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                                <field name="redsys_merchant_titular" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                                <field name="redsys_merchant_name" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                                <field name="redsys_merchant_code" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                                <field name="redsys_secret_key" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                                <field name="redsys_terminal" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                                <field name="redsys_currency" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                                <field name="redsys_transaction_type" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                                <field name="redsys_merchant_lang" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                                <field name="redsys_pay_method" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                                <field name="redsys_merchant_data" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                                <field name="redsys_merchant_description" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                                <field name="redsys_signature_version" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                                <field name="redsys_url_ok" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                                <field name="redsys_url_ko" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                            </group>
+                        </page>
+                        <page string="Options">
+                            <group>
+                                <field name="send_quotation"/>
+                            </group>
+                        </page>
+                    </notebook>
                 </xpath>
             </field>
         </record>
@@ -46,3 +55,4 @@
 
     </data>
 </openerp>
+

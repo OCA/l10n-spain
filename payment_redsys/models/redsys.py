@@ -70,6 +70,7 @@ class AcquirerRedsys(models.Model):
         [('HMAC_SHA256_V1', 'HMAC SHA256 V1')], default='HMAC_SHA256_V1')
     redsys_url_ok = fields.Char('URL OK')
     redsys_url_ko = fields.Char('URL KO')
+    send_quotation = fields.Boolean('Send quotation', default=True)
 
     def _prepare_merchant_parameters(self, acquirer, tx_values):
         values = {
@@ -242,10 +243,11 @@ class TxRedsys(models.Model):
                 'state_message': _('Ok: %s') % parameters_dic.get(
                     'Ds_Response'),
             })
-            email_act = tx.sale_order_id.action_quotation_send()
-            # send the email
-            if email_act and email_act.get('context'):
-                self.send_mail(email_act['context'])
+            if tx.acquirer_id.send_quotation:
+                email_act = tx.sale_order_id.action_quotation_send()
+                # send the email
+                if email_act and email_act.get('context'):
+                    self.send_mail(email_act['context'])
             return True
         if (status_code >= 101) and (status_code <= 202):
             # 'Payment error: code: %s.'
