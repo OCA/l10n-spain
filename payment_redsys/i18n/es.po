@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 15:09+0000\n"
-"PO-Revision-Date: 2015-09-01 23:46+0000\n"
-"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
+"POT-Creation-Date: 2015-11-26 01:42+0000\n"
+"PO-Revision-Date: 2015-11-23 07:53+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:247
+#: code:addons/payment_redsys/models/redsys.py:264
 #, python-format
 msgid "Bank Error: %s"
 msgstr "Error del banco: %s"
@@ -42,7 +42,7 @@ msgid "Domiciliacion"
 msgstr "Domiciliación"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:239
+#: code:addons/payment_redsys/models/redsys.py:255
 #, python-format
 msgid "Error: %s"
 msgstr "Error: %s"
@@ -51,6 +51,11 @@ msgstr "Error: %s"
 #: selection:payment.acquirer,redsys_merchant_lang:0
 msgid "Frances"
 msgstr "Francés"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_signature_version:0
+msgid "HMAC SHA256 V1"
+msgstr ""
 
 #. module: payment_redsys
 #: field:payment.acquirer,redsys_merchant_lang:0
@@ -83,7 +88,7 @@ msgid "Merchant code"
 msgstr "Código de comerciante"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:227
+#: code:addons/payment_redsys/models/redsys.py:242
 #, python-format
 msgid "Ok: %s"
 msgstr "Ok: %s"
@@ -122,6 +127,11 @@ msgstr "Descripción del producto"
 #: view:payment.transaction:payment_redsys.transaction_form_redsys
 msgid "Redsys TX Details"
 msgstr "Detalles de transmisión Redsys"
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_signature_version:0
+msgid "Redsys signature version"
+msgstr ""
 
 #. module: payment_redsys
 #: field:payment.acquirer,redsys_secret_key:0
