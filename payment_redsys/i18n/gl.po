@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-06-26 00:33+0000\n"
-"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
+"POT-Creation-Date: 2015-11-26 01:42+0000\n"
+"PO-Revision-Date: 2015-11-23 07:53+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:247
+#: code:addons/payment_redsys/models/redsys.py:264
 #, python-format
 msgid "Bank Error: %s"
 msgstr "Erro do banco: %s"
@@ -40,7 +40,7 @@ msgid "Domiciliacion"
 msgstr "Domiciliación"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:239
+#: code:addons/payment_redsys/models/redsys.py:255
 #, python-format
 msgid "Error: %s"
 msgstr "Erro: %s"
@@ -49,6 +49,11 @@ msgstr "Erro: %s"
 #: selection:payment.acquirer,redsys_merchant_lang:0
 msgid "Frances"
 msgstr "Francés"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_signature_version:0
+msgid "HMAC SHA256 V1"
+msgstr ""
 
 #. module: payment_redsys
 #: field:payment.acquirer,redsys_merchant_lang:0
@@ -81,7 +86,7 @@ msgid "Merchant code"
 msgstr "Código do comerciante"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:227
+#: code:addons/payment_redsys/models/redsys.py:242
 #, python-format
 msgid "Ok: %s"
 msgstr "OK: %s"
@@ -120,6 +125,11 @@ msgstr "Descrición do produto"
 #: view:payment.transaction:payment_redsys.transaction_form_redsys
 msgid "Redsys TX Details"
 msgstr "Detalles Redsys TX"
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_signature_version:0
+msgid "Redsys signature version"
+msgstr ""
 
 #. module: payment_redsys
 #: field:payment.acquirer,redsys_secret_key:0
