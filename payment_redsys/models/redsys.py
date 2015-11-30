@@ -59,8 +59,20 @@ class AcquirerRedsys(models.Model):
                                           required_if_provider='redsys')
     redsys_merchant_data = fields.Char('Merchant Data')
     redsys_merchant_lang = fields.Selection([('001', 'Castellano'),
-                                             ('004', 'Frances'),
-                                             ], 'Merchant Consumer Language')
+                                             ('002', 'Inglés'),
+                                             ('003', 'Catalán'),
+                                             ('004', 'Francés'),
+                                             ('005', 'Alemán'),
+                                             ('006', 'Holandés'),
+                                             ('007', 'Italiano'),
+                                             ('008', 'Sueco'),
+                                             ('009', 'Portugués'),
+                                             ('010', 'Valenciano'),
+                                             ('011', 'Polaco'),
+                                             ('012', 'Gallego'),
+                                             ('013', 'Euskera'),
+                                             ], 'Merchant Consumer Language',
+                                            default='001')
     redsys_pay_method = fields.Selection([('T', 'Pago con Tarjeta'),
                                           ('R', 'Pago por Transferencia'),
                                           ('D', 'Domiciliacion'),
@@ -70,6 +82,7 @@ class AcquirerRedsys(models.Model):
         [('HMAC_SHA256_V1', 'HMAC SHA256 V1')], default='HMAC_SHA256_V1')
     redsys_url_ok = fields.Char('URL OK')
     redsys_url_ko = fields.Char('URL KO')
+    send_quotation = fields.Boolean('Send quotation', default=True)
 
     def _prepare_merchant_parameters(self, acquirer, tx_values):
         values = {
@@ -242,10 +255,11 @@ class TxRedsys(models.Model):
                 'state_message': _('Ok: %s') % parameters_dic.get(
                     'Ds_Response'),
             })
-            email_act = tx.sale_order_id.action_quotation_send()
-            # send the email
-            if email_act and email_act.get('context'):
-                self.send_mail(email_act['context'])
+            if tx.acquirer_id.send_quotation:
+                email_act = tx.sale_order_id.action_quotation_send()
+                # send the email
+                if email_act and email_act.get('context'):
+                    self.send_mail(email_act['context'])
             return True
         if (status_code >= 101) and (status_code <= 202):
             # 'Payment error: code: %s.'
