@@ -72,7 +72,7 @@ class AcquirerRedsys(models.Model):
                                              ('012', 'Gallego'),
                                              ('013', 'Euskera'),
                                              ], 'Merchant Consumer Language',
-                                             default='001')
+                                            default='001')
     redsys_pay_method = fields.Selection([('T', 'Pago con Tarjeta'),
                                           ('R', 'Pago por Transferencia'),
                                           ('D', 'Domiciliacion'),
