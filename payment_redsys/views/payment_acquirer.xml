@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-
         <record id="acquirer_form_redsys" model="ir.ui.view">
             <field name="name">acquirer.form.redsys</field>
             <field name="model">payment.acquirer</field>
@@ -25,6 +24,9 @@
                         <field name="redsys_url_ok" attrs="{'required': [('provider', '=', 'redsys')]}"/>
                         <field name="redsys_url_ko" attrs="{'required': [('provider', '=', 'redsys')]}"/>
                     </group>
+                    <group attrs="{'invisible': [('provider', '!=', 'redsys')]}">
+                        <field name="send_quotation"/>
+                    </group>
                 </xpath>
             </field>
         </record>
@@ -46,3 +48,4 @@
 
     </data>
 </openerp>
+
