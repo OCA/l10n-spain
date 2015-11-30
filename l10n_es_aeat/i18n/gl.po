@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-20 19:02+0000\n"
-"PO-Revision-Date: 2015-10-18 17:09+0000\n"
+"POT-Creation-Date: 2015-11-26 01:42+0000\n"
+"PO-Revision-Date: 2015-11-24 17:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -20,13 +20,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:199
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:200
 #, python-format
 msgid "%s_report_%s.txt"
 msgstr "%s_report_%s.txt"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:110
+#: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:112
 #, python-format
 msgid "<blank>"
 msgstr "<blank>"
@@ -334,7 +334,7 @@ msgid "Expression"
 msgstr "Expresión"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:104
+#: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:106
 #, python-format
 msgid "Expression: "
 msgstr "Expresión:"
@@ -377,7 +377,7 @@ msgid "Fixed value"
 msgstr "Valor fixo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:110
+#: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:112
 #, python-format
 msgid "Fixed: %s"
 msgstr "Fixo: %s"
@@ -533,6 +533,11 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: l10n_es_aeat
+#: field:aeat.model.export.config.line,negative_sign:0
+msgid "Negative sign character"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
 msgid "Normal"
 msgstr "Normal"
@@ -558,7 +563,7 @@ msgid "Odoo model"
 msgstr "Modelo Odoo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:404
+#: code:addons/l10n_es_aeat/models/aeat_report.py:447
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr "Só se poden elimina-las declaracións en estado 'borrador' ou 'cancelada'"
@@ -596,6 +601,11 @@ msgid ""
 msgstr "Poña este arquivo dentro da sua carpeta persoal da AEAT, e úseo no programa"
 
 #. module: l10n_es_aeat
+#: field:aeat.model.export.config.line,positive_sign:0
+msgid "Positive sign character"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,state:0
 msgid "Posted"
 msgstr ""
@@ -621,7 +631,7 @@ msgid "Recalculate"
 msgstr "Recalcular"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:317
+#: code:addons/l10n_es_aeat/models/aeat_report.py:357
 #, python-format
 msgid "Regularization"
 msgstr ""
@@ -662,11 +672,6 @@ msgstr "Mostrar apuntes contables"
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Show move"
 msgstr ""
-
-#. module: l10n_es_aeat
-#: field:aeat.model.export.config.line,sign:0
-msgid "Sign character"
-msgstr "Carácter do signo"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_report.py:185
@@ -744,17 +749,23 @@ msgstr "Telemática"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:74
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:109
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:110
 #, python-format
 msgid "The formated string must match the given length"
 msgstr "A cadea formateada debe satisface-lo tamaño dado."
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:258
+#: code:addons/l10n_es_aeat/models/aeat_report.py:292
 #, python-format
 msgid ""
 "There is no period defined for the report. Please set at least one period "
 "and try again."
+msgstr ""
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_report.py:279
+#, python-format
+msgid "There's a missing previous declaration for the period %s."
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -807,7 +818,7 @@ msgid "Wrong aling option. It should be < or >"
 msgstr "Opción de aliñamento errada. Debería ser < ou >"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:351
+#: code:addons/l10n_es_aeat/models/aeat_report.py:394
 #, python-format
 msgid "You must fill both journal and counterpart account."
 msgstr ""
