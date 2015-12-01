@@ -256,10 +256,7 @@ class TxRedsys(models.Model):
                     'Ds_Response'),
             })
             if tx.acquirer_id.send_quotation:
-                email_act = tx.sale_order_id.action_quotation_send()
-                # send the email
-                if email_act and email_act.get('context'):
-                    self.send_mail(email_act['context'])
+                tx.sale_order_id.force_quotation_send()
             return True
         if (status_code >= 101) and (status_code <= 202):
             # 'Payment error: code: %s.'
@@ -288,13 +285,3 @@ class TxRedsys(models.Model):
                 'state_message': error,
             })
             return False
-
-    def send_mail(self, email_ctx):
-        composer_values = {}
-        template = self.env.ref('sale.email_template_edi_sale', False)
-        if not template:
-            return True
-        email_ctx['default_template_id'] = template.id
-        composer_id = self.env['mail.compose.message'].with_context(
-            email_ctx).create(composer_values)
-        composer_id.with_context(email_ctx).send_mail()
