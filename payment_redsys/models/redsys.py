@@ -263,8 +263,10 @@ class TxRedsys(models.Model):
             tx.write({
                 'state': 'pending',
                 'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
-                'state_message': _('Error: %s') % parameters_dic.get(
-                    'Ds_Response'),
+                'state_message': _('Error: %s (%s)') % (
+                    parameters_dic.get('Ds_Response'),
+                    parameters_dic.get('Ds_ErrorCode')
+                ),
             })
             return True
         if (status_code == 912) and (status_code == 9912):
@@ -272,12 +274,17 @@ class TxRedsys(models.Model):
             tx.write({
                 'state': 'cancel',
                 'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
-                'state_message': (_('Bank Error: %s')
-                                  % parameters_dic.get('Ds_Response')),
+                'state_message': _('Bank Error: %s (%s)') % (
+                    parameters_dic.get('Ds_Response'),
+                    parameters_dic.get('Ds_ErrorCode')
+                ),
             })
             return True
         else:
-            error = 'Redsys: feedback error'
+            error = _('Redsys: feedback error %s (%s)') % (
+                parameters_dic.get('Ds_Response'),
+                parameters_dic.get('Ds_ErrorCode')
+            )
             _logger.info(error)
             tx.write({
                 'state': 'error',
