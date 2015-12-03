@@ -330,7 +330,7 @@ class CreateFacturae(models.TransientModel):
                 texto += '<ContactDetails>'
                 if address.phone:
                     texto += '<Telephone>' +\
-                             invoice_partner_address_obj.phone +\
+                             address.phone +\
                              '</Telephone>'
                 if address.fax:
                     texto += '<TeleFax>' + address.fax + '</TeleFax>'
