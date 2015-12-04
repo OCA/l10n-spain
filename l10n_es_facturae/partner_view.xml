@@ -17,6 +17,7 @@
                             <field name="organo_gestor" attrs="{'required': [('facturae', '=', True)]}"/>
                             <field name="unidad_tramitadora" attrs="{'required': [('facturae', '=', True)]}" />
                             <field name="oficina_contable" attrs="{'required': [('facturae', '=', True)]}"/>
+                            <field name="organo_proponente"/>
                         </group>
                       </page>
                 </page>
