@@ -62,7 +62,6 @@ class CreateFacturae(models.TransientModel):
         Boolean('¿Desea firmar digitalmente el fichero generado?',
                 help='Requiere certificado en la ficha de la compañía')
 
-
     @api.multi
     def end_document_hook(self, xml_facturae):
         return xml_facturae
@@ -282,6 +281,11 @@ class CreateFacturae(models.TransientModel):
                         texto += "<CentreCode>" + address.unidad_tramitadora +\
                                  "</CentreCode>"
                         texto += "<RoleTypeCode>" + code + "</RoleTypeCode>"
+                    elif code == '04':
+                        texto += "<AdministrativeCentre>"
+                        texto += "<CentreCode>" + address.organo_proponente +\
+                                 "</CentreCode>"
+                        texto += "<RoleTypeCode>" + code + "</RoleTypeCode>"
                     else:
                         texto += "<AdministrativeCentre>"
                         texto += "<CentreCode>" + '' + "</CentreCode>"
@@ -361,9 +365,9 @@ class CreateFacturae(models.TransientModel):
                 texto += create_administrative_centres(
                     invoice_partner_address_obj, "03")
                 # Órgano proponente
-                # texto +=
-                # create_administrative_centres(contact_partner_address_obj or
-                # invoice_partner_address_obj, "04")
+                if invoice_partner_address_obj.organo_proponente:
+                    texto += create_administrative_centres(
+                        invoice_partner_address_obj, "04")
                 texto += "</AdministrativeCentres>"
 
             if tipo_buyer == 'F':
