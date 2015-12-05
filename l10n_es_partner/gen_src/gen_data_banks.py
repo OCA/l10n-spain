@@ -27,6 +27,14 @@ import codecs
 _logger = logging.getLogger(__name__)
 
 
+def escape(txt):
+    chars = [('&', '&amp;'), ('>', '&gt;'), ('<', '&lt;'), ('"', "&quot;"),
+             ("'", "&apos;")]
+    for c in chars:
+        txt = txt.replace(*c)
+    return txt
+
+
 def gen_bank_data_xml(src_path, dest_path):
     from xlrd import open_workbook
     # Abre el archivo que contine la información de los bancos
@@ -51,31 +59,31 @@ def gen_bank_data_xml(src_path, dest_path):
         output.write('        <record id="%s" model="res.bank">\n' %
                      name)
         output.write('            <field name="name">%s</field>\n' % (
-                     row[40].replace(u'\x26', 'Y')))
+                     escape(row[40])))
         output.write('            <field name="lname">%s</field>\n' % (
-                     row[4].replace(u'\x26', 'Y')))
+                     escape(row[4])))
         output.write('            <field name="code">%s</field>\n' % (
-                     row[1]))
+                     escape(row[1])))
         output.write('            <field name="bic">%s</field>\n' % (
-                     row[29]))
+                     escape(row[29])))
         output.write('            <field name="vat">%s</field>\n' % (
-                     row[6]))
+                     escape(row[6])))
         output.write('            <field name="street">%s</field>\n' %
-                     (street))
+                     escape(street))
         output.write('            <field name="city">%s</field>\n' % (
-                     row[12]))
+                     escape(row[12])))
         output.write('            <field name="zip">%s</field>\n' % (
-                     row[11]))
+                     escape(row[11])))
         output.write('            <field name="phone">'
-                     '%s</field>\n' % row[16])
+                     '%s</field>\n' % escape(row[16]))
         output.write('            <field name="fax">%s</field>\n' % (
-                     row[18]))
+                     escape(row[18])))
         output.write('            <field name="website">%s</field>\n' %
-                     (row[19]))
+                     escape(row[19]))
         output.write('            <field eval="1" name="active"/>\n')
         output.write('            <field name="state"'
                      ' ref="l10n_es_toponyms.ES%s"/>\n' % (
-                         row[11] and row[11][:-3].zfill(2) or False))
+                         row[11] and escape(row[11][:-3].zfill(2)) or False))
         output.write('            <field name="country"'
                      ' ref="base.es"/>\n')
         output.write('        </record>\n')

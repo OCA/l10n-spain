@@ -44,17 +44,14 @@ class L10nEsPartnerImportWizard(models.TransientModel):
     @api.multi
     def execute(self):
         import urllib2
+        src_file = tempfile.NamedTemporaryFile(delete=False)
+        dest_file = tempfile.NamedTemporaryFile('w', delete=False)
         try:
             xlsfile = urllib2.urlopen(
                 'http://www.bde.es/f/webbde/IFI/servicio/regis/ficheros/es/'
                 'REGBANESP_CONESTAB_A.XLS')
             # Read XLS
-            src_file = tempfile.NamedTemporaryFile(delete=False)
             src_file.write(xlsfile.read())
-            src_file.close()
-            # Prepare XML dest file
-            dest_file = tempfile.NamedTemporaryFile('w', delete=False)
-            dest_file.close()
             # Generate XML and reopen it
             gen_bank_data_xml(src_file.name, dest_file.name)
             tools.convert_xml_import(
@@ -74,6 +71,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
                 'target': 'new',
             }
         finally:
+            src_file.close()
             dest_file.close()
             os.remove(src_file.name)
             os.remove(dest_file.name)
