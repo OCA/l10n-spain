@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-26 01:42+0000\n"
-"PO-Revision-Date: 2015-11-23 07:53+0000\n"
+"POT-Creation-Date: 2015-12-05 01:43+0000\n"
+"PO-Revision-Date: 2015-11-30 23:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:264
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Alemán"
+msgstr ""
+
+#. module: payment_redsys
+#: code:addons/payment_redsys/models/redsys.py:278
 #, python-format
 msgid "Bank Error: %s"
 msgstr "Erro do banco: %s"
@@ -28,6 +33,11 @@ msgstr "Erro do banco: %s"
 #: selection:payment.acquirer,redsys_merchant_lang:0
 msgid "Castellano"
 msgstr "Castelán"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Catalán"
+msgstr ""
 
 #. module: payment_redsys
 #: field:payment.acquirer,redsys_currency:0
@@ -40,19 +50,44 @@ msgid "Domiciliacion"
 msgstr "Domiciliación"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:255
+#: code:addons/payment_redsys/models/redsys.py:269
 #, python-format
 msgid "Error: %s"
 msgstr "Erro: %s"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
-msgid "Frances"
-msgstr "Francés"
+msgid "Euskera"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Francés"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Gallego"
+msgstr ""
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_signature_version:0
 msgid "HMAC SHA256 V1"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Holandés"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Inglés"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Italiano"
 msgstr ""
 
 #. module: payment_redsys
@@ -86,7 +121,7 @@ msgid "Merchant code"
 msgstr "Código do comerciante"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:242
+#: code:addons/payment_redsys/models/redsys.py:255
 #, python-format
 msgid "Ok: %s"
 msgstr "OK: %s"
@@ -117,6 +152,16 @@ msgid "Payment Transaction"
 msgstr "Transación de pagamento"
 
 #. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Polaco"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Portugués"
+msgstr ""
+
+#. module: payment_redsys
 #: field:payment.acquirer,redsys_merchant_description:0
 msgid "Product Description"
 msgstr "Descrición do produto"
@@ -135,6 +180,16 @@ msgstr ""
 #: field:payment.acquirer,redsys_secret_key:0
 msgid "Secret Key"
 msgstr "Chave secreta"
+
+#. module: payment_redsys
+#: field:payment.acquirer,send_quotation:0
+msgid "Send quotation"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Sueco"
+msgstr ""
 
 #. module: payment_redsys
 #: field:payment.acquirer,redsys_terminal:0
@@ -160,3 +215,8 @@ msgstr "URL KO"
 #: field:payment.acquirer,redsys_url_ok:0
 msgid "URL OK"
 msgstr "URL OK"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Valenciano"
+msgstr ""
