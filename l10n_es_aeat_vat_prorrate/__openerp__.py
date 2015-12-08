@@ -8,7 +8,7 @@
     "version": "8.0.2.0.0",
     "license": "AGPL-3",
     "author": "AvanzOSC, "
-              "Antiun Ingeniería, S.L., "
+              "Antiun Ingeniería S.L., "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
