@@ -21,7 +21,7 @@
             </field>
         </field>
     </record>
-    
+
     <record model="ir.ui.view" id="view_account_asset_asset_form_l10n_es">
         <field name="name">account.asset.asset.form.l10n_es</field>
         <field name="model">account.asset.asset</field>
@@ -50,6 +50,9 @@
             </field>
             <field name="purchase_date" position="after">
                 <field name="start_depreciation_date"/>
+            </field>
+            <field name="partner_id" position="after">
+                <field name="account_analytic_id"/>
             </field>
         </field>
     </record>

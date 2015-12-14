@@ -35,6 +35,7 @@ regulaciones españolas:
     * Cambia el método de cálculo para el prorrateo temporal.
     * Añade un nuevo método de cálculo para porcentaje fijo por periodo.
     * Añade la opción de trasladar la depreciación al final del periodo.
+    * Permite establecer la cuenta analítica a nivel de activo en vez de categoría.
     """,
     "website": "http://www.serviciosbaeza.com",
     "category": "Accounting & Finance",
