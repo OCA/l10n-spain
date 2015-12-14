@@ -116,6 +116,8 @@ class account_asset_asset(orm.Model):
             readonly=True,
             states={'draft': [('readonly', False)]},
             help="Only needed if not the same than purchase date"),
+        'account_analytic_id': fields.many2one('account.analytic.account',
+                                               'Analytic account')
 
     }
 
@@ -149,6 +151,7 @@ class account_asset_asset(orm.Model):
                                            context=context)
             res['value']['ext_method_time'] = category.ext_method_time
             res['value']['method_percentage'] = category.method_percentage
+            res['value']['account_analytic_id'] = category.account_analytic_id.id
         return res
 
     def _compute_board_undone_dotation_nb(self, cr, uid, asset,
@@ -281,5 +284,33 @@ class account_asset_asset(orm.Model):
                         cr, uid, depr_line.id,
                         {'depreciation_date': depr_date.strftime(DSDF)})
         return True
+
+
+class account_asset_depreciation_line(orm.Model):
+
+    _inherit = 'account.asset.depreciation.line'
+
+    def create_move(self, cr, uid, ids, context=None):
+        move_obj = self.pool.get('account.move')
+        move_line_obj = self.pool.get('account.move.line')
+        all_moves = []
+        for id in ids:
+            line = self.browse(cr, uid, id, context)
+            asset = line.asset_id
+            move_id = super(account_asset_depreciation_line, self).create_move(
+                cr, uid, id, context)
+            all_moves += move_id
+            move = move_obj.browse(cr, uid, move_id[0], context)
+            if move.journal_id.entry_posted:
+                move_obj.button_cancel(cr, uid, [move.id], context)
+            for move_line in move.line_id:
+                if move_line.debit:
+                    write_vals = {'analytic_account_id':
+                                  asset.account_analytic_id.id}
+                    move_line_obj.write(cr, uid, move_line.id, write_vals,
+                                        context)
+            if move.journal_id.entry_posted:
+                move_obj.button_validate(cr, uid, move.id, context)
+        return all_moves
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
