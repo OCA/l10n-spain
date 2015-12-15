@@ -268,22 +268,22 @@ class CreateFacturae(models.TransientModel):
                 if administrative:
                     if code == '01':
                         texto += "<AdministrativeCentre>"
-                        texto += "<CentreCode>" + address.oficina_contable +\
+                        texto += "<CentreCode>" + address.oficina_contable[:10] +\
                                  "</CentreCode>"
                         texto += "<RoleTypeCode>" + code + "</RoleTypeCode>"
                     elif code == '02':
                         texto += "<AdministrativeCentre>"
-                        texto += "<CentreCode>" + address.organo_gestor +\
+                        texto += "<CentreCode>" + address.organo_gestor[:20] +\
                                  "</CentreCode>"
                         texto += "<RoleTypeCode>" + code + "</RoleTypeCode>"
                     elif code == '03':
                         texto += "<AdministrativeCentre>"
-                        texto += "<CentreCode>" + address.unidad_tramitadora +\
+                        texto += "<CentreCode>" + address.unidad_tramitadora[:20] +\
                                  "</CentreCode>"
                         texto += "<RoleTypeCode>" + code + "</RoleTypeCode>"
                     elif code == '04':
                         texto += "<AdministrativeCentre>"
-                        texto += "<CentreCode>" + address.organo_proponente +\
+                        texto += "<CentreCode>" + address.organo_proponente[:20] +\
                                  "</CentreCode>"
                         texto += "<RoleTypeCode>" + code + "</RoleTypeCode>"
                     else:
@@ -294,29 +294,29 @@ class CreateFacturae(models.TransientModel):
                 texto += '<AddressInSpain>'
                 if address.street:
                     if address.street2:
-                        texto += '<Address>' + address.street + ' ' + \
-                                 address.street2 + '</Address>'
+                        texto += '<Address>' + (address.street + ' ' + \
+                                 address.street2)[:80] + '</Address>'
                     else:
-                        texto += '<Address>' + address.street + '</Address>'
+                        texto += '<Address>' + address.street[:80] + '</Address>'
                 else:
                     log.add(_('User error:\n\nPartner %s has no street.') %
                             address.name, True)
                     raise log
                 if address.zip:
-                    texto += '<PostCode>' + address.zip + '</PostCode>'
+                    texto += '<PostCode>' + address.zip[:9] + '</PostCode>'
                 else:
                     log.add(_('User error:\n\nPartner %s has no zip code.') %
                             address.name, True)
                     raise log
 
                 if address.city:
-                    texto += '<Town>' + address.city + '</Town>'
+                    texto += '<Town>' + address.city[:50] + '</Town>'
                 else:
                     log.add(_('User error:\n\nPartner %s has no city.') %
                             address.name, True)
                     raise log
                 if address.state_id.name:
-                    texto += '<Province>' + address.state_id.name +\
+                    texto += '<Province>' + address.state_id.name[:20] +\
                              '</Province>'
                 else:
                     log.add(_('User error:\n\nPartner %s has no province.') %
@@ -334,17 +334,17 @@ class CreateFacturae(models.TransientModel):
                 texto += '<ContactDetails>'
                 if address.phone:
                     texto += '<Telephone>' +\
-                             address.phone +\
+                             address.phone[:15] +\
                              '</Telephone>'
                 if address.fax:
-                    texto += '<TeleFax>' + address.fax + '</TeleFax>'
+                    texto += '<TeleFax>' + address.fax[:15] + '</TeleFax>'
                 if address.website:
-                    texto += '<WebAddress>' + address.website + '</WebAddress>'
+                    texto += '<WebAddress>' + address.website[:60] + '</WebAddress>'
                 if address.email:
-                    texto += '<ElectronicMail>' + address.email +\
+                    texto += '<ElectronicMail>' + address.email[:60] +\
                              '</ElectronicMail>'
                 if address.name:
-                    texto += '<ContactPersons>' + address.name +\
+                    texto += '<ContactPersons>' + address.name[:40] +\
                              '</ContactPersons>'
                 texto += '</ContactDetails>'
 
