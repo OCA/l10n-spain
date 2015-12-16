@@ -47,10 +47,11 @@ necesaria (hereda esta funcionalidad del addon pos_pricelist) y esto provoca que
 haya huecos en la numeración de las facturas simplificadas (esto no lo permite
 la legislación española)
 
-Desde el TPV se imprime un tiquet sólo con la referencia del pedido. En este momento
-no se puede mostrar el número de factura (simplificada o no) porque el TPV puede
-estar offline. Si el cliente solicita una factura deducible es necesario imprimir
-el tiquet desde el backend.
+Al imprimir el número de factura sólo se soportan estos placeholders en la secuencia:
+* %(year)s
+* %(month)s
+* %(day)s
+* %(y)s
 
 
 Bug Tracker
@@ -89,7 +90,12 @@ Contribuidores
 * Pedro M. Baeza [Serv. Tecnológicos Avanzados] <pedro.baeza@serviciosbaeza.com>
 * Antonio Espinosa <antonioea@antiun.com>
 * Rafael Blasco <rafabn@antiun.com>
+* Ivan Yelizariev - `Código de la impresión del número de factura basado en este addon <https://github.com/yelizariev/pos-addons/tree/8.0/pos_ticket_custom>`_
 
+Librerías
+---------
+
+* `MomentJS v2.8.1 <https://github.com/moment/moment/tree/2.8.1>`_ - `Licencia <https://github.com/moment/moment/blob/2.8.1/LICENSE>`_ - `Más información en www.momentjs.com <http://momentjs.com/>`_
 
 Mantenedor
 ----------

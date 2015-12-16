@@ -2,7 +2,15 @@
 <templates id="template" xml:space="preserve">
     <t t-extend="PosTicket">
         <t t-jquery=".pos-center-align t:first" t-operation="after">
-            <br/><t t-esc="order.name" />
+            <br/>
+            <t t-if="order.simplified">
+                Simplified invoice
+            </t>
+            <t t-if="!order.simplified">
+                Invoice
+            </t>
+            <t t-esc="order.get('sequence_ref')"/>
+            <br/>
         </t>
         <t t-jquery="[t-esc='widget.pos.company.name']" t-operation="after">
             <br />VAT: <t t-esc="widget.pos.company.vat || ''"/>
