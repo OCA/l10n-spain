@@ -89,8 +89,10 @@ Contribuidores
 * Endika Iglesias <endikaig@antiun.com>
 * Pedro M. Baeza [Serv. Tecnológicos Avanzados] <pedro.baeza@serviciosbaeza.com>
 * Antonio Espinosa <antonioea@antiun.com>
-* Rafael Blasco <rafabn@antiun.com>
+* Rafael Blasco <rblasco@rbnpro.com>
 * Ivan Yelizariev - `Código de la impresión del número de factura basado en este addon <https://github.com/yelizariev/pos-addons/tree/8.0/pos_ticket_custom>`_
+* Vicente cubells <vicent@vcubells.net>
+* Carlos Liébana <carlos.liebana@factorlibre.com>
 
 Librerías
 ---------
