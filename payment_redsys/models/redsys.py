@@ -80,8 +80,8 @@ class AcquirerRedsys(models.Model):
                                          default='T')
     redsys_signature_version = fields.Selection(
         [('HMAC_SHA256_V1', 'HMAC SHA256 V1')], default='HMAC_SHA256_V1')
-    redsys_url_ok = fields.Char('URL OK')
-    redsys_url_ko = fields.Char('URL KO')
+    redsys_url_ok = fields.Char('URL OK', default='redsys_result_ok')
+    redsys_url_ko = fields.Char('URL KO', default='redsys_result_ko')
     send_quotation = fields.Boolean('Send quotation', default=True)
 
     def _prepare_merchant_parameters(self, acquirer, tx_values):
