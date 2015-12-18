@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-29 02:56+0000\n"
-"PO-Revision-Date: 2017-04-25 10:43+0000\n"
+"PO-Revision-Date: 2017-04-25 10:41+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/fr/)\n"
+"Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: ca_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: view:l10n.es.aeat.mod303.report:l10n_es_aeat_vat_prorrate.l10n_es_aeat_mod303_prorrata_form
@@ -30,12 +30,12 @@ msgstr ""
 #. module: l10n_es_aeat_vat_prorrate
 #: view:l10n.es.aeat.compute.vat.prorrate:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "Cancel·la"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: view:l10n.es.aeat.compute.vat.prorrate:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "Compute"
-msgstr "Calculer"
+msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.actions.act_window,name:l10n_es_aeat_vat_prorrate.action_compute_vat_prorrate
@@ -46,22 +46,22 @@ msgstr ""
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,create_uid:0
 msgid "Created by"
-msgstr "Créé par"
+msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,create_date:0
 msgid "Created on"
-msgstr "Date"
+msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,display_name:0
 msgid "Display Name"
-msgstr "Nom à afficher"
+msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,fiscalyear_id:0
 msgid "Fiscal year"
-msgstr "Exercice fiscal"
+msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: selection:l10n.es.aeat.mod303.report,vat_prorrate_type:0
@@ -71,27 +71,27 @@ msgstr ""
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,__last_update:0
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,write_uid:0
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,write_date:0
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: selection:l10n.es.aeat.mod303.report,vat_prorrate_type:0
 msgid "None"
-msgstr "Aucune"
+msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: view:l10n.es.aeat.compute.vat.prorrate:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
@@ -175,4 +175,4 @@ msgstr ""
 #. module: l10n_es_aeat_vat_prorrate
 #: view:l10n.es.aeat.compute.vat.prorrate:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "or"
-msgstr "ou"
+msgstr ""

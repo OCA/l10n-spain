@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# © 2015-2016 Antiun Ingeniería S.L. - Pedro M. Baeza
-# © 2015 AvanzOSC - Ainara Galdona
+# Copyright 2015 AvanzOSC - Ainara Galdona
+# Copyright 2015-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import models, fields, api, exceptions, _
@@ -26,10 +26,10 @@ class L10nEsAeatMod303Report(models.Model):
             report.total_deducir += report.casilla_44
 
     casilla_44 = fields.Float(
-        string="[44] Regularización de la prorrata", default=0,
+        string=u"[44] Regularización de la prorrata", default=0,
         states={'done': [('readonly', True)]},
-        help="Regularizacion por aplicación del porcentaje definitivo de "
-             "prorrata.")
+        help=u"Regularización por aplicación del porcentaje definitivo de "
+             u"prorrata.")
     vat_prorrate_type = fields.Selection(
         [('none', 'None'),
          ('general', 'General prorrate'), ],
@@ -39,35 +39,62 @@ class L10nEsAeatMod303Report(models.Model):
     vat_prorrate_percent = fields.Float(
         string="VAT prorrate percentage", default=100,
         readonly=True, states={'draft': [('readonly', False)]})
+    prorrate_regularization_account_id = fields.Many2one(
+        comodel_name="account.account",
+        string="Prorrate regularization account",
+        help="This account will be the one where charging the "
+             "regularization of VAT prorrate.",
+    )
+    prorrate_regularization_analytic_account_id = fields.Many2one(
+        comodel_name="account.analytic.account",
+        string="Prorrate regularization analytic account",
+        help="This analytic account will be the one where charging the "
+             "regularization of the VAT prorrate.",
+    )
 
     @api.constrains('vat_prorrate_percent')
     def check_vat_prorrate_percent(self):
-        if self.vat_prorrate_percent < 0 or self.vat_prorrate_percent > 100:
+        if not (0 < self.vat_prorrate_percent <= 100):
             raise exceptions.Warning(
-                _('VAT prorrate percent must be between 0 and 100'))
+                _('VAT prorrate percent must be between 0.01 and 100'))
+
+    @api.multi
+    def _calculate_casilla_44(self):
+        self.ensure_one()
+        self.casilla_44 = 0
+        if (self.vat_prorrate_type != 'general' or
+                self.period_type not in ('4T', '12')):
+            return
+        # Get prorrate from previous declarations
+        min_date = min(self.periods.mapped('date_start'))
+        prev_reports = self._get_previous_fiscalyear_reports(min_date)
+        if any(x.state == 'draft' for x in prev_reports):
+            raise exceptions.Warning(
+                _("There's at least one previous report in draft state. "
+                  "Please confirm it before making this one.")
+            )
+        for prev_report in prev_reports:
+            diff_perc = (self.vat_prorrate_percent -
+                         prev_report.vat_prorrate_percent)
+            if diff_perc:
+                self.casilla_44 += (
+                    diff_perc * prev_report.total_deducir /
+                    prev_report.vat_prorrate_percent)
 
     @api.multi
     def calculate(self):
         res = super(L10nEsAeatMod303Report, self).calculate()
         for report in self:
-            report.casilla_44 = 0
-            if (report.vat_prorrate_type != 'general' or
-                    report.period_type not in ('4T', '12')):
-                continue
-            # Get prorrate from previous declarations
-            min_date = min(report.periods.mapped('date_start'))
-            prev_reports = report._get_previous_fiscalyear_reports(min_date)
-            if any(x.state == 'draft' for x in prev_reports):
-                raise exceptions.Warning(
-                    _("There's at least one previous report in draft state. "
-                      "Please confirm it before making this one."))
-            for prev_report in prev_reports:
-                diff_perc = (report.vat_prorrate_percent -
-                             prev_report.vat_prorrate_percent)
-                if diff_perc:
-                    report.casilla_44 += (
-                        diff_perc * prev_report.total_deducir /
-                        prev_report.vat_prorrate_percent)
+            report._calculate_casilla_44()
+            account_number = '6391%' if report.casilla_44 > 0 else '6341%'
+            # Choose default account according result
+            report.prorrate_regularization_account_id = (
+                self.env['account.account'].search([
+                    ('code', 'like', account_number),
+                    ('company_id', '=', report.company_id.id),
+                    ('type', '!=', 'view'),
+                ], limit=1)
+            )
         return res
 
     @api.multi
@@ -172,13 +199,12 @@ class L10nEsAeatMod303Report(models.Model):
         lines = super(L10nEsAeatMod303Report,
                       self)._prepare_regularization_extra_move_lines()
         if self.casilla_44:
-            account_number = '6391%' if self.casilla_44 > 0 else '6341%'
             lines.append({
                 'name': _('Regularización prorrata IVA'),
-                'account_id': self.env['account.account'].search(
-                    [('code', 'like', account_number),
-                     ('company_id', '=', self.company_id.id),
-                     ('type', '!=', 'view')], limit=1).id,
+                'account_id': self.prorrate_regularization_account_id.id,
+                'analytic_account_id': (
+                    self.prorrate_regularization_analytic_account_id.id
+                ),
                 'debit': -self.casilla_44 if self.casilla_44 < 0 else 0.0,
                 'credit': self.casilla_44 if self.casilla_44 > 0 else 0.0,
             })
