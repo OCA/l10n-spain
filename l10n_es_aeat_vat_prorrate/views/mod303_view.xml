@@ -32,6 +32,14 @@
                                 class="oe_inline oe_link"
                                 />
                     </div>
+                    <field name="prorrate_regularization_account_id"
+                           attrs="{'invisible': ['|', ('vat_prorrate_type', '!=', 'general'), ('period_type', 'not in', ['4T', '12'])],
+                                   'required': [('vat_prorrate_type', '=', 'general'), ('period_type', 'in', ['4T', '12']), ('state', '=', 'calculated')],
+                                   'readonly': [('state', '!=', 'calculated')]}"
+                    />
+                    <field name="prorrate_regularization_analytic_account_id"
+                           attrs="{'invisible': ['|', ('vat_prorrate_type', '!=', 'general'), ('period_type', 'not in', ['4T', '12'])], 'readonly': [('state', '!=', 'calculated')]}"
+                    />
                 </field>
             </field>
         </record>
