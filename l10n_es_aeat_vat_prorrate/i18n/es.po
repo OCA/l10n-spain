@@ -1,25 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_es_aeat_vat_prorrate
-# 
-# Translators:
-# Antonio Trueba, 2016
-# Antonio Trueba, 2016
-# Carles Antoli <carlesantoli@hotmail.com>, 2015
-# Carles Antoli <carlesantoli@hotmail.com>, 2015
+#	* l10n_es_aeat_vat_prorrate
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-spain (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-08 00:56+0000\n"
-"PO-Revision-Date: 2016-06-07 18:16+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
+"POT-Creation-Date: 2017-02-08 18:33+0000\n"
+"PO-Revision-Date: 2017-02-08 18:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: view:l10n.es.aeat.mod303.report:l10n_es_aeat_vat_prorrate.l10n_es_aeat_mod303_prorrata_form
@@ -60,7 +54,7 @@ msgstr "Creado en"
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,display_name:0
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "Nombre mostrado"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,fiscalyear_id:0
@@ -80,7 +74,7 @@ msgstr "ID"
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,__last_update:0
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "Última modificación en"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,write_uid:0
@@ -99,43 +93,56 @@ msgstr "Ninguno"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: view:l10n.es.aeat.compute.vat.prorrate:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
-msgid ""
-"Please select the fiscal year that corresponds to your previous fiscal year."
+msgid "Please select the fiscal year that corresponds to your previous fiscal year."
 msgstr "Por favor, seleccione el año fiscal que corresponde a su anterior año fiscal."
 
 #. module: l10n_es_aeat_vat_prorrate
-#: help:l10n.es.aeat.mod303.report,casilla_44:0
-msgid "Regularizacion por aplicación del porcentaje definitivo de prorrata."
-msgstr "Regularizacion por aplicación del porcentaje definitivo de prorrata."
+#: field:l10n.es.aeat.mod303.report,prorrate_regularization_account_id:0
+msgid "Prorrate regularization account"
+msgstr "Cuenta de regularización de la prorrata"
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:177
+#: field:l10n.es.aeat.mod303.report,prorrate_regularization_analytic_account_id:0
+msgid "Prorrate regularization analytic account"
+msgstr "Cuenta analítica de regularización de la prorrata"
+
+#. module: l10n_es_aeat_vat_prorrate
+#: help:l10n.es.aeat.mod303.report,casilla_44:0
+msgid "Regularización por aplicación del porcentaje definitivo de prorrata."
+msgstr "Regularización por aplicación del porcentaje definitivo de prorrata."
+
+#. module: l10n_es_aeat_vat_prorrate
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:203
 #, python-format
 msgid "Regularización prorrata IVA"
 msgstr "Regularización prorrata IVA"
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:62
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:73
 #, python-format
-msgid ""
-"There's at least one previous report in draft state. Please confirm it "
-"before making this one."
+msgid "There's at least one previous report in draft state. Please confirm it before making this one."
 msgstr "Hay al menos otro informe previo en estado de borrador. Por favor confírmelo antes de hacer este."
 
 #. module: l10n_es_aeat_vat_prorrate
+#: help:l10n.es.aeat.mod303.report,prorrate_regularization_account_id:0
+msgid "This account will be the one where charging the regularization of VAT prorrate."
+msgstr "Esta cuenta será en la que se cargue la regularización de la prorrata de IVA."
+
+#. module: l10n_es_aeat_vat_prorrate
+#: help:l10n.es.aeat.mod303.report,prorrate_regularization_analytic_account_id:0
+msgid "This analytic account will be the one where charging the regularization of VAT prorrate."
+msgstr "Esta cuenta analítica será en la que se cargue la regularización de la prorrata de IVA."
+
+#. module: l10n_es_aeat_vat_prorrate
 #: view:l10n.es.aeat.compute.vat.prorrate:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
-msgid ""
-"This wizard will compute the VAT prorrate for the fiscal year selected, "
-"which is applicable as the provisional one for the AEAT reports of the "
-"following fiscal year up to last period, in which the definitive prorrate "
-"percentage has to be calculated and the difference must be compensated."
+msgid "This wizard will compute the VAT prorrate for the fiscal year selected, which is applicable as the provisional one for the AEAT reports of the following fiscal year up to last period, in which the definitive prorrate percentage has to be calculated and the difference must be compensated."
 msgstr "ESte asistente calculará la prorrata de IVA para el año fiscal seleccionado, que se puede aplicar como el valor provisional para los informes de AEAT para el año fiscal siguiente hasta el último período, en que se debe calcular la prorrata definitiva y compensar la diferencia."
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:47
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:59
 #, python-format
-msgid "VAT prorrate percent must be between 0 and 100"
-msgstr "El porcentaje de la prorrata de IVA debe estar entre 0 y 100"
+msgid "VAT prorrate percent must be between 0.01 and 100"
+msgstr "El porcentaje de la prorrata de IVA debe estar entre 0.01 y 100"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.mod303.report,vat_prorrate_percent:0
@@ -156,3 +163,4 @@ msgstr "[44] Regularización de la prorrata"
 #: view:l10n.es.aeat.compute.vat.prorrate:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "or"
 msgstr "o"
+
