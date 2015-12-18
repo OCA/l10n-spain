@@ -10,6 +10,14 @@ Módulo para gestionar la prorrata del IVA en las declaraciones de la AEAT (por
 el momento, en el modelo 303), según el artículo 92 de la Ley 37/1992, de 28 de
 diciembre, del Impuesto sobre el Valor Añadido.
 
+Configuración
+=============
+
+En la declaración del modelo 303 del último periodo del ejercicio (4º trimestre
+o diciembre), hay que introducir la cuenta contable y opcionalmente la cuenta
+analítica a la que llevar la regularización según el porcentaje de prorrata
+definitivo, que es el que se introduce en ese periodo.
+
 Uso
 ===
 
@@ -49,7 +57,7 @@ Créditos
 Contribudores
 -------------
 
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * Ainara Galdona <agaldona@avanzosc.es>
 
 Maintainer
@@ -57,7 +65,7 @@ Maintainer
 
 .. image:: http://odoo-community.org/logo.png
    :alt: Odoo Community Association
-   :target: http://odoo-community.org
+   :target: https://odoo-community.org
 
 This module is maintained by the OCA.
 
@@ -65,4 +73,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
