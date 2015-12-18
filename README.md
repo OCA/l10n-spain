@@ -51,6 +51,7 @@ addon | version | summary
 [l10n_es_partner](l10n_es_partner/) | 8.0.1.3.0 | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 8.0.1.0.0 | Partner Mercantil
 [l10n_es_payment_order](l10n_es_payment_order/) | 8.0.1.7.0 | Exportación de ficheros bancarios CSB 19, 32, 34 y 58
+[l10n_es_payment_order_confirminet](l10n_es_payment_order_confirminet/) | 8.0.1.0.0 | Exportación de fichero bancario Confirminet
 [l10n_es_pos](l10n_es_pos/) | 8.0.1.0.0 | Punto de venta adaptado a la legislación española
 [l10n_es_subcontractor_certificate](l10n_es_subcontractor_certificate/) | 8.0.1.0.0 | Certificado de subcontratista
 [l10n_es_toponyms](l10n_es_toponyms/) | 8.0.2.0.0 | Topónimos españoles
