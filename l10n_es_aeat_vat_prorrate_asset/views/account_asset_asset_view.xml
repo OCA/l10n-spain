@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2016 Antonio Espinosa - <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<openerp>
+<data>
+
+<record model="ir.ui.view" id="view_account_asset_asset_tree">
+    <field name="name">Add VAT prorrate percent field</field>
+    <field name="model">account.asset.asset</field>
+    <field name="inherit_id" ref="account_asset.view_account_asset_asset_tree"/>
+    <field name="arch" type="xml">
+        <field name="purchase_value" position="after">
+            <field name="vat_prorrate_percent"/>
+        </field>
+    </field>
+</record>
+
+
+</data>
+</openerp>
