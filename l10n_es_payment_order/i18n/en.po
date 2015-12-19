@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-16 07:49+0000\n"
+"POT-Creation-Date: 2015-12-18 01:41+0000\n"
 "PO-Revision-Date: 2015-10-16 07:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
@@ -500,7 +500,7 @@ msgid ""
 msgstr "User error:\n\nThe bank account number of %s is not defined."
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_csb.py:103
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:112
 #, python-format
 msgid ""
 "User error:\n"
@@ -509,7 +509,7 @@ msgid ""
 msgstr "User error:\n\nThe bank account number of the company %s has not 20 digits."
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_csb.py:175
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:131
 #, python-format
 msgid ""
 "User error:\n"
@@ -518,7 +518,7 @@ msgid ""
 msgstr "User error:\n\nThe bank account number of the customer %s has not 20 digits."
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_csb.py:168
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:124
 #, python-format
 msgid ""
 "User error:\n"
@@ -527,7 +527,7 @@ msgid ""
 msgstr "User error:\n\nThe bank account number of the customer %s is not defined and current payment mode enforces all lines to have a bank account."
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_csb.py:98
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:107
 #, python-format
 msgid ""
 "User error:\n"
@@ -536,7 +536,7 @@ msgid ""
 msgstr "User error:\n\nThe bank account of the company %s is not defined."
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_csb.py:109
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:149
 #, python-format
 msgid ""
 "User error:\n"
@@ -545,7 +545,7 @@ msgid ""
 msgstr "User error:\n\nThe company VAT number related to the bank account of the payment mode is not defined."
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_csb.py:189
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:98
 #, python-format
 msgid ""
 "User error:\n"
@@ -554,7 +554,7 @@ msgid ""
 msgstr "User error:\n\nThe payment mode is not CSB 19, CSB 32, CSB 34 or CSB 58"
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_csb.py:94
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:143
 #, python-format
 msgid ""
 "User error:\n"
