@@ -29,7 +29,7 @@ addon | version | summary
 [account_balance_reporting_xls](account_balance_reporting_xls/) | 8.0.1.0.0 | Account balance reporting to XLS
 [account_refund_original](account_refund_original/) | 8.0.1.0.0 | Relationship refund - origin invoice
 [l10n_es](l10n_es/) | 8.0.5.3.0 | Spanish Charts of Accounts (PGCE 2008)
-[l10n_es_account_asset](l10n_es_account_asset/) | 8.0.1.0.0 | Gestión de activos fijos para España
+[l10n_es_account_asset](l10n_es_account_asset/) | 8.0.1.1.0 | Gestión de activos fijos para España
 [l10n_es_account_balance_report](l10n_es_account_balance_report/) | 8.0.0.1.0 | Informes de cuentas anuales españoles
 [l10n_es_account_bank_statement_import_n43](l10n_es_account_bank_statement_import_n43/) | 8.0.4.0.0 | Importación de extractos bancarios españoles (Norma 43)
 [l10n_es_account_invoice_sequence](l10n_es_account_invoice_sequence/) | 8.0.1.2.1 | Secuencia para facturas separada de la secuencia de asientos
