@@ -48,14 +48,17 @@ Créditos
 
 Contribudores
 -------------
+
 * Antonio Espinosa <antonioea@antiun.com>
+* Rafael Blasco <rafabn@antiun.com>
+* Jairo Llopis <yajo.sk8@gmail.com>
 
 Mantenido por
 -------------
 
-.. image:: http://odoo-community.org/logo.png
+.. image:: https://odoo-community.org/logo.png
    :alt: Odoo Community Association
-   :target: http://odoo-community.org
+   :target: https://odoo-community.org
 
 Este módulo lo mantiene la OCA.
 
@@ -63,4 +66,4 @@ OCA (Odoo Community Association) es una organización sin ánimo de lucro cuya
 misión es mantener el desarrollo colaborativo de funcionalidad de Odoo
 y promocionar su uso por todo el mundo.
 
-Para contribuir a éste módulo, por favor visita http://odoo-community.org
+Para contribuir a éste módulo, por favor visita https://odoo-community.org
