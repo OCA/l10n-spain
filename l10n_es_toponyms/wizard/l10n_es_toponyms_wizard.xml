@@ -51,7 +51,7 @@
             <field name="name">Spanish toponyms configuration</field>
             <field name="note">You can select the toponym version of the spanish states and add the spanish cities associated to the zip codes.</field>
             <field name="action_id" ref="action_config_toponyms_es_form"/>
-            <field name="sequence">20</field>
+            <field name="sequence">15</field>
             <field name="type">automatic</field>
         </record>
 </data>
