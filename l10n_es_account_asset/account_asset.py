@@ -6,7 +6,7 @@ import calendar
 from openerp.osv import orm, fields
 from openerp import fields as new_fields
 from dateutil.relativedelta import relativedelta
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as DSDF
+from openerp.tools import float_is_zero, DEFAULT_SERVER_DATE_FORMAT as DSDF
 
 
 class AccountAssetCategory(orm.Model):
@@ -153,16 +153,10 @@ class AccountAssetAsset(orm.Model):
                 number += 1
             return number
         else:
-            val = super(AccountAssetAsset, self).\
+            return super(AccountAssetAsset, self).\
                 _compute_board_undone_dotation_nb(cr, uid, asset,
                                                   depreciation_date,
                                                   total_days, context=context)
-            if depreciation_date.day == 1 and depreciation_date.month == 1 \
-                    and asset.method_period == 12:
-                # Quitar una depreciación del nº total si el activo se compró
-                # el 1 de enero, ya que ese año sería completo
-                val -= 1
-            return val
 
     def _compute_board_amount(self, cr, uid, asset, i, residual_amount,
                               amount_to_depr, undone_dotation_number,
@@ -216,8 +210,14 @@ class AccountAssetAsset(orm.Model):
         super(AccountAssetAsset, self).compute_depreciation_board(
             cr, uid,
             ids, context=context)
-
+        decimal_precision_obj = self.pool['decimal.precision']
+        precision = decimal_precision_obj.precision_get(cr, uid, 'Account')
         for asset in self.browse(cr, uid, ids, context=context):
+            if asset.depreciation_line_ids:
+                last_depr = asset.depreciation_line_ids[-1]
+                if not last_depr.move_id and float_is_zero(last_depr.amount,
+                                                           precision):
+                    last_depr.unlink()
             if asset.move_end_period:
                 # Reescribir la fecha de la depreciación
                 depr_lin_obj = self.pool.get('account.asset.depreciation.line')
