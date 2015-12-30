@@ -40,6 +40,7 @@
 						<div class="col-md-12 mt16 mb16">
 							<t t-call="payment_redsys.order">
 								<t t-set="order" t-value="order"/>
+								<t t-set="report_url" t-value="'/report/pdf/sale.report_saleorder/%s' % order.id"/>
 							</t>
 						</div>
 					</div>
@@ -83,9 +84,16 @@
 				<div class="panel-heading">
 			  		<div class="row">
 						<div class="col-md-10">
-							  <h4>Order
-								<span t-esc="order.name"/>
-							  </h4>
+							<h4>
+								<t t-if="not report_url">
+									Order <span t-esc="order.name"/>
+								</t>
+								<t t-if="report_url">
+									<a t-att-href="report_url" target="_blank">
+										<i class="fa fa-file-pdf-o"></i> Order <span t-esc="order.name"/>
+									</a>
+								</t>
+							</h4>
 						</div>
 						<div class="col-md-2 text-right">
 							<a href="/shop">Back to shop</a>
@@ -104,28 +112,6 @@
 				  <div>
 					<address t-field="order.partner_invoice_id" t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
 				  </div>
-				  <t t-set="invoices" t-value="[i for i in order.invoice_ids if i.state not in ['draft', 'cancel']]"/>
-				  <t t-if="invoices">
-					<div>
-					  <strong>Invoices</strong>
-					</div>
-					<div>
-					  <t t-foreach="invoices" t-as="i">
-						<t t-set="report_url" t-value="'/report/pdf/account.report_invoice/%s' % i.id"/>
-						<div>
-						  <a t-att-href="report_url"><span class="fa fa-download"/></a>
-						  <a t-att-href="report_url"><span t-esc="i.number"/></a>
-						  <span class="text-muted" t-field="i.date_invoice"/>
-						  <t t-if="i.state == 'paid'">
-							<span class="label label-success orders_label_text_align"><i class="fa fa-fw fa-check"/> Paid</span>
-						  </t>
-						  <t t-if="i.state != 'paid'">
-							<span class="label label-info orders_label_text_align"><i class="fa fa-fw fa-clock-o"/> Waiting</span>
-						  </t>
-						</div>
-					  </t>
-					</div>
-				  </t>
 				</div>
 				<div id="shipping_address" class="col-md-6">
 				  <div>
