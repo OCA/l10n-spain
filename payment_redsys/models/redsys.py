@@ -80,8 +80,6 @@ class AcquirerRedsys(models.Model):
                                          default='T')
     redsys_signature_version = fields.Selection(
         [('HMAC_SHA256_V1', 'HMAC SHA256 V1')], default='HMAC_SHA256_V1')
-    redsys_url_ok = fields.Char('URL OK', default='redsys_result_ok')
-    redsys_url_ko = fields.Char('URL KO', default='redsys_result_ko')
     send_quotation = fields.Boolean('Send quotation', default=True)
 
     def _prepare_merchant_parameters(self, acquirer, tx_values):
@@ -120,11 +118,11 @@ class AcquirerRedsys(models.Model):
             'Ds_Merchant_ConsumerLanguage': (
                 acquirer.redsys_merchant_lang or '001'),
             'Ds_Merchant_UrlOk':
-            '%s/payment/redsys/result/%s?order_id=%s' % (
-                base_url, acquirer.redsys_url_ok, sale_order.id),
+            '%s/payment/redsys/result/redsys_result_ok?order_id=%s' % (
+                base_url, sale_order.id),
             'Ds_Merchant_UrlKo':
-            '%s/payment/redsys/result/%s?order_id=%s' % (
-                base_url, acquirer.redsys_url_ko, sale_order.id),
+            '%s/payment/redsys/result/redsys_result_ko?order_id=%s' % (
+                base_url, sale_order.id),
             'Ds_Merchant_Paymethods': acquirer.redsys_pay_method or 'T',
         }
         return self._url_encode64(json.dumps(values))
