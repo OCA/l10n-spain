@@ -38,7 +38,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         path = os.path.join('l10n_es_partner', 'wizard', 'data_banks.xml')
         with tools.file_open(path) as fp:
             tools.convert_xml_import(
-                self._cr, 'l10n_es_partner', fp, {}, 'init', noupdate=False)
+                self._cr, 'l10n_es_partner', fp, {}, 'init', noupdate=True)
         return res
 
     @api.multi
@@ -56,7 +56,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
             gen_bank_data_xml(src_file.name, dest_file.name)
             tools.convert_xml_import(
                 self._cr, 'l10n_es_partner', dest_file.name, {}, 'init',
-                noupdate=False)
+                noupdate=True)
         except:
             self.import_fail = True
             return {
