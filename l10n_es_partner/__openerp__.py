@@ -29,7 +29,7 @@
 
 {
     "name": "Adaptación de los clientes, proveedores y bancos para España",
-    "version": "8.0.1.3.0",
+    "version": "8.0.1.4.0",
     "author": "Spanish localization team,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Localisation/Europe",
