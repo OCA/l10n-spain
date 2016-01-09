@@ -3,13 +3,15 @@
 # * l10n_es_aeat_vat_prorrate
 # 
 # Translators:
+# Antonio Trueba, 2016
+# Carles Antolí <carlesantoli@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-26 01:42+0000\n"
-"PO-Revision-Date: 2015-11-12 08:36+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-01-04 17:53+0000\n"
+"PO-Revision-Date: 2016-01-07 14:24+0000\n"
+"Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +22,7 @@ msgstr ""
 #. module: l10n_es_aeat_vat_prorrate
 #: view:l10n.es.aeat.mod303.report:l10n_es_aeat_vat_prorrate.l10n_es_aeat_mod303_prorrata_form
 msgid "(compute prorrate percentage)"
-msgstr ""
+msgstr "(cálculo porcentaje prorrata)"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model,name:l10n_es_aeat_vat_prorrate.model_l10n_es_aeat_mod303_report
@@ -35,13 +37,13 @@ msgstr "Cancelar"
 #. module: l10n_es_aeat_vat_prorrate
 #: view:l10n.es.aeat.compute.vat.prorrate:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "Compute"
-msgstr ""
+msgstr "Calcular"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.actions.act_window,name:l10n_es_aeat_vat_prorrate.action_compute_vat_prorrate
 #: view:l10n.es.aeat.compute.vat.prorrate:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "Compute VAT prorrate"
-msgstr ""
+msgstr "Calcular prorrata IVA"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,create_uid:0
@@ -61,7 +63,7 @@ msgstr "Ejercicio fiscal"
 #. module: l10n_es_aeat_vat_prorrate
 #: selection:l10n.es.aeat.mod303.report,vat_prorrate_type:0
 msgid "General prorrate"
-msgstr ""
+msgstr "Prorrata general"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,id:0
@@ -81,13 +83,13 @@ msgstr "Última actualización en"
 #. module: l10n_es_aeat_vat_prorrate
 #: selection:l10n.es.aeat.mod303.report,vat_prorrate_type:0
 msgid "None"
-msgstr ""
+msgstr "Ninguno"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: view:l10n.es.aeat.compute.vat.prorrate:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid ""
 "Please select the fiscal year that corresponds to your previous fiscal year."
-msgstr ""
+msgstr "Por favor, seleccione el año fiscal que corresponde a su anterior año fiscal."
 
 #. module: l10n_es_aeat_vat_prorrate
 #: help:l10n.es.aeat.mod303.report,casilla_44:0
@@ -106,7 +108,7 @@ msgstr ""
 msgid ""
 "There's at least one previous report in draft state. Please confirm it "
 "before making this one."
-msgstr ""
+msgstr "Hay al menos otro informe previo en estado de borrador. Por favor confírmelo antes de hacer este."
 
 #. module: l10n_es_aeat_vat_prorrate
 #: view:l10n.es.aeat.compute.vat.prorrate:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
@@ -115,28 +117,28 @@ msgid ""
 "which is applicable as the provisional one for the AEAT reports of the "
 "following fiscal year up to last period, in which the definitive prorrate "
 "percentage has to be calculated and the difference must be compensated."
-msgstr ""
+msgstr "ESte asistente calculará la prorrata de IVA para el año fiscal seleccionado, que se puede aplicar como el valor provisional para los informes de AEAT para el año fiscal siguiente hasta el último período, en que se debe calcular la prorrata definitiva y compensar la diferencia."
 
 #. module: l10n_es_aeat_vat_prorrate
 #: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:40
 #, python-format
 msgid "VAT prorrate percent must be between 0 and 100"
-msgstr ""
+msgstr "El porcentaje de la prorrata de IVA debe estar entre 0 y 100"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.mod303.report,vat_prorrate_percent:0
 msgid "VAT prorrate percentage"
-msgstr ""
+msgstr "Porcentaje de prorrata de IVA"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.mod303.report,vat_prorrate_prev_percent:0
 msgid "VAT prorrate provisional percentage"
-msgstr ""
+msgstr "Porcentaje provisional de prorrata de IVA"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.mod303.report,vat_prorrate_type:0
 msgid "VAT prorrate type"
-msgstr ""
+msgstr "Tipo de prorrata de IVA"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.mod303.report,casilla_44:0
