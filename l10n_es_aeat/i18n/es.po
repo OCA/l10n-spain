@@ -3,15 +3,16 @@
 # * l10n_es_aeat
 # 
 # Translators:
+# Antonio Trueba, 2016
 # Carles Antolí <carlesantoli@hotmail.com>, 2015
 # Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-26 01:42+0000\n"
-"PO-Revision-Date: 2015-11-24 17:46+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-01-04 17:53+0000\n"
+"PO-Revision-Date: 2016-01-07 14:22+0000\n"
+"Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -766,7 +767,7 @@ msgstr "No hay periodo definido para el informe. Establezca un periodo y vuelva 
 #: code:addons/l10n_es_aeat/models/aeat_report.py:279
 #, python-format
 msgid "There's a missing previous declaration for the period %s."
-msgstr ""
+msgstr "Falta una declaración previa para el período %s."
 
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,counterpart_account:0
