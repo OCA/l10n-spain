@@ -80,11 +80,12 @@ class AcquirerRedsys(models.Model):
                                          default='T')
     redsys_signature_version = fields.Selection(
         [('HMAC_SHA256_V1', 'HMAC SHA256 V1')], default='HMAC_SHA256_V1')
-    redsys_url_ok = fields.Char('URL OK')
-    redsys_url_ko = fields.Char('URL KO')
     send_quotation = fields.Boolean('Send quotation', default=True)
 
     def _prepare_merchant_parameters(self, acquirer, tx_values):
+        base_url = self.env['ir.config_parameter'].get_param('web.base.url')
+        sale_order = self.env['sale.order'].search(
+            [('name', '=', tx_values['reference'])])
         values = {
             'Ds_Sermepa_Url': (
                 self._get_redsys_urls(acquirer.environment)[
@@ -116,8 +117,12 @@ class AcquirerRedsys(models.Model):
                 acquirer.redsys_merchant_description[:125]),
             'Ds_Merchant_ConsumerLanguage': (
                 acquirer.redsys_merchant_lang or '001'),
-            'Ds_Merchant_UrlOk': acquirer.redsys_url_ok or '',
-            'Ds_Merchant_UrlKo': acquirer.redsys_url_ko or '',
+            'Ds_Merchant_UrlOk':
+            '%s/payment/redsys/result/redsys_result_ok?order_id=%s' % (
+                base_url, sale_order.id),
+            'Ds_Merchant_UrlKo':
+            '%s/payment/redsys/result/redsys_result_ko?order_id=%s' % (
+                base_url, sale_order.id),
             'Ds_Merchant_Paymethods': acquirer.redsys_pay_method or 'T',
         }
         return self._url_encode64(json.dumps(values))
