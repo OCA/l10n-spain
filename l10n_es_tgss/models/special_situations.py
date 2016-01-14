@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import api, fields, models
-from .common import _NS
 from .. import exceptions as ex
 
 
@@ -13,7 +12,7 @@ class ABC(models.AbstractModel):
     These situations usually have impact in some TGSS transactions or
     indemnifications.
     """
-    _name = "%s.special_situations_abc" % _NS
+    _name = "l10n_es_tgss.special_situations_abc"
 
     affected_by_terrorism = fields.Boolean()
     affected_by_gender_violence = fields.Boolean()

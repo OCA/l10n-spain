@@ -3,12 +3,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import api, fields, models
-from .common import _NS
 
 
 class Level(models.Model):
     """Study levels."""
-    _name = "%s.study_level" % _NS
+    _name = "l10n_es_tgss.study_level"
     _rec_name = "combined"
 
     number = fields.Integer()
@@ -28,5 +27,5 @@ class Level(models.Model):
 
 class ABC(models.AbstractModel):
     """Models inheriting this ABC will be linked to a study level."""
-    _name = "%s.study_level_abc" % _NS
+    _name = "l10n_es_tgss.study_level_abc"
     study_level_id = fields.Many2one(Level._name, "Study level")

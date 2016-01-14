@@ -3,12 +3,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import api, fields, models
-from .common import _NS
 
 
 class Group(models.Model):
     """Contribution groups."""
-    _name = "%s.contribution_group" % _NS
+    _name = "l10n_es_tgss.contribution_group"
     _rec_name = "combined"
 
     number = fields.Integer()
@@ -28,5 +27,5 @@ class Group(models.Model):
 
 class ABC(models.AbstractModel):
     """Models inheriting this ABC will be linked to a contribution group."""
-    _name = "%s.contribution_group_abc" % _NS
+    _name = "l10n_es_tgss.contribution_group_abc"
     contribution_group_id = fields.Many2one(Group._name, "Contribution group")

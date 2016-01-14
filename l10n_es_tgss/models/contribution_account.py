@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import _, api, fields, models
-from .common import _NS
 from .. import exceptions as ex
 
 
@@ -15,7 +14,7 @@ class ContributionAccountABC(models.Model):
 
     Persons can only have one, so for persons you will not need this.
     """
-    _name = "%s.contribution_account_abc" % _NS
+    _name = "l10n_es_tgss.contribution_account_abc"
     _rec_name = "code"
     _sql_constraints = [
         ("code_unique", "unique(code)", _("Duplicated code.")),
@@ -27,7 +26,7 @@ class ContributionAccountABC(models.Model):
         required=True,
         help="Company account code to interact with the Social Security.")
     owner_id = fields.Many2one(
-        "%s.ccc_company_abc" % _NS,  # Overwrite this in subclasses
+        "l10n_es_tgss.ccc_company_abc",  # Overwrite this in subclasses
         "Owner document",
         required=True,
         ondelete="cascade",
@@ -78,7 +77,7 @@ class CompanyABC(models.AbstractModel):
     overwriting its ``comodel`` param to match the subclass of
     :class:`~.ContributionAccountABC` that you create in your submodule.
     """
-    _name = "%s.ccc_company_abc" % _NS
+    _name = "l10n_es_tgss.ccc_company_abc"
 
     contribution_account_ids = fields.One2many(
         ContributionAccountABC._name,  # Overwrite this in subclasses
@@ -97,7 +96,7 @@ class PersonABC(models.AbstractModel):
     :class:`~.ContributionAccountABC` that you create in your submodule, and
     you will probably want to add a domain to it too.
     """
-    _name = "%s.ccc_person_abc" % _NS
+    _name = "l10n_es_tgss.ccc_person_abc"
 
     contribution_account_id = fields.Many2one(
         ContributionAccountABC._name,  # Overwrite this in subclasses
@@ -121,5 +120,5 @@ class PersonABC(models.AbstractModel):
 
 class ABC(models.AbstractModel):
     """Models inheriting this ABC will have a contribution account code."""
-    _name = "%s.ccc_abc" % _NS
+    _name = "l10n_es_tgss.ccc_abc"
     _inherit = [CompanyABC._name, PersonABC._name]

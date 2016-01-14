@@ -3,12 +3,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import api, fields, models
-from .common import _NS
 
 
 class ProfessionalCategory(models.Model):
     """Professional categories."""
-    _name = "%s.professional_category" % _NS
+    _name = "l10n_es_tgss.professional_category"
     _rec_name = "combined"
 
     number = fields.Integer()
@@ -28,7 +27,7 @@ class ProfessionalCategory(models.Model):
 
 class ABC(models.AbstractModel):
     """Models inheriting this ABC will be linked to a professional category."""
-    _name = "%s.professional_category_abc" % _NS
+    _name = "l10n_es_tgss.professional_category_abc"
     professional_category_id = fields.Many2one(
         ProfessionalCategory._name,
         "Professional category")
