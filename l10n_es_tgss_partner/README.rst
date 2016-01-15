@@ -11,6 +11,8 @@ Este módulo añade los siguientes campos a las empresas y contactos
 
 * Códigos de cuenta de cotización, o CCC.
 * Campos tan sólo para contactos (no empresas):
+    * Cuenta de cotización (de la empresa a la que pertenece).
+    * Número de afiliación.
     * ¿Afectado/a por terrorismo?
     * ¿Afectado/a por violencia de género?
     * Porcentaje de discapacidad.
@@ -21,6 +23,12 @@ Este módulo añade los siguientes campos a las empresas y contactos
 Son campos que suelen ser necesarios para interactuar con la Tesorería General
 de la Seguridad Social de España, en determinadas circunstancias.
 
+Instalación
+===========
+
+* Instale el repositorio `OCA/partner-contact
+  <https://github.com/OCA/partner-contact>`_.
+
 Configuración
 =============
 
@@ -30,7 +38,7 @@ Uso
 ===
 
 Los campos los encontrarás en la ficha de cada empresa. En el caso de ciertos
-campos, tan sólo están disponibles para los contactos (cuando *no* es una
+campos, tan sólo están disponibles para los contactos (cuando **no** es una
 empresa).
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
@@ -69,4 +77,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.

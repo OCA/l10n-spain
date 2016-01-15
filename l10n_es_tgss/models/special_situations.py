@@ -7,22 +7,18 @@ from .. import exceptions as ex
 
 
 class ABC(models.AbstractModel):
-    """Models inheriting this ABC will have special situation details.
-
-    These situations usually have impact in some TGSS transactions or
-    indemnifications.
-    """
-    _name = "l10n_es_tgss.special_situations_abc"
+    _description = ("Base for models with special situations needed for "
+                    "Spanish Social Security")
+    _name = "l10n.es.tgss.special_situations.abc"
 
     affected_by_terrorism = fields.Boolean()
     affected_by_gender_violence = fields.Boolean()
     disability_percentage = fields.Integer()
 
-    @api.one
+    @api.multi
     @api.constrains("disability_percentage")
     def _disability_percentage_check(self):
         """Can only be a value from 0 to 100."""
-        if self.disability_percentage:
-            if not 0 <= self.disability_percentage <= 100:
-                raise ex.OutOfRangeError(percent=self.disability_percentage,
-                                         name=self.name_get()[0][1])
+        if self.filtered(lambda s: not 0 <= self.disability_percentage <= 100):
+            raise ex.OutOfRangeError(percent=self.disability_percentage,
+                                     name=self.display_name)

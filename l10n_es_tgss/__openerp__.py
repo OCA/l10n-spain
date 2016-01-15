@@ -7,8 +7,8 @@
     "summary": "Some modules need this to interact with the Spanish TGSS",
     "version": "8.0.1.0.0",
     "category": "Customer Relationship Management",
-    "website": "https://grupoesoc.es/",
-    "author": u"Grupo ESOC Ingeniería de servicios, S.L., "
+    "website": "https://grupoesoc.es",
+    "author": u"Grupo ESOC Ingeniería de servicios, "
               u"Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
@@ -17,10 +17,11 @@
         "base",
     ],
     "data": [
-        "data/l10n_es_tgss.contribution_group.csv",
-        "data/l10n_es_tgss.professional_category.csv",
-        "data/l10n_es_tgss.study_level.csv",
+        "data/l10n.es.tgss.contribution_group.csv",
+        "data/l10n.es.tgss.professional_category.csv",
+        "data/l10n.es.tgss.study_level.csv",
         "security/ir.model.access.csv",
+        "views/contribution_account.xml",
         "views/contribution_group.xml",
         "views/professional_category.xml",
         "views/study_level.xml",

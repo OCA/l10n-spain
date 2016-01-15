@@ -7,8 +7,8 @@
     "summary": "Add fields needed to interact with TGSS to partners",
     "version": "8.0.1.0.0",
     "category": "Customer Relationship Management",
-    "website": "https://grupoesoc.es/",
-    "author": u"Grupo ESOC Ingeniería de servicios, S.L., "
+    "website": "https://grupoesoc.es",
+    "author": u"Grupo ESOC Ingeniería de servicios, "
               u"Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,

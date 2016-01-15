@@ -5,7 +5,7 @@
 <!-- Views -->
 <record id="study_level_list" model="ir.ui.view">
     <field name="name">Study Level List</field>
-    <field name="model">l10n_es_tgss.study_level</field>
+    <field name="model">l10n.es.tgss.study_level</field>
     <field name="priority" eval="1"/>
     <field name="arch" type="xml">
         <tree string="Study Level List" editable="bottom">
@@ -17,7 +17,7 @@
 
 <record id="study_level_search" model="ir.ui.view">
     <field name="name">Study Level Search</field>
-    <field name="model">l10n_es_tgss.study_level</field>
+    <field name="model">l10n.es.tgss.study_level</field>
     <field name="priority" eval="1"/>
     <field name="arch" type="xml">
         <search>
@@ -31,7 +31,7 @@
 <record id="study_level_list_action" model="ir.actions.act_window">
     <field name="name">Study levels</field>
     <field name="type">ir.actions.act_window</field>
-    <field name="res_model">l10n_es_tgss.study_level</field>
+    <field name="res_model">l10n.es.tgss.study_level</field>
     <field name="view_type">form</field>
     <field name="view_mode">tree</field>
     <field name="view_id" ref="study_level_list"/>

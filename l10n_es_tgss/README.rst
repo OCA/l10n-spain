@@ -28,6 +28,7 @@ Configuración* y *Características técnicas*.
 Cuando tenga esos permisos, debe acceder a *Ventas > Configuración > Libreta de
 direcciones*, y ahí escoger cualquiera de las opciones disponibles:
 
+* Cuentas de cotización.
 * Grupos de cotización.
 * Categorías profesionales.
 * Niveles de estudios.
@@ -45,7 +46,6 @@ Este módulo proporciona clases abstractas para:
     * ¿Afectado/a por terrorismo?
     * ¿Afectado/a por violencia de género?
     * Porcentaje de discapacidad.
-* Todo eso junto (*FullABC*).
 
 También proporciona una base para hacer tests de los códigos de cuenta de
 cotización y el porcentaje de discapacidad, que deberá heredar para comprobar
@@ -89,4 +89,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.

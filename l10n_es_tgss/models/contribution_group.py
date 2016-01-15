@@ -2,30 +2,20 @@
 # © 2015 Grupo ESOC Ingeniería de servicios, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models
+from openerp import fields, models
 
 
-class Group(models.Model):
-    """Contribution groups."""
-    _name = "l10n_es_tgss.contribution_group"
-    _rec_name = "combined"
-
-    number = fields.Integer()
-    name = fields.Char(translate=True)
-    combined = fields.Char(compute="_combined_compute")
-
-    _sql_constraints = [
-        ('number_unique', 'unique (number)', 'Each number must be unique.'),
-        ('name_unique', 'unique (name)', 'Each name must be unique.'),
-    ]
-
-    @api.one
-    @api.depends("number", "name")
-    def _combined_compute(self):
-        self.combined = "%d. %s" % (self.number, self.name)
+class ContributionGroup(models.Model):
+    _description = "Spanish Social Security contribution groups"
+    _name = "l10n.es.tgss.contribution_group"
+    _inherit = "l10n.es.tgss.number_name"
 
 
 class ABC(models.AbstractModel):
-    """Models inheriting this ABC will be linked to a contribution group."""
-    _name = "l10n_es_tgss.contribution_group_abc"
-    contribution_group_id = fields.Many2one(Group._name, "Contribution group")
+    _description = "Base for models linked to a contribution group"
+    _name = "l10n.es.tgss.contribution_group.abc"
+
+    contribution_group_id = fields.Many2one(
+        "l10n.es.tgss.contribution_group",
+        "Contribution group",
+        ondelete="restrict")
