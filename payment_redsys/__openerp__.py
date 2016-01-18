@@ -4,7 +4,7 @@
     'name': 'Redsys Payment Acquirer',
     'category': 'Hidden',
     'summary': 'Payment Acquirer: Redsys Implementation',
-    'version': '8.0.1.0.1',
+    'version': '8.0.1.0.2',
     'author': "Incaser Informatica S.L.,Odoo Community Association (OCA)",
     'depends': ['payment'],
     "external_dependencies": {
