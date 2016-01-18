@@ -90,7 +90,7 @@ class AcquirerRedsys(models.Model):
             'Ds_Sermepa_Url': (
                 self._get_redsys_urls(acquirer.environment)[
                     'redsys_form_url']),
-            'Ds_Merchant_Amount': str(int(tx_values['amount'] * 100)),
+            'Ds_Merchant_Amount': str(int(round(tx_values['amount'] * 100))),
             'Ds_Merchant_Currency': acquirer.redsys_currency or '978',
             'Ds_Merchant_Order': (
                 tx_values['reference'] and tx_values['reference'][-12:] or
