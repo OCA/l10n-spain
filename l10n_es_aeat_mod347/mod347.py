@@ -278,7 +278,7 @@ class L10nEsAeatMod347Report(orm.Model):
                                               context=context):
                 if partner.id not in visited_partners:
                     if partner.vat and report.group_by_cif:
-                        domain_group = domain.copy()
+                        domain_group = list(domain)
                         domain_group.append(('vat', '=', partner.vat))
                         partner_grouped_ids = partner_obj.search(
                             cr, uid, domain_group, context=context)
@@ -423,29 +423,29 @@ class L10nEsAeatMod347PartnerRecord(orm.Model):
                 'fourth_quarter_real_state_transmission_amount': 0,
             }
             invoices = [x for x in record.invoice_record_ids
-                        if x.type in ('out_invoice', 'in_invoice')]
+                        if x.invoice_id.type in ('out_invoice', 'in_invoice')]
             refunds = [x for x in record.invoice_record_ids
-                       if x.type in ('out_refund', 'in_refund')]
+                       if x.invoice_id.type in ('out_refund', 'in_refund')]
             result[record.id]['first_quarter'] = (
                 sum(x.amount for x in invoices
-                    if x.period_id.quarter == 'first') -
+                    if x.invoice_id.period_id.quarter == 'first') -
                 sum(x.amount for x in refunds
-                    if x.period_id.quarter == 'first'))
+                    if x.invoice_id.period_id.quarter == 'first'))
             result[record.id]['second_quarter'] = (
                 sum(x.amount for x in invoices
-                    if x.period_id.quarter == 'second') -
+                    if x.invoice_id.period_id.quarter == 'second') -
                 sum(x.amount for x in refunds
-                    if x.period_id.quarter == 'second'))
+                    if x.invoice_id.period_id.quarter == 'second'))
             result[record.id]['third_quarter'] = (
                 sum(x.amount for x in invoices
-                    if x.period_id.quarter == 'third') -
+                    if x.invoice_id.period_id.quarter == 'third') -
                 sum(x.amount for x in refunds
-                    if x.period_id.quarter == 'third'))
+                    if x.invoice_id.period_id.quarter == 'third'))
             result[record.id]['fourth_quarter'] = (
                 sum(x.amount for x in invoices
-                    if x.period_id.quarter == 'fourth') -
+                    if x.invoice_id.period_id.quarter == 'fourth') -
                 sum(x.amount for x in refunds
-                    if x.period_id.quarter == 'fourth'))
+                    if x.invoice_id.period_id.quarter == 'fourth'))
         return result
 
     def _get_lines(self, cr, uid, ids, context):
