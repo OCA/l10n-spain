@@ -141,13 +141,13 @@ class AccountInvoice(models.Model):
         return invoices, refunds
 
     @api.multi
-    def on_change_fiscal_position(self, fiscal_position, invoice_type):
+    @api.onchange('fiscal_position')
+    def onchange_fiscal_position_l10n_es_aeat_mod349(self):
         """Suggest an operation key when fiscal position changes."""
-        res = {'operation_key': False}
-        if fiscal_position and invoice_type:
-            fp = self.env['account.fiscal.position'].browse(fiscal_position)
-            res['operation_key'] = self._get_operation_key(fp, invoice_type)
-        return {'value': res}
+        for invoice in self:
+            if invoice.fiscal_position:
+                invoice.operation_key = self._get_operation_key(
+                    invoice.fiscal_position, invoice.type)
 
     @api.model
     def create(self, vals):
