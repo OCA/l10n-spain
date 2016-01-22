@@ -88,6 +88,7 @@ if (typeof jQuery === 'undefined') { throw new Error('l10n_es POS Simplified inv
                 order['simplified'] = this.is_simplified();
                 order['sequence_ref'] = this.get('sequence_ref');
                 order['sequence_ref_number'] = this.get('sequence_ref_number');
+                order['client_data'] = this.get('client');
                 return order;
             },
             export_as_JSON: function() {
