@@ -93,6 +93,7 @@ Contribuidores
 * Ivan Yelizariev - `Código de la impresión del número de factura basado en este addon <https://github.com/yelizariev/pos-addons/tree/8.0/pos_ticket_custom>`_
 * Vicente cubells <vicent@vcubells.net>
 * Carlos Liébana <carlos.liebana@factorlibre.com>
+* Ignacio Ibeas - Acysos S.L. <ignacio@acysos.com>
 
 Librerías
 ---------

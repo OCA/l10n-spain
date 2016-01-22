@@ -28,4 +28,28 @@
             <t t-esc="widget.format_currency(order.getTotalTaxExcluded())"/>
         </t>
     </t>
+    
+	<t t-extend="XmlReceipt">
+        <t t-jquery="[t-if='!receipt.company.logo']" t-operation="after">
+            <br/>
+            <t t-if="receipt.simplified">
+                Simplified invoice
+            </t>
+            <t t-if="!receipt.simplified">
+                Invoice
+            </t>
+            <t t-esc="receipt.sequence_ref"/>
+            <br/>
+        </t>
+		<t t-jquery="[t-if='receipt.header']" t-operation="after">
+            <t t-if="receipt.client_data">
+                <br/>
+	                <span class="customer_title">Customer data</span><br />
+	                Name: <t t-esc="receipt.client_data.name ? receipt.client_data.name : ''"/><br />
+	                VAT: <t t-esc="receipt.client_data.vat ? receipt.client_data.vat : ''"/><br />
+	                Address: <t t-esc="receipt.client_data.street ? receipt.client_data.street : ''"/>
+            </t>
+		</t>
+	</t>
+    
 </templates>
