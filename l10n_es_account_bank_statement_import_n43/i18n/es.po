@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
+"POT-Creation-Date: 2016-01-19 01:41+0000\n"
 "PO-Revision-Date: 2015-06-25 02:26+0000\n"
 "Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
@@ -70,13 +70,13 @@ msgid ""
 msgstr "El número de registros del debe no cuadra con lo definido en el último registro de la cuenta."
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:150
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:153
 #, python-format
 msgid "Number of records doesn't match with the defined in the last record."
 msgstr "El número de registros no cuadra con lo definido en el último registro."
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:183
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:186
 #, python-format
 msgid "Record type %s is not valid."
 msgstr "El tipo de registro %s no es válido."
