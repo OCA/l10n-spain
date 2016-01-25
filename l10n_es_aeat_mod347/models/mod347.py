@@ -194,14 +194,13 @@ class L10nEsAeatMod347Report(models.Model):
                              'origin_fiscalyear_id': cash_move_fy_id})
                     else:
                         partner_record_obj.write(
-                            partner_record_id,
                             {'cash_amount': sum([line.credit for line in
                                                  cash_moves[cash_move_fy_id]]),
                              'origin_fiscalyear_id': cash_move_fy_id})
                         cash_partner_record_id = partner_record_id
                     for line in cash_moves[cash_move_fy_id]:
                         cash_record_obj.create(
-                            {'partner_record_id': cash_partner_record_id,
+                            {'partner_record_id': cash_partner_record_id.id,
                              'move_line_id': line.id,
                              'date': line.date,
                              'amount': line.credit})
