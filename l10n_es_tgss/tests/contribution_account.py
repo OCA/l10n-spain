@@ -25,9 +25,11 @@ class Company(object):
         return self.record.contribution_account_ids.create({
             "owner_id": self.record.id,
             "code": code,
+            "owner_model": "res.partner",
         })
 
     def read_code(self):
+        self.env.cache.clear()
         return self.record.contribution_account_ids.code
 
 
@@ -44,23 +46,20 @@ class Person(object):
 
 class BadInput(object):
     def test_upper_limit(self):
-        "Try to set a code with more than 12 digits."
-
-        code = "1234567890123"
-
-        def write_long_code():
-            self.write_code(code)
-
-            # Right now there is no warning or exception when the ORM truncates
-            # input, so the only thing I can check here is that it gets
-            # truncated. See https://github.com/odoo/odoo/issues/6698
-            self.assertEqual(self.read_code(), code[:-1])
-
+        "Try to set a code with more than the allowed digits."
         if self.is_company:
-            with self.assertRaises(ex.BadLengthError):
-                write_long_code()
+            # Should have 11 digits
+            code = "123456789390"
         else:
-            write_long_code()
+            # Should have 12 digits
+            code = "1234567890023"
+
+        self.write_code(code)
+
+        # Right now there is no warning or exception when the ORM truncates
+        # input, so the only thing I can check here is that it gets
+        # truncated. See https://github.com/odoo/odoo/issues/6698
+        self.assertEqual(self.read_code(), code[:-1])
 
     def test_lower_limit(self):
         "Try to set a code with less than the allowed digits."
