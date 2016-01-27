@@ -2,9 +2,12 @@
 # © 2015 Grupo ESOC Ingeniería de servicios, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import logging
 from openerp import _, api, fields, models
 from openerp.addons.base.res.res_request import referencable_models
 from .. import exceptions as ex
+
+_logger = logging.getLogger(__name__)
 
 
 class ContributionAccount(models.Model):
@@ -86,7 +89,10 @@ class ContributionAccount(models.Model):
         main, control = code[:-2], code[-2:]
         if main[2] == "0":
             main = main[:2] + main[3:]
-        if "%02d" % (int(main) % 97) != control:
+        expected_control = "%02d" % (int(main) % 97)
+        if expected_control != control:
+            _logger.error(
+                "Expected control digit for %s is %s", code, expected_control)
             raise ex.ControlDigitValidationError(code)
         return True
 
