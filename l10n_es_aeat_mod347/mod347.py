@@ -434,18 +434,18 @@ class L10nEsAeatMod347PartnerRecord(orm.Model):
             result[record.id]['second_quarter'] = (
                 sum(x.amount for x in invoices
                     if x.invoice_id.period_id.quarter == 'second') -
-                sum(x.amount for x in refunds
-                    if x.invoice_id.period_id.quarter == 'second'))
+                abs(sum(x.amount for x in refunds
+                    if x.invoice_id.period_id.quarter == 'second')))
             result[record.id]['third_quarter'] = (
                 sum(x.amount for x in invoices
                     if x.invoice_id.period_id.quarter == 'third') -
-                sum(x.amount for x in refunds
-                    if x.invoice_id.period_id.quarter == 'third'))
+                abs(sum(x.amount for x in refunds
+                        if x.invoice_id.period_id.quarter == 'third')))
             result[record.id]['fourth_quarter'] = (
                 sum(x.amount for x in invoices
                     if x.invoice_id.period_id.quarter == 'fourth') -
-                sum(x.amount for x in refunds
-                    if x.invoice_id.period_id.quarter == 'fourth'))
+                abs(sum(x.amount for x in refunds
+                    if x.invoice_id.period_id.quarter == 'fourth')))
         return result
 
     def _get_lines(self, cr, uid, ids, context):
