@@ -88,11 +88,13 @@ class L10nEsAeatMod347Report(models.Model):
                 else:
                     assert invoice_type == 'in_invoice'
                     operation_key = 'A'  # Note: A = Purchase operations
-                address = self._get_default_address(partners[0])
+                main_partner = partners[0]
+                address = self._get_default_address(main_partner)
                 # Get the partner data
-                if partners.vat:
+                if main_partner.vat:
                     partner_country_code, partner_vat = (
-                        re.match(r"([A-Z]{0,2})(.*)", partners.vat).groups())
+                        re.match(r"([A-Z]{0,2})(.*)",
+                                 main_partner.vat).groups())
                 else:
                     partner_vat = ''
                     partner_country_code = address.country_id.code
@@ -100,7 +102,7 @@ class L10nEsAeatMod347Report(models.Model):
                 partner_record_id = partner_record_obj.create(
                     {'report_id': self.id,
                      'operation_key': operation_key,
-                     'partner_id': partners[0].id,
+                     'partner_id': main_partner.id,
                      'partner_vat': partner_vat,
                      'representative_vat': '',
                      'partner_state_code': address.state_id.code,
