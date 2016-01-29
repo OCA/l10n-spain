@@ -8,7 +8,8 @@ from openerp import fields, models
 class StudyLevel(models.Model):
     _description = "Spanish Social Security study levels"
     _name = "l10n.es.tgss.study_level"
-    _inherit = "l10n.es.tgss.number_name"
+
+    name = fields.Char(index=True, translate=True)
 
 
 class ABC(models.AbstractModel):

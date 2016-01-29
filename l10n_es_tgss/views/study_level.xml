@@ -9,7 +9,6 @@
     <field name="priority" eval="1"/>
     <field name="arch" type="xml">
         <tree string="Study Level List" editable="bottom">
-            <field name="number"/>
             <field name="name"/>
         </tree>
     </field>
@@ -21,7 +20,6 @@
     <field name="priority" eval="1"/>
     <field name="arch" type="xml">
         <search>
-            <field name="number"/>
             <field name="name"/>
         </search>
     </field>

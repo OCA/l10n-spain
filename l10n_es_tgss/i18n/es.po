@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 12:23+0200\n"
-"PO-Revision-Date: 2015-10-01 12:25+0200\n"
+"POT-Creation-Date: 2016-01-29 13:12+0100\n"
+"PO-Revision-Date: 2016-01-29 13:25+0100\n"
 "Last-Translator: Jairo Llopis <j.llopis@grupoesoc.es>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -15,77 +15,151 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.5\n"
 
 #. module: l10n_es_tgss
-#: help:l10n.es.tgss.ccc_abc,contribution_account:0
-#: help:l10n.es.tgss.full_abc,contribution_account:0
-msgid "Account to interact with the Social Security."
-msgstr ""
-"CCC (Código de Cuenta de Cotización) o NAF (Número de Afiliación) para los "
-"trámites con la Seguridad Social."
-
-#. module: l10n_es_tgss
-#: model:l10n.es.tgss.contribution_group,name:l10n.es.tgss.contribution_group_3
+#: model:l10n.es.tgss.contribution_group,name:l10n_es_tgss.contribution_group_3
 msgid "Administrative and workshop managers"
 msgstr "Jefes administrativos y de taller"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.contribution_group,name:l10n.es.tgss.contribution_group_7
+#: model:l10n.es.tgss.contribution_group,name:l10n_es_tgss.contribution_group_7
 msgid "Administrative assistants"
 msgstr "Auxiliares administrativos"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.contribution_group,name:l10n.es.tgss.contribution_group_5
+#: model:l10n.es.tgss.contribution_group,name:l10n_es_tgss.contribution_group_5
 msgid "Administrative officers"
 msgstr "Oficiales administrativos"
 
 #. module: l10n_es_tgss
-#: field:l10n.es.tgss.full_abc,affected_by_gender_violence:0
-#: field:l10n.es.tgss.special_situations_abc,affected_by_gender_violence:0
+#: field:l10n.es.tgss.special_situations.abc,affected_by_gender_violence:0
 msgid "Affected by gender violence"
 msgstr "Afectado por violencia de género"
 
 #. module: l10n_es_tgss
-#: field:l10n.es.tgss.full_abc,affected_by_terrorism:0
-#: field:l10n.es.tgss.special_situations_abc,affected_by_terrorism:0
+#: field:l10n.es.tgss.special_situations.abc,affected_by_terrorism:0
 msgid "Affected by terrorism"
 msgstr "Afectado por terrorismo"
 
 #. module: l10n_es_tgss
-#: view:l10n.es.tgss.contribution_group:l10n.es.tgss.contribution_group_list
+#: field:l10n.es.tgss.contribution_account.person.abc,affiliation_number:0
+msgid "Affiliation number"
+msgstr "Nº de afiliación"
+
+#. module: l10n_es_tgss
+#: model:ir.model,name:l10n_es_tgss.model_l10n_es_tgss_contribution_group_abc
+msgid "Base for models linked to a contribution group"
+msgstr "Base para los modelos vinculados a un grupo de cotización"
+
+#. module: l10n_es_tgss
+#: model:ir.model,name:l10n_es_tgss.model_l10n_es_tgss_professional_category_abc
+msgid "Base for models linked to a professional category"
+msgstr "Base para los modelos vinculados a una categoría profesional"
+
+#. module: l10n_es_tgss
+#: model:ir.model,name:l10n_es_tgss.model_l10n_es_tgss_study_level_abc
+msgid "Base for models linked to a study level"
+msgstr "Base para los modelos vinculados a un nivel de estudios"
+
+#. module: l10n_es_tgss
+#: model:ir.model,name:l10n_es_tgss.model_l10n_es_tgss_contribution_account_common_abc
+msgid "Base for models related with contribution accounts"
+msgstr "Base para los modelos relacionados con cuentas de cotización"
+
+#. module: l10n_es_tgss
+#: model:ir.model,name:l10n_es_tgss.model_l10n_es_tgss_contribution_account_person_abc
+msgid "Base for models with a single contribution account"
+msgstr "Base para los modelos con una única cuenta de cotización"
+
+#. module: l10n_es_tgss
+#: model:ir.model,name:l10n_es_tgss.model_l10n_es_tgss_contribution_account_company_abc
+msgid "Base for models with multiple contribution accounts"
+msgstr "Base para los modelos con múltiples cuentas de cotización"
+
+#. module: l10n_es_tgss
+#: model:ir.model,name:l10n_es_tgss.model_l10n_es_tgss_special_situations_abc
+msgid ""
+"Base for models with special situations needed for Spanish Social Security"
+msgstr ""
+"Base para los modelos con situaciones especiales contempladas por la "
+"Seguridad Social española"
+
+#. module: l10n_es_tgss
+#: model:ir.model,name:l10n_es_tgss.model_l10n_es_tgss_number_name
+msgid "Base for tables with a number and a name"
+msgstr "Base para tablas con un número y un nombre"
+
+#. module: l10n_es_tgss
+#: field:l10n.es.tgss.contribution_account,code:0
+msgid "Code"
+msgstr "Código"
+
+#. module: l10n_es_tgss
+#: help:l10n.es.tgss.contribution_account,code:0
+msgid "Company account code to interact with the Social Security."
+msgstr ""
+"Código de cuenta de cotización de la empresa para los trámites con la "
+"Seguridad Social."
+
+#. module: l10n_es_tgss
+#: help:l10n.es.tgss.contribution_account.person.abc,contribution_account_id:0
+msgid "Company account where this person is hired."
+msgstr ""
+"Cuenta de cotización de la empresa en la que esta persona está dada de alta."
+
+#. module: l10n_es_tgss
+#: help:l10n.es.tgss.contribution_account.company.abc,contribution_account_ids:0
+msgid "Company accounts to interact with the Social Security."
+msgstr ""
+"Cuentas de cotización de la empresa para los trámites con la Seguridad "
+"Social."
+
+#. module: l10n_es_tgss
+#: view:l10n.es.tgss.contribution_account:l10n_es_tgss.contribution_account_list
+msgid "Contribution Account List"
+msgstr "Lista de cuentas de cotización"
+
+#. module: l10n_es_tgss
+#: model:ir.actions.act_window,name:l10n_es_tgss.contribution_account_list_action
+#: model:ir.ui.menu,name:l10n_es_tgss.contribution_account_menu
+msgid "Contribution Accounts"
+msgstr "Cuentas de cotización"
+
+#. module: l10n_es_tgss
+#: view:l10n.es.tgss.contribution_group:l10n_es_tgss.contribution_group_list
 msgid "Contribution Group List"
 msgstr "Lista de grupos de cotización"
 
 #. module: l10n_es_tgss
-#: field:l10n.es.tgss.ccc_abc,contribution_account:0
-#: field:l10n.es.tgss.full_abc,contribution_account:0
+#: field:l10n.es.tgss.contribution_account.person.abc,contribution_account_id:0
 msgid "Contribution account"
 msgstr "Cuenta de cotización"
 
 #. module: l10n_es_tgss
-#: field:l10n.es.tgss.contribution_group_abc,contribution_group_id:0
-#: field:l10n.es.tgss.full_abc,contribution_group_id:0
+#: field:l10n.es.tgss.contribution_account.company.abc,contribution_account_ids:0
+msgid "Contribution accounts"
+msgstr "Cuentas de cotización"
+
+#. module: l10n_es_tgss
+#: field:l10n.es.tgss.contribution_group.abc,contribution_group_id:0
 msgid "Contribution group"
 msgstr "Grupo de cotización"
 
 #. module: l10n_es_tgss
-#: model:ir.actions.act_window,name:l10n.es.tgss.contribution_group_list_action
-#: model:ir.ui.menu,name:l10n.es.tgss.contribution_group_menu
+#: model:ir.actions.act_window,name:l10n_es_tgss.contribution_group_list_action
+#: model:ir.ui.menu,name:l10n_es_tgss.contribution_group_menu
 msgid "Contribution groups"
 msgstr "Grupos de cotización"
 
 #. module: l10n_es_tgss
-#: code:addons/l10n_es_tgss/exceptions.py:34
+#: code:addons/l10n_es_tgss/exceptions.py:29
 #, python-format
-msgid ""
-"Control digit validation failed. The code {record.contribution_account} is "
-"not valid."
-msgstr ""
-"El dígito de control ha fallado. El código {record.contribution_account} no "
-"es válido."
+msgid "Control digit validation failed. The code {} is not valid."
+msgstr "El dígito de control ha fallado. El código {} no es válido."
 
 #. module: l10n_es_tgss
+#: field:l10n.es.tgss.contribution_account,create_uid:0
 #: field:l10n.es.tgss.contribution_group,create_uid:0
 #: field:l10n.es.tgss.professional_category,create_uid:0
 #: field:l10n.es.tgss.study_level,create_uid:0
@@ -93,6 +167,7 @@ msgid "Created by"
 msgstr "Creado por"
 
 #. module: l10n_es_tgss
+#: field:l10n.es.tgss.contribution_account,create_date:0
 #: field:l10n.es.tgss.contribution_group,create_date:0
 #: field:l10n.es.tgss.professional_category,create_date:0
 #: field:l10n.es.tgss.study_level,create_date:0
@@ -100,76 +175,96 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: l10n_es_tgss
-#: field:l10n.es.tgss.full_abc,disability_percentage:0
-#: field:l10n.es.tgss.special_situations_abc,disability_percentage:0
+#: field:l10n.es.tgss.special_situations.abc,disability_percentage:0
 msgid "Disability percentage"
 msgstr "Porcentaje de discapacidad"
 
 #. module: l10n_es_tgss
-#: code:addons/l10n_es_tgss/exceptions.py:50
+#: code:addons/l10n_es_tgss/exceptions.py:37
 #, python-format
-msgid ""
-"Disability {record.disability_percentage}% of {record.name} must be between "
-"0 and 100."
+msgid "Disability {percent}% of {name} must be between 0 and 100."
 msgstr ""
-"El porcentaje de discapacidad {record.disability_percentage}% de {record."
-"name} debería estar entre 0 y 100."
+"El porcentaje de discapacidad {percent}% de {name} debería estar entre 0 y "
+"100."
+
+#. module: l10n_es_tgss
+#: code:addons/l10n_es_tgss/models/contribution_account.py:25
+#: sql_constraint:l10n.es.tgss.contribution_account:0
+#, python-format
+msgid "Duplicated code."
+msgstr "Código duplicado."
 
 #. module: l10n_es_tgss
 #: sql_constraint:l10n.es.tgss.contribution_group:0
+#: sql_constraint:l10n.es.tgss.number_name:0
 #: sql_constraint:l10n.es.tgss.professional_category:0
-#: sql_constraint:l10n.es.tgss.study_level:0
 msgid "Each name must be unique."
 msgstr "Cada nombre debe ser único."
 
 #. module: l10n_es_tgss
 #: sql_constraint:l10n.es.tgss.contribution_group:0
+#: sql_constraint:l10n.es.tgss.number_name:0
 #: sql_constraint:l10n.es.tgss.professional_category:0
-#: sql_constraint:l10n.es.tgss.study_level:0
 msgid "Each number must be unique."
 msgstr "Cada número debe ser único."
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.contribution_group,name:l10n.es.tgss.contribution_group_1
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_elementary
+msgid "Elementary education"
+msgstr "EGB"
+
+#. module: l10n_es_tgss
+#: model:l10n.es.tgss.contribution_group,name:l10n_es_tgss.contribution_group_1
 msgid "Engineers and graduates"
 msgstr "Ingenieros y licenciados"
 
 #. module: l10n_es_tgss
-#: code:addons/l10n_es_tgss/exceptions.py:20
-#: code:addons/l10n_es_tgss/exceptions.py:46
-#, python-format
-msgid "Error(s) with the contribution account."
-msgstr "Error(es) con la cuenta de cotización."
-
-#. module: l10n_es_tgss
-#: model:l10n.es.tgss.professional_category,name:l10n.es.tgss.professional_category_executive
+#: model:l10n.es.tgss.professional_category,name:l10n_es_tgss.professional_category_executive
 msgid "Executive"
 msgstr "Directivo/a"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.contribution_group,name:l10n.es.tgss.contribution_group_8
+#: model:l10n.es.tgss.contribution_group,name:l10n_es_tgss.contribution_group_8
 msgid "First and second class officers"
 msgstr "Oficiales de primera y segunda"
 
 #. module: l10n_es_tgss
-#: field:l10n.es.tgss.ccc_abc,id:0
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_graduate
+msgid "Graduate"
+msgstr "Graduado escolar"
+
+#. module: l10n_es_tgss
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_high_school
+msgid "High school"
+msgstr "Bachillerato / BUP"
+
+#. module: l10n_es_tgss
+#: field:l10n.es.tgss.contribution_account,id:0
+#: field:l10n.es.tgss.contribution_account.common.abc,id:0
+#: field:l10n.es.tgss.contribution_account.company.abc,id:0
+#: field:l10n.es.tgss.contribution_account.person.abc,id:0
 #: field:l10n.es.tgss.contribution_group,id:0
-#: field:l10n.es.tgss.contribution_group_abc,id:0
-#: field:l10n.es.tgss.full_abc,id:0
+#: field:l10n.es.tgss.contribution_group.abc,id:0
+#: field:l10n.es.tgss.number_name,id:0
 #: field:l10n.es.tgss.professional_category,id:0
-#: field:l10n.es.tgss.professional_category_abc,id:0
-#: field:l10n.es.tgss.special_situations_abc,id:0
-#: field:l10n.es.tgss.study_level,id:0
-#: field:l10n.es.tgss.study_level_abc,id:0
+#: field:l10n.es.tgss.professional_category.abc,id:0
+#: field:l10n.es.tgss.special_situations.abc,id:0
+#: field:l10n.es.tgss.study_level,id:0 field:l10n.es.tgss.study_level.abc,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.professional_category,name:l10n.es.tgss.professional_category_intermediate_head
+#: help:l10n.es.tgss.contribution_account,owner_id:0
+msgid "ID of the database object that owns this contribution account."
+msgstr "ID del objeto de la base de datos que posee esta cuenta de cotización."
+
+#. module: l10n_es_tgss
+#: model:l10n.es.tgss.professional_category,name:l10n_es_tgss.professional_category_intermediate_head
 msgid "Intermediate head"
 msgstr "Mando intermedio"
 
 #. module: l10n_es_tgss
+#: field:l10n.es.tgss.contribution_account,write_uid:0
 #: field:l10n.es.tgss.contribution_group,write_uid:0
 #: field:l10n.es.tgss.professional_category,write_uid:0
 #: field:l10n.es.tgss.study_level,write_uid:0
@@ -177,6 +272,7 @@ msgid "Last Updated by"
 msgstr "Actualizado por última vez por"
 
 #. module: l10n_es_tgss
+#: field:l10n.es.tgss.contribution_account,write_date:0
 #: field:l10n.es.tgss.contribution_group,write_date:0
 #: field:l10n.es.tgss.professional_category,write_date:0
 #: field:l10n.es.tgss.study_level,write_date:0
@@ -184,159 +280,207 @@ msgid "Last Updated on"
 msgstr "Actualizado por última vez el"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.professional_category,name:l10n.es.tgss.professional_category_low_qualified_worker
+#: model:l10n.es.tgss.professional_category,name:l10n_es_tgss.professional_category_low_qualified_worker
 msgid "Low-qualified worker"
 msgstr "Trabajador/a de baja cualificación"
 
 #. module: l10n_es_tgss
 #: field:l10n.es.tgss.contribution_group,name:0
+#: field:l10n.es.tgss.number_name,name:0
 #: field:l10n.es.tgss.professional_category,name:0
 #: field:l10n.es.tgss.study_level,name:0
 msgid "Name"
 msgstr "Nombre"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.study_level,name:l10n.es.tgss.study_level_1
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_none
 msgid "No studies"
 msgstr "Sin estudios"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.contribution_group,name:l10n.es.tgss.contribution_group_4
+#: model:l10n.es.tgss.contribution_group,name:l10n_es_tgss.contribution_group_4
 msgid "Non-graduated assistants"
 msgstr "Ayudantes no titulados"
 
 #. module: l10n_es_tgss
 #: field:l10n.es.tgss.contribution_group,number:0
+#: field:l10n.es.tgss.number_name,number:0
 #: field:l10n.es.tgss.professional_category,number:0
-#: field:l10n.es.tgss.study_level,number:0
 msgid "Number"
 msgstr "Número"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.study_level,name:l10n.es.tgss.study_level_6
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_others
 msgid "Others"
 msgstr "Otros"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.contribution_group,name:l10n.es.tgss.contribution_group_10
+#: field:l10n.es.tgss.contribution_account,owner_id:0
+msgid "Owner ID"
+msgstr "ID del dueño"
+
+#. module: l10n_es_tgss
+#: field:l10n.es.tgss.contribution_account,owner_model:0
+msgid "Owner model"
+msgstr "Modelo del dueño"
+
+#. module: l10n_es_tgss
+#: model:l10n.es.tgss.contribution_group,name:l10n_es_tgss.contribution_group_10
 msgid "Pawns / Not qualified workers over 18"
 msgstr "Peones / Trabajadores mayores de 18 años no cualificados"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.study_level,name:l10n.es.tgss.study_level_2
-msgid "Primary education, elementary school or equivalent"
-msgstr "Estudios primarios, EGB o equivalente"
+#: help:l10n.es.tgss.contribution_account.person.abc,affiliation_number:0
+msgid "Personal account code to interact with the Social Security."
+msgstr ""
+"Número de afiliación personal para los trámites con la Seguridad Social."
 
 #. module: l10n_es_tgss
-#: view:l10n.es.tgss.professional_category:l10n.es.tgss.professional_category_list
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_primary
+msgid "Primary education"
+msgstr "Educación primaria"
+
+#. module: l10n_es_tgss
+#: view:l10n.es.tgss.professional_category:l10n_es_tgss.professional_category_list
 msgid "Professional Category List"
 msgstr "Lista de categorías profesionales"
 
 #. module: l10n_es_tgss
-#: model:ir.actions.act_window,name:l10n.es.tgss.professional_category_list_action
-#: model:ir.ui.menu,name:l10n.es.tgss.professional_category_menu
+#: model:ir.actions.act_window,name:l10n_es_tgss.professional_category_list_action
+#: model:ir.ui.menu,name:l10n_es_tgss.professional_category_menu
 msgid "Professional categories"
 msgstr "Categorías profesionales"
 
 #. module: l10n_es_tgss
-#: field:l10n.es.tgss.full_abc,professional_category_id:0
-#: field:l10n.es.tgss.professional_category_abc,professional_category_id:0
+#: field:l10n.es.tgss.professional_category.abc,professional_category_id:0
 msgid "Professional category"
 msgstr "Categoría profesional"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.study_level,name:l10n.es.tgss.study_level_3
-msgid ""
-"Professional training I or equivalent technical and professional education, "
-"baccalaureate, UPB and equivalents, professional training II or equivalents"
-msgstr ""
-"FP I o enseñanza técnico-profesional equiv., bachillerato superior, BUP y "
-"equiv., FP II o equiv."
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_prof_training_2
+msgid "Professional training, high grade"
+msgstr "Formación profesional, grado superior"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.professional_category,name:l10n.es.tgss.professional_category_qualified_worker
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_prof_training_1
+msgid "Professional training, medium grade"
+msgstr "Formación profesional, grado medio / FPI / FPII"
+
+#. module: l10n_es_tgss
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_prof_cert_1
+msgid "Professionalism certificate, level 1"
+msgstr "Certificado de profesionalidad, nivel 1"
+
+#. module: l10n_es_tgss
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_prof_cert_2
+msgid "Professionalism certificate, level 2"
+msgstr "Certificado de profesionalidad, nivel 2"
+
+#. module: l10n_es_tgss
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_prof_cert_3
+msgid "Professionalism certificate, level 3"
+msgstr "Certificado de profesionalidad, nivel 3"
+
+#. module: l10n_es_tgss
+#: model:l10n.es.tgss.professional_category,name:l10n_es_tgss.professional_category_qualified_worker
 msgid "Qualified worker"
 msgstr "Trabajador/a cualificado/a"
 
 #. module: l10n_es_tgss
-#: view:l10n.es.tgss.study_level:l10n.es.tgss.study_level_list
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_secondary_1
+msgid "Secondary education, stage 1"
+msgstr "Educación secundaria, etapa 1 (1º y 2º de ESO)"
+
+#. module: l10n_es_tgss
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_secondary_2
+msgid "Secondary education, stage 2"
+msgstr "Educación secundaria, etapa 2 (ESO)"
+
+#. module: l10n_es_tgss
+#: model:ir.model,name:l10n_es_tgss.model_l10n_es_tgss_contribution_account
+msgid "Spanish Social Security contribution account codes"
+msgstr "Códigos de cuenta de cotización de la Seguridad Social española"
+
+#. module: l10n_es_tgss
+#: model:ir.model,name:l10n_es_tgss.model_l10n_es_tgss_contribution_group
+msgid "Spanish Social Security contribution groups"
+msgstr "Grupos de cotización de la Seguridad Social española"
+
+#. module: l10n_es_tgss
+#: model:ir.model,name:l10n_es_tgss.model_l10n_es_tgss_professional_category
+msgid "Spanish Social Security professional categories"
+msgstr "Categorías profesionales para la Seguridad Social española"
+
+#. module: l10n_es_tgss
+#: model:ir.model,name:l10n_es_tgss.model_l10n_es_tgss_study_level
+msgid "Spanish Social Security study levels"
+msgstr "Niveles de estudio para la Seguridad Social española"
+
+#. module: l10n_es_tgss
+#: view:l10n.es.tgss.study_level:l10n_es_tgss.study_level_list
 msgid "Study Level List"
 msgstr "Lista de niveles de estudios"
 
 #. module: l10n_es_tgss
-#: field:l10n.es.tgss.full_abc,study_level_id:0
-#: field:l10n.es.tgss.study_level_abc,study_level_id:0
+#: field:l10n.es.tgss.study_level.abc,study_level_id:0
 msgid "Study level"
 msgstr "Nivel de estudios"
 
 #. module: l10n_es_tgss
-#: model:ir.actions.act_window,name:l10n.es.tgss.study_level_list_action
-#: model:ir.ui.menu,name:l10n.es.tgss.study_level_menu
+#: model:ir.actions.act_window,name:l10n_es_tgss.study_level_list_action
+#: model:ir.ui.menu,name:l10n_es_tgss.study_level_menu
 msgid "Study levels"
 msgstr "Niveles de estudios"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.contribution_group,name:l10n.es.tgss.contribution_group_6
+#: model:l10n.es.tgss.contribution_group,name:l10n_es_tgss.contribution_group_6
 msgid "Subalterns"
 msgstr "Subalternos"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.study_level,name:l10n.es.tgss.study_level_5
-msgid "Superior architect and engineer or licensed"
-msgstr "Arquitecto e ingeniero superior o licenciado"
-
-#. module: l10n_es_tgss
-#: model:l10n.es.tgss.study_level,name:l10n.es.tgss.study_level_4
-msgid ""
-"Technical architect or technical engineer, graduate of other colleges or "
-"equivalent"
-msgstr ""
-"Arquitecto técnico o ingeniero técnico, diplomado de otras escuelas "
-"universitarias o equiv."
-
-#. module: l10n_es_tgss
-#: model:l10n.es.tgss.professional_category,name:l10n.es.tgss.professional_category_technician
+#: model:l10n.es.tgss.professional_category,name:l10n_es_tgss.professional_category_technician
 msgid "Technician"
 msgstr "Técnico/a"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.contribution_group,name:l10n.es.tgss.contribution_group_2
+#: model:l10n.es.tgss.contribution_group,name:l10n_es_tgss.contribution_group_2
 msgid "Technicians, experts and graduated assistants"
 msgstr "Ingenieros técnicos, peritos y ayudantes titulados"
 
 #. module: l10n_es_tgss
-#: code:addons/l10n_es_tgss/exceptions.py:39
+#: code:addons/l10n_es_tgss/exceptions.py:25
 #, python-format
-msgid "The code {record.contribution_account} is not numeric."
-msgstr "El código {record.contribution_account} no es numérico."
+msgid "The code {code} must have {expected} digits."
+msgstr "El código {code} debe tener {expected} dígitos."
 
 #. module: l10n_es_tgss
-#: code:addons/l10n_es_tgss/exceptions.py:24
+#: code:addons/l10n_es_tgss/exceptions.py:33
 #, python-format
-msgid ""
-"The code {record.contribution_account} must have 11 digits because it is a "
-"company."
-msgstr ""
-"El código {record.contribution_account} debería tener 11 dígitos porque se "
-"trata de una empresa."
+msgid "The code {} is not numeric."
+msgstr "El código {} no es numérico."
 
 #. module: l10n_es_tgss
-#: code:addons/l10n_es_tgss/exceptions.py:29
-#, python-format
-msgid ""
-"The code {record.contribution_account} must have 12 digits because it is a "
-"person."
-msgstr ""
-"El código {record.contribution_account} debería tener 12 dígitos porque se "
-"trata de una persona física."
-
-#. module: l10n_es_tgss
-#: model:l10n.es.tgss.contribution_group,name:l10n.es.tgss.contribution_group_9
+#: model:l10n.es.tgss.contribution_group,name:l10n_es_tgss.contribution_group_9
 msgid "Third class officers and specialists"
 msgstr "Oficiales de tercera y especialistas"
 
 #. module: l10n_es_tgss
-#: model:l10n.es.tgss.contribution_group,name:l10n.es.tgss.contribution_group_11
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_university_1
+msgid "University education, stage 1"
+msgstr "Estudios universitaros de primer ciclo (Diplomatura / Grados)"
+
+#. module: l10n_es_tgss
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_university_2
+msgid "University education, stage 2"
+msgstr "Estudios universitaros de segundo ciclo (Licenciatura / Máster)"
+
+#. module: l10n_es_tgss
+#: model:l10n.es.tgss.study_level,name:l10n_es_tgss.study_level_university_3
+msgid "University education, stage 3"
+msgstr "Estudios universitaros de tercer ciclo (Doctorado)"
+
+#. module: l10n_es_tgss
+#: model:l10n.es.tgss.contribution_group,name:l10n_es_tgss.contribution_group_11
 msgid "Workers under 18, whatever their professional category"
 msgstr ""
 "Trabajadores menores de 18 años, cualquiera que sea su categoría profesional"
