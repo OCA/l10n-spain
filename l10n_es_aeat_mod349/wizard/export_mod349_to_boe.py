@@ -97,11 +97,9 @@ class Mod349ExportToBoe(models.TransientModel):
             488-500     Sello electrónico
         """
         assert report, 'No Report defined'
-        period = (report.period_selection == 'MO' and report.month_selection or
-                  report.period_selection)
         text = super(Mod349ExportToBoe,
                      self)._get_formatted_declaration_record(report)
-        text += self._formatString(period, 2)  # Período
+        text += self._formatString(report.period_type, 2)  # Período
         # Número total de operadores intracomunitarios
         text += self._formatNumber(report.total_partner_records, 9)
         # Importe total de las operaciones intracomunitarias (parte entera)
@@ -227,9 +225,6 @@ class Mod349ExportToBoe(models.TransientModel):
         assert report, 'No AEAT 349 Report defined'
         assert refund_record, 'No Refund record defined'
         text = ''
-        period = (refund_record.period_selection == 'MO' and
-                  refund_record.month_selection or
-                  refund_record.period_selection)
         text += '2'  # Tipo de registro
         text += '349'  # Modelo de declaración
         # Ejercicio
@@ -246,7 +241,7 @@ class Mod349ExportToBoe(models.TransientModel):
         # Ejercicio (de la rectificación)
         text += self._formatNumber(refund_record.fiscalyear_id.code[:4], 4)
         # Periodo (de la rectificación)
-        text += self._formatString(period, 2)
+        text += self._formatString(refund_record.period_type, 2)
         # Base imponible de la rectificación
         text += self._formatNumber(refund_record.total_operation_amount, 11, 2)
         # Base imponible declarada anteriormente
