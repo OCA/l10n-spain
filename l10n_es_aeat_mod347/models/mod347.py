@@ -510,28 +510,18 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         comodel_name='l10n.es.aeat.mod347.cash_record',
         inverse_name='partner_record_id', string='Payment records')
 
+    @api.multi
     @api.onchange('partner_id')
     def on_change_partner_id(self):
         """Loads some partner data (country, state and vat) when the selected
         partner changes.
         """
-        if self.partner_id:
-            # Get the invoice or the default address of the partner
-            address_ids = self.partner_id.address_get(['invoice', 'default'])
-            if address_ids.get('invoice'):
-                address = self.env['res.partner.address'].browse(
-                    address_ids['invoice'])
-            elif address_ids.get('default'):
-                address = self.env['res.partner.address'].browse(
-                    address_ids['default'])
-            self.partner_vat = re.match("(ES){0,1}(.*)",
-                                        self.partner_id.vat).groups()[1]
-            self.partner_state_code = address.state_id.code
-            self.partner_country_code = address.country_id.code
-        else:
-            self.partner_vat = ''
-            self.partner_country_code = ''
-            self.partner_state_code = ''
+        for record in self:
+            if record.partner_id:
+                record.partner_vat = re.match(
+                    "(ES){0,1}(.*)", record.partner_id.vat).groups()[1]
+                record.partner_state_code = record.partner_id.state_id.code
+                record.partner_country_code = record.partner_id.country_id.code
 
 
 class L10nEsAeatMod347RealStateRecord(models.Model):
