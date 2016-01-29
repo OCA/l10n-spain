@@ -88,11 +88,13 @@ class L10nEsAeatMod347Report(models.Model):
                 else:
                     assert invoice_type == 'in_invoice'
                     operation_key = 'A'  # Note: A = Purchase operations
-                address = self._get_default_address(partners[0])
+                main_partner = partners[0]
+                address = self._get_default_address(main_partner)
                 # Get the partner data
-                if partners.vat:
+                if main_partner.vat:
                     partner_country_code, partner_vat = (
-                        re.match(r"([A-Z]{0,2})(.*)", partners.vat).groups())
+                        re.match(r"([A-Z]{0,2})(.*)",
+                                 main_partner.vat).groups())
                 else:
                     partner_vat = ''
                     partner_country_code = address.country_id.code
@@ -100,7 +102,7 @@ class L10nEsAeatMod347Report(models.Model):
                 partner_record_id = partner_record_obj.create(
                     {'report_id': self.id,
                      'operation_key': operation_key,
-                     'partner_id': partners[0].id,
+                     'partner_id': main_partner.id,
                      'partner_vat': partner_vat,
                      'representative_vat': '',
                      'partner_state_code': address.state_id.code,
@@ -211,10 +213,6 @@ class L10nEsAeatMod347Report(models.Model):
         for report in self:
             # Delete previous partner records
             report.partner_record_ids.unlink()
-            # Get the fiscal year period ids of the non-special periods
-            # (to ignore closing/opening entries)
-            periods = report.fiscalyear_id.period_ids.filtered(
-                lambda r: not r.special)
             # We will check every partner with not_in_mod347 flag unchecked
             visited_partners = self.env['res.partner']
             domain = [('not_in_mod347', '=', False),
@@ -236,10 +234,11 @@ class L10nEsAeatMod347Report(models.Model):
                         partners_grouped = partner
                     visited_partners |= partners_grouped
                     partner_record_id = report._calculate_partner_records(
-                        partners_grouped, periods)
+                        partners_grouped, report.periods)
                     if partner.customer:
                         report._calculate_cash_records(
-                            partners_grouped, partner_record_id, periods)
+                            partners_grouped, partner_record_id,
+                            report.periods)
         return True
 
     @api.one
@@ -507,28 +506,18 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         comodel_name='l10n.es.aeat.mod347.cash_record',
         inverse_name='partner_record_id', string='Payment records')
 
+    @api.multi
     @api.onchange('partner_id')
     def on_change_partner_id(self):
         """Loads some partner data (country, state and vat) when the selected
         partner changes.
         """
-        if self.partner_id:
-            # Get the invoice or the default address of the partner
-            address_ids = self.partner_id.address_get(['invoice', 'default'])
-            if address_ids.get('invoice'):
-                address = self.env['res.partner.address'].browse(
-                    address_ids['invoice'])
-            elif address_ids.get('default'):
-                address = self.env['res.partner.address'].browse(
-                    address_ids['default'])
-            self.partner_vat = re.match("(ES){0,1}(.*)",
-                                        self.partner_id.vat).groups()[1]
-            self.partner_state_code = address.state_id.code
-            self.partner_country_code = address.country_id.code
-        else:
-            self.partner_vat = ''
-            self.partner_country_code = ''
-            self.partner_state_code = ''
+        for record in self:
+            if record.partner_id:
+                record.partner_vat = re.match(
+                    "(ES){0,1}(.*)", record.partner_id.vat).groups()[1]
+                record.partner_state_code = record.partner_id.state_id.code
+                record.partner_country_code = record.partner_id.country_id.code
 
 
 class L10nEsAeatMod347RealStateRecord(models.Model):
