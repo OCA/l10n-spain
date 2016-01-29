@@ -1,6 +1,8 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
 
+=========================
 Regiones NUTS para España
 =========================
 
@@ -17,7 +19,7 @@ Este módulo permite importar las regiones NUTS para España.
 Instalación
 ===========
 
-Para instalar éste addon, necesitarás el módulo python 'request':
+Para instalar éste addon, necesitarás el módulo python 'requests':
 
 * pip intall requests
 
@@ -36,11 +38,15 @@ provincias españolas definidas en el módulo l10n_es_toponyms
 
 
 Uso
-=====
+===
 
 Sólo el administrador puede gestionar las regiones NUTS (realmente no es necesario
 porque es una convención a nivel Europeo) pero cualquier usuario puede leerlas,
 para que pueda asignarlas en eel objeto Empresa (res.partner)
+
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: https://runbot.odoo-community.org/runbot/189/8.0
 
 
 Créditos
