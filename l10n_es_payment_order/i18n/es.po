@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Antonio Trueba, 2016
+# Antonio Trueba, 2016
 # Carles Antolí <carlesantoli@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-19 01:41+0000\n"
-"PO-Revision-Date: 2016-01-16 14:56+0000\n"
+"PO-Revision-Date: 2016-01-25 18:15+0000\n"
 "Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -109,14 +110,14 @@ msgstr "Pago Certificado"
 msgid ""
 "Check it if you want to add the 018 data type in the file (the vat of the "
 "recipient is added in the 018 data type)."
-msgstr ""
+msgstr "Selecciónelo si quiere añadir el tipo de dato 018 al fichero (en él se añade el CIF del destinatario)."
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,csb34_add_date:0
 msgid ""
 "Check it if you want to add the 910 data type in the file to include the "
 "payment date."
-msgstr ""
+msgstr "Selecciónelo si quiere añadir el tipo de dato 910 al fichero para incluir la fecha de pago."
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,csb19_extra_concepts:0
@@ -231,7 +232,7 @@ msgid ""
 "in the letter. The possible values ​​are: ${amount}, ${communication}, "
 "{communication2}, {date}, {ml_maturity_date}, {create_date}, "
 "{ml_date_created}"
-msgstr ""
+msgstr "Introduzca un texto y(o seleccione un campo de la factura para incluirlo como descripción en la carta. Los valores posibles son: ${amount}, ${communication}, {communication2}, {date}, {ml_maturity_date}, {create_date}, {ml_date_created}"
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/converter.py:76
@@ -403,7 +404,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb_require_bank_account:0
 msgid "Require bank account"
-msgstr ""
+msgstr "Requerir cuenta bancaria"
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb34_send_type:0
@@ -508,7 +509,7 @@ msgid ""
 "User error:\n"
 "\n"
 "The bank account number of the company %s has not 20 digits."
-msgstr ""
+msgstr "Error de usuario:\n\nEl número de cuenta bancaria de la compañía %s no tiene 20 dígitos."
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_csb.py:131
@@ -517,7 +518,7 @@ msgid ""
 "User error:\n"
 "\n"
 "The bank account number of the customer %s has not 20 digits."
-msgstr ""
+msgstr "Error de usuario:\n\nEl número de cuenta bancaria del cliente %s no tiene 20 dígitos."
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_csb.py:124
@@ -526,7 +527,7 @@ msgid ""
 "User error:\n"
 "\n"
 "The bank account number of the customer %s is not defined and current payment mode enforces all lines to have a bank account."
-msgstr ""
+msgstr "Error de usuario:\n\nEl número de cuenta bancaria del cliente %s no está definido, y el modo de pago actual requiere que todas las líneas tengan cuenta bancaria."
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_csb.py:107
