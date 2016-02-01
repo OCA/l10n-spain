@@ -6,14 +6,8 @@
 Regiones NUTS para España
 =========================
 
-Este módulo permite importar las regiones NUTS para España.
-
-* Provincias españolas (NUTS level 4) como Provincia en el formulario de Empresa
-  (res.partner.state_id)
-* Comunidades autónomas españolas (NUTS level 3) como Comunidad Autónoma en el
-  formulario de Empresa (res.partner.substate)
-* Regiones españolas (NUTS level 2) como Regiones en el formulario de Empresa
-  (res.partner.region)
+Este módulo permite relacionar las regiones NUTS para España de nivel 4
+con las provincias españolas.
 
 
 Instalación
