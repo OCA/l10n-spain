@@ -21,23 +21,3 @@ msgstr ""
 #: model:ir.model,name:l10n_es_location_nuts.model_nuts_import
 msgid "Import NUTS items from European RAMON service"
 msgstr "Importar regiones NUTS desde el servicio europeo RAMON"
-
-#. module: l10n_es_location_nuts
-#: model:ir.model,name:l10n_es_location_nuts.model_res_partner
-msgid "Partner"
-msgstr "Empresa"
-
-#. module: l10n_es_location_nuts
-#: model:res.country,substate_label:base.es
-msgid "Autonomous Community"
-msgstr "Comunidad autónoma"
-
-#. module: l10n_es_location_nuts
-#: model:res.country,state_label:base.es
-msgid "Province"
-msgstr "Provincia"
-
-#. module: l10n_es_location_nuts
-#: model:res.country,region_label:base.es
-msgid "Region"
-msgstr "Región"
