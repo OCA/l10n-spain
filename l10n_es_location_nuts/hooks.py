@@ -16,10 +16,5 @@ def post_init_hook(cr, registry):
         spain = env.ref('base.es')
         _logger.info('Setting Spain NUTS configuration')
         spain.write({
-            'state_label': 'Province',
-            'substate_label': 'Autonomous Community',
-            'region_label': 'Region',
             'state_level': 4,
-            'substate_level': 3,
-            'region_level': 2,
         })
