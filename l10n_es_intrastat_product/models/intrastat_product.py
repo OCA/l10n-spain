@@ -279,7 +279,6 @@ class L10nEsReportIntrastatProduct(models.Model):
                                 line.product_id.name,
                                 line.product_id.categ_id.complete_name))
                 intrastat_code_id_to_write = product_intrastat_code.id
-                print "intrastat_code_id_to_write:", intrastat_code_id_to_write
 
                 if not product_intrastat_code.hs_code:
                     raise Warning(
@@ -511,7 +510,6 @@ class L10nEsReportIntrastatProduct(models.Model):
                 if line_to_create[value]:
                     line_to_create[value] = str(
                         int(round(line_to_create[value], 0)))
-            print "line_to_create:", line_to_create
             line_obj.create(line_to_create)
         return True
 
@@ -587,12 +585,11 @@ class L10nEsReportIntrastatProduct(models.Model):
         elif self.type == 'export':
             invoice_type = ('out_invoice', 'out_refund')
         invoices = invoice_obj.search([
-            # ('type', 'in', invoice_type),
-            # ('date_invoice', '<=', self.end_date),
-            # ('date_invoice', '>=', self.start_date),
-            # ('state', 'in', ('open', 'paid')),
-            # ('company_id', '=', self.company_id.id)
-            ('id', '=', 13)
+            ('type', 'in', invoice_type),
+            ('date_invoice', '<=', self.end_date),
+            ('date_invoice', '>=', self.start_date),
+            ('state', 'in', ('open', 'paid')),
+            ('company_id', '=', self.company_id.id)
         ], order='date_invoice')
         for invoice in invoices:
             parent_values = {}
