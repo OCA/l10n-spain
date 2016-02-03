@@ -92,7 +92,7 @@ class Mod349(models.Model):
             return False
         self.ensure_one()
         rec_obj = self.env['l10n.es.aeat.mod349.partner_record']
-        partner = invoices[0].partner_id
+        partner = invoices[0].commercial_partner_id
         sum_credit = sum([invoice.cc_amount_untaxed for invoice in invoices
                           if invoice.type not in ('in_refund', 'out_refund')])
         sum_debit = sum([invoice.cc_amount_untaxed for invoice in invoices
@@ -124,7 +124,7 @@ class Mod349(models.Model):
             'l10n.es.aeat.mod349.partner_record_detail']
         obj = self.env['l10n.es.aeat.mod349.partner_refund']
         obj_detail = self.env['l10n.es.aeat.mod349.partner_refund_detail']
-        partner = refunds[0].partner_id
+        partner = refunds[0].commercial_partner_id
         record = {}
         for refund in refunds:
             origin_inv = refund.origin_invoices_ids[:1]
@@ -172,7 +172,7 @@ class Mod349(models.Model):
                       ('period_id', 'in', mod349.periods.ids),
                       ('operation_key', '!=', False)]
             groups = invoice_obj.read_group(
-                domain, ['partner_id'], ['partner_id'])
+                domain, ['commercial_partner_id'], ['commercial_partner_id'])
             for group in groups:
                 invoices_total = invoice_obj.search(group['__domain'])
                 invoices = invoices_total.filtered(
