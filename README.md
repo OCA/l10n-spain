@@ -43,7 +43,7 @@ addon | version | summary
 [l10n_es_aeat_mod340](l10n_es_aeat_mod340/) | 8.0.2.1.0 | Generación de fichero modelo 340 y libro de IVA
 [l10n_es_aeat_mod340_type0](l10n_es_aeat_mod340_type0/) | 8.0.1.0.0 | Generación de fichero modelo 340. Registro tipo 0
 [l10n_es_aeat_mod347](l10n_es_aeat_mod347/) | 8.0.1.3.0 | Modelo 347 AEAT
-[l10n_es_aeat_mod349](l10n_es_aeat_mod349/) | 8.0.2.0.0 | Modelo 349 AEAT
+[l10n_es_aeat_mod349](l10n_es_aeat_mod349/) | 8.0.2.1.0 | Modelo 349 AEAT
 [l10n_es_aeat_vat_prorrate](l10n_es_aeat_vat_prorrate/) | 8.0.2.0.0 | AEAT - Prorrata de IVA
 [l10n_es_crm_lead_trade_name](l10n_es_crm_lead_trade_name/) | 8.0.1.0.0 | Add trade name field to leads
 [l10n_es_fiscal_year_closing](l10n_es_fiscal_year_closing/) | 8.0.1.0.0 | Cierre de ejercicio fiscal para España
