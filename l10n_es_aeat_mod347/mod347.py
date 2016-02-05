@@ -429,8 +429,8 @@ class L10nEsAeatMod347PartnerRecord(orm.Model):
             result[record.id]['first_quarter'] = (
                 sum(x.amount for x in invoices
                     if x.invoice_id.period_id.quarter == 'first') -
-                sum(x.amount for x in refunds
-                    if x.invoice_id.period_id.quarter == 'first'))
+                abs(sum(x.amount for x in refunds
+                    if x.invoice_id.period_id.quarter == 'first')))
             result[record.id]['second_quarter'] = (
                 sum(x.amount for x in invoices
                     if x.invoice_id.period_id.quarter == 'second') -
