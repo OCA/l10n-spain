@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-19 01:41+0000\n"
-"PO-Revision-Date: 2016-01-25 18:15+0000\n"
+"PO-Revision-Date: 2016-02-03 12:58+0000\n"
 "Last-Translator: Antonio Trueba\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -536,7 +536,7 @@ msgid ""
 "User error:\n"
 "\n"
 "The bank account of the company %s is not defined."
-msgstr ""
+msgstr "Error de usuario:\n\nEl número de cuenta bancaria de la empresa %s no ha sido definido."
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_csb.py:149
@@ -545,7 +545,7 @@ msgid ""
 "User error:\n"
 "\n"
 "The company VAT number related to the bank account of the payment mode is not defined."
-msgstr ""
+msgstr "Error de usuario:\n\nNo se ha definido un CIF asociado a la cuenta bancaria para el modo de pago."
 
 #. module: l10n_es_payment_order
 #: code:addons/l10n_es_payment_order/wizard/export_csb.py:98
