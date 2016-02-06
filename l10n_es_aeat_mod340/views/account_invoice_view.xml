@@ -27,8 +27,8 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
-                <field name="reference" position="replace">
-                    <field name="reference" nolabel="1" required="1"/>
+                <field name="supplier_invoice_number" position="attributes">
+                    <attribute name="attrs">{'required': True}</attribute>
                 </field>
             </field>
         </record>
