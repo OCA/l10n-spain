@@ -110,6 +110,7 @@
                     <field name="partner_country_code"/>
                     <field name="partner_vat"/>
                     <field name="invoice_id"/>
+                    <field name="supplier_invoice_number"/>
                     <field name="base_tax" sum="Total Base"/>
                     <field name="amount_tax" sum="Total Tax"/>
                     <field name="total" sum="Total"/>
@@ -123,6 +124,7 @@
             <field name="arch" type="xml">
                 <form string="Received invoices">
                     <field name="invoice_id"/>
+                    <field name="supplier_invoice_number"/>
                     <newline/>
                     <field name="partner_id"/>
                     <field name="partner_vat"/>

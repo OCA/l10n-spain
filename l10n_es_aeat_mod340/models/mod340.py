@@ -168,6 +168,8 @@ class L10nEsAeatMod340Received(orm.Model):
         'tax_line_ids': fields.one2many(
             'l10n.es.aeat.mod340.tax_line_received', 'invoice_record_id',
             'Tax lines'),
+        'supplier_invoice_number': fields.related('invoice_id', 'supplier_invoice_number', 
+            type='char', string="Supplier Invoice Number", store=True),        
     }
 
 

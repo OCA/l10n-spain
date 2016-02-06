@@ -371,7 +371,7 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             # Base imponible a coste.
             text += ' ' + self._formatNumber(0, 11, 2)
             # Identificación de la factura
-            text += self._formatString(invoice_received.invoice_id.reference,
+            text += self._formatString(invoice_received.invoice_id.supplier_invoice_number,
                                        40)
             # Número de registro
             sequence_obj = self.env['ir.sequence']
