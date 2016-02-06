@@ -100,7 +100,8 @@ class AccountAssetAsset(orm.Model):
             'Start Depreciation Date',
             readonly=True,
             states={'draft': [('readonly', False)]},
-            help="Only needed if not the same than purchase date"),
+            help="Only needed if not the same than purchase date. You must "
+                "indicate the 1th day of the month of new depreciation date"),
 
     }
 
