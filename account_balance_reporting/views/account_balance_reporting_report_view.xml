@@ -38,17 +38,23 @@
                                 <field name="template_id"/>
                                 <field name="company_id" groups="base.group_multi_company"/>
                                 <field name="calc_date" states="calc_done,done"/>
+                                <field name="check_filter"/>
+                                <field name="level"/>
                             </group>
                             <group>
                                 <group col="1">
                                     <separator string="Fiscal year 1"/>
                                     <field name="current_fiscalyear_id" nolabel="1"/>
-                                    <field name="current_period_ids" domain="[('fiscalyear_id','=',current_fiscalyear_id)]" nolabel="1"/>
+                                    <field name="current_date_from" colspan="2" attrs="{'invisible':[('check_filter','=','periods')]}"/>
+                                    <field name="current_date_to" colspan="2" attrs="{'invisible':[('check_filter','=','periods')]}"/>
+                                    <field name="current_period_ids" domain="[('fiscalyear_id','=',current_fiscalyear_id)]" nolabel="1" attrs="{'invisible':[('check_filter','=','dates')]}"/>
                                 </group>
                                 <group col="1">
                                     <separator string="Fiscal year 2"/>
                                     <field name="previous_fiscalyear_id" nolabel="1"/>
-                                    <field name="previous_period_ids" domain="[('fiscalyear_id','=',previous_fiscalyear_id)]" nolabel="1"/>
+                                    <field name="previous_date_from" colspan="2" attrs="{'invisible':[('check_filter','=','periods')]}"/>
+                                    <field name="previous_date_to" colspan="2" attrs="{'invisible':[('check_filter','=','periods')]}"/>
+                                    <field name="previous_period_ids" domain="[('fiscalyear_id','=',previous_fiscalyear_id)]" nolabel="1" attrs="{'invisible':[('check_filter','=','dates')]}"/>
                                 </group>
                             </group>
                         </page>
