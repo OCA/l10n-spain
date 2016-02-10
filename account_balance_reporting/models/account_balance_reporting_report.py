@@ -283,7 +283,7 @@ class AccountBalanceReportingLine(orm.Model):
         acc_obj = self.pool.get('account.account')
         line = self.browse(cr, uid, ids[0], context=context)
         cont = 1000
-        for acc_code in re.findall('(-?\w*\(?[0-9a-zA-Z_]*\)?)', code):
+        for acc_code in re.findall(r'(-?\w*\(?[0-9a-zA-Z_]*\)?)', code):
             # Check if the code is valid (findall might return empty strings)
             acc_code = acc_code.strip()
             if acc_code:
@@ -337,8 +337,7 @@ class AccountBalanceReportingLine(orm.Model):
                                 'css_class':
                                 (child_account.level and
                                  child_account.level < 5) and
-                                u'l' + str(child_account.level)
-                                or'default'
+                                u'l' + str(child_account.level) or'default'
                             }, context=context)
                             cont += 1
                         else:
