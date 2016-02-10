@@ -348,6 +348,11 @@ class L10nEsAeatReport(models.AbstractModel):
             ['account_id'])
         lines = []
         for group in groups:
+            if group['debit']>0 and group['credit']>0:
+                new_group = group.copy()
+                group['debit'] = 0
+                new_group['credit']=0
+                lines.append(self._prepare_regularization_move_line(new_group))
             lines.append(self._prepare_regularization_move_line(group))
         return lines
 
