@@ -65,7 +65,7 @@ class L10nEsAeatMod115Report(models.Model):
         relation='mod115_account_move_line03_rel',
         column1='mod115', column2='account_move_line')
     currency_id = fields.Many2one(
-        comodel_name='res.currency', string='Moneda',
+        comodel_name='res.currency', string='Moneda', readonly=True,
         related='company_id.currency_id', store=True)
     tipo_declaracion = fields.Selection(
         selection=[('I', 'Ingreso'),
