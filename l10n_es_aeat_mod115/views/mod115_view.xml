@@ -43,9 +43,6 @@
                         </group>
                     </group>
                 </group>
-                <group name="group_tax_lines" position="attributes">
-                    <attribute name="attrs">{'invisible': 1}</attribute>
-                </group>
             </field>
         </record>
 
