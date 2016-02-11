@@ -75,7 +75,7 @@ class L10nEsAeatMod216Report(models.Model):
         relation='mod216_account_move_line_cuota_rel',
         column1='mod216', column2='account_move_line')
     currency_id = fields.Many2one(
-        'res.currency', string='Moneda',
+        'res.currency', string='Moneda', readonly=True,
         related='company_id.currency_id', store=True)
     tipo_declaracion = fields.Selection(
         [('I', 'Ingreso'), ('U', 'Domiciliación'),
