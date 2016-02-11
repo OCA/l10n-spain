@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 19:24+0000\n"
-"PO-Revision-Date: 2015-11-05 11:42+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -265,6 +265,16 @@ msgid "Account entry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,allow_posting:0
+msgid "Allow posting"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,partner_bank_id:0
+msgid "Bank account"
+msgstr "Conta bancaria"
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,base_retenciones_ingresos:0
 msgid "Base retenciones e ingresos a cuenta"
 msgstr "Base retencións e ingresos a conta"
@@ -331,6 +341,11 @@ msgstr "Coma mediador"
 #: field:l10n.es.aeat.mod296.report,company_id:0
 msgid "Company"
 msgstr "Compañía"
+
+#. module: l10n_es_aeat_mod296
+#: help:l10n.es.aeat.mod296.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
 
 #. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.report,type:0
@@ -444,6 +459,13 @@ msgid "Direccion en el pais de residencia"
 msgstr "Enderezo no país de residencia"
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.export_to_boe,display_name:0
+#: field:l10n.es.aeat.mod296.report,display_name:0
+#: field:l10n.es.aeat.mod296.report.line,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,domicilio:0
 msgid "Domicilio"
 msgstr "Enderezo"
@@ -541,6 +563,13 @@ msgid "L.R. VAT number"
 msgstr "NIF repr. legal"
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.mod296.report,__last_update:0
+#: field:l10n.es.aeat.mod296.report.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Modificado por última vez o"
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod296.report,write_uid:0
 #: field:l10n.es.aeat.mod296.report.line,write_uid:0
@@ -578,6 +607,11 @@ msgstr "Mediador"
 #: field:l10n.es.aeat.mod296.report.line,mod296_id:0
 msgid "Mod 296"
 msgstr "Mod 296"
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,model:0
+msgid "Model"
+msgstr ""
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.ui.menu,name:l10n_es_aeat_mod296.menu_aeat_mod296_report
@@ -710,14 +744,14 @@ msgid "Renta en especie"
 msgstr "Renda en especie"
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,retenciones_ingresos:0
 msgid "Retenciones e ingresos a cuenta"
 msgstr "Retencións e ingresos a conta"
-
-#. module: l10n_es_aeat_mod296
-#: field:l10n.es.aeat.mod296.report,sequence:0
-msgid "Sequence"
-msgstr "Secuencia"
 
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.export_to_boe,state:0
@@ -801,8 +835,3 @@ msgstr "obter"
 #: selection:l10n.es.aeat.mod296.export_to_boe,state:0
 msgid "open"
 msgstr "aberto"
-
-#. module: l10n_es_aeat_mod296
-#: view:l10n.es.aeat.mod296.report:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_form
-msgid "{'invisible': 1}"
-msgstr ""
