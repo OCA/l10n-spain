@@ -83,7 +83,7 @@ class L10nEsAeatMod303Report(models.Model):
 
     currency_id = fields.Many2one(
         comodel_name='res.currency', string='Currency',
-        related='company_id.currency_id', store=True)
+        related='company_id.currency_id', store=True, readonly=True)
     number = fields.Char(default='303')
     export_config = fields.Many2one(default=_get_export_conf)
     company_partner_id = fields.Many2one('res.partner', string='Partner',
