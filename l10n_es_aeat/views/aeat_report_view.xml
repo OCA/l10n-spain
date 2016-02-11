@@ -97,23 +97,6 @@
                                         />
                             </group>
                         </group>
-                        <group string="Tax lines"
-                               name="group_tax_lines"
-                               colspan="4"
-                               attrs="{'invisible': ['|', ('tax_lines', '=', []), ('state', '=', 'draft')]}">
-                            <field name="tax_lines" nolabel="1">
-                                <!-- Se pone editable y el campo es readonly para evitar que se despliegue popup para evitar error por modelos cruzados -->
-                                <tree string="Tax lines" editable="bottom">
-                                    <field name="field_number"/>
-                                    <field name="name"/>
-                                    <field name="amount"/>
-                                    <button name="get_calculated_move_lines"
-                                            type="object"
-                                            help="Show journal items"
-                                            icon="gtk-find"/>
-                                </tree>
-                            </field>
-                        </group>
                     </sheet>
                 </form>
             </field>
