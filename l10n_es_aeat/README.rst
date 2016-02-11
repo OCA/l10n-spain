@@ -23,10 +23,18 @@ Todos aquellos modelos que se especifiquen en los módulos adicionales y
 hereden el AEAT base, deberán definir una variable interna que se llame
 '_aeat_number' asignándole como valor, el número del modelo (130, 340, 347...).
 
+Para poder utilizar el motor genérico de cálculo de casillas por códigos de
+impuestos (como el 303), hay que heredar del modelo
+"l10n.es.aeat.report.tax.mapping" en lugar de "l10n.es.aeat.report". Para la
+vista, hay que añadir el campo a mano, ya que la herencia de vistas no permite
+una doble herencia de AbstractModel, pero lo que es la vista tree ya está
+definida.
+
 Para activar la creación del asiento de regularización en un modelo, hay que
 poner en el modelo correspondiente el campo allow_posting a True, y establecer
 en la configuración de impuestos los conceptos que se regularizarán con el
-flag "to_regularize".
+flag "to_regularize". Esto sólo es posible sobre los modelos que utilicen
+el cálculo de casillas por códigos de impuestos.
 
 Problemas conocidos / Hoja de ruta
 ==================================
