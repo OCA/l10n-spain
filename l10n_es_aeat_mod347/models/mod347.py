@@ -214,10 +214,6 @@ class L10nEsAeatMod347Report(models.Model):
         for report in self:
             # Delete previous partner records
             report.partner_record_ids.unlink()
-            # Get the fiscal year period ids of the non-special periods
-            # (to ignore closing/opening entries)
-            periods = report.fiscalyear_id.period_ids.filtered(
-                lambda r: not r.special)
             # We will check every partner with not_in_mod347 flag unchecked
             visited_partners = self.env['res.partner']
             domain = [('not_in_mod347', '=', False),
@@ -239,10 +235,11 @@ class L10nEsAeatMod347Report(models.Model):
                         partners_grouped = partner
                     visited_partners |= partners_grouped
                     partner_record_id = report._calculate_partner_records(
-                        partners_grouped, periods)
+                        partners_grouped, report.periods)
                     if partner.customer:
                         report._calculate_cash_records(
-                            partners_grouped, partner_record_id, periods)
+                            partners_grouped, partner_record_id,
+                            report.periods)
         return True
 
     @api.one
