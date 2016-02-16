@@ -283,6 +283,8 @@ class AccountBankStatementImport(models.TransientModel):
                     'amount': line['importe'],
                     'partner_id': self._get_partner(line),
                 }
+                if not vals_line['name']:
+                    vals_line['name'] = vals_line['ref']
                 transactions.append(vals_line)
         vals_bank_statement = {
             'transactions': transactions,
