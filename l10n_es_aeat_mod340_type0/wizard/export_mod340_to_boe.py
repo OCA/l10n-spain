@@ -82,9 +82,9 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
         # Puerta
         text += self._formatString(report.presenter_address_door or '', 2)
         # Código postal
-        text += self._formatNumber(int(report.presenter_city_id.zip or 0), 5)
+        text += self._formatNumber(int(report.presenter_city_id.name or 0), 5)
         # Municipio
-        text += self._formatString(report.presenter_city_id.name or '', 12)
+        text += self._formatString(report.presenter_city_id.city or '', 12)
         # Código postal
         if report.presenter_city_id:
             text += self._formatNumber(
