@@ -15,7 +15,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     tax_lines = fields.One2many(
         comodel_name='l10n.es.aeat.tax.line', inverse_name='res_id',
         domain=lambda self: [("model", "=", self._name)], auto_join=True,
-        ondelete="cascade", readonly=True)
+        readonly=True)
 
     @api.multi
     def calculate(self):
@@ -42,6 +42,11 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
                     tax_lines.append(report._prepare_tax_line_vals(map_line))
                 report.tax_lines = [(0, 0, x) for x in tax_lines]
         return res
+
+    @api.multi
+    def unlink(self):
+        self.mapped('tax_lines').unlink()
+        return super(L10nEsAeatReportTaxMapping, self).unlink()
 
     @api.multi
     def _prepare_tax_line_vals(self, map_line):
