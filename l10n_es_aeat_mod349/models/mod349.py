@@ -34,8 +34,8 @@ from openerp.addons.l10n_es_aeat_mod349.models.account_invoice \
 
 # TODO: Quitarlo de aquí y pasarlo a l10n_es_aeat con sustituciones
 NAME_RESTRICTIVE_REGEXP = re.compile(
-    r"^[a-zA-Z0-9\sáÁéÉíÍóÓúÚñÑçÇäÄëËïÏüÜöÖ"
-    r"àÀèÈìÌòÒùÙâÂêÊîÎôÔûÛ\.,-_&'´\\:;:/]*$", re.UNICODE | re.X)
+    ur"^[a-zA-Z0-9\sáÁéÉíÍóÓúÚñÑçÇäÄëËïÏüÜöÖ"
+    ur"àÀèÈìÌòÒùÙâÂêÊîÎôÔûÛ\.,-_&'´\\:;:/]*$", re.UNICODE | re.X)
 
 
 def _check_valid_string(text_to_check):
