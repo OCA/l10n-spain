@@ -174,7 +174,8 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             # Clave tipo de libro. Constante 'E'.
             text += 'E'
             # Clave de operación
-            if invoice_issued.invoice_id.origin_invoices_ids:
+            #if invoice_issued.invoice_id.origin_invoices_ids:
+            if invoice_issued.invoice_id.type == 'out_refund':
                 text += 'D'
             elif len(invoice_issued.tax_line_ids) > 1:
                 text += 'C'
@@ -195,14 +196,16 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             text += self._formatNumber(
                 invoice_issued.invoice_id.date_invoice.split('-')[2], 2)
             # Tipo impositivo
-            text += self._formatNumber(tax_line.tax_percentage * 100, 3, 2)
+            text += self._formatNumber(round(tax_line.tax_percentage * 100,
+                                             1), 3, 2)
             # Base imponible
             text += self._formatNumber(tax_line.base_amount, 11, 2, True)
             # Cuota del impuesto
             text += self._formatNumber(tax_line.tax_amount, 11, 2, True)
             # Importe total de la factura
             text += self._formatNumber(
-                tax_line.tax_amount + tax_line.base_amount, 11, 2, True)
+                tax_line.tax_amount + tax_line.base_amount
+                + tax_line.rec_tax_amount, 11, 2, True)
             # Base imponible a coste.
             text += ' ' + self._formatNumber(0, 11, 2)
             # Identificación de la factura
@@ -231,9 +234,12 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
                 ",".join([x.number for x in
                           invoice_issued.invoice_id.origin_invoices_ids]), 40)
             # Tipo Recargo de equivalencia
-            text += self._formatNumber(0, 5)
+            #text += self._formatNumber(0, 5)
+            text += self._formatNumber(round(tax_line.rec_tax_percentage *
+                                             100, 2),3, 2)
             # Couta del recargo de equivalencia
-            text += ' ' + self._formatNumber(0, 11, 2)
+            #text += ' ' + self._formatNumber(0, 11, 2)
+            text += self._formatNumber(tax_line.rec_tax_amount, 11, 2, True)
             # Situación del Inmueble #TODO
             text += '0'
             # Referencia Catastral #TODO
@@ -341,8 +347,13 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             # Clave tipo de libro. Constante 'R'.
             text += 'R'
             # Clave de operación
-            if len(invoice_received.tax_line_ids) > 1:
+            if invoice_received.invoice_id.fiscal_position\
+                    .intracommunity_operations:
+                text += 'P'
+            elif len(invoice_received.tax_line_ids) > 1:
                 text += 'C'
+            elif invoice_received.invoice_id.type == 'in_refund':
+                text += 'D'
             else:
                 text += ' '
             # Fecha de expedición

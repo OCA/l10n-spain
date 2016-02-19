@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <field name="sign" position="after">
                     <field name="mod340"/>
+                    <field name="surcharge_tax_id"/>
                 </field>
             </field>
         </record>
@@ -19,6 +20,7 @@
             <field name="arch" type="xml">
                 <field name="sign" position="after">
                     <field name="mod340"/>
+                    <field name="surcharge_tax_id"/>
                 </field>
             </field>
         </record>
