@@ -26,7 +26,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, api, exceptions, _
+from openerp import api, fields, models, _
 
 
 class Mod349ExportToBoe(models.TransientModel):
@@ -158,13 +158,6 @@ class Mod349ExportToBoe(models.TransientModel):
         assert report, 'No AEAT 349 Report defined'
         assert partner_record, 'No Partner record defined'
         text = ''
-        try:
-            fiscal_year = int((report.fiscalyear_id.code or '')[:4])
-        except:
-            raise exceptions.Warning(
-                _('First four characters of fiscal year code must be numeric '
-                  'and contain the fiscal year number. Please, fix it and try '
-                  'again.'))
         # Formateo de algunos campos (debido a que pueden no ser correctos)
         # NIF : Se comprueba que no se incluya el código de pais
         company_vat = report.company_vat
@@ -172,7 +165,8 @@ class Mod349ExportToBoe(models.TransientModel):
             company_vat = report.company_vat[2:]
         text += '2'  # Tipo de registro
         text += '349'  # Modelo de declaración
-        text += self._formatNumber(fiscal_year, 4)  # Ejercicio
+        date_start = fields.Date.from_string(report.periods[:1].date_start)
+        text += self._formatNumber(date_start.year, 4)  # Ejercicio
         text += self._formatString(company_vat, 9)  # NIF del declarante
         text += 58 * ' '  # Blancos
         # NIF del operador intracomunitario
