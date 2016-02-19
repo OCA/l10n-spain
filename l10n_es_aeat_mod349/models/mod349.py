@@ -1,48 +1,13 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C)
-#        2004-2011: Pexego Sistemas Informáticos. (http://pexego.es)
-#        2013:      Top Consultant Software Creations S.L.
-#                   (http://www.topconsultant.es/)
-#        2014:      Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                   Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-#
-#    Autores originales: Luis Manuel Angueira Blanco (Pexego)
-#                        Omar Castiñeira Saavedra(omar@pexego.es)
-#    Migración OpenERP 7.0: Ignacio Martínez y Miguel López.
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2004-2011 Pexego Sistemas Informáticos. (http://pexego.es)
+# © 2013 Top Consultant Software Creations S.L. (http://www.topconsultant.es/)
+# © 2014-2016 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 import re
 from openerp import models, fields, api, exceptions, _
 from openerp.addons.l10n_es_aeat_mod349.models.account_invoice \
     import OPERATION_KEYS
-
-
-# TODO: Quitarlo de aquí y pasarlo a l10n_es_aeat con sustituciones
-NAME_RESTRICTIVE_REGEXP = re.compile(
-    r"^[a-zA-Z0-9\sáÁéÉíÍóÓúÚñÑçÇäÄëËïÏüÜöÖ"
-    r"àÀèÈìÌòÒùÙâÂêÊîÎôÔûÛ\.,-_&'´\\:;:/]*$", re.UNICODE | re.X)
-
-
-def _check_valid_string(text_to_check):
-    """Checks if string fits with RegExp"""
-    if text_to_check and NAME_RESTRICTIVE_REGEXP.match(text_to_check):
-        return True
-    return False
 
 
 def _format_partner_vat(partner_vat=None, country=None):
@@ -233,34 +198,10 @@ class Mod349(models.Model):
                     _('Contact name (Full name) must have name and surname'))
 
     @api.multi
-    def _check_restrictive_names(self):
-        """Checks if names have not allowed characters and returns a message"""
-        for item in self:
-            if not _check_valid_string(item.contact_name):
-                raise exceptions.Warning(
-                    _("Name '%s' have not allowed characters.\nPlease, fix it "
-                      "before confirm the report") % item.contact_name)
-            # Check partner record partner names
-            for partner_record in item.partner_record_ids:
-                if not _check_valid_string(partner_record.partner_id.name):
-                    raise exceptions.Warning(
-                        _("Partner name '%s' in partner records is not valid "
-                          "due to incorrect characters") %
-                        partner_record.partner_id.name)
-            # Check partner refund partner names
-            for partner_refund in item.partner_refund_ids:
-                if not _check_valid_string(partner_refund.partner_id.name):
-                    raise exceptions.Warning(
-                        _("Partner name '%s' in refund lines is not valid due "
-                          "to incorrect characters") %
-                        partner_refund.partner_id.name)
-
-    @api.multi
     def button_confirm(self):
         """Checks if all the fields of the report are correctly filled"""
         self._check_names()
         self._check_report_lines()
-        self._check_restrictive_names()
         return super(Mod349, self).button_confirm()
 
     name = fields.Char(compute="_get_report_alias", string="Name")
