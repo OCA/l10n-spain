@@ -32,6 +32,7 @@ install:
   - pip install unicodecsv
   - pip install requests
   - git clone https://github.com/vauxoo-dev/maintainer-quality-tools.git -b master-oca-add-coloured-moy ${HOME}/maintainer-quality-tools
+  - (cd ${HOME}/maintainer-quality-tools;git pull origin master-oca-profiling-moy)
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
 
