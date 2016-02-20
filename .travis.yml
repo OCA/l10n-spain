@@ -31,9 +31,7 @@ install:
   - pip install unidecode
   - pip install unicodecsv
   - pip install requests
-  - git clone https://github.com/vauxoo-dev/maintainer-quality-tools.git -b master-oca-add-coloured-moy ${HOME}/maintainer-quality-tools
-  - git config --global user.name "oca-mqt-test" && git config --global user.email "mqt_test@oca"
-  - (cd ${HOME}/maintainer-quality-tools;git pull origin master-oca-profiling-moy)
+  - git clone https://github.com/vauxoo-dev/maintainer-quality-tools.git -b master-oca-profiling-moy ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
 
