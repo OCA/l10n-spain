@@ -4,6 +4,7 @@
 
 import calendar
 from openerp import api, fields, models
+from openerp.tools import float_is_zero
 from dateutil.relativedelta import relativedelta
 
 
@@ -196,7 +197,13 @@ class AccountAssetAsset(models.Model):
     @api.multi
     def compute_depreciation_board(self):
         super(AccountAssetAsset, self).compute_depreciation_board()
+        precision = self.env['decimal.precision'].precision_get('Account')
         for asset in self:
+            if asset.depreciation_line_ids:
+                last_depr = asset.depreciation_line_ids[-1]
+                if not last_depr.move_id and float_is_zero(
+                        last_depr.amount, precision):
+                    last_depr.unlink()
             if asset.move_end_period:
                 # Reescribir la fecha de la depreciación
                 depr_lin_obj = self.env['account.asset.depreciation.line']
