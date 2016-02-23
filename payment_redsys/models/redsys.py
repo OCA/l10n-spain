@@ -261,18 +261,17 @@ class TxRedsys(models.Model):
                     'Ds_Response'),
             })
             if tx.acquirer_id.send_quotation:
-                email_act = tx.sale_order_id.action_quotation_send()
-                # send the email
-                if email_act and email_act.get('context'):
-                    self.send_mail(email_act['context'])
+                tx.sale_order_id.force_quotation_send()
             return True
         if (status_code >= 101) and (status_code <= 202):
             # 'Payment error: code: %s.'
             tx.write({
                 'state': 'pending',
                 'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
-                'state_message': _('Error: %s') % parameters_dic.get(
-                    'Ds_Response'),
+                'state_message': _('Error: %s (%s)') % (
+                    parameters_dic.get('Ds_Response'),
+                    parameters_dic.get('Ds_ErrorCode')
+                ),
             })
             return True
         if (status_code == 912) and (status_code == 9912):
@@ -280,12 +279,17 @@ class TxRedsys(models.Model):
             tx.write({
                 'state': 'cancel',
                 'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
-                'state_message': (_('Bank Error: %s')
-                                  % parameters_dic.get('Ds_Response')),
+                'state_message': _('Bank Error: %s (%s)') % (
+                    parameters_dic.get('Ds_Response'),
+                    parameters_dic.get('Ds_ErrorCode')
+                ),
             })
             return True
         else:
-            error = 'Redsys: feedback error'
+            error = _('Redsys: feedback error %s (%s)') % (
+                parameters_dic.get('Ds_Response'),
+                parameters_dic.get('Ds_ErrorCode')
+            )
             _logger.info(error)
             tx.write({
                 'state': 'error',
@@ -293,13 +297,3 @@ class TxRedsys(models.Model):
                 'state_message': error,
             })
             return False
-
-    def send_mail(self, email_ctx):
-        composer_values = {}
-        template = self.env.ref('sale.email_template_edi_sale', False)
-        if not template:
-            return True
-        email_ctx['default_template_id'] = template.id
-        composer_id = self.env['mail.compose.message'].with_context(
-            email_ctx).create(composer_values)
-        composer_id.with_context(email_ctx).send_mail()
