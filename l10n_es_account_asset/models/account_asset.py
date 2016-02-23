@@ -141,15 +141,9 @@ class AccountAssetAsset(models.Model):
                 number += 1
             return number
         else:
-            val = super(AccountAssetAsset, self).\
+            return super(AccountAssetAsset, self).\
                 _compute_board_undone_dotation_nb(
                 asset, depreciation_date, total_days)
-            if depreciation_date.day == 1 and depreciation_date.month == 1 \
-                    and asset.method_period == 12:
-                # Quitar una depreciación del nº total si el activo se compró
-                # el 1 de enero, ya que ese año sería completo
-                val -= 1
-            return val
 
     @api.model
     def _compute_board_amount(self, asset, i, residual_amount, amount_to_depr,
