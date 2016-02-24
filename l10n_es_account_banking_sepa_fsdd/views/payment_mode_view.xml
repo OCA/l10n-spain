@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_payment_mode_form_add_charge_financed" model="ir.ui.view">
+            <field name="name">add.suffix.in.payment.mode.form</field>
+            <field name="model">payment.mode</field>
+            <field name="inherit_id" ref="account_banking_payment_export.view_payment_mode_form_inherit"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="charge_financed" attrs="{'invisible': [('sale_ok', '!=', True)]}"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
