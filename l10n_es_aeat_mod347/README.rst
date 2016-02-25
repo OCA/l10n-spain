@@ -106,6 +106,7 @@ Contribuidores
 * Acysos (http://www.acysos.com)
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Joaquín Gutierrez (http://gutierrezweb.es)
+* Comunitea (http://www.comunitea.com)
 
 Maintainer
 ----------
