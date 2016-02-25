@@ -25,7 +25,7 @@
 ##############################################################################
 {
     'name': "Modelo 347 AEAT",
-    'version': "8.0.1.3.0",
+    'version': "8.0.1.3.1",
     'author': "Pexego,"
               "ASR-OSS,"
               "NaN·tic,"
@@ -41,6 +41,7 @@
         'Acysos (http://www.acysos.com)',
         'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
         'Joaquín Gutierrez (http://gutierrezweb.es)',
+        'Comunitea (http://www.comunitea.com)',
     ],
     'category': "Localisation/Accounting",
     'license': "AGPL-3",

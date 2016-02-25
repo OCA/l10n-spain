@@ -64,13 +64,13 @@ class L10nEsAeatMod347Report(models.Model):
             # (A and B operation keys)
             # Search for invoices to this partner (with account moves).
             invoices = invoice_obj.search(
-                [('partner_id', 'child_of', partners.ids),
+                [('partner_id.commercial_partner_id', 'in', partners.ids),
                  ('type', '=', invoice_type),
                  ('period_id', 'in', periods.ids),
                  ('state', 'not in', ['draft', 'cancel']),
                  ('not_in_mod347', '=', False)])
             refunds = invoice_obj.search(
-                [('partner_id', 'child_of', partners.ids),
+                [('partner_id.commercial_partner_id', 'in', partners.ids),
                  ('type', '=', refund_type),
                  ('period_id', 'in', periods.ids),
                  ('state', 'not in', ['draft', 'cancel']),
@@ -134,7 +134,7 @@ class L10nEsAeatMod347Report(models.Model):
             return
         receivable_ids = [x.property_account_receivable.id for x in partners]
         cash_account_move_lines = move_line_obj.search(
-            [('partner_id', 'child_of', partners.ids),
+            [('partner_id.commercial_partner_id', 'in', partners.ids),
              ('account_id', 'in', receivable_ids),
              ('journal_id', 'in', cash_journals.ids),
              ('period_id', 'in', periods.ids)])
@@ -215,8 +215,8 @@ class L10nEsAeatMod347Report(models.Model):
             report.partner_record_ids.unlink()
             # We will check every partner with not_in_mod347 flag unchecked
             visited_partners = self.env['res.partner']
-            domain = [('not_in_mod347', '=', False),
-                      ('parent_id', '=', False)]
+            domain = [('not_in_mod347', '=', False), '|',
+                      ('parent_id', '=', False), ('is_company', '=', True)]
             if report.only_supplier:
                 domain.append(('supplier', '=', True))
             else:
