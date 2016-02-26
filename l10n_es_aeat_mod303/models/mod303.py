@@ -56,12 +56,12 @@ class L10nEsAeatMod303Report(models.Model):
 
     @api.multi
     @api.depends('atribuible_estado', 'cuota_compensar',
-                 'regularizacion_anual')
+                 'regularizacion_anual', 'casilla_77')
     def _compute_casilla_69(self):
         for report in self:
             report.casilla_69 = (
-                report.atribuible_estado + report.cuota_compensar +
-                report.regularizacion_anual)
+                report.atribuible_estado + report.casilla_77 +
+                report.cuota_compensar + report.regularizacion_anual)
 
     @api.multi
     @api.depends('casilla_69', 'previous_result')
@@ -121,6 +121,15 @@ class L10nEsAeatMod303Report(models.Model):
         string="[69] Resultado", readonly=True, compute="_compute_casilla_69",
         help="Atribuible a la Administración [66] - Cuotas a compensar [67] + "
              "Regularización anual [68]""", store=True)
+    casilla_77 = fields.Float(
+        string="[77] Iva Diferido (Liquidado por aduana)",
+        help="Se hará constar el importe de las cuotas del Impuesto a la "
+             "importación incluidas en los documentos en los que conste la "
+             "liquidación practicada por la Administración recibidos en el "
+             "periodo de liquidación. Solamente podrá cumplimentarse esta "
+             "casilla cuando se cumplan los requisitos establecidos en el "
+             "artículo 74.1 del Reglamento del Impuesto sobre el Valor "
+             "Añadido. ")
     previous_result = fields.Float(
         string="[70] A deducir",
         help="Resultado de la anterior o anteriores declaraciones del mismo "
