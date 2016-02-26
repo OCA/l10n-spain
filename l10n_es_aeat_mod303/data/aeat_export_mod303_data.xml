@@ -2392,7 +2392,7 @@
             <field name="sequence">47</field>
             <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
             <field name="name">Resultado - IVA a la importación liquidado por la Aduana pendiente de ingreso [77]</field>
-            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==33).amount}</field>
+            <field name="expression">${object.casilla_77}</field>
             <field name="fixed_value">0</field>
             <field name="export_type">float</field>
             <field name="apply_sign" eval="True"/>
