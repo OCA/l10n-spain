@@ -3,13 +3,14 @@
 # * l10n_es_account_invoice_sequence
 # 
 # Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 19:24+0000\n"
-"PO-Revision-Date: 2015-11-05 13:16+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-02-26 01:41+0000\n"
+"PO-Revision-Date: 2016-02-22 14:00+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,38 +26,38 @@ msgstr "Račun"
 #. module: l10n_es_account_invoice_sequence
 #: field:account.invoice,invoice_number:0
 msgid "Invoice number"
-msgstr ""
+msgstr "Številka računa"
 
 #. module: l10n_es_account_invoice_sequence
 #: field:account.journal,invoice_sequence_id:0
 msgid "Invoice sequence"
-msgstr ""
+msgstr "Zaporedje računa"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_journal
 msgid "Journal"
-msgstr ""
+msgstr "Dnevnik"
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/models/account_invoice.py:41
 #, python-format
 msgid "Journal %s has no sequence defined for invoices."
-msgstr ""
+msgstr "Dnevnik %s nima določenega zaporedja računov."
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/__init__.py:29
 #: code:addons/l10n_es_account_invoice_sequence/wizard/wizard_multi_charts_accounts.py:32
 #, python-format
 msgid "Journal Entries Sequence"
-msgstr ""
+msgstr "Zaporedje dnevniških vnosov"
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:41
 #, python-format
 msgid "Journal company and invoice sequence company do not match."
-msgstr ""
+msgstr "Družba dnevnika in družba zaporedja računov se ne ujemata."
 
 #. module: l10n_es_account_invoice_sequence
 #: help:account.journal,invoice_sequence_id:0
 msgid "The sequence used for invoice numbers in this journal."
-msgstr ""
+msgstr "Zaporedje uporabljeno za številke računov v tem dnevniku."
