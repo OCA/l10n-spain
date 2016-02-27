@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-26 01:42+0000\n"
-"PO-Revision-Date: 2015-10-01 08:02+0000\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-03-02 09:27+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -262,6 +262,11 @@ msgid "Processed"
 msgstr "Processed"
 
 #. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,name:0
+msgid "Report identifier"
+msgstr "Report identifier"
+
+#. module: l10n_es_aeat_mod303
 #: view:l10n.es.aeat.mod303.report:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Resultado"
 msgstr "Resultado"
@@ -274,21 +279,16 @@ msgid ""
 msgstr "Resultado de la anterior o anteriores declaraciones del mismo concepto, ejercicio y periodo"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:198
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:187
 #, python-format
 msgid "Select an account for making the charge"
 msgstr "Select an account for making the charge"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:200
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:189
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr "Select an account for receiving the money"
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,sequence:0
-msgid "Sequence"
-msgstr "Sequence"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,compensate:0
@@ -318,6 +318,7 @@ msgid "Support Type"
 msgstr "Support Type"
 
 #. module: l10n_es_aeat_mod303
+#: view:l10n.es.aeat.mod303.report:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 #: field:l10n.es.aeat.mod303.report,tax_lines:0
 msgid "Tax lines"
 msgstr "Tax lines"
