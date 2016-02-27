@@ -275,20 +275,22 @@ class L10nEsAeatMod347Report(models.Model):
              "payments, on behalf of third parties, over this limit",
         default=300.51)
     total_partner_records = fields.Integer(
-        compute="_get_totals", string="Partners records")
+        compute="_get_totals", string="Partners records", store=True,
+        readonly=True)
     total_amount = fields.Float(
-        compute="_get_totals", string="Amount")
+        compute="_get_totals", string="Amount", store=True, readonly=True)
     total_cash_amount = fields.Float(
-        compute="_get_totals", string="Cash Amount")
+        compute="_get_totals", string="Cash Amount", store=True, readonly=True)
     total_real_estate_transmissions_amount = fields.Float(
         compute="_get_totals", string="Real Estate Transmissions Amount",
-        oldname='total_real_state_transmissions_amount')
+        oldname='total_real_state_transmissions_amount', store=True,
+        readonly=True)
     total_real_estate_records = fields.Integer(
         compute="_get_totals", string="Real estate records",
-        oldname='total_real_state_records')
+        oldname='total_real_state_records', store=True, readonly=True)
     total_real_estate_amount = fields.Float(
         compute="_get_totals", string="Real Estate Amount",
-        oldname='total_real_state_amount')
+        oldname='total_real_state_amount', store=True, readonly=True)
     partner_record_ids = fields.One2many(
         comodel_name='l10n.es.aeat.mod347.partner_record',
         inverse_name='report_id', string='Partner Records')
@@ -438,27 +440,31 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     partner_country_code = fields.Char(string='Country Code', size=2)
     partner_state_code = fields.Char(string='State Code', size=2)
     first_quarter = fields.Float(
-        compute="_get_quarter_totals", string="First Quarter", digits=(13, 2))
+        compute="_get_quarter_totals", string="First Quarter", digits=(13, 2),
+        store=True)
     first_quarter_real_estate_transmission_amount = fields.Float(
-        compute="_get_quarter_totals", digits=(13, 2),
+        compute="_get_quarter_totals", digits=(13, 2), store=True,
         string="First Quarter Real Estate Transmission Amount",
         oldname="first_quarter_real_state_transmission_amount")
     second_quarter = fields.Float(
-        compute="_get_quarter_totals", string="Second Quarter", digits=(13, 2))
+        compute="_get_quarter_totals", string="Second Quarter", digits=(13, 2),
+        store=True)
     second_quarter_real_estate_transmission_amount = fields.Float(
-        compute="_get_quarter_totals", digits=(13, 2),
+        compute="_get_quarter_totals", digits=(13, 2), store=True,
         string="Second Quarter Real Estate Transmission Amount",
         oldname="second_quarter_real_state_transmission_amount")
     third_quarter = fields.Float(
-        compute="_get_quarter_totals", string="Third Quarter", digits=(13, 2))
+        compute="_get_quarter_totals", string="Third Quarter", digits=(13, 2),
+        store=True)
     third_quarter_real_estate_transmission_amount = fields.Float(
-        compute="_get_quarter_totals", digits=(13, 2),
+        compute="_get_quarter_totals", digits=(13, 2), store=True,
         string="Third Quarter Real Estate Transmission Amount",
         oldname="third_quarter_real_state_transmission_amount")
     fourth_quarter = fields.Float(
-        compute="_get_quarter_totals", string="Fourth Quarter", digits=(13, 2))
+        compute="_get_quarter_totals", string="Fourth Quarter", digits=(13, 2),
+        store=True)
     fourth_quarter_real_estate_transmission_amount = fields.Float(
-        compute="_get_quarter_totals", digits=(13, 2),
+        compute="_get_quarter_totals", digits=(13, 2), store=True,
         string="Fourth Quarter Real Estate Transmission Amount",
         oldname="fourth_quarter_real_state_transmission_amount")
     amount = fields.Float(
