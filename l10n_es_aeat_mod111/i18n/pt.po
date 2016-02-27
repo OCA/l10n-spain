@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:57+0000\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-03-04 16:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,17 @@ msgid "AEAT 111 report"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: code:addons/l10n_es_aeat_mod111/models/mod111.py:296
+#, python-format
+msgid "Account Move Lines"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,move_id:0
+msgid "Account entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,calculation_date:0
 msgid "Calculation date"
 msgstr "Data processada"
@@ -33,153 +44,204 @@ msgid "Cancelled"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_01:0
-msgid "Casilla [01]"
+#: help:l10n.es.aeat.mod111.report,casilla_01:0
+msgid ""
+"Casilla [01]: Rendimientos del trabajo - Rendimientos dinerarios - Nº de "
+"perceptores"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_02:0
-msgid "Casilla [02]"
+#: help:l10n.es.aeat.mod111.report,casilla_02:0
+msgid ""
+"Casilla [02]: Rendimientos del trabajo - Rendimientos dinerarios - Importe "
+"de las percepciones"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_03:0
-msgid "Casilla [03]"
+#: help:l10n.es.aeat.mod111.report,casilla_03:0
+msgid ""
+"Casilla [03]: Rendimientos del trabajo - Rendimientos dinerarios - Importe "
+"de las retenciones"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_04:0
-msgid "Casilla [04]"
+#: help:l10n.es.aeat.mod111.report,casilla_04:0
+msgid ""
+"Casilla [04]: Rendimientos del trabajo - Rendimientos en especie - Nº de "
+"perceptores"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_05:0
-msgid "Casilla [05]"
+#: help:l10n.es.aeat.mod111.report,casilla_05:0
+msgid ""
+"Casilla [05]: Rendimientos del trabajo - Rendimientos en especie - Valor "
+"percepciones en especie"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_06:0
-msgid "Casilla [06]"
+#: help:l10n.es.aeat.mod111.report,casilla_06:0
+msgid ""
+"Casilla [06]: Rendimientos del trabajo - Rendimientos en especie - Importe "
+"de los ingresos a cuenta"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_07:0
-msgid "Casilla [07]"
+#: help:l10n.es.aeat.mod111.report,casilla_07:0
+msgid ""
+"Casilla [07]: Rendimientos de actividades económicas - Rendimientos "
+"dinerarios - Nº de perceptores"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_08:0
-msgid "Casilla [08]"
+#: help:l10n.es.aeat.mod111.report,casilla_08:0
+msgid ""
+"Casilla [08]: Rendimientos de actividades económicas - Rendimientos "
+"dinerarios - Importe de las percepciones"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_09:0
-msgid "Casilla [09]"
+#: help:l10n.es.aeat.mod111.report,casilla_09:0
+msgid ""
+"Casilla [09]: Rendimientos de actividades económicas - Rendimientos "
+"dinerarios - Importe de las retenciones"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_10:0
-msgid "Casilla [10]"
+#: help:l10n.es.aeat.mod111.report,casilla_10:0
+msgid ""
+"Casilla [10]: Rendimientos de actividades económicas - Rendimientos en "
+"especie - Nº de perceptores"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_11:0
-msgid "Casilla [11]"
+#: help:l10n.es.aeat.mod111.report,casilla_11:0
+msgid ""
+"Casilla [11]: Rendimientos de actividades económicas - Rendimientos en "
+"especie - Valor percepciones en especie"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_12:0
-msgid "Casilla [12]"
+#: help:l10n.es.aeat.mod111.report,casilla_12:0
+msgid ""
+"Casilla [12]: Rendimientos de actividades económicas - Rendimientos en "
+"especie - Importe de los ingresos a cuenta"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_13:0
-msgid "Casilla [13]"
+#: help:l10n.es.aeat.mod111.report,casilla_13:0
+msgid ""
+"Casilla [13]: Premios por la participación en juegos, concursos, rifas o "
+"combinaciones aleatorias - Premios en metálico - Nº de perceptores"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_14:0
-msgid "Casilla [14]"
+#: help:l10n.es.aeat.mod111.report,casilla_14:0
+msgid ""
+"Casilla [14]: Premios por la participación en juegos, concursos, rifas o "
+"combinaciones aleatorias - Premios en metálico - Importe de las percepciones"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_15:0
-msgid "Casilla [15]"
+#: help:l10n.es.aeat.mod111.report,casilla_15:0
+msgid ""
+"Casilla [15]: Premios por la participación en juegos, concursos, rifas o "
+"combinaciones aleatorias - Premios en metálico - Importe de las retenciones"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_16:0
-msgid "Casilla [16]"
+#: help:l10n.es.aeat.mod111.report,casilla_16:0
+msgid ""
+"Casilla [16]: Premios por la participación en juegos, concursos, rifas o "
+"combinaciones aleatorias - Premios en especie - Nº de perceptores"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_17:0
-msgid "Casilla [17]"
+#: help:l10n.es.aeat.mod111.report,casilla_17:0
+msgid ""
+"Casilla [17]: Premios por la participación en juegos, concursos, rifas o "
+"combinaciones aleatorias - Premios en especie - Valor percepciones en "
+"especie"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_18:0
-msgid "Casilla [18]"
+#: help:l10n.es.aeat.mod111.report,casilla_18:0
+msgid ""
+"Casilla [18]: Premios por la participación en juegos, concursos, rifas o "
+"combinaciones aleatorias - Premios en especie - Importe de los ingresos a "
+"cuenta"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_19:0
-msgid "Casilla [19]"
+#: help:l10n.es.aeat.mod111.report,casilla_19:0
+msgid ""
+"Casilla [19]: Ganancias patrimoniales derivadas de los aprovechamientos "
+"forestales de los vecinos en montes públicos - Percepciones dinerarias - Nº "
+"de perceptores"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_20:0
-msgid "Casilla [20]"
+#: help:l10n.es.aeat.mod111.report,casilla_20:0
+msgid ""
+"Casilla [20]: Ganancias patrimoniales derivadas de los aprovechamientos "
+"forestales de los vecinos en montes públicos - Percepciones dinerarias - "
+"Importe de las percepciones"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_21:0
-msgid "Casilla [21]"
+#: help:l10n.es.aeat.mod111.report,casilla_21:0
+msgid ""
+"Casilla [21]: Ganancias patrimoniales derivadas de los aprovechamientos "
+"forestales de los vecinos en montes públicos - Percepciones dinerarias - "
+"Importe de las retenciones"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_22:0
-msgid "Casilla [22]"
+#: help:l10n.es.aeat.mod111.report,casilla_22:0
+msgid ""
+"Casilla [22]: Ganancias patrimoniales derivadas de los aprovechamientos "
+"forestales de los vecinos en montes públicos - Percepciones en especie - Nº "
+"de perceptores"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_23:0
-msgid "Casilla [23]"
+#: help:l10n.es.aeat.mod111.report,casilla_23:0
+msgid ""
+"Casilla [23]: Ganancias patrimoniales derivadas de los aprovechamientos "
+"forestales de los vecinos en montes públicos - Percepciones en especie - "
+"Valor percepciones en especie"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_24:0
-msgid "Casilla [24]"
+#: help:l10n.es.aeat.mod111.report,casilla_24:0
+msgid ""
+"Casilla [24]: Ganancias patrimoniales derivadas de los aprovechamientos "
+"forestales de los vecinos en montes públicos - Percepciones en especie - "
+"Importe de los ingresos a cuenta"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_25:0
-msgid "Casilla [25]"
+#: help:l10n.es.aeat.mod111.report,casilla_25:0
+msgid ""
+"Casilla [25]: Contraprestaciones por la cesión de derechos de imagen: "
+"ingresos a cuenta previstos en el artículo 92.8 de la Ley del Impuesto - "
+"Contraprestaciones dinerarias o en especie - Nº de perceptores"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_26:0
-msgid "Casilla [26]"
+#: help:l10n.es.aeat.mod111.report,casilla_26:0
+msgid ""
+"Casilla [26]: Contraprestaciones por la cesión de derechos de imagen: "
+"ingresos a cuenta previstos en el artículo 92.8 de la Ley del Impuesto - "
+"Contraprestaciones dinerarias o en especie - Contraprestaciones satisfechas"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_27:0
-msgid "Casilla [27]"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_28:0
-msgid "Casilla [28]"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_29:0
-msgid "Casilla [29]"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,casilla_30:0
-msgid "Casilla [30]"
+#: help:l10n.es.aeat.mod111.report,casilla_27:0
+msgid ""
+"Casilla [27]: Contraprestaciones por la cesión de derechos de imagen: "
+"ingresos a cuenta previstos en el artículo 92.8 de la Ley del Impuesto - "
+"Contraprestaciones dinerarias o en especie - Importe de los ingresos a "
+"cuenta"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
@@ -203,18 +265,8 @@ msgid "Contraprest. cesión dchos. imagen"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_26:0
-msgid "Contraprest. cesión dchos. imagen - Contraprestaciones satisfechas"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_27:0
-msgid "Contraprest. cesión dchos. imagen - Importe de los ingresos a cuenta"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_25:0
-msgid "Contraprest. cesión dchos. imagen - Nº de perceptores"
+#: field:l10n.es.aeat.mod111.report,counterpart_account:0
+msgid "Counterpart account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
@@ -328,48 +380,6 @@ msgid "Ganancias patrim. Aprovecham. Forestales"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_20:0
-msgid ""
-"Ganancias patrim. Aprovecham. Forestales - Percep. dinerarias - Importe "
-"percepciones"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_21:0
-msgid ""
-"Ganancias patrim. Aprovecham. Forestales - Percep. dinerarias - Importe "
-"retenciones"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_19:0
-msgid ""
-"Ganancias patrim. Aprovecham. Forestales - Percep. dinerarias - Nº "
-"perceptores"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_24:0
-msgid ""
-"Ganancias patrim. Aprovecham. Forestales - Percep. en especie - Importe "
-"ingresos a cuenta"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_23:0
-msgid ""
-"Ganancias patrim. Aprovecham. Forestales - Percep. en especie - Importe "
-"percepciones"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_22:0
-msgid ""
-"Ganancias patrim. Aprovecham. Forestales - Percep. en especie - Nº "
-"perceptores"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.export_to_boe,id:0
 #: field:l10n.es.aeat.mod111.report,id:0
 msgid "ID"
@@ -383,6 +393,16 @@ msgstr ""
 #. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.report,tipo_declaracion:0
 msgid "Ingreso a anotar en CCT"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,journal_id:0
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: help:l10n.es.aeat.mod111.report,journal_id:0
+msgid "Journal in which post the move."
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
@@ -468,48 +488,18 @@ msgid "Period(s)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,period_id:0
-msgid "Periodo"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,contact_phone:0
 msgid "Phone"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: selection:l10n.es.aeat.mod111.report,state:0
+msgid "Posted"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Premios"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_14:0
-msgid "Premios - Premios dinerarios - Importe de las percepciones"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_15:0
-msgid "Premios - Premios dinerarios - Importe de las retenciones"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_13:0
-msgid "Premios - Premios dinerarios - Nº de perceptores"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_17:0
-msgid "Premios - Premios en especie - Importe de las percepciones"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_18:0
-msgid "Premios - Premios en especie - Importe de los ingresos a cuenta"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_16:0
-msgid "Premios - Premios en especie - Nº de perceptores"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
@@ -538,81 +528,8 @@ msgid "Rendim. actividades económicas"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_08:0
-msgid ""
-"Rendim. actividades económicas - Rendimientos dinerarios - Importe "
-"percepciones"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_09:0
-msgid ""
-"Rendim. actividades económicas - Rendimientos dinerarios - Importe "
-"retenciones"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_07:0
-msgid ""
-"Rendim. actividades económicas - Rendimientos dinerarios - Nº de perceptores"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_12:0
-msgid ""
-"Rendim. actividades económicas - Rendimientos en especie - Importe de los "
-"ingresos en cuenta"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_10:0
-msgid ""
-"Rendim. actividades económicas - Rendimientos en especie - Nº de perceptores"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_11:0
-msgid ""
-"Rendim. actividades económicas - Rendimientos en especie - Valor "
-"percepciones en especie"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
 #: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Rendim. del trabajo"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_02:0
-msgid "Rendim. del trabajo - Rendimientos dinerarios - Importe percepciones"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_03:0
-msgid "Rendim. del trabajo - Rendimientos dinerarios - Importe retenciones"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_01:0
-msgid "Rendim. del trabajo - Rendimientos dinerarios - Nº de perceptores"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_06:0
-msgid ""
-"Rendim. del trabajo - Rendimientos en especie - Importe ingresos en cuenta"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_04:0
-msgid "Rendim. del trabajo - Rendimientos en especie - Nº de perceptores"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_05:0
-msgid ""
-"Rendim. del trabajo - Rendimientos en especie - Valor percepciones en "
-"especie"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
@@ -631,17 +548,27 @@ msgid "Rendimientos en especies:"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Resultado"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,sequence:0
-msgid "Sequence"
-msgstr "Sequência"
+#: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
+msgid "Show account move lines for amount"
+msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: code:addons/l10n_es_aeat_mod111/models/mod111.py:193
+#: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
+msgid "Show account move lines for base"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: code:addons/l10n_es_aeat_mod111/models/mod111.py:237
 #, python-format
 msgid ""
 "Si se marca la casilla de liquidación complementaria, debe rellenar el "
@@ -680,6 +607,13 @@ msgid "Telematics"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
+#: help:l10n.es.aeat.mod111.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,tipo_declaracion:0
 msgid "Tipo de declaración"
 msgstr ""
@@ -690,23 +624,156 @@ msgid "Total liquidación"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_30:0
-msgid "Total liquidación - Resultado a ingresar"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_29:0
-msgid "Total liquidación - Resultado de anteriores declaraciones"
-msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: help:l10n.es.aeat.mod111.report,casilla_28:0
-msgid "Total liquidación - Suma retencones e ingresos a cuenta"
+msgid ""
+"Total liquidación - A deducir (exclusivamente en caso de autoliquidación "
+"complementaria): Resultados a ingresar de anteriores autoliquidaciones por "
+"el mismo concepto, ejercicio y período"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,company_vat:0
 msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_01:0
+msgid "[01] Nº de perceptores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_02:0
+msgid "[02] Importe de las percepciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_03:0
+msgid "[03] Importe de las retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_04:0
+msgid "[04] Nº de perceptores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_05:0
+msgid "[05] Valor percepciones en especie"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_06:0
+msgid "[06] Importe de los ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_07:0
+msgid "[07] Nº de perceptores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_08:0
+msgid "[08] Importe de las percepciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_09:0
+msgid "[09] Importe de las retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_10:0
+msgid "[10] Nº de perceptores "
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_11:0
+msgid "[11] Valor percepciones en especie"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_12:0
+msgid "[12] Importe de los ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_13:0
+msgid "[13] Nº de perceptores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_14:0
+msgid "[14] Importe de las percepciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_15:0
+msgid "[15] Importe de las retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_16:0
+msgid "[16] Nº de perceptores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_17:0
+msgid "[17] Valor percepciones en especie"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_18:0
+msgid "[18] Importe de los ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_19:0
+msgid "[19] Nº de perceptores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_20:0
+msgid "[20] Importe de las percepciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_21:0
+msgid "[21] Importe de las retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_22:0
+msgid "[22] Nº de perceptores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_23:0
+msgid "[23] Valor percepciones en especie"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_24:0
+msgid "[24] Importe de los ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_25:0
+msgid "[25] Nº de perceptores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_26:0
+msgid "[26] Contraprestaciones satisfechas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_27:0
+msgid "[27] Importe de los ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_29:0
+msgid "[29] Resultados a ingresar anteriores"
 msgstr ""
 
 #. module: l10n_es_aeat_mod111
