@@ -107,6 +107,7 @@ Contribuidores
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Joaquín Gutierrez (http://gutierrezweb.es)
 * Comunitea (http://www.comunitea.com)
+* Antonio Espinosa <antonioea@antiun.com>
 
 Maintainer
 ----------

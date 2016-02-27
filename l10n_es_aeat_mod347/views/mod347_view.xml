@@ -3,14 +3,15 @@
     <data>
 
         <!-- ##########################################
-                   AEAT MODEL 347 PARTNER RECORD 
+                   AEAT MODEL 347 PARTNER RECORD
              ########################################## -->
         <!-- Tree view -->
         <record model="ir.ui.view" id="view_l10n_es_aeat_mod347_partner_record_tree">
             <field name="name">l10n.es.aeat.mod347.partner_record.tree</field>
             <field name="model">l10n.es.aeat.mod347.partner_record</field>
             <field name="arch" type="xml">
-                <tree string="Partner Records" colors="">
+                <tree string="Partner Records" colors="red:not check_ok">
+                    <field name="check_ok" invisible="1"/>
                     <field name="operation_key" select="1"/>
                     <field name="partner_vat" select="1"/>
                     <field name="partner_id" select="1"/>
@@ -28,8 +29,9 @@
             <field name="name">l10n.es.aeat.mod347.partner_record.form</field>
             <field name="model">l10n.es.aeat.mod347.partner_record</field>
             <field name="arch" type="xml">
-                <form string="Partner Record" version="7.0">
+                <form string="Partner Record">
                     <field name="report_id" invisible="1"/>
+                    <field name="automatic" invisible="1"/>
                     <notebook>
                         <page string="Partner info">
                             <group>
@@ -57,10 +59,20 @@
                             </group>
                             <group >
                                 <group>
-                                    <field name="first_quarter"/>
-                                    <field name="second_quarter"/>
-                                    <field name="third_quarter"/>
-                                    <field name="fourth_quarter"/>
+                                    <field name="first_quarter" attrs="{'invisible': [('automatic', '=', False)]}"/>
+                                    <field name="second_quarter" attrs="{'invisible': [('automatic', '=', False)]}"/>
+                                    <field name="third_quarter" attrs="{'invisible': [('automatic', '=', False)]}"/>
+                                    <field name="fourth_quarter" attrs="{'invisible': [('automatic', '=', False)]}"/>
+                                    <field name="manual_first_quarter" attrs="{'invisible': [('automatic', '=', True)]}"/>
+                                    <field name="manual_second_quarter" attrs="{'invisible': [('automatic', '=', True)]}"/>
+                                    <field name="manual_third_quarter" attrs="{'invisible': [('automatic', '=', True)]}"/>
+                                    <field name="manual_fourth_quarter" attrs="{'invisible': [('automatic', '=', True)]}"/>
+                                </group>
+                                <group>
+                                    <field name="first_quarter_cash_amount"/>
+                                    <field name="second_quarter_cash_amount"/>
+                                    <field name="third_quarter_cash_amount"/>
+                                    <field name="fourth_quarter_cash_amount"/>
                                 </group>
                                 <group>
                                     <field name="first_quarter_real_estate_transmission_amount"/>
@@ -82,17 +94,21 @@
                                 </group>
                             </group>
                         </page>
+                        <!-- TODO: By now these fields must be filled by user manually
                         <page string="Real estate info" attrs="{'invisible': [('bussiness_real_estate_rent','=',False)]}">
                             <field name="real_estate_record_ids" nolabel="1" context="{'report_id': report_id, 'partner_id': partner_id, 'partner_vat': partner_vat, 'representative_vat': representative_vat}"/>
                         </page>
+                        -->
                         <page string="Details">
+                            <div><strong>Leyend:</strong> <span style="color: blue;">Refund invoices</span> - Normal invoices</div>
                             <field name="invoice_record_ids" context="{'partner_record_id': active_id}" readonly="True">
-                                <tree string="Invoice records">
+                                <tree string="Invoice records" colors="blue:invoice_type in ('in_refund', 'out_refund');">
+                                    <field name="invoice_type" invisible="1"/>
                                     <field name="invoice_id" select="1"/>
                                     <field name="date" select="1"/>
                                     <field name="amount" select="1"/>
                                 </tree>
-                                <form string="Invoice record" version="7.0">
+                                <form string="Invoice record">
                                     <group>
                                         <field name="invoice_id" select="1" readonly="True"/>
                                         <field name="date" select="1" readonly="True"/>
@@ -108,7 +124,7 @@
                                     <field name="date" select="1"/>
                                     <field name="amount" select="1"/>
                                 </tree>
-                                <form string="Cash record" version="7.0">
+                                <form string="Cash record">
                                     <group>
                                         <field name="move_line_id" select="1" readonly="True"/>
                                         <field name="date" select="1" readonly="True"/>
@@ -123,7 +139,7 @@
                 </form>
             </field>
         </record>
-        
+
         <!-- Search view -->
         <record id="partner_record_search_view" model="ir.ui.view">
             <field name="name">l10n.es.aeat.mod347.partner_record.search</field>
@@ -133,6 +149,14 @@
                     <field name="partner_id" string="Partner" filter_domain="[('partner_id','ilike',self)]"/>
                     <field name="operation_key" string="Operation key" filter_domain="[('operation_key','ilike',self)]"/>
                     <field name="partner_vat" string="Record" filter_domain="['|',('partner_vat','ilike',self),('partner_id','ilike',self)]"/>
+                    <separator/>
+                    <filter name="invalid" string="Invalid records"
+                            domain="[('check_ok', '=', False)]"/>
+                    <separator/>
+                    <filter name="manual" string="Manual records"
+                            domain="[('automatic', '=', False)]"/>
+                    <filter name="automatic" string="Automatic records"
+                            domain="[('automatic', '=', True)]"/>
                     <separator/>
                     <group  expand='0' string='Group by...'>
                        <filter string='Operation key' domain="[]" context="{'group_by' : 'operation_key'}"/>
@@ -149,7 +173,8 @@
             <field name="name">l10n.es.aeat.mod347.real_estate_record.tree</field>
             <field name="model">l10n.es.aeat.mod347.real_estate_record</field>
             <field name="arch" type="xml">
-                <tree string="Real Estate Records" colors="">
+                <tree string="Real Estate Records" colors="red:not check_ok">
+                    <field name="check_ok" invisible="1"/>
                     <field name="partner_vat" select="1"/>
                     <field name="partner_id" select="1"/>
                     <field name="reference" select="2"/>
@@ -167,7 +192,7 @@
             <field name="name">l10n.es.aeat.mod347.real_estate_record.form</field>
             <field name="model">l10n.es.aeat.mod347.real_estate_record</field>
             <field name="arch" type="xml">
-                <form string="Real Estate Record" version="7.0">
+                <form string="Real Estate Record">
                     <field name="report_id" invisible="1"/>
                     <group string="Partner info">
                         <group>
@@ -207,7 +232,7 @@
                                 <field name="portal"/>
                                 <field name="door"/>
                             </group>
-                           
+
                         </group>
                         <group>
                             <field name="complement"/>
@@ -216,7 +241,7 @@
                             <group>
                                 <field name="city"/>
                                 <field name="state_code"/>
-                                
+
                             </group>
                             <group>
                                 <field name="township"/>
@@ -269,18 +294,27 @@
                                 <group string="Summary">
                                     <field name="total_partner_records"/>
                                     <field name="total_amount"/>
+                                    <field name="total_cash_amount"/>
+                                    <field name="total_real_estate_transmissions_amount"/>
                                     <field name="total_real_estate_records"/>
                                     <field name="total_real_estate_amount"/>
                                 </group>
                             </group>
                         </page>
                         <page string="Partner records">
-                        	<button name="btn_list_records" string="Open list in new window" type="object" class="oe_link oe_inline" colspan="1"/>
-                            <field name="partner_record_ids" nolabel="1" context="{'report_id': active_id}"
-                                   attrs="{'readonly': [('state', '!=', 'calculated')]}"/>
+                            <button name="button_list_partner_records"
+                                    string="Edit records"
+                                    type="object" colspan="1"/>
+                            <field name="partner_record_ids" nolabel="1"
+                                   context="{'report_id': active_id}"
+                                   readonly="True"/>
                         </page>
                         <page string="Real Estate records">
-                            <field name="real_estate_record_ids" nolabel="1" context="{'report_id': active_id}"
+                            <button name="button_list_real_estate_records"
+                                    string="Edit records"
+                                    type="object" colspan="1"/>
+                            <field name="real_estate_record_ids" nolabel="1"
+                                   context="{'report_id': active_id}"
                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"/>
                         </page>
                     </notebook>
@@ -298,7 +332,7 @@
             <p class="oe_view_nocontent_create">
                 Click to create a AEAT Model 347 Reports.
               </p><p>
-                Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban 
+                Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban
                 los diseños físicos y lógicos del 347.
               </p>
               </field>
