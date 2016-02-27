@@ -5,13 +5,13 @@
 # Translators:
 # Alejandro Santana <alejandrosantana@anubia.es>, 2015
 # Antonio Espinosa <antonioea@antiun.com>, 2015
-# Carles Antolí <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 19:24+0000\n"
-"PO-Revision-Date: 2015-11-05 11:42+0000\n"
+"POT-Creation-Date: 2016-06-08 00:56+0000\n"
+"PO-Revision-Date: 2016-06-07 18:16+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -35,6 +35,11 @@ msgstr "Apuntes contables"
 #: field:l10n.es.aeat.mod111.report,move_id:0
 msgid "Account entry"
 msgstr "Entrada cuenta"
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,allow_posting:0
+msgid "Allow posting"
+msgstr ""
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,calculation_date:0
@@ -328,6 +333,12 @@ msgid "Declaration number"
 msgstr "Nº declaración"
 
 #. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.export_to_boe,display_name:0
+#: field:l10n.es.aeat.mod111.report,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.report,tipo_declaracion:0
 msgid "Domiciliación"
 msgstr "Domiciliación"
@@ -414,6 +425,12 @@ msgid "L.R. VAT number"
 msgstr "NIF representante legal"
 
 #. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.mod111.report,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod111.report,write_uid:0
 msgid "Last Updated by"
@@ -434,6 +451,11 @@ msgstr "NIF del representante legal"
 #: field:l10n.es.aeat.mod111.report,contact_mobile_phone:0
 msgid "Mobile Phone"
 msgstr "Teléfono móvil"
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,model:0
+msgid "Model"
+msgstr ""
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.ui.menu,name:l10n_es_aeat_mod111.menu_aeat_mod111_report
@@ -551,14 +573,14 @@ msgid "Rendimientos en especies:"
 msgstr "Rendimientos en especies:"
 
 #. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Resultado"
 msgstr "Resultado"
-
-#. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.report,sequence:0
-msgid "Sequence"
-msgstr "Secuencia"
 
 #. module: l10n_es_aeat_mod111
 #: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
@@ -602,7 +624,7 @@ msgstr "Tipo de soporte"
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,tax_lines:0
 msgid "Tax lines"
-msgstr "Lineas de impuestos"
+msgstr "Líneas de impuestos"
 
 #. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.report,support_type:0
@@ -633,6 +655,18 @@ msgid ""
 "complementaria): Resultados a ingresar de anteriores autoliquidaciones por "
 "el mismo concepto, ejercicio y período"
 msgstr "Total liquidación - A deducir (exclusivamente en caso de autoliquidación complementaria): Resultados a ingresar de anteriores autoliquidaciones por el mismo concepto, ejercicio y período"
+
+#. module: l10n_es_aeat_mod111
+#: help:l10n.es.aeat.mod111.report,casilla_30:0
+msgid "Total liquidación - Resultado a ingresar: ([28] - [29])"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: help:l10n.es.aeat.mod111.report,casilla_28:0
+msgid ""
+"Total liquidación - Suma de retenciones e ingresos a cuenta: ([03] + [06] + "
+"[09] + [12] + [15] + [18] + [21] + [24] + [27])"
+msgstr ""
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,company_vat:0
@@ -775,9 +809,19 @@ msgid "[27] Importe de los ingresos a cuenta"
 msgstr "[27] Importe de los ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_28:0
+msgid "[28] Suma de retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,casilla_29:0
 msgid "[29] Resultados a ingresar anteriores"
 msgstr "[29] Resultados a ingresar anteriores"
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,casilla_30:0
+msgid "[30] Resultado a ingresar"
+msgstr ""
 
 #. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.export_to_boe,state:0
@@ -788,11 +832,6 @@ msgstr "obtener"
 #: selection:l10n.es.aeat.mod111.export_to_boe,state:0
 msgid "open"
 msgstr "abierto"
-
-#. module: l10n_es_aeat_mod111
-#: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
-msgid "{'invisible': 1}"
-msgstr "{'invisible': 1}"
 
 #. module: l10n_es_aeat_mod111
 #: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
