@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-04 17:30+0000\n"
-"PO-Revision-Date: 2015-11-04 17:30+0000\n"
+"POT-Creation-Date: 2016-02-26 01:41+0000\n"
+"PO-Revision-Date: 2016-02-25 17:14+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -45,22 +45,32 @@ msgstr "Cancelada"
 
 #. module: l10n_es_aeat_mod115
 #: help:l10n.es.aeat.mod115.report,casilla_01:0
-msgid "Casilla [01] Liquidación - Retenciones e ingresos a cuenta - Número de perceptores"
+msgid ""
+"Casilla [01] Liquidación - Retenciones e ingresos a cuenta - Número de "
+"perceptores"
 msgstr "Casilla [01] Liquidación - Retenciones e ingresos a cuenta - Número de perceptores"
 
 #. module: l10n_es_aeat_mod115
 #: help:l10n.es.aeat.mod115.report,casilla_02:0
-msgid "Casilla [02] Liquidación - Retenciones e ingresos a cuenta - Base de las retenciones e ingresos a cuenta"
+msgid ""
+"Casilla [02] Liquidación - Retenciones e ingresos a cuenta - Base de las "
+"retenciones e ingresos a cuenta"
 msgstr "Casilla [02] Liquidación - Retenciones e ingresos a cuenta - Base de las retenciones e ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod115
 #: help:l10n.es.aeat.mod115.report,casilla_03:0
-msgid "Casilla [03] Liquidación - Retenciones e ingresos a cuenta - Retenciones e ingresos a cuenta"
+msgid ""
+"Casilla [03] Liquidación - Retenciones e ingresos a cuenta - Retenciones e "
+"ingresos a cuenta"
 msgstr "Casilla [03] Liquidación - Retenciones e ingresos a cuenta - Retenciones e ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod115
 #: help:l10n.es.aeat.mod115.report,casilla_04:0
-msgid "Casilla [04] Liquidación - Retenciones e ingresos a cuenta - A deducir (exclusivamente en caso de declaración complementaria) Resultado a ingresar de la anterior o anteriores declaraciones del mismo concepto, ejercicio y período"
+msgid ""
+"Casilla [04] Liquidación - Retenciones e ingresos a cuenta - A deducir "
+"(exclusivamente en caso de declaración complementaria) Resultado a ingresar "
+"de la anterior o anteriores declaraciones del mismo concepto, ejercicio y "
+"período"
 msgstr "Casilla [04] Liquidación - Retenciones e ingresos a cuenta - A deducir (exclusivamente en caso de declaración complementaria) Resultado a ingresar de la anterior o anteriores declaraciones del mismo concepto, ejercicio y período"
 
 #. module: l10n_es_aeat_mod115
@@ -320,18 +330,15 @@ msgid "Support Type"
 msgstr "Tipo de soporte"
 
 #. module: l10n_es_aeat_mod115
-#: field:l10n.es.aeat.mod115.report,tax_lines:0
-msgid "Tax lines"
-msgstr "Lineas de impuestos"
-
-#. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,support_type:0
 msgid "Telematics"
 msgstr "Telemático"
 
 #. module: l10n_es_aeat_mod115
 #: help:l10n.es.aeat.mod115.report,counterpart_account:0
-msgid "This account will be the counterpart for all the journal items that are regularized when posting the report."
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
 msgstr "Esta cuenta será la contrapartida para todos los elementos del diario que están regularizados al contabilizar el informe."
 
 #. module: l10n_es_aeat_mod115
@@ -388,9 +395,3 @@ msgstr "obtener"
 #: selection:l10n.es.aeat.mod115.export_to_boe,state:0
 msgid "open"
 msgstr "abierto"
-
-#. module: l10n_es_aeat_mod115
-#: view:l10n.es.aeat.mod115.report:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
-msgid "{'invisible': 1}"
-msgstr "{'invisible': 1}"
-

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 19:24+0000\n"
-"PO-Revision-Date: 2015-11-05 13:11+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"POT-Creation-Date: 2016-02-26 01:41+0000\n"
+"PO-Revision-Date: 2016-02-25 17:13+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,6 +107,11 @@ msgid "Company"
 msgstr "Družba"
 
 #. module: account_balance_reporting
+#: field:account.balance.reporting,check_filter:0
+msgid "Compute by"
+msgstr ""
+
+#. module: account_balance_reporting
 #: help:account.balance.reporting.template.line,code:0
 msgid "Concept code, may be used on formulas to reference this line"
 msgstr "Koda koncepta, ki se lahko uporablja v formulah glede te postavke"
@@ -153,6 +158,23 @@ msgstr "Dobro-Breme"
 #: selection:account.balance.reporting.template,balance_mode:0
 msgid "Credit-Debit, reversed with brackets"
 msgstr "Dobro-Breme, obrnjeno z oklepaji"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,current_date_from:0
+#: field:account.balance.reporting,previous_date_from:0
+msgid "Date From"
+msgstr ""
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,current_date_to:0
+#: field:account.balance.reporting,previous_date_to:0
+msgid "Date To"
+msgstr ""
+
+#. module: account_balance_reporting
+#: selection:account.balance.reporting,check_filter:0
+msgid "Dates"
+msgstr ""
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,balance_mode:0
@@ -291,6 +313,11 @@ msgid "Last Updated on"
 msgstr "Zadnjič posodobljeno"
 
 #. module: account_balance_reporting
+#: field:account.balance.reporting,level:0
+msgid "Level"
+msgstr ""
+
+#. module: account_balance_reporting
 #: selection:account.balance.reporting.line,css_class:0
 #: selection:account.balance.reporting.template.line,css_class:0
 msgid "Level 1"
@@ -373,6 +400,11 @@ msgid "Parent"
 msgstr "Nadrejeni"
 
 #. module: account_balance_reporting
+#: selection:account.balance.reporting,check_filter:0
+msgid "Periods"
+msgstr ""
+
+#. module: account_balance_reporting
 #: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Print"
 msgstr "Natisni"
@@ -449,7 +481,7 @@ msgstr "Postavke predloge"
 #. module: account_balance_reporting
 #: sql_constraint:account.balance.reporting.line:0
 #: sql_constraint:account.balance.reporting.template.line:0
-#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:236
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:257
 #: code:addons/account_balance_reporting/models/account_balance_reporting_template.py:191
 #, python-format
 msgid "The code must be unique for this report!"

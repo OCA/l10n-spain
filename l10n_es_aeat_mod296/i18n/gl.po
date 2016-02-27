@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 19:24+0000\n"
-"PO-Revision-Date: 2015-11-05 11:42+0000\n"
+"POT-Creation-Date: 2016-02-26 01:41+0000\n"
+"PO-Revision-Date: 2016-02-25 17:14+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -746,11 +746,6 @@ msgid "Support Type"
 msgstr "Tipo de soporte"
 
 #. module: l10n_es_aeat_mod296
-#: field:l10n.es.aeat.mod296.report,tax_lines:0
-msgid "Tax lines"
-msgstr "Liñas de impostos"
-
-#. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.report,support_type:0
 msgid "Telematics"
 msgstr "Telemática"
@@ -801,8 +796,3 @@ msgstr "obter"
 #: selection:l10n.es.aeat.mod296.export_to_boe,state:0
 msgid "open"
 msgstr "aberto"
-
-#. module: l10n_es_aeat_mod296
-#: view:l10n.es.aeat.mod296.report:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_form
-msgid "{'invisible': 1}"
-msgstr ""

@@ -3,13 +3,13 @@
 # * l10n_es_account_asset
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-26 01:42+0000\n"
-"PO-Revision-Date: 2015-11-12 12:47+0000\n"
+"POT-Creation-Date: 2016-02-26 01:41+0000\n"
+"PO-Revision-Date: 2016-02-22 13:59+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Language: sl\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,annual_percentage:0
+msgid "Annual depreciation percentage"
+msgstr "Letni amortizacijski odstotek"
 
 #. module: l10n_es_account_asset
 #: model:ir.model,name:l10n_es_account_asset.model_account_asset_asset
@@ -74,6 +79,16 @@ msgstr "Premik amortizacijskega vnosa ob koncu obdobja. Če so obdobja 12 mesece
 #: selection:account.asset.category,ext_method_time:0
 msgid "Number of Depreciations"
 msgstr "Število amortizacij"
+
+#. module: l10n_es_account_asset
+#: help:account.asset.asset,start_depreciation_date:0
+msgid "Only needed if not the same than purchase date"
+msgstr "Potrebno le, če je različno od datuma nabave"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,start_depreciation_date:0
+msgid "Start Depreciation Date"
+msgstr "Začetni datum amortizacije"
 
 #. module: l10n_es_account_asset
 #: field:account.asset.asset,ext_method_time:0
