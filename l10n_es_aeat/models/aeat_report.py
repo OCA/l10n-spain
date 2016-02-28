@@ -344,9 +344,9 @@ class L10nEsAeatReport(models.AbstractModel):
                                 'code': 'aeat.sequence.type',
                                 'number_increment': 1,
                                 'implementation': 'no_gap',
-                                'padding': 9,
+                                'padding': 13 - len(str(aeat_num)),
                                 'number_next_actual': 1,
-                                'prefix': aeat_num + '-'
+                                'prefix': aeat_num
                                 }
                     seq_obj.create(cr, SUPERUSER_ID, seq_vals)
             except:
