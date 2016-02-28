@@ -155,7 +155,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         # Persona de contacto (Apellidos y nombre)
         text += self._formatString(report.contact_name, 40)
         # Número identificativo de la declaración
-        text += self._formatString(report.sequence, 13)
+        text += self._formatString(report.name, 13)
         # Declaración complementaria
         text += self._formatString(report.type, 2).replace('N', ' ')
         # Número identificativo de la declaración anterior
