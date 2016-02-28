@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:41+0000\n"
-"PO-Revision-Date: 2016-02-25 17:14+0000\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-03-02 09:27+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -71,8 +71,8 @@ msgstr "Módulo base modelos AEAT"
 #. module: l10n_es_aeat
 #: sql_constraint:l10n.es.aeat.report:0
 #: sql_constraint:l10n.es.aeat.report.tax.mapping:0
-msgid "AEAT report sequence must be unique"
-msgstr "A secuencia da declaración AEAT debe ser única"
+msgid "AEAT report identifier must be unique"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
@@ -594,7 +594,7 @@ msgid "Odoo model"
 msgstr "Modelo Odoo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:327
+#: code:addons/l10n_es_aeat/models/aeat_report.py:329
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr "Só se poden elimina-las declaracións en estado 'borrador' ou 'cancelada'"
@@ -689,6 +689,12 @@ msgid "Report"
 msgstr "Informe"
 
 #. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,name:0
+#: field:l10n.es.aeat.report.tax.mapping,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,res_id:0
 msgid "Resource ID"
 msgstr ""
@@ -700,8 +706,6 @@ msgstr "Dereita"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,sequence:0
-#: field:l10n.es.aeat.report,sequence:0
-#: field:l10n.es.aeat.report.tax.mapping,sequence:0
 msgid "Sequence"
 msgstr "Secuencia"
 
@@ -802,7 +806,7 @@ msgid "The formated string must match the given length"
 msgstr "A cadea formateada debe satisface-lo tamaño dado."
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:259
+#: code:addons/l10n_es_aeat/models/aeat_report.py:261
 #, python-format
 msgid ""
 "There is no period defined for the report. Please set at least one period "
@@ -810,7 +814,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:246
+#: code:addons/l10n_es_aeat/models/aeat_report.py:248
 #, python-format
 msgid "There's a missing previous declaration for the period %s."
 msgstr ""
