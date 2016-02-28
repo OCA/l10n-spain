@@ -7,7 +7,7 @@
             <field name="model">l10n.es.aeat.report</field>
             <field name="arch" type="xml">
                 <tree string="AEAT report">
-                    <field name="sequence"/>
+                    <field name="name"/>
                     <field name="fiscalyear_id"/>
                     <field name="period_type"/>
                     <field name="state"/>
@@ -54,7 +54,7 @@
                         <field name="model" invisible="1"/>
                         <h1>
                             <label string="Report "/>
-                            <field name="sequence" class="oe_inline" readonly="1"/>
+                            <field name="name" class="oe_inline" readonly="1"/>
                         </h1>
                         <group string="Declaración"
                                colspan="4"
