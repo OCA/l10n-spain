@@ -291,7 +291,10 @@ class AccountBankStatementImport(models.TransientModel):
             'balance_start': n43 and n43[0]['saldo_ini'] or 0.0,
             'balance_end_real': n43 and n43[-1]['saldo_fin'] or 0.0,
         }
-        return 'EUR', False, [vals_bank_statement]
+        str_currency = self.journal_id.currency and  \
+            self.journal_id.currency.name or \
+            self.journal_id.company_id.currency_id.name
+        return str_currency, False, [vals_bank_statement]
 
     @api.model
     def _get_hide_journal_field(self):
