@@ -130,7 +130,7 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
         # NIF del representante legal
         text += self._formatString(partner_record.representative_vat, 9)
         # Apellidos y nombre, razón social o denominación del declarado
-        text += self._formatString(partner_record.partner_id.name, 40)
+        text += self._formatFiscalName(partner_record.partner_id.name, 40)
         # Tipo de hoja: Constante ‘D’.
         text += 'D'
         # Código provincia
@@ -257,7 +257,7 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
         # NIF del representante legal
         text += self._formatString(partner_record.representative_vat, 9)
         # Apellidos y nombre, razón social o denominación del declarado
-        text += self._formatString(partner_record.partner_id.name, 40)
+        text += self._formatFiscalName(partner_record.partner_id.name, 40)
         # Tipo de hoja: Constante ‘I’.
         text += 'I'
         # Blancos
