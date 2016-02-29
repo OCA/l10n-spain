@@ -83,6 +83,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             ur"[^a-zA-Z0-9\sáÁéÉíÍóÓúÚñÑçÇäÄëËïÏüÜöÖ"
             ur"àÀèÈìÌòÒùÙâÂêÊîÎôÔûÛ\.,-_&'´\\:;:/]", '', text,
             re.UNICODE | re.X)
+        name = re.sub(r'\s{2,}', ' ', name, re.UNICODE | re.X)
         return self._formatString(name, length, fill=fill, align=align)
 
     def _formatNumber(self, number, int_length, dec_length=0,
