@@ -12,7 +12,7 @@ import re
 class L10nEsAeatReport(models.AbstractModel):
     _name = "l10n.es.aeat.report"
     _description = "AEAT report base module"
-    _rec_name = 'sequence'
+    _rec_name = 'name'
     _aeat_number = False
     _period_quarterly = True
     _period_monthly = True
@@ -95,7 +95,7 @@ class L10nEsAeatReport(models.AbstractModel):
          ('posted', 'Posted'),
          ('cancelled', 'Cancelled')], string='State', readonly=True,
         default='draft')
-    sequence = fields.Char(string="Sequence", size=16)
+    name = fields.Char(string="Report identifier", size=13, oldname='sequence')
     model = fields.Many2one(
         comodel_name="ir.model", compute='_compute_report_model')
     export_config = fields.Many2one(
@@ -121,8 +121,8 @@ class L10nEsAeatReport(models.AbstractModel):
         comodel_name="account.move", string="Account entry")
 
     _sql_constraints = [
-        ('sequence_uniq', 'unique(sequence)',
-         'AEAT report sequence must be unique'),
+        ('name_uniq', 'unique(name)',
+         'AEAT report identifier must be unique'),
     ]
 
     @api.one
@@ -213,7 +213,7 @@ class L10nEsAeatReport(models.AbstractModel):
         seq_obj = self.env['ir.sequence']
         sequence = "aeat%s-sequence" % self._model._aeat_number
         seq = seq_obj.next_by_id(seq_obj.search([('name', '=', sequence)]).id)
-        values['sequence'] = seq
+        values['name'] = seq
         return super(L10nEsAeatReport, self).create(values)
 
     @api.multi
@@ -273,7 +273,7 @@ class L10nEsAeatReport(models.AbstractModel):
             'date': fields.Date.today(),
             'journal_id': self.journal_id.id,
             'period_id': self.env['account.period'].find().id,
-            'ref': self.sequence,
+            'ref': self.name,
             'company_id': self.company_id.id,
         }
 
