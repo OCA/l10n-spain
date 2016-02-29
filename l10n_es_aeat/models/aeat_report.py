@@ -208,12 +208,14 @@ class L10nEsAeatReport(models.AbstractModel):
                     }
                 self.periods = period
 
-    @api.model
-    def create(self, values):
+    def _name_get(self):
         seq_obj = self.env['ir.sequence']
         sequence = "aeat%s-sequence" % self._model._aeat_number
-        seq = seq_obj.next_by_id(seq_obj.search([('name', '=', sequence)]).id)
-        values['name'] = seq
+        return seq_obj.next_by_id(seq_obj.search([('name', '=', sequence)]).id)
+
+    @api.model
+    def create(self, values):
+        values['name'] = self._name_get()
         return super(L10nEsAeatReport, self).create(values)
 
     @api.multi
