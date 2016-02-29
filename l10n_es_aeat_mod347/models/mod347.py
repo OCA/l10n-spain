@@ -541,7 +541,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
                 record.partner_country_code and
                 record.partner_state_code and
                 record.partner_state_code.isdigit() and
-                (record.partner_vat or record.community_vat)
+                (record.partner_vat or record.partner_country_code != 'ES')
             )
 
     @api.model
