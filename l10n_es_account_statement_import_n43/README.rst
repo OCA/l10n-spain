@@ -31,6 +31,9 @@ Incidencias conocidas / Hoja de ruta
 
 * Reconocimiento de partners para otros bancos distintos del Santander o
   CaixaBank.
+* La moneda se extrae del diario con el cual se va a importar o, en su defecto,
+  de la compañia, no del extracto norma 43 que se importa, para lo cual sería
+  necesario usar códigos numéricos según la norma ISO 4217.
 
 Credits
 =======
