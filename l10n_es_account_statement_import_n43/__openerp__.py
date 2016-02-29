@@ -21,7 +21,7 @@
 {
     'name': 'Importación de extractos bancarios españoles (Norma 43)',
     'category': 'Accounting & Finance',
-    'version': '8.0.4.0.0',
+    'version': '8.0.4.0.1',
     'license': 'AGPL-3',
     'author': 'Spanish Localization Team,'
               'Serv. Tecnol. Avanzados - Pedro M. Baeza,'
