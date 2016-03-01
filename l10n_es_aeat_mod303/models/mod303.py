@@ -1,25 +1,14 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see http://www.gnu.org/licenses/.
-#
-##############################################################################
-from openerp import models, fields, api, exceptions, _
+# -*- coding: utf-8 -*-
+# © 2013 - Guadaltech - Alberto Martín Cortada
+# © 2015 - AvanzOSC - Ainara Galdona
+# © 2014-2016 - Serv. Tecnol. Avanzados - Pedro M. Baeza
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from openerp import models, fields, api, _
 
 
 class L10nEsAeatMod303Report(models.Model):
-    _inherit = "l10n.es.aeat.report"
+    _inherit = "l10n.es.aeat.report.tax.mapping"
     _name = "l10n.es.aeat.mod303.report"
     _description = "AEAT 303 Report"
 
@@ -30,9 +19,60 @@ class L10nEsAeatMod303Report(models.Model):
         except ValueError:
             return self.env['aeat.model.export.config']
 
+    def _default_counterpart_303(self):
+        return self.env['account.account'].search(
+            [('code', 'like', '4750%'), ('type', '!=', 'view')])[:1]
+
+    @api.multi
+    @api.depends('tax_lines', 'tax_lines.amount')
+    def _compute_total_devengado(self):
+        casillas_devengado = (3, 6, 9, 11, 13, 15, 18, 21, 24, 26)
+        for report in self:
+            tax_lines = report.tax_lines.filtered(
+                lambda x: x.field_number in casillas_devengado)
+            report.total_devengado = sum(tax_lines.mapped('amount'))
+
+    @api.multi
+    @api.depends('tax_lines', 'tax_lines.amount')
+    def _compute_total_deducir(self):
+        casillas_deducir = (29, 31, 33, 35, 37, 39, 41, 42, 43, 44)
+        for report in self:
+            tax_lines = report.tax_lines.filtered(
+                lambda x: x.field_number in casillas_deducir)
+            report.total_deducir = sum(tax_lines.mapped('amount'))
+
+    @api.multi
+    @api.depends('total_devengado', 'total_deducir')
+    def _compute_casilla_46(self):
+        for report in self:
+            report.casilla_46 = report.total_devengado - report.total_deducir
+
+    @api.multi
+    @api.depends('porcentaje_atribuible_estado', 'casilla_46')
+    def _compute_atribuible_estado(self):
+        for report in self:
+            report.atribuible_estado = (
+                report.casilla_46 * report.porcentaje_atribuible_estado / 100)
+
+    @api.multi
+    @api.depends('atribuible_estado', 'cuota_compensar',
+                 'regularizacion_anual')
+    def _compute_casilla_69(self):
+        for report in self:
+            report.casilla_69 = (
+                report.atribuible_estado + report.cuota_compensar +
+                report.regularizacion_anual)
+
+    @api.multi
+    @api.depends('casilla_69', 'previous_result')
+    def _compute_resultado_liquidacion(self):
+        for report in self:
+            report.resultado_liquidacion = (
+                report.casilla_69 - report.previous_result)
+
     currency_id = fields.Many2one(
         comodel_name='res.currency', string='Currency',
-        related='company_id.currency_id', store=True)
+        related='company_id.currency_id', store=True, readonly=True)
     number = fields.Char(default='303')
     export_config = fields.Many2one(default=_get_export_conf)
     company_partner_id = fields.Many2one('res.partner', string='Partner',
@@ -41,11 +81,15 @@ class L10nEsAeatMod303Report(models.Model):
     devolucion_mensual = fields.Boolean(
         string="Devolución mensual", states={'done': [('readonly', True)]},
         help="Inscrito en el Registro de Devolución Mensual")
-    total_devengado = fields.Float(string="[27] IVA devengado", readonly=True)
-    total_deducir = fields.Float(string="[45] IVA a deducir", readonly=True)
+    total_devengado = fields.Float(
+        string="[27] IVA devengado", readonly=True,
+        compute="_compute_total_devengado", store=True)
+    total_deducir = fields.Float(
+        string="[45] IVA a deducir", readonly=True,
+        compute="_compute_total_deducir", store=True)
     casilla_46 = fields.Float(
-        string="[46] Resultado régimen general", readonly=True,
-        help="(IVA devengado - IVA deducible)")
+        string="[46] Resultado régimen general", readonly=True, store=True,
+        help="(IVA devengado - IVA deducible)", compute="_compute_casilla_46")
     porcentaje_atribuible_estado = fields.Float(
         string="[65] % atribuible al Estado",
         states={'done': [('readonly', True)]},
@@ -56,7 +100,8 @@ class L10nEsAeatMod303Report(models.Model):
              "común. Los demás sujetos pasivos consignarán en esta casilla el "
              "100%", default=100)
     atribuible_estado = fields.Float(
-        string="[66] Atribuible a la Administración", readonly=True)
+        string="[66] Atribuible a la Administración", readonly=True,
+        compute="_compute_atribuible_estado", store=True)
     cuota_compensar = fields.Float(
         string="[67] Cuotas a compensar", default=0,
         states={'done': [('readonly', True)]},
@@ -73,16 +118,17 @@ class L10nEsAeatMod303Report(models.Model):
              "Comunidad Autónoma del País Vasco y el Convenio Económico entre "
              "el Estado y la Comunidad Foral de Navarra.""")
     casilla_69 = fields.Float(
-        string="[69] Resultado", readonly=True,
+        string="[69] Resultado", readonly=True, compute="_compute_casilla_69",
         help="Atribuible a la Administración [66] - Cuotas a compensar [67] + "
-             "Regularización anual [68]""")
+             "Regularización anual [68]""", store=True)
     previous_result = fields.Float(
         string="[70] A deducir",
         help="Resultado de la anterior o anteriores declaraciones del mismo "
              "concepto, ejercicio y periodo",
         states={'done': [('readonly', True)]})
     resultado_liquidacion = fields.Float(
-        string="[71] Result. liquidación", readonly=True)
+        string="[71] Result. liquidación", readonly=True,
+        compute="_compute_resultado_liquidacion", store=True)
     result_type = fields.Selection(
         selection=[('I', 'A ingresar'),
                    ('D', 'A devolver'),
@@ -95,10 +141,16 @@ class L10nEsAeatMod303Report(models.Model):
     bank_account = fields.Many2one(
         comodel_name="res.partner.bank", string="Bank account",
         states={'done': [('readonly', True)]})
+    counterpart_account = fields.Many2one(default=_default_counterpart_303)
+    allow_posting = fields.Boolean(default=True)
 
     def __init__(self, pool, cr):
         self._aeat_number = '303'
         super(L10nEsAeatMod303Report, self).__init__(pool, cr)
+
+    @api.one
+    def _compute_allow_posting(self):
+        self.allow_posting = True
 
     @api.one
     @api.depends('resultado_liquidacion')
@@ -127,39 +179,16 @@ class L10nEsAeatMod303Report(models.Model):
             self.compensate = False
 
     @api.multi
-    def calculate(self):
-        res = super(L10nEsAeatMod303Report, self).calculate()
-        for mod303 in self:
-            total_devengado = mod303.tax_lines.filtered(
-                lambda x: x.field_number == 27).amount
-            total_deducir = mod303.tax_lines.filtered(
-                lambda x: x.field_number == 45).amount
-            casilla_46 = total_devengado - total_deducir
-            atribuible_estado = (
-                casilla_46 * mod303.porcentaje_atribuible_estado / 100)
-            casilla_69 = (atribuible_estado - mod303.cuota_compensar +
-                          mod303.regularizacion_anual)
-            resultado_liquidacion = casilla_69 - mod303.previous_result
-            vals = {
-                'total_devengado': total_devengado,
-                'total_deducir': total_deducir,
-                'casilla_46': casilla_46,
-                'atribuible_estado': atribuible_estado,
-                'casilla_69': casilla_69,
-                'resultado_liquidacion': resultado_liquidacion,
-            }
-            mod303.write(vals)
-        return res
-
-    @api.multi
     def button_confirm(self):
         """Check records"""
         msg = ""
         for mod303 in self:
-            if mod303.result_type == ('I') and not mod303.bank_account:
+            if mod303.result_type == 'I' and not mod303.bank_account:
                 msg = _('Select an account for making the charge')
-            if mod303.result_type == ('B') and not not mod303.bank_account:
+            if mod303.result_type == 'B' and not not mod303.bank_account:
                 msg = _('Select an account for receiving the money')
         if msg:
-            raise exceptions.Warning(msg)
+            # Don't raise error, because data is not used
+            # raise exceptions.Warning(msg)
+            pass
         return super(L10nEsAeatMod303Report, self).button_confirm()

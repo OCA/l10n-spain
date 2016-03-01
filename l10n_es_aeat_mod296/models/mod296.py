@@ -26,15 +26,29 @@ class L10nEsAeatMod296Report(models.Model):
     _name = 'l10n.es.aeat.mod296.report'
 
     number = fields.Char(default='296')
-    casilla_01 = fields.Integer('Casilla [01]',
-                                help='Numero total de perceptores')
-    casilla_02 = fields.Float('Casilla [02]',
-                              help='Base de retenciones e ingresos a cuenta')
-    casilla_03 = fields.Float('Casilla [03]',
-                              help='Retenciones e ingresos a cuenta')
-    casilla_04 = fields.Float('Casilla [04]',
-                              help='Retenciones e ingresos a cuenta '
-                              'ingresados')
+    casilla_01 = fields.Integer(
+        string='[01] Número de perceptores', readonly=True,
+        states={'calculated': [('readonly', False)]},
+        help='Casilla [01] Resumen de los datos incluidos en la declaración - '
+             'Número total de perceptores')
+    casilla_02 = fields.Float(
+        string='[02] Base retenciones', readonly=True,
+        states={'calculated': [('readonly', False)]},
+        help='Casilla [02] Resumen de los datos incluidos en la declaración - '
+             'Base retenciones e ingresos a cuenta')
+    casilla_03 = fields.Float(
+        string='[03] Retenciones', readonly=True,
+        states={'calculated': [('readonly', False)]},
+        help='Casilla [03] Resumen de los datos incluidos en la declaración - '
+             'Retenciones e ingresos a cuenta')
+    casilla_04 = fields.Float(
+        string='[04] Retenciones ingresadas', readonly=True,
+        states={'calculated': [('readonly', False)]},
+        help='Casilla [04] Resumen de los datos incluidos en la declaración - '
+             'Retenciones e ingresos a cuenta ingresados')
+    currency_id = fields.Many2one(
+        comodel_name='res.currency', string='Moneda', readonly=True,
+        related='company_id.currency_id', store=True)
     lines296 = fields.One2many('l10n.es.aeat.mod296.report.line', 'mod296_id',
                                string="Lines")
 
@@ -46,7 +60,7 @@ class L10nEsAeatMod296Report(models.Model):
     def _get_partner_domain(self):
         res = super(L10nEsAeatMod296Report, self)._get_partner_domain()
         partners = self.env['res.partner'].search(
-            [('is_resident', '=', True)])
+            [('is_non_resident', '=', True)])
         res += [('partner_id', 'in', partners.ids)]
         return res
 
@@ -55,16 +69,15 @@ class L10nEsAeatMod296Report(models.Model):
         self.ensure_one()
         self.lines296.unlink()
         line_lst = []
-        move_lines_base = self._get_tax_code_lines('IRPBI')
-        move_lines_cuota = self._get_tax_code_lines('ITRPC')
+        move_lines_base = self._get_tax_code_lines(['IRPBI'])
+        move_lines_cuota = self._get_tax_code_lines(['ITRPC'])
         partner_lst = set([x.partner_id for x in
                            (move_lines_base + move_lines_cuota)])
         for partner in partner_lst:
-            part_base_lines = move_lines_base.filtered(lambda x:
-                                                       x.partner_id == partner)
-            part_cuota_lines = move_lines_cuota.filtered(lambda x:
-                                                         x.partner_id ==
-                                                         partner)
+            part_base_lines = move_lines_base.filtered(
+                lambda x: x.partner_id == partner)
+            part_cuota_lines = move_lines_cuota.filtered(
+                lambda x: x.partner_id == partner)
             line_lst.append({
                 'mod296_id': self.id,
                 'partner_id': partner.id,
@@ -79,7 +92,7 @@ class L10nEsAeatMod296Report(models.Model):
                                                   part_base_lines]),
                 'retenciones_ingresos': sum([x.tax_amount for x in
                                              part_cuota_lines])
-                })
+            })
         self.lines296 = line_lst
         self.casilla_01 = len(partner_lst)
         self.casilla_02 = sum([x.tax_amount for x in move_lines_base])

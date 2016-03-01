@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="view_compute_vat_prorrate_form" model="ir.ui.view">
+            <field name="name">Compute VAT prorrate form</field>
+            <field name="model">l10n.es.aeat.compute.vat.prorrate</field>
+            <field name="arch" type="xml">
+                <form string="Compute VAT prorrate">
+                    <p>This wizard will compute the VAT prorrate for the fiscal year selected, which is applicable as the provisional one for the AEAT reports of the following fiscal year up to last period, in which the definitive prorrate percentage has to be calculated and the difference must be compensated.</p>
+                    <p>Please select the fiscal year that corresponds to your previous fiscal year.</p>
+                    <group>
+                        <field name="fiscalyear_id"/>
+                    </group>
+                    <footer>
+                        <button string="Compute" name="button_compute" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_compute_vat_prorrate" model="ir.actions.act_window">
+            <field name="name">Compute VAT prorrate</field>
+            <field name="res_model">l10n.es.aeat.compute.vat.prorrate</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>

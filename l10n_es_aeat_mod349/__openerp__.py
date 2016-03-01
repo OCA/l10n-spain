@@ -25,7 +25,7 @@
 
 {
     "name": "Modelo 349 AEAT",
-    "version": "2.0",
+    "version": "8.0.2.1.0",
     "author": "Pexego, "
               "Top Consultant, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "

@@ -37,7 +37,14 @@
                 <field name="ext_method_time" on_change="onchange_ext_method_time(ext_method_time)"/>
             </field>
             <field name="method_number" position="after">
-                <field name="method_percentage" attrs="{'invisible':[('ext_method_time','!=','percentage')], 'required':[('ext_method_time','=','percentage')]}"/>
+                <field name="method_percentage"
+                       attrs="{'invisible':[('ext_method_time','!=','percentage')], 'required':[('ext_method_time','=','percentage')]}"
+                       on_change="onchange_method_percentage(method_percentage, method_period)"
+                />
+                <field name="annual_percentage"
+                       attrs="{'invisible':[('ext_method_time','!=','percentage')], 'required':[('ext_method_time','=','percentage')]}"
+                       on_change="onchange_annual_percentage(annual_percentage, method_period)"
+                />
             </field>
             <field name="method_number" position="attributes">
                 <attribute name="attrs">{'invisible':[('ext_method_time','!=','number')], 'required':[('ext_method_time','=','number')]}</attribute>
@@ -47,6 +54,9 @@
             </field>
             <field name="prorata" position="after">
                 <field name="move_end_period"/>
+            </field>
+            <field name="purchase_date" position="after">
+                <field name="start_depreciation_date"/>
             </field>
         </field>
     </record>

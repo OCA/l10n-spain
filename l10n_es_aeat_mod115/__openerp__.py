@@ -20,7 +20,7 @@
 
 {
     'name': 'AEAT modelo 115',
-    'version': '1.0',
+    'version': '8.0.1.1.0',
     'category': "Localisation/Accounting",
     'author': "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "AvanzOSC,"
@@ -28,7 +28,7 @@
               "Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-spain",
     'license': 'AGPL-3',
-    'depends': ['l10n_es_aeat_mod111'],
+    'depends': ['l10n_es_aeat'],
     'data': [
         'wizard/export_mod115_to_boe.xml',
         'views/mod115_view.xml',

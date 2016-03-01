@@ -1,29 +1,10 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es)
-#        Luis Manuel Angueira Blanco (Pexego)
-#    Copyright (C) 2013
-#        Ignacio Ibeas - Acysos S.L. (http://acysos.com)
-#        Migración a OpenERP 7.0
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp import fields, models, api, exceptions, _
-from openerp import SUPERUSER_ID
+# © 2004-2011 - Pexego Sistemas Informáticos - Luis Manuel Angueira Blanco
+# © 2013 - Acysos S.L. - Ignacio Ibeas (Migración a v7)
+# © 2014-2016 - Serv. Tecnol. Avanzados - Pedro M. Baeza
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from openerp import fields, models, api, exceptions, SUPERUSER_ID, _
 from datetime import datetime
 import re
 
@@ -40,6 +21,10 @@ class L10nEsAeatReport(models.AbstractModel):
     def _default_company(self):
         company_obj = self.env['res.company']
         return company_obj._company_default_get('l10n.es.aeat.report')
+
+    def _default_journal(self):
+        return self.env['account.journal'].search(
+            [('type', '=', 'general')])[:1]
 
     def get_period_type_selection(self):
         period_types = []
@@ -104,7 +89,10 @@ class L10nEsAeatReport(models.AbstractModel):
                              'done': [('readonly', True)]})
     calculation_date = fields.Datetime(string="Calculation date")
     state = fields.Selection(
-        [('draft', 'Draft'), ('calculated', 'Processed'), ('done', 'Done'),
+        [('draft', 'Draft'),
+         ('calculated', 'Processed'),
+         ('done', 'Done'),
+         ('posted', 'Posted'),
          ('cancelled', 'Cancelled')], string='State', readonly=True,
         default='draft')
     sequence = fields.Char(string="Sequence", size=16)
@@ -120,9 +108,17 @@ class L10nEsAeatReport(models.AbstractModel):
     periods = fields.Many2many(
         comodel_name='account.period', readonly=True, string="Period(s)",
         states={'draft': [('readonly', False)]})
-    tax_lines = fields.One2many(
-        comodel_name='l10n.es.aeat.tax.line', inverse_name='report',
-        readonly=True)
+    allow_posting = fields.Boolean(compute="_compute_allow_posting")
+    counterpart_account = fields.Many2one(
+        comodel_name="account.account",
+        help="This account will be the counterpart for all the journal items "
+             "that are regularized when posting the report.")
+    journal_id = fields.Many2one(
+        comodel_name="account.journal", string="Journal",
+        domain=[('type', '=', 'general')], default=_default_journal,
+        help="Journal in which post the move.")
+    move_id = fields.Many2one(
+        comodel_name="account.move", string="Account entry")
 
     _sql_constraints = [
         ('sequence_uniq', 'unique(sequence)',
@@ -132,6 +128,10 @@ class L10nEsAeatReport(models.AbstractModel):
     @api.one
     def _compute_report_model(self):
         self.model = self.env['ir.model'].search([('model', '=', self._name)])
+
+    @api.one
+    def _compute_allow_posting(self):
+        self.allow_posting = False
 
     @api.onchange('company_id')
     def on_change_company_id(self):
@@ -229,40 +229,35 @@ class L10nEsAeatReport(models.AbstractModel):
         return self.calculate()
 
     @api.multi
+    def _get_previous_fiscalyear_reports(self, date):
+        """Get the AEAT reports previous to the given date.
+        :param date: Date for looking for previous reports.
+        :return: Recordset of the previous AEAT reports. None if there is no
+        previous reports.
+        """
+        self.ensure_one()
+        prev_periods = self.fiscalyear_id.period_ids.filtered(
+            lambda x: not x.special and x.date_start < date)
+        prev_reports = None
+        for period in prev_periods:
+            reports = self.search([('periods', '=', period.id)])
+            if not reports:
+                raise exceptions.Warning(
+                    _("There's a missing previous declaration for the period "
+                      "%s.") % period.name)
+            if not prev_reports:
+                prev_reports = reports
+            else:
+                prev_reports |= reports
+        return prev_reports
+
+    @api.multi
     def calculate(self):
         for report in self:
             if not report.periods:
                 raise exceptions.Warning(
-                    'There is no period defined for the report. Please set '
-                    'at least one period and try again.')
-            report.tax_lines.unlink()
-            # Buscar configuración de mapeo de impuestos
-            tax_code_map_obj = self.env['aeat.mod.map.tax.code']
-            date_start = min([fields.Date.from_string(x) for x in
-                              self.periods.mapped('date_start')])
-            date_stop = max([fields.Date.from_string(x) for x in
-                             self.periods.mapped('date_stop')])
-            tax_code_map = tax_code_map_obj.search(
-                [('model', '=', report.number),
-                 '|',
-                 ('date_from', '<=', date_start),
-                 ('date_from', '=', False),
-                 '|',
-                 ('date_to', '>=', date_stop),
-                 ('date_to', '=', False)], limit=1)
-            if tax_code_map:
-                tax_lines = []
-                for line in tax_code_map.map_lines:
-                    move_lines = self.env['account.move.line']
-                    for tax_code in line.tax_codes:
-                        move_lines += report._get_tax_code_lines(
-                            tax_code, periods=report.periods)
-                    tax_lines.append({
-                        'map_line': line.id,
-                        'amount': sum([x.tax_amount for x in move_lines]),
-                        'move_lines': [(6, 0, move_lines.ids)],
-                    })
-                report.tax_lines = [(0, 0, x) for x in tax_lines]
+                    _('There is no period defined for the report. Please set '
+                      'at least one period and try again.'))
         return True
 
     @api.multi
@@ -272,8 +267,33 @@ class L10nEsAeatReport(models.AbstractModel):
         return True
 
     @api.multi
+    def _prepare_move_vals(self):
+        self.ensure_one()
+        return {
+            'date': fields.Date.today(),
+            'journal_id': self.journal_id.id,
+            'period_id': self.env['account.period'].find().id,
+            'ref': self.sequence,
+            'company_id': self.company_id.id,
+        }
+
+    @api.multi
+    def button_post(self):
+        """Create any possible account move and set state to posted."""
+        self.create_regularization_move()
+        self.write({'state': 'posted'})
+        return True
+
+    @api.multi
     def button_cancel(self):
         """Set report status to cancelled."""
+        self.write({'state': 'cancelled'})
+        return True
+
+    @api.multi
+    def button_unpost(self):
+        """Remove created account move and set state to done."""
+        self.mapped('move_id').unlink()
         self.write({'state': 'cancelled'})
         return True
 
@@ -292,6 +312,16 @@ class L10nEsAeatReport(models.AbstractModel):
         return True
 
     @api.multi
+    def button_open_move(self):
+        self.ensure_one()
+        action = self.env.ref('account.action_move_line_form').read()[0]
+        action['view_mode'] = 'form'
+        action['res_id'] = self.move_id.id
+        del action['view_id']
+        del action['views']
+        return action
+
+    @api.multi
     def unlink(self):
         if any(item.state not in ['draft', 'cancelled'] for item in self):
             raise exceptions.Warning(_("Only reports in 'draft' or "
@@ -299,7 +329,9 @@ class L10nEsAeatReport(models.AbstractModel):
         return super(L10nEsAeatReport, self).unlink()
 
     def init(self, cr):
-        if self._name != 'l10n.es.aeat.report':
+        # TODO: Poner en el _register_hook para evitar choque en multi BDs
+        if self._name not in ('l10n.es.aeat.report',
+                              'l10n.es.aeat.report.tax.mapping'):
             seq_obj = self.pool['ir.sequence']
             try:
                 aeat_num = getattr(self, '_aeat_number')
@@ -321,65 +353,3 @@ class L10nEsAeatReport(models.AbstractModel):
                 raise exceptions.Warning(
                     "Modelo no válido: %s. Debe declarar una variable "
                     "'_aeat_number'" % self._name)
-
-    # Helper functions
-    @api.multi
-    def _get_partner_domain(self):
-        return []
-
-    @api.multi
-    def _get_move_line_domain(self, tax_code_template, periods=None,
-                              include_children=True):
-        self.ensure_one()
-        tax_code_model = self.env['account.tax.code']
-        tax_code = tax_code_model.search(
-            [('code', '=', tax_code_template.code),
-             ('company_id', '=', self.company_id.id)], limit=1)
-        if include_children and tax_code:
-            tax_codes = tax_code_model.search(
-                [('id', 'child_of', tax_code.id),
-                 ('company_id', '=', self.company_id.id)])
-        else:
-            tax_codes = tax_code
-        if not periods:
-            periods = self.env['account.period'].search(
-                [('fiscalyear_id', '=', self.fiscalyear_id.id)])
-        move_line_domain = [('company_id', '=', self.company_id.id),
-                            ('tax_code_id', 'child_of', tax_codes.ids),
-                            ('period_id', 'in', periods.ids)]
-        move_line_domain += self._get_partner_domain()
-        return move_line_domain
-
-    @api.multi
-    def _get_tax_code_lines(self, tax_code_template, periods=None,
-                            include_children=True):
-        self.ensure_one()
-        domain = self._get_move_line_domain(
-            tax_code_template, periods=periods,
-            include_children=include_children)
-        return self.env['account.move.line'].search(domain)
-
-
-class L10nEsAeatTaxLine(models.Model):
-    _name = "l10n.es.aeat.tax.line"
-
-    report = fields.Many2one('l10n.es.aeat.report', required=True)
-    field_number = fields.Integer(
-        string="Field number", related="map_line.field_number",
-        store=True)
-    name = fields.Char(
-        string="Name", related="map_line.name", store=True)
-    amount = fields.Float()
-    map_line = fields.Many2one(
-        comodel_name='aeat.mod.map.tax.code.line', required=True)
-    move_lines = fields.Many2many(
-        comodel_name='account.move.line', string='Journal items')
-
-    def _get_move_line_act_window_dict(self):
-        return self.env.ref('account.action_tax_code_line_open').read()[0]
-
-    @api.multi
-    def get_calculated_move_lines(self):
-        res = self._get_move_line_act_window_dict()
-        res['domain'] = [('id', 'in', self.move_lines.ids)]
-        return res

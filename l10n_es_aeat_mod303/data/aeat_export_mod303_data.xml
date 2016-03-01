@@ -2,7 +2,6 @@
 <openerp>
     <data>
 
-
         <!--  SUB-303-01  -->
         <record id="aeat_mod303_sub01_export_config" model="aeat.model.export.config">
             <field name="name">Exportación modelo 303 2014 - Régimen general/simplificado</field>
@@ -527,7 +526,7 @@
             <field name="sequence">47</field>
             <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
             <field name="name">Liquidación: Regimen General - IVA Devengado - Total cuota devengada [27]</field>
-            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==27).amount}</field>
+            <field name="expression">${object.total_devengado}</field>
             <field name="export_type">float</field>
             <field name="apply_sign" eval="True"/>
             <field name="size">17</field>
@@ -731,7 +730,7 @@
             <field name="sequence">64</field>
             <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
             <field name="name">Liquidación: Regimen General - IVA Deducible - Regularización por aplicación del porcentaje definitivo de prorrata - Cuota [44]</field>
-            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==44).amount}</field>
+            <field name="fixed_value">0</field>
             <field name="export_type">float</field>
             <field name="apply_sign" eval="True"/>
             <field name="size">17</field>
@@ -743,7 +742,7 @@
             <field name="sequence">65</field>
             <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
             <field name="name">Liquidación: Regimen General - IVA Deducible - Total a deducir - Cuota [45]</field>
-            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==45).amount}</field>
+            <field name="expression">${object.total_deducir}</field>
             <field name="export_type">float</field>
             <field name="apply_sign" eval="True"/>
             <field name="size">17</field>
@@ -2357,6 +2356,7 @@
             <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
             <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Entregas de bienes inmuebles y de inversión y operaciones financieras no habituales [87]</field>
             <field name="fixed_value">0</field>
+            <field name="expression"/>
             <field name="export_type">float</field>
             <field name="apply_sign" eval="True"/>
             <field name="size">17</field>
@@ -2392,6 +2392,7 @@
             <field name="sequence">47</field>
             <field name="export_config_id" ref="aeat_mod303_sub03_export_config"/>
             <field name="name">Resultado - IVA a la importación liquidado por la Aduana pendiente de ingreso [77]</field>
+            <field name="expression">${object.tax_lines.filtered(lambda r: r.field_number==33).amount}</field>
             <field name="fixed_value">0</field>
             <field name="export_type">float</field>
             <field name="apply_sign" eval="True"/>
@@ -2423,7 +2424,7 @@
 
         <!--  MAIN-303  -->
         <record id="aeat_mod303_main_export_config" model="aeat.model.export.config">
-            <field name="name">Exportación modelo 303 2014</field>
+            <field name="name">Exportación modelo 303 2014-actualidad</field>
             <field name="date_start">2014-01-01</field>
             <field name="model_number">303</field>
             <field name="model" ref="l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report"/>

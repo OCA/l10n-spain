@@ -1,24 +1,7 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2012 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# © 2012-2015 Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 import calendar
 from openerp.osv import orm, fields
 from openerp import fields as new_fields
@@ -26,7 +9,7 @@ from dateutil.relativedelta import relativedelta
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as DSDF
 
 
-class account_asset_category(orm.Model):
+class AccountAssetCategory(orm.Model):
     _inherit = 'account.asset.category'
 
     _columns = {
@@ -65,8 +48,27 @@ class account_asset_category(orm.Model):
         return res
 
 
-class account_asset_asset(orm.Model):
+class AccountAssetAsset(orm.Model):
     _inherit = 'account.asset.asset'
+
+    def _get_last_depreciation_date(self, cr, uid, ids, context=None):
+        """
+        @param id: ids of a account.asset.asset objects
+        @return: Returns a dictionary of the effective dates of the last
+        depreciation entry made for given asset ids. If there isn't any,
+        return the purchase date of this asset
+        """
+
+        last_depreciation_date = super(
+            AccountAssetAsset, self)._get_last_depreciation_date(
+            cr, uid, ids, context=context)
+        for asset in self.browse(cr, uid, ids, context=context):
+            if asset.start_depreciation_date and (
+                asset.start_depreciation_date >
+                    last_depreciation_date[asset.id]):
+                last_depreciation_date[asset.id] = \
+                    asset.start_depreciation_date
+        return last_depreciation_date
 
     _columns = {
         'move_end_period': fields.boolean("At the end of the period",
@@ -92,10 +94,19 @@ class account_asset_asset(orm.Model):
                  "depreciations and the percentage to depreciate."),
         'method_percentage': fields.float('Depreciation percentage',
                                           digits=(3, 2)),
+        'annual_percentage': fields.float(
+            string='Annual depreciation percentage', digits=(3, 2)),
+        'start_depreciation_date': fields.date(
+            'Start Depreciation Date',
+            readonly=True,
+            states={'draft': [('readonly', False)]},
+            help="Only needed if not the same than purchase date"),
+
     }
 
     _defaults = {
         'method_percentage': 100.0,
+        'annual_percentage': 100.0,
         'ext_method_time': 'percentage',
         'move_end_period': True,
     }
@@ -114,7 +125,7 @@ class account_asset_asset(orm.Model):
         return res
 
     def onchange_category_id(self, cr, uid, ids, category_id, context=None):
-        res = super(account_asset_asset, self).onchange_category_id(
+        res = super(AccountAssetAsset, self).onchange_category_id(
             cr, uid, ids,
             category_id, context=context)
 
@@ -142,7 +153,7 @@ class account_asset_asset(orm.Model):
                 number += 1
             return number
         else:
-            val = super(account_asset_asset, self).\
+            val = super(AccountAssetAsset, self).\
                 _compute_board_undone_dotation_nb(cr, uid, asset,
                                                   depreciation_date,
                                                   total_days, context=context)
@@ -163,8 +174,13 @@ class account_asset_asset(orm.Model):
                 return residual_amount
             else:
                 if i == 1 and asset.prorata:
-                    days = (total_days -
-                            float(depreciation_date.strftime('%j'))) + 1
+                    if asset.method_period == 1:
+                        total_days = calendar.monthrange(
+                            depreciation_date.year, depreciation_date.month)[1]
+                        days = total_days - float(depreciation_date.day) + 1
+                    else:
+                        days = (total_days - float(
+                            depreciation_date.strftime('%j'))) + 1
                     percentage = asset.method_percentage * days / total_days
                 else:
                     percentage = asset.method_percentage
@@ -172,20 +188,32 @@ class account_asset_asset(orm.Model):
         elif (asset.method == 'linear' and asset.prorata and
               i != undone_dotation_number):
             # Caso especial de cálculo que cambia
-            amount = amount_to_depr / asset.method_number
+            # Debemos considerar también las cantidades ya depreciadas
+            depreciated_amount = 0
+            depr_lin_obj = self.pool['account.asset.depreciation.line']
+            for line in depr_lin_obj.browse(cr, uid,
+                                            posted_depreciation_line_ids):
+                depreciated_amount += line.amount
+            amount = (amount_to_depr + depreciated_amount) \
+                / asset.method_number
             if i == 1:
-                days = (total_days -
-                        float(depreciation_date.strftime('%j'))) + 1
+                if asset.method_period == 1:
+                        total_days = calendar.monthrange(
+                            depreciation_date.year, depreciation_date.month)[1]
+                        days = total_days - float(depreciation_date.day) + 1
+                else:
+                    days = (total_days -
+                            float(depreciation_date.strftime('%j'))) + 1
                 amount *= days / total_days
             return amount
         else:
-            return super(account_asset_asset, self)._compute_board_amount(
+            return super(AccountAssetAsset, self)._compute_board_amount(
                 cr, uid, asset, i, residual_amount, amount_to_depr,
                 undone_dotation_number, posted_depreciation_line_ids,
                 total_days, depreciation_date, context=context)
 
     def compute_depreciation_board(self, cr, uid, ids, context=None):
-        super(account_asset_asset, self).compute_depreciation_board(
+        super(AccountAssetAsset, self).compute_depreciation_board(
             cr, uid,
             ids, context=context)
 
@@ -240,4 +268,16 @@ class account_asset_asset(orm.Model):
                         {'depreciation_date': depr_date.strftime(DSDF)})
         return True
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    def onchange_method_percentage(self, cr, uid, ids, method_percentage,
+                                   method_period):
+        value = {
+            'annual_percentage': method_percentage * 12 / method_period,
+        }
+        return {'value': value}
+
+    def onchange_annual_percentage(self, cr, uid, ids, annual_percentage,
+                                   method_period):
+        value = {
+            'method_percentage': annual_percentage * method_period / 12,
+        }
+        return {'value': value}

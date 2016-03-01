@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 15:09+0000\n"
-"PO-Revision-Date: 2015-09-08 10:12+0000\n"
+"POT-Creation-Date: 2016-02-26 01:41+0000\n"
+"PO-Revision-Date: 2016-02-25 17:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -84,6 +84,11 @@ msgid "AEAT Model 347"
 msgstr "Modelo AEAT 347"
 
 #. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,move_id:0
+msgid "Account entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,move_line_id:0
 msgid "Account move line"
 msgstr "Apunte contable"
@@ -104,7 +109,7 @@ msgid "Address type"
 msgstr "Tipo de enderezo"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:308
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:309
 #, python-format
 msgid ""
 "All partner state code field must be filled.\n"
@@ -112,7 +117,7 @@ msgid ""
 msgstr "O código da provincia de tódolos rexistros de empresas debe estar cuberto.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:322
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:323
 #, python-format
 msgid ""
 "All partner state code field must be numeric.\n"
@@ -120,7 +125,7 @@ msgid ""
 msgstr "O código da provincia de tódolos rexistros de empresas debe ser numérico.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:315
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:316
 #, python-format
 msgid ""
 "All partner vat number field must be filled.\n"
@@ -128,7 +133,7 @@ msgid ""
 msgstr "O NIF de tódolos rexistros de empresas debe estar cuberto.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:329
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:330
 #, python-format
 msgid "All real estate records state code field must be filled."
 msgstr "Os registros de propiedades inmobiliarias débense encher manualmente."
@@ -254,6 +259,11 @@ msgstr "Complemento (urbanización, centro comercial, ...)"
 #: selection:l10n.es.aeat.mod347.report,type:0
 msgid "Complementary"
 msgstr "Complementaria"
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,counterpart_account:0
+msgid "Counterpart account"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,partner_country_code:0
@@ -492,6 +502,16 @@ msgid "Invoiced amount"
 msgstr "Importe facturado"
 
 #. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,journal_id:0
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.invoice_record,date:0
 msgid "Keep empty to use the current date"
 msgstr "Deixe baleiro para usa-la data actual"
@@ -688,7 +708,7 @@ msgid "Partner record"
 msgstr "Rexistro da empresa"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:31
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:34
 #: view:l10n.es.aeat.mod347.report:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
 #, python-format
 msgid "Partner records"
@@ -723,6 +743,11 @@ msgstr "Portal"
 #: field:l10n.es.aeat.mod347.real_estate_record,postal_code:0
 msgid "Postal code"
 msgstr "Código postal"
+
+#. module: l10n_es_aeat_mod347
+#: selection:l10n.es.aeat.mod347.report,state:0
+msgid "Posted"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,previous_number:0
@@ -873,11 +898,6 @@ msgid "Support type:"
 msgstr "Tipo de soporte:"
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,tax_lines:0
-msgid "Tax lines"
-msgstr "Liñas de impostos"
-
-#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,tax_person_operation:0
 msgid "Taxable Person Operation"
 msgstr "Operación de suxeito pasivo"
@@ -928,6 +948,13 @@ msgstr "O tipo de rexistro 2-I (inmoble) debe ter 502 caracteres de longo"
 #: selection:account.period,quarter:0
 msgid "Third"
 msgstr "Terceiro"
+
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_estate_record,township:0

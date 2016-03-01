@@ -3,7 +3,7 @@
 
 {
     "name": "Punto de venta adaptado a la legislación española",
-    "version": "1.0",
+    "version": "8.0.1.0.0",
     "author": "Antiun Ingeniería S.L., "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Spanish Localization Team, "

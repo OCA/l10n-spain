@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:57+0000\n"
+"POT-Creation-Date: 2015-11-05 19:24+0000\n"
+"PO-Revision-Date: 2015-11-04 15:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -67,6 +67,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod340.action_l10n_es_aeat_mod340_report
 msgid "AEAT model 340"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.report,move_id:0
+msgid "Account entry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
@@ -162,6 +167,11 @@ msgstr "Complementària"
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_report_search
 msgid "Confirmed models"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.report,counterpart_account:0
+msgid "Counterpart account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
@@ -270,17 +280,6 @@ msgid "Empresa"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340.report,period_to:0
-msgid "End period"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:55
-#, python-format
-msgid "Error"
-msgstr "Error"
-
-#. module: l10n_es_aeat_mod340
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod340.action_wizard_aeat_mod340_export
 msgid "Export AEAT 340 BOE file"
 msgstr ""
@@ -383,7 +382,7 @@ msgid "Invoice"
 msgstr "Factura"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:150
+#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:140
 #, python-format
 msgid ""
 "Invoice  %s, Amount untaxed Lines %.2f do not correspond to AmountUntaxed on"
@@ -429,6 +428,16 @@ msgid "Issued invoices"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.report,journal_id:0
+msgid "Journal"
+msgstr "Diari"
+
+#. module: l10n_es_aeat_mod340
+#: help:l10n.es.aeat.mod340.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.intracomunitarias,representative_vat:0
 #: field:l10n.es.aeat.mod340.investment,representative_vat:0
 #: field:l10n.es.aeat.mod340.issued,representative_vat:0
@@ -443,7 +452,7 @@ msgid "LIBRO DE IVA"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:84
+#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:74
 #, python-format
 msgid "La siguiente empresa no tiene asignado nif:"
 msgstr ""
@@ -600,6 +609,11 @@ msgid "Phone"
 msgstr "Telèfon"
 
 #. module: l10n_es_aeat_mod340
+#: selection:l10n.es.aeat.mod340.report,state:0
+msgid "Posted"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,previous_number:0
 msgid "Previous declaration number"
 msgstr ""
@@ -635,11 +649,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,sequence:0
 msgid "Sequence"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340.report,period_from:0
-msgid "Start period"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
@@ -739,39 +748,34 @@ msgid ""
 msgstr "La declaració inclourà les empreses que la suma d'operacions superi aquest límit."
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:77
-#, python-format
-msgid "The period hasn't a valid Mod340 period"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:56
-#, python-format
-msgid "The periods selected don't belong to the fiscal year %s"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:101
+#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:85
 #, python-format
 msgid "The type 1 record must be 500 characters long"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:275
+#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:259
 #, python-format
 msgid ""
 "The type 2 issued record must be 500 characters long for each Vat registry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:415
+#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:399
 #, python-format
 msgid ""
 "The type 2 received record must be 500 characters long for each Vat registry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:48
+#: help:l10n.es.aeat.mod340.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
+#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:47
 #, python-format
 msgid "This company dont have NIF"
 msgstr ""

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:57+0000\n"
+"POT-Creation-Date: 2016-02-26 01:41+0000\n"
+"PO-Revision-Date: 2015-11-04 15:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -67,6 +67,11 @@ msgstr "AEAT Model 340 Wizard - Calculate Records"
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod340.action_l10n_es_aeat_mod340_report
 msgid "AEAT model 340"
 msgstr "AEAT model 340"
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.report,move_id:0
+msgid "Account entry"
+msgstr "Account entry"
 
 #. module: l10n_es_aeat_mod340
 #: reportreport mod340:0 reportvat book:0
@@ -162,6 +167,11 @@ msgstr "Complementary"
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_report_search
 msgid "Confirmed models"
 msgstr "Confirmed models"
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.report,counterpart_account:0
+msgid "Counterpart account"
+msgstr "Counterpart account"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.intracomunitarias,partner_country_code:0
@@ -269,17 +279,6 @@ msgid "Empresa"
 msgstr "Empresa"
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340.report,period_to:0
-msgid "End period"
-msgstr "End period"
-
-#. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:55
-#, python-format
-msgid "Error"
-msgstr "Error"
-
-#. module: l10n_es_aeat_mod340
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod340.action_wizard_aeat_mod340_export
 msgid "Export AEAT 340 BOE file"
 msgstr "Export AEAT 340 BOE file"
@@ -382,7 +381,7 @@ msgid "Invoice"
 msgstr "Invoice"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:150
+#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:140
 #, python-format
 msgid ""
 "Invoice  %s, Amount untaxed Lines %.2f do not correspond to AmountUntaxed on"
@@ -428,6 +427,16 @@ msgid "Issued invoices"
 msgstr "Issued invoices"
 
 #. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.report,journal_id:0
+msgid "Journal"
+msgstr "Journal"
+
+#. module: l10n_es_aeat_mod340
+#: help:l10n.es.aeat.mod340.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr "Journal in which post the move."
+
+#. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.intracomunitarias,representative_vat:0
 #: field:l10n.es.aeat.mod340.investment,representative_vat:0
 #: field:l10n.es.aeat.mod340.issued,representative_vat:0
@@ -442,7 +451,7 @@ msgid "LIBRO DE IVA"
 msgstr "LIBRO DE IVA"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:84
+#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:74
 #, python-format
 msgid "La siguiente empresa no tiene asignado nif:"
 msgstr "La siguiente empresa no tiene asignado nif:"
@@ -599,6 +608,11 @@ msgid "Phone"
 msgstr "Phone"
 
 #. module: l10n_es_aeat_mod340
+#: selection:l10n.es.aeat.mod340.report,state:0
+msgid "Posted"
+msgstr "Posted"
+
+#. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,previous_number:0
 msgid "Previous declaration number"
 msgstr "Previous declaration number"
@@ -635,11 +649,6 @@ msgstr "Records"
 #: field:l10n.es.aeat.mod340.report,sequence:0
 msgid "Sequence"
 msgstr "Sequence"
-
-#. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340.report,period_from:0
-msgid "Start period"
-msgstr "Start period"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.export_to_boe,state:0
@@ -698,7 +707,6 @@ msgstr "Tax line received"
 #: field:l10n.es.aeat.mod340.investment,tax_line_ids:0
 #: field:l10n.es.aeat.mod340.issued,tax_line_ids:0
 #: field:l10n.es.aeat.mod340.received,tax_line_ids:0
-#: field:l10n.es.aeat.mod340.report,tax_lines:0
 msgid "Tax lines"
 msgstr "Tax lines"
 
@@ -738,39 +746,34 @@ msgid ""
 msgstr "The declaration will include partners with the total of operations over this limit"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:77
-#, python-format
-msgid "The period hasn't a valid Mod340 period"
-msgstr "The period hasn't a valid Mod340 period"
-
-#. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:56
-#, python-format
-msgid "The periods selected don't belong to the fiscal year %s"
-msgstr "The periods selected don't belong to the fiscal year %s"
-
-#. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:101
+#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:85
 #, python-format
 msgid "The type 1 record must be 500 characters long"
 msgstr "The type 1 record must be 500 characters long"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:275
+#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:259
 #, python-format
 msgid ""
 "The type 2 issued record must be 500 characters long for each Vat registry"
 msgstr "The type 2 issued record must be 500 characters long for each Vat registry"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:415
+#: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:399
 #, python-format
 msgid ""
 "The type 2 received record must be 500 characters long for each Vat registry"
 msgstr "The type 2 received record must be 500 characters long for each Vat registry"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:48
+#: help:l10n.es.aeat.mod340.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr "This account will be the counterpart for all the journal items that are regularized when posting the report."
+
+#. module: l10n_es_aeat_mod340
+#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:47
 #, python-format
 msgid "This company dont have NIF"
 msgstr "This company dont have NIF"

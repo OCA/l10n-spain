@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:56+0000\n"
+"POT-Creation-Date: 2015-12-05 01:43+0000\n"
+"PO-Revision-Date: 2015-11-30 12:02+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -45,6 +45,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
 msgid "AEAT model 130"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,move_id:0
+msgid "Account entry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -168,6 +173,11 @@ msgid "Complementary"
 msgstr "Complementària"
 
 #. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,counterpart_account:0
+msgid "Counterpart account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod130.action_l10n_es_aeat_mod130_report
 msgid "Create and query AEAT Model 130 reports"
 msgstr ""
@@ -187,7 +197,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,currency_id:0
 msgid "Currency"
-msgstr ""
+msgstr "Moneda"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,previous_electronic_code:0
@@ -284,6 +294,16 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,journal_id:0
+msgid "Journal"
+msgstr "Diari"
+
+#. module: l10n_es_aeat_mod130
+#: help:l10n.es.aeat.mod130.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,representative_vat:0
 msgid "L.R. VAT number"
 msgstr "NIF R.L."
@@ -371,6 +391,11 @@ msgid "Phone"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
+#: selection:l10n.es.aeat.mod130.report,state:0
+msgid "Posted"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,complementary:0
 msgid "Presentación complementaria"
 msgstr ""
@@ -443,6 +468,13 @@ msgstr "Telemàtica"
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,period:0
 msgid "Third quarter"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: help:l10n.es.aeat.mod130.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130

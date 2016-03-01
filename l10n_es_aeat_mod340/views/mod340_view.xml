@@ -8,9 +8,8 @@
             <field name="arch" type="xml">
                 <tree string="Model 340">
                     <field name="fiscalyear_id"/>
-                    <field name="period_from"/>
-                    <field name="period_to"/>
-                    <field name="number"/>
+                    <field name="period_type"/>
+                    <field name="sequence"/>
                     <field name="type"/>
                     <field name="state" invisible="1"/>
                 </tree>
@@ -25,10 +24,6 @@
                 <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
                     <attribute name="name">%(action_wizard_aeat_mod340_export)d</attribute>
                 </button>
-                <field name="fiscalyear_id" position="after">
-                    <field name="period_from" select="1" required="1" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
-                    <field name="period_to" select="1" required="1" domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
-                </field>
                 <group string="Declaración" position="after">
                     <notebook colspan="4">
                         <page string="General">
@@ -188,8 +183,6 @@
                         <filter string="Company" icon="terp-personal" domain="[]" context="{'group_by':'company_id'}"/>
                     </group>
                     <newline/>
-                    <field name="period_from"/>
-                    <field name="period_to" />
                     <field name="fiscalyear_id"/>
                     <field name="number"/>
                     <field name="type"/>

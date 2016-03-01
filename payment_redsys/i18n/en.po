@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-05-23 08:55+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"POT-Creation-Date: 2016-02-26 01:41+0000\n"
+"PO-Revision-Date: 2016-02-25 17:16+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,10 +18,20 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:247
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Alemán"
+msgstr "Alemán"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Back to shop"
+msgstr "Back to shop"
+
+#. module: payment_redsys
+#: code:addons/payment_redsys/models/redsys.py:282
 #, python-format
-msgid "Bank Error: %s"
-msgstr "Bank Error: %s"
+msgid "Bank Error: %s (%s)"
+msgstr "Bank Error: %s (%s)"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
@@ -29,9 +39,19 @@ msgid "Castellano"
 msgstr "Castellano"
 
 #. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Catalán"
+msgstr "Catalán"
+
+#. module: payment_redsys
 #: field:payment.acquirer,redsys_currency:0
 msgid "Currency"
 msgstr "Currency"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Date:"
+msgstr "Date:"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_pay_method:0
@@ -39,15 +59,55 @@ msgid "Domiciliacion"
 msgstr "Domiciliacion"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:239
+#: view:website:payment_redsys.redsys_result_ko
+msgid "En error ocurred."
+msgstr "En error ocurred."
+
+#. module: payment_redsys
+#: code:addons/payment_redsys/models/redsys.py:271
 #, python-format
-msgid "Error: %s"
-msgstr "Error: %s"
+msgid "Error: %s (%s)"
+msgstr "Error: %s (%s)"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
-msgid "Frances"
-msgstr "Frances"
+msgid "Euskera"
+msgstr "Euskera"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Francés"
+msgstr "Francés"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Gallego"
+msgstr "Gallego"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_signature_version:0
+msgid "HMAC SHA256 V1"
+msgstr "HMAC SHA256 V1"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Holandés"
+msgstr "Holandés"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Inglés"
+msgstr "Inglés"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Invoicing Address"
+msgstr "Invoicing Address"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Italiano"
+msgstr "Italiano"
 
 #. module: payment_redsys
 #: field:payment.acquirer,redsys_merchant_lang:0
@@ -80,10 +140,15 @@ msgid "Merchant code"
 msgstr "Merchant code"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:227
+#: code:addons/payment_redsys/models/redsys.py:260
 #, python-format
 msgid "Ok: %s"
 msgstr "Ok: %s"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Order"
+msgstr "Order"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_pay_method:0
@@ -111,9 +176,34 @@ msgid "Payment Transaction"
 msgstr "Payment Transaction"
 
 #. module: payment_redsys
+#: view:website:payment_redsys.redsys_result_ko
+msgid "Please contact with us and inform you about your order."
+msgstr "Please contact with us and inform you about your order."
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Polaco"
+msgstr "Polaco"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Portugués"
+msgstr "Portugués"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Product"
+msgstr "Product"
+
+#. module: payment_redsys
 #: field:payment.acquirer,redsys_merchant_description:0
 msgid "Product Description"
 msgstr "Product Description"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Quantity"
+msgstr "Quantity"
 
 #. module: payment_redsys
 #: view:payment.transaction:payment_redsys.transaction_form_redsys
@@ -121,14 +211,65 @@ msgid "Redsys TX Details"
 msgstr "Redsys TX Details"
 
 #. module: payment_redsys
+#: field:payment.acquirer,redsys_signature_version:0
+msgid "Redsys signature version"
+msgstr "Redsys signature version"
+
+#. module: payment_redsys
+#: code:addons/payment_redsys/models/redsys.py:289
+#, python-format
+msgid "Redsys: feedback error %s (%s)"
+msgstr "Redsys: feedback error %s (%s)"
+
+#. module: payment_redsys
 #: field:payment.acquirer,redsys_secret_key:0
 msgid "Secret Key"
 msgstr "Secret Key"
 
 #. module: payment_redsys
+#: field:payment.acquirer,send_quotation:0
+msgid "Send quotation"
+msgstr "Send quotation"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Shipping Address"
+msgstr "Shipping Address"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Sueco"
+msgstr "Sueco"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Taxes:"
+msgstr "Taxes:"
+
+#. module: payment_redsys
 #: field:payment.acquirer,redsys_terminal:0
 msgid "Terminal"
 msgstr "Terminal"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.redsys_result_ok
+msgid "Thanks for you order."
+msgstr "Thanks for you order."
+
+#. module: payment_redsys
+#: view:website:payment_redsys.redsys_result_ko
+msgid "The payment of your order has failed"
+msgstr "The payment of your order has failed"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Total:"
+msgstr "Total:"
 
 #. module: payment_redsys
 #: field:payment.transaction,redsys_txnid:0
@@ -141,11 +282,26 @@ msgid "Transtaction Type"
 msgstr "Transtaction Type"
 
 #. module: payment_redsys
-#: field:payment.acquirer,redsys_url_ko:0
-msgid "URL KO"
-msgstr "URL KO"
+#: view:website:payment_redsys.order
+msgid "Unit Price"
+msgstr "Unit Price"
 
 #. module: payment_redsys
-#: field:payment.acquirer,redsys_url_ok:0
-msgid "URL OK"
-msgstr "URL OK"
+#: view:website:payment_redsys.order
+msgid "Untaxed Amount:"
+msgstr "Untaxed Amount:"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Valenciano"
+msgstr "Valenciano"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.redsys_result_ok
+msgid "We will inform you of your order status"
+msgstr "We will inform you of your order status"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.redsys_result_ok
+msgid "Your order has been paid correctly"
+msgstr "Your order has been paid correctly"
