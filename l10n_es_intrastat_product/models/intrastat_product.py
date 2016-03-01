@@ -208,9 +208,8 @@ class L10nEsReportIntrastatProduct(models.Model):
 
             # If type = "service" and is_accessory_cost=True, then we keep
             # the line (it will be skipped later on)
-            if (
-                    line.product_id.type not in ('product', 'consu')
-                    and not line.product_id.is_accessory_cost):
+            if line.product_id.type not in ('product', 'consu') \
+                    and not line.product_id.is_accessory_cost:
                 continue
 
             skip_this_line = False
@@ -219,9 +218,8 @@ class L10nEsReportIntrastatProduct(models.Model):
                     skip_this_line = True
             if skip_this_line:
                 continue
-            if (
-                    line.product_id.is_accessory_cost
-                    and line.product_id.type == 'service'):
+            if line.product_id.is_accessory_cost \
+                    and line.product_id.type == 'service':
                 total_invoice_cur_accessory_cost += line.price_subtotal
                 continue
             # END OF "continue" instructions
@@ -377,14 +375,13 @@ class L10nEsReportIntrastatProduct(models.Model):
             create_new_line = True
             for line_to_create in lines_to_create:
                 if (
-                        line_to_create.get('intrastat_code_id', False) ==
-                        intrastat_code_id_to_write
-                        and line_to_create.get('source_uom_id', False) ==
-                        source_uom_id_to_write
-                        and line_to_create.get('intrastat_type_id', False) ==
-                        parent_values['intrastat_type_id_to_write']
-                        and line_to_create.get(
-                            'product_origin_country_id', False) ==
+                    line_to_create.get('intrastat_code_id', False) ==
+                    intrastat_code_id_to_write and
+                    line_to_create.get('source_uom_id', False) ==
+                    source_uom_id_to_write and
+                    line_to_create.get('intrastat_type_id', False) ==
+                    parent_values['intrastat_type_id_to_write'] and
+                    line_to_create.get('product_origin_country_id', False) ==
                         product_origin_country_id_to_write):
                     create_new_line = False
                     line_to_create['quantity'] += quantity_to_write
@@ -435,9 +432,8 @@ class L10nEsReportIntrastatProduct(models.Model):
                 # If I have invoice.intrastat_country_id and the invoice
                 # partner is outside the EU, then I look for the fiscal rep
                 # of the partner
-                if (
-                        invoice.intrastat_country_id
-                        and not invoice.partner_id.country_id.intrastat):
+                if invoice.intrastat_country_id and \
+                        not invoice.partner_id.country_id.intrastat:
                     if not invoice.partner_id.intrastat_fiscal_representative:
                         raise Warning(
                             _("Missing fiscal representative for partner "
@@ -489,13 +485,11 @@ class L10nEsReportIntrastatProduct(models.Model):
 
             # We do currency conversion NOW
             if invoice.currency_id.name != 'EUR':
-                # for currency conversion
                 line_to_create['amount_company_currency'] =\
-                    self.env['res.currency'].with_context(
+                    invoice.currency_id.with_context(
                         date=invoice.date_invoice).compute(
-                        invoice.currency_id,
-                        self.company_id.currency_id,
-                        line_to_create['amount_invoice_currency'])
+                            line_to_create['amount_invoice_currency'],
+                            self.company_id.currency_id)
             else:
                 line_to_create['amount_company_currency'] =\
                     line_to_create['amount_invoice_currency']
@@ -681,10 +675,9 @@ class L10nEsReportIntrastatProduct(models.Model):
                 parent_values['intrastat_type_id_to_write'] =\
                     invoice.intrastat_type_id.id
 
-            if (
-                    invoice.intrastat_country_id
-                    and not invoice.partner_id.country_id.intrastat
-                    and invoice.partner_id.intrastat_fiscal_representative):
+            if invoice.intrastat_country_id and \
+                    not invoice.partner_id.country_id.intrastat and \
+                    invoice.partner_id.intrastat_fiscal_representative:
                 # fiscal rep
                 parent_values['partner_id_to_write'] =\
                     invoice.partner_id.intrastat_fiscal_representative.id
