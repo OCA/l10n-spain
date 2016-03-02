@@ -9,13 +9,13 @@
                 <tree string="Model 340">
                     <field name="fiscalyear_id"/>
                     <field name="period_type"/>
-                    <field name="sequence"/>
+                    <field name="name"/>
                     <field name="type"/>
                     <field name="state" invisible="1"/>
                 </tree>
             </field>
         </record>
-    
+
         <record id="view_l10n_es_aeat_mod340_form" model="ir.ui.view">
             <field name="name">l10n_es.aeat.mod340.form</field>
             <field name="model">l10n.es.aeat.mod340.report</field>
@@ -41,7 +41,7 @@
                                     <group string="Received invoices" colspan="2">
                                         <field name="total_taxable_rec" select ="2" readonly="1"/>
                                         <field name="total_sharetax_rec" select ="2" readonly="1"/>
-                                        <field name="total_rec" select="2" readonly="1"/>                                    
+                                        <field name="total_rec" select="2" readonly="1"/>
                                     </group>
                             </group>
                         </page>
@@ -49,17 +49,17 @@
                             <field name="issued" nolabel="1" />
                         </page>
                         <page string="Received invoice" >
-                            <field name="received" nolabel="1" /> 
+                            <field name="received" nolabel="1" />
                         </page>
                     </notebook>
                 </group>
              </field>
         </record>
         <!-- FIN Modelo 340 -->
-    
-    
+
+
         <!--Invoice Issued-->
-        
+
         <record id="view_l10n_es_aeat_mod340_invoice_issued_tree" model="ir.ui.view">
             <field name="name">l10n.es.aeat.mod340.issued.tree</field>
             <field name="model">l10n.es.aeat.mod340.issued</field>
@@ -73,10 +73,10 @@
                     <field name="base_tax" sum="Total Base" />
                     <field name="amount_tax" sum="Total Tax" />
                     <field name="total" sum="Total"/>
-                </tree>   
+                </tree>
             </field>
         </record>
-        
+
         <record id="view_l10n_es_aeat_mod340_invoice_issued_form" model="ir.ui.view">
             <field name="name">l10n.es.aeat.mod340.issued.form</field>
             <field name="model">l10n.es.aeat.mod340.issued</field>
@@ -95,12 +95,12 @@
                     <field name="total"/>
                     <newline />
                     <field name="tax_line_ids" />
-                </form>   
+                </form>
             </field>
         </record>
-    
+
         <!--Invoice Received-->
-        
+
         <record id="view_l10n_es_aeat_mod340_invoice_received_tree" model="ir.ui.view">
             <field name="name">l10n.es.aeat.mod340.received.tree</field>
             <field name="model">l10n.es.aeat.mod340.received</field>
@@ -113,10 +113,10 @@
                     <field name="base_tax" sum="Total Base"/>
                     <field name="amount_tax" sum="Total Tax"/>
                     <field name="total" sum="Total"/>
-                </tree>   
+                </tree>
             </field>
         </record>
-        
+
         <record id="view_l10n_es_aeat_mod340_invoice_received_form" model="ir.ui.view">
             <field name="name">l10n.es.aeat.mod340.received.form</field>
             <field name="model">l10n.es.aeat.mod340.received</field>
@@ -135,12 +135,12 @@
                     <field name="total"/>
                     <newline />
                     <field name="tax_line_ids" />
-                </form>   
+                </form>
             </field>
         </record>
-        
+
         <!--Vat Lines-->
-        
+
         <record id="view_l10n_es_aeat_mod340_tax_line_issued_form" model="ir.ui.view">
             <field name="name">l10n.es.aeat.mod340.tax_line_issued.form</field>
             <field name="model">l10n.es.aeat.mod340.tax_line_issued</field>
@@ -153,7 +153,7 @@
                 </form>
             </field>
         </record>
-        
+
         <record id="view_l10n_es_aeat_mod340_tax_line_received_form" model="ir.ui.view">
             <field name="name">l10n.es.aeat.mod340.tax_line_received.form</field>
             <field name="model">l10n.es.aeat.mod340.tax_line_received</field>
@@ -166,7 +166,7 @@
                 </form>
             </field>
         </record>
-    
+
         <record id="view_l10n_es_aeat_mod340_report_search" model="ir.ui.view">
             <field name="name">AEAT Model 340 (search)</field>
             <field name="model">l10n.es.aeat.mod340.report</field>
