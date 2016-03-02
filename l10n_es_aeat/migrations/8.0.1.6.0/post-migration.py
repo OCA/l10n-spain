@@ -15,3 +15,17 @@ def migrate(cr, version):
     for seq in sequences:
         seq.prefix = re.sub(r'-', '', seq.prefix)
         seq.padding = 13 - len(seq.prefix)
+
+    cr.execute(
+        """
+        SELECT table_schema, table_name
+        FROM information_schema.tables
+        WHERE table_schema='public' AND
+              table_name like 'l10n_es_aeat_%_report';
+        """)
+    for table_schema, table_name in cr.fetchall():
+        cr.execute(
+            """
+            ALTER TABLE %(table)s
+            DROP CONSTRAINT IF EXISTS %(table)s_sequence_uniq;
+            """ % {'table': table_name})
