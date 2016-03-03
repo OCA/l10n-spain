@@ -486,7 +486,7 @@ class AccountBalanceReportingLine(orm.Model):
                                     'date_from': report.previous_date_from,
                                     'date_to': report.previous_date_to
                                 })
-                        if line.report_id.check_filter == 'period':
+                        if line.report_id.check_filter == 'periods':
                             if fyear == 'current':
                                 ctx.update({
                                     'periods':
