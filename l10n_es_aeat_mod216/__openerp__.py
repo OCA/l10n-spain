@@ -18,7 +18,7 @@
 
 {
     'name': 'AEAT modelo 216',
-    'version': '8.0.1.1.0',
+    'version': '8.0.1.2.0',
     'category': "Localisation/Accounting",
     'author': "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "AvanzOSC,"
