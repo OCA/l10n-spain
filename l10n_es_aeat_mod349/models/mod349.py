@@ -42,14 +42,6 @@ class Mod349(models.Model):
             refund.total_operation_amount for refund in
             self.partner_refund_ids])
 
-    @api.one
-    @api.depends()
-    def _get_report_alias(self):
-        """Returns an alias as name for the report."""
-        self.name = '%s - %s/%s' % (
-            self.company_id.name or '', self.fiscalyear_id.name or '',
-            self.period_type or '')
-
     def _create_349_partner_records(self, invoices):
         """creates partner records in 349. All invoices must be for the
         same partner and operation key."""
@@ -204,7 +196,6 @@ class Mod349(models.Model):
         self._check_report_lines()
         return super(Mod349, self).button_confirm()
 
-    name = fields.Char(compute="_get_report_alias", string="Name")
     frequency_change = fields.Boolean(
         string='Frequency change', states={'confirmed': [('readonly', True)]})
     total_partner_records = fields.Integer(
@@ -239,12 +230,6 @@ class Mod349PartnerRecord(models.Model):
     _order = 'operation_key asc'
 
     @api.one
-    @api.depends('partner_vat')
-    def get_record_name(self):
-        """Returns the record name."""
-        self.name = self.partner_vat
-
-    @api.one
     @api.depends('partner_vat', 'country_id', 'total_operation_amount')
     def _check_partner_record_line(self):
         """Checks if all line fields are filled."""
@@ -263,7 +248,6 @@ class Mod349PartnerRecord(models.Model):
     report_id = fields.Many2one(
         comodel_name='l10n.es.aeat.mod349.report',
         string='AEAT 349 Report ID', ondelete="cascade")
-    name = fields.Char(compute="get_record_name")
     partner_id = fields.Many2one(
         comodel_name='res.partner', string='Partner', required=True)
     partner_vat = fields.Char(string='VAT', size=15, select=1)
