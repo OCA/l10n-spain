@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:57+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,37 @@ msgid "AEAT 216 report"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
+#: code:addons/l10n_es_aeat_mod216/models/mod216.py:131
+#, python-format
+msgid "Account Move Lines"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,move_id:0
+msgid "Account entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,move_lines_cuota:0
+msgid "Account move lines for amounts"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,move_lines_base:0
+msgid "Account move lines for bases"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,allow_posting:0
+msgid "Allow posting"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,partner_bank_id:0
+msgid "Bank account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,calculation_date:0
 msgid "Calculation date"
 msgstr "Data processada"
@@ -38,48 +69,23 @@ msgid "Cancelled"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: field:l10n.es.aeat.mod216.report,casilla_01:0
-msgid "Casilla [01]"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
-#: field:l10n.es.aeat.mod216.report,casilla_02:0
-msgid "Casilla [02]"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
-#: field:l10n.es.aeat.mod216.report,casilla_03:0
-msgid "Casilla [03]"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
-#: field:l10n.es.aeat.mod216.report,casilla_04:0
-msgid "Casilla [04]"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
-#: field:l10n.es.aeat.mod216.report,casilla_05:0
-msgid "Casilla [05]"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
-#: field:l10n.es.aeat.mod216.report,casilla_06:0
-msgid "Casilla [06]"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
-#: field:l10n.es.aeat.mod216.report,casilla_07:0
-msgid "Casilla [07]"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,company_id:0
 msgid "Company"
 msgstr "Empresa"
 
 #. module: l10n_es_aeat_mod216
+#: help:l10n.es.aeat.mod216.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,type:0
 msgid "Complementary"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,counterpart_account:0
+msgid "Counterpart account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
@@ -91,13 +97,13 @@ msgstr ""
 #: field:l10n.es.aeat.mod216.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.mod216.report,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Criado por"
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.export_to_boe,create_date:0
 #: field:l10n.es.aeat.mod216.report,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Criado em"
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,support_type:0
@@ -123,6 +129,12 @@ msgstr ""
 #: field:l10n.es.aeat.mod216.report,number:0
 msgid "Declaration number"
 msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.export_to_boe,display_name:0
+#: field:l10n.es.aeat.mod216.report,display_name:0
+msgid "Display Name"
+msgstr "Nome"
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
@@ -178,7 +190,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod216.export_to_boe,id:0
 #: field:l10n.es.aeat.mod216.report,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
@@ -191,8 +203,18 @@ msgid "Ingreso a anotar en CCT"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: field:res.partner,is_resident:0
-msgid "Is resident"
+#: field:res.partner,is_non_resident:0
+msgid "Is non-resident"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,journal_id:0
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: help:l10n.es.aeat.mod216.report,journal_id:0
+msgid "Journal in which post the move."
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
@@ -201,16 +223,22 @@ msgid "L.R. VAT number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.mod216.report,__last_update:0
+msgid "Last Modified on"
+msgstr "Modificado a última vez por"
+
+#. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod216.report,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Atualizado pela última vez por"
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.export_to_boe,write_date:0
 #: field:l10n.es.aeat.mod216.report,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Atualizado pela última vez em"
 
 #. module: l10n_es_aeat_mod216
 #: help:l10n.es.aeat.mod216.report,representative_vat:0
@@ -223,39 +251,57 @@ msgid "Liquidación"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: help:l10n.es.aeat.mod216.report,casilla_01:0
-msgid "Liquidación - Partida 1 - Núm. Rentas"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
-#: help:l10n.es.aeat.mod216.report,casilla_02:0
-msgid "Liquidación - Partida 2 - Base ret. ing. cuenta"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
-#: help:l10n.es.aeat.mod216.report,casilla_03:0
-msgid "Liquidación - Partida 3 - Retenciones ingresos a cuenta"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
-#: help:l10n.es.aeat.mod216.report,casilla_04:0
-msgid "Liquidación - Partida 4 - Núm. Rentas"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
-#: help:l10n.es.aeat.mod216.report,casilla_05:0
-msgid "Liquidación - Partida 5 - Base ret. ing. cuenta."
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
 #: help:l10n.es.aeat.mod216.report,casilla_06:0
-msgid "Liquidación - Partida 6 - Resultado ing. anteriores declaraciones"
+msgid ""
+"Liquidación - Casilla [06] A deducir (exclusivamente en caso de "
+"complementaria): Resultados a ingresar de anteriores declaraciones por el "
+"mismo concepto, ejercicio y período"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: help:l10n.es.aeat.mod216.report,casilla_07:0
-msgid "Liquidación - Partida 7 - Resultado ingresar"
+msgid "Liquidación - Casilla [07] Resultado a ingresar ([03] - [06])"
 msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: help:l10n.es.aeat.mod216.report,casilla_04:0
+msgid ""
+"Liquidación - Rentas no sometidas a retención/ingreso a cuenta - Casilla "
+"[04] Número de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: help:l10n.es.aeat.mod216.report,casilla_05:0
+msgid ""
+"Liquidación - Rentas no sometidas a retención/ingreso a cuenta - Casilla "
+"[05] Base de retenciones e ingresos a cuenta/Importe de las rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: help:l10n.es.aeat.mod216.report,casilla_01:0
+msgid ""
+"Liquidación - Rentas sometidas a retención/ingreso a cuenta - Casilla [01] "
+"Número de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: help:l10n.es.aeat.mod216.report,casilla_02:0
+msgid ""
+"Liquidación - Rentas sometidas a retención/ingreso a cuenta - Casilla [02] "
+"Base de retenciones e ingresos a cuenta/Importe de las rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: help:l10n.es.aeat.mod216.report,casilla_03:0
+msgid ""
+"Liquidación - Rentas sometidas a retención/ingreso a cuenta - Casilla [03] "
+"Retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,model:0
+msgid "Model"
+msgstr "Modelo"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.menu,name:l10n_es_aeat_mod216.menu_aeat_mod216_report
@@ -285,7 +331,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: model:ir.model,name:l10n_es_aeat_mod216.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "Parceiro"
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,period_type:0
@@ -298,13 +344,13 @@ msgid "Period(s)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: field:l10n.es.aeat.mod216.report,period_id:0
-msgid "Periodo"
+#: field:l10n.es.aeat.mod216.report,contact_phone:0
+msgid "Phone"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: field:l10n.es.aeat.mod216.report,contact_phone:0
-msgid "Phone"
+#: selection:l10n.es.aeat.mod216.report,state:0
+msgid "Posted"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
@@ -318,9 +364,34 @@ msgid "Processed"
 msgstr "Processado"
 
 #. module: l10n_es_aeat_mod216
-#: field:l10n.es.aeat.mod216.report,sequence:0
-msgid "Sequence"
-msgstr "Sequência"
+#: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "Rentas no sometidas a retención"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "Rentas sometidas a retención"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "Resultado"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "Show account move lines for amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "Show account move lines for base"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.export_to_boe,state:0
@@ -354,6 +425,13 @@ msgid "Telematics"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
+#: help:l10n.es.aeat.mod216.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,tipo_declaracion:0
 msgid "Tipo de declaración"
 msgstr ""
@@ -361,6 +439,41 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,company_vat:0
 msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,casilla_01:0
+msgid "[01] Número de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,casilla_02:0
+msgid "[02] Base de retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,casilla_03:0
+msgid "[03] Retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,casilla_04:0
+msgid "[04] Número de rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,casilla_05:0
+msgid "[05] Base de retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,casilla_06:0
+msgid "[06] Resultados a ingresar anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,casilla_07:0
+msgid "[07] Resultado a ingresar"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
