@@ -22,7 +22,7 @@ from openerp import fields, models, api
 class L10nEsAeatMod296Report(models.Model):
 
     _description = 'AEAT 296 report'
-    _inherit = 'l10n.es.aeat.report'
+    _inherit = 'l10n.es.aeat.report.tax.mapping'
     _name = 'l10n.es.aeat.mod296.report'
 
     number = fields.Char(default='296')
