@@ -10,14 +10,6 @@ Este módulo permite relacionar las regiones NUTS para España de nivel 4
 con las provincias españolas.
 
 
-Instalación
-===========
-
-Para instalar éste addon, necesitarás el módulo python 'requests':
-
-* pip intall requests
-
-
 Configuración
 =============
 
@@ -25,10 +17,11 @@ Después de instalar, debes clicar en el asistente de importación para añadir
 las regiones NUTS en la base de datos de Odoo.
 Ventas > Configuración > Libreta de direcciones > Importar NUTS 2013
 
-Este asistente descargará del servicio europeo RAMON los metadatos para añadir
-las regiones NUTS en Odoo. Este módulo específico de la localización española
-hereda este asistente genérico para relacionar cada region NUTS española con las
-provincias españolas definidas en el módulo l10n_es_toponyms
+Este asistente descargará del servicio europeo RAMON (Reference And Management Of Nomenclatures)
+los metadatos para añadir las regiones NUTS en Odoo. Este módulo específico
+de la localización española hereda este asistente genérico para relacionar
+cada region NUTS española con las provincias españolas definidas en el
+módulo l10n_es_toponyms
 
 
 Uso
@@ -36,7 +29,7 @@ Uso
 
 Sólo el administrador puede gestionar las regiones NUTS (realmente no es necesario
 porque es una convención a nivel Europeo) pero cualquier usuario puede leerlas,
-para que pueda asignarlas en eel objeto Empresa (res.partner)
+para que pueda asignarlas en el objeto Empresa (res.partner)
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -46,24 +39,25 @@ para que pueda asignarlas en eel objeto Empresa (res.partner)
 Créditos
 ========
 
-Contribudores
--------------
+Contribuidores
+--------------
 
 * Antonio Espinosa <antonioea@antiun.com>
 * Rafael Blasco <rafabn@antiun.com>
 * Jairo Llopis <yajo.sk8@gmail.com>
 
-Mantenido por
--------------
+Maintainer
+----------
 
-.. image:: https://odoo-community.org/logo.png
+.. image:: http://odoo-community.org/logo.png
    :alt: Odoo Community Association
-   :target: https://odoo-community.org
+   :target: http://odoo-community.org
 
-Este módulo lo mantiene la OCA.
+This module is maintained by the OCA.
 
-OCA (Odoo Community Association) es una organización sin ánimo de lucro cuya
-misión es mantener el desarrollo colaborativo de funcionalidad de Odoo
-y promocionar su uso por todo el mundo.
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
 
-Para contribuir a éste módulo, por favor visita https://odoo-community.org
+To contribute to this module, please visit http://odoo-community.org.
+
