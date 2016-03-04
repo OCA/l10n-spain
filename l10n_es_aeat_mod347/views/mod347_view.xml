@@ -10,7 +10,7 @@
             <field name="name">l10n.es.aeat.mod347.partner_record.tree</field>
             <field name="model">l10n.es.aeat.mod347.partner_record</field>
             <field name="arch" type="xml">
-                <tree string="Partner Records" colors="red:not check_ok">
+                <tree string="Partner Records" colors="red:check_ok==False;">
                     <field name="check_ok" invisible="1"/>
                     <field name="operation_key" select="1"/>
                     <field name="partner_vat" select="1"/>
@@ -173,7 +173,7 @@
             <field name="name">l10n.es.aeat.mod347.real_estate_record.tree</field>
             <field name="model">l10n.es.aeat.mod347.real_estate_record</field>
             <field name="arch" type="xml">
-                <tree string="Real Estate Records" colors="red:not check_ok">
+                <tree string="Real Estate Records" colors="red:check_ok==False;">
                     <field name="check_ok" invisible="1"/>
                     <field name="partner_vat" select="1"/>
                     <field name="partner_id" select="1"/>
