@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:41+0000\n"
-"PO-Revision-Date: 2016-02-25 17:15+0000\n"
+"POT-Creation-Date: 2016-05-20 10:24+0000\n"
+"PO-Revision-Date: 2016-04-30 23:00+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -121,23 +121,28 @@ msgid "Account entry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:179
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:188
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:172
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:181
 #, python-format
 msgid "All amounts must be positives"
 msgstr "Tódolos importes deben ser positivos."
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:175
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:168
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
 msgstr "Tódolos campos dos rexistros (país, NIF) deben estar cubertos."
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:183
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:176
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
 msgstr "Tódolos campos das facturas rectificativas (país, NIF) deben estar cubertos."
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,allow_posting:0
+msgid "Allow posting"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record_detail,amount_untaxed:0
@@ -156,6 +161,16 @@ msgid "Cancelled"
 msgstr "Cancelada"
 
 #. module: l10n_es_aeat_mod349
+#: help:l10n.es.aeat.mod349.partner_record,partner_record_ok:0
+msgid "Checked if partner record is OK"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: help:l10n.es.aeat.mod349.partner_refund,partner_refund_ok:0
+msgid "Checked if refund record is OK"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,company_id:0
 msgid "Company"
 msgstr "Compañía"
@@ -166,7 +181,7 @@ msgid "Complementary"
 msgstr "Complementaria"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:198
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:191
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
 msgstr "O nome do contacto (Nome completo) debe conter nome e apelidos"
@@ -214,6 +229,12 @@ msgid "DVD"
 msgstr "DVD"
 
 #. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.partner_record_detail,date:0
+#: field:l10n.es.aeat.mod349.partner_refund_detail,date:0
+msgid "Date"
+msgstr "Data"
+
+#. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form
 msgid "Declaración"
 msgstr "Declaración"
@@ -232,6 +253,16 @@ msgstr "Líneas de detalle"
 #: view:l10n.es.aeat.mod349.partner_refund:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_form
 msgid "Details"
 msgstr "Detalles"
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.export_to_boe,display_name:0
+#: field:l10n.es.aeat.mod349.partner_record,display_name:0
+#: field:l10n.es.aeat.mod349.partner_record_detail,display_name:0
+#: field:l10n.es.aeat.mod349.partner_refund,display_name:0
+#: field:l10n.es.aeat.mod349.partner_refund_detail,display_name:0
+#: field:l10n.es.aeat.mod349.report,display_name:0
+msgid "Display Name"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
@@ -365,9 +396,25 @@ msgid "Journal in which post the move."
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: help:l10n.es.aeat.mod349.partner_record_detail,date:0
+#: help:l10n.es.aeat.mod349.partner_refund_detail,date:0
+msgid "Keep empty to use the current date"
+msgstr "Deixe baleiro para usa-la data actual"
+
+#. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,representative_vat:0
 msgid "L.R. VAT number"
 msgstr "NIF repr. legal"
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.mod349.partner_record,__last_update:0
+#: field:l10n.es.aeat.mod349.partner_record_detail,__last_update:0
+#: field:l10n.es.aeat.mod349.partner_refund,__last_update:0
+#: field:l10n.es.aeat.mod349.partner_refund_detail,__last_update:0
+#: field:l10n.es.aeat.mod349.report,__last_update:0
+msgid "Last Modified on"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.export_to_boe,write_uid:0
@@ -400,6 +447,11 @@ msgstr "NIF do representante legal."
 #: selection:l10n.es.aeat.mod349.partner_refund,operation_key:0
 msgid "M - Intra-Community supplies without taxes"
 msgstr "M - Entregas intracomunitarias sen impostos "
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,model:0
+msgid "Model"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: help:l10n.es.aeat.mod349.report,contact_name:0
@@ -476,6 +528,11 @@ msgid "Partner"
 msgstr "Empresa"
 
 #. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.partner_record,partner_record_ok:0
+msgid "Partner Record OK"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record_detail,partner_record_id:0
 msgid "Partner record"
 msgstr "Rexistro da empresa"
@@ -502,9 +559,34 @@ msgid "Partner refund IDS"
 msgstr "IDs de facturas rectificativas"
 
 #. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.partner_refund,partner_refund_ok:0
+msgid "Partner refund OK"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_refund,refund_detail_ids:0
 msgid "Partner refund detail IDS"
 msgstr "IDs Detalles das facturas rectificativas"
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,total_partner_records:0
+msgid "Partners records"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,total_partner_records_amount:0
+msgid "Partners records amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,total_partner_refunds:0
+msgid "Partners refunds"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,total_partner_refunds_amount:0
+msgid "Partners refunds amount"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
@@ -558,6 +640,11 @@ msgid "Refunds"
 msgstr "Facturas rectificativas"
 
 #. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form
 msgid "Resultado"
 msgstr "Resultado"
@@ -568,11 +655,6 @@ msgstr "Resultado"
 #: selection:l10n.es.aeat.mod349.partner_refund,operation_key:0
 msgid "S - Intra-Community services"
 msgstr "S - Prestacións de servicios intracomunitarias"
-
-#. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.report,sequence:0
-msgid "Sequence"
-msgstr "Secuencia"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.export_to_boe,state:0
@@ -621,7 +703,7 @@ msgstr "O tipo de rexistro 1 debe ter 502 caracteres de longo"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:184
-#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:245
+#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:247
 #, python-format
 msgid "The type 2 record must be 502 characters long"
 msgstr "O tipo de rexistro 2 debe ter 502 caracteres de longo"
