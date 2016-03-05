@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:41+0000\n"
-"PO-Revision-Date: 2016-02-25 17:15+0000\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-03-05 10:34+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -119,20 +119,20 @@ msgid "Account entry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:179
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:188
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:172
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:181
 #, python-format
 msgid "All amounts must be positives"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:175
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:168
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
 msgstr "Tots els camps dels registres d'empresa (país, número CIF/NIF) han d'estar omplerts."
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:183
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:176
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
 msgstr "Tots els camps de les rectificacions (país, número CIF/NIF) han d'estar omplerts."
@@ -164,7 +164,7 @@ msgid "Complementary"
 msgstr "Complementària"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:198
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:191
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
 msgstr "El nom del contacte (Nom complert) ha de contenir nom i cognoms"
@@ -194,7 +194,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_refund_detail,create_uid:0
 #: field:l10n.es.aeat.mod349.report,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.export_to_boe,create_date:0
@@ -204,7 +204,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_refund_detail,create_date:0
 #: field:l10n.es.aeat.mod349.report,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat el"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,support_type:0
@@ -556,6 +556,11 @@ msgid "Refunds"
 msgstr "Rectificacions"
 
 #. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form
 msgid "Resultado"
 msgstr ""
@@ -566,11 +571,6 @@ msgstr ""
 #: selection:l10n.es.aeat.mod349.partner_refund,operation_key:0
 msgid "S - Intra-Community services"
 msgstr "S - Prestacions de serveis intracomunitàries"
-
-#. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.report,sequence:0
-msgid "Sequence"
-msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.export_to_boe,state:0

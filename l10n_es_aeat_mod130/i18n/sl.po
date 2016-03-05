@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:41+0000\n"
-"PO-Revision-Date: 2016-02-25 17:14+0000\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-03-02 09:27+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -411,6 +411,11 @@ msgid "Processed"
 msgstr "Obdelano"
 
 #. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: view:l10n.es.aeat.mod130.report:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
 #: field:l10n.es.aeat.mod130.report,result:0
 msgid "Resultado"
@@ -428,11 +433,6 @@ msgstr ""
 #: selection:l10n.es.aeat.mod130.report,period:0
 msgid "Second quarter"
 msgstr ""
-
-#. module: l10n_es_aeat_mod130
-#: field:l10n.es.aeat.mod130.report,sequence:0
-msgid "Sequence"
-msgstr "Zaporedje"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.export_to_boe,state:0

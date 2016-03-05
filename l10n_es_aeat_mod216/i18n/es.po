@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:41+0000\n"
-"PO-Revision-Date: 2016-02-25 17:14+0000\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-03-04 16:52+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -338,14 +338,14 @@ msgid "Rentas sometidas a retención"
 msgstr "Rentas sometidas a retención"
 
 #. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
 #: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
 msgid "Resultado"
 msgstr "Resultado"
-
-#. module: l10n_es_aeat_mod216
-#: field:l10n.es.aeat.mod216.report,sequence:0
-msgid "Sequence"
-msgstr "Secuencia"
 
 #. module: l10n_es_aeat_mod216
 #: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
@@ -377,6 +377,11 @@ msgstr "Sustitutiva"
 #: field:l10n.es.aeat.mod216.report,support_type:0
 msgid "Support Type"
 msgstr "Tipo de soporte"
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,tax_lines:0
+msgid "Tax lines"
+msgstr "Líneas de impuestos"
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,support_type:0
