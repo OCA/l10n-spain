@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:41+0000\n"
-"PO-Revision-Date: 2016-02-22 13:59+0000\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-03-02 09:27+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -262,6 +262,11 @@ msgid "Processed"
 msgstr "Obdelano"
 
 #. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: view:l10n.es.aeat.mod303.report:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Resultado"
 msgstr ""
@@ -284,11 +289,6 @@ msgstr ""
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,sequence:0
-msgid "Sequence"
-msgstr "Zaporedje"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,compensate:0
