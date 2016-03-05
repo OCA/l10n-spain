@@ -2,6 +2,7 @@
 # © 2004-2011 Pexego Sistemas Informáticos. (http://pexego.es)
 # © 2013 Top Consultant Software Creations S.L. (http://www.topconsultant.es/)
 # © 2014-2016 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
+# © 2016 Antiun Ingenieria S.L. - Antonio Espinosa
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import re
@@ -227,6 +228,7 @@ class Mod349PartnerRecord(models.Model):
     """
     _name = 'l10n.es.aeat.mod349.partner_record'
     _description = 'AEAT 349 Model - Partner record'
+    _rec_name = 'partner_vat'
     _order = 'operation_key asc'
 
     @api.one
