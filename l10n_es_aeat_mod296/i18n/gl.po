@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:41+0000\n"
-"PO-Revision-Date: 2016-02-25 17:14+0000\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-03-04 16:52+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -710,14 +710,14 @@ msgid "Renta en especie"
 msgstr "Renda en especie"
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,retenciones_ingresos:0
 msgid "Retenciones e ingresos a cuenta"
 msgstr "Retencións e ingresos a conta"
-
-#. module: l10n_es_aeat_mod296
-#: field:l10n.es.aeat.mod296.report,sequence:0
-msgid "Sequence"
-msgstr "Secuencia"
 
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.export_to_boe,state:0
@@ -744,6 +744,11 @@ msgstr "Substitutiva"
 #: field:l10n.es.aeat.mod296.report,support_type:0
 msgid "Support Type"
 msgstr "Tipo de soporte"
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,tax_lines:0
+msgid "Tax lines"
+msgstr "Liñas de impostos"
 
 #. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.report,support_type:0

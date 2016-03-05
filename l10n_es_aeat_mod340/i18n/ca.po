@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 19:24+0000\n"
-"PO-Revision-Date: 2015-11-04 15:43+0000\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-03-02 09:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -198,7 +198,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_issued,create_uid:0
 #: field:l10n.es.aeat.mod340.tax_line_received,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.calculate_records,create_date:0
@@ -211,7 +211,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_issued,create_date:0
 #: field:l10n.es.aeat.mod340.tax_line_received,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat el"
 
 #. module: l10n_es_aeat_mod340
 #: reportreport mod340:0 reportvat book:0
@@ -647,11 +647,6 @@ msgid "Records"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340.report,sequence:0
-msgid "Sequence"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.export_to_boe,state:0
 #: field:l10n.es.aeat.mod340.report,state:0
 msgid "State"
@@ -708,7 +703,6 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.investment,tax_line_ids:0
 #: field:l10n.es.aeat.mod340.issued,tax_line_ids:0
 #: field:l10n.es.aeat.mod340.received,tax_line_ids:0
-#: field:l10n.es.aeat.mod340.report,tax_lines:0
 msgid "Tax lines"
 msgstr ""
 
