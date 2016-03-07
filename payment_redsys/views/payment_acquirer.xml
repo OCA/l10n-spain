@@ -24,6 +24,7 @@
                     </group>
                     <group attrs="{'invisible': [('provider', '!=', 'redsys')]}">
                         <field name="send_quotation"/>
+                        <field name="show_discount"/>
                     </group>
                 </xpath>
             </field>

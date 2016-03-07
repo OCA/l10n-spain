@@ -81,6 +81,7 @@ class AcquirerRedsys(models.Model):
     redsys_signature_version = fields.Selection(
         [('HMAC_SHA256_V1', 'HMAC SHA256 V1')], default='HMAC_SHA256_V1')
     send_quotation = fields.Boolean('Send quotation', default=True)
+    show_discount = fields.Boolean('Show discount', default=False)
 
     def _prepare_merchant_parameters(self, acquirer, tx_values):
         base_url = self.env['ir.config_parameter'].get_param('web.base.url')
