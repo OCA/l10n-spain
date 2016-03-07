@@ -110,10 +110,10 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         }
 
     @api.multi
-    def _process_tax_line_regularization(self, tax_line):
+    def _process_tax_line_regularization(self, tax_lines):
         self.ensure_one()
         groups = self.env['account.move.line'].read_group(
-            [('id', 'in', tax_line.move_lines.ids)],
+            [('id', 'in', tax_lines.mapped('move_lines').ids)],
             ['debit', 'credit', 'account_id'],
             ['account_id'])
         lines = []
@@ -148,12 +148,8 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         """Prepare the list of dictionaries for the regularization move lines.
         """
         self.ensure_one()
-        lines = []
-        for tax_line in self.tax_lines.filtered('to_regularize'):
-            result = self._process_tax_line_regularization(tax_line)
-            # TODO: Ver si alguna vez se desglosa una cuenta en varias líneas
-            # y agrupar en consecuencia
-            lines += result
+        lines = self._process_tax_line_regularization(
+            self.tax_lines.filtered('to_regularize'))
         lines += self._prepare_regularization_extra_move_lines()
         # Write counterpart with the remaining
         debit = sum(x['debit'] for x in lines)
