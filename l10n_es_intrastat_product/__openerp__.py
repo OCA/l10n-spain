@@ -49,7 +49,7 @@
         'views/stock_view.xml',
         'views/invoice_view.xml',
     ],
-    'demo': ['data/intrastat_demo.xml'],
+    'demo': [],
     'installable': True,
     'application': True,
 }
