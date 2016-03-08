@@ -47,6 +47,7 @@ addon | version | summary
 [l10n_es_aeat_mod349](l10n_es_aeat_mod349/) | 8.0.2.2.0 | Modelo 349 AEAT
 [l10n_es_aeat_vat_prorrate](l10n_es_aeat_vat_prorrate/) | 8.0.2.0.0 | AEAT - Prorrata de IVA
 [l10n_es_crm_lead_trade_name](l10n_es_crm_lead_trade_name/) | 8.0.1.0.0 | Add trade name field to leads
+[l10n_es_dua](l10n_es_dua/) | 8.0.1.0.0 | Importaciones con DUA
 [l10n_es_fiscal_year_closing](l10n_es_fiscal_year_closing/) | 8.0.1.0.0 | Cierre de ejercicio fiscal para España
 [l10n_es_irnr](l10n_es_irnr/) | 8.0.1.0.0 | Retenciones IRNR (No residentes)
 [l10n_es_partner](l10n_es_partner/) | 8.0.1.4.0 | Adaptación de los clientes, proveedores y bancos para España
