@@ -226,6 +226,19 @@ class L10nEsAeatMod111Report(models.Model):
         comodel_name='account.move.line',
         relation='mod111_account_move_line09_rel',
         column1='mod111', column2='account_move_line')
+    iban = fields.Many2one(
+        comodel_name='res.partner.bank',
+        string='IBAN')
+    iban_number = fields.Char(
+        compute='_compute_iban_number',
+        string='IBAN')
+
+    @api.multi
+    @api.depends('iban')
+    def _compute_iban_number(self):
+        for report in self:
+            if report.iban and report.iban.acc_number:
+                report.iban_number = report.iban.acc_number.replace(' ', '')
 
     @api.one
     @api.constrains('codigo_electronico_anterior', 'previous_number')

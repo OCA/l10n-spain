@@ -16,9 +16,11 @@
                     <field name="contact_mobile_phone"/>
                 </field>
                 <field name="previous_number" position="after">
-                        <field name="tipo_declaracion"/>
-                        <field name="codigo_electronico_anterior" attrs="{'invisible': [('type','==','N')]}"/>
-                        <field name="colegio_concertado"/>
+                    <field name="tipo_declaracion"/>
+                    <field name="iban" domain="[('company_id', '=', 1), ('state', '=', 'iban'), ('acc_country_id', '=', 69)]"/>
+                    <field name="iban_number" invisible="1"/>
+                    <field name="codigo_electronico_anterior" attrs="{'invisible': [('type','==','N')]}"/>
+                    <field name="colegio_concertado"/>
                 </field>
                 <field name="previous_number" position="attributes">
                     <attribute name="attrs">{'invisible': [('type','==','N')]}</attribute>
