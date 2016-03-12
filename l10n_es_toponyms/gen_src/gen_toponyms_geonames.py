@@ -27,7 +27,7 @@ import unicodecsv
 import zipfile
 
 
-def filterCity(originalName):
+def filter_city(originalName):
     """
     Pone correctamente la capitalización de palabras como 'De', 'Las', 'Los',
     cuando son palabras intermedias en el nombre de la ciudad.
@@ -35,6 +35,7 @@ def filterCity(originalName):
     return originalName.replace(' De ', ' de ').replace(' Del ', ' del ').\
         replace(' La ', ' la ').replace(' Las ', ' las ').\
         replace(' El ', ' el ').replace(' Los ', ' los ')
+
 
 if __name__ == "__main__":
     url = "http://download.geonames.org/export/zip/ES.zip"
@@ -64,7 +65,7 @@ if __name__ == "__main__":
         output.write(' ' * 12 + '<field name="state_id" ref="'
                                 'l10n_es_toponyms.ES%s"/>\n' % row[1][:2])
         output.write(' ' * 12 + '<field name="city">%s</field>\n' %
-                     filterCity(row[2]).encode('utf-8'))
+                     filter_city(row[2]).encode('utf-8'))
         output.write(' ' * 12 + '<field name="name">%s</field>\n' % row[1])
         output.write(' ' * 12 + '<field name="country_id" ref="base.es"/>\n')
         output.write(' ' * 8 + '</record>\n')
