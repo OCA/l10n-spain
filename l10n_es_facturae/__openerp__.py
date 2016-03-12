@@ -22,7 +22,7 @@
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": [
-        "account_payment",
+        "account_payment_partner",
         "base_iso3166",
     ],
     "data": [
@@ -30,8 +30,6 @@
         "views/res_company.xml",
         "views/payment_mode_view.xml",
         "wizard/create_facturae_view.xml",
-        "data/l10n_es_facturae_data.xml",
-        "security/ir.model.access.csv",
     ],
     "installable": True,
 }
