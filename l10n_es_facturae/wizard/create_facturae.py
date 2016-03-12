@@ -8,11 +8,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
-from openerp import models, fields, _, api, exceptions
+from openerp import api, fields, models, _
+from openerp.exceptions import Warning as UserError
 import logging
 import subprocess
 import os
 from unidecode import unidecode
+from lxml import etree
+from openerp import tools
 
 logger = logging.Logger("facturae")
 
@@ -43,13 +46,33 @@ class CreateFacturae(models.TransientModel):
     note = fields.Text('Log')
     state = fields.Selection([('first', 'First'), ('second', 'Second')],
                              'State', readonly=True, default='first')
-    firmar_facturae = fields.\
-        Boolean('¿Desea firmar digitalmente el fichero generado?',
-                help='Requiere certificado en la ficha de la compañía')
+    firmar_facturae = fields.Boolean(
+        '¿Desea firmar digitalmente el fichero generado?',
+        help='Requiere certificado en la ficha de la compañía')
 
     @api.multi
     def end_document_hook(self, xml_facturae):
         return xml_facturae
+
+    @api.model
+    def _validate_facturae(self, xml_string):
+        facturae_schema = etree.XMLSchema(
+            etree.parse(tools.file_open(
+                "Facturaev3_2.xsd", subdir="addons/l10n_es_facturae/data")))
+        try:
+            facturae_schema.assertValid(etree.fromstring(xml_string))
+        except Exception, e:
+            logger.warning(
+                "The XML file is invalid against the XML Schema Definition")
+            logger.warning(xml_string)
+            logger.warning(e)
+            raise UserError(
+                _("The generated XML file is not valid against the official "
+                  "XML Schema Definition. The generated XML file and the "
+                  "full error have been written in the server logs. Here "
+                  "is the error, which may give you an idea on the cause "
+                  "of the problem : %s") % unicode(e))
+        return True
 
     @api.multi
     def create_facturae_file(self):
@@ -516,19 +539,22 @@ class CreateFacturae(models.TransientModel):
                     pay_amount = -move.credit
                 texto += '<InstallmentAmount>' + str('%.2f' % pay_amount) +\
                          '</InstallmentAmount>'
+                if not invoice.payment_mode_id:
+                    texto += '</PaymentDetails>'
+                    return texto
                 # Nos aseguramos de que se ha seleccionado el tipo de pago.
-                if not invoice.payment_mode_id.face_code_id:
+                if not invoice.payment_mode_id.facturae_code:
                     log.add(_('User error:\n\nFACe code is not configured in '
                               'invoice payment mode.'), True)
                     raise log
                 texto += '<PaymentMeans>' +\
-                         invoice.payment_mode_id.face_code_id.code +\
+                         invoice.payment_mode_id.facturae_code +\
                          '</PaymentMeans>'
 
                 # En función del tipo de pago seleccionado, debemos añadir la
                 # cuenta corriente de la empresa, o la cuenta corriente del
                 # cliente.
-                if invoice.payment_mode_id.face_code_id.code == '02':
+                if invoice.payment_mode_id.facturae_code == '02':
                     if not invoice.partner_bank_id:
                         log.add(_('User error:\n\nYou must select a bank'
                                   ' account in invoice.'), True)
@@ -630,12 +656,8 @@ class CreateFacturae(models.TransientModel):
         log = Log()
         invoice_ids = self.env.context.get('active_ids', [])
         if not invoice_ids or len(invoice_ids) > 1:
-            raise exceptions.\
-                Warning(_('Only can select one invoice to export'))
-
+            raise UserError(_('You can only select one invoice to export'))
         invoice = self.env['account.invoice'].browse(invoice_ids[0])
-        # contador = 1
-        # lines_issued = []
         xml_facturae += _format_xml()
         xml_facturae += _header_facturae()
         xml_facturae += _parties_facturae()
@@ -643,6 +665,7 @@ class CreateFacturae(models.TransientModel):
         xml_facturae += _end_document()
         xml_facturae = unidecode(unicode(xml_facturae))
         xml_facturae = self.end_document_hook(xml_facturae)
+        self._validate_facturae(xml_facturae)
         if invoice.company_id.facturae_cert and self.firmar_facturae:
             file_name = (_(
                 'facturae') + '_' + invoice.number + '.xsig').replace('/', '-')
@@ -651,26 +674,28 @@ class CreateFacturae(models.TransientModel):
             invoice_file = xml_facturae
             file_name = (_(
                 'facturae') + '_' + invoice.number + '.xml').replace('/', '-')
-
         file = base64.encodestring(invoice_file)
-        self.env['ir.attachment'].create({'name': file_name,
-                                          'datas': file,
-                                          'datas_fname': file_name,
-                                          'res_model': 'account.invoice',
-                                          'res_id': invoice.id})
-
+        self.env['ir.attachment'].create({
+            'name': file_name,
+            'datas': file,
+            'datas_fname': file_name,
+            'res_model': 'account.invoice',
+            'res_id': invoice.id
+        })
         log.add(_("Export successful\n\nSummary:\nInvoice number: %s\n") %
                 invoice.number)
-
-        self.write({'note': log(),
-                    'facturae': file,
-                    'facturae_fname': file_name,
-                    'state': 'second'})
-
-        return {'type': 'ir.actions.act_window',
-                'res_model': 'create.facturae',
-                'view_mode': 'form',
-                'view_type': 'form',
-                'res_id': self.id,
-                'views': [(False, 'form')],
-                'target': 'new'}
+        self.write({
+            'note': log(),
+            'facturae': file,
+            'facturae_fname': file_name,
+            'state': 'second'
+        })
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'create.facturae',
+            'view_mode': 'form',
+            'view_type': 'form',
+            'res_id': self.id,
+            'views': [(False, 'form')],
+            'target': 'new'
+        }
