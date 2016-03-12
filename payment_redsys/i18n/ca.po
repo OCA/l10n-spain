@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-05 10:32+0000\n"
-"PO-Revision-Date: 2016-02-29 13:37+0000\n"
-"Last-Translator: Eric Antones <eantones@users.noreply.github.com>\n"
+"POT-Creation-Date: 2016-03-09 09:11+0000\n"
+"PO-Revision-Date: 2016-03-08 09:39+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,6 +55,11 @@ msgid "Date:"
 msgstr "Data:"
 
 #. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Discount (%)"
+msgstr ""
+
+#. module: payment_redsys
 #: selection:payment.acquirer,redsys_pay_method:0
 msgid "Domiciliacion"
 msgstr "Domiciliació"
@@ -62,7 +67,7 @@ msgstr "Domiciliació"
 #. module: payment_redsys
 #: view:website:payment_redsys.redsys_result_ko
 msgid "En error ocurred."
-msgstr ""
+msgstr "S'ha produït un error."
 
 #. module: payment_redsys
 #: code:addons/payment_redsys/models/redsys.py:271
@@ -73,7 +78,7 @@ msgstr ""
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
 msgid "Euskera"
-msgstr ""
+msgstr "Basc"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
@@ -265,7 +270,7 @@ msgstr "Gràcies per la teva comanda."
 #. module: payment_redsys
 #: view:website:payment_redsys.redsys_result_ko
 msgid "The payment of your order has failed"
-msgstr ""
+msgstr "El pagament de la teva comanda ha fallat"
 
 #. module: payment_redsys
 #: view:website:payment_redsys.order
@@ -300,9 +305,9 @@ msgstr "Valencià"
 #. module: payment_redsys
 #: view:website:payment_redsys.redsys_result_ok
 msgid "We will inform you of your order status"
-msgstr ""
+msgstr "T'informarem sobre l'estat de la comanda"
 
 #. module: payment_redsys
 #: view:website:payment_redsys.redsys_result_ok
 msgid "Your order has been paid correctly"
-msgstr ""
+msgstr "La teva comanda s'ha pagat correctament"
