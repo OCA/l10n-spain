@@ -217,9 +217,9 @@ class CreateFacturae(models.TransientModel):
                 log.add(_('User error:\n\nCompany %s has no province.') %
                         company_partner_obj.name, True)
                 raise log
-            if company_partner_obj.country_id.code_3166:
+            if company_partner_obj.country_id.code_alpha3:
                 texto += '<CountryCode>' + \
-                         company_partner_obj.country_id.code_3166 +\
+                         company_partner_obj.country_id.code_alpha3 +\
                          '</CountryCode>'
             else:
                 log.add(_('User error:\n\nCompany %s has no country.') %
@@ -322,9 +322,10 @@ class CreateFacturae(models.TransientModel):
                     log.add(_('User error:\n\nPartner %s has no province.') %
                             address.name, True)
                     raise log
-                if address.country_id.code_3166:
-                    texto += '<CountryCode>' + address.country_id.code_3166 +\
-                             '</CountryCode>'
+                if address.country_id.code_alpha3:
+                    texto += ('<CountryCode>' +
+                              address.country_id.code_alpha3 +
+                              '</CountryCode>')
                 else:
                     log.add(_('User error:\n\nPartner %s has no country.') %
                             address.name, True)
