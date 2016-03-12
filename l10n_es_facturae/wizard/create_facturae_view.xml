@@ -7,7 +7,7 @@
             <field name="model">create.facturae</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Crear Factura-E">
+                <form string="Create Factura-E">
                     <label string="Este proceso creará la factura electrónica" colspan="4"/>
                     <field name="state" invisible="1"/>
                     <group attrs="{'invisible': [('state', '=', 'second')]}" colspan="4">
@@ -34,7 +34,7 @@
             </field>
         </record>
 
-        <act_window name="Create Factura-e file"
+        <act_window name="Create Factura-E file"
                     res_model="create.facturae"
                     src_model="account.invoice"
                     view_mode="form"
