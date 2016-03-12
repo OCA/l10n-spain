@@ -29,21 +29,22 @@
               "Pexego, "
               "Malagatic, "
               "Comunitea, "
+              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Odoo Community Association (OCA)",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
-    "depends": ["base", "account", "account_payment"],
+    "depends": [
+        "account_payment",
+        "base_iso3166",
+    ],
     "data": [
-        "country_view.xml",
-        "data/data_res_country.xml",
         "partner_view.xml",
         "res_company.xml",
         "payment_mode_view.xml",
         "wizard/create_facturae_view.xml",
         "data/l10n_es_facturae_data.xml",
-        "security/ir.model.access.csv"],
-    "pre_init_hook": "pre_init_hook",
-    "post_init_hook": "post_init_hook",
+        "security/ir.model.access.csv",
+    ],
     "installable": True,
 }
