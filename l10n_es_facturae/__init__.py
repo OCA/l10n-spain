@@ -20,18 +20,7 @@
 #
 ##############################################################################
 
-from . import country
 from . import partner
 from . import res_company
 from . import payment_mode
 from . import wizard
-
-
-def pre_init_hook(cr):
-    cr.execute("update ir_model_data set noupdate=false where "
-               "module = 'base' and model = 'res.country'")
-
-
-def post_init_hook(cr, registry):
-    cr.execute("update ir_model_data set noupdate=true where "
-               "module = 'base' and model = 'res.country'")
