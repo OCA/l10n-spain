@@ -1,4 +1,0 @@
-"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"access_payment_mode_face_code_account","payment.mode.face.code","model_payment_mode_face_code","base.group_user",1,0,0,0
-"access_payment_mode_face_code_accountant","payment.mode.face.code accountant","model_payment_mode_face_code","account.group_account_user",1,1,1,0
-"access_payment_mode_face_code_account_manager","payment.mode.face.code manager","model_payment_mode_face_code","account.group_account_manager",1,1,1,1
