@@ -2,7 +2,6 @@
 <openerp>
   <data>
 
-        <!-- Ficha -->
         <record model="ir.ui.view" id="l10n_es_facturae.res_company_form">
             <field name="name">l10n_es_facturae.res.company.form</field>
             <field name="model">res.company</field>
@@ -10,11 +9,13 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <xpath expr="//notebook/page[@string='Configuration']" position="after">
-                    <page string='FACe'>
-                        <label for="facturae_cert" string="Certificado en formato .pfx con contraseña:"/>
-                        <field name="facturae_cert" />
-                        <newline />
-                        <field name="facturae_cert_password" password="True" placeholder="Aquí la contraseña del certificado"/>
+                    <page string='Factura-E' name="page_facturae">
+                        <group>
+                            <field name="facturae_cert" />
+                            <field name="facturae_cert_password"
+                                   password="True"
+                                   placeholder="Ponga aquí la contraseña del certificado"/>
+                        </group>
                     </page>
                 </xpath>
             </field>
