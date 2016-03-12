@@ -38,7 +38,6 @@ class Log(Exception):
 
 
 class CreateFacturae(models.TransientModel):
-
     _name = "create.facturae"
 
     facturae = fields.Binary('Factura-E file', readonly=True)
@@ -522,11 +521,8 @@ class CreateFacturae(models.TransientModel):
             # Antes de nada, obtenemos el conjunto de vencimientos.
             # Para ello, buscamos los apuntes contra la misma cuenta contable
             # definida en la factura (la cuenta de cliente).
-            for move in invoice.move_id.line_id:
-                # Con esto evitamos incluir las líneas que no se corresponden
-                # con vencimientos.
-                if move.account_id.id != invoice.account_id.id:
-                    continue
+            for move in invoice.move_id.line_id.filtered(
+                    lambda x: x.account_id == invoice.account_id):
                 texto += '<Installment>'
                 date_maturity = invoice.date_invoice
                 if move.date_maturity:
