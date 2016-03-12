@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-========
-Facturae
-========
+=================================================================
+Gestión de la facturación electrónica española (Factura-E o FACe)
+=================================================================
 
 En virtud de la Ley 25/2013, de 27 de diciembre, de impulso de la factura
 electrónica y creación del registro contable de facturas en el Sector Público,
@@ -22,15 +22,18 @@ En estas facturas electrónicas habrá que indicar la oficina contable,
 el órgano gestor y la unidad tramitadora, para que llegue correctamente
 a su destino. La administración le proporcionará estos datos.
 
-(http://www.facturae.gob.es/factura-electronica/noticias-destacadas/Paginas/obligatoriedad-facturas-electronicas.aspx)
+Informacion sobre el formato:
 
-Installation
-============
+* http://www.facturae.gob.es/formato/Documents/EspanolFacturae3_0.pdf
+* http://www.facturae.gob.es/formato/Versiones/Esquema_castellano_v3_2_x_17_11_2015_unificado.pdf
+
+Instalación
+===========
 
 La única dependencia en el caso de querer firmar el formato facturae desde
 Odoo es tener instalado el jre de java en el servidor que hospeda al Odoo.
 
-Configuration
+Configuración
 =============
 
 * Es necesario ir a los modos de pago e indicar su correspondencia con los
@@ -42,21 +45,21 @@ Configuration
   formulario de las compañías y subir el certificado en formato *.pfx y
   escribir la contraseña de acceso al certificado.
 
-Usage
-=====
+Uso
+===
 
-Desde el botón "Más" del formulario de factura ejecutamos el asistente de
-nombre "Crear fichero facturae"
+Desde el botón "Más" del formulario de factura, ejecutamos el asistente
+denominado "Crear fichero Factura-E"
 
-Known issues / Roadmap
-======================
+Problemas conocidos / Hoja de ruta
+==================================
 
 * No está soportada la exportación de facturas rectificativas.
-* Sólo se exportan ivas repercutidos.
+* Sólo se exportan IVAs repercutidos.
 * No se controla el ancho de varios campos cuando se exportan.
 * El certificado y la contraseña de acceso al certificado no se guardan
   cifrados en la base de datos.
-* El fichero exportado debe subirse manualmente a la página de FACe, no está
+* El fichero exportado debe subirse manualmente a la página de FACe. No está
   implementado el envío por servicio web, ya que tienen que conceder permiso
   expreso.
 
@@ -72,6 +75,7 @@ Contributors
 * Pexego (http://www.pexego.es)
 * Malagatic (http://www.malagatic.es)
 * Comunitea (http://www.comunitea.com)
+* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 
 Maintainer
 ----------
