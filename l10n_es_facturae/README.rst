@@ -30,14 +30,17 @@ Informacion sobre el formato:
 Instalación
 ===========
 
-La única dependencia en el caso de querer firmar el formato facturae desde
-Odoo es tener instalado el jre de java en el servidor que hospeda al Odoo.
+Este módulo depende del módulo *account_payment_partner* y sus dependencias,
+que se encuentran en https://github.com/OCA/bank-payment.
+
+La única dependencia en el caso de querer firmar el formato FacturaE desde
+Odoo es tener instalado el JRE de Java en el servidor que lo hospeda.
 
 Configuración
 =============
 
 * Es necesario ir a los modos de pago e indicar su correspondencia con los
-  códigos de FACe
+  códigos de FACe.
 * La dirección a la que se remite la factura de venta que queremos exportar
   debe estar marcada como facturae y debe tener cubiertos los datos de
   Oficina contable, Órgano gestor y Unidad tramitadora.
