@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#       * l10n_es_facturae
+#	* l10n_es_facturae
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-16 16:34+0000\n"
-"PO-Revision-Date: 2015-09-16 16:34+0000\n"
+"POT-Creation-Date: 2016-03-13 01:48+0000\n"
+"PO-Revision-Date: 2016-03-13 01:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,19 +16,9 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_facturae
-#: view:res.company:l10n_es_facturae.res_company_form
-msgid "Aquí la contraseña del certificado"
-msgstr "Aquí la contraseña del certificado"
-
-#. module: l10n_es_facturae
-#: view:create.facturae:l10n_es_facturae.wizard_create_facturae
-msgid "Cerrar"
-msgstr "Cerrar"
-
-#. module: l10n_es_facturae
-#: view:res.company:l10n_es_facturae.res_company_form
-msgid "Certificado en formato .pfx con contraseña:"
-msgstr "Certificado en formato .pfx con contraseña:"
+#: view:website:l10n_es_facturae.facturae_header
+msgid "</fe:Facturae>"
+msgstr "</fe:Facturae>"
 
 #. module: l10n_es_facturae
 #: field:res.company,facturae_cert:0
@@ -36,9 +26,9 @@ msgid "Certificado firma electrónica"
 msgstr "Certificado firma electrónica"
 
 #. module: l10n_es_facturae
-#: field:payment.mode.face.code,code:0
-msgid "Code"
-msgstr "Código"
+#: view:create.facturae:l10n_es_facturae.wizard_create_facturae
+msgid "Close"
+msgstr "Cerrar"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_res_company
@@ -51,42 +41,24 @@ msgid "Contraseña certificado"
 msgstr "Contraseña certificado"
 
 #. module: l10n_es_facturae
-#: model:ir.model,name:l10n_es_facturae.model_res_country
-#: view:res.country:l10n_es_facturae.view_country_form_ext
-msgid "Country"
-msgstr "País"
-
-#. module: l10n_es_facturae
-#: field:res.country,code_3166:0
-msgid "Code ISO 3166"
-msgstr "Código ISO 3166"
-
-#. module: l10n_es_facturae
 #: view:create.facturae:l10n_es_facturae.wizard_create_facturae
-msgid "Crear Factura-E"
+msgid "Create Factura-E"
 msgstr "Crear Factura-E"
 
 #. module: l10n_es_facturae
 #: model:ir.actions.act_window,name:l10n_es_facturae.wizard_create_facturae_act_window
-msgid "Create Factura-e file"
-msgstr "Crear fichero facturae"
+msgid "Create Factura-E file"
+msgstr "Crear archivo de Factura-E"
 
 #. module: l10n_es_facturae
 #: field:create.facturae,create_uid:0
-#: field:payment.mode.face.code,create_uid:0
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: l10n_es_facturae
 #: field:create.facturae,create_date:0
-#: field:payment.mode.face.code,create_date:0
 msgid "Created on"
 msgstr "Creado el"
-
-#. module: l10n_es_facturae
-#: help:res.country,code_3166:0
-msgid "El código del país ISO 3166 (3 caractéres). Para España: \"ESP\"."
-msgstr "El código del país ISO 3166 (3 caractéres). Para España: \"ESP\"."
 
 #. module: l10n_es_facturae
 #: view:create.facturae:l10n_es_facturae.wizard_create_facturae
@@ -95,17 +67,30 @@ msgstr "Este proceso creará la factura electrónica"
 
 #. module: l10n_es_facturae
 #: view:create.facturae:l10n_es_facturae.wizard_create_facturae
-msgid "Exportar"
+msgid "Export"
 msgstr "Exportar"
 
 #. module: l10n_es_facturae
-#: view:res.company:l10n_es_facturae.res_company_form
+#: code:addons/l10n_es_facturae/wizard/create_facturae.py:141
+#, python-format
+msgid "Export successful\n"
+"\n"
+"Summary:\n"
+"Invoice number: %s\n"
+""
+msgstr "Exportación satisfactoria\n"
+"\n"
+"Resumen:\n"
+"Nº factura: %s\n"
+""
+
+#. module: l10n_es_facturae
 #: view:res.partner:l10n_es_facturae.view_partner_form1
 msgid "FACe"
 msgstr "FACe"
 
 #. module: l10n_es_facturae
-#: field:payment.mode,face_code_id:0
+#: field:payment.mode,facturae_code:0
 msgid "FACe code"
 msgstr "Código FACe"
 
@@ -115,14 +100,24 @@ msgid "Factura electrónica"
 msgstr "Factura electrónica"
 
 #. module: l10n_es_facturae
+#: view:res.company:l10n_es_facturae.res_company_form
+msgid "Factura-E"
+msgstr "Factura-E"
+
+#. module: l10n_es_facturae
 #: field:create.facturae,facturae:0
 msgid "Factura-E file"
-msgstr "Fichero facturae"
+msgstr "Archivo Factura-E"
+
+#. module: l10n_es_facturae
+#: model:ir.actions.report.xml,name:l10n_es_facturae.report_facturae
+msgid "Factura-E sin firmar"
+msgstr "Factura-E sin firmar"
 
 #. module: l10n_es_facturae
 #: field:create.facturae,facturae_fname:0
 msgid "File name"
-msgstr "Nombre fichero"
+msgstr "Nombre archivo"
 
 #. module: l10n_es_facturae
 #: selection:create.facturae,state:0
@@ -131,31 +126,23 @@ msgstr "Primero"
 
 #. module: l10n_es_facturae
 #: field:create.facturae,id:0
-#: field:payment.mode.face.code,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_facturae
 #: field:create.facturae,write_uid:0
-#: field:payment.mode.face.code,write_uid:0
 msgid "Last Updated by"
 msgstr "Últ. actualización por"
 
 #. module: l10n_es_facturae
 #: field:create.facturae,write_date:0
-#: field:payment.mode.face.code,write_date:0
 msgid "Last Updated on"
 msgstr "Últ. actualización el"
 
 #. module: l10n_es_facturae
 #: field:create.facturae,note:0
 msgid "Log"
-msgstr "Log"
-
-#. module: l10n_es_facturae
-#: field:payment.mode.face.code,name:0
-msgid "Name"
-msgstr "Nombre"
+msgstr "Registro"
 
 #. module: l10n_es_facturae
 #: field:res.partner,oficina_contable:0
@@ -168,14 +155,14 @@ msgid "Partner"
 msgstr "Empresa"
 
 #. module: l10n_es_facturae
-#: model:ir.model,name:l10n_es_facturae.model_res_partner_address
-msgid "Partner Addresses"
-msgstr "Direcciones de empresa"
-
-#. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_payment_mode
 msgid "Payment Mode"
 msgstr "Modo de pago"
+
+#. module: l10n_es_facturae
+#: view:res.company:l10n_es_facturae.res_company_form
+msgid "Ponga aquí la contraseña del certificado"
+msgstr "Ponga aquí la contraseña del certificado"
 
 #. module: l10n_es_facturae
 #: help:create.facturae,firmar_facturae:0
@@ -193,9 +180,134 @@ msgid "State"
 msgstr "Estado"
 
 #. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/wizard/create_facturae.py:65
+#, python-format
+msgid "The generated XML file is not valid against the official XML Schema Definition. The generated XML file and the full error have been written in the server logs. Here is the error, which may give you an idea on the cause of the problem : %s"
+msgstr "El archivo XML generado no es válido contra el esquema XML oficial. El archivo XML generado y el error completo se ha escrito en los registros del servidor. Aquí está el error, que le puede dar una idea de la causa del problema: %s"
+
+#. module: l10n_es_facturae
 #: field:res.partner,unidad_tramitadora:0
 msgid "Unidad tramitadora"
 msgstr "Unidad tramitadora"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/wizard/create_facturae.py:79
+#, python-format
+msgid "Warning - result was %d"
+msgstr "Aviso - el resultado era %d"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/wizard/create_facturae.py:117
+#, python-format
+msgid "You can only select one invoice to export"
+msgstr "Sólo puede seleccionar una factura a exportar"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[01] Al contado"
+msgstr "[01] Al contado"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[02] Recibo Domiciliado"
+msgstr "[02] Recibo Domiciliado"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[03] Recibo"
+msgstr "[03] Recibo"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[04] Transferencia"
+msgstr "[04] Transferencia"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[05] Letra Aceptada"
+msgstr "[05] Letra Aceptada"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[06] Crédito Documentario"
+msgstr "[06] Crédito Documentario"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[07] Contrato Adjudicación"
+msgstr "[07] Contrato Adjudicación"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[08] Letra de cambio"
+msgstr "[08] Letra de cambio"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[09] Pagaré a la Orden"
+msgstr "[09] Pagaré a la Orden"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[10] Pagaré No a la Orden"
+msgstr "[10] Pagaré No a la Orden"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[11] Cheque"
+msgstr "[11] Cheque"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[12] Reposición"
+msgstr "[12] Reposición"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[13] Especiales"
+msgstr "[13] Especiales"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[14] Compensación"
+msgstr "[14] Compensación"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[15] Giro postal"
+msgstr "[15] Giro postal"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[16] Cheque conformado"
+msgstr "[16] Cheque conformado"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[17] Cheque bancario"
+msgstr "[17] Cheque bancario"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[18] Pago contra reembolso"
+msgstr "[18] Pago contra reembolso"
+
+#. module: l10n_es_facturae
+#: selection:payment.mode,facturae_code:0
+msgid "[19] Pago mediante tarjeta"
+msgstr "[19] Pago mediante tarjeta"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/wizard/create_facturae.py:126
+#: code:addons/l10n_es_facturae/wizard/create_facturae.py:131
+#, python-format
+msgid "facturae"
+msgstr "facturae"
+
+#. module: l10n_es_facturae
+#: view:create.facturae:l10n_es_facturae.wizard_create_facturae
+msgid "or"
+msgstr "o"
 
 #. module: l10n_es_facturae
 #: field:create.facturae,firmar_facturae:0
@@ -206,3 +318,9 @@ msgstr "¿Desea firmar digitalmente el fichero generado?"
 #: field:res.partner,organo_gestor:0
 msgid "Órgano gestor"
 msgstr "Órgano gestor"
+
+#. module: l10n_es_facturae
+#: field:res.partner,organo_proponente:0
+msgid "Órgano proponente"
+msgstr "Órgano proponente"
+
