@@ -33,8 +33,11 @@ Instalación
 Este módulo depende del módulo *account_payment_partner* y sus dependencias,
 que se encuentran en https://github.com/OCA/bank-payment.
 
-La única dependencia en el caso de querer firmar el formato FacturaE desde
-Odoo es tener instalado el JRE de Java en el servidor que lo hospeda.
+Para generar el archivo XML, hace falta el módulo *report_xml* que se encuentra
+en https://github.com/OCA/reporting-engine.
+
+En el caso de querer firmar el formato FacturaE desde Odoo, la única
+dependencia es tener instalado el JRE de Java en el servidor que lo hospeda.
 
 Configuración
 =============
@@ -54,6 +57,10 @@ Uso
 Desde el botón "Más" del formulario de factura, ejecutamos el asistente
 denominado "Crear fichero Factura-E"
 
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: https://runbot.odoo-community.org/runbot/189/8.0
+
 Problemas conocidos / Hoja de ruta
 ==================================
 
@@ -65,6 +72,9 @@ Problemas conocidos / Hoja de ruta
 * El fichero exportado debe subirse manualmente a la página de FACe. No está
   implementado el envío por servicio web, ya que tienen que conceder permiso
   expreso.
+* Ver la posibilidad de exportar varias facturas juntas.
+* Los apellidos de las personas físicas no se exportan.
+* Soportar formato Factura-E v3.2.1.
 
 Credits
 =======
@@ -85,7 +95,7 @@ Maintainer
 
 .. image:: http://odoo-community.org/logo.png
    :alt: Odoo Community Association
-   :target: http://odoo-community.org
+   :target: https://odoo-community.org
 
 This module is maintained by the OCA.
 
@@ -93,4 +103,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
