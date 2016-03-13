@@ -44,7 +44,8 @@ def _xml_compare(tree1, tree2, reporter=None):
     cl1 = tree1.getchildren()
     cl2 = tree2.getchildren()
     if len(cl1) != len(cl2):
-        reporter('children length differs, %i != %i' % (len(cl1), len(cl2)))
+        reporter('children length differs for %s, %i != %i' % (
+            tree1.tag, len(cl1), len(cl2)))
         return False
     i = 0
     for c1, c2 in zip(cl1, cl2):
@@ -81,9 +82,17 @@ class TestL10nEsFacturae(common.TransactionCase):
             'country_id': self.ref('base.es'),
             'vat': 'ES05680675C',
         })
+        self.journal = self.env['account.journal'].create({
+            'name': 'Test journal',
+            'code': 'TEST',
+            'type': 'sale',
+            'currency': self.ref('base.USD'),
+        })
         self.invoice = self.env['account.invoice'].create({
             'partner_id': self.partner.id,
             'account_id': self.partner.property_account_receivable.id,
+            'journal_id': self.journal.id,
+            'date_invoice': '2016-03-12',
             'invoice_line': [
                 (0, 0, {
                     'name': 'Producto de prueba',
