@@ -33,8 +33,7 @@
                     <group name="properties-1">
                         <field name="start_date" />
                         <field name="end_date" />
-                        <field name="type" on_change="type_on_change(company_id, type, context)" />
-                        <!-- <field name="obligation_level" /> -->
+                        <field name="type"/>
                     </group>
                     <group name="properties-2">
                         <field name="num_lines" />

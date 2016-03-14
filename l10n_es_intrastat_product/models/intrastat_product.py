@@ -634,7 +634,7 @@ class L10nEsReportIntrastatProduct(models.Model):
                 line.state.code,  # Provincia destino/origen # state_code
                 line.incoterm_code,  # Condiciones de entrega
                 line.transaction_code,  # Naturaleza de la transacción
-                line.transport,  # Modalidad de transporte
+                line.transport.code,  # Modalidad de transporte
                 False,  # Puerto/Aeropuerto de carga o descarga
                 line.intrastat_code,  # Código mercancías CN8
                 line.product_country_origin_code,  # País origen
