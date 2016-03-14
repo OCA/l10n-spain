@@ -11,7 +11,7 @@
 
 <!-- Intrastat Type - Search view -->
 <record id="intrastat_type_search" model="ir.ui.view">
-    <field name="name">fr.intrastat.product.report.intrastat.type.search</field>
+    <field name="name">es.intrastat.product.report.intrastat.type.search</field>
     <field name="model">report.intrastat.type</field>
     <field name="arch" type="xml">
         <search string="Search Intrastat Types">
@@ -22,7 +22,7 @@
 
 <!-- Intrastat Type - Tree view -->
 <record id="intrastat_type_tree" model="ir.ui.view">
-    <field name="name">fr.intrastat.product.report.intrastat.type.tree</field>
+    <field name="name">es.intrastat.product.report.intrastat.type.tree</field>
     <field name="model">report.intrastat.type</field>
     <field name="arch" type="xml">
         <tree string="Intrastat type">
@@ -31,7 +31,6 @@
             <field name="transaction_code" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
             <field name="object_type" />
             <field name="is_fiscal_only" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
-            <field name="fiscal_value_multiplier" />
             <field name="is_vat_required" />
             <field name="intrastat_product_type" />
         </tree>
@@ -40,7 +39,7 @@
 
 <!-- Intrastat Type - Form view -->
 <record id="intrastat_type_form" model="ir.ui.view">
-    <field name="name">fr.intrastat.product.report.intrastat.type.form</field>
+    <field name="name">es.intrastat.product.report.intrastat.type.form</field>
     <field name="model">report.intrastat.type</field>
     <field name="arch" type="xml">
         <form string="Intrastat type">
@@ -52,7 +51,6 @@
                 <!-- I can't set the field name="transaction_code" attrs="{'readonly':[('procedure_code','in',('25', '26', '31'))]}" because it breaks the on_change on field procedure_code -->
                 <field name="transaction_code" />
                 <field name="is_fiscal_only" />
-                <field name="fiscal_value_multiplier" />
                 <field name="is_vat_required" />
                 <field name="intrastat_product_type" />
             </group>

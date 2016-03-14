@@ -1,26 +1,6 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    l10n Spain Report intrastat product module for Odoo
-#    Copyright (C) 2010-2015 Akretion (http://www.akretion.com)
-#    Copyright (C) 2015 FactorLibre (http://www.factorlibre.com)
-#    @author Alexis de Lattre <alexis.delattre@akretion.com>
-#    @author Ismael Calvo <ismael.calvo@factorlibre.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# © 2016 - FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning, ValidationError
@@ -53,16 +33,8 @@ class L10nEsReportIntrastatProduct(models.Model):
         total_fiscal_amount = 0.0
         for line in self.intrastat_line_ids:
             total_fiscal_amount +=\
-                line.amount_company_currency *\
-                line.intrastat_type_id.fiscal_value_multiplier
+                line.amount_company_currency
         self.total_fiscal_amount = total_fiscal_amount
-
-    # @api.model
-    # def _default_type(self):
-    #     if self.company_id.import_obligation_level == 'none':
-    #         return 'export'
-    #     else:
-    #         return False
 
     company_id = fields.Many2one(
         'res.company', string='Company', required=True,
@@ -87,18 +59,7 @@ class L10nEsReportIntrastatProduct(models.Model):
     type = fields.Selection([
         ('import', 'Import'),
         ('export', 'Export')
-    ], 'Type', required=True, states={'done': [('readonly', True)]},
-        track_visibility='always', help="Select the type of DEB.")
-    # ¿Es necesario tener en cuenta el 'oblication_level' para España?
-    # obligation_level = fields.Selection([
-    #     ('detailed', 'Detailed'),
-    #     ('simplified', 'Simplified')
-    # ], string='Obligation Level', required=True, track_visibility='always',
-    #     states={'done': [('readonly', True)]},
-    #     help="Your obligation level for a certain type of DEB "
-    #     "(Import or Export) depends on the total value that you export "
-    #     "or import per year. Note that the obligation level 'Simplified' "
-    #     "doesn't exist for an Import DEB.")
+    ], 'Type', required=True, states={'done': [('readonly', True)]})
     intrastat_line_ids = fields.One2many(
         'l10n.es.report.intrastat.product.line',
         'parent_id', string='Report Intrastat Product Lines',
@@ -126,57 +87,16 @@ class L10nEsReportIntrastatProduct(models.Model):
         copy=False, default='draft',
         help="State of the declaration. When the state is set to 'Done', "
         "the parameters become read-only.")
-    # No more need for date_done, because chatter does the job
-
-    @api.multi
-    def type_on_change(
-            self, company_id=False, type=False, context=None):
-        pass
-
-        # ¿Es necesario tener en cuenta el 'oblication_level' para España?
-
-        # result = {}
-        # result['value'] = {}
-        # if type and company_id:
-        #     company = self.env['res.company'].browse(company_id)
-        #     if type == 'import':
-        #         if company.import_obligation_level:
-        #             if company.import_obligation_level == 'detailed':
-        #                 result['value']['obligation_level'] =\
-        #                     company.import_obligation_level
-        #             elif company.import_obligation_level == 'none':
-        #                 result['warning'] = {
-        #                     'title': _("Warning on the Obligation Level"),
-        #                     'message':
-        #                     _("You are tying to make an "
-        #                         "Intrastat Product of type 'Import', "
-        #                         "but the Import Obligation Level set "
-        #                         "for your company is 'None'. If this "
-        #                         "parameter on your company is correct, "
-        #                         "you should NOT create an Import Intrastat "
-        #                         "Product."),
-        #                 }
-        #     if type == 'export':
-        #         if company.export_obligation_level:
-        #             result['value']['obligation_level'] =\
-        #                 company.export_obligation_level
-        # return result
 
     @api.constrains('start_date')
     def _product_check_start_date(self):
         self._check_start_date()
 
-    # @api.one
-    # @api.constrains('type', 'obligation_level')
-    # def _check_obligation_level(self):
-    #     if self.type == 'import' and self.obligation_level == 'simplified':
-    #         raise ValidationError(
-    #             _("Obligation level can't be 'Simplified' for Import"))
-
     _sql_constraints = [(
         'date_company_type_uniq',
         'unique(start_date, company_id, type)',
-        'A DEB of the same type already exists for this month !')]
+        'A Intrastat declaration of the same type already '
+        'exists for this month !')]
 
     @api.multi
     def create_intrastat_product_lines(self, invoice, parent_values):
@@ -856,7 +776,9 @@ class L10nFrReportIntrastatProductLine(models.Model):
     partner_country_code = fields.Char(
         related='partner_country_id.code', string='Partner Country Code',
         readonly=True)
-    intrastat_code = fields.Char(string='Intrastat Code', size=9)
+    intrastat_code = fields.Char(
+        string='Intrastat Code', size=9,
+        related='intrastat_code_id.local_code')
     intrastat_code_id = fields.Many2one(
         'hs.code', string='Intrastat Code (not used in XML)')
     # Weight should be an integer... but I want to be able to display
@@ -895,24 +817,15 @@ class L10nFrReportIntrastatProductLine(models.Model):
     product_country_origin_code = fields.Char(
         related='product_origin_country_id.code',
         string='Product Country of Origin', readonly=True)
-    transport = fields.Selection([
-        (1, '1. Transporte marítimo'),
-        (2, '2. Transporte por ferrocarril'),
-        (3, '3. Transporte por carretera'),
-        (4, '4. Transporte aéreo'),
-        (5, '5. Envíos postales'),
-        (7, '7. Instalaciones fijas de transporte'),
-        (8, '8. Transporte de navegación interior'),
-        (9, '9. Autopropulsión')
-    ], string='Type of transport')
+    transport = fields.Many2one(
+        'intrastat.transport_mode',
+        string='Type of transport')
     state = fields.Many2one('res.country.state', string='State')
     intrastat_type_id = fields.Many2one(
         'report.intrastat.type', string='Intrastat Type', required=True)
     is_vat_required = fields.Boolean(
         related='intrastat_type_id.is_vat_required',
         string='Is Partner VAT required ?', readonly=True)
-    # Is fiscal_only is not a related fields because,
-    # if obligation_level = simplified, is_fiscal_only is always true
     is_fiscal_only = fields.Boolean(
         string='Is fiscal only?', readonly=True)
     procedure_code = fields.Char(
@@ -933,35 +846,18 @@ class L10nFrReportIntrastatProductLine(models.Model):
         if self.quantity and not self.quantity.isdigit():
             raise ValidationError(_('Quantity must be an integer.'))
 
-    # TODO
-    # constrains on 'procedure_code', 'transaction_code'
-
     @api.one
     @api.onchange('partner_id')
     def partner_on_change(self):
         if self.partner_id and self.partner_id.vat:
             self.partner_vat = self.partner_id.vat
 
-    @api.onchange('intrastat_code_id')
-    def intrastat_code_on_change(self):
-        if self.intrastat_code_id:
-            self.intrastat_code = self.intrastat_code_id.intrastat_code
-            self.intrastat_uom_id =\
-                self.intrastat_code_id.intrastat_uom_id.id or False
-        else:
-            self.intrastat_code = False
-            self.intrastat_uom_id = False
-
     @api.onchange('intrastat_type_id')
     def intrastat_type_on_change(self):
-        # if self.parent_id.obligation_level == 'simplified':
-        #     self.is_fiscal_only = True
         if self.intrastat_type_id:
             self.procedure_code = self.intrastat_type_id.procedure_code
             self.transaction_code = self.intrastat_type_id.transaction_code
             self.is_vat_required = self.intrastat_type_id.is_vat_required
-            # if self.parent_id.obligation_level == 'detailed':
-            #     self.is_fiscal_only = self.intrastat_type_id.is_fiscal_only
         if self.is_fiscal_only:
             self.quantity = False
             self.source_uom_id = False

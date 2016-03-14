@@ -11,7 +11,7 @@
 
 <!-- Add Fiscal rep on partner form view -->
 <record id="view_partner_property_form" model="ir.ui.view">
-    <field name="name">fr.intrastat.product.res.partner</field>
+    <field name="name">es.intrastat.product.res.partner</field>
     <field name="model">res.partner</field>
     <field name="inherit_id" ref="account.view_partner_property_form"/>
     <field name="arch" type="xml">

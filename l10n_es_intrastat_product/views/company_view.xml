@@ -10,15 +10,12 @@
 <data>
 
 <record id="view_company_form" model="ir.ui.view">
-    <field name="name">fr.intrastat.product.company.form</field>
+    <field name="name">es.intrastat.product.company.form</field>
     <field name="model">res.company</field>
     <field name="inherit_id" ref="intrastat_base.view_company_form" />
     <field name="arch" type="xml">
         <group name="intrastat-common" position="after">
             <group string="Settings for declaration">
-                <!-- <field name="customs_accreditation" /> -->
-                <!-- <field name="export_obligation_level"/> -->
-                <!-- <field name="import_obligation_level"/> -->
                 <label string="Don't forget to add users to the 'Detailed Intrastat Product' group." colspan="2" />
                 <field name="default_intrastat_transport" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
                 <field name="default_intrastat_state" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>

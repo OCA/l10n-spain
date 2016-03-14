@@ -11,7 +11,7 @@
 
 <!-- Add field on product.supplierinfo -->
 <record id="product_supplierinfo_form_view" model="ir.ui.view">
-    <field name="name">fr.intrastat.product.product.supplierinfo.form</field>
+    <field name="name">es.intrastat.product.product.supplierinfo.form</field>
     <field name="model">product.supplierinfo</field>
     <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
     <field name="arch" type="xml">
@@ -23,7 +23,7 @@
 
 <!-- Add the field intrastat_label on product UoM -->
 <record id="product_uom_form_view" model="ir.ui.view">
-    <field name="name">fr.intrastat.product.uom.form</field>
+    <field name="name">es.intrastat.product.uom.form</field>
     <field name="model">product.uom</field>
     <field name="inherit_id" ref="product.product_uom_form_view" />
     <field name="arch" type="xml">

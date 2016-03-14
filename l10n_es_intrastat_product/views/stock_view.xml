@@ -11,7 +11,7 @@
 
 <!-- Add Type of transport and state on picking form view -->
 <record id="view_picking_form" model="ir.ui.view">
-    <field name="name">fr.intrastat.product.picking.form</field>
+    <field name="name">es.intrastat.product.picking.form</field>
     <field name="model">stock.picking</field>
     <field name="inherit_id" ref="stock.view_picking_form"/>
     <field name="arch" type="xml">
@@ -27,7 +27,7 @@
 
 <!-- Add state on stock location form view -->
 <record id="view_location_form" model="ir.ui.view">
-    <field name="name">fr.intrastat.product.stock.location.state</field>
+    <field name="name">es.intrastat.product.stock.location.state</field>
     <field name="model">stock.location</field>
     <field name="inherit_id" ref="stock.view_location_form" />
     <field name="arch" type="xml">
