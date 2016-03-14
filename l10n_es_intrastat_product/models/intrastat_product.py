@@ -413,9 +413,7 @@ class L10nEsReportIntrastatProduct(models.Model):
             else:
                 line_to_create['amount_company_currency'] =\
                     line_to_create['amount_invoice_currency']
-            # We round
-            line_to_create['amount_company_currency'] = int(
-                round(line_to_create['amount_company_currency']))
+
             if line_to_create['amount_company_currency'] == 0:
                 # p20 of the BOD :
                 # lines with value rounded to 0 mustn't be declared
@@ -823,7 +821,9 @@ class L10nEsReportIntrastatProductLine(models.Model):
         string='Is fiscal only?', readonly=True)
     procedure_code = fields.Char(
         string='Procedure Code', size=2)
-    transaction_code = fields.Many2one('intrastat.transaction', string='Transaction code', size=2)
+    transaction_code = fields.Many2one(
+        'intrastat.transaction',
+        string='Transaction code', size=2)
     partner_vat = fields.Char(string='Partner VAT', size=32)
     partner_id = fields.Many2one('res.partner', string='Partner Name')
     incoterm_id = fields.Many2one('stock.incoterms', string='Incoterm')
