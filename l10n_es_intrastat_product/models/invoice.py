@@ -8,18 +8,10 @@ from openerp import models, fields, api
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
-    intrastat_transport = fields.Selection([
-        (1, 'Transport maritime'),
-        (2, 'Transport par chemin de fer'),
-        (3, 'Transport par route'),
-        (4, 'Transport par air'),
-        (5, 'Envois postaux'),
-        (7, 'Installations de transport fixes'),
-        (8, 'Transport par navigation intérieure'),
-        (9, 'Propulsion propre')
-    ], string='Type of transport',
+    intrastat_transport = fields.Many2one(
+        'intrastat.transport_mode', string='Type of transport',
         help="Type of transport of the goods. This information is "
-        "required for the product intrastat report (DEB).")
+        "required for the product intrastat report.")
     intrastat_state = fields.Many2one(
         'res.country.state', string='State',
         help="For a customer invoice, contains Spain's state "

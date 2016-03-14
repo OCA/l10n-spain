@@ -32,34 +32,8 @@ class ReportIntrastatType(models.Model):
             'haber sido reparas o transformadas')],
         string='Procedure code', required=True,
         help="Statistical procedure codes")
-    transaction_code = fields.Selection([
-        ('11', '11 - Compra/venta en firme'),
-        ('12', '12 - Suministro para la venta salvo aprobación o de prueba, '
-            'para consignación o con la mediación de un agente comisionado '),
-        ('13', '13 - Trueque (compensación en especie)'),
-        ('14', '14 - Compras por particulares'),
-        ('15', '15 - Arrendamiento financiero (alquiler-compra)'),
-        ('21', '21 - Devolución de mercancías'),
-        ('22', '22 - Sustitución de mercancías devueltas'),
-        ('23', '23 - Sustitución (por ejemplo, bajo garantía) '
-            'de mercancías no devueltas'),
-        ('31', '31 - Mercancías entregadas en el marco de programas de ayuda '
-            'gestionados o financiados parcial o totalmente por la Comunidad '
-            'Europea'),
-        ('32', '32 - Otras entregas de ayuda gubernamental '),
-        ('33', '33 - Otras entregas de ayuda (particulares, '
-            'organizaciones no gubernamentales) '),
-        ('34', '34 - Otros '),
-        ('40', '40 - Operaciones con miras al trabajo por encargo (excepto '
-            'las que se registren en el epígrafe 7)'),
-        ('50', '50 - Operaciones tras el trabajo por encargo (excepto las que '
-            'se registren en el epígrafe 7) '),
-        ('70', '70 - Operaciones en el marco de programas comunes de defensa '
-            'u otros programas intergubernamentales de producción conjunta '),
-        ('80', '80 - Suministro de materiales de construcción y maquinaria '
-            'para trabajos en el marco de un contrato general de construcción '
-            'o ingeniería'),
-        ('90', '90 - Otras transacciones')],
+    transaction_code = fields.Many2one(
+        'intrastat.transaction',
         string='Transaction code')
     is_fiscal_only = fields.Boolean(
         string='Is fiscal only ?',

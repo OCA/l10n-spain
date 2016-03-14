@@ -205,11 +205,11 @@ class L10nEsReportIntrastatProduct(models.Model):
                             product_intrastat_code.description))
                 else:
                     intrastat_code_to_write =\
-                        product_intrastat_code.hs_code
+                        product_intrastat_code.local_code
 
                 if not product_intrastat_code.intrastat_unit_id:
                     intrastat_uom_id_to_write = False
-                    quantity_to_write = False
+                    quantity_to_write = line_qty
                 else:
                     intrastat_uom_id_to_write =\
                         product_intrastat_code.intrastat_unit_id.uom_id.id
@@ -422,8 +422,7 @@ class L10nEsReportIntrastatProduct(models.Model):
                 continue
             for value in ['quantity', 'weight']:  # These 2 fields are char
                 if line_to_create[value]:
-                    line_to_create[value] = str(
-                        int(round(line_to_create[value], 0)))
+                    line_to_create[value] = str(line_to_create[value])
             line_obj.create(line_to_create)
         return True
 
@@ -435,13 +434,9 @@ class L10nEsReportIntrastatProduct(models.Model):
         parent_values['procedure_code_to_write'] =\
             intrastat_type.procedure_code
         parent_values['transaction_code_to_write'] =\
-            intrastat_type.transaction_code
+            intrastat_type.transaction_code.code
         parent_values['is_fiscal_only'] = intrastat_type.is_fiscal_only
         parent_values['is_vat_required'] = intrastat_type.is_vat_required
-
-        # if self.obligation_level == 'simplified':
-        #     # force to is_fiscal_only
-        #     parent_values['is_fiscal_only'] = True
 
         if not parent_values['is_fiscal_only']:
             if not invoice.intrastat_transport:
@@ -453,10 +448,10 @@ class L10nEsReportIntrastatProduct(models.Model):
                         % (invoice.number, self.company_id.name))
                 else:
                     parent_values['transport_to_write'] =\
-                        self.company_id.default_intrastat_transport
+                        self.company_id.default_intrastat_transport.code
             else:
                 parent_values['transport_to_write'] =\
-                    invoice.intrastat_transport
+                    invoice.intrastat_transport.code
 
             if not invoice.intrastat_state:
                 if not self.company_id.default_intrastat_state:
@@ -493,8 +488,6 @@ class L10nEsReportIntrastatProduct(models.Model):
         invoice_obj = self.env['account.invoice']
         invoice_type = False
         if self.type == 'import':
-            # Les régularisations commerciales à l'HA ne sont PAS déclarées
-            # dans la DEB, cf page 50 du BOD 6883 du 06 janvier 2011
             invoice_type = ('in_invoice', )
         elif self.type == 'export':
             invoice_type = ('out_invoice', 'out_refund')
@@ -651,7 +644,7 @@ class L10nEsReportIntrastatProduct(models.Model):
                 line.weight,  # Peso
                 line.quantity,  # Unidades suplementarias
                 line.amount_company_currency,  # Importe facturado
-                False,  # Valor estadístico
+                line.amount_company_currency,  # Valor estadístico
             ))
 
         csv_string = self._format_csv(rows, ';')
@@ -746,7 +739,7 @@ class L10nEsReportIntrastatProduct(models.Model):
         return True
 
 
-class L10nFrReportIntrastatProductLine(models.Model):
+class L10nEsReportIntrastatProductLine(models.Model):
     _name = "l10n.es.report.intrastat.product.line"
     _description = "Intrastat Product Lines for Spain"
     _order = 'id'
@@ -830,21 +823,13 @@ class L10nFrReportIntrastatProductLine(models.Model):
         string='Is fiscal only?', readonly=True)
     procedure_code = fields.Char(
         string='Procedure Code', size=2)
-    transaction_code = fields.Char(string='Transaction code', size=2)
+    transaction_code = fields.Many2one('intrastat.transaction', string='Transaction code', size=2)
     partner_vat = fields.Char(string='Partner VAT', size=32)
     partner_id = fields.Many2one('res.partner', string='Partner Name')
     incoterm_id = fields.Many2one('stock.incoterms', string='Incoterm')
     incoterm_code = fields.Char(
         related='incoterm_id.code',
         string='Icoterm Code')
-
-    @api.one
-    @api.constrains('weight', 'quantity')
-    def _check_intrastat_line(self):
-        if self.weight and not self.weight.isdigit():
-            raise ValidationError(_('Weight must be an integer.'))
-        if self.quantity and not self.quantity.isdigit():
-            raise ValidationError(_('Quantity must be an integer.'))
 
     @api.one
     @api.onchange('partner_id')
@@ -856,7 +841,7 @@ class L10nFrReportIntrastatProductLine(models.Model):
     def intrastat_type_on_change(self):
         if self.intrastat_type_id:
             self.procedure_code = self.intrastat_type_id.procedure_code
-            self.transaction_code = self.intrastat_type_id.transaction_code
+            self.transaction_code = self.intrastat_type_id.transaction_code.id
             self.is_vat_required = self.intrastat_type_id.is_vat_required
         if self.is_fiscal_only:
             self.quantity = False

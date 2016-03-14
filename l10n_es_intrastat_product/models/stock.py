@@ -25,13 +25,13 @@ class StockPicking(models.Model):
         intrastat_state = False
         start_point = False
         if self.move_lines:
-            if (self.picking_type_id.code == 'outgoing'
-                    and self.move_lines[0].location_dest_id.usage ==
-                    'customer'):
+            if self.picking_type_id.code == 'outgoing' \
+                    and self.move_lines[0].location_dest_id.usage == \
+                    'customer':
                 start_point = self.move_lines[0].location_id
-            elif (self.picking_type_id.code == 'incoming'
-                    and self.move_lines[0].location_dest_id.usage ==
-                    'internal'):
+            elif self.picking_type_id.code == 'incoming' \
+                    and self.move_lines[0].location_dest_id.usage == \
+                    'internal':
                 start_point = self.move_lines[0].location_dest_id
             while start_point:
                 if start_point.intrastat_state:
@@ -44,15 +44,8 @@ class StockPicking(models.Model):
                     break
         self.intrastat_state = intrastat_state
 
-    intrastat_transport = fields.Selection([
-        (1, 'Transport maritime'),
-        (2, 'Transport par chemin de fer'),
-        (3, 'Transport par route'),
-        (4, 'Transport par air'),
-        (5, 'Envois postaux'),
-        (7, 'Installations de transport fixes'),
-        (8, 'Transport par navigation intérieure'),
-        (9, 'Propulsion propre')], 'Type of transport',
+    intrastat_transport = fields.Many2one(
+        'res.country.state', 'Type of transport',
         help="Select the type of transport of the goods. This information "
         "is required for the product intrastat report (DEB).")
     intrastat_state = fields.Char(

@@ -15,7 +15,7 @@ class ResPartner(models.Model):
         "deliver the goods inside the UE, the partner needs to "
         "have a fiscal representative with a VAT number inside the EU. "
         "In this scenario, the VAT number of the fiscal representative "
-        "will be used for the Intrastat Product report (DEB).")
+        "will be used for the Intrastat Product report.")
 
     # Copy field 'intrastat_fiscal_representative' from company partners
     # to their contacts
@@ -36,9 +36,9 @@ class ResPartner(models.Model):
                     _("The fiscal representative '%s' of partner '%s' "
                         "must have a country.")
                     % (self.intrastat_fiscal_representative.name, self.name))
-            if (not self.intrastat_fiscal_representative.country_id.intrastat
-                    and self.intrastat_fiscal_representative.country_id
-                    != self.env.user.company_id.partner_id.country_id):
+            if not self.intrastat_fiscal_representative.country_id.intrastat \
+                and self.intrastat_fiscal_representative.country_id \
+                    != self.env.user.company_id.partner_id.country_id:
                 raise ValidationError(
                     _("The fiscal representative '%s' of partner '%s' "
                         "must be based in an EU country.")
