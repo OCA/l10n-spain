@@ -208,15 +208,20 @@ class L10nEsAeatReport(models.AbstractModel):
                     }
                 self.periods = period
 
-    def _report_identifier_get(self):
+    @api.model
+    def _report_identifier_get(self, vals):
         seq_obj = self.env['ir.sequence']
-        sequence = "aeat%s-sequence" % self._model._aeat_number
-        return seq_obj.next_by_id(seq_obj.search([('name', '=', sequence)]).id)
+        seq_name = "aeat%s-sequence" % self._model._aeat_number
+        company_id = vals.get('company_id', self.env.user.company_id.id)
+        seqs = seq_obj.search([('name', '=', seq_name),
+                               ('company_id', '=', company_id)])
+        return seq_obj.next_by_id(seqs.id)
 
     @api.model
-    def create(self, values):
-        values['name'] = self._report_identifier_get()
-        return super(L10nEsAeatReport, self).create(values)
+    def create(self, vals):
+        if not vals.get('name'):
+            vals['name'] = self._report_identifier_get(vals)
+        return super(L10nEsAeatReport, self).create(vals)
 
     @api.multi
     def button_calculate(self):
