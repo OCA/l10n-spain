@@ -87,9 +87,9 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                     'representative_vat': '',
                     'partner_country_code': country_code,
                     'invoice_id': invoice.id,
-                    'base_tax': invoice.amount_untaxed,
-                    'amount_tax': invoice.amount_tax,
-                    'total': invoice.amount_total,
+                    'base_tax': invoice.cc_amount_untaxed,
+                    'amount_tax': invoice.cc_amount_tax,
+                    'total': invoice.cc_amount_total,
                     'date_invoice': invoice.date_invoice,
                 }
                 if invoice.type in ['out_refund', 'in_refund']:
@@ -134,13 +134,13 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                 sign = 1
                 if invoice.type in ('out_refund', 'in_refund'):
                     sign = -1
-                if str(invoice.amount_untaxed * sign) != str(check_base):
+                if str(invoice.cc_amount_untaxed * sign) != str(check_base):
                     raise orm.except_orm(
                         "REVIEW INVOICE",
                         _('Invoice  %s, Amount untaxed Lines %.2f do not '
                           'correspond to AmountUntaxed on Invoice %.2f') %
                         (invoice.number, check_base,
-                         invoice.amount_untaxed * sign))
+                         invoice.cc_amount_untaxed * sign))
         if recalculate:
             mod340.write({
                 'state': 'calculated',
