@@ -40,6 +40,7 @@
         'l10n_es_aeat',
         'account_refund_original',
         'account_chart_update',
+        'account_invoice_currency',
     ],
     'data': [
         'report/report_view.xml',
