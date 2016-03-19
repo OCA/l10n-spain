@@ -3,14 +3,15 @@
 # * payment_redsys
 # 
 # Translators:
+# Carles Antolí <carlesantoli@hotmail.com>, 2016
 # Eric Antones <eantones@users.noreply.github.com>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-09 09:11+0000\n"
-"PO-Revision-Date: 2016-03-08 09:39+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-03-18 01:42+0000\n"
+"PO-Revision-Date: 2016-03-16 17:42+0000\n"
+"Last-Translator: Carles Antolí <carlesantoli@hotmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,7 +58,7 @@ msgstr "Data:"
 #. module: payment_redsys
 #: view:website:payment_redsys.order
 msgid "Discount (%)"
-msgstr ""
+msgstr "Descompte (%)"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_pay_method:0
@@ -73,7 +74,7 @@ msgstr "S'ha produït un error."
 #: code:addons/payment_redsys/models/redsys.py:271
 #, python-format
 msgid "Error: %s (%s)"
-msgstr ""
+msgstr "Error: %s (%s)"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
@@ -93,7 +94,7 @@ msgstr "Gallec"
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_signature_version:0
 msgid "HMAC SHA256 V1"
-msgstr ""
+msgstr "HMAC SHA256 V1"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
@@ -149,7 +150,7 @@ msgstr ""
 #: code:addons/payment_redsys/models/redsys.py:260
 #, python-format
 msgid "Ok: %s"
-msgstr ""
+msgstr "Ok: %s"
 
 #. module: payment_redsys
 #: view:website:payment_redsys.order
@@ -179,12 +180,12 @@ msgstr "Mètode de pagament"
 #. module: payment_redsys
 #: model:ir.model,name:payment_redsys.model_payment_transaction
 msgid "Payment Transaction"
-msgstr ""
+msgstr "Transacció de pagament"
 
 #. module: payment_redsys
 #: view:website:payment_redsys.redsys_result_ko
 msgid "Please contact with us and inform you about your order."
-msgstr ""
+msgstr "Si us plau, poseu-vos en contacte amb nosaltres i l'informarem sobre la seva comanda."
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
@@ -245,7 +246,7 @@ msgstr "Adreça d'enviament"
 #. module: payment_redsys
 #: view:website:payment_redsys.order
 msgid "Subtotal"
-msgstr ""
+msgstr "Subtotal"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0

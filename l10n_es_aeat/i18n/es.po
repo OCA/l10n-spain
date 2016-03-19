@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-09 09:11+0000\n"
+"POT-Creation-Date: 2016-03-18 01:42+0000\n"
 "PO-Revision-Date: 2016-03-02 09:27+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
@@ -596,7 +596,7 @@ msgid "Odoo model"
 msgstr "Modelo Odoo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:329
+#: code:addons/l10n_es_aeat/models/aeat_report.py:334
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr "Sólo los informes en estado 'borrador' or 'cancelado' pueden ser eliminados"
@@ -808,7 +808,7 @@ msgid "The formated string must match the given length"
 msgstr "La cadena formateada debe satisfacer el tamaño dado."
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:261
+#: code:addons/l10n_es_aeat/models/aeat_report.py:266
 #, python-format
 msgid ""
 "There is no period defined for the report. Please set at least one period "
@@ -816,7 +816,7 @@ msgid ""
 msgstr "No hay periodo definido para el informe. Establezca un periodo y vuelva a intentarlo."
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:248
+#: code:addons/l10n_es_aeat/models/aeat_report.py:253
 #, python-format
 msgid "There's a missing previous declaration for the period %s."
 msgstr "No hay una declaración previa para el periodo %s."
