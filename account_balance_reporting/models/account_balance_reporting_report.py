@@ -278,10 +278,11 @@ class AccountBalanceReportingLine(orm.Model):
                               limit=limit, context=context)
         return self.name_get(cr, uid, ids, context=context)
 
-    def _create_child_lines(self, cr, uid, ids, code, bmode, fyear,
+    def _create_child_lines(self, cr, uid, ids, code, bmode, fyear, ctx,
                             context=None):
         acc_obj = self.pool.get('account.account')
         line = self.browse(cr, uid, ids[0], context=context)
+        context = ctx
         cont = 1000
         for acc_code in re.findall(r'(-?\w*\(?[0-9a-zA-Z_]*\)?)', code):
             # Check if the code is valid (findall might return empty strings)
@@ -502,7 +503,7 @@ class AccountBalanceReportingLine(orm.Model):
                             balance_mode=balance_mode, context=ctx)
                         if line.report_id.level:
                             line._create_child_lines(tmpl_value, balance_mode,
-                                                     fyear, context=ctx)
+                                                     fyear, ctx, context=ctx)
                     elif re.match(r'^[\+\-0-9a-zA-Z_\*\ ]*$', tmpl_value):
                         # Account concept codes separated by "+" => sum of the
                         # concepts (template lines) values.
