@@ -5,14 +5,15 @@
 # Translators:
 # Antonio Trueba, 2016
 # Antonio Trueba, 2016
-# Carles Antolí <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
+# Carles Antoli <carlesantoli@hotmail.com>, 2015
 # Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-09 09:11+0000\n"
-"PO-Revision-Date: 2016-03-02 09:27+0000\n"
+"POT-Creation-Date: 2016-06-08 00:56+0000\n"
+"PO-Revision-Date: 2016-06-07 18:16+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -96,6 +97,12 @@ msgstr "Configuración avanzada"
 #: field:aeat.model.export.config.line,alignment:0
 msgid "Alignment"
 msgstr "Alineación"
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,allow_posting:0
+#: field:l10n.es.aeat.report.tax.mapping,allow_posting:0
+msgid "Allow posting"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
@@ -267,6 +274,18 @@ msgstr "Declaración"
 #: field:l10n.es.aeat.report.tax.mapping,number:0
 msgid "Declaration number"
 msgstr "Nº declaración"
+
+#. module: l10n_es_aeat
+#: field:aeat.mod.map.tax.code,display_name:0
+#: field:aeat.mod.map.tax.code.line,display_name:0
+#: field:aeat.model.export.config,display_name:0
+#: field:aeat.model.export.config.line,display_name:0
+#: field:l10n.es.aeat.report,display_name:0
+#: field:l10n.es.aeat.report.export_to_boe,display_name:0
+#: field:l10n.es.aeat.report.tax.mapping,display_name:0
+#: field:l10n.es.aeat.tax.line,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -485,6 +504,18 @@ msgid "L.R. VAT number"
 msgstr "NIF repr. legal"
 
 #. module: l10n_es_aeat
+#: field:aeat.mod.map.tax.code,__last_update:0
+#: field:aeat.mod.map.tax.code.line,__last_update:0
+#: field:aeat.model.export.config,__last_update:0
+#: field:aeat.model.export.config.line,__last_update:0
+#: field:l10n.es.aeat.report,__last_update:0
+#: field:l10n.es.aeat.report.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.report.tax.mapping,__last_update:0
+#: field:l10n.es.aeat.tax.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,write_uid:0
 #: field:aeat.mod.map.tax.code.line,write_uid:0
 #: field:aeat.model.export.config,write_uid:0
@@ -541,6 +572,8 @@ msgid "Mapping Lines"
 msgstr "Líneas de mapeo"
 
 #. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,model:0
+#: field:l10n.es.aeat.report.tax.mapping,model:0
 #: field:l10n.es.aeat.tax.line,model:0 field:l10n.es.aeat.tax.line,model_id:0
 msgid "Model"
 msgstr ""
@@ -596,7 +629,7 @@ msgid "Odoo model"
 msgstr "Modelo Odoo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:329
+#: code:addons/l10n_es_aeat/models/aeat_report.py:334
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr "Sólo los informes en estado 'borrador' or 'cancelado' pueden ser eliminados"
@@ -635,6 +668,11 @@ msgid ""
 "Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el "
 "programa"
 msgstr "Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el programa"
+
+#. module: l10n_es_aeat
+#: field:aeat.model.export.config.line,position:0
+msgid "Position"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,positive_sign:0
@@ -808,7 +846,7 @@ msgid "The formated string must match the given length"
 msgstr "La cadena formateada debe satisfacer el tamaño dado."
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:261
+#: code:addons/l10n_es_aeat/models/aeat_report.py:266
 #, python-format
 msgid ""
 "There is no period defined for the report. Please set at least one period "
@@ -816,7 +854,7 @@ msgid ""
 msgstr "No hay periodo definido para el informe. Establezca un periodo y vuelva a intentarlo."
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:248
+#: code:addons/l10n_es_aeat/models/aeat_report.py:253
 #, python-format
 msgid "There's a missing previous declaration for the period %s."
 msgstr "No hay una declaración previa para el periodo %s."
@@ -841,6 +879,7 @@ msgstr "Hasta la fecha"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code.line,to_regularize:0
+#: field:l10n.es.aeat.tax.line,to_regularize:0
 msgid "To regularize"
 msgstr "Para regularizar"
 
