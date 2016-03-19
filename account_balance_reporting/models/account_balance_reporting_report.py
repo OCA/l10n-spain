@@ -1,266 +1,215 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP - Account balance reporting engine
-#    Copyright (C) 2009 Pexego Sistemas Informáticos.
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-"""
-Account balance report objects
+# © 2009 Pexego/Comunitea
+# © 2016 Pedro M. Baeza
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
 
-Generic account balance report document (with header and detail lines).
-Designed following the needs of the
-Spanish/Spain localization.
-"""
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
+from openerp import api, fields, models, _
+from .account_balance_reporting_template import CSS_CLASSES
 import re
-import time
-from openerp import netsvc
 import logging
 
-# CSS classes for the account line templates
-CSS_CLASSES = [('default', 'Default'), ('l1', 'Level 1'), ('l2', 'Level 2'),
-               ('l3', 'Level 3'), ('l4', 'Level 4'), ('l5', 'Level 5')]
 
-
-class AccountBalanceReporting(orm.Model):
-    """Account balance report.
-    It stores the configuration/header fields of an account balance report,
-    and the linked lines of detail with the values of the accounting concepts
-    (values generated from the selected template lines of detail formulas).
-    """
+class AccountBalanceReporting(models.Model):
     _name = "account.balance.reporting"
+    _description = (
+        "It stores the configuration/header fields of an account balance "
+        "report, and the linked lines of detail with the values of the "
+        "accounting concepts (values generated from the selected template "
+        "lines of detail formulas)")
 
     READONLY_STATES = {'calc_done': [('readonly', True)],
                        'done': [('readonly', True)]}
 
-    def _get_levels(self, cr, uid, context=None):
-        cr.execute("select distinct level from account_account order by level")
-        reg = cr.fetchall()
-        res = [(str(x[0]), str(x[0])) for x in reg if x[0]]
-        return res
+    @api.model
+    def _get_levels(self):
+        # This can't be filtered by company because we can change the company
+        # on the fly
+        self.env.cr.execute(
+            "SELECT DISTINCT(level) FROM account_account ORDER BY level")
+        reg = self.env.cr.fetchall()
+        return [(str(x[0]), str(x[0])) for x in reg if x[0]]
 
-    _columns = {
-        'name': fields.char('Name', size=64, required=True, select=True),
-        'template_id': fields.many2one(
-            'account.balance.reporting.template',
-            'Template', ondelete='set null', required=True, select=True,
-            states=READONLY_STATES),
-        'calc_date': fields.datetime("Calculation date", readonly=True),
-        'state': fields.selection([('draft', 'Draft'),
-                                   ('calc', 'Processing'),
-                                   ('calc_done', 'Processed'),
-                                   ('done', 'Done'),
-                                   ('canceled', 'Canceled')], 'State'),
-        'company_id': fields.many2one(
-            'res.company', 'Company',
-            ondelete='cascade', required=True, readonly=True,
-            states=READONLY_STATES),
-        'check_filter': fields.selection([('periods', 'Periods'),
-                                          ('dates', 'Dates')],
-                                         string='Compute by',
-                                         required=True,
-                                         states=READONLY_STATES),
-        'level': fields.selection(_get_levels, string='Level',
-                                  states=READONLY_STATES),
-        'current_fiscalyear_id': fields.many2one(
-            'account.fiscalyear',
-            'Fiscal year 1', select=True, required=True,
-            states={'calc_done': [('readonly', True)],
-                    'done': [('readonly', True)]}),
-        'current_period_ids': fields.many2many(
-            'account.period',
-            'account_balance_reporting_account_period_current_rel',
-            'account_balance_reporting_id', 'period_id',
-            'Fiscal year 1 periods',
-            states={'calc_done': [('readonly', True)],
-                    'done': [('readonly', True)]}),
-        'current_date_from': fields.date('Date From', states=READONLY_STATES),
-        'current_date_to': fields.date('Date To', states=READONLY_STATES),
-        'previous_fiscalyear_id': fields.many2one(
-            'account.fiscalyear',
-            'Fiscal year 2', select=True,
-            states={'calc_done': [('readonly', True)],
-                    'done': [('readonly', True)]}),
-        'previous_period_ids': fields.many2many(
-            'account.period',
-            'account_balance_reporting_account_period_previous_rel',
-            'account_balance_reporting_id', 'period_id',
-            'Fiscal year 2 periods',
-            states={'calc_done': [('readonly', True)],
-                    'done': [('readonly', True)]}),
-        'previous_date_from': fields.date('Date From', states=READONLY_STATES),
-        'previous_date_to': fields.date('Date To', states=READONLY_STATES),
+    name = fields.Char(string='Name', required=True, index=True)
+    template_id = fields.Many2one(
+        comodel_name='account.balance.reporting.template',
+        string='Template', ondelete='set null', required=True, index=True,
+        states=READONLY_STATES)
+    calc_date = fields.Datetime(string="Calculation date", readonly=True)
+    state = fields.Selection(
+        selection=[('draft', 'Draft'),
+                   ('calc_done', 'Processed'),
+                   ('done', 'Done'),
+                   ('canceled', 'Canceled')],
+        string='State', default='draft')
+    company_id = fields.Many2one(
+        comodel_name='res.company', string='Company', ondelete='cascade',
+        required=True, readonly=False, states=READONLY_STATES,
+        default=lambda self: self.env.user.company_id.id)
+    check_filter = fields.Selection(
+        selection=[('periods', 'Periods'),
+                   ('dates', 'Dates')],
+        default='periods', string='Compute by', required=True,
+        states=READONLY_STATES)
+    level = fields.Selection(
+        selection=_get_levels, string='Level', states=READONLY_STATES)
+    current_fiscalyear_id = fields.Many2one(
+        comodel_name='account.fiscalyear', string='Fiscal year 1', index=True,
+        required=True, states=READONLY_STATES)
+    current_period_ids = fields.Many2many(
+        comodel_name='account.period',
+        relation='account_balance_reporting_account_period_current_rel',
+        column1='account_balance_reporting_id', column2='period_id',
+        string='Fiscal year 1 periods', states=READONLY_STATES)
+    current_date_from = fields.Date(
+        string='Date From', states=READONLY_STATES)
+    current_date_to = fields.Date(
+        string='Date To', states=READONLY_STATES)
+    previous_fiscalyear_id = fields.Many2one(
+        comodel_name='account.fiscalyear', string='Fiscal year 2', index=True,
+        states=READONLY_STATES)
+    previous_period_ids = fields.Many2many(
+        comodel_name='account.period',
+        relation='account_balance_reporting_account_period_previous_rel',
+        column1='account_balance_reporting_id', column2='period_id',
+        string='Fiscal year 2 periods', states=READONLY_STATES)
+    previous_date_from = fields.Date(
+        string='Date From', states=READONLY_STATES)
+    previous_date_to = fields.Date(
+        string='Date To', states=READONLY_STATES)
+    line_ids = fields.One2many(
+        comodel_name='account.balance.reporting.line',
+        inverse_name='report_id', string='Lines',
+        states={'done': [('readonly', True)]})
 
-        'line_ids': fields.one2many('account.balance.reporting.line',
-                                    'report_id', 'Lines',
-                                    states={'done': [('readonly', True)]}),
-    }
-
-    _defaults = {
-        'company_id': lambda self, cr, uid, context:
-        self.pool['res.users'].browse(cr, uid, uid, context).company_id.id,
-        'state': 'draft',
-        'check_filter': 'periods',
-    }
-
-    def action_calculate(self, cr, uid, ids, context=None):
+    @api.multi
+    def action_calculate(self):
         """Called when the user presses the Calculate button.
         It will use the report template to generate lines of detail for the
         report with calculated values."""
-        if context is None:
-            context = {}
-        line_obj = self.pool['account.balance.reporting.line']
-        # Set the state to 'calculating'
-        self.write(cr, uid, ids, {
-            'state': 'calc',
-            'calc_date': time.strftime('%Y-%m-%d %H:%M:%S')
-        })
-        for report in self.browse(cr, uid, ids, context=context):
+        line_obj = self.env['account.balance.reporting.line']
+        for report in self:
             # Clear the report data (unlink the lines of detail)
-            line_obj.unlink(cr, uid, [line.id for line in report.line_ids],
-                            context=context)
+            report.line_ids.unlink()
             # Fill the report with a 'copy' of the lines of its template
             # (if it has one)
-            if report.template_id:
-                for template_line in report.template_id.line_ids:
-                    line_obj.create(cr, uid, {
-                        'code': template_line.code,
-                        'name': template_line.name,
-                        'report_id': report.id,
-                        'template_line_id': template_line.id,
-                        'parent_id': None,
-                        'current_value': None,
-                        'previous_value': None,
-                        'sequence': template_line.sequence,
-                        'css_class': template_line.css_class,
-                    }, context=context)
-        # Set the parents of the lines in the report
-        # Note: We reload the reports objects to refresh the lines of detail.
-        for report in self.browse(cr, uid, ids, context=context):
-            if report.template_id:
-                # Set line parents (now that they have been created)
-                for line in report.line_ids:
-                    tmpl_line = line.template_line_id
-                    if tmpl_line and tmpl_line.parent_id:
-                        parent_line_ids = line_obj.search(
-                            cr, uid, [('report_id', '=', report.id),
-                                      ('code', '=', tmpl_line.parent_id.code)])
-                        line_obj.write(cr, uid, line.id, {
-                            'parent_id': (parent_line_ids and
-                                          parent_line_ids[0] or False),
-                        }, context=context)
-        # Calculate the values of the lines
-        # Note: We reload the reports objects to refresh the lines of detail.
-        for report in self.browse(cr, uid, ids, context=context):
-            if report.template_id:
-                # Refresh the report's lines values
-                for line in report.line_ids:
-                    line.refresh_values()
-                # Set the report as calculated
-                self.write(cr, uid, [report.id], {
-                    'state': 'calc_done'
-                }, context=context)
-            else:
-                # Ouch! no template: Going back to draft state.
-                self.write(cr, uid, [report.id], {'state': 'draft'},
-                           context=context)
+            for template_line in report.template_id.line_ids:
+                line_obj.create({
+                    'code': template_line.code,
+                    'name': template_line.name,
+                    'report_id': report.id,
+                    'template_line_id': template_line.id,
+                    'parent_id': None,
+                    'current_value': None,
+                    'previous_value': None,
+                    'sequence': template_line.sequence,
+                    'css_class': template_line.css_class,
+                })
+            # Set line parents (now that they have been created)
+            for line in report.line_ids:
+                tmpl_line = line.template_line_id
+                if line.template_line_id.parent_id:
+                    parent_line_ids = line_obj.search(
+                        [('report_id', '=', report.id),
+                         ('code', '=', tmpl_line.parent_id.code)])
+                    line.parent_id = parent_line_ids[:1].id
+            # Refresh the report's lines values
+            report.write({
+                'state': 'calc_done',
+                'calc_date': fields.Datetime.now()
+            })
+            report.line_ids.refresh_values()
         return True
 
-    def action_confirm(self, cr, uid, ids, context=None):
+    @api.multi
+    def action_confirm(self):
         """Called when the user clicks the confirm button."""
-        self.write(cr, uid, ids, {'state': 'done'}, context=context)
+        self.write({'state': 'done'})
         return True
 
-    def action_cancel(self, cr, uid, ids, context=None):
+    @api.multi
+    def action_cancel(self):
         """Called when the user clicks the cancel button."""
-        self.write(cr, uid, ids, {'state': 'canceled'}, context=context)
+        self.write({'state': 'canceled'})
         return True
 
-    def action_recover(self, cr, uid, ids, context=None):
+    @api.multi
+    def action_recover(self):
         """Called when the user clicks the draft button to create
         a new workflow instance."""
-        self.write(cr, uid, ids, {'state': 'draft', 'calc_date': None},
-                   context=context)
-        wf_service = netsvc.LocalService("workflow")
-        for id in ids:
-            wf_service.trg_create(uid, 'account.balance.reporting', id, cr)
+        self.write({'state': 'draft', 'calc_date': None})
         return True
 
-    def calculate_action(self, cr, uid, ids, context=None):
-        """Calculate the selected balance report data."""
-        for id in ids:
-            # Send the calculate signal to the balance report to trigger
-            # action_calculate.
-            wf_service = netsvc.LocalService('workflow')
-            wf_service.trg_validate(uid, 'account.balance.reporting', id,
-                                    'calculate', cr)
-        return 'close'
 
-
-class AccountBalanceReportingLine(orm.Model):
-    """
-    Account balance report line / Accounting concept
-    One line of detail of the balance report representing an accounting
-    concept with its values.
-    The accounting concepts follow a parent-children hierarchy.
-    Its values (current and previous) are calculated based on the 'value'
-    formula of the linked template line.
-    """
+class AccountBalanceReportingLine(models.Model):
     _name = "account.balance.reporting.line"
-
-    _columns = {
-        'report_id': fields.many2one('account.balance.reporting', 'Report',
-                                     ondelete='cascade'),
-        'sequence': fields.integer('Sequence', required=True),
-        'code': fields.char('Code', size=64, required=True, select=True),
-        'name': fields.char('Name', size=256, required=True, select=True),
-        'notes': fields.text('Notes'),
-        'current_value': fields.float('Fiscal year 1', digits=(16, 2)),
-        'previous_value': fields.float('Fiscal year 2', digits=(16, 2)),
-        'calc_date': fields.datetime("Calculation date"),
-        'css_class': fields.selection(CSS_CLASSES, 'CSS Class'),
-        'template_line_id': fields.many2one(
-            'account.balance.reporting.template.line',
-            'Line template', ondelete='set null'),
-        'parent_id': fields.many2one('account.balance.reporting.line',
-                                     'Parent', ondelete='cascade'),
-        'child_ids': fields.one2many('account.balance.reporting.line',
-                                     'parent_id', 'Children'),
-    }
-
-    _defaults = {
-        'report_id': lambda self, cr, uid, context: context.get('report_id',
-                                                                None),
-        'css_class': 'default',
-        'sequence': 10,
-    }
-
     _order = "sequence, code"
+    _description = (
+        "Account balance report line / Accounting concept. One line of detail "
+        "of the balance report representing an accounting concept with its "
+        "values. The accounting concepts follow a parent-children hierarchy. "
+        "Its values (current and previous) are calculated based on the "
+        "'value' formula of the linked template line.")
+
+    report_id = fields.Many2one(
+        comodel_name='account.balance.reporting', string='Report',
+        ondelete='cascade')
+    sequence = fields.Integer(string='Sequence', required=True, default=10)
+    code = fields.Char(string='Code', required=True, index=True)
+    name = fields.Char(string='Name', required=True, index=True)
+    display_name = fields.Char(
+        string='Name', compute='_compute_display_name', store=True, index=True)
+    notes = fields.Text('Notes')
+    current_value = fields.Float(string='Fiscal year 1', digits=(16, 2))
+    previous_value = fields.Float(string='Fiscal year 2', digits=(16, 2))
+    calc_date = fields.Datetime(string="Calculation date")
+    css_class = fields.Selection(
+        selection=CSS_CLASSES, string='CSS Class', default='default')
+    template_line_id = fields.Many2one(
+        comodel_name='account.balance.reporting.template.line',
+        string='Line template', ondelete='set null')
+    parent_id = fields.Many2one(
+        comodel_name='account.balance.reporting.line',
+        string='Parent', ondelete='cascade')
+    child_ids = fields.One2many(
+        comodel_name='account.balance.reporting.line',
+        inverse_name='parent_id', string='Children')
+    current_move_line_ids = fields.Many2many(
+        comodel_name="account.move.line", string="Journal items (current)")
+    current_move_line_count = fields.Integer(
+        compute="_current_move_line_count")
+    previous_move_line_ids = fields.Many2many(
+        comodel_name="account.move.line", string="Journal items (previous)")
+    previous_move_line_count = fields.Integer(
+        compute="_previous_move_line_count")
 
     _sql_constraints = [
         ('report_code_uniq', 'unique(report_id, code)',
          _("The code must be unique for this report!"))
     ]
 
-    def name_get(self, cr, uid, ids, context=None):
+    @api.multi
+    @api.depends('name', 'css_class')
+    def _compute_display_name(self):
+        for line in self:
+            level = (
+                line.css_class[1:].isdigit() and int(line.css_class[1:]) or 1)
+            line.display_name = '..' * (level - 1) + line.name
+
+    @api.multi
+    def _current_move_line_count(self):
+        for line in self:
+            line.current_move_line_count = len(line.current_move_line_ids)
+
+    @api.multi
+    def _previous_move_line_count(self):
+        for line in self:
+            line.previous_move_line_count = len(line.previous_move_line_ids)
+
+    @api.multi
+    def name_get(self):
         """Redefine the method to show the code in the name ("[code] name")."""
         res = []
-        for item in self.browse(cr, uid, ids, context=context):
+        for item in self:
             res.append((item.id, "[%s] %s" % (item.code, item.name)))
         return res
 
@@ -278,84 +227,80 @@ class AccountBalanceReportingLine(orm.Model):
                               limit=limit, context=context)
         return self.name_get(cr, uid, ids, context=context)
 
-    def _create_child_lines(self, cr, uid, ids, code, bmode, fyear,
-                            context=None):
-        acc_obj = self.pool.get('account.account')
-        line = self.browse(cr, uid, ids[0], context=context)
+    @api.multi
+    def _create_child_lines(self, domain, expr, balance_mode, fyear):
+        self.ensure_one()
+        move_line_obj = self.env['account.move.line']
+        account_obj = self.env['account.account']
         cont = 1000
-        for acc_code in re.findall(r'(-?\w*\(?[0-9a-zA-Z_]*\)?)', code):
-            # Check if the code is valid (findall might return empty strings)
-            acc_code = acc_code.strip()
-            if acc_code:
-                sign, acc_code, mode, sign_mode = \
-                    self._get_code_sign_mode(acc_code, bmode)
+        for code in re.findall(r'(-?\w*\(?[0-9a-zA-Z_]*\)?)', expr):
+            # Check if the code is valid (findall might return empty
+            # strings)
+            code = code.strip()
+            if not code:
+                continue
+            sign, acc_code, mode, sign_mode = self._get_code_sign_mode(
+                code, balance_mode)
+            # Search for the account (perfect match)
+            accounts = account_obj.search(
+                [('code', '=', acc_code),
+                 ('company_id', '=', self.report_id.company_id.id)])
+            for account in accounts:
+                child_accounts = account_obj.search(
+                    [('id', 'child_of', account.id),
+                     ('level', '<=', self.report_id.level)],
+                    order="code asc")
+                for child_account in child_accounts:
+                    value = 0.0
+                    domain_account = list(domain)
+                    domain_account.append(
+                        ('account_id', 'in', child_account.ids))
+                    group = move_line_obj.read_group(
+                        domain_account, ['debit', 'credit'], [])[0]
+                    if mode == 'debit':
+                        value -= (group['debit'] or 0.0) * sign
+                    elif mode == 'credit':
+                        value += (group['credit'] or 0.0) * sign
+                    else:
+                        value += (
+                            sign * sign_mode * ((group['debit'] or 0.0) -
+                                                (group['credit'] or 0.0)))
+                    report_line = self.search(
+                        [('template_line_id', '=', self.template_line_id.id),
+                         ('name', '=', child_account.code + u": " +
+                          child_account.name),
+                         ('report_id', '=', self.report_id.id)], limit=1)
+                    if not report_line:
+                        report_line = self.create({
+                            'code': self.code + u"/" + str(cont),
+                            'name': (child_account.code + u": " +
+                                     child_account.name),
+                            'report_id': self.report_id.id,
+                            'template_line_id': self.template_line_id.id,
+                            'parent_id': self.id,
+                            'current_value': None,
+                            'previous_value': None,
+                            'sequence': self.sequence,
+                            'css_class':
+                            (child_account.level and
+                             child_account.level < 5) and
+                            u'l' + str(child_account.level) or'default'
+                        })
+                        cont += 1
+                    if self.template_line_id.negate:
+                        value = -value
+                    vals = {}
+                    if fyear == 'current':
+                        vals = {'current_value': value,
+                                'calc_date': self.report_id.calc_date}
+                    elif fyear == 'previous':
+                        vals = {'previous_value': value,
+                                'calc_date': self.report_id.calc_date}
+                    report_line.write(vals)
+                    report_line.refresh()
 
-                # Search for the account (perfect match)
-                account_ids = acc_obj.search(cr, uid,
-                                             [('code', '=', acc_code),
-                                              ('company_id', '=',
-                                               line.report_id.company_id.id)],
-                                             context=context)
-
-                for account in acc_obj.browse(cr, uid, account_ids,
-                                              context=context):
-                    child_ids = acc_obj.search(cr, uid,
-                                               [('id', 'child_of', account.id),
-                                                ('level', '<=',
-                                                 line.report_id.level)],
-                                               order="code asc")
-                    for child_account in acc_obj.browse(cr, uid, child_ids,
-                                                        context=context):
-                        value = 0.0
-                        if mode == 'debit':
-                            value -= child_account.debit * sign
-                        elif mode == 'credit':
-                            value += child_account.credit * sign
-                        else:
-                            value += child_account.balance * sign * sign_mode
-
-                        line_ids = self.search(cr, uid,
-                                               [('template_line_id', '=',
-                                                line.template_line_id.id),
-                                                ('name', '=',
-                                                    child_account.code +
-                                                    u": " +
-                                                    child_account.name),
-                                                ('report_id', '=',
-                                                 line.report_id.id)])
-                        if not line_ids:
-                            line_id = self.create(cr, uid, {
-                                'code': line.code + u"/" + str(cont),
-                                'name': (child_account.code + u": " +
-                                         child_account.name),
-                                'report_id': line.report_id.id,
-                                'template_line_id': line.template_line_id.id,
-                                'parent_id': line.id,
-                                'current_value': None,
-                                'previous_value': None,
-                                'sequence': line.sequence,
-                                'css_class':
-                                (child_account.level and
-                                 child_account.level < 5) and
-                                u'l' + str(child_account.level) or'default'
-                            }, context=context)
-                            cont += 1
-                        else:
-                            line_id = line_ids[0]
-
-                        if line.template_line_id.negate:
-                            value = -value
-                        vals = {}
-                        if fyear == 'current':
-                            vals = {'current_value': value,
-                                    'calc_date': line.report_id.calc_date}
-                        elif fyear == 'previous':
-                            vals = {'previous_value': value,
-                                    'calc_date': line.report_id.calc_date}
-                        self.write(cr, uid, [line_id], vals, context=context)
-
-    def _get_account_balance(self, cr, uid, ids, code, balance_mode=0,
-                             context=None):
+    @api.multi
+    def _get_account_balance(self, expr, domain, balance_mode=0):
         """It returns the (debit, credit, balance*) tuple for a account with
         the given code, or the sum of those values for a set of accounts
         when the code is in the form "400,300,(323)"
@@ -369,46 +314,122 @@ class AccountBalanceReportingLine(orm.Model):
         Also the user may specify to use only the debit or credit of the
         account instead of the balance writing "debit(551)" or "credit(551)".
         """
-        acc_obj = self.pool['account.account']
+        move_line_obj = self.env['account.move.line']
+        account_obj = self.env['account.account']
         logger = logging.getLogger(__name__)
         res = 0.0
-        line = self.browse(cr, uid, ids[0], context=context)
-        company_id = line.report_id.company_id.id
+        company_id = self[:1].report_id.company_id.id
         # We iterate over the accounts listed in "code", so code can be
         # a string like "430+431+432-438"; accounts split by "+" will be added,
         # accounts split by "-" will be substracted.
-        for acc_code in re.findall(r'(-?\w*\(?[0-9a-zA-Z_]*\)?)', code):
+        move_lines = self.env['account.move.line']
+        for code in re.findall(r'(-?\w*\(?[0-9a-zA-Z_]*\)?)', expr):
             # Check if the code is valid (findall might return empty strings)
-            acc_code = acc_code.strip()
-            if acc_code:
-                sign, acc_code, mode, sign_mode = \
-                    self._get_code_sign_mode(acc_code, balance_mode)
-                # Search for the account (perfect match)
-                account_ids = acc_obj.search(cr, uid, [
-                    ('code', '=', acc_code),
-                    ('company_id', '=', company_id)
-                ], context=context)
-                if not account_ids:
-                    # Search for a subaccount ending with '0'
-                    account_ids = acc_obj.search(cr, uid, [
-                        ('code', '=like', '%s%%0' % acc_code),
-                        ('company_id', '=', company_id)
-                    ], context=context)
-                if not account_ids:
-                    logger.warning("Account with code '%s' not found!"
-                                   % acc_code)
-                for account in acc_obj.browse(cr, uid, account_ids,
-                                              context=context):
-                    if mode == 'debit':
-                        res -= account.debit * sign
-                    elif mode == 'credit':
-                        res += account.credit * sign
-                    else:
-                        res += account.balance * sign * sign_mode
-        return res
+            code = code.strip()
+            if not code:
+                continue
+            sign, acc_code, mode, sign_mode = self._get_code_sign_mode(
+                code, balance_mode)
+            # Search for the account (perfect match)
+            accounts = account_obj.search(
+                [('code', '=', acc_code), ('company_id', '=', company_id)])
+            if not accounts:
+                # Search for a subaccount ending with '0'
+                accounts = account_obj.search(
+                    [('code', '=like', '%s%%0' % acc_code),
+                     ('company_id', '=', company_id)])
+            if not accounts:
+                logger.warning("Account with code '%s' not found!", acc_code)
+                continue
+            account_ids = accounts._get_children_and_consol()
+            domain_account = list(domain)
+            domain_account.append(('account_id', 'in', account_ids))
+            group = move_line_obj.read_group(
+                domain_account, ['debit', 'credit'], [])[0]
+            move_lines += move_line_obj.search(domain_account)
+            if mode == 'debit':
+                res -= (group['debit'] or 0.0) * sign
+            elif mode == 'credit':
+                res += (group['credit'] or 0.0) * sign
+            else:
+                res += (sign * sign_mode *
+                        ((group['debit'] or 0.0) - (group['credit'] or 0.0)))
+        return res, move_lines
 
-    def refresh_values(self, cr, uid, ids, context=None):
-        """Recalculates the values of this report line using the
+    @api.multi
+    def _calculate_value(self, domain, fyear='current'):
+        self.ensure_one()
+        tmpl_line = self.template_line_id
+        balance_mode = int(tmpl_line.template_id.balance_mode)
+        report = self.report_id
+        if fyear == 'current':
+            tmpl_value = tmpl_line.current_value
+        else:
+            tmpl_value = (tmpl_line.previous_value or
+                          tmpl_line.current_value)
+        # Remove characters after a ";" (we use ; for comments)
+        tmpl_value = (tmpl_value or '').split(';')[0]
+        if (fyear == 'current' and not report.current_fiscalyear_id) \
+                or (fyear == 'previous' and
+                    not report.previous_fiscalyear_id):
+            return 0
+        value = 0
+        move_lines = self.env['account.move.line']
+        if not tmpl_value:
+            # Empy template value => sum of the children values
+            for child_line in self.child_ids:
+                # Tell the child to refresh its values
+                child_line.refresh_values()
+                value += (child_line.current_value if fyear == 'current' else
+                          child_line.previous_value)
+                move_lines += (
+                    child_line.current_move_line_ids if fyear == 'current' else
+                    child_line.previous_move_line_ids)
+        elif re.match(r'^\-?[0-9]*\.[0-9]*$', tmpl_value):
+            # Number with decimal points => that number value
+            # (constant).
+            value = float(tmpl_value)
+        elif re.match(r'^[0-9a-zA-Z,\(\)\*_\ ]*$', tmpl_value):
+            # Account numbers separated by commas => sum of the
+            # account balances. We will use the context to filter
+            # the accounts by fiscalyear and periods.
+            value, move_lines = self._get_account_balance(
+                tmpl_value, domain, balance_mode=balance_mode)
+            if self.report_id.level:
+                self._create_child_lines(
+                    domain, tmpl_value, balance_mode, fyear)
+        elif re.match(r'^[\+\-0-9a-zA-Z_\*\ ]*$', tmpl_value):
+            # Account concept codes separated by "+" => sum of the
+            # concepts (template lines) values.
+            for line_code in re.findall(
+                    r'(-?\(?[0-9a-zA-Z_]*\)?)', tmpl_value):
+                sign = 1
+                if (line_code.startswith('-') or
+                        (line_code.startswith('(') and
+                         balance_mode in (2, 4))):
+                    sign = -1
+                line_code = line_code.strip('-()*')
+                # findall might return empty strings
+                if not line_code:
+                    continue
+                # Search for the line (perfect match)
+                code_lines = self.report_id.line_ids.filtered(
+                    lambda l: l.code == line_code)
+                for code_line in code_lines:
+                    code_line.refresh_values()
+                    value += (code_line.current_value * sign if
+                              fyear == 'current' else
+                              code_line.previous_value * sign)
+                    move_lines += (
+                        code_line.current_move_line_ids if
+                        fyear == 'current' else
+                        code_line.previous_move_line_ids)
+        value = -value if tmpl_line.negate else value
+        return value, move_lines
+
+    @api.multi
+    def refresh_values(self):
+        """Recalculates the values of report lines using the
         linked line report values formulas:
 
         Depending on this formula the final value is calculated as follows:
@@ -420,134 +441,49 @@ class AccountBalanceReportingLine(orm.Model):
         - Concept codes separated by "+" ("11000+12000"): Sum of those
             concepts values.
         """
-        if context is None:
-            context = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            tmpl_line = line.template_line_id
-            balance_mode = int(tmpl_line.template_id.balance_mode)
-            current_value = 0.0
-            previous_value = 0.0
-            report = line.report_id
-            # We use the same code to calculate both fiscal year values,
-            # just iterating over them.
-            for fyear in ('current', 'previous'):
-                value = 0
-                if fyear == 'current':
-                    tmpl_value = tmpl_line.current_value
-                elif fyear == 'previous':
-                    tmpl_value = (tmpl_line.previous_value or
-                                  tmpl_line.current_value)
-                # Remove characters after a ";" (we use ; for comments)
-                if tmpl_value:
-                    tmpl_value = tmpl_value.split(';')[0]
-                if (fyear == 'current' and not report.current_fiscalyear_id) \
-                        or (fyear == 'previous' and
-                            not report.previous_fiscalyear_id):
-                    value = 0
+        for report in self.mapped('report_id'):
+            domain_current = []
+            # Compute current fiscal year
+            if report.check_filter == 'date':
+                domain_current += [('date', '>=', report.current_date_from),
+                                   ('date', '<=', report.current_date_to)]
+            elif report.check_filter == 'periods':
+                if report.current_period_ids:
+                    periods = report.current_period_ids
                 else:
-                    if not tmpl_value:
-                        # Empy template value => sum of the children values
-                        for child in line.child_ids:
-                            if child.calc_date != child.report_id.calc_date:
-                                # Tell the child to refresh its values
-                                child.refresh_values()
-                                # Reload the child data
-                                child = self.browse(cr, uid, child.id,
-                                                    context=context)
-                            if fyear == 'current':
-                                value += child.current_value
-                            elif fyear == 'previous':
-                                value += child.previous_value
-                    elif re.match(r'^\-?[0-9]*\.[0-9]*$', tmpl_value):
-                        # Number with decimal points => that number value
-                        # (constant).
-                        value = float(tmpl_value)
-                    elif re.match(r'^[0-9a-zA-Z,\(\)\*_\ ]*$', tmpl_value):
-                        # Account numbers separated by commas => sum of the
-                        # account balances. We will use the context to filter
-                        # the accounts by fiscalyear and periods.
-                        ctx = context.copy()
-                        if fyear == 'current':
-                            ctx.update({
-                                'fiscalyear': report.current_fiscalyear_id.id,
-                            })
-                        elif fyear == 'previous':
-                            ctx.update({
-                                'fiscalyear': report.previous_fiscalyear_id.id,
-                            })
-                        if line.report_id.check_filter == 'date':
-                            if fyear == 'current':
-                                ctx.update({
-                                    'date_from': report.current_date_from,
-                                    'date_to': report.current_date_to
-                                })
-                            elif fyear == 'previous':
-                                ctx.update({
-                                    'date_from': report.previous_date_from,
-                                    'date_to': report.previous_date_to
-                                })
-                        if line.report_id.check_filter == 'periods':
-                            if fyear == 'current':
-                                ctx.update({
-                                    'periods':
-                                    [p.id for p in report.current_period_ids]
-                                })
-                            elif fyear == 'previous':
-                                ctx.update({
-                                    'periods':
-                                    [p.id for p in report.previous_period_ids]
-                                })
-                        value = self._get_account_balance(
-                            cr, uid, [line.id], tmpl_value,
-                            balance_mode=balance_mode, context=ctx)
-                        if line.report_id.level:
-                            line._create_child_lines(tmpl_value, balance_mode,
-                                                     fyear, context=ctx)
-                    elif re.match(r'^[\+\-0-9a-zA-Z_\*\ ]*$', tmpl_value):
-                        # Account concept codes separated by "+" => sum of the
-                        # concepts (template lines) values.
-                        for line_code in re.findall(r'(-?\(?[0-9a-zA-Z_]*\)?)',
-                                                    tmpl_value):
-                            sign = 1
-                            if (line_code.startswith('-') or
-                                    (line_code.startswith('(') and
-                                     balance_mode in (2, 4))):
-                                sign = -1
-                            line_code = line_code.strip('-()*')
-                            # findall might return empty strings
-                            if line_code:
-                                # Search for the line (perfect match)
-                                line_ids = self.search(cr, uid, [
-                                    ('report_id', '=', report.id),
-                                    ('code', '=', line_code),
-                                ], context=context)
-                                for child in self.browse(cr, uid, line_ids,
-                                                         context=context):
-                                    if (child.calc_date !=
-                                            child.report_id.calc_date):
-                                        child.refresh_values()
-                                        # Reload the child data
-                                        child = self.browse(cr, uid, child.id,
-                                                            context=context)
-                                    if fyear == 'current':
-                                        value += child.current_value * sign
-                                    elif fyear == 'previous':
-                                        value += child.previous_value * sign
-                # Negate the value if needed
-                if tmpl_line.negate:
-                    value = -value
-                if fyear == 'current':
-                    current_value = value
-                elif fyear == 'previous':
-                    previous_value = value
-            # Write the values
-            self.write(cr, uid, line.id, {
-                'current_value': current_value,
-                'previous_value': previous_value,
-                'calc_date': line.report_id.calc_date,
-            }, context=context)
+                    periods = report.current_fiscalyear_id.period_ids
+                domain_current += [('period_id', 'in', periods.ids)]
+            # Compute previous fiscal year
+            domain_previous = []
+            if report.check_filter == 'date':
+                domain_previous += [('date', '>=', report.previous_date_from),
+                                    ('date', '<=', report.previous_date_to)]
+            elif report.check_filter == 'periods':
+                if report.current_period_ids:
+                    periods = report.previous_period_ids
+                else:
+                    periods = report.previous_fiscalyear_id.period_ids
+                domain_previous += [('period_id', 'in', periods.ids)]
+            for line in self.filtered(lambda l: l.report_id == report):
+                if (line.calc_date and
+                        line.calc_date == line.report_id.calc_date):
+                    continue
+                current_amount, current_move_lines = line._calculate_value(
+                    domain_current, 'current')
+                previous_amount, previous_move_lines = line._calculate_value(
+                    domain_current, 'current')
+                line.write({
+                    'current_value': current_amount,
+                    'previous_value': previous_amount,
+                    'calc_date': line.report_id.calc_date,
+                    'current_move_line_ids': [(6, 0, current_move_lines.ids)],
+                    'previous_move_line_ids': [
+                        (6, 0, previous_move_lines.ids)],
+                })
+                line.refresh()
         return True
 
+    @api.model
     def _get_code_sign_mode(self, acc_code, balance_mode):
         # Check the sign of the code (substraction)
         if acc_code.startswith('-'):
@@ -575,5 +511,29 @@ class AccountBalanceReportingLine(orm.Model):
         # Strip the brackets (if any)
         if acc_code.startswith('(') and acc_code.endswith(')'):
             acc_code = acc_code[1:-1]
-
         return sign, acc_code, mode, sign_mode
+
+    @api.model
+    def _get_move_line_action_window(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'tree,form',
+            'name': _('Journal Items'),
+            'res_model': 'account.move.line',
+            'target': 'current',
+        }
+
+    @api.multi
+    def show_move_lines_current(self):
+        self.ensure_one()
+        res = self._get_move_line_action_window()
+        res['domain'] = [('id', 'in', self.current_move_line_ids.ids)]
+        return res
+
+    @api.multi
+    def show_move_lines_previous(self):
+        self.ensure_one()
+        res = self._get_move_line_action_window()
+        res['domain'] = [('id', 'in', self.previous_move_line_ids.ids)]
+        return res
