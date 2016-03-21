@@ -34,8 +34,10 @@ class AccountInvoice(models.Model):
     @api.multi
     def action_number(self):
         for inv in self:
+            sequence = inv.journal_id.invoice_sequence_id
+            if not sequence:
+                return super(AccountInvoice, self).action_number()
             if not inv.invoice_number:
-                sequence = inv.journal_id.invoice_sequence_id
                 if not sequence:
                     raise exceptions.Warning(
                         (_('Journal %s has no sequence defined for invoices.')
