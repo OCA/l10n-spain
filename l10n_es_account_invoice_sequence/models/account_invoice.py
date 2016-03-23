@@ -22,7 +22,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, api, _, exceptions
+from openerp import models, fields, api
 
 
 class AccountInvoice(models.Model):
