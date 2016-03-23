@@ -34,17 +34,16 @@ class AccountInvoice(models.Model):
     @api.multi
     def action_number(self):
         for inv in self:
-            sequence = inv.journal_id.invoice_sequence_id
-            if not sequence:
-                return super(AccountInvoice, self).action_number()
             if not inv.invoice_number:
-                if not sequence:
-                    raise exceptions.Warning(
-                        (_('Journal %s has no sequence defined for invoices.')
-                         % inv.journal_id.name))
-                number = sequence.with_context({
-                    'fiscalyear_id': inv.period_id.fiscalyear_id.id
-                }).next_by_id(sequence.id)
+                sequence = inv.journal_id.invoice_sequence_id
+                if sequence:
+                    number = sequence.with_context({
+                        'fiscalyear_id': inv.period_id.fiscalyear_id.id
+                    }).next_by_id(sequence.id)
+                else:
+                    # TODO: raise an error if the company is flagged
+                    #       as requiring a separate numbering for invoices
+                    number = inv.move_id.name
                 inv.write({
                     'number': number,
                     'invoice_number': number
