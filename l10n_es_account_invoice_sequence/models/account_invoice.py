@@ -22,7 +22,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, api, _, exceptions
+from openerp import models, fields, api
 
 
 class AccountInvoice(models.Model):
@@ -36,13 +36,14 @@ class AccountInvoice(models.Model):
         for inv in self:
             if not inv.invoice_number:
                 sequence = inv.journal_id.invoice_sequence_id
-                if not sequence:
-                    raise exceptions.Warning(
-                        (_('Journal %s has no sequence defined for invoices.')
-                         % inv.journal_id.name))
-                number = sequence.with_context({
-                    'fiscalyear_id': inv.period_id.fiscalyear_id.id
-                }).next_by_id(sequence.id)
+                if sequence:
+                    number = sequence.with_context({
+                        'fiscalyear_id': inv.period_id.fiscalyear_id.id
+                    }).next_by_id(sequence.id)
+                else:
+                    # TODO: raise an error if the company is flagged
+                    #       as requiring a separate numbering for invoices
+                    number = inv.move_id.name
                 inv.write({
                     'number': number,
                     'invoice_number': number
@@ -62,5 +63,6 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def unlink(self):
-        self.write({'internal_number': False})
+        self.filtered(lambda x: x.journal_id.invoice_sequence_id).write(
+                {'internal_number': False})
         return super(AccountInvoice, self).unlink()
