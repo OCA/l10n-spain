@@ -15,14 +15,15 @@ Plan contable e impuestos de España (PGCE 2008)
 * Define plantillas de códigos de impuestos.
 * Define posiciones fiscales para la legislación fiscal española.
 
-**IMPORTANTE:** Ésta es una versión mejorada con respecto al módulo que se
-encuentra en la versión estándar de Odoo, por lo que es conveniente instalar
-ésta para disponer de los últimos datos actualizados.
+**IMPORTANTE:** Ésta es una versión mejorada con respecto al módulo *l10n_es*
+que se encuentra en la versión estándar de Odoo, por lo que es conveniente
+instalar ésta para disponer de los últimos datos actualizados.
 
 Historial
 ---------
 
-* v5.4: Varias correcciones para el modelo 123 y para las rectificaciones:
+* v9.0.1.0.0: Migración a la versión 9.0c de Odoo.
+* v8.0.5.4.0: Varias correcciones para el modelo 123 y para las rectificaciones:
 
   * Códigos de impuestos de retenciones de venta movidos al modelo 200
   * Creados códigos de impuestos para el modelo 123.
@@ -30,14 +31,14 @@ Historial
   * Creados códigos de impuesto para cada uno de los porcentajes y conceptos
     de las rectificaciones.
   * Incluida cuenta 4759.
-* v5.3: Añadido "IVA soportado no sujeto".
-* v5.2: Añadida retención 19,5% arrendamientos.
-* v5.1: Renombrado todo lo relacionado con arrendamientos para no incluir la
-  palabra "IRPF", ya que no es como tal IRPF.
-* v5.0: Se ha rehecho toda la parte de impuestos para dar mayor facilidad de
-  consulta de los datos para las declaraciones de la AEAT y para cubrir todas
-  las casuísticas fiscales españolas actuales. Éstas son las características
-  más destacadas:
+* v8.0.5.3.0: Añadido "IVA soportado no sujeto".
+* v8.0.5.2.0: Añadida retención 19,5% arrendamientos.
+* v8.0.5.1.0: Renombrado todo lo relacionado con arrendamientos para no incluir
+  la palabra "IRPF", ya que no es como tal IRPF.
+* v8.0.5.0: Se ha rehecho toda la parte de impuestos para dar mayor facilidad
+  de consulta de los datos para las declaraciones de la AEAT y para cubrir
+  todas las casuísticas fiscales españolas actuales. Éstas son las
+  características más destacadas:
 
   * Desdoblamiento de los impuestos principales para bienes y para servicios.
   * Nuevo árbol de códigos de impuestos orientado a cada modelo de la AEAT.
@@ -49,11 +50,11 @@ Historial
   * Nuevo impuesto para revendedores con recargo de equivalencia.
   * Nuevas posiciones fiscales para retenciones de arrendamientos.
   * Pequeños ajustes en cuentas contables.
-* v4.1: Cambio en el método que obtiene el nombre del impuesto e intercambiados
-  los campos descripción/nombre para que no aparezca los códigos en documentos
-  impresos ni en pantalla.
-* v4.0: Refactorización completa de los planes de cuentas, con las siguientes
-  caracteristicas:
+* v8.0.4.1.0: Cambio en el método que obtiene el nombre del impuesto e
+  intercambiados los campos descripción/nombre para que no aparezca los códigos
+  en documentos impresos ni en pantalla.
+* v8.0.4.0.0: Refactorización completa de los planes de cuentas, con las
+  siguientes caracteristicas:
 
   * Creacion de un plan común a los tres planes existentes, que reúne las
     cuentas repetidas entre ellos.
@@ -66,15 +67,7 @@ Instalación
 
 Si en la base de datos a aplicar ya se encuentra instalado el plan contable de
 la compañía, será necesario actualizarlo con el módulo *account_chart_update*,
-disponible en https://github.com/OCA/account-financial-tools. **AVISO:**
-Después de actualizar de una version <5.0, será necesario cambiar el impuesto
-de venta por defecto en la pestaña Configuración > Contabilidad, y además
-sustituir en los productos el mismo por "x% IVA (servicios)" o
-"x% IVA (bienes)" según corresponda en cada caso. Se puede utilizar para ello
-el módulo *mass_editing* del repositorio https://github.com/OCA/server-tools.
-
-Por último, si se procede del l10n_es v3.0, serán necesarios ajustes manuales
-al actualizar el plan de cuentas, como crear a mano la cuenta 472000.
+disponible en https://github.com/OCA/account-financial-tools.
 
 Créditos
 ========
@@ -83,10 +76,38 @@ Contribuidores
 --------------
 * Jordi Esteve <jesteve@zikzakmedia.com>
 * Dpto. Consultoría Grupo Opentia <consultoria@opentia.es>
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Ignacio Ibeas <ignacio.ibeas@acysos.com>
+* Pablo Cayuela <pablo.cayuela@aserti.es>
 * Carlos Liébana <carlos.liebana@factorlibre.com>
 * Hugo Santos <hugo.santos@factorlibre.com>
 * Albert Cabedo <albert@gafic.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
+
+Financiadores
+-------------
+La migración de este módulo forma parte de una campaña de migración de la
+localización española que ha sido posible gracias a la colaboración económica
+de las siguientes empresas (por orden alfabético):
+
+* `Aizean evolution <http://www.aizean.com>`_
+* `Aselcis consulting <https://www.aselcis.com>`_
+* `AvanzOSC <http://avanzosc.es>`_
+* `Diagram software <http://diagram.es>`_
+* `Domatix <http://www.domatix.com>`_
+* `Eficent <http://www.eficent.com>`_
+* `FactorLibre <http://factorlibre.com>`_
+* `Fairhall solutions <http://www.fairhall.es>`_
+* `GAFIC SLP <http://www.gafic.com>`_
+* `Incaser <http://www.incaser.es>`_
+* `Ingeos <http://www.ingeos.es>`_
+* `Nubistalia <http://www.nubistalia.es>`_
+* `Punt sistemes <http://www.puntsistemes.es>`_
+* `Praxya <http://praxya.com>`_
+* `Reeng <http://www.reng.es>`_
+* `Soluntec <http://www.soluntec.es>`_
+* `Tecnativa <https://www.tecnativa.com>`_
+* `Trey <https://www.trey.es>`_
+* `Vicent Cubells <http://vcubells.net>`_
 
 Maintainer
 ----------
