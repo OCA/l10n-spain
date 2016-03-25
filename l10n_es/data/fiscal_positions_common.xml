@@ -1,47 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- © 2009-2011 Jordi Esteve - Zikzakmedia
+     © 2011 Ignacio Ibeas - Acysos
+     © 2015 Carlos Liébana - Factor Libre
+     © 2015 Albert Cabedo - GAFIC consultores
+     © 2015 Vicent Cubells
+     © 2013-2016 Pedro M. Baeza
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <openerp>
     <data noupdate="0">
-
-        <!-- Definición de posiciones fiscales Régimen Nacional, Recargo de Equivalencia,
-        Extracomunitario, Intracomunitario y Retención de IRPFs
-
-        Añadidas posiciones fiscales Retención de IRPF 18%, 15%, 7%, 1% :
-        Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com 2009-11-21
-
-        Añadidas posiciones fiscales Retención de IRPF 19%, 2% :
-        Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com 2010-02-18
-
-        Añadido mapeo de cuentas del regimen de equivalencia para compras :
-        Ignacio Ibeas (Acysos) - ignacio@acysos.com 2011-02-22 
-
-        Añadidas posiciones fiscales Retención de IRPF 18%, 15%, 7%, 1% :
-        Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com (2009-11-21)
-
-        Añadidas posiciones fiscales Retención de IRPF 19%, 2% :
-        Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com 2010-02-18
-
-        Añadido mapeo de cuentas del regimen de equivalencia para compras y ventas separados:
-        Ignacio Ibeas (Acysos) - ignacio@acysos.com 2011-05-06
-
-        Eliminación IVAs obsoletos 7%, 8%, 16% y 18%
-        Eliminación IRPFs obsoletos 18% y 19%
-        Eliminación recargos de equivalencia obsoletos 1% y 4%
-        Pedro M. Baeza <pedro.baeza@serviciosbaeza.com> (Serv. Tecnol. Avanzados) (2014-03-20)
-
-        Pedro M. Baeza (Serv. Tecnol. Avanzados) - pedro.baeza@serviciosbaeza.com (2015-03-06)
-        Carlos Liébana (FactorLibre) - carlos.liebana@factorlibre.com
-        Hugo Santos (FactorLibre) - hugo.santos@factorlibre.com
-        Albert Cabedo (GAFIC consultores) - albert@gafic.com
-          Adaptación posiciones fiscales a desdoblamiento de IVA para bienes y servicios
-          Nuevo IRPF 19%
-          Posiciones fiscales para arrendamientos
-          Posición fiscal Inversión Sujeto Pasivo Nacional
-          Renombrada posición fiscal extracomunitaria para indicar explícitamente a Canarias, Ceuta y Melilla
-
-        Vicent Cubells <vicent@vcubells.net> (2015-09-01)
-          Posición fiscal 19,5% para arrendamientos
-
-        -->
 
         <!-- ************************************************************* -->
         <!-- Fiscal Position Templates -->
