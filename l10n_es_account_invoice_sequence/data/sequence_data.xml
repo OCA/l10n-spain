@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="1">
+<odoo>
 
-        <record id="sequence_spanish_journal" model="ir.sequence">
-            <field name="name">Account Default Journal (Spanish)</field>
-            <field eval="5" name="padding"/>
-            <field name="implementation">no_gap</field>
-            <field name="prefix">%(year)s/</field>
-        </record>
+    <record id="sequence_spanish_journal" model="ir.sequence">
+        <field name="name">Account Default Journal (Spanish)</field>
+        <field eval="5" name="padding"/>
+        <field name="implementation">standard</field>
+        <field name="prefix">%(range_year)s/</field>
+        <field name="active" eval="0"/>
+        <field name="use_date_range" eval="1"/>
+        <field name="company_id" eval="False"/>
+    </record>
 
-    </data>
-</openerp>
+</odoo>
