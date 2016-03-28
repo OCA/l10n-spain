@@ -1,42 +1,59 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (c) 2011 NaN Projectes de Programari Lliure, S.L.
-#                    http://www.NaN-tic.com
-#    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp import models, fields, api, exceptions, _
+# Copyright 2011 NaN Projectes de Programari Lliure, S.L.
+# Copyright 2013-2017 Pedro M. Baeza
+
+from openerp import _, api, fields, exceptions, models
 
 
 class AccountJournal(models.Model):
     _inherit = 'account.journal'
 
     invoice_sequence_id = fields.Many2one(
-        comodel_name='ir.sequence',
-        string='Invoice sequence',
-        domain="[('company_id','=',company_id)]",
+        comodel_name='ir.sequence', string='Invoice sequence',
+        domain="[('company_id', '=', company_id)]", ondelete='restrict',
         help="The sequence used for invoice numbers in this journal.",
-        ondelete='restrict')
+    )
+    refund_inv_sequence_id = fields.Many2one(
+        comodel_name='ir.sequence', string='Refund sequence',
+        domain="[('company_id', '=', company_id)]", ondelete='restrict',
+        help="The sequence used for refund invoices numbers in this journal.",
+    )
 
-    @api.one
+    @api.multi
     @api.constrains('invoice_sequence_id')
     def _check_company(self):
-        if (self.invoice_sequence_id and
-                self.invoice_sequence_id.company_id != self.company_id):
-            raise exceptions.Warning(_("Journal company and invoice sequence "
-                                       "company do not match."))
+        for journal in self:
+            sequence_company = journal.invoice_sequence_id.company_id
+            if sequence_company and sequence_company != journal.company_id:
+                raise exceptions.Warning(
+                    _("Journal company and invoice sequence company do not "
+                      "match."))
+
+    @api.multi
+    @api.constrains('refund_inv_sequence_id')
+    def _check_company_refund(self):
+        for journal in self:
+            sequence_company = journal.refund_inv_sequence_id.company_id
+            if sequence_company and sequence_company != journal.company_id:
+                raise exceptions.Warning(
+                    _("Journal company and refund sequence company do not "
+                      "match."))
+
+    @api.model
+    def create(self, vals):
+        """Use the existing sequence for new Spanish journals."""
+        if not vals.get('company_id') or vals.get('sequence_id'):
+            return super(AccountJournal, self).create(vals)
+        company = self.env['res.company'].browse(vals['company_id'])
+        if company.chart_template_id.is_spanish_chart():
+            journal = self.search([('company_id', '=', company.id)], limit=1)
+            if journal:
+                vals['sequence_id'] = journal.sequence_id.id
+                vals['refund_sequence'] = False
+        return super(AccountJournal, self).create(vals)
+
+    def _get_invoice_types(self):
+        return [
+            'sale',
+            'purchase',
+        ]
