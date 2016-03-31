@@ -31,5 +31,5 @@
     "data": ["views/subcontractor_certificate_view.xml"],
     "demo": [],
     "auto_install": False,
-    "installable": True,
+    'installable': False,
 }

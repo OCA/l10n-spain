@@ -14,5 +14,10 @@
     "data": [
         "views/account_asset_view.xml",
     ],
+<<<<<<< HEAD
+    "active": False,
+    'installable': False,
+=======
     "installable": True,
+>>>>>>> upstream/8.0
 }

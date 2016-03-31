@@ -81,7 +81,7 @@ deshacer las operaciones fácilmente.
         "views/hide_account_wizards.xml",
     ],
     "active": False,
-    "installable": True,
+    'installable': False,
     'images': [
         'images/l10n_es_fiscal_year_closing.png',
     ],

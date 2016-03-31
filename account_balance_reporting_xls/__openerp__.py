@@ -44,5 +44,5 @@
     'data': [
         'wizard/account_balance_reporting_wizard.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

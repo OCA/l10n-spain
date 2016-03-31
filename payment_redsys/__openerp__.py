@@ -17,6 +17,10 @@
         'views/redsys.xml',
         'views/payment_acquirer.xml'
     ],
+<<<<<<< HEAD
+    'installable': False,
+=======
     'license': 'AGPL-3',
     'installable': True,
+>>>>>>> upstream/8.0
 }
