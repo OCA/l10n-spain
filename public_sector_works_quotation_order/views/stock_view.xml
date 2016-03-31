@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_picking_industrial_profits_expenses" model="ir.ui.view">
+            <field name="name">view.picking.industrial.profits.expenses</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <notebook position="before">
+                    <group string="Order type" invisible="1">
+                        <group>
+                            <field name="public_sector"/>
+                        </group>
+                        <group>
+                            <label for="ot_percentage"/>
+                            <div>
+                                <field name="ot_percentage" class="oe_inline"/>
+                                <label string="%" class="oe_inline"/>
+                            </div>
+                            <label for="ge_percentage"/>
+                            <div>
+                                <field name="ge_percentage" class="oe_inline"/>
+                                <label string="%" class="oe_inline"/>
+                            </div>
+                            <label for="ip_percentage"/>
+                            <div>
+                                <field name="ip_percentage" class="oe_inline"/>
+                                <label string="%" class="oe_inline"/>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="amount_material_exe" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_bold"/>
+                            <field name="general_expenses" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="industrial_profit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="ge_ip_total" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_bold"/>
+                        </group>
+                    </group>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_invoice_document_public_sector_works_qo" inherit_id="account.report_invoice_document">
+            <xpath expr="//div[@class='row'][2]" position="replace">
+                <div class="row">
+                    <div class="col-xs-4 pull-right">
+                        <table class="table table-condensed">
+                            <t t-if="o.public_sector">
+                                <tr>
+                                    <td><strong>Amount Material Execution</strong></td>
+                                    <td class="text-right">
+                                        <span t-field="o.amount_material_exe"
+                                            t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                    </td>
+                                </tr>
+                                <tr style="font-size: 12px;">
+                                    <td>General Expenses</td>
+                                    <td class="text-right">
+                                        <span t-field="o.general_expenses"
+                                            t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                    </td>
+                                </tr>
+                                <tr style="font-size: 12px;">
+                                    <td>Industrial Profit</td>
+                                    <td class="text-right">
+                                        <span t-field="o.industrial_profit"
+                                            t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>GE and IP Sum</td>
+                                    <td class="text-right">
+                                        <span t-field="o.ge_ip_total"
+                                            t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                    </td>
+                                </tr>
+                            </t>
+                            <tr class="border-black">
+                                <td><strong>Total Without Taxes</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_untaxed"
+                                        t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Taxes</td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_tax"
+                                        t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>
+                            <tr class="border-black">
+                                <td><strong>Total</strong></td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_total"
+                                        t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</openerp> 

@@ -1,0 +1,187 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* public_sector_works_quotation_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-02-09 10:27+0000\n"
+"PO-Revision-Date: 2016-02-09 10:27+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: public_sector_works_quotation_order
+#: field:sale.order,amount_material_exe:0
+#: field:stock.picking,amount_material_exe:0
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Amount Material Execution"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: help:sale.order,amount_material_exe:0
+#: help:stock.picking,amount_material_exe:0
+msgid "Amount untaxed without general expenses neither industrial profit included."
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: code:addons/public_sector_works_quotation_order/wizard/sale_make_invoice_advance.py:44
+#: code:addons/public_sector_works_quotation_order/wizard/sale_make_invoice_advance.py:50
+#, python-format
+msgid "Configuration Error!"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: field:sale.order,ge_ip_total:0
+#: field:stock.picking,ge_ip_total:0
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "GE and IP Sum"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: field:sale.order,general_expenses:0
+#: field:stock.picking,general_expenses:0
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "General Expenses"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: field:account.invoice,ge_percentage:0
+#: field:sale.order,ge_percentage:0
+#: field:stock.picking,ge_percentage:0
+msgid "General Expenses Percentage"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: help:sale.order,general_expenses:0
+#: help:stock.picking,general_expenses:0
+msgid "General expenses."
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: code:addons/public_sector_works_quotation_order/wizard/sale_make_invoice_advance.py:58
+#, python-format
+msgid "Incorrect Data"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: field:sale.order,industrial_profit:0
+#: field:stock.picking,industrial_profit:0
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Industrial Profit"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: field:account.invoice,ip_percentage:0
+#: field:sale.order,ip_percentage:0
+#: field:stock.picking,ip_percentage:0
+msgid "Industrial Profit Percentage"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: help:sale.order,industrial_profit:0
+#: help:stock.picking,industrial_profit:0
+msgid "Industrial profit."
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: model:ir.model,name:public_sector_works_quotation_order.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: field:account.invoice,ot_percentage:0
+#: field:sale.order,ot_percentage:0
+#: field:stock.picking,ot_percentage:0
+msgid "Order Tax Percentage"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: view:account.invoice:public_sector_works_quotation_order.view_invoice_industrial_profits_expenses
+#: view:sale.order:public_sector_works_quotation_order.view_industrial_profits_expenses
+#: view:stock.picking:public_sector_works_quotation_order.view_picking_industrial_profits_expenses
+msgid "Order type"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: model:ir.model,name:public_sector_works_quotation_order.model_stock_picking
+msgid "Picking List"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: field:account.invoice,public_sector:0
+#: field:sale.order,public_sector:0
+#: field:stock.picking,public_sector:0
+msgid "Public Sector Works"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: model:ir.model,name:public_sector_works_quotation_order.model_sale_order_line_make_invoice
+msgid "Sale OrderLine Make_invoice"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: model:ir.model,name:public_sector_works_quotation_order.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: model:ir.model,name:public_sector_works_quotation_order.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: model:ir.model,name:public_sector_works_quotation_order.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: help:sale.order,ge_ip_total:0
+#: help:stock.picking,ge_ip_total:0
+msgid "Sum of general expenses plus industrial profit."
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Taxes"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: code:addons/public_sector_works_quotation_order/wizard/sale_make_invoice_advance.py:59
+#, python-format
+msgid "The value of Advance Amount must be positive."
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: code:addons/public_sector_works_quotation_order/wizard/sale_make_invoice_advance.py:45
+#, python-format
+msgid "There is no income account defined as global property."
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: code:addons/public_sector_works_quotation_order/wizard/sale_make_invoice_advance.py:51
+#, python-format
+msgid "There is no income account defined for this product: \"%s\" (id:%d)."
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Total"
+msgstr ""
+
+#. module: public_sector_works_quotation_order
+#: view:website:account.report_invoice_document
+#: view:website:sale.report_saleorder_document
+msgid "Total Without Taxes"
+msgstr ""
+

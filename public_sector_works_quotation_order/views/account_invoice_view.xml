@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_invoice_industrial_profits_expenses" model="ir.ui.view">
+            <field name="name">view.invoice.industrial.profits.expenses</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <notebook position="before">
+                    <group string="Order type">
+                        <group>
+                            <field name="public_sector"/>
+                        </group>
+                        <group>
+                            <label for="ot_percentage" attrs="{'invisible':[('public_sector', '=', False)]}"/>
+                            <div>
+                                <field name="ot_percentage" attrs="{'invisible': [('public_sector', '=', False)], 'required': [('public_sector', '=', True)]}" class="oe_inline"/>
+                                <label string="%" class="oe_inline" attrs="{'invisible':[('public_sector', '=', False)]}"/>
+                            </div>
+                            <label for="ge_percentage" attrs="{'invisible':[('public_sector', '=', False)]}"/>
+                            <div>
+                                <field name="ge_percentage" attrs="{'invisible': [('public_sector', '=', False)], 'required': [('public_sector', '=', True)]}" class="oe_inline"/>
+                                <label string="%" class="oe_inline" attrs="{'invisible':[('public_sector', '=', False)]}"/>
+                            </div>
+                            <label for="ip_percentage" attrs="{'invisible':[('public_sector', '=', False)]}"/>
+                            <div>
+                                <field name="ip_percentage" attrs="{'invisible': [('public_sector', '=', False)], 'required': [('public_sector', '=', True)]}" class="oe_inline"/>
+                                <label string="%" class="oe_inline" attrs="{'invisible':[('public_sector', '=', False)]}"/>
+                            </div>
+                        </group>
+                    </group>
+                </notebook>
+                <field name="amount_untaxed" position="before">
+                    <field name="amount_material_exe" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('public_sector', '=', False)]}" class="oe_bold"/>
+                    <field name="general_expenses" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('public_sector', '=', False)]}"/>
+                    <field name="industrial_profit" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('public_sector', '=', False)]}"/>
+                    <field name="ge_ip_total" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible':[('public_sector', '=', False)]}" class="oe_bold"/>
+                </field>
+                <field name="amount_untaxed" position="replace">
+                    <div class="oe_subtotal_footer_separator oe_inline">
+                        <label for="amount_untaxed"/>
+                    </div>
+                    <field name="amount_untaxed" nolabel="1" class="oe_subtotal_footer_separator"
+                        widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </field>
+<!--                <field name="residual" position="replace">
+                    <field name="residual" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </field>-->
+            </field>
+        </record>
+    </data>
+</openerp>
