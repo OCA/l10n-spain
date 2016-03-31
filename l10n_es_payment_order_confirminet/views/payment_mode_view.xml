@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_payment_mode_form" model="ir.ui.view">
+            <field name="name">Payment mode form (Confirminet)</field>
+            <field name="model">payment.mode</field>
+            <field name="inherit_id" ref="l10n_es_payment_order.view_payment_mode_form_inherit"/>
+            <field name="arch" type="xml">
+                <group name="group_csb_options" position="inside">
+                    <group col="4"
+                           string="Confirminet Options"
+                           attrs="{'invisible': [('is_confirminet', '=', False)]}"
+                            >
+                        <field name="is_confirminet" invisible="1"/>
+                        <field name="confirminet_type"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 08:00+0000\n"
-"PO-Revision-Date: 2015-10-01 08:02+0000\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-03-02 09:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -85,7 +85,7 @@ msgstr "Modelo AEAT 347"
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,move_id:0
 msgid "Account entry"
-msgstr ""
+msgstr "Entrada cuenta"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,move_line_id:0
@@ -108,7 +108,7 @@ msgid "Address type"
 msgstr "Tipo de dirección"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:308
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:309
 #, python-format
 msgid ""
 "All partner state code field must be filled.\n"
@@ -116,7 +116,7 @@ msgid ""
 msgstr "El código de provincia de todos los registros de empresas debe estar rellenado.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:322
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:323
 #, python-format
 msgid ""
 "All partner state code field must be numeric.\n"
@@ -124,7 +124,7 @@ msgid ""
 msgstr "El código de provincia de todos los registros de empresas debe ser numérico.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:315
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:316
 #, python-format
 msgid ""
 "All partner vat number field must be filled.\n"
@@ -132,7 +132,7 @@ msgid ""
 msgstr "El NIF de todos los registros de empresas debe estar rellenado.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:329
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:330
 #, python-format
 msgid "All real estate records state code field must be filled."
 msgstr "El código de provincia de todos los registros de inmuebles debe estar rellenado."
@@ -262,7 +262,7 @@ msgstr "Complementaria"
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,counterpart_account:0
 msgid "Counterpart account"
-msgstr ""
+msgstr "Cuenta contrapartida"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,partner_country_code:0
@@ -508,7 +508,7 @@ msgstr "Diario"
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,journal_id:0
 msgid "Journal in which post the move."
-msgstr ""
+msgstr "Diario en el que publicar el movimiento."
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.invoice_record,date:0
@@ -707,7 +707,7 @@ msgid "Partner record"
 msgstr "Registro de empresa"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:31
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:34
 #: view:l10n.es.aeat.mod347.report:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
 #, python-format
 msgid "Partner records"
@@ -837,14 +837,14 @@ msgid "Related Goods Operation"
 msgstr "Operación de mercaderías relacionadas"
 
 #. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: selection:account.period,quarter:0
 msgid "Second"
 msgstr "Segundo"
-
-#. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,sequence:0
-msgid "Sequence"
-msgstr "Secuencia"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,bussiness_real_estate_rent:0
@@ -895,11 +895,6 @@ msgstr "Tipo de soporte"
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Support type:"
 msgstr "Tipo de soporte:"
-
-#. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,tax_lines:0
-msgid "Tax lines"
-msgstr "Lineas de impuestos"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,tax_person_operation:0
@@ -958,7 +953,7 @@ msgstr "Tercero"
 msgid ""
 "This account will be the counterpart for all the journal items that are "
 "regularized when posting the report."
-msgstr ""
+msgstr "Esta cuenta será la contrapartida para todos los elementos del diario que están regularizados al contabilizar el informe."
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_estate_record,township:0

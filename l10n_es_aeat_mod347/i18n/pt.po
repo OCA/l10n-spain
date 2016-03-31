@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:56+0000\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-03-02 09:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -82,6 +82,11 @@ msgid "AEAT Model 347"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,move_id:0
+msgid "Account entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,move_line_id:0
 msgid "Account move line"
 msgstr ""
@@ -102,7 +107,7 @@ msgid "Address type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:304
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:309
 #, python-format
 msgid ""
 "All partner state code field must be filled.\n"
@@ -110,7 +115,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:318
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:323
 #, python-format
 msgid ""
 "All partner state code field must be numeric.\n"
@@ -118,7 +123,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:311
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:316
 #, python-format
 msgid ""
 "All partner vat number field must be filled.\n"
@@ -126,7 +131,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:325
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:330
 #, python-format
 msgid "All real estate records state code field must be filled."
 msgstr ""
@@ -251,6 +256,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,type:0
 msgid "Complementary"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,counterpart_account:0
+msgid "Counterpart account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -490,6 +500,16 @@ msgid "Invoiced amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,journal_id:0
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.invoice_record,date:0
 msgid "Keep empty to use the current date"
 msgstr ""
@@ -686,7 +706,7 @@ msgid "Partner record"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:31
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:34
 #: view:l10n.es.aeat.mod347.report:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
 #, python-format
 msgid "Partner records"
@@ -720,6 +740,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_estate_record,postal_code:0
 msgid "Postal code"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: selection:l10n.es.aeat.mod347.report,state:0
+msgid "Posted"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -811,21 +836,21 @@ msgid "Related Goods Operation"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: selection:account.period,quarter:0
 msgid "Second"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,sequence:0
-msgid "Sequence"
-msgstr "Sequência"
-
-#. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,bussiness_real_estate_rent:0
 msgid ""
-"Set to identify real estate rent operations aside from the rest. You'll need "
-"to fill in the real estate info only when you are the one that receives the "
-"money."
+"Set to identify real estate rent operations aside from the rest. You'll need"
+" to fill in the real estate info only when you are the one that receives the"
+" money."
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -868,11 +893,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Support type:"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,tax_lines:0
-msgid "Tax lines"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
@@ -925,6 +945,13 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: selection:account.period,quarter:0
 msgid "Third"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
 msgstr ""
 
 #. module: l10n_es_aeat_mod347

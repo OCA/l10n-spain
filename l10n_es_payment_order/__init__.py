@@ -1,20 +1,13 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2006 ACYSOS S.L. (http://acysos.com) All Rights Reserved.
-#                       Pedro Tarrafeta <pedro@acysos.com>
-#    Copyright (c) 2008 Pablo Rocandio. All Rights Reserved.
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com) All Rights Reserved.
-#                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    AvanzOSC, Advanced Open Source Consulting 
-#    Copyright (C) 2011-2012 Ainara Galdona (www.avanzosc.com). All Rights Reserved
-#    $Id$
+#    Odoo, Open Source Management Solution
+#    Copyright (c) 2014 Acysos S.L. (http://acysos.com)
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -25,8 +18,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from . import remesas
-from . import report
 from . import wizard
-
+from . import models

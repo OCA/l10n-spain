@@ -28,7 +28,7 @@
 ##############################################################################
 {
     'name': "AEAT Base",
-    'version': "8.0.1.2.0",
+    'version': "8.0.1.6.0",
     'author': "Pexego,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "AvanzOSC,"
@@ -54,7 +54,8 @@
         'data/aeat_partner.xml',
         'wizard/export_to_boe_wizard.xml',
         'views/aeat_menuitem.xml',
-        'views/aeat_view.xml',
+        'views/aeat_report_view.xml',
+        'views/aeat_report_tax_mapping_view.xml',
         'views/aeat_export_configuration_view.xml',
         'views/aeat_tax_code_mapping_view.xml'
     ],

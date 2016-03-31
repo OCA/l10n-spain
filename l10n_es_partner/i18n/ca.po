@@ -3,13 +3,14 @@
 # * l10n_es_partner
 # 
 # Translators:
+# Eric Antones <eantones@users.noreply.github.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-05-23 09:01+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-02-29 13:41+0000\n"
+"Last-Translator: Eric Antones <eantones@users.noreply.github.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,18 +47,18 @@ msgstr "Codi"
 #. module: l10n_es_partner
 #: field:l10n.es.partner.import.wizard,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: l10n_es_partner
 #: field:l10n.es.partner.import.wizard,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat el"
 
 #. module: l10n_es_partner
 #: code:addons/l10n_es_partner/models/l10n_es_partner.py:134
 #, python-format
 msgid "IBAN account is not valid"
-msgstr ""
+msgstr "El compte IBAN no és vàlid"
 
 #. module: l10n_es_partner
 #: field:l10n.es.partner.import.wizard,id:0
@@ -87,7 +88,7 @@ msgid "Import from local file"
 msgstr ""
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:66
+#: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:63
 #: model:ir.actions.act_window,name:l10n_es_partner.action_l10n_es_partner_import
 #: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
 #, python-format

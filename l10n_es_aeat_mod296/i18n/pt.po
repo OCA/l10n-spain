@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:57+0000\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-03-04 16:52+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -259,8 +259,8 @@ msgid "AEAT 296 report line"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: help:l10n.es.aeat.mod296.report,casilla_02:0
-msgid "Base de retenciones e ingresos a cuenta"
+#: field:l10n.es.aeat.mod296.report,move_id:0
+msgid "Account entry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
@@ -279,23 +279,31 @@ msgid "Cancelled"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: field:l10n.es.aeat.mod296.report,casilla_01:0
-msgid "Casilla [01]"
+#: help:l10n.es.aeat.mod296.report,casilla_01:0
+msgid ""
+"Casilla [01] Resumen de los datos incluidos en la declaración - Número total"
+" de perceptores"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: field:l10n.es.aeat.mod296.report,casilla_02:0
-msgid "Casilla [02]"
+#: help:l10n.es.aeat.mod296.report,casilla_02:0
+msgid ""
+"Casilla [02] Resumen de los datos incluidos en la declaración - Base "
+"retenciones e ingresos a cuenta"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: field:l10n.es.aeat.mod296.report,casilla_03:0
-msgid "Casilla [03]"
+#: help:l10n.es.aeat.mod296.report,casilla_03:0
+msgid ""
+"Casilla [03] Resumen de los datos incluidos en la declaración - Retenciones "
+"e ingresos a cuenta"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: field:l10n.es.aeat.mod296.report,casilla_04:0
-msgid "Casilla [04]"
+#: help:l10n.es.aeat.mod296.report,casilla_04:0
+msgid ""
+"Casilla [04] Resumen de los datos incluidos en la declaración - Retenciones "
+"e ingresos a cuenta ingresados"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
@@ -331,6 +339,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,complemento_domicilio:0
 msgid "Complemento del domicilio"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,counterpart_account:0
+msgid "Counterpart account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
@@ -512,6 +525,16 @@ msgid "Identificación con el Código Cuenta Valores (C.C.V.)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,journal_id:0
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: help:l10n.es.aeat.mod296.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report,representative_vat:0
 msgid "L.R. VAT number"
 msgstr ""
@@ -561,6 +584,11 @@ msgid "Modelo 296"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,currency_id:0
+msgid "Moneda"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,move_line_ids:0
 msgid "Move Lines"
 msgstr ""
@@ -583,11 +611,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.report,type:0
 msgid "Normal"
-msgstr ""
-
-#. module: l10n_es_aeat_mod296
-#: help:l10n.es.aeat.mod296.report,casilla_01:0
-msgid "Numero total de perceptores"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
@@ -651,6 +674,11 @@ msgid "Phone"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,state:0
+msgid "Posted"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report,previous_number:0
 msgid "Previous declaration number"
 msgstr ""
@@ -681,20 +709,14 @@ msgid "Renta en especie"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: help:l10n.es.aeat.mod296.report,casilla_03:0
+#: field:l10n.es.aeat.mod296.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,retenciones_ingresos:0
 msgid "Retenciones e ingresos a cuenta"
 msgstr ""
-
-#. module: l10n_es_aeat_mod296
-#: help:l10n.es.aeat.mod296.report,casilla_04:0
-msgid "Retenciones e ingresos a cuenta ingresados"
-msgstr ""
-
-#. module: l10n_es_aeat_mod296
-#: field:l10n.es.aeat.mod296.report,sequence:0
-msgid "Sequence"
-msgstr "Sequência"
 
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.export_to_boe,state:0
@@ -733,6 +755,13 @@ msgid "Telematics"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
+#: help:l10n.es.aeat.mod296.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,tipo_codigo:0
 msgid "Tipo código"
 msgstr ""
@@ -740,6 +769,26 @@ msgstr ""
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report,company_vat:0
 msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,casilla_01:0
+msgid "[01] Número de perceptores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,casilla_02:0
+msgid "[02] Base retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,casilla_03:0
+msgid "[03] Retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,casilla_04:0
+msgid "[04] Retenciones ingresadas"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296

@@ -1,0 +1,66 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * account_balance_reporting_xls
+# 
+# Translators:
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-05 19:24+0000\n"
+"PO-Revision-Date: 2015-11-05 13:12+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: account_balance_reporting_xls
+#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:102
+#, python-format
+msgid "Balance"
+msgstr "Bilanca"
+
+#. module: account_balance_reporting_xls
+#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:83
+#, python-format
+msgid "Code"
+msgstr "Koda"
+
+#. module: account_balance_reporting_xls
+#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:78
+#, python-format
+msgid "Concept"
+msgstr "Koncept"
+
+#. module: account_balance_reporting_xls
+#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:95
+#, python-format
+msgid "Current value"
+msgstr "Trenutna vrednost"
+
+#. module: account_balance_reporting_xls
+#: view:account.balance.reporting.print.wizard:account_balance_reporting_xls.wizard_account_balance_reporting_xls_print
+msgid "Export"
+msgstr "Izvoz"
+
+#. module: account_balance_reporting_xls
+#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:109
+#, python-format
+msgid "Notes"
+msgstr "Opombe"
+
+#. module: account_balance_reporting_xls
+#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:88
+#, python-format
+msgid "Previous value"
+msgstr "Prejšnja vrednost"
+
+#. module: account_balance_reporting_xls
+#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:121
+#, python-format
+msgid "report_name"
+msgstr "report_name"

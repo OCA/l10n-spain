@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 08:00+0000\n"
-"PO-Revision-Date: 2015-10-01 08:02+0000\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-03-02 09:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -109,7 +109,7 @@ msgid "Address type"
 msgstr "Tipo de enderezo"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:308
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:309
 #, python-format
 msgid ""
 "All partner state code field must be filled.\n"
@@ -117,7 +117,7 @@ msgid ""
 msgstr "O código da provincia de tódolos rexistros de empresas debe estar cuberto.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:322
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:323
 #, python-format
 msgid ""
 "All partner state code field must be numeric.\n"
@@ -125,7 +125,7 @@ msgid ""
 msgstr "O código da provincia de tódolos rexistros de empresas debe ser numérico.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:315
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:316
 #, python-format
 msgid ""
 "All partner vat number field must be filled.\n"
@@ -133,7 +133,7 @@ msgid ""
 msgstr "O NIF de tódolos rexistros de empresas debe estar cuberto.\nEmpresa: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:329
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:330
 #, python-format
 msgid "All real estate records state code field must be filled."
 msgstr "Os registros de propiedades inmobiliarias débense encher manualmente."
@@ -708,7 +708,7 @@ msgid "Partner record"
 msgstr "Rexistro da empresa"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:31
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:34
 #: view:l10n.es.aeat.mod347.report:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
 #, python-format
 msgid "Partner records"
@@ -838,14 +838,14 @@ msgid "Related Goods Operation"
 msgstr "Operación de mercadorías"
 
 #. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: selection:account.period,quarter:0
 msgid "Second"
 msgstr "Segundo"
-
-#. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,sequence:0
-msgid "Sequence"
-msgstr "Secuencia"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,bussiness_real_estate_rent:0
@@ -896,11 +896,6 @@ msgstr "Tipo de soporte"
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Support type:"
 msgstr "Tipo de soporte:"
-
-#. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,tax_lines:0
-msgid "Tax lines"
-msgstr "Liñas de impostos"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,tax_person_operation:0

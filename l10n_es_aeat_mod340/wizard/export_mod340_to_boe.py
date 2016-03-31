@@ -21,7 +21,7 @@
 #
 ##############################################################################
 
-from openerp import models, api, exceptions, _
+from openerp import models, api, _
 
 
 class L10nEsAeatMod340ExportToBoe(models.TransientModel):
@@ -59,24 +59,8 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
         """
         text = super(L10nEsAeatMod340ExportToBoe,
                      self)._get_formatted_declaration_record(report)
-        period_stop = report.period_to.date_stop[5:7]
-        period_start = report.period_to.date_start[5:7]
-        if period_start == period_stop:
-            period = period_stop
-        else:
-            if period_stop == '03':
-                period = '1T'
-            elif period_stop == '06':
-                period = '2T'
-            elif period_stop == '09':
-                period = '3T'
-            elif period_stop == '12':
-                period = '4T'
-            else:
-                raise exceptions.Warning(
-                    _("The period hasn't a valid Mod340 period"))
         # Periodo
-        text += self._formatString(period, 2)
+        text += self._formatString(report.period_type, 2)
         # Número total de registros
         text += self._formatNumber(report.number_records, 9)
         # Importe total de la base imponible

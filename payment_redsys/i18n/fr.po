@@ -1,0 +1,307 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * payment_redsys
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-02-26 01:41+0000\n"
+"PO-Revision-Date: 2016-02-25 17:16+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Alemán"
+msgstr ""
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Back to shop"
+msgstr "Retour à la boutique"
+
+#. module: payment_redsys
+#: code:addons/payment_redsys/models/redsys.py:282
+#, python-format
+msgid "Bank Error: %s (%s)"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Castellano"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Catalán"
+msgstr ""
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_currency:0
+msgid "Currency"
+msgstr ""
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Date:"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_pay_method:0
+msgid "Domiciliacion"
+msgstr ""
+
+#. module: payment_redsys
+#: view:website:payment_redsys.redsys_result_ko
+msgid "En error ocurred."
+msgstr "En ocurred erreur."
+
+#. module: payment_redsys
+#: code:addons/payment_redsys/models/redsys.py:271
+#, python-format
+msgid "Error: %s (%s)"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Euskera"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Francés"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Gallego"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_signature_version:0
+msgid "HMAC SHA256 V1"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Holandés"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Inglés"
+msgstr ""
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Invoicing Address"
+msgstr "Adresse de facturation"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Italiano"
+msgstr ""
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_merchant_lang:0
+msgid "Merchant Consumer Language"
+msgstr "Merchant consommateurs Langue"
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_merchant_data:0
+msgid "Merchant Data"
+msgstr "Data Merchant"
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_merchant_name:0
+msgid "Merchant Name"
+msgstr "Nom du commerçant"
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_merchant_titular:0
+msgid "Merchant Titular"
+msgstr "Merchant titulaire"
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_merchant_url:0
+msgid "Merchant URL"
+msgstr "Merchant URL"
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_merchant_code:0
+msgid "Merchant code"
+msgstr "Code Merchant"
+
+#. module: payment_redsys
+#: code:addons/payment_redsys/models/redsys.py:260
+#, python-format
+msgid "Ok: %s"
+msgstr "Ok: %s"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Order"
+msgstr "Commande"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_pay_method:0
+msgid "Pago con Tarjeta"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_pay_method:0
+msgid "Pago por Transferencia"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.model,name:payment_redsys.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr "Paiement acquéreur"
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_pay_method:0
+msgid "Payment Method"
+msgstr "Mode de paiement"
+
+#. module: payment_redsys
+#: model:ir.model,name:payment_redsys.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "Opération de paiement"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.redsys_result_ko
+msgid "Please contact with us and inform you about your order."
+msgstr "S'il vous plaît nous contacter et vous informer sur votre commande."
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Polaco"
+msgstr ""
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Portugués"
+msgstr ""
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Product"
+msgstr "Produit"
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_merchant_description:0
+msgid "Product Description"
+msgstr "Description du produit"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: payment_redsys
+#: view:payment.transaction:payment_redsys.transaction_form_redsys
+msgid "Redsys TX Details"
+msgstr "Redsys TX Détails"
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_signature_version:0
+msgid "Redsys signature version"
+msgstr "La version de la signature Redsys"
+
+#. module: payment_redsys
+#: code:addons/payment_redsys/models/redsys.py:289
+#, python-format
+msgid "Redsys: feedback error %s (%s)"
+msgstr ""
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_secret_key:0
+msgid "Secret Key"
+msgstr "Clef secréte"
+
+#. module: payment_redsys
+#: field:payment.acquirer,send_quotation:0
+msgid "Send quotation"
+msgstr "Envoyer cotation"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Shipping Address"
+msgstr "Adresse de livraison"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Sueco"
+msgstr ""
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Taxes:"
+msgstr "impôts:"
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_terminal:0
+msgid "Terminal"
+msgstr "Terminal"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.redsys_result_ok
+msgid "Thanks for you order."
+msgstr "Merci pour votre commande."
+
+#. module: payment_redsys
+#: view:website:payment_redsys.redsys_result_ko
+msgid "The payment of your order has failed"
+msgstr "Le paiement de votre commande a échoué"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Total:"
+msgstr "Total:"
+
+#. module: payment_redsys
+#: field:payment.transaction,redsys_txnid:0
+msgid "Transaction ID"
+msgstr "Identifiant de transaction"
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_transaction_type:0
+msgid "Transtaction Type"
+msgstr "Type de Transtaction"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Unit Price"
+msgstr "Prix unitaire"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Untaxed Amount:"
+msgstr "Montant non taxé:"
+
+#. module: payment_redsys
+#: selection:payment.acquirer,redsys_merchant_lang:0
+msgid "Valenciano"
+msgstr ""
+
+#. module: payment_redsys
+#: view:website:payment_redsys.redsys_result_ok
+msgid "We will inform you of your order status"
+msgstr "Nous allons vous informer de votre statut de la commande"
+
+#. module: payment_redsys
+#: view:website:payment_redsys.redsys_result_ok
+msgid "Your order has been paid correctly"
+msgstr "Votre commande a été payée correctement"

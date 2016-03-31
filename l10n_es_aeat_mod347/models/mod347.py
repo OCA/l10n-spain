@@ -23,6 +23,9 @@ class L10nEsAeatMod347Report(models.Model):
     _inherit = "l10n.es.aeat.report"
     _name = "l10n.es.aeat.mod347.report"
     _description = "AEAT 347 Report"
+    _period_yearly = True
+    _period_quarterly = False
+    _period_monthly = False
 
     @api.multi
     def btn_list_records(self):
@@ -61,13 +64,13 @@ class L10nEsAeatMod347Report(models.Model):
             # (A and B operation keys)
             # Search for invoices to this partner (with account moves).
             invoices = invoice_obj.search(
-                [('partner_id', 'child_of', partners.ids),
+                [('partner_id.commercial_partner_id', 'in', partners.ids),
                  ('type', '=', invoice_type),
                  ('period_id', 'in', periods.ids),
                  ('state', 'not in', ['draft', 'cancel']),
                  ('not_in_mod347', '=', False)])
             refunds = invoice_obj.search(
-                [('partner_id', 'child_of', partners.ids),
+                [('partner_id.commercial_partner_id', 'in', partners.ids),
                  ('type', '=', refund_type),
                  ('period_id', 'in', periods.ids),
                  ('state', 'not in', ['draft', 'cancel']),
@@ -85,11 +88,13 @@ class L10nEsAeatMod347Report(models.Model):
                 else:
                     assert invoice_type == 'in_invoice'
                     operation_key = 'A'  # Note: A = Purchase operations
-                address = self._get_default_address(partners[0])
+                main_partner = partners[0]
+                address = self._get_default_address(main_partner)
                 # Get the partner data
-                if partners.vat:
+                if main_partner.vat:
                     partner_country_code, partner_vat = (
-                        re.match(r"([A-Z]{0,2})(.*)", partners.vat).groups())
+                        re.match(r"([A-Z]{0,2})(.*)",
+                                 main_partner.vat).groups())
                 else:
                     partner_vat = ''
                     partner_country_code = address.country_id.code
@@ -97,7 +102,7 @@ class L10nEsAeatMod347Report(models.Model):
                 partner_record_id = partner_record_obj.create(
                     {'report_id': self.id,
                      'operation_key': operation_key,
-                     'partner_id': partners[0].id,
+                     'partner_id': main_partner.id,
                      'partner_vat': partner_vat,
                      'representative_vat': '',
                      'partner_state_code': address.state_id.code,
@@ -129,7 +134,7 @@ class L10nEsAeatMod347Report(models.Model):
             return
         receivable_ids = [x.property_account_receivable.id for x in partners]
         cash_account_move_lines = move_line_obj.search(
-            [('partner_id', 'child_of', partners.ids),
+            [('partner_id.commercial_partner_id', 'in', partners.ids),
              ('account_id', 'in', receivable_ids),
              ('journal_id', 'in', cash_journals.ids),
              ('period_id', 'in', periods.ids)])
@@ -190,15 +195,14 @@ class L10nEsAeatMod347Report(models.Model):
                                                  cash_moves[cash_move_fy_id]]),
                              'origin_fiscalyear_id': cash_move_fy_id})
                     else:
-                        partner_record_obj.write(
-                            partner_record_id,
+                        partner_record_id.write(
                             {'cash_amount': sum([line.credit for line in
                                                  cash_moves[cash_move_fy_id]]),
                              'origin_fiscalyear_id': cash_move_fy_id})
                         cash_partner_record_id = partner_record_id
                     for line in cash_moves[cash_move_fy_id]:
                         cash_record_obj.create(
-                            {'partner_record_id': cash_partner_record_id,
+                            {'partner_record_id': cash_partner_record_id.id,
                              'move_line_id': line.id,
                              'date': line.date,
                              'amount': line.credit})
@@ -209,14 +213,10 @@ class L10nEsAeatMod347Report(models.Model):
         for report in self:
             # Delete previous partner records
             report.partner_record_ids.unlink()
-            # Get the fiscal year period ids of the non-special periods
-            # (to ignore closing/opening entries)
-            periods = report.fiscalyear_id.period_ids.filtered(
-                lambda r: not r.special)
             # We will check every partner with not_in_mod347 flag unchecked
             visited_partners = self.env['res.partner']
-            domain = [('not_in_mod347', '=', False),
-                      ('parent_id', '=', False)]
+            domain = [('not_in_mod347', '=', False), '|',
+                      ('parent_id', '=', False), ('is_company', '=', True)]
             if report.only_supplier:
                 domain.append(('supplier', '=', True))
             else:
@@ -234,10 +234,11 @@ class L10nEsAeatMod347Report(models.Model):
                         partners_grouped = partner
                     visited_partners |= partners_grouped
                     partner_record_id = report._calculate_partner_records(
-                        partners_grouped, periods)
+                        partners_grouped, report.periods)
                     if partner.customer:
                         report._calculate_cash_records(
-                            partners_grouped, partner_record_id, periods)
+                            partners_grouped, partner_record_id,
+                            report.periods)
         return True
 
     @api.one
@@ -505,28 +506,18 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         comodel_name='l10n.es.aeat.mod347.cash_record',
         inverse_name='partner_record_id', string='Payment records')
 
+    @api.multi
     @api.onchange('partner_id')
     def on_change_partner_id(self):
         """Loads some partner data (country, state and vat) when the selected
         partner changes.
         """
-        if self.partner_id:
-            # Get the invoice or the default address of the partner
-            address_ids = self.partner_id.address_get(['invoice', 'default'])
-            if address_ids.get('invoice'):
-                address = self.env['res.partner.address'].browse(
-                    address_ids['invoice'])
-            elif address_ids.get('default'):
-                address = self.env['res.partner.address'].browse(
-                    address_ids['default'])
-            self.partner_vat = re.match("(ES){0,1}(.*)",
-                                        self.partner_id.vat).groups()[1]
-            self.partner_state_code = address.state_id.code
-            self.partner_country_code = address.country_id.code
-        else:
-            self.partner_vat = ''
-            self.partner_country_code = ''
-            self.partner_state_code = ''
+        for record in self:
+            if record.partner_id:
+                record.partner_vat = re.match(
+                    "(ES){0,1}(.*)", record.partner_id.vat).groups()[1]
+                record.partner_state_code = record.partner_id.state_id.code
+                record.partner_country_code = record.partner_id.country_id.code
 
 
 class L10nEsAeatMod347RealStateRecord(models.Model):

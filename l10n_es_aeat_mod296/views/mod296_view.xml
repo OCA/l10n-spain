@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-            <record id="view_l10n_es_aeat_mod296_report_form" model="ir.ui.view">
-                <field name="name">l10n_es.aeat.mod296.report.form</field>
-                <field name="model">l10n.es.aeat.mod296.report</field>
-                <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
-                <field name="arch" type="xml">
-                    <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
-                        <attribute name="name">%(action_wizard_aeat_mod296_export)d</attribute>
-                    </button>
-                    <group string="Declaración" position="after">
-                        <group string="Liquidación" colspan="4" states="calculated,done,cancelled">
-                            <field name="casilla_01"/>
-                            <field name="casilla_02" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                            <field name="casilla_03" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                            <field name="casilla_04" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        </group>
-                        <group string="Detalle por empresa" colspan="4" states="calculated,done,cancelled">
-                            <field name="lines296" nolabel="1"/>
-                        </group>
+        <record id="view_l10n_es_aeat_mod296_report_form" model="ir.ui.view">
+            <field name="name">l10n_es.aeat.mod296.report.form</field>
+            <field name="model">l10n.es.aeat.mod296.report</field>
+            <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
+            <field name="arch" type="xml">
+                <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
+                    <attribute name="name">%(action_wizard_aeat_mod296_export)d</attribute>
+                </button>
+                <field name="fiscalyear_id" position="after">
+                    <field name="currency_id" invisible="1"/>
+                </field>
+                <group string="Declaración" position="after">
+                    <group string="Liquidación" colspan="4" states="calculated,done,cancelled">
+                        <field name="casilla_01"/>
+                        <field name="casilla_02" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_03" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_04" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
                     </group>
+                    <group string="Detalle por empresa" colspan="4" states="calculated,done,cancelled">
+                        <field name="lines296" nolabel="1"/>
+                    </group>
+                </group>
             </field>
         </record>
 

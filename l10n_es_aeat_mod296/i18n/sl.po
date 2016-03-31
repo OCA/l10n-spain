@@ -1,0 +1,802 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_aeat_mod296
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-03-04 16:52+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,porcentaje_retencion:0
+msgid "% retención"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid ""
+"1 - Dividendos y otras rentas derivadas de la participación en fondos "
+"propios de entidades."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+msgid ""
+"1 - Retención practicada a los tipos generales o escalas de tributación del "
+"artículo 25 del texto refundido de la Ley del Impuesto sobre la Renta de no "
+"Residentes."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,codigo:0
+msgid "1. El código emisor corresponde a un N.I.F."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid ""
+"10 - Cánones derivados de equipos industriales, comerciales o científicos."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid "11 - Otros cánones no relacionados anteriormente."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid ""
+"12 - Rendimientos de capital mobiliario de operaciones de capitalización y "
+"de contratos de seguros de vida o invalidez."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid ""
+"13 - Otros rendimientos de capital mobiliario no citados anteriormente."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid "14 - Rendimientos de bienes inmuebles."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid "15 - Rendimientos de actividades empresariales."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid "16 - Rentas derivadas de prestaciones de asistencia técnica."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid "17 - Rentas de actividades artísticas."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid "18 - Rentas de actividades deportivas."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid "19 - Rentas de actividades profesionales."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid ""
+"2 - Intereses y otras rentas derivadas de la cesión a terceros de capitales "
+"propios."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+msgid "2 - Retención practicada aplicando límites de imposición de Convenios."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,codigo:0
+msgid "2. El código emisor corresponde a un código I.S.I.N."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid "20 - Rentas del trabajo."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid "21 - Pensiones y haberes pasivos."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid ""
+"22 - Retribuciones de administradores y miembros de consejos de "
+"Administración."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid "23 - Rendimientos derivados de operaciones de reaseguros."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid "24 - Entidades de navegación marítima o aérea."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid "25 - Otras rentas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid ""
+"3 - Cánones derivados de patentes, marcas de fábrica o de comercio, dibujos "
+"o meodelos, planos, fórmulas o procedimientos secretos."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+msgid ""
+"3 - Exención interna (principalmente: artículo 14 del texto refundido de la "
+"Ley del Impuesto sobre la Renta de no Residentes)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,codigo:0
+msgid ""
+"3. El código emisor corresponde a valores extranjeros que no tienen asignado"
+" I.S.I.N., cuyo emisor no dispone de NIF"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid "4 - Cánones derivados de derechos sobre obras literarias y artísticas."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+msgid "4 - Exención por aplicación de un Convenio."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid "5 - Cánones derivados de derechos sobre obras científicas."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+msgid ""
+"5 - Sin retención por previo pago del Impuesto por el contribuyente o su "
+"representante."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid ""
+"6 - Cánones derivados de derechos sobre películas cinematográficas y obras "
+"sonoras o visuales grabadas."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+msgid ""
+"6 - El perceptor declarado es una entidad extranjera de gestión colectiva de"
+" derechos de la propiedad intelectual, habiéndose practicado retención "
+"aplicando el límite de imposición, o la exención, de un Convenio."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid ""
+"7 - Cánones derivados de informaciones relativas a experiencias "
+"industriales, comerciales o científicas (know-how)."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+msgid ""
+"7 - El perceptor es un contribuyente del Impuesto sobre la Renta de las "
+"Personas Físicas del régimen especial aplicable a los trabajadores "
+"desplazados a territorio español."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid "8 - Cánones derivados de derechos sobre programas informáticos."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+msgid ""
+"8 - El perceptor declarado es una entidad residente en el extranjero "
+"comercializadora de acciones o participaciones de instituciones de inversión"
+" colectiva españolas, habiéndose practicado retención aplicando un límite de"
+" imposición fijado en el Convenio inferior."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,clave:0
+msgid ""
+"9 - Cánones derivados de derechos personales susceptibles de cesión, tales "
+"como los derechos de imagen."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+msgid ""
+"9 - El perceptor declarado es una entidad residente en el extranjero "
+"comercializadora de acciones o participaciones de instituciones de inversión"
+" colectiva españoas, habiéndose practicado retención aplicando el tipo de "
+"gravamen."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model,name:l10n_es_aeat_mod296.model_l10n_es_aeat_mod296_report
+msgid "AEAT 296 report"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model,name:l10n_es_aeat_mod296.model_l10n_es_aeat_mod296_report_line
+msgid "AEAT 296 report line"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,move_id:0
+msgid "Account entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,base_retenciones_ingresos:0
+msgid "Base retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,calculation_date:0
+msgid "Calculation date"
+msgstr "Datum izračuna"
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,state:0
+msgid "Cancelled"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: help:l10n.es.aeat.mod296.report,casilla_01:0
+msgid ""
+"Casilla [01] Resumen de los datos incluidos en la declaración - Número total"
+" de perceptores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: help:l10n.es.aeat.mod296.report,casilla_02:0
+msgid ""
+"Casilla [02] Resumen de los datos incluidos en la declaración - Base "
+"retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: help:l10n.es.aeat.mod296.report,casilla_03:0
+msgid ""
+"Casilla [03] Resumen de los datos incluidos en la declaración - Retenciones "
+"e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: help:l10n.es.aeat.mod296.report,casilla_04:0
+msgid ""
+"Casilla [04] Resumen de los datos incluidos en la declaración - Retenciones "
+"e ingresos a cuenta ingresados"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,ciudad_nacimiento:0
+msgid "Ciudad nacimiento"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,clave:0
+msgid "Clave"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,pago:0
+msgid "Como emisor"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,pago:0
+msgid "Como mediador"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,company_id:0
+msgid "Company"
+msgstr "Družba"
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,type:0
+msgid "Complementary"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,complemento_domicilio:0
+msgid "Complemento del domicilio"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,counterpart_account:0
+msgid "Counterpart account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.actions.act_window,help:l10n_es_aeat_mod296.action_l10n_es_aeat_mod296_report
+msgid "Crea y consulta las declaraciones del modelo 296 de la AEAT."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.export_to_boe,create_uid:0
+#: field:l10n.es.aeat.mod296.report,create_uid:0
+#: field:l10n.es.aeat.mod296.report.line,create_uid:0
+msgid "Created by"
+msgstr "Ustvaril"
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.export_to_boe,create_date:0
+#: field:l10n.es.aeat.mod296.report,create_date:0
+#: field:l10n.es.aeat.mod296.report.line,create_date:0
+msgid "Created on"
+msgstr "Ustvarjeno"
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,codigo:0
+msgid "Código"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,cuenta_valores:0
+msgid "Código Cuenta Valores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,codigo_emisor:0
+msgid "Código emisor"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,zip:0
+msgid "Código postal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,support_type:0
+msgid "DVD"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: view:l10n.es.aeat.mod296.report.line:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
+msgid "Datos comunes en todos los perceptores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: view:l10n.es.aeat.mod296.report.line:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
+msgid ""
+"Datos especificos en función de la letra consignada en la casilla 'Clave'"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: view:l10n.es.aeat.mod296.report.line:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
+msgid "Datos identificativos y domicilio de los perceptores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: view:l10n.es.aeat.mod296.report:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_tree
+msgid "Declaraciones AEAT 296"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: view:l10n.es.aeat.mod296.report:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_form
+msgid "Declaración"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod296.action_l10n_es_aeat_mod296_report
+msgid "Declaración AEAT 296"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,number:0
+msgid "Declaration number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: view:l10n.es.aeat.mod296.report.line:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
+#: view:l10n.es.aeat.mod296.report.line:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_tree
+msgid "Detalle 296"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: view:l10n.es.aeat.mod296.report:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_form
+msgid "Detalle por empresa"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: view:l10n.es.aeat.mod296.report.line:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
+msgid "Direccion en el pais de residencia"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,domicilio:0
+msgid "Domicilio"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,state:0
+msgid "Done"
+msgstr "Opravljeno"
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,state:0
+msgid "Draft"
+msgstr "Osnutek"
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,ejercicio_devengo:0
+msgid "Ejercicio devengo"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model,name:l10n_es_aeat_mod296.model_l10n_es_aeat_mod296_export_to_boe
+msgid "Export Report to BOE Format"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,export_config:0
+msgid "Export config"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod296.action_wizard_aeat_mod296_export
+msgid "Exportar archivo BOE AEAT 296"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,fisica_juridica:0
+msgid "F/J"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,fecha_nacimiento:0
+msgid "Fecha de nacimiento"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,fecha_devengo:0
+msgid "Fecha devengo"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.export_to_boe,data:0
+msgid "File"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.export_to_boe,name:0
+msgid "File name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,fiscalyear_id:0
+msgid "Fiscal year"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,contact_name:0
+msgid "Full Name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.export_to_boe,id:0
+#: field:l10n.es.aeat.mod296.report,id:0
+#: field:l10n.es.aeat.mod296.report.line,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,tipo_codigo:0
+msgid "Identificación con el Código Cuenta Valores (C.C.V.)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,journal_id:0
+msgid "Journal"
+msgstr "Dnevnik"
+
+#. module: l10n_es_aeat_mod296
+#: help:l10n.es.aeat.mod296.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,representative_vat:0
+msgid "L.R. VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.export_to_boe,write_uid:0
+#: field:l10n.es.aeat.mod296.report,write_uid:0
+#: field:l10n.es.aeat.mod296.report.line,write_uid:0
+msgid "Last Updated by"
+msgstr "Zadnji posodobil"
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.export_to_boe,write_date:0
+#: field:l10n.es.aeat.mod296.report,write_date:0
+#: field:l10n.es.aeat.mod296.report.line,write_date:0
+msgid "Last Updated on"
+msgstr "Zadnjič posodobljeno"
+
+#. module: l10n_es_aeat_mod296
+#: help:l10n.es.aeat.mod296.report,representative_vat:0
+msgid "Legal Representative VAT number."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,lines296:0
+msgid "Lines"
+msgstr "Postavke"
+
+#. module: l10n_es_aeat_mod296
+#: view:l10n.es.aeat.mod296.report:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_form
+msgid "Liquidación"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,mediador:0
+msgid "Mediador"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,mod296_id:0
+msgid "Mod 296"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.ui.menu,name:l10n_es_aeat_mod296.menu_aeat_mod296_report
+msgid "Modelo 296"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,currency_id:0
+msgid "Moneda"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,move_line_ids:0
+msgid "Move Lines"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: help:l10n.es.aeat.mod296.report,contact_name:0
+msgid "Must have name and surname."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,naturaleza:0
+msgid "Naturaleza"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,nif_pais_residencia:0
+msgid "Nif en el país de residencia"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,type:0
+msgid "Normal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,tipo_codigo:0
+msgid "Otra identificación"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,pago:0
+msgid "Pago"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,pais:0
+msgid "Pais"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,pais_nacimiento:0
+msgid "Pais nacimiento"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,pais_residencia_fiscal:0
+msgid "Pais o territorio de residencia fiscal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,partner_id:0
+msgid "Partner"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,pendiente:0
+msgid "Pendiente"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,period_type:0
+msgid "Period type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,periods:0
+msgid "Period(s)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,fisica_juridica:0
+msgid "Persona Juridica o entidad"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,fisica_juridica:0
+msgid "Persona fisica"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,contact_phone:0
+msgid "Phone"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,state:0
+msgid "Posted"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,previous_number:0
+msgid "Previous declaration number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,poblacion:0
+msgid "Problación/Ciudad"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,state:0
+msgid "Processed"
+msgstr "Obdelano"
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,provincia:0
+msgid "Provincia/Región/Estado"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,naturaleza:0
+msgid "Renta dineraria"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report.line,naturaleza:0
+msgid "Renta en especie"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,retenciones_ingresos:0
+msgid "Retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.export_to_boe,state:0
+#: field:l10n.es.aeat.mod296.report,state:0
+msgid "State"
+msgstr "Stanje"
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,type:0
+msgid "Statement Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,subclave:0
+msgid "Subclave"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,type:0
+msgid "Substitutive"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,support_type:0
+msgid "Support Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,tax_lines:0
+msgid "Tax lines"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,support_type:0
+msgid "Telematics"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: help:l10n.es.aeat.mod296.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report.line,tipo_codigo:0
+msgid "Tipo código"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,company_vat:0
+msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,casilla_01:0
+msgid "[01] Número de perceptores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,casilla_02:0
+msgid "[02] Base retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,casilla_03:0
+msgid "[03] Retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,casilla_04:0
+msgid "[04] Retenciones ingresadas"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.export_to_boe,state:0
+msgid "get"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.export_to_boe,state:0
+msgid "open"
+msgstr ""

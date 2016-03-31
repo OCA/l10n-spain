@@ -1,0 +1,28 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_crm_lead_trade_name
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-11-26 01:42+0000\n"
+"PO-Revision-Date: 2015-11-25 18:37+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Basque (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/eu/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: eu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_crm_lead_trade_name
+#: model:ir.model,name:l10n_es_crm_lead_trade_name.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr ""
+
+#. module: l10n_es_crm_lead_trade_name
+#: field:crm.lead,trade_name:0
+msgid "Trade name"
+msgstr "Izen komertziala"

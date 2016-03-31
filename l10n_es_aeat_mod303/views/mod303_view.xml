@@ -31,6 +31,7 @@
                     <field name="currency_id" invisible="1"/>
                     <group string="Resultado"
                            name="group_result"
+                           attrs="{'invisible': [('state', '=', 'draft')]}"
                            colspan="4"
                            col="6"
                             >
@@ -77,7 +78,7 @@
                         </group>
                     </group>
                     <group class="oe_subtotal_footer oe_right"
-                           attrs="{'invisible': [('tax_lines', '=', [])]}"
+                           attrs="{'invisible': [('state', '=', 'draft')]}"
                            colspan="2">
                         <field name="resultado_liquidacion"
                                class="oe_subtotal_footer_separator"
@@ -88,9 +89,17 @@
                         <field name="compensate"
                                attrs="{'invisible': [('result_type', '!=', 'B')]}"
                                 />
+                        <field name="company_partner_id" invisible="1"/>
                         <field name="bank_account"
+                               domain="[('partner_id', '=', company_partner_id)]"
                                attrs="{'invisible': [('result_type', 'not in', ('B', 'I')), ('compensate', '=', False)]}"
                                 />
+                    </group>
+                    <group string="Tax lines"
+                           name="group_tax_lines"
+                           colspan="4"
+                           attrs="{'invisible': [('state', '=', 'draft')]}">
+                        <field name="tax_lines" nolabel="1"/>
                     </group>
                 </group>
             </field>

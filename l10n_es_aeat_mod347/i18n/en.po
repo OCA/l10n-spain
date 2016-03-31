@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 08:00+0000\n"
-"PO-Revision-Date: 2015-10-01 08:02+0000\n"
+"POT-Creation-Date: 2016-03-05 10:32+0000\n"
+"PO-Revision-Date: 2016-03-02 09:28+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -107,7 +107,7 @@ msgid "Address type"
 msgstr "Address type"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:308
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:309
 #, python-format
 msgid ""
 "All partner state code field must be filled.\n"
@@ -115,7 +115,7 @@ msgid ""
 msgstr "All partner state code field must be filled.\nPartner: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:322
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:323
 #, python-format
 msgid ""
 "All partner state code field must be numeric.\n"
@@ -123,7 +123,7 @@ msgid ""
 msgstr "All partner state code field must be numeric.\nPartner: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:315
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:316
 #, python-format
 msgid ""
 "All partner vat number field must be filled.\n"
@@ -131,7 +131,7 @@ msgid ""
 msgstr "All partner vat number field must be filled.\nPartner: %s (%s)"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:329
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:330
 #, python-format
 msgid "All real estate records state code field must be filled."
 msgstr "All real estate records state code field must be filled."
@@ -706,7 +706,7 @@ msgid "Partner record"
 msgstr "Partner record"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:31
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:34
 #: view:l10n.es.aeat.mod347.report:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
 #, python-format
 msgid "Partner records"
@@ -836,14 +836,14 @@ msgid "Related Goods Operation"
 msgstr "Related Goods Operation"
 
 #. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.report,name:0
+msgid "Report identifier"
+msgstr "Report identifier"
+
+#. module: l10n_es_aeat_mod347
 #: selection:account.period,quarter:0
 msgid "Second"
 msgstr "Second"
-
-#. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,sequence:0
-msgid "Sequence"
-msgstr "Sequence"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,bussiness_real_estate_rent:0
@@ -894,11 +894,6 @@ msgstr "Support Type"
 #: report:report_l10n_es_aeat_mod347.report:0
 msgid "Support type:"
 msgstr "Support type:"
-
-#. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,tax_lines:0
-msgid "Tax lines"
-msgstr "Tax lines"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,tax_person_operation:0

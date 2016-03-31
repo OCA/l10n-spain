@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 15:09+0000\n"
-"PO-Revision-Date: 2015-09-04 08:28+0000\n"
+"POT-Creation-Date: 2016-03-24 14:00+0000\n"
+"PO-Revision-Date: 2016-03-24 14:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -37,12 +37,6 @@ msgstr "Secuencia de la factura"
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_journal
 msgid "Journal"
 msgstr "Diario"
-
-#. module: l10n_es_account_invoice_sequence
-#: code:addons/l10n_es_account_invoice_sequence/models/account_invoice.py:41
-#, python-format
-msgid "Journal %s has no sequence defined for invoices."
-msgstr "El diario %s no tiene una secuencia definida para las facturas."
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/__init__.py:29

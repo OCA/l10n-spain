@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="export_confirminet" model="payment.mode.type">
+            <field name="name">Confirminet</field>
+            <field name="code">confirminet</field>
+            <field name="suitable_bank_types"
+                   eval="[(6, 0, [ref('base.bank_normal'), ref('base_iban.bank_iban')])]" />
+            <field name="ir_model_id" ref="model_banking_export_csb_wizard"/>
+            <field name="payment_order_type">payment</field>
+        </record>
+
+    </data>
+</openerp>

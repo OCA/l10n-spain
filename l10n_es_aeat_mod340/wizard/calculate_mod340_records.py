@@ -36,7 +36,6 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
         mod340 = report_obj.browse(cr, uid, ids)[0]
         invoices340 = self.pool['l10n.es.aeat.mod340.issued']
         invoices340_rec = self.pool['l10n.es.aeat.mod340.received']
-        period_obj = self.pool['account.period']
         issued_obj = self.pool['l10n.es.aeat.mod340.tax_line_issued']
         received_obj = self.pool['l10n.es.aeat.mod340.tax_line_received']
         mod340.write({
@@ -46,16 +45,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
         if not mod340.company_id.partner_id.vat:
             raise orm.except_orm(mod340.company_id.partner_id.name,
                                  _('This company dont have NIF'))
-        code = '340' + mod340.fiscalyear_id.code + ''
-        code += mod340.period_to.date_stop[5:7] + '0001'
-        account_period_ids = period_obj.build_ctx_periods(
-            cr, uid, mod340.period_from.id, mod340.period_to.id)
-        if len(account_period_ids) is 0:
-            raise orm.except_orm(
-                _('Error'),
-                _("The periods selected don't belong to the fiscal year %s")
-                % (mod340.fiscalyear_id.name))
-
+        account_period_ids = [x.id for x in mod340.periods]
         # Limpieza de las facturas calculadas anteriormente
         del_ids = invoices340.search(cr, uid, [('mod340_id', '=', mod340.id)])
         if del_ids:
@@ -97,9 +87,9 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                     'representative_vat': '',
                     'partner_country_code': country_code,
                     'invoice_id': invoice.id,
-                    'base_tax': invoice.amount_untaxed,
-                    'amount_tax': invoice.amount_tax,
-                    'total': invoice.amount_total,
+                    'base_tax': invoice.cc_amount_untaxed,
+                    'amount_tax': invoice.cc_amount_tax,
+                    'total': invoice.cc_amount_total,
                     'date_invoice': invoice.date_invoice,
                 }
                 if invoice.type in ['out_refund', 'in_refund']:
@@ -144,13 +134,13 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                 sign = 1
                 if invoice.type in ('out_refund', 'in_refund'):
                     sign = -1
-                if str(invoice.amount_untaxed * sign) != str(check_base):
+                if str(invoice.cc_amount_untaxed * sign) != str(check_base):
                     raise orm.except_orm(
                         "REVIEW INVOICE",
                         _('Invoice  %s, Amount untaxed Lines %.2f do not '
                           'correspond to AmountUntaxed on Invoice %.2f') %
                         (invoice.number, check_base,
-                         invoice.amount_untaxed * sign))
+                         invoice.cc_amount_untaxed * sign))
         if recalculate:
             mod340.write({
                 'state': 'calculated',

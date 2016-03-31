@@ -27,6 +27,12 @@ from openerp.osv import orm, fields
 
 
 class L10nEsAeatMod340Report(orm.Model):
+    _inherit = "l10n.es.aeat.report"
+    _name = 'l10n.es.aeat.mod340.report'
+    _period_quarterly = False
+    _period_monthly = True
+    _period_yearly = True
+    _description = 'Model 340'
 
     def button_calculate(self, cr, uid, ids, args, context=None):
         calculate_obj = self.pool.get('l10n.es.aeat.mod340.calculate_records')
@@ -67,16 +73,9 @@ class L10nEsAeatMod340Report(orm.Model):
                 result[model.id]['total_rec'] += issue.amount_tax
         return result
 
-    _inherit = "l10n.es.aeat.report"
-    _name = 'l10n.es.aeat.mod340.report'
-    _description = 'Model 340'
     _columns = {
         'name': fields.function(_name_get, method=True, type="char",
                                 size=64, string="Name"),
-        'period_from': fields.many2one('account.period', 'Start period',
-                                       states={'done': [('readonly', True)]}),
-        'period_to': fields.many2one('account.period', 'End period',
-                                     states={'done': [('readonly', True)]}),
         'issued': fields.one2many('l10n.es.aeat.mod340.issued', 'mod340_id',
                                   'Invoices Issued',
                                   states={'done': [('readonly', True)]}),

@@ -45,13 +45,21 @@ class AccountBalanceReporting(orm.Model):
     """
     _name = "account.balance.reporting"
 
+    READONLY_STATES = {'calc_done': [('readonly', True)],
+                       'done': [('readonly', True)]}
+
+    def _get_levels(self, cr, uid, context=None):
+        cr.execute("select distinct level from account_account order by level")
+        reg = cr.fetchall()
+        res = [(str(x[0]), str(x[0])) for x in reg if x[0]]
+        return res
+
     _columns = {
         'name': fields.char('Name', size=64, required=True, select=True),
         'template_id': fields.many2one(
             'account.balance.reporting.template',
             'Template', ondelete='set null', required=True, select=True,
-            states={'calc_done': [('readonly', True)],
-                    'done': [('readonly', True)]}),
+            states=READONLY_STATES),
         'calc_date': fields.datetime("Calculation date", readonly=True),
         'state': fields.selection([('draft', 'Draft'),
                                    ('calc', 'Processing'),
@@ -61,7 +69,14 @@ class AccountBalanceReporting(orm.Model):
         'company_id': fields.many2one(
             'res.company', 'Company',
             ondelete='cascade', required=True, readonly=True,
-            states={'draft': [('readonly', False)]}),
+            states=READONLY_STATES),
+        'check_filter': fields.selection([('periods', 'Periods'),
+                                          ('dates', 'Dates')],
+                                         string='Compute by',
+                                         required=True,
+                                         states=READONLY_STATES),
+        'level': fields.selection(_get_levels, string='Level',
+                                  states=READONLY_STATES),
         'current_fiscalyear_id': fields.many2one(
             'account.fiscalyear',
             'Fiscal year 1', select=True, required=True,
@@ -74,6 +89,8 @@ class AccountBalanceReporting(orm.Model):
             'Fiscal year 1 periods',
             states={'calc_done': [('readonly', True)],
                     'done': [('readonly', True)]}),
+        'current_date_from': fields.date('Date From', states=READONLY_STATES),
+        'current_date_to': fields.date('Date To', states=READONLY_STATES),
         'previous_fiscalyear_id': fields.many2one(
             'account.fiscalyear',
             'Fiscal year 2', select=True,
@@ -86,6 +103,9 @@ class AccountBalanceReporting(orm.Model):
             'Fiscal year 2 periods',
             states={'calc_done': [('readonly', True)],
                     'done': [('readonly', True)]}),
+        'previous_date_from': fields.date('Date From', states=READONLY_STATES),
+        'previous_date_to': fields.date('Date To', states=READONLY_STATES),
+
         'line_ids': fields.one2many('account.balance.reporting.line',
                                     'report_id', 'Lines',
                                     states={'done': [('readonly', True)]}),
@@ -95,6 +115,7 @@ class AccountBalanceReporting(orm.Model):
         'company_id': lambda self, cr, uid, context:
         self.pool['res.users'].browse(cr, uid, uid, context).company_id.id,
         'state': 'draft',
+        'check_filter': 'periods',
     }
 
     def action_calculate(self, cr, uid, ids, context=None):
@@ -257,6 +278,82 @@ class AccountBalanceReportingLine(orm.Model):
                               limit=limit, context=context)
         return self.name_get(cr, uid, ids, context=context)
 
+    def _create_child_lines(self, cr, uid, ids, code, bmode, fyear,
+                            context=None):
+        acc_obj = self.pool.get('account.account')
+        line = self.browse(cr, uid, ids[0], context=context)
+        cont = 1000
+        for acc_code in re.findall(r'(-?\w*\(?[0-9a-zA-Z_]*\)?)', code):
+            # Check if the code is valid (findall might return empty strings)
+            acc_code = acc_code.strip()
+            if acc_code:
+                sign, acc_code, mode, sign_mode = \
+                    self._get_code_sign_mode(acc_code, bmode)
+
+                # Search for the account (perfect match)
+                account_ids = acc_obj.search(cr, uid,
+                                             [('code', '=', acc_code),
+                                              ('company_id', '=',
+                                               line.report_id.company_id.id)],
+                                             context=context)
+
+                for account in acc_obj.browse(cr, uid, account_ids,
+                                              context=context):
+                    child_ids = acc_obj.search(cr, uid,
+                                               [('id', 'child_of', account.id),
+                                                ('level', '<=',
+                                                 line.report_id.level)],
+                                               order="code asc")
+                    for child_account in acc_obj.browse(cr, uid, child_ids,
+                                                        context=context):
+                        value = 0.0
+                        if mode == 'debit':
+                            value -= child_account.debit * sign
+                        elif mode == 'credit':
+                            value += child_account.credit * sign
+                        else:
+                            value += child_account.balance * sign * sign_mode
+
+                        line_ids = self.search(cr, uid,
+                                               [('template_line_id', '=',
+                                                line.template_line_id.id),
+                                                ('name', '=',
+                                                    child_account.code +
+                                                    u": " +
+                                                    child_account.name),
+                                                ('report_id', '=',
+                                                 line.report_id.id)])
+                        if not line_ids:
+                            line_id = self.create(cr, uid, {
+                                'code': line.code + u"/" + str(cont),
+                                'name': (child_account.code + u": " +
+                                         child_account.name),
+                                'report_id': line.report_id.id,
+                                'template_line_id': line.template_line_id.id,
+                                'parent_id': line.id,
+                                'current_value': None,
+                                'previous_value': None,
+                                'sequence': line.sequence,
+                                'css_class':
+                                (child_account.level and
+                                 child_account.level < 5) and
+                                u'l' + str(child_account.level) or'default'
+                            }, context=context)
+                            cont += 1
+                        else:
+                            line_id = line_ids[0]
+
+                        if line.template_line_id.negate:
+                            value = -value
+                        vals = {}
+                        if fyear == 'current':
+                            vals = {'current_value': value,
+                                    'calc_date': line.report_id.calc_date}
+                        elif fyear == 'previous':
+                            vals = {'previous_value': value,
+                                    'calc_date': line.report_id.calc_date}
+                        self.write(cr, uid, [line_id], vals, context=context)
+
     def _get_account_balance(self, cr, uid, ids, code, balance_mode=0,
                              context=None):
         """It returns the (debit, credit, balance*) tuple for a account with
@@ -284,32 +381,8 @@ class AccountBalanceReportingLine(orm.Model):
             # Check if the code is valid (findall might return empty strings)
             acc_code = acc_code.strip()
             if acc_code:
-                # Check the sign of the code (substraction)
-                if acc_code.startswith('-'):
-                    sign = -1
-                    acc_code = acc_code[1:].strip()  # Strip the sign
-                else:
-                    sign = 1
-                if re.match(r'^debit\(.*\)$', acc_code):
-                    # Use debit instead of balance
-                    mode = 'debit'
-                    acc_code = acc_code[6:-1]  # Strip debit()
-                elif re.match(r'^credit\(.*\)$', acc_code):
-                    # Use credit instead of balance
-                    mode = 'credit'
-                    acc_code = acc_code[7:-1]  # Strip credit()
-                else:
-                    mode = 'balance'
-                # Calculate sign of the balance mode
-                sign_mode = 1
-                if balance_mode in (1, 2, 3):
-                    # for accounts in brackets or mode 2, the sign is reversed
-                    if (acc_code.startswith('(') and acc_code.endswith(')')) \
-                            or balance_mode == 2:
-                        sign_mode = -1
-                # Strip the brackets (if any)
-                if acc_code.startswith('(') and acc_code.endswith(')'):
-                    acc_code = acc_code[1:-1]
+                sign, acc_code, mode, sign_mode = \
+                    self._get_code_sign_mode(acc_code, balance_mode)
                 # Search for the account (perfect match)
                 account_ids = acc_obj.search(cr, uid, [
                     ('code', '=', acc_code),
@@ -397,18 +470,39 @@ class AccountBalanceReportingLine(orm.Model):
                         if fyear == 'current':
                             ctx.update({
                                 'fiscalyear': report.current_fiscalyear_id.id,
-                                'periods': [p.id for p in
-                                            report.current_period_ids],
                             })
                         elif fyear == 'previous':
                             ctx.update({
                                 'fiscalyear': report.previous_fiscalyear_id.id,
-                                'periods': [p.id for p in
-                                            report.previous_period_ids],
                             })
+                        if line.report_id.check_filter == 'date':
+                            if fyear == 'current':
+                                ctx.update({
+                                    'date_from': report.current_date_from,
+                                    'date_to': report.current_date_to
+                                })
+                            elif fyear == 'previous':
+                                ctx.update({
+                                    'date_from': report.previous_date_from,
+                                    'date_to': report.previous_date_to
+                                })
+                        if line.report_id.check_filter == 'periods':
+                            if fyear == 'current':
+                                ctx.update({
+                                    'periods':
+                                    [p.id for p in report.current_period_ids]
+                                })
+                            elif fyear == 'previous':
+                                ctx.update({
+                                    'periods':
+                                    [p.id for p in report.previous_period_ids]
+                                })
                         value = self._get_account_balance(
                             cr, uid, [line.id], tmpl_value,
                             balance_mode=balance_mode, context=ctx)
+                        if line.report_id.level:
+                            line._create_child_lines(tmpl_value, balance_mode,
+                                                     fyear, context=ctx)
                     elif re.match(r'^[\+\-0-9a-zA-Z_\*\ ]*$', tmpl_value):
                         # Account concept codes separated by "+" => sum of the
                         # concepts (template lines) values.
@@ -453,3 +547,33 @@ class AccountBalanceReportingLine(orm.Model):
                 'calc_date': line.report_id.calc_date,
             }, context=context)
         return True
+
+    def _get_code_sign_mode(self, acc_code, balance_mode):
+        # Check the sign of the code (substraction)
+        if acc_code.startswith('-'):
+            sign = -1
+            acc_code = acc_code[1:].strip()  # Strip the sign
+        else:
+            sign = 1
+        if re.match(r'^debit\(.*\)$', acc_code):
+            # Use debit instead of balance
+            mode = 'debit'
+            acc_code = acc_code[6:-1]  # Strip debit()
+        elif re.match(r'^credit\(.*\)$', acc_code):
+            # Use credit instead of balance
+            mode = 'credit'
+            acc_code = acc_code[7:-1]  # Strip credit()
+        else:
+            mode = 'balance'
+        # Calculate sign of the balance mode
+        sign_mode = 1
+        if balance_mode in (1, 2, 3):
+            # for accounts in brackets or mode 2, the sign is reversed
+            if (acc_code.startswith('(') and acc_code.endswith(')')) \
+                    or balance_mode == 2:
+                sign_mode = -1
+        # Strip the brackets (if any)
+        if acc_code.startswith('(') and acc_code.endswith(')'):
+            acc_code = acc_code[1:-1]
+
+        return sign, acc_code, mode, sign_mode
