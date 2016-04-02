@@ -64,5 +64,5 @@ class AccountInvoice(models.Model):
     @api.multi
     def unlink(self):
         self.filtered(lambda x: x.journal_id.invoice_sequence_id).write(
-                {'internal_number': False})
+            {'internal_number': False})
         return super(AccountInvoice, self).unlink()
