@@ -15,27 +15,24 @@
                     <form position="attributes">
                         <attribute name="string">Import spanish bank data</attribute>
                     </form>
-                    <separator string="title" position="attributes">
-                        <attribute name="invisible">1</attribute>
-                    </separator>
-                    <separator string="title" position="after">
+                    <separator position="replace">
                         <group attrs="{'invisible': [('import_fail', '=', True)]}">
                             <p colspan="4">This wizard will import spanish bank data. You can choose to import it from:</p>
                             <ul>
                                 <li>Internet (from Bank of Spain). Maybe this source will be not available from certain moment in time. You will need xlrd Python library.</li>
-                                <li>Local file mirror. This copy was updated last time on 16/02/2015.</li>
+                                <li>Local file mirror. This copy was updated last time on 04/04/2016.</li>
                             </ul>
                         </group>
                         <label colspan="4"
                                attrs="{'invisible': [('import_fail', '=', False)]}"
                                string="Something has failed importing data from Internet. You will need to import local data instead."/>
                     </separator>
-                    <button string='Install Modules' position="after">
+                    <button name="action_next" position="after">
                         <button name="import_local"
                                 string="Import from local file"
                                 type="object" />
                     </button>
-                    <button string='Install Modules' position="attributes">
+                    <button name="action_next" position="attributes">
                         <attribute name="string">Import from Internet</attribute>
                         <attribute name="attrs">{'invisible': [('import_fail', '=', True)]}</attribute>
                     </button>
