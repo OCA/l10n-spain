@@ -50,16 +50,19 @@ class XlsDictReader:
         return self
 
 
-def escape(txt):
+def escape(data):
+    if isinstance(data, (int, float)):
+        data = unicode(int(data))
     chars = [('&', '&amp;'), ('>', '&gt;'), ('<', '&lt;'), ('"', "&quot;"),
              ("'", "&apos;")]
     for c in chars:
-        txt = txt.replace(*c)
-    return txt
+        data = data.replace(*c)
+    return data
 
 
 def gen_bank_data_xml(src_path, dest_path):
     # Leer tabla estática de BICs
+    indent = "    "
     bics = {}
     reader = XlsDictReader(os.path.join(os.path.dirname(__file__), "bics.xls"))
     for row in reader:
@@ -68,56 +71,67 @@ def gen_bank_data_xml(src_path, dest_path):
     try:
         reader = XlsDictReader(src_path)
     except IOError:
-        _logger.info("Archivo REGBANESP_CONESTAB_A.XLS no encontrado.")
+        _logger.error("Archivo '%s' no encontrado." % src_path)
         return
     # Preparar el archivo resultante
     output = codecs.open(dest_path, mode='w', encoding='utf-8')
     output.write("<?xml version='1.0' encoding='UTF-8'?>\n")
-    output.write("<openerp>\n")
-    output.write("    <data>\n")
+    output.write("<odoo>\n")
     # Genera los nuevos registros de los bancos
     for row in reader:
         if row['FCHBAJA']:
             continue
         name = "res_bank_es_%s" % row['COD_BE']
-        street = '%s. %s, %s' % (
-            row['SIGLAVIA'], row['NOMBREVIA'], row['NUMEROVIA'])
-        output.write('        <record id="%s" model="res.bank">\n' % name)
-        output.write('            <field name="name">%s</field>\n' %
+        numero = (int(row['NUMEROVIA']) if
+                  isinstance(row['NUMEROVIA'], float) else row['NUMEROVIA'])
+        street = '%s. %s, %s' % (row['SIGLAVIA'], row['NOMBREVIA'], numero)
+        output.write(indent + '<record id="%s" model="res.bank">\n' % name)
+        output.write(indent * 2 + '<field name="name">%s</field>\n' %
                      escape(row['NOMCOMERCIAL'] or row['ANAGRAMA']))
-        output.write('            <field name="lname">%s</field>\n' %
+        output.write(indent * 2 + '<field name="lname">%s</field>\n' %
                      escape(row['NOMBRE105']))
-        output.write('            <field name="code">%s</field>\n' %
+        output.write(indent * 2 + '<field name="code">%s</field>\n' %
                      escape(row['COD_BE']))
         # Han quitado el BIC del listado - Lo busco en una tabla estática
         if bics.get(row['COD_BE']):
-            output.write('            <field name="bic">%s</field>\n' %
+            output.write(indent * 2 + '<field name="bic">%s</field>\n' %
                          bics[row['COD_BE']])
-        output.write('            <field name="street">%s</field>\n' %
+        output.write('        <field name="street">%s</field>\n' %
                      escape(street))
         if row['RESTODOM']:
-            output.write('            <field name="street2">%s</field>\n' %
+            output.write(indent * 2 + '<field name="street2">%s</field>\n' %
                          escape(row['RESTODOM']))
-        output.write('            <field name="city">%s</field>\n' %
+        if row['DIRINTERNET']:
+            output.write(indent * 2 + '<field name="website">%s</field>\n' %
+                         escape(row['DIRINTERNET'].lower()))
+        if row['CODIGOCIF']:
+            output.write(indent * 2 + '<field name="vat">%s</field>\n' %
+                         escape(row['CODIGOCIF']))
+        output.write(indent * 2 + '<field name="city">%s</field>\n' %
                      escape(row['POBLACION']))
-        output.write('            <field name="zip">%s</field>\n' %
+        output.write('        <field name="zip">%s</field>\n' %
                      escape(row['CODPOSTAL']))
-        output.write('            <field name="phone">%s</field>\n' %
-                     escape(row['TELEFONO']))
-        output.write('            <field name="fax">%s</field>\n' %
-                     escape(row['NUMFAX']))
-        output.write('            <field eval="1" name="active"/>\n')
+        if row['TELEFONO']:
+            output.write(indent * 2 + '<field name="phone">%s</field>\n' %
+                         escape(row['TELEFONO']))
+        if row['NUMFAX']:
+            output.write(indent * 2 + '<field name="fax">%s</field>\n' %
+                         escape(row['NUMFAX']))
+        output.write('        <field eval="1" name="active"/>\n')
         output.write(
-            '            <field name="state" ref="l10n_es_toponyms.ES%s"/>\n' %
-            (row['CODPOSTAL'] and escape(row['CODPOSTAL'][:-3].zfill(2)) or
-             False))
-        output.write('            <field name="country" ref="base.es"/>\n')
-        output.write('        </record>\n')
-    output.write("    </data>\n")
-    output.write("</openerp>\n")
+            indent * 2 +
+            '<field name="state" ref="l10n_es_toponyms.ES%s"/>\n' %
+            (row['CODPOSTAL'] and
+             escape(unicode(int(row['CODPOSTAL']))[:-3].zfill(2)) or False))
+        output.write(indent * 2 + '<field name="country" ref="base.es"/>\n')
+        output.write(indent + '</record>\n')
+    output.write("</odoo>\n")
     output.close()
     _logger.info("data_banks.xml generado correctamente.")
 
 
 if __name__ == "__main__":
-    gen_bank_data_xml('REGBANESP_CONESTAB_A.XLS', "../wizard/data_banks.xml")
+    dir_path = os.path.os.path.dirname(__file__)
+    parent_path = os.path.abspath(os.path.join(dir_path, os.pardir))
+    gen_bank_data_xml('REGBANESP_CONESTAB_A.xls',
+                      os.path.join(parent_path, "wizard", "data_banks.xml"))
