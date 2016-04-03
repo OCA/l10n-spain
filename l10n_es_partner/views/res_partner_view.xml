@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="comercial"
+                       placeholder="Trade name"
+                       domain="[('is_company', '=', False)]"
+                       context="{'default_is_company': False}"
+                       attrs="{'invisible': [('is_company','=', False)]}"  />
+            </field>
+        </field>
+    </record>
+    <record id="view_partner_simple_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_simple_form"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="comercial"
+                       placeholder="Trade name"
+                       domain="[('is_company', '=', False)]"
+                       context="{'default_is_company': False}"
+                       attrs="{'invisible': [('is_company','=', False)]}"  />
+            </field>
+        </field>
+    </record>
+
+</odoo>
