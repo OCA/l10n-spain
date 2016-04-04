@@ -45,9 +45,8 @@ addon | version | summary
 [l10n_es_aeat_mod347](l10n_es_aeat_mod347/) | 8.0.1.3.0 (unported) | Modelo 347 AEAT
 [l10n_es_aeat_mod349](l10n_es_aeat_mod349/) | 8.0.2.0.0 (unported) | Modelo 349 AEAT
 [l10n_es_fiscal_year_closing](l10n_es_fiscal_year_closing/) | 8.0.1.0.0 (unported) | Cierre de ejercicio fiscal para España
-[l10n_es_partner](l10n_es_partner/) | 8.0.1.3.0 (unported) | Adaptación de los clientes, proveedores y bancos para España
+[l10n_es_partner](l10n_es_partner/) | 8.0.1.5.0 (unported) | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 8.0.1.0.0 (unported) | Partner Mercantil
-[l10n_es_payment_order](l10n_es_payment_order/) | 1.6 (unported) | Exportación de ficheros bancarios CSB 19, 32, 34 y 58
 [l10n_es_pos](l10n_es_pos/) | 8.0.1.0.0 (unported) | Punto de venta adaptado a la legislación española
 [l10n_es_subcontractor_certificate](l10n_es_subcontractor_certificate/) | 8.0.1.0.0 (unported) | Certificado de subcontratista
 [l10n_es_toponyms](l10n_es_toponyms/) | 8.0.2.0.0 (unported) | Topónimos españoles
