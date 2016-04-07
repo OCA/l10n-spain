@@ -444,7 +444,7 @@ class AccountBalanceReportingLine(models.Model):
         for report in self.mapped('report_id'):
             domain_current = []
             # Compute current fiscal year
-            if report.check_filter == 'date':
+            if report.check_filter == 'dates':
                 domain_current += [('date', '>=', report.current_date_from),
                                    ('date', '<=', report.current_date_to)]
             elif report.check_filter == 'periods':
@@ -455,11 +455,11 @@ class AccountBalanceReportingLine(models.Model):
                 domain_current += [('period_id', 'in', periods.ids)]
             # Compute previous fiscal year
             domain_previous = []
-            if report.check_filter == 'date':
+            if report.check_filter == 'dates':
                 domain_previous += [('date', '>=', report.previous_date_from),
                                     ('date', '<=', report.previous_date_to)]
             elif report.check_filter == 'periods':
-                if report.current_period_ids:
+                if report.previous_period_ids:
                     periods = report.previous_period_ids
                 else:
                     periods = report.previous_fiscalyear_id.period_ids
@@ -471,7 +471,7 @@ class AccountBalanceReportingLine(models.Model):
                 current_amount, current_move_lines = line._calculate_value(
                     domain_current, 'current')
                 previous_amount, previous_move_lines = line._calculate_value(
-                    domain_current, 'current')
+                    domain_current, 'previous')
                 line.write({
                     'current_value': current_amount,
                     'previous_value': previous_amount,
