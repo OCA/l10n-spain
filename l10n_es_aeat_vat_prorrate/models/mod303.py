@@ -73,55 +73,59 @@ class L10nEsAeatMod303Report(models.Model):
         return res
 
     @api.multi
-    def _process_tax_line_regularization(self, tax_line):
+    def _process_tax_line_regularization(self, tax_lines):
         """Añadir la parte no deducida de la base como gasto repartido
         proporcionalmente entre las cuentas de las líneas de gasto existentes.
         """
-        lines = super(L10nEsAeatMod303Report,
-                      self)._process_tax_line_regularization(tax_line)
-        if (self.vat_prorrate_type == 'general' and
-                tax_line.field_number in (29, 41)):
-            number_mapping = {29: 28, 41: 40}
-            factor = (100 - self.vat_prorrate_percent) / 100
-            base_tax_line = self.tax_lines.filtered(
-                lambda x: x.field_number == number_mapping[
-                    tax_line.field_number])
-            if not base_tax_line.move_lines:
-                return lines
-            prorrate_debit = sum(x['debit'] for x in lines)
-            prorrate_credit = sum(x['credit'] for x in lines)
-            prec = self.env['decimal.precision'].precision_get('Account')
-            total_prorrate = round(
-                abs((prorrate_debit - prorrate_credit) * factor), prec)
-            groups = self.env['account.move.line'].read_group(
-                [('id', 'in', base_tax_line.move_lines.ids)],
-                ['debit', 'credit', 'account_id'],
-                ['account_id'])
-            total_debit = sum(x['debit'] for x in groups)
-            total_credit = sum(x['credit'] for x in groups)
-            total_balance = abs(total_debit - total_credit)
-            extra_lines = []
-            for account_group in groups:
-                balance = ((account_group['debit'] - account_group['credit']) *
-                           total_prorrate / total_balance)
-                extra_lines.append({
-                    'name': account_group['account_id'][1],
-                    'account_id': account_group['account_id'][0],
-                    'debit': round(balance, prec) if balance > 0 else 0.0,
-                    'credit': round(-balance, prec) if balance < 0 else 0.0,
-                })
-            # Add/substract possible rounding inaccuracy to the first line
-            extra_debit = sum(x['debit'] for x in extra_lines)
-            extra_credit = sum(x['credit'] for x in extra_lines)
-            extra_total = extra_debit - extra_credit
-            diff = total_prorrate - abs(extra_total)
-            if diff:
-                extra_line = extra_lines[0]
-                if extra_line['credit']:
-                    extra_line['credit'] += diff
-                else:
-                    extra_line['debit'] += diff
-            lines += extra_lines
+        lines = []
+        number_mapping = {29: 28, 41: 40}
+        for tax_line in tax_lines:
+            # We need to treat each tax_line independently
+            lines += super(L10nEsAeatMod303Report,
+                           self)._process_tax_line_regularization(tax_line)
+            if (self.vat_prorrate_type == 'general' and
+                    tax_line.field_number in number_mapping.keys()):
+                factor = (100 - self.vat_prorrate_percent) / 100
+                base_tax_line = self.tax_lines.filtered(
+                    lambda x: x.field_number == number_mapping[
+                        tax_line.field_number])
+                if not base_tax_line.move_lines:
+                    continue
+                prorrate_debit = sum(x['debit'] for x in lines)
+                prorrate_credit = sum(x['credit'] for x in lines)
+                prec = self.env['decimal.precision'].precision_get('Account')
+                total_prorrate = round(
+                    abs((prorrate_debit - prorrate_credit) * factor), prec)
+                groups = self.env['account.move.line'].read_group(
+                    [('id', 'in', base_tax_line.move_lines.ids)],
+                    ['debit', 'credit', 'account_id'],
+                    ['account_id'])
+                total_debit = sum(x['debit'] for x in groups)
+                total_credit = sum(x['credit'] for x in groups)
+                total_balance = abs(total_debit - total_credit)
+                extra_lines = []
+                for account_group in groups:
+                    balance = (
+                        (account_group['debit'] - account_group['credit']) *
+                        total_prorrate / total_balance)
+                    extra_lines.append({
+                        'name': account_group['account_id'][1],
+                        'account_id': account_group['account_id'][0],
+                        'debit': round(balance, prec) if balance > 0 else 0,
+                        'credit': round(-balance, prec) if balance < 0 else 0,
+                    })
+                # Add/substract possible rounding inaccuracy to the first line
+                extra_debit = sum(x['debit'] for x in extra_lines)
+                extra_credit = sum(x['credit'] for x in extra_lines)
+                extra_total = extra_debit - extra_credit
+                diff = total_prorrate - abs(extra_total)
+                if diff:
+                    extra_line = extra_lines[0]
+                    if extra_line['credit']:
+                        extra_line['credit'] += diff
+                    else:
+                        extra_line['debit'] += diff
+                lines += extra_lines
         return lines
 
     @api.multi
