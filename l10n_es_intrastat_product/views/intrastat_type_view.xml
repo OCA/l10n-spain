@@ -43,12 +43,13 @@
     <field name="model">report.intrastat.type</field>
     <field name="arch" type="xml">
         <form string="Intrastat type">
-            <group name="main">
+            <h1>
                 <field name="name" />
+            </h1>
+            <group name="main">
                 <field name="active" />
                 <field name="object_type" />
                 <field name="procedure_code" />
-                <!-- I can't set the field name="transaction_code" attrs="{'readonly':[('procedure_code','in',('25', '26', '31'))]}" because it breaks the on_change on field procedure_code -->
                 <field name="transaction_code" />
                 <field name="is_fiscal_only" />
                 <field name="is_vat_required" />
@@ -66,7 +67,7 @@
 </record>
 
 <!-- Menu entry for Intrastat type -->
-<menuitem id="menu_intrastat_type" action="intrastat_type_action" parent="account.menu_configuration_misc" />
+<menuitem id="menu_intrastat_type" action="intrastat_type_action" parent="intrastat_base.menu_intrastat_config_root" />
 
 
 </data>

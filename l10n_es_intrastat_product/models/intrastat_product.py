@@ -98,6 +98,14 @@ class L10nEsReportIntrastatProduct(models.Model):
         'A Intrastat declaration of the same type already '
         'exists for this month !')]
 
+    def get_hs_code_from_category(self, category):
+        if category.hs_code_id:
+            return category.hs_code_id
+        elif category.parent_id:
+            return self.get_hs_code_from_category(category.parent_id)
+        else:
+            return False
+
     @api.multi
     def create_intrastat_product_lines(self, invoice, parent_values):
         """This function is called for each invoice"""
@@ -188,8 +196,8 @@ class L10nEsReportIntrastatProduct(models.Model):
                 if not product_intrastat_code:
                     # If the H.S. code is not set on the product,
                     # we check if it's set on it's related category
-                    product_intrastat_code =\
-                        line.product_id.categ_id.hs_code_id
+                    product_intrastat_code = self.get_hs_code_from_category(
+                        line.product_id.categ_id)
                     if not product_intrastat_code:
                         raise Warning(
                             _("Missing H.S. code on product '%s' or on it's "
@@ -633,7 +641,7 @@ class L10nEsReportIntrastatProduct(models.Model):
                 line.partner_country_code,  # Estado destino/origen
                 line.state.code,  # Provincia destino/origen # state_code
                 line.incoterm_code,  # Condiciones de entrega
-                line.transaction_code,  # Naturaleza de la transacción
+                line.transaction_code.code,  # Naturaleza de la transacción
                 line.transport.code,  # Modalidad de transporte
                 False,  # Puerto/Aeropuerto de carga o descarga
                 line.intrastat_code,  # Código mercancías CN8
@@ -777,7 +785,7 @@ class L10nEsReportIntrastatProductLine(models.Model):
     # integer, a False value would be displayed as 0), that's why weight
     # is a char !
     weight = fields.Char(string='Weight', size=10)
-    amount_company_currency = fields.Integer(
+    amount_company_currency = fields.Float(
         string='Fiscal value in company currency',
         required=True,
         help="Amount in company currency to write in the declaration. "

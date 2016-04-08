@@ -1,0 +1,1358 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * l10n_es_intrastat_product
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-14 16:40+0000\n"
+"PO-Revision-Date: 2016-03-14 19:01+0100\n"
+"Last-Translator: Ismael Calvo <ismael.calvo@factorlibre.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: l10n_es_intrastat_product
+#: model:email.template,body_html:l10n_es_intrastat_product.l10n_es_intrastat_product_reminder_email_template
+msgid ""
+"\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-"
+"serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"<p>I would like to remind you that we are approaching the deadline for the "
+"Intrastat Product declaration for month ${object.year_month}.</p>\n"
+"\n"
+"<p>As there were no ${object.type} Intrastat Product declaration for that "
+"month in Odoo, a draft declaration has been generated automatically by Odoo."
+"</p>\n"
+"\n"
+"% if ctx.get('exception'):\n"
+"<p>When trying to generate the lines of the ${object.type} Intrastat Product "
+"declaration, the following error was encountered:</p>\n"
+"\n"
+"<p>${ctx.get('error_msg')}</p>\n"
+"\n"
+"<p>You should solve this error, then go to the menu \"Accounting > Reporting "
+"> Legal Reports > Intrastat reporting > Intrastat Product\", open the "
+"${object.type} declaration for month ${object.year_month} and click on the "
+"button \"Generate lines from invoices\".</p>\n"
+"\n"
+"% else:\n"
+"% if object.num_lines and object.num_lines > 0:\n"
+"<p>This draft ${object.type} Intrastat Product declaration contains ${object."
+"num_lines} ${object.num_lines == 1 and 'line' or 'lines'} and the total "
+"fiscal amount is ${object.total_fiscal_amount} ${object.currency_id.symbol}."
+"</p>\n"
+"% else:\n"
+"<p>This draft ${object.type} Intrastat Product declaration generated "
+"automatically by Odoo doesn't contain any line.</p>\n"
+"% endif\n"
+"\n"
+"<p>Go and check this declaration in Odoo in the menu \"Accounting > "
+"Reporting > Legal Reports > Intrastat reporting > Intrastat Product\".</p>\n"
+"\n"
+"% endif\n"
+"\n"
+"<p>\n"
+"-- \n"
+"Automatic e-mail sent by Odoo.\n"
+"<!-- TODO : print database name (we used object._cr.dbname in openerp 6.1, "
+"but it's not possible in OpenERP 7 because the executing of jinja2 is "
+"sandboxed and private attributes can't be accessed). -->\n"
+"</p>\n"
+"</div>\n"
+msgstr ""
+"\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-"
+"serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"<p>I would like to remind you that we are approaching the deadline for the "
+"Intrastat Product declaration for month ${object.year_month}.</p>\n"
+"\n"
+"<p>As there were no ${object.type} Intrastat Product declaration for that "
+"month in Odoo, a draft declaration has been generated automatically by Odoo."
+"</p>\n"
+"\n"
+"% if ctx.get('exception'):\n"
+"<p>When trying to generate the lines of the ${object.type} Intrastat Product "
+"declaration, the following error was encountered:</p>\n"
+"\n"
+"<p>${ctx.get('error_msg')}</p>\n"
+"\n"
+"<p>You should solve this error, then go to the menu \"Accounting > Reporting "
+"> Legal Reports > Intrastat reporting > Intrastat Product\", open the "
+"${object.type} declaration for month ${object.year_month} and click on the "
+"button \"Generate lines from invoices\".</p>\n"
+"\n"
+"% else:\n"
+"% if object.num_lines and object.num_lines > 0:\n"
+"<p>This draft ${object.type} Intrastat Product declaration contains ${object."
+"num_lines} ${object.num_lines == 1 and 'line' or 'lines'} and the total "
+"fiscal amount is ${object.total_fiscal_amount} ${object.currency_id.symbol}."
+"</p>\n"
+"% else:\n"
+"<p>This draft ${object.type} Intrastat Product declaration generated "
+"automatically by Odoo doesn't contain any line.</p>\n"
+"% endif\n"
+"\n"
+"<p>Go and check this declaration in Odoo in the menu \"Accounting > "
+"Reporting > Legal Reports > Intrastat reporting > Intrastat Product\".</p>\n"
+"\n"
+"% endif\n"
+"\n"
+"<p>\n"
+"-- \n"
+"Automatic e-mail sent by Odoo.\n"
+"<!-- TODO : print database name (we used object._cr.dbname in openerp 6.1, "
+"but it's not possible in OpenERP 7 because the executing of jinja2 is "
+"sandboxed and private attributes can't be accessed). -->\n"
+"</p>\n"
+"</div>\n"
+
+#. module: l10n_es_intrastat_product
+#: model:email.template,subject:l10n_es_intrastat_product.l10n_es_intrastat_product_reminder_email_template
+msgid ""
+"${object.type} Intrastat Product ${object.year_month} for ${object."
+"company_id.name}"
+msgstr ""
+"${object.type} Intrastat Product ${object.year_month} for ${object."
+"company_id.name}"
+
+#. module: l10n_es_intrastat_product
+#: selection:report.intrastat.type,procedure_code:0
+msgid "1 - Llegada/Salida de mercancías con destino final"
+msgstr "1 - Llegada/Salida de mercancías con destino final"
+
+#. module: l10n_es_intrastat_product
+#: selection:report.intrastat.type,procedure_code:0
+msgid ""
+"2 - Llegada/Salida temporal de mercancías para ser reexpedidas/"
+"reintroducidas con posterioridad en el mismo estado"
+msgstr ""
+"2 - Llegada/Salida temporal de mercancías para ser reexpedidas/"
+"reintroducidas con posterioridad en el mismo estado"
+
+#. module: l10n_es_intrastat_product
+#: selection:report.intrastat.type,procedure_code:0
+msgid ""
+"2 - Llegada/Salida temporal de mercancías para ser reexpedidas/"
+"reintroducidas con posterioridad, después de haber sido reparas o "
+"transformadas"
+msgstr ""
+"2 - Llegada/Salida temporal de mercancías para ser reexpedidas/"
+"reintroducidas con posterioridad, después de haber sido reparas o "
+"transformadas"
+
+#. module: l10n_es_intrastat_product
+#: selection:report.intrastat.type,procedure_code:0
+msgid "4 - Llegada/Salida de mercancías devueltas en el mismo estado"
+msgstr "4 - Llegada/Salida de mercancías devueltas en el mismo estado"
+
+#. module: l10n_es_intrastat_product
+#: selection:report.intrastat.type,procedure_code:0
+msgid ""
+"5 - Llegada/Salida de mercancías devueltas después de haber haber sido "
+"reparas o transformadas"
+msgstr ""
+"5 - Llegada/Salida de mercancías devueltas después de haber haber sido "
+"reparas o transformadas"
+
+#. module: l10n_es_intrastat_product
+#: sql_constraint:l10n.es.report.intrastat.product:0
+msgid ""
+"A Intrastat declaration of the same type already exists for this month !"
+msgstr "¡Ya existe una declaración Intrastat del mismo tipo para ese mes!"
+
+#. module: l10n_es_intrastat_product
+#: model:ir.actions.act_window,name:l10n_es_intrastat_product.l10n_es_intrastat_product_tree_action
+#: model:ir.ui.menu,name:l10n_es_intrastat_product.l10n_es_intrastat_product_menu
+msgid "AEAT Intrastat Product"
+msgstr "AEAT Intrastat Producto"
+
+#. module: l10n_es_intrastat_product
+#: field:report.intrastat.type,active:0
+msgid "Active"
+msgstr "Activo"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Additionnal information"
+msgstr "Información adicional"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product.line,amount_company_currency:0
+msgid ""
+"Amount in company currency to write in the declaration. Amount in company "
+"currency = amount in invoice currency converted to company currency with the "
+"rate of the invoice date and rounded at 0 digits"
+msgstr ""
+"Importe en la moneda de la compañía a escribir en la declaración. Cantidad "
+"en la moneda de la compañía = cantidad en la moneda de la factura convertida "
+"a la moneda de la compañía con la tarifa de la fecha de la factura y "
+"redondeada a 0 dígitos"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product.line,amount_invoice_currency:0
+msgid ""
+"Amount in invoice currency = amount of product value in invoice currency + "
+"amount of accessory cost in invoice currency (not rounded)"
+msgstr ""
+"Importe en la moneda de la factura = cantidad del valor del producto en la "
+"monedad de la factura + cantidad de los costes adicionales en la moneda de "
+"la factura (sin redondear)"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,amount_accessory_cost_inv_cur:0
+msgid "Amount of accessory costs in invoice currency"
+msgstr "Importe de los costes accesorios en la moneda de la factura"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product.line,amount_accessory_cost_inv_cur:0
+msgid ""
+"Amount of accessory costs in invoice currency = total amount of accessory "
+"costs of the invoice broken down into each product line at the pro-rata of "
+"the value"
+msgstr ""
+"Importe de los costes adicionales en la moneda de la factura = cantidad "
+"total de los costes accesorios de la factura desglosada en cada línea de "
+"produto en la pro-rata del valor"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,amount_product_value_inv_cur:0
+msgid "Amount of product value in invoice currency"
+msgstr "Importe del valor del producto en la moneda de la factura"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product.line,amount_product_value_inv_cur:0
+msgid ""
+"Amount of product value in invoice currency ; it is the amount of the "
+"invoice line or group of invoice lines."
+msgstr ""
+"Importe del valor del producto en la moneda de la factura; es el importe de "
+"la línea de factura o del grupo de líneas de factura"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Attach AEAT file"
+msgstr "Adjuntar archivo AEAT"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Back to draft"
+msgstr "Volver a borrador"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product.line,intrastat_code:0
+msgid ""
+"Code used for the national Import/Export declaration. The national code "
+"starts with the 6 digits of the H.S. and often has a few additional digits "
+"to extend the H.S. code."
+msgstr ""
+"Código usado para la declarición nacional de Importación/Exportación. El "
+"código nacional empieza con los 6 dígitos del H.S. y a menudo tiene algunos "
+"dígitos adicionales para ampliar el código H.S"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Comp. Cur."
+msgstr "Comp. Cur."
+
+#. module: l10n_es_intrastat_product
+#: model:ir.model,name:l10n_es_intrastat_product.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,company_id:0
+#: field:l10n.es.report.intrastat.product.line,company_id:0
+msgid "Company"
+msgstr "Compañía"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,company_currency_id:0
+msgid "Company currency"
+msgstr "Moneda de la compañía"
+
+#. module: l10n_es_intrastat_product
+#: help:stock.picking,intrastat_state:0
+msgid ""
+"Compute the source departement for a Delivery Order, or the destination "
+"state for an Incoming Shipment."
+msgstr ""
+"Calcula la provincia de origen para un albarán, o la provincia destino para "
+"un envío de entrada."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:183
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:265
+#, python-format
+msgid "Conversion from unit of measure '%s' to 'Kg' is not implemented yet."
+msgstr ""
+"Conversión de la unidad de medida '%s' a 'Kg' no está implementada todavía"
+
+#. module: l10n_es_intrastat_product
+#: field:product.supplierinfo,origin_country_id:0
+msgid "Country of Origin"
+msgstr "País de origen"
+
+#. module: l10n_es_intrastat_product
+#: help:product.supplierinfo,origin_country_id:0
+msgid ""
+"Country of origin of the product (i.e. product 'made in ____') when "
+"purchased from this supplier. This field is used only when the equivalent "
+"field on the product form is empty."
+msgstr ""
+"País de origen del producto (ej. producto 'fabricado en ____') cuando se "
+"adquiere a este proveedor. Este campo se usa solo cuando el campo "
+"equivalente en el producto está vacío"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,create_uid:0
+#: field:l10n.es.report.intrastat.product.line,create_uid:0
+#: field:report.intrastat.type,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,create_date:0
+#: field:l10n.es.report.intrastat.product.line,create_date:0
+#: field:report.intrastat.type,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,currency_id:0
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: l10n_es_intrastat_product
+#: selection:report.intrastat.type,object_type:0
+msgid "Customer Invoice"
+msgstr "Factura de cliente"
+
+#. module: l10n_es_intrastat_product
+#: selection:report.intrastat.type,object_type:0
+msgid "Customer Refund"
+msgstr "Devolución de cliente"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_search
+msgid "Date"
+msgstr "Fecha"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product,message_last_post:0
+msgid "Date of the last message posted on the record."
+msgstr "Date of the last message posted on the record."
+
+#. module: l10n_es_intrastat_product
+#: help:report.intrastat.type,intrastat_product_type:0
+msgid ""
+"Decides on which kind of Intrastat product report ('Import' or 'Export') "
+"this Intrastat type can be selected."
+msgstr ""
+"Decide en qué tipo de informe de producto de Intrastat ('Importación o "
+"'Exportación') de este tipo de Intrastat puede ser seleccionado"
+
+#. module: l10n_es_intrastat_product
+#: field:res.company,default_incoterm:0
+msgid "Default Incoterm"
+msgstr "Incoterm por defecto"
+
+#. module: l10n_es_intrastat_product
+#: field:res.company,default_intrastat_state:0
+msgid "Default departement code"
+msgstr "Código de provincia por defecto"
+
+#. module: l10n_es_intrastat_product
+#: field:res.company,default_intrastat_type_out_invoice:0
+msgid "Default intrastat type for customer invoice"
+msgstr "Tipo de Intrastat por defecto para facturas de cliente"
+
+#. module: l10n_es_intrastat_product
+#: field:res.company,default_intrastat_type_out_refund:0
+msgid "Default intrastat type for customer refund"
+msgstr "Tipo de Intrastat por defecto para devoluciones de cliente"
+
+#. module: l10n_es_intrastat_product
+#: field:res.company,default_intrastat_type_in_invoice:0
+msgid "Default intrastat type for supplier invoice"
+msgstr "Tipo de Intrastat por defecto para facturas de proveedor"
+
+#. module: l10n_es_intrastat_product
+#: field:res.company,default_intrastat_type_in_refund:0
+msgid "Default intrastat type for supplier refund"
+msgstr "Tipo de Intrastat por defecto para devoluciones de proveedor"
+
+#. module: l10n_es_intrastat_product
+#: field:res.company,default_intrastat_transport:0
+msgid "Default type of transport"
+msgstr "Tipo de transporte por defecto"
+
+#. module: l10n_es_intrastat_product
+#: help:report.intrastat.type,name:0
+msgid "Description of the Intrastat type."
+msgstr "Descripción del tipo de Intrastat."
+
+#. module: l10n_es_intrastat_product
+#: view:account.invoice:l10n_es_intrastat_product.invoice_form
+msgid "Destination country"
+msgstr "País destino"
+
+#. module: l10n_es_intrastat_product
+#: field:account.invoice,intrastat_country_id:0
+msgid "Destination/Origin country of the goods"
+msgstr "País Destino/Origen de los bienes"
+
+#. module: l10n_es_intrastat_product
+#: model:res.groups,name:l10n_es_intrastat_product.group_detailed_intrastat_product
+msgid "Detailed Intrastat Product"
+msgstr "Producto Intrastat Detallado"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,display_name:0
+#: field:l10n.es.report.intrastat.product.line,display_name:0
+#: field:report.intrastat.type,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: l10n_es_intrastat_product
+#: view:res.company:l10n_es_intrastat_product.view_company_form
+msgid "Don't forget to add users to the 'Detailed Intrastat Product' group."
+msgstr "No olvide añadir usuarios al grupo 'Producto Intrastat Detallado'"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_search
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_tree
+#: selection:l10n.es.report.intrastat.product,state:0
+msgid "Done"
+msgstr "Hecho"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Dpt"
+msgstr "Provincia"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_search
+#: selection:l10n.es.report.intrastat.product,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: l10n_es_intrastat_product
+#: field:res.partner,intrastat_fiscal_representative:0
+msgid "EU fiscal representative"
+msgstr "EU fiscal representative"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,end_date:0
+msgid "End Date"
+msgstr "Fecha fin"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product,end_date:0
+msgid ""
+"End date for the declaration. Is the last day of the month of the start date."
+msgstr ""
+"Fecha de fin para la declación. Es el último día del mes de la fecha de "
+"inicio"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_search
+#: selection:l10n.es.report.intrastat.product,type:0
+#: selection:report.intrastat.type,intrastat_product_type:0
+msgid "Export"
+msgstr "Exportaciones"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,amount_company_currency:0
+msgid "Fiscal value in company currency"
+msgstr "Valor fiscal en la moneda de la compañía"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,amount_invoice_currency:0
+msgid "Fiscal value in invoice currency"
+msgstr "Valor fiscal en la moneda de la factura"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,message_follower_ids:0
+msgid "Followers"
+msgstr "Followers"
+
+#. module: l10n_es_intrastat_product
+#: help:account.invoice,intrastat_state:0
+msgid ""
+"For a customer invoice, contains Spain's state number from which the goods "
+"have be shipped. For a supplier invoice, contains Spain's state number of "
+"reception of the goods. This information is required for the product "
+"intrastat report."
+msgstr ""
+"Para una factura de cliente, contiene el código de la provincia española "
+"desde la que los bienes han sido enviados. Para una factura de proveedor, "
+"contiene el código de la provincia de recepción de los bienes. Esta "
+"información es obligatoria para el informe de producto Intrastat."
+
+#. module: l10n_es_intrastat_product
+#: help:account.invoice,intrastat_country_id:0
+msgid ""
+"For a customer invoice, contains the country to which the goods have been "
+"shipped. For a supplier invoice, contains the country from which the goods "
+"have been shipped."
+msgstr ""
+"Para una factura de cliente, contiene el país al que los bienes han sido "
+"enviados. Para una factura de proveedor, contiene el país desde el que los "
+"bienes han sido enviados."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/product.py:39
+#: code:addons/l10n_es_intrastat_product/models/product.py:58
+#, python-format
+msgid ""
+"For a particular product, all supplier info entries with the same supplier "
+"should have the same country of origin. But, for product '%s' with supplier "
+"'%s', there is one entry with country of origin '%s' and another entry with "
+"country of origin '%s'."
+msgstr ""
+"Para un producto en particular, todas las entradas de información del "
+"proveedor con el mismo proveeodr debería tener el mismo país de origen. "
+"Pero, para el producto '%s' con proveedor '%s', hay una entrada con país de "
+"origen '%s' y otra, con '%s'."
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Generate lines from invoices"
+msgstr "Generar líneas desde las facturas"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "H.S. code"
+msgstr "Código H.S."
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product,message_summary:0
+msgid ""
+"Holds the Chatter summary (number of messages, ...). This summary is "
+"directly in html format in order to be inserted in kanban views."
+msgstr ""
+"Holds the Chatter summary (number of messages, ...). This summary is "
+"directly in html format in order to be inserted in kanban views."
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,id:0
+#: field:l10n.es.report.intrastat.product.line,id:0
+#: field:report.intrastat.type,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,incoterm_code:0
+msgid "Icoterm Code"
+msgstr "Código Icoterm"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "If checked new messages require your attention."
+
+#. module: l10n_es_intrastat_product
+#: help:res.company,default_intrastat_transport:0
+msgid ""
+"If the 'Type of Transport' is not set on the invoice, OpenERP will use this "
+"value."
+msgstr ""
+"Si el 'Tipo de transporte' no está establecido en la factura, Odoo usará "
+"este valor"
+
+#. module: l10n_es_intrastat_product
+#: help:res.company,default_intrastat_state:0
+msgid ""
+"If the Departement code is not set on the invoice, Odoo will use this value."
+msgstr ""
+"Si el código de provincia no está establecido en la factura, Odoo usará este "
+"valor."
+
+#. module: l10n_es_intrastat_product
+#: help:res.partner,intrastat_fiscal_representative:0
+msgid ""
+"If this partner is located outside the EU but you deliver the goods inside "
+"the UE, the partner needs to have a fiscal representative with a VAT number "
+"inside the EU. In this scenario, the VAT number of the fiscal representative "
+"will be used for the Intrastat Product report."
+msgstr ""
+"Si la empresa está ubicada fuera de la UE pero tú envías los vienes dentro "
+"de la  UE, la empresa ha de tener un representante fiscal con un NIF de "
+"dentro de la UE. En ese escenario, el NIF del representante fiscal será "
+"usado para el informe de producto Intrastat."
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_search
+#: selection:l10n.es.report.intrastat.product,type:0
+#: selection:report.intrastat.type,intrastat_product_type:0
+msgid "Import"
+msgstr "Importaciones"
+
+#. module: l10n_es_intrastat_product
+#: field:account.invoice,incoterm_id:0
+#: field:l10n.es.report.intrastat.product.line,incoterm_id:0
+msgid "Incoterm"
+msgstr "Incoterm"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product.line,incoterm_code:0
+msgid "Incoterm Standard Code"
+msgstr "Incoterm Standard Code"
+
+#. module: l10n_es_intrastat_product
+#: model:ir.model,name:l10n_es_intrastat_product.model_product_supplierinfo
+msgid "Information about a product supplier"
+msgstr "Información de un proveedor de producto"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Information to declare"
+msgstr "Informatión a declarar"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Intra. UoM"
+msgstr "Intra. UdM"
+
+#. module: l10n_es_intrastat_product
+#: view:account.invoice:l10n_es_intrastat_product.invoice_form
+#: view:account.invoice:l10n_es_intrastat_product.invoice_supplier_form
+msgid "Intrastat"
+msgstr "Intrastat"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,intrastat_code:0
+msgid "Intrastat Code"
+msgstr "Código Intrastat"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,intrastat_code_id:0
+msgid "Intrastat Code (not used in XML)"
+msgstr "Código Intrastat (no usado en el XML)"
+
+#. module: l10n_es_intrastat_product
+#: field:product.uom,intrastat_label:0
+msgid "Intrastat Label"
+msgstr "Etiqueta Intrastat"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_graph
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_tree
+msgid "Intrastat Product"
+msgstr "Producto Intrastat"
+
+#. module: l10n_es_intrastat_product
+#: model:ir.model,name:l10n_es_intrastat_product.model_l10n_es_report_intrastat_product_line
+msgid "Intrastat Product Lines for Spain"
+msgstr "Líneas de producto Intrastat para España"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,parent_id:0
+msgid "Intrastat Product Ref"
+msgstr "Referencia del producto Intrastat"
+
+#. module: l10n_es_intrastat_product
+#: model:mail.message.subtype,description:l10n_es_intrastat_product.l10n_es_declaration_done
+#: model:mail.message.subtype,name:l10n_es_intrastat_product.l10n_es_declaration_done
+msgid "Intrastat Product Validated"
+msgstr "Product Intrastat Validado"
+
+#. module: l10n_es_intrastat_product
+#: model:ir.model,name:l10n_es_intrastat_product.model_l10n_es_report_intrastat_product
+msgid "Intrastat Product for Spain"
+msgstr "Producto Intrastat para España"
+
+#. module: l10n_es_intrastat_product
+#: field:stock.picking,intrastat_state:0
+msgid "Intrastat State"
+msgstr "Estado de Intrastat"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,intrastat_type_id:0
+msgid "Intrastat Type"
+msgstr "Tipo de Intrastat"
+
+#. module: l10n_es_intrastat_product
+#: model:ir.actions.act_window,name:l10n_es_intrastat_product.intrastat_type_action
+#: model:ir.ui.menu,name:l10n_es_intrastat_product.menu_intrastat_type
+msgid "Intrastat Types"
+msgstr "Tipos de Intrastat"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,intrastat_uom_id:0
+msgid "Intrastat UoM"
+msgstr "UdM Intrastat"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Intrastat product lines"
+msgstr "Líneas de producto Intrastat"
+
+#. module: l10n_es_intrastat_product
+#: field:report.intrastat.type,intrastat_product_type:0
+msgid "Intrastat product type"
+msgstr "Tipo de producto Intrastat"
+
+#. module: l10n_es_intrastat_product
+#: field:account.invoice,intrastat_type_id:0
+#: model:ir.model,name:l10n_es_intrastat_product.model_report_intrastat_type
+#: view:report.intrastat.type:l10n_es_intrastat_product.intrastat_type_form
+#: view:report.intrastat.type:l10n_es_intrastat_product.intrastat_type_tree
+msgid "Intrastat type"
+msgstr "Tipo de Intrastat"
+
+#. module: l10n_es_intrastat_product
+#: model:ir.model,name:l10n_es_intrastat_product.model_stock_location
+msgid "Inventory Locations"
+msgstr "Ubicaciones de inventario"
+
+#. module: l10n_es_intrastat_product
+#: model:ir.model,name:l10n_es_intrastat_product.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,invoice_currency_id:0
+msgid "Invoice Currency"
+msgstr "Moneda de facturación"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,invoice_id:0
+msgid "Invoice ref"
+msgstr "Referencia de factura"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,is_vat_required:0
+msgid "Is Partner VAT required ?"
+msgstr "¿Es obligatorio el NIF?"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Is a Follower"
+
+#. module: l10n_es_intrastat_product
+#: field:report.intrastat.type,is_fiscal_only:0
+msgid "Is fiscal only ?"
+msgstr "¿Es solo fiscal?"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,is_fiscal_only:0
+msgid "Is fiscal only?"
+msgstr "¿Es solo fiscal?"
+
+#. module: l10n_es_intrastat_product
+#: field:report.intrastat.type,is_vat_required:0
+msgid "Is partner VAT required?"
+msgstr "¿Es obligatorio el NIF?"
+
+#. module: l10n_es_intrastat_product
+#: help:product.uom,intrastat_label:0
+msgid ""
+"Label used in the XML file export of the Intrastat Product Report for this "
+"unit of measure."
+msgstr ""
+"Etiqueta usada en el archivo XML para el Informe de producto de Intrastat "
+"para esta unidad de medida."
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,message_last_post:0
+msgid "Last Message Date"
+msgstr "Last Message Date"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,__last_update:0
+#: field:l10n.es.report.intrastat.product.line,__last_update:0
+#: field:report.intrastat.type,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,write_uid:0
+#: field:l10n.es.report.intrastat.product.line,write_uid:0
+#: field:report.intrastat.type,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,write_date:0
+#: field:l10n.es.report.intrastat.product.line,write_date:0
+#: field:report.intrastat.type,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,message_ids:0
+msgid "Messages"
+msgstr "Messages"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product,message_ids:0
+msgid "Messages and communication history"
+msgstr "Messages and communication history"
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:195
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:277
+#, python-format
+msgid "Missing H.S. code on product '%s' or on it's related category '%s'."
+msgstr "Producto '%s' sin código H.S. y su categoría relacionada '%s' tampoco."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:375
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:459
+#, python-format
+msgid "Missing VAT number on partner '%s'."
+msgstr "Empresa '%s' sin NIF."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:272
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:354
+#, python-format
+msgid ""
+"Missing country of origin on product '%s' (it's not possible to get the "
+"country of origin from the 'supplier information' in this case because we "
+"don't know the supplier of this product for the invoice '%s')."
+msgstr ""
+"Producto '%s' sin país de origen (no es posible obtener el país de origen de "
+"la 'información de proveedor' en este caso porque el producto no tiene "
+"proveedor para la factura '%s')."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:261
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:343
+#, python-format
+msgid ""
+"Missing country of origin on product '%s' or on it's supplier information "
+"for partner '%s'."
+msgstr ""
+"El producto '%s' no tiene país de origen y su información de proveedor '%s' "
+"tampoco."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:505
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:600
+#, python-format
+msgid "Missing country on partner '%s'."
+msgstr "Empresa '%s' sin país de origen."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:359
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:443
+#, python-format
+msgid ""
+"Missing fiscal representative for partner '%s'. It is required for invoice "
+"'%s' which has an invoice partner outside the EU but the goods were "
+"delivered to or received from inside the EU."
+msgstr ""
+"Empresa '%s' sin representante fiscal. Obligatorio para la factura '%s', que "
+"factura a una empresa de fuera de la UE pero los bienes fueron enviados o "
+"recibidos desde dentro de la UE."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:291
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:373
+#, python-format
+msgid ""
+"Missing incoterm on invoice '%s'. You can set a default one on the company"
+msgstr ""
+"Factura '%s' sin incoterm. Puedes definir uno por defecto en la compañía."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:203
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:285
+#, python-format
+msgid "Missing intrastat code on H.S. code '%s' (%s)."
+msgstr "El código H.S. '%s' ('%s') no tiene código intrastat."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:170
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:252
+#, python-format
+msgid "Missing net weight on product '%s'."
+msgstr "Producto '%s' sin peso neto."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:156
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:238
+#, python-format
+msgid ""
+"Missing unit of measure on the line with %d product(s) '%s' on invoice '%s'."
+msgstr ""
+"La línea con %d producto(s) '%s' en la factura '%s' no tiene unidad de "
+"medida."
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,year_month:0
+msgid "Month"
+msgstr "Mes"
+
+#. module: l10n_es_intrastat_product
+#: field:report.intrastat.type,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,num_lines:0
+msgid "Number of Lines"
+msgstr "Número de líneas"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product,num_lines:0
+msgid "Number of lines in this declaration."
+msgstr "Número de líneas de esta declaración."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:229
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:311
+#, python-format
+msgid ""
+"On invoice '%s', the line with product '%s' has a unit of measure (%s) which "
+"can't be converted to UoM of it's intrastat code (%s)."
+msgstr ""
+"En la factura '%s', la línea con el producto '%s' tiene una unidad de medida "
+"(%s) que no puede ser convertida a UdM del código intrastat (%s)."
+
+#. module: l10n_es_intrastat_product
+#: help:report.intrastat.type,is_fiscal_only:0
+msgid "Only fiscal data should be provided for this procedure code."
+msgstr ""
+"Solo se debe dar datos fiscales para este código de régimen estadístico."
+
+#. module: l10n_es_intrastat_product
+#: view:account.invoice:l10n_es_intrastat_product.invoice_supplier_form
+msgid "Origin country"
+msgstr "País origen"
+
+#. module: l10n_es_intrastat_product
+#: model:ir.model,name:l10n_es_intrastat_product.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Partner C."
+msgstr "Partner C."
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,partner_country_id:0
+msgid "Partner Country"
+msgstr "País de la empresa"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,partner_country_code:0
+msgid "Partner Country Code"
+msgstr "Código de país de la empresa"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,partner_id:0
+msgid "Partner Name"
+msgstr "Nombre de la empresa"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,partner_vat:0
+msgid "Partner VAT"
+msgstr "NIF de la empresa"
+
+#. module: l10n_es_intrastat_product
+#: model:ir.model,name:l10n_es_intrastat_product.model_stock_picking
+msgid "Picking List"
+msgstr "Albarán"
+
+#. module: l10n_es_intrastat_product
+#: field:report.intrastat.type,object_type:0
+msgid "Possible on"
+msgstr "Possible on"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Procedure"
+msgstr "Régimen Estadístico"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,procedure_code:0
+msgid "Procedure Code"
+msgstr "Codigo de régimen estadístico"
+
+#. module: l10n_es_intrastat_product
+#: field:report.intrastat.type,procedure_code:0
+msgid "Procedure code"
+msgstr "Régimen estadístico"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Product C/O"
+msgstr "Product C/O"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,product_country_origin_code:0
+msgid "Product Country of Origin"
+msgstr "País de origen del producto"
+
+#. module: l10n_es_intrastat_product
+#: model:ir.model,name:l10n_es_intrastat_product.model_product_uom
+msgid "Product Unit of Measure"
+msgstr "Unidad de medida del producto"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,product_origin_country_id:0
+msgid "Product country of origin"
+msgstr "País de origen del producto"
+
+#. module: l10n_es_intrastat_product
+#: model:ir.model,name:l10n_es_intrastat_product.model_purchase_order
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Qty"
+msgstr "Ctd."
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,quantity:0
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:941
+#, python-format
+msgid "Quantity must be an integer."
+msgstr "Quantity must be an integer."
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,intrastat_line_ids:0
+msgid "Report Intrastat Product Lines"
+msgstr "Líneas del informe del producto de Intrastat"
+
+#. module: l10n_es_intrastat_product
+#: model:ir.model,name:l10n_es_intrastat_product.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_search
+msgid "Search Intrastat Products"
+msgstr "Search Intrastat Products"
+
+#. module: l10n_es_intrastat_product
+#: view:report.intrastat.type:l10n_es_intrastat_product.intrastat_type_search
+msgid "Search Intrastat Types"
+msgstr "Search Intrastat Types"
+
+#. module: l10n_es_intrastat_product
+#: help:stock.picking,intrastat_transport:0
+msgid ""
+"Select the type of transport of the goods. This information is required for "
+"the product intrastat report (DEB)."
+msgstr ""
+"Seleccione el tipo de transporte para los bienes. Esta información es "
+"obligatoria para el informe intrastat."
+
+#. module: l10n_es_intrastat_product
+#: view:res.company:l10n_es_intrastat_product.view_company_form
+msgid "Settings for declaration"
+msgstr "Configuración de la declaración"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,source_uom_id:0
+msgid "Source UoM"
+msgstr "UdM de origen"
+
+#. module: l10n_es_intrastat_product
+#: help:stock.location,intrastat_state:0
+msgid ""
+"Spain's state where the stock location is located. This parameter is "
+"required for the declaration)."
+msgstr ""
+"Provincia española donde las existencias están ubicadas. Este parámetro es "
+"necesario para la declaración"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,start_date:0
+msgid "Start Date"
+msgstr "Fecha de inicio"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product,start_date:0
+msgid "Start date of the declaration. Must be the first day of a month."
+msgstr "Fecha de inicio de la declaración. Debe ser ser primer día del un mes."
+
+#. module: l10n_es_intrastat_product
+#: field:account.invoice,intrastat_state:0
+#: field:l10n.es.report.intrastat.product,state:0
+#: field:l10n.es.report.intrastat.product.line,state:0
+#: field:stock.location,intrastat_state:0
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product,state:0
+msgid ""
+"State of the declaration. When the state is set to 'Done', the parameters "
+"become read-only."
+msgstr ""
+"Estado de la declaración. Cuando el estado está en 'Hecho', los parámetros "
+"se vuelven de solo lectura."
+
+#. module: l10n_es_intrastat_product
+#: help:report.intrastat.type,procedure_code:0
+msgid "Statistical procedure codes"
+msgstr "Códigos del régimen estadístico"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,message_summary:0
+msgid "Summary"
+msgstr "Resumen"
+
+#. module: l10n_es_intrastat_product
+#: selection:report.intrastat.type,object_type:0
+msgid "Supplier Invoice"
+msgstr "Factura de proveedor"
+
+#. module: l10n_es_intrastat_product
+#: selection:report.intrastat.type,object_type:0
+msgid "Supplier Refund"
+msgstr "Devolución de proveedor"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product.line,partner_country_code:0
+#: help:l10n.es.report.intrastat.product.line,product_country_origin_code:0
+msgid ""
+"The ISO country code in two chars.\n"
+"You can use this field for quick search."
+msgstr ""
+"El código ISO de país en dos caracteres.\n"
+"Puede usar este campo para la búsqueda rápids."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/partner.py:43
+#: code:addons/l10n_es_intrastat_product/models/partner.py:61
+#, python-format
+msgid ""
+"The fiscal representative '%s' of partner '%s' must be based in an EU "
+"country."
+msgstr ""
+"The fiscal representative '%s' of partner '%s' must be based in an EU "
+"country."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/partner.py:48
+#: code:addons/l10n_es_intrastat_product/models/partner.py:66
+#, python-format
+msgid "The fiscal representative '%s' of partner '%s' must have a VAT number."
+msgstr "The fiscal representative '%s' of partner '%s' must have a VAT number."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/partner.py:36
+#: code:addons/l10n_es_intrastat_product/models/partner.py:54
+#, python-format
+msgid "The fiscal representative '%s' of partner '%s' must have a country."
+msgstr "The fiscal representative '%s' of partner '%s' must have a country."
+
+#. module: l10n_es_intrastat_product
+#: sql_constraint:report.intrastat.type:0
+msgid ""
+"The group (procedure code, transaction code, intrastat_product_type) must be "
+"unique."
+msgstr ""
+"El grupo (código de régimen, código de transacción, tipo de intrastat) debe "
+"ser único."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:457
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:550
+#, python-format
+msgid ""
+"The intrastat state hasn't been set on invoice '%s' and the default "
+"intrastat state is missing on the company '%s'."
+msgstr ""
+"La provincia del Intrastat no ha sido configurada en la factura '%s' ni se "
+"ha configurado una por defecto en la compañía '%s'."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:567
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:662
+#, python-format
+msgid ""
+"The intrastat type hasn't been set on invoice '%s' and the 'Default "
+"intrastat type for supplier invoice' is missing for the company '%s'."
+msgstr ""
+"El tipo del Intrastat no ha sido configurado en la factura '%s' ni se ha "
+"configurado uno por defecto en la compañía '%s'."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:579
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:674
+#, python-format
+msgid ""
+"The intrastat type hasn't been set on invoice '%s' and the 'Default "
+"intrastat type for supplier refund' is missing for the company '%s'."
+msgstr ""
+"El tipo del Intrastat no ha sido configurado en la factura '%s' ni se ha "
+"configurado uno por defecto en la compañía '%s'."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:543
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:638
+#, python-format
+msgid ""
+"The intrastat type hasn't been set on invoice '%s' and the 'default "
+"intrastat type for customer invoice' is missing for the company '%s'."
+msgstr ""
+"El tipo del Intrastat no ha sido configurado en la factura '%s' ni se ha "
+"configurado uno por defecto en la compañía '%s'."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:555
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:650
+#, python-format
+msgid ""
+"The intrastat type hasn't been set on refund '%s' and the 'default intrastat "
+"type for customer refund' is missing for the company '%s'."
+msgstr ""
+"El tipo del Intrastat no ha sido configurado en la factura '%s' ni se ha "
+"configurado uno por defecto en la compañía '%s'."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:443
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:536
+#, python-format
+msgid ""
+"The mode of transport is not set on invoice '%s' nor the default mode of "
+"transport on the company '%s'."
+msgstr ""
+"El modo de transporte no ha sido configurado en la factura '%s' ni se ha "
+"configurado uno por defecto en la compañía '%s'."
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:628
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:724
+#, python-format
+msgid "There is not any product line"
+msgstr "No hay ninguna línea de producto"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_tree
+#: field:l10n.es.report.intrastat.product,total_amount:0
+msgid "Total Amount"
+msgstr "Importe total"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_tree
+#: field:l10n.es.report.intrastat.product,total_fiscal_amount:0
+msgid "Total Fiscal Amount"
+msgstr "Importe fiscal total"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product,total_amount:0
+msgid "Total amount in company currency of the declaration."
+msgstr "Importe total en la moneda de la compañía de la declaración."
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product,total_fiscal_amount:0
+msgid ""
+"Total fiscal amount in company currency of the declaration. This is the "
+"total amount that is displayed on the Prodouane website."
+msgstr ""
+"Importe fiscal total en la moneda de compañía de la declaración. Este es el "
+"importe total mostrado en la web de la AEAT."
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Transac."
+msgstr "Transac."
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,transaction_code:0
+#: field:report.intrastat.type,transaction_code:0
+msgid "Transaction code"
+msgstr "Código de transacción"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Transport"
+msgstr "Transporte"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product.line,is_vat_required:0
+#: help:report.intrastat.type,is_vat_required:0
+msgid ""
+"True for all procedure codes except 11, 19 and 29. When False, the VAT "
+"number should not be filled in the Intrastat product line."
+msgstr ""
+"True for all procedure codes except 11, 19 and 29. When False, the VAT "
+"number should not be filled in the Intrastat product line."
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_search
+#: field:l10n.es.report.intrastat.product,type:0
+#: field:l10n.es.report.intrastat.product.line,type:0
+msgid "Type"
+msgstr "Tipo"
+
+#. module: l10n_es_intrastat_product
+#: field:account.invoice,intrastat_transport:0
+#: field:l10n.es.report.intrastat.product.line,transport:0
+#: field:stock.picking,intrastat_transport:0
+msgid "Type of transport"
+msgstr "Tipo de transporte"
+
+#. module: l10n_es_intrastat_product
+#: help:account.invoice,intrastat_transport:0
+msgid ""
+"Type of transport of the goods. This information is required for the product "
+"intrastat report."
+msgstr ""
+"Tipo de transporte para los bienes. Esta información es obligatoria para el "
+"informe de producto de intrastat."
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,message_unread:0
+msgid "Unread Messages"
+msgstr "Unread Messages"
+
+#. module: l10n_es_intrastat_product
+#: view:l10n.es.report.intrastat.product:l10n_es_intrastat_product.l10n_es_intrastat_product_form
+msgid "Value CC"
+msgstr "Value CC"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product,website_message_ids:0
+msgid "Website Messages"
+msgstr "Website Messages"
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product,website_message_ids:0
+msgid "Website communication history"
+msgstr "Website communication history"
+
+#. module: l10n_es_intrastat_product
+#: field:l10n.es.report.intrastat.product.line,weight:0
+msgid "Weight"
+msgstr "Peso"
+
+#. module: l10n_es_intrastat_product
+#: code:addons/l10n_es_intrastat_product/models/intrastat_product.py:939
+#, python-format
+msgid "Weight must be an integer."
+msgstr "Weight must be an integer."
+
+#. module: l10n_es_intrastat_product
+#: help:l10n.es.report.intrastat.product,year_month:0
+msgid "Year and month of the declaration."
+msgstr "Año y mes de la declaración."

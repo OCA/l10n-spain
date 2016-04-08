@@ -6,7 +6,7 @@
             <field name="name">Salida de mercancías</field>
             <field name="object_type">out_invoice</field>
             <field name="procedure_code">1</field>
-            <field name="transaction_code">11</field>
+            <field name="transaction_code" ref="transaction_11"/>
             <field name="intrastat_product_type">export</field>
         </record>
 
@@ -14,7 +14,7 @@
             <field name="name">Salida Temporal de mercancías, para reintroducir sin tratar</field>
             <field name="object_type">out_invoice</field>
             <field name="procedure_code">2</field>
-            <field name="transaction_code">21</field>
+            <field name="transaction_code" ref="transaction_21"/>
             <field name="intrastat_product_type">export</field>
         </record>
 
@@ -22,7 +22,7 @@
             <field name="name">Salida Temporal de mercancías, para reintroducir tratadas</field>
             <field name="object_type">out_invoice</field>
             <field name="procedure_code">3</field>
-            <field name="transaction_code">22</field>
+            <field name="transaction_code" ref="transaction_22"/>
             <field name="intrastat_product_type">export</field>
         </record>
 
@@ -30,7 +30,7 @@
             <field name="name">Salida, devolución de mercancías sin tratar</field>
             <field name="object_type">in_refund</field>
             <field name="procedure_code">4</field>
-            <field name="transaction_code">21</field>
+            <field name="transaction_code" ref="transaction_21"/>
             <field name="intrastat_product_type">export</field>
         </record>
 
@@ -38,7 +38,7 @@
             <field name="name">Salida, devolución de mercancías tratadas</field>
             <field name="object_type">out_invoice</field>
             <field name="procedure_code">5</field>
-            <field name="transaction_code">22</field>
+            <field name="transaction_code" ref="transaction_22"/>
             <field name="intrastat_product_type">export</field>
         </record>
 
@@ -46,7 +46,7 @@
             <field name="name">Llegada de mercancías</field>
             <field name="object_type">in_invoice</field>
             <field name="procedure_code">1</field>
-            <field name="transaction_code">11</field>
+            <field name="transaction_code" ref="transaction_11"/>
             <field name="intrastat_product_type">import</field>
         </record>
 
@@ -54,7 +54,7 @@
             <field name="name">Llegada Temporal de mercancías, reexpedir sin tratar</field>
             <field name="object_type">in_invoice</field>
             <field name="procedure_code">2</field>
-            <field name="transaction_code">21</field>
+            <field name="transaction_code" ref="transaction_21"/>
             <field name="intrastat_product_type">import</field>
         </record>
 
@@ -62,7 +62,7 @@
             <field name="name">Llegada Temporal de mercancías, reexpedir tratadas</field>
             <field name="object_type">in_invoice</field>
             <field name="procedure_code">3</field>
-            <field name="transaction_code">23</field>
+            <field name="transaction_code" ref="transaction_23"/>
             <field name="intrastat_product_type">import</field>
         </record>
 
@@ -70,7 +70,7 @@
             <field name="name">Llegada, devolución de mercancías sin tratar</field>
             <field name="object_type">out_refund</field>
             <field name="procedure_code">4</field>
-            <field name="transaction_code">21</field>
+            <field name="transaction_code" ref="transaction_21"/>
             <field name="intrastat_product_type">import</field>
         </record>
 
@@ -78,28 +78,8 @@
             <field name="name">Legada, devolución de mercancías tratadas</field>
             <field name="object_type">in_invoice</field>
             <field name="procedure_code">5</field>
-            <field name="transaction_code">22</field>
+            <field name="transaction_code" ref="transaction_22"/>
             <field name="intrastat_product_type">import</field>
-        </record>
-
-        <record id="customer_sale" model="report.intrastat.type">
-            <field name="name">Vente Client</field>
-            <field name="object_type">out_invoice</field>
-            <field name="procedure_code">2</field>
-            <field name="transaction_code">11</field>
-        </record>
-
-        <record id="supplier_purchase" model="report.intrastat.type">
-            <field name="name">Achat Fournisseur</field>
-            <field name="object_type">in_invoice</field>
-            <field name="procedure_code">1</field>
-            <field name="transaction_code">11</field>
-        </record>
-
-        <record id="customer_refund" model="report.intrastat.type">
-            <field name="name">Avoir Client</field>
-            <field name="object_type">out_refund</field>
-            <field name="procedure_code">2</field>
         </record>
 
     </data>
