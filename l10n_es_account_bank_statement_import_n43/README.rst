@@ -42,6 +42,7 @@ Contributors
 ------------
 
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Omar Castiñeira Saavedra <omar@comunitea.com>
 
 Maintainer
 ----------
