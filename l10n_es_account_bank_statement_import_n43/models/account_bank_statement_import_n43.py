@@ -161,7 +161,7 @@ class AccountBankStatementImport(models.TransientModel):
             'groups': [],  # Info about each of the groups (account groups)
         }
         for raw_line in data_file.split("\n"):
-            if not raw_line:
+            if not raw_line.strip():
                 continue
             code = raw_line[0:2]
             if code == '11':
@@ -245,6 +245,28 @@ class AccountBankStatementImport(models.TransientModel):
                     partners = partner_obj.search([('name', 'ilike', name)])
         return partners and partners[0].id or False
 
+    def _get_partner_from_bankia(self, conceptos):
+        partner_obj = self.env['res.partner']
+        partners = []
+        # Try to match from partner name
+        if conceptos.get('01'):
+            vat = conceptos['01'][0][:2] + conceptos['01'][0][7:]
+            if vat:
+                partners = partner_obj.search([('vat', '=', vat)])
+
+        return partners and partners[0].id or False
+
+    def _get_partner_from_sabadell(self, conceptos):
+        partner_obj = self.env['res.partner']
+        partners = []
+        # Try to match from partner name
+        if conceptos.get('01'):
+            name = conceptos['01'][1]
+            if name:
+                partners = partner_obj.search([('name', 'ilike', name)])
+
+        return partners and partners[0].id or False
+
     def _get_partner(self, line):
         if not line.get('conceptos'):
             return False
@@ -252,6 +274,12 @@ class AccountBankStatementImport(models.TransientModel):
         if partner_id:
             return partner_id
         partner_id = self._get_partner_from_santander(line['conceptos'])
+        if partner_id:
+            return partner_id
+        partner_id = self._get_partner_from_bankia(line['conceptos'])
+        if partner_id:
+            return partner_id
+        partner_id = self._get_partner_from_sabadell(line['conceptos'])
         return partner_id
 
     def _get_account(self, line):
