@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# (c) 2015 Antiun Ingeniería S.L. - Pedro M. Baeza
-# (c) 2015 AvanzOSC - Ainara Galdona
+# © 2015-2016 Antiun Ingeniería S.L. - Pedro M. Baeza
+# © 2015 AvanzOSC - Ainara Galdona
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import models, fields, api, exceptions, _
@@ -30,8 +30,6 @@ class L10nEsAeatMod303Report(models.Model):
     vat_prorrate_percent = fields.Float(
         string="VAT prorrate percentage", default=100,
         readonly=True, states={'draft': [('readonly', False)]})
-    vat_prorrate_prev_percent = fields.Float(
-        string="VAT prorrate provisional percentage", readonly=True)
 
     @api.constrains('vat_prorrate_percent')
     def check_vat_prorrate_percent(self):
@@ -83,49 +81,59 @@ class L10nEsAeatMod303Report(models.Model):
             # We need to treat each tax_line independently
             lines += super(L10nEsAeatMod303Report,
                            self)._process_tax_line_regularization(tax_line)
-            if (self.vat_prorrate_type == 'general' and
-                    tax_line.field_number in number_mapping.keys()):
-                factor = (100 - self.vat_prorrate_percent) / 100
-                base_tax_line = self.tax_lines.filtered(
-                    lambda x: x.field_number == number_mapping[
-                        tax_line.field_number])
-                if not base_tax_line.move_lines:
-                    continue
-                prorrate_debit = sum(x['debit'] for x in lines)
-                prorrate_credit = sum(x['credit'] for x in lines)
-                prec = self.env['decimal.precision'].precision_get('Account')
-                total_prorrate = round(
-                    abs((prorrate_debit - prorrate_credit) * factor), prec)
-                groups = self.env['account.move.line'].read_group(
-                    [('id', 'in', base_tax_line.move_lines.ids)],
-                    ['debit', 'credit', 'account_id'],
-                    ['account_id'])
-                total_debit = sum(x['debit'] for x in groups)
-                total_credit = sum(x['credit'] for x in groups)
-                total_balance = abs(total_debit - total_credit)
-                extra_lines = []
-                for account_group in groups:
+            if (self.vat_prorrate_type != 'general' or
+                    tax_line.field_number not in number_mapping.keys()):
+                continue
+            factor = (100 - self.vat_prorrate_percent) / 100
+            base_tax_line = self.tax_lines.filtered(
+                lambda x: x.field_number == number_mapping[
+                    tax_line.field_number])
+            if not base_tax_line.move_lines:
+                continue
+            prorrate_debit = sum(x['debit'] for x in lines)
+            prorrate_credit = sum(x['credit'] for x in lines)
+            prec = self.env['decimal.precision'].precision_get('Account')
+            total_prorrate = round(
+                abs((prorrate_debit - prorrate_credit) * factor), prec)
+            account_groups = self.env['account.move.line'].read_group(
+                [('id', 'in', base_tax_line.move_lines.ids)],
+                ['debit', 'credit', 'account_id', 'account_analytic_id'],
+                ['account_id', 'account_analytic_id'])
+            total_debit = sum(x['debit'] for x in account_groups)
+            total_credit = sum(x['credit'] for x in account_groups)
+            total_balance = abs(total_debit - total_credit)
+            extra_lines = []
+            for account_group in account_groups:
+                analytic_groups = self.env['account.move.line'].read_group(
+                    account_group['__domain'],
+                    ['debit', 'credit', 'analytic_account_id'],
+                    ['analytic_account_id'])
+                for analytic_group in analytic_groups:
                     balance = (
-                        (account_group['debit'] - account_group['credit']) *
+                        (analytic_group['debit'] - analytic_group['credit']) *
                         total_prorrate / total_balance)
-                    extra_lines.append({
+                    move_line_vals = {
                         'name': account_group['account_id'][1],
                         'account_id': account_group['account_id'][0],
                         'debit': round(balance, prec) if balance > 0 else 0,
                         'credit': round(-balance, prec) if balance < 0 else 0,
-                    })
-                # Add/substract possible rounding inaccuracy to the first line
-                extra_debit = sum(x['debit'] for x in extra_lines)
-                extra_credit = sum(x['credit'] for x in extra_lines)
-                extra_total = extra_debit - extra_credit
-                diff = total_prorrate - abs(extra_total)
-                if diff:
-                    extra_line = extra_lines[0]
-                    if extra_line['credit']:
-                        extra_line['credit'] += diff
-                    else:
-                        extra_line['debit'] += diff
-                lines += extra_lines
+                    }
+                    if analytic_group['analytic_account_id']:
+                        move_line_vals['analytic_account_id'] = (
+                            analytic_group['analytic_account_id'])[0]
+                    extra_lines.append(move_line_vals)
+            # Add/substract possible rounding inaccuracy to the first line
+            extra_debit = sum(x['debit'] for x in extra_lines)
+            extra_credit = sum(x['credit'] for x in extra_lines)
+            extra_total = extra_debit - extra_credit
+            diff = total_prorrate - abs(extra_total)
+            if diff:
+                extra_line = extra_lines[0]
+                if extra_line['credit']:
+                    extra_line['credit'] += diff
+                else:
+                    extra_line['debit'] += diff
+            lines += extra_lines
         return lines
 
     @api.multi
