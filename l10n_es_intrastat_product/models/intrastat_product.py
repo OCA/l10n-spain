@@ -440,7 +440,7 @@ class L10nEsReportIntrastatProduct(models.Model):
         parent_values['procedure_code_to_write'] =\
             intrastat_type.procedure_code
         parent_values['transaction_code_to_write'] =\
-            intrastat_type.transaction_code.code
+            intrastat_type.transaction_code.id
         parent_values['is_fiscal_only'] = intrastat_type.is_fiscal_only
         parent_values['is_vat_required'] = intrastat_type.is_vat_required
 
