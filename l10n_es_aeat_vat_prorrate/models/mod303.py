@@ -5,6 +5,15 @@
 
 from openerp import models, fields, api, exceptions, _
 
+PRORRATE_TAX_LINE_MAPPING = {
+    29: 28,
+    33: 32,
+    35: 34,
+    37: 36,
+    39: 38,
+    41: 40,
+}
+
 
 class L10nEsAeatMod303Report(models.Model):
     _inherit = 'l10n.es.aeat.mod303.report'
@@ -66,7 +75,7 @@ class L10nEsAeatMod303Report(models.Model):
         res = super(L10nEsAeatMod303Report, self)._prepare_tax_line_vals(
             map_line)
         if (self.vat_prorrate_type == 'general' and
-                map_line.field_number in (29, 41)):
+                map_line.field_number in PRORRATE_TAX_LINE_MAPPING.keys()):
             res['amount'] *= self.vat_prorrate_percent / 100
         return res
 
@@ -76,17 +85,17 @@ class L10nEsAeatMod303Report(models.Model):
         proporcionalmente entre las cuentas de las líneas de gasto existentes.
         """
         lines = []
-        number_mapping = {29: 28, 41: 40}
         for tax_line in tax_lines:
             # We need to treat each tax_line independently
             lines += super(L10nEsAeatMod303Report,
                            self)._process_tax_line_regularization(tax_line)
             if (self.vat_prorrate_type != 'general' or
-                    tax_line.field_number not in number_mapping.keys()):
+                    tax_line.field_number not in
+                    PRORRATE_TAX_LINE_MAPPING.keys()):
                 continue
             factor = (100 - self.vat_prorrate_percent) / 100
             base_tax_line = self.tax_lines.filtered(
-                lambda x: x.field_number == number_mapping[
+                lambda x: x.field_number == PRORRATE_TAX_LINE_MAPPING[
                     tax_line.field_number])
             if not base_tax_line.move_lines:
                 continue
