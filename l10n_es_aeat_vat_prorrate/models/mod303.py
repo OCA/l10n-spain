@@ -84,11 +84,12 @@ class L10nEsAeatMod303Report(models.Model):
         """Añadir la parte no deducida de la base como gasto repartido
         proporcionalmente entre las cuentas de las líneas de gasto existentes.
         """
-        lines = []
+        all_lines = []
         for tax_line in tax_lines:
             # We need to treat each tax_line independently
-            lines += super(L10nEsAeatMod303Report,
-                           self)._process_tax_line_regularization(tax_line)
+            lines = super(L10nEsAeatMod303Report,
+                          self)._process_tax_line_regularization(tax_line)
+            all_lines += lines
             if (self.vat_prorrate_type != 'general' or
                     tax_line.field_number not in
                     PRORRATE_TAX_LINE_MAPPING.keys()):
@@ -106,21 +107,19 @@ class L10nEsAeatMod303Report(models.Model):
                 abs((prorrate_debit - prorrate_credit) * factor), prec)
             account_groups = self.env['account.move.line'].read_group(
                 [('id', 'in', base_tax_line.move_lines.ids)],
-                ['debit', 'credit', 'account_id', 'account_analytic_id'],
+                ['tax_amount', 'account_id', 'account_analytic_id'],
                 ['account_id', 'account_analytic_id'])
-            total_debit = sum(x['debit'] for x in account_groups)
-            total_credit = sum(x['credit'] for x in account_groups)
-            total_balance = abs(total_debit - total_credit)
+            total_balance = sum(x['tax_amount'] for x in account_groups)
             extra_lines = []
             for account_group in account_groups:
                 analytic_groups = self.env['account.move.line'].read_group(
                     account_group['__domain'],
-                    ['debit', 'credit', 'analytic_account_id'],
+                    ['tax_amount', 'analytic_account_id'],
                     ['analytic_account_id'])
                 for analytic_group in analytic_groups:
                     balance = (
-                        (analytic_group['debit'] - analytic_group['credit']) *
-                        total_prorrate / total_balance)
+                        (analytic_group['tax_amount']) *
+                        total_prorrate / abs(total_balance))
                     move_line_vals = {
                         'name': account_group['account_id'][1],
                         'account_id': account_group['account_id'][0],
@@ -142,8 +141,8 @@ class L10nEsAeatMod303Report(models.Model):
                     extra_line['credit'] += diff
                 else:
                     extra_line['debit'] += diff
-            lines += extra_lines
-        return lines
+            all_lines += extra_lines
+        return all_lines
 
     @api.multi
     def _prepare_regularization_extra_move_lines(self):
