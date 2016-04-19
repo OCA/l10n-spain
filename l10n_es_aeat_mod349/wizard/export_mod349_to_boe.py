@@ -172,7 +172,7 @@ class Mod349ExportToBoe(models.TransientModel):
         # NIF del operador intracomunitario
         text += self._formatString(partner_record.partner_vat, 17)
         # Apellidos y nombre o razón social del operador intracomunitario
-        text += self._formatString(partner_record.partner_id.name, 40)
+        text += self._formatFiscalName(partner_record.partner_id.name, 40)
         # Clave de operación
         text += self._formatString(partner_record.operation_key, 1)
         # Base imponible (parte entera)
@@ -228,7 +228,7 @@ class Mod349ExportToBoe(models.TransientModel):
         # NIF del operador intracomunitario
         text += self._formatString(refund_record.partner_id.vat, 17)
         # Apellidos y nombre o razón social del operador intracomunitario
-        text += self._formatString(refund_record.partner_id.name, 40)
+        text += self._formatFiscalName(refund_record.partner_id.name, 40)
         # Clave de operación
         text += self._formatString(refund_record.operation_key, 1)
         text += 13 * ' '  # Blancos
