@@ -104,22 +104,21 @@ class L10nEsAeatMod303Report(models.Model):
             prorrate_credit = sum(x['credit'] for x in lines)
             prec = self.env['decimal.precision'].precision_get('Account')
             total_prorrate = round(
-                abs((prorrate_debit - prorrate_credit) * factor), prec)
+                (prorrate_debit - prorrate_credit) * factor, prec)
             account_groups = self.env['account.move.line'].read_group(
                 [('id', 'in', base_tax_line.move_lines.ids)],
                 ['tax_amount', 'account_id', 'account_analytic_id'],
                 ['account_id', 'account_analytic_id'])
             total_balance = sum(x['tax_amount'] for x in account_groups)
             extra_lines = []
+            amount_factor = abs(total_prorrate) / abs(total_balance)
             for account_group in account_groups:
                 analytic_groups = self.env['account.move.line'].read_group(
                     account_group['__domain'],
                     ['tax_amount', 'analytic_account_id'],
                     ['analytic_account_id'])
                 for analytic_group in analytic_groups:
-                    balance = (
-                        (analytic_group['tax_amount']) *
-                        total_prorrate / abs(total_balance))
+                    balance = analytic_group['tax_amount'] * amount_factor
                     move_line_vals = {
                         'name': account_group['account_id'][1],
                         'account_id': account_group['account_id'][0],
@@ -131,18 +130,42 @@ class L10nEsAeatMod303Report(models.Model):
                             analytic_group['analytic_account_id'])[0]
                     extra_lines.append(move_line_vals)
             # Add/substract possible rounding inaccuracy to the first line
-            extra_debit = sum(x['debit'] for x in extra_lines)
-            extra_credit = sum(x['credit'] for x in extra_lines)
-            extra_total = extra_debit - extra_credit
-            diff = total_prorrate - abs(extra_total)
-            if diff:
-                extra_line = extra_lines[0]
-                if extra_line['credit']:
-                    extra_line['credit'] += diff
-                else:
-                    extra_line['debit'] += diff
+            extra_lines = self._prorrate_diff_distribution(
+                total_prorrate, extra_lines)
             all_lines += extra_lines
         return all_lines
+
+    def _prorrate_diff_distribution(self, prorrate, extra_lines):
+        count = len(extra_lines)
+        if not count:
+            # If no lines, then we can not distribute nothing
+            return extra_lines
+        prec = self.env['decimal.precision'].precision_get('Account')
+        extra_debit = sum(x['debit'] for x in extra_lines)
+        extra_credit = sum(x['credit'] for x in extra_lines)
+        extra = extra_debit - extra_credit
+        diff = round(((-1) * prorrate) - extra, prec)
+        if prorrate > 0:
+            column = 'credit'
+            diff = (-1) * diff
+        else:
+            column = 'debit'
+        n = 0
+        step = 1. / (10 ** prec)
+        if diff < 0:
+            step = (-1) * step
+        while abs(diff) > 0:
+            # We need to add some in order to get prorrate
+            line = extra_lines[n]
+            next_value = round(line[column] + step, prec)
+            if line[column] and next_value:
+                line[column] = next_value
+                diff = round(diff - step, prec)
+            n += 1
+            if n >= count:
+                # Wrap to first line when last line reached
+                n = 0
+        return extra_lines
 
     @api.multi
     def _prepare_regularization_extra_move_lines(self):
