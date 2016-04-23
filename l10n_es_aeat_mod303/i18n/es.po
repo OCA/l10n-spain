@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-05 10:32+0000\n"
-"PO-Revision-Date: 2016-03-02 09:27+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -22,6 +22,16 @@ msgstr ""
 #: help:l10n.es.aeat.mod303.report,casilla_46:0
 msgid "(IVA devengado - IVA deducible)"
 msgstr "(IVA devengado - IVA deducible)"
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "A devolver"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "A ingresar"
+msgstr "A ingresar"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report
@@ -49,6 +59,11 @@ msgid "Account entry"
 msgstr "Entrada cuenta"
 
 #. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,allow_posting:0
+msgid "Allow posting"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,casilla_69:0
 msgid ""
 "Atribuible a la Administración [66] - Cuotas a compensar [67] + "
@@ -57,6 +72,7 @@ msgstr "Atribuible a la Administración [66] - Cuotas a compensar [67] + Regular
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,bank_account:0
+#: field:l10n.es.aeat.mod303.report,partner_bank_id:0
 msgid "Bank account"
 msgstr "Cuenta bancaria"
 
@@ -74,6 +90,11 @@ msgstr "Cancelada"
 #: field:l10n.es.aeat.mod303.report,company_id:0
 msgid "Company"
 msgstr "Compañía"
+
+#. module: l10n_es_aeat_mod303
+#: help:l10n.es.aeat.mod303.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,compensate:0
@@ -131,6 +152,11 @@ msgstr "Nº declaración"
 #: field:l10n.es.aeat.mod303.report,devolucion_mensual:0
 msgid "Devolución mensual"
 msgstr "Devolución mensual"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
@@ -193,6 +219,11 @@ msgid "L.R. VAT number"
 msgstr "Nombre del representante legal"
 
 #. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,write_uid:0
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -216,6 +247,11 @@ msgid ""
 "operaciones en territorio común. Los demás sujetos pasivos consignarán en "
 "esta casilla el 100%"
 msgstr "Los sujetos pasivos que tributen conjuntamente a la Administración del Estado y a las Diputaciones Forales del País Vasco o a la Comunidad Foral de Navarra, consignarán en esta casilla el porcentaje del volumen de operaciones en territorio común. Los demás sujetos pasivos consignarán en esta casilla el 100%"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,model:0
+msgid "Model"
+msgstr "Modelo"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,contact_name:0
@@ -268,6 +304,11 @@ msgid "Report identifier"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,result_type:0
+msgid "Result type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: view:l10n.es.aeat.mod303.report:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Resultado"
 msgstr "Resultado"
@@ -280,13 +321,23 @@ msgid ""
 msgstr "Resultado de la anterior o anteriores declaraciones del mismo concepto, ejercicio y periodo"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:187
+#: help:l10n.es.aeat.mod303.report,casilla_77:0
+msgid ""
+"Se hará constar el importe de las cuotas del Impuesto a la importación "
+"incluidas en los documentos en los que conste la liquidación practicada por "
+"la Administración recibidos en el periodo de liquidación. Solamente podrá "
+"cumplimentarse esta casilla cuando se cumplan los requisitos establecidos en"
+" el artículo 74.1 del Reglamento del Impuesto sobre el Valor Añadido. "
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:196
 #, python-format
 msgid "Select an account for making the charge"
 msgstr "Seleccione una cuenta bancaria para realizar el cargo"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:189
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:198
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr "Seleccione una cuenta bancaria para recibir el dinero"
@@ -297,6 +348,11 @@ msgid ""
 "Si se marca, indicará que el importe a devolver se compensará en posteriores"
 " declaraciones"
 msgstr "Si se marca, indicará que el importe a devolver se compensará en posteriores declaraciones"
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "Sin actividad/Resultado cero"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,state:0
@@ -390,3 +446,8 @@ msgstr "[70] A deducir"
 #: field:l10n.es.aeat.mod303.report,resultado_liquidacion:0
 msgid "[71] Result. liquidación"
 msgstr "[71] Result. liquidación"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,casilla_77:0
+msgid "[77] Iva Diferido (Liquidado por aduana)"
+msgstr ""
