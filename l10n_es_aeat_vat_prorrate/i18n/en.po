@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 05:15+0000\n"
-"PO-Revision-Date: 2015-11-12 08:36+0000\n"
+"POT-Creation-Date: 2016-04-23 00:48+0000\n"
+"PO-Revision-Date: 2016-04-19 16:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -95,13 +95,13 @@ msgid "Regularizacion por aplicación del porcentaje definitivo de prorrata."
 msgstr "Regularizacion por aplicación del porcentaje definitivo de prorrata."
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:138
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:177
 #, python-format
 msgid "Regularización prorrata IVA"
 msgstr "Regularización prorrata IVA"
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:55
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:62
 #, python-format
 msgid ""
 "There's at least one previous report in draft state. Please confirm it "
@@ -118,7 +118,7 @@ msgid ""
 msgstr "This wizard will compute the VAT prorrate for the fiscal year selected, which is applicable as the provisional one for the AEAT reports of the following fiscal year up to last period, in which the definitive prorrate percentage has to be calculated and the difference must be compensated."
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:40
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:47
 #, python-format
 msgid "VAT prorrate percent must be between 0 and 100"
 msgstr "VAT prorrate percent must be between 0 and 100"
@@ -127,11 +127,6 @@ msgstr "VAT prorrate percent must be between 0 and 100"
 #: field:l10n.es.aeat.mod303.report,vat_prorrate_percent:0
 msgid "VAT prorrate percentage"
 msgstr "VAT prorrate percentage"
-
-#. module: l10n_es_aeat_vat_prorrate
-#: field:l10n.es.aeat.mod303.report,vat_prorrate_prev_percent:0
-msgid "VAT prorrate provisional percentage"
-msgstr "VAT prorrate provisional percentage"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.mod303.report,vat_prorrate_type:0

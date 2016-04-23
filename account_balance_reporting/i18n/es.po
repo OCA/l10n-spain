@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Alejandro Santana <alejandrosantana@anubia.es>, 2015
+# javialgios <javi.algios@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:41+0000\n"
-"PO-Revision-Date: 2016-02-25 17:13+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-04-23 00:48+0000\n"
+"PO-Revision-Date: 2016-04-18 12:36+0000\n"
+"Last-Translator: javialgios <javi.algios@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -163,18 +164,18 @@ msgstr "Haber-Debe, invertido con paréntesis"
 #: field:account.balance.reporting,current_date_from:0
 #: field:account.balance.reporting,previous_date_from:0
 msgid "Date From"
-msgstr ""
+msgstr "Fecha desde"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,current_date_to:0
 #: field:account.balance.reporting,previous_date_to:0
 msgid "Date To"
-msgstr ""
+msgstr "Fecha hasta"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,check_filter:0
 msgid "Dates"
-msgstr ""
+msgstr "Fechas"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,balance_mode:0
@@ -315,7 +316,7 @@ msgstr "Última actualización en"
 #. module: account_balance_reporting
 #: field:account.balance.reporting,level:0
 msgid "Level"
-msgstr ""
+msgstr "Nivel"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.line,css_class:0
