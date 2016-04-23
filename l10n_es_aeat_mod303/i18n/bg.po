@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
+"Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
+"Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod303
@@ -71,23 +71,29 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,bank_account:0
+#: field:l10n.es.aeat.mod303.report,partner_bank_id:0
 msgid "Bank account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,calculation_date:0
 msgid "Calculation date"
-msgstr "Data de càlcul"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
 msgid "Cancelled"
-msgstr "Cancel·lada"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,company_id:0
 msgid "Company"
-msgstr "Companyia"
+msgstr "Фирма"
+
+#. module: l10n_es_aeat_mod303
+#: help:l10n.es.aeat.mod303.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,compensate:0
@@ -97,7 +103,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,type:0
 msgid "Complementary"
-msgstr "Complementària"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,counterpart_account:0
@@ -112,12 +118,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,create_uid:0
 msgid "Created by"
-msgstr "Creat per"
+msgstr "Създадено от"
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,create_date:0
 msgid "Created on"
-msgstr "Creat el"
+msgstr "Създадено на"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,cuota_compensar:0
@@ -129,12 +135,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,currency_id:0
 msgid "Currency"
-msgstr "Moneda"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,support_type:0
 msgid "DVD"
-msgstr "DVD"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,number:0
@@ -149,17 +155,17 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Име за Показване"
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
 msgid "Done"
-msgstr "Realitzat"
+msgstr "Готово"
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
 msgid "Draft"
-msgstr "Esborrany"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,regularizacion_anual:0
@@ -184,7 +190,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,contact_name:0
 msgid "Full Name"
-msgstr "Cognoms i nom"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,id:0
@@ -199,7 +205,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,journal_id:0
 msgid "Journal"
-msgstr "Diari"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,journal_id:0
@@ -209,27 +215,27 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,representative_vat:0
 msgid "L.R. VAT number"
-msgstr "NIF R.L."
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Последно обновено на"
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,write_uid:0
 msgid "Last Updated by"
-msgstr "Darrera Actualització per"
+msgstr "Последно обновено от"
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,write_date:0
 msgid "Last Updated on"
-msgstr "Darrera Actualització el"
+msgstr "Последно обновено на"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,representative_vat:0
 msgid "Legal Representative VAT number."
-msgstr "NIF del representant legal."
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,porcentaje_atribuible_estado:0
@@ -249,17 +255,17 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,contact_name:0
 msgid "Must have name and surname."
-msgstr "Ha de contenir nom i cognoms"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,type:0
 msgid "Normal"
-msgstr "Normal"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,company_partner_id:0
 msgid "Partner"
-msgstr "Empresa"
+msgstr "Партньор"
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,period_type:0
@@ -274,7 +280,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,contact_phone:0
 msgid "Phone"
-msgstr "Telèfon"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
@@ -289,7 +295,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
 msgid "Processed"
-msgstr "Processat"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,name:0
@@ -350,22 +356,22 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,state:0
 msgid "State"
-msgstr "Estat"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,type:0
 msgid "Statement Type"
-msgstr "Tipus declaració"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,type:0
 msgid "Substitutive"
-msgstr "Substitutiva"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,support_type:0
 msgid "Support Type"
-msgstr "Tipus de suport"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: view:l10n.es.aeat.mod303.report:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
@@ -376,7 +382,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,support_type:0
 msgid "Telematics"
-msgstr "Telemàtica"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,counterpart_account:0
@@ -388,7 +394,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,company_vat:0
 msgid "VAT number"
-msgstr "NIF / CIF"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,total_devengado:0
