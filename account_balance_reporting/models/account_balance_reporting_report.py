@@ -362,6 +362,8 @@ class AccountBalanceReportingLine(models.Model):
         tmpl_line = self.template_line_id
         balance_mode = int(tmpl_line.template_id.balance_mode)
         report = self.report_id
+        move_lines = self.env['account.move.line']
+        value = 0
         if fyear == 'current':
             tmpl_value = tmpl_line.current_value
         else:
@@ -372,9 +374,7 @@ class AccountBalanceReportingLine(models.Model):
         if (fyear == 'current' and not report.current_fiscalyear_id) \
                 or (fyear == 'previous' and
                     not report.previous_fiscalyear_id):
-            return 0
-        value = 0
-        move_lines = self.env['account.move.line']
+            return value, move_lines
         if not tmpl_value:
             # Empy template value => sum of the children values
             for child_line in self.child_ids:
@@ -471,7 +471,7 @@ class AccountBalanceReportingLine(models.Model):
                 current_amount, current_move_lines = line._calculate_value(
                     domain_current, 'current')
                 previous_amount, previous_move_lines = line._calculate_value(
-                    domain_current, 'previous')
+                    domain_previous, 'previous')
                 line.write({
                     'current_value': current_amount,
                     'previous_value': previous_amount,
