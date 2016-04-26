@@ -21,11 +21,11 @@
             <field name="arch" type="xml">
                 <form string="Account balance report" version="7.0">
                     <header>
-                        <button name="calculate_action" type="object" string="Calculate" states="draft" class="oe_highlight"/>
+                        <button name="action_calculate" type="object" string="Calculate" states="draft" class="oe_highlight"/>
                         <button name="action_calculate" type="object" string="Recalculate" states="calc_done" />
-                        <button name="confirm" string="Confirm" class="oe_highlight" states="calc_done"/>
-                        <button name="cancel" string="Cancel" states="calc_done,done"/>
-                        <button name="action_recover" string="Draft" type="object" class="oe_highlight" states="canceled"/>
+                        <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" states="calc_done"/>
+                        <button name="action_cancel" type="object" string="Cancel" states="calc_done,done"/>
+                        <button name="action_recover" type="object" string="Draft" class="oe_highlight" states="canceled"/>
                         <field name="state" select="2" widget="statusbar" statusbar_visible="calc_done,done" statusbar_colors='{"calc_done":"blue","done":"blue","canceled":"red"}'/>
                     </header>
                     <label for="name" class="oe_edit_only"/>
@@ -34,12 +34,12 @@
                     </h1>
                     <notebook>
                         <page string="Configuration">
-                            <group col="6">
+                            <group col="4">
                                 <field name="template_id"/>
                                 <field name="company_id" groups="base.group_multi_company"/>
-                                <field name="calc_date" states="calc_done,done"/>
                                 <field name="check_filter"/>
                                 <field name="level"/>
+                                <field name="calc_date" states="calc_done,done"/>
                             </group>
                             <group>
                                 <group col="1">
@@ -63,10 +63,24 @@
                                 <tree string="Report lines" editable="bottom" colors="blue:css_class in ('l1')" version="7.0">
                                     <field name="sequence" widget="handle"/>
                                     <field name="code"/>
-                                    <field name="name"/>
+                                    <field name="display_name"/>
                                     <field name="notes"/>
                                     <field name="current_value"/>
+                                    <field name="current_move_line_count" invisible="1"/>
+                                    <button name="show_move_lines_current"
+                                            type="object"
+                                            help="Show journal items"
+                                            icon="gtk-find"
+                                            attrs="{'invisible': [('current_move_line_count', '=', 0)]}"
+                                    />
                                     <field name="previous_value"/>
+                                    <field name="previous_move_line_count" invisible="1"/>
+                                    <button name="show_move_lines_previous"
+                                            type="object"
+                                            help="Show journal items"
+                                            icon="gtk-find"
+                                            attrs="{'invisible': [('previous_move_line_count', '=', 0)]}"
+                                    />
                                     <field name="css_class"/>
                                 </tree>
                             </field>
