@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-05 10:32+0000\n"
-"PO-Revision-Date: 2016-02-29 13:40+0000\n"
+"POT-Creation-Date: 2016-04-27 00:50+0000\n"
+"PO-Revision-Date: 2016-04-26 10:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -24,9 +24,36 @@ msgid "Account balance report"
 msgstr "Informe de balanç de comptes"
 
 #. module: account_balance_reporting
+#: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_line
+msgid ""
+"Account balance report line / Accounting concept. One line of detail of the "
+"balance report representing an accounting concept with its values. The "
+"accounting concepts follow a parent-children hierarchy. Its values (current "
+"and previous) are calculated based on the 'value' formula of the linked "
+"template line."
+msgstr ""
+
+#. module: account_balance_reporting
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
 msgid "Account balance report template"
 msgstr "Plantilla d'informe de balanç de comptes"
+
+#. module: account_balance_reporting
+#: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template_line
+msgid ""
+"Account balance report template line / Accounting concept template One line "
+"of detail of the balance report representing an accounting concept with the "
+"formulas to calculate its values. The accounting concepts follow a parent-"
+"children hierarchy."
+msgstr ""
+
+#. module: account_balance_reporting
+#: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template
+msgid ""
+"Account balance report template. It stores the header fields of an account "
+"balance report template, and the linked lines of detail with the formulas to"
+" calculate the accounting concepts of the report."
+msgstr ""
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_tree
@@ -262,12 +289,11 @@ msgstr "Períodes exercici fiscal 2"
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template,balance_mode:0
 msgid ""
-"Formula calculation mode: Depending on it, the balance is calculated as\n"
-"    follows:\n"
-"      Mode 0: debit-credit (default);\n"
-"      Mode 1: debit-credit, credit-debit for accounts in brackets;\n"
-"      Mode 2: credit-debit;\n"
-"      Mode 3: credit-debit, debit-credit for accounts in brackets."
+"Formula calculation mode: Depending on it, the balance is calculated as follows:\n"
+"Mode 0: debit-credit (default);\n"
+"Mode 1: debit-credit, credit-debit for accounts in brackets;\n"
+"Mode 2: credit-debit;\n"
+"Mode 3: credit-debit, debit-credit for accounts in brackets."
 msgstr ""
 
 #. module: account_balance_reporting
@@ -293,6 +319,30 @@ msgstr ""
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
 msgid "Information"
 msgstr "Informació"
+
+#. module: account_balance_reporting
+#: model:ir.model,name:account_balance_reporting.model_account_balance_reporting
+msgid ""
+"It stores the configuration/header fields of an account balance report, and "
+"the linked lines of detail with the values of the accounting concepts "
+"(values generated from the selected template lines of detail formulas)"
+msgstr ""
+
+#. module: account_balance_reporting
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:522
+#, python-format
+msgid "Journal Items"
+msgstr ""
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting.line,current_move_line_ids:0
+msgid "Journal items (current)"
+msgstr ""
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting.line,previous_move_line_ids:0
+msgid "Journal items (previous)"
+msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,write_uid:0
@@ -372,6 +422,7 @@ msgstr "NOTES"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,name:0
+#: field:account.balance.reporting.line,display_name:0
 #: field:account.balance.reporting.line,name:0
 #: field:account.balance.reporting.template,name:0
 #: field:account.balance.reporting.template.line,name:0
@@ -420,11 +471,6 @@ msgid "Processed"
 msgstr "Processat"
 
 #. module: account_balance_reporting
-#: selection:account.balance.reporting,state:0
-msgid "Processing"
-msgstr "S'està processant"
-
-#. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
 msgid "Recalculate"
 msgstr ""
@@ -451,6 +497,11 @@ msgstr "Línies d'informe"
 #: field:account.balance.reporting.template.line,sequence:0
 msgid "Sequence"
 msgstr "Seqüència"
+
+#. module: account_balance_reporting
+#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+msgid "Show journal items"
+msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,state:0
@@ -481,8 +532,8 @@ msgstr "Línies de plantilla"
 #. module: account_balance_reporting
 #: sql_constraint:account.balance.reporting.line:0
 #: sql_constraint:account.balance.reporting.template.line:0
-#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:257
-#: code:addons/account_balance_reporting/models/account_balance_reporting_template.py:191
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:187
+#: code:addons/account_balance_reporting/models/account_balance_reporting_template.py:150
 #, python-format
 msgid "The code must be unique for this report!"
 msgstr ""
