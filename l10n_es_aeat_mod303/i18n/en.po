@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-23 00:48+0000\n"
-"PO-Revision-Date: 2016-04-22 14:46+0000\n"
+"POT-Creation-Date: 2016-04-30 22:58+0000\n"
+"PO-Revision-Date: 2016-04-30 23:00+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,16 @@ msgstr ""
 #: help:l10n.es.aeat.mod303.report,casilla_46:0
 msgid "(IVA devengado - IVA deducible)"
 msgstr "(IVA devengado - IVA deducible)"
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "A devolver"
+msgstr "A devolver"
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "A ingresar"
+msgstr "A ingresar"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report
@@ -46,6 +56,11 @@ msgstr "AEAT model 303"
 #: field:l10n.es.aeat.mod303.report,move_id:0
 msgid "Account entry"
 msgstr "Account entry"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,allow_posting:0
+msgid "Allow posting"
+msgstr "Allow posting"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,casilla_69:0
@@ -132,6 +147,11 @@ msgid "Devolución mensual"
 msgstr "Devolución mensual"
 
 #. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
 msgid "Done"
 msgstr "Done"
@@ -192,6 +212,11 @@ msgid "L.R. VAT number"
 msgstr "L.R. VAT number"
 
 #. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,write_uid:0
 msgid "Last Updated by"
 msgstr "Last Updated by"
@@ -215,6 +240,11 @@ msgid ""
 "operaciones en territorio común. Los demás sujetos pasivos consignarán en "
 "esta casilla el 100%"
 msgstr "Los sujetos pasivos que tributen conjuntamente a la Administración del Estado y a las Diputaciones Forales del País Vasco o a la Comunidad Foral de Navarra, consignarán en esta casilla el porcentaje del volumen de operaciones en territorio común. Los demás sujetos pasivos consignarán en esta casilla el 100%"
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,model:0
+msgid "Model"
+msgstr "Model"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,contact_name:0
@@ -267,6 +297,11 @@ msgid "Report identifier"
 msgstr "Report identifier"
 
 #. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,result_type:0
+msgid "Result type"
+msgstr "Result type"
+
+#. module: l10n_es_aeat_mod303
 #: view:l10n.es.aeat.mod303.report:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Resultado"
 msgstr "Resultado"
@@ -306,6 +341,11 @@ msgid ""
 "Si se marca, indicará que el importe a devolver se compensará en posteriores"
 " declaraciones"
 msgstr "Si se marca, indicará que el importe a devolver se compensará en posteriores declaraciones"
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "Sin actividad/Resultado cero"
+msgstr "Sin actividad/Resultado cero"
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,state:0

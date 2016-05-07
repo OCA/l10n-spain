@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-05 10:32+0000\n"
-"PO-Revision-Date: 2016-03-02 09:27+0000\n"
+"POT-Creation-Date: 2016-04-30 22:58+0000\n"
+"PO-Revision-Date: 2016-05-02 04:21+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,16 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,casilla_46:0
 msgid "(IVA devengado - IVA deducible)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "A devolver"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "A ingresar"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -45,6 +55,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,move_id:0
 msgid "Account entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,allow_posting:0
+msgid "Allow posting"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -132,6 +147,11 @@ msgid "Devolución mensual"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
 msgid "Done"
 msgstr "Opravljeno"
@@ -192,6 +212,11 @@ msgid "L.R. VAT number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
+
+#. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,write_uid:0
 msgid "Last Updated by"
 msgstr "Zadnji posodobil"
@@ -214,6 +239,11 @@ msgid ""
 " Navarra, consignarán en esta casilla el porcentaje del volumen de "
 "operaciones en territorio común. Los demás sujetos pasivos consignarán en "
 "esta casilla el 100%"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,model:0
+msgid "Model"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -267,6 +297,11 @@ msgid "Report identifier"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,result_type:0
+msgid "Result type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: view:l10n.es.aeat.mod303.report:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Resultado"
 msgstr ""
@@ -279,13 +314,23 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:187
+#: help:l10n.es.aeat.mod303.report,casilla_77:0
+msgid ""
+"Se hará constar el importe de las cuotas del Impuesto a la importación "
+"incluidas en los documentos en los que conste la liquidación practicada por "
+"la Administración recibidos en el periodo de liquidación. Solamente podrá "
+"cumplimentarse esta casilla cuando se cumplan los requisitos establecidos en"
+" el artículo 74.1 del Reglamento del Impuesto sobre el Valor Añadido. "
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:196
 #, python-format
 msgid "Select an account for making the charge"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:189
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:198
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr ""
@@ -295,6 +340,11 @@ msgstr ""
 msgid ""
 "Si se marca, indicará que el importe a devolver se compensará en posteriores"
 " declaraciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,result_type:0
+msgid "Sin actividad/Resultado cero"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -388,4 +438,9 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,resultado_liquidacion:0
 msgid "[71] Result. liquidación"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,casilla_77:0
+msgid "[77] Iva Diferido (Liquidado por aduana)"
 msgstr ""
