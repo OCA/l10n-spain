@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-05 10:32+0000\n"
-"PO-Revision-Date: 2016-03-04 16:52+0000\n"
+"POT-Creation-Date: 2016-04-30 22:58+0000\n"
+"PO-Revision-Date: 2016-04-30 23:00+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -264,6 +264,11 @@ msgid "Account entry"
 msgstr "Account entry"
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,allow_posting:0
+msgid "Allow posting"
+msgstr "Allow posting"
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,base_retenciones_ingresos:0
 msgid "Base retenciones e ingresos a cuenta"
 msgstr "Base retenciones e ingresos a cuenta"
@@ -443,6 +448,13 @@ msgid "Direccion en el pais de residencia"
 msgstr "Direccion en el pais de residencia"
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.export_to_boe,display_name:0
+#: field:l10n.es.aeat.mod296.report,display_name:0
+#: field:l10n.es.aeat.mod296.report.line,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,domicilio:0
 msgid "Domicilio"
 msgstr "Domicilio"
@@ -540,6 +552,13 @@ msgid "L.R. VAT number"
 msgstr "L.R. VAT number"
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.mod296.report,__last_update:0
+#: field:l10n.es.aeat.mod296.report.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod296.report,write_uid:0
 #: field:l10n.es.aeat.mod296.report.line,write_uid:0
@@ -577,6 +596,11 @@ msgstr "Mediador"
 #: field:l10n.es.aeat.mod296.report.line,mod296_id:0
 msgid "Mod 296"
 msgstr "Mod 296"
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,model:0
+msgid "Model"
+msgstr "Model"
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.ui.menu,name:l10n_es_aeat_mod296.menu_aeat_mod296_report

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-18 01:41+0000\n"
-"PO-Revision-Date: 2015-10-16 07:51+0000\n"
+"POT-Creation-Date: 2016-04-30 22:58+0000\n"
+"PO-Revision-Date: 2016-04-30 23:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -222,6 +222,11 @@ msgid "Direct Pay Order"
 msgstr "Direct Pay Order"
 
 #. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: l10n_es_payment_order
 #: help:payment.mode,csb34_text1:0 help:payment.mode,csb34_text2:0
 #: help:payment.mode,csb34_text3:0
 msgid ""
@@ -312,9 +317,39 @@ msgid "Include address"
 msgstr "Include address"
 
 #. module: l10n_es_payment_order
+#: field:payment.mode,is_csb19:0
+msgid "Is csb19"
+msgstr "Is csb19"
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,is_csb32:0
+msgid "Is csb32"
+msgstr "Is csb32"
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,is_csb34:0
+msgid "Is csb34"
+msgstr "Is csb34"
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,is_csb3401:0
+msgid "Is csb3401"
+msgstr "Is csb3401"
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,is_csb58:0
+msgid "Is csb58"
+msgstr "Is csb58"
+
+#. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,join:0
 msgid "Join payment lines of the same partner and bank account"
 msgstr "Join payment lines of the same partner and bank account"
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
 
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,write_uid:0

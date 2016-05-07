@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-23 00:48+0000\n"
-"PO-Revision-Date: 2016-04-19 16:01+0000\n"
+"POT-Creation-Date: 2016-04-30 22:58+0000\n"
+"PO-Revision-Date: 2016-04-30 23:00+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -54,6 +54,11 @@ msgid "Created on"
 msgstr "Created on"
 
 #. module: l10n_es_aeat_vat_prorrate
+#: field:l10n.es.aeat.compute.vat.prorrate,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,fiscalyear_id:0
 msgid "Fiscal year"
 msgstr "Fiscal year"
@@ -67,6 +72,11 @@ msgstr "General prorrate"
 #: field:l10n.es.aeat.compute.vat.prorrate,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: l10n_es_aeat_vat_prorrate
+#: field:l10n.es.aeat.compute.vat.prorrate,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,write_uid:0

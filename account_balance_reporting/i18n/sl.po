@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-27 00:50+0000\n"
-"PO-Revision-Date: 2016-04-26 10:46+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2016-04-30 22:58+0000\n"
+"PO-Revision-Date: 2016-05-02 04:22+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -187,6 +187,11 @@ msgid "Credit-Debit, reversed with brackets"
 msgstr "Dobro-Breme, obrnjeno z oklepaji"
 
 #. module: account_balance_reporting
+#: field:account.balance.reporting.line,current_move_line_count:0
+msgid "Current move line count"
+msgstr "Števec postavk trenutnih premikov"
+
+#. module: account_balance_reporting
 #: field:account.balance.reporting,current_date_from:0
 #: field:account.balance.reporting,previous_date_from:0
 msgid "Date From"
@@ -229,6 +234,14 @@ msgstr "Opis"
 #: field:account.balance.reporting.print.wizard,report_xml_id:0
 msgid "Design"
 msgstr "Oblikovanje"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,display_name:0
+#: field:account.balance.reporting.print.wizard,display_name:0
+#: field:account.balance.reporting.template,display_name:0
+#: field:account.balance.reporting.template.line,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
@@ -294,7 +307,7 @@ msgid ""
 "Mode 1: debit-credit, credit-debit for accounts in brackets;\n"
 "Mode 2: credit-debit;\n"
 "Mode 3: credit-debit, debit-credit for accounts in brackets."
-msgstr ""
+msgstr "Način izračuna formule: osnova, po kateri se izračuna bilanca, kot sledi:\nNačin 0: breme-dobro (privzeto);\nNačin 1:  breme-dobro, dobro-breme za konte v oklepajih;\nNačin 2: dobro-breme;\nNačin 3: dobro-breme, breme-dobro za konte v oklepajih."
 
 #. module: account_balance_reporting
 #: model:ir.actions.report.xml,name:account_balance_reporting.report_account_balance_reporting_generic
@@ -326,23 +339,32 @@ msgid ""
 "It stores the configuration/header fields of an account balance report, and "
 "the linked lines of detail with the values of the accounting concepts "
 "(values generated from the selected template lines of detail formulas)"
-msgstr ""
+msgstr "Hrani polja nastavitev/glave za poročilo knjigovodske bilance in povezanih postavk podrobnosti z vrednostmi knjigovodskih konceptov (vrednosti ustvarjene iz postavk formul podrobnosti iz izbrane predloge)"
 
 #. module: account_balance_reporting
 #: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:522
 #, python-format
 msgid "Journal Items"
-msgstr ""
+msgstr "Dnevniške postavke"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,current_move_line_ids:0
 msgid "Journal items (current)"
-msgstr ""
+msgstr "Dnevniške postavke (trenutne)"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,previous_move_line_ids:0
 msgid "Journal items (previous)"
-msgstr ""
+msgstr "Dnevniške postavke (prejšnje)"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,__last_update:0
+#: field:account.balance.reporting.line,__last_update:0
+#: field:account.balance.reporting.print.wizard,__last_update:0
+#: field:account.balance.reporting.template,__last_update:0
+#: field:account.balance.reporting.template.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,write_uid:0
@@ -456,6 +478,11 @@ msgid "Periods"
 msgstr "Obdobja"
 
 #. module: account_balance_reporting
+#: field:account.balance.reporting.line,previous_move_line_count:0
+msgid "Previous move line count"
+msgstr "Števec postavk prejšnjih premikov"
+
+#. module: account_balance_reporting
 #: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Print"
 msgstr "Natisni"
@@ -501,7 +528,7 @@ msgstr "Zaporedje"
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
 msgid "Show journal items"
-msgstr ""
+msgstr "Prikaz dnevniških postavk"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,state:0

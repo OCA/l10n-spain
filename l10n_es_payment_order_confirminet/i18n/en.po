@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-18 01:41+0000\n"
-"PO-Revision-Date: 2015-12-18 00:46+0000\n"
+"POT-Creation-Date: 2016-04-30 22:58+0000\n"
+"PO-Revision-Date: 2016-04-30 23:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -76,6 +76,11 @@ msgstr "Error: Supplier %s must have a VAT number."
 #: model:ir.model,name:l10n_es_payment_order_confirminet.model_banking_export_csb_wizard
 msgid "Export CSB File"
 msgstr "Export CSB File"
+
+#. module: l10n_es_payment_order_confirminet
+#: field:payment.mode,is_confirminet:0
+msgid "Is confirminet"
+msgstr "Is confirminet"
 
 #. module: l10n_es_payment_order_confirminet
 #: code:addons/l10n_es_payment_order_confirminet/wizard/confirminet.py:218
