@@ -71,7 +71,9 @@
                     <field name="partner_id"/>
                     <field name="partner_country_code"/>
                     <field name="partner_vat"/>
+                    <field name="vat_type"/>
                     <field name="invoice_id"/>
+                    <field name="key_operation"/>
                     <field name="base_tax" sum="Total Base" />
                     <field name="amount_tax" sum="Total Tax" />
                     <field name="rec_amount_tax" sum="Total Rec Tax" />
@@ -91,9 +93,11 @@
                     <newline/>
                     <field name="partner_id"/>
                     <field name="partner_vat"/>
+                    <field name="vat_type"/>                    
                     <field name="representative_vat"/>
                     <field name="partner_country_code"/>
                     <newline/>
+                    <field name="key_operation"/>
                     <field name="base_tax" />
                     <field name="amount_tax" />
                     <field name="rec_amount_tax" />
@@ -113,15 +117,22 @@
             <field name="model">l10n.es.aeat.mod340.received</field>
             <field name="arch" type="xml">
                 <tree string="Received invoices" colors="red:exception==True;">
+                    <field name="date_invoice"/>
                     <field name="partner_id"/>
                     <field name="partner_country_code"/>
                     <field name="partner_vat"/>
+                    <field name="vat_type"/>                    
                     <field name="invoice_id"/>
+                    <field name="supplier_invoice_number"/>
+                    <field name="key_operation"/>                    
                     <field name="base_tax" sum="Total Base"/>
                     <field name="amount_tax" sum="Total Tax"/>
                     <field name="total" sum="Total"/>
-                     <field name="txt_exception" />
-                     <field name="exception" />
+                    <field name="date_payment"/>
+                    <field name="payment_amount" sum="Total payment"/>
+                    <field name="name_payment_method"/>
+                    <field name="txt_exception" />
+                    <field name="exception" />
                 </tree>
             </field>
         </record>
@@ -135,11 +146,17 @@
                     <newline/>
                     <field name="partner_id"/>
                     <field name="partner_vat"/>
+                    <field name="vat_type"/>                                        
                     <field name="representative_vat"/>
                     <field name="partner_country_code"/>
                     <newline/>
+                    <field name="key_operation"/>                    
                     <field name="base_tax"/>
                     <field name="amount_tax"/>
+                    <newline/>
+                    <field name="date_payment"/>
+                    <field name="payment_amount"/>
+                    <field name="name_payment_method"/>
                     <newline/>
                     <field name="total"/>
                     <field name="exception" />

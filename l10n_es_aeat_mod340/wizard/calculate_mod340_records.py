@@ -26,8 +26,10 @@ from openerp.tools.translate import _
 from openerp.osv import orm
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp.tools.float_utils import float_is_zero
+import logging
+_logger = logging.getLogger(__name__)
 
-VALID_TYPES = [0, 0.04, 0.07, 0.08, 0.10, 0.16, 0.18, 0.21]
+VALID_TYPES = [0, 0.005, 0.014, 0.04, 0.052, 0.07, 0.08, 0.10, 0.12, 0.16, 0.18, 0.21]
 
 class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
     _name = "l10n.es.aeat.mod340.calculate_records"
@@ -93,27 +95,38 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                     if tax_line.base_code_id.mod340:
                         include = True
                         break
+            partner = invoice.partner_id.commercial_partner_id
             if include:
                 exception_text = ""
-                if invoice.partner_id.vat_type in ['1', '2']:
-                    if not invoice.partner_id.vat:
-                        # raise orm.except_orm(
-                        #     _('La siguiente empresa no tiene asignado nif:'),
-                        #     invoice.partner_id.name)
-                        exception_text += _('La siguiente empresa no'
-                                        ' tiene asignado nif: %s')\
-                                          % invoice.partner_id.name
-                if invoice.partner_id.vat:
+
+                # if partner.vat_type in ['1', '2']:
+                #     if not partner.vat:
+                #         # raise orm.except_orm(
+                #         #     _('La siguiente empresa no tiene asignado nif:'),
+                #         #     partner.name)
+                #         exception_text += _('La siguiente empresa no'
+                #                         ' tiene asignado nif: %s')\
+                #                           % partner.name
+                country_code = False
+                nif = False
+                if partner.vat:
                     country_code, nif = (
                         re.match(r"([A-Z]{0,2})(.*)",
-                                 invoice.partner_id.vat).groups())
+                                 partner.vat).groups())
+                    if country_code and country_code == 'EL':
+                        country_code = 'GR'
                 else:
-                    country_code = False
-                    nif = False
+                    if partner.country_id:
+                        country_code = partner.country_id.code
+                    else:
+                        exception_text += _('La siguiente empresa no'
+                        ' tiene un pais relacionado: %s')\
+                        % partner.name
+
                 values = {
                     'mod340_id': mod340.id,
-                    'partner_id': invoice.partner_id.id,
-                    'partner_vat': nif,
+                    'partner_id': partner.id,
+                    'partner_vat': partner.vat,
                     'representative_vat': '',
                     'partner_country_code': country_code,
                     'invoice_id': invoice.id,
@@ -122,18 +135,93 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                     'total': invoice.cc_amount_total * sign,
                     'date_invoice': invoice.date_invoice,
                 }
+                date_payment = False
+                payment_amount = 0
+                name_payment_method = ''
+                if invoice.vat_on_payment:
+                    for payment_id in invoice.payment_ids:
+                        if not date_payment:
+                            date_payment = payment_id.date
+                        if not name_payment_method:
+                            name_payment_method_id = self.pool['res.partner.bank'].search(
+                                cr, uid, [('journal_id', '=', payment_id.journal_id.id)],
+                                    context=context)[0]
+                            if name_payment_method_id:
+                                name_payment_method = self.pool['res.partner.bank'].browse(
+                                    cr, uid, name_payment_method_id, context=context).acc_number
+                                if name_payment_method:
+                                    name_payment_method = name_payment_method.replace(' ', '')
+                        payment_amount = payment_amount + payment_id.debit
+                    values.update({
+                        'date_payment':date_payment,
+                        'payment_amount':payment_amount,
+                        'name_payment_method':name_payment_method,
+                        })
+
+                key_identification = '6'
+                if not partner.vat:
+                    key_identification = '6'
+                else:
+                    if country_code:
+                        if country_code == 'ES':
+                            key_identification = '1'
+                        else:
+                            group_country_europe = self.pool['res.country.group'].search(cr, uid,
+                                [('name','=', 'Europe')], context=context)
+                            if group_country_europe:
+                                if country_code == 'EL':
+                                    country_code = 'GR'
+                                country_ids = self.pool['res.country'].search(cr, uid,[
+                                    ('code','=', country_code),
+                                    ('country_group_ids','=', group_country_europe[0])], context=context)
+                                if country_ids and invoice.fiscal_position.intracommunity_operations:
+                                    key_identification = '2'
+
+                # Clave de operación
+                key_operation = ' '
+                if invoice.type in ['out_invoice', 'out_refund']:
+                    if invoice.type == 'out_refund':
+                        key_operation = 'D'
+                    elif invoice.is_ticket_summary == 1:
+                        key_operation = 'B'
+                    elif invoice.vat_on_payment:
+                        key_operation = 'Z'
+                    elif invoice.is_leasing_invoice()[0]:
+                        key_operation = 'R'
+                else:
+                    if invoice.is_reverse_charge_invoice()[0]:
+                        key_operation = 'I'
+                    elif invoice.fiscal_position.intracommunity_operations:
+                        key_operation = 'P'
+                    elif invoice.vat_on_payment:
+                        key_operation = 'Z'
+                    elif invoice.type == 'in_refund':
+                        key_operation = 'D'
+                    elif invoice.is_leasing_invoice()[0]:
+                        key_operation = 'R'
+
+                values.update({
+                    'vat_type' : key_identification,
+                    'key_operation' : key_operation
+                })
+
                 if invoice.type in ['out_invoice', 'out_refund']:
                     invoice_created = invoices340.create(cr, uid, values)
                 if invoice.type in ['in_invoice', 'in_refund']:
+                    values.update({'supplier_invoice_number': invoice.supplier_invoice_number or invoice.reference or ''})
                     invoice_created = invoices340_rec.create(cr, uid, values)
-                tot_tax_invoice = 0
                 tot_invoice = invoice.cc_amount_untaxed * sign
-                check_tax = 0
                 check_base = 0
+
+                invoice_base_tax = 0
+                invoice_amount_tax = 0
+
                 # Add the invoices detail to the partner record
                 surcharge_taxes_lines = []
 
                 adqu_intra = False
+                lines_created = 0
+
                 if invoice.fiscal_position.intracommunity_operations \
                     and invoice.type in ("in_invoice", "in_refund"):
                     adqu_intra = True
@@ -146,7 +234,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                                 surcharge_taxes_lines.append(tax_line)
                             else:
                                 tax_percentage = self.proximo(round (
-                                        tax_line.amount/tax_line.base, 3),\
+                                        abs(tax_line.amount/tax_line.base), 4),\
                                     VALID_TYPES)
 
                                 values = {
@@ -158,9 +246,34 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                                     'invoice_record_id': invoice_created,
                                     'tax_code_id': tax_line.base_code_id.id
                                 }
+
+                                invoice_base_tax = invoice_base_tax + values['base_amount']
+                                invoice_amount_tax = invoice_amount_tax + values['tax_amount']
+
+                                domain = [
+                                    ('invoice_record_id', '=', invoice_created),
+                                    ('tax_code_id', '=', tax_line.base_code_id.id),
+                                    ('tax_percentage','=', tax_percentage),
+                                ]                                
+                                if sign == 1:
+                                    domain.append(('tax_amount', '>=', 0))
+                                else:
+                                    domain.append(('tax_amount', '<=', 0))
+
                                 if invoice.type in ("out_invoice",
                                                     "out_refund"):
-                                    issued_obj.create(cr, uid, values)
+                                    line_id = issued_obj.search(cr, uid, domain,
+                                                                  context=context)
+                                    if line_id:
+                                        issue = issued_obj.browse(cr,uid, line_id[0], context = context)
+                                        values['name'] = "%s/%s" % (issue.name,values['name'])
+                                        values['tax_amount'] = issue.tax_amount + values['tax_amount']
+                                        values['base_amount'] = issue.base_amount + values['base_amount']
+                                        issued_obj.write(cr, uid, line_id[0], values)
+                                    else:
+                                        lines_created = lines_created+1
+                                        issued_obj.create(cr, uid, values)
+
                                     if not tax_code_isu_totals.get(
                                             tax_line.base_code_id.id):
                                         tax_code_isu_totals.update({
@@ -180,7 +293,18 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
 
                                 if invoice.type in ("in_invoice",
                                                     "in_refund"):
-                                    received_obj.create(cr, uid, values)
+                                    line_id = received_obj.search(cr, uid, domain,
+                                                                  context=context)
+                                    if line_id:
+                                        recei = received_obj.browse(cr,uid, line_id[0], context = context)
+                                        values['name'] = "%s/%s" % (recei.name,values['name'])
+                                        values['tax_amount'] = recei.tax_amount + values['tax_amount']
+                                        values['base_amount'] = recei.base_amount + values['base_amount']
+                                        received_obj.write(cr, uid, line_id[0], values)
+                                    else:
+                                        lines_created = lines_created+1
+                                        received_obj.create(cr, uid, values)
+
                                     if not tax_code_rec_totals.get(
                                             tax_line.base_code_id.id):
                                         tax_code_rec_totals.update({
@@ -195,10 +319,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                                         tax_code_rec_totals[
                                             tax_line.base_code_id.id][
                                             1] += tax_line.amount * sign * cur_rate
-                                if not adqu_intra:
-                                    tot_tax_invoice += tax_line.amount * sign * \
-                                                   cur_rate
-                                    check_tax += tax_line.amount * cur_rate
+
                                 if tax_line.amount >= 0:
                                     check_base += tax_line.base_amount
                                 # Control problem with extracomunitary
@@ -206,8 +327,16 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                                     if not adqu_intra:
                                         tot_invoice += tax_line.amount * sign * \
                                                cur_rate
+
+                values = {'base_tax': invoice_base_tax,
+                        'amount_tax': invoice_amount_tax}
+
+                if lines_created > 1 and key_operation == ' ':
+                    values.update({'key_operation': 'C' })
+
                 if tot_invoice != invoice.cc_amount_total:
-                    values = {'total': tot_invoice }
+                    values.update({'total': tot_invoice })
+                if values:
                     if invoice.type in ['out_invoice', 'out_refund']:
                         invoices340.write(cr, uid, invoice_created, values)
                     if invoice.type in ['in_invoice', 'in_refund']:
@@ -218,8 +347,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                     rec_tax_percentage = round(surcharge.amount /
                                                surcharge.base, 3)
                     rec_tax_invoice += surcharge.amount * sign * cur_rate
-                    tot_tax_invoice += surcharge.amount * sign * cur_rate
-                    check_tax += surcharge.amount * cur_rate
+                    invoice_amount_tax += surcharge.amount * sign * cur_rate
                     values = {
                         'rec_tax_percentage': rec_tax_percentage,
                         'rec_tax_amount': surcharge.amount * sign * cur_rate
@@ -236,11 +364,11 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
 
                 if invoice.type in ['out_invoice', 'out_refund']:
                     invoices340.write(cr, uid, invoice_created,
-                                      {'amount_tax': tot_tax_invoice,
+                                      {'amount_tax': invoice_amount_tax,
                                        'rec_amount_tax': rec_tax_invoice})
                 if invoice.type in ['in_invoice', 'in_refund']:
                     invoices340_rec.write(cr, uid, invoice_created,
-                                          {'amount_tax': tot_tax_invoice})
+                                          {'amount_tax': invoice_amount_tax})
                 sign = 1
                 if invoice.type in ('out_refund', 'in_refund'):
                     sign = -1

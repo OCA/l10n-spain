@@ -6,6 +6,7 @@
 # Alejandro Santana <alejandrosantana@anubia.es>, 2015
 # Oihane Crucelaegui <oihanecruce@gmail.com>, 2015
 # Pedro M. Baeza <pedro.baeza@gmail.com>, 2015
+# Kiko Peiro <francisco.peiro@factorlibre.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
@@ -389,7 +390,7 @@ msgstr "Factura"
 msgid ""
 "Invoice  %s, Amount untaxed Lines %.2f do not correspond to AmountUntaxed on"
 " Invoice %.2f"
-msgstr "Invoice  %s, Amount untaxed Lines %.2f do not correspond to AmountUntaxed on Invoice %.2f"
+msgstr "Factura  %s, base de las lineas %.2f no es coherente con la base de la factura %.2f"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.tax_line_issued,invoice_record_id:0
@@ -859,3 +860,91 @@ msgstr "get"
 #: selection:l10n.es.aeat.mod340.export_to_boe,state:0
 msgid "open"
 msgstr "open"
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.intracomunitarias,rec_amount_tax:0
+#: field:l10n.es.aeat.mod340.investment,rec_amount_tax:0
+#: field:l10n.es.aeat.mod340.issued,rec_amount_tax:0
+#: field:l10n.es.aeat.mod340.received,rec_amount_tax:0
+#: field:l10n.es.aeat.mod340.tax_line_issued,rec_tax_amount:0
+#: field:l10n.es.aeat.mod340.tax_line_received,rec_tax_amount:0
+msgid "Tax surcharge amount"
+msgstr "Recargo"
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.tax_line_issued,rec_tax_percentage:0
+#: field:l10n.es.aeat.mod340.tax_line_received,rec_tax_percentage:0
+msgid "Tax surcharge percentage"
+msgstr "Porcentaje de recargo"
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.tax_summary,tax_percent:0
+msgid "Tax percent"
+msgstr "Impuesto"
+
+#. module: l10n_es_aeat_mod340
+#: field:account.tax.code,surcharge_tax_id:0
+#: field:account.tax.code.template,surcharge_tax_id:0
+msgid "Surcharge tax of"
+msgstr "Codigo de impuesto con recargo"
+
+#. module: l10n_es_aeat_mod340
+#: view:l10n.es.aeat.mod340.tax_summary:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_tax_summary_tree
+msgid "Summary taxes"
+msgstr "Resumen de impuestos"
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.tax_summary,sum_tax_amount:0
+msgid "Summary tax amount"
+msgstr "Resumen de impuestos"
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.tax_summary,sum_base_amount:0
+msgid "Summary base amount"
+msgstr "Resumen de base"
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.report,summary_received:0
+msgid "Summary Invoices Received"
+msgstr "Resumen de facturas recibidas"
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.report,summary_issued:0
+msgid "Summary Invoices Issued"
+msgstr "Resumen de facturas emitidas"
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.intracomunitarias,payment_amount:0
+#: field:l10n.es.aeat.mod340.investment,payment_amount:0
+#: field:l10n.es.aeat.mod340.issued,payment_amount:0
+#: field:l10n.es.aeat.mod340.received,payment_amount:0
+msgid "Payment amount"
+msgstr "Pago"
+
+#. module: l10n_es_aeat_mod340
+#: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340_tax_summary
+msgid "Mod340 vat tax summary"
+msgstr "Mod340 resumen de impuestos"
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.intracomunitarias,name_payment_method:0
+#: field:l10n.es.aeat.mod340.investment,name_payment_method:0
+#: field:l10n.es.aeat.mod340.issued,name_payment_method:0
+#: field:l10n.es.aeat.mod340.received,name_payment_method:0
+msgid "Method Payment"
+msgstr "Metodo de pago"
+
+#. module: l10n_es_aeat_mod340
+#: field:account.tax,is_340_reserve_charge:0
+msgid "Include in mod340 as reserve charge"
+msgstr "Incluir en mod340 como operación de sujeto pasivo"
+
+#. module: l10n_es_aeat_mod340
+#: field:account.account,is_340_leasing_account:0
+msgid "Include in mod340 as leasing account"
+msgstr "Incluir en mod340 como operación de arrendamiento"
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.received,supplier_invoice_number:0
+msgid "Supplier invoice number"
+msgstr "Numero de factura"

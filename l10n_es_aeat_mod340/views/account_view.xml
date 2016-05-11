@@ -24,5 +24,27 @@
                 </field>
             </field>
         </record>
+        
+        <record id="view_account_tax_form_mod340" model="ir.ui.view">
+            <field name="name">account.tax.form.mod340</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+                <field name="active" position="after">
+                    <field name="is_340_reserve_charge"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_account_account_form_mod340" model="ir.ui.view">
+            <field name="name">account.account.form.mod340</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+                <field name="active" position="after">
+                    <field name="is_340_leasing_account"/>
+                </field>
+            </field>
+        </record>
     </data>
 </openerp>
