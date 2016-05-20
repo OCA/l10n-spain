@@ -221,8 +221,8 @@ class Mod349ExportToBoe(models.TransientModel):
         text = ''
         text += '2'  # Tipo de registro
         text += '349'  # Modelo de declaración
-        # Ejercicio
-        text += self._formatNumber(report.fiscalyear_id.code[:4], 4)
+        date_start = fields.Date.from_string(report.periods[:1].date_start)
+        text += self._formatNumber(date_start.year, 4)  # Ejercicio
         text += self._formatString(report.company_vat, 9)  # NIF del declarante
         text += 58 * ' '   # Blancos
         # NIF del operador intracomunitario
@@ -233,7 +233,9 @@ class Mod349ExportToBoe(models.TransientModel):
         text += self._formatString(refund_record.operation_key, 1)
         text += 13 * ' '  # Blancos
         # Ejercicio (de la rectificación)
-        text += self._formatNumber(refund_record.fiscalyear_id.code[:4], 4)
+        date_start = fields.Date.from_string(
+            refund_record.fiscalyear_id.date_start)
+        text += self._formatNumber(date_start.year, 4)
         # Periodo (de la rectificación)
         text += self._formatString(refund_record.period_type, 2)
         # Base imponible de la rectificación
