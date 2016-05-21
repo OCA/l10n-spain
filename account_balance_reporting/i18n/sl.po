@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-30 22:58+0000\n"
-"PO-Revision-Date: 2016-05-02 04:22+0000\n"
+"POT-Creation-Date: 2016-05-20 10:24+0000\n"
+"PO-Revision-Date: 2016-05-17 06:35+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgid ""
 "accounting concepts follow a parent-children hierarchy. Its values (current "
 "and previous) are calculated based on the 'value' formula of the linked "
 "template line."
-msgstr ""
+msgstr "Postavka poročila knjigovodske bilance / knjigovodski koncept. Posamična vrstice bilančnega poročila, ki predstavlja knjigovodski koncept s pripadajočimi vrednostmi. Knjigovodski koncepti upoštevajo hierarhijo nadrejeni-podrejeni. Vrednosti (tekoče in prejšnje) se računajo na osnovi formule 'vrednosti' povezane postavke predloge."
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
@@ -45,7 +45,7 @@ msgid ""
 "of detail of the balance report representing an accounting concept with the "
 "formulas to calculate its values. The accounting concepts follow a parent-"
 "children hierarchy."
-msgstr ""
+msgstr "Postavka poročila knjigovodske bilance / knjigovodski koncept. Posamična vrstice bilančnega poročila, ki predstavlja knjigovodski koncept s pripadajočimi vrednostmi. Knjigovodski koncepti upoštevajo hierarhijo nadrejeni-podrejeni."
 
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template
@@ -53,7 +53,7 @@ msgid ""
 "Account balance report template. It stores the header fields of an account "
 "balance report template, and the linked lines of detail with the formulas to"
 " calculate the accounting concepts of the report."
-msgstr ""
+msgstr "Predloga poročila knjigovodske bilance. Vsebuje polja glave predloge bilančnega poročila in povezane postavke podrobnosti s formulami za izračun knjigovodskih konceptov v poročilu."
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_tree
