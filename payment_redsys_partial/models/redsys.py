@@ -10,6 +10,7 @@ from openerp.tools.float_utils import float_compare
 
 _logger = logging.getLogger(__name__)
 
+
 class AcquirerRedsysPartial(models.Model):
     _inherit = 'payment.acquirer'
 
@@ -76,8 +77,8 @@ class TxRedsysPartial(models.Model):
                             self.env['sale.order'].sudo().browse(
                                 tx.sale_order_id.id).with_context(
                                 send_email=True).action_button_confirm()
-                        elif tx.state != 'cancel' and \
-                                        tx.sale_order_id.state == 'draft':
+                        elif (tx.state != 'cancel' and
+                                tx.sale_order_id.state == 'draft'):
                             _logger.info('<%s> transaction pending, sending '
                                          'quote email for order %s (ID %s)',
                                          acquirer_name, tx.sale_order_id.name,
