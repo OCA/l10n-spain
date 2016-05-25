@@ -647,10 +647,10 @@ class L10nEsReportIntrastatProduct(models.Model):
                 line.intrastat_code,  # Código mercancías CN8
                 line.product_country_origin_code,  # País origen
                 line.procedure_code,  # Régimen estadístico
-                line.weight,  # Peso
-                line.quantity,  # Unidades suplementarias
-                line.amount_company_currency,  # Importe facturado
-                line.amount_company_currency,  # Valor estadístico
+                str(line.weight).replace('.', ','),  # Peso
+                str(line.quantity).replace('.', ','),  # Unidades suplementarias
+                str(line.amount_company_currency).replace('.', ','),  # Importe facturado
+                str(line.amount_company_currency).replace('.', ','),  # Valor estadístico
             ))
 
         csv_string = self._format_csv(rows, ';')
