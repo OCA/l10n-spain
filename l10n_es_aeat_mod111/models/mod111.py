@@ -27,7 +27,15 @@ class L10nEsAeatMod111Report(models.Model):
     _inherit = 'l10n.es.aeat.report.tax.mapping'
     _name = 'l10n.es.aeat.mod111.report'
 
+    def _get_export_conf(self):
+        try:
+            return self.env.ref(
+                'l10n_es_aeat_mod111.aeat_mod111_main_export_config').id
+        except ValueError:
+            return self.env['aeat.model.export.config']
+
     number = fields.Char(default='111')
+    export_config = fields.Many2one(default=_get_export_conf)
     casilla_01 = fields.Integer(
         string='[01] Nº de perceptores', readonly=True,
         states={'calculated': [('readonly', False)]},
@@ -226,6 +234,9 @@ class L10nEsAeatMod111Report(models.Model):
         comodel_name='account.move.line',
         relation='mod111_account_move_line09_rel',
         column1='mod111', column2='account_move_line')
+    cuenta_iban = fields.Many2one(
+        comodel_name='res.partner.bank',
+        domain="[('state', '=', 'iban'), ('company_id', '=', company_id)]")
 
     @api.one
     @api.constrains('codigo_electronico_anterior', 'previous_number')

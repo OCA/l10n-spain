@@ -25,12 +25,13 @@
               "Antiun Ingeniería S.L.,"
               "MálagaTIC,"
               "G. Vermon,"
+              "RGB Consulting SL,"
               "Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-spain",
     'license': 'AGPL-3',
     'depends': ['l10n_es_aeat'],
     'data': [
-        'wizard/export_mod111_to_boe.xml',
+        'data/aeat_export_mod111_data.xml',
         'views/mod111_view.xml',
         'security/ir.model.access.csv'],
     'installable': True,
