@@ -11,20 +11,8 @@ from dateutil.relativedelta import relativedelta
 class AccountAssetCategory(models.Model):
     _inherit = 'account.asset.category'
 
-    ext_method_time = fields.Selection(
-        selection=[('number', 'Number of Depreciations'),
-                   ('end', 'Ending Date'),
-                   ('percentage', 'Fixed percentage')],
-        string='Time Method', required=True,
-        help="Choose the method to use to compute the dates and number of "
-             "depreciation lines.\n"
-             "  * Number of Depreciations: Fix the number of depreciation "
-             "lines and the time between 2 depreciations.\n"
-             "  * Ending Date: Choose the time between 2 depreciations "
-             "and the date the depreciations won't go beyond.\n"
-             "  * Fixed percentage: Choose the time between 2 "
-             "depreciations and the percentage to depreciate.",
-        default='percentage')
+    method_time = fields.Selection(
+        selection_add=[('percentage', 'Fixed percentage')])
     method_percentage = fields.Float(
         string='Depreciation percentage', digits=(3, 2), default=100.0)
 
@@ -33,13 +21,6 @@ class AccountAssetCategory(models.Model):
          ' CHECK (method_percentage > 0 and method_percentage <= 100)',
          'Wrong percentage!'),
     ]
-
-    @api.multi
-    @api.onchange('ext_method_time')
-    def onchange_ext_method_time(self):
-        for record in self:
-            record.method_time = (
-                'end' if record.ext_method_time == 'end' else 'number')
 
 
 class AccountAssetAsset(models.Model):
@@ -67,19 +48,8 @@ class AccountAssetAsset(models.Model):
     # Hay que definir un nuevo campo y jugar con los valores del antiguo
     # (method_time) para pasar el constraint _check_prorata y no tener que
     # modificar mucho código base
-    ext_method_time = fields.Selection(
-        selection=[('number', 'Number of Depreciations'),
-                   ('end', 'Ending Date'),
-                   ('percentage', 'Fixed percentage')],
-        string='Time Method', required=True, default='percentage',
-        help="Choose the method to use to compute the dates and number of "
-             "depreciation lines.\n"
-             "  * Number of Depreciations: Fix the number of depreciation "
-             "lines and the time between 2 depreciations.\n"
-             "  * Ending Date: Choose the time between 2 depreciations "
-             "and the date the depreciations won't go beyond.\n"
-             "  * Fixed percentage: Choose the time between 2 "
-             "depreciations and the percentage to depreciate.")
+    method_time = fields.Selection(
+        selection_add=[('percentage', 'Fixed percentage')])
     method_percentage = fields.Float(
         string='Depreciation percentage', digits=(3, 2), default=100.0)
     annual_percentage = fields.Float(
@@ -88,6 +58,18 @@ class AccountAssetAsset(models.Model):
         string='Start Depreciation Date', readonly=True,
         states={'draft': [('readonly', False)]},
         help="Only needed if not the same than purchase date")
+
+    def _check_prorata(self, cr, uid, ids, context=None):
+        for asset in self.browse(cr, uid, ids, context=context):
+            if asset.prorata and asset.method_time not in ('number',
+                                                           'percentage'):
+                return False
+        return True
+
+    _constraints = [
+        (_check_prorata, 'Prorata temporis can be applied only for time method'
+         ' "number of depreciations".', ['prorata']),
+    ]
 
     _sql_constraints = [
         ('method_percentage',
@@ -101,16 +83,8 @@ class AccountAssetAsset(models.Model):
         if category_id:
             category_obj = self.env['account.asset.category']
             category = category_obj.browse(category_id)
-            res['value']['ext_method_time'] = category.ext_method_time
             res['value']['method_percentage'] = category.method_percentage
         return res
-
-    @api.multi
-    @api.onchange('ext_method_time')
-    def onchange_ext_method_time(self):
-        for asset in self:
-            asset.ext_method_time = (
-                'end' if asset.ext_method_time == 'end' else 'number')
 
     @api.multi
     @api.onchange('method_percentage')
@@ -129,7 +103,7 @@ class AccountAssetAsset(models.Model):
     @api.model
     def _compute_board_undone_dotation_nb(self, asset, depreciation_date,
                                           total_days):
-        if asset.ext_method_time == 'percentage':
+        if asset.method_time == 'percentage':
             number = 0
             percentage = 100.0
             while percentage > 0:
@@ -151,7 +125,7 @@ class AccountAssetAsset(models.Model):
                               undone_dotation_number,
                               posted_depreciation_line_ids, total_days,
                               depreciation_date):
-        if asset.ext_method_time == 'percentage':
+        if asset.method_time == 'percentage':
             # Nuevo tipo de cálculo
             if i == undone_dotation_number:
                 return residual_amount
