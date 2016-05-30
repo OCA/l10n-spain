@@ -6,18 +6,14 @@
         <field name="model">account.asset.category</field>
         <field name="inherit_id" ref="account_asset.view_account_asset_category_form"/>
         <field name="arch" type="xml">
-            <field name="method_time" position="attributes">
-                <attribute name="attrs">{'invisible': True}</attribute>
-            </field>
             <field name="method_time" position="after">
-                <field name="ext_method_time"/>
-                <field name="method_percentage" attrs="{'invisible':[('ext_method_time','!=','percentage')], 'required':[('ext_method_time','=','percentage')]}"/>
+                <field name="method_percentage" attrs="{'invisible':[('method_time','!=','percentage')], 'required':[('method_time','=','percentage')]}"/>
             </field>
             <field name="method_number" position="attributes">
-                <attribute name="attrs">{'invisible':[('ext_method_time','!=','number')], 'required':[('ext_method_time','=','number')]}</attribute>
+                <attribute name="attrs">{'invisible':[('method_time','!=','number')], 'required':[('method_time','=','number')]}</attribute>
             </field>
             <field name="method_end" position="attributes">
-                <attribute name="attrs">{'invisible':[('ext_method_time','!=','end')], 'required':[('ext_method_time','=','end')]}</attribute>
+                <attribute name="attrs">{'invisible':[('method_time','!=','end')], 'required':[('method_time','=','end')]}</attribute>
             </field>
         </field>
     </record>
@@ -27,28 +23,19 @@
         <field name="model">account.asset.asset</field>
         <field name="inherit_id" ref="account_asset.view_account_asset_asset_form"/>
         <field name="arch" type="xml">
-            <label for="method_time" position="replace">
-                <label for="ext_method_time"/>
-            </label>
-            <field name="method_time" position="attributes">
-                <attribute name="attrs">{'invisible': True}</attribute>
-            </field>
-            <field name="method_time" position="after">
-                <field name="ext_method_time" />
-            </field>
             <field name="method_number" position="after">
                 <field name="method_percentage"
-                       attrs="{'invisible':[('ext_method_time','!=','percentage')], 'required':[('ext_method_time','=','percentage')]}"
+                       attrs="{'invisible':[('method_time','!=','percentage')], 'required':[('method_time','=','percentage')]}"
                 />
                 <field name="annual_percentage"
-                       attrs="{'invisible':[('ext_method_time','!=','percentage')], 'required':[('ext_method_time','=','percentage')]}"
+                       attrs="{'invisible':[('method_time','!=','percentage')], 'required':[('method_time','=','percentage')]}"
                 />
             </field>
             <field name="method_number" position="attributes">
-                <attribute name="attrs">{'invisible':[('ext_method_time','!=','number')], 'required':[('ext_method_time','=','number')]}</attribute>
+                <attribute name="attrs">{'invisible':[('method_time','!=','number')], 'required':[('method_time','=','number')]}</attribute>
             </field>
             <field name="method_end" position="attributes">
-                <attribute name="attrs">{'invisible':[('ext_method_time','!=','end')], 'required':[('ext_method_time','=','end')]}</attribute>
+                <attribute name="attrs">{'invisible':[('method_time','!=','end')], 'required':[('method_time','=','end')]}</attribute>
             </field>
             <field name="prorata" position="after">
                 <field name="move_end_period"/>
