@@ -20,13 +20,13 @@ class TestL10nEsAccountAsset(common.TransactionCase):
             'purchase_date': fields.Date.from_string('2015-01-01'),
             'method': 'linear',
             'purchase_value': 30000,
-            'ext_method_time': 'number',
+            'method_time': 'number',
             'move_end_period': True,
             'method_number': 10,
             'method_period': 1
             }
         self.asset_linear = self.asset_model.create(asset_vals)
-        asset_vals['ext_method_time'] = 'percentage'
+        asset_vals['method_time'] = 'percentage'
         asset_vals['method_percentage'] = 20
         self.asset_percentage = self.asset_model.create(asset_vals)
 
