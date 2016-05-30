@@ -25,7 +25,6 @@
               "Antiun Ingeniería S.L.,"
               "MálagaTIC,"
               "G. Vermon,"
-              "RGB Consulting SL,"
               "Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-spain",
     'license': 'AGPL-3',
