@@ -6,13 +6,13 @@
 from openerp import models, fields, api, exceptions, _
 from datetime import datetime
 
-account_concept_mapping = {
+account_mapping = {
     '01': '4300%00',
     '02': '4100%00',
     '03': '4100%00',
-    '04': '4300%00',
+    '04': '430%00',
     '05': '6800%00',
-    '06': '4010%00',
+    '06': '6260%00',
     '07': '5700%00',
     '08': '6800%00',
     '09': '2510%00',
@@ -77,10 +77,8 @@ class AccountBankStatementImport(models.TransientModel):
     def _process_record_23(self, st_line, line):
         """23 - Registros complementarios de concepto (opcionales y hasta un
         máximo de 5)"""
-        if not st_line.get('conceptos'):
-            st_line['conceptos'] = {}
-        st_line['conceptos'][line[2:4]] = (line[4:39].strip(),
-                                           line[39:].strip())
+        conceptos = st_line.setdefault('conceptos', {})
+        conceptos[line[2:4]] = (line[4:39].strip(), line[39:].strip())
         return st_line
 
     def _process_record_24(self, st_line, line):
@@ -112,31 +110,29 @@ class AccountBankStatementImport(models.TransientModel):
             else:
                 credit_count += 1
                 credit += st_line['importe']
-        if st_group['num_debe'] != debit_count:
-            raise exceptions.Warning(
+        if st_group['num_debe'] != debit_count:  # pragma: no cover
+            raise exceptions.UserError(
                 _("Number of debit records doesn't match with the defined in "
                   "the last record of account."))
-        if st_group['num_haber'] != credit_count:
-            raise exceptions.Warning(
-                _('Error in C43 file'),
+        if st_group['num_haber'] != credit_count:  # pragma: no cover
+            raise exceptions.UserError(
                 _("Number of credit records doesn't match with the defined "
                   "in the last record of account."))
-        if abs(st_group['debe'] - debit) > 0.005:
-            raise exceptions.Warning(
-                _('Error in C43 file'),
+        if abs(st_group['debe'] - debit) > 0.005:  # pragma: no cover
+            raise exceptions.UserError(
                 _("Debit amount doesn't match with the defined in the last "
                   "record of account."))
-        if abs(st_group['haber'] - credit) > 0.005:
-            raise exceptions.Warning(
+        if abs(st_group['haber'] - credit) > 0.005:  # pragma: no cover
+            raise exceptions.UserError(
                 _("Credit amount doesn't match with the defined in the last "
                   "record of account."))
         # Note: Only perform this check if the balance is defined on the file
         # record, as some banks may leave it empty (zero) on some circumstances
         # (like CaixaNova extracts for VISA credit cards).
-        if st_group['saldo_fin'] and st_group['saldo_ini']:
+        if st_group['saldo_fin'] and st_group['saldo_ini']:  # pragma: no cover
             balance = st_group['saldo_ini'] + credit - debit
             if abs(st_group['saldo_fin'] - balance) > 0.005:
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _("Final balance amount = (initial balance + credit "
                       "- debit) doesn't match with the defined in the last "
                       "record of account."))
@@ -149,8 +145,9 @@ class AccountBankStatementImport(models.TransientModel):
         # Some banks (like Liderbank) are informing this record number
         # including the record 88, so checking this with the absolute
         # difference allows to bypass the error
-        if abs(st_data['num_registros'] - st_data['_num_records']) > 1:
-            raise exceptions.Warning(
+        if (abs(st_data['num_registros'] -
+                st_data['_num_records']) > 1):  # pragma: no cover
+            raise exceptions.UserError(
                 _("Number of records doesn't match with the defined in the "
                   "last record."))
         return st_data
@@ -179,11 +176,11 @@ class AccountBankStatementImport(models.TransientModel):
                 self._process_record_33(st_group, raw_line)
             elif code == '88':
                 self._process_record_88(st_data, raw_line)
-            elif ord(raw_line[0]) == 26:
+            elif ord(raw_line[0]) == 26:  # pragma: no cover
                 # CTRL-Z (^Z), is often used as an end-of-file marker in DOS
                 continue
-            else:
-                raise exceptions.ValidationError(
+            else:  # pragma: no cover
+                raise exceptions.UserError(
                     _('Record type %s is not valid.') % raw_line[0:2])
             # Update the record counter
             st_data['_num_records'] += 1
@@ -282,13 +279,14 @@ class AccountBankStatementImport(models.TransientModel):
             partner = self._get_partner_from_sabadell(line['conceptos'])
         return partner
 
-    def _get_account(self, line):
-        accounts = []
-        if line['concepto_c']:
-            accounts = self.env['account.account'].search(
-                [('code', 'like',
-                  account_concept_mapping[line['concepto_c']])])
-        return accounts and accounts[0].id or False
+    def _get_account(self, line, journal):  # pragma: no cover
+        account_obj = self.env['account.account']
+        if line['concepto_c'] and account_mapping.get(line['concepto_c']):
+            return account_obj.search([
+                ('code', 'like', account_mapping[line['concepto_c']]),
+                ('company_id', '=', journal.company_id.id)
+            ], limit=1)
+        return account_obj.browse()
 
     @api.model
     def _parse_file(self, data_file):
@@ -301,9 +299,9 @@ class AccountBankStatementImport(models.TransientModel):
             for line in group['lines']:
                 conceptos = []
                 for concept_line in line['conceptos']:
-                    conceptos.extend(x.strip()
-                                     for x in line['conceptos'][concept_line]
-                                     if x.strip())
+                    conceptos.extend(
+                        x.strip() for x in line['conceptos'][concept_line]
+                        if x.strip())
                 vals_line = {
                     'date': fields.Date.to_string(line['fecha_valor']),
                     'name': ' '.join(conceptos),
@@ -322,22 +320,21 @@ class AccountBankStatementImport(models.TransientModel):
             'balance_start': n43 and n43[0]['saldo_ini'] or 0.0,
             'balance_end_real': n43 and n43[-1]['saldo_fin'] or 0.0,
         }
-        str_currency = self.journal_id.currency and  \
-            self.journal_id.currency.name or \
-            self.journal_id.company_id.currency_id.name
-        return str_currency, False, [vals_bank_statement]
+        return None, None, [vals_bank_statement]
 
-    @api.model
-    def _get_hide_journal_field(self):
-        # Show the journal_id field if not coming from a context where is set
-        return bool(self.env.context.get('journal_id'))
-
-    def _complete_statement(self, stmt_vals, journal_id, account_number):
+    def _complete_stmts_vals(self, stmts_vals, journal, account_number):
         """Match partner_id if if hasn't been deducted yet."""
-        res = super(AccountBankStatementImport, self)._complete_statement(
-            stmt_vals, journal_id, account_number)
-        for line_vals in res['transactions']:
-            if not line_vals['partner_id'] and line_vals.get('note'):
-                line_vals['partner_id'] = self._get_partner(
-                    line_vals['note']).id
+        res = super(AccountBankStatementImport, self)._complete_stmts_vals(
+            stmts_vals, journal, account_number)
+        for st_vals in res:
+            for line_vals in st_vals['transactions']:
+                if not line_vals.get('partner_id') and line_vals.get('note'):
+                    line_vals['partner_id'] = self._get_partner(
+                        line_vals['note'],
+                    ).id
+                # This can't be used, as Odoo doesn't present the lines
+                # that already have a counterpart account as final
+                # verification, making this very counterintuitive to the user
+                # line_vals['account_id'] = self._get_account(
+                #     line_vals['raw_data'], journal).id
         return res
