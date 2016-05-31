@@ -1,7 +1,8 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# -*- coding: utf-8 -*-
+# © 2013-2015 Serv. Tecnol. Avanzados - Pedro M. Baeza
+# © 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from openerp import models, fields, api, exceptions, _
 from datetime import datetime
 
@@ -214,73 +215,72 @@ class AccountBankStatementImport(models.TransientModel):
 
     def _get_partner_from_caixabank(self, conceptos):
         partner_obj = self.env['res.partner']
-        partners = []
+        partner = partner_obj.browse()
         # Try to match from VAT included in concept complementary record #02
         if conceptos.get('02'):
             vat = conceptos['02'][0][:2] + conceptos['02'][0][7:]
             if vat:
-                partners = partner_obj.search([('vat', '=', vat)])
-        if not partners:
+                partner = partner_obj.search([('vat', '=', vat)], limit=1)
+        if not partner:
             # Try to match from partner name
             if conceptos.get('01'):
                 name = conceptos['01'][0][4:] + conceptos['01'][1]
                 if name:
-                    partners = partner_obj.search([('name', 'ilike', name)])
-        return partners and partners[0].id or False
+                    partner = partner_obj.search(
+                        [('name', 'ilike', name)], limit=1)
+        return partner
 
     def _get_partner_from_santander(self, conceptos):
         partner_obj = self.env['res.partner']
-        partners = []
+        partner = partner_obj.browse()
         # Try to match from VAT included in concept complementary record #01
         if conceptos.get('01'):
             if conceptos['01'][1]:
                 vat = conceptos['01'][1]
                 if vat:
-                    partners = partner_obj.search([('vat', 'ilike', vat)])
-        if not partners:
+                    partner = partner_obj.search(
+                        [('vat', 'ilike', vat)], limit=1)
+        if not partner:
             # Try to match from partner name
             if conceptos.get('01'):
                 name = conceptos['01'][0]
                 if name:
-                    partners = partner_obj.search([('name', 'ilike', name)])
-        return partners and partners[0].id or False
+                    partner = partner_obj.search(
+                        [('name', 'ilike', name)], limit=1)
+        return partner
 
     def _get_partner_from_bankia(self, conceptos):
         partner_obj = self.env['res.partner']
-        partners = []
+        partner = partner_obj.browse()
         # Try to match from partner name
         if conceptos.get('01'):
             vat = conceptos['01'][0][:2] + conceptos['01'][0][7:]
             if vat:
-                partners = partner_obj.search([('vat', '=', vat)])
-
-        return partners and partners[0].id or False
+                partner = partner_obj.search([('vat', '=', vat)], limit=1)
+        return partner
 
     def _get_partner_from_sabadell(self, conceptos):
         partner_obj = self.env['res.partner']
-        partners = []
+        partner = partner_obj.browse()
         # Try to match from partner name
         if conceptos.get('01'):
             name = conceptos['01'][1]
             if name:
-                partners = partner_obj.search([('name', 'ilike', name)])
-
-        return partners and partners[0].id or False
+                partner = partner_obj.search(
+                    [('name', 'ilike', name)], limit=1)
+        return partner
 
     def _get_partner(self, line):
         if not line.get('conceptos'):
-            return False
-        partner_id = self._get_partner_from_caixabank(line['conceptos'])
-        if partner_id:
-            return partner_id
-        partner_id = self._get_partner_from_santander(line['conceptos'])
-        if partner_id:
-            return partner_id
-        partner_id = self._get_partner_from_bankia(line['conceptos'])
-        if partner_id:
-            return partner_id
-        partner_id = self._get_partner_from_sabadell(line['conceptos'])
-        return partner_id
+            return self.env['res.partner']
+        partner = self._get_partner_from_caixabank(line['conceptos'])
+        if not partner:
+            partner = self._get_partner_from_santander(line['conceptos'])
+        if not partner:
+            partner = self._get_partner_from_bankia(line['conceptos'])
+        if not partner:
+            partner = self._get_partner_from_sabadell(line['conceptos'])
+        return partner
 
     def _get_account(self, line):
         accounts = []
@@ -309,8 +309,11 @@ class AccountBankStatementImport(models.TransientModel):
                     'name': ' '.join(conceptos),
                     'ref': self._get_ref(line),
                     'amount': line['importe'],
-                    'partner_id': self._get_partner(line),
+                    'note': line,
                 }
+                c = line['conceptos']
+                if c.get('01'):
+                    vals_line['partner_name'] = c['01'][0] + c['01'][1]
                 if not vals_line['name']:
                     vals_line['name'] = vals_line['ref']
                 transactions.append(vals_line)
@@ -328,3 +331,13 @@ class AccountBankStatementImport(models.TransientModel):
     def _get_hide_journal_field(self):
         # Show the journal_id field if not coming from a context where is set
         return bool(self.env.context.get('journal_id'))
+
+    def _complete_statement(self, stmt_vals, journal_id, account_number):
+        """Match partner_id if if hasn't been deducted yet."""
+        res = super(AccountBankStatementImport, self)._complete_statement(
+            stmt_vals, journal_id, account_number)
+        for line_vals in res['transactions']:
+            if not line_vals['partner_id']:
+                line_vals['partner_id'] = self._get_partner(
+                    line_vals['note']).id
+        return res
