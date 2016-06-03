@@ -28,7 +28,7 @@
 ##############################################################################
 {
     'name': "AEAT Base",
-    'version': "8.0.1.6.0",
+    'version': "8.0.1.7.0",
     'author': "Pexego,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "AvanzOSC,"
@@ -38,6 +38,7 @@
         'Ignacio Ibeas (Acysos S.L.)',
         'Ainara Galdona',
         'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
+        'Santi Argüeso <santi@comunitea.com>'
     ],
     'website': "https://github.com/OCA/l10n-spain",
     'category': "Accounting & Finance",
