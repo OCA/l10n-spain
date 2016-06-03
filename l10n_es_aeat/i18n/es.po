@@ -903,7 +903,14 @@ msgstr "Valor para el no"
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,bool_yes:0
 msgid "Value for yes"
-msgstr "Value para el sí"
+msgstr "Valor para el sí"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_report.py:163
+#: code:addons/l10n_es_aeat/models/aeat_report.py:204
+#, python-format
+msgid "Warning"
+msgstr "Aviso"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:71
