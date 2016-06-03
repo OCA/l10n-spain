@@ -160,7 +160,7 @@ class L10nEsAeatReport(models.AbstractModel):
                 # Anual
                 if fy_date_start.year != fy_date_stop.year:
                     return {
-                        'warning': {'title': 'Warning', 'message': _(
+                        'warning': {'title': _('Warning'), 'message': _(
                             'Split fiscal years cannot be automatically '
                             'handled. You should select manually the periods.')
                         }
@@ -201,7 +201,7 @@ class L10nEsAeatReport(models.AbstractModel):
                 period_date_stop = fields.Date.from_string(period.date_stop)
                 if period_date_start.month != period_date_stop.month:
                     return {
-                        'warning': {'title': 'Warning', 'message': _(
+                        'warning': {'title': _('Warning'), 'message': _(
                             'It seems that you have defined quarterly periods '
                             'or periods in the middle of the month. This '
                             'cannot be automatically handled. You should '
