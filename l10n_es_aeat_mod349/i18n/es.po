@@ -751,3 +751,13 @@ msgstr "get"
 #: selection:l10n.es.aeat.mod349.export_to_boe,state:0
 msgid "open"
 msgstr "open"
+
+#. module: l10n_es_aeat_mod349
+#: help:l10n.es.aeat.mod349.report,calculate_date:0
+msgid "Warning!: With this checkbox selected ,the declaration will be computed selecting invoices based in periods and dates in selected Period Type no only by period"
+msgstr "¡Aviso!: Seleccionando esta casilla la declaración se calculará  seleccionando  facturas basado en los períodos o fechas seleccionadas desde el tipo de período, no solo desde el período"
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,calculate_date:0
+msgid "Calculate by days"
+msgstr "Calcular por tipo de período"
