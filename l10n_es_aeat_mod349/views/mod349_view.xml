@@ -188,6 +188,12 @@
                 <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
                     <attribute name="name">%(action_wizard_aeat_mod349_export)d</attribute>
                 </button>
+                <field name="period_type" position="replace">
+                    <group colspan="2" col="4">
+                        <field name="period_type"/>
+                        <field name="calculate_date"/>
+                    </group>
+                </field>
                 <group string="Declaración" position="after">
                     <notebook colspan="4">
                         <page string="General">
