@@ -246,10 +246,10 @@ class Mod349(models.Model):
     number = fields.Char(default='349')
     calculate_date = fields.Boolean(
         string='Calculate by days',
-        states={'confirmed': [('readonly',True)]},
-        help="Warning!: With this checkbox selected ,the declaration will "
+        states={'confirmed': [('readonly', True)]},
+        help="Warning!: With this checkbox selected, the declaration will "
              "be computed selecting invoices based in periods and dates in "
-             "selected Period Type no only by period"
+             "selected Period Type not only by period"
     )
 
     def __init__(self, pool, cr):
