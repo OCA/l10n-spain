@@ -9,6 +9,8 @@ import re
 from openerp import models, fields, api, exceptions, _
 from openerp.addons.l10n_es_aeat_mod349.models.account_invoice \
     import OPERATION_KEYS
+from datetime import datetime
+from calendar import monthrange
 
 
 def _format_partner_vat(partner_vat=None, country=None):
@@ -117,6 +119,34 @@ class Mod349(models.Model):
                      'amount_untaxed': refund.cc_amount_untaxed})
         return True
 
+    def _get_domain(self):
+        self.ensure_one()
+        domain = [('state', 'in', ['open', 'paid']),
+                  ('period_id', 'in', self.periods.ids),
+                  ('operation_key', '!=', False)]
+
+        if self.calculate_date:
+            year = fields.Date.from_string(self.fiscalyear_id.date_start)\
+                .year
+            if self.period_type == '0A':
+                date_start = "%s-01-01" % (year)
+                date_end = "%s-12-31" % (year)
+            elif self.period_type in ('1T', '2T', '3T', '4T'):
+                start_month = (int(self.period_type[:1]) - 1) * 3 + 1
+                date_start = "%s-%s-01" % (year, start_month)
+                date_end = "%s-%s-%s" % (year, start_month+2,
+                                         monthrange(year, start_month + 2)[1])
+            elif self.period_type in ('01', '02', '03', '04', '05', '06',
+                                      '07', '08', '09', '10', '11', '12'):
+                date_start = "%s-%s-01" % (year, self.period_type)
+                date_end = "%s-%s-%s" % (year, self.period_type,
+                                        monthrange(year,
+                                                   int(self.period_type)
+                                                   )[1])
+            domain += [('date_invoice', '>=', date_start), \
+                       ('date_invoice', '<=', date_end)]
+        return domain
+
     @api.multi
     def calculate(self):
         """Computes the records in report."""
@@ -126,9 +156,7 @@ class Mod349(models.Model):
             mod349.partner_record_ids.unlink()
             mod349.partner_refund_ids.unlink()
             # Get corresponding invoices
-            domain = [('state', 'in', ['open', 'paid']),
-                      ('period_id', 'in', mod349.periods.ids),
-                      ('operation_key', '!=', False)]
+            domain = mod349._get_domain()
             groups = invoice_obj.read_group(
                 domain, ['commercial_partner_id'], ['commercial_partner_id'])
             for group in groups:
@@ -216,6 +244,13 @@ class Mod349(models.Model):
         inverse_name='report_id', string='Partner refund IDS',
         ondelete='cascade', states={'confirmed': [('readonly', True)]})
     number = fields.Char(default='349')
+    calculate_date = fields.Boolean(
+        string='Calculate by days',
+        states={'confirmed': [('readonly',True)]},
+        help="Warning!: With this checkbox selected ,the declaration will "
+             "be computed selecting invoices based in periods and dates in "
+             "selected Period Type no only by period"
+    )
 
     def __init__(self, pool, cr):
         self._aeat_number = '349'
