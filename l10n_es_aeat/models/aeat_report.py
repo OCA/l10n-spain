@@ -201,7 +201,11 @@ class L10nEsAeatReport(models.AbstractModel):
                 period_date_stop = fields.Date.from_string(period.date_stop)
                 if period_date_start.month != period_date_stop.month:
                     return {
+<<<<<<< HEAD
                         'warning': {'title': _('Warning'), 'message': _(
+=======
+                        'warning': {'title': 'Warning', 'message': _(
+>>>>>>> daa2cb4... [FIX].l10n_es_aeat. Correccion de Warning en onchange de period_type
                             'It seems that you have defined quarterly periods '
                             'or periods in the middle of the month. This '
                             'cannot be automatically handled. You should '
