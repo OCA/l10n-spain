@@ -178,7 +178,9 @@ class AccountBalanceReportingLine(models.Model):
     current_move_line_count = fields.Integer(
         compute="_current_move_line_count")
     previous_move_line_ids = fields.Many2many(
-        comodel_name="account.move.line", string="Journal items (previous)")
+        comodel_name="account.move.line", string="Journal items (previous)",
+        relation="account_balance_reporting_line_previous_move_line_rel",
+        column1="line_id", column2="report_id")
     previous_move_line_count = fields.Integer(
         compute="_previous_move_line_count")
 
@@ -196,11 +198,13 @@ class AccountBalanceReportingLine(models.Model):
             line.display_name = '..' * (level - 1) + line.name
 
     @api.multi
+    @api.depends('current_move_line_ids')
     def _current_move_line_count(self):
         for line in self:
             line.current_move_line_count = len(line.current_move_line_ids)
 
     @api.multi
+    @api.depends('previous_move_line_ids')
     def _previous_move_line_count(self):
         for line in self:
             line.previous_move_line_count = len(line.previous_move_line_ids)
@@ -481,6 +485,7 @@ class AccountBalanceReportingLine(models.Model):
                     'previous_move_line_ids': [
                         (6, 0, previous_move_lines.ids)],
                 })
+                # HACK: For assuring the values got updated on call loop
                 line.refresh()
         return True
 
