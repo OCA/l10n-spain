@@ -248,7 +248,8 @@ class AccountBalanceReportingLine(models.Model):
             for account in accounts:
                 child_accounts = account_obj.search(
                     [('id', 'child_of', account.id),
-                     ('level', '<=', self.report_id.level)],
+                     ('level', '<=', self.report_id.level),
+                     ('not_level_expand', '=', False)],
                     order="code asc")
                 for child_account in child_accounts:
                     value = 0.0
