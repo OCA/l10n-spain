@@ -255,7 +255,7 @@ class AccountBalanceReportingLine(models.Model):
                     value = 0.0
                     domain_account = list(domain)
                     domain_account.append(
-                        ('account_id', 'in', child_account.ids))
+                        ('account_id', 'child_of', child_account.ids))
                     group = move_line_obj.read_group(
                         domain_account, ['debit', 'credit'], [])[0]
                     if mode == 'debit':
