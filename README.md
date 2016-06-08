@@ -25,7 +25,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[account_balance_reporting](account_balance_reporting/) | 8.0.1.0.0 | Account balance reporting engine
+[account_balance_reporting](account_balance_reporting/) | 8.0.1.1.0 | Account balance reporting engine
 [account_balance_reporting_xls](account_balance_reporting_xls/) | 8.0.1.0.0 | Account balance reporting to XLS
 [account_refund_original](account_refund_original/) | 8.0.1.0.0 | Relationship refund - origin invoice
 [l10n_es](l10n_es/) | 8.0.5.3.0 | Spanish Charts of Accounts (PGCE 2008)
