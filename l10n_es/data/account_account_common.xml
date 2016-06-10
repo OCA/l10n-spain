@@ -4324,6 +4324,22 @@
             <field name="name">Hacienda Pública, acreedora por subvenciones a reintegrar</field>
             <field name="user_type" ref="account.conf_account_type_tax"/>
         </record>
+        <record id="pgc_4759" model="account.account.template">
+            <field name="code">4759</field>
+            <field name="reconcile" eval="False"/>
+            <field name="parent_id" ref="pgc_475"/>
+            <field name="type">view</field>
+            <field name="name">Hacienda Pública, acreedor por otros conceptos</field>
+            <field name="user_type" ref="account.conf_account_type_tax"/>
+        </record>
+        <record id="pgc_4759_child" model="account.account.template">
+            <field name="code">4759</field>
+            <field name="reconcile" eval="False"/>
+            <field name="parent_id" ref="pgc_4759"/>
+            <field name="type">payable</field>
+            <field name="name">Hacienda Pública, acreedor por otros conceptos</field>
+            <field name="user_type" ref="account.conf_account_type_tax"/>
+        </record>
         <record id="pgc_476" model="account.account.template">
             <field name="code">476</field>
             <field name="reconcile" eval="False"/>
