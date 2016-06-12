@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-05 10:32+0000\n"
-"PO-Revision-Date: 2016-03-04 16:51+0000\n"
+"POT-Creation-Date: 2016-06-08 00:56+0000\n"
+"PO-Revision-Date: 2016-06-07 18:16+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -32,6 +32,11 @@ msgstr "Apuntes contables"
 #: field:l10n.es.aeat.mod115.report,move_id:0
 msgid "Account entry"
 msgstr "Entrada cuenta"
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,allow_posting:0
+msgid "Allow posting"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,calculation_date:0
@@ -72,6 +77,13 @@ msgid ""
 "de la anterior o anteriores declaraciones del mismo concepto, ejercicio y "
 "período"
 msgstr "Casilla [04] Liquidación - Retenciones e ingresos a cuenta - A deducir (exclusivamente en caso de declaración complementaria) Resultado a ingresar de la anterior o anteriores declaraciones del mismo concepto, ejercicio y período"
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,casilla_05:0
+msgid ""
+"Casilla [04] Liquidación - Retenciones e ingresos a cuenta - Resultado a "
+"ingresar: ([03] - [04])"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,company_id:0
@@ -129,6 +141,12 @@ msgstr "Declaración AEAT 115"
 #: field:l10n.es.aeat.mod115.report,number:0
 msgid "Declaration number"
 msgstr "Nº declaración"
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.export_to_boe,display_name:0
+#: field:l10n.es.aeat.mod115.report,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
 
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,tipo_declaracion:0
@@ -212,6 +230,12 @@ msgid "L.R. VAT number"
 msgstr "NIF representante legal"
 
 #. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.mod115.report,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod115.report,write_uid:0
 msgid "Last Updated by"
@@ -227,6 +251,11 @@ msgstr "Última actualización en"
 #: help:l10n.es.aeat.mod115.report,representative_vat:0
 msgid "Legal Representative VAT number."
 msgstr "NIF representante legal"
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,model:0
+msgid "Model"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.ui.menu,name:l10n_es_aeat_mod115.menu_aeat_mod115_report
@@ -390,6 +419,11 @@ msgstr "[03] Retenciones"
 #: field:l10n.es.aeat.mod115.report,casilla_04:0
 msgid "[04] Resultados a ingresar anteriores"
 msgstr "[04] Resultados a ingresar anteriores"
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,casilla_05:0
+msgid "[05] Resultado a ingresar"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.export_to_boe,state:0

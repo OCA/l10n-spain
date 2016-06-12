@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-14 05:15+0000\n"
-"PO-Revision-Date: 2015-11-25 18:37+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"POT-Creation-Date: 2016-06-08 00:56+0000\n"
+"PO-Revision-Date: 2016-06-07 18:16+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,6 +53,11 @@ msgstr "Creado por"
 #: field:l10n.es.partner.import.wizard,create_date:0
 msgid "Created on"
 msgstr "Creado el"
+
+#. module: l10n_es_partner
+#: field:l10n.es.partner.import.wizard,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
 
 #. module: l10n_es_partner
 #: code:addons/l10n_es_partner/models/l10n_es_partner.py:134
@@ -112,6 +117,11 @@ msgstr "Internet (del Banco de España). Puede que esta fuente no esté disponib
 #, python-format
 msgid "Invalid bank account."
 msgstr "Cuenta bancaria no válida."
+
+#. module: l10n_es_partner
+#: field:l10n.es.partner.import.wizard,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
 
 #. module: l10n_es_partner
 #: field:l10n.es.partner.import.wizard,write_uid:0
