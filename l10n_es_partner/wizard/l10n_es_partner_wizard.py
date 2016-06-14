@@ -26,15 +26,16 @@ class L10nEsPartnerImportWizard(models.TransientModel):
 
     @api.multi
     def execute(self):
-        import urllib2
+        import requests
         src_file = tempfile.NamedTemporaryFile(delete=False)
         dest_file = tempfile.NamedTemporaryFile('w', delete=False)
         try:
-            xlsfile = urllib2.urlopen(
+            response = requests.get(
                 'http://www.bde.es/f/webbde/IFI/servicio/regis/ficheros/es/'
                 'REGBANESP_CONESTAB_A.XLS')
-            # Read XLS
-            src_file.write(xlsfile.read())
+            if not response.ok:
+                raise Exception()
+            src_file.write(response.content)
             src_file.close()
             # Generate XML and reopen it
             gen_bank_data_xml(src_file.name, dest_file.name)

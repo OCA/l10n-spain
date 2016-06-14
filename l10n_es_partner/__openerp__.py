@@ -2,16 +2,24 @@
 # © 2009 Jordi Esteve <jesteve@zikzakmedia.com>
 # © 2013 Ignacio Ibeas <ignacio@acysos.com>
 # © 2015 Sergio Teruel <sergio@incaser.es>
-# © 2013-2016 Pedro M. Baeza
+# © 2013-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 {
     "name": "Adaptación de los clientes, proveedores y bancos para España",
-    "version": "8.0.1.5.0",
-    "author": "Spanish localization team,Odoo Community Association (OCA)",
+    "version": "8.0.1.5.1",
+    "author": "ZikZak,"
+              "Acysos,"
+              "Tecnativa,"
+              "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Localisation/Europe",
     "license": "AGPL-3",
+    "external_dependencies": {
+        'python': [
+            'requests',
+        ],
+    },
     "depends": [
         "base",
         "base_iban",
