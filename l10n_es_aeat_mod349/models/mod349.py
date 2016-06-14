@@ -141,7 +141,7 @@ class Mod349(models.Model):
                 date_end = "%s-%s-%s" % (year, self.period_type,
                                          monthrange(year,
                                                     int(self.period_type))[1])
-            domain += [('date_invoice', '>=', date_start), 
+            domain += [('date_invoice', '>=', date_start),
                        ('date_invoice', '<=', date_end)]
         return domain
 
