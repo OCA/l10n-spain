@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-18 01:42+0000\n"
-"PO-Revision-Date: 2016-03-02 09:27+0000\n"
+"POT-Creation-Date: 2016-07-01 00:54+0000\n"
+"PO-Revision-Date: 2016-06-14 11:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:200
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:203
 #, python-format
 msgid "%s_report_%s.txt"
 msgstr "%s_report_%s.txt"
@@ -94,6 +94,12 @@ msgstr "Configuración avanzada"
 #: field:aeat.model.export.config.line,alignment:0
 msgid "Alignment"
 msgstr "Aliñamento"
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,allow_posting:0
+#: field:l10n.es.aeat.report.tax.mapping,allow_posting:0
+msgid "Allow posting"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
@@ -265,6 +271,18 @@ msgstr "Declaración"
 #: field:l10n.es.aeat.report.tax.mapping,number:0
 msgid "Declaration number"
 msgstr "Nº declaración"
+
+#. module: l10n_es_aeat
+#: field:aeat.mod.map.tax.code,display_name:0
+#: field:aeat.mod.map.tax.code.line,display_name:0
+#: field:aeat.model.export.config,display_name:0
+#: field:aeat.model.export.config.line,display_name:0
+#: field:l10n.es.aeat.report,display_name:0
+#: field:l10n.es.aeat.report.export_to_boe,display_name:0
+#: field:l10n.es.aeat.report.tax.mapping,display_name:0
+#: field:l10n.es.aeat.tax.line,display_name:0
+msgid "Display Name"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -451,7 +469,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:203
+#: code:addons/l10n_es_aeat/models/aeat_report.py:204
 #, python-format
 msgid ""
 "It seems that you have defined quarterly periods or periods in the middle of"
@@ -481,6 +499,18 @@ msgstr "Apuntes contables"
 #: field:l10n.es.aeat.report.tax.mapping,representative_vat:0
 msgid "L.R. VAT number"
 msgstr "NIF repr. legal"
+
+#. module: l10n_es_aeat
+#: field:aeat.mod.map.tax.code,__last_update:0
+#: field:aeat.mod.map.tax.code.line,__last_update:0
+#: field:aeat.model.export.config,__last_update:0
+#: field:aeat.model.export.config.line,__last_update:0
+#: field:l10n.es.aeat.report,__last_update:0
+#: field:l10n.es.aeat.report.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.report.tax.mapping,__last_update:0
+#: field:l10n.es.aeat.tax.line,__last_update:0
+msgid "Last Modified on"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,write_uid:0
@@ -539,6 +569,8 @@ msgid "Mapping Lines"
 msgstr "Liñas de mapeo"
 
 #. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,model:0
+#: field:l10n.es.aeat.report.tax.mapping,model:0
 #: field:l10n.es.aeat.tax.line,model:0 field:l10n.es.aeat.tax.line,model_id:0
 msgid "Model"
 msgstr ""
@@ -594,7 +626,7 @@ msgid "Odoo model"
 msgstr "Modelo Odoo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:334
+#: code:addons/l10n_es_aeat/models/aeat_report.py:336
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr "Só se poden elimina-las declaracións en estado 'borrador' ou 'cancelada'"
@@ -633,6 +665,11 @@ msgid ""
 "Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el "
 "programa"
 msgstr "Poña este arquivo dentro da sua carpeta persoal da AEAT, e úseo no programa"
+
+#. module: l10n_es_aeat
+#: field:aeat.model.export.config.line,position:0
+msgid "Position"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,positive_sign:0
@@ -799,14 +836,14 @@ msgid "Telematics"
 msgstr "Telemática"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:74
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:110
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:77
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:113
 #, python-format
 msgid "The formated string must match the given length"
 msgstr "A cadea formateada debe satisface-lo tamaño dado."
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:266
+#: code:addons/l10n_es_aeat/models/aeat_report.py:268
 #, python-format
 msgid ""
 "There is no period defined for the report. Please set at least one period "
@@ -814,7 +851,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:253
+#: code:addons/l10n_es_aeat/models/aeat_report.py:255
 #, python-format
 msgid "There's a missing previous declaration for the period %s."
 msgstr ""
@@ -839,6 +876,7 @@ msgstr "Ata a data"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code.line,to_regularize:0
+#: field:l10n.es.aeat.tax.line,to_regularize:0
 msgid "To regularize"
 msgstr ""
 
@@ -865,7 +903,14 @@ msgid "Value for yes"
 msgstr "Valor para o si"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:71
+#: code:addons/l10n_es_aeat/models/aeat_report.py:163
+#: code:addons/l10n_es_aeat/models/aeat_report.py:204
+#, python-format
+msgid "Warning"
+msgstr "Aviso"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:74
 #, python-format
 msgid "Wrong aling option. It should be < or >"
 msgstr "Opción de aliñamento errada. Debería ser < ou >"
