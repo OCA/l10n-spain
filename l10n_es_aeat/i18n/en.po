@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-30 22:58+0000\n"
-"PO-Revision-Date: 2016-04-30 22:59+0000\n"
+"POT-Creation-Date: 2016-07-01 00:54+0000\n"
+"PO-Revision-Date: 2016-06-14 11:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:200
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:203
 #, python-format
 msgid "%s_report_%s.txt"
 msgstr "%s_report_%s.txt"
@@ -467,7 +467,7 @@ msgid ""
 msgstr "Inheritable abstract model to add taxes by code mapping in any AEAT report"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:203
+#: code:addons/l10n_es_aeat/models/aeat_report.py:204
 #, python-format
 msgid ""
 "It seems that you have defined quarterly periods or periods in the middle of"
@@ -624,7 +624,7 @@ msgid "Odoo model"
 msgstr "Odoo model"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:334
+#: code:addons/l10n_es_aeat/models/aeat_report.py:336
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr "Only reports in 'draft' or 'cancelled' state can be removed"
@@ -834,14 +834,14 @@ msgid "Telematics"
 msgstr "Telematics"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:74
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:110
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:77
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:113
 #, python-format
 msgid "The formated string must match the given length"
 msgstr "The formated string must match the given length"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:266
+#: code:addons/l10n_es_aeat/models/aeat_report.py:268
 #, python-format
 msgid ""
 "There is no period defined for the report. Please set at least one period "
@@ -849,7 +849,7 @@ msgid ""
 msgstr "There is no period defined for the report. Please set at least one period and try again."
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:253
+#: code:addons/l10n_es_aeat/models/aeat_report.py:255
 #, python-format
 msgid "There's a missing previous declaration for the period %s."
 msgstr "There's a missing previous declaration for the period %s."
@@ -901,7 +901,14 @@ msgid "Value for yes"
 msgstr "Value for yes"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:71
+#: code:addons/l10n_es_aeat/models/aeat_report.py:163
+#: code:addons/l10n_es_aeat/models/aeat_report.py:204
+#, python-format
+msgid "Warning"
+msgstr "Warning"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:74
 #, python-format
 msgid "Wrong aling option. It should be < or >"
 msgstr "Wrong aling option. It should be < or >"
