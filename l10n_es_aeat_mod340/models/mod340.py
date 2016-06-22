@@ -190,6 +190,7 @@ class L10nEsAeatMod340Issued(orm.Model):
         'date_payment': fields.date('Date Payment', readonly=True),
         'payment_amount': fields.float('Payment amount', digits=(13, 2)),
         'name_payment_method': fields.char('Method Payment', size=34),
+        'record_number': fields.char(string='Record number', readonly=True)
     }
 
     _order = 'date_invoice asc, invoice_id asc'

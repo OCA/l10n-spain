@@ -79,7 +79,7 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             text = text.upper().encode('iso-8859-1', 'ignore')
         else:
             text = str(text or '').upper()
-        
+
         for i in text:
             if xlate.has_key(ord(i)):
                 ascii_string += xlate[ord(i)]
@@ -247,7 +247,7 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             text += 3 * ' '
             # Clave tipo de libro. Constante 'E'.
             text += 'E'
-            # Clave de operación              
+            # Clave de operación
             text +=  self._formatString(invoice_issued.key_operation, 1)
             text += self._formatNumber(
                 invoice_issued.invoice_id.date_invoice.split('-')[0], 4)
@@ -277,8 +277,7 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             # Identificación de la factura
             text += self._formatString(invoice_issued.invoice_id.number, 40)
             # Número de registro
-            sequence_obj = self.env['ir.sequence']
-            text += self._formatString(sequence_obj.get('mod340'), 18)
+            text += self._formatString(invoice_issued.record_number, 18)
             # Número de facturas
             if invoice_issued.invoice_id.is_ticket_summary == 1:
                 text += self._formatNumber(
@@ -446,8 +445,7 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             text += self._formatString(invoice_received.supplier_invoice_number,
                                        40)
             # Número de registro
-            sequence_obj = self.env['ir.sequence']
-            text += self._formatString(sequence_obj.get('mod340'), 18)
+            text += self._formatString(invoice_received.record_number, 18)
             # Número de facturas
             text += self._formatNumber(1, 18)
             # Número de registros (Desglose)
@@ -479,7 +477,7 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
                 text += 13 * '0'
                 text += ' '
                 text += 34 * ' '
-            
+
             # Blancos
             text += 95 * ' '
             text += '\r\n'

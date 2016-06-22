@@ -57,6 +57,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
         invoices340_rec = self.pool['l10n.es.aeat.mod340.received']
         issued_obj = self.pool['l10n.es.aeat.mod340.tax_line_issued']
         received_obj = self.pool['l10n.es.aeat.mod340.tax_line_received']
+        sequence_obj = self.pool['ir.sequence']
         mod340.write({
             'state': 'calculated',
             'calculation_date': time.strftime(DEFAULT_SERVER_DATETIME_FORMAT)
@@ -134,6 +135,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                     'amount_tax': invoice.cc_amount_tax * sign,
                     'total': invoice.cc_amount_total * sign,
                     'date_invoice': invoice.date_invoice,
+                    'record_number': sequence_obj.get(cr, uid, 'mod340'),
                 }
                 date_payment = False
                 payment_amount = 0
@@ -254,7 +256,7 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
                                     ('invoice_record_id', '=', invoice_created),
                                     ('tax_code_id', '=', tax_line.base_code_id.id),
                                     ('tax_percentage','=', tax_percentage),
-                                ]                                
+                                ]
                                 if sign == 1:
                                     domain.append(('tax_amount', '>=', 0))
                                 else:
