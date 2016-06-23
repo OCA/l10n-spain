@@ -19,7 +19,7 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, fields
+from openerp.osv import fields, orm
 
 
 class ResPartner(orm.Model):

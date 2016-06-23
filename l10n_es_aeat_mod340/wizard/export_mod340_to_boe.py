@@ -21,9 +21,12 @@
 #
 ##############################################################################
 
-from openerp import models, api, _
 import logging
+
+from openerp import _, api, models
+
 _logger = logging.getLogger(__name__)
+
 
 class L10nEsAeatMod340ExportToBoe(models.TransientModel):
     _inherit = "l10n.es.aeat.report.export_to_boe"
@@ -42,31 +45,32 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             ASCII 199 (Hex. C7).'
         """
 
-        xlate={0xc0:'A', 0xc1:'A', 0xc2:'A', 0xc3:'A', 0xc4:'A', 0xc5:'A',
-            0xc6:'Ae',
-            0xc8:'E', 0xc9:'E', 0xca:'E', 0xcb:'E',
-            0xcc:'I', 0xcd:'I', 0xce:'I', 0xcf:'I',
-            0xd0:'Th',
-            0xd2:'O', 0xd3:'O', 0xd4:'O', 0xd5:'O', 0xd6:'O', 0xd8:'O',
-            0xd9:'U', 0xda:'U', 0xdb:'U', 0xdc:'U',
-            0xdd:'Y', 0xde:'th', 0xdf:'ss',
-            0xe0:'a', 0xe1:'a', 0xe2:'a', 0xe3:'a', 0xe4:'a', 0xe5:'a',
-            0xe6:'ae',
-            0xe8:'e', 0xe9:'e', 0xea:'e', 0xeb:'e',
-            0xec:'i', 0xed:'i', 0xee:'i', 0xef:'i',
-            0xf0:'th',
-            0xf2:'o', 0xf3:'o', 0xf4:'o', 0xf5:'o', 0xf6:'o', 0xf8:'o',
-            0xf9:'u', 0xfa:'u', 0xfb:'u', 0xfc:'u',
-            0xfd:'y', 0xfe:'th', 0xff:'y',
-            0xa1:'!', 0xa2:'{cent}', 0xa3:'{pound}', 0xa4:'{currency}',
-            0xa5:'{yen}', 0xa6:'|', 0xa7:'{section}', 0xa8:'{umlaut}',
-            0xa9:'{C}', 0xab:'<<', 0xac:'{not}',
-            0xad:'-', 0xae:'{R}', 0xaf:'_', 0xb0:'{degrees}',
-            0xb1:'{+/-}', 0xb2:'{^2}', 0xb3:'{^3}', 0xb4:"'",
-            0xb5:'{micro}', 0xb6:'{paragraph}', 0xb7:'*', 0xb8:'{cedilla}',
-            0xb9:'{^1}', 0xbb:'>>',
-            0xbc:'{1/4}', 0xbd:'{1/2}', 0xbe:'{3/4}', 0xbf:'?',
-            0xd7:'*', 0xf7:'/'
+        xlate = {
+            0xc0: 'A', 0xc1: 'A', 0xc2: 'A',
+            0xc3: 'A', 0xc4: 'A', 0xc5: 'A', 0xc6: 'Ae',
+            0xc8: 'E', 0xc9: 'E', 0xca: 'E', 0xcb: 'E',
+            0xcc: 'I', 0xcd: 'I', 0xce: 'I', 0xcf: 'I',
+            0xd0: 'Th',
+            0xd2: 'O', 0xd3: 'O', 0xd4: 'O', 0xd5: 'O', 0xd6: 'O', 0xd8: 'O',
+            0xd9: 'U', 0xda: 'U', 0xdb: 'U', 0xdc: 'U',
+            0xdd: 'Y', 0xde: 'th', 0xdf: 'ss',
+            0xe0: 'a', 0xe1: 'a', 0xe2: 'a', 0xe3: 'a', 0xe4: 'a', 0xe5: 'a',
+            0xe6: 'ae',
+            0xe8: 'e', 0xe9: 'e', 0xea: 'e', 0xeb: 'e',
+            0xec: 'i', 0xed: 'i', 0xee: 'i', 0xef: 'i',
+            0xf0: 'th',
+            0xf2: 'o', 0xf3: 'o', 0xf4: 'o', 0xf5: 'o', 0xf6: 'o', 0xf8: 'o',
+            0xf9: 'u', 0xfa: 'u', 0xfb: 'u', 0xfc: 'u',
+            0xfd: 'y', 0xfe: 'th', 0xff: 'y',
+            0xa1: '!', 0xa2: '{cent}', 0xa3: '{pound}', 0xa4: '{currency}',
+            0xa5: '{yen}', 0xa6: '|', 0xa7: '{section}', 0xa8: '{umlaut}',
+            0xa9: '{C}', 0xab: '<<', 0xac: '{not}',
+            0xad: '-', 0xae: '{R}', 0xaf: '_', 0xb0: '{degrees}',
+            0xb1: '{+/-}', 0xb2: '{^2}', 0xb3: '{^3}', 0xb4: "'",
+            0xb5: '{micro}', 0xb6: '{paragraph}', 0xb7: '*', 0xb8: '{cedilla}',
+            0xb9: '{^1}', 0xbb: '>>',
+            0xbc: '{1/4}', 0xbd: '{1/2}', 0xbe: '{3/4}', 0xbf: '?',
+            0xd7: '*', 0xf7: '/'
         }
 
         ascii_string = ''
@@ -81,13 +85,13 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             text = str(text or '').upper()
 
         for i in text:
-            if xlate.has_key(ord(i)):
+            if ord(i) in xlate:
                 ascii_string += xlate[ord(i)]
-            elif ord(i) >= 0x80 and ord(i) not in [0xd1,0xf1,0xc7,0xe7,0xaa,0xba]:
+            elif ord(i) >= 0x80 and ord(i) not in [
+                    0xd1, 0xf1, 0xc7, 0xe7, 0xaa, 0xba]:
                 pass
             else:
                 ascii_string += i
-
         # Cut the string if it is too long
         if len(ascii_string) > length:
             ascii_string = ascii_string[:length]
@@ -248,7 +252,7 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             # Clave tipo de libro. Constante 'E'.
             text += 'E'
             # Clave de operación
-            text +=  self._formatString(invoice_issued.key_operation, 1)
+            text += self._formatString(invoice_issued.key_operation, 1)
             text += self._formatNumber(
                 invoice_issued.invoice_id.date_invoice.split('-')[0], 4)
             text += self._formatNumber(
@@ -270,8 +274,9 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             text += self._formatNumber(tax_line.tax_amount, 11, 2, True)
             # Importe total de la factura
             text += self._formatNumber(
-                tax_line.tax_amount + tax_line.base_amount
-                + tax_line.rec_tax_amount, 11, 2, True)
+                tax_line.tax_amount + tax_line.base_amount +
+                tax_line.rec_tax_amount,
+                11, 2, True)
             # Base imponible a coste.
             text += ' ' + self._formatNumber(0, 11, 2)
             # Identificación de la factura
@@ -303,11 +308,9 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
                 ",".join([x.number for x in
                           invoice_issued.invoice_id.origin_invoices_ids]), 40)
             # Tipo Recargo de equivalencia
-            #text += self._formatNumber(0, 5)
             text += self._formatNumber(round(tax_line.rec_tax_percentage *
-                                             100, 2),3, 2)
+                                             100, 2), 3, 2)
             # Couta del recargo de equivalencia
-            #text += ' ' + self._formatNumber(0, 11, 2)
             text += self._formatNumber(tax_line.rec_tax_amount, 11, 2, True)
             # Situación del Inmueble #TODO
             text += '0'
@@ -414,7 +417,7 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             # Clave tipo de libro. Constante 'R'.
             text += 'R'
             # Clave de operación
-            text += self._formatString(invoice_received.key_operation,1)
+            text += self._formatString(invoice_received.key_operation, 1)
 
             # Fecha de expedición
             text += self._formatNumber(
@@ -442,15 +445,16 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             # Base imponible a coste.
             text += ' ' + self._formatNumber(0, 11, 2)
             # Identificación de la factura
-            text += self._formatString(invoice_received.supplier_invoice_number,
-                                       40)
+            text += self._formatString(
+                invoice_received.supplier_invoice_number, 40)
             # Número de registro
             text += self._formatString(invoice_received.record_number, 18)
             # Número de facturas
             text += self._formatNumber(1, 18)
             # Número de registros (Desglose)
             if invoice_received.key_operation == 'C':
-                text += self._formatNumber(len(invoice_received.tax_line_ids), 2)
+                text += self._formatNumber(
+                    len(invoice_received.tax_line_ids), 2)
             else:
                 text += self._formatNumber(1, 2)
             # Intervalo de identificación de la acumulación
@@ -461,19 +465,21 @@ class L10nEsAeatMod340ExportToBoe(models.TransientModel):
             # Importes pagados #TODO
             # Medio de pago utilizado
             # Cuenta Bancaria o medio de cobro utilizado #TODO
-            if invoice_received.key_operation == 'Z' and invoice_received.date_payment:
+            if invoice_received.key_operation == 'Z' and\
+                    invoice_received.date_payment:
                 text += self._formatNumber(
                     invoice_received.date_payment.split('-')[0], 4)
                 text += self._formatNumber(
                     invoice_received.date_payment.split('-')[1], 2)
                 text += self._formatNumber(
                     invoice_received.date_payment.split('-')[2], 2)
-                text += self._formatNumber(invoice_received.payment_amount, 11, 2)
+                text += self._formatNumber(
+                    invoice_received.payment_amount, 11, 2)
                 text += 'C'
-                text += self._formatString(invoice_received.name_payment_method,
-                           34)
+                text += self._formatString(
+                    invoice_received.name_payment_method, 34)
             else:
-                text += 8 *  '0'
+                text += 8 * '0'
                 text += 13 * '0'
                 text += ' '
                 text += 34 * ' '

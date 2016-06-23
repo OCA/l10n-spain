@@ -24,14 +24,15 @@
 {
     'name': 'Generación de fichero modelo 340 y libro de IVA',
     'version': '8.0.2.2.0',
-    'author': "Acysos S.L., "
-              "Ting, "
-              "Nan-tic, "
-              "OpenMind Systems, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
-              "Odoo Community Association (OCA), "
-              "Factor Libre, "
-              "GAFIC SLP - Albert Cabedo",
+    "author": "Spanish Localization Team,"
+              # "Acysos S.L., "
+              # "Ting, "
+              # "Nan-tic, "
+              # "OpenMind Systems, "
+              # "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Odoo Community Association (OCA), ",
+              # "Factor Libre, "
+              # "GAFIC SLP - Albert Cabedo"
     'website': 'https://github.com/OCA/l10n-spain',
     'category': 'Localisation/Accounting',
     'license': 'AGPL-3',
@@ -43,14 +44,14 @@
         'account_refund_original',
         'account_chart_update',
         'account_invoice_currency',
-        'account_vat_on_payment',
+        'l10n_es_aeat_mod349'
     ],
     'data': [
         'report/report_view.xml',
         'wizard/export_mod340_to_boe.xml',
         'views/mod340_view.xml',
         'security/ir.model.access.csv',
-        'views/res_partner_view.xml',
+        # 'views/res_partner_view.xml',
         'data/mod340_sequence.xml',
         'views/account_invoice_view.xml',
         'views/account_view.xml',
