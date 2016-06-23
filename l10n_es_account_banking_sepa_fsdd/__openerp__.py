@@ -1,9 +1,12 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
 #    © 2016 Comunitea Servicios Tecnológicos <omar@comunitea.com>
 #    
+#    Adaptado a la versión 7.0 por:
+#        Jose Maria Alzaga <jose.alzaga@aselcis.com>   www.aselcis.com
+#
 #    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -33,6 +36,7 @@
     'contributors': [
         'Jose Maria Alzaga <jose.alzaga@aselcis.com>',
     ],
+    "license": "AGPL-3",
     "demo": [],
     "data": [
         "views/payment_mode_view.xml",
