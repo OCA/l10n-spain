@@ -68,7 +68,7 @@ class AccountBankStatementImport(models.TransientModel):
             'num_documento': line[41:52],
             'referencia1': line[52:64].strip(),
             'referencia2': line[64:].strip(),
-            'conceptos': '',
+            'conceptos': {},
         }
         if line[27:28] == '1':
             st_line['importe'] *= -1
