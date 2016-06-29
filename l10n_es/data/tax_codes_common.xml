@@ -94,6 +94,138 @@
       <field name="name">[15] Modificación bases y cuotas repercutido. Cuota.</field>
       <field name="sign">1.0</field>
     </record>
+    <record id="account_tax_code_template_MBYCRC21B" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC21B</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 21% (bienes).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC21S" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC21S</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 21% (servicios).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC21ISP" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC21ISP</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 21% (ISP).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC21IB" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC21IB</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 21% intracomunitaria (bienes).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC21IBI" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC21IBI</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 21% intracomunitaria (bienes de inversión).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC21IS" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC21IS</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 21% intracomunitaria (servicios).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC21E" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC21E</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 21% extracomunitaria.</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC21ISN" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC21ISN</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 21% ISP nacional.</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC10B" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC10B</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 10% (bienes).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC10S" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC10S</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 10% (servicios).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC10IB" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC10IB</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 10% intracomunitaria (bienes).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC10IBI" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC10IBI</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 10% intracomunitaria (bienes de inversión).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC10IS" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC10IS</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 10% intracomunitaria (servicios).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC10E" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC10E</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 10% extracomunitaria.</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC10ISN" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC10ISN</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 10% ISP nacional.</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC4B" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC4B</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 4% (bienes).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC4S" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC4S</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 4% (servicios).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC4IB" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC4IB</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 4% intracomunitaria (bienes).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC4IBI" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC4IBI</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 4% intracomunitaria (bienes de inversión).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC4IS" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC4IS</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 4% intracomunitaria (servicios).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC4E" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC4E</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 4% extracomunitaria.</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCRC4ISN" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCRC"/>
+      <field name="code">MBYCRC4ISN</field>
+      <field name="name">Modificación bases y cuotas repercutido. Cuota 4% ISP nacional.</field>
+      <field name="sign">1.0</field>
+    </record>
     <record id="account_tax_code_template_REC05" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ITDC"/>
       <field name="code">REC05</field>
@@ -116,6 +248,24 @@
       <field name="parent_id" ref="account_tax_code_template_ITDC"/>
       <field name="code">MBYCDRDERC</field>
       <field name="name">[26] Modificaciones bases y cuotas del recargo de equivalencia repercutido. Cuota.</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCDRDERC05" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCDRDERC"/>
+      <field name="code">MBYCDRDERC05</field>
+      <field name="name">Modificaciones bases y cuotas del recargo de equivalencia repercutido. Cuota 0.5%.</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCDRDERC014" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCDRDERC"/>
+      <field name="code">MBYCDRDERC014</field>
+      <field name="name">Modificaciones bases y cuotas del recargo de equivalencia repercutido. Cuota 1.4%.</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_MBYCDRDERC52" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_MBYCDRDERC"/>
+      <field name="code">MBYCDRDERC52</field>
+      <field name="name">Modificaciones bases y cuotas del recargo de equivalencia repercutido. Cuota 5.2%.</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_ITADC" model="account.tax.code.template">
@@ -326,6 +476,204 @@
       <field name="parent_id" ref="account_tax_code_template_ITADC"/>
       <field name="code">RDDSC</field>
       <field name="name">[41] Rectificación de deducciones soportado. Cuota.</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC21B" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC21B</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 21% (Bienes).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC21BI" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC21BI</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 21% (Bienes de inversión).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC21S" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC21S</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 21% (Servicios).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC21IB" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC21IB</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 21% intracomunitaria (Bienes).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC21IBI" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC21IBI</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 21% intracomunitaria (Bienes de inversión).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC21IS" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC21IS</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 21% intracomunitaria (Servicios).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC21EB" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC21EB</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 21% extracomunitaria (Bienes).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC21EBI" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC21EBI</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 21% extracomunitaria (Bienes de inversión).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC21ES" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC21ES</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 21% extracomunitaria (Servicios).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC21ISP" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC21ISP</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 21% ISP nacional.</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC10B" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC10B</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 10% (Bienes).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC10BI" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC10BI</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 10% (Bienes de inversión).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC10S" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC10S</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 10% (Servicios).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC10IB" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC10IB</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 10% intracomunitaria (Bienes).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC10IBI" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC10IBI</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 10% intracomunitaria (Bienes de inversión).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC10IS" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC10IS</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 10% intracomunitaria (Servicios).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC10EB" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC10EB</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 10% extracomunitaria (Bienes).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC10EBI" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC10EBI</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 10% extracomunitaria (Bienes de inversión).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC10ES" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC10ES</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 10% extracomunitaria (Servicios).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC10ISP" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC10ISP</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 10% ISP nacional.</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC4B" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC4B</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 4% (Bienes).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC4BI" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC4BI</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 4% (Bienes de inversión).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC4S" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC4S</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 4% (Servicios).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC4IB" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC4IB</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 4% intracomunitaria (Bienes).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC4IBI" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC4IBI</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 4% intracomunitaria (Bienes de inversión).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC4IS" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC4IS</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 4% intracomunitaria (Servicios).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC4EB" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC4EB</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 4% extracomunitaria (Bienes).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC4EBI" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC4EBI</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 4% extracomunitaria (Bienes de inversión).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC4ES" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC4ES</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 4% extracomunitaria (Servicios).</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSC4ISP" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSC4ISP</field>
+      <field name="name">Rectificación de deducciones soportado. Cuota 4% ISP nacional.</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSCRE05" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSCRE05</field>
+      <field name="name">Rectificación de deducciones soportado. Recargo de equivalencia 0.5%.</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSCRE014" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSCRE014</field>
+      <field name="name">Rectificación de deducciones soportado. Recargo de equivalencia 1.4%.</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RDDSCRE52" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RDDSC"/>
+      <field name="code">RDDSCRE52</field>
+      <field name="name">Rectificación de deducciones soportado. Recargo de equivalencia 5.2%.</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_CREAGYP12" model="account.tax.code.template">
@@ -1045,127 +1393,170 @@
     <record id="account_tax_code_template_123" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_root"/>
       <field name="code">123</field>
-      <field name="name">&lt;Mod. 123&gt; IRPF Retenciones a cuenta</field>
+      <field name="name">&lt;Mod. 123&gt; Otras retenciones</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RBI123" model="account.tax.code.template">
+      <field name="parent_id" ref="l10n_es.account_tax_code_template_123"/>
+      <field name="code">RBI123</field>
+      <field name="name">[02] Retenciones. Base Imponible</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RPPBI21" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RBI123"/>
+      <field name="code">RPPBI21</field>
+      <field name="name">Retenciones practicadas a préstamos. Base imponible (21%)</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RPRDBI19" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RBI123"/>
+      <field name="code">RPRDBI19</field>
+      <field name="name">Retenciones practicadas a reparto de dividendos. Base imponible (19%)</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RICC123" model="account.tax.code.template">
+      <field name="parent_id" ref="l10n_es.account_tax_code_template_123"/>
+      <field name="code">RICC123</field>
+      <field name="name">[03] Retenciones e ingresos a cuenta. Cuota</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RPPC21" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RICC123"/>
+      <field name="code">RPPC21</field>
+      <field name="name">Retenciones practicadas a préstamos. Cuota (21%)</field>
+      <field name="sign">1.0</field>
+    </record>
+    <record id="account_tax_code_template_RPRDC19" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_RICC123"/>
+      <field name="code">RPRDC19</field>
+      <field name="name">Retenciones practicadas a reparto de dividendos. Cuota (19%)</field>
+      <field name="sign">1.0</field>
+    </record>
+
+    <record id="account_tax_code_template_200" model="account.tax.code.template">
+      <field name="parent_id" ref="account_tax_code_template_root"/>
+      <field name="code">200</field>
+      <field name="name">&lt;Mod. 200&gt; Impuesto de sociedades</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACBI" model="account.tax.code.template">
-      <field name="parent_id" ref="account_tax_code_template_123"/>
+      <field name="parent_id" ref="account_tax_code_template_200"/>
       <field name="code">IRACBI</field>
-      <field name="name">[02] IRPF retenciones a cuenta. Base imponible</field>
+      <field name="name">Retenciones a cuenta. Base imponible</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACBI1" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_IRACBI"/>
       <field name="code">IRACBI1</field>
-      <field name="name">IRPF retenciones a cuenta. Base imponible (1%)</field>
+      <field name="name">Retenciones a cuenta. Base imponible (1%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACBI2" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_IRACBI"/>
       <field name="code">IRACBI2</field>
-      <field name="name">IRPF retenciones a cuenta. Base imponible (2%)</field>
+      <field name="name">Retenciones a cuenta. Base imponible (2%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACBI7" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_IRACBI"/>
       <field name="code">IRACBI7</field>
-      <field name="name">IRPF retenciones a cuenta. Base imponible (7%)</field>
+      <field name="name">Retenciones a cuenta. Base imponible (7%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACBI9" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_IRACBI"/>
       <field name="code">IRACBI9</field>
-      <field name="name">IRPF retenciones a cuenta. Base imponible (9%)</field>
+      <field name="name">Retenciones a cuenta. Base imponible (9%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACBI15" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_IRACBI"/>
       <field name="code">IRACBI15</field>
-      <field name="name">IRPF retenciones a cuenta. Base imponible (15%)</field>
+      <field name="name">Retenciones a cuenta. Base imponible (15%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACBI18" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_IRACBI"/>
       <field name="code">IRACBI18</field>
-      <field name="name">IRPF retenciones a cuenta. Base imponible (18%)</field>
+      <field name="name">Retenciones a cuenta. Base imponible (18%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACBI19" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_IRACBI"/>
       <field name="code">IRACBI19</field>
-      <field name="name">IRPF retenciones a cuenta. Base imponible (19%)</field>
+      <field name="name">Retenciones a cuenta. Base imponible (19%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACBI20" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_IRACBI"/>
       <field name="code">IRACBI20</field>
-      <field name="name">IRPF retenciones a cuenta. Base imponible (20%)</field>
+      <field name="name">Retenciones a cuenta. Base imponible (20%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACBI21" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_IRACBI"/>
       <field name="code">IRACBI21</field>
-      <field name="name">IRPF retenciones a cuenta. Base imponible (21%)</field>
+      <field name="name">Retenciones a cuenta. Base imponible (21%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_ITRACC" model="account.tax.code.template">
-      <field name="parent_id" ref="account_tax_code_template_123"/>
+      <field name="parent_id" ref="account_tax_code_template_200"/>
       <field name="code">ITRACC</field>
-      <field name="name">[03] IRPF total retenciones a cuenta. Cuota.</field>
+      <field name="name">[595] Retenciones e ingresos a cuenta / pagos a cuenta participaciones I.I.C.</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACC1" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ITRACC"/>
       <field name="code">IRACC1</field>
-      <field name="name">IRPF retenciones a cuenta. Cuota (1%)</field>
+      <field name="name">Retenciones a cuenta. Cuota (1%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACC2" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ITRACC"/>
       <field name="code">IRACC2</field>
-      <field name="name">IRPF retenciones a cuenta. Cuota (2%)</field>
+      <field name="name">Retenciones a cuenta. Cuota (2%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACC7" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ITRACC"/>
       <field name="code">IRACC7</field>
-      <field name="name">IRPF retenciones a cuenta. Cuota (7%)</field>
+      <field name="name">Retenciones a cuenta. Cuota (7%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACC9" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ITRACC"/>
       <field name="code">IRACC9</field>
-      <field name="name">IRPF retenciones a cuenta. Cuota (9%)</field>
+      <field name="name">Retenciones a cuenta. Cuota (9%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACC15" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ITRACC"/>
       <field name="code">IRACC15</field>
-      <field name="name">IRPF retenciones a cuenta. Cuota (15%)</field>
+      <field name="name">Retenciones a cuenta. Cuota (15%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACC18" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ITRACC"/>
       <field name="code">IRACC18</field>
-      <field name="name">IRPF retenciones a cuenta. Cuota (18%)</field>
+      <field name="name">Retenciones a cuenta. Cuota (18%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACC19" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ITRACC"/>
       <field name="code">IRACC19</field>
-      <field name="name">IRPF retenciones a cuenta. Cuota (19%)</field>
+      <field name="name">Retenciones a cuenta. Cuota (19%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACC20" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ITRACC"/>
       <field name="code">IRACC20</field>
-      <field name="name">IRPF retenciones a cuenta. Cuota (20%)</field>
+      <field name="name">Retenciones a cuenta. Cuota (20%)</field>
       <field name="sign">1.0</field>
     </record>
     <record id="account_tax_code_template_IRACC21" model="account.tax.code.template">
       <field name="parent_id" ref="account_tax_code_template_ITRACC"/>
       <field name="code">IRACC21</field>
-      <field name="name">IRPF retenciones a cuenta. Cuota (21%)</field>
+      <field name="name">Retenciones a cuenta. Cuota (21%)</field>
       <field name="sign">1.0</field>
     </record>
 

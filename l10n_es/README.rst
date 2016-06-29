@@ -22,6 +22,14 @@ encuentra en la versión estándar de Odoo, por lo que es conveniente instalar
 Historial
 ---------
 
+* v5.4: Varias correcciones para el modelo 123 y para las rectificaciones:
+
+  * Códigos de impuestos de retenciones de venta movidos al modelo 200
+  * Creados códigos de impuestos para el modelo 123.
+  * Creados impuestos de reparto de dividendos y de préstamos.
+  * Creados códigos de impuesto para cada uno de los porcentajes y conceptos
+    de las rectificaciones.
+  * Incluida cuenta 4759.
 * v5.3: Añadido "IVA soportado no sujeto".
 * v5.2: Añadida retención 19,5% arrendamientos.
 * v5.1: Renombrado todo lo relacionado con arrendamientos para no incluir la
