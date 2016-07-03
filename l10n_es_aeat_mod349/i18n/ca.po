@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-20 10:24+0000\n"
-"PO-Revision-Date: 2016-04-30 23:00+0000\n"
+"POT-Creation-Date: 2016-07-01 00:54+0000\n"
+"PO-Revision-Date: 2016-06-14 11:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -119,20 +119,20 @@ msgid "Account entry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:172
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:181
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:198
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:207
 #, python-format
 msgid "All amounts must be positives"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:168
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:194
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
 msgstr "Tots els camps dels registres d'empresa (país, número CIF/NIF) han d'estar omplerts."
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:176
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:202
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
 msgstr "Tots els camps de les rectificacions (país, número CIF/NIF) han d'estar omplerts."
@@ -147,6 +147,11 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_refund_detail,amount_untaxed:0
 msgid "Amount untaxed"
 msgstr "Import lliure d'impostos"
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,calculate_date:0
+msgid "Calculate by days"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,calculation_date:0
@@ -179,7 +184,7 @@ msgid "Complementary"
 msgstr "Complementària"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:191
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:217
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
 msgstr "El nom del contacte (Nom complert) ha de contenir nom i cognoms"
@@ -735,6 +740,14 @@ msgstr "NIF / CIF"
 #: field:l10n.es.aeat.mod349.report,company_vat:0
 msgid "VAT number"
 msgstr "NIF/CIF"
+
+#. module: l10n_es_aeat_mod349
+#: help:l10n.es.aeat.mod349.report,calculate_date:0
+msgid ""
+"Warning!: With this checkbox selected, the declaration will be computed "
+"selecting invoices based in periods and dates in selected Period Type not "
+"only by period"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
