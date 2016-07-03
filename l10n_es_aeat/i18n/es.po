@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-08 00:56+0000\n"
-"PO-Revision-Date: 2016-06-07 18:16+0000\n"
+"POT-Creation-Date: 2016-07-01 00:54+0000\n"
+"PO-Revision-Date: 2016-06-14 11:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:200
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:203
 #, python-format
 msgid "%s_report_%s.txt"
 msgstr "%s_report_%s.txt"
@@ -472,7 +472,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:203
+#: code:addons/l10n_es_aeat/models/aeat_report.py:204
 #, python-format
 msgid ""
 "It seems that you have defined quarterly periods or periods in the middle of"
@@ -629,7 +629,7 @@ msgid "Odoo model"
 msgstr "Modelo Odoo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:334
+#: code:addons/l10n_es_aeat/models/aeat_report.py:336
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr "Sólo los informes en estado 'borrador' or 'cancelado' pueden ser eliminados"
@@ -839,14 +839,14 @@ msgid "Telematics"
 msgstr "Telemática"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:74
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:110
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:77
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:113
 #, python-format
 msgid "The formated string must match the given length"
 msgstr "La cadena formateada debe satisfacer el tamaño dado."
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:266
+#: code:addons/l10n_es_aeat/models/aeat_report.py:268
 #, python-format
 msgid ""
 "There is no period defined for the report. Please set at least one period "
@@ -854,7 +854,7 @@ msgid ""
 msgstr "No hay periodo definido para el informe. Establezca un periodo y vuelva a intentarlo."
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:253
+#: code:addons/l10n_es_aeat/models/aeat_report.py:255
 #, python-format
 msgid "There's a missing previous declaration for the period %s."
 msgstr "No hay una declaración previa para el periodo %s."
@@ -913,7 +913,7 @@ msgid "Warning"
 msgstr "Aviso"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:71
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:74
 #, python-format
 msgid "Wrong aling option. It should be < or >"
 msgstr "Opción de alineamiento errónea. Debería ser < o >"
