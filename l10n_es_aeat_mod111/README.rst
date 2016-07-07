@@ -56,6 +56,7 @@ Contribuidores
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * AvanzOSC (http://www.avanzosc.es)
 * Antonio Espinosa <antonioea@antiun.com>
+* RGB Consulting SL (http://www.rgbconsulting.com)
 
 Maintainer
 ----------
