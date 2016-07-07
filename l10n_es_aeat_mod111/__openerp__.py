@@ -18,7 +18,7 @@
 
 {
     'name': 'AEAT modelo 111',
-    'version': '8.0.1.2.0',
+    'version': '8.0.2.0.0',
     'category': "Localisation/Accounting",
     'author': "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
@@ -30,7 +30,7 @@
     'license': 'AGPL-3',
     'depends': ['l10n_es_aeat'],
     'data': [
-        'wizard/export_mod111_to_boe.xml',
+        'data/aeat_export_mod111_data.xml',
         'views/mod111_view.xml',
         'security/ir.model.access.csv'],
     'installable': True,
