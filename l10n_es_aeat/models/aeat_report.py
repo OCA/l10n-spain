@@ -119,6 +119,10 @@ class L10nEsAeatReport(models.AbstractModel):
         help="Journal in which post the move.")
     move_id = fields.Many2one(
         comodel_name="account.move", string="Account entry")
+    partner_bank_id = fields.Many2one(
+        comodel_name='res.partner.bank', string='Bank account',
+        help='Company bank account used for the presentation',
+        domain="[('state', '=', 'iban'), ('company_id', '=', company_id)]")
 
     _sql_constraints = [
         ('name_uniq', 'unique(name)',
