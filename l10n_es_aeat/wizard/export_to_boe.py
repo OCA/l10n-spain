@@ -56,7 +56,8 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             return fill * length
         # Replace accents and convert to upper
         from unidecode import unidecode
-        text = unicode(text.upper())
+        text = unidecode(unicode(text))
+        text = text.upper()
         text = ''.join([unidecode(x) if x not in (u'Ñ', u'Ç') else x
                         for x in text])
         text = re.sub(
