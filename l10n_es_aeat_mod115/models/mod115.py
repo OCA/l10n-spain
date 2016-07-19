@@ -104,8 +104,7 @@ class L10nEsAeatMod115Report(models.Model):
             move_lines = self.move_lines_02.ids
         elif self.env.context.get('move_lines03', False):
             move_lines = self.move_lines_03.ids
-        view_id = self.env.ref(
-            'l10n_es_aeat.view_move_line_tree_tax_amount')
+        view_id = self.env.ref('l10n_es_aeat.view_move_line_tree')
         return {'type': 'ir.actions.act_window',
                 'name': _('Account Move Lines'),
                 'view_mode': 'tree,form',
