@@ -1,0 +1,446 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_aeat_mod115
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-22 12:24+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Dutch (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model,name:l10n_es_aeat_mod115.model_l10n_es_aeat_mod115_report
+msgid "AEAT 115 report"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:109
+#, python-format
+msgid "Account Move Lines"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,move_id:0
+msgid "Account entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,allow_posting:0
+msgid "Allow posting"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,partner_bank_id:0
+msgid "Bank account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,calculation_date:0
+msgid "Calculation date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,state:0
+msgid "Cancelled"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,casilla_01:0
+msgid ""
+"Casilla [01] Liquidación - Retenciones e ingresos a cuenta - Número de "
+"perceptores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,casilla_02:0
+msgid ""
+"Casilla [02] Liquidación - Retenciones e ingresos a cuenta - Base de las "
+"retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,casilla_03:0
+msgid ""
+"Casilla [03] Liquidación - Retenciones e ingresos a cuenta - Retenciones e "
+"ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,casilla_04:0
+msgid ""
+"Casilla [04] Liquidación - Retenciones e ingresos a cuenta - A deducir "
+"(exclusivamente en caso de declaración complementaria) Resultado a ingresar "
+"de la anterior o anteriores declaraciones del mismo concepto, ejercicio y "
+"período"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,casilla_05:0
+msgid ""
+"Casilla [04] Liquidación - Retenciones e ingresos a cuenta - Resultado a "
+"ingresar: ([03] - [04])"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,type:0
+msgid "Complementary"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,counterpart_account:0
+msgid "Counterpart account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.actions.act_window,help:l10n_es_aeat_mod115.action_l10n_es_aeat_mod115_report
+msgid "Crea y consulta las declaraciones del modelo 115 de la AEAT."
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.export_to_boe,create_uid:0
+#: field:l10n.es.aeat.mod115.report,create_uid:0
+msgid "Created by"
+msgstr "Aangemaakt door"
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.export_to_boe,create_date:0
+#: field:l10n.es.aeat.mod115.report,create_date:0
+msgid "Created on"
+msgstr "Aangemaakt op"
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,support_type:0
+msgid "DVD"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: view:l10n.es.aeat.mod115.report:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_tree
+msgid "Declaraciones AEAT 115"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: view:l10n.es.aeat.mod115.report:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+msgid "Declaración"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod115.action_l10n_es_aeat_mod115_report
+msgid "Declaración AEAT 115"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,number:0
+msgid "Declaration number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.export_to_boe,display_name:0
+#: field:l10n.es.aeat.mod115.report,display_name:0
+msgid "Display Name"
+msgstr "Te tonen naam"
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,tipo_declaracion:0
+msgid "Domiciliación"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,state:0
+msgid "Done"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model,name:l10n_es_aeat_mod115.model_l10n_es_aeat_mod115_export_to_boe
+msgid "Export Report to BOE Format"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,export_config:0
+msgid "Export config"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod115.action_wizard_aeat_mod115_export
+msgid "Exportar archivo BOE AEAT 115"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.export_to_boe,data:0
+msgid "File"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.export_to_boe,name:0
+msgid "File name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,fiscalyear_id:0
+msgid "Fiscal year"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,contact_name:0
+msgid "Full Name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.export_to_boe,id:0
+#: field:l10n.es.aeat.mod115.report,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,tipo_declaracion:0
+msgid "Ingreso"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,tipo_declaracion:0
+msgid "Ingreso a anotar en CCT"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,journal_id:0
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,journal_id:0
+msgid "Journal in which post the move."
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,representative_vat:0
+msgid "L.R. VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.mod115.report,__last_update:0
+msgid "Last Modified on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.export_to_boe,write_uid:0
+#: field:l10n.es.aeat.mod115.report,write_uid:0
+msgid "Last Updated by"
+msgstr "Laatst bijgewerkt door"
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.export_to_boe,write_date:0
+#: field:l10n.es.aeat.mod115.report,write_date:0
+msgid "Last Updated on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,representative_vat:0
+msgid "Legal Representative VAT number."
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,model:0
+msgid "Model"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.ui.menu,name:l10n_es_aeat_mod115.menu_aeat_mod115_report
+msgid "Modelo 115"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,currency_id:0
+msgid "Moneda"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,move_lines_02:0
+msgid "Move lines 02"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,move_lines_03:0
+msgid "Move lines 03"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,contact_name:0
+msgid "Must have name and surname."
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,tipo_declaracion:0
+msgid "Negativa"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,type:0
+msgid "Normal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,period_type:0
+msgid "Period type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,periods:0
+msgid "Period(s)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,contact_phone:0
+msgid "Phone"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,state:0
+msgid "Posted"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,previous_number:0
+msgid "Previous declaration number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,state:0
+msgid "Processed"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: view:l10n.es.aeat.mod115.report:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+msgid "Resultado"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: view:l10n.es.aeat.mod115.report:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+msgid "Retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.export_to_boe,state:0
+#: field:l10n.es.aeat.mod115.report,state:0
+msgid "State"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,type:0
+msgid "Statement Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,type:0
+msgid "Substitutive"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,support_type:0
+msgid "Support Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,tax_lines:0
+msgid "Tax lines"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,support_type:0
+msgid "Telematics"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,tipo_declaracion:0
+msgid "Tipo de declaración"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: view:l10n.es.aeat.mod115.report:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+msgid "Total liquidación"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,company_vat:0
+msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: view:l10n.es.aeat.mod115.report:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+msgid "Ver lineas de Base"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: view:l10n.es.aeat.mod115.report:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+msgid "Ver lineas de Cuota"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,casilla_01:0
+msgid "[01] Número de perceptores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,casilla_02:0
+msgid "[02] Base retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,casilla_03:0
+msgid "[03] Retenciones"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,casilla_04:0
+msgid "[04] Resultados a ingresar anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,casilla_05:0
+msgid "[05] Resultado a ingresar"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.export_to_boe,state:0
+msgid "get"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.export_to_boe,state:0
+msgid "open"
+msgstr ""
