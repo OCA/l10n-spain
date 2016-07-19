@@ -196,11 +196,15 @@ class L10nEsAeatTaxLine(models.Model):
         for s in self:
             s.model_id = self.env["ir.model"].search([("model", "=", s.model)])
 
-    def _get_move_line_act_window_dict(self):
-        return self.env.ref('account.action_tax_code_line_open').read()[0]
-
     @api.multi
     def get_calculated_move_lines(self):
-        res = self._get_move_line_act_window_dict()
-        res['domain'] = [('id', 'in', self.move_lines.ids)]
-        return res
+        view_id = self.env.ref('l10n_es_aeat.view_move_line_tree')
+        return {'type': 'ir.actions.act_window',
+                'name': _('Account Move Lines'),
+                'view_mode': 'tree,form',
+                'view_type': 'form',
+                'views': [(view_id.id, 'tree')],
+                'view_id': False,
+                'res_model': 'account.move.line',
+                'domain': [('id', 'in', self.move_lines.ids)]
+                }
