@@ -33,7 +33,7 @@ addon | version | summary
 [l10n_es_account_balance_report](l10n_es_account_balance_report/) | 8.0.0.1.0 (unported) | Informes de cuentas anuales españoles
 [l10n_es_account_bank_statement_import_n43](l10n_es_account_bank_statement_import_n43/) | 8.0.4.0.1 (unported) | Importación de extractos bancarios españoles (Norma 43)
 [l10n_es_account_invoice_sequence](l10n_es_account_invoice_sequence/) | 8.0.1.2.1 (unported) | Secuencia para facturas separada de la secuencia de asientos
-[l10n_es_aeat](l10n_es_aeat/) | 8.0.1.2.0 (unported) | AEAT Base
+[l10n_es_aeat](l10n_es_aeat/) | 8.0.1.8.0 (unported) | AEAT Base
 [l10n_es_aeat_mod111](l10n_es_aeat_mod111/) | 8.0.1.0.0 (unported) | AEAT modelo 111
 [l10n_es_aeat_mod115](l10n_es_aeat_mod115/) | 8.0.1.0.0 (unported) | AEAT modelo 115
 [l10n_es_aeat_mod130](l10n_es_aeat_mod130/) | 8.0.0.8.0 (unported) | AEAT modelo 130
