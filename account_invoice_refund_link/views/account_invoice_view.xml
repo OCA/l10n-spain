@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2004-2011 Pexego Sistemas Informáticos. (http://pexego.es)
+     Copyright 2014 Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+     Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="view_customer_account_invoice_add_refunds_details_form" model="ir.ui.view">
+    <field name="name">Account invoice (customer) | add Refunds details (form)</field>
+    <field name="model">account.invoice</field>
+    <field name="inherit_id" ref="account.invoice_form"/>
+    <field name="arch" type="xml">
+        <notebook position="inside">
+            <page string="Refunds"
+                  attrs="{'invisible':[('type', 'not in', ['in_refund', 'out_refund'])]}">
+                <separator string="Description" colspan="4"/>
+                <field name="refund_reason" colspan="4" nolabel="1"/>
+                <separator string="Original invoices" colspan="4"/>
+                <field name="origin_invoice_ids" colspan="4" nolabel="1">
+                    <tree decoration-info="state == 'draft'"
+                          decoration-muted="state == 'cancel'"
+                          string="Original invoices">
+                        <field name="partner_id" string="Customer"/>
+                        <field name="date_invoice" string="Bill date"/>
+                        <field name="date_due" string="Due date"/>
+                        <field name="number" string="Number"/>
+                        <field name="reference" string="Reference"/>
+                        <field name="origin" string="Source"/>
+                        <field name="amount_total_signed" string="Total"/>
+                        <field name="residual_signed" string="Due"/>
+                        <field name="state" string="Status"/>
+                    </tree>
+                </field>
+            </page>
+            <page string="Refunds"
+                  attrs="{'invisible':[('type', 'not in', ['in_invoice', 'out_invoice'])]}">
+                <separator string="Refund invoices" colspan="4"/>
+                <field name="refund_invoice_ids" colspan="4" nolabel="1">
+                    <tree decoration-info="state == 'draft'"
+                          decoration-muted="state == 'cancel'"
+                          string="Refund invoices">
+                        <field name="partner_id" string="Customer"/>
+                        <field name="date_invoice" string="Bill date"/>
+                        <field name="number" string="Number"/>
+                        <field name="reference" string="Reference"/>
+                        <field name="origin" string="Source"/>
+                        <field name="refund_reason" string="Refund reason"/>
+                        <field name="amount_total" string="Total"/>
+                        <field name="state" string="Status"/>
+                    </tree>
+                </field>
+            </page>
+        </notebook>
+    </field>
+</record>
+
+<record id="view_supplier_account_invoice_add_refunds_details_form" model="ir.ui.view">
+    <field name="name">Account invoice (supplier) | add Refunds details (form)</field>
+    <field name="model">account.invoice</field>
+    <field name="inherit_id" ref="account.invoice_supplier_form"/>
+    <field name="arch" type="xml">
+        <notebook position="inside">
+            <page string="Refunds"
+                  attrs="{'invisible':[('type', 'not in', ['in_refund', 'out_refund'])]}">
+                <separator string="Description" colspan="4"/>
+                <field name="refund_reason" colspan="4" nolabel="1"/>
+                <separator string="Original invoices" colspan="4"/>
+                <field name="origin_invoice_ids" colspan="4" nolabel="1">
+                    <tree decoration-info="state == 'draft'"
+                          decoration-muted="state == 'cancel'"
+                          string="Original invoices">
+                        <field name="partner_id" string="Supplier"/>
+                        <field name="date_invoice" string="Bill date"/>
+                        <field name="date_due" string="Due date"/>
+                        <field name="number" string="Number"/>
+                        <field name="reference" string="Reference"/>
+                        <field name="origin" string="Source"/>
+                        <field name="amount_total_signed" string="Total"/>
+                        <field name="residual_signed" string="Due"/>
+                        <field name="state" string="Status"/>
+                    </tree>
+                </field>
+            </page>
+            <page string="Refunds"
+                  attrs="{'invisible':[('type', 'not in', ['in_invoice', 'out_invoice'])]}">
+                <separator string="Refund invoices" colspan="4"/>
+                <field name="refund_invoice_ids" colspan="4" nolabel="1">
+                    <tree decoration-info="state == 'draft'"
+                          decoration-muted="state == 'cancel'"
+                          string="Refund invoices">
+                        <field name="partner_id" string="Supplier"/>
+                        <field name="date_invoice" string="Bill date"/>
+                        <field name="number" string="Number"/>
+                        <field name="reference" string="Reference"/>
+                        <field name="origin" string="Source"/>
+                        <field name="refund_reason" string="Refund reason"/>
+                        <field name="amount_total" string="Total"/>
+                        <field name="state" string="Status"/>
+                    </tree>
+                </field>
+            </page>
+        </notebook>
+    </field>
+</record>
+
+</odoo>
