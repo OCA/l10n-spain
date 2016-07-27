@@ -6,7 +6,7 @@
 Gestión de activos fijos para España
 ====================================
 
-Cambia la gestión estándar de activos fijos de OpenERP para acomodarla a las
+Cambia la gestión estándar de activos fijos de Odoo para acomodarla a las
 regulaciones españolas:
 
 * Cambia el método de cálculo para el prorrateo temporal.
@@ -28,12 +28,8 @@ Gestión de errores
 Los errores/fallos se gestionan en `las incidencias de GitHub <https://github.com/OCA/
 l10n-spain/issues>`_.
 En caso de problemas, compruebe por favor si su incidencia ha sido ya
-reportada. Si fue el primero en descubrirla, ayúdenos a solucionarla proveyendo
-una detallada y bienvenida retroalimentación
-`aquí <https://github.com/OCA/
-l10n-spain/issues/new?body=m%f3dulo:%20
-l10_es_payment_order_confirminet%0Aversi%f3n:%20
-8.0%0A%0A**Pasos%20para%20reproducirlo**%0A-%20...%0A%0A**Comportamiento%20actual**%0A%0A**Comportamiento%20esperado**>`_.
+reportada. Si fue el primero en descubrirla, ayúdenos a solucionarla indicando
+una detallada descripción `aquí <https://github.com/OCA/l10n-spain/issues/new>`_.
 
 Créditos
 ========
@@ -41,14 +37,41 @@ Créditos
 Contribudores
 -------------
 
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
+* Antonio Espinosa <antonio.espinosa@tecnativa.com>
+
+Financiadores
+-------------
+La migración de este módulo forma parte de una campaña de migración de la
+localización española que ha sido posible gracias a la colaboración económica
+de las siguientes empresas (por orden alfabético):
+
+* `Aizean evolution <http://www.aizean.com>`_
+* `Aselcis consulting <https://www.aselcis.com>`_
+* `AvanzOSC <http://avanzosc.es>`_
+* `Diagram software <http://diagram.es>`_
+* `Domatix <http://www.domatix.com>`_
+* `Eficent <http://www.eficent.com>`_
+* `FactorLibre <http://factorlibre.com>`_
+* `Fairhall solutions <http://www.fairhall.es>`_
+* `GAFIC SLP <http://www.gafic.com>`_
+* `Incaser <http://www.incaser.es>`_
+* `Ingeos <http://www.ingeos.es>`_
+* `Nubistalia <http://www.nubistalia.es>`_
+* `Punt sistemes <http://www.puntsistemes.es>`_
+* `Praxya <http://praxya.com>`_
+* `Reeng <http://www.reng.es>`_
+* `Soluntec <http://www.soluntec.es>`_
+* `Tecnativa <https://www.tecnativa.com>`_
+* `Trey <https://www.trey.es>`_
+* `Vicent Cubells <http://vcubells.net>`_
 
 Maintainer
 ----------
 
-.. image:: http://odoo-community.org/logo.png
+.. image:: https://odoo-community.org/logo.png
    :alt: Odoo Community Association
-   :target: http://odoo-community.org
+   :target: https://odoo-community.org
 
 This module is maintained by the OCA.
 
@@ -56,4 +79,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
