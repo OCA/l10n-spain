@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # (c) 2015 Ainara Galdona - AvanzOSC
+# (c) 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 import openerp.tests.common as common
@@ -12,23 +13,24 @@ class TestL10nEsAccountAsset(common.TransactionCase):
     def setUp(self):
         super(TestL10nEsAccountAsset, self).setUp()
         self.asset_model = self.env['account.asset.asset']
-        asset_vals = {
+        asset_number_vals = {
             'name': 'Test Asset',
             'category_id': self.ref('account_asset.account_asset_category_'
                                     'fixedassets0'),
             'code': 'REF01',
-            'purchase_date': fields.Date.from_string('2015-01-01'),
+            'date': '2015-01-01',
             'method': 'linear',
-            'purchase_value': 30000,
+            'value': 30000,
             'method_time': 'number',
             'move_end_period': True,
             'method_number': 10,
             'method_period': 1
-            }
-        self.asset_linear = self.asset_model.create(asset_vals)
-        asset_vals['method_time'] = 'percentage'
-        asset_vals['method_percentage'] = 20
-        self.asset_percentage = self.asset_model.create(asset_vals)
+        }
+        asset_percentage_vals = asset_number_vals.copy()
+        asset_percentage_vals['method_time'] = 'percentage'
+        asset_percentage_vals['method_percentage'] = 20
+        self.asset_linear = self.asset_model.create(asset_number_vals)
+        self.asset_percentage = self.asset_model.create(asset_percentage_vals)
 
     def test_not_prorated_linear_asset(self):
         self.asset_linear.compute_depreciation_board()
