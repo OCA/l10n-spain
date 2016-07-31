@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-01 00:54+0000\n"
-"PO-Revision-Date: 2016-06-14 11:56+0000\n"
+"POT-Creation-Date: 2016-07-21 00:49+0000\n"
+"PO-Revision-Date: 2016-07-20 06:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -882,6 +882,11 @@ msgstr "Hasta la fecha"
 #: field:l10n.es.aeat.tax.line,to_regularize:0
 msgid "To regularize"
 msgstr "Para regularizar"
+
+#. module: l10n_es_aeat
+#: view:account.move.line:l10n_es_aeat.view_move_line_tree
+msgid "Total"
+msgstr "Total"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,company_vat:0
