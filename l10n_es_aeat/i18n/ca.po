@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-01 00:54+0000\n"
-"PO-Revision-Date: 2016-06-14 11:56+0000\n"
+"POT-Creation-Date: 2016-08-27 18:55+0000\n"
+"PO-Revision-Date: 2016-09-09 12:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -429,7 +429,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.export_to_boe,id:0
 #: field:l10n.es.aeat.report.tax.mapping,id:0 field:l10n.es.aeat.tax.line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_aeat
 #: help:aeat.model.export.config.line,repeat_expression:0
@@ -518,7 +518,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.tax.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera Actualització per"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,write_date:0
@@ -528,7 +528,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.export_to_boe,write_date:0
 #: field:l10n.es.aeat.tax.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera Actualització el"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,alignment:0
@@ -877,6 +877,11 @@ msgstr ""
 #: field:l10n.es.aeat.tax.line,to_regularize:0
 msgid "To regularize"
 msgstr ""
+
+#. module: l10n_es_aeat
+#: view:account.move.line:l10n_es_aeat.view_move_line_tree
+msgid "Total"
+msgstr "Total"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,company_vat:0
