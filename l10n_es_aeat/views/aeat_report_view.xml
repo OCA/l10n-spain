@@ -45,7 +45,7 @@
                         <field name="state"
                                widget="statusbar"
                                statusbar_visible="draft,calculated,done,cancelled"
-                               statusbar_colors="{'cancelled': 'red', 'done': 'blue', 'posted': 'blue'}"
+                               statusbar_colors='{"cancelled": "red", "done": "blue", "posted": "blue"}'
                                />
                     </header>
                     <sheet>
