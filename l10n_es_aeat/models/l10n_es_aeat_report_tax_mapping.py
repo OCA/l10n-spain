@@ -23,12 +23,12 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         for report in self:
             report.tax_lines.unlink()
             # Buscar configuración de mapeo de impuestos
-            tax_code_map_obj = self.env['aeat.mod.map.tax.code']
+            tax_map_obj = self.env['l10n.es.aeat.map.tax']
             date_start = min([fields.Date.from_string(x) for x in
                               self.periods.mapped('date_start')])
             date_stop = max([fields.Date.from_string(x) for x in
                              self.periods.mapped('date_stop')])
-            tax_code_map = tax_code_map_obj.search(
+            tax_code_map = tax_map_obj.search(
                 [('model', '=', report.number),
                  '|',
                  ('date_from', '<=', date_start),
@@ -51,8 +51,8 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     @api.multi
     def _prepare_tax_line_vals(self, map_line):
         self.ensure_one()
-        move_lines = self._get_tax_code_lines(
-            map_line.mapped('tax_codes.code'), periods=self.periods)
+        move_lines = self._get_tax_lines(
+            map_line.mapped('tax_ids.description'), periods=self.periods)
         return {
             'model': self._name,
             'res_id': self.id,
@@ -66,38 +66,40 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         return []
 
     @api.multi
-    def _get_move_line_domain(self, codes, periods=None,
+    def _get_move_line_domain(self, codes, date_start, date_end,
                               include_children=True):
         self.ensure_one()
-        tax_code_model = self.env['account.tax.code']
-        tax_codes = tax_code_model.search(
-            [('code', 'in', codes),
+        tax_model = self.env['account.tax']
+        taxes = tax_model.search(
+            [('description', 'in', codes),
              ('company_id', 'child_of', self.company_id.id)])
-        if include_children and tax_codes:
-            tax_codes = tax_code_model.search(
-                [('id', 'child_of', tax_codes.ids),
+        if include_children and taxes:
+            taxes = tax_model.search(
+                [('id', 'child_of', taxes.ids),
                  ('company_id', 'child_of', self.company_id.id)])
-        if not periods:
-            periods = self.env['account.period'].search(
-                [('fiscalyear_id', '=', self.fiscalyear_id.id)])
-        move_line_domain = [('company_id', 'child_of', self.company_id.id),
-                            ('tax_code_id', 'child_of', tax_codes.ids),
-                            ('period_id', 'in', periods.ids)]
+        move_line_domain = [
+            ('company_id', 'child_of', self.company_id.id),
+            ('tax_code_id', 'child_of', taxes.ids),
+            ('date', '>=', date_start),
+            ('date', '<=', date_end)
+        ]
         move_line_domain += self._get_partner_domain()
         return move_line_domain
 
     @api.model
-    def _get_tax_code_lines(self, codes, periods=None, include_children=True):
+    def _get_tax_lines(self, codes, date_start, date_end,
+                       include_children=True):
         """
         Get the move lines for the codes and periods associated
         :param codes: List of strings for the tax codes
-        :param periods: Periods to include
+        :param date_start: Start date of the period
+        :param date_stop: Stop date of the period
         :param include_children: True (default) if it also searches on
           children tax codes.
         :return: Move lines recordset that matches the criteria.
         """
         domain = self._get_move_line_domain(
-            codes, periods=periods, include_children=include_children)
+            codes, date_start, date_end, include_children=include_children)
         return self.env['account.move.line'].search(domain)
 
     @api.model
@@ -180,7 +182,7 @@ class L10nEsAeatTaxLine(models.Model):
         string="Name", related="map_line.name", store=True)
     amount = fields.Float(digits=dp.get_precision('Account'))
     map_line = fields.Many2one(
-        comodel_name='aeat.mod.map.tax.code.line', required=True,
+        comodel_name='l10n.es.aeat.map.tax.line', required=True,
         ondelete="cascade")
     move_lines = fields.Many2many(
         comodel_name='account.move.line', string='Journal items')
