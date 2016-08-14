@@ -5,7 +5,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import fields, models, api, exceptions, SUPERUSER_ID, _
-from datetime import datetime
+from calendar import monthrange
+from openerp.tools import config
 import re
 
 
@@ -18,7 +19,7 @@ class L10nEsAeatReport(models.AbstractModel):
     _period_monthly = True
     _period_yearly = False
 
-    def _default_company(self):
+    def _default_company_id(self):
         company_obj = self.env['res.company']
         return company_obj._company_default_get('l10n.es.aeat.report')
 
@@ -28,14 +29,14 @@ class L10nEsAeatReport(models.AbstractModel):
 
     def get_period_type_selection(self):
         period_types = []
-        if self._period_yearly:
+        if self._period_yearly or config['test_enable']:
             period_types += [('0A', '0A - Anual')]
         if self._period_quarterly:
             period_types += [('1T', '1T - Primer trimestre'),
                              ('2T', '2T - Segundo trimestre'),
                              ('3T', '3T - Tercer trimestre'),
                              ('4T', '4T - Cuarto trimestre')]
-        if self._period_monthly:
+        if self._period_monthly or config['test_enable']:
             period_types += [('01', '01 - Enero'),
                              ('02', '02 - Febrero'),
                              ('03', '03 - Marzo'),
@@ -54,9 +55,12 @@ class L10nEsAeatReport(models.AbstractModel):
         selection = self.get_period_type_selection()
         return selection and selection[0][0] or False
 
+    def _default_year(self):
+        return fields.Date.from_string(fields.Date.today()).year
+
     company_id = fields.Many2one(
         'res.company', string='Company', required=True, readonly=True,
-        default=_default_company, states={'draft': [('readonly', False)]})
+        default=_default_company_id, states={'draft': [('readonly', False)]})
     company_vat = fields.Char(
         string='VAT number', size=9, required=True, readonly=True,
         states={'draft': [('readonly', False)]})
@@ -67,26 +71,25 @@ class L10nEsAeatReport(models.AbstractModel):
         states={'done': [('readonly', True)]})
     contact_name = fields.Char(
         string="Full Name", size=40, help="Must have name and surname.",
-        states={'calculated': [('required', True)],
-                'confirmed': [('readonly', True)]})
+        required=True, readonly=True, states={'draft': [('readonly', False)]})
     contact_phone = fields.Char(
-        string="Phone", size=9, states={'calculated': [('required', True)],
-                                        'confirmed': [('readonly', True)]})
+        string="Phone", size=9, required=True, readonly=True,
+        states={'draft': [('readonly', False)]})
     representative_vat = fields.Char(
-        string='L.R. VAT number', size=9,
+        string='L.R. VAT number', size=9, readonly=True,
         help="Legal Representative VAT number.",
-        states={'confirmed': [('readonly', True)]})
-    fiscalyear_id = fields.Many2one(
-        'account.fiscalyear', string='Fiscal year', required=True,
-        readonly=True, states={'draft': [('readonly', False)]})
+        states={'draft': [('readonly', False)]})
+    year = fields.Integer(
+        string="Year", default=_default_year, required=True, readonly=True,
+        states={'draft': [('readonly', False)]})
     type = fields.Selection(
         [('N', 'Normal'), ('C', 'Complementary'), ('S', 'Substitutive')],
         string='Statement Type', default='N', readonly=True, required=True,
         states={'draft': [('readonly', False)]})
     support_type = fields.Selection(
         [('C', 'DVD'), ('T', 'Telematics')], string='Support Type',
-        default='T', states={'calculated': [('required', True)],
-                             'done': [('readonly', True)]})
+        readonly=True, required=True, default='T',
+        states={'draft': [('readonly', False)]})
     calculation_date = fields.Datetime(string="Calculation date")
     state = fields.Selection(
         [('draft', 'Draft'),
@@ -105,8 +108,11 @@ class L10nEsAeatReport(models.AbstractModel):
         selection="get_period_type_selection", string="Period type",
         required=True, default=_default_period_type,
         readonly=True, states={'draft': [('readonly', False)]})
-    periods = fields.Many2many(
-        comodel_name='account.period', readonly=True, string="Period(s)",
+    date_start = fields.Date(
+        string="Starting date", required=True, readonly=True,
+        states={'draft': [('readonly', False)]})
+    date_end = fields.Date(
+        string="Ending date", required=True, readonly=True,
         states={'draft': [('readonly', False)]})
     allow_posting = fields.Boolean(compute="_compute_allow_posting")
     counterpart_account = fields.Many2one(
@@ -116,13 +122,10 @@ class L10nEsAeatReport(models.AbstractModel):
     journal_id = fields.Many2one(
         comodel_name="account.journal", string="Journal",
         domain=[('type', '=', 'general')], default=_default_journal,
-        help="Journal in which post the move.")
+        help="Journal in which post the move.",
+        states={'done': [('readonly', True)]})
     move_id = fields.Many2one(
-        comodel_name="account.move", string="Account entry")
-    partner_bank_id = fields.Many2one(
-        comodel_name='res.partner.bank', string='Bank account',
-        help='Company bank account used for the presentation',
-        domain="[('state', '=', 'iban'), ('company_id', '=', company_id)]")
+        comodel_name="account.move", string="Account entry", readonly=True)
 
     _sql_constraints = [
         ('name_uniq', 'unique(name)',
@@ -138,7 +141,7 @@ class L10nEsAeatReport(models.AbstractModel):
         self.allow_posting = False
 
     @api.onchange('company_id')
-    def on_change_company_id(self):
+    def onchange_company_id(self):
         """Loads some company data (the VAT number) when the selected
         company changes.
         """
@@ -148,80 +151,50 @@ class L10nEsAeatReport(models.AbstractModel):
             self.company_vat = re.match(
                 "(ES){0,1}(.*)", self.company_id.vat).groups()[1]
         self.contact_name = self.env.user.name
-        self.contact_phone = self.env.user.partner_id.phone
+        self.contact_phone = self._filter_phone(
+            self.env.user.partner_id.phone or
+            self.env.user.partner_id.mobile or
+            self.env.user.company_id.phone)
 
-    @api.onchange('period_type', 'fiscalyear_id')
+    @api.onchange('year', 'period_type')
     def onchange_period_type(self):
-        period_model = self.env['account.period']
-        if not self.fiscalyear_id:
-            self.periods = False
+        if not self.year or not self.period_type:
+            self.date_start = False
+            self.date_end = False
         else:
-            fy_date_start = fields.Date.from_string(
-                self.fiscalyear_id.date_start)
-            fy_date_stop = fields.Date.from_string(
-                self.fiscalyear_id.date_stop)
             if self.period_type == '0A':
                 # Anual
-                if fy_date_start.year != fy_date_stop.year:
-                    return {
-                        'warning': {'title': _('Warning'), 'message': _(
-                            'Split fiscal years cannot be automatically '
-                            'handled. You should select manually the periods.')
-                        }
-                    }
-                self.periods = self.fiscalyear_id.period_ids.filtered(
-                    lambda x: not x.special)
+                self.date_start = fields.Date.from_string(
+                    '%s-01-01' % self.year)
+                self.date_end = fields.Date.from_string(
+                    '%s-12-31' % self.year)
             elif self.period_type in ('1T', '2T', '3T', '4T'):
                 # Trimestral
-                start_month = (int(self.period_type[:1]) - 1) * 3 + 1
-                # Para manejar ejercicios fiscales divididos en dos periodos
-                year = (fy_date_start.year if
-                        start_month < fy_date_start.month else
-                        fy_date_stop.year)
-                period = period_model.find(
-                    dt=fields.Date.to_string(
-                        datetime(year=year, month=start_month, day=1)))
-                period_date_stop = fields.Date.from_string(period.date_stop)
-                self.periods = period
-                if period_date_stop.month != start_month + 2:
-                    # Los periodos no están definidos trimestralmente
-                    for i in range(1, 3):
-                        month = start_month + i
-                        period = period_model.find(
-                            dt=fields.Date.to_string(
-                                datetime(year=year, month=month, day=1)))
-                        self.periods += period
+                starting_month = 1 + (int(self.period_type[0]) - 1) * 3
+                ending_month = starting_month + 2
+                self.date_start = fields.Date.from_string(
+                    '%s-%s-01' % (self.year, starting_month))
+                self.date_end = fields.Date.from_string(
+                    '%s-%s-%s' % (
+                        self.year, ending_month,
+                        monthrange(self.year, ending_month)[1]))
             elif self.period_type in ('01', '02', '03', '04', '05', '06',
                                       '07', '08', '09', '10', '11', '12'):
                 # Mensual
                 month = int(self.period_type)
-                # Para manejar ejercicios fiscales divididos en dos periodos
-                year = (fy_date_start.year if month < fy_date_start.month else
-                        fy_date_stop.year)
-                period = period_model.find(
-                    dt=fields.Date.to_string(
-                        datetime(year=year, month=month, day=1)))
-                period_date_start = fields.Date.from_string(period.date_start)
-                period_date_stop = fields.Date.from_string(period.date_stop)
-                if period_date_start.month != period_date_stop.month:
-                    return {
-                        'warning': {'title': _('Warning'), 'message': _(
-                            'It seems that you have defined quarterly periods '
-                            'or periods in the middle of the month. This '
-                            'cannot be automatically handled. You should '
-                            'select manually the periods.')
-                            }
-                    }
-                self.periods = period
+                self.date_start = fields.Date.from_string(
+                    '%s-%s-01' % (self.year, month))
+                self.date_end = fields.Date.from_string('%s-%s-%s' % (
+                    self.year, month, monthrange(self.year, month)[1]))
 
     @api.model
     def _report_identifier_get(self, vals):
-        seq_obj = self.env['ir.sequence']
         seq_name = "aeat%s-sequence" % self._model._aeat_number
         company_id = vals.get('company_id', self.env.user.company_id.id)
-        seqs = seq_obj.search([('name', '=', seq_name),
-                               ('company_id', '=', company_id)])
-        return seq_obj.next_by_id(seqs.id)
+        seq = self.env['ir.sequence'].search(
+            [('name', '=', seq_name), ('company_id', '=', company_id)],
+            limit=1)
+        return seq.next_by_id()
 
     @api.model
     def create(self, vals):
@@ -342,28 +315,41 @@ class L10nEsAeatReport(models.AbstractModel):
                                        "'cancelled' state can be removed"))
         return super(L10nEsAeatReport, self).unlink()
 
-    def init(self, cr):
-        # TODO: Poner en el _register_hook para evitar choque en multi BDs
+    @api.model
+    def _prepare_aeat_sequence_vals(self, sequence, aeat_num):
+        return {
+            'name': sequence,
+            'code': 'aeat.sequence.type',
+            'number_increment': 1,
+            'implementation': 'no_gap',
+            'padding': 13 - len(str(aeat_num)),
+            'number_next_actual': 1,
+            'prefix': aeat_num
+        }
+
+    @api.model
+    def _filter_phone(self, phone):
+        return (phone or '').replace(" ", "")[-9:]
+
+    @api.cr
+    def _register_hook(self, cr):
+        res = super(L10nEsAeatReport, self)._register_hook(cr)
         if self._name not in ('l10n.es.aeat.report',
                               'l10n.es.aeat.report.tax.mapping'):
-            seq_obj = self.pool['ir.sequence']
-            try:
-                aeat_num = getattr(self, '_aeat_number')
-                if not aeat_num:
-                    raise Exception()
-                sequence = "aeat%s-sequence" % aeat_num
-                if not seq_obj.search(cr, SUPERUSER_ID,
-                                      [('name', '=', sequence)]):
-                    seq_vals = {'name': sequence,
-                                'code': 'aeat.sequence.type',
-                                'number_increment': 1,
-                                'implementation': 'no_gap',
-                                'padding': 13 - len(str(aeat_num)),
-                                'number_next_actual': 1,
-                                'prefix': aeat_num
-                                }
-                    seq_obj.create(cr, SUPERUSER_ID, seq_vals)
-            except:
-                raise exceptions.Warning(
-                    "Modelo no válido: %s. Debe declarar una variable "
-                    "'_aeat_number'" % self._name)
+            with api.Environment.manage():
+                env = api.Environment(cr, SUPERUSER_ID, {})
+                seq_obj = env['ir.sequence']
+                aeat_obj = env[self._name]
+                try:
+                    aeat_num = getattr(self, '_aeat_number')
+                    if not aeat_num:
+                        raise Exception()
+                    sequence = "aeat%s-sequence" % aeat_num
+                    if not seq_obj.search([('name', '=', sequence)]):
+                        seq_obj.create(aeat_obj._prepare_aeat_sequence_vals(
+                            sequence, aeat_num))
+                except:
+                    raise exceptions.Warning(
+                        "Modelo no válido: %s. Debe declarar una variable "
+                        "'_aeat_number'" % self._name)
+        return res

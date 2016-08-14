@@ -1,3 +1,8 @@
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
+
+=========
 AEAT Base
 =========
 
@@ -12,7 +17,7 @@ Módulo base para declaraciones de la AEAT, que incluye:
   modelos.
 * Motor de exportación paramétrica basado en una configuración que puede ser
   introducida por datos XML o por interfaz.
-* Motor de cálculo de importes por códigos de impuestos.
+* Motor de cálculo de importes por impuestos.
 * Generador del asiento de regularización con cargo a un proveedor "Agencia
   Estatal de Administración Tributaria" creado al efecto.
 
@@ -23,12 +28,11 @@ Todos aquellos modelos que se especifiquen en los módulos adicionales y
 hereden el AEAT base, deberán definir una variable interna que se llame
 '_aeat_number' asignándole como valor, el número del modelo (130, 340, 347...).
 
-Para poder utilizar el motor genérico de cálculo de casillas por códigos de
-impuestos (como el 303), hay que heredar del modelo
-"l10n.es.aeat.report.tax.mapping" en lugar de "l10n.es.aeat.report". Para la
-vista, hay que añadir el campo a mano, ya que la herencia de vistas no permite
-una doble herencia de AbstractModel, pero lo que es la vista tree ya está
-definida.
+Para poder utilizar el motor genérico de cálculo de casillas por impuestos
+(como el 303), hay que heredar del modelo "l10n.es.aeat.report.tax.mapping" en
+lugar de "l10n.es.aeat.report". Para la vista, hay que añadir el campo a mano,
+ya que la herencia de vistas no permite una doble herencia de AbstractModel,
+pero lo que es la vista tree ya está definida.
 
 Para activar la creación del asiento de regularización en un modelo, hay que
 poner en el modelo correspondiente el campo allow_posting a True, y establecer
@@ -51,7 +55,7 @@ Contribudores
 
 * Pexego (http://www.pexego.es)
 * Acysos (http://www.acysos.com)
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * AvanzOSC (http://www.avanzosc.es)
 
 Maintainer
@@ -59,7 +63,7 @@ Maintainer
 
 .. image:: http://odoo-community.org/logo.png
    :alt: Odoo Community Association
-   :target: http://odoo-community.org
+   :target: https://odoo-community.org
 
 This module is maintained by the OCA.
 
@@ -67,4 +71,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
