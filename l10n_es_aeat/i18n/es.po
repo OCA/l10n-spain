@@ -41,7 +41,7 @@ msgid "AEAT"
 msgstr "AEAT"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code,model:0
+#: field:aeat.mod.map.tax,model:0
 msgid "AEAT Model"
 msgstr "Declaración AEAT"
 
@@ -251,8 +251,8 @@ msgid "Create move"
 msgstr "Crear asiento"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code,create_uid:0
-#: field:aeat.mod.map.tax.code.line,create_uid:0
+#: field:aeat.mod.map.tax,create_uid:0
+#: field:aeat.mod.map.tax.line,create_uid:0
 #: field:aeat.model.export.config,create_uid:0
 #: field:aeat.model.export.config.line,create_uid:0
 #: field:l10n.es.aeat.report.export_to_boe,create_uid:0
@@ -261,8 +261,8 @@ msgid "Created by"
 msgstr "Creado por"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code,create_date:0
-#: field:aeat.mod.map.tax.code.line,create_date:0
+#: field:aeat.mod.map.tax,create_date:0
+#: field:aeat.mod.map.tax.line,create_date:0
 #: field:aeat.model.export.config,create_date:0
 #: field:aeat.model.export.config.line,create_date:0
 #: field:l10n.es.aeat.report.export_to_boe,create_date:0
@@ -288,8 +288,8 @@ msgid "Declaration number"
 msgstr "Nº declaración"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code,display_name:0
-#: field:aeat.mod.map.tax.code.line,display_name:0
+#: field:aeat.mod.map.tax,display_name:0
+#: field:aeat.mod.map.tax.line,display_name:0
 #: field:aeat.model.export.config,display_name:0
 #: field:aeat.model.export.config.line,display_name:0
 #: field:l10n.es.aeat.report,display_name:0
@@ -390,7 +390,7 @@ msgid "Field especification"
 msgstr "Especificación de campo"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code.line,field_number:0
+#: field:aeat.mod.map.tax.line,field_number:0
 #: field:l10n.es.aeat.tax.line,field_number:0
 msgid "Field number"
 msgstr "Nº de casilla"
@@ -429,7 +429,7 @@ msgid "Fixed: %s"
 msgstr "Fijo: %s"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code,date_from:0
+#: field:aeat.mod.map.tax,date_from:0
 msgid "From Date"
 msgstr "Desde la fecha"
 
@@ -440,7 +440,7 @@ msgid "Full Name"
 msgstr "Nombre completo"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code,id:0 field:aeat.mod.map.tax.code.line,id:0
+#: field:aeat.mod.map.tax,id:0 field:aeat.mod.map.tax.line,id:0
 #: field:aeat.model.export.config,id:0
 #: field:aeat.model.export.config.line,id:0 field:l10n.es.aeat.report,id:0
 #: field:l10n.es.aeat.report.export_to_boe,id:0
@@ -516,8 +516,8 @@ msgid "L.R. VAT number"
 msgstr "NIF repr. legal"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code,__last_update:0
-#: field:aeat.mod.map.tax.code.line,__last_update:0
+#: field:aeat.mod.map.tax,__last_update:0
+#: field:aeat.mod.map.tax.line,__last_update:0
 #: field:aeat.model.export.config,__last_update:0
 #: field:aeat.model.export.config.line,__last_update:0
 #: field:l10n.es.aeat.report,__last_update:0
@@ -528,8 +528,8 @@ msgid "Last Modified on"
 msgstr "Last Modified on"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code,write_uid:0
-#: field:aeat.mod.map.tax.code.line,write_uid:0
+#: field:aeat.mod.map.tax,write_uid:0
+#: field:aeat.mod.map.tax.line,write_uid:0
 #: field:aeat.model.export.config,write_uid:0
 #: field:aeat.model.export.config.line,write_uid:0
 #: field:l10n.es.aeat.report.export_to_boe,write_uid:0
@@ -538,8 +538,8 @@ msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code,write_date:0
-#: field:aeat.mod.map.tax.code.line,write_date:0
+#: field:aeat.mod.map.tax,write_date:0
+#: field:aeat.mod.map.tax.line,write_date:0
 #: field:aeat.model.export.config,write_date:0
 #: field:aeat.model.export.config.line,write_date:0
 #: field:l10n.es.aeat.report.export_to_boe,write_date:0
@@ -569,17 +569,17 @@ msgid "Map line"
 msgstr "Línea de mapeo"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code,map_lines:0
+#: field:aeat.mod.map.tax,map_lines:0
 msgid "Map lines"
 msgstr "Líneas de mapeo"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code.line,map_parent_id:0
+#: field:aeat.mod.map.tax.line,map_parent_id:0
 msgid "Map parent id"
 msgstr "Padre del mapeo"
 
 #. module: l10n_es_aeat
-#: view:aeat.mod.map.tax.code:l10n_es_aeat.aeat_mod_map_tax_code_form
+#: view:aeat.mod.map.tax:l10n_es_aeat.aeat_mod_map_tax_code_form
 msgid "Mapping Lines"
 msgstr "Líneas de mapeo"
 
@@ -602,7 +602,7 @@ msgid "Must have name and surname."
 msgstr "Debe tener apellidos y nombre."
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code.line,name:0
+#: field:aeat.mod.map.tax.line,name:0
 #: field:aeat.model.export.config,name:0
 #: field:aeat.model.export.config.line,name:0
 #: field:l10n.es.aeat.tax.line,name:0
@@ -816,25 +816,25 @@ msgid "Support Type"
 msgstr "Tipo de soporte"
 
 #. module: l10n_es_aeat
-#: view:aeat.mod.map.tax.code:l10n_es_aeat.aeat_mod_map_tax_code_form
-#: view:aeat.mod.map.tax.code:l10n_es_aeat.aeat_mod_map_tax_code_tree
+#: view:aeat.mod.map.tax:l10n_es_aeat.aeat_mod_map_tax_code_form
+#: view:aeat.mod.map.tax:l10n_es_aeat.aeat_mod_map_tax_code_tree
 #: model:ir.actions.act_window,name:l10n_es_aeat.action_aeat_mod_map_tax_code
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_aeat_mod_map_tax_code
 msgid "Tax code mapping"
 msgstr "Mapeo de códigos de impuesto"
 
 #. module: l10n_es_aeat
-#: view:aeat.mod.map.tax.code.line:l10n_es_aeat.aeat_mod_map_tax_code_line_form
+#: view:aeat.mod.map.tax.line:l10n_es_aeat.aeat_mod_map_tax_code_line_form
 msgid "Tax code mapping line"
 msgstr "Línea de mapeo de códigos de impuesto"
 
 #. module: l10n_es_aeat
-#: view:aeat.mod.map.tax.code.line:l10n_es_aeat.aeat_mod_map_tax_code_line_tree
+#: view:aeat.mod.map.tax.line:l10n_es_aeat.aeat_mod_map_tax_code_line_tree
 msgid "Tax code mapping lines"
 msgstr "Líneas de mapeo de códigos de impuesto"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code.line,tax_codes:0
+#: field:aeat.mod.map.tax.line,tax_codes:0
 msgid "Tax codes"
 msgstr "Códigos de impuesto"
 
@@ -885,12 +885,12 @@ msgid "This button creates the regularization move for the selected report"
 msgstr "Este botón crea el movimiento de regularización para el informe seleccionado"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code,date_to:0
+#: field:aeat.mod.map.tax,date_to:0
 msgid "To Date"
 msgstr "Hasta la fecha"
 
 #. module: l10n_es_aeat
-#: field:aeat.mod.map.tax.code.line,to_regularize:0
+#: field:aeat.mod.map.tax.line,to_regularize:0
 #: field:l10n.es.aeat.tax.line,to_regularize:0
 msgid "To regularize"
 msgstr "Para regularizar"
