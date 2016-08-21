@@ -9,6 +9,7 @@ from openerp import models, fields, api, _
 from openerp.addons.payment.models.payment_acquirer import ValidationError
 from openerp.addons import decimal_precision as dp
 from openerp.tools.float_utils import float_compare
+from openerp import exceptions
 _logger = logging.getLogger(__name__)
 
 try:
@@ -85,8 +86,18 @@ class AcquirerRedsys(models.Model):
     redsys_percent_partial = fields.Float(
         string='Reduction percent',
         digits=dp.get_precision('Account'),
-        help='Write percent reduction payment, for this method payment'
+        help='Write percent reduction payment, for this method payment.'
+             'With this option you can allow partial payments in your '
+             'shop online, the residual amount in pending for do a manual '
+             'payment later.'
     )
+
+    @api.constrains('redsys_percent_partial')
+    def check_redsys_percent_partial(self):
+        if self.redsys_percent_partial < 0 or \
+                        self.redsys_percent_partial > 100:
+            raise exceptions.Warning(
+                _('Partial payment percent must be between 0 and 100'))
 
     def _prepare_merchant_parameters(self, acquirer, tx_values):
         base_url = self.env['ir.config_parameter'].get_param('web.base.url')
