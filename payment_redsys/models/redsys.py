@@ -94,8 +94,8 @@ class AcquirerRedsys(models.Model):
 
     @api.constrains('redsys_percent_partial')
     def check_redsys_percent_partial(self):
-        if self.redsys_percent_partial < 0 or \
-                        self.redsys_percent_partial > 100:
+        if (self.redsys_percent_partial < 0 or
+                self.redsys_percent_partial > 100):
             raise exceptions.Warning(
                 _('Partial payment percent must be between 0 and 100'))
 
@@ -327,7 +327,6 @@ class TxRedsys(models.Model):
             })
             return False
 
-
     @api.model
     def form_feedback(self, data, acquirer_name):
         res = super(TxRedsys, self).form_feedback(data, acquirer_name)
@@ -359,7 +358,7 @@ class TxRedsys(models.Model):
                                 tx.sale_order_id.id).with_context(
                                 send_email=True).action_button_confirm()
                         elif (tx.state != 'cancel' and
-                                      tx.sale_order_id.state == 'draft'):
+                                tx.sale_order_id.state == 'draft'):
                             _logger.info('<%s> transaction pending, sending '
                                          'quote email for order %s (ID %s)',
                                          acquirer_name, tx.sale_order_id.name,
