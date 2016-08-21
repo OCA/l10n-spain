@@ -21,6 +21,7 @@
                         <field name="redsys_merchant_data" attrs="{'required': [('provider', '=', 'redsys')]}"/>
                         <field name="redsys_merchant_description" attrs="{'required': [('provider', '=', 'redsys')]}"/>
                         <field name="redsys_signature_version" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                        <field name="redsys_percent_partial" attrs="{'required': [('provider', '=', 'redsys')]}"/>
                     </group>
                     <group attrs="{'invisible': [('provider', '!=', 'redsys')]}">
                         <field name="send_quotation"/>
