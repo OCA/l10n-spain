@@ -7,7 +7,9 @@ import json
 
 from openerp import models, fields, api, _
 from openerp.addons.payment.models.payment_acquirer import ValidationError
+from openerp.addons import decimal_precision as dp
 from openerp.tools.float_utils import float_compare
+from openerp import exceptions
 _logger = logging.getLogger(__name__)
 
 try:
@@ -81,11 +83,32 @@ class AcquirerRedsys(models.Model):
     redsys_signature_version = fields.Selection(
         [('HMAC_SHA256_V1', 'HMAC SHA256 V1')], default='HMAC_SHA256_V1')
     send_quotation = fields.Boolean('Send quotation', default=True)
+    redsys_percent_partial = fields.Float(
+        string='Reduction percent',
+        digits=dp.get_precision('Account'),
+        help='Write percent reduction payment, for this method payment.'
+             'With this option you can allow partial payments in your '
+             'shop online, the residual amount in pending for do a manual '
+             'payment later.'
+    )
+
+    @api.constrains('redsys_percent_partial')
+    def check_redsys_percent_partial(self):
+        if (self.redsys_percent_partial < 0 or
+                self.redsys_percent_partial > 100):
+            raise exceptions.Warning(
+                _('Partial payment percent must be between 0 and 100'))
 
     def _prepare_merchant_parameters(self, acquirer, tx_values):
         base_url = self.env['ir.config_parameter'].get_param('web.base.url')
         sale_order = self.env['sale.order'].search(
             [('name', '=', tx_values['reference'])])
+
+        if acquirer.redsys_percent_partial > 0:
+            amount = tx_values['amount']
+            tx_values['amount'] = amount - (
+                amount * acquirer.redsys_percent_partial / 100)
+
         values = {
             'Ds_Sermepa_Url': (
                 self._get_redsys_urls(acquirer.environment)[
@@ -241,7 +264,13 @@ class TxRedsys(models.Model):
             invalid_parameters.append(
                 ('Transaction Id', parameters_dic.get('Ds_Order'),
                  tx.acquirer_reference))
+
         # check what is buyed
+        if tx.acquirer_id.redsys_percent_partial > 0.0:
+            new_amount = tx.amount - (
+                tx.amount * tx.acquirer_id.redsys_percent_partial / 100)
+            tx.amount = new_amount
+
         if (float_compare(float(parameters_dic.get('Ds_Amount', '0.0')) / 100,
                           tx.amount, 2) != 0):
             invalid_parameters.append(
@@ -297,3 +326,52 @@ class TxRedsys(models.Model):
                 'state_message': error,
             })
             return False
+
+    @api.model
+    def form_feedback(self, data, acquirer_name):
+        res = super(TxRedsys, self).form_feedback(data, acquirer_name)
+        try:
+            tx_find_method_name = '_%s_form_get_tx_from_data' % acquirer_name
+            if hasattr(self, tx_find_method_name):
+                tx = getattr(self, tx_find_method_name)(data)
+            _logger.info(
+                '<%s> transaction processed: tx ref:%s, tx amount: %s',
+                acquirer_name, tx.reference if tx else 'n/a',
+                tx.amount if tx else 'n/a')
+            if tx.acquirer_id.redsys_percent_partial > 0:
+                if tx and tx.sale_order_id:
+                    percent_reduction = tx.acquirer_id.redsys_percent_partial
+                    new_so_amount = (
+                        tx.sale_order_id.amount_total - (
+                            tx.sale_order_id.amount_total *
+                            percent_reduction / 100))
+                    amount_matches = (
+                        tx.sale_order_id.state in ['draft', 'sent'] and
+                        float_compare(tx.amount, new_so_amount, 2) == 0)
+                    if amount_matches:
+                        if tx.state == 'done':
+                            _logger.info(
+                                '<%s> transaction completed, confirming order '
+                                '%s (ID %s)', acquirer_name,
+                                tx.sale_order_id.name, tx.sale_order_id.id)
+                            self.env['sale.order'].sudo().browse(
+                                tx.sale_order_id.id).with_context(
+                                send_email=True).action_button_confirm()
+                        elif (tx.state != 'cancel' and
+                                tx.sale_order_id.state == 'draft'):
+                            _logger.info('<%s> transaction pending, sending '
+                                         'quote email for order %s (ID %s)',
+                                         acquirer_name, tx.sale_order_id.name,
+                                         tx.sale_order_id.id)
+                            self.env['sale.order'].sudo().browse(
+                                tx.sale_order_id.id).force_quotation_send()
+                    else:
+                        _logger.warning('<%s> transaction MISMATCH for order '
+                                        '%s (ID %s)', acquirer_name,
+                                        tx.sale_order_id.name,
+                                        tx.sale_order_id.id)
+        except Exception:
+            _logger.exception(
+                'Fail to confirm the order or send the confirmation email%s',
+                tx and ' for the transaction %s' % tx.reference or '')
+        return res
