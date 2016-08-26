@@ -3,20 +3,19 @@
 # * l10n_es_pos
 # 
 # Translators:
-# César Castro Cruz <ulmroan@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-05 12:41+0000\n"
-"Last-Translator: César Castro Cruz <ulmroan@gmail.com>\n"
-"Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
+"POT-Creation-Date: 2017-05-06 03:17+0000\n"
+"PO-Revision-Date: 2015-09-25 13:23+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Russian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: gl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -24,14 +23,14 @@ msgstr ""
 #: view:website:point_of_sale.report_receipt
 #, python-format
 msgid "Address:"
-msgstr "Enderezo:"
+msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/js/main.js:99
 #, python-format
 msgid "An anonymous order cannot be invoiced"
-msgstr "Unha orde anónima non pode ser facturada"
+msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -39,17 +38,17 @@ msgstr "Unha orde anónima non pode ser facturada"
 #: view:website:point_of_sale.report_receipt
 #, python-format
 msgid "Customer data"
-msgstr "Datos do cliente"
+msgstr ""
 
 #. module: l10n_es_pos
 #: view:website:point_of_sale.report_receipt
 msgid "Invoice"
-msgstr "Factura"
+msgstr "Счет"
 
 #. module: l10n_es_pos
 #: view:pos.order:l10n_es_pos.view_pos_order_filter
 msgid "Invoices"
-msgstr "Facturas"
+msgstr "Счета"
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -57,7 +56,7 @@ msgstr "Facturas"
 #: view:website:point_of_sale.report_receipt
 #, python-format
 msgid "Name:"
-msgstr "Nome:"
+msgstr ""
 
 #. module: l10n_es_pos
 #: help:pos.config,simplified_invoice_limit:0
@@ -76,12 +75,12 @@ msgstr ""
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_pos_order
 msgid "Point of Sale"
-msgstr "Punto de venda"
+msgstr ""
 
 #. module: l10n_es_pos
 #: view:pos.order:l10n_es_pos.view_pos_order_filter
 msgid "Posted"
-msgstr ""
+msgstr "Проведено"
 
 #. module: l10n_es_pos
 #: view:pos.order:l10n_es_pos.view_pos_order_tree
@@ -91,7 +90,7 @@ msgstr ""
 #. module: l10n_es_pos
 #: field:pos.order,simplified:0 view:website:point_of_sale.report_receipt
 msgid "Simplified invoice"
-msgstr "Factura simplifiada"
+msgstr ""
 
 #. module: l10n_es_pos
 #: field:pos.config,simplified_invoice_limit:0
@@ -101,7 +100,7 @@ msgstr ""
 #. module: l10n_es_pos
 #: view:pos.order:l10n_es_pos.view_pos_order_filter
 msgid "Simplified invoices"
-msgstr "Facturas simplificadas"
+msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
