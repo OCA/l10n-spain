@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-25 13:20+0000\n"
+"POT-Creation-Date: 2017-04-29 02:57+0000\n"
 "PO-Revision-Date: 2015-09-25 13:23+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en/)\n"
+"Last-Translator: <>\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: en\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -23,14 +23,14 @@ msgstr ""
 #: view:website:point_of_sale.report_receipt
 #, python-format
 msgid "Address:"
-msgstr "Address:"
+msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/js/main.js:99
 #, python-format
 msgid "An anonymous order cannot be invoiced"
-msgstr "An anonymous order cannot be invoiced"
+msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -38,17 +38,17 @@ msgstr "An anonymous order cannot be invoiced"
 #: view:website:point_of_sale.report_receipt
 #, python-format
 msgid "Customer data"
-msgstr "Customer data"
+msgstr ""
 
 #. module: l10n_es_pos
 #: view:website:point_of_sale.report_receipt
 msgid "Invoice"
-msgstr "Invoice"
+msgstr "Fatura"
 
 #. module: l10n_es_pos
 #: view:pos.order:l10n_es_pos.view_pos_order_filter
 msgid "Invoices"
-msgstr "Invoices"
+msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -56,12 +56,12 @@ msgstr "Invoices"
 #: view:website:point_of_sale.report_receipt
 #, python-format
 msgid "Name:"
-msgstr "Name:"
+msgstr ""
 
 #. module: l10n_es_pos
 #: help:pos.config,simplified_invoice_limit:0
 msgid "Over this amount is not legally posible to create a simplified invoice"
-msgstr "Over this amount is not legally posible to create a simplified invoice"
+msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -70,37 +70,37 @@ msgstr "Over this amount is not legally posible to create a simplified invoice"
 msgid ""
 "Please select a client for this order. This can be done by clicking the "
 "order tab"
-msgstr "Please select a client for this order. This can be done by clicking the order tab"
+msgstr ""
 
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_pos_order
 msgid "Point of Sale"
-msgstr "Point of Sale"
+msgstr ""
 
 #. module: l10n_es_pos
 #: view:pos.order:l10n_es_pos.view_pos_order_filter
 msgid "Posted"
-msgstr "Posted"
+msgstr "İşlenmiş"
 
 #. module: l10n_es_pos
 #: view:pos.order:l10n_es_pos.view_pos_order_tree
 msgid "Simplified"
-msgstr "Simplified"
+msgstr ""
 
 #. module: l10n_es_pos
 #: field:pos.order,simplified:0 view:website:point_of_sale.report_receipt
 msgid "Simplified invoice"
-msgstr "Simplified invoice"
+msgstr ""
 
 #. module: l10n_es_pos
 #: field:pos.config,simplified_invoice_limit:0
 msgid "Simplified invoice limit"
-msgstr "Simplified invoice limit"
+msgstr ""
 
 #. module: l10n_es_pos
 #: view:pos.order:l10n_es_pos.view_pos_order_filter
 msgid "Simplified invoices"
-msgstr "Simplified invoices"
+msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -109,9 +109,9 @@ msgstr "Simplified invoices"
 #: view:website:point_of_sale.report_receipt
 #, python-format
 msgid "VAT:"
-msgstr "VAT:"
+msgstr ""
 
 #. module: l10n_es_pos
 #: view:website:point_of_sale.report_receipt
 msgid "display:none;"
-msgstr "display:none;"
+msgstr ""
