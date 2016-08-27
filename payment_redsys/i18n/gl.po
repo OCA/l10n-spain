@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-26 01:41+0000\n"
-"PO-Revision-Date: 2016-02-25 17:16+0000\n"
+"POT-Creation-Date: 2016-08-26 16:03+0000\n"
+"PO-Revision-Date: 2016-08-21 12:03+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgid "Back to shop"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:282
+#: code:addons/payment_redsys/models/redsys.py:311
 #, python-format
 msgid "Bank Error: %s (%s)"
 msgstr ""
@@ -55,6 +55,11 @@ msgid "Date:"
 msgstr ""
 
 #. module: payment_redsys
+#: view:website:payment_redsys.order
+msgid "Discount (%)"
+msgstr ""
+
+#. module: payment_redsys
 #: selection:payment.acquirer,redsys_pay_method:0
 msgid "Domiciliacion"
 msgstr "Domiciliación"
@@ -65,7 +70,7 @@ msgid "En error ocurred."
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:271
+#: code:addons/payment_redsys/models/redsys.py:300
 #, python-format
 msgid "Error: %s (%s)"
 msgstr ""
@@ -141,7 +146,7 @@ msgid "Merchant code"
 msgstr "Código do comerciante"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:260
+#: code:addons/payment_redsys/models/redsys.py:289
 #, python-format
 msgid "Ok: %s"
 msgstr "OK: %s"
@@ -160,6 +165,12 @@ msgstr "Pagamento con tarxeta"
 #: selection:payment.acquirer,redsys_pay_method:0
 msgid "Pago por Transferencia"
 msgstr "Pagamento por transferencia"
+
+#. module: payment_redsys
+#: code:addons/payment_redsys/models/redsys.py:100
+#, python-format
+msgid "Partial payment percent must be between 0 and 100"
+msgstr ""
 
 #. module: payment_redsys
 #: model:ir.model,name:payment_redsys.model_payment_acquirer
@@ -217,9 +228,14 @@ msgid "Redsys signature version"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:289
+#: code:addons/payment_redsys/models/redsys.py:318
 #, python-format
 msgid "Redsys: feedback error %s (%s)"
+msgstr ""
+
+#. module: payment_redsys
+#: field:payment.acquirer,redsys_percent_partial:0
+msgid "Reduction percent"
 msgstr ""
 
 #. module: payment_redsys
@@ -300,6 +316,14 @@ msgstr ""
 #. module: payment_redsys
 #: view:website:payment_redsys.redsys_result_ok
 msgid "We will inform you of your order status"
+msgstr ""
+
+#. module: payment_redsys
+#: help:payment.acquirer,redsys_percent_partial:0
+msgid ""
+"Write percent reduction payment, for this method payment.With this option "
+"you can allow partial payments in your shop online, the residual amount in "
+"pending for do a manual payment later."
 msgstr ""
 
 #. module: payment_redsys
