@@ -379,7 +379,7 @@ class L10nEsAeatMod347Report(models.Model):
             if real_state_errors:
                 error += _("Real estate record errors:\n")
                 error += '\n'.join(real_state_errors)
-            if error:
+            if partner_errors or real_state_errors:
                 raise exceptions.ValidationError(error)
         return super(L10nEsAeatMod347Report, self).button_confirm()
 
@@ -729,7 +729,7 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
     @api.depends('state_code')
     def _compute_check_ok(self):
         for record in self:
-            record.check_ok = bool(record.partner_state_code)
+            record.check_ok = bool(record.state_code)
 
     report_id = fields.Many2one(
         comodel_name='l10n.es.aeat.mod347.report', string='AEAT 347 Report',

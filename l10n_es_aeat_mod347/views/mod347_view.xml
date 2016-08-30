@@ -292,9 +292,6 @@
                             </group>
                         </page>
                         <page string="Partner records">
-                            <button name="button_list_partner_records"
-                                    string="Edit records"
-                                    type="object" colspan="1"/>
                             <field name="partner_record_ids" nolabel="1"
                                    context="{'report_id': active_id}"
                                    readonly="True"/>
