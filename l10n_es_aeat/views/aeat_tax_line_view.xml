@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="view_l10n_es_aeat_tax_line_tree" model="ir.ui.view">
+    <field name="name">l10n.es.aeat.tax.line.tree</field>
+    <field name="model">l10n.es.aeat.tax.line</field>
+    <field name="arch" type="xml">
+        <tree string="Tax lines" editable="bottom">
+            <field name="field_number"/>
+            <field name="name"/>
+            <field name="amount"/>
+            <button name="get_calculated_move_lines"
+                    type="object"
+                    help="Show journal items"
+                    icon="fa-search-plus"/>
+        </tree>
+    </field>
+</record>
+
+<record id="view_l10n_es_aeat_tax_line_form" model="ir.ui.view">
+    <field name="name">l10n.es.aeat.tax.line.form</field>
+    <field name="model">l10n.es.aeat.tax.line</field>
+    <field name="arch" type="xml">
+        <form string="Tax lines">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="field_number"/>
+                        <field name="map_line_id"/>
+                        <field name="to_regularize"/>
+                    </group>
+                    <group>
+                        <field name="amount"/>
+                    </group>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+</odoo>

@@ -3,10 +3,12 @@
 # Copyright 2013 Ignacio Ibeas - Acysos S.L. (http://acysos.com)
 # Copyright 2015 Ainara Galdona <agaldona@avanzosc.com>
 # Copyright 2013-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 {
     'name': "AEAT Base",
+    'summary': "Modulo base para declaraciones de la AEAT",
     'version': "9.0.1.0.0",
     'author': "Pexego,"
               "Acysos,"
@@ -14,17 +16,12 @@
               "Tecnativa,"
               "Odoo Community Association (OCA)",
     'license': "AGPL-3",
-    'contributors': [
-        'Ignacio Ibeas (Acysos S.L.)',
-        'Ainara Galdona',
-        'Pedro M. Baeza <pedro.baeza@tecnativa.com>',
-        'Santi Argüeso <santi@comunitea.com>',
-        'cubells <info@obertix.net>',
-    ],
-    'website': "https://github.com/OCA/l10n-spain",
+    'website': "https://odoo-community.org/",
     'category': "Accounting & Finance",
     'depends': [
-        "account",
+        'account',
+        'base_iban',
+        'account_tax_balance',
     ],
     'external_dependencies': {
         'python': ['unidecode'],
@@ -36,7 +33,7 @@
         'wizard/export_to_boe_wizard.xml',
         'views/aeat_menuitem.xml',
         'views/aeat_report_view.xml',
-        'views/aeat_report_tax_mapping_view.xml',
+        'views/aeat_tax_line_view.xml',
         'views/aeat_export_configuration_view.xml',
         'views/aeat_tax_code_mapping_view.xml',
         'views/account_move_line_view.xml',
