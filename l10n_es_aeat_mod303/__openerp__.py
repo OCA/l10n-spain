@@ -2,11 +2,12 @@
 # © 2013 Alberto Martín Cortada (Guadaltech)
 # © 2014-2015 Pedro M. Baeza
 # © 2015 AvanzOSC - Ainara Galdona
+# © 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 {
     "name": "AEAT modelo 303",
-    "version": "8.0.1.6.0",
+    "version": "9.0.1.0.0",
     'category': "Accounting & Finance",
     'author': "Guadaltech,"
               "AvanzOSC,"
@@ -14,7 +15,7 @@
               "Antiun Ingeniería S.L.,"
               "Comunitea,"
               "Odoo Community Association (OCA)",
-    'website': "https://github.com/OCA/l10n-spain",
+    'website': "https://odoo-community.org/",
     "license": "AGPL-3",
     "depends": [
         "l10n_es",
@@ -26,5 +27,5 @@
         "views/mod303_view.xml",
         "security/ir.model.access.csv",
     ],
-    'installable': False,
+    'installable': True,
 }
