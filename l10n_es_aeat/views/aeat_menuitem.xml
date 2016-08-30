@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-    <menuitem id="menu_root_aeat"
-              parent="account.menu_finance"
-              sequence="4"
-              groups="group_account_aeat"
-              name="AEAT reports"/>
+<menuitem id="menu_root_aeat"
+          parent="account.menu_finance"
+          sequence="4"
+          groups="group_account_aeat"
+          name="AEAT reports"/>
 
-    <menuitem id="menu_l10n_es_aeat_config"
-              parent="account.menu_finance_configuration"
-              sequence="35"
-              groups="group_account_aeat"
-              name="AEAT"/>
+<menuitem id="menu_l10n_es_aeat_config"
+          parent="account.menu_finance_configuration"
+          sequence="35"
+          groups="group_account_aeat"
+          name="AEAT"/>
 
 </odoo>
