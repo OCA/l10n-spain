@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # © 2016 - Serv. Tecnol. Avanzados - Pedro M. Baeza
+# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import api, exceptions, fields, models, _
-import openerp.addons.decimal_precision as dp
 
 
 class L10nEsAeatReportTaxMapping(models.AbstractModel):
@@ -12,53 +12,60 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     _description = ("Inheritable abstract model to add taxes by code mapping "
                     "in any AEAT report")
 
-    tax_lines = fields.One2many(
+    tax_line_ids = fields.One2many(
         comodel_name='l10n.es.aeat.tax.line', inverse_name='res_id',
         domain=lambda self: [("model", "=", self._name)], auto_join=True,
-        readonly=True)
+        readonly=True, oldname='tax_lines', string="Tax lines")
 
     @api.multi
     def calculate(self):
         res = super(L10nEsAeatReportTaxMapping, self).calculate()
         for report in self:
-            report.tax_lines.unlink()
+            report.tax_line_ids.unlink()
             # Buscar configuración de mapeo de impuestos
-            tax_map_obj = self.env['l10n.es.aeat.map.tax']
-            date_start = min([fields.Date.from_string(x) for x in
-                              self.periods.mapped('date_start')])
-            date_stop = max([fields.Date.from_string(x) for x in
-                             self.periods.mapped('date_stop')])
-            tax_code_map = tax_map_obj.search(
+            tax_code_map = self.env['l10n.es.aeat.map.tax'].search(
                 [('model', '=', report.number),
                  '|',
-                 ('date_from', '<=', date_start),
+                 ('date_from', '<=', report.date_start),
                  ('date_from', '=', False),
                  '|',
-                 ('date_to', '>=', date_stop),
+                 ('date_to', '>=', report.date_end),
                  ('date_to', '=', False)], limit=1)
             if tax_code_map:
                 tax_lines = []
-                for map_line in tax_code_map.map_lines:
+                for map_line in tax_code_map.map_line_ids:
                     tax_lines.append(report._prepare_tax_line_vals(map_line))
-                report.tax_lines = [(0, 0, x) for x in tax_lines]
+                report.tax_line_ids = [(0, 0, x) for x in tax_lines]
         return res
 
     @api.multi
     def unlink(self):
-        self.mapped('tax_lines').unlink()
+        self.mapped('tax_line_ids').unlink()
         return super(L10nEsAeatReportTaxMapping, self).unlink()
 
     @api.multi
     def _prepare_tax_line_vals(self, map_line):
         self.ensure_one()
         move_lines = self._get_tax_lines(
-            map_line.mapped('tax_ids.description'), periods=self.periods)
+            map_line.mapped('tax_ids.description'),
+            self.date_start, self.date_end,
+            map_line.move_type, map_line.field_type, map_line.sum_type)
+        amount = 0.0
+        if map_line.sum_type == 'credit':
+            amount = sum(move_lines.mapped('credit'))
+        elif map_line.sum_type == 'debit':
+            amount = sum(move_lines.mapped('debit'))
+        else:  # map_line.sum_type == 'both'
+            amount = (sum(move_lines.mapped('credit')) -
+                      sum(move_lines.mapped('debit')))
+        if map_line.inverse:
+            amount = (-1.0) * amount
         return {
             'model': self._name,
             'res_id': self.id,
-            'map_line': map_line.id,
-            'amount': sum(move_lines.mapped('tax_amount')),
-            'move_lines': [(6, 0, move_lines.ids)],
+            'map_line_id': map_line.id,
+            'amount': amount,
+            'move_line_ids': [(6, 0, move_lines.ids)],
         }
 
     @api.multi
@@ -67,39 +74,48 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
 
     @api.multi
     def _get_move_line_domain(self, codes, date_start, date_end,
-                              include_children=True):
+                              move_type, field_type, sum_type):
         self.ensure_one()
         tax_model = self.env['account.tax']
         taxes = tax_model.search(
             [('description', 'in', codes),
              ('company_id', 'child_of', self.company_id.id)])
-        if include_children and taxes:
-            taxes = tax_model.search(
-                [('id', 'child_of', taxes.ids),
-                 ('company_id', 'child_of', self.company_id.id)])
         move_line_domain = [
             ('company_id', 'child_of', self.company_id.id),
-            ('tax_code_id', 'child_of', taxes.ids),
             ('date', '>=', date_start),
             ('date', '<=', date_end)
         ]
+        if move_type == 'regular':
+            move_line_domain.append(
+                ('move_id.move_type', 'in', ('receivable', 'payable')))
+        elif move_type == 'refund':
+            move_line_domain.append(
+                ('move_id.move_type', 'in', ('receivable_refund',
+                                             'payable_refund')))
+        if field_type == 'base':
+            move_line_domain.append(('tax_ids', 'in', taxes.ids))
+        else:  # field_type == 'amount'
+            move_line_domain.append(('tax_line_id', 'in', taxes.ids))
+        if sum_type == 'debit':
+            move_line_domain.append(('debit', '>', 0))
+        elif sum_type == 'credit':
+            move_line_domain.append(('credit', '>', 0))
         move_line_domain += self._get_partner_domain()
         return move_line_domain
 
     @api.model
     def _get_tax_lines(self, codes, date_start, date_end,
-                       include_children=True):
-        """
-        Get the move lines for the codes and periods associated
+                       move_type, field_type, sum_type):
+        """Get the move lines for the codes and periods associated
+
         :param codes: List of strings for the tax codes
         :param date_start: Start date of the period
         :param date_stop: Stop date of the period
-        :param include_children: True (default) if it also searches on
-          children tax codes.
+        :param field_type: 'base' or 'amount'.
         :return: Move lines recordset that matches the criteria.
         """
         domain = self._get_move_line_domain(
-            codes, date_start, date_end, include_children=include_children)
+            codes, date_start, date_end, move_type, field_type, sum_type)
         return self.env['account.move.line'].search(domain)
 
     @api.model
@@ -115,17 +131,16 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     def _process_tax_line_regularization(self, tax_lines):
         self.ensure_one()
         groups = self.env['account.move.line'].read_group(
-            [('id', 'in', tax_lines.mapped('move_lines').ids)],
+            [('id', 'in', tax_lines.mapped('move_line_ids').ids)],
             ['debit', 'credit', 'account_id'],
             ['account_id'])
         lines = []
         for group in groups:
-            if group['debit'] > 0 and group['credit'] > 0:
-                new_group = group.copy()
-                group['debit'] = 0
-                new_group['credit'] = 0
-                lines.append(self._prepare_regularization_move_line(new_group))
-            lines.append(self._prepare_regularization_move_line(group))
+            balance = group['debit'] - group['credit']
+            if balance:
+                group['debit'] = balance if balance > 0 else 0
+                group['credit'] = -balance if balance < 0 else 0
+                lines.append(self._prepare_regularization_move_line(group))
         return lines
 
     @api.model
@@ -151,57 +166,21 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         """
         self.ensure_one()
         lines = self._process_tax_line_regularization(
-            self.tax_lines.filtered('to_regularize'))
+            self.tax_line_ids.filtered('to_regularize'))
         lines += self._prepare_regularization_extra_move_lines()
         # Write counterpart with the remaining
         debit = sum(x['debit'] for x in lines)
         credit = sum(x['credit'] for x in lines)
         lines.append(self._prepare_counterpart_move_line(
-            self.counterpart_account, debit, credit))
+            self.counterpart_account_id, debit, credit))
         return lines
 
     @api.one
     def create_regularization_move(self):
-        if not self.counterpart_account or not self.journal_id:
+        if not self.counterpart_account_id or not self.journal_id:
             raise exceptions.Warning(
                 _("You must fill both journal and counterpart account."))
         move_vals = self._prepare_move_vals()
         line_vals_list = self._prepare_regularization_move_lines()
-        move_vals['line_id'] = [(0, 0, x) for x in line_vals_list]
+        move_vals['line_ids'] = [(0, 0, x) for x in line_vals_list]
         self.move_id = self.env['account.move'].create(move_vals)
-
-
-class L10nEsAeatTaxLine(models.Model):
-    _name = "l10n.es.aeat.tax.line"
-
-    res_id = fields.Integer("Resource ID", index=True, required=True)
-    field_number = fields.Integer(
-        string="Field number", related="map_line.field_number",
-        store=True)
-    name = fields.Char(
-        string="Name", related="map_line.name", store=True)
-    amount = fields.Float(digits=dp.get_precision('Account'))
-    map_line = fields.Many2one(
-        comodel_name='l10n.es.aeat.map.tax.line', required=True,
-        ondelete="cascade")
-    move_lines = fields.Many2many(
-        comodel_name='account.move.line', string='Journal items')
-    to_regularize = fields.Boolean(related='map_line.to_regularize')
-    model = fields.Char(index=True, readonly=True, required=True)
-    model_id = fields.Many2one(
-        comodel_name='ir.model', string='Model',
-        compute="_compute_model_id", store=True)
-
-    @api.multi
-    @api.depends("model")
-    def _compute_model_id(self):
-        for s in self:
-            s.model_id = self.env["ir.model"].search([("model", "=", s.model)])
-
-    @api.multi
-    def get_calculated_move_lines(self):
-        res = self.env.ref('account.action_tax_code_line_open').read()[0]
-        view = self.env.ref('l10n_es_aeat.view_move_line_tree')
-        res['views'] = [(view.id, 'tree')]
-        res['domain'] = [('id', 'in', self.move_lines.ids)]
-        return res
