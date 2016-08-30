@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2013-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 from openerp import models, fields, api, exceptions, _
@@ -10,7 +11,7 @@ class L10nEsAeatMapTax(models.Model):
 
     date_from = fields.Date(string="From Date")
     date_to = fields.Date(string="To Date")
-    map_lines = fields.One2many(
+    map_line_ids = fields.One2many(
         comodel_name='l10n.es.aeat.map.tax.line',
         inverse_name='map_parent_id', string="Map lines", required=True)
     model = fields.Integer(string="AEAT Model", required=True)
@@ -56,15 +57,3 @@ class L10nEsAeatMapTax(models.Model):
                     fields.Date.from_string(record.date_to) or '')
             vals.append(tuple([record.id, name]))
         return vals
-
-
-class L10nEsAeatMapTaxLine(models.Model):
-    _name = 'l10n.es.aeat.map.tax.line'
-
-    field_number = fields.Integer(string="Field number", required=True)
-    tax_ids = fields.Many2many(
-        comodel_name='account.tax.template', string="Taxes templates",
-        required=True)
-    name = fields.Char(required=True)
-    map_parent_id = fields.Many2one('l10n.es.aeat.map.tax', required=True)
-    to_regularize = fields.Boolean()
