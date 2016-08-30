@@ -1,28 +1,9 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
-#        Luis Manuel Angueira Blanco (Pexego)
-#
-#    Copyright (C) 2013
-#        Ignacio Ibeas - Acysos S.L. (http://acysos.com) All Rights Reserved
-#        Migración a OpenERP 7.0
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2004-2011 Luis Manuel Angueira Blanco (http://pexego.es)
+# Copyright 2013 Ignacio Ibeas (http://acysos.com)
+# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 import base64
 import re
 from openerp.tools.safe_eval import safe_eval as eval
@@ -35,13 +16,16 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
     _name = "l10n.es.aeat.report.export_to_boe"
     _description = "Export Report to BOE Format"
 
-    name = fields.Char(string='File name', readonly=True)
-    data = fields.Binary(string='File', readonly=True)
-    state = fields.Selection([('open', 'open'), ('get', 'get')],
-                             string="State", default='open')
+    name = fields.Char(string="File name", readonly=True)
+    data = fields.Binary(string="File", readonly=True)
+    state = fields.Selection(
+        selection=[
+            ('open', 'open'),
+            ('get', 'get'),
+        ], string="State", default='open')
 
     def _formatString(self, text, length, fill=' ', align='<'):
-        """Formats the string into a fixed length ASCII (iso-8859-1) record.
+        u"""Format the string into a fixed length ASCII (iso-8859-1) record.
 
         Note:
             'Todos los campos alfanuméricos y alfabéticos se presentarán
@@ -78,19 +62,11 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         # Return string
         return ascii_string
 
-    def _formatFiscalName(self, text, length, fill=' ', align='<'):
-        name = re.sub(
-            ur"[^a-zA-Z0-9\sáÁéÉíÍóÓúÚñÑçÇäÄëËïÏüÜöÖ"
-            ur"àÀèÈìÌòÒùÙâÂêÊîÎôÔûÛ\.,-_&'´\\:;:/]", '', text,
-            re.UNICODE | re.X)
-        name = re.sub(r'\s{2,}', ' ', name, re.UNICODE | re.X)
-        return self._formatString(name, length, fill=fill, align=align)
-
     def _formatNumber(self, number, int_length, dec_length=0,
                       include_sign=False, positive_sign=' ',
                       negative_sign='N'):
-        """
-        Formats the number into a fixed length ASCII (iso-8859-1) record.
+        u"""Format the number into a fixed length ASCII (iso-8859-1) record.
+
         Note:
             'Todos los campos numéricos se presentarán alineados a la derecha
             y rellenos a ceros por la izquierda sin signos y sin empaquetar.'
@@ -123,15 +99,14 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         return ascii_string
 
     def _formatBoolean(self, value, yes='X', no=' '):
-        """
-        Formats a boolean value into a fixed length ASCII (iso-8859-1) record.
+        u"""Format a boolean value into a fixed length ASCII (iso-8859-1) record.
         """
         return value and yes or no
 
     @api.multi
     def _get_formatted_declaration_record(self, report):
-        """
-        Returns a type 1, declaration/company, formated record.
+        u"""Return a type 1, declaration/company, formated record.
+
         Format of the record:
             Tipo registro 1 – Registro de declarante:
             Posiciones   Descripción
@@ -153,18 +128,17 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         # Modelo Declaración
         text += getattr(report._model, '_aeat_number')
         # Ejercicio
-        text += self._formatString(
-            fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
+        text += self._formatString(str(report.year), 4)
         # NIF del declarante
         text += self._formatString(report.company_vat, 9)
         # Apellidos y nombre o razón social del declarante
-        text += self._formatFiscalName(report.company_id.name, 40)
+        text += self._formatString(report.company_id.name, 40)
         # Tipo de soporte
         text += self._formatString(report.support_type, 1)
         # Persona de contacto (Teléfono)
         text += self._formatString(report.contact_phone, 9)
         # Persona de contacto (Apellidos y nombre)
-        text += self._formatFiscalName(report.contact_name, 40)
+        text += self._formatString(report.contact_name, 40)
         # Número identificativo de la declaración
         text += self._formatString(report.name, 13)
         # Declaración complementaria
@@ -187,8 +161,8 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
 
     @api.multi
     def action_get_file(self):
-        """
-        Action that exports the data into a BOE formatted text file.
+        """Action that exports the data into a BOE formatted text file.
+
         @return: Action dictionary for showing exported file.
         """
         active_id = self.env.context.get('active_id', False)
@@ -197,7 +171,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             return False
         report = self.env[active_model].browse(active_id)
         contents = ''
-        if report.export_config:
+        if report.export_config_id:
             contents += self.action_get_file_from_config(report)
         else:
             # Add header record
@@ -239,13 +213,13 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
     @api.multi
     def action_get_file_from_config(self, report):
         self.ensure_one()
-        return self._export_config(report, report.export_config)
+        return self._export_config(report, report.export_config_id)
 
     @api.multi
     def _export_config(self, obj, export_config):
         self.ensure_one()
         contents = ''
-        for line in export_config.config_lines:
+        for line in export_config.config_line_ids:
             contents += self._export_line_process(obj, line)
         return contents
 
@@ -275,7 +249,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             obj_list = [obj]
         for obj_merge in obj_list:
             if line.export_type == 'subconfig':
-                val += self._export_config(obj_merge, line.sub_config)
+                val += self._export_config(obj_merge, line.subconfig_id)
             else:
                 if line.expression:
                     field_val = EXPRESSION_PATTERN.sub(merge, line.expression)
@@ -291,7 +265,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             return self._formatString(val or '', line.size, align=align)
         elif line.export_type == 'boolean':
             return self._formatBoolean(val, line.bool_yes, line.bool_no)
-        else:
+        else:  # float or integer
             decimal_size = (0 if line.export_type == 'integer' else
                             line.decimal_size)
             return self._formatNumber(
