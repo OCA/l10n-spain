@@ -1,5 +1,11 @@
-Presentación del Modelo AEAT 303
-================================
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
+
+===============
+AEAT Modelo 303
+===============
+
 Módulo para la presentación del modelo 303 (IVA - Autodeclaración) de la
 Agencia Española de Administración Tributaria.
 
@@ -7,6 +13,26 @@ Instrucciones del modelo: http://goo.gl/pgVbXH
 Diseño de registros BOE en Excel: http://goo.gl/z4grco
 
 Incluye la exportación al formato BOE para su uso telemático.
+
+Uso
+===
+
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: https://runbot.odoo-community.org/runbot/189/8.0
+
+Gestión de errores
+==================
+
+Los errores/fallos se gestionan en `las incidencias de GitHub <https://github.com/OCA/
+l10n-spain/issues>`_.
+En caso de problemas, compruebe por favor si su incidencia ha sido ya
+reportada. Si fue el primero en descubrirla, ayúdenos a solucionarla indicando
+una detallada descripción
+`aquí <https://github.com/OCA/
+l10n-spain/issues/new?body=m%f3dulo:%20
+l10_es_aeat_mod303%0Aversi%f3n:%20
+9.0%0A%0A**Pasos%20para%20reproducirlo**%0A-%20...%0A%0A**Comportamiento%20actual**%0A%0A**Comportamiento%20esperado**>`_.
 
 Problemas conocidos / Hoja de ruta
 ==================================
@@ -30,13 +56,14 @@ Contribuidores
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * AvanzOSC (http://www.avanzosc.es)
 * Comunitea (http://www.comunitea.com)
+* Antonio Espinosa <antonio.espinosa@tecnativa.com>
 
 Maintainer
 ----------
 
-.. image:: http://odoo-community.org/logo.png
+.. image:: https://odoo-community.org/logo.png
    :alt: Odoo Community Association
-   :target: http://odoo-community.org
+   :target: https://odoo-community.org
 
 This module is maintained by the OCA.
 
@@ -44,4 +71,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
