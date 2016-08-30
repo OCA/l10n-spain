@@ -54,9 +54,13 @@ Contribudores
 -------------
 
 * Pexego (http://www.pexego.es)
-* Acysos (http://www.acysos.com)
+* Ignacio Ibeas, Acysos (http://www.acysos.com)
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
+* Santi Argüeso <santi@comunitea.com>
+* cubells <info@obertix.net>
 * AvanzOSC (http://www.avanzosc.es)
+* Ainara Galdona
+* Antonio Espinosa <antonio.espinosa@tecnativa.com>
 
 Maintainer
 ----------

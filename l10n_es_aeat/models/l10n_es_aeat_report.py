@@ -2,12 +2,13 @@
 # © 2004-2011 - Pexego Sistemas Informáticos - Luis Manuel Angueira Blanco
 # © 2013 - Acysos S.L. - Ignacio Ibeas (Migración a v7)
 # © 2014-2016 - Serv. Tecnol. Avanzados - Pedro M. Baeza
+# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import fields, models, api, exceptions, SUPERUSER_ID, _
-from calendar import monthrange
-from openerp.tools import config
 import re
+from calendar import monthrange
+from openerp import fields, models, api, exceptions, SUPERUSER_ID, _
+from openerp.tools import config
 
 
 class L10nEsAeatReport(models.AbstractModel):
@@ -58,16 +59,29 @@ class L10nEsAeatReport(models.AbstractModel):
     def _default_year(self):
         return fields.Date.from_string(fields.Date.today()).year
 
+    def _default_number(self):
+        return self._aeat_number
+
+    def _default_export_config_id(self):
+        configs = self.env['aeat.model.export.config'].search([
+            ('model_number', '=', self._aeat_number),
+            ('date_start', '!=', False),
+            ('date_end', '=', False),
+        ])
+        return configs[:1].id
+
     company_id = fields.Many2one(
-        'res.company', string='Company', required=True, readonly=True,
-        default=_default_company_id, states={'draft': [('readonly', False)]})
+        comodel_name='res.company', string="Company", required=True,
+        readonly=True, default=_default_company_id,
+        states={'draft': [('readonly', False)]})
     company_vat = fields.Char(
-        string='VAT number', size=9, required=True, readonly=True,
+        string="VAT number", size=9, required=True, readonly=True,
         states={'draft': [('readonly', False)]})
     number = fields.Char(
-        string='Declaration number', size=13, required=True, readonly=True)
+        string="Model number", size=3, required=True, readonly=True,
+        default=_default_number)
     previous_number = fields.Char(
-        string='Previous declaration number', size=13,
+        string="Previous declaration number", size=13,
         states={'done': [('readonly', True)]})
     contact_name = fields.Char(
         string="Full Name", size=40, help="Must have name and surname.",
@@ -76,36 +90,50 @@ class L10nEsAeatReport(models.AbstractModel):
         string="Phone", size=9, required=True, readonly=True,
         states={'draft': [('readonly', False)]})
     representative_vat = fields.Char(
-        string='L.R. VAT number', size=9, readonly=True,
+        string="L.R. VAT number", size=9, readonly=True,
         help="Legal Representative VAT number.",
         states={'draft': [('readonly', False)]})
     year = fields.Integer(
         string="Year", default=_default_year, required=True, readonly=True,
         states={'draft': [('readonly', False)]})
     type = fields.Selection(
-        [('N', 'Normal'), ('C', 'Complementary'), ('S', 'Substitutive')],
-        string='Statement Type', default='N', readonly=True, required=True,
+        selection=[
+            ('N', 'Normal'),
+            ('C', 'Complementary'),
+            ('S', 'Substitutive'),
+        ], string="Statement Type", default='N', readonly=True, required=True,
         states={'draft': [('readonly', False)]})
     support_type = fields.Selection(
-        [('C', 'DVD'), ('T', 'Telematics')], string='Support Type',
-        readonly=True, required=True, default='T',
+        selection=[
+            ('C', 'DVD'),
+            ('T', 'Telematics'),
+        ], string="Support Type", default='T', readonly=True, required=True,
         states={'draft': [('readonly', False)]})
     calculation_date = fields.Datetime(string="Calculation date")
     state = fields.Selection(
-        [('draft', 'Draft'),
-         ('calculated', 'Processed'),
-         ('done', 'Done'),
-         ('posted', 'Posted'),
-         ('cancelled', 'Cancelled')], string='State', readonly=True,
-        default='draft')
+        selection=[
+            ('draft', 'Draft'),
+            ('calculated', 'Processed'),
+            ('done', 'Done'),
+            ('posted', 'Posted'),
+            ('cancelled', 'Cancelled'),
+        ], string='State', default='draft', readonly=True)
     name = fields.Char(string="Report identifier", size=13, oldname='sequence')
-    model = fields.Many2one(
-        comodel_name="ir.model", compute='_compute_report_model')
-    export_config = fields.Many2one(
-        comodel_name='aeat.model.export.config', string='Export config',
-        domain="[('model', '=', model)]")
+    model_id = fields.Many2one(
+        comodel_name="ir.model", string="Model",
+        compute='_compute_report_model', oldname='model')
+    export_config_id = fields.Many2one(
+        comodel_name='aeat.model.export.config', string="Export config",
+        domain="[('model_number', '=', number), "
+               " ('date_start', '<=', date_start), "
+               " '|', ('date_end', '=', False), "
+               "      ('date_end', '>=', date_end)]",
+        default=_default_export_config_id, oldname='export_config')
+    currency_id = fields.Many2one(
+        comodel_name='res.currency', string="Currency", readonly=True,
+        related='company_id.currency_id')
     period_type = fields.Selection(
-        selection="get_period_type_selection", string="Period type",
+        selection='get_period_type_selection', string="Period type",
         required=True, default=_default_period_type,
         readonly=True, states={'draft': [('readonly', False)]})
     date_start = fields.Date(
@@ -115,35 +143,46 @@ class L10nEsAeatReport(models.AbstractModel):
         string="Ending date", required=True, readonly=True,
         states={'draft': [('readonly', False)]})
     allow_posting = fields.Boolean(compute="_compute_allow_posting")
-    counterpart_account = fields.Many2one(
-        comodel_name="account.account",
+    counterpart_account_id = fields.Many2one(
+        comodel_name='account.account', string="Counterpart account",
         help="This account will be the counterpart for all the journal items "
-             "that are regularized when posting the report.")
+             "that are regularized when posting the report.",
+        oldname='counterpart_account')
     journal_id = fields.Many2one(
-        comodel_name="account.journal", string="Journal",
+        comodel_name='account.journal', string="Journal",
         domain=[('type', '=', 'general')], default=_default_journal,
         help="Journal in which post the move.",
         states={'done': [('readonly', True)]})
     move_id = fields.Many2one(
-        comodel_name="account.move", string="Account entry", readonly=True)
-
+        comodel_name='account.move', string="Account entry", readonly=True)
+    partner_id = fields.Many2one(
+        comodel_name='res.partner', string="Partner",
+        related='company_id.partner_id', readonly=True)
+    partner_bank_id = fields.Many2one(
+        comodel_name='res.partner.bank', string='Bank account',
+        help='Company bank account used for the presentation',
+        domain="[('acc_type', '=', 'iban'), "
+               " ('partner_id', '=', partner_id)]")
     _sql_constraints = [
         ('name_uniq', 'unique(name)',
          'AEAT report identifier must be unique'),
     ]
 
-    @api.one
+    @api.multi
     def _compute_report_model(self):
-        self.model = self.env['ir.model'].search([('model', '=', self._name)])
+        for report in self:
+            report.model_id = self.env['ir.model'].search([
+                ('model', '=', report._name),
+            ]).id
 
-    @api.one
+    @api.multi
     def _compute_allow_posting(self):
-        self.allow_posting = False
+        for report in self:
+            report.allow_posting = False
 
     @api.onchange('company_id')
     def onchange_company_id(self):
-        """Loads some company data (the VAT number) when the selected
-        company changes.
+        """Load some company data (the VAT number) when company changes.
         """
         if self.company_id.vat:
             # Remove the ES part from spanish vat numbers
@@ -217,33 +256,20 @@ class L10nEsAeatReport(models.AbstractModel):
     @api.multi
     def _get_previous_fiscalyear_reports(self, date):
         """Get the AEAT reports previous to the given date.
+
         :param date: Date for looking for previous reports.
         :return: Recordset of the previous AEAT reports. None if there is no
-        previous reports.
+                 previous reports.
         """
         self.ensure_one()
-        prev_periods = self.fiscalyear_id.period_ids.filtered(
-            lambda x: not x.special and x.date_start < date)
-        prev_reports = None
-        for period in prev_periods:
-            reports = self.search([('periods', '=', period.id)])
-            if not reports:
-                raise exceptions.Warning(
-                    _("There's a missing previous declaration for the period "
-                      "%s.") % period.name)
-            if not prev_reports:
-                prev_reports = reports
-            else:
-                prev_reports |= reports
-        return prev_reports
+        return self.search([
+            ('year', '=', self.year),
+            ('date_start', '<', date),
+        ]) or None
 
     @api.multi
     def calculate(self):
-        for report in self:
-            if not report.periods:
-                raise exceptions.Warning(
-                    _('There is no period defined for the report. Please set '
-                      'at least one period and try again.'))
+        """To be overrided by inherit models"""
         return True
 
     @api.multi
@@ -255,11 +281,9 @@ class L10nEsAeatReport(models.AbstractModel):
     @api.multi
     def _prepare_move_vals(self):
         self.ensure_one()
-        last = self.periods.sorted(lambda x: x.date_stop)[-1:]
         return {
+            'date': fields.Date.today(),
             'journal_id': self.journal_id.id,
-            'date': last.date_stop,
-            'period_id': last.id,
             'ref': self.name,
             'company_id': self.company_id.id,
         }
@@ -279,7 +303,7 @@ class L10nEsAeatReport(models.AbstractModel):
 
     @api.multi
     def button_unpost(self):
-        """Remove created account move and set state to done."""
+        """Remove created account move and set state to cancelled."""
         self.mapped('move_id').unlink()
         self.write({'state': 'cancelled'})
         return True
@@ -287,7 +311,7 @@ class L10nEsAeatReport(models.AbstractModel):
     @api.multi
     def button_recover(self):
         """Set report status to draft and reset calculation date."""
-        self.write({'state': 'draft', 'calculation_date': None})
+        self.write({'state': 'draft', 'calculation_date': False})
         return True
 
     @api.multi
