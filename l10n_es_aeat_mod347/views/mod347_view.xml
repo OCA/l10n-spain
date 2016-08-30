@@ -31,7 +31,6 @@
             <field name="arch" type="xml">
                 <form string="Partner Record">
                     <field name="report_id" invisible="1"/>
-                    <field name="automatic" invisible="1"/>
                     <notebook>
                         <page string="Partner info">
                             <group>
@@ -59,14 +58,10 @@
                             </group>
                             <group >
                                 <group>
-                                    <field name="first_quarter" attrs="{'invisible': [('automatic', '=', False)]}"/>
-                                    <field name="second_quarter" attrs="{'invisible': [('automatic', '=', False)]}"/>
-                                    <field name="third_quarter" attrs="{'invisible': [('automatic', '=', False)]}"/>
-                                    <field name="fourth_quarter" attrs="{'invisible': [('automatic', '=', False)]}"/>
-                                    <field name="manual_first_quarter" attrs="{'invisible': [('automatic', '=', True)]}"/>
-                                    <field name="manual_second_quarter" attrs="{'invisible': [('automatic', '=', True)]}"/>
-                                    <field name="manual_third_quarter" attrs="{'invisible': [('automatic', '=', True)]}"/>
-                                    <field name="manual_fourth_quarter" attrs="{'invisible': [('automatic', '=', True)]}"/>
+                                    <field name="first_quarter"/>
+                                    <field name="second_quarter"/>
+                                    <field name="third_quarter"/>
+                                    <field name="fourth_quarter"/>
                                 </group>
                                 <group>
                                     <field name="first_quarter_cash_amount"/>
@@ -152,11 +147,6 @@
                     <separator/>
                     <filter name="invalid" string="Invalid records"
                             domain="[('check_ok', '=', False)]"/>
-                    <separator/>
-                    <filter name="manual" string="Manual records"
-                            domain="[('automatic', '=', False)]"/>
-                    <filter name="automatic" string="Automatic records"
-                            domain="[('automatic', '=', True)]"/>
                     <separator/>
                     <group  expand='0' string='Group by...'>
                        <filter string='Operation key' domain="[]" context="{'group_by' : 'operation_key'}"/>

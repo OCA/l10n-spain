@@ -73,8 +73,9 @@ class L10nEsAeatMod347Report(models.Model):
         return cash_moves
 
     def _partner_record_a_create(self, data, vals):
-        """ Partner record type A: Adquisiciones de bienes y servicios
-            Create from income (from supplier) invoices
+        """Partner record type A: Adquisiciones de bienes y servicios
+
+        Create from income (from supplier) invoices
         """
         partner_record_obj = self.env['l10n.es.aeat.mod347.partner_record']
         record = False
@@ -91,8 +92,9 @@ class L10nEsAeatMod347Report(models.Model):
         return record
 
     def _partner_record_b_create(self, data, vals):
-        """ Partner record type B: Entregas de bienes y servicios
-            Create from outcome (from customer) invoices and cash movements
+        """Partner record type B: Entregas de bienes y servicios
+
+        Create from outcome (from customer) invoices and cash movements
         """
         partner_record_obj = self.env['l10n.es.aeat.mod347.partner_record']
         cash_record_obj = self.env['l10n.es.aeat.mod347.cash_record']
@@ -254,7 +256,7 @@ class L10nEsAeatMod347Report(models.Model):
                  'partner_record_ids.cash_amount',
                  'partner_record_ids.real_estate_transmissions_amount')
     def _get_partner_totals(self):
-        """Calculates the total_* fields from the line values."""
+        """Calculate the total_* fields from the line values."""
         for record in self:
             record.total_partner_records = len(record.partner_record_ids)
             record.total_amount = (
@@ -268,7 +270,7 @@ class L10nEsAeatMod347Report(models.Model):
     @api.depends('real_estate_record_ids',
                  'real_estate_record_ids.amount')
     def _get_real_state_totals(self):
-        """Calculates the total_* fields from the line values."""
+        """Calculate the total_* fields from the line values."""
         for record in self:
             record.total_real_estate_amount = (
                 sum([x.amount for x in record.real_estate_record_ids]))
@@ -383,12 +385,9 @@ class L10nEsAeatMod347Report(models.Model):
 
     @api.multi
     def calculate(self):
-        def _automatic_filter(self):
-            return bool(self.invoice_record_ids or self.cash_record_ids)
-
         for report in self:
             # Delete previous partner records
-            report.partner_record_ids.filtered(_automatic_filter).unlink()
+            report.partner_record_ids.unlink()
             partners = {}
             # Read invoices: normal and refunds
             # We have to call _invoices_search always first
@@ -411,9 +410,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
 
     @api.depends('invoice_record_ids',
                  'invoice_record_ids.invoice_id.type',
-                 'invoice_record_ids.invoice_id.period_id.quarter',
-                 'manual_first_quarter', 'manual_second_quarter',
-                 'manual_third_quarter', 'manual_fourth_quarter')
+                 'invoice_record_ids.invoice_id.period_id.quarter')
     def _get_quarter_invoice_totals(self):
         def _invoices_normal(rec):
             return rec.invoice_id.type in ('out_invoice', 'in_invoice')
@@ -446,11 +443,6 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
                 record.second_quarter = second_quarter
                 record.third_quarter = third_quarter
                 record.fourth_quarter = fourth_quarter
-            else:
-                record.first_quarter = record.manual_first_quarter
-                record.second_quarter = record.manual_second_quarter
-                record.third_quarter = record.manual_third_quarter
-                record.fourth_quarter = record.manual_fourth_quarter
             # Totals
             record.amount = sum([
                 record.first_quarter, record.second_quarter,
@@ -494,17 +486,10 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
                 record.third_quarter_real_estate_transmission_amount,
                 record.fourth_quarter_real_estate_transmission_amount])
 
-    @api.depends('invoice_record_ids', 'cash_record_ids')
-    def _compute_automatic(self):
-        for record in self:
-            record.automatic = bool(
-                record.invoice_record_ids or record.cash_record_ids)
-
     # TODO: By now user must fill real estate transmission amounts manually
     @api.one
     def _get_real_estate_record_ids(self):
-        """Get the real estate records from this record parent report for this
-        partner.
+        """Get the real estate records from this record for this partner.
         """
         self.real_estate_record_ids = self.env[
             'l10n.es.aeat.mod347.real_estate_record']
@@ -582,10 +567,6 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         string="First quarter operations", digits=dp.get_precision('Account'),
         help="Total amount of first quarter in, out and refund invoices "
              "for this partner")
-    manual_first_quarter = fields.Float(
-        string="First quarter operations", digits=dp.get_precision('Account'),
-        help="Total amount of first quarter in, out and refund invoices "
-             "for this partner")
     first_quarter_real_estate_transmission_amount = fields.Float(
         string="First quarter real estate", digits=dp.get_precision('Account'),
         oldname="first_quarter_real_state_transmission_amount",
@@ -599,10 +580,6 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
              "for this partner")
     second_quarter = fields.Float(
         compute="_get_quarter_invoice_totals", store=True, readonly=True,
-        string="Second quarter operations", digits=dp.get_precision('Account'),
-        help="Total amount of second quarter in, out and refund invoices "
-             "for this partner")
-    manual_second_quarter = fields.Float(
         string="Second quarter operations", digits=dp.get_precision('Account'),
         help="Total amount of second quarter in, out and refund invoices "
              "for this partner")
@@ -623,10 +600,6 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         string="Third quarter operations", digits=dp.get_precision('Account'),
         help="Total amount of third quarter in, out and refund invoices "
              "for this partner")
-    manual_third_quarter = fields.Float(
-        string="Third quarter operations", digits=dp.get_precision('Account'),
-        help="Total amount of third quarter in, out and refund invoices "
-             "for this partner")
     third_quarter_real_estate_transmission_amount = fields.Float(
         string="Third quarter real estate", digits=dp.get_precision('Account'),
         oldname="third_quarter_real_state_transmission_amount",
@@ -640,10 +613,6 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
              "for this partner")
     fourth_quarter = fields.Float(
         compute="_get_quarter_invoice_totals", store=True, readonly=True,
-        string="Fourth quarter operations", digits=dp.get_precision('Account'),
-        help="Total amount of fourth quarter in, out and refund invoices "
-             "for this partner")
-    manual_fourth_quarter = fields.Float(
         string="Fourth quarter operations", digits=dp.get_precision('Account'),
         help="Total amount of fourth quarter in, out and refund invoices "
              "for this partner")
@@ -715,8 +684,6 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     cash_record_ids = fields.One2many(
         comodel_name='l10n.es.aeat.mod347.cash_record',
         inverse_name='partner_record_id', string='Payment records')
-    automatic = fields.Boolean(
-        compute="_compute_automatic", store=True, readonly=True)
     check_ok = fields.Boolean(
         compute="_compute_check_ok", string='Record is OK',
         store=True, readonly=True,
@@ -725,8 +692,9 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     @api.multi
     @api.onchange('partner_id')
     def on_change_partner_id(self):
-        """Loads some partner data (country, state and vat) when the selected
-        partner changes.
+        """Load some partner data
+
+        country, state and vat when the selected partner changes.
         """
         for record in self:
             if record.partner_id:
@@ -819,7 +787,7 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
 
     @api.onchange('partner_id')
     def on_change_partner_id(self):
-        """Loads some partner data (vat) when the selected partner changes."""
+        """Load some partner data (vat) when the selected partner changes."""
         for record in self:
             record.partner_vat = re.match(
                 r'(ES)?(.*)', record.partner_id.vat or '').groups()[1]
@@ -851,7 +819,8 @@ class L10nEsAeatMod347InvoiceRecord(models.Model):
 
 
 class L10nEsAeatMod347CashRecord(models.Model):
-    """Represents a payment record."""
+    """Represent a payment record."""
+
     _name = 'l10n.es.aeat.mod347.cash_record'
     _description = 'Cash Record'
     _order = 'date ASC, move_line_id ASC'
