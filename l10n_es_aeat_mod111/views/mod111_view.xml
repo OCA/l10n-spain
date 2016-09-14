@@ -29,11 +29,30 @@
                         <label string="Rendimientos dinerarios:" class="oe_force_bold" colspan="2"/>
                         <field name="casilla_01"/>
                         <field name="casilla_02" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <button name="show_move_lines"
+                                string="Show account move lines for base"
+                                type="object" class="oe_link"
+                                context="{'move_lines_02': True}"/>
+                        <separator/>
                         <field name="casilla_03" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <button name="show_move_lines"
+                                string="Show account move lines for amount"
+                                type="object" class="oe_link"
+                                context="{'move_lines_03': True}"/>
+                        <separator/>
                         <label string="Rendimientos en especies:" class="oe_force_bold" colspan="2"/>
                         <field name="casilla_04"/>
                         <field name="casilla_05" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <button name="show_move_lines"
+                                string="Show account move lines for base"
+                                type="object" class="oe_link"
+                                context="{'move_lines_05': True}"/>
+                        <separator/>
                         <field name="casilla_06" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <button name="show_move_lines"
+                                string="Show account move lines for amount"
+                                type="object" class="oe_link"
+                                context="{'move_lines_06': True}"/>
                     </group>
                     <group string="Rendim. actividades económicas">
                         <label string="Rendimientos dinerarios:" class="oe_force_bold" colspan="2"/>
