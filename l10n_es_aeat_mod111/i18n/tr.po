@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"PO-Revision-Date: 2016-09-09 11:33+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model,name:l10n_es_aeat_mod111.model_l10n_es_aeat_mod111_report
@@ -283,13 +283,13 @@ msgstr ""
 #: field:l10n.es.aeat.mod111.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.mod111.report,create_uid:0
 msgid "Created by"
-msgstr "Creat per"
+msgstr "Oluşturan"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.export_to_boe,create_date:0
 #: field:l10n.es.aeat.mod111.report,create_date:0
 msgid "Created on"
-msgstr "Creat el"
+msgstr "Oluşturuldu"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,codigo_electronico_anterior:0
@@ -409,7 +409,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,journal_id:0
 msgid "Journal"
-msgstr "Diari"
+msgstr ""
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,journal_id:0
@@ -431,13 +431,13 @@ msgstr ""
 #: field:l10n.es.aeat.mod111.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod111.report,write_uid:0
 msgid "Last Updated by"
-msgstr "Darrera Actualització per"
+msgstr "Son güncelleyen"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.export_to_boe,write_date:0
 #: field:l10n.es.aeat.mod111.report,write_date:0
 msgid "Last Updated on"
-msgstr "Darrera Actualització el"
+msgstr "Son güncelleme"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,representative_vat:0

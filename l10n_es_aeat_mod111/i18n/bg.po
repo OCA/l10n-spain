@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2016-09-17 19:26+0000\n"
+"PO-Revision-Date: 2016-09-25 14:00+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
+"Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
+"Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod111
@@ -257,7 +257,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Фирма"
 
 #. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.report,type:0
@@ -283,13 +283,13 @@ msgstr ""
 #: field:l10n.es.aeat.mod111.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.mod111.report,create_uid:0
 msgid "Created by"
-msgstr "Creat per"
+msgstr "Създадено от"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.export_to_boe,create_date:0
 #: field:l10n.es.aeat.mod111.report,create_date:0
 msgid "Created on"
-msgstr "Creat el"
+msgstr "Създадено на"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,codigo_electronico_anterior:0
@@ -409,7 +409,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,journal_id:0
 msgid "Journal"
-msgstr "Diari"
+msgstr ""
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,journal_id:0
@@ -425,19 +425,19 @@ msgstr ""
 #: field:l10n.es.aeat.mod111.export_to_boe,__last_update:0
 #: field:l10n.es.aeat.mod111.report,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Последно обновено на"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod111.report,write_uid:0
 msgid "Last Updated by"
-msgstr "Darrera Actualització per"
+msgstr "Последно обновено от"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.export_to_boe,write_date:0
 #: field:l10n.es.aeat.mod111.report,write_date:0
 msgid "Last Updated on"
-msgstr "Darrera Actualització el"
+msgstr "Последно обновено на"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,representative_vat:0

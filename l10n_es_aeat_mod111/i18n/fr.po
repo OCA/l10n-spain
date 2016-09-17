@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2016-09-17 19:26+0000\n"
+"PO-Revision-Date: 2016-10-04 09:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model,name:l10n_es_aeat_mod111.model_l10n_es_aeat_mod111_report
@@ -257,7 +257,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Société"
 
 #. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.report,type:0
@@ -283,13 +283,13 @@ msgstr ""
 #: field:l10n.es.aeat.mod111.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.mod111.report,create_uid:0
 msgid "Created by"
-msgstr "Creat per"
+msgstr "Créé par"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.export_to_boe,create_date:0
 #: field:l10n.es.aeat.mod111.report,create_date:0
 msgid "Created on"
-msgstr "Creat el"
+msgstr "Date"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,codigo_electronico_anterior:0
@@ -333,7 +333,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod111.export_to_boe,display_name:0
 #: field:l10n.es.aeat.mod111.report,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom à afficher"
 
 #. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.report,tipo_declaracion:0
@@ -343,7 +343,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.report,state:0
 msgid "Done"
-msgstr ""
+msgstr "Terminé"
 
 #. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.report,state:0
@@ -409,7 +409,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,journal_id:0
 msgid "Journal"
-msgstr "Diari"
+msgstr ""
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,journal_id:0
@@ -425,19 +425,19 @@ msgstr ""
 #: field:l10n.es.aeat.mod111.export_to_boe,__last_update:0
 #: field:l10n.es.aeat.mod111.report,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod111.report,write_uid:0
 msgid "Last Updated by"
-msgstr "Darrera Actualització per"
+msgstr "Dernière mise à jour par"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.export_to_boe,write_date:0
 #: field:l10n.es.aeat.mod111.report,write_date:0
 msgid "Last Updated on"
-msgstr "Darrera Actualització el"
+msgstr "Dernière mise à jour le"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,representative_vat:0
@@ -601,7 +601,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod111.export_to_boe,state:0
 #: field:l10n.es.aeat.mod111.report,state:0
 msgid "State"
-msgstr ""
+msgstr "État"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,type:0
