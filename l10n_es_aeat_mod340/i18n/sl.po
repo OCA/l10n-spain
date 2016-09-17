@@ -3,20 +3,19 @@
 # * l10n_es_aeat_mod340
 # 
 # Translators:
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-26 15:55+0000\n"
-"PO-Revision-Date: 2016-09-09 11:31+0000\n"
+"PO-Revision-Date: 2016-09-16 21:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/ca/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: l10n_es_aeat_mod340
 #: reportreport mod340:0 reportvat book:0
@@ -74,7 +73,7 @@ msgstr ""
 #: view:l10n.es.aeat.mod340.report:0
 #: field:l10n.es.aeat.mod340.report,company_id:0
 msgid "Company"
-msgstr "Empresa"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,number_records:0
@@ -91,7 +90,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340.report,type:0
 msgid "Substitutive"
-msgstr "Substitutiva"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,phone_contact:0
@@ -151,7 +150,7 @@ msgstr ""
 #: view:l10n.es.aeat.mod340.report:0
 #: selection:l10n.es.aeat.mod340.report,state:0
 msgid "Cancelled"
-msgstr "Cancel·lada"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: selection:res.partner,vat_type:0
@@ -237,7 +236,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,state:0
 msgid "State"
-msgstr "Estat"
+msgstr "Stanje"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.ui.menu,name:l10n_es_aeat_mod340.menu_aeat_mod340_report
@@ -278,7 +277,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,support_type:0
 msgid "Support Type"
-msgstr "Tipus de suport"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: code:addons/l10n_es_aeat_mod340/wizard/export_mod340_to_boe.py:99
@@ -289,7 +288,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,company_vat:0
 msgid "VAT number"
-msgstr "NIF/CIF"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: selection:res.partner,vat_type:0
@@ -324,7 +323,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.issued,partner_id:0
 #: field:l10n.es.aeat.mod340.received,partner_id:0
 msgid "Partner"
-msgstr "Empresa"
+msgstr "Partner"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod340.action_l10n_es_aeat_mod340_report
@@ -354,7 +353,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,calculation_date:0
 msgid "Calculation date"
-msgstr "Data de càlcul"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.actions.report.xml,name:l10n_es_aeat_mod340.vat_book
@@ -375,7 +374,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340.report,support_type:0
 msgid "DVD"
-msgstr "DVD"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: reportreport mod340:0 reportvat book:0
@@ -395,13 +394,13 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.received,mod340_id:0
 #: view:l10n.es.aeat.mod340.report:0
 msgid "Model 340"
-msgstr "Model 340"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:0
 #: selection:l10n.es.aeat.mod340.report,state:0
 msgid "Draft"
-msgstr "Esborrany"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: selection:res.partner,vat_type:0
@@ -426,7 +425,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340.report,type:0
 msgid "Normal"
-msgstr "Normal"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: help:account.invoice,is_ticket_summary:0
@@ -469,12 +468,12 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.issued,partner_country_code:0
 #: field:l10n.es.aeat.mod340.received,partner_country_code:0
 msgid "Country Code"
-msgstr "Codi de país"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:0
 msgid "Summary"
-msgstr "Resum"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340_calculate_records
@@ -484,7 +483,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340.report,state:0
 msgid "Processed"
-msgstr "Calculada"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.tax_line_issued,invoice_record_id:0
@@ -495,7 +494,7 @@ msgstr ""
 #: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:64
 #, python-format
 msgid "Error"
-msgstr "Error"
+msgstr "Napaka"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.intracomunitarias,representative_vat:0
@@ -504,7 +503,7 @@ msgstr "Error"
 #: field:l10n.es.aeat.mod340.received,representative_vat:0
 #: field:l10n.es.aeat.mod340.report,representative_vat:0
 msgid "L.R. VAT number"
-msgstr "NIF R.L."
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:0
@@ -529,12 +528,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,type:0
 msgid "Statement Type"
-msgstr "Tipus declaració"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:0
 msgid "General"
-msgstr "General"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:0
@@ -550,7 +549,7 @@ msgstr ""
 #: view:l10n.es.aeat.mod340.report:0
 #: selection:l10n.es.aeat.mod340.report,state:0
 msgid "Done"
-msgstr "Realitzada"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: selection:res.partner,vat_type:0
@@ -564,7 +563,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.issued,invoice_id:0
 #: field:l10n.es.aeat.mod340.received,invoice_id:0
 msgid "Invoice"
-msgstr "Factura"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: reportreport mod340:0
@@ -626,7 +625,7 @@ msgstr ""
 msgid ""
 "The declaration will include partners with the total of operations over this"
 " limit"
-msgstr "La declaració inclourà les empreses que la suma d'operacions superi aquest límit."
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: reportreport mod340:0 reportvat book:0
@@ -644,7 +643,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: help:l10n.es.aeat.mod340.report,representative_vat:0
 msgid "Legal Representative VAT number."
-msgstr "NIF del representant legal."
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340_investment
@@ -667,7 +666,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_issued,name:0
 #: field:l10n.es.aeat.mod340.tax_line_received,name:0
 msgid "Name"
-msgstr "Nom"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.received:0 view:l10n.es.aeat.mod340.report:0
@@ -680,7 +679,7 @@ msgstr ""
 #: help:l10n.es.aeat.mod340.issued,representative_vat:0
 #: help:l10n.es.aeat.mod340.received,representative_vat:0
 msgid "Legal Representative VAT number"
-msgstr "NIF del representant legal."
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: reportreport mod340:0
@@ -695,7 +694,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:0
 msgid "Fiscal Year"
-msgstr "Exercici fiscal"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: view:account.invoice:0
@@ -716,7 +715,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340.report,support_type:0
 msgid "Telematics"
-msgstr "Telemàtica"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: field:res.partner,vat_type:0
@@ -731,12 +730,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340_export_to_boe
 msgid "Export Report to BOE Format"
-msgstr "Exporta a fitxer BOE"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340.report,type:0
 msgid "Complementary"
-msgstr "Complementària"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_wizard_update_charts_accounts
@@ -772,12 +771,12 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.report,total:0
 #: field:l10n.es.aeat.mod340.report,total_rec:0 reportvat book:0
 msgid "Total"
-msgstr "Total"
+msgstr "Skupaj"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_account_tax_code_template
 msgid "Tax Code Template"
-msgstr "Plantilla de codis d'impostos"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:91
