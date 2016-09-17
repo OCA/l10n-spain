@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-30 22:58+0000\n"
-"PO-Revision-Date: 2016-05-02 04:21+0000\n"
+"POT-Creation-Date: 2016-08-27 18:55+0000\n"
+"PO-Revision-Date: 2016-09-17 09:21+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -92,7 +92,7 @@ msgid "Import from local file"
 msgstr ""
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:47
+#: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:48
 #: model:ir.actions.act_window,name:l10n_es_partner.action_l10n_es_partner_import
 #: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
 #, python-format
@@ -145,7 +145,7 @@ msgstr ""
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: l10n_es_partner
 #: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
@@ -193,7 +193,7 @@ msgstr ""
 #. module: l10n_es_partner
 #: field:res.bank,website:0
 msgid "Website"
-msgstr ""
+msgstr "Spletna stran"
 
 #. module: l10n_es_partner
 #: view:res.partner.bank:l10n_es_partner.view_partner_bank_form_banco

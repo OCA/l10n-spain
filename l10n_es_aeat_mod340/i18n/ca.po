@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-05 10:32+0000\n"
-"PO-Revision-Date: 2016-03-02 09:28+0000\n"
+"POT-Creation-Date: 2016-08-27 18:55+0000\n"
+"PO-Revision-Date: 2016-09-09 12:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -72,6 +72,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,move_id:0
 msgid "Account entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.report,allow_posting:0
+msgid "Allow posting"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
@@ -247,6 +252,19 @@ msgid "Declaration number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.calculate_records,display_name:0
+#: field:l10n.es.aeat.mod340.export_to_boe,display_name:0
+#: field:l10n.es.aeat.mod340.intracomunitarias,display_name:0
+#: field:l10n.es.aeat.mod340.investment,display_name:0
+#: field:l10n.es.aeat.mod340.issued,display_name:0
+#: field:l10n.es.aeat.mod340.received,display_name:0
+#: field:l10n.es.aeat.mod340.report,display_name:0
+#: field:l10n.es.aeat.mod340.tax_line_issued,display_name:0
+#: field:l10n.es.aeat.mod340.tax_line_received,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_report_search
 #: selection:l10n.es.aeat.mod340.report,state:0
 msgid "Done"
@@ -355,7 +373,7 @@ msgstr "General"
 #: field:l10n.es.aeat.mod340.tax_line_issued,id:0
 #: field:l10n.es.aeat.mod340.tax_line_received,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_report_search
@@ -458,6 +476,19 @@ msgid "La siguiente empresa no tiene asignado nif:"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.calculate_records,__last_update:0
+#: field:l10n.es.aeat.mod340.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.mod340.intracomunitarias,__last_update:0
+#: field:l10n.es.aeat.mod340.investment,__last_update:0
+#: field:l10n.es.aeat.mod340.issued,__last_update:0
+#: field:l10n.es.aeat.mod340.received,__last_update:0
+#: field:l10n.es.aeat.mod340.report,__last_update:0
+#: field:l10n.es.aeat.mod340.tax_line_issued,__last_update:0
+#: field:l10n.es.aeat.mod340.tax_line_received,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.calculate_records,write_uid:0
 #: field:l10n.es.aeat.mod340.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod340.intracomunitarias,write_uid:0
@@ -468,7 +499,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_issued,write_uid:0
 #: field:l10n.es.aeat.mod340.tax_line_received,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera Actualització per"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.calculate_records,write_date:0
@@ -481,7 +512,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_issued,write_date:0
 #: field:l10n.es.aeat.mod340.tax_line_received,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera Actualització el"
 
 #. module: l10n_es_aeat_mod340
 #: field:account.invoice,last_ticket:0
@@ -514,6 +545,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340_tax_line_received
 msgid "Mod340 vat lines received"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.report,model:0
+msgid "Model"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
@@ -799,7 +835,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.report,total:0
 #: field:l10n.es.aeat.mod340.report,total_rec:0 reportvat book:0
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_tree

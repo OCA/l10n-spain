@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-05 10:32+0000\n"
-"PO-Revision-Date: 2016-03-02 09:27+0000\n"
+"POT-Creation-Date: 2016-08-27 18:55+0000\n"
+"PO-Revision-Date: 2016-09-09 12:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -64,6 +64,11 @@ msgstr "Actividade agrícola, gandeira, forestal ou pesqueira"
 #: selection:l10n.es.aeat.mod130.report,activity_type:0
 msgid "Actividad distinta a las anteriores"
 msgstr "Actividade distinta ás anteriores"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,allow_posting:0
+msgid "Allow posting"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,calculation_date:0
@@ -236,6 +241,12 @@ msgid "Declaration number"
 msgstr "Nº declaración"
 
 #. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.export_to_boe,display_name:0
+#: field:l10n.es.aeat.mod130.report,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,state:0
 msgid "Done"
 msgstr "Realizado"
@@ -312,6 +323,12 @@ msgid "L.R. VAT number"
 msgstr "NIF repr. legal"
 
 #. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.mod130.report,__last_update:0
+msgid "Last Modified on"
+msgstr "Modificado por última vez o"
+
+#. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod130.report,write_uid:0
 msgid "Last Updated by"
@@ -327,6 +344,11 @@ msgstr "Actualizado por derradeira vez o"
 #: help:l10n.es.aeat.mod130.report,representative_vat:0
 msgid "Legal Representative VAT number."
 msgstr "NIF do representante legal."
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,model:0
+msgid "Model"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,contact_name:0

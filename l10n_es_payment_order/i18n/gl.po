@@ -3,13 +3,14 @@
 # * l10n_es_payment_order
 # 
 # Translators:
+# César Castro Cruz <ulmroan@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-16 07:49+0000\n"
-"PO-Revision-Date: 2015-10-16 07:51+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-08-27 18:55+0000\n"
+"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"Last-Translator: César Castro Cruz <ulmroan@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -204,7 +205,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: selection:banking.export.csb.wizard,state:0
 msgid "Create"
-msgstr ""
+msgstr "Crear"
 
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,create_uid:0
@@ -219,6 +220,11 @@ msgstr "Creado o"
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb34_direct_pay_order:0
 msgid "Direct Pay Order"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,display_name:0
+msgid "Display Name"
 msgstr ""
 
 #. module: l10n_es_payment_order
@@ -312,9 +318,39 @@ msgid "Include address"
 msgstr ""
 
 #. module: l10n_es_payment_order
+#: field:payment.mode,is_csb19:0
+msgid "Is csb19"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,is_csb32:0
+msgid "Is csb32"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,is_csb34:0
+msgid "Is csb34"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,is_csb3401:0
+msgid "Is csb3401"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,is_csb58:0
+msgid "Is csb58"
+msgstr ""
+
+#. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,join:0
 msgid "Join payment lines of the same partner and bank account"
 msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,__last_update:0
+msgid "Last Modified on"
+msgstr "Modificado por última vez o"
 
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,write_uid:0
@@ -500,7 +536,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_csb.py:103
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:112
 #, python-format
 msgid ""
 "User error:\n"
@@ -509,7 +545,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_csb.py:175
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:131
 #, python-format
 msgid ""
 "User error:\n"
@@ -518,7 +554,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_csb.py:168
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:124
 #, python-format
 msgid ""
 "User error:\n"
@@ -527,7 +563,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_csb.py:98
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:107
 #, python-format
 msgid ""
 "User error:\n"
@@ -536,7 +572,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_csb.py:109
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:149
 #, python-format
 msgid ""
 "User error:\n"
@@ -545,7 +581,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_csb.py:189
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:98
 #, python-format
 msgid ""
 "User error:\n"
@@ -554,7 +590,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_payment_order
-#: code:addons/l10n_es_payment_order/wizard/export_csb.py:94
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:143
 #, python-format
 msgid ""
 "User error:\n"

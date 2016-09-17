@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_subcontractor_certificate
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-27 18:55+0000\n"
+"PO-Revision-Date: 2016-09-17 18:43+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Dutch (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_subcontractor_certificate
+#: field:res.partner,certificate_expired_aeat:0
+msgid "AEAT Certificate Expirated"
+msgstr ""
+
+#. module: l10n_es_subcontractor_certificate
+#: field:res.partner,certificate_expiration_aeat:0
+msgid "AEAT Certificate Expiration"
+msgstr ""
+
+#. module: l10n_es_subcontractor_certificate
+#: field:res.partner,certificate_required:0
+msgid "Certificate Required"
+msgstr ""
+
+#. module: l10n_es_subcontractor_certificate
+#: model:ir.model,name:l10n_es_subcontractor_certificate.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_es_subcontractor_certificate
+#: model:ir.model,name:l10n_es_subcontractor_certificate.model_res_partner
+msgid "Partner"
+msgstr "Relatie"
+
+#. module: l10n_es_subcontractor_certificate
+#: model:ir.model,name:l10n_es_subcontractor_certificate.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: l10n_es_subcontractor_certificate
+#: field:res.partner,certificate_expired_ss:0
+msgid "SS Certificate Expirated"
+msgstr ""
+
+#. module: l10n_es_subcontractor_certificate
+#: field:res.partner,certificate_expiration_ss:0
+msgid "SS Certificate Expiration"
+msgstr ""
+
+#. module: l10n_es_subcontractor_certificate
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:28
+#, python-format
+msgid "The AEAT certificate for this supplier has expired"
+msgstr ""
+
+#. module: l10n_es_subcontractor_certificate
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:34
+#, python-format
+msgid "The AEAT certificate is required and expiration date is not set"
+msgstr ""
+
+#. module: l10n_es_subcontractor_certificate
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:40
+#, python-format
+msgid "The SS certificate for this supplier has expired"
+msgstr ""
+
+#. module: l10n_es_subcontractor_certificate
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:46
+#, python-format
+msgid "The SS certificate is required and expiration date is not set"
+msgstr ""
+
+#. module: l10n_es_subcontractor_certificate
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:27
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:33
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:39
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:45
+#, python-format
+msgid "Warning!"
+msgstr ""

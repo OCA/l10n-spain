@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-30 22:58+0000\n"
-"PO-Revision-Date: 2016-05-02 04:21+0000\n"
+"POT-Creation-Date: 2016-08-27 18:55+0000\n"
+"PO-Revision-Date: 2016-09-16 21:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -119,20 +119,20 @@ msgid "Account entry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:172
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:181
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:198
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:207
 #, python-format
 msgid "All amounts must be positives"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:168
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:194
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:176
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:202
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
 msgstr ""
@@ -146,6 +146,11 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_record_detail,amount_untaxed:0
 #: field:l10n.es.aeat.mod349.partner_refund_detail,amount_untaxed:0
 msgid "Amount untaxed"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,calculate_date:0
+msgid "Calculate by days"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -179,7 +184,7 @@ msgid "Complementary"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:191
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:217
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
 msgstr ""
@@ -194,7 +199,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_refund,country_id:0
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Country"
-msgstr ""
+msgstr "Država"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
@@ -230,7 +235,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_record_detail,date:0
 #: field:l10n.es.aeat.mod349.partner_refund_detail,date:0
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form
@@ -523,7 +528,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_refund,partner_id:0
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record,partner_record_ok:0
@@ -701,7 +706,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:184
-#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:245
+#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:247
 #, python-format
 msgid "The type 2 record must be 502 characters long"
 msgstr ""
@@ -734,6 +739,14 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,company_vat:0
 msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: help:l10n.es.aeat.mod349.report,calculate_date:0
+msgid ""
+"Warning!: With this checkbox selected, the declaration will be computed "
+"selecting invoices based in periods and dates in selected Period Type not "
+"only by period"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
