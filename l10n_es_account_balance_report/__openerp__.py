@@ -33,6 +33,7 @@
         "Juanjo Algaz <juanjoa@malagatic.com>",
         "Joaquín Gutierrez <joaquing.pedrosa@gmail.com>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
+        "Ignacio Ibeas <ignacio@acysos.com>"
     ],
     "license": "AGPL-3",
     "website": "http://www.pexego.es",
@@ -51,6 +52,9 @@ por el módulo *account_balance_reporting*:
     * Balance normal (PGCE 2008)
     * Cuenta de pérdidas y ganancias completo (PGCE 2008)
     * Estado de ingresos y gastos reconocidos (PGCE 2008)
+    * Balance para pequeñas y medianas entidades sin fines lucrativos
+    * Cuenta de pérdidas y ganancias para pequeñas y medianas entidades sin 
+      fines lucrativos
 
 Las plantillas están basadas en los modelos para el depósito de cuentas anuales
 del Registro Mercantil:
@@ -58,6 +62,7 @@ del Registro Mercantil:
 * *Normal*: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306020
 * *Abreviado*: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306005
 * *PYMEs*: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306035
+* *No lucrativos*: https://www.boe.es/diario_boe/txt.php?id=BOE-A-2013-3736
     """,
     "depends": [
         'l10n_es',
@@ -72,6 +77,8 @@ del Registro Mercantil:
         'data/balance_normal.xml',
         'data/pyg_normal.xml',
         'data/estado_ingresos_gastos_normal.xml',
+        'data/balance_pymesfl.xml',
+        'data/pyg_pymesfl.xml',
     ],
     "installable": True,
 }

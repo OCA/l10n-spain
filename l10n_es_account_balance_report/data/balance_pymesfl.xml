@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#
+#    OpenERP - Account balance reports
+#    Copyright (C) 2016 Acysos S.L. All Rights Reserved
+#    $Id$
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+-->
+<!--
+BALANCE DE ENTIDADES PEQUEÑAS y MEDIANAS Sin fines lucrativos
+
+Basado Resolución de 26 de marzo de 2013, del Instituto de Contabilidad y
+Auditoría de Cuentas, por la que se aprueba el Plan de Contabilidad de pequeñas
+y medianas entidades sin fines lucrativos.
+https://www.boe.es/diario_boe/txt.php?id=BOE-A-2013-3736
+
+
+Author: Ignacio Ibeas (Acysos S.L.) - ignacio@acysos.com
+-->
+<openerp>
+    <data>
+
+        <record model="account.balance.reporting.template" id="es_balance_pymesfl">
+            <field name="name">Balance entidades pequeñas y medianas sin fines lucrativos</field>
+            <field name="type">system</field>
+            <field name="balance_mode">2</field>
+            <field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
+            <field name="description">
+CUENTAS ANUALES - BALANCE DE SITUACIÓN PARA ENTIDADES PEQUEÑAS Y MEDIANAS SIN FINES LUCRATIVOS
+
+Balance de ENTIDADES PEQUEÑAS Y MEDIANAS SIN FINES LUCRATIVOS al cierre del ejercicio, según Plan General Contable Español para Pequeñas Y Medianas Empresas sin fines lucrativos, para el depósito de cuentas anuales en el registro mercantil.
+
+Autor: Ignacio Ibeas (Acysos S.L.) - ignacio@acysos.com
+
+Basado en la Resolución de 26 de marzo de 2013, del Instituto de Contabilidad y Auditoría de Cuentas, por la que se aprueba el Plan de Contabilidad de pequeñas y medianas entidades sin fines lucrativos. :
+https://www.boe.es/diario_boe/txt.php?id=BOE-A-2013-3736
+            </field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_11000">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">11000</field>
+            <field name="name">A) ACTIVO NO CORRIENTE</field>
+            <field name="sequence">1</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_11100">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">11100</field>
+            <field name="name">I. Inmovilizado intangible</field>
+            <field name="current_value">20, 280, 2830, 290</field>
+            <field name="negate" eval="True"/>
+            <field name="parent_id" ref="es_balance_pymesfl_11000"/>
+            <field name="sequence">2</field>
+            <field name="css_class">l3</field>
+        </record>
+        
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_11200">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">11200</field>
+            <field name="name">II. Bienes del Patrimonio Histórico</field>
+            <field name="current_value">24, 299</field>
+            <field name="negate" eval="True"/>
+            <field name="parent_id" ref="es_balance_pymesfl_11000"/>
+            <field name="sequence">3</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_11300">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">11300</field>
+            <field name="name">III. Inmovilizado material</field>
+            <field name="current_value">21, 281, 2831, 291, 23</field>
+            <field name="negate" eval="True"/>
+            <field name="parent_id" ref="es_balance_pymesfl_11000"/>
+            <field name="sequence">4</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_11400">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">11400</field>
+            <field name="name">IV. Inversiones inmobiliarias</field>
+            <field name="current_value">22, 282, 2832, 292</field>
+            <field name="negate" eval="True"/>
+            <field name="parent_id" ref="es_balance_pymesfl_11000"/>
+            <field name="sequence">5</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_11500">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">11500</field>
+            <field name="name">V. Inversiones en entidades del grupo y asociadas a largo plazo</field>
+            <field name="current_value">2503, 2504, 2513, 2514, 2523, 2524, 2593, 2594, 2933, 2934, 2943, 2944, 2953, 2954</field>
+            <field name="negate" eval="True"/>
+            <field name="parent_id" ref="es_balance_pymesfl_11000"/>
+            <field name="sequence">6</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_11600">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">11600</field>
+            <field name="name">VI. Inversiones financieras a largo plazo</field>
+            <field name="current_value">2505, 2515, 2525, 2595, 260, 261, 262, 263, 264, 265, 268, 269, 27, 2935, 2945, 2955, 296, 297, 298</field>
+            <field name="negate" eval="True"/>
+            <field name="parent_id" ref="es_balance_pymesfl_11000"/>
+            <field name="sequence">7</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_11700">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">11700</field>
+            <field name="name">VII. Activos por impuesto diferido</field>
+            <field name="current_value">474</field>
+            <field name="negate" eval="True"/>
+            <field name="parent_id" ref="es_balance_pymesfl_11000"/>
+            <field name="sequence">8</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_12000">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">12000</field>
+            <field name="name">B) ACTIVO CORRIENTE</field>
+            <field name="sequence">9</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_12100">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">12100</field>
+            <field name="name">I. Existencias</field>
+            <field name="current_value">30, 31, 32, 33, 34, 35, 36, 39, 407</field>
+            <field name="negate" eval="True"/>
+            <field name="parent_id" ref="es_balance_pymesfl_12000"/>
+            <field name="sequence">10</field>
+            <field name="css_class">l3</field>
+        </record>
+        
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_12200">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">12200</field>
+            <field name="name">II. Usuarios y otros deudores de la actividad propia</field>
+            <field name="current_value">447, 448, 495</field>
+            <field name="negate" eval="True"/>
+            <field name="parent_id" ref="es_balance_pymesfl_12000"/>
+            <field name="sequence">11</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_12300">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">12300</field>
+            <field name="name">III. Deudores comerciales y otras cuentas a cobrar</field>
+            <field name="current_value">430, 431, 432, 433, 434, 435, 436, 437, 490, 493, 440, 441, 446, 449, 460, 464, 470, 471, 472, 544, 558</field>
+            <field name="negate" eval="True"/>
+            <field name="parent_id" ref="es_balance_pymesfl_12000"/>
+            <field name="sequence">12</field>
+            <field name="css_class">l3</field>
+        </record>
+        
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_12400">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">12400</field>
+            <field name="name">IV. Inversiones en entidades del grupo y asociadas a corto plazo</field>
+            <field name="current_value">5303, 5304, 5313, 5314, 5323, 5324, 5333, 5334, 5343, 5344, 5353, 5354, 5393, 5394, debit(5523), debit(5524), 5933, 5934, 5943, 5944, 5953, 5954</field>
+            <field name="negate" eval="True"/>
+            <field name="parent_id" ref="es_balance_pymesfl_12000"/>
+            <field name="sequence">13</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_12500">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">12500</field>
+            <field name="name">V. Inversiones financieras a corto plazo</field>
+            <field name="current_value">5305, 5315, 5325, 5335, 5345, 5355, 5395, 540, 541, 542, 543, 545, 546, 547, 548, 549, debit(551), debit(5525), 5590, 565, 566, 5935, 5945, 5955, 596, 597, 598</field>
+            <field name="negate" eval="True"/>
+            <field name="parent_id" ref="es_balance_pymesfl_12000"/>
+            <field name="sequence">14</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_12600">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">12600</field>
+            <field name="name">VI. Periodificaciones a corto plazo</field>
+            <field name="current_value">480, 567</field>
+            <field name="negate" eval="True"/>
+            <field name="parent_id" ref="es_balance_pymesfl_12000"/>
+            <field name="sequence">15</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_12700">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">12700</field>
+            <field name="name">VII. Efectivo y otros activos líquidos equivalentes</field>
+            <field name="current_value">57</field>
+            <field name="negate" eval="True"/>
+            <field name="parent_id" ref="es_balance_pymesfl_12000"/>
+            <field name="sequence">16</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_10000">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">10000</field>
+            <field name="name">TOTAL ACTIVO (A + B)</field>
+            <field name="current_value">11000 + 12000</field>
+            <field name="sequence">17</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_20000">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">20000</field>
+            <field name="name">A) PATRIMONIO NETO</field>
+            <field name="sequence">18</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_21000">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">21000</field>
+            <field name="name">A-1) Fondos propios</field>
+            <field name="parent_id" ref="es_balance_pymesfl_20000"/>
+            <field name="sequence">19</field>
+            <field name="css_class">l2</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_21100">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">21100</field>
+            <field name="name">I. Dotación fundacional/Fondo social</field>
+            <field name="parent_id" ref="es_balance_pymesfl_21000"/>
+            <field name="sequence">20</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_21110">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">21110</field>
+            <field name="name">1. Dotación fundacional/Fondo social</field>
+            <field name="current_value">100, 101</field>
+            <field name="parent_id" ref="es_balance_pymesfl_21100"/>
+            <field name="sequence">21</field>
+            <field name="css_class">l4</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_21120">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">21120</field>
+            <field name="name">2. (Dotación fundacional no exigida/Fondo social no exigido)</field>
+            <field name="current_value">1030, 1040</field>
+            <field name="parent_id" ref="es_balance_pymesfl_21100"/>
+            <field name="sequence">22</field>
+            <field name="css_class">l4</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_21200">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">21200</field>
+            <field name="name">II. Reservas</field>
+            <field name="current_value">110</field>
+            <field name="parent_id" ref="es_balance_pymesfl_21000"/>
+            <field name="sequence">23</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_21300">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">21300</field>
+            <field name="name">III. Excedentes de ejercicios anteriores</field>
+            <field name="current_value">120, 121</field>
+            <field name="parent_id" ref="es_balance_pymesfl_21000"/>
+            <field name="sequence">24</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_21400">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">21400</field>
+            <field name="name">IV. Excedente del ejercicio</field>
+            <field name="current_value">129, 6, 7</field>
+            <field name="parent_id" ref="es_balance_pymesfl_21000"/>
+            <field name="sequence">25</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_22000">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">22000</field>
+            <field name="name">A-2) Subvenciones, donaciones y legados recibidos</field>
+            <field name="current_value">130, 131, 132</field>
+            <field name="parent_id" ref="es_balance_pymesfl_20000"/>
+            <field name="sequence">26</field>
+            <field name="css_class">l2</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_31000">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">31000</field>
+            <field name="name">B) PASIVO NO CORRIENTE</field>
+            <field name="sequence">27</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_31100">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">31100</field>
+            <field name="name">I. Provisiones a largo plazo</field>
+            <field name="current_value">14</field>
+            <field name="parent_id" ref="es_balance_pymesfl_31000"/>
+            <field name="sequence">28</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_31200">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">31200</field>
+            <field name="name">II. Deudas a largo plazo</field>
+            <field name="parent_id" ref="es_balance_pymesfl_31000"/>
+            <field name="sequence">29</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_31220">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">31220</field>
+            <field name="name">1. Deudas con entidades de crédito</field>
+            <field name="current_value">1605, 170</field>
+            <field name="parent_id" ref="es_balance_pymesfl_31200"/>
+            <field name="sequence">30</field>
+            <field name="css_class">l4</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_31230">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">31230</field>
+            <field name="name">2. Acreedores por arrendamiento financiero</field>
+            <field name="current_value">1625, 174</field>
+            <field name="parent_id" ref="es_balance_pymesfl_31200"/>
+            <field name="sequence">31</field>
+            <field name="css_class">l4</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_31290">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">31290</field>
+            <field name="name">3. Otras deudas a largo plazo</field>
+            <field name="current_value">1615, 1635, 171, 172, 173, 175, 176, 177, 179, 180, 185</field>
+            <field name="parent_id" ref="es_balance_pymesfl_31200"/>
+            <field name="sequence">32</field>
+            <field name="css_class">l4</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_31300">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">31300</field>
+            <field name="name">III. Deudas con entidades del grupo y asociadas a largo plazo</field>
+            <field name="current_value">1603, 1604, 1613, 1614, 1623, 1624, 1633, 1634</field>
+            <field name="parent_id" ref="es_balance_pymesfl_31000"/>
+            <field name="sequence">33</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_31400">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">31400</field>
+            <field name="name">IV. Pasivos por impuesto diferido</field>
+            <field name="current_value">479</field>
+            <field name="parent_id" ref="es_balance_pymesfl_31000"/>
+            <field name="sequence">34</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_31500">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">31500</field>
+            <field name="name">V. Periodificaciones a largo plazo</field>
+            <field name="current_value">181</field>
+            <field name="parent_id" ref="es_balance_pymesfl_31000"/>
+            <field name="sequence">35</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_32000">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">32000</field>
+            <field name="name">C) PASIVO CORRIENTE</field>
+            <field name="sequence">36</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_32200">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">32200</field>
+            <field name="name">I. Provisiones a corto plazo</field>
+            <field name="current_value">499, 529</field>
+            <field name="parent_id" ref="es_balance_pymesfl_32000"/>
+            <field name="sequence">37</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_32300">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">32300</field>
+            <field name="name">II. Deudas a corto plazo</field>
+            <field name="parent_id" ref="es_balance_pymesfl_32000"/>
+            <field name="sequence">38</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_32320">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">32320</field>
+            <field name="name">1. Deudas con entidades de crédito</field>
+            <field name="current_value">5105, 520, 527</field>
+            <field name="parent_id" ref="es_balance_pymesfl_32300"/>
+            <field name="sequence">39</field>
+            <field name="css_class">l4</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_32330">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">32330</field>
+            <field name="name">2. Acreedores por arrendamiento financiero</field>
+            <field name="current_value">5125, 524</field>
+            <field name="parent_id" ref="es_balance_pymesfl_32300"/>
+            <field name="sequence">40</field>
+            <field name="css_class">l4</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_32390">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">32390</field>
+            <field name="name">3. Otras deudas a corto plazo</field>
+            <field name="current_value">500, 505, 506, 509, 5115, 5135, 5145, 521, 522, 523, 525, 526, 528, credit(550), credit(551), credit(5525), 555, 5565, 5566, 5595, 560, 561</field>
+            <field name="parent_id" ref="es_balance_pymesfl_32300"/>
+            <field name="sequence">41</field>
+            <field name="css_class">l4</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_32400">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">32400</field>
+            <field name="name">III. Deudas con entidades del grupo y asociadas a corto plazo</field>
+            <field name="current_value">5103, 5104, 5113, 5114, 5123, 5124, 5133, 5134, 5143, 5144, credit(5523), credit(5524), 5563, 5564</field>
+            <field name="parent_id" ref="es_balance_pymesfl_32000"/>
+            <field name="sequence">42</field>
+            <field name="css_class">l3</field>
+        </record>
+        
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_32500">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">32500</field>
+            <field name="name">IV. Beneficiarios–Acreedores</field>
+            <field name="current_value">412</field>
+            <field name="parent_id" ref="es_balance_pymesfl_32000"/>
+            <field name="sequence">43</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_32600">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">32600</field>
+            <field name="name">V. Acreedores comerciales y otras cuentas a pagar</field>
+            <field name="parent_id" ref="es_balance_pymesfl_32000"/>
+            <field name="sequence">44</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_32680">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">32680</field>
+            <field name="name">1. Proveedores</field>
+            <field name="current_value">400, 401, 403, 404, 405, 406</field>
+            <field name="parent_id" ref="es_balance_pymesfl_32600"/>
+            <field name="sequence">45</field>
+            <field name="css_class">l4</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_32690">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">32690</field>
+            <field name="name">2. Otros acreedores</field>
+            <field name="current_value">41, 438, 465, 475, 476, 477</field>
+            <field name="parent_id" ref="es_balance_pymesfl_32600"/>
+            <field name="sequence">46</field>
+            <field name="css_class">l4</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_32700">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">32700</field>
+            <field name="name">VI. Periodificaciones a corto plazo</field>
+            <field name="current_value">485, 568</field>
+            <field name="parent_id" ref="es_balance_pymesfl_32000"/>
+            <field name="sequence">47</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_balance_pymesfl_30000">
+            <field name="template_id" ref="es_balance_pymesfl"/>
+            <field name="code">30000</field>
+            <field name="name">TOTAL PATRIMONIO NETO Y PASIVO (A + B + C)</field>
+            <field name="current_value">20000 + 31000 + 32000</field>
+            <field name="sequence">48</field>
+            <field name="css_class">l1</field>
+        </record>
+
+    </data>
+</openerp>

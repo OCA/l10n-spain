@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#
+#   OpenERP - Account balance reports
+#   Copyright (C) 2016 Acysos S.L. All Rights Reserved
+#	$Id$
+#
+#	This program is free software: you can redistribute it and/or modify
+#	it under the terms of the GNU General Public License as published by
+#	the Free Software Foundation, either version 3 of the License, or
+#	(at your option) any later version.
+#
+#	This program is distributed in the hope that it will be useful,
+#	but WITHOUT ANY WARRANTY; without even the implied warranty of
+#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#	GNU General Public License for more details.
+#
+#	You should have received a copy of the GNU General Public License
+#	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+-->
+<!--
+PÉRDIDAS Y GANACIAS PARA ENTIDADES PEQUEÑAS y MEDIANAS Sin fines lucrativos
+
+Basado Resolución de 26 de marzo de 2013, del Instituto de Contabilidad y
+Auditoría de Cuentas, por la que se aprueba el Plan de Contabilidad de pequeñas
+y medianas entidades sin fines lucrativos.
+https://www.boe.es/diario_boe/txt.php?id=BOE-A-2013-3736
+
+
+Author: Ignacio Ibeas (Acysos S.L.) - ignacio@acysos.com
+-->
+<openerp>
+    <data>
+
+        <record model="account.balance.reporting.template" id="es_pyg_pymesfl">
+            <field name="name">PyG para entidades pequeñas y medianas sin fines lucrativos</field>
+            <field name="type">system</field>
+            <field name="balance_mode">2</field>
+            <field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
+            <field name="description">
+CUENTAS ANUALES - PÉRDIDAS Y GANANCIAS PARA ENTIDADES PEQUEÑAS Y MEDIANAS SIN FINES LUCRATIVOS
+
+Balance de ENTIDADES SIN FINES LUCRATIVOS al cierre del ejercicio, según Plan General Contable Español para Pequeñas Y Medianas Empresas sin fines lucrativos, para el depósito de cuentas anuales en el registro mercantil.
+
+Autor: Ignacio Ibeas (Acysos S.L.) - ignacio@acysos.com
+
+Basado en la Resolución de 26 de marzo de 2013, del Instituto de Contabilidad y Auditoría de Cuentas, por la que se aprueba el Plan de Contabilidad de pequeñas y medianas entidades sin fines lucrativos. :
+https://www.boe.es/diario_boe/txt.php?id=BOE-A-2013-3736
+            </field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_a">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">A</field>
+            <field name="name">A) Excedente del ejercicio</field>
+            <field name="sequence">1</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40100">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40100</field>
+            <field name="name">1. Ingresos de la actividad propia</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">2</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40110">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40110</field>
+            <field name="name">a) Cuotas de asociados y afiliados</field>
+            <field name="current_value">720</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_40100"/>
+            <field name="sequence">3</field>
+            <field name="css_class">l4</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40120">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40120</field>
+            <field name="name">b) Aportaciones de usuarios</field>
+            <field name="current_value">721</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_40100"/>
+            <field name="sequence">4</field>
+            <field name="css_class">l4</field>
+        </record>
+        
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40130">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40130</field>
+            <field name="name">c) Ingresos de promociones, patrocinadores y colaboraciones</field>
+            <field name="current_value">722, 723</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_40100"/>
+            <field name="sequence">5</field>
+            <field name="css_class">l4</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40140">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40140</field>
+            <field name="name">d) Subvenciones, donaciones y legados imputados al excedente del ejercicio</field>
+            <field name="current_value">740, 747, 748</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_40100"/>
+            <field name="sequence">6</field>
+            <field name="css_class">l4</field>
+        </record>
+        
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40150">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40150</field>
+            <field name="name">e) Reintegro de ayudas y asignaciones</field>
+            <field name="current_value">728</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_40100"/>
+            <field name="sequence">7</field>
+            <field name="css_class">l4</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40200">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40200</field>
+            <field name="name">2. Ventas y otros ingresos de la actividad mercantil</field>
+            <field name="current_value">700, 701, 702, 703, 704, 705, 706, 708, 709</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">8</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40300">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40300</field>
+            <field name="name">3. Gastos por ayudas y otros</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">9</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40310">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40310</field>
+            <field name="name">a) Ayudas monetarias</field>
+            <field name="current_value">650</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_40300"/>
+            <field name="sequence">10</field>
+            <field name="css_class">l4</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40320">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40320</field>
+            <field name="name">b) Gastos por colaboraciones y del órgano de gobierno</field>
+            <field name="current_value">651</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_40300"/>
+            <field name="sequence">11</field>
+            <field name="css_class">l4</field>
+        </record>
+        
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40330">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40330</field>
+            <field name="name">c) Gastos por colaboraciones y del órgano de gobierno</field>
+            <field name="current_value">653, 654</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_40300"/>
+            <field name="sequence">12</field>
+            <field name="css_class">l4</field>
+        </record>
+        
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40340">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40340</field>
+            <field name="name">d) Reintegro de subvenciones, donaciones y legados</field>
+            <field name="current_value">658</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_40300"/>
+            <field name="sequence">13</field>
+            <field name="css_class">l4</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40400">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40400</field>
+            <field name="name">4. Variación de existencias de productos terminados y en curso de fabricación</field>
+            <field name="current_value">6930, 71*, 7930</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">14</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40500">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40500</field>
+            <field name="name">5. Trabajos realizados por la entidad para su activo</field>
+            <field name="current_value">73</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">15</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40600">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40600</field>
+            <field name="name">6. Aprovisionamientos</field>
+            <field name="current_value">600, 601, 602, 606, 607, 608, 609, 61*, 6931, 6932, 6933, 7931, 7932, 7933</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">16</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40700">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40700</field>
+            <field name="name">7. Otros ingresos de la actividad</field>
+            <field name="current_value">75</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">17</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40800">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40800</field>
+            <field name="name">8. Gastos de personal</field>
+            <field name="current_value">64</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">18</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_40900">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">40900</field>
+            <field name="name">9. Otros gastos de la actividad</field>
+            <field name="current_value">62, 631, 634, 636, 639, 655, 656, 659, 694, 695, 794, 7954</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">19</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_41000">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">41000</field>
+            <field name="name">10. Amortización del inmovilizado</field>
+            <field name="current_value">68</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">26</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_41100">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">41100</field>
+            <field name="name">11. Subvenciones, donaciones y legados de capital traspasados al excedente del ejercicio</field>
+            <field name="current_value">745, 746</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">27</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_41200">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">41200</field>
+            <field name="name">12. Exceso de provisiones</field>
+            <field name="current_value">7951, 7952, 7955</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">28</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_41300">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">41300</field>
+            <field name="name">13. Deterioro y resultado por enajenaciones del inmovilizado</field>
+            <field name="current_value">670, 671, 672,690, 691, 692, 770, 771, 772, 790, 791, 792</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">29</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_49100">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">49100</field>
+            <field name="name">A.1)  EXCEDENTE DE LA ACTIVIDAD (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 + 13)</field>
+            <field name="current_value">40100 + 40200 + 40300 + 40400 + 40500 + 40600 + 40700 + 40800 + 40900 + 41000 + 41100 + 41200 + 41300</field>
+            <field name="sequence">30</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_41400">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">41400</field>
+            <field name="name">14. Ingresos financieros</field>
+            <field name="current_value">760, 761, 762, 769</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">31</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_41500">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">41500</field>
+            <field name="name">15. Gastos financieros</field>
+            <field name="current_value">660, 661, 662, 665, 669</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">32</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_41600">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">41600</field>
+            <field name="name">16. Variación de valor razonable en instrumentos financieros</field>
+            <field name="current_value">663, 763</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">33</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_41700">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">41700</field>
+            <field name="name">17. Diferencias de cambio</field>
+            <field name="current_value">668, 768</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">34</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_41800">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">41800</field>
+            <field name="name">18. Deterioro y resultado por enajenaciones de instrumentos financieros</field>
+            <field name="current_value">666, 667, 673, 675, 696, 697, 698, 699, 766, 773, 775, 796, 797, 798, 799</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">35</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_49200">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">49200</field>
+            <field name="name">A.2) EXCEDENTE DE LAS OPERACIONES FINANCIERAS  (14 + 15 + 16 + 17 + 18)</field>
+            <field name="current_value">41400 + 41500 + 41600 + 41700 + 41800</field>
+            <field name="sequence">36</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_49300">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">49300</field>
+            <field name="name">A.3) EXCEDENTE ANTES DE IMPUESTOS (A.1+A.2) (A.1 + A.2)</field>
+            <field name="current_value">49100 + 49200</field>
+            <field name="sequence">37</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_41900">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">41900</field>
+            <field name="name">19. Impuestos sobre beneficios</field>
+            <field name="current_value">6300*, 6301*, 633, 638</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_a"/>
+            <field name="sequence">38</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_49400 ">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">49400</field>
+            <field name="name">A.4) Variación de patrimonio neto reconocida en el excedente del ejercicio (A.3 + 19)</field>
+            <field name="current_value">49300 + 41900</field>
+            <field name="sequence">39</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_b">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">B</field>
+            <field name="name">B) Ingresos y gastos imputados directamente al patrimonio neto.</field>
+            <field name="sequence">40</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_42000">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">42000</field>
+            <field name="name">20. Resultado del ejercicio procedente de operaciones interrumpidas neto de impuestos</field>
+            <field name="parent_id" ref="es_pyg_pymesfl_b"/>
+            <field name="sequence">41</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_49500">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">49500</field>
+            <field name="name">A.5) RESULTADO DEL EJERCICIO (A.4 + 20)</field>
+            <field name="current_value">49400 + 42000</field>
+            <field name="sequence">42</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_b">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">B</field>
+            <field name="name">B) Ingresos y gastos imputados directamente al patrimonio neto</field>
+            <field name="sequence">43</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_b11">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">B.11</field>
+            <field name="name">1. Subvenciones recibidas</field>
+            <field name="parent_id" ref="es_pyg_normal_b"/>
+            <field name="sequence">44</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_b12">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">B.12</field>
+            <field name="name">2. Donaciones y legados recibidos.</field>
+            <field name="parent_id" ref="es_pyg_normal_b"/>
+            <field name="sequence">45</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_b13">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">B.13</field>
+            <field name="name">3. Otros ingresos y gastos.</field>
+            <field name="parent_id" ref="es_pyg_normal_b"/>
+            <field name="sequence">46</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_b14">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">B.14</field>
+            <field name="name">4. Efecto impositivo.</field>
+            <field name="parent_id" ref="es_pyg_normal_b"/>
+            <field name="sequence">47</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_b1">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">B.1</field>
+            <field name="name">B.1) Variación de patrimonio neto por ingresos y gastos reconocidos directamente en el patrimonio neto (1+2+3+4)</field>
+            <field name="current_value">B.11 + B.12 + B.13 + B.14</field>
+            <field name="sequence">48</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_c">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">C</field>
+            <field name="name">C) Reclasificaciones al excedente del ejercicio.</field>
+            <field name="sequence">49</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_c11">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">C.11</field>
+            <field name="name">1. Subvenciones recibidas.</field>
+            <field name="parent_id" ref="es_pyg_normal_c"/>
+            <field name="sequence">50</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_c12">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">C.12</field>
+            <field name="name">2. Donaciones y legados recibidos.</field>
+            <field name="parent_id" ref="es_pyg_normal_c"/>
+            <field name="sequence">51</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_c13">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">C.13</field>
+            <field name="name">3. Otros ingresos y gastos.</field>
+            <field name="parent_id" ref="es_pyg_normal_c"/>
+            <field name="sequence">52</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_c14">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">C.14</field>
+            <field name="name">4. Efecto impositivo.</field>
+            <field name="parent_id" ref="es_pyg_normal_c"/>
+            <field name="sequence">53</field>
+            <field name="css_class">l3</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_c1">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
+            <field name="code">C.1</field>
+            <field name="name">C.1) Variación de patrimonio neto por reclasificaciones al excedente del ejercicio (1+2+3+4)</field>
+            <field name="current_value">C.11 + C.12 + C.13 + C.14</field>
+            <field name="sequence">54</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_d">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">D</field>
+            <field name="name">D) Variaciones de patrimonio neto por ingresos y gastos imputados directamente al patrimonio neto (B.1 + C.1)</field>
+            <field name="current_value">B.1 + C.1</field>
+            <field name="sequence">55</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_e">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">E</field>
+            <field name="name">E) Ajustes por cambios de criterio</field>
+            <field name="sequence">56</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_f">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">F</field>
+            <field name="name">F) Ajustes por errores</field>
+            <field name="sequence">57</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_g">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">G</field>
+            <field name="name">G) Variaciones en la dotación fundacional o fondo social</field>
+            <field name="sequence">58</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_h">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">H</field>
+            <field name="name">H) Otras variaciones</field>
+            <field name="sequence">59</field>
+            <field name="css_class">l1</field>
+        </record>
+
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_i">
+            <field name="template_id" ref="es_pyg_normal"/>
+            <field name="code">I</field>
+            <field name="name">I) RESULTADO TOTAL, VARIACIÓN DEL PATRIMONIO NETO EN EL EJERCICIO (A.4+D+E+F+G+H)</field>
+            <field name="current_value">A.1 + D + E + F + G + H</field>
+            <field name="sequence">60</field>
+            <field name="css_class">l1</field>
+        </record>
+
+    </data>
+</openerp>
