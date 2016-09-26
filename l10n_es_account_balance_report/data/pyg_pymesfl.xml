@@ -398,46 +398,46 @@ https://www.boe.es/diario_boe/txt.php?id=BOE-A-2013-3736
             <field name="css_class">l1</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_b">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_b">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">B</field>
             <field name="name">B) Ingresos y gastos imputados directamente al patrimonio neto</field>
             <field name="sequence">43</field>
             <field name="css_class">l1</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_b11">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_b11">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">B.11</field>
             <field name="name">1. Subvenciones recibidas</field>
-            <field name="parent_id" ref="es_pyg_normal_b"/>
+            <field name="parent_id" ref="es_pyg_pymesfl_b"/>
             <field name="sequence">44</field>
             <field name="css_class">l3</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_b12">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_b12">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">B.12</field>
             <field name="name">2. Donaciones y legados recibidos.</field>
-            <field name="parent_id" ref="es_pyg_normal_b"/>
+            <field name="parent_id" ref="es_pyg_pymesfl_b"/>
             <field name="sequence">45</field>
             <field name="css_class">l3</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_b13">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_b13">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">B.13</field>
             <field name="name">3. Otros ingresos y gastos.</field>
-            <field name="parent_id" ref="es_pyg_normal_b"/>
+            <field name="parent_id" ref="es_pyg_pymesfl_b"/>
             <field name="sequence">46</field>
             <field name="css_class">l3</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_b14">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_b14">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">B.14</field>
             <field name="name">4. Efecto impositivo.</field>
-            <field name="parent_id" ref="es_pyg_normal_b"/>
+            <field name="parent_id" ref="es_pyg_pymesfl_b"/>
             <field name="sequence">47</field>
             <field name="css_class">l3</field>
         </record>
@@ -451,46 +451,46 @@ https://www.boe.es/diario_boe/txt.php?id=BOE-A-2013-3736
             <field name="css_class">l1</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_c">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_c">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">C</field>
             <field name="name">C) Reclasificaciones al excedente del ejercicio.</field>
             <field name="sequence">49</field>
             <field name="css_class">l1</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_c11">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_c11">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">C.11</field>
             <field name="name">1. Subvenciones recibidas.</field>
-            <field name="parent_id" ref="es_pyg_normal_c"/>
+            <field name="parent_id" ref="es_pyg_pymesfl_c"/>
             <field name="sequence">50</field>
             <field name="css_class">l3</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_c12">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_c12">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">C.12</field>
             <field name="name">2. Donaciones y legados recibidos.</field>
-            <field name="parent_id" ref="es_pyg_normal_c"/>
+            <field name="parent_id" ref="es_pyg_pymesfl_c"/>
             <field name="sequence">51</field>
             <field name="css_class">l3</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_c13">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_c13">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">C.13</field>
             <field name="name">3. Otros ingresos y gastos.</field>
-            <field name="parent_id" ref="es_pyg_normal_c"/>
+            <field name="parent_id" ref="es_pyg_pymesfl_c"/>
             <field name="sequence">52</field>
             <field name="css_class">l3</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_c14">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_c14">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">C.14</field>
             <field name="name">4. Efecto impositivo.</field>
-            <field name="parent_id" ref="es_pyg_normal_c"/>
+            <field name="parent_id" ref="es_pyg_pymesfl_c"/>
             <field name="sequence">53</field>
             <field name="css_class">l3</field>
         </record>
@@ -504,8 +504,8 @@ https://www.boe.es/diario_boe/txt.php?id=BOE-A-2013-3736
             <field name="css_class">l1</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_d">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_d">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">D</field>
             <field name="name">D) Variaciones de patrimonio neto por ingresos y gastos imputados directamente al patrimonio neto (B.1 + C.1)</field>
             <field name="current_value">B.1 + C.1</field>
@@ -513,40 +513,40 @@ https://www.boe.es/diario_boe/txt.php?id=BOE-A-2013-3736
             <field name="css_class">l1</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_e">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_e">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">E</field>
             <field name="name">E) Ajustes por cambios de criterio</field>
             <field name="sequence">56</field>
             <field name="css_class">l1</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_f">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_f">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">F</field>
             <field name="name">F) Ajustes por errores</field>
             <field name="sequence">57</field>
             <field name="css_class">l1</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_g">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_g">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">G</field>
             <field name="name">G) Variaciones en la dotación fundacional o fondo social</field>
             <field name="sequence">58</field>
             <field name="css_class">l1</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_h">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_h">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">H</field>
             <field name="name">H) Otras variaciones</field>
             <field name="sequence">59</field>
             <field name="css_class">l1</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_i">
-            <field name="template_id" ref="es_pyg_normal"/>
+        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_i">
+            <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">I</field>
             <field name="name">I) RESULTADO TOTAL, VARIACIÓN DEL PATRIMONIO NETO EN EL EJERCICIO (A.4+D+E+F+G+H)</field>
             <field name="current_value">A.1 + D + E + F + G + H</field>
