@@ -375,32 +375,6 @@ https://www.boe.es/diario_boe/txt.php?id=BOE-A-2013-3736
         <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_b">
             <field name="template_id" ref="es_pyg_pymesfl"/>
             <field name="code">B</field>
-            <field name="name">B) Ingresos y gastos imputados directamente al patrimonio neto.</field>
-            <field name="sequence">40</field>
-            <field name="css_class">l1</field>
-        </record>
-
-        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_42000">
-            <field name="template_id" ref="es_pyg_pymesfl"/>
-            <field name="code">42000</field>
-            <field name="name">20. Resultado del ejercicio procedente de operaciones interrumpidas neto de impuestos</field>
-            <field name="parent_id" ref="es_pyg_pymesfl_b"/>
-            <field name="sequence">41</field>
-            <field name="css_class">l3</field>
-        </record>
-
-        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_49500">
-            <field name="template_id" ref="es_pyg_pymesfl"/>
-            <field name="code">49500</field>
-            <field name="name">A.5) RESULTADO DEL EJERCICIO (A.4 + 20)</field>
-            <field name="current_value">49400 + 42000</field>
-            <field name="sequence">42</field>
-            <field name="css_class">l1</field>
-        </record>
-
-        <record model="account.balance.reporting.template.line" id="es_pyg_pymesfl_b">
-            <field name="template_id" ref="es_pyg_pymesfl"/>
-            <field name="code">B</field>
             <field name="name">B) Ingresos y gastos imputados directamente al patrimonio neto</field>
             <field name="sequence">43</field>
             <field name="css_class">l1</field>
