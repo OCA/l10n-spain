@@ -88,6 +88,8 @@ class TestL10nEsFacturae(common.TransactionCase):
             'type': 'sale',
             'currency': self.ref('base.USD'),
         })
+        main_company = self.env.ref('base.main_company')
+        main_company.currency_id = self.ref('base.USD')
         self.invoice = self.env['account.invoice'].create({
             'partner_id': self.partner.id,
             'account_id': self.partner.property_account_receivable.id,
@@ -103,6 +105,10 @@ class TestL10nEsFacturae(common.TransactionCase):
         })
 
     def test_facturae_generation(self):
+        main_partner = self.env.ref('base.main_partner')
+        main_partner.vat = 'ES05680675C'
+        main_partner.country_id = self.ref('base.us'),
+        main_partner.state_id = self.ref('base.state_us_2')
         self.invoice.signal_workflow('invoice_open')
         self.invoice.number = '2999/99999'
         wizard = self.env['create.facturae'].create({})
