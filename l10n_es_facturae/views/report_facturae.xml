@@ -216,22 +216,26 @@
                     </Items>
                     <t t-if="invoice.payment_mode_id">
                         <PaymentDetails>
-                            <t t-foreach="invoice.move_id.line_id.filtered(lambda x: x.account_id == invoice.account_id)" t-as="move">
-                                <Installment>
-                                    <InstallmentDueDate t-esc="move.date_maturity or invoice.date_invoice"/>
-                                    <!-- TODO: Esto se tendrá que revisar cuando se implementen las rectificativas -->
-                                    <InstallmentAmount t-esc="'%.2f' % (move.debit if move.debit > move.credit else -move.credit)"/>
-                                </Installment>
-                                <PaymentMeans t-esc="invoice.payment_mode_id.facturae_code"/>
-                                <t t-if="invoice.payment_mode_id.facturae_code == '02'">
-                                    <AccountToBeDebited>
-                                        <IBAN t-esc="invoice.partner_bank_id.iban"/>
-                                    </AccountToBeDebited>
-                                </t>
-                                <t t-if="invoice.payment_mode_id.facturae_code != '02'">
-                                    <AccountToBeCredited>
-                                        <IBAN t-esc="invoice.payment_mode_id.bank_id.iban"/>
-                                    </AccountToBeCredited>
+                            <t t-foreach="invoice.move_id.line_id" t-as="move">
+                                <!-- QWeb won't pass t-set assigned vars as context through filtered()
+                                due to security concerns; use t-if on each item instead -->
+                                <t t-if="move.account_id == invoice.account_id">
+                                    <Installment>
+                                        <InstallmentDueDate t-esc="move.date_maturity or invoice.date_invoice"/>
+                                        <!-- TODO: Esto se tendrá que revisar cuando se implementen las rectificativas -->
+                                        <InstallmentAmount t-esc="'%.2f' % (move.debit if move.debit > move.credit else -move.credit)"/>
+                                    </Installment>
+                                    <PaymentMeans t-esc="invoice.payment_mode_id.facturae_code"/>
+                                    <t t-if="invoice.payment_mode_id.facturae_code == '02'">
+                                        <AccountToBeDebited>
+                                            <IBAN t-esc="invoice.partner_bank_id.iban"/>
+                                        </AccountToBeDebited>
+                                    </t>
+                                    <t t-if="invoice.payment_mode_id.facturae_code != '02'">
+                                        <AccountToBeCredited>
+                                            <IBAN t-esc="invoice.payment_mode_id.bank_id.iban"/>
+                                        </AccountToBeCredited>
+                                    </t>
                                 </t>
                             </t>
                         </PaymentDetails>
