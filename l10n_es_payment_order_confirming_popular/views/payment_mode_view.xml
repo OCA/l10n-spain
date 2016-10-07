@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_payment_mode_form" model="ir.ui.view">
+            <field name="name">Payment mode form (Confirming Popular)</field>
+            <field name="model">payment.mode</field>
+            <field name="inherit_id" ref="account_payment.view_payment_mode_form"/>
+            <field name="arch" type="xml">
+                <group position="after">
+                    <group string="Opciones Confirming" attrs="{'invisible': [('is_conf_popular', '=', False)]}">
+                        <field name="conf_popular_type"/>
+                        <field name="gastos" attrs="{'invisible': [('conf_popular_type', 'not in', ['60','61'])],'required': [('conf_popular_type', 'in', ['60','61'])]}"/>
+                        <field name="forma_pago" attrs="{'invisible': [('conf_popular_type', '!=', '70')],'required': [('conf_popular_type', '=', '70')]}"/>
+                        <field name="is_conf_popular" invisible="1"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+    </data>
+</openerp>
