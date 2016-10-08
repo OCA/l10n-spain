@@ -1,0 +1,133 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * l10n_es_partner
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (7.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-17 18:41+0000\n"
+"PO-Revision-Date: 2016-09-25 14:54+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/bg/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: bg\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_partner
+#: help:res.partner.bank,acc_country_id:0
+msgid ""
+"If the country of the bank is Spain, it validates the bank code or IBAN, "
+"formatting it accordingly."
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:res.partner:0 field:res.partner,comercial:0
+msgid "Trade name"
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:res.bank,lname:0
+msgid "Long name"
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:res.bank,code:0
+msgid "Code"
+msgstr "Код"
+
+#. module: l10n_es_partner
+#: model:ir.actions.act_window,name:l10n_es_partner.action_l10n_es_partner_import
+#: view:l10n.es.partner.import.wizard:0
+msgid "Import spanish bank data"
+msgstr ""
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/l10n_es_partner.py:135
+#, python-format
+msgid "IBAN account is not valid"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.actions.todo,note:l10n_es_partner.config_wizard_l10n_es_partner
+#: view:l10n.es.partner.import.wizard:0
+msgid "This wizard will import spanish bank data."
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:0
+msgid "title"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:res.partner.bank,acc_country_id:0
+msgid "Bank country"
+msgstr ""
+
+#. module: l10n_es_partner
+#: help:res.bank,vat:0
+msgid "Value Added Tax number"
+msgstr ""
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/l10n_es_partner.py:101
+#, python-format
+msgid "Bank account should have 20 digits."
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:res.bank,vat:0
+msgid "VAT code"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_l10n_es_partner_import_wizard
+msgid "l10n.es.partner.import.wizard"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_partner
+msgid "Partner"
+msgstr "Партньор"
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:0
+msgid "Import"
+msgstr ""
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/l10n_es_partner.py:100
+#: code:addons/l10n_es_partner/l10n_es_partner.py:108
+#: code:addons/l10n_es_partner/l10n_es_partner.py:134
+#, python-format
+msgid "Warning"
+msgstr ""
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/l10n_es_partner.py:109
+#, python-format
+msgid "Invalid bank account."
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:res.partner.bank:0
+msgid "onchange_banco(acc_number, acc_country_id, state)"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_bank
+msgid "Bank"
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:res.bank,website:0
+msgid "Website"
+msgstr ""

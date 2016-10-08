@@ -1,0 +1,55 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * l10n_es_account_invoice_sequence
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (7.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-17 18:41+0000\n"
+"PO-Revision-Date: 2016-09-17 18:43+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Dutch (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_account_invoice_sequence
+#: code:addons/l10n_es_account_invoice_sequence/account_invoice.py:60
+#, python-format
+msgid "Journal %s has no sequence defined for invoices."
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: constraint:account.journal:0
+msgid "Journal company and invoice sequence company do not match."
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: code:addons/l10n_es_account_invoice_sequence/account_invoice.py:59
+#, python-format
+msgid "Error!"
+msgstr "Fout!"
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: field:account.journal,invoice_sequence_id:0
+msgid "Invoice sequence"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: help:account.journal,invoice_sequence_id:0
+msgid "The sequence used for invoice numbers in this journal."
+msgstr ""
