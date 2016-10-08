@@ -3,15 +3,15 @@
 # * l10n_es_account_invoice_sequence
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-spain (8.0)\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-24 14:00+0000\n"
-"PO-Revision-Date: 2016-03-24 14:01+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
+"POT-Creation-Date: 2017-01-18 11:39+0000\n"
+"PO-Revision-Date: 2017-01-18 11:39+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,17 +19,23 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: l10n_es_account_invoice_sequence
+#: code:addons/l10n_es_account_invoice_sequence/models/account_chart_template.py:39
+#, python-format
+msgid " (Refund)"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_invoice
 msgid "Invoice"
 msgstr "Račun"
 
 #. module: l10n_es_account_invoice_sequence
-#: field:account.invoice,invoice_number:0
+#: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_invoice_invoice_number
 msgid "Invoice number"
 msgstr "Številka računa"
 
 #. module: l10n_es_account_invoice_sequence
-#: field:account.journal,invoice_sequence_id:0
+#: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_journal_invoice_sequence_id
 msgid "Invoice sequence"
 msgstr "Zaporedje računa"
 
@@ -39,19 +45,46 @@ msgid "Journal"
 msgstr "Dnevnik"
 
 #. module: l10n_es_account_invoice_sequence
-#: code:addons/l10n_es_account_invoice_sequence/__init__.py:29
-#: code:addons/l10n_es_account_invoice_sequence/wizard/wizard_multi_charts_accounts.py:32
+#: code:addons/l10n_es_account_invoice_sequence/hooks.py:21
+#: code:addons/l10n_es_account_invoice_sequence/models/account_chart_template.py:26
+#: code:addons/l10n_es_account_invoice_sequence/wizards/wizard_multi_charts_accounts.py:24
 #, python-format
 msgid "Journal Entries Sequence"
 msgstr "Zaporedje dnevniških vnosov"
 
 #. module: l10n_es_account_invoice_sequence
-#: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:41
+#: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:29
 #, python-format
 msgid "Journal company and invoice sequence company do not match."
 msgstr "Družba dnevnika in družba zaporedja računov se ne ujemata."
 
 #. module: l10n_es_account_invoice_sequence
-#: help:account.journal,invoice_sequence_id:0
+#: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:39
+#, python-format
+msgid "Journal company and refund sequence company do not match."
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_journal_refund_inv_sequence_id
+msgid "Refund sequence"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_chart_template
+msgid "Templates for Account Chart"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,help:l10n_es_account_invoice_sequence.field_account_journal_invoice_sequence_id
 msgid "The sequence used for invoice numbers in this journal."
 msgstr "Zaporedje uporabljeno za številke računov v tem dnevniku."
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,help:l10n_es_account_invoice_sequence.field_account_journal_refund_inv_sequence_id
+msgid "The sequence used for refund invoices numbers in this journal."
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model,name:l10n_es_account_invoice_sequence.model_wizard_multi_charts_accounts
+msgid "wizard.multi.charts.accounts"
+msgstr ""
