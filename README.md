@@ -1,6 +1,6 @@
 [![Runbot Status](https://runbot.odoo-community.org/runbot/badge/flat/189/9.0.svg)](https://runbot.odoo-community.org/runbot/repo/github-com-oca-l10n-spain-189)
 [![Build Status](https://travis-ci.org/OCA/l10n-spain.svg?branch=9.0)](https://travis-ci.org/OCA/l10n-spain)
-[![Coverage Status](https://coveralls.io/repos/OCA/l10n-spain/badge.svg?branch=9.0)](https://coveralls.io/r/OCA/l10n-spain?branch=9.0)
+[![codecov](https://codecov.io/gh/OCA/l10n-spain/branch/9.0/graph/badge.svg)](https://codecov.io/gh/OCA/l10n-spain)
 
 Localización española de Odoo
 =============================
