@@ -1,148 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-        <record id="view_l10n_es_aeat_mod111_report_form" model="ir.ui.view">
-            <field name="name">l10n_es.aeat.mod111.report.form</field>
-            <field name="model">l10n.es.aeat.mod111.report</field>
-            <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
-            <field name="arch" type="xml">
-                <field name="fiscalyear_id" position="after">
-                    <field name="currency_id" invisible="1"/>
-                </field>
-                <field name="contact_phone" position="after">
-                    <field name="contact_mobile_phone"/>
-                </field>
-                <field name="previous_number" position="after">
-                        <field name="tipo_declaracion"/>
-                        <field name="codigo_electronico_anterior" attrs="{'invisible': [('type','==','N')]}"/>
-                        <field name="colegio_concertado"/>
-                </field>
-                <field name="previous_number" position="attributes">
-                    <attribute name="attrs">{'invisible': [('type','==','N')]}</attribute>
-                </field>
-                <group string="Declaración" position="after">
-                <group string="Resultado" colspan="4" states="calculated,done,cancelled">
-                    <group string="Rendim. del trabajo">
-                        <label string="Rendimientos dinerarios:" class="oe_force_bold" colspan="2"/>
+<!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_l10n_es_aeat_mod111_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod111.report.tree</field>
+        <field name="model">l10n.es.aeat.mod111.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree"/>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">AEAT 111 reports</attribute>
+            </tree>
+            <field name="period_type" position="after">
+                <field name="casilla_28"/>
+                <field name="casilla_29"/>
+                <field name="casilla_30"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_l10n_es_aeat_mod111_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod111.report.form</field>
+        <field name="model">l10n.es.aeat.mod111.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
+        <field name="arch" type="xml">
+            <field name="previous_number" position="after">
+                <field name="tipo_declaracion"/>
+                <field name="codigo_electronico_anterior"
+                       attrs="{'invisible': [('type','==','N')]}"/>
+                <field name="colegio_concertado"/>
+            </field>
+            <group name="group_declaration" position="after">
+                <group string="Result"
+                       name="group_result"
+                       attrs="{'invisible': [('state', '=', 'draft')]}"
+                       colspan="4">
+                    <group string="Work income">
+                        <label string="Monetary:"
+                               class="oe_force_bold" colspan="2"/>
                         <field name="casilla_01"/>
-                        <field name="casilla_02" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <button name="show_move_lines"
-                                string="Show account move lines for base"
-                                type="object" class="oe_link"
-                                context="{'move_lines_02': True}"/>
                         <separator/>
-                        <field name="casilla_03" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <button name="show_move_lines"
-                                string="Show account move lines for amount"
-                                type="object" class="oe_link"
-                                context="{'move_lines_03': True}"/>
-                        <separator/>
-                        <label string="Rendimientos en especies:" class="oe_force_bold" colspan="2"/>
+                        <label string="In kind:"
+                               class="oe_force_bold" colspan="2"/>
                         <field name="casilla_04"/>
-                        <field name="casilla_05" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <button name="show_move_lines"
-                                string="Show account move lines for base"
-                                type="object" class="oe_link"
-                                context="{'move_lines_05': True}"/>
-                        <separator/>
-                        <field name="casilla_06" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <button name="show_move_lines"
-                                string="Show account move lines for amount"
-                                type="object" class="oe_link"
-                                context="{'move_lines_06': True}"/>
                     </group>
-                    <group string="Rendim. actividades económicas">
-                        <label string="Rendimientos dinerarios:" class="oe_force_bold" colspan="2"/>
+                    <group string="Business income">
+                        <label string="Monetary:"
+                               class="oe_force_bold" colspan="2"/>
                         <field name="casilla_07"/>
-                        <field name="casilla_08" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <button name="show_move_lines"
-                                string="Show account move lines for base"
-                                type="object" class="oe_link"
-                                context="{'move_lines_08': True}"/>
                         <separator/>
-                        <field name="casilla_09" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <button name="show_move_lines"
-                                string="Show account move lines for amount"
-                                type="object" class="oe_link"
-                                context="{'move_lines_09': True}"/>
-                        <separator/>
-                        <label string="Rendimientos en especie:" class="oe_force_bold" colspan="2"/>
+                        <label string="In kind:"
+                               class="oe_force_bold" colspan="2"/>
                         <field name="casilla_10"/>
-                        <field name="casilla_11" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_12" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_11" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_12" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
                     </group>
-                    <group string="Premios">
-                        <label string="Premios dinerarios:" class="oe_force_bold" colspan="2"/>
+                    <group string="Awards">
+                        <label string="Monetary:"
+                               class="oe_force_bold" colspan="2"/>
                         <field name="casilla_13"/>
-                        <field name="casilla_14" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_15" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <label string="Premios en especie:" class="oe_force_bold" colspan="2"/>
+                        <field name="casilla_14" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_15" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <label string="In kind:"
+                               class="oe_force_bold" colspan="2"/>
                         <field name="casilla_16"/>
-                        <field name="casilla_17" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_18" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_17" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_18" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
                     </group>
-                    <group string="Ganancias patrim. Aprovecham. Forestales">
-                        <label string="Percep.dinerarias:" class="oe_force_bold" colspan="2"/>
+                    <group string="Capital gains derived from the forest exploitation">
+                        <label string="Monetary:"
+                               class="oe_force_bold" colspan="2"/>
                         <field name="casilla_19"/>
-                        <field name="casilla_20" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_21" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <label string="Percep. en especie:" class="oe_force_bold" colspan="2"/>
+                        <field name="casilla_20" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_21" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <label string="In kind:"
+                               class="oe_force_bold" colspan="2"/>
                         <field name="casilla_22"/>
-                        <field name="casilla_23" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_24" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_23" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_24" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
                     </group>
-                    <group string="Contraprest. cesión dchos. imagen">
+                    <group string="Consideration for the transfer of image rights">
                         <field name="casilla_25"/>
-                        <field name="casilla_26" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_27" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_26" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_27" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
                     </group>
-                    <group string="Total liquidación">
-                        <field name="casilla_28" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_29" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        <field name="casilla_30" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <group string="Totals">
+                        <field name="casilla_28" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_29" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_30" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                    <group string="Tax lines"
+                           name="group_tax_lines"
+                           colspan="4"
+                           attrs="{'invisible': [('state', '=', 'draft')]}">
+                        <field name="tax_line_ids" nolabel="1" readonly="1"/>
                     </group>
                 </group>
-                </group>
-            </field>
-        </record>
+            </group>
+        </field>
+    </record>
 
-        <record id="view_l10n_es_aeat_mod111_report_tree" model="ir.ui.view">
-            <field name="name">l10n_es.aeat.mod111.report.tree</field>
-            <field name="model">l10n.es.aeat.mod111.report</field>
-            <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree"/>
-            <field name="arch" type="xml">
-                <tree position="attributes">
-                    <attribute name="string">Declaraciones AEAT 111</attribute>
-                </tree>
-            </field>
-        </record>
+    <record id="action_l10n_es_aeat_mod111_report" model="ir.actions.act_window">
+        <field name="name">AEAT model 111</field>
+        <field name="res_model">l10n.es.aeat.mod111.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="help">Create and query AEAT Model 111 reports.</field>
+    </record>
 
-        <record id="action_l10n_es_aeat_mod111_report" model="ir.actions.act_window">
-            <field name="name">Declaración AEAT 111</field>
-            <field name="res_model">l10n.es.aeat.mod111.report</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">form,tree</field>
-            <field name="help">Crea y consulta las declaraciones del modelo 111 de la AEAT.</field>
-        </record>
+    <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod111_report_tree">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod111_report_tree"/>
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod111_report"/>
+    </record>
 
-        <record id="action_l10n_es_aeat_mod111_report_form" model="ir.actions.act_window.view">
-            <field name="sequence" eval="3"/>
-            <field name="view_mode">form</field>
-            <field name="view_id" ref="view_l10n_es_aeat_mod111_report_form"/>
-            <field name="act_window_id" ref="action_l10n_es_aeat_mod111_report"/>
-        </record>
+    <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod111_report_form">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod111_report_form"/>
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod111_report"/>
+    </record>
 
-        <record id="action_l10n_es_aeat_mod111_report_tree" model="ir.actions.act_window.view">
-            <field name="sequence" eval="2"/>
-            <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_l10n_es_aeat_mod111_report_tree"/>
-            <field name="act_window_id" ref="action_l10n_es_aeat_mod111_report"/>
-        </record>
+    <menuitem id="menu_aeat_mod111_report"
+              parent="l10n_es_aeat.menu_root_aeat"
+              action="action_l10n_es_aeat_mod111_report"
+              sequence="111"
+              name="AEAT 111 model"/>
 
-        <menuitem id="menu_aeat_mod111_report"
-                  parent="l10n_es_aeat.menu_root_aeat"
-                  action="action_l10n_es_aeat_mod111_report"
-                  sequence="111"
-                  name="Modelo 111"/>
-    </data>
-</openerp>
+</odoo>
