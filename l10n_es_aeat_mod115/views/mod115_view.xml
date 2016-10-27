@@ -34,8 +34,6 @@
                    colspan="4">
                 <group string="Amounts retained">
                     <field name="casilla_01"/>
-                    <field name="casilla_02" widget="monetary"
-                           options="{'currency_field': 'currency_id'}"/>
                     <field name="casilla_03" widget="monetary"
                            options="{'currency_field': 'currency_id'}"/>
                 </group>

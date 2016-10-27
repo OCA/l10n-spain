@@ -13,10 +13,15 @@
               "Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-spain",
     'license': 'AGPL-3',
-    'depends': ['l10n_es_aeat'],
+    'depends': [
+        "l10n_es",
+        "l10n_es_aeat",
+    ],
     'data': [
-        'wizard/export_mod115_to_boe.xml',
+        'security/ir.model.access.csv',
+        'data/aeat_export_mod115_data.xml',
+        'data/tax_code_map_mod115_data.xml',
         'views/mod115_view.xml',
-        'security/ir.model.access.csv'],
+    ],
     'installable': True,
 }
