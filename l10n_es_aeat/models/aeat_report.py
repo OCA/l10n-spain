@@ -282,10 +282,11 @@ class L10nEsAeatReport(models.AbstractModel):
     @api.multi
     def _prepare_move_vals(self):
         self.ensure_one()
+        last = self.periods.sorted(lambda x: x.date_stop)[-1:]
         return {
-            'date': fields.Date.today(),
             'journal_id': self.journal_id.id,
-            'period_id': self.env['account.period'].find().id,
+            'date': last.date_stop,
+            'period_id': last.id,
             'ref': self.name,
             'company_id': self.company_id.id,
         }
