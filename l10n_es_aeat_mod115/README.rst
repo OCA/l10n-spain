@@ -43,7 +43,7 @@ Contribuidores
 
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Ainara Galdona <ainaragaldona@avanzosc.es>
-* Antonio Espinosa <antonioea@antiun.com>
+* Antonio Espinosa <antonio.espinosa@tecnativa.com>
 
 Maintainer
 ----------
