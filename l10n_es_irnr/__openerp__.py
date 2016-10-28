@@ -1,26 +1,23 @@
 # -*- coding: utf-8 -*-
-# License AGPL-3: Antiun Ingenieria S.L. - Antonio Espinosa
-# See README.rst file on addon root folder for more details
+# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': "Retenciones IRNR (No residentes)",
+    "name": "Retenciones IRNR (No residentes)",
+    "summary": "Module summary",
+    'version': '9.0.1.0.0',
     'category': 'Localization/Account Charts',
-    'version': '8.0.1.0.0',
+    'website': 'https://odoo-community.org',
+    'author': 'Tecnativa, '
+              'Odoo Community Association (OCA)',
+    'license': 'AGPL-3',
     'depends': [
         'l10n_es',
     ],
-    'external_dependencies': {},
     'data': [
-        'data/tax_codes_irnr.xml',
         'data/taxes_irnr.xml',
         'data/fiscal_positions_irnr.xml',
         'data/fiscal_position_taxes_irnr.xml',
     ],
-    'author': 'Antiun Ingeniería S.L., '
-              'Odoo Community Association (OCA)',
-    'website': 'http://www.antiun.com',
-    'license': 'AGPL-3',
-    'demo': [],
-    'test': [],
-    'installable': False,
+    'installable': True,
 }
