@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data noupdate="0">
+<!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
 
 <record id="fp_irpfnr2475" model="account.fiscal.position.template">
     <field name="name">Retención IRPF No residentes 24,75%</field>
@@ -27,5 +28,4 @@
     <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
 </record>
 
-</data>
-</openerp>
+</odoo>
