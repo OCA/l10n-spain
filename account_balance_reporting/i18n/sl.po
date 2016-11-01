@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-13 10:44+0000\n"
-"PO-Revision-Date: 2016-11-22 16:25+0000\n"
+"POT-Creation-Date: 2016-06-08 00:55+0000\n"
+"PO-Revision-Date: 2016-06-07 18:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -82,12 +82,14 @@ msgid "Balance mode"
 msgstr "Bilančni način"
 
 #. module: account_balance_reporting
-#: view:website:account_balance_reporting.report_generic
+#: report:report_account_balance_reporting.generic:0
+#: report:report_account_balance_reporting.generic_non_zero:0
 msgid "CODE"
 msgstr "KODA"
 
 #. module: account_balance_reporting
-#: view:website:account_balance_reporting.report_generic
+#: report:report_account_balance_reporting.generic:0
+#: report:report_account_balance_reporting.generic_non_zero:0
 msgid "CONCEPT"
 msgstr "KONCEPT"
 
@@ -96,11 +98,6 @@ msgstr "KONCEPT"
 #: field:account.balance.reporting.template.line,css_class:0
 msgid "CSS Class"
 msgstr "CSS razred"
-
-#. module: account_balance_reporting
-#: view:website:account_balance_reporting.report_generic
-msgid "CURRENT"
-msgstr ""
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
@@ -459,7 +456,8 @@ msgid "Lines will be sorted/grouped by this field"
 msgstr "Postavke bodo urejene/združene po tem polju"
 
 #. module: account_balance_reporting
-#: view:website:account_balance_reporting.report_generic
+#: report:report_account_balance_reporting.generic:0
+#: report:report_account_balance_reporting.generic_non_zero:0
 msgid "NOTES"
 msgstr "OPOMBE"
 
@@ -486,11 +484,6 @@ msgstr "Negacija vrednosti (spremeni predznak bilance)"
 #: field:account.balance.reporting.line,notes:0
 msgid "Notes"
 msgstr "Opombe"
-
-#. module: account_balance_reporting
-#: view:website:account_balance_reporting.report_generic
-msgid "PREVIOUS"
-msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,parent_id:0
@@ -615,15 +608,3 @@ msgid ""
 "      values.\n"
 "    "
 msgstr "Formula za izračun vrednosti: na tej osnovi se izračuna končna\n    vrednost, kot sledi:\n      Vrednost prazne predloge: vsota podrejenih vrednosti (temu konceptu).\n      Številka z decimalnim ločilom (\"10.2\"): tista vrednost (konstanta).\n      Številke kontov ločene z vejicami (\"430,431,(437)\"): vsota kontnih\n          bilanc (predznak bilance je odvisen od bilančnega načina).\n      Kode koncepta ločene z \"+\" (\"11000+12000\"): vsota vrednosti teh\n      konceptov.\n    "
-
-#. module: account_balance_reporting
-#: view:website:account_balance_reporting.report_generic_non_zero
-msgid "account_balance_reporting.report_generic_non_zero"
-msgstr ""
-
-#. module: account_balance_reporting
-#: view:website:account_balance_reporting.report_generic_non_zero
-msgid ""
-"o.line_ids.filtered(lambda x: x.current_value != 0.0 or x.previous_value != "
-"0.0)"
-msgstr ""
