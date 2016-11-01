@@ -2,8 +2,7 @@
 <!-- Copyright 2005 Borja López Soilán (Pexego) <borjals@pexego.es>
      Copyright 2016 Vicent Cubells <vicent.cubells@tecnativa.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-<openerp>
-<data>
+<odoo>
 
     <!-- Generic report -->
     <report id="report_account_balance_reporting_generic"
@@ -47,6 +46,6 @@
     <record id="report_account_balance_reporting_default_non_zero" model="ir.actions.report.xml">
         <field name="paperformat_id" ref="paperformat_balance_reporting"/>
     </record>
-</data>
-</openerp>
-	
+
+</odoo>
+

@@ -1,25 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-#
-#    OpenERP - Account balance reports
-#    Copyright (C) 2009 Pexego Sistemas Informáticos. All Rights Reserved
-#    Copyright (C) 2009 Zikzakmedia SL. All Rights Reserved
-#    $Id$
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
--->
+<!-- Copyright 2009 Pexego Sistemas Informáticos
+     Copyright 2009 Zikzakmedia S. L.
+     Copyright 2013-2016 Tecnativa
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
 <!--
 DEPÓSITO DE CUENTAS ANUALES - MODELOS NORMALIZADOS (según PGCE 2008)
 
@@ -32,12 +16,11 @@ TODO: Los desgloses sugeridos por las NECA están comentados (no se calculan).
 Autor: Borja López Soilán (Pexego) - borjals@pexego.es
 Author: Raimon Esteve (Zikzakmedia) - resteve@zikzakmedia.com
 -->
-<openerp>
-    <data>
+<odoo>
 
         <record model="account.balance.reporting.template" id="es_balance_normal">
             <field name="name">Balance completo (PGCE 2008)</field>
-            <field name="type">system</field>
+            <field name="tmpl_type">system</field>
             <field name="balance_mode">2</field>
             <field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
             <field name="description">
@@ -77,7 +60,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11110</field>
             <field name="name">1. Desarrollo</field>
-            <field name="current_value">201, 2801, 2901</field>
+            <field name="current_value">201*, 2801*, 2901*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11100"/>
             <field name="sequence">3</field>
@@ -88,7 +71,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11120</field>
             <field name="name">2. Concesiones</field>
-            <field name="current_value">202, 2802, 2902</field>
+            <field name="current_value">202*, 2802*, 2902*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11100"/>
             <field name="sequence">4</field>
@@ -99,7 +82,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11130</field>
             <field name="name">3. Patentes, licencias, marcas y similares</field>
-            <field name="current_value">203, 2803, 2903</field>
+            <field name="current_value">203*, 2803*, 2903*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11100"/>
             <field name="sequence">5</field>
@@ -110,7 +93,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11140</field>
             <field name="name">4. Fondo de comercio</field>
-            <field name="current_value">204</field>
+            <field name="current_value">204*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11100"/>
             <field name="sequence">6</field>
@@ -121,7 +104,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11150</field>
             <field name="name">5. Aplicaciones informáticas</field>
-            <field name="current_value">206, 2806, 2906</field>
+            <field name="current_value">206*, 2806*, 2906*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11100"/>
             <field name="sequence">7</field>
@@ -132,7 +115,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11160</field>
             <field name="name">6. Investigación</field>
-            <field name="current_value">200, 2800, 2900; NECA 6.ª 4</field>
+            <field name="current_value">200*, 2800*, 2900*; NECA 6.ª 4</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11100"/>
             <field name="sequence">8</field>
@@ -143,7 +126,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11170</field>
             <field name="name">7. Otro inmovilizado intangible</field>
-            <field name="current_value">205, 209, 2805, 2905</field>
+            <field name="current_value">205*, 209*, 2805*, 2905*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11100"/>
             <field name="sequence">9</field>
@@ -163,7 +146,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11210</field>
             <field name="name">1. Terrenos y construcciones</field>
-            <field name="current_value">210, 211, 2811, 2910, 2911</field>
+            <field name="current_value">210*, 211*, 2811*, 2910*, 2911*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11200"/>
             <field name="sequence">11</field>
@@ -174,7 +157,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11220</field>
             <field name="name">2. Instalaciones técnicas y otro inmovilizado material</field>
-            <field name="current_value">212, 213, 214, 215, 216, 217, 218, 219, 2812, 2813, 2814, 2815, 2816, 2817, 2818, 2819, 2912, 2913, 2914, 2915, 2916, 2917, 2918, 2919</field>
+            <field name="current_value">212*, 213*, 214*, 215*, 216*, 217*, 218*, 219*, 2812*, 2813*, 2814*, 2815*, 2816*, 2817*, 2818*, 2819*, 2912*, 2913*, 2914*, 2915*, 2916*, 2917*, 2918*, 2919*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11200"/>
             <field name="sequence">12</field>
@@ -185,7 +168,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11230</field>
             <field name="name">3. Inmovilizado en curso y anticipos</field>
-            <field name="current_value">23</field>
+            <field name="current_value">23*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11200"/>
             <field name="sequence">13</field>
@@ -205,7 +188,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11310</field>
             <field name="name">1. Terrenos</field>
-            <field name="current_value">220, 2920</field>
+            <field name="current_value">220*, 2920*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11300"/>
             <field name="sequence">15</field>
@@ -216,7 +199,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11320</field>
             <field name="name">2. Construcciones</field>
-            <field name="current_value">221, 282, 2921</field>
+            <field name="current_value">221*, 282*, 2921*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11300"/>
             <field name="sequence">16</field>
@@ -236,7 +219,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11410</field>
             <field name="name">1. Instrumentos de patrimonio</field>
-            <field name="current_value">2403, 2404, 2493, 2494, 293</field>
+            <field name="current_value">2403*, 2404*, 2493*, 2494*, 293*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11400"/>
             <field name="sequence">18</field>
@@ -247,7 +230,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11420</field>
             <field name="name">2. Créditos a empresas</field>
-            <field name="current_value">2423, 2424, 2953, 2954</field>
+            <field name="current_value">2423*, 2424*, 2953*, 2954*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11400"/>
             <field name="sequence">19</field>
@@ -258,7 +241,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11430</field>
             <field name="name">3. Valores representativos de deuda</field>
-            <field name="current_value">2413, 2414, 2943, 2944</field>
+            <field name="current_value">2413*, 2414*, 2943*, 2944*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11400"/>
             <field name="sequence">20</field>
@@ -307,7 +290,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11510</field>
             <field name="name">1. Instrumentos de patrimonio</field>
-            <field name="current_value">2405, 2495, 250, 259</field>
+            <field name="current_value">2405*, 2495*, 250*, 259*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11500"/>
             <field name="sequence">25</field>
@@ -318,7 +301,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11520</field>
             <field name="name">2. Créditos a terceros</field>
-            <field name="current_value">2425, 252, 253, 254, 2955, 298</field>
+            <field name="current_value">2425*, 252*, 253*, 254*, 2955*, 298*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11500"/>
             <field name="sequence">26</field>
@@ -329,7 +312,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11530</field>
             <field name="name">3. Valores representativos de deuda</field>
-            <field name="current_value">2415, 251, 2945, 297</field>
+            <field name="current_value">2415*, 251*, 2945*, 297*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11500"/>
             <field name="sequence">27</field>
@@ -340,7 +323,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11540</field>
             <field name="name">4. Derivados</field>
-            <field name="current_value">255</field>
+            <field name="current_value">255*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11500"/>
             <field name="sequence">28</field>
@@ -351,7 +334,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11550</field>
             <field name="name">5. Otros activos financieros</field>
-            <field name="current_value">258, 26</field>
+            <field name="current_value">258*, 26*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11500"/>
             <field name="sequence">29</field>
@@ -362,7 +345,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11560</field>
             <field name="name">6. Otras inversiones</field>
-            <field name="current_value">257; NECA 6.ª 6</field>
+            <field name="current_value">257*; NECA 6.ª 6</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11500"/>
             <field name="sequence">30</field>
@@ -373,7 +356,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">11600</field>
             <field name="name">VI. Activos por impuesto diferido</field>
-            <field name="current_value">474</field>
+            <field name="current_value">474*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_11000"/> 
             <field name="sequence">31</field>
@@ -402,8 +385,8 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
         <record model="account.balance.reporting.template.line" id="es_balance_normal_12100">
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12100</field>
-            <field name="name">I. Activos no corrientes mantenidos para la venta</field>
-            <field name="current_value">580, 581, 582, 583, 584, 599</field>
+            <field name="name">I. Activos no corrientes mantenidos para la venta*</field>
+            <field name="current_value">580*, 581*, 582*, 583*, 584*, 599</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12000"/> 
             <field name="sequence">34</field>
@@ -423,7 +406,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12210</field>
             <field name="name">1. Comerciales</field>
-            <field name="current_value">30, 390</field>
+            <field name="current_value">30*, 390*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12200"/>
             <field name="sequence">36</field>
@@ -434,7 +417,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12220</field>
             <field name="name">2. Materias primas y otros aprovisionamientos</field>
-            <field name="current_value">31, 32, 391, 392</field>
+            <field name="current_value">31*, 32*, 391*, 392*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12200"/>
             <field name="sequence">37</field>
@@ -445,7 +428,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12230</field>
             <field name="name">3. Productos en curso</field>
-            <field name="current_value">33, 34, 393, 394</field>
+            <field name="current_value">33*, 34*, 393*, 394*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12200"/>
             <field name="sequence">38</field>
@@ -478,7 +461,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12240</field>
             <field name="name">4. Productos terminados</field>
-            <field name="current_value">35, 395</field>
+            <field name="current_value">35*, 395*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12200"/>
             <field name="sequence">41</field>
@@ -511,7 +494,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12250</field>
             <field name="name">5. Subproductos, residuos y materiales recuperados</field>
-            <field name="current_value">36, 396</field>
+            <field name="current_value">36*, 396*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12200"/>
             <field name="sequence">44</field>
@@ -522,7 +505,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12260</field>
             <field name="name">6. Anticipos a proveedores</field>
-            <field name="current_value">407</field>
+            <field name="current_value">407*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12200"/>
             <field name="sequence">45</field>
@@ -542,7 +525,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12310</field>
             <field name="name">1. Clientes por ventas y prestaciones de servicios</field>
-            <field name="current_value">430, 431, 432, 435, 436, 437, 490, 4935</field>
+            <field name="current_value">430*, 431*, 432*, 435*, 436*, 437*, 490*, 4935*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12300"/>
             <field name="sequence">47</field>
@@ -575,7 +558,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12320</field>
             <field name="name">2. Clientes empresas del grupo y asociadas</field>
-            <field name="current_value">433, 434, 4933, 4934</field>
+            <field name="current_value">433*, 434*, 4933*, 4934*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12300"/>
             <field name="sequence">50</field>
@@ -586,7 +569,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12330</field>
             <field name="name">3. Deudores varios</field>
-            <field name="current_value">44, 5531, 5533</field>
+            <field name="current_value">44*, 5531*, 5533*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12300"/>
             <field name="sequence">51</field>
@@ -597,7 +580,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12340</field>
             <field name="name">4. Personal</field>
-            <field name="current_value">460, 544</field>
+            <field name="current_value">460*, 544*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12300"/>
             <field name="sequence">52</field>
@@ -608,7 +591,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12350</field>
             <field name="name">5. Activos por impuesto corriente</field>
-            <field name="current_value">4709</field>
+            <field name="current_value">4709*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12300"/>
             <field name="sequence">53</field>
@@ -619,7 +602,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12360</field>
             <field name="name">6. Otros créditos con las Administraciones Públicas</field>
-            <field name="current_value">4700, 4708, 471, 472, 473</field>
+            <field name="current_value">4700*, 4708*, 471*, 472*, 473*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12300"/>
             <field name="sequence">54</field>
@@ -630,7 +613,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12370</field>
             <field name="name">7. Accionistas (socios) por desembolsos exigidos</field>
-            <field name="current_value">5580</field>
+            <field name="current_value">5580*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12300"/>
             <field name="sequence">55</field>
@@ -650,7 +633,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12410</field>
             <field name="name">1. Instrumentos de patrimonio</field>
-            <field name="current_value">5303, 5304, 5393, 5394, 593</field>
+            <field name="current_value">5303*, 5304*, 5393*, 5394*, 593*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12400"/>
             <field name="sequence">57</field>
@@ -661,7 +644,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12420</field>
             <field name="name">2. Créditos a empresas</field>
-            <field name="current_value">5323, 5324, 5343, 5344, 5953, 5954</field>
+            <field name="current_value">5323*, 5324*, 5343*, 5344*, 5953*, 5954*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12400"/>
             <field name="sequence">58</field>
@@ -672,7 +655,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12430</field>
             <field name="name">3. Valores representativos de deuda</field>
-            <field name="current_value">5313, 5314, 5333, 5334, 5943, 5944</field>
+            <field name="current_value">5313*, 5314*, 5333*, 5334*, 5943*, 5944*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12400"/>
             <field name="sequence">59</field>
@@ -692,7 +675,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12450</field>
             <field name="name">5. Otros activos financieros</field>
-            <field name="current_value">5353, 5354, debit(5523), debit(5524)</field>
+            <field name="current_value">5353*, 5354*, debit(5523*), debit(5524*)</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12400"/>
             <field name="sequence">61</field>
@@ -723,7 +706,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12510</field>
             <field name="name">1. Instrumentos de patrimonio</field>
-            <field name="current_value">5305, 540, 5395, 549</field>
+            <field name="current_value">5305*, 540*, 5395*, 549*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12500"/>
             <field name="sequence">64</field>
@@ -734,7 +717,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12520</field>
             <field name="name">2. Créditos a empresas</field>
-            <field name="current_value">5325, 5345, 542, 543, 547, 5955, 598</field>
+            <field name="current_value">5325*, 5345*, 542*, 543*, 547*, 5955*, 598*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12500"/>
             <field name="sequence">65</field>
@@ -745,7 +728,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12530</field>
             <field name="name">3. Valores representativos de deuda</field>
-            <field name="current_value">5315, 5335, 541, 546, 5945, 597</field>
+            <field name="current_value">5315*, 5335*, 541*, 546*, 5945*, 597*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12500"/>
             <field name="sequence">66</field>
@@ -756,7 +739,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12540</field>
             <field name="name">4. Derivados</field>
-            <field name="current_value">5590, 5593</field>
+            <field name="current_value">5590*, 5593*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12500"/>
             <field name="sequence">67</field>
@@ -767,7 +750,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12550</field>
             <field name="name">5. Otros activos financieros</field>
-            <field name="current_value">5355, 545, 548, debit(550), debit(551), debit(554), debit(5525), 565, 566</field>
+            <field name="current_value">5355*, 545*, 548*, debit(550*), debit(551*), debit(554*), debit(5525*), 565*, 566*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12500"/>
             <field name="sequence">68</field>
@@ -789,7 +772,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12600</field>
             <field name="name">VI. Periodificaciones a corto plazo</field>
-            <field name="current_value">480, 567</field>
+            <field name="current_value">480*, 567*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12000"/> 
             <field name="sequence">70</field>
@@ -809,7 +792,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12710</field>
             <field name="name">1. Tesorería</field>
-            <field name="current_value">570, 571, 572, 573, 574, 575</field>
+            <field name="current_value">570*, 571*, 572*, 573*, 574*, 575*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12700"/>
             <field name="sequence">72</field>
@@ -820,7 +803,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">12720</field>
             <field name="name">2. Otros activos líquidos equivalentes</field>
-            <field name="current_value">576</field>
+            <field name="current_value">576*</field>
             <field name="negate" eval="True"/>
             <field name="parent_id" ref="es_balance_normal_12700"/>
             <field name="sequence">73</field>
@@ -866,7 +849,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">21110</field>
             <field name="name">1. Capital escriturado</field>
-            <field name="current_value">100, 101, 102</field>
+            <field name="current_value">100*, 101*, 102*</field>
             <field name="parent_id" ref="es_balance_normal_21100"/> 
             <field name="sequence">78</field>
             <field name="css_class">l4</field>
@@ -876,7 +859,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">21120</field>
             <field name="name">2. (Capital no exigido) </field>
-            <field name="current_value">1030, 1040</field>
+            <field name="current_value">1030*, 1040*</field>
             <field name="parent_id" ref="es_balance_normal_21100"/> 
             <field name="sequence">79</field>
             <field name="css_class">l4</field>
@@ -886,7 +869,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">21200</field>
             <field name="name">II. Prima de emisión</field>
-            <field name="current_value">110</field>
+            <field name="current_value">110*</field>
             <field name="parent_id" ref="es_balance_normal_21000"/> 
             <field name="sequence">80</field>
             <field name="css_class">l3</field>
@@ -905,7 +888,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">21310</field>
             <field name="name">1. Legal y estatutarias</field>
-            <field name="current_value">112, 1141</field>
+            <field name="current_value">112*, 1141*</field>
             <field name="parent_id" ref="es_balance_normal_21300"/> 
             <field name="sequence">82</field>
             <field name="css_class">l4</field>
@@ -915,7 +898,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">21320</field>
             <field name="name">2. Otras reservas</field>
-            <field name="current_value">113, 1140, 1142, 1143, 1144, 115, 119</field>
+            <field name="current_value">113*, 1140*, 1142*, 1143*, 1144*, 115*, 119*</field>
             <field name="parent_id" ref="es_balance_normal_21300"/> 
             <field name="sequence">83</field>
             <field name="css_class">l4</field>
@@ -925,7 +908,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">21400</field>
             <field name="name">IV. (Acciones y participaciones en patrimonio propias)</field>
-            <field name="current_value">108, 109</field>
+            <field name="current_value">108*, 109*</field>
             <field name="parent_id" ref="es_balance_normal_21000"/> 
             <field name="sequence">84</field>
             <field name="css_class">l3</field>
@@ -944,7 +927,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">21510</field>
             <field name="name">1. Remanente</field>
-            <field name="current_value">120</field>
+            <field name="current_value">120*</field>
             <field name="parent_id" ref="es_balance_normal_21500"/> 
             <field name="sequence">86</field>
             <field name="css_class">l4</field>
@@ -954,7 +937,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">21520</field>
             <field name="name">2. (Resultados negativos de ejercicios anteriores)</field>
-            <field name="current_value">121</field>
+            <field name="current_value">121*</field>
             <field name="parent_id" ref="es_balance_normal_21500"/> 
             <field name="sequence">87</field>
             <field name="css_class">l4</field>
@@ -964,7 +947,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">21600</field>
             <field name="name">VI. Otras aportaciones de socios</field>
-            <field name="current_value">118</field>
+            <field name="current_value">118*</field>
             <field name="parent_id" ref="es_balance_normal_21000"/> 
             <field name="sequence">88</field>
             <field name="css_class">l3</field>
@@ -974,7 +957,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">21700</field>
             <field name="name">VII. Resultado del ejercicio</field>
-            <field name="current_value">129, 6, 7</field>
+            <field name="current_value">129*, 6*, 7*</field>
             <field name="parent_id" ref="es_balance_normal_21000"/> 
             <field name="sequence">89</field>
             <field name="css_class">l3</field>
@@ -984,7 +967,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">21800</field>
             <field name="name">VIII. (Dividendo a cuenta)</field>
-            <field name="current_value">557</field>
+            <field name="current_value">557*</field>
             <field name="parent_id" ref="es_balance_normal_21000"/> 
             <field name="sequence">90</field>
             <field name="css_class">l3</field>
@@ -994,7 +977,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">21900</field>
             <field name="name">IX. Otros instrumentos de patrimonio neto</field>
-            <field name="current_value">111</field>
+            <field name="current_value">111*</field>
             <field name="parent_id" ref="es_balance_normal_21000"/> 
             <field name="sequence">91</field>
             <field name="css_class">l3</field>
@@ -1013,7 +996,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">22100</field>
             <field name="name">I. Activos financieros disponibles para la venta</field>
-            <field name="current_value">133</field>
+            <field name="current_value">133*</field>
             <field name="parent_id" ref="es_balance_normal_22000"/> 
             <field name="sequence">93</field>
             <field name="css_class">l3</field>
@@ -1023,7 +1006,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">22200</field>
             <field name="name">II. Operaciones de cobertura</field>
-            <field name="current_value">1340, 1341</field>
+            <field name="current_value">1340*, 1341*</field>
             <field name="parent_id" ref="es_balance_normal_22000"/> 
             <field name="sequence">94</field>
             <field name="css_class">l3</field>
@@ -1033,7 +1016,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">22300</field>
             <field name="name">III. Activos no corrientes y pasivos vinculados, mantenidos para la venta</field>
-            <field name="current_value">136; NECA 6.ª 13</field>
+            <field name="current_value">136*; NECA 6.ª 13</field>
             <field name="parent_id" ref="es_balance_normal_22000"/> 
             <field name="sequence">95</field>
             <field name="css_class">l3</field>
@@ -1043,7 +1026,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">22400</field>
             <field name="name">IV. Diferencia de conversión</field>
-            <field name="current_value">135; NECA 6.ª 14</field>
+            <field name="current_value">135*; NECA 6.ª 14</field>
             <field name="parent_id" ref="es_balance_normal_22000"/> 
             <field name="sequence">96</field>
             <field name="css_class">l3</field>
@@ -1053,7 +1036,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">22500</field>
             <field name="name">V. Otros</field>
-            <field name="current_value">137</field>
+            <field name="current_value">137*</field>
             <field name="parent_id" ref="es_balance_normal_22000"/> 
             <field name="sequence">97</field>
             <field name="css_class">l3</field>
@@ -1063,7 +1046,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">23000</field>
             <field name="name">A-3) Subvenciones, donaciones y legados recibidos</field>
-            <field name="current_value">130, 131, 132</field>
+            <field name="current_value">130*, 131*, 132*</field>
             <field name="parent_id" ref="es_balance_normal_20000"/> 
             <field name="sequence">98</field>
             <field name="css_class">l2</field>
@@ -1090,7 +1073,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">31110</field>
             <field name="name">1. Obligaciones por prestaciones a largo plazo al personal </field>
-            <field name="current_value">140</field>
+            <field name="current_value">140*</field>
             <field name="parent_id" ref="es_balance_normal_31100"/> 
             <field name="sequence">101</field>
             <field name="css_class">l4</field>
@@ -1100,7 +1083,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">31120</field>
             <field name="name">2. Actuaciones medioambientales</field>
-            <field name="current_value">145</field>
+            <field name="current_value">145*</field>
             <field name="parent_id" ref="es_balance_normal_31100"/> 
             <field name="sequence">102</field>
             <field name="css_class">l4</field>
@@ -1110,7 +1093,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">31130</field>
             <field name="name">3. Provisiones por reestructuración</field>
-            <field name="current_value">146</field>
+            <field name="current_value">146*</field>
             <field name="parent_id" ref="es_balance_normal_31100"/> 
             <field name="sequence">103</field>
             <field name="css_class">l4</field>
@@ -1120,7 +1103,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">31140</field>
             <field name="name">4. Otras provisiones</field>
-            <field name="current_value">141, 142, 143, 147</field>
+            <field name="current_value">141*, 142*, 143*, 147*</field>
             <field name="parent_id" ref="es_balance_normal_31100"/> 
             <field name="sequence">104</field>
             <field name="css_class">l4</field>
@@ -1139,7 +1122,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">31210</field>
             <field name="name">1. Obligaciones y otros valores negociables</field>
-            <field name="current_value">177, 178, 179</field>
+            <field name="current_value">177*, 178*, 179*</field>
             <field name="parent_id" ref="es_balance_normal_31200"/> 
             <field name="sequence">106</field>
             <field name="css_class">l4</field>
@@ -1149,7 +1132,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">31220</field>
             <field name="name">2. Deudas con entidades de crédito</field>
-            <field name="current_value">1605, 170</field>
+            <field name="current_value">1605*, 170*</field>
             <field name="parent_id" ref="es_balance_normal_31200"/> 
             <field name="sequence">107</field>
             <field name="css_class">l4</field>
@@ -1159,7 +1142,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">31230</field>
             <field name="name">3. Acreedores por arrendamiento financiero</field>
-            <field name="current_value">1625, 174</field>
+            <field name="current_value">1625*, 174*</field>
             <field name="parent_id" ref="es_balance_normal_31200"/> 
             <field name="sequence">108</field>
             <field name="css_class">l4</field>
@@ -1169,7 +1152,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">31240</field>
             <field name="name">4. Derivados</field>
-            <field name="current_value">176</field>
+            <field name="current_value">176*</field>
             <field name="parent_id" ref="es_balance_normal_31200"/> 
             <field name="sequence">109</field>
             <field name="css_class">l4</field>
@@ -1179,7 +1162,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">31250</field>
             <field name="name">5. Otros pasivos financieros</field>
-            <field name="current_value">1615, 1635, 171, 172, 173, 175, 180, 185, 189</field>
+            <field name="current_value">1615*, 1635*, 171*, 172*, 173*, 175*, 180*, 185*, 189*</field>
             <field name="parent_id" ref="es_balance_normal_31200"/> 
             <field name="sequence">110</field>
             <field name="css_class">l4</field>
@@ -1189,7 +1172,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">31300</field>
             <field name="name">III. Deudas con empresas del grupo y asociadas a largo plazo</field>
-            <field name="current_value">1603, 1604, 1613, 1614, 1623, 1624, 1633, 1634</field>
+            <field name="current_value">1603*, 1604*, 1613*, 1614*, 1623*, 1624*, 1633*, 1634*</field>
             <field name="parent_id" ref="es_balance_normal_31000"/> 
             <field name="sequence">111</field>
             <field name="css_class">l3</field>
@@ -1199,7 +1182,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">31400</field>
             <field name="name">IV. Pasivos por impuesto diferido</field>
-            <field name="current_value">479</field>
+            <field name="current_value">479*</field>
             <field name="parent_id" ref="es_balance_normal_31000"/> 
             <field name="sequence">112</field>
             <field name="css_class">l3</field>
@@ -1209,7 +1192,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">31500</field>
             <field name="name">V. Periodificaciones a largo plazo</field>
-            <field name="current_value">181</field>
+            <field name="current_value">181*</field>
             <field name="parent_id" ref="es_balance_normal_31000"/> 
             <field name="sequence">113</field>
             <field name="css_class">l3</field>
@@ -1229,7 +1212,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">31700</field>
             <field name="name">VII. Deuda con características especiales a largo plazo</field>
-            <field name="current_value">15, 5585; NECA 6.ª 17</field>
+            <field name="current_value">15*, 5585*; NECA 6.ª 17</field>
             <field name="parent_id" ref="es_balance_normal_31000"/> 
             <field name="sequence">115</field>
             <field name="css_class">l3</field>
@@ -1247,7 +1230,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32100</field>
             <field name="name">I. Pasivos vinculados con activos no corrientes mantenidos para la venta</field>
-            <field name="current_value">585, 586, 587, 588, 589</field>
+            <field name="current_value">585*, 586*, 587*, 588*, 589*</field>
             <field name="parent_id" ref="es_balance_normal_32000"/> 
             <field name="sequence">117</field>
             <field name="css_class">l3</field>
@@ -1257,7 +1240,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32200</field>
             <field name="name">II. Provisiones a corto plazo</field>
-            <field name="current_value">499, 529</field>
+            <field name="current_value">499*, 529*</field>
             <field name="parent_id" ref="es_balance_normal_32000"/> 
             <field name="sequence">118</field>
             <field name="css_class">l3</field>
@@ -1276,7 +1259,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32310</field>
             <field name="name">1. Obligaciones y otros valores negociables</field>
-            <field name="current_value">500, 501, 505, 506</field>
+            <field name="current_value">500*, 501*, 505*, 506*</field>
             <field name="parent_id" ref="es_balance_normal_32300"/> 
             <field name="sequence">120</field>
             <field name="css_class">l4</field>
@@ -1286,7 +1269,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32320</field>
             <field name="name">2. Deudas con entidades de crédito</field>
-            <field name="current_value">5105, 520, 527</field>
+            <field name="current_value">5105*, 520*, 527*</field>
             <field name="parent_id" ref="es_balance_normal_32300"/> 
             <field name="sequence">121</field>
             <field name="css_class">l4</field>
@@ -1296,7 +1279,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32330</field>
             <field name="name">3. Acreedores por arrendamiento financiero</field>
-            <field name="current_value">5125, 524</field>
+            <field name="current_value">5125*, 524*</field>
             <field name="parent_id" ref="es_balance_normal_32300"/> 
             <field name="sequence">122</field>
             <field name="css_class">l4</field>
@@ -1306,7 +1289,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32340</field>
             <field name="name">4. Derivados</field>
-            <field name="current_value">5595, 5598</field>
+            <field name="current_value">5595*, 5598*</field>
             <field name="parent_id" ref="es_balance_normal_32300"/> 
             <field name="sequence">123</field>
             <field name="css_class">l4</field>
@@ -1316,7 +1299,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32350</field>
             <field name="name">5. Otros pasivos financieros</field>
-            <field name="current_value">1034, 1044, 190, 192, 194, 509, 5115, 5135, 5145, 521, 522, 523, 525, 526, 528, credit(550), credit(551), credit(554), credit(5525), 5530, 5532, 555, 5565, 5566, 560, 561, 569</field>
+            <field name="current_value">1034*, 1044*, 190*, 192*, 194*, 509*, 5115*, 5135*, 5145*, 521*, 522*, 523*, 525*, 526*, 528*, credit(550*), credit(551*), credit(554*), credit(5525*), 5530*, 5532*, 555*, 5565*, 5566*, 560*, 561*, 569*</field>
             <field name="parent_id" ref="es_balance_normal_32300"/> 
             <field name="sequence">124</field>
             <field name="css_class">l4</field>
@@ -1326,7 +1309,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32400</field>
             <field name="name">IV. Deudas con empresas del grupo y asociadas a corto plazo</field>
-            <field name="current_value">5103, 5104, 5113, 5114, 5123, 5124, 5133, 5134, 5143, 5144, credit(5523), credit(5524), 5563, 5564</field>
+            <field name="current_value">5103*, 5104*, 5113*, 5114*, 5123*, 5124*, 5133*, 5134*, 5143*, 5144*, credit(5523*), credit(5524*), 5563*, 5564*</field>
             <field name="parent_id" ref="es_balance_normal_32000"/> 
             <field name="sequence">125</field>
             <field name="css_class">l3</field>
@@ -1345,7 +1328,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32510</field>
             <field name="name">1. Proveedores</field>
-            <field name="current_value">400, 401, 405, 406</field>
+            <field name="current_value">400*, 401*, 405*, 406*</field>
             <field name="parent_id" ref="es_balance_normal_32500"/> 
             <field name="sequence">127</field>
             <field name="css_class">l4</field>
@@ -1375,7 +1358,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32520</field>
             <field name="name">2. Proveedores, empresas del grupo y asociadas</field>
-            <field name="current_value">403, 404</field>
+            <field name="current_value">403*, 404*</field>
             <field name="parent_id" ref="es_balance_normal_32500"/> 
             <field name="sequence">130</field>
             <field name="css_class">l4</field>
@@ -1385,7 +1368,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32530</field>
             <field name="name">3. Acreedores varios </field>
-            <field name="current_value">41</field>
+            <field name="current_value">41*</field>
             <field name="parent_id" ref="es_balance_normal_32500"/> 
             <field name="sequence">131</field>
             <field name="css_class">l4</field>
@@ -1395,7 +1378,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32540</field>
             <field name="name">4. Personal (remuneraciones pendientes de pago)</field>
-            <field name="current_value">465, 466</field>
+            <field name="current_value">465*, 466*</field>
             <field name="parent_id" ref="es_balance_normal_32500"/> 
             <field name="sequence">132</field>
             <field name="css_class">l4</field>
@@ -1405,7 +1388,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32550</field>
             <field name="name">5. Pasivos por impuesto corriente</field>
-            <field name="current_value">4752</field>
+            <field name="current_value">4752*</field>
             <field name="parent_id" ref="es_balance_normal_32500"/> 
             <field name="sequence">133</field>
             <field name="css_class">l4</field>
@@ -1415,7 +1398,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32560</field>
             <field name="name">6. Otras deudas con las Administraciones Públicas</field>
-            <field name="current_value">4750, 4751, 4758, 4759, 476, 477</field>
+            <field name="current_value">4750*, 4751*, 4758*, 4759*, 476*, 477*</field>
             <field name="parent_id" ref="es_balance_normal_32500"/> 
             <field name="sequence">134</field>
             <field name="css_class">l4</field>
@@ -1425,7 +1408,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32570</field>
             <field name="name">7. Anticipos de clientes</field>
-            <field name="current_value">438</field>
+            <field name="current_value">438*</field>
             <field name="parent_id" ref="es_balance_normal_32500"/> 
             <field name="sequence">135</field>
             <field name="css_class">l4</field>
@@ -1435,7 +1418,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32600</field>
             <field name="name">VI. Periodificaciones a corto plazo</field>
-            <field name="current_value">485, 568</field>
+            <field name="current_value">485*, 568*</field>
             <field name="parent_id" ref="es_balance_normal_32000"/> 
             <field name="sequence">136</field>
             <field name="css_class">l3</field>
@@ -1445,7 +1428,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_balance_normal"/>
             <field name="code">32700</field>
             <field name="name">VII. Deuda con características especiales a corto plazo</field>
-            <field name="current_value">195, 197, 199, 502, 507; NECA 6.ª 17</field>
+            <field name="current_value">195*, 197*, 199*, 502*, 507*; NECA 6.ª 17</field>
             <field name="parent_id" ref="es_balance_normal_32000"/> 
             <field name="sequence">137</field>
             <field name="css_class">l3</field>
@@ -1460,5 +1443,4 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="css_class">l1</field>
         </record>
 
-    </data>
-</openerp>
+</odoo>

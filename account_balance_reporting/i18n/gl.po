@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-13 10:44+0000\n"
-"PO-Revision-Date: 2016-11-25 14:58+0000\n"
+"POT-Creation-Date: 2016-08-27 18:55+0000\n"
+"PO-Revision-Date: 2016-09-09 12:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -84,12 +84,14 @@ msgid "Balance mode"
 msgstr "Modo de saldo"
 
 #. module: account_balance_reporting
-#: view:website:account_balance_reporting.report_generic
+#: report:report_account_balance_reporting.generic:0
+#: report:report_account_balance_reporting.generic_non_zero:0
 msgid "CODE"
 msgstr "CÓDIGO"
 
 #. module: account_balance_reporting
-#: view:website:account_balance_reporting.report_generic
+#: report:report_account_balance_reporting.generic:0
+#: report:report_account_balance_reporting.generic_non_zero:0
 msgid "CONCEPT"
 msgstr "CONCEPTO"
 
@@ -98,11 +100,6 @@ msgstr "CONCEPTO"
 #: field:account.balance.reporting.template.line,css_class:0
 msgid "CSS Class"
 msgstr "Clase CSS"
-
-#. module: account_balance_reporting
-#: view:website:account_balance_reporting.report_generic
-msgid "CURRENT"
-msgstr ""
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
@@ -461,7 +458,8 @@ msgid "Lines will be sorted/grouped by this field"
 msgstr "As liñas serán ordenadas/agrupadas por este campo"
 
 #. module: account_balance_reporting
-#: view:website:account_balance_reporting.report_generic
+#: report:report_account_balance_reporting.generic:0
+#: report:report_account_balance_reporting.generic_non_zero:0
 msgid "NOTES"
 msgstr "NOTAS"
 
@@ -488,11 +486,6 @@ msgstr "Negar o valor (cambialo signo do saldo)"
 #: field:account.balance.reporting.line,notes:0
 msgid "Notes"
 msgstr "Anotacións"
-
-#. module: account_balance_reporting
-#: view:website:account_balance_reporting.report_generic
-msgid "PREVIOUS"
-msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,parent_id:0
@@ -617,15 +610,3 @@ msgid ""
 "      values.\n"
 "    "
 msgstr "Fórmula de cálculo do valor: O valor final é calculado segundo o seguinte:\nValor de modelo vacío: suma dos valores dos fillos (deste concepto).\nNúmero con coma decimal (\"10.2\"): este valor (constante) .\nNúmeros de contas separadas por comas (\"430431, (437)\"): Suma dos saldos das contas (o signo do balance depende do modo de balance).\nCódigos de concepto separados por \"+\" (\"11000+12000\"): Suma dos valores dos conceptos."
-
-#. module: account_balance_reporting
-#: view:website:account_balance_reporting.report_generic_non_zero
-msgid "account_balance_reporting.report_generic_non_zero"
-msgstr ""
-
-#. module: account_balance_reporting
-#: view:website:account_balance_reporting.report_generic_non_zero
-msgid ""
-"o.line_ids.filtered(lambda x: x.current_value != 0.0 or x.previous_value != "
-"0.0)"
-msgstr ""

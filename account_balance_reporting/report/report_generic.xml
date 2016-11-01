@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2016 Vicent Cubells <vicent.cubells@tecnativa.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-<openerp>
-<data>
+<odoo>
 
     <template id="account_balance_reporting.report_generic">
         <t t-call="report.html_container">
@@ -50,5 +49,4 @@
         </xpath>
     </template>
 
-</data>
-</openerp>
+</odoo>
