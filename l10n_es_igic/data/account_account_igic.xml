@@ -122,5 +122,45 @@
             <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
         </record>
 
+        <record id="pgc_6393" model="account.account.template">
+            <field name="code">6393</field>
+            <field name="reconcile" eval="False"/>
+            <field name="parent_id" ref="l10n_es.pgc_639"/>
+            <field name="type">view</field>
+            <field name="name">Ajustes positivos en IGIC de circulante</field>
+            <field name="user_type" ref="account.data_account_type_expense"/>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        </record>
+        
+        <record id="pgc_6393_child" model="account.account.template">
+            <field name="code">6393</field>
+            <field name="reconcile" eval="False"/>
+            <field name="parent_id" ref="pgc_6393"/>
+            <field name="type">other</field>
+            <field name="name">Ajustes positivos en IGIC de circulante</field>
+            <field name="user_type" ref="account.data_account_type_expense"/>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        </record>
+        
+        <record id="pgc_6394" model="account.account.template">
+            <field name="code">6394</field>
+            <field name="reconcile" eval="False"/>
+            <field name="parent_id" ref="l10n_es.pgc_639"/>
+            <field name="type">view</field>
+            <field name="name">Ajustes positivos en IGIC de inversión</field>
+            <field name="user_type" ref="account.data_account_type_expense"/>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        </record>
+        
+        <record id="pgc_6394_child" model="account.account.template">
+            <field name="code">6394</field>
+            <field name="reconcile" eval="False"/>
+            <field name="parent_id" ref="pgc_6394"/>
+            <field name="type">other</field>
+            <field name="name">Ajustes positivos en IGIC de inversión</field>
+            <field name="user_type" ref="account.data_account_type_expense"/>
+            <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        </record>
+
     </data>
 </openerp>
