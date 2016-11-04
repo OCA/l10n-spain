@@ -337,7 +337,7 @@ class AccountBankStatementImport(models.TransientModel):
         res = super(AccountBankStatementImport, self)._complete_statement(
             stmt_vals, journal_id, account_number)
         for line_vals in res['transactions']:
-            if not line_vals['partner_id']:
+            if not line_vals['partner_id'] and line_vals.get('note'):
                 line_vals['partner_id'] = self._get_partner(
                     line_vals['note']).id
         return res
