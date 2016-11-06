@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-05 14:56+0000\n"
-"PO-Revision-Date: 2016-06-05 14:56+0000\n"
+"POT-Creation-Date: 2016-11-06 21:08+0000\n"
+"PO-Revision-Date: 2016-11-06 21:08+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -67,15 +67,12 @@ msgid "Balance mode"
 msgstr "Modo de saldo"
 
 #. module: account_balance_reporting
-#. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: view:website:account_balance_reporting.report_generic
 msgid "CODE"
 msgstr "CÓDIGO"
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: view:website:account_balance_reporting.report_generic
 msgid "CONCEPT"
 msgstr "CONCEPTO"
 
@@ -84,6 +81,11 @@ msgstr "CONCEPTO"
 #: field:account.balance.reporting.template.line,css_class:0
 msgid "CSS Class"
 msgstr "Clase CSS"
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic
+msgid "CURRENT"
+msgstr "ACTUAL"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
@@ -180,7 +182,7 @@ msgstr "Haber-Debe, invertido con paréntesis"
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,current_move_line_count:0
 msgid "Current move line count"
-msgstr "Current move line count"
+msgstr "Nº de apuntes actual"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,current_date_from:0
@@ -232,7 +234,7 @@ msgstr "Diseño"
 #: field:account.balance.reporting.template,display_name:0
 #: field:account.balance.reporting.template.line,display_name:0
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "Nombre mostrado"
 
 #. module: account_balance_reporting
 #: field:account.account,not_level_expand:0
@@ -365,7 +367,7 @@ msgstr "Apuntes contables (previo)"
 #: field:account.balance.reporting.template,__last_update:0
 #: field:account.balance.reporting.template.line,__last_update:0
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "última modificación en"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,write_uid:0
@@ -438,8 +440,7 @@ msgid "Lines will be sorted/grouped by this field"
 msgstr "Las líneas se ordenarán/agruparán por este campo"
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: view:website:account_balance_reporting.report_generic
 msgid "NOTES"
 msgstr "NOTAS"
 
@@ -468,6 +469,11 @@ msgid "Notes"
 msgstr "Notas"
 
 #. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic
+msgid "PREVIOUS"
+msgstr "PREVIO"
+
+#. module: account_balance_reporting
 #: field:account.balance.reporting.line,parent_id:0
 #: field:account.balance.reporting.template.line,parent_id:0
 msgid "Parent"
@@ -481,7 +487,7 @@ msgstr "Periodos"
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,previous_move_line_count:0
 msgid "Previous move line count"
-msgstr "Previous move line count"
+msgstr "Nº de apuntes previos"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
@@ -496,7 +502,7 @@ msgstr "Imprimir informe"
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
 msgid "Processed"
-msgstr "Calculado"
+msgstr "Calculada"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
@@ -593,4 +599,14 @@ msgstr "Fórmula de cálculo: Basándose en esta fórmula el valor final se calc
 "Número con coma decinal (\"10.2\"): ese valor (constante).\n"
 "Números de cuenta separados por comas (\"430,431,(437)\"): Sumatorio de los saldos de las cuentas (el signo del saldo depende del modo de saldo).\n"
 "Códigos de concepto separados por \"+\" (\"11000+12000\"): Sumatorio de los valores de los conceptos."
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic_non_zero
+msgid "account_balance_reporting.report_generic_non_zero"
+msgstr "account_balance_reporting.report_generic_non_zero"
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic_non_zero
+msgid "o.line_ids.filtered(lambda x: x.current_value != 0.0 or x.previous_value != 0.0)"
+msgstr "o.line_ids.filtered(lambda x: x.current_value != 0.0 or x.previous_value != 0.0)"
 
