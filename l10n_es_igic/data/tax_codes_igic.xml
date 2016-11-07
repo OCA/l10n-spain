@@ -6,7 +6,16 @@
 
         David Diz Martínez - daviddiz@gmail.com (2015-10-29)
           Refactorización general
+        Enrique Zanardi (Atlantux Consultores) - consultores@atlantux.com (2016-11-02)
+          Añadido raiz de códigos para modelo 420
         -->
+
+        <record id="account_tax_code_template_420" model="account.tax.code.template">
+            <field name="code">420</field>
+            <field name="name">&lt;Mod. 420&gt; Impuesto General Indirecto Canario. Régimen general. Autoliquidación trimestral</field>
+            <field name="sign">1.0</field>
+            <field name="parent_id" ref="l10n_es.account_tax_code_template_root"/>
+        </record>
         
         <!-- IGIC Devengado Bases -->
 	
@@ -14,7 +23,7 @@
             <field name="name">Régimen general IGIC devengado. Base Imponible</field>
             <field name="code">IGICDBI</field>
             <field name="sign">1.0</field>
-            <field name="parent_id" ref="l10n_es.account_tax_code_template_root"/>
+            <field name="parent_id" ref="account_tax_code_template_420"/>
         </record>
 
         <record id="account_tax_code_template_IGICDBI0" model="account.tax.code.template">
@@ -65,7 +74,7 @@
             <field name="name">[15] Régimen general IGIC devengado. Cuota</field>
             <field name="code">IGICDC</field>
             <field name="sign">1.0</field>
-            <field name="parent_id" ref="l10n_es.account_tax_code_template_root"/>
+            <field name="parent_id" ref="account_tax_code_template_420"/>
         </record>
 
         <record id="account_tax_code_template_IGICDC0" model="account.tax.code.template">
@@ -116,7 +125,7 @@
             <field name="name">IGIC soportado. Base Imponible</field>
             <field name="code">IGICSBI</field>
             <field name="sign">1.0</field>
-            <field name="parent_id" ref="l10n_es.account_tax_code_template_root"/>
+            <field name="parent_id" ref="account_tax_code_template_420"/>
         </record>
 
         <record id="account_tax_code_template_IGICOICBI" model="account.tax.code.template">
@@ -432,21 +441,21 @@
         <record id="account_tax_code_template_IGICEI" model="account.tax.code.template">
             <field name="name">IGIC Entregas Intracomunitarias</field>
             <field name="code">IGICEI</field>
-            <field name="parent_id" ref="l10n_es.account_tax_code_template_root"/>
+            <field name="parent_id" ref="account_tax_code_template_420"/>
             <field name="sign">1.0</field>
         </record>
 
         <record id="account_tax_code_template_IGICEYOA" model="account.tax.code.template">
             <field name="name">IGIC Exportaciones y operaciones asimiladas</field>
             <field name="code">IGICEYOA</field>
-            <field name="parent_id" ref="l10n_es.account_tax_code_template_root"/>
+            <field name="parent_id" ref="account_tax_code_template_420"/>
             <field name="sign">1.0</field>
         </record>
 
         <record id="account_tax_code_template_IGICISP" model="account.tax.code.template">
             <field name="name">[13] IGIC Inversión del sujeto pasivo</field>
             <field name="code">IGICISP</field>
-            <field name="parent_id" ref="l10n_es.account_tax_code_template_root"/>
+            <field name="parent_id" ref="account_tax_code_template_420"/>
             <field name="sign">1.0</field>
         </record>
         
@@ -455,7 +464,7 @@
         <record id="account_tax_code_template_IGICTADC" model="account.tax.code.template">
             <field name="name">[22] IGIC total a deducir. Cuota</field>
             <field name="code">IGICTADC</field>
-            <field name="parent_id" ref="l10n_es.account_tax_code_template_root"/>
+            <field name="parent_id" ref="account_tax_code_template_420"/>
             <field name="sign">1.0</field>
         </record>
         
