@@ -6,14 +6,12 @@
         ### ACCOUNT INVOICE ###
         ################### -->
         <!-- #### Customer invoices #### -->
-
-        <!-- ### Inheritance to add an on_change method to fiscal_position field ### -->
-        <record id="view_customer_account_invoice_form__add_operation_key" model="ir.ui.view">
-            <field name="name">Account invoice (customer) | add 'operation_key' field (form)</field>
+        <record id="view_customer_account_invoice_form__replace_fiscal_position" model="ir.ui.view">
+            <field name="name">Account invoice (customer) | replace 'fiscal position' field (form)</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                <field name="fiscal_position" position="after">
+                <field name="fiscal_position_id" position="after">
                     <field name="operation_key"/>
                 </field>
             </field>
@@ -21,18 +19,16 @@
 
 
         <!-- #### Supplier invoices #### -->
-
-        <!-- ### Inheritance to add an on_change method to fiscal_position field ### -->
-        <record id="view_supplier_account_invoice_form__add_operation_key" model="ir.ui.view">
-            <field name="name">Account invoice (supplier) | add 'operation_key' field (form)</field>
+        <record id="view_supplier_account_invoice_form__replace_fiscal_position" model="ir.ui.view">
+            <field name="name">Account invoice (supplier) | replace 'fiscal position' field (form)</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
-                <field name="fiscal_position" position="after">
+                <field name="fiscal_position_id" position="after">
                     <field name="operation_key"/>
                 </field>
             </field>
         </record>
-            
+
     </data>
 </openerp>

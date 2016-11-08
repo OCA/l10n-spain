@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
-from openerp import models, fields, api
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from openerp import api, fields, models
+
 
 OPERATION_KEYS = [
     ('E', 'E - Intra-Community supplies'),
@@ -34,23 +34,62 @@ class AccountInvoice(models.Model):
                 # Establecer a adquisición si es de compra
                 return 'A'
 
+    @api.model
+    def _get_invoices_by_type(
+            self, partner, operation_key, date_start=None, date_end=None):
+        """
+        Returns invoices ids by type (supplier/customer) for dates
+        """
+        # Set type of invoice
+        invoice_type = ('in_invoice', 'out_invoice', 'in_refund', 'out_refund')
+        domain = [('partner_id', 'child_of', partner.id),
+                  ('state', 'in', ['open', 'paid']),
+                  ('type', 'in', invoice_type),
+                  ('operation_key', '=', operation_key),
+                  ('date', '>=', date_start),
+                  ('date', '<=', date_end)]
+        return self.search(domain)
+
     @api.multi
-    @api.onchange('fiscal_position')
-    def onchange_fiscal_position_l10n_es_aeat_mod349(self):
-        """Suggest an operation key when fiscal position changes."""
-        for invoice in self:
-            if invoice.fiscal_position:
-                invoice.operation_key = self._get_operation_key(
-                    invoice.fiscal_position, invoice.type)
+    def clean_refund_invoices(
+            self, partner, date_start, date_end):
+        """Separate refunds from invoices"""
+        invoices = self.env['account.invoice']
+        refunds = self.env['account.invoice']
+        for inv in self:
+            if inv.type in ('in_refund', 'out_refund'):
+                if not inv.origin_invoices_ids:
+                    invoices += inv
+                    continue
+                origin_lines = inv.origin_invoices_ids.filtered(
+                    lambda record: record.state in ('open', 'paid') and
+                    record.partner_id.commercial_partner_id == partner)
+                for origin_line in origin_lines:
+                    if (origin_line.date <= date_start or
+                            origin_line.date >= date_end):
+                        refunds += inv
+                    else:
+                        invoices += inv
+            else:
+                invoices += inv
+        return invoices, refunds
+
+    @api.onchange('fiscal_position_id', 'type')
+    def _onchange_fiscal_position_id(self):
+        operation_key = False
+        if self.fiscal_position_id and self.invoice_type:
+            operation_key = self._get_operation_key(
+                self.fiscal_position_id, self.type)
+        self.operation_key = operation_key
 
     @api.model
     def create(self, vals):
         """Writes operation key value, if invoice is created in
         backgroud with intracommunity fiscal position defined"""
-        if vals.get('fiscal_position') and \
+        if vals.get('fiscal_position_id') and \
                 vals.get('type') and not vals.get('operation_key'):
             fp_obj = self.env['account.fiscal.position']
-            fp = fp_obj.browse(vals['fiscal_position'])
+            fp = fp_obj.browse(vals['fiscal_position_id'])
             vals['operation_key'] = self._get_operation_key(fp, vals['type'])
         return super(AccountInvoice, self).create(vals)
 
