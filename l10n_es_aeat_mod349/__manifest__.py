@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+# Copyright 2004-2011 - Pexego Sistemas Informáticos. (http://pexego.es)
+# Copyright 2013 - Top Consultant Software Creations S.L.
+#                - (http://www.topconsultant.es/)
+# Copyright 2014-2015 - Serv. Tecnol. Avanzados
+#                     - Pedro M. Baeza (http://www.serviciosbaeza.com)
+# Copyright 2016 - Tecnativa - Angel Moya <odoo@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 ##############################################################################
 #
 #    Copyright (C)
@@ -25,7 +32,7 @@
 
 {
     "name": "Modelo 349 AEAT",
-    "version": "8.0.2.2.0",
+    "version": "9.0.1.0.0",
     "author": "Pexego, "
               "Top Consultant, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
@@ -35,14 +42,13 @@
     "category": 'Localisation/Accounting',
     'website': 'https://github.com/OCA/l10n-spain',
     "depends": [
-        "account",
-        "account_invoice_currency",
         "account_refund_original",
-        "l10n_es",
         "l10n_es_aeat",
     ],
     'data': [
-        "wizard/export_mod349_to_boe.xml",
+        "data/aeat_export_mod349_partner_refund_data.xml",
+        "data/aeat_export_mod349_partner_data.xml",
+        "data/aeat_export_mod349_data.xml",
         "views/account_fiscal_position_view.xml",
         "views/account_invoice_view.xml",
         "views/mod349_view.xml",
@@ -51,5 +57,5 @@
         "security/mod_349_security.xml",
     ],
     'post_init_hook': '_assign_invoice_operation_keys',
-    'installable': False,
+    'installable': True,
 }

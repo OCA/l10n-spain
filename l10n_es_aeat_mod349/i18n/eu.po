@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-13 10:45+0000\n"
-"PO-Revision-Date: 2016-10-18 18:27+0000\n"
+"POT-Creation-Date: 2015-08-14 00:52+0000\n"
+"PO-Revision-Date: 2015-07-10 10:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Basque (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,36 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_aeat_mod349
+#: selection:l10n.es.aeat.mod349.partner_refund,period_selection:0
+#: selection:l10n.es.aeat.mod349.report,period_selection:0
+msgid "0A - Annual"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: selection:l10n.es.aeat.mod349.partner_refund,period_selection:0
+#: selection:l10n.es.aeat.mod349.report,period_selection:0
+msgid "1T - First Quarter"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: selection:l10n.es.aeat.mod349.partner_refund,period_selection:0
+#: selection:l10n.es.aeat.mod349.report,period_selection:0
+msgid "2T - Second Quarter"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: selection:l10n.es.aeat.mod349.partner_refund,period_selection:0
+#: selection:l10n.es.aeat.mod349.report,period_selection:0
+msgid "3T - Third Quarter"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: selection:l10n.es.aeat.mod349.partner_refund,period_selection:0
+#: selection:l10n.es.aeat.mod349.report,period_selection:0
+msgid "4T - Fourth Quarter"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: selection:account.invoice,operation_key:0
@@ -114,32 +144,22 @@ msgid "AEAT Model 349 Report"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.report,move_id:0
-msgid "Account entry"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:198
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:207
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:222
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:231
 #, python-format
 msgid "All amounts must be positives"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:194
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:218
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:202
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:226
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.report,allow_posting:0
-msgid "Allow posting"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -149,13 +169,15 @@ msgid "Amount untaxed"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.report,partner_bank_id:0
-msgid "Bank account"
+#: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
+#: selection:l10n.es.aeat.mod349.report,month_selection:0
+msgid "April"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.report,calculate_date:0
-msgid "Calculate by days"
+#: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
+#: selection:l10n.es.aeat.mod349.report,month_selection:0
+msgid "August"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -169,13 +191,35 @@ msgid "Cancelled"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: help:l10n.es.aeat.mod349.partner_record,partner_record_ok:0
-msgid "Checked if partner record is OK"
+#: code:addons/l10n_es_aeat_mod349/models/account_invoice.py:48
+#, python-format
+msgid ""
+"Cannot get invoices.\n"
+"Provided month is not included on selected fiscal year"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: help:l10n.es.aeat.mod349.partner_refund,partner_refund_ok:0
-msgid "Checked if refund record is OK"
+#: code:addons/l10n_es_aeat_mod349/models/account_invoice.py:71
+#, python-format
+msgid ""
+"Cannot get invoices.\n"
+"There is no fiscal year selected"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: code:addons/l10n_es_aeat_mod349/models/account_invoice.py:86
+#, python-format
+msgid ""
+"Cannot get invoices.\n"
+"There is no month and/or fiscal year selected"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: code:addons/l10n_es_aeat_mod349/models/account_invoice.py:80
+#, python-format
+msgid ""
+"Cannot get invoices.\n"
+"There is no period selected"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -184,24 +228,14 @@ msgid "Company"
 msgstr "Enpresa"
 
 #. module: l10n_es_aeat_mod349
-#: help:l10n.es.aeat.mod349.report,partner_bank_id:0
-msgid "Company bank account used for the presentation"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,type:0
 msgid "Complementary"
 msgstr "Osagarria"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:217
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:241
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.report,counterpart_account:0
-msgid "Counterpart account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -224,7 +258,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_refund_detail,create_uid:0
 #: field:l10n.es.aeat.mod349.report,create_uid:0
 msgid "Created by"
-msgstr "Nork sortua"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.export_to_boe,create_date:0
@@ -234,7 +268,7 @@ msgstr "Nork sortua"
 #: field:l10n.es.aeat.mod349.partner_refund_detail,create_date:0
 #: field:l10n.es.aeat.mod349.report,create_date:0
 msgid "Created on"
-msgstr "Created on"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,support_type:0
@@ -242,9 +276,9 @@ msgid "DVD"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.partner_record_detail,date:0
-#: field:l10n.es.aeat.mod349.partner_refund_detail,date:0
-msgid "Date"
+#: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
+#: selection:l10n.es.aeat.mod349.report,month_selection:0
+msgid "December"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -266,16 +300,6 @@ msgstr ""
 #: view:l10n.es.aeat.mod349.partner_refund:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_form
 msgid "Details"
 msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.export_to_boe,display_name:0
-#: field:l10n.es.aeat.mod349.partner_record,display_name:0
-#: field:l10n.es.aeat.mod349.partner_record_detail,display_name:0
-#: field:l10n.es.aeat.mod349.partner_refund,display_name:0
-#: field:l10n.es.aeat.mod349.partner_refund_detail,display_name:0
-#: field:l10n.es.aeat.mod349.report,display_name:0
-msgid "Display Name"
-msgstr "Izena erakutsi"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
@@ -311,6 +335,12 @@ msgid "Export config"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
+#: selection:l10n.es.aeat.mod349.report,month_selection:0
+msgid "February"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.export_to_boe,data:0
 msgid "File"
 msgstr ""
@@ -318,6 +348,14 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.export_to_boe,name:0
 msgid "File name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:167
+#, python-format
+msgid ""
+"First four characters of fiscal year code must be numeric and contain the "
+"fiscal year number. Please, fix it and try again."
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -374,7 +412,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_refund_detail,id:0
 #: field:l10n.es.aeat.mod349.report,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_record:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_record_form
@@ -399,34 +437,26 @@ msgid "Invoice ID"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.report,journal_id:0
-msgid "Journal"
+#: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
+#: selection:l10n.es.aeat.mod349.report,month_selection:0
+msgid "January"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: help:l10n.es.aeat.mod349.report,journal_id:0
-msgid "Journal in which post the move."
+#: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
+#: selection:l10n.es.aeat.mod349.report,month_selection:0
+msgid "July"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: help:l10n.es.aeat.mod349.partner_record_detail,date:0
-#: help:l10n.es.aeat.mod349.partner_refund_detail,date:0
-msgid "Keep empty to use the current date"
+#: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
+#: selection:l10n.es.aeat.mod349.report,month_selection:0
+msgid "June"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,representative_vat:0
 msgid "L.R. VAT number"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.export_to_boe,__last_update:0
-#: field:l10n.es.aeat.mod349.partner_record,__last_update:0
-#: field:l10n.es.aeat.mod349.partner_record_detail,__last_update:0
-#: field:l10n.es.aeat.mod349.partner_refund,__last_update:0
-#: field:l10n.es.aeat.mod349.partner_refund_detail,__last_update:0
-#: field:l10n.es.aeat.mod349.report,__last_update:0
-msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -437,7 +467,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_refund_detail,write_uid:0
 #: field:l10n.es.aeat.mod349.report,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.export_to_boe,write_date:0
@@ -447,7 +477,7 @@ msgstr "Last Updated by"
 #: field:l10n.es.aeat.mod349.partner_refund_detail,write_date:0
 #: field:l10n.es.aeat.mod349.report,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: help:l10n.es.aeat.mod349.report,representative_vat:0
@@ -462,8 +492,27 @@ msgid "M - Intra-Community supplies without taxes"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.report,model:0
-msgid "Model"
+#: selection:l10n.es.aeat.mod349.partner_refund,period_selection:0
+#: selection:l10n.es.aeat.mod349.report,period_selection:0
+msgid "MO - Monthly"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
+#: selection:l10n.es.aeat.mod349.report,month_selection:0
+msgid "March"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
+#: selection:l10n.es.aeat.mod349.report,month_selection:0
+msgid "May"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.partner_refund,month_selection:0
+#: field:l10n.es.aeat.mod349.report,month_selection:0
+msgid "Month"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -472,13 +521,33 @@ msgid "Must have name and surname."
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:249
+#, python-format
+msgid ""
+"Name '%s' have not allowed characters.\n"
+"Please, fix it before confirm the report"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,type:0
 msgid "Normal"
 msgstr "Arrunta"
 
 #. module: l10n_es_aeat_mod349
+#: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
+#: selection:l10n.es.aeat.mod349.report,month_selection:0
+msgid "November"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Number:"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
+#: selection:l10n.es.aeat.mod349.report,month_selection:0
+msgid "October"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -541,8 +610,18 @@ msgid "Partner"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.partner_record,partner_record_ok:0
-msgid "Partner Record OK"
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:255
+#, python-format
+msgid ""
+"Partner name '%s' in partner records is not valid due to incorrect "
+"characters"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:262
+#, python-format
+msgid ""
+"Partner name '%s' in refund lines is not valid due to incorrect characters"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -572,42 +651,18 @@ msgid "Partner refund IDS"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.partner_refund,partner_refund_ok:0
-msgid "Partner refund OK"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_refund,refund_detail_ids:0
 msgid "Partner refund detail IDS"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.report,total_partner_records:0
-msgid "Partners records"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.report,total_partner_records_amount:0
-msgid "Partners records amount"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.report,total_partner_refunds:0
-msgid "Partners refunds"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.report,total_partner_refunds_amount:0
-msgid "Partners refunds amount"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.partner_refund,period_selection:0
+#: field:l10n.es.aeat.mod349.report,period_selection:0
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Period"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.partner_refund,period_type:0
 #: field:l10n.es.aeat.mod349.report,period_type:0
 msgid "Period type"
 msgstr ""
@@ -618,14 +673,14 @@ msgid "Period(s)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,period_ids:0
+msgid "Periods"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,contact_phone:0
 msgid "Phone"
 msgstr "Telefonoa"
-
-#. module: l10n_es_aeat_mod349
-#: selection:l10n.es.aeat.mod349.report,state:0
-msgid "Posted"
-msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,previous_number:0
@@ -653,11 +708,6 @@ msgid "Refunds"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: field:l10n.es.aeat.mod349.report,name:0
-msgid "Report identifier"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form
 msgid "Resultado"
 msgstr ""
@@ -667,6 +717,17 @@ msgstr ""
 #: selection:l10n.es.aeat.mod349.partner_record,operation_key:0
 #: selection:l10n.es.aeat.mod349.partner_refund,operation_key:0
 msgid "S - Intra-Community services"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
+#: selection:l10n.es.aeat.mod349.report,month_selection:0
+msgid "September"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,sequence:0
+msgid "Sequence"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -704,28 +765,26 @@ msgid "T - Triangular operations"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,tax_lines:0
+msgid "Tax lines"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,support_type:0
 msgid "Telematics"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:121
+#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:123
 #, python-format
 msgid "The type 1 record must be 502 characters long"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:184
-#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:247
+#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:192
+#: code:addons/l10n_es_aeat_mod349/wizard/export_mod349_to_boe.py:256
 #, python-format
 msgid "The type 2 record must be 502 characters long"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: help:l10n.es.aeat.mod349.report,counterpart_account:0
-msgid ""
-"This account will be the counterpart for all the journal items that are "
-"regularized when posting the report."
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -752,14 +811,6 @@ msgid "VAT number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: help:l10n.es.aeat.mod349.report,calculate_date:0
-msgid ""
-"Warning!: With this checkbox selected, the declaration will be computed "
-"selecting invoices based in periods and dates in selected Period Type not "
-"only by period"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Year"
 msgstr ""
@@ -767,6 +818,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.export_to_boe,state:0
 msgid "get"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: view:account.invoice:l10n_es_aeat_mod349.view_customer_account_invoice_form__replace_fiscal_position
+#: view:account.invoice:l10n_es_aeat_mod349.view_supplier_account_invoice_form__replace_fiscal_position
+msgid "on_change_fiscal_position(fiscal_position, type)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349

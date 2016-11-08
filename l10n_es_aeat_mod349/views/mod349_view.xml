@@ -124,7 +124,7 @@
                     <field name="total_operation_amount"/>
                     <field name="total_origin_amount"/>
                     <field name="period_type"/>
-                    <field name="fiscalyear_id"/>
+                    <field name="year"/>
                 </tree>
             </field>
         </record>
@@ -146,7 +146,7 @@
                                 <field name="total_origin_amount"/>
                             </group>
                             <group string="Refund data" colspan="4">
-                                <field name="fiscalyear_id"/>
+                                <field name="year"/>
                                 <field name="period_type"/>
                             </group>
                         </page>
@@ -170,7 +170,7 @@
                 <tree position="attributes">
                     <attribute name="string">AEAT 349 reports</attribute>=
                 </tree>
-                <field name="fiscalyear_id" position="after">
+                <field name="period_type" position="after">
                     <field name="total_partner_records"/>
                     <field name="total_partner_records_amount"/>
                     <field name="total_partner_refunds"/>
@@ -185,16 +185,7 @@
             <field name="model">l10n.es.aeat.mod349.report</field>
             <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
             <field name="arch" type="xml">
-                <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
-                    <attribute name="name">%(action_wizard_aeat_mod349_export)d</attribute>
-                </button>
-                <field name="period_type" position="replace">
-                    <group colspan="2" col="4">
-                        <field name="period_type"/>
-                        <field name="calculate_date"/>
-                    </group>
-                </field>
-                <group string="Declaración" position="after">
+                <group name="group_declaration" position="after">
                     <notebook colspan="4">
                         <page string="General">
                             <group string="Resultado">
