@@ -699,7 +699,8 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         for record in self:
             if record.partner_id:
                 record.partner_vat = re.match(
-                    r'(ES)?(.*)', record.partner_id.vat or '').groups()[1]
+                    r'^(?:ES)?(.*)', record.partner_id.vat or '',
+                    re.IGNORECASE).groups()[0]
                 record.partner_state_code = record.partner_id.state_id.code
                 record.partner_country_code = record.partner_id.country_id.code
 

@@ -156,10 +156,10 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
         text += self._formatNumber(
             partner_record.real_estate_transmissions_amount, 13, 2, True)
         # Año de devengo de las operaciones en efectivo
+        year = fields.Date.from_string(
+            partner_record.origin_fiscalyear_id.date_start).year
         text += (partner_record.origin_fiscalyear_id and
-                 self._formatString(fields.Date.from_string(
-                     report.origin_fiscalyear_id.date_start).year, 4) or
-                 4 * '0')
+                 self._formatString(year, 4) or 4 * '0')
         # Importe de las operaciones del primer trimestre
         text += self._formatNumber(partner_record.first_quarter, 13, 2, True)
         # Importe percibido por transmisiones de inmuebles sujates a Iva Primer
