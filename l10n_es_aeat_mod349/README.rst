@@ -1,3 +1,8 @@
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
+
+=====================
 Modelo 349 de la AEAT
 =====================
 
@@ -74,7 +79,7 @@ Contributors
 * Miguel López (Top Consultant)
 * Ignacio Martínez (Top Consultant)
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-* Antonio Espinosa <antonioea@antiun.com>
+* Angel Moya <odoo@tecnativa.com>
 
 Maintainer
 ----------
