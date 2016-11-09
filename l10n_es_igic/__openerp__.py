@@ -23,9 +23,10 @@
     "name": "IGIC (Impuesto General Indirecto Canario)",
     "version": "8.0.0.1",
     "author": "David Diz Martínez <daviddiz@gmail.com>,"
+              "Atlantux Consultores - Enrique Zanardi,",
               "Odoo Community Association (OCA)",
     "website": "https://github.com/daviddiz/igic",
-    "category": "Localisation/Europe",
+    "category": "Localization/Europe",
     "depends": [
         "l10n_es",
     ],
@@ -36,6 +37,7 @@
         "data/tax_codes_igic.xml",
         "data/taxes_igic.xml",
         "data/account_chart_template_igic_post.xml",
+        "data/fiscal_positions_igic.xml",
     ],
     'images': [],
     "demo": [],
