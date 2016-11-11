@@ -14,7 +14,7 @@ La localización española de Odoo incluye:
   españoles.
 * Traducciones a las lenguas oficiales del país.
 
-Para más información, dirigirse al portal http://odoospain.org.
+Para más información, dirigirse al portal https://odoospain.odoo.com/.
 
 Para dudas funcionales o soporte de la comunidad, dirigirse a:
 
