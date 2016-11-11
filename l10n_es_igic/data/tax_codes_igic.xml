@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data noupdate="1">
-        
+
         <!-- Plantilla de códigos de impuestos según fiscalidad canaria.
 
         David Diz Martínez - daviddiz@gmail.com (2015-10-29)
@@ -16,9 +16,9 @@
             <field name="sign">1.0</field>
             <field name="parent_id" ref="l10n_es.account_tax_code_template_root"/>
         </record>
-        
+
         <!-- IGIC Devengado Bases -->
-	
+
         <record id="account_tax_code_template_IGICDBI" model="account.tax.code.template">
             <field name="name">Régimen general IGIC devengado. Base Imponible</field>
             <field name="code">IGICDBI</field>
@@ -32,44 +32,44 @@
             <field name="parent_id" ref="account_tax_code_template_IGICDBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICDBI3" model="account.tax.code.template">
             <field name="name">[02] Régimen general IGIC Devengado. Base Imponible (3%)</field>
             <field name="code">IGICDBI3</field>
             <field name="parent_id" ref="account_tax_code_template_IGICDBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICDBI7" model="account.tax.code.template">
             <field name="name">[03] Régimen general IGIC Devengado. Base Imponible (7%)</field>
             <field name="code">IGICDBI7</field>
             <field name="parent_id" ref="account_tax_code_template_IGICDBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICDBI95" model="account.tax.code.template">
             <field name="name">[04] Régimen general IGIC Devengado. Base Imponible (9,5%)</field>
             <field name="code">IGICDBI95</field>
             <field name="parent_id" ref="account_tax_code_template_IGICDBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICDBI135" model="account.tax.code.template">
             <field name="name">[05] Régimen general IGIC Devengado. Base Imponible (13,5%)</field>
             <field name="code">IGICDBI135</field>
             <field name="parent_id" ref="account_tax_code_template_IGICDBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICDBI20" model="account.tax.code.template">
             <field name="name">[06] Régimen general IGIC Devengado. Base Imponible (20%)</field>
             <field name="code">IGICDBI20</field>
             <field name="parent_id" ref="account_tax_code_template_IGICDBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <!-- IGIC Devengado Cuotas -->
-        
+
         <record id="account_tax_code_template_IGICDC" model="account.tax.code.template">
             <field name="name">[15] Régimen general IGIC devengado. Cuota</field>
             <field name="code">IGICDC</field>
@@ -83,42 +83,42 @@
             <field name="parent_id" ref="account_tax_code_template_IGICDC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICDC3" model="account.tax.code.template">
             <field name="name">[08] Régimen general IGIC Devengado. Cuota (3%)</field>
             <field name="code">IGICDC3</field>
             <field name="parent_id" ref="account_tax_code_template_IGICDC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICDC7" model="account.tax.code.template">
             <field name="name">[09] Régimen general IGIC Devengado. Cuota (7%)</field>
             <field name="code">IGICDC7</field>
             <field name="parent_id" ref="account_tax_code_template_IGICDC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICDC95" model="account.tax.code.template">
             <field name="name">[10] Régimen general IGIC Devengado. Cuota (9,5%)</field>
             <field name="code">IGICDC95</field>
             <field name="parent_id" ref="account_tax_code_template_IGICDC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICDC135" model="account.tax.code.template">
             <field name="name">[11] Régimen general IGIC Devengado. Cuota (13,5%)</field>
             <field name="code">IGICDC135</field>
             <field name="parent_id" ref="account_tax_code_template_IGICDC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICDC20" model="account.tax.code.template">
             <field name="name">[12] Régimen general IGIC Devengado. Cuota (20%)</field>
             <field name="code">IGICDC20</field>
             <field name="parent_id" ref="account_tax_code_template_IGICDC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <!-- IGIC Soportado Bases -->
 
         <record id="account_tax_code_template_IGICSBI" model="account.tax.code.template">
@@ -134,310 +134,310 @@
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICSBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICOICBI0" model="account.tax.code.template">
             <field name="name">IGIC operaciones interiores corrientes. Base Imponible (0%)</field>
             <field name="code">IGICOICBI0</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICOICBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICOICBI3" model="account.tax.code.template">
             <field name="name">IGIC operaciones interiores corrientes. Base Imponible (3%)</field>
             <field name="code">IGICOICBI3</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICOICBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICOICBI7" model="account.tax.code.template">
             <field name="name">IGIC operaciones interiores corrientes. Base Imponible (7%)</field>
             <field name="code">IGICOICBI7</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICOICBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICOICBI95" model="account.tax.code.template">
             <field name="name">IGIC operaciones interiores corrientes. Base Imponible (9,5%)</field>
             <field name="code">IGICOICBI95</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICOICBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICOICBI135" model="account.tax.code.template">
             <field name="name">IGIC operaciones interiores corrientes. Base Imponible (13,5%)</field>
             <field name="code">IGICOICBI135</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICOICBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICOICBI20" model="account.tax.code.template">
             <field name="name">IGIC operaciones interiores corrientes. Base Imponible (20%)</field>
             <field name="code">IGICOICBI20</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICOICBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICOIBIBI" model="account.tax.code.template">
             <field name="name">IGIC operaciones interiores bienes inversión. Base Imponible</field>
             <field name="code">IGICOIBIBI</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICSBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICOIBIBI0" model="account.tax.code.template">
             <field name="name">IGIC operaciones interiores bienes inversión. Base Imponible (0%)</field>
             <field name="code">IGICOIBIBI0</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICOIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICOIBIBI3" model="account.tax.code.template">
             <field name="name">IGIC operaciones interiores bienes inversión. Base Imponible (3%)</field>
             <field name="code">IGICOIBIBI3</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICOIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICOIBIBI7" model="account.tax.code.template">
             <field name="name">IGIC operaciones interiores bienes inversión. Base Imponible (7%)</field>
             <field name="code">IGICOIBIBI7</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICOIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICOIBIBI95" model="account.tax.code.template">
             <field name="name">IGIC operaciones interiores bienes inversión. Base Imponible (9,5%)</field>
             <field name="code">IGICOIBIBI95</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICOIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICOIBIBI135" model="account.tax.code.template">
             <field name="name">IGIC operaciones interiores bienes inversión. Base Imponible (13,5%)</field>
             <field name="code">IGICOIBIBI135</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICOIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICOIBIBI20" model="account.tax.code.template">
             <field name="name">IGIC operaciones interiores bienes inversión. Base Imponible (20%)</field>
             <field name="code">IGICOIBIBI20</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICOIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICIBCBI" model="account.tax.code.template">
             <field name="name">IGIC importaciones bienes corrientes. Base Imponible</field>
             <field name="code">IGICIBCBI</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICSBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICIBCBI0" model="account.tax.code.template">
             <field name="name">IGIC importaciones bienes corrientes. Base Imponible (0%)</field>
             <field name="code">IGICIBCBI0</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICIBCBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICIBCBI3" model="account.tax.code.template">
             <field name="name">IGIC importaciones bienes corrientes. Base Imponible (3%)</field>
             <field name="code">IGICIBCBI3</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICIBCBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICIBCBI7" model="account.tax.code.template">
             <field name="name">IGIC importaciones bienes corrientes. Base Imponible (7%)</field>
             <field name="code">IGICIBCBI7</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICIBCBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICIBCBI95" model="account.tax.code.template">
             <field name="name">IGIC importaciones bienes corrientes. Base Imponible (9,5%)</field>
             <field name="code">IGICIBCBI95</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICIBCBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICIBCBI135" model="account.tax.code.template">
             <field name="name">IGIC importaciones bienes corrientes. Base Imponible (13,5%)</field>
             <field name="code">IGICIBCBI135</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICIBCBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICIBCBI20" model="account.tax.code.template">
             <field name="name">IGIC importaciones bienes corrientes. Base Imponible (20%)</field>
             <field name="code">IGICIBCBI20</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICIBCBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICIBIBI" model="account.tax.code.template">
             <field name="name">IGIC importaciones bienes inversión. Base Imponible</field>
             <field name="code">IGICIBIBI</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICSBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICIBIBI0" model="account.tax.code.template">
             <field name="name">IGIC importaciones bienes inversión. Base Imponible (0%)</field>
             <field name="code">IGICIBIBI0</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICIBIBI3" model="account.tax.code.template">
             <field name="name">IGIC importaciones bienes inversión. Base Imponible (3%)</field>
             <field name="code">IGICIBIBI3</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICIBIBI7" model="account.tax.code.template">
             <field name="name">IGIC importaciones bienes inversión. Base Imponible (7%)</field>
             <field name="code">IGICIBIBI7</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICIBIBI95" model="account.tax.code.template">
             <field name="name">IGIC importaciones bienes inversión. Base Imponible (9,5%)</field>
             <field name="code">IGICIBIBI95</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICIBIBI135" model="account.tax.code.template">
             <field name="name">IGIC importaciones bienes inversión. Base Imponible (13,5%)</field>
             <field name="code">IGICIBIBI135</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICIBIBI20" model="account.tax.code.template">
             <field name="name">IGIC importaciones bienes inversión. Base Imponible (20%)</field>
             <field name="code">IGICIBIBI20</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICAIBCBI" model="account.tax.code.template">
             <field name="name">IGIC adquisiciones intracomunitarias bienes corrientes. Base Imponible</field>
             <field name="code">IGICAIBCBI</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICSBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICAIBCBI0" model="account.tax.code.template">
             <field name="name">IGIC adquisiciones intracomunitarias bienes corrientes. Base Imponible (0%)</field>
             <field name="code">IGICAIBCBI0</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICAIBCBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICAIBCBI3" model="account.tax.code.template">
             <field name="name">IGIC adquisiciones intracomunitarias bienes corrientes. Base Imponible (3%)</field>
             <field name="code">IGICAIBCBI3</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICAIBCBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICAIBCBI7" model="account.tax.code.template">
             <field name="name">IGIC adquisiciones intracomunitarias bienes corrientes. Base Imponible (7%)</field>
             <field name="code">IGICAIBCBI7</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICAIBCBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICAIBCBI95" model="account.tax.code.template">
             <field name="name">IGIC adquisiciones intracomunitarias bienes corrientes. Base Imponible (9,5%)</field>
             <field name="code">IGICAIBCBI95</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICAIBCBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICAIBCBI135" model="account.tax.code.template">
             <field name="name">IGIC adquisiciones intracomunitarias bienes corrientes. Base Imponible (13,5%)</field>
             <field name="code">IGICAIBCBI135</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICAIBCBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICAIBCBI20" model="account.tax.code.template">
             <field name="name">IGIC adquisiciones intracomunitarias bienes corrientes. Base Imponible (20%)</field>
             <field name="code">IGICAIBCBI20</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICAIBCBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICAIBIBI" model="account.tax.code.template">
             <field name="name">IGIC adquisiciones intracomunitarias bienes inversión. Base Imponible</field>
             <field name="code">IGICAIBIBI</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICSBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICAIBIBI0" model="account.tax.code.template">
             <field name="name">IGIC adquisiciones intracomunitarias bienes inversión. Base Imponible (0%)</field>
             <field name="code">IGICAIBIBI0</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICAIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICAIBIBI3" model="account.tax.code.template">
             <field name="name">IGIC adquisiciones intracomunitarias bienes inversión. Base Imponible (3%)</field>
             <field name="code">IGICAIBIBI3</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICAIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICAIBIBI7" model="account.tax.code.template">
             <field name="name">IGIC adquisiciones intracomunitarias bienes inversión. Base Imponible (7%)</field>
             <field name="code">IGICAIBIBI7</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICAIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICAIBIBI95" model="account.tax.code.template">
             <field name="name">IGIC adquisiciones intracomunitarias bienes inversión. Base Imponible (9,5%)</field>
             <field name="code">IGICAIBIBI95</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICAIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICAIBIBI135" model="account.tax.code.template">
             <field name="name">IGIC adquisiciones intracomunitarias bienes inversión. Base Imponible (13,5%)</field>
             <field name="code">IGICAIBIBI135</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICAIBIBI"/>
         </record>
-        
+
         <record id="account_tax_code_template_IGICAIBIBI20" model="account.tax.code.template">
             <field name="name">IGIC adquisiciones intracomunitarias bienes inversión. Base Imponible (20%)</field>
             <field name="code">IGICAIBIBI20</field>
             <field name="sign">1.0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICAIBIBI"/>
         </record>
-        
+
         <!-- IGIC Adquisiciones Intracomunitarias, Entregas Intracomunitarias, Exportaciones e Inversión del Sujeto Pasivo -->
-        
+
         <record id="account_tax_code_template_IGICAIBI" model="account.tax.code.template">
             <field name="name">IGIC Adquisiciones intracomunitarias. Base Imponible</field>
             <field name="code">IGICAIBI</field>
             <field name="parent_id" ref="account_tax_code_template_IGICDBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICAIC" model="account.tax.code.template">
             <field name="name">IGIC Adquisiciones intracomunitarias. Cuota</field>
             <field name="code">IGICAIC</field>
             <field name="parent_id" ref="account_tax_code_template_IGICDC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICEI" model="account.tax.code.template">
             <field name="name">IGIC Entregas Intracomunitarias</field>
             <field name="code">IGICEI</field>
@@ -458,309 +458,309 @@
             <field name="parent_id" ref="account_tax_code_template_420"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <!-- IGIC Soportado Cuotas -->
-        
+
         <record id="account_tax_code_template_IGICTADC" model="account.tax.code.template">
             <field name="name">[22] IGIC total a deducir. Cuota</field>
             <field name="code">IGICTADC</field>
             <field name="parent_id" ref="account_tax_code_template_420"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSOIC" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas operaciones interiores corrientes</field>
             <field name="code">IGICCSOIC</field>
             <field name="parent_id" ref="account_tax_code_template_IGICTADC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSOIC0" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas operaciones interiores corrientes (0%)</field>
             <field name="code">IGICCSOIC0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSOIC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSOIC3" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas operaciones interiores corrientes (3%)</field>
             <field name="code">IGICCSOIC3</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSOIC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSOIC7" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas operaciones interiores corrientes (7%)</field>
             <field name="code">IGICCSOIC7</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSOIC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSOIC95" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas operaciones interiores corrientes (9,5%)</field>
             <field name="code">IGICCSOIC95</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSOIC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSOIC135" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas operaciones interiores corrientes (13,5%)</field>
             <field name="code">IGICCSOIC135</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSOIC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSOIC20" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas operaciones interiores corrientes (20%)</field>
             <field name="code">IGICCSOIC20</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSOIC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSOIBI" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas operaciones interiores bienes inversión</field>
             <field name="code">IGICCSOIBI</field>
             <field name="parent_id" ref="account_tax_code_template_IGICTADC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSOIBI0" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas operaciones interiores bienes inversión (0%)</field>
             <field name="code">IGICCSOIBI0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSOIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSOIBI3" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas operaciones interiores bienes inversión (3%)</field>
             <field name="code">IGICCSOIBI3</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSOIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSOIBI7" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas operaciones interiores bienes inversión (7%)</field>
             <field name="code">IGICCSOIBI7</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSOIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSOIBI95" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas operaciones interiores bienes inversión (9,5%)</field>
             <field name="code">IGICCSOIBI95</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSOIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSOIBI135" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas operaciones interiores bienes inversión (13,5%)</field>
             <field name="code">IGICCSOIBI135</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSOIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSOIBI20" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas operaciones interiores bienes inversión (20%)</field>
             <field name="code">IGICCSOIBI20</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSOIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSIBC" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas importaciones bienes corrientes</field>
             <field name="code">IGICCSIBC</field>
             <field name="parent_id" ref="account_tax_code_template_IGICTADC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSIBC0" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas importaciones bienes corrientes (0%)</field>
             <field name="code">IGICCSIBC0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSIBC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSIBC3" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas importaciones bienes corrientes (3%)</field>
             <field name="code">IGICCSIBC3</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSIBC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSIBC7" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas importaciones bienes corrientes (7%)</field>
             <field name="code">IGICCSIBC7</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSIBC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSIBC95" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas importaciones bienes corrientes (9,5%)</field>
             <field name="code">IGICCSIBC95</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSIBC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSIBC135" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas importaciones bienes corrientes (13,5%)</field>
             <field name="code">IGICCSIBC135</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSIBC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSIBC20" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas importaciones bienes corrientes (20%)</field>
             <field name="code">IGICCSIBC20</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSIBC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSIBI" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas importaciones bienes inversión</field>
             <field name="code">IGICCSIBI</field>
             <field name="parent_id" ref="account_tax_code_template_IGICTADC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSIBI0" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas importaciones bienes inversión (0%)</field>
             <field name="code">IGICCSIBI0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSIBI3" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas importaciones bienes inversión (3%)</field>
             <field name="code">IGICCSIBI3</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSIBI7" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas importaciones bienes inversión (7%)</field>
             <field name="code">IGICCSIBI7</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSIBI95" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas importaciones bienes inversión (9,5%)</field>
             <field name="code">IGICCSIBI95</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSIBI135" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas importaciones bienes inversión (13,5%)</field>
             <field name="code">IGICCSIBI135</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSIBI20" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas importaciones bienes inversión (20%)</field>
             <field name="code">IGICCSIBI20</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSAIBC" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas En adquisiciones intracomunitarias bienes corrientes</field>
             <field name="code">IGICCSAIBC</field>
             <field name="parent_id" ref="account_tax_code_template_IGICTADC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSAIBC0" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas en adquisiciones intracomunitarias bienes corrientes (0%)</field>
             <field name="code">IGICCSAIBC0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSAIBC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSAIBC3" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas en adquisiciones intracomunitarias bienes corrientes (3%)</field>
             <field name="code">IGICCSAIBC3</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSAIBC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSAIBC7" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas en adquisiciones intracomunitarias bienes corrientes (7%)</field>
             <field name="code">IGICCSAIBC7</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSAIBC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSAIBC95" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas en adquisiciones intracomunitarias bienes corrientes (9,5%)</field>
             <field name="code">IGICCSAIBC95</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSAIBC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSAIBC135" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas en adquisiciones intracomunitarias bienes corrientes (13,5%)</field>
             <field name="code">IGICCSAIBC135</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSAIBC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSAIBC20" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas en adquisiciones intracomunitarias bienes corrientes (20%)</field>
             <field name="code">IGICCSAIBC20</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSAIBC"/>
             <field name="sign">1.0</field>
         </record>
-        
-		<record id="account_tax_code_template_IGICCSAIBI" model="account.tax.code.template">
+
+        <record id="account_tax_code_template_IGICCSAIBI" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas En adquisiciones intracomunitarias bienes inversión</field>
             <field name="code">IGICCSAIBI</field>
             <field name="parent_id" ref="account_tax_code_template_IGICTADC"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSAIBI0" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas en adquisiciones intracomunitarias bienes inversión (0%)</field>
             <field name="code">IGICCSAIBI0</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSAIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSAIBI3" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas en adquisiciones intracomunitarias bienes inversión (3%)</field>
             <field name="code">IGICCSAIBI3</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSAIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSAIBI7" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas en adquisiciones intracomunitarias bienes inversión (7%)</field>
             <field name="code">IGICCSAIBI7</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSAIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSAIBI95" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas en adquisiciones intracomunitarias bienes inversión (9,5%)</field>
             <field name="code">IGICCSAIBI95</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSAIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSAIBI135" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas en adquisiciones intracomunitarias bienes inversión (13,5%)</field>
             <field name="code">IGICCSAIBI135</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSAIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
         <record id="account_tax_code_template_IGICCSAIBI20" model="account.tax.code.template">
             <field name="name">IGIC Cuotas soportadas en adquisiciones intracomunitarias bienes inversión (20%)</field>
             <field name="code">IGICCSAIBI20</field>
             <field name="parent_id" ref="account_tax_code_template_IGICCSAIBI"/>
             <field name="sign">1.0</field>
         </record>
-        
+
     </data>
 </openerp>
