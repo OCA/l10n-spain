@@ -1,31 +1,16 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C)
-#        2004-2011:  Pexego Sistemas Informáticos. (http://pexego.es)
-#        2012:       NaN·Tic  (http://www.nan-tic.com)
-#        2013:       Acysos (http://www.acysos.com)
-#                    Joaquín Pedrosa Gutierrez (http://gutierrezweb.es)
-#        2014-2015:  Serv. Tecnol. Avanzados - Pedro M. Baeza
-#                    (http://www.serviciosbaeza.com)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2004-2011 Pexego Sistemas Informáticos. (http://pexego.es)
+# © 2012 NaN·Tic  (http://www.nan-tic.com)
+# © 2013 Acysos (http://www.acysos.com)
+# © 2013 Joaquín Pedrosa Gutierrez (http://gutierrezweb.es)
+# © 2014-2015 Serv. Tecnol. Avanzados - Pedro M. Baeza
+#             (http://www.serviciosbaeza.com)
+# © 2016 Antiun Ingenieria S.L. - Antonio Espinosa
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 {
     'name': "Modelo 347 AEAT",
-    'version': "8.0.1.3.1",
+    'version': "8.0.1.4.0",
     'author': "Pexego,"
               "ASR-OSS,"
               "NaN·tic,"
@@ -42,6 +27,7 @@
         'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
         'Joaquín Gutierrez (http://gutierrezweb.es)',
         'Comunitea (http://www.comunitea.com)',
+        'Antonio Espinosa <antonioea@antiun.com>',
     ],
     'category': "Localisation/Accounting",
     'license': "AGPL-3",
