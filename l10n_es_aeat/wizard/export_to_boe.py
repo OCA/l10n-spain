@@ -78,6 +78,14 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         # Return string
         return ascii_string
 
+    def _formatFiscalName(self, text, length, fill=' ', align='<'):
+        name = re.sub(
+            ur"[^a-zA-Z0-9\sáÁéÉíÍóÓúÚñÑçÇäÄëËïÏüÜöÖ"
+            ur"àÀèÈìÌòÒùÙâÂêÊîÎôÔûÛ\.,-_&'´\\:;:/]", '', text,
+            re.UNICODE | re.X)
+        name = re.sub(r'\s{2,}', ' ', name, re.UNICODE | re.X)
+        return self._formatString(name, length, fill=fill, align=align)
+
     def _formatNumber(self, number, int_length, dec_length=0,
                       include_sign=False, positive_sign=' ',
                       negative_sign='N'):
@@ -150,13 +158,13 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         # NIF del declarante
         text += self._formatString(report.company_vat, 9)
         # Apellidos y nombre o razón social del declarante
-        text += self._formatString(report.company_id.name, 40)
+        text += self._formatFiscalName(report.company_id.name, 40)
         # Tipo de soporte
         text += self._formatString(report.support_type, 1)
         # Persona de contacto (Teléfono)
         text += self._formatString(report.contact_phone, 9)
         # Persona de contacto (Apellidos y nombre)
-        text += self._formatString(report.contact_name, 40)
+        text += self._formatFiscalName(report.contact_name, 40)
         # Número identificativo de la declaración
         text += self._formatString(report.name, 13)
         # Declaración complementaria
