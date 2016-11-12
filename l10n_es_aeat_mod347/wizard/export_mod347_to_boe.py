@@ -1,21 +1,14 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp import models, api, _
+# © 2004-2011 Pexego Sistemas Informáticos. (http://pexego.es)
+# © 2012 NaN·Tic  (http://www.nan-tic.com)
+# © 2013 Acysos (http://www.acysos.com)
+# © 2013 Joaquín Pedrosa Gutierrez (http://gutierrezweb.es)
+# © 2014-2015 Serv. Tecnol. Avanzados - Pedro M. Baeza
+#             (http://www.serviciosbaeza.com)
+# © 2016 Antiun Ingenieria S.L. - Antonio Espinosa
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from openerp import models, api, fields, _
 
 
 class L10nEsAeatMod347ExportToBoe(models.TransientModel):
@@ -128,7 +121,8 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
         # Modelo Declaración
         text += '347'
         # Ejercicio
-        text += self._formatString(report.fiscalyear_id.code, 4)
+        text += self._formatString(
+            fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
         # NIF del declarante
         text += self._formatString(report.company_vat, 9)
         # NIF del declarado
@@ -136,13 +130,18 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
         # NIF del representante legal
         text += self._formatString(partner_record.representative_vat, 9)
         # Apellidos y nombre, razón social o denominación del declarado
-        text += self._formatString(partner_record.partner_id.name, 40)
+        text += self._formatFiscalName(partner_record.partner_id.name, 40)
         # Tipo de hoja: Constante ‘D’.
         text += 'D'
         # Código provincia
         text += self._formatNumber(partner_record.partner_state_code, 2)
+        # Código de país
+        if partner_record.partner_state_code == '99':
+            text += self._formatString(partner_record.partner_country_code, 2)
+        else:
+            text += 2 * ' '
         # Blancos
-        text += 3 * ' '
+        text += 1 * ' '
         # Clave de operación
         text += self._formatString(partner_record.operation_key, 1)
         # Importe de las operaciones
@@ -157,9 +156,10 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
         text += self._formatNumber(
             partner_record.real_estate_transmissions_amount, 13, 2, True)
         # Año de devengo de las operaciones en efectivo
+        year = fields.Date.from_string(
+            partner_record.origin_fiscalyear_id.date_start).year
         text += (partner_record.origin_fiscalyear_id and
-                 self._formatString(partner_record.origin_fiscalyear_id.code,
-                                    4) or 4 * '0')
+                 self._formatString(year, 4) or 4 * '0')
         # Importe de las operaciones del primer trimestre
         text += self._formatNumber(partner_record.first_quarter, 13, 2, True)
         # Importe percibido por transmisiones de inmuebles sujates a Iva Primer
@@ -248,7 +248,8 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
         # Modelo Declaración
         text += '347'
         # Ejercicio
-        text += self._formatString(report.fiscalyear_id.code, 4)
+        text += self._formatString(
+            fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
         # NIF del declarante
         text += self._formatString(report.company_vat, 9)
         # NIF del declarado
@@ -256,7 +257,7 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
         # NIF del representante legal
         text += self._formatString(partner_record.representative_vat, 9)
         # Apellidos y nombre, razón social o denominación del declarado
-        text += self._formatString(partner_record.partner_id.name, 40)
+        text += self._formatFiscalName(partner_record.partner_id.name, 40)
         # Tipo de hoja: Constante ‘I’.
         text += 'I'
         # Blancos
