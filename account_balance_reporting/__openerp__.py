@@ -31,7 +31,6 @@
         "views/account_balance_reporting_report_view.xml",
         "views/account_balance_reporting_menu.xml",
         "report/account_balance_reporting_reports.xml",
-        "report/account_balance_reporting_reports.xml",
         "report/report_generic.xml",
         "wizard/wizard_print_view.xml",
     ],
