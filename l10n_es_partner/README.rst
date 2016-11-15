@@ -5,6 +5,8 @@ Funcionalidad:
 --------------
 
 * Añade el campo *Nombre comercial* a las empresas y permite buscar por él.
+* Permite definir un patrón del nombre a mostrar a partir del nombre y el
+  nombre comercial de la empresa.
 * Convierte el NIF a mayúsculas.
 * Añade los campos nombre largo, NIF y web a los bancos.
 * Añade los datos de los bancos españoles extraídos del registro oficial del
@@ -47,6 +49,12 @@ Para añadir cuentas bancarias a los clientes/proveedores, hay que ir a la
 lista de empresas desde cualquiera de los accesos, y pulsar sobre el enlace
 "n Cuenta(s) bancaria(s)" que hay en la pestaña "Ventas y compras".
 
+Para definir el patron del nombre a mostrar en empresas, hay que ir a
+Configuración > Técnico > Parámetros > Parámetros del sistema
+Seleccionar la clave l10n_es_partner.name_pattern
+Definir el patron utilizando las etiquetas *%(name)s* para nombre y
+*%(comercial_name)s* para nombre comercial.
+
 Créditos
 ========
 
@@ -58,6 +66,7 @@ Contribuidores
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Sergio Teruel <sergio@incaser.es>
 * Ismael Calvo <ismael.calvo@factorlibre.com>
+* Carlos Dauden <carlos.dauden@tecnativa.com>
 
 Maintainer
 ----------
