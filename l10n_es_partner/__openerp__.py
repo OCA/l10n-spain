@@ -27,6 +27,7 @@
         "l10n_es_toponyms",
     ],
     "data": [
+        "data/l10n_es_partner_data.xml",
         "views/account_journal_view.xml",
         "views/res_bank_view.xml",
         "views/res_partner_view.xml",
