@@ -114,3 +114,9 @@ class TestL10nEsPartner(common.SavepointCase):
         self.wizard.execute()
         bank = self.env['res.bank'].search([('code', '=', '0182')])
         self.assertTrue(bank)
+
+    def test_name(self):
+        self.env['ir.config_parameter'].set_param(
+            'l10n_es_partner.name_pattern', '%(comercial_name)s (%(name)s)')
+        self.assertEqual(self.partner.display_name,
+                         'Nombre comercial (Empresa de prueba)')
