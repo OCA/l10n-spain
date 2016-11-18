@@ -89,6 +89,7 @@ Contributors
 * Malagatic (http://www.malagatic.es)
 * Comunitea (http://www.comunitea.com)
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Javi Melendez <javimelex@gmail.com>
 
 Maintainer
 ----------
