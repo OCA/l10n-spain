@@ -50,6 +50,50 @@
         <ResidenceTypeCode>R</ResidenceTypeCode>
         <TaxIdentificationNumber>ES05680675C</TaxIdentificationNumber>
       </TaxIdentification>
+      <AdministrativeCentres>
+        <AdministrativeCentre>
+          <CentreCode>U00000038</CentreCode>
+          <RoleTypeCode>01</RoleTypeCode>
+          <AddressInSpain>
+            <Address>C/ Ejemplo, 13</Address>
+            <PostCode>13700</PostCode>
+            <Town>Tomelloso</Town>
+            <Province>Ciudad Real</Province>
+            <CountryCode>ESP</CountryCode>
+          </AddressInSpain>
+          <ContactDetails>
+            <ContactPersons>Cliente de prueba</ContactPersons>
+          </ContactDetails>
+        </AdministrativeCentre>
+        <AdministrativeCentre>
+          <CentreCode>U00000038</CentreCode>
+          <RoleTypeCode>02</RoleTypeCode>
+          <AddressInSpain>
+            <Address>C/ Ejemplo, 13</Address>
+            <PostCode>13700</PostCode>
+            <Town>Tomelloso</Town>
+            <Province>Ciudad Real</Province>
+            <CountryCode>ESP</CountryCode>
+          </AddressInSpain>
+          <ContactDetails>
+            <ContactPersons>Cliente de prueba</ContactPersons>
+          </ContactDetails>
+        </AdministrativeCentre>
+        <AdministrativeCentre>
+          <CentreCode>U00000038</CentreCode>
+          <RoleTypeCode>03</RoleTypeCode>
+          <AddressInSpain>
+            <Address>C/ Ejemplo, 13</Address>
+            <PostCode>13700</PostCode>
+            <Town>Tomelloso</Town>
+            <Province>Ciudad Real</Province>
+            <CountryCode>ESP</CountryCode>
+          </AddressInSpain>
+          <ContactDetails>
+            <ContactPersons>Cliente de prueba</ContactPersons>
+          </ContactDetails>
+        </AdministrativeCentre>
+      </AdministrativeCentres>
       <Individual>
         <Name>Cliente de prueba</Name>
         <FirstSurname/>
@@ -127,6 +171,16 @@
           </TaxesOutputs>
         </InvoiceLine>
       </Items>
+      <PaymentDetails>
+        <Installment>
+          <InstallmentDueDate>2016-03-12</InstallmentDueDate>
+          <InstallmentAmount>121.00</InstallmentAmount>
+          <PaymentMeans>01</PaymentMeans>
+          <AccountToBeCredited>
+            <IBAN>BE96 9988 7766 5544</IBAN>
+          </AccountToBeCredited>
+        </Installment>
+      </PaymentDetails>
     </Invoice>
   </Invoices>
 </fe:Facturae>
