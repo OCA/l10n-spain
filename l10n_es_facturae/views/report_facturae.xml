@@ -72,25 +72,21 @@
                         <ResidenceTypeCode t-esc="'R'"/>
                         <TaxIdentificationNumber t-esc="company_partner.vat"/>
                     </TaxIdentification>
-                    <t t-if="seller_type == 'F'">
-                        <Individual>
-                            <Name t-esc="company_partner.name"/>
-                            <FirstSurname t-esc="''"/>
-                            <SecondSurname t-esc="''"/>
-                            <t t-call="l10n_es_facturae.address_contact">
-                                <t t-set="partner" t-value="company_partner"/>
-                            </t>
-                        </Individual>
-                    </t>
-                    <t t-if="seller_type == 'J'">
-                        <LegalEntity>
-                            <CorporateName t-esc="company_partner.name"/>
-                            <TradeName t-esc="company_partner.name"/>
-                            <t t-call="l10n_es_facturae.address_contact">
-                                <t t-set="partner" t-value="company_partner"/>
-                            </t>
-                        </LegalEntity>
-                    </t>
+                    <Individual t-if="seller_type == 'F'">
+                        <Name t-esc="company_partner.name"/>
+                        <FirstSurname t-esc="''"/>
+                        <SecondSurname t-esc="''"/>
+                        <t t-call="l10n_es_facturae.address_contact">
+                            <t t-set="partner" t-value="company_partner"/>
+                        </t>
+                    </Individual>
+                    <LegalEntity t-if="seller_type == 'J'">
+                        <CorporateName t-esc="company_partner.name"/>
+                        <TradeName t-esc="company_partner.name"/>
+                        <t t-call="l10n_es_facturae.address_contact">
+                            <t t-set="partner" t-value="company_partner"/>
+                        </t>
+                    </LegalEntity>
                 </SellerParty>
                 <BuyerParty>
                     <t t-set="buyer_type" t-value="'F' if company_partner.vat and invoice_partner.vat[2:3].isdigit() else 'J'"/>
@@ -99,51 +95,51 @@
                         <ResidenceTypeCode t-esc="'R'"/>
                         <TaxIdentificationNumber t-esc="invoice_partner.vat"/>
                     </TaxIdentification>
-                    <t t-if="invoice_partner.facturae">
-                        <AdministrativeCentres>
-                            <AdministrativeCentre>
-                                <CentreCode t-esc="invoice_partner.oficina_contable[:10]"/>
-                                <RoleTypeCode t-esc="'01'"/>
-                                <t t-call="l10n_es_facturae.address_contact">
-                                    <t t-set="partner" t-value="invoice_partner"/>
-                                </t>
-                                <CentreCode t-esc="invoice_partner.organo_gestor[:20]"/>
-                                <RoleTypeCode t-esc="'02'"/>
-                                <t t-call="l10n_es_facturae.address_contact">
-                                    <t t-set="partner" t-value="invoice_partner"/>
-                                </t>
-                                <CentreCode t-esc="invoice_partner.unidad_tramitadora[:20]"/>
-                                <RoleTypeCode t-esc="'03'"/>
-                                <t t-call="l10n_es_facturae.address_contact">
-                                    <t t-set="partner" t-value="invoice_partner"/>
-                                </t>
-                                <CentreCode t-esc="invoice_partner.organo_proponente[:20]"/>
-                                <RoleTypeCode t-esc="'04'"/>
-                                <t t-call="l10n_es_facturae.address_contact">
-                                    <t t-set="partner" t-value="invoice_partner"/>
-                                </t>
-                            </AdministrativeCentre>
-                        </AdministrativeCentres>
-                    </t>
-                    <t t-if="buyer_type == 'F'">
-                        <Individual>
-                            <Name t-esc="invoice_partner.name"/>
-                            <FirstSurname t-esc="''"/>
-                            <SecondSurname t-esc="''"/>
+                    <AdministrativeCentres t-if="invoice_partner.facturae">
+                        <AdministrativeCentre>
+                            <CentreCode t-esc="invoice_partner.oficina_contable"/>
+                            <RoleTypeCode t-esc="'01'"/>
                             <t t-call="l10n_es_facturae.address_contact">
                                 <t t-set="partner" t-value="invoice_partner"/>
                             </t>
-                        </Individual>
-                    </t>
-                    <t t-if="buyer_type == 'J'">
-                        <LegalEntity>
-                            <CorporateName t-esc="invoice_partner.name"/>
-                            <TradeName t-esc="invoice_partner.name"/>
+                        </AdministrativeCentre>
+                        <AdministrativeCentre>
+                            <CentreCode t-esc="invoice_partner.organo_gestor"/>
+                            <RoleTypeCode t-esc="'02'"/>
                             <t t-call="l10n_es_facturae.address_contact">
                                 <t t-set="partner" t-value="invoice_partner"/>
                             </t>
-                        </LegalEntity>
-                    </t>
+                        </AdministrativeCentre>
+                        <AdministrativeCentre>
+                            <CentreCode t-esc="invoice_partner.unidad_tramitadora"/>
+                            <RoleTypeCode t-esc="'03'"/>
+                            <t t-call="l10n_es_facturae.address_contact">
+                                <t t-set="partner" t-value="invoice_partner"/>
+                            </t>
+                        </AdministrativeCentre>
+                        <AdministrativeCentre t-if="invoice_partner.organo_proponente">
+                            <CentreCode t-esc="invoice_partner.organo_proponente"/>
+                            <RoleTypeCode t-esc="'04'"/>
+                            <t t-call="l10n_es_facturae.address_contact">
+                                <t t-set="partner" t-value="invoice_partner"/>
+                            </t>
+                        </AdministrativeCentre>
+                    </AdministrativeCentres>
+                    <Individual t-if="buyer_type == 'F'">
+                        <Name t-esc="invoice_partner.name"/>
+                        <FirstSurname t-esc="''"/>
+                        <SecondSurname t-esc="''"/>
+                        <t t-call="l10n_es_facturae.address_contact">
+                            <t t-set="partner" t-value="invoice_partner"/>
+                        </t>
+                    </Individual>
+                    <LegalEntity t-if="buyer_type == 'J'">
+                        <CorporateName t-esc="invoice_partner.name"/>
+                        <TradeName t-esc="invoice_partner.name"/>
+                        <t t-call="l10n_es_facturae.address_contact">
+                            <t t-set="partner" t-value="invoice_partner"/>
+                        </t>
+                    </LegalEntity>
                 </BuyerParty>
             </Parties>
             <Invoices>
@@ -162,19 +158,17 @@
                         <LanguageName t-esc="'es'"/>
                     </InvoiceIssueData>
                     <TaxesOutputs>
-                        <t t-foreach="invoice.tax_line" t-as="l">
-                            <Tax>
-                                <TaxTypeCode t-esc="'01'"/>
-                                <t t-set="tax_amount" t-value="abs(l.env['account.tax'].search([('tax_code_id', '=', l.tax_code_id.id), ('company_id', '=', l.company_id.id)])[:1].amount) if l.tax_code_id else 0"/>
-                                <TaxRate t-esc="'%.2f' % (tax_amount * 100)"/>
-                                <TaxableBase>
-                                    <TotalAmount t-esc="'%.2f' % l.base_amount"/>
-                                </TaxableBase>
-                                <TaxAmount>
-                                    <TotalAmount t-esc="'%.2f' % l.tax_amount"/>
-                                </TaxAmount>
-                            </Tax>
-                        </t>
+                        <Tax t-foreach="invoice.tax_line" t-as="tax_line">
+                            <TaxTypeCode t-esc="'01'"/>
+                            <t t-set="tax_amount" t-value="abs(tax_line.env['account.tax'].search([('tax_code_id', '=', tax_line.tax_code_id.id), ('company_id', '=', tax_line.company_id.id)])[:1].amount) if tax_line.tax_code_id else 0"/>
+                            <TaxRate t-esc="'%.2f' % (tax_amount * 100)"/>
+                            <TaxableBase>
+                                <TotalAmount t-esc="'%.2f' % tax_line.base_amount"/>
+                            </TaxableBase>
+                            <TaxAmount>
+                                <TotalAmount t-esc="'%.2f' % tax_line.tax_amount"/>
+                            </TaxAmount>
+                        </Tax>
                     </TaxesOutputs>
                     <InvoiceTotals>
                         <TotalGrossAmount t-esc="'%.2f' % sum(invoice.mapped('invoice_line.price_subtotal'))"/>
@@ -186,65 +180,51 @@
                         <TotalExecutableAmount t-esc="'%.2f' % invoice.residual"/>
                     </InvoiceTotals>
                     <Items>
-                        <t t-foreach="invoice.invoice_line" t-as="line">
-                            <InvoiceLine>
-                                <ItemDescription t-esc="line.name"/>
-                                <Quantity t-esc="line.quantity"/>
-                                <UnitPriceWithoutTax t-esc="'%.6f' % line.price_unit"/>
-                                <TotalCost t-esc="'%.6f' % (line.quantity * line.price_unit)"/>
-                                <DiscountsAndRebates>
-                                    <Discount>
-                                        <DiscountReason t-esc="'Descuento'"/>
-                                        <DiscountRate t-esc="'%.4f' % line.discount"/>
-                                        <DiscountAmount t-esc="'%.6f' % (line.price_unit * line.quantity - line.price_subtotal)"/>
-                                    </Discount>
-                                </DiscountsAndRebates>
-                                <GrossAmount t-esc="'%.6f' % line.price_subtotal"/>
-                                <TaxesOutputs>
-                                    <t t-foreach="line.invoice_line_tax_id" t-as="l">
-                                        <Tax>
-                                            <TaxTypeCode t-esc="'01'"/>
-                                            <TaxRate t-esc="'%.2f' % (l.amount * 100)"/>
-                                            <TaxableBase>
-                                                <TotalAmount t-esc="'%.2f' % line.price_subtotal"/>
-                                            </TaxableBase>
-                                        </Tax>
-                                    </t>
-                                </TaxesOutputs>
-                            </InvoiceLine>
-                        </t>
+                        <InvoiceLine t-foreach="invoice.invoice_line" t-as="line">
+                            <ItemDescription t-esc="line.name"/>
+                            <Quantity t-esc="line.quantity"/>
+                            <UnitPriceWithoutTax t-esc="'%.6f' % line.price_unit"/>
+                            <TotalCost t-esc="'%.6f' % (line.quantity * line.price_unit)"/>
+                            <DiscountsAndRebates>
+                                <Discount>
+                                    <DiscountReason t-esc="'Descuento'"/>
+                                    <DiscountRate t-esc="'%.4f' % line.discount"/>
+                                    <DiscountAmount t-esc="'%.6f' % (line.price_unit * line.quantity - line.price_subtotal)"/>
+                                </Discount>
+                            </DiscountsAndRebates>
+                            <GrossAmount t-esc="'%.6f' % line.price_subtotal"/>
+                            <TaxesOutputs>
+                                <Tax t-foreach="line.invoice_line_tax_id" t-as="line_tax">
+                                    <TaxTypeCode t-esc="'01'"/>
+                                    <TaxRate t-esc="'%.2f' % (line_tax.amount * 100)"/>
+                                    <TaxableBase>
+                                        <TotalAmount t-esc="'%.2f' % line.price_subtotal"/>
+                                    </TaxableBase>
+                                </Tax>
+                            </TaxesOutputs>
+                        </InvoiceLine>
                     </Items>
-                    <t t-if="invoice.payment_mode_id">
-                        <PaymentDetails>
-                            <t t-foreach="invoice.move_id.line_id" t-as="move">
-                                <!-- QWeb won't pass t-set assigned vars as context through filtered()
-                                due to security concerns; use t-if on each item instead -->
-                                <t t-if="move.account_id == invoice.account_id">
-                                    <Installment>
-                                        <InstallmentDueDate t-esc="move.date_maturity or invoice.date_invoice"/>
-                                        <!-- TODO: Esto se tendrá que revisar cuando se implementen las rectificativas -->
-                                        <InstallmentAmount t-esc="'%.2f' % (move.debit if move.debit > move.credit else -move.credit)"/>
-                                    </Installment>
-                                    <PaymentMeans t-esc="invoice.payment_mode_id.facturae_code"/>
-                                    <t t-if="invoice.payment_mode_id.facturae_code == '02'">
-                                        <AccountToBeDebited>
-                                            <IBAN t-esc="invoice.partner_bank_id.iban"/>
-                                        </AccountToBeDebited>
-                                    </t>
-                                    <t t-if="invoice.payment_mode_id.facturae_code != '02'">
-                                        <AccountToBeCredited>
-                                            <IBAN t-esc="invoice.payment_mode_id.bank_id.iban"/>
-                                        </AccountToBeCredited>
-                                    </t>
-                                </t>
-                            </t>
-                        </PaymentDetails>
-                    </t>
-                    <t t-if="invoice.comment">
-                        <AdditionalData>
-                            <InvoiceAdditionalInformation t-esc="invoice.comment"/>
-                        </AdditionalData>
-                    </t>
+                    <PaymentDetails t-if="invoice.payment_mode_id">
+                        <t t-foreach="invoice.move_id.line_id" t-as="move">
+                            <!-- QWeb won't pass t-set assigned vars as context through filtered()
+                            due to security concerns; use t-if on each item instead -->
+                            <Installment t-if="move.account_id == invoice.account_id">
+                                <InstallmentDueDate t-esc="move.date_maturity or invoice.date_invoice"/>
+                                <!-- TODO: Esto se tendrá que revisar cuando se implementen las rectificativas -->
+                                <InstallmentAmount t-esc="'%.2f' % (move.debit if move.debit > move.credit else -move.credit)"/>
+                                <PaymentMeans t-esc="invoice.payment_mode_id.facturae_code"/>
+                                <AccountToBeDebited t-if="invoice.payment_mode_id.facturae_code == '02'">
+                                    <IBAN t-esc="invoice.partner_bank_id.iban"/>
+                                </AccountToBeDebited>
+                                <AccountToBeCredited t-if="invoice.payment_mode_id.facturae_code != '02'">
+                                    <IBAN t-esc="invoice.payment_mode_id.bank_id.iban"/>
+                                </AccountToBeCredited>
+                            </Installment>
+                        </t>
+                    </PaymentDetails>
+                    <AdditionalData t-if="invoice.comment">
+                        <InvoiceAdditionalInformation t-esc="invoice.comment"/>
+                    </AdditionalData>
                 </Invoice>
             </Invoices>
         </t>
