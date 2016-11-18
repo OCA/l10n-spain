@@ -81,12 +81,28 @@ class TestL10nEsFacturae(common.TransactionCase):
             'state_id': self.state.id,
             'country_id': self.ref('base.es'),
             'vat': 'ES05680675C',
+            'facturae': True,
+            'organo_gestor': 'U00000038',
+            'unidad_tramitadora': 'U00000038',
+            'oficina_contable': 'U00000038',
         })
         self.journal = self.env['account.journal'].create({
             'name': 'Test journal',
             'code': 'TEST',
             'type': 'sale',
             'currency': self.ref('base.USD'),
+        })
+        self.bank = self.env['res.partner.bank'].create({
+            'state': 'iban',
+            'acc_number': 'BE96 9988 7766 5544',
+        })
+        self.payment_mode = self.env['payment.mode'].create({
+            'name': 'Test payment mode',
+            'journal': self.journal.id,
+            'bank_id': self.bank.id,
+            'type': self.env.ref('account_banking_payment_export.'
+                                 'manual_bank_tranfer').id,
+            'facturae_code': '01',
         })
         main_company = self.env.ref('base.main_company')
         main_company.currency_id = self.ref('base.USD')
@@ -95,6 +111,7 @@ class TestL10nEsFacturae(common.TransactionCase):
             'account_id': self.partner.property_account_receivable.id,
             'journal_id': self.journal.id,
             'date_invoice': '2016-03-12',
+            'payment_mode_id': self.payment_mode.id,
             'invoice_line': [
                 (0, 0, {
                     'name': 'Producto de prueba',
