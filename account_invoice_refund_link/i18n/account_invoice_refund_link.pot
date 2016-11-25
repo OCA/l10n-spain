@@ -1,6 +1,6 @@
 # Translation of OpenERP Server.
 # This file contains the translation of the following modules:
-#	* account_refund_original
+#	* account_invoice_refund_link
 #
 msgid ""
 msgstr ""
@@ -15,27 +15,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 
-#. module: account_refund_original
+#. module: account_invoice_refund_link
 #: view:account.invoice:0
 msgid "Refunded invoices"
 msgstr "Refunded invoices"
 
-#. module: account_refund_original
+#. module: account_invoice_refund_link
 #: view:account.invoice:0
 msgid "Refunds"
 msgstr "Refunds"
 
-#. module: account_refund_original
+#. module: account_invoice_refund_link
 #: view:account.invoice:0
 msgid "Description"
 msgstr "Description"
 
-#. module: account_refund_original
-#: model:ir.model,name:account_refund_original.model_account_invoice
+#. module: account_invoice_refund_link
+#: model:ir.model,name:account_invoice_refund_link.model_account_invoice
 msgid "Invoice"
 msgstr "Invoice"
 
-#. module: account_refund_original
+#. module: account_invoice_refund_link
 #: view:account.invoice:0
 msgid "Payments"
 msgstr "Payments"
