@@ -2,11 +2,12 @@
 # Copyright 2004-2011 Luis Manuel Angueira Blanco (http://pexego.es)
 # Copyright 2013 Ignacio Ibeas (http://acysos.com)
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2016 Angel Moya <odoo@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
 import re
-from openerp.tools.safe_eval import safe_eval as eval
+from openerp.tools.safe_eval import safe_eval
 from openerp import _, api, fields, exceptions, models, tools
 
 EXPRESSION_PATTERN = re.compile(r'(\$\{.+?\})')
@@ -173,23 +174,25 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         # usar esta variable para resolver las expresiones
         obj_merge = obj
 
-        def merge(match):
-            exp = str(match.group()[2:-1]).strip()
-            result = eval(exp, {
+        def merge_eval(exp):
+            return safe_eval(exp, {
                 'user': self.env.user,
                 'object': obj_merge,
                 # copy context to prevent side-effects of eval
                 'context': self.env.context.copy(),
             })
+
+        def merge(match):
+            exp = str(match.group()[2:-1]).strip()
+            result = merge_eval(exp)
             return result and tools.ustr(result) or ''
 
         val = ''
         if line.conditional_expression:
-            if (not EXPRESSION_PATTERN.sub(
-                    merge, line.conditional_expression)):
+            if merge_eval(line.conditional_expression):
                 return ''
         if line.repeat_expression:
-            obj_list = EXPRESSION_PATTERN.sub(merge, line.expression)
+            obj_list = merge_eval(line.repeat_expression)
         else:
             obj_list = [obj]
         for obj_merge in obj_list:
