@@ -28,9 +28,6 @@ virtualenv:
   system_site_packages: true
 
 install:
-  - pip install unidecode
-  - pip install unicodecsv
-  - pip install requests
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
