@@ -118,5 +118,6 @@ def gen_bank_data_xml(src_path, dest_path):
     output.close()
     _logger.info("data_banks.xml generado correctamente.")
 
+
 if __name__ == "__main__":
     gen_bank_data_xml('REGBANESP_CONESTAB_A.XLS', "../wizard/data_banks.xml")
