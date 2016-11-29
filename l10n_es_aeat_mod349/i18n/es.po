@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-01 00:54+0000\n"
-"PO-Revision-Date: 2016-06-14 11:57+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -150,6 +150,11 @@ msgid "Amount untaxed"
 msgstr "Importe sin impuestos"
 
 #. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,partner_bank_id:0
+msgid "Bank account"
+msgstr "Cuenta bancaria"
+
+#. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,calculate_date:0
 msgid "Calculate by days"
 msgstr "Calcular por tipo de período"
@@ -178,6 +183,11 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.report,company_id:0
 msgid "Company"
 msgstr "Compañía"
+
+#. module: l10n_es_aeat_mod349
+#: help:l10n.es.aeat.mod349.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,type:0
@@ -455,7 +465,7 @@ msgstr "M - Intra-Community supplies without taxes"
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,model:0
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #. module: l10n_es_aeat_mod349
 #: help:l10n.es.aeat.mod349.report,contact_name:0

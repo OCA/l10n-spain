@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 19:26+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -39,6 +39,11 @@ msgid "Allow posting"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,partner_bank_id:0
+msgid "Bank account"
+msgstr "Compte bancaire"
+
+#. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,calculation_date:0
 msgid "Calculation date"
 msgstr ""
@@ -46,7 +51,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Annulé"
 
 #. module: l10n_es_aeat_mod115
 #: help:l10n.es.aeat.mod115.report,casilla_01:0
@@ -89,6 +94,11 @@ msgstr ""
 #: field:l10n.es.aeat.mod115.report,company_id:0
 msgid "Company"
 msgstr "Société"
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,type:0
@@ -161,7 +171,7 @@ msgstr "Terminé"
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Brouillon"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model,name:l10n_es_aeat_mod115.model_l10n_es_aeat_mod115_export_to_boe
@@ -217,7 +227,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. module: l10n_es_aeat_mod115
 #: help:l10n.es.aeat.mod115.report,journal_id:0
@@ -255,7 +265,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,model:0
 msgid "Model"
-msgstr ""
+msgstr "Modèle"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.ui.menu,name:l10n_es_aeat_mod115.menu_aeat_mod115_report

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 19:26+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -66,6 +66,11 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.report,allow_posting:0
 msgid "Allow posting"
 msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,partner_bank_id:0
+msgid "Bank account"
+msgstr "Conta Bancária"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,calculation_date:0
@@ -170,6 +175,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,company_id:0
 msgid "Company"
+msgstr "Empresa"
+
+#. module: l10n_es_aeat_mod130
+#: help:l10n.es.aeat.mod130.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -251,7 +261,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Rascunho"
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod130.action_wizard_aeat_mod130_export
@@ -345,7 +355,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,model:0
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,contact_name:0
@@ -376,7 +386,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,company_partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Parceiro"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,period:0
@@ -460,7 +470,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.export_to_boe,state:0
 #: field:l10n.es.aeat.mod130.report,state:0
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,type:0

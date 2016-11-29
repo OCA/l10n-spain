@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 19:26+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: view:banking.export.csb.wizard:l10n_es_payment_order.view_banking_export_csb_wizard_form
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: l10n_es_payment_order
 #: selection:payment.mode,csb34_send_type:0
@@ -204,7 +204,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: selection:banking.export.csb.wizard,state:0
 msgid "Create"
-msgstr ""
+msgstr "Criar"
 
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,create_uid:0
@@ -379,7 +379,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,note:0
 msgid "Log"
-msgstr ""
+msgstr "Histórico"
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb34_not_to_the_order:0
@@ -446,7 +446,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,state:0
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb_suffix:0

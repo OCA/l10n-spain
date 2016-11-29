@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-21 00:49+0000\n"
-"PO-Revision-Date: 2016-06-07 18:16+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,11 @@ msgstr "Entrada cuenta"
 #: field:l10n.es.aeat.mod115.report,allow_posting:0
 msgid "Allow posting"
 msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,partner_bank_id:0
+msgid "Bank account"
+msgstr "Cuenta bancaria"
 
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,calculation_date:0
@@ -89,6 +94,11 @@ msgstr ""
 #: field:l10n.es.aeat.mod115.report,company_id:0
 msgid "Company"
 msgstr "Compañía"
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,type:0
@@ -255,7 +265,7 @@ msgstr "NIF representante legal"
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,model:0
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.ui.menu,name:l10n_es_aeat_mod115.menu_aeat_mod115_report

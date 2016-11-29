@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-17 18:43+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -54,6 +54,11 @@ msgid "Allow posting"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,partner_bank_id:0
+msgid "Bank account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,calculation_date:0
 msgid "Calculation date"
 msgstr ""
@@ -66,6 +71,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,company_id:0
 msgid "Company"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: help:l10n.es.aeat.mod216.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
@@ -87,13 +97,13 @@ msgstr ""
 #: field:l10n.es.aeat.mod216.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.mod216.report,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Aangemaakt door"
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.export_to_boe,create_date:0
 #: field:l10n.es.aeat.mod216.report,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Aangemaakt op"
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,support_type:0
@@ -180,7 +190,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod216.export_to_boe,id:0
 #: field:l10n.es.aeat.mod216.report,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
@@ -222,13 +232,13 @@ msgstr "Laatst bijgewerkt op"
 #: field:l10n.es.aeat.mod216.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod216.report,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Laatst bijgewerkt door"
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.export_to_boe,write_date:0
 #: field:l10n.es.aeat.mod216.report,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Laatst bijgewerkt op"
 
 #. module: l10n_es_aeat_mod216
 #: help:l10n.es.aeat.mod216.report,representative_vat:0

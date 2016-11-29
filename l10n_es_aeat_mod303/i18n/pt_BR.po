@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 19:26+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -71,6 +71,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,bank_account:0
+#: field:l10n.es.aeat.mod303.report,partner_bank_id:0
 msgid "Bank account"
 msgstr ""
 
@@ -87,6 +88,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,company_id:0
 msgid "Company"
+msgstr "Empresa"
+
+#. module: l10n_es_aeat_mod303
+#: help:l10n.es.aeat.mod303.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -159,7 +165,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Rascunho"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,regularizacion_anual:0
@@ -244,7 +250,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,model:0
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,contact_name:0
@@ -259,7 +265,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,company_partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Parceiro"
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,period_type:0
@@ -350,7 +356,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,state:0
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,type:0

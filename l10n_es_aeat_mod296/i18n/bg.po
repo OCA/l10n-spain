@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 19:26+0000\n"
-"PO-Revision-Date: 2016-09-25 14:54+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:57+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -269,6 +269,11 @@ msgid "Allow posting"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,partner_bank_id:0
+msgid "Bank account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,base_retenciones_ingresos:0
 msgid "Base retenciones e ingresos a cuenta"
 msgstr ""
@@ -335,6 +340,11 @@ msgstr ""
 #: field:l10n.es.aeat.mod296.report,company_id:0
 msgid "Company"
 msgstr "Фирма"
+
+#. module: l10n_es_aeat_mod296
+#: help:l10n.es.aeat.mod296.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
 
 #. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.report,type:0
@@ -452,7 +462,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod296.report,display_name:0
 #: field:l10n.es.aeat.mod296.report.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Име за Показване"
 
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,domicilio:0
@@ -462,7 +472,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.report,state:0
 msgid "Done"
-msgstr ""
+msgstr "Готово"
 
 #. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.report,state:0

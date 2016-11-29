@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 19:26+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Annulé"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,check_draft_moves:0
@@ -172,7 +172,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:l10n_es_fiscal_year_closing.view_fyc_form
 msgid "Continue"
-msgstr ""
+msgstr "Continuer"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,create_loss_and_profit:0
@@ -295,7 +295,7 @@ msgstr "Terminé"
 #: view:account.fiscalyear.closing:l10n_es_fiscal_year_closing.view_fyc_form
 #: selection:account.fiscalyear.closing,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Brouillon"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:215
@@ -404,7 +404,7 @@ msgstr ""
 #: field:account.fiscalyear.closing,nlp_journal_id:0
 #: field:account.fiscalyear.closing,o_journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,loss_and_profit_move_id:0
@@ -477,7 +477,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0
 msgid "New"
-msgstr ""
+msgstr "Nouveau"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/models/l10n_es_fiscalyear_closing.py:121
@@ -601,7 +601,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,state:0
 msgid "Status"
-msgstr ""
+msgstr "Statut"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/models/fiscalyear_closing.py:374

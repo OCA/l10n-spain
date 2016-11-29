@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-30 22:58+0000\n"
-"PO-Revision-Date: 2016-05-02 04:21+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-22 16:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "AEAT 115 report"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: code:addons/l10n_es_aeat_mod115/models/mod115.py:108
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:109
 #, python-format
 msgid "Account Move Lines"
 msgstr ""
@@ -37,6 +37,11 @@ msgstr ""
 #: field:l10n.es.aeat.mod115.report,allow_posting:0
 msgid "Allow posting"
 msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: field:l10n.es.aeat.mod115.report,partner_bank_id:0
+msgid "Bank account"
+msgstr "Bančni račun"
 
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,calculation_date:0
@@ -89,6 +94,11 @@ msgstr ""
 #: field:l10n.es.aeat.mod115.report,company_id:0
 msgid "Company"
 msgstr "Družba"
+
+#. module: l10n_es_aeat_mod115
+#: help:l10n.es.aeat.mod115.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,type:0
@@ -255,7 +265,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,model:0
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.ui.menu,name:l10n_es_aeat_mod115.menu_aeat_mod115_report
