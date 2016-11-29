@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-21 00:49+0000\n"
-"PO-Revision-Date: 2016-06-07 18:16+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgid "AEAT 111 report"
 msgstr "Declaración AEAT 111"
 
 #. module: l10n_es_aeat_mod111
-#: code:addons/l10n_es_aeat_mod111/models/mod111.py:297
+#: code:addons/l10n_es_aeat_mod111/models/mod111.py:357
 #, python-format
 msgid "Account Move Lines"
 msgstr "Apuntes contables"
@@ -41,6 +41,11 @@ msgstr "Entrada cuenta"
 #: field:l10n.es.aeat.mod111.report,allow_posting:0
 msgid "Allow posting"
 msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,partner_bank_id:0
+msgid "Bank account"
+msgstr "Cuenta bancaria"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,calculation_date:0
@@ -264,6 +269,11 @@ msgid "Company"
 msgstr "Compañía"
 
 #. module: l10n_es_aeat_mod111
+#: help:l10n.es.aeat.mod111.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.report,type:0
 msgid "Complementary"
 msgstr "Complementaria"
@@ -284,13 +294,11 @@ msgid "Crea y consulta las declaraciones del modelo 111 de la AEAT."
 msgstr "Crea y consulta las declaraciones del modelo 111 de la AEAT."
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.mod111.report,create_uid:0
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.export_to_boe,create_date:0
 #: field:l10n.es.aeat.mod111.report,create_date:0
 msgid "Created on"
 msgstr "Creado en"
@@ -334,7 +342,6 @@ msgid "Declaration number"
 msgstr "Nº declaración"
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.export_to_boe,display_name:0
 #: field:l10n.es.aeat.mod111.report,display_name:0
 msgid "Display Name"
 msgstr "Display Name"
@@ -355,29 +362,9 @@ msgid "Draft"
 msgstr "Borrador"
 
 #. module: l10n_es_aeat_mod111
-#: model:ir.model,name:l10n_es_aeat_mod111.model_l10n_es_aeat_mod111_export_to_boe
-msgid "Export Report to BOE Format"
-msgstr "Exportar declaración al formato BOE"
-
-#. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,export_config:0
 msgid "Export config"
 msgstr "Plantilla de exportación"
-
-#. module: l10n_es_aeat_mod111
-#: model:ir.actions.act_window,name:l10n_es_aeat_mod111.action_wizard_aeat_mod111_export
-msgid "Exportar archivo BOE AEAT 111"
-msgstr "Exportar archivo BOE AEAT 111"
-
-#. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.export_to_boe,data:0
-msgid "File"
-msgstr "Archivo"
-
-#. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.export_to_boe,name:0
-msgid "File name"
-msgstr "Nombre de archivo"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,fiscalyear_id:0
@@ -395,7 +382,6 @@ msgid "Ganancias patrim. Aprovecham. Forestales"
 msgstr "Ganancias patrim. Aprovecham. Forestales"
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.export_to_boe,id:0
 #: field:l10n.es.aeat.mod111.report,id:0
 msgid "ID"
 msgstr "ID"
@@ -426,19 +412,16 @@ msgid "L.R. VAT number"
 msgstr "NIF representante legal"
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.export_to_boe,__last_update:0
 #: field:l10n.es.aeat.mod111.report,__last_update:0
 msgid "Last Modified on"
 msgstr "Last Modified on"
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod111.report,write_uid:0
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.export_to_boe,write_date:0
 #: field:l10n.es.aeat.mod111.report,write_date:0
 msgid "Last Updated on"
 msgstr "Última actualización en"
@@ -456,7 +439,7 @@ msgstr "Teléfono móvil"
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,model:0
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.ui.menu,name:l10n_es_aeat_mod111.menu_aeat_mod111_report
@@ -467,6 +450,26 @@ msgstr "Modelo 111"
 #: field:l10n.es.aeat.mod111.report,currency_id:0
 msgid "Moneda"
 msgstr "Moneda"
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,move_lines_02:0
+msgid "Move lines 02"
+msgstr "Apuntes casilla 02"
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,move_lines_03:0
+msgid "Move lines 03"
+msgstr "Apuntes casilla 03"
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,move_lines_05:0
+msgid "Move lines 05"
+msgstr ""
+
+#. module: l10n_es_aeat_mod111
+#: field:l10n.es.aeat.mod111.report,move_lines_06:0
+msgid "Move lines 06"
+msgstr ""
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,move_lines_08:0
@@ -594,7 +597,7 @@ msgid "Show account move lines for base"
 msgstr "Mostrar apuntes de la base"
 
 #. module: l10n_es_aeat_mod111
-#: code:addons/l10n_es_aeat_mod111/models/mod111.py:237
+#: code:addons/l10n_es_aeat_mod111/models/mod111.py:261
 #, python-format
 msgid ""
 "Si se marca la casilla de liquidación complementaria, debe rellenar el "
@@ -602,7 +605,6 @@ msgid ""
 msgstr "Si se marca la casilla de liquidación complementaria, debe rellenar el código electrónico o el número de justificante de la declaración anterior."
 
 #. module: l10n_es_aeat_mod111
-#: field:l10n.es.aeat.mod111.export_to_boe,state:0
 #: field:l10n.es.aeat.mod111.report,state:0
 msgid "State"
 msgstr "Estado"
@@ -823,16 +825,6 @@ msgstr "[29] Resultados a ingresar anteriores"
 #: field:l10n.es.aeat.mod111.report,casilla_30:0
 msgid "[30] Resultado a ingresar"
 msgstr ""
-
-#. module: l10n_es_aeat_mod111
-#: selection:l10n.es.aeat.mod111.export_to_boe,state:0
-msgid "get"
-msgstr "obtener"
-
-#. module: l10n_es_aeat_mod111
-#: selection:l10n.es.aeat.mod111.export_to_boe,state:0
-msgid "open"
-msgstr "abierto"
 
 #. module: l10n_es_aeat_mod111
 #: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
