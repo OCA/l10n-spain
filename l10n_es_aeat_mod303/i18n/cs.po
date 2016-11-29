@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-13 10:45+0000\n"
-"PO-Revision-Date: 2016-11-25 14:55+0000\n"
+"PO-Revision-Date: 2016-10-18 18:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/pt_BR/)\n"
+"Language-Team: Czech (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,casilla_46:0
@@ -88,7 +88,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,company_id:0
 msgid "Company"
-msgstr "Empresa"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,partner_bank_id:0
@@ -118,12 +118,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,create_uid:0
 msgid "Created by"
-msgstr "Criado por"
+msgstr "Vytvořil(a)"
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,create_date:0
 msgid "Created on"
-msgstr "Criado em"
+msgstr "Vytvořeno"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,cuota_compensar:0
@@ -155,7 +155,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,display_name:0
 msgid "Display Name"
-msgstr "Nome para Mostrar"
+msgstr "Zobrazovaný název"
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
@@ -165,7 +165,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
 msgid "Draft"
-msgstr "Rascunho"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,regularizacion_anual:0
@@ -195,7 +195,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,id:0
 msgid "ID"
-msgstr "Identificação"
+msgstr "ID"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,devolucion_mensual:0
@@ -220,17 +220,17 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,__last_update:0
 msgid "Last Modified on"
-msgstr "Última atualização em"
+msgstr "Naposled upraveno"
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,write_uid:0
 msgid "Last Updated by"
-msgstr "Última atualização por"
+msgstr "Naposled upraveno"
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,write_date:0
 msgid "Last Updated on"
-msgstr "Última atualização em"
+msgstr "Naposled upraveno"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,representative_vat:0
@@ -250,7 +250,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,model:0
 msgid "Model"
-msgstr "Modelo"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,contact_name:0
@@ -265,7 +265,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,company_partner_id:0
 msgid "Partner"
-msgstr "Parceiro"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,period_type:0
@@ -356,7 +356,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,state:0
 msgid "State"
-msgstr "Estado"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,type:0
