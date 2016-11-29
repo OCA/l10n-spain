@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 18:41+0000\n"
-"PO-Revision-Date: 2016-10-05 06:37+0000\n"
+"POT-Creation-Date: 2016-10-14 00:10+0000\n"
+"PO-Revision-Date: 2016-11-29 09:33+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgstr ""
 #: view:l10n.es.aeat.mod340.report:0
 #: field:l10n.es.aeat.mod340.report,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Poduzeće"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,number_records:0
@@ -150,7 +150,7 @@ msgstr ""
 #: view:l10n.es.aeat.mod340.report:0
 #: selection:l10n.es.aeat.mod340.report,state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Otkazan"
 
 #. module: l10n_es_aeat_mod340
 #: selection:res.partner,vat_type:0
@@ -236,7 +236,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,state:0
 msgid "State"
-msgstr ""
+msgstr "Status"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.ui.menu,name:l10n_es_aeat_mod340.menu_aeat_mod340_report
@@ -533,7 +533,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:0
 msgid "General"
-msgstr ""
+msgstr "Općenito"
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:0
@@ -549,7 +549,7 @@ msgstr ""
 #: view:l10n.es.aeat.mod340.report:0
 #: selection:l10n.es.aeat.mod340.report,state:0
 msgid "Done"
-msgstr ""
+msgstr "Izvršeno"
 
 #. module: l10n_es_aeat_mod340
 #: selection:res.partner,vat_type:0
@@ -563,7 +563,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.issued,invoice_id:0
 #: field:l10n.es.aeat.mod340.received,invoice_id:0
 msgid "Invoice"
-msgstr ""
+msgstr "Račun"
 
 #. module: l10n_es_aeat_mod340
 #: reportreport mod340:0
@@ -666,7 +666,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_issued,name:0
 #: field:l10n.es.aeat.mod340.tax_line_received,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.received:0 view:l10n.es.aeat.mod340.report:0
@@ -771,7 +771,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.report,total:0
 #: field:l10n.es.aeat.mod340.report,total_rec:0 reportvat book:0
 msgid "Total"
-msgstr ""
+msgstr "Ukupno"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_account_tax_code_template

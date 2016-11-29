@@ -1,0 +1,332 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * l10n_es_aeat
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (7.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-14 00:10+0000\n"
+"PO-Revision-Date: 2015-05-23 16:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Spanish (Colombia) (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/es_CO/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_CO\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report.export_to_boe,state:0
+msgid "unknown"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.actions.act_window,name:l10n_es_aeat.action_wizard_aeat_export
+#: view:l10n.es.aeat.report.export_to_boe:0
+msgid "Export AEAT BOE file"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0
+msgid "Confirmed models"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0
+msgid "Calculate"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0
+msgid "Confirm"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:res.groups,name:l10n_es_aeat.group_account_aeat
+msgid "AEAT manager"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.report,support_type:0
+msgid "DVD"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0
+msgid "In process"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0
+msgid "Cancelled models"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report.export_to_boe:0
+msgid "en el formulario on-line."
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,state:0
+msgid "State"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0 selection:l10n.es.aeat.report,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0
+msgid "Declaración"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.report.export_to_boe,state:0
+msgid "open"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report.export_to_boe:0
+msgid "Exportar"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0
+msgid "AEAT report"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.report,type:0
+msgid "Complementary"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0
+msgid "AEAT"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0 field:l10n.es.aeat.report,company_id:0
+msgid "Company"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:78
+#, python-format
+msgid "Wrong aling option. It should be < or >"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: help:l10n.es.aeat.report,representative_vat:0
+msgid "Legal Representative VAT number."
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report
+msgid "AEAT report base module"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report.export_to_boe:0
+msgid "Exportación completada"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,previous_number:0
+msgid "Previous declaration number"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0
+msgid "Export to BOE"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report.export_to_boe:0
+msgid "para iniciar el proceso de exportación del archivo BOE de la AEAT."
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report.export_to_boe:0
+msgid "Export"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,company_vat:0
+msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report.export_to_boe:0
+msgid "Aquí está el archivo BOE de la AEAT exportado:"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.report,type:0
+msgid "Substitutive"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
+msgid "AEAT reports"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report.export_to_boe,data:0
+msgid "File"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.report.export_to_boe,state:0
+msgid "get"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report.export_to_boe,name:0
+msgid "File name"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,number:0
+msgid "Declaration number"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,support_type:0
+msgid "Support Type"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0
+msgid "Draft models"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report.export_to_boe:0
+msgid "Pulse el botón"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,calculation_date:0
+msgid "Calculation date"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0 selection:l10n.es.aeat.report,state:0
+msgid "Cancelled"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,representative_vat:0
+msgid "L.R. VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report.export_to_boe:0
+msgid "Optativo: Importar datos de fichero"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.report,support_type:0
+msgid "Telematics"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report.export_to_boe:0
+msgid ""
+"Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el "
+"programa"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/aeat_report.py:141
+#, python-format
+msgid "Only reports in 'draft' or 'cancelled' state can be removed"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report.export_to_boe:0
+msgid "Informativas"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:81
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:113
+#, python-format
+msgid "The formated string must match the given length"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/aeat_report.py:140
+#, python-format
+msgid "Error!"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_export_to_boe
+msgid "Export Report to BOE Format"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.report,type:0
+msgid "Normal"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0
+msgid "In process models"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0 field:l10n.es.aeat.report,fiscalyear_id:0
+msgid "Fiscal year"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0 selection:l10n.es.aeat.report,state:0
+msgid "Done"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:155
+#, python-format
+msgid "%s_report_%s.txt"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report.export_to_boe:0
+msgid "o pulsando en el botón"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0 view:l10n.es.aeat.report.export_to_boe:0
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report.export_to_boe:0
+msgid "Close"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:0
+msgid "Recalculate"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,type:0
+msgid "Statement Type"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report.export_to_boe:0
+msgid "or"
+msgstr "o"
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.report,state:0
+msgid "Processed"
+msgstr ""

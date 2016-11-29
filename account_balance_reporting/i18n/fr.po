@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 18:41+0000\n"
-"PO-Revision-Date: 2016-10-04 11:17+0000\n"
+"POT-Creation-Date: 2016-10-14 00:10+0000\n"
+"PO-Revision-Date: 2016-11-22 12:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgstr "État"
 #: view:account.balance.reporting:0
 #: selection:account.balance.reporting,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Brouillon"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,template_id:0
@@ -214,7 +214,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,type:0
 msgid "User"
-msgstr ""
+msgstr "Utilisateur"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,report_id:0
@@ -261,7 +261,7 @@ msgstr ""
 #: field:account.balance.reporting.template,name:0
 #: field:account.balance.reporting.template.line,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.template:0
@@ -361,7 +361,7 @@ msgstr ""
 #: field:account.balance.reporting.line,code:0
 #: field:account.balance.reporting.template.line,code:0
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,previous_period_ids:0
@@ -442,7 +442,7 @@ msgstr ""
 #: field:account.balance.reporting.line,child_ids:0
 #: field:account.balance.reporting.template.line,child_ids:0
 msgid "Children"
-msgstr ""
+msgstr "Enfant"
 
 #. module: account_balance_reporting
 #: report:report_account_balance_reporting.generic:0

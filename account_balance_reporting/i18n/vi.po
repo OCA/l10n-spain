@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-26 15:55+0000\n"
-"PO-Revision-Date: 2016-09-09 12:24+0000\n"
+"POT-Creation-Date: 2016-10-14 00:10+0000\n"
+"PO-Revision-Date: 2016-10-11 09:47+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -131,7 +131,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template,type:0
 msgid "Type"
-msgstr ""
+msgstr "Loại"
 
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template
@@ -168,7 +168,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template,description:0
 msgid "Description"
-msgstr ""
+msgstr "Miêu tả"
 
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template.line,name:0
@@ -261,7 +261,7 @@ msgstr ""
 #: field:account.balance.reporting.template,name:0
 #: field:account.balance.reporting.template.line,name:0
 msgid "Name"
-msgstr ""
+msgstr "Tên"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.template:0
@@ -383,7 +383,7 @@ msgstr ""
 #: field:account.balance.reporting.line,sequence:0
 #: field:account.balance.reporting.template.line,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Trình tự"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:0

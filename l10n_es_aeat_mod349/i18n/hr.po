@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 18:41+0000\n"
-"PO-Revision-Date: 2016-10-05 06:37+0000\n"
+"POT-Creation-Date: 2016-10-14 00:10+0000\n"
+"PO-Revision-Date: 2016-11-29 09:33+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Poduzeće"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/mod349.py:308
@@ -181,7 +181,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Otkazan"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
@@ -275,7 +275,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,state:0
 msgid "State"
-msgstr ""
+msgstr "Status"
 
 #. module: l10n_es_aeat_mod349
 #: field:account.invoice,operation_key:0
@@ -318,7 +318,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
 msgid "Done"
-msgstr ""
+msgstr "Izvršeno"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_refund_detail:0
@@ -642,7 +642,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "General"
-msgstr ""
+msgstr "Općenito"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/mod349.py:315
@@ -678,7 +678,7 @@ msgstr ""
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_invoice
 #: field:l10n.es.aeat.mod349.partner_record_detail,invoice_id:0
 msgid "Invoice"
-msgstr ""
+msgstr "Račun"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/account_invoice.py:122
@@ -776,7 +776,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_record,name:0
 #: field:l10n.es.aeat.mod349.report,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0

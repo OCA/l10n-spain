@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 18:41+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-10-14 00:10+0000\n"
+"PO-Revision-Date: 2016-11-22 12:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -85,13 +85,13 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting,state:0
 msgid "State"
-msgstr ""
+msgstr "Durum"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:0
 #: selection:account.balance.reporting,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Taslak"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,template_id:0
@@ -214,7 +214,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,type:0
 msgid "User"
-msgstr ""
+msgstr "Kullanıcı"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,report_id:0
@@ -261,7 +261,7 @@ msgstr ""
 #: field:account.balance.reporting.template,name:0
 #: field:account.balance.reporting.template.line,name:0
 msgid "Name"
-msgstr ""
+msgstr "Adı"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.template:0

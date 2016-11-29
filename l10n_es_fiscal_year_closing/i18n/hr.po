@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 18:41+0000\n"
-"PO-Revision-Date: 2016-10-04 10:07+0000\n"
+"POT-Creation-Date: 2016-10-14 00:10+0000\n"
+"PO-Revision-Date: 2016-11-29 09:33+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Poduzeće"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/models/fiscalyear_closing.py:186
@@ -113,7 +113,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Otkazan"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:0
@@ -436,7 +436,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0
 msgid "Done"
-msgstr ""
+msgstr "Izvršeno"
 
 #. module: l10n_es_fiscal_year_closing
 #: help:account.fiscalyear.closing,check_invalid_period_moves:0
@@ -511,7 +511,7 @@ msgstr ""
 #: field:account.fiscalyear.closing.lp_account_map,name:0
 #: field:account.fiscalyear.closing.nlp_account_map,name:0
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:0
@@ -639,7 +639,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:0
 msgid "General"
-msgstr ""
+msgstr "Općenito"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:0

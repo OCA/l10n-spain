@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 18:41+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-10-14 00:10+0000\n"
+"PO-Revision-Date: 2016-11-22 12:24+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -85,13 +85,13 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting,state:0
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:0
 #: selection:account.balance.reporting,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Rascunho"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,template_id:0
@@ -178,7 +178,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.line,css_class:0
@@ -214,7 +214,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,type:0
 msgid "User"
-msgstr ""
+msgstr "Usuário"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,report_id:0
@@ -231,7 +231,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: view:account.balance.reporting:0
 msgid "Configuration"
-msgstr ""
+msgstr "Configuração"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,css_class:0
@@ -261,7 +261,7 @@ msgstr ""
 #: field:account.balance.reporting.template,name:0
 #: field:account.balance.reporting.template.line,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.template:0
@@ -426,7 +426,7 @@ msgstr ""
 #: view:account.balance.reporting:0
 #: view:account.balance.reporting.print.wizard:0
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template.line,current_value:0

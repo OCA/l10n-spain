@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 18:41+0000\n"
-"PO-Revision-Date: 2016-10-04 10:07+0000\n"
+"POT-Creation-Date: 2016-10-14 00:10+0000\n"
+"PO-Revision-Date: 2016-11-29 09:33+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -85,7 +85,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting,state:0
 msgid "State"
-msgstr ""
+msgstr "Status"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:0
@@ -131,7 +131,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template,type:0
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template
@@ -168,7 +168,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template,description:0
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template.line,name:0
@@ -178,7 +178,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Poduzeće"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.line,css_class:0
@@ -226,7 +226,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
 msgid "Done"
-msgstr ""
+msgstr "Izvršeno"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:0
@@ -261,7 +261,7 @@ msgstr ""
 #: field:account.balance.reporting.template,name:0
 #: field:account.balance.reporting.template.line,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.template:0
@@ -361,7 +361,7 @@ msgstr ""
 #: field:account.balance.reporting.line,code:0
 #: field:account.balance.reporting.template.line,code:0
 msgid "Code"
-msgstr ""
+msgstr "Šifra"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,previous_period_ids:0
@@ -383,7 +383,7 @@ msgstr ""
 #: field:account.balance.reporting.line,sequence:0
 #: field:account.balance.reporting.template.line,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Sekvenca"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:0

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 18:41+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-10-14 00:10+0000\n"
+"PO-Revision-Date: 2016-11-11 13:00+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/models/fiscalyear_closing.py:186
@@ -230,7 +230,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:0
 msgid "Configuration"
-msgstr ""
+msgstr "Configuração"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing.cancel_wizard,delete_open:0
@@ -297,7 +297,7 @@ msgstr ""
 #: view:account.fiscalyear.closing.cancel_wizard:0
 #: view:account.fiscalyear.closing.execute_wizard:0
 msgid "or"
-msgstr ""
+msgstr "ou"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing.execute_wizard,check_invalid:0
@@ -322,7 +322,7 @@ msgstr ""
 #: view:account.fiscalyear.closing:0
 #: selection:account.fiscalyear.closing,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Rascunho"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:0
@@ -372,7 +372,7 @@ msgstr ""
 #: field:account.fiscalyear.closing,nlp_date:0
 #: field:account.fiscalyear.closing,o_date:0
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:363
@@ -450,7 +450,7 @@ msgstr ""
 #: view:account.fiscalyear.closing.cancel_wizard:0
 #: view:account.fiscalyear.closing.execute_wizard:0
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing.execute_wizard:0
@@ -639,7 +639,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:0
 msgid "General"
-msgstr ""
+msgstr "Geral"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:0

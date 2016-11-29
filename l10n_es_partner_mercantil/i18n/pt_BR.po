@@ -1,0 +1,63 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * l10n_es_partner_mercantil
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (7.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-14 00:11+0000\n"
+"PO-Revision-Date: 2016-10-19 12:45+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: l10n_es_partner_mercantil
+#: field:res.partner,es_registro_mercantil:0
+msgid "Commercial Registry"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
+#: field:res.partner,es_seccion:0
+msgid "Section"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
+#: view:res.partner:0
+msgid "Internal Notes"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
+#: field:res.partner,es_folio:0
+msgid "Page"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
+#: field:res.partner,es_tomo:0
+msgid "Volume"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
+#: field:res.partner,es_hoja:0
+msgid "Sheet"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
+#: field:res.partner,es_libro:0
+msgid "Book"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
+#: model:ir.model,name:l10n_es_partner_mercantil.model_res_partner
+msgid "Partner"
+msgstr "Parceiro"
+
+#. module: l10n_es_partner_mercantil
+#: view:res.partner:0
+msgid "Commercial Info"
+msgstr ""

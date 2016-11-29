@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 18:41+0000\n"
-"PO-Revision-Date: 2016-10-04 09:42+0000\n"
+"POT-Creation-Date: 2016-10-14 00:10+0000\n"
+"PO-Revision-Date: 2016-11-28 06:20+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -465,7 +465,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Osnutek"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,company_vat:0
@@ -642,7 +642,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0
 msgid "General"
-msgstr ""
+msgstr "Splošno"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/mod349.py:315
@@ -667,7 +667,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_fiscal_position
 msgid "Fiscal Position"
-msgstr ""
+msgstr "Fiskalni položaj"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,period_ids:0
@@ -678,7 +678,7 @@ msgstr ""
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_invoice
 #: field:l10n.es.aeat.mod349.partner_record_detail,invoice_id:0
 msgid "Invoice"
-msgstr ""
+msgstr "Račun"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/account_invoice.py:122
@@ -701,7 +701,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_refund:0
 msgid "Details"
-msgstr ""
+msgstr "Podrobnosti"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,type:0
@@ -776,7 +776,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_record,name:0
 #: field:l10n.es.aeat.mod349.report,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:0

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 18:41+0000\n"
-"PO-Revision-Date: 2016-10-04 09:43+0000\n"
+"POT-Creation-Date: 2016-10-14 00:10+0000\n"
+"PO-Revision-Date: 2016-10-18 06:57+0000\n"
 "Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -98,7 +98,7 @@ msgstr "Borrador"
 #: field:account.balance.reporting,template_id:0
 #: field:account.balance.reporting.template.line,template_id:0
 msgid "Template"
-msgstr ""
+msgstr "Plantilla"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.template:0
@@ -215,7 +215,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,type:0
 msgid "User"
-msgstr ""
+msgstr "Usuario"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,report_id:0
@@ -273,7 +273,7 @@ msgstr ""
 #: selection:account.balance.reporting.line,css_class:0
 #: selection:account.balance.reporting.template.line,css_class:0
 msgid "Default"
-msgstr ""
+msgstr "Por defecto"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,line_ids:0
