@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 19:26+0000\n"
-"PO-Revision-Date: 2016-10-04 11:17+0000\n"
+"POT-Creation-Date: 2016-11-13 10:44+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_account
 msgid "Account"
-msgstr ""
+msgstr "Compte"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
@@ -81,14 +81,12 @@ msgid "Balance mode"
 msgstr ""
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: view:website:account_balance_reporting.report_generic
 msgid "CODE"
 msgstr ""
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: view:website:account_balance_reporting.report_generic
 msgid "CONCEPT"
 msgstr ""
 
@@ -96,6 +94,11 @@ msgstr ""
 #: field:account.balance.reporting.line,css_class:0
 #: field:account.balance.reporting.template.line,css_class:0
 msgid "CSS Class"
+msgstr ""
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic
+msgid "CURRENT"
 msgstr ""
 
 #. module: account_balance_reporting
@@ -124,13 +127,13 @@ msgstr ""
 #: field:account.balance.reporting.line,child_ids:0
 #: field:account.balance.reporting.template.line,child_ids:0
 msgid "Children"
-msgstr ""
+msgstr "Enfant"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,code:0
 #: field:account.balance.reporting.template.line,code:0
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,company_id:0
@@ -210,7 +213,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,check_filter:0
 msgid "Dates"
-msgstr ""
+msgstr "Dates"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,balance_mode:0
@@ -261,7 +264,7 @@ msgstr "Terminé"
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
 #: selection:account.balance.reporting,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Brouillon"
 
 #. module: account_balance_reporting
 #: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_reports
@@ -455,8 +458,7 @@ msgid "Lines will be sorted/grouped by this field"
 msgstr ""
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: view:website:account_balance_reporting.report_generic
 msgid "NOTES"
 msgstr ""
 
@@ -467,7 +469,7 @@ msgstr ""
 #: field:account.balance.reporting.template,name:0
 #: field:account.balance.reporting.template.line,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template.line,negate:0
@@ -483,6 +485,11 @@ msgstr ""
 #: field:account.balance.reporting.line,notes:0
 msgid "Notes"
 msgstr "Commentaires"
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic
+msgid "PREVIOUS"
+msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,parent_id:0
@@ -591,7 +598,7 @@ msgstr "Type"
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,type:0
 msgid "User"
-msgstr ""
+msgstr "Utilisateur"
 
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template.line,current_value:0
@@ -606,4 +613,16 @@ msgid ""
 "      Concept codes separated by \"+\" (\"11000+12000\"): Sum of those concepts\n"
 "      values.\n"
 "    "
+msgstr ""
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic_non_zero
+msgid "account_balance_reporting.report_generic_non_zero"
+msgstr ""
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic_non_zero
+msgid ""
+"o.line_ids.filtered(lambda x: x.current_value != 0.0 or x.previous_value != "
+"0.0)"
 msgstr ""
