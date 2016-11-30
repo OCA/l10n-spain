@@ -22,5 +22,5 @@
         'wizard/l10n_es_aeat_compute_vat_prorrate_view.xml',
         'views/mod303_view.xml'
     ],
-    "installable": True,
+    'installable': False,
 }
