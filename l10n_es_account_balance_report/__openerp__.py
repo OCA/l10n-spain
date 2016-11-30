@@ -73,5 +73,5 @@ del Registro Mercantil:
         'data/pyg_normal.xml',
         'data/estado_ingresos_gastos_normal.xml',
     ],
-    "installable": True,
+    'installable': False,
 }

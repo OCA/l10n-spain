@@ -25,5 +25,5 @@
     ],
     'images': ['images/l10n_es_toponyms_config.png'],
     "demo": [],
-    "installable": True
+    'installable': False
 }

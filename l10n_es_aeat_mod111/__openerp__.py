@@ -33,5 +33,5 @@
         'data/aeat_export_mod111_data.xml',
         'views/mod111_view.xml',
         'security/ir.model.access.csv'],
-    'installable': True,
+    'installable': False,
 }

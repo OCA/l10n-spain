@@ -38,5 +38,5 @@
     'data': [
         'mod340_view.xml'
     ],
-    'installable': True,
+    'installable': False,
 }

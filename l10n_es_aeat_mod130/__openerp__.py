@@ -66,5 +66,5 @@ responsabilidad derivada de su uso. Carencias conocidas:
         "views/mod130_view.xml",
         "security/ir.model.access.csv",
     ],
-    "installable": True,
+    'installable': False,
 }

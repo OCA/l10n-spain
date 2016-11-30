@@ -30,5 +30,5 @@
         "views/l10n_es_partner_view.xml",
         "wizard/l10n_es_partner_wizard.xml",
     ],
-    "installable": True,
+    'installable': False,
 }

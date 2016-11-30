@@ -13,7 +13,7 @@
               'Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'application': False,
-    'installable': True,
+    'installable': False,
     'depends': [
         'base_location_nuts',
         'l10n_es_toponyms',

@@ -62,5 +62,5 @@
         'views/payment_mode_view.xml',
         'wizard/export_csb_view.xml'
     ],
-    'installable': True,
+    'installable': False,
 }
