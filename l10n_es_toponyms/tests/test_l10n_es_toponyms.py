@@ -13,22 +13,23 @@ class TestL10nEsToponyms(common.TransactionCase):
             'state': 'official',
             'city_info': 'yes'
         })
-        self.state_model = self.env['res.country.state']
 
     def test_official_state_names(self):
         self.wizard.with_context(max_import=10).execute()
-        state = self.state_model.search([('name', '=', 'Araba')])
-        self.assertTrue(state)
-        self.assertEqual(state.code, '01')
+        self.assertEqual(
+            self.env.ref('l10n_es_toponyms.ES01').name,
+            'Araba')
 
     def test_spanish_state_names(self):
         self.wizard.state = 'spanish'
         self.wizard.with_context(max_import=10).execute()
-        state = self.state_model.search([('name', '=', 'Alava')])
-        self.assertTrue(state)
+        self.assertEqual(
+            self.env.ref('l10n_es_toponyms.ES01').name,
+            'Alava')
 
     def test_both_state_names(self):
         self.wizard.state = 'both'
         self.wizard.with_context(max_import=10).execute()
-        state = self.state_model.search([('name', '=', 'Alava / Araba')])
-        self.assertTrue(state)
+        self.assertEqual(
+            self.env.ref('l10n_es_toponyms.ES01').name,
+            'Alava / Araba')
