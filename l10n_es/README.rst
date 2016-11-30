@@ -22,6 +22,7 @@ instalar ésta para disponer de los últimos datos actualizados.
 Historial
 ---------
 
+* v10.0.1.0.0: Migración a la versión 10.0c de Odoo.
 * v9.0.1.0.0: Migración a la versión 9.0c de Odoo.
 * v8.0.5.4.0: Varias correcciones para el modelo 123 y para las rectificaciones:
 

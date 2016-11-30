@@ -12,7 +12,7 @@
 
 {
     "name": "Planes de cuentas españoles (según PGCE 2008)",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "author": "Spanish Localization Team, "
               "Odoo Community Association (OCA)",
     "website": 'https://github.com/OCA/l10n-spain',
