@@ -27,6 +27,7 @@ class AccountBalanceReportingXlsParser(AccountBalanceReportingPrint):
             'template_changes': template_changes,
         })
 
+
 try:
     from openerp.addons.report_xls.report_xls import report_xls
     from openerp.addons.report_xls.utils import _render
