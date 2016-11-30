@@ -34,5 +34,5 @@
         "report/report_generic.xml",
         "wizard/wizard_print_view.xml",
     ],
-    "installable": True,
+    'installable': False,
 }
