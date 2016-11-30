@@ -10,7 +10,7 @@
     "author": "Antiun Ingeniería S.L., Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
-    "installable": True,
+    'installable': False,
     "depends": [
         "crm",
         "l10n_es_partner",

@@ -26,5 +26,5 @@
     "qweb": [
         'static/src/xml/pos.xml',
     ],
-    "installable": True,
+    'installable': False,
 }
