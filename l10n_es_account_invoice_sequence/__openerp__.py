@@ -22,5 +22,5 @@
         'views/account_view.xml',
     ],
     "post_init_hook": "fill_invoice_sequences",
-    "installable": True,
+    'installable': False,
 }
