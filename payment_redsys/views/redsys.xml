@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data>
+<!-- © 2016 Sergio Teruel <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3). -->
+<odoo>
 
     <template id="redsys_acquirer_button">
         <form t-if="acquirer" t-att-action="tx_url" method="post" target="_self">
             <input type="hidden" name="Ds_SignatureVersion"
-                   t-att-value="tx_values['Ds_SignatureVersion']"/>
+                   t-att-value="Ds_SignatureVersion"/>
             <input type="hidden" name="Ds_MerchantParameters"
-                   t-att-value="tx_values['Ds_MerchantParameters']"/>
+                   t-att-value="Ds_MerchantParameters"/>
             <input type="hidden" name="Ds_Signature"
-                   t-att-value="tx_values['Ds_Signature']"/>
+                   t-att-value="Ds_Signature"/>
             <button type="submit" width="100px"
                     t-att-class="submit_class">
                 <img t-if="not submit_txt"
@@ -212,5 +213,4 @@
         </t>
     </template>
 
-</data>
-</openerp>
+</odoo>
