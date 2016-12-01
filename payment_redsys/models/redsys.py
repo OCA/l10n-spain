@@ -1,15 +1,21 @@
 # -*- coding: utf-8 -*-
+# © 2016 Sergio Teruel <sergio.teruel@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 import hashlib
 import hmac
 import base64
 import logging
 import json
+import urllib
 
 from openerp import models, fields, api, _
 from openerp.addons.payment.models.payment_acquirer import ValidationError
 from openerp.addons import decimal_precision as dp
 from openerp.tools.float_utils import float_compare
 from openerp import exceptions
+from openerp import http
+
 _logger = logging.getLogger(__name__)
 
 try:
@@ -41,8 +47,6 @@ class AcquirerRedsys(models.Model):
         providers.append(['redsys', 'Redsys'])
         return providers
 
-    redsys_merchant_url = fields.Char('Merchant URL',
-                                      required_if_provider='redsys')
     redsys_merchant_name = fields.Char('Merchant Name',
                                        required_if_provider='redsys')
     redsys_merchant_titular = fields.Char('Merchant Titular',
@@ -99,16 +103,35 @@ class AcquirerRedsys(models.Model):
             raise exceptions.Warning(
                 _('Partial payment percent must be between 0 and 100'))
 
-    def _prepare_merchant_parameters(self, acquirer, tx_values):
-        base_url = self.env['ir.config_parameter'].get_param('web.base.url')
-        sale_order = self.env['sale.order'].search(
-            [('name', '=', tx_values['reference'])])
+    @api.model
+    def _get_website_callback_url(self):
+        """For force a callback url from Redsys distinct to base url website,
+         only apply to a Redsys response.
+        """
+        return self.env['ir.config_parameter'].get_param(
+            'payment_redsys.callback_url')
 
+    @api.model
+    def _get_website_url(self):
+        website_id = self.env.context.get('website_id', False)
+        if website_id:
+            base_url = '%s://%s' % (
+                http.request.httprequest.environ['wsgi.url_scheme'],
+                self.env['website'].browse(website_id).domain
+            )
+        else:
+            base_url = self.env['ir.config_parameter'].get_param(
+                'web.base.url')
+        return base_url or ''
+
+    def _prepare_merchant_parameters(self, acquirer, tx_values):
+        # Check multi-website
+        base_url = self._get_website_url()
+        callback_url = self._get_website_callback_url()
         if acquirer.redsys_percent_partial > 0:
             amount = tx_values['amount']
             tx_values['amount'] = amount - (
                 amount * acquirer.redsys_percent_partial / 100)
-
         values = {
             'Ds_Sermepa_Url': (
                 self._get_redsys_urls(acquirer.environment)[
@@ -125,14 +148,13 @@ class AcquirerRedsys(models.Model):
             'Ds_Merchant_TransactionType': (
                 acquirer.redsys_transaction_type or '0'),
             'Ds_Merchant_Titular': (
-                acquirer.redsys_merchant_titular[:60] and
+                acquirer.redsys_merchant_titular and
                 acquirer.redsys_merchant_titular[:60]),
             'Ds_Merchant_MerchantName': (
                 acquirer.redsys_merchant_name and
                 acquirer.redsys_merchant_name[:25]),
             'Ds_Merchant_MerchantUrl': (
-                acquirer.redsys_merchant_url and
-                acquirer.redsys_merchant_url[:250] or ''),
+                '%s/payment/redsys/return' % (callback_url or base_url))[:250],
             'Ds_Merchant_MerchantData': acquirer.redsys_merchant_data or '',
             'Ds_Merchant_ProductDescription': (
                 self._product_description(tx_values['reference']) or
@@ -141,11 +163,9 @@ class AcquirerRedsys(models.Model):
             'Ds_Merchant_ConsumerLanguage': (
                 acquirer.redsys_merchant_lang or '001'),
             'Ds_Merchant_UrlOk':
-            '%s/payment/redsys/result/redsys_result_ok?order_id=%s' % (
-                base_url, sale_order.id),
+            '%s/payment/redsys/result/redsys_result_ok' % base_url,
             'Ds_Merchant_UrlKo':
-            '%s/payment/redsys/result/redsys_result_ko?order_id=%s' % (
-                base_url, sale_order.id),
+            '%s/payment/redsys/result/redsys_result_ko' % base_url,
             'Ds_Merchant_Paymethods': acquirer.redsys_pay_method or 'T',
         }
         return self._url_encode64(json.dumps(values))
@@ -162,7 +182,8 @@ class AcquirerRedsys(models.Model):
         if 'Ds_Merchant_Order' in params_dic:
             order = str(params_dic['Ds_Merchant_Order'])
         else:
-            order = str(params_dic.get('Ds_Order', 'Not found'))
+            order = str(
+                urllib.unquote(params_dic.get('Ds_Order', 'Not found')))
         cipher = DES3.new(
             key=base64.b64decode(secret_key),
             mode=DES3.MODE_CBC,
@@ -177,7 +198,7 @@ class AcquirerRedsys(models.Model):
         return self._url_encode64(dig)
 
     @api.model
-    def redsys_form_generate_values(self, id, partner_values, tx_values):
+    def redsys_form_generate_values(self, id, tx_values):
         acquirer = self.browse(id)
         redsys_tx_values = dict(tx_values)
 
@@ -189,7 +210,7 @@ class AcquirerRedsys(models.Model):
             'Ds_Signature': self.sign_parameters(
                 acquirer.redsys_secret_key, merchant_parameters),
         })
-        return partner_values, redsys_tx_values
+        return redsys_tx_values
 
     @api.multi
     def redsys_get_form_action_url(self):
@@ -207,6 +228,12 @@ class AcquirerRedsys(models.Model):
 class TxRedsys(models.Model):
     _inherit = 'payment.transaction'
 
+    # Redsys status
+    _redsys_valid_tx_status = list(range(0, 100))
+    _redsys_pending_tx_status = list(range(101, 203))
+    _redsys_cancel_tx_status = [912, 9912]
+    _redsys_error_tx_status = list(range(9064, 9095))
+
     redsys_txnid = fields.Char('Transaction ID')
 
     def merchant_params_json2dict(self, data):
@@ -220,21 +247,23 @@ class TxRedsys(models.Model):
     @api.model
     def _redsys_form_get_tx_from_data(self, data):
         """ Given a data dict coming from redsys, verify it and
-        find the related transaction record. """
+        find the related transaction record.
+        Session object for tests purpose. """
         parameters = data.get('Ds_MerchantParameters', '')
         parameters_dic = json.loads(base64.b64decode(parameters))
-        reference = parameters_dic.get('Ds_Order', '')
+        reference = urllib.unquote(parameters_dic.get('Ds_Order', ''))
         pay_id = parameters_dic.get('Ds_AuthorisationCode')
         shasign = data.get(
             'Ds_Signature', '').replace('_', '/').replace('-', '+')
-
+        test_env = http.request.session.get('test_enable', False)
         if not reference or not pay_id or not shasign:
             error_msg = 'Redsys: received data with missing reference' \
                 ' (%s) or pay_id (%s) or shashign (%s)' % (reference,
                                                            pay_id, shasign)
-            _logger.error(error_msg)
-            raise ValidationError(error_msg)
-
+            if not test_env:
+                _logger.error(error_msg)
+                raise ValidationError(error_msg)
+            http.OpenERPSession.tx_error = True
         tx = self.search([('reference', '=', reference)])
         if not tx or len(tx) > 1:
             error_msg = 'Redsys: received data for reference %s' % (reference)
@@ -242,17 +271,22 @@ class TxRedsys(models.Model):
                 error_msg += '; no order found'
             else:
                 error_msg += '; multiple order found'
-            _logger.error(error_msg)
-            raise ValidationError(error_msg)
-
-        # verify shasign
-        shasign_check = tx.acquirer_id.sign_parameters(
-            tx.acquirer_id.redsys_secret_key, parameters)
-        if shasign_check != shasign:
-            error_msg = 'Redsys: invalid shasign, received %s, computed %s,' \
-                ' for data %s' % (shasign, shasign_check, data)
-            _logger.error(error_msg)
-            raise ValidationError(error_msg)
+            if not test_env:
+                _logger.error(error_msg)
+                raise ValidationError(error_msg)
+            else:
+                http.OpenERPSession.tx_error = True
+        if tx and not test_env:
+            # verify shasign
+            shasign_check = tx.acquirer_id.sign_parameters(
+                tx.acquirer_id.redsys_secret_key, parameters)
+            if shasign_check != shasign:
+                error_msg = (
+                    'Redsys: invalid shasign, received %s, computed %s, '
+                    'for data %s' % (shasign, shasign_check, data)
+                )
+                _logger.error(error_msg)
+                raise ValidationError(error_msg)
         return tx
 
     @api.model
@@ -282,7 +316,7 @@ class TxRedsys(models.Model):
     def _redsys_form_validate(self, tx, data):
         parameters_dic = self.merchant_params_json2dict(data)
         status_code = int(parameters_dic.get('Ds_Response', '29999'))
-        if (status_code >= 0) and (status_code <= 99):
+        if status_code in self._redsys_valid_tx_status:
             tx.write({
                 'state': 'done',
                 'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
@@ -292,7 +326,7 @@ class TxRedsys(models.Model):
             if tx.acquirer_id.send_quotation:
                 tx.sale_order_id.force_quotation_send()
             return True
-        if (status_code >= 101) and (status_code <= 202):
+        if status_code in self._redsys_pending_tx_status:
             # 'Payment error: code: %s.'
             tx.write({
                 'state': 'pending',
@@ -303,7 +337,7 @@ class TxRedsys(models.Model):
                 ),
             })
             return True
-        if (status_code == 912) and (status_code == 9912):
+        if status_code in self._redsys_cancel_tx_status:
             # 'Payment error: bank unavailable.'
             tx.write({
                 'state': 'cancel',
@@ -356,7 +390,7 @@ class TxRedsys(models.Model):
                                 tx.sale_order_id.name, tx.sale_order_id.id)
                             self.env['sale.order'].sudo().browse(
                                 tx.sale_order_id.id).with_context(
-                                send_email=True).action_button_confirm()
+                                send_email=True).action_confirm()
                         elif (tx.state != 'cancel' and
                                 tx.sale_order_id.state == 'draft'):
                             _logger.info('<%s> transaction pending, sending '
