@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# © 2016 Sergio Teruel <sergio.teruel@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 import logging
 import pprint
 import werkzeug
@@ -21,7 +24,7 @@ class RedsysController(http.Controller):
         '/payment/redsys/cancel',
         '/payment/redsys/error',
         '/payment/redsys/reject',
-    ], type='http', auth='none')
+    ], type='http', auth='none', csrf=False)
     def redsys_return(self, **post):
         """ Redsys."""
         _logger.info('Redsys: entering form_feedback with post data %s',
