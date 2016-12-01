@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# © 2016 Sergio Teruel <sergio.teruel@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 import logging
 import pprint
 import werkzeug
@@ -21,7 +24,7 @@ class RedsysController(http.Controller):
         '/payment/redsys/cancel',
         '/payment/redsys/error',
         '/payment/redsys/reject',
-    ], type='http', auth='none')
+    ], type='http', auth='none', csrf=False)
     def redsys_return(self, **post):
         """ Redsys."""
         _logger.info('Redsys: entering form_feedback with post data %s',
@@ -36,13 +39,13 @@ class RedsysController(http.Controller):
         return werkzeug.utils.redirect(return_url)
 
     @http.route(
-        ['/payment/redsys/result/<page>'], type='http', auth='user',
+        ['/payment/redsys/result/<page>'], type='http', auth='public',
         methods=['GET'], website=True)
     def redsys_result(self, page, **vals):
         try:
-            order_id = vals.get('order_id', 0)
+            sale_order_id = request.session.get('sale_last_order_id')
             sale_obj = request.env['sale.order']
-            order = sale_obj.browse(int(order_id))
+            order = sale_obj.sudo().browse(sale_order_id)
             res = {
                 'order': order,
             }
