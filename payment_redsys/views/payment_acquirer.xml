@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-        <record id="acquirer_form_redsys" model="ir.ui.view">
-            <field name="name">acquirer.form.redsys</field>
-            <field name="model">payment.acquirer</field>
-            <field name="inherit_id" ref="payment.acquirer_form"/>
-            <field name="arch" type="xml">
-                <xpath expr='//group[@name="acquirer_display"]' position='after'>
-                    <group attrs="{'invisible': [('provider', '!=', 'redsys')]}">
-                        <field name="redsys_merchant_url" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_merchant_titular" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_merchant_name" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_merchant_code" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_secret_key" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_terminal" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_currency" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_transaction_type" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_merchant_lang" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_pay_method" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_merchant_data" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_merchant_description" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_signature_version" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                        <field name="redsys_percent_partial" attrs="{'required': [('provider', '=', 'redsys')]}"/>
-                    </group>
-                    <group attrs="{'invisible': [('provider', '!=', 'redsys')]}">
-                        <field name="send_quotation"/>
-                    </group>
-                </xpath>
-            </field>
-        </record>
+<!-- © 2016 Sergio Teruel <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3). -->
+<odoo>
 
-        <record id="transaction_form_redsys" model="ir.ui.view">
-            <field name="name">acquirer.transaction.form.redsys</field>
-            <field name="model">payment.transaction</field>
-            <field name="inherit_id" ref="payment.transaction_form"/>
-            <field name="arch" type="xml">
-                <xpath expr='//notebook' position='inside'>
-                    <page string="Redsys TX Details">
-                        <group>
-                            <field name="redsys_txnid"/>
-                        </group>
-                    </page>
-                </xpath>
-            </field>
-        </record>
+    <record id="acquirer_form_redsys" model="ir.ui.view">
+        <field name="name">acquirer.form.redsys</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment.acquirer_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//group[@name="acquirer"]' position='after'>
+                <group attrs="{'invisible': [('provider', '!=', 'redsys')]}">
+                    <field name="redsys_merchant_titular" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                    <field name="redsys_merchant_name" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                    <field name="redsys_merchant_code" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                    <field name="redsys_secret_key" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                    <field name="redsys_terminal" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                    <field name="redsys_currency" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                    <field name="redsys_transaction_type" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                    <field name="redsys_merchant_lang" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                    <field name="redsys_pay_method" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                    <field name="redsys_merchant_data" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                    <field name="redsys_merchant_description" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                    <field name="redsys_signature_version" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                    <field name="redsys_percent_partial" attrs="{'required': [('provider', '=', 'redsys')]}"/>
+                </group>
+                <group attrs="{'invisible': [('provider', '!=', 'redsys')]}">
+                    <field name="send_quotation"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
 
-    </data>
-</openerp>
+    <record id="transaction_form_redsys" model="ir.ui.view">
+        <field name="name">acquirer.transaction.form.redsys</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.transaction_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//notebook' position='inside'>
+                <page string="Redsys TX Details">
+                    <group>
+                        <field name="redsys_txnid"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
 
