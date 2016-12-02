@@ -21,6 +21,12 @@ Para dudas funcionales o soporte de la comunidad, dirigirse a:
 https://odoospain.odoo.com/forum/ayuda-1
 
 [//]: # (addons)
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[l10n_es](l10n_es/) | 9.0.1.0.0 | Planes de cuentas españoles (según PGCE 2008)
+
 Unported addons
 ---------------
 addon | version | summary
@@ -28,7 +34,6 @@ addon | version | summary
 [account_balance_reporting](account_balance_reporting/) | 8.0.1.2.0 (unported) | Account balance reporting engine
 [account_balance_reporting_xls](account_balance_reporting_xls/) | 8.0.1.0.0 (unported) | Account balance reporting to XLS
 [account_refund_original](account_refund_original/) | 8.0.1.0.0 (unported) | Relationship refund - origin invoice
-[l10n_es](l10n_es/) | 8.0.5.4.0 (unported) | Spanish Charts of Accounts (PGCE 2008)
 [l10n_es_account_asset](l10n_es_account_asset/) | 8.0.2.0.0 (unported) | Gestión de activos fijos para España
 [l10n_es_account_balance_report](l10n_es_account_balance_report/) | 8.0.0.1.0 (unported) | Informes de cuentas anuales españoles
 [l10n_es_account_bank_statement_import_n43](l10n_es_account_bank_statement_import_n43/) | 8.0.4.0.2 (unported) | Importación de extractos bancarios españoles (Norma 43)
