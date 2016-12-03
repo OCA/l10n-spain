@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-14 00:10+0000\n"
+"POT-Creation-Date: 2016-11-30 07:26+0000\n"
 "PO-Revision-Date: 2016-11-29 09:33+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Croatian (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/hr/)\n"
@@ -18,25 +18,25 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: account_balance_reporting_xls
-#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:95
+#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:96
 #, python-format
 msgid "Current value"
 msgstr ""
 
 #. module: account_balance_reporting_xls
-#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:88
+#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:89
 #, python-format
 msgid "Previous value"
 msgstr ""
 
 #. module: account_balance_reporting_xls
-#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:83
+#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:84
 #, python-format
 msgid "Code"
 msgstr "Šifra"
 
 #. module: account_balance_reporting_xls
-#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:109
+#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:110
 #, python-format
 msgid "Notes"
 msgstr "Bilješke"
@@ -52,13 +52,13 @@ msgid "account.balance.reporting"
 msgstr ""
 
 #. module: account_balance_reporting_xls
-#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:121
+#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:122
 #, python-format
 msgid "report_name"
 msgstr ""
 
 #. module: account_balance_reporting_xls
-#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:78
+#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:79
 #, python-format
 msgid "Concept"
 msgstr ""
@@ -69,7 +69,7 @@ msgid "Export"
 msgstr ""
 
 #. module: account_balance_reporting_xls
-#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:102
+#: code:addons/account_balance_reporting_xls/report/reporting_xls.py:103
 #, python-format
 msgid "Balance"
 msgstr ""
