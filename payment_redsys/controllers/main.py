@@ -36,13 +36,13 @@ class RedsysController(http.Controller):
         return werkzeug.utils.redirect(return_url)
 
     @http.route(
-        ['/payment/redsys/result/<page>'], type='http', auth='user',
+        ['/payment/redsys/result/<page>'], type='http', auth='public',
         methods=['GET'], website=True)
     def redsys_result(self, page, **vals):
         try:
-            order_id = vals.get('order_id', 0)
+            sale_order_id = request.session.get('sale_last_order_id')
             sale_obj = request.env['sale.order']
-            order = sale_obj.browse(int(order_id))
+            order = sale_obj.sudo().browse(sale_order_id)
             res = {
                 'order': order,
             }

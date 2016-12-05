@@ -101,9 +101,6 @@ class AcquirerRedsys(models.Model):
 
     def _prepare_merchant_parameters(self, acquirer, tx_values):
         base_url = self.env['ir.config_parameter'].get_param('web.base.url')
-        sale_order = self.env['sale.order'].search(
-            [('name', '=', tx_values['reference'])])
-
         if acquirer.redsys_percent_partial > 0:
             amount = tx_values['amount']
             tx_values['amount'] = amount - (
@@ -141,11 +138,9 @@ class AcquirerRedsys(models.Model):
             'Ds_Merchant_ConsumerLanguage': (
                 acquirer.redsys_merchant_lang or '001'),
             'Ds_Merchant_UrlOk':
-            '%s/payment/redsys/result/redsys_result_ok?order_id=%s' % (
-                base_url, sale_order.id),
+            '%s/payment/redsys/result/redsys_result_ok' % base_url,
             'Ds_Merchant_UrlKo':
-            '%s/payment/redsys/result/redsys_result_ko?order_id=%s' % (
-                base_url, sale_order.id),
+            '%s/payment/redsys/result/redsys_result_ko' % base_url,
             'Ds_Merchant_Paymethods': acquirer.redsys_pay_method or 'T',
         }
         return self._url_encode64(json.dumps(values))
