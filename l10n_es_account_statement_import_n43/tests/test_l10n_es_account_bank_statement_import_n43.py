@@ -2,8 +2,8 @@
 # © 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests import common
-from openerp.modules.module import get_module_resource
+from odoo.tests import common
+from odoo.modules.module import get_module_resource
 
 
 class L10nEsAccountBankStatementImportN43(common.TransactionCase):
