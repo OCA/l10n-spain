@@ -26,6 +26,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [l10n_es](l10n_es/) | 9.0.1.0.0 | Planes de cuentas españoles (según PGCE 2008)
+[l10n_es_toponyms](l10n_es_toponyms/) | 9.0.1.0.0 | Topónimos españoles
 
 Unported addons
 ---------------
@@ -63,7 +64,6 @@ addon | version | summary
 [l10n_es_payment_order_confirminet](l10n_es_payment_order_confirminet/) | 8.0.1.0.0 (unported) | Exportación de fichero bancario Confirminet
 [l10n_es_pos](l10n_es_pos/) | 8.0.1.0.0 (unported) | Punto de venta adaptado a la legislación española
 [l10n_es_subcontractor_certificate](l10n_es_subcontractor_certificate/) | 8.0.1.0.0 (unported) | Certificado de subcontratista
-[l10n_es_toponyms](l10n_es_toponyms/) | 8.0.2.0.1 (unported) | Topónimos españoles
 [payment_redsys](payment_redsys/) | 8.0.1.0.2 (unported) | Payment Acquirer: Redsys Implementation
 
 [//]: # (end addons)
