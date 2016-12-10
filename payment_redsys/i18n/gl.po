@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-26 16:03+0000\n"
+"POT-Creation-Date: 2016-12-05 14:48+0000\n"
 "PO-Revision-Date: 2016-08-21 12:03+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
@@ -29,7 +29,7 @@ msgid "Back to shop"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:311
+#: code:addons/payment_redsys/models/redsys.py:306
 #, python-format
 msgid "Bank Error: %s (%s)"
 msgstr ""
@@ -70,7 +70,7 @@ msgid "En error ocurred."
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:300
+#: code:addons/payment_redsys/models/redsys.py:295
 #, python-format
 msgid "Error: %s (%s)"
 msgstr ""
@@ -146,7 +146,7 @@ msgid "Merchant code"
 msgstr "Código do comerciante"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:289
+#: code:addons/payment_redsys/models/redsys.py:284
 #, python-format
 msgid "Ok: %s"
 msgstr "OK: %s"
@@ -228,7 +228,7 @@ msgid "Redsys signature version"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:318
+#: code:addons/payment_redsys/models/redsys.py:313
 #, python-format
 msgid "Redsys: feedback error %s (%s)"
 msgstr ""
