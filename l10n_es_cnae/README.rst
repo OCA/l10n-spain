@@ -13,7 +13,7 @@ Instalación
 ===========
 
 Necesita tener disponible el módulo `l10n_eu_nace
-<https://github.com/OCA/community-data-files/tree/8.0/l10n_eu_nace>`_ para que
+<https://github.com/OCA/community-data-files/tree/9.0/l10n_eu_nace>`_ para que
 este funcione.
 
 Uso
@@ -26,7 +26,7 @@ Para usar este módulo:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/189/8.0
+   :target: https://runbot.odoo-community.org/runbot/189/9.0
 
 Bug Tracker
 ===========

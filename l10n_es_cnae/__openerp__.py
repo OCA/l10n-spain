@@ -4,7 +4,7 @@
 {
     "name": "Categorías de empresa CNAE 2009",
     "summary": "Extiende los códigos NACE europeos con los CNAE españoles",
-    "version": "8.0.1.0.0",
+    "version": "9.0.1.0.0",
     "category": "Localization",
     "website": "https://www.tecnativa.com/",
     "author": "Tecnativa, Odoo Community Association (OCA)",
