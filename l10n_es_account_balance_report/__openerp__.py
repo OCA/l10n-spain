@@ -38,32 +38,6 @@
     "license": "AGPL-3",
     "website": "http://www.pexego.es",
     "category": "Localisation/Accounting",
-    "description": """
-Informes de cuentas anuales oficiales españoles.
-================================================
-
-Incluye las siguientes plantillas para el motor de informes de cuentas provisto
-por el módulo *account_balance_reporting*:
-
-    * Balance PYMEs (PGCE 2008)
-    * Cuenta de pérdidas y ganancias PYMEs (PGCE 2008)
-    * Balance abreviado (PGCE 2008)
-    * Cuenta de pérdidas y ganancias abreviado (PGCE 2008)
-    * Balance normal (PGCE 2008)
-    * Cuenta de pérdidas y ganancias completo (PGCE 2008)
-    * Estado de ingresos y gastos reconocidos (PGCE 2008)
-    * Balance para pequeñas y medianas entidades sin fines lucrativos
-    * Cuenta de pérdidas y ganancias para pequeñas y medianas entidades sin 
-      fines lucrativos
-
-Las plantillas están basadas en los modelos para el depósito de cuentas anuales
-del Registro Mercantil:
-
-* *Normal*: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306020
-* *Abreviado*: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306005
-* *PYMEs*: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306035
-* *No lucrativos*: https://www.boe.es/diario_boe/txt.php?id=BOE-A-2013-3736
-    """,
     "depends": [
         'l10n_es',
         'account_balance_reporting',

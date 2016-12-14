@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-#
-#   OpenERP - Account balance reports
-#   Copyright (C) 2016 Acysos S.L. All Rights Reserved
-#	$Id$
-#
-#	This program is free software: you can redistribute it and/or modify
-#	it under the terms of the GNU General Public License as published by
-#	the Free Software Foundation, either version 3 of the License, or
-#	(at your option) any later version.
-#
-#	This program is distributed in the hope that it will be useful,
-#	but WITHOUT ANY WARRANTY; without even the implied warranty of
-#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#	GNU General Public License for more details.
-#
-#	You should have received a copy of the GNU General Public License
-#	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
--->
+<!-- Copyright 2016 Ignacio Ibeas (Acysos S.L.) - ignacio@acysos.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <!--
 PÉRDIDAS Y GANACIAS PARA ENTIDADES PEQUEÑAS y MEDIANAS Sin fines lucrativos
 
@@ -26,9 +8,6 @@ Basado Resolución de 26 de marzo de 2013, del Instituto de Contabilidad y
 Auditoría de Cuentas, por la que se aprueba el Plan de Contabilidad de pequeñas
 y medianas entidades sin fines lucrativos.
 https://www.boe.es/diario_boe/txt.php?id=BOE-A-2013-3736
-
-
-Author: Ignacio Ibeas (Acysos S.L.) - ignacio@acysos.com
 -->
 <openerp>
     <data>
