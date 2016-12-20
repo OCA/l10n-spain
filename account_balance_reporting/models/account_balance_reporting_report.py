@@ -42,7 +42,7 @@ class AccountBalanceReporting(models.Model):
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company', ondelete='cascade',
         required=True, readonly=False, states=READONLY_STATES,
-        default=lambda self: self.env.user.company_id.id)
+        default=lambda self: self.env.user.company_id)
     current_date_from = fields.Date(
         string='Date From',
         states=READONLY_STATES,
@@ -250,8 +250,6 @@ class AccountBalanceReportingLine(models.Model):
         # a string like "430+431+432-438"; accounts split by "+" will be added,
         # accounts split by "-" will be substracted.
         move_lines = self.env['account.move.line']
-        if '201' in expr:
-            pass
         for code in re.findall(r'(-?\w*\(?[0-9a-zA-Z\*_]*\)?)', expr):
             # Check if the code is valid (findall might return empty strings)
             code = code.strip()
@@ -269,7 +267,7 @@ class AccountBalanceReportingLine(models.Model):
                 accounts = account_obj.search(
                     [('code', '=like', '%s%%0' % acc_code),
                      ('company_id', '=', company_id)])
-            if not accounts:
+            if not accounts:  # pragma: no cover
                 logger.warning("Account with code '%s' not found!", acc_code)
                 continue
             domain_account = list(domain)

@@ -58,7 +58,7 @@ class AccountBalanceReportingTemplate(models.Model):
         comodel_name='account.balance.reporting.template.line',
         inverse_name='template_id', string='Lines')
 
-    @api.one
+    @api.multi
     def copy(self, default=None):
         """Redefine the copy method to perform it correctly as the line
         structure is a graph.

@@ -90,7 +90,7 @@
         </field>
     </record>
 
-    <!--*** window action ******************************************* -->
+    <!-- window action -->
 
     <record model="ir.actions.act_window" id="action_view_account_balance_reporting">
         <field name="name">Account balance reports</field>
