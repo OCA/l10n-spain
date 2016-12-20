@@ -30,14 +30,14 @@ but it might be used as a generic accounting report engine.
 Configuration
 =============
 
-#. Go to *Accounting > Configuration > Financial Reports > Financial Reports*.
+#. Go to *Invoicing > Configuration > Financial Reports > Financial Reports*.
 #. Create or edit one existing template.
 #. Add report lines with formulas to configure your financial report.
 
 Usage
 =====
 
-#. Go to *Accounting > Reporting > Legal Reports > Accounting Reports > Financial Reports*.
+#. Go to *Invoicing > Reporting > Spanish Financial Reports > Financial Reports*.
 #. Select a reporting template.
 #. Select dates or periods.
 #. Click on *Calculate*.
