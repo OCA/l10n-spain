@@ -3,7 +3,7 @@
 # © 2016 Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
 
-from openerp import api, fields, models, _
+from odoo import _, api, fields, models
 
 
 _VALUE_FORMULA_HELP = (
@@ -157,18 +157,12 @@ class AccountBalanceReportingTemplateLine(models.Model):
             res.append((item.id, "[%s] %s" % (item.code, item.name)))
         return res
 
-    def name_search(self, cr, uid, name, args=None, operator='ilike',
-                    context=None, limit=80):
-        """Redefine the name_search method to allow searching by code."""
-        if context is None:
-            context = {}
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        """Allow to search by code."""
         if args is None:
             args = []
-        ids = []
-        if name:
-            ids = self.search(cr, uid, [('code', 'ilike', name)] + args,
-                              limit=limit, context=context)
-            if not ids:
-                ids = self.search(cr, uid, [('name', operator, name)] + args,
-                                  limit=limit, context=context)
-        return self.name_get(cr, uid, ids, context=context)
+        args += ['|', ('code', operator, name)]
+        return super(AccountBalanceReportingTemplateLine, self).name_search(
+            name=name, args=args, operator=operator, limit=limit,
+        )
