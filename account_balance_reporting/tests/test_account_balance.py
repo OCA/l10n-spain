@@ -3,8 +3,8 @@
 # Copyright 2016 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
 
-from openerp.tests import common
-from openerp import fields
+from odoo.tests import common
+from odoo import fields
 
 
 class TestAccountBalance(common.SavepointCase):
@@ -240,6 +240,17 @@ class TestAccountBalance(common.SavepointCase):
     def test_copy_template(self):
         copied_template = self.template.copy()
         self.assertEqual(len(copied_template.line_ids), 6)
+
+    def test_template_line_name_search(self):
+        line_obj = self.env['account.balance.reporting.template.line']
+        self.assertTrue(line_obj.name_search('account'))
+        self.assertTrue(line_obj.name_search('1600'))
+
+    def test_report_line_name_search(self):
+        self.report.action_calculate()
+        line_obj = self.env['account.balance.reporting.line']
+        self.assertTrue(line_obj.name_search('account'))
+        self.assertTrue(line_obj.name_search('1600'))
 
     def test_account_balance_mode_0(self):
         """ Check results for debit-credit report. """

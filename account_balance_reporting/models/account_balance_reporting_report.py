@@ -4,7 +4,7 @@
 # © 2016 Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
 
-from openerp import api, fields, models, _
+from odoo import api, fields, models, _
 from .account_balance_reporting_template import CSS_CLASSES
 import re
 import logging
@@ -212,19 +212,15 @@ class AccountBalanceReportingLine(models.Model):
             res.append((item.id, "[%s] %s" % (item.code, item.name)))
         return res
 
-    def name_search(self, cr, uid, name, args=None, operator='ilike',
-                    context=None, limit=80):
-        """Redefine the method to allow searching by code."""
-        ids = []
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        """Allow to search by code."""
         if args is None:
             args = []
-        if name:
-            ids = self.search(cr, uid, [('code', 'ilike', name)] + args,
-                              limit=limit, context=context)
-        if not ids:
-            ids = self.search(cr, uid, [('name', operator, name)] + args,
-                              limit=limit, context=context)
-        return self.name_get(cr, uid, ids, context=context)
+        args += ['|', ('code', operator, name)]
+        return super(AccountBalanceReportingLine, self).name_search(
+            name=name, args=args, operator=operator, limit=limit,
+        )
 
     @api.multi
     def _get_account_balance(self, expr, domain, balance_mode=0):
