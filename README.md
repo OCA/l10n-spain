@@ -47,6 +47,7 @@ addon | version | summary
 [l10n_es_aeat_mod347](l10n_es_aeat_mod347/) | 8.0.1.4.0 | Modelo 347 AEAT
 [l10n_es_aeat_mod349](l10n_es_aeat_mod349/) | 8.0.2.2.0 | Modelo 349 AEAT
 [l10n_es_aeat_vat_prorrate](l10n_es_aeat_vat_prorrate/) | 8.0.2.0.0 | AEAT - Prorrata de IVA
+[l10n_es_cnae](l10n_es_cnae/) | 8.0.1.0.0 | Extiende los códigos NACE europeos con los CNAE españoles
 [l10n_es_crm_lead_trade_name](l10n_es_crm_lead_trade_name/) | 8.0.1.0.0 | Add trade name field to leads
 [l10n_es_dua](l10n_es_dua/) | 8.0.1.0.0 | Importaciones con DUA
 [l10n_es_fiscal_year_closing](l10n_es_fiscal_year_closing/) | 8.0.1.0.0 | Cierre de ejercicio fiscal para España
