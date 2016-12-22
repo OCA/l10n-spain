@@ -27,6 +27,7 @@ addon | version | summary
 --- | --- | ---
 [l10n_es](l10n_es/) | 9.0.1.0.0 | Planes de cuentas españoles (según PGCE 2008)
 [l10n_es_account_bank_statement_import_n43](l10n_es_account_bank_statement_import_n43/) | 9.0.1.0.0 | Importación de extractos bancarios españoles (Norma 43)
+[l10n_es_cnae](l10n_es_cnae/) | 9.0.1.0.0 | Extiende los códigos NACE europeos con los CNAE españoles
 [l10n_es_toponyms](l10n_es_toponyms/) | 9.0.1.0.0 | Topónimos españoles
 
 Unported addons
