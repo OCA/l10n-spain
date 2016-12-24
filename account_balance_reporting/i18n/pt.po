@@ -3,15 +3,15 @@
 # * account_balance_reporting
 # 
 # Translators:
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014
+# OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-spain (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 12:27+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Portuguese (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/pt/)\n"
+"POT-Creation-Date: 2016-12-23 03:39+0000\n"
+"PO-Revision-Date: 2016-12-23 03:39+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,12 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_balance_reporting
-#: model:ir.model,name:account_balance_reporting.model_account_account
-msgid "Account"
-msgstr ""
-
-#. module: account_balance_reporting
-#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Account balance report"
 msgstr "Relatório de conta saldo"
 
@@ -39,7 +34,7 @@ msgid ""
 msgstr ""
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_template_form
 msgid "Account balance report template"
 msgstr "Modelo do relatório saldo da conta"
 
@@ -48,8 +43,7 @@ msgstr "Modelo do relatório saldo da conta"
 msgid ""
 "Account balance report template line / Accounting concept template One line "
 "of detail of the balance report representing an accounting concept with the "
-"formulas to calculate its values. The accounting concepts follow a parent-"
-"children hierarchy."
+"formulas to calculate its values. "
 msgstr ""
 
 #. module: account_balance_reporting
@@ -61,13 +55,13 @@ msgid ""
 msgstr ""
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_tree
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_template_tree
 msgid "Account balance report templates"
 msgstr "Modelos da Conta relatório de saldo"
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_tree
 #: model:ir.actions.act_window,name:account_balance_reporting.action_view_account_balance_reporting
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_tree
 msgid "Account balance reports"
 msgstr "Relatório de conta saldo"
 
@@ -77,42 +71,45 @@ msgid "Account balance templates"
 msgstr "Modelos da Conta saldo"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.template,balance_mode:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_balance_mode
 msgid "Balance mode"
 msgstr "Modo saldo"
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: model:ir.ui.view,arch_db:account_balance_reporting.report_generic
 msgid "CODE"
 msgstr "CÓDIGO"
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: model:ir.ui.view,arch_db:account_balance_reporting.report_generic
 msgid "CONCEPT"
 msgstr "CONCEITO"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.line,css_class:0
-#: field:account.balance.reporting.template.line,css_class:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_css_class
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_css_class
 msgid "CSS Class"
 msgstr "Classe CSS"
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+#: model:ir.ui.view,arch_db:account_balance_reporting.report_generic
+msgid "CURRENT"
+msgstr ""
+
+#. module: account_balance_reporting
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Calculate"
 msgstr "Calculado"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,calc_date:0
-#: field:account.balance.reporting.line,calc_date:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_calc_date
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_calc_date
 msgid "Calculation date"
 msgstr "Data processada"
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
-#: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
+#: model:ir.ui.view,arch_db:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -122,62 +119,59 @@ msgid "Canceled"
 msgstr "Cancelado"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.line,child_ids:0
-#: field:account.balance.reporting.template.line,child_ids:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_child_ids
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_child_ids
 msgid "Children"
 msgstr "Descendentes"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.line,code:0
-#: field:account.balance.reporting.template.line,code:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_code
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_code
 msgid "Code"
 msgstr "Código"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,company_id:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_company_id
 msgid "Company"
 msgstr "Empresa"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,check_filter:0
-msgid "Compute by"
-msgstr ""
-
-#. module: account_balance_reporting
-#: help:account.balance.reporting.template.line,code:0
+#: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_code
 msgid "Concept code, may be used on formulas to reference this line"
-msgstr "Código de concepção,podem ser utilizadas com formulas  para linhas de refência."
+msgstr ""
+"Código de concepção,podem ser utilizadas com formulas  para linhas de "
+"refência."
 
 #. module: account_balance_reporting
-#: help:account.balance.reporting.template.line,name:0
+#: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_name
 msgid "Concept name/description"
 msgstr "Nome da concepção/descrição"
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Configuration"
 msgstr "Configuração"
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Confirm"
 msgstr "Confirmar"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,create_uid:0
-#: field:account.balance.reporting.line,create_uid:0
-#: field:account.balance.reporting.print.wizard,create_uid:0
-#: field:account.balance.reporting.template,create_uid:0
-#: field:account.balance.reporting.template.line,create_uid:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_create_uid
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_create_uid
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_print_wizard_create_uid
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_create_uid
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_create_uid
 msgid "Created by"
 msgstr "Criado por"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,create_date:0
-#: field:account.balance.reporting.line,create_date:0
-#: field:account.balance.reporting.print.wizard,create_date:0
-#: field:account.balance.reporting.template,create_date:0
-#: field:account.balance.reporting.template.line,create_date:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_create_date
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_create_date
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_print_wizard_create_date
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_create_date
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_create_date
 msgid "Created on"
 msgstr "Criado em"
 
@@ -192,25 +186,26 @@ msgid "Credit-Debit, reversed with brackets"
 msgstr ""
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.line,current_move_line_count:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_current_move_line_count
 msgid "Current move line count"
 msgstr ""
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,current_date_from:0
-#: field:account.balance.reporting,previous_date_from:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_current_date_from
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_previous_date_from
 msgid "Date From"
 msgstr ""
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,current_date_to:0
-#: field:account.balance.reporting,previous_date_to:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_current_date_to
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_previous_date_to
 msgid "Date To"
 msgstr ""
 
 #. module: account_balance_reporting
-#: selection:account.balance.reporting,check_filter:0
-msgid "Dates"
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_current_date_range
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_previous_date_range
+msgid "Date range"
 msgstr ""
 
 #. module: account_balance_reporting
@@ -230,28 +225,23 @@ msgid "Default"
 msgstr "Padrão"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.template,description:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_description
 msgid "Description"
 msgstr "Descrição"
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
-#: field:account.balance.reporting.print.wizard,report_xml_id:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_print_wizard_report_xml_id
+#: model:ir.ui.view,arch_db:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Design"
 msgstr ""
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,display_name:0
-#: field:account.balance.reporting.print.wizard,display_name:0
-#: field:account.balance.reporting.template,display_name:0
-#: field:account.balance.reporting.template.line,display_name:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_display_name
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_print_wizard_display_name
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_display_name
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_display_name
 msgid "Display Name"
-msgstr ""
-
-#. module: account_balance_reporting
-#: field:account.account,not_level_expand:0
-msgid "Don't show this account on financial reports level detail"
-msgstr ""
+msgstr "Nome"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
@@ -259,8 +249,8 @@ msgid "Done"
 msgstr "Concluído"
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
 #: selection:account.balance.reporting,state:0
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Draft"
 msgstr "Rascunho"
 
@@ -276,41 +266,29 @@ msgid "Financial report"
 msgstr ""
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
-#: field:account.balance.reporting,current_fiscalyear_id:0
-#: field:account.balance.reporting.line,current_value:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_current_value
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Fiscal year 1"
 msgstr "Ano fiscal 1"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.template.line,current_value:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_current_value
 msgid "Fiscal year 1 formula"
 msgstr "Ano Fiscal 1 fórmula"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,current_period_ids:0
-msgid "Fiscal year 1 periods"
-msgstr "Ano Fiscal 1º periodos"
-
-#. module: account_balance_reporting
-#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
-#: field:account.balance.reporting,previous_fiscalyear_id:0
-#: field:account.balance.reporting.line,previous_value:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_previous_value
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Fiscal year 2"
 msgstr "Ano fiscal 2"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.template.line,previous_value:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_previous_value
 msgid "Fiscal year 2 formula"
 msgstr "Ano Fiscal 2 formula"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,previous_period_ids:0
-msgid "Fiscal year 2 periods"
-msgstr "Ano fiscal 2º periodo"
-
-#. module: account_balance_reporting
-#: help:account.balance.reporting.template,balance_mode:0
+#: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_balance_mode
 msgid ""
 "Formula calculation mode: Depending on it, the balance is calculated as follows:\n"
 "Mode 0: debit-credit (default);\n"
@@ -330,25 +308,16 @@ msgid "Generic balance report (non zero lines)"
 msgstr "Relatório genérico de saldo  (não nulos)"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,id:0
-#: field:account.balance.reporting.line,id:0
-#: field:account.balance.reporting.print.wizard,id:0
-#: field:account.balance.reporting.template,id:0
-#: field:account.balance.reporting.template.line,id:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_id
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_id
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_print_wizard_id
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_id
 msgid "ID"
 msgstr "ID"
 
 #. module: account_balance_reporting
-#: help:account.account,not_level_expand:0
-msgid ""
-"If you mark this field, when expanding account balances by levels on "
-"financial reports, this account won't be shown. This only serves when "
-"displaying the account itself, but not when showing parent accounts, which "
-"will include this account balance as part of the result."
-msgstr ""
-
-#. module: account_balance_reporting
-#: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_template_form
 msgid "Information"
 msgstr "Informação"
 
@@ -361,52 +330,47 @@ msgid ""
 msgstr ""
 
 #. module: account_balance_reporting
-#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:528
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:424
 #, python-format
 msgid "Journal Items"
 msgstr ""
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.line,current_move_line_ids:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_current_move_line_ids
 msgid "Journal items (current)"
 msgstr ""
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.line,previous_move_line_ids:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_previous_move_line_ids
 msgid "Journal items (previous)"
 msgstr ""
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,__last_update:0
-#: field:account.balance.reporting.line,__last_update:0
-#: field:account.balance.reporting.print.wizard,__last_update:0
-#: field:account.balance.reporting.template,__last_update:0
-#: field:account.balance.reporting.template.line,__last_update:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting___last_update
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line___last_update
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_print_wizard___last_update
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template___last_update
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Modificado a última vez por"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,write_uid:0
-#: field:account.balance.reporting.line,write_uid:0
-#: field:account.balance.reporting.print.wizard,write_uid:0
-#: field:account.balance.reporting.template,write_uid:0
-#: field:account.balance.reporting.template.line,write_uid:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_write_uid
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_print_wizard_write_uid
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_write_uid
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_write_uid
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_write_uid
 msgid "Last Updated by"
 msgstr "Atualizado pela última vez por"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,write_date:0
-#: field:account.balance.reporting.line,write_date:0
-#: field:account.balance.reporting.print.wizard,write_date:0
-#: field:account.balance.reporting.template,write_date:0
-#: field:account.balance.reporting.template.line,write_date:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_write_date
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_print_wizard_write_date
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_write_date
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_write_date
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_write_date
 msgid "Last Updated on"
 msgstr "Atualizado pela última vez em"
-
-#. module: account_balance_reporting
-#: field:account.balance.reporting,level:0
-msgid "Level"
-msgstr ""
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.line,css_class:0
@@ -439,75 +403,74 @@ msgid "Level 5"
 msgstr "Nível 5"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.line,template_line_id:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_template_line_id
 msgid "Line template"
 msgstr "Modelo de linha"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,line_ids:0
-#: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
-#: field:account.balance.reporting.template,line_ids:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_ids
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_ids
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_template_form
 msgid "Lines"
 msgstr "Linhas"
 
 #. module: account_balance_reporting
-#: help:account.balance.reporting.template.line,sequence:0
+#: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_sequence
 msgid "Lines will be sorted/grouped by this field"
 msgstr "As linhas serão classificados/agrupados por este campo"
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: model:ir.ui.view,arch_db:account_balance_reporting.report_generic
 msgid "NOTES"
 msgstr "NOTAS"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,name:0
-#: field:account.balance.reporting.line,display_name:0
-#: field:account.balance.reporting.line,name:0
-#: field:account.balance.reporting.template,name:0
-#: field:account.balance.reporting.template.line,name:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_display_name
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_name
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_name
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_name
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_name
 msgid "Name"
 msgstr "Nome"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.template.line,negate:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_negate
 msgid "Negate"
 msgstr "Negar"
 
 #. module: account_balance_reporting
-#: help:account.balance.reporting.template.line,negate:0
+#: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_negate
 msgid "Negate the value (change the sign of the balance)"
 msgstr "Negue o valor (trocar o sinal do saldo)"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.line,notes:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_notes
 msgid "Notes"
 msgstr "Notas"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.line,parent_id:0
-#: field:account.balance.reporting.template.line,parent_id:0
+#: model:ir.ui.view,arch_db:account_balance_reporting.report_generic
+msgid "PREVIOUS"
+msgstr ""
+
+#. module: account_balance_reporting
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_parent_id
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_parent_id
 msgid "Parent"
 msgstr "Ascendente"
 
 #. module: account_balance_reporting
-#: selection:account.balance.reporting,check_filter:0
-msgid "Periods"
-msgstr ""
-
-#. module: account_balance_reporting
-#: field:account.balance.reporting.line,previous_move_line_count:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_previous_move_line_count
 msgid "Previous move line count"
 msgstr ""
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
+#: model:ir.ui.view,arch_db:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Print"
 msgstr "Imprimir"
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
+#: model:ir.ui.view,arch_db:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Print report"
 msgstr "Relatório de Impressão"
 
@@ -517,86 +480,91 @@ msgid "Processed"
 msgstr "Processado"
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Recalculate"
 msgstr ""
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.line,report_id:0
-#: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
-#: field:account.balance.reporting.print.wizard,report_id:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_report_id
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_print_wizard_report_id
+#: model:ir.ui.view,arch_db:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Report"
 msgstr "Relatório"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.template,report_xml_id:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_report_xml_id
 msgid "Report design"
 msgstr "Design do relatório"
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Report lines"
 msgstr "Linhas de relatório"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.line,sequence:0
-#: field:account.balance.reporting.template.line,sequence:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_sequence
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_sequence
 msgid "Sequence"
 msgstr "Sequência"
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Show journal items"
 msgstr ""
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,state:0
+#: model:ir.ui.menu,name:account_balance_reporting.menu_spanish_financial_reports
+msgid "Spanish Financial Reports"
+msgstr ""
+
+#. module: account_balance_reporting
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_state
 msgid "State"
 msgstr "Estado"
 
 #. module: account_balance_reporting
-#: help:account.balance.reporting.template.line,css_class:0
+#: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_css_class
 msgid "Style-sheet class"
 msgstr "Classe do estilo-folha"
 
 #. module: account_balance_reporting
-#: selection:account.balance.reporting.template,type:0
+#: selection:account.balance.reporting.template,tmpl_type:0
 msgid "System"
 msgstr "Sistema"
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting,template_id:0
-#: field:account.balance.reporting.template.line,template_id:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_3567
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_template_id
 msgid "Template"
 msgstr "Modelo"
 
 #. module: account_balance_reporting
-#: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
+#: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_template_form
 msgid "Template lines"
 msgstr "Linhas de modelo"
 
 #. module: account_balance_reporting
 #: sql_constraint:account.balance.reporting.line:0
 #: sql_constraint:account.balance.reporting.template.line:0
-#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:189
-#: code:addons/account_balance_reporting/models/account_balance_reporting_template.py:150
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:178
+#: code:addons/account_balance_reporting/models/account_balance_reporting_template.py:147
 #, python-format
 msgid "The code must be unique for this report!"
 msgstr ""
 
 #. module: account_balance_reporting
-#: field:account.balance.reporting.template,type:0
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_tmpl_type
 msgid "Type"
 msgstr "Tipo"
 
 #. module: account_balance_reporting
-#: selection:account.balance.reporting.template,type:0
+#: selection:account.balance.reporting.template,tmpl_type:0
 msgid "User"
 msgstr "Utilizador"
 
 #. module: account_balance_reporting
-#: help:account.balance.reporting.template.line,current_value:0
-#: help:account.balance.reporting.template.line,previous_value:0
+#: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_current_value
+#: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_previous_value
 msgid ""
 "Value calculation formula: Depending on this formula the final value is\n"
 "    calculated as follows:\n"
@@ -607,4 +575,9 @@ msgid ""
 "      Concept codes separated by \"+\" (\"11000+12000\"): Sum of those concepts\n"
 "      values.\n"
 "    "
+msgstr ""
+
+#. module: account_balance_reporting
+#: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_print_wizard
+msgid "account.balance.reporting.print.wizard"
 msgstr ""
