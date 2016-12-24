@@ -4,7 +4,7 @@
 # Copyright 2014 Roberto Lizana (Trey)
 # Copyright 2013-2016 Pedro M. Baeza
 
-from openerp import models, fields, api
+from odoo import models, fields, api
 
 
 class AccountInvoice(models.Model):
