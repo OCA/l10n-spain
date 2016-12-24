@@ -88,14 +88,14 @@ class TestInvoiceSequence(common.SavepointCase):
                 'quantity': 10,
             })]
         })
-        invoice.signal_workflow('invoice_open')
+        invoice.action_invoice_open()
         self.assertEqual(invoice.number[:4], 'tINV')
         self.assertEqual(invoice.move_id.name[:3], 'tAM')
         self.assertEqual(invoice.move_id.ref[:4], 'tINV')
         invoice2 = invoice.copy()
         self.assertNotEqual(invoice.number, invoice2.number)
         # Cancel invoice and try to unlink
-        invoice.signal_workflow('invoice_cancel')
+        invoice.action_invoice_cancel()
         invoice.unlink()  # This shouldn't raise error
         self.assertFalse(invoice.exists())
 
@@ -114,7 +114,7 @@ class TestInvoiceSequence(common.SavepointCase):
                 'quantity': 10,
             })]
         })
-        invoice.signal_workflow('invoice_open')
+        invoice.action_invoice_open()
         self.assertEqual(invoice.number[:4], 'tREF')
         self.assertEqual(invoice.move_id.name[:3], 'tAM')
         self.assertEqual(invoice.move_id.ref[:4], 'tREF')
