@@ -36,24 +36,42 @@ class TestL10nEsPartner(common.SavepointCase):
         cls.env.user.company_id.country_id = cls.country_spain.id
 
     def test_search_commercial(self):
-        res = self.env['res.partner'].name_search(self.partner.comercial)
-        self.assertTrue(res)
+        partner_obj = self.env['res.partner']
+        self.assertTrue(partner_obj.name_search('prueba'))
+        self.assertTrue(partner_obj.name_search('comercial'))
+        self.assertTrue(partner_obj.search([('name', 'ilike', 'comercial')]))
 
     def test_onchange_acc_number_old(self):
         with self.env.do_in_onchange():
             record = self.env['res.partner.bank'].new()
             record.acc_number = '99999999509999999999'
             record.acc_country_id = self.country_spain.id
-            record.onchange_acc_number_l10n_es_partner()
+            record._onchange_acc_number_l10n_es_partner()
             self.assertEqual(record.acc_number, '9999 9999 50 9999999999')
             self.assertEqual(record.bank_id, self.bank)
+
+    def test_onchange_acc_number_old_incorrect_dc(self):
+        with self.env.do_in_onchange():
+            record = self.env['res.partner.bank'].new()
+            record.acc_number = '99999999999999999999'
+            record.acc_country_id = self.country_spain.id
+            res = record._onchange_acc_number_l10n_es_partner()
+            self.assertTrue(res.get('warning'))
+
+    def test_onchange_acc_number_old_incorrect_size(self):
+        with self.env.do_in_onchange():
+            record = self.env['res.partner.bank'].new()
+            record.acc_number = '9999999950999999999'
+            record.acc_country_id = self.country_spain.id
+            res = record._onchange_acc_number_l10n_es_partner()
+            self.assertTrue(res.get('warning'))
 
     def test_onchange_acc_number_old_journal(self):
         with self.env.do_in_onchange():
             record = self.env['account.journal'].new()
             record.bank_acc_number = '99999999509999999999'
             record.bank_acc_country_id = self.country_spain.id
-            record.onchange_bank_acc_number_l10n_es_partner()
+            record._onchange_bank_acc_number_l10n_es_partner()
             self.assertEqual(record.bank_acc_number, '9999 9999 50 9999999999')
             self.assertEqual(record.bank_id, self.bank)
 
@@ -62,7 +80,7 @@ class TestL10nEsPartner(common.SavepointCase):
             record = self.env['res.partner.bank'].new()
             record.acc_number = 'ES1299999999509999999999'
             record.acc_country_id = self.country_spain.id
-            record.onchange_acc_number_l10n_es_partner()
+            record._onchange_acc_number_l10n_es_partner()
             self.assertEqual(
                 record.acc_number, 'ES12 9999 9999 5099 9999 9999')
             self.assertEqual(record.bank_id, self.bank)
@@ -72,7 +90,7 @@ class TestL10nEsPartner(common.SavepointCase):
             record = self.env['account.journal'].new()
             record.bank_acc_number = 'ES1299999999509999999999'
             record.bank_acc_country_id = self.country_spain.id
-            record.onchange_bank_acc_number_l10n_es_partner()
+            record._onchange_bank_acc_number_l10n_es_partner()
             self.assertEqual(
                 record.bank_acc_number, 'ES12 9999 9999 5099 9999 9999')
             self.assertEqual(record.bank_id, self.bank)
@@ -82,7 +100,7 @@ class TestL10nEsPartner(common.SavepointCase):
             record = self.env['res.partner.bank'].new()
             record.acc_number = 'ES9999999999999999999999'
             record.acc_country_id = self.country_spain.id
-            res = record.onchange_acc_number_l10n_es_partner()
+            res = record._onchange_acc_number_l10n_es_partner()
             self.assertTrue(res['warning']['message'])
 
     def test_onchange_acc_number_invalid_journal(self):
@@ -90,7 +108,7 @@ class TestL10nEsPartner(common.SavepointCase):
             record = self.env['account.journal'].new()
             record.bank_acc_number = 'ES9999999999999999999999'
             record.bank_acc_country_id = self.country_spain.id
-            res = record.onchange_bank_acc_number_l10n_es_partner()
+            res = record._onchange_bank_acc_number_l10n_es_partner()
             self.assertTrue(res['warning']['message'])
 
     def test_create_journal(self):

@@ -51,7 +51,7 @@ class XlsDictReader:
 
 
 def escape(data):
-    if isinstance(data, (int, float)):
+    if isinstance(data, (int, float)):  # pragma: no cover
         data = unicode(int(data))
     chars = [('&', '&amp;'), ('>', '&gt;'), ('<', '&lt;'), ('"', "&quot;"),
              ("'", "&apos;")]
@@ -70,8 +70,8 @@ def gen_bank_data_xml(src_path, dest_path):
     # Abrir el archivo que contine la información de los bancos
     try:
         reader = XlsDictReader(src_path)
-    except IOError:
-        _logger.error("Archivo '%s' no encontrado." % src_path)
+    except IOError:  # pragma: no cover
+        _logger.error("File '%s' not found." % src_path)
         return
     # Preparar el archivo resultante
     output = codecs.open(dest_path, mode='w', encoding='utf-8')
@@ -127,10 +127,10 @@ def gen_bank_data_xml(src_path, dest_path):
         output.write(indent + '</record>\n')
     output.write("</odoo>\n")
     output.close()
-    _logger.info("data_banks.xml generado correctamente.")
+    _logger.info("data_banks.xml succesfully generated.")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     dir_path = os.path.os.path.dirname(__file__)
     parent_path = os.path.abspath(os.path.join(dir_path, os.pardir))
     gen_bank_data_xml('REGBANESP_CONESTAB_A.xls',
