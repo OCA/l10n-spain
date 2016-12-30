@@ -6,6 +6,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3).
 
 from openerp import api, fields, models
+from openerp.models import expression
 
 
 class ResPartner(models.Model):
@@ -13,21 +14,19 @@ class ResPartner(models.Model):
 
     comercial = fields.Char('Trade name', size=128, index=True)
 
-    def name_search(self, cr, uid, name, args=None, operator='ilike',
-                    context=None, limit=100):
-        if not args:
-            args = []
-        partners = super(ResPartner, self).name_search(cr, uid, name, args,
-                                                       operator, context,
-                                                       limit)
-        ids = [x[0] for x in partners]
-        if name and len(ids) == 0:
-            ids = self.search(cr, uid, [('comercial', operator, name)] + args,
-                              limit=limit, context=context)
-        return self.name_get(cr, uid, ids, context=context)
+    @api.model
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        """Include commercial name in direct name search. It serves also
+        implicitly for name_search()"""
+        if args and args[0][0] == 'name':
+            args = expression.normalize_domain(args)
+            exp = args[0]
+            args = ['|',  ('comercial', exp[1], exp[2])] + args
+        return super(ResPartner, self).search(
+            args, offset=offset, limit=limit, order=order, count=count,
+        )
 
     @api.multi
-    @api.depends('name', 'comercial')
     def name_get(self):
         result = []
         name_pattern = self.env['ir.config_parameter'].get_param(
@@ -35,9 +34,15 @@ class ResPartner(models.Model):
         orig_name = dict(super(ResPartner, self).name_get())
         for partner in self:
             name = orig_name[partner.id]
-            comercial = partner.commercial_partner_id.comercial
+            comercial = partner.comercial
             if comercial and name_pattern:
                 name = name_pattern % {'name': name,
                                        'comercial_name': comercial}
             result.append((partner.id, name))
         return result
+
+    @api.model
+    def _commercial_fields(self):
+        res = super(ResPartner, self)._commercial_fields()
+        res += ['comercial']
+        return res

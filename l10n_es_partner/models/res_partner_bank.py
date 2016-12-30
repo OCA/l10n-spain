@@ -5,7 +5,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3).
 
 from openerp import api, exceptions, fields, models, _
-from openerp.addons.base_iban.base_iban import normalize_iban, validate_iban
+from openerp.addons.base_iban.base_iban import \
+    normalize_iban, validate_iban, pretty_iban
 
 
 class ResPartnerBank(models.Model):
@@ -19,18 +20,19 @@ class ResPartnerBank(models.Model):
 
     @api.model
     def _crc(self, texto):
-        """Calculo el CRC de un número de 10 dígitos
-        ajustados con ceros por la izquierda"""
+        """Cálculo del CRC de un número de 10 dígitos ajustados con ceros por
+        la izquierda.
+        """
         factor = (1, 2, 4, 8, 5, 10, 9, 7, 3, 6)
         # Cálculo CRC
         nCRC = 0
         for n in range(10):
             nCRC += int(texto[n]) * factor[n]
-        # Reducción del CRC a un dígi9to
+        # Reducción del CRC a un dígito
         nValor = 11 - nCRC % 11
-        if nValor == 10:
+        if nValor == 10:  # pragma: no cover
             nValor = 1
-        elif nValor == 11:
+        elif nValor == 11:  # pragma: no cover
             nValor = 0
         return nValor
 
@@ -60,16 +62,6 @@ class ResPartnerBank(models.Model):
         return '%s %s %s %s' % (bank, office, dc, account)
 
     @api.model
-    def _pretty_iban(self, iban_str):
-        """return iban_str in groups of four characters separated
-        by a single space"""
-        res = []
-        while iban_str:
-            res.append(iban_str[:4])
-            iban_str = iban_str[4:]
-        return ' '.join(res)
-
-    @api.model
     def _process_onchange_acc_number(self, acc_number, country):
         res = {}
         if not acc_number or country != self.env.ref('base.es'):
@@ -82,7 +74,7 @@ class ResPartnerBank(models.Model):
                 validate_iban(acc_number)
                 bank = bank_obj.search(
                     [('code', '=', acc_number[4:8])], limit=1)
-                number = self._pretty_iban(acc_number)
+                number = pretty_iban(acc_number)
             except exceptions.ValidationError:
                 res['warning_message'] = _('IBAN account is not valid')
                 return res
@@ -102,12 +94,18 @@ class ResPartnerBank(models.Model):
 
     @api.multi
     @api.onchange('acc_country_id', 'acc_number')
-    def onchange_acc_number_l10n_es_partner(self):
-        warning_dict = {'warning': {'title': _('Warning')}}
+    def _onchange_acc_number_l10n_es_partner(self):
         res = self._process_onchange_acc_number(
-            self.acc_number, self.acc_country_id)
+            self.acc_number, self.acc_country_id,
+        )
         if res.get('warning_message'):
-            warning_dict['warning']['message'] = res['warning_message']
+            warning_dict = {
+                'warning': {
+                    'title': _('Warning'),
+                    'message': res['warning_message'],
+                }
+            }
             return warning_dict
-        self.acc_number = res.get('acc_number', False)
-        self.bank_id = res.get('bank_id', False)
+        if res:
+            self.acc_number = res.get('acc_number', False)
+            self.bank_id = res.get('bank_id', False)
