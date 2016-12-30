@@ -24,17 +24,23 @@ class AccountJournal(models.Model):
             # Write a more complete version of the journal name for Spanish
             # bank and cash journals
             bank = self.env['res.bank'].browse(vals['bank_id'])
-            vals['name'] = "{} {}".format(bank.name, vals['bank_acc_number'])
+            vals['name'] = u"{} {}".format(bank.name, vals['bank_acc_number'])
         return super(AccountJournal, self).create(vals)
 
     @api.multi
     @api.onchange('bank_acc_country_id', 'bank_acc_number')
-    def onchange_bank_acc_number_l10n_es_partner(self):
-        warning_dict = {'warning': {'title': _('Warning')}}
+    def _onchange_bank_acc_number_l10n_es_partner(self):
         res = self.env['res.partner.bank']._process_onchange_acc_number(
-            self.bank_acc_number, self.bank_acc_country_id)
+            self.bank_acc_number, self.bank_acc_country_id,
+        )
         if res.get('warning_message'):
-            warning_dict['warning']['message'] = res['warning_message']
+            warning_dict = {
+                'warning': {
+                    'title': _('Warning'),
+                    'message': res['warning_message'],
+                }
+            }
             return warning_dict
-        self.bank_acc_number = res.get('acc_number', False)
-        self.bank_id = res.get('bank_id', False)
+        if res:
+            self.bank_acc_number = res.get('acc_number', False)
+            self.bank_id = res.get('bank_id', False)
