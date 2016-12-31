@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-13 10:45+0000\n"
-"PO-Revision-Date: 2016-11-22 12:24+0000\n"
+"POT-Creation-Date: 2016-12-24 02:59+0000\n"
+"PO-Revision-Date: 2016-12-27 08:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -220,7 +220,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_received,create_uid:0
 #: field:l10n.es.aeat.mod340.tax_summary,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Создано"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.calculate_records,create_date:0
@@ -234,7 +234,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_received,create_date:0
 #: field:l10n.es.aeat.mod340.tax_summary,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Создан"
 
 #. module: l10n_es_aeat_mod340
 #: reportvat book:0
@@ -428,7 +428,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_received,id:0
 #: field:l10n.es.aeat.mod340.tax_summary,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_report_search
@@ -462,7 +462,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.issued,invoice_id:0
 #: field:l10n.es.aeat.mod340.received,invoice_id:0
 msgid "Invoice"
-msgstr ""
+msgstr "Счет"
 
 #. module: l10n_es_aeat_mod340
 #: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:388
@@ -584,7 +584,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_received,write_uid:0
 #: field:l10n.es.aeat.mod340.tax_summary,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.calculate_records,write_date:0
@@ -598,7 +598,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_received,write_date:0
 #: field:l10n.es.aeat.mod340.tax_summary,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: l10n_es_aeat_mod340
 #: field:account.invoice,last_ticket:0
@@ -741,7 +741,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.issued,partner_id:0
 #: field:l10n.es.aeat.mod340.received,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Контрагент"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.intracomunitarias,payment_amount:0

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-22 09:41+0000\n"
-"PO-Revision-Date: 2016-12-23 08:32+0000\n"
+"POT-Creation-Date: 2016-12-24 02:59+0000\n"
+"PO-Revision-Date: 2016-12-30 22:02+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -133,12 +133,12 @@ msgstr ""
 #: field:account.balance.reporting.line,code:0
 #: field:account.balance.reporting.template.line,code:0
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Şirket"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,check_filter:0
@@ -158,7 +158,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
 msgid "Configuration"
-msgstr ""
+msgstr "Yapılandırma"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
@@ -248,7 +248,7 @@ msgstr ""
 #: field:account.balance.reporting.template,display_name:0
 #: field:account.balance.reporting.template.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: account_balance_reporting
 #: field:account.account,not_level_expand:0
@@ -385,7 +385,7 @@ msgstr ""
 #: field:account.balance.reporting.template,__last_update:0
 #: field:account.balance.reporting.template.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,write_uid:0
@@ -450,7 +450,7 @@ msgstr ""
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
 #: field:account.balance.reporting.template,line_ids:0
 msgid "Lines"
-msgstr ""
+msgstr "Satırlar"
 
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template.line,sequence:0
@@ -593,7 +593,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template,type:0
 msgid "Type"
-msgstr ""
+msgstr "Tipi"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,type:0

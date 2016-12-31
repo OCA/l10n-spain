@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-13 10:45+0000\n"
-"PO-Revision-Date: 2016-11-22 12:24+0000\n"
+"POT-Creation-Date: 2016-12-24 02:59+0000\n"
+"PO-Revision-Date: 2016-12-27 08:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -201,13 +201,13 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.mod130.report,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Создано"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.export_to_boe,create_date:0
 #: field:l10n.es.aeat.mod130.report,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Создан"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,currency_id:0
@@ -312,7 +312,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.export_to_boe,id:0
 #: field:l10n.es.aeat.mod130.report,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,journal_id:0
@@ -339,13 +339,13 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod130.report,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.export_to_boe,write_date:0
 #: field:l10n.es.aeat.mod130.report,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,representative_vat:0
@@ -386,7 +386,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,company_partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Контрагент"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,period:0

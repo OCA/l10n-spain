@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-22 09:41+0000\n"
-"PO-Revision-Date: 2016-12-23 08:32+0000\n"
+"POT-Creation-Date: 2016-12-24 02:59+0000\n"
+"PO-Revision-Date: 2016-12-30 21:49+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -178,14 +178,14 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Close"
-msgstr ""
+msgstr "Kapat"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: field:l10n.es.aeat.report,company_id:0
 #: field:l10n.es.aeat.report.tax.mapping,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Şirket"
 
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,partner_bank_id:0
@@ -202,7 +202,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,conditional:0
 msgid "Conditional"
-msgstr ""
+msgstr "Koşullı"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,conditional_expression:0
@@ -292,7 +292,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.tax.mapping,display_name:0
 #: field:l10n.es.aeat.tax.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -317,7 +317,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,date_end:0
 msgid "End date"
-msgstr ""
+msgstr "Bitiş Zamanı"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_tax_code_mapping.py:56
@@ -520,7 +520,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.tax.mapping,__last_update:0
 #: field:l10n.es.aeat.tax.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,write_uid:0
@@ -556,7 +556,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,config_lines:0
 msgid "Lines"
-msgstr ""
+msgstr "Satırlar"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,map_line:0
@@ -777,7 +777,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,date_start:0
 msgid "Start date"
-msgstr ""
+msgstr "Başlama zamanı"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,state:0
@@ -922,7 +922,7 @@ msgstr ""
 #: code:addons/l10n_es_aeat/models/aeat_report.py:208
 #, python-format
 msgid "Warning"
-msgstr ""
+msgstr "Uyarı"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:74

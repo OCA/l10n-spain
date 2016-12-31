@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-13 10:45+0000\n"
-"PO-Revision-Date: 2016-11-25 14:57+0000\n"
+"POT-Creation-Date: 2016-12-24 02:59+0000\n"
+"PO-Revision-Date: 2016-12-30 21:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -181,7 +181,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Şirket"
 
 #. module: l10n_es_aeat_mod349
 #: help:l10n.es.aeat.mod349.report,partner_bank_id:0
@@ -209,7 +209,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_refund,country_id:0
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Country"
-msgstr ""
+msgstr "Ülke"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
@@ -275,7 +275,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_refund_detail,display_name:0
 #: field:l10n.es.aeat.mod349.report,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
@@ -391,7 +391,7 @@ msgstr ""
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_invoice
 #: field:l10n.es.aeat.mod349.partner_record_detail,invoice_id:0
 msgid "Invoice"
-msgstr ""
+msgstr "Fatura"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_refund_detail,invoice_id:0
@@ -427,7 +427,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_refund_detail,__last_update:0
 #: field:l10n.es.aeat.mod349.report,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.export_to_boe,write_uid:0
@@ -511,7 +511,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form
 msgid "Options"
-msgstr ""
+msgstr "Seçenekler"
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
@@ -538,7 +538,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_refund,partner_id:0
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Partner"
-msgstr ""
+msgstr "İş Ortağı"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record,partner_record_ok:0
@@ -744,7 +744,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_refund,partner_vat:0
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "VAT"
-msgstr ""
+msgstr "VKN"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,company_vat:0
