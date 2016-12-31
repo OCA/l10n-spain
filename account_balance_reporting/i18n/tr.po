@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-30 07:26+0000\n"
-"PO-Revision-Date: 2016-12-17 10:13+0000\n"
+"POT-Creation-Date: 2016-12-24 02:54+0000\n"
+"PO-Revision-Date: 2016-12-30 22:02+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -131,7 +131,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template,type:0
 msgid "Type"
-msgstr ""
+msgstr "Tipi"
 
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template
@@ -178,7 +178,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Şirket"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.line,css_class:0
@@ -231,7 +231,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: view:account.balance.reporting:0
 msgid "Configuration"
-msgstr ""
+msgstr "Yapılandırma"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,css_class:0
@@ -279,7 +279,7 @@ msgstr ""
 #: view:account.balance.reporting.template:0
 #: field:account.balance.reporting.template,line_ids:0
 msgid "Lines"
-msgstr ""
+msgstr "Satırlar"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,notes:0
@@ -361,7 +361,7 @@ msgstr ""
 #: field:account.balance.reporting.line,code:0
 #: field:account.balance.reporting.template.line,code:0
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,previous_period_ids:0
