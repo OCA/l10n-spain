@@ -30,6 +30,7 @@ addon | version | summary
 [l10n_es_account_balance_report](l10n_es_account_balance_report/) | 9.0.1.0.0 | Informes de cuentas anuales españoles
 [l10n_es_account_bank_statement_import_n43](l10n_es_account_bank_statement_import_n43/) | 9.0.1.0.0 | Importación de extractos bancarios españoles (Norma 43)
 [l10n_es_cnae](l10n_es_cnae/) | 9.0.1.0.0 | Extiende los códigos NACE europeos con los CNAE españoles
+[l10n_es_partner](l10n_es_partner/) | 9.0.1.0.0 | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_toponyms](l10n_es_toponyms/) | 9.0.1.0.0 | Topónimos españoles
 
 Unported addons
@@ -58,7 +59,6 @@ addon | version | summary
 [l10n_es_fiscal_year_closing](l10n_es_fiscal_year_closing/) | 8.0.1.0.0 (unported) | Cierre de ejercicio fiscal para España
 [l10n_es_irnr](l10n_es_irnr/) | 8.0.1.0.0 (unported) | Retenciones IRNR (No residentes)
 [l10n_es_location_nuts](l10n_es_location_nuts/) | 8.0.1.0.0 (unported) | NUTS specific options for Spain
-[l10n_es_partner](l10n_es_partner/) | 8.0.1.5.1 (unported) | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 8.0.1.0.0 (unported) | Partner Mercantil
 [l10n_es_payment_order](l10n_es_payment_order/) | 8.0.1.7.0 (unported) | Exportación de ficheros bancarios CSB 19, 32, 34 y 58
 [l10n_es_payment_order_confirminet](l10n_es_payment_order_confirminet/) | 8.0.1.0.0 (unported) | Exportación de fichero bancario Confirminet
