@@ -1,19 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_partner
-#
+# * l10n_es_partner
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-10 01:37+0000\n"
-"PO-Revision-Date: 2016-12-10 01:37+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2017-01-04 03:39+0000\n"
+"PO-Revision-Date: 2017-01-04 03:39+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_bank
@@ -26,7 +29,7 @@ msgid "Bank Accounts"
 msgstr "Cuentas bancarias"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/res_partner_bank.py:92
+#: code:addons/l10n_es_partner/models/res_partner_bank.py:84
 #, python-format
 msgid "Bank account should have 20 digits."
 msgstr "La cuenta bancaria debe tener 20 dígitos."
@@ -58,7 +61,7 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/res_partner_bank.py:87
+#: code:addons/l10n_es_partner/models/res_partner_bank.py:79
 #, python-format
 msgid "IBAN account is not valid"
 msgstr "La cuenta IBAN no es válida"
@@ -71,8 +74,12 @@ msgstr "ID (identificación)"
 #. module: l10n_es_partner
 #: model:ir.model.fields,help:l10n_es_partner.field_account_journal_bank_acc_country_id
 #: model:ir.model.fields,help:l10n_es_partner.field_res_partner_bank_acc_country_id
-msgid "If the country of the bank is Spain, it validates the bank code or IBAN, formatting it accordingly."
-msgstr "Si el país del banco es España, se valida el nº de cuenta o IBAN, formateándola acorde a ello."
+msgid ""
+"If the country of the bank is Spain, it validates the bank code or IBAN, "
+"formatting it accordingly."
+msgstr ""
+"Si el país del banco es España, se valida el nº de cuenta o IBAN, "
+"formateándola acorde a ello."
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_import_fail
@@ -99,11 +106,15 @@ msgstr "Importar los datos de los bancos españoles"
 
 #. module: l10n_es_partner
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
-msgid "Internet (from Bank of Spain). Maybe this source will be not available from certain moment in time. You will need xlrd Python library."
-msgstr "Internet (del Banco de España). Puede que esta fuente no esté disponible a partir de un momento dado. Necesitará la librería de Python xlrd."
+msgid ""
+"Internet (from Bank of Spain). Maybe this source will be not available from "
+"certain moment in time. You will need xlrd Python library."
+msgstr ""
+"Internet (del Banco de España). Puede que esta fuente no esté disponible a "
+"partir de un momento dado. Necesitará la librería de Python xlrd."
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/res_partner_bank.py:96
+#: code:addons/l10n_es_partner/models/res_partner_bank.py:88
 #, python-format
 msgid "Invalid bank account."
 msgstr "Cuenta bancaria inválida."
@@ -131,7 +142,9 @@ msgstr "Última actualización en"
 #. module: l10n_es_partner
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid "Local file mirror. This copy was updated last time on 04/04/2016."
-msgstr "Copia local del archivo. Esta copia fue actualizada por última vez el 04/04/2016."
+msgstr ""
+"Copia local del archivo. Esta copia fue actualizada por última vez el "
+"04/04/2016."
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank_lname
@@ -145,8 +158,12 @@ msgstr "Empresa"
 
 #. module: l10n_es_partner
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
-msgid "Something has failed importing data from Internet. You will need to import local data instead."
-msgstr "Algo ha fallado importando los datos de Internet. Necesitará instalar los datos locales en su lugar."
+msgid ""
+"Something has failed importing data from Internet. You will need to import "
+"local data instead."
+msgstr ""
+"Algo ha fallado importando los datos de Internet. Necesitará instalar los "
+"datos locales en su lugar."
 
 #. module: l10n_es_partner
 #: model:ir.actions.todo,note:l10n_es_partner.config_wizard_l10n_es_partner
@@ -155,8 +172,11 @@ msgstr "Este asistente importa los datos de los bancos españoles."
 
 #. module: l10n_es_partner
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
-msgid "This wizard will import spanish bank data. You can choose to import it from:"
-msgstr "Este asistente importará los datos de los bancos españoles. Puede escoger importarlo de:"
+msgid ""
+"This wizard will import spanish bank data. You can choose to import it from:"
+msgstr ""
+"Este asistente importará los datos de los bancos españoles. Puede escoger "
+"importarlo de:"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner_comercial
@@ -176,8 +196,8 @@ msgid "Value Added Tax number"
 msgstr "Nº de identificación fiscal"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/account_journal.py:33
-#: code:addons/l10n_es_partner/models/res_partner_bank.py:106
+#: code:addons/l10n_es_partner/models/account_journal.py:39
+#: code:addons/l10n_es_partner/models/res_partner_bank.py:104
 #, python-format
 msgid "Warning"
 msgstr "Aviso"
@@ -191,4 +211,3 @@ msgstr "Sitio web"
 #: model:ir.model,name:l10n_es_partner.model_l10n_es_partner_import_wizard
 msgid "l10n.es.partner.import.wizard"
 msgstr "l10n.es.partner.import.wizard"
-
