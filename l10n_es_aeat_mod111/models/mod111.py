@@ -279,10 +279,14 @@ class L10nEsAeatMod111Report(models.Model):
     def calculate(self):
         self.ensure_one()
         # I. Rendimientos del trabajo
-        move_lines02 = self._get_tax_code_lines(['IRPATBI'], periods=self.periods)
-        move_lines03 = self._get_tax_code_lines(['IRPATC'], periods=self.periods)
-        move_lines05 = self._get_tax_code_lines(['IRPTBIE'], periods=self.periods)
-        move_lines06 = self._get_tax_code_lines(['IRPATCE'], periods=self.periods)
+        move_lines02 = self._get_tax_code_lines(
+            ['IRPATBI'], periods=self.periods)
+        move_lines03 = self._get_tax_code_lines(
+            ['IRPATC'], periods=self.periods)
+        move_lines05 = self._get_tax_code_lines(
+            ['IRPTBIE'], periods=self.periods)
+        move_lines06 = self._get_tax_code_lines(
+            ['IRPATCE'], periods=self.periods)
         self.move_lines_02 = move_lines02.ids
         self.move_lines_03 = move_lines03.ids
         self.move_lines_05 = move_lines05.ids
