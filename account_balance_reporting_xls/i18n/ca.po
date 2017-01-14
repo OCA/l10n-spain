@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-05-23 09:01+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"POT-Creation-Date: 2017-01-07 03:29+0000\n"
+"PO-Revision-Date: 2017-01-07 16:37+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: code:addons/account_balance_reporting_xls/report/reporting_xls.py:102
 #, python-format
 msgid "Balance"
-msgstr ""
+msgstr "Balanç"
 
 #. module: account_balance_reporting_xls
 #: code:addons/account_balance_reporting_xls/report/reporting_xls.py:83
@@ -44,6 +44,14 @@ msgstr ""
 #. module: account_balance_reporting_xls
 #: view:account.balance.reporting.print.wizard:account_balance_reporting_xls.wizard_account_balance_reporting_xls_print
 msgid "Export"
+msgstr ""
+
+#. module: account_balance_reporting_xls
+#: model:ir.model,name:account_balance_reporting_xls.model_account_balance_reporting
+msgid ""
+"It stores the configuration/header fields of an account balance report, and "
+"the linked lines of detail with the values of the accounting concepts "
+"(values generated from the selected template lines of detail formulas)"
 msgstr ""
 
 #. module: account_balance_reporting_xls
