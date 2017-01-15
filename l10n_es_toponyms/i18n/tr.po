@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 11:33+0000\n"
+"POT-Creation-Date: 2016-12-24 02:59+0000\n"
+"PO-Revision-Date: 2016-12-30 22:01+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -63,7 +63,7 @@ msgstr "Oluşturuldu"
 #. module: l10n_es_toponyms
 #: field:config.es.toponyms,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: l10n_es_toponyms
 #: view:config.es.toponyms:l10n_es_toponyms.view_confirm_toponyms_es_form
@@ -79,7 +79,7 @@ msgstr "ID"
 #. module: l10n_es_toponyms
 #: model:ir.model,name:l10n_es_toponyms.model_better_zip_geonames_import
 msgid "Import Better Zip from Geonames"
-msgstr ""
+msgstr "Geonames'ten better zip'i içe aktar"
 
 #. module: l10n_es_toponyms
 #: view:config.es.toponyms:l10n_es_toponyms.view_confirm_toponyms_es_form
@@ -89,7 +89,7 @@ msgstr ""
 #. module: l10n_es_toponyms
 #: field:config.es.toponyms,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: l10n_es_toponyms
 #: field:config.es.toponyms,write_uid:0
@@ -104,7 +104,7 @@ msgstr "Son güncelleme"
 #. module: l10n_es_toponyms
 #: field:config.es.toponyms,name:0
 msgid "Name"
-msgstr ""
+msgstr "Adı"
 
 #. module: l10n_es_toponyms
 #: selection:config.es.toponyms,city_info:0

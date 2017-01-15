@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Vicent Cubells <vicent.cubells@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<openerp>
+<data>
+
+    <template id="account_balance_reporting.report_generic">
+        <t t-call="report.html_container">
+            <div class="page">
+                <div class="row">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="header" style="font-size:120%;width:100%;text-align:center;background-color:#ccc;border:1px solid black;">
+                            <strong><span t-esc="o.name"/></strong>
+                        </div>
+                        <table class="table table-bordered" style="width:100%;border:1px solid black;border-collapse:collapse;padding:3px;">
+                            <thead>
+                                <tr style="font-size:120%;background-color:#ccc;border-bottom:1px solid black;">
+                                    <th>CONCEPT</th>
+                                    <th class="text-center">CODE</th>
+                                    <th class="text-center">NOTES</th>
+                                    <th class="text-center">CURRENT</th>
+                                    <th class="text-center">PREVIOUS</th>
+                                </tr>
+                            </thead>
+                            <tbody class="balance_reporting">
+                                <tr t-foreach="o.line_ids" t-as="line" style="font-size:90%;page-break-inside:avoid;">
+                                    <td style="border-right:1px solid black;">
+                                        <t t-if="line.css_class == 'l4'">
+                                            <span t-esc="line.name"/>
+                                        </t>
+                                        <t t-if="line.css_class != 'l4'">
+                                            <strong><span t-esc="line.name"/></strong>
+                                        </t>
+                                    </td>
+                                    <td style="text-align:center;border-right:1px solid black;"><strong><span t-esc="line.code"/></strong></td>
+                                    <td style="text-align:center;border-right:1px solid black;"><span t-esc="line.notes"/></td>
+                                    <td style="text-align:right;border-right:1px solid black;padding-right:3px;"><span t-esc="'%.2f' % line.current_value"/></td>
+                                    <td style="text-align:right;padding-right:3px;"><span t-esc="'%.2f' % line.previous_value"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="report_generic_non_zero" inherit_id="account_balance_reporting.report_generic" primary="True">
+        <xpath expr="//tr[@t-as='line']" position="attributes">
+            <attribute name="t-foreach">o.line_ids.filtered(lambda x: x.current_value != 0.0 or x.previous_value != 0.0)</attribute>
+        </xpath>
+    </template>
+
+</data>
+</openerp>

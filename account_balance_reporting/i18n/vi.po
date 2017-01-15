@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 12:24+0000\n"
+"POT-Creation-Date: 2017-01-07 03:29+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -81,14 +81,12 @@ msgid "Balance mode"
 msgstr ""
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: view:website:account_balance_reporting.report_generic
 msgid "CODE"
 msgstr ""
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: view:website:account_balance_reporting.report_generic
 msgid "CONCEPT"
 msgstr ""
 
@@ -96,6 +94,11 @@ msgstr ""
 #: field:account.balance.reporting.line,css_class:0
 #: field:account.balance.reporting.template.line,css_class:0
 msgid "CSS Class"
+msgstr ""
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic
+msgid "CURRENT"
 msgstr ""
 
 #. module: account_balance_reporting
@@ -169,7 +172,7 @@ msgstr ""
 #: field:account.balance.reporting.template,create_uid:0
 #: field:account.balance.reporting.template.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Được tạo bởi"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,create_date:0
@@ -178,7 +181,7 @@ msgstr ""
 #: field:account.balance.reporting.template,create_date:0
 #: field:account.balance.reporting.template.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Được tạo vào"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,balance_mode:0
@@ -231,7 +234,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template,description:0
 msgid "Description"
-msgstr ""
+msgstr "Miêu tả"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
@@ -245,7 +248,7 @@ msgstr ""
 #: field:account.balance.reporting.template,display_name:0
 #: field:account.balance.reporting.template.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Tên hiển thị"
 
 #. module: account_balance_reporting
 #: field:account.account,not_level_expand:0
@@ -335,7 +338,7 @@ msgstr ""
 #: field:account.balance.reporting.template,id:0
 #: field:account.balance.reporting.template.line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: account_balance_reporting
 #: help:account.account,not_level_expand:0
@@ -382,7 +385,7 @@ msgstr ""
 #: field:account.balance.reporting.template,__last_update:0
 #: field:account.balance.reporting.template.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Sửa lần cuối vào"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,write_uid:0
@@ -391,7 +394,7 @@ msgstr ""
 #: field:account.balance.reporting.template,write_uid:0
 #: field:account.balance.reporting.template.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Last Updated by"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,write_date:0
@@ -400,7 +403,7 @@ msgstr ""
 #: field:account.balance.reporting.template,write_date:0
 #: field:account.balance.reporting.template.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Cập nhật lần cuối vào"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,level:0
@@ -455,8 +458,7 @@ msgid "Lines will be sorted/grouped by this field"
 msgstr ""
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: view:website:account_balance_reporting.report_generic
 msgid "NOTES"
 msgstr ""
 
@@ -467,7 +469,7 @@ msgstr ""
 #: field:account.balance.reporting.template,name:0
 #: field:account.balance.reporting.template.line,name:0
 msgid "Name"
-msgstr ""
+msgstr "Tên"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template.line,negate:0
@@ -482,6 +484,11 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,notes:0
 msgid "Notes"
+msgstr ""
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic
+msgid "PREVIOUS"
 msgstr ""
 
 #. module: account_balance_reporting
@@ -541,7 +548,7 @@ msgstr ""
 #: field:account.balance.reporting.line,sequence:0
 #: field:account.balance.reporting.template.line,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Trình tự"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
@@ -586,12 +593,12 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template,type:0
 msgid "Type"
-msgstr ""
+msgstr "Loại"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,type:0
 msgid "User"
-msgstr ""
+msgstr "Người sử dụng"
 
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template.line,current_value:0
@@ -606,4 +613,16 @@ msgid ""
 "      Concept codes separated by \"+\" (\"11000+12000\"): Sum of those concepts\n"
 "      values.\n"
 "    "
+msgstr ""
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic_non_zero
+msgid "account_balance_reporting.report_generic_non_zero"
+msgstr ""
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic_non_zero
+msgid ""
+"o.line_ids.filtered(lambda x: x.current_value != 0.0 or x.previous_value != "
+"0.0)"
 msgstr ""

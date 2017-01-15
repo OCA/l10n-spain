@@ -7,7 +7,7 @@
 
 {
     "name": "Account balance reporting engine",
-    "version": "8.0.1.1.0",
+    "version": "8.0.1.2.0",
     "author": "Pexego, "
               "AvanzOSC, "
               "Tecnativa, "
@@ -31,6 +31,7 @@
         "views/account_balance_reporting_report_view.xml",
         "views/account_balance_reporting_menu.xml",
         "report/account_balance_reporting_reports.xml",
+        "report/report_generic.xml",
         "wizard/wizard_print_view.xml",
     ],
     "installable": True,

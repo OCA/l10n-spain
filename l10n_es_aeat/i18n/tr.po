@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 12:26+0000\n"
+"POT-Creation-Date: 2017-01-07 03:29+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:203
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:211
 #, python-format
 msgid "%s_report_%s.txt"
 msgstr ""
@@ -107,7 +107,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,amount:0
 msgid "Amount"
-msgstr ""
+msgstr "Tutar"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,apply_sign:0
@@ -128,6 +128,12 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:aeat.model.export.config:l10n_es_aeat.aeat_model_export_config_tree
 msgid "BOE export configurations"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,partner_bank_id:0
+#: field:l10n.es.aeat.report.tax.mapping,partner_bank_id:0
+msgid "Bank account"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -172,13 +178,19 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Close"
-msgstr ""
+msgstr "Kapat"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: field:l10n.es.aeat.report,company_id:0
 #: field:l10n.es.aeat.report.tax.mapping,company_id:0
 msgid "Company"
+msgstr "Şirket"
+
+#. module: l10n_es_aeat
+#: help:l10n.es.aeat.report,partner_bank_id:0
+#: help:l10n.es.aeat.report.tax.mapping,partner_bank_id:0
+msgid "Company bank account used for the presentation"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -190,7 +202,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,conditional:0
 msgid "Conditional"
-msgstr ""
+msgstr "Koşullı"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,conditional_expression:0
@@ -280,7 +292,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.tax.mapping,display_name:0
 #: field:l10n.es.aeat.tax.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -295,7 +307,7 @@ msgstr ""
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Taslak"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -305,7 +317,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,date_end:0
 msgid "End date"
-msgstr ""
+msgstr "Bitiş Zamanı"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_tax_code_mapping.py:56
@@ -467,7 +479,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:204
+#: code:addons/l10n_es_aeat/models/aeat_report.py:208
 #, python-format
 msgid ""
 "It seems that you have defined quarterly periods or periods in the middle of"
@@ -479,7 +491,7 @@ msgstr ""
 #: field:l10n.es.aeat.report,journal_id:0
 #: field:l10n.es.aeat.report.tax.mapping,journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Yevmiye Defteri"
 
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,journal_id:0
@@ -508,7 +520,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.tax.mapping,__last_update:0
 #: field:l10n.es.aeat.tax.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,write_uid:0
@@ -544,7 +556,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,config_lines:0
 msgid "Lines"
-msgstr ""
+msgstr "Satırlar"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,map_line:0
@@ -571,7 +583,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.tax.mapping,model:0
 #: field:l10n.es.aeat.tax.line,model:0 field:l10n.es.aeat.tax.line,model_id:0
 msgid "Model"
-msgstr ""
+msgstr "Alan"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,model_number:0
@@ -590,7 +602,7 @@ msgstr ""
 #: field:aeat.model.export.config.line,name:0
 #: field:l10n.es.aeat.tax.line,name:0
 msgid "Name"
-msgstr ""
+msgstr "Adı"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,negative_sign:0
@@ -624,7 +636,7 @@ msgid "Odoo model"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:336
+#: code:addons/l10n_es_aeat/models/aeat_report.py:341
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
@@ -732,7 +744,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,res_id:0
 msgid "Resource ID"
-msgstr ""
+msgstr "Kaynak ID"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,alignment:0
@@ -742,7 +754,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,sequence:0
 msgid "Sequence"
-msgstr ""
+msgstr "Sıra"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.tax.line:l10n_es_aeat.view_l10n_es_aeat_tax_line_tree
@@ -755,7 +767,7 @@ msgid "Show move"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:163
+#: code:addons/l10n_es_aeat/models/aeat_report.py:167
 #, python-format
 msgid ""
 "Split fiscal years cannot be automatically handled. You should select "
@@ -765,14 +777,14 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,date_start:0
 msgid "Start date"
-msgstr ""
+msgstr "Başlama zamanı"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,state:0
 #: field:l10n.es.aeat.report.export_to_boe,state:0
 #: field:l10n.es.aeat.report.tax.mapping,state:0
 msgid "State"
-msgstr ""
+msgstr "Durum"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,type:0
@@ -835,13 +847,13 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:77
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:113
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:121
 #, python-format
 msgid "The formated string must match the given length"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:268
+#: code:addons/l10n_es_aeat/models/aeat_report.py:272
 #, python-format
 msgid ""
 "There is no period defined for the report. Please set at least one period "
@@ -849,7 +861,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:255
+#: code:addons/l10n_es_aeat/models/aeat_report.py:259
 #, python-format
 msgid "There's a missing previous declaration for the period %s."
 msgstr ""
@@ -906,11 +918,11 @@ msgid "Value for yes"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:163
-#: code:addons/l10n_es_aeat/models/aeat_report.py:204
+#: code:addons/l10n_es_aeat/models/aeat_report.py:167
+#: code:addons/l10n_es_aeat/models/aeat_report.py:208
 #, python-format
 msgid "Warning"
-msgstr ""
+msgstr "Uyarı"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:74
@@ -947,7 +959,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "or"
-msgstr ""
+msgstr "ya da"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export

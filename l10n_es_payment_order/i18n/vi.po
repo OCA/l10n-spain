@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-04-30 23:01+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/vi/)\n"
 "MIME-Version: 1.0\n"
@@ -209,12 +209,12 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Được tạo bởi"
 
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Được tạo vào"
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb34_direct_pay_order:0
@@ -224,7 +224,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Tên hiển thị"
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,csb34_text1:0 help:payment.mode,csb34_text2:0
@@ -297,7 +297,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb58_ine:0
@@ -349,17 +349,17 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Sửa lần cuối vào"
 
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Last Updated by"
 
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Cập nhật lần cuối vào"
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb34_text1:0

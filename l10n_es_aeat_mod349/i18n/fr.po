@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-16 21:46+0000\n"
+"POT-Creation-Date: 2016-12-24 02:59+0000\n"
+"PO-Revision-Date: 2016-12-30 09:20+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -149,6 +149,11 @@ msgid "Amount untaxed"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.report,partner_bank_id:0
+msgid "Bank account"
+msgstr "Compte bancaire"
+
+#. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,calculate_date:0
 msgid "Calculate by days"
 msgstr ""
@@ -161,7 +166,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Annulé"
 
 #. module: l10n_es_aeat_mod349
 #: help:l10n.es.aeat.mod349.partner_record,partner_record_ok:0
@@ -176,6 +181,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,company_id:0
 msgid "Company"
+msgstr "Société"
+
+#. module: l10n_es_aeat_mod349
+#: help:l10n.es.aeat.mod349.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -255,7 +265,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_refund:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_form
 msgid "Details"
-msgstr ""
+msgstr "Détails"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.export_to_boe,display_name:0
@@ -270,12 +280,12 @@ msgstr "Nom à afficher"
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
 msgid "Done"
-msgstr ""
+msgstr "Terminé"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Brouillon"
 
 #. module: l10n_es_aeat_mod349
 #: selection:account.invoice,operation_key:0
@@ -313,7 +323,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_fiscal_position
 msgid "Fiscal Position"
-msgstr ""
+msgstr "Position fiscale"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_refund,fiscalyear_id:0
@@ -370,7 +380,7 @@ msgstr "ID"
 #: view:l10n.es.aeat.mod349.partner_record:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_record_form
 #: view:l10n.es.aeat.mod349.partner_refund:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_form
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #. module: l10n_es_aeat_mod349
 #: field:account.fiscal.position,intracommunity_operations:0
@@ -381,7 +391,7 @@ msgstr ""
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_invoice
 #: field:l10n.es.aeat.mod349.partner_record_detail,invoice_id:0
 msgid "Invoice"
-msgstr ""
+msgstr "Facture"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_refund_detail,invoice_id:0
@@ -391,7 +401,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. module: l10n_es_aeat_mod349
 #: help:l10n.es.aeat.mod349.report,journal_id:0
@@ -454,7 +464,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,model:0
 msgid "Model"
-msgstr ""
+msgstr "Modèle"
 
 #. module: l10n_es_aeat_mod349
 #: help:l10n.es.aeat.mod349.report,contact_name:0
@@ -501,7 +511,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form
 msgid "Options"
-msgstr ""
+msgstr "Options"
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0

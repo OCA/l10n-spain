@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 12:26+0000\n"
+"POT-Creation-Date: 2017-01-07 03:30+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -224,7 +224,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,csb34_text1:0 help:payment.mode,csb34_text2:0
@@ -282,7 +282,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,filename:0
 msgid "Filename"
-msgstr ""
+msgstr "Dosya adı"
 
 #. module: l10n_es_payment_order
 #: selection:banking.export.csb.wizard,state:0
@@ -349,7 +349,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,write_uid:0
@@ -379,7 +379,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,note:0
 msgid "Log"
-msgstr ""
+msgstr "günlük"
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb34_not_to_the_order:0
@@ -401,7 +401,7 @@ msgstr ""
 #: selection:payment.mode,csb34_concept:0
 #: selection:payment.mode,csb34_send_type:0
 msgid "Other"
-msgstr ""
+msgstr "Diğer"
 
 #. module: l10n_es_payment_order
 #: model:ir.model,name:l10n_es_payment_order.model_payment_mode
@@ -446,12 +446,12 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,state:0
 msgid "State"
-msgstr ""
+msgstr "Durum"
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb_suffix:0
 msgid "Suffix"
-msgstr ""
+msgstr "Sonek"
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,csb34_send_type:0
@@ -600,4 +600,4 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: view:banking.export.csb.wizard:l10n_es_payment_order.view_banking_export_csb_wizard_form
 msgid "Validate"
-msgstr ""
+msgstr "Doğrula"

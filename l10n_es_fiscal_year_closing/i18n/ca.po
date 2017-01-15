@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2017-01-07 03:30+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -284,7 +284,7 @@ msgstr "Compte destí"
 #: field:account.fiscalyear.closing.lp_account_map,display_name:0
 #: field:account.fiscalyear.closing.nlp_account_map,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: l10n_es_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0
@@ -420,7 +420,7 @@ msgstr "Assentament PiG"
 #: field:account.fiscalyear.closing.lp_account_map,__last_update:0
 #: field:account.fiscalyear.closing.nlp_account_map,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,write_uid:0
@@ -717,4 +717,4 @@ msgstr "Hauríeu de revisar i confirmar cadascun dels assentaments abans de cont
 #: view:account.fiscalyear.closing.cancel_wizard:l10n_es_fiscal_year_closing.cancel_fyc_form_view
 #: view:account.fiscalyear.closing.execute_wizard:l10n_es_fiscal_year_closing.execute_fyc_form_view
 msgid "or"
-msgstr ""
+msgstr "o"

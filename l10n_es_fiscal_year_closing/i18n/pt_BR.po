@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-16 01:27+0000\n"
+"POT-Creation-Date: 2017-01-07 03:30+0000\n"
+"PO-Revision-Date: 2017-01-11 15:39+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr ""
 #: view:account.fiscalyear.closing.cancel_wizard:l10n_es_fiscal_year_closing.cancel_fyc_form_view
 #: view:account.fiscalyear.closing.execute_wizard:l10n_es_fiscal_year_closing.execute_fyc_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: l10n_es_fiscal_year_closing
 #: model:ir.actions.act_window,name:l10n_es_fiscal_year_closing.action_cancel_fyc_view
@@ -157,22 +157,22 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:l10n_es_fiscal_year_closing.view_fyc_form
 msgid "Configuration"
-msgstr ""
+msgstr "Configuração"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:l10n_es_fiscal_year_closing.view_fyc_form
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:l10n_es_fiscal_year_closing.view_fyc_form
 msgid "Continue"
-msgstr ""
+msgstr "Continuar"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,create_loss_and_profit:0
@@ -232,7 +232,7 @@ msgstr "Criado em"
 #: field:account.fiscalyear.closing,nlp_date:0
 #: field:account.fiscalyear.closing,o_date:0
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing.cancel_wizard,delete_pyg:0
@@ -265,7 +265,7 @@ msgstr ""
 #: field:account.fiscalyear.closing.lp_account_map,name:0
 #: field:account.fiscalyear.closing.nlp_account_map,name:0
 msgid "Description"
-msgstr ""
+msgstr "Descrição"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing.account_map,dest_account_id:0
@@ -284,18 +284,18 @@ msgstr ""
 #: field:account.fiscalyear.closing.lp_account_map,display_name:0
 #: field:account.fiscalyear.closing.nlp_account_map,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nome para Mostrar"
 
 #. module: l10n_es_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0
 msgid "Done"
-msgstr ""
+msgstr "Feito"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:l10n_es_fiscal_year_closing.view_fyc_form
 #: selection:account.fiscalyear.closing,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Rascunho"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:215
@@ -375,7 +375,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:l10n_es_fiscal_year_closing.view_fyc_form
 msgid "General"
-msgstr ""
+msgstr "Geral"
 
 #. module: l10n_es_fiscal_year_closing
 #: model:ir.model,name:l10n_es_fiscal_year_closing.model_account_fiscalyear_closing_account_map
@@ -420,7 +420,7 @@ msgstr ""
 #: field:account.fiscalyear.closing.lp_account_map,__last_update:0
 #: field:account.fiscalyear.closing.nlp_account_map,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última atualização em"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,write_uid:0
@@ -717,4 +717,4 @@ msgstr ""
 #: view:account.fiscalyear.closing.cancel_wizard:l10n_es_fiscal_year_closing.cancel_fyc_form_view
 #: view:account.fiscalyear.closing.execute_wizard:l10n_es_fiscal_year_closing.execute_fyc_form_view
 msgid "or"
-msgstr ""
+msgstr "ou"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-16 21:46+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -20,12 +20,12 @@ msgstr ""
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_bank
 msgid "Bank"
-msgstr ""
+msgstr "Banque"
 
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_partner_bank
 msgid "Bank Accounts"
-msgstr ""
+msgstr "Comptes bancaires"
 
 #. module: l10n_es_partner
 #: code:addons/l10n_es_partner/models/l10n_es_partner.py:100
@@ -41,7 +41,7 @@ msgstr ""
 #. module: l10n_es_partner
 #: field:res.bank,code:0
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 #. module: l10n_es_partner
 #: field:l10n.es.partner.import.wizard,create_uid:0
@@ -193,7 +193,7 @@ msgstr ""
 #. module: l10n_es_partner
 #: field:res.bank,website:0
 msgid "Website"
-msgstr ""
+msgstr "Site Internet"
 
 #. module: l10n_es_partner
 #: view:res.partner.bank:l10n_es_partner.view_partner_bank_form_banco

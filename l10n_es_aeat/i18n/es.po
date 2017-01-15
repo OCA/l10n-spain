@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-21 00:49+0000\n"
-"PO-Revision-Date: 2016-07-20 06:51+0000\n"
+"POT-Creation-Date: 2016-12-22 09:41+0000\n"
+"PO-Revision-Date: 2016-12-23 08:32+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:203
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:211
 #, python-format
 msgid "%s_report_%s.txt"
 msgstr "%s_report_%s.txt"
@@ -136,6 +136,12 @@ msgid "BOE export configurations"
 msgstr "Configuraciones de exportación a BOE"
 
 #. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,partner_bank_id:0
+#: field:l10n.es.aeat.report.tax.mapping,partner_bank_id:0
+msgid "Bank account"
+msgstr "Cuenta bancaria"
+
+#. module: l10n_es_aeat
 #: view:aeat.model.export.config.line:l10n_es_aeat.aeat_model_export_config_line_form
 msgid "Basic configuration"
 msgstr "Configuración básica"
@@ -185,6 +191,12 @@ msgstr "Cerrar"
 #: field:l10n.es.aeat.report.tax.mapping,company_id:0
 msgid "Company"
 msgstr "Compañía"
+
+#. module: l10n_es_aeat
+#: help:l10n.es.aeat.report,partner_bank_id:0
+#: help:l10n.es.aeat.report.tax.mapping,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
@@ -472,7 +484,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:204
+#: code:addons/l10n_es_aeat/models/aeat_report.py:208
 #, python-format
 msgid ""
 "It seems that you have defined quarterly periods or periods in the middle of"
@@ -576,7 +588,7 @@ msgstr "Líneas de mapeo"
 #: field:l10n.es.aeat.report.tax.mapping,model:0
 #: field:l10n.es.aeat.tax.line,model:0 field:l10n.es.aeat.tax.line,model_id:0
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,model_number:0
@@ -629,7 +641,7 @@ msgid "Odoo model"
 msgstr "Modelo Odoo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:336
+#: code:addons/l10n_es_aeat/models/aeat_report.py:341
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr "Sólo los informes en estado 'borrador' or 'cancelado' pueden ser eliminados"
@@ -672,7 +684,7 @@ msgstr "Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,position:0
 msgid "Position"
-msgstr ""
+msgstr "Posición"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,positive_sign:0
@@ -737,7 +749,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,res_id:0
 msgid "Resource ID"
-msgstr ""
+msgstr "ID del recurso"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,alignment:0
@@ -760,7 +772,7 @@ msgid "Show move"
 msgstr "Ver movimiento"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:163
+#: code:addons/l10n_es_aeat/models/aeat_report.py:167
 #, python-format
 msgid ""
 "Split fiscal years cannot be automatically handled. You should select "
@@ -840,13 +852,13 @@ msgstr "Telemática"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:77
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:113
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:121
 #, python-format
 msgid "The formated string must match the given length"
 msgstr "La cadena formateada debe satisfacer el tamaño dado."
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:268
+#: code:addons/l10n_es_aeat/models/aeat_report.py:272
 #, python-format
 msgid ""
 "There is no period defined for the report. Please set at least one period "
@@ -854,7 +866,7 @@ msgid ""
 msgstr "No hay periodo definido para el informe. Establezca un periodo y vuelva a intentarlo."
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:255
+#: code:addons/l10n_es_aeat/models/aeat_report.py:259
 #, python-format
 msgid "There's a missing previous declaration for the period %s."
 msgstr "No hay una declaración previa para el periodo %s."
@@ -911,8 +923,8 @@ msgid "Value for yes"
 msgstr "Valor para el sí"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:163
-#: code:addons/l10n_es_aeat/models/aeat_report.py:204
+#: code:addons/l10n_es_aeat/models/aeat_report.py:167
+#: code:addons/l10n_es_aeat/models/aeat_report.py:208
 #, python-format
 msgid "Warning"
 msgstr "Aviso"

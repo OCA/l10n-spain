@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 11:33+0000\n"
+"POT-Creation-Date: 2016-12-24 02:59+0000\n"
+"PO-Revision-Date: 2016-12-30 22:02+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr ""
 #. module: l10n_es_partner
 #: field:res.bank,code:0
 msgid "Code"
-msgstr ""
+msgstr "Kod"
 
 #. module: l10n_es_partner
 #: field:l10n.es.partner.import.wizard,create_uid:0
@@ -56,7 +56,7 @@ msgstr "Oluşturuldu"
 #. module: l10n_es_partner
 #: field:l10n.es.partner.import.wizard,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: l10n_es_partner
 #: code:addons/l10n_es_partner/models/l10n_es_partner.py:134
@@ -120,7 +120,7 @@ msgstr ""
 #. module: l10n_es_partner
 #: field:l10n.es.partner.import.wizard,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: l10n_es_partner
 #: field:l10n.es.partner.import.wizard,write_uid:0
@@ -145,7 +145,7 @@ msgstr ""
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "İş Ortağı"
 
 #. module: l10n_es_partner
 #: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
@@ -188,7 +188,7 @@ msgstr ""
 #: code:addons/l10n_es_partner/models/l10n_es_partner.py:133
 #, python-format
 msgid "Warning"
-msgstr ""
+msgstr "Uyarı"
 
 #. module: l10n_es_partner
 #: field:res.bank,website:0

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2017-01-07 03:29+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -82,14 +82,12 @@ msgid "Balance mode"
 msgstr "Mode de saldo"
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: view:website:account_balance_reporting.report_generic
 msgid "CODE"
 msgstr "CODI"
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: view:website:account_balance_reporting.report_generic
 msgid "CONCEPT"
 msgstr "CONCEPTE"
 
@@ -98,6 +96,11 @@ msgstr "CONCEPTE"
 #: field:account.balance.reporting.template.line,css_class:0
 msgid "CSS Class"
 msgstr "Classe CSS"
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic
+msgid "CURRENT"
+msgstr ""
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
@@ -246,7 +249,7 @@ msgstr ""
 #: field:account.balance.reporting.template,display_name:0
 #: field:account.balance.reporting.template.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: account_balance_reporting
 #: field:account.account,not_level_expand:0
@@ -383,7 +386,7 @@ msgstr ""
 #: field:account.balance.reporting.template,__last_update:0
 #: field:account.balance.reporting.template.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,write_uid:0
@@ -456,8 +459,7 @@ msgid "Lines will be sorted/grouped by this field"
 msgstr "Les línies seran ordenades/agrupades per aquest camp."
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: view:website:account_balance_reporting.report_generic
 msgid "NOTES"
 msgstr "NOTES"
 
@@ -484,6 +486,11 @@ msgstr "Nega el valor (canvia el signe del saldo)."
 #: field:account.balance.reporting.line,notes:0
 msgid "Notes"
 msgstr "Notes"
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic
+msgid "PREVIOUS"
+msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,parent_id:0
@@ -607,4 +614,16 @@ msgid ""
 "      Concept codes separated by \"+\" (\"11000+12000\"): Sum of those concepts\n"
 "      values.\n"
 "    "
+msgstr ""
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic_non_zero
+msgid "account_balance_reporting.report_generic_non_zero"
+msgstr ""
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic_non_zero
+msgid ""
+"o.line_ids.filtered(lambda x: x.current_value != 0.0 or x.previous_value != "
+"0.0)"
 msgstr ""

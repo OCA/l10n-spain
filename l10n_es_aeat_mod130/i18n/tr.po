@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 11:33+0000\n"
+"POT-Creation-Date: 2017-01-07 03:29+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -65,6 +65,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,allow_posting:0
 msgid "Allow posting"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,partner_bank_id:0
+msgid "Bank account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -170,6 +175,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,company_id:0
 msgid "Company"
+msgstr "Şirket"
+
+#. module: l10n_es_aeat_mod130
+#: help:l10n.es.aeat.mod130.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -241,7 +251,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.export_to_boe,display_name:0
 #: field:l10n.es.aeat.mod130.report,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,state:0
@@ -251,7 +261,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Taslak"
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod130.action_wizard_aeat_mod130_export
@@ -307,7 +317,7 @@ msgstr "ID"
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Yevmiye Defteri"
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,journal_id:0
@@ -323,7 +333,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.export_to_boe,__last_update:0
 #: field:l10n.es.aeat.mod130.report,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.export_to_boe,write_uid:0
@@ -345,7 +355,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,model:0
 msgid "Model"
-msgstr ""
+msgstr "Alan"
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,contact_name:0
@@ -376,7 +386,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,company_partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "İş Ortağı"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,period:0
@@ -460,7 +470,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.export_to_boe,state:0
 #: field:l10n.es.aeat.mod130.report,state:0
 msgid "State"
-msgstr ""
+msgstr "Durum"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,type:0
