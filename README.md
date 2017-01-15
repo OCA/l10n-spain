@@ -29,6 +29,7 @@ addon | version | summary
 [l10n_es](l10n_es/) | 9.0.1.0.0 | Planes de cuentas españoles (según PGCE 2008)
 [l10n_es_account_balance_report](l10n_es_account_balance_report/) | 9.0.1.0.0 | Informes de cuentas anuales españoles
 [l10n_es_account_bank_statement_import_n43](l10n_es_account_bank_statement_import_n43/) | 9.0.1.0.0 | Importación de extractos bancarios españoles (Norma 43)
+[l10n_es_account_invoice_sequence](l10n_es_account_invoice_sequence/) | 9.0.1.0.0 | Secuencia para facturas separada de la secuencia de asientos
 [l10n_es_cnae](l10n_es_cnae/) | 9.0.1.0.0 | Extiende los códigos NACE europeos con los CNAE españoles
 [l10n_es_partner](l10n_es_partner/) | 9.0.1.0.0 | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_toponyms](l10n_es_toponyms/) | 9.0.1.0.0 | Topónimos españoles
@@ -40,7 +41,6 @@ addon | version | summary
 [account_balance_reporting_xls](account_balance_reporting_xls/) | 8.0.1.0.0 (unported) | Account balance reporting to XLS
 [l10n_es_account_asset](l10n_es_account_asset/) | 8.0.2.0.0 (unported) | Gestión de activos fijos para España
 [l10n_es_account_banking_sepa_fsdd](l10n_es_account_banking_sepa_fsdd/) | 8.0.1.0.0 (unported) | Account Banking Sepa - FSDD (Anticipos de crédito)
-[l10n_es_account_invoice_sequence](l10n_es_account_invoice_sequence/) | 8.0.1.3.0 (unported) | Secuencia para facturas separada de la secuencia de asientos
 [l10n_es_aeat](l10n_es_aeat/) | 8.0.1.9.0 (unported) | AEAT Base
 [l10n_es_aeat_mod111](l10n_es_aeat_mod111/) | 8.0.2.0.0 (unported) | AEAT modelo 111
 [l10n_es_aeat_mod115](l10n_es_aeat_mod115/) | 8.0.1.2.0 (unported) | AEAT modelo 115
