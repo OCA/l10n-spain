@@ -301,9 +301,9 @@ class L10nEsAeatMod111Report(models.Model):
         self.casilla_06 = sum(move_lines06.mapped('tax_amount'))
         # II. Rendimientos de actividades económicas
         move_lines08 = self._get_tax_code_lines(
-            ['IRPBI'], periods=self.periods)
+            ['IRPBIAE'], periods=self.periods)
         move_lines09 = self._get_tax_code_lines(
-            ['ITRPC'], periods=self.periods)
+            ['ITRPCAE'], periods=self.periods)
         self.move_lines_08 = move_lines08.ids
         self.move_lines_09 = move_lines09.ids
         self.casilla_08 = sum(move_lines08.mapped('tax_amount'))
