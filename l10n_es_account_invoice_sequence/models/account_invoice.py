@@ -1,28 +1,10 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (c) 2011 NaN Projectes de Programari Lliure, S.L.
-#                    http://www.NaN-tic.com
-#    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
-#    Copyright (c) 2014 Domatix (http://www.domatix.com)
-#                       Angel Moya <angel.moya@domatix.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp import models, fields, api
+# Copyright 2011 NaN Projectes de Programari Lliure, S.L.
+# Copyright 2014 Ángel Moya (Domatix)
+# Copyright 2014 Roberto Lizana (Trey)
+# Copyright 2013-2016 Pedro M. Baeza
+
+from odoo import models, fields, api
 
 
 class AccountInvoice(models.Model):
@@ -32,37 +14,37 @@ class AccountInvoice(models.Model):
     invoice_number = fields.Char(copy=False)
 
     @api.multi
-    def action_number(self):
+    def action_move_create(self):
         for inv in self:
             if not inv.invoice_number:
                 sequence = inv.journal_id.invoice_sequence_id
+                if inv.type in {'out_refund', 'in_refund'}:
+                    sequence = inv.journal_id.refund_inv_sequence_id
                 if sequence:
-                    number = sequence.with_context({
-                        'fiscalyear_id': inv.period_id.fiscalyear_id.id
-                    }).next_by_id(sequence.id)
-                else:
-                    # TODO: raise an error if the company is flagged
-                    #       as requiring a separate numbering for invoices
+                    sequence = sequence.with_context(
+                        ir_sequence_date=inv.date or inv.date_invoice)
+                    number = sequence.next_by_id()
+                else:  # pragma: no cover
+                    # Other localizations or not configured journals
                     number = inv.move_id.name
                 inv.write({
                     'number': number,
-                    'invoice_number': number
+                    'invoice_number': number,
                 })
-            else:
-                inv.write({
-                    'number': inv.invoice_number,
-                })
-            if inv.move_id.ref:
-                inv.move_id.ref += " - %s" % inv.invoice_number
-            else:
-                inv.move_id.ref = inv.invoice_number
-        re = super(AccountInvoice, self).action_number()
+            else:  # pragma: no cover
+                inv.number = inv.invoice_number
+        res = super(AccountInvoice, self).action_move_create()
         for inv in self:
-            inv.write({'internal_number': inv.move_id.name})
-        return re
+            # Include the invoice reference on the created journal item
+            # This is done for displaying the number on the conciliation
+            inv.move_id.ref = (
+                "{0} - {1}" if inv.move_id.ref else "{1}"
+            ).format(inv.move_id.ref, inv.invoice_number)
+        return res
 
     @api.multi
     def unlink(self):
+        """Allow to remove invoices."""
         self.filtered(lambda x: x.journal_id.invoice_sequence_id).write(
-            {'internal_number': False})
+            {'move_name': False})
         return super(AccountInvoice, self).unlink()

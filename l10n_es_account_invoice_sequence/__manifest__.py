@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
-# © 2011 NaN Projectes de Programari Lliure, S.L.
-# © 2013-2016 Pedro M. Baeza
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# Copyright 2011 NaN Projectes de Programari Lliure, S.L.
+# Copyright 2014 Ángel Moya (Domatix)
+# Copyright 2014 Roberto Lizana (Trey)
+# Copyright 2013-2016 Pedro M. Baeza
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Secuencia para facturas separada de la secuencia de asientos",
-    "version": "8.0.1.3.0",
+    "version": "10.0.1.0.0",
     "author": "Spanish Localization Team, "
               "NaN·Tic, "
               "Trey, "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Tecnativa, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting",
@@ -19,8 +21,8 @@
     ],
     "data": [
         'data/sequence_data.xml',
-        'views/account_view.xml',
+        'views/account_journal_view.xml',
     ],
-    "post_init_hook": "fill_invoice_sequences",
-    'installable': False,
+    "post_init_hook": "post_init_hook",
+    'installable': True,
 }
