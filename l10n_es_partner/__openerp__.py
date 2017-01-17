@@ -27,6 +27,7 @@
         "l10n_es_toponyms",
     ],
     "data": [
+        "data/l10n_es_partner_data.xml",
         "views/l10n_es_partner_view.xml",
         "wizard/l10n_es_partner_wizard.xml",
     ],

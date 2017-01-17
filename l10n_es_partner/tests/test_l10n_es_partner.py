@@ -35,8 +35,10 @@ class TestL10nEsPartner(common.TransactionCase):
         })
 
     def test_search_commercial(self):
-        res = self.env['res.partner'].name_search(self.partner.comercial)
-        self.assertTrue(res)
+        partner_obj = self.env['res.partner']
+        self.assertTrue(partner_obj.name_search('prueba'))
+        self.assertTrue(partner_obj.name_search('comercial'))
+        self.assertTrue(partner_obj.search([('name', 'ilike', 'comercial')]))
 
     def test_onchange_banco(self):
         res = self.partner_bank.onchange_banco(
@@ -68,3 +70,9 @@ class TestL10nEsPartner(common.TransactionCase):
         self.wizard.execute()
         bank = self.env['res.bank'].search([('code', '=', '0182')])
         self.assertTrue(bank)
+
+    def test_name(self):
+        self.env['ir.config_parameter'].set_param(
+            'l10n_es_partner.name_pattern', '%(comercial_name)s (%(name)s)')
+        self.assertEqual(self.partner.display_name,
+                         'Nombre comercial (Empresa de prueba)')
