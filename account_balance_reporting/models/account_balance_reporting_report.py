@@ -61,9 +61,15 @@ class AccountBalanceReporting(models.Model):
         column1='account_balance_reporting_id', column2='period_id',
         string='Fiscal year 1 periods', states=READONLY_STATES)
     current_date_from = fields.Date(
-        string='Date From', states=READONLY_STATES)
+        string='Date From',
+        states=READONLY_STATES,
+        required=True,
+    )
     current_date_to = fields.Date(
-        string='Date To', states=READONLY_STATES)
+        string='Date To',
+        states=READONLY_STATES,
+        required=True,
+    )
     previous_fiscalyear_id = fields.Many2one(
         comodel_name='account.fiscalyear', string='Fiscal year 2', index=True,
         states=READONLY_STATES)
