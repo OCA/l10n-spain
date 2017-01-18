@@ -44,9 +44,15 @@ class AccountBalanceReporting(models.Model):
         required=True, readonly=False, states=READONLY_STATES,
         default=lambda self: self.env.user.company_id)
     current_date_from = fields.Date(
-        string='Date From', states=READONLY_STATES)
+        string='Date From',
+        states=READONLY_STATES,
+        required=True,
+    )
     current_date_to = fields.Date(
-        string='Date To', states=READONLY_STATES)
+        string='Date To',
+        states=READONLY_STATES,
+        required=True,
+    )
     previous_date_from = fields.Date(
         string='Date From', states=READONLY_STATES)
     previous_date_to = fields.Date(
