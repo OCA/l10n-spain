@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-13 10:45+0000\n"
-"PO-Revision-Date: 2016-10-11 09:52+0000\n"
+"POT-Creation-Date: 2017-01-19 10:40+0000\n"
+"PO-Revision-Date: 2017-01-11 15:38+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Basque (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgid "Bank Accounts"
 msgstr ""
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:100
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:83
 #, python-format
 msgid "Bank account should have 20 digits."
 msgstr "Bankuko kontua 20 digitukoa izan behar du"
@@ -60,7 +60,7 @@ msgid "Display Name"
 msgstr "Izena erakutsi"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:134
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:117
 #, python-format
 msgid "IBAN account is not valid"
 msgstr ""
@@ -113,7 +113,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:108
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:91
 #, python-format
 msgid "Invalid bank account."
 msgstr "Bankuko kontu ezegokia"
@@ -184,9 +184,9 @@ msgid "Value Added Tax number"
 msgstr "Identifikazio fiskal Zenbakia"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:99
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:107
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:133
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:82
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:90
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:116
 #, python-format
 msgid "Warning"
 msgstr "Warning"
