@@ -19,7 +19,7 @@ Uso
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/189/8.0
+   :target: https://runbot.odoo-community.org/runbot/189/9.0
 
 Gestión de errores
 ==================
@@ -28,11 +28,7 @@ Los errores/fallos se gestionan en `las incidencias de GitHub <https://github.co
 l10n-spain/issues>`_.
 En caso de problemas, compruebe por favor si su incidencia ha sido ya
 reportada. Si fue el primero en descubrirla, ayúdenos a solucionarla indicando
-una detallada descripción
-`aquí <https://github.com/OCA/
-l10n-spain/issues/new?body=m%f3dulo:%20
-l10_es_aeat_mod303%0Aversi%f3n:%20
-9.0%0A%0A**Pasos%20para%20reproducirlo**%0A-%20...%0A%0A**Comportamiento%20actual**%0A%0A**Comportamiento%20esperado**>`_.
+una detallada descripción `aquí <https://github.com/OCA/l10n-spain/issues/new>`_.
 
 Problemas conocidos / Hoja de ruta
 ==================================
