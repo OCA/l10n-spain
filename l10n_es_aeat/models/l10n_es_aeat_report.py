@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-# © 2004-2011 - Pexego Sistemas Informáticos - Luis Manuel Angueira Blanco
-# © 2013 - Acysos S.L. - Ignacio Ibeas (Migración a v7)
-# © 2014-2016 - Serv. Tecnol. Avanzados - Pedro M. Baeza
+# Copyright 2004-2011 Pexego Sistemas Informáticos - Luis Manuel Angueira
+# Copyright 2013 - Acysos S.L. - Ignacio Ibeas (Migración a v7)
+# Copyright 2014-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import re
 from calendar import monthrange
-from openerp import fields, models, api, exceptions, SUPERUSER_ID, _
+from openerp import _, api, fields, exceptions, models, SUPERUSER_ID
 from openerp.tools import config
 
 
@@ -228,11 +228,17 @@ class L10nEsAeatReport(models.AbstractModel):
 
     @api.model
     def _report_identifier_get(self, vals):
-        seq_name = "aeat%s-sequence" % self._model._aeat_number
+        seq_name = "aeat%s-sequence" % self._aeat_number
         company_id = vals.get('company_id', self.env.user.company_id.id)
         seq = self.env['ir.sequence'].search(
             [('name', '=', seq_name), ('company_id', '=', company_id)],
-            limit=1)
+            limit=1,
+        )
+        if not seq:
+            raise exceptions.UserError(_(
+                "AEAT model sequence not found. You can try to restart your "
+                "Odoo service for recreating the sequences."
+            ))
         return seq.next_by_id()
 
     @api.model
@@ -291,7 +297,8 @@ class L10nEsAeatReport(models.AbstractModel):
     @api.multi
     def button_post(self):
         """Create any possible account move and set state to posted."""
-        self.create_regularization_move()
+        for report in self:
+            report.create_regularization_move()
         self.write({'state': 'posted'})
         return True
 
@@ -340,7 +347,7 @@ class L10nEsAeatReport(models.AbstractModel):
         return super(L10nEsAeatReport, self).unlink()
 
     @api.model
-    def _prepare_aeat_sequence_vals(self, sequence, aeat_num):
+    def _prepare_aeat_sequence_vals(self, sequence, aeat_num, company):
         return {
             'name': sequence,
             'code': 'aeat.sequence.type',
@@ -348,7 +355,8 @@ class L10nEsAeatReport(models.AbstractModel):
             'implementation': 'no_gap',
             'padding': 13 - len(str(aeat_num)),
             'number_next_actual': 1,
-            'prefix': aeat_num
+            'prefix': aeat_num,
+            'company_id': company.id,
         }
 
     @api.model
@@ -358,22 +366,27 @@ class L10nEsAeatReport(models.AbstractModel):
     @api.cr
     def _register_hook(self, cr):
         res = super(L10nEsAeatReport, self)._register_hook(cr)
-        if self._name not in ('l10n.es.aeat.report',
-                              'l10n.es.aeat.report.tax.mapping'):
-            with api.Environment.manage():
-                env = api.Environment(cr, SUPERUSER_ID, {})
-                seq_obj = env['ir.sequence']
-                aeat_obj = env[self._name]
-                try:
-                    aeat_num = getattr(self, '_aeat_number')
-                    if not aeat_num:
-                        raise Exception()
-                    sequence = "aeat%s-sequence" % aeat_num
-                    if not seq_obj.search([('name', '=', sequence)]):
-                        seq_obj.create(aeat_obj._prepare_aeat_sequence_vals(
-                            sequence, aeat_num))
-                except:
-                    raise exceptions.Warning(
-                        "Modelo no válido: %s. Debe declarar una variable "
-                        "'_aeat_number'" % self._name)
+        if self._name in ('l10n.es.aeat.report',
+                          'l10n.es.aeat.report.tax.mapping'):
+            return res
+        with api.Environment.manage():
+            env = api.Environment(cr, SUPERUSER_ID, {})
+            aeat_num = getattr(self, '_aeat_number', False)
+            if not aeat_num:
+                raise exceptions.UserError(_(
+                    "Modelo no válido: %s. Debe declarar una variable "
+                    "'_aeat_number'" % self._name
+                ))
+            seq_obj = env['ir.sequence']
+            sequence = "aeat%s-sequence" % aeat_num
+            companies = env['res.company'].search([])
+            for company in companies:
+                seq = seq_obj.search([
+                    ('name', '=', sequence), ('company_id', '=', company.id),
+                ])
+                if seq:
+                    continue
+                seq_obj.create(env[self._name]._prepare_aeat_sequence_vals(
+                    sequence, aeat_num, company,
+                ))
         return res
