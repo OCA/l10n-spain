@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright 2013-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2014-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 from openerp import models, fields, api, exceptions, _
@@ -16,33 +16,35 @@ class L10nEsAeatMapTax(models.Model):
         inverse_name='map_parent_id', string="Map lines", required=True)
     model = fields.Integer(string="AEAT Model", required=True)
 
-    @api.one
+    @api.multi
     @api.constrains('date_from', 'date_to')
     def _unique_date_range(self):
-        domain = [('id', '!=', self.id)]
-        if self.date_from and self.date_to:
-            domain += ['|', '&',
-                       ('date_from', '<=', self.date_to),
-                       ('date_from', '>=', self.date_from),
-                       '|', '&',
-                       ('date_to', '<=', self.date_to),
-                       ('date_to', '>=', self.date_from),
-                       '|', '&',
-                       ('date_from', '=', False),
-                       ('date_to', '>=', self.date_from),
-                       '|', '&',
-                       ('date_to', '=', False),
-                       ('date_from', '<=', self.date_to),
-                       ]
-        elif self.date_from:
-            domain += [('date_to', '>=', self.date_from)]
-        elif self.date_to:
-            domain += [('date_from', '<=', self.date_to)]
-        date_lst = self.search(domain)
-        if date_lst:
-            raise exceptions.Warning(
-                _("Error! The dates of the record overlap with an existing "
-                  "record."))
+        for map in self:
+            domain = [('id', '!=', map.id)]
+            if map.date_from and map.date_to:
+                domain += ['|', '&',
+                           ('date_from', '<=', map.date_to),
+                           ('date_from', '>=', map.date_from),
+                           '|', '&',
+                           ('date_to', '<=', map.date_to),
+                           ('date_to', '>=', map.date_from),
+                           '|', '&',
+                           ('date_from', '=', False),
+                           ('date_to', '>=', map.date_from),
+                           '|', '&',
+                           ('date_to', '=', False),
+                           ('date_from', '<=', map.date_to),
+                           ]
+            elif map.date_from:
+                domain += [('date_to', '>=', map.date_from)]
+            elif map.date_to:
+                domain += [('date_from', '<=', map.date_to)]
+            date_lst = map.search(domain)
+            if date_lst:
+                raise exceptions.Warning(
+                    _("Error! The dates of the record overlap with an "
+                      "existing record.")
+                )
 
     @api.multi
     def name_get(self):

@@ -3,12 +3,14 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 import logging
-from openerp.tests.common import TransactionCase
+from openerp.tests import common
 
 _logger = logging.getLogger('aeat')
 
 
-class TestL10nEsAeatModBase(TransactionCase):
+@common.at_install(False)
+@common.post_install(True)
+class TestL10nEsAeatModBase(common.TransactionCase):
     accounts = {}
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
