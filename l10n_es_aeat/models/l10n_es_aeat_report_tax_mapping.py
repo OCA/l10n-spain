@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-# © 2016 - Serv. Tecnol. Avanzados - Pedro M. Baeza
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2016-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, exceptions, fields, models, _
+from openerp import _, api, exceptions, fields, models
 
 
 class L10nEsAeatReportTaxMapping(models.AbstractModel):
@@ -175,8 +175,9 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
             self.counterpart_account_id, debit, credit))
         return lines
 
-    @api.one
+    @api.multi
     def create_regularization_move(self):
+        self.ensure_one()
         if not self.counterpart_account_id or not self.journal_id:
             raise exceptions.Warning(
                 _("You must fill both journal and counterpart account."))
