@@ -11,9 +11,7 @@
     'category': "Accounting & Finance",
     'author': "Guadaltech,"
               "AvanzOSC,"
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
-              "Antiun Ingeniería S.L.,"
-              "Comunitea,"
+              "Tecnativa,"
               "Odoo Community Association (OCA)",
     'website': "https://odoo-community.org/",
     "license": "AGPL-3",
