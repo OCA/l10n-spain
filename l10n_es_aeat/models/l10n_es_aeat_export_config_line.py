@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2014-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 from openerp import models, fields, api, _
@@ -52,15 +53,17 @@ class AeatModelExportConfigLine(models.Model):
     position = fields.Integer(compute='_compute_position')
     value = fields.Char(compute='_compute_value', store=True)
 
-    @api.one
+    @api.multi
     @api.depends('repeat_expression')
     def _compute_repeat(self):
-        self.repeat = bool(self.repeat_expression)
+        for line in self:
+            line.repeat = bool(line.repeat_expression)
 
-    @api.one
+    @api.multi
     @api.depends('conditional_expression')
     def _compute_conditional(self):
-        self.conditional = bool(self.conditional_expression)
+        for line in self:
+            line.conditional = bool(line.conditional_expression)
 
     def _size_get(self, lines):
         size = 0
@@ -71,30 +74,34 @@ class AeatModelExportConfigLine(models.Model):
                 size += line.size
         return size
 
-    @api.one
+    @api.multi
     @api.depends('sequence')
     def _compute_position(self):
-        self.position = 1
-        for line in self.export_config_id.config_line_ids:
-            if line == self:
-                break
-            self.position += self._size_get(line)
+        for line in self:
+            line.position = 1
+            for line2 in line.export_config_id.config_line_ids:
+                if line2 == line:
+                    break
+                line.position += line._size_get(line2)
 
-    @api.one
+    @api.multi
     @api.depends('fixed_value', 'expression')
     def _compute_value(self):
-        if self.export_type == 'subconfig':
-            self.value = '-'
-        elif self.expression:
-            self.value = _('Expression: ')
-            if len(self.expression) > 35:
-                self.value += u'"%s…"' % self.expression[:34]
+        for line in self:
+            if line.export_type == 'subconfig':
+                line.value = '-'
+            elif line.expression:
+                line.value = _('Expression: ')
+                if len(line.expression) > 35:
+                    line.value += u'"%s…"' % line.expression[:34]
+                else:
+                    line.value += u'"%s"' % line.expression
             else:
-                self.value += u'"%s"' % self.expression
-        else:
-            self.value = _('Fixed: %s') % (self.fixed_value or _('<blank>'))
+                line.value = _('Fixed: {}').format(
+                    line.fixed_value or _('<blank>')
+                )
 
-    @api.one
+    @api.multi
     @api.onchange('export_type')
     def onchange_type(self):
         if self.export_type in ('float', 'integer'):
@@ -102,11 +109,11 @@ class AeatModelExportConfigLine(models.Model):
         elif self.export_type in ('string', 'boolean'):
             self.alignment = 'left'
 
-    @api.one
+    @api.multi
     @api.onchange('subconfig_id')
     def onchange_subconfig(self):
-        if self.subconfig_id:
-            # self.export_type = False
-            self.decimal_size = 0
-            self.alignment = False
-            self.apply_sign = False
+        if not self.subconfig_id:
+            return
+        self.decimal_size = 0
+        self.alignment = False
+        self.apply_sign = False
