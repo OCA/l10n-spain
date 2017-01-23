@@ -3,7 +3,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 import logging
-from openerp.tests import common
+from odoo.tests import common
 
 _logger = logging.getLogger('aeat')
 
@@ -106,7 +106,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
                 'invoice_line_tax_ids': [(6, 0, [tax.id])],
             }))
         inv = self.env['account.invoice'].create(data)
-        inv.signal_workflow('invoice_open')
+        inv.action_invoice_open()
         if self.debug:
             self._print_move_lines(inv.move_id.line_ids)
         return inv
@@ -131,6 +131,8 @@ class TestL10nEsAeatModBase(common.TransactionCase):
                 ('company_id', '=', self.company.id),
                 ('description', '=', desc),
             ])
+            if not tax:
+                _logger.error("Tax not found: {}".format(desc))
             data['invoice_line_ids'].append((0, 0, {
                 'name': 'Test for tax %s' % tax,
                 'account_id': self.accounts['600000'].id,
@@ -139,7 +141,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
                 'invoice_line_tax_ids': [(6, 0, [tax.id])],
             }))
         inv = self.env['account.invoice'].create(data)
-        inv.signal_workflow('invoice_open')
+        inv.action_invoice_open()
         if self.debug:
             self._print_move_lines(inv.move_id.line_ids)
         return inv
@@ -147,7 +149,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
     def _invoice_refund(self, invoice, dt):
         _logger.debug('Refund %s invoice: date = %s' % (invoice.type, dt))
         inv = invoice.refund(date_invoice=dt, journal_id=self.journal_misc.id)
-        inv.signal_workflow('invoice_open')
+        inv.action_invoice_open()
         if self.debug:
             self._print_move_lines(inv.move_id.line_ids)
         return inv

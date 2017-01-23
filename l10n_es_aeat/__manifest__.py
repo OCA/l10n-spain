@@ -2,14 +2,14 @@
 # Copyright 2004-2011 Luis Manuel Angueira Blanco - Pexego
 # Copyright 2013 Ignacio Ibeas - Acysos S.L. (http://acysos.com)
 # Copyright 2015 Ainara Galdona <agaldona@avanzosc.com>
-# Copyright 2013-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2013-2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 {
     'name': "AEAT Base",
     'summary': "Modulo base para declaraciones de la AEAT",
-    'version': "9.0.1.0.0",
+    'version': "10.0.1.0.0",
     'author': "Pexego,"
               "Acysos,"
               "AvanzOSC,"
