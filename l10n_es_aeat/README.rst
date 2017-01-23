@@ -40,6 +40,22 @@ en la configuración de impuestos los conceptos que se regularizarán con el
 flag "to_regularize". Esto sólo es posible sobre los modelos que utilicen
 el cálculo de casillas por códigos de impuestos.
 
+Uso
+===
+
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: https://runbot.odoo-community.org/runbot/189/10.0
+
+Gestión de errores
+==================
+
+Los errores/fallos se gestionan en `las incidencias de GitHub <https://github.com/OCA/
+l10n-spain/issues>`_.
+En caso de problemas, compruebe por favor si su incidencia ha sido ya
+reportada. Si fue el primero en descubrirla, ayúdenos a solucionarla indicando
+una detallada descripción `aquí <https://github.com/OCA/l10n-spain/issues/new>`_.
+
 Problemas conocidos / Hoja de ruta
 ==================================
 

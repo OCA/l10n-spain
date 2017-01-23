@@ -6,8 +6,8 @@
 
 import base64
 import re
-from openerp.tools.safe_eval import safe_eval as eval
-from openerp import tools, models, fields, api, _
+from odoo.tools.safe_eval import safe_eval as eval
+from odoo import tools, models, fields, api, _
 
 EXPRESSION_PATTERN = re.compile(r'(\$\{.+?\})')
 
