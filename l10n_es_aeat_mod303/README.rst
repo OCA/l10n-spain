@@ -12,14 +12,15 @@ Agencia Española de Administración Tributaria.
 Instrucciones del modelo: http://goo.gl/pgVbXH
 Diseño de registros BOE en Excel: http://goo.gl/z4grco
 
-Incluye la exportación al formato BOE para su uso telemático.
+Incluye la exportación al formato BOE para su uso telemático y la creación
+del asiento de regularización de las cuentas de impuestos.
 
 Uso
 ===
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/189/9.0
+   :target: https://runbot.odoo-community.org/runbot/189/10.0
 
 Gestión de errores
 ==================
@@ -49,7 +50,7 @@ Contribuidores
 --------------
 
 * GuadalTech (http://www.guadaltech.es)
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * AvanzOSC (http://www.avanzosc.es)
 * Comunitea (http://www.comunitea.com)
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
