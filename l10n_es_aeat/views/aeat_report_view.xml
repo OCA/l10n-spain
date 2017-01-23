@@ -23,11 +23,11 @@
     <field name="arch" type="xml">
         <form string="AEAT report">
             <header>
-                <button name="button_calculate" type="object" string="Calculate" states="draft" icon="terp-stock_format-scientific"/>
-                <button name="button_recalculate" type="object" string="Recalculate" states="calculated" icon="gtk-execute"/>
-                <button name="button_confirm" string="Confirm" type="object" states="calculated" icon="gtk-ok"/>
-                <button name="%(action_wizard_aeat_export)d" type="action" string="Export to BOE" states="done,posted" icon="gtk-execute"/>
-                <button name="button_recover" string="Draft" type="object" states="cancelled" icon="gtk-undo"/>
+                <button name="button_calculate" type="object" string="Calculate" states="draft" icon="fa-cogs"/>
+                <button name="button_recalculate" type="object" string="Recalculate" states="calculated" icon="fa-refresh"/>
+                <button name="button_confirm" string="Confirm" type="object" states="calculated" icon="fa-check"/>
+                <button name="%(action_wizard_aeat_export)d" type="action" string="Export to BOE" states="done,posted" icon="fa-share"/>
+                <button name="button_recover" string="Draft" type="object" states="cancelled" icon="fa-undo"/>
                 <button name="button_open_move"
                         string="Show move"
                         type="object"
@@ -40,8 +40,8 @@
                         class="oe_highlight"
                         attrs="{'invisible': ['|', ('state', '!=', 'done'), ('allow_posting', '=', False)]}"
                         />
-                <button name="button_cancel" string="Cancel" type="object" states="calculated,done" icon="gtk-cancel"/>
-                <button name="button_unpost" string="Cancel" type="object" states="posted" icon="gtk-cancel"/>
+                <button name="button_cancel" string="Cancel" type="object" states="calculated,done" icon="fa-times"/>
+                <button name="button_unpost" string="Cancel" type="object" states="posted" icon="fa-times"/>
                 <field name="state"
                        widget="statusbar"
                        statusbar_visible="draft,calculated,done,cancelled"
