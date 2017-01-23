@@ -279,14 +279,14 @@ class L10nEsAeatMod111Report(models.Model):
     def calculate(self):
         self.ensure_one()
         # I. Rendimientos del trabajo
-        move_lines02 = self.with_context({'no_partner': True}).\
-            _get_tax_code_lines(['IRPATBI'], periods=self.periods)
-        move_lines03 = self.with_context({'no_partner': True}).\
-            _get_tax_code_lines(['IRPATC'], periods=self.periods)
-        move_lines05 = self.with_context({'no_partner': True}).\
-            _get_tax_code_lines(['IRPTBIE'], periods=self.periods)
-        move_lines06 = self.with_context({'no_partner': True}).\
-            _get_tax_code_lines(['IRPATCE'], periods=self.periods)
+        move_lines02 = self._get_tax_code_lines(
+            ['IRPATBI'], periods=self.periods)
+        move_lines03 = self._get_tax_code_lines(
+            ['IRPATC'], periods=self.periods)
+        move_lines05 = self._get_tax_code_lines(
+            ['IRPTBIE'], periods=self.periods)
+        move_lines06 = self._get_tax_code_lines(
+            ['IRPATCE'], periods=self.periods)
         self.move_lines_02 = move_lines02.ids
         self.move_lines_03 = move_lines03.ids
         self.move_lines_05 = move_lines05.ids
@@ -301,9 +301,9 @@ class L10nEsAeatMod111Report(models.Model):
         self.casilla_06 = sum(move_lines06.mapped('tax_amount'))
         # II. Rendimientos de actividades económicas
         move_lines08 = self._get_tax_code_lines(
-            ['IRPBI'], periods=self.periods)
+            ['IRPBIAE'], periods=self.periods)
         move_lines09 = self._get_tax_code_lines(
-            ['ITRPC'], periods=self.periods)
+            ['ITRPCAE'], periods=self.periods)
         self.move_lines_08 = move_lines08.ids
         self.move_lines_09 = move_lines09.ids
         self.casilla_08 = sum(move_lines08.mapped('tax_amount'))
