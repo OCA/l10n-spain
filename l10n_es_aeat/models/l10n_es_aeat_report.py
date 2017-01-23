@@ -7,8 +7,8 @@
 
 import re
 from calendar import monthrange
-from openerp import _, api, fields, exceptions, models, SUPERUSER_ID
-from openerp.tools import config
+from odoo import _, api, fields, exceptions, models
+from odoo.tools import config
 
 
 class L10nEsAeatReport(models.AbstractModel):
@@ -342,7 +342,7 @@ class L10nEsAeatReport(models.AbstractModel):
     @api.multi
     def unlink(self):
         if any(item.state not in ['draft', 'cancelled'] for item in self):
-            raise exceptions.Warning(_("Only reports in 'draft' or "
+            raise exceptions.UserError(_("Only reports in 'draft' or "
                                        "'cancelled' state can be removed"))
         return super(L10nEsAeatReport, self).unlink()
 
@@ -364,29 +364,27 @@ class L10nEsAeatReport(models.AbstractModel):
         return (phone or '').replace(" ", "")[-9:]
 
     @api.cr
-    def _register_hook(self, cr):
-        res = super(L10nEsAeatReport, self)._register_hook(cr)
+    def _register_hook(self):
+        res = super(L10nEsAeatReport, self)._register_hook()
         if self._name in ('l10n.es.aeat.report',
                           'l10n.es.aeat.report.tax.mapping'):
             return res
-        with api.Environment.manage():
-            env = api.Environment(cr, SUPERUSER_ID, {})
-            aeat_num = getattr(self, '_aeat_number', False)
-            if not aeat_num:
-                raise exceptions.UserError(_(
-                    "Modelo no válido: %s. Debe declarar una variable "
-                    "'_aeat_number'" % self._name
-                ))
-            seq_obj = env['ir.sequence']
-            sequence = "aeat%s-sequence" % aeat_num
-            companies = env['res.company'].search([])
-            for company in companies:
-                seq = seq_obj.search([
-                    ('name', '=', sequence), ('company_id', '=', company.id),
-                ])
-                if seq:
-                    continue
-                seq_obj.create(env[self._name]._prepare_aeat_sequence_vals(
-                    sequence, aeat_num, company,
-                ))
+        aeat_num = getattr(self, '_aeat_number', False)
+        if not aeat_num:
+            raise exceptions.UserError(_(
+                "Modelo no válido: %s. Debe declarar una variable "
+                "'_aeat_number'" % self._name
+            ))
+        seq_obj = self.env['ir.sequence']
+        sequence = "aeat%s-sequence" % aeat_num
+        companies = self.env['res.company'].search([])
+        for company in companies:
+            seq = seq_obj.search([
+                ('name', '=', sequence), ('company_id', '=', company.id),
+            ])
+            if seq:
+                continue
+            seq_obj.create(self.env[self._name]._prepare_aeat_sequence_vals(
+                sequence, aeat_num, company,
+            ))
         return res
