@@ -3,7 +3,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 import logging
-from openerp.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
+from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
     TestL10nEsAeatModBase
 
 _logger = logging.getLogger('aeat.303')
@@ -252,17 +252,15 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
 
     def test_model_303(self):
         # Purchase invoices
-        self._invoice_purchase_create('2015-01-01')
-        self._invoice_purchase_create('2015-01-02')
-        purchase = self._invoice_purchase_create('2015-01-03')
-        self._invoice_refund(purchase, '2015-01-18')
-
+        self._invoice_purchase_create('2017-01-01')
+        self._invoice_purchase_create('2017-01-02')
+        purchase = self._invoice_purchase_create('2017-01-03')
+        self._invoice_refund(purchase, '2017-01-18')
         # Sale invoices
-        self._invoice_sale_create('2015-01-11')
-        self._invoice_sale_create('2015-01-12')
-        sale = self._invoice_sale_create('2015-01-13')
-        self._invoice_refund(sale, '2015-01-14')
-
+        self._invoice_sale_create('2017-01-11')
+        self._invoice_sale_create('2017-01-12')
+        sale = self._invoice_sale_create('2017-01-13')
+        self._invoice_refund(sale, '2017-01-14')
         # Create model
         export_config = self.env.ref(
             'l10n_es_aeat_mod303.aeat_mod303_main_export_config')
@@ -274,19 +272,16 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             'type': 'N',
             'support_type': 'T',
             'contact_phone': '911234455',
-            'year': 2015,
+            'year': 2017,
             'period_type': '1T',
-            'date_start': '2015-01-01',
-            'date_end': '2015-03-31',
+            'date_start': '2017-01-01',
+            'date_end': '2017-03-31',
             'export_config_id': export_config.id,
             'journal_id': self.journal_misc.id,
             'counterpart_account_id': self.accounts['475000'].id
         })
-
-        # Calculate
-        _logger.debug('Calculate AEAT 303 1T 2015')
+        _logger.debug('Calculate AEAT 303 1T 2017')
         self.model303.button_calculate()
-
         # Fill manual fields
         self.model303.write({
             # % atribuible al Estado
@@ -296,19 +291,14 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             # Iva Diferido (Liquidado por aduana)
             'casilla_77': 455,
         })
-
         if self.debug:
             self._print_tax_lines(self.model303.tax_line_ids)
-
         # Check tax lines
         for box, result in self.taxes_result.iteritems():
             _logger.debug('Checking tax line: %s' % box)
             lines = self.model303.tax_line_ids.filtered(
                 lambda x: x.field_number == int(box))
-            self.assertEqual(
-                round(sum(lines.mapped('amount')), 2),
-                round(result, 2))
-
+            self.assertAlmostEqual(sum(lines.mapped('amount')), result, 2)
         # Check result
         _logger.debug('Checking results')
         devengado = sum([self.taxes_result.get(b, 0.) for b in (
@@ -318,16 +308,10 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         subtotal = round(devengado - deducir, 3)
         estado = round(subtotal * 0.95, 3)
         result = round(estado + 455 + 250, 3)
-        self.assertEqual(
-            round(self.model303.total_devengado, 2), round(devengado, 2))
-        self.assertEqual(
-            round(self.model303.total_deducir, 2), round(deducir, 2))
-        self.assertEqual(
-            round(self.model303.casilla_46, 2), round(subtotal, 2))
-        self.assertEqual(
-            round(self.model303.atribuible_estado, 2), round(estado, 2))
-        self.assertEqual(
-            round(self.model303.casilla_69, 2), round(result, 2))
-        self.assertEqual(
-            round(self.model303.resultado_liquidacion, 2), round(result, 2))
+        self.assertAlmostEqual(self.model303.total_devengado, devengado, 2)
+        self.assertAlmostEqual(self.model303.total_deducir, deducir, 2)
+        self.assertAlmostEqual(self.model303.casilla_46, subtotal, 2)
+        self.assertAlmostEqual(self.model303.atribuible_estado, estado, 2)
+        self.assertAlmostEqual(self.model303.casilla_69, result, 2)
+        self.assertAlmostEqual(self.model303.resultado_liquidacion, result, 2)
         self.assertEqual(self.model303.result_type, 'I')
