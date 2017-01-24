@@ -16,8 +16,7 @@ class ResPartner(models.Model):
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
-        """Include commercial name in direct name search. It serves also
-        implicitly for name_search()"""
+        """Include commercial name in direct name search."""
         args = expression.normalize_domain(args)
         for arg in args:
             if isinstance(arg, (list, tuple)):
@@ -31,6 +30,25 @@ class ResPartner(models.Model):
         return super(ResPartner, self).search(
             args, offset=offset, limit=limit, order=order, count=count,
         )
+
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        """Give preference to commercial names on name search, appending
+        the rest of the results after. This has to be done this way, as
+        Odoo overwrites name_search on res.partner in a non inheritable way."""
+        if not args:
+            args = []
+        partners = self.search(
+            [('comercial', operator, name)] + args, limit=limit,
+        )
+        res = partners.name_get()
+        limit_rest = limit - len(partners)
+        if limit_rest:
+            args += [('id', 'not in', partners.ids)]
+            res += super(ResPartner, self).name_search(
+                name, args=args, operator=operator, limit=limit_rest,
+            )
+        return res
 
     @api.multi
     def name_get(self):
