@@ -9,6 +9,10 @@ class TestL10nEsPartner(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestL10nEsPartner, cls).setUpClass()
+        # Make sure there's no commercial name on display_name field
+        cls.env['ir.config_parameter'].set_param(
+            'l10n_es_partner.name_pattern', '',
+        )
         cls.country_spain = cls.env.ref('base.es')
         cls.bank = cls.env['res.bank'].create({
             'name': 'BDE',
@@ -135,6 +139,12 @@ class TestL10nEsPartner(common.SavepointCase):
 
     def test_name(self):
         self.env['ir.config_parameter'].set_param(
-            'l10n_es_partner.name_pattern', '%(comercial_name)s (%(name)s)')
-        self.assertEqual(self.partner.display_name,
-                         'Nombre comercial (Empresa de prueba)')
+            'l10n_es_partner.name_pattern', '%(comercial_name)s (%(name)s)',
+        )
+        partner2 = self.env['res.partner'].create({
+            'name': 'Empresa de prueba',
+            'comercial': 'Nombre comercial',
+        })
+        self.assertEqual(
+            partner2.display_name, 'Nombre comercial (Empresa de prueba)',
+        )
