@@ -1,16 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_aeat_mod303
-#
+# * l10n_es_aeat_mod303
+# 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-spain (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-05 10:32+0000\n"
-"PO-Revision-Date: 2016-03-02 09:27+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
+"POT-Creation-Date: 2017-01-25 03:40+0000\n"
+"PO-Revision-Date: 2017-01-25 03:40+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -54,6 +55,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_bank_account_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_partner_bank_id
 msgid "Bank account"
 msgstr "Cuenta bancaria"
 
@@ -73,6 +75,11 @@ msgid "Company"
 msgstr "Companyia"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_partner_bank_id
+msgid "Company bank account used for the presentation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_compensate
 msgid "Compensate"
 msgstr "Compensar"
@@ -84,8 +91,17 @@ msgstr "Complementària"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_77
-msgid "Contributions of import tax included in the documents evidencing the payment made by the Administration and received in the settlement period. You can only complete this box when the requirements of Article 74.1 of the Tax Regulations Value Added are met."
-msgstr "Se hará constar el importe de las cuotas del Impuesto a la importación incluidas en los documentos en los que conste la liquidación practicada por la Administración recibidos en el periodo de liquidación. Solamente podrá cumplimentarse esta casilla cuando se cumplan los requisitos establecidos en el artículo 74.1 del Reglamento del Impuesto sobre el Valor Añadido."
+msgid ""
+"Contributions of import tax included in the documents evidencing the payment"
+" made by the Administration and received in the settlement period. You can "
+"only complete this box when the requirements of Article 74.1 of the Tax "
+"Regulations Value Added are met."
+msgstr ""
+"Se hará constar el importe de las cuotas del Impuesto a la importación "
+"incluidas en los documentos en los que conste la liquidación practicada por "
+"la Administración recibidos en el periodo de liquidación. Solamente podrá "
+"cumplimentarse esta casilla cuando se cumplan los requisitos establecidos en"
+" el artículo 74.1 del Reglamento del Impuesto sobre el Valor Añadido."
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_counterpart_account_id
@@ -118,11 +134,6 @@ msgid "DVD"
 msgstr "DVD"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_number
-msgid "Declaration number"
-msgstr "Nº declaración"
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_display_name
 msgid "Display Name"
 msgstr "Display Name"
@@ -144,13 +155,17 @@ msgstr "Fecha final"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_export_config_id
-msgid "Export configuration"
+msgid "Export config"
 msgstr "Configuración de exportación"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_cuota_compensar
-msgid "Fee to compensate for prior periods, in which his statement was to return and compensation back option was chosen"
-msgstr "Cuota a compensar de periodos anteriores, en los que su declaración fue a devolver y se escogió la opción de compensación posterior"
+msgid ""
+"Fee to compensate for prior periods, in which his statement was to return "
+"and compensation back option was chosen"
+msgstr ""
+"Cuota a compensar de periodos anteriores, en los que su declaración fue a "
+"devolver y se escogió la opción de compensación posterior"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_contact_name
@@ -165,12 +180,24 @@ msgstr "ID"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_compensate
 msgid "If checked, the return amount will be compensate in future statements"
-msgstr "Si se marca, indicará que el importe a devolver se compensará en posteriores declaraciones"
+msgstr ""
+"Si se marca, indicará que el importe a devolver se compensará en posteriores"
+" declaraciones"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_regularizacion_anual
-msgid "In the last auto settlement of the year, shall be recorded (the fourth period or 12th month), with the appropriate sign, the result of the annual adjustment as have the laws by the Economic Agreement approved between the State and the Autonomous Community the Basque Country and the Economic Agreement between the State and Navarre."
-msgstr "En la última autoliquidación del año (la del período 4T o mes 12) se hará constar, con el signo que corresponda, el resultado de la regularización anual conforme disponen las Leyes por las que se aprueban el Concierto Económico entre el Estado y la Comunidad Autónoma del País Vasco y el Convenio Económico entre el Estado y la Comunidad Foral de Navarra."
+msgid ""
+"In the last auto settlement of the year, shall be recorded (the fourth "
+"period or 12th month), with the appropriate sign, the result of the annual "
+"adjustment as have the laws by the Economic Agreement approved between the "
+"State and the Autonomous Community the Basque Country and the Economic "
+"Agreement between the State and Navarre."
+msgstr ""
+"En la última autoliquidación del año (la del período 4T o mes 12) se hará "
+"constar, con el signo que corresponda, el resultado de la regularización "
+"anual conforme disponen las Leyes por las que se aprueban el Concierto "
+"Económico entre el Estado y la Comunidad Autónoma del País Vasco y el "
+"Convenio Económico entre el Estado y la Comunidad Foral de Navarra."
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_journal_id
@@ -213,6 +240,11 @@ msgid "Model"
 msgstr "Modelo"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_number
+msgid "Model number"
+msgstr "Nº modelo"
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_devolucion_mensual
 msgid "Montly Return"
 msgstr "Devolución mensual"
@@ -234,6 +266,7 @@ msgstr "Normal"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_company_partner_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_partner_id
 msgid "Partner"
 msgstr "Empresa"
 
@@ -270,12 +303,16 @@ msgstr "Inscrito en el Registro de Devolución Mensual"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_name
 msgid "Report identifier"
-msgstr ""
+msgstr "Identificador del informe"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_previous_result
-msgid "Result of the previous or prior statements of the same concept, exercise and period"
-msgstr "Resultado de la anterior o anteriores declaraciones del mismo concepto, ejercicio y periodo"
+msgid ""
+"Result of the previous or prior statements of the same concept, exercise and"
+" period"
+msgstr ""
+"Resultado de la anterior o anteriores declaraciones del mismo concepto, "
+"ejercicio y periodo"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_result_type
@@ -288,13 +325,13 @@ msgid "Resultado"
 msgstr "Resultado"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:199
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:186
 #, python-format
 msgid "Select an account for making the charge"
 msgstr "Seleccione una cuenta bancaria para realizar el cargo"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:189
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:188
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr "Seleccione una cuenta bancaria para recibir el dinero"
@@ -332,8 +369,17 @@ msgstr "Líneas de impuestos"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_porcentaje_atribuible_estado
-msgid "Taxpayers who pay jointly to the Central Government and the Provincial Councils of the Basque Country or the Autonomous Community of Navarra, will enter in this box the percentage of volume operations in the common territory. Other taxpayers will enter in this box 100%"
-msgstr "Los sujetos pasivos que tributen conjuntamente a la Administración del Estado y a las Diputaciones Forales del País Vasco o a la Comunidad Foral de Navarra, consignarán en esta casilla el porcentaje del volumen de operaciones en territorio común. Los demás sujetos pasivos consignarán en esta casilla el 100%"
+msgid ""
+"Taxpayers who pay jointly to the Central Government and the Provincial "
+"Councils of the Basque Country or the Autonomous Community of Navarra, will "
+"enter in this box the percentage of volume operations in the common "
+"territory. Other taxpayers will enter in this box 100%"
+msgstr ""
+"Los sujetos pasivos que tributen conjuntamente a la Administración del "
+"Estado y a las Diputaciones Forales del País Vasco o a la Comunidad Foral de"
+" Navarra, consignarán en esta casilla el porcentaje del volumen de "
+"operaciones en territorio común. Los demás sujetos pasivos consignarán en "
+"esta casilla el 100%"
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,support_type:0
@@ -342,8 +388,12 @@ msgstr "Telemàtica"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_counterpart_account_id
-msgid "This account will be the counterpart for all the journal items that are regularized when posting the report."
-msgstr "Esta cuenta será la contrapartida para todos los elementos del diario que están regularizados al contabilizar el informe."
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+"Esta cuenta será la contrapartida para todos los elementos del diario que "
+"están regularizados al contabilizar el informe."
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,result_type:0
@@ -392,8 +442,12 @@ msgstr "[66] Atribuible a la Administración"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_69
-msgid "[66] Attributable to the Administration - [67] Fees to compensate + [68] Annual regularization"
-msgstr "Atribuible a la Administración [66] - Cuotas a compensar [67] + Regularización anual [68]"
+msgid ""
+"[66] Attributable to the Administration - [67] Fees to compensate + [68] "
+"Annual regularization"
+msgstr ""
+"Atribuible a la Administración [66] - Cuotas a compensar [67] + "
+"Regularización anual [68]"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_cuota_compensar
