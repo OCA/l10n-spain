@@ -58,10 +58,10 @@ class AccountInvoice(models.Model):
         refunds = self.env['account.invoice']
         for inv in self:
             if inv.type in ('in_refund', 'out_refund'):
-                if not inv.origin_invoices_ids:
+                if not inv.origin_invoice_ids:
                     invoices += inv
                     continue
-                origin_lines = inv.origin_invoices_ids.filtered(
+                origin_lines = inv.origin_invoice_ids.filtered(
                     lambda record: record.state in ('open', 'paid') and
                     record.partner_id.commercial_partner_id == partner)
                 for origin_line in origin_lines:
@@ -76,16 +76,15 @@ class AccountInvoice(models.Model):
 
     @api.onchange('fiscal_position_id', 'type')
     def _onchange_fiscal_position_id(self):
-        operation_key = False
-        if self.fiscal_position_id and self.invoice_type:
-            operation_key = self._get_operation_key(
-                self.fiscal_position_id, self.type)
-        self.operation_key = operation_key
+        if self.fiscal_position_id and self.type:
+            self.operation_key = self._get_operation_key(
+                self.fiscal_position_id, self.type,
+            )
 
     @api.model
     def create(self, vals):
         """Writes operation key value, if invoice is created in
-        backgroud with intracommunity fiscal position defined"""
+        background with intracommunity fiscal position defined"""
         if vals.get('fiscal_position_id') and \
                 vals.get('type') and not vals.get('operation_key'):
             fp_obj = self.env['account.fiscal.position']
