@@ -6,10 +6,10 @@
 #                - Pedro M. Baeza (http://www.serviciosbaeza.com)
 # Copyright 2016 - Tecnativa - Angel Moya <odoo@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 import re
 from openerp import models, fields, api, exceptions, _
-from openerp.addons.l10n_es_aeat_mod349.models.account_invoice \
-    import OPERATION_KEYS
+from .account_invoice import OPERATION_KEYS
 
 
 # TODO: Quitarlo de aquí y pasarlo a l10n_es_aeat con sustituciones
@@ -40,27 +40,66 @@ class Mod349(models.Model):
     _name = "l10n.es.aeat.mod349.report"
     _description = "AEAT Model 349 Report"
     _period_yearly = True
+    _aeat_number = '349'
 
-    def _get_export_conf(self):
+    def _default_export_config_id(self):
         try:
             return self.env.ref(
                 'l10n_es_aeat_mod349.aeat_mod349_main_export_config').id
         except ValueError:
             return self.env['aeat.model.export.config']
 
-    @api.one
-    @api.depends('partner_record_ids', 'partner_refund_ids',
-                 'partner_record_ids.total_operation_amount',
+    export_config_id = fields.Many2one(
+        comodel_name='aeat.model.export.config', oldname='export_config',
+        string="Export configuration", default=_default_export_config_id,
+    )
+    frequency_change = fields.Boolean(
+        string='Frequency change', states={'confirmed': [('readonly', True)]})
+    total_partner_records = fields.Integer(
+        compute="_compute_report_regular_totals", string="Partners records",
+    )
+    total_partner_records_amount = fields.Float(
+        compute="_compute_report_regular_totals",
+        string="Partners records amount",
+    )
+    total_partner_refunds = fields.Integer(
+        compute="_compute_report_refund_totals", string="Partners refunds",
+    )
+    total_partner_refunds_amount = fields.Float(
+        compute="_compute_report_refund_totals",
+        string="Partners refunds amount",
+    )
+    partner_record_ids = fields.One2many(
+        comodel_name='l10n.es.aeat.mod349.partner_record',
+        inverse_name='report_id', string='Partner records', ondelete='cascade',
+        states={'confirmed': [('readonly', True)]},
+    )
+    partner_refund_ids = fields.One2many(
+        comodel_name='l10n.es.aeat.mod349.partner_refund',
+        inverse_name='report_id', string='Partner refund IDS',
+        ondelete='cascade', states={'confirmed': [('readonly', True)]},
+    )
+    number = fields.Char(default='349')
+
+    @api.multi
+    @api.depends('partner_record_ids',
+                 'partner_record_ids.total_operation_amount')
+    def _compute_report_regular_totals(self):
+        for report in self:
+            report.total_partner_records = len(report.partner_record_ids)
+            report.total_partner_records_amount = sum(
+                report.mapped('partner_record_ids.total_operation_amount')
+            )
+
+    @api.multi
+    @api.depends('partner_refund_ids',
                  'partner_refund_ids.total_operation_amount')
-    def _get_report_totals(self):
-        self.total_partner_records = len(self.partner_record_ids)
-        self.total_partner_records_amount = sum([
-            record.total_operation_amount for record in
-            self.partner_record_ids])
-        self.total_partner_refunds = len(self.partner_refund_ids)
-        self.total_partner_refunds_amount = sum([
-            refund.total_operation_amount for refund in
-            self.partner_refund_ids])
+    def _compute_report_refund_totals(self):
+        for report in self:
+            report.total_partner_refunds = len(report.partner_refund_ids)
+            report.total_partner_refunds_amount = sum(
+                report.mapped('partner_refund_ids.total_operation_amount')
+            )
 
     def _create_349_partner_records(self, invoices, partner, operation_key):
         """creates partner records in 349"""
@@ -98,7 +137,7 @@ class Mod349(models.Model):
         record = {}
         for refund in refunds:
             # goes around all refunded invoices
-            for origin_inv in refund.origin_invoices_ids:
+            for origin_inv in refund.origin_invoice_ids:
                 if origin_inv.state in ('open', 'paid'):
                     # searches for details of another 349s to restore
                     refund_details = partner_detail_obj.search(
@@ -121,8 +160,11 @@ class Mod349(models.Model):
                      partner_vat=partner.vat, country=partner_country),
                  'operation_key': operation_key,
                  'country_id': partner_country.id,
-                 'total_operation_amount': partner_rec.total_operation_amount -
-                    sum([x.amount_untaxed_signed for x in record[partner_rec]]),
+                 'total_operation_amount': (
+                     partner_rec.total_operation_amount - sum(
+                         [x.amount_untaxed_signed for x in record[partner_rec]]
+                     )
+                 ),
                  'total_origin_amount': partner_rec.total_operation_amount,
                  'periot_type': partner_rec.report_id.periot_type})
             # Creation of partner detail lines
@@ -233,33 +275,6 @@ class Mod349(models.Model):
         self._check_restrictive_names()
         return super(Mod349, self).button_confirm()
 
-    export_config_id = fields.Many2one(
-        comodel_name='aeat.model.export.config', oldname='export_config',
-        string="Export configuration", default=_get_export_conf)
-    frequency_change = fields.Boolean(
-        string='Frequency change', states={'confirmed': [('readonly', True)]})
-    total_partner_records = fields.Integer(
-        compute="_get_report_totals", string="Partners records")
-    total_partner_records_amount = fields.Float(
-        compute="_get_report_totals", string="Partners records amount")
-    total_partner_refunds = fields.Integer(
-        compute="_get_report_totals", string="Partners refunds")
-    total_partner_refunds_amount = fields.Float(
-        compute="_get_report_totals", string="Partners refunds amount")
-    partner_record_ids = fields.One2many(
-        comodel_name='l10n.es.aeat.mod349.partner_record',
-        inverse_name='report_id', string='Partner records', ondelete='cascade',
-        states={'confirmed': [('readonly', True)]})
-    partner_refund_ids = fields.One2many(
-        comodel_name='l10n.es.aeat.mod349.partner_refund',
-        inverse_name='report_id', string='Partner refund IDS',
-        ondelete='cascade', states={'confirmed': [('readonly', True)]})
-    number = fields.Char(default='349')
-
-    def __init__(self, pool, cr):
-        self._aeat_number = '349'
-        super(Mod349, self).__init__(pool, cr)
-
 
 class Mod349PartnerRecord(models.Model):
     """AEAT 349 Model - Partner record
@@ -268,19 +283,39 @@ class Mod349PartnerRecord(models.Model):
     _name = 'l10n.es.aeat.mod349.partner_record'
     _description = 'AEAT 349 Model - Partner record'
     _order = 'operation_key asc'
+    _rec_name = "partner_vat"
 
-    @api.one
-    @api.depends('partner_vat')
-    def get_record_name(self):
-        """Returns the record name."""
-        self.name = self.partner_vat
-
-    @api.one
+    @api.multi
     @api.depends('partner_vat', 'country_id', 'total_operation_amount')
-    def _check_partner_record_line(self):
+    def _compute_partner_record_ok(self):
         """Checks if all line fields are filled."""
-        self.partner_record_ok = bool(self.partner_vat and self.country_id and
-                                      self.total_operation_amount)
+        for record in self:
+            record.partner_record_ok = (bool(
+                record.partner_vat and record.country_id and
+                record.total_operation_amount
+            ))
+
+    report_id = fields.Many2one(
+        comodel_name='l10n.es.aeat.mod349.report',
+        string='AEAT 349 Report ID', ondelete="cascade",
+    )
+    partner_id = fields.Many2one(
+        comodel_name='res.partner', string='Partner', required=True,
+    )
+    partner_vat = fields.Char(string='VAT', size=15, select=1)
+    country_id = fields.Many2one(comodel_name='res.country', string='Country')
+    operation_key = fields.Selection(
+        selection=OPERATION_KEYS, string='Operation key', required=True,
+    )
+    total_operation_amount = fields.Float(string='Total operation amount')
+    partner_record_ok = fields.Boolean(
+        compute="_compute_partner_record_ok", string='Partner Record OK',
+        help='Checked if partner record is OK',
+    )
+    record_detail_ids = fields.One2many(
+        comodel_name='l10n.es.aeat.mod349.partner_record_detail',
+        inverse_name='partner_record_id', string='Partner record detail IDS',
+    )
 
     @api.multi
     def onchange_format_partner_vat(self, partner_vat, country_id):
@@ -290,24 +325,6 @@ class Mod349PartnerRecord(models.Model):
             partner_vat = _format_partner_vat(partner_vat=partner_vat,
                                               country=country)
         return {'value': {'partner_vat': partner_vat}}
-
-    report_id = fields.Many2one(
-        comodel_name='l10n.es.aeat.mod349.report',
-        string='AEAT 349 Report ID', ondelete="cascade")
-    name = fields.Char(compute="get_record_name")
-    partner_id = fields.Many2one(
-        comodel_name='res.partner', string='Partner', required=True)
-    partner_vat = fields.Char(string='VAT', size=15, select=1)
-    country_id = fields.Many2one(comodel_name='res.country', string='Country')
-    operation_key = fields.Selection(
-        selection=OPERATION_KEYS, string='Operation key', required=True)
-    total_operation_amount = fields.Float(string='Total operation amount')
-    partner_record_ok = fields.Boolean(
-        compute="_check_partner_record_line", string='Partner Record OK',
-        help='Checked if partner record is OK')
-    record_detail_ids = fields.One2many(
-        comodel_name='l10n.es.aeat.mod349.partner_record_detail',
-        inverse_name='partner_record_id', string='Partner record detail IDS')
 
 
 class Mod349PartnerRecordDetail(models.Model):
@@ -337,16 +354,6 @@ class Mod349PartnerRefund(models.Model):
         report_obj = self.env['l10n.es.aeat.mod349.report']
         return report_obj.get_period_type_selection()
 
-    @api.one
-    @api.depends('partner_vat', 'country_id', 'total_operation_amount',
-                 'total_origin_amount')
-    def _check_partner_refund_line(self):
-        """Checks if partner refund line have all fields filled."""
-        self.partner_refund_ok = bool(
-            self.partner_vat and self.country_id and
-            self.total_operation_amount >= 0.0 and
-            self.total_origin_amount >= 0.0)
-
     report_id = fields.Many2one(
         comodel_name='l10n.es.aeat.mod349.report', string='AEAT 349 Report ID',
         ondelete="cascade")
@@ -360,15 +367,29 @@ class Mod349PartnerRefund(models.Model):
     total_origin_amount = fields.Float(
         string='Original amount', help="Refund original amount")
     partner_refund_ok = fields.Boolean(
-        compute="_check_partner_refund_line", string='Partner refund OK',
-        help='Checked if refund record is OK')
+        compute="_compute_partner_refund_ok", string='Partner refund OK',
+        help='Checked if refund record is OK',
+    )
     period_type = fields.Selection(
-        selection='get_period_type_selection', string="Period type")
-    year = fields.Integer(
-        string="Year")
+        selection='get_period_type_selection', string="Period type",
+    )
+    year = fields.Integer()
     refund_detail_ids = fields.One2many(
         comodel_name='l10n.es.aeat.mod349.partner_refund_detail',
-        inverse_name='refund_id', string='Partner refund detail IDS')
+        inverse_name='refund_id', string='Partner refund detail IDS',
+    )
+
+    @api.multi
+    @api.depends('partner_vat', 'country_id', 'total_operation_amount',
+                 'total_origin_amount')
+    def _compute_partner_refund_ok(self):
+        """Checks if partner refund line have all fields filled."""
+        for record in self:
+            record.partner_refund_ok = bool(
+                record.partner_vat and record.country_id and
+                record.total_operation_amount >= 0.0 and
+                record.total_origin_amount >= 0.0
+            )
 
     @api.multi
     def onchange_format_partner_vat(self, partner_vat, country_id):
