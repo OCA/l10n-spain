@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="l10n_es_aeat_mod347_partner_record_tree_view" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.mod347.partner.record.tree.view</field>
+            <field name="model">l10n.es.aeat.mod347.partner_record</field>
+            <field name="arch" type="xml">
+                <tree string="Partner Records" colors="red:check_ok==False;">
+                    <field name="report_identifier" string="Report identifier"/>
+                    <field name="company_vat" string="VAT company"/>
+                    <field name="fiscalyear_id" string="Fiscal year"/>
+                    <field name="period_type" string="Period type"/>
+                    <field name="check_ok" invisible="1"/>
+                    <field name="operation_key" select="1"/>
+                    <field name="partner_vat" select="1"/>
+                    <field name="partner_id" select="1"/>
+                    <field name="amount" select="2"/>
+                    <field name="insurance_operation" select="2"/>
+                    <field name="bussiness_real_estate_rent" select="2"/>
+                    <field name="cash_amount" select="2"/>
+                    <field name="real_estate_transmissions_amount" select="2"/>
+                </tree>
+            </field>
+        </record>
+        <record id="partner_record_search_view_inh_email" model="ir.ui.view">
+            <field name="name">partner.record.search.view.inh.email</field>
+            <field name="model">l10n.es.aeat.mod347.partner_record</field>
+            <field name="inherit_id" ref="l10n_es_aeat_mod347.partner_record_search_view" />
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="report_identifier" string="Report identifier"/>
+                    <field name="company_vat" string="VAT company"/>
+                    <field name="fiscalyear_id" string="Fiscal year"/>
+                    <field name="period_type" string="Period type"/>
+                    <field name="company_id" string="Company"/>
+                </field>
+                <filter string="Operation key" position="before">
+                    <filter string="Report identifier" domain="[]" context="{'group_by' : 'report_identifier'}"/>
+                    <filter string="VAT company" domain="[]" context="{'group_by' : 'company_vat'}"/>
+                    <filter string="Fiscal year" domain="[]" context="{'group_by' : 'fiscalyear_id'}"/>
+                    <filter string="Period type" domain="[]" context="{'group_by' : 'period_type'}"/>
+                    <filter string="Partner" domain="[]" context="{'group_by' : 'partner_id'}"/>
+                </filter>
+                <filter string="Operation key" position="after">
+                    <filter string="Company" domain="[]" context="{'group_by' : 'company_id'}"/>
+                    <filter string="Partner VAT" domain="[]" context="{'group_by' : 'partner_vat'}"/>
+                </filter>
+            </field>
+        </record>
+        <record id="action_l10n_es_aeat_mod347_partner_record" model="ir.actions.act_window">
+            <field name="name">AEAT 347 model partner record</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">l10n.es.aeat.mod347.partner_record</field>
+            <field name="view_id" ref="l10n_es_aeat_mod347_partner_record_tree_view"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="l10n_es_aeat_mod347_partner_record_option_view" name="AEAT 347 model partner record"
+                  action="action_l10n_es_aeat_mod347_partner_record" 
+                  parent="l10n_es_aeat.menu_root_aeat"
+                  sequence="348"/>
+    </data>
+</openerp>
