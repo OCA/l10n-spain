@@ -5,7 +5,7 @@
 <data noupdate="1">
     <record id="comercial_name_pattern" model="ir.config_parameter">
         <field name="key">l10n_es_partner.name_pattern</field>
-        <field name="value">%(comercial_name)s (%(name)s)</field>
+        <field name="value">(%(comercial_name)s) %(name)s</field>
     </record>
 </data>
 </openerp>
