@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2017-01-19 10:40+0000\n"
+"PO-Revision-Date: 2017-01-13 09:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgid "Bank Accounts"
 msgstr "Comptes bancaris"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:100
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:83
 #, python-format
 msgid "Bank account should have 20 digits."
 msgstr "Bank account should have 20 digits."
@@ -57,10 +57,10 @@ msgstr "Creat el"
 #. module: l10n_es_partner
 #: field:l10n.es.partner.import.wizard,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Veure el nom"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:134
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:117
 #, python-format
 msgid "IBAN account is not valid"
 msgstr "El compte IBAN no és vàlid"
@@ -113,7 +113,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:108
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:91
 #, python-format
 msgid "Invalid bank account."
 msgstr "Invalid bank account."
@@ -121,7 +121,7 @@ msgstr "Invalid bank account."
 #. module: l10n_es_partner
 #: field:l10n.es.partner.import.wizard,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: l10n_es_partner
 #: field:l10n.es.partner.import.wizard,write_uid:0
@@ -184,9 +184,9 @@ msgid "Value Added Tax number"
 msgstr "Codi d'Indentificació Fiscal"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:99
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:107
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:133
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:82
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:90
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:116
 #, python-format
 msgid "Warning"
 msgstr "Warning"

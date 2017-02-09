@@ -156,7 +156,7 @@ class L10nEsAeatMod347ExportToBoe(models.TransientModel):
         text += self._formatNumber(
             partner_record.real_estate_transmissions_amount, 13, 2, True)
         # Año de devengo de las operaciones en efectivo
-        year = fields.Date.from_string(
+        year = partner_record.origin_fiscalyear_id and fields.Date.from_string(
             partner_record.origin_fiscalyear_id.date_start).year
         text += (partner_record.origin_fiscalyear_id and
                  self._formatString(year, 4) or 4 * '0')

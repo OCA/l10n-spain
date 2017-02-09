@@ -5,38 +5,45 @@
 from openerp.tests import common
 
 
-class TestL10nEsPartner(common.TransactionCase):
-    def setUp(self):
-        super(TestL10nEsPartner, self).setUp()
-        self.country_spain = self.env.ref('base.es')
-        self.bank = self.env['res.bank'].create({
+class TestL10nEsPartner(common.SavepointCase):
+    @classmethod
+    def setUpClass(cls):
+        super(TestL10nEsPartner, cls).setUpClass()
+        # Make sure there's no commercial name on display_name field
+        cls.env['ir.config_parameter'].set_param(
+            'l10n_es_partner.name_pattern', '',
+        )
+        cls.country_spain = cls.env.ref('base.es')
+        cls.bank = cls.env['res.bank'].create({
             'name': 'BDE',
             'code': '1234',
             'lname': 'Banco de España',
             'vat': 'ES12345678Z',
             'website': 'www.bde.es',
         })
-        self.partner = self.env['res.partner'].create({
+        cls.partner = cls.env['res.partner'].create({
             'name': 'Empresa de prueba',
             'comercial': 'Nombre comercial',
             'vat': 'ES12345678Z',
         })
-        self.partner_bank = self.env['res.partner.bank'].create({
+        cls.partner_bank = cls.env['res.partner.bank'].create({
             'state': 'iban',
-            'partner_id': self.partner.id,
+            'partner_id': cls.partner.id,
             'acc_number': 'ES7620770024003102575766',
-            'country_id': self.country_spain.id,
+            'country_id': cls.country_spain.id,
         })
-        self.wizard = self.env['l10n.es.partner.import.wizard'].create({})
-        self.wizard_toponyms = self.env['config.es.toponyms'].create({
+        cls.wizard = cls.env['l10n.es.partner.import.wizard'].create({})
+        cls.wizard_toponyms = cls.env['config.es.toponyms'].create({
             'name': '',
             'state': 'both',
             'city_info': 'no'
         })
 
     def test_search_commercial(self):
-        res = self.env['res.partner'].name_search(self.partner.comercial)
-        self.assertTrue(res)
+        partner_obj = self.env['res.partner']
+        self.assertTrue(partner_obj.name_search('prueba'))
+        self.assertTrue(partner_obj.name_search('comercial'))
+        self.assertTrue(partner_obj.search([('name', 'ilike', 'comercial')]))
 
     def test_onchange_banco(self):
         res = self.partner_bank.onchange_banco(
@@ -68,3 +75,15 @@ class TestL10nEsPartner(common.TransactionCase):
         self.wizard.execute()
         bank = self.env['res.bank'].search([('code', '=', '0182')])
         self.assertTrue(bank)
+
+    def test_name(self):
+        self.env['ir.config_parameter'].set_param(
+            'l10n_es_partner.name_pattern', '%(comercial_name)s (%(name)s)',
+        )
+        partner2 = self.env['res.partner'].create({
+            'name': 'Empresa de prueba',
+            'comercial': 'Nombre comercial',
+        })
+        self.assertEqual(
+            partner2.display_name, 'Nombre comercial (Empresa de prueba)',
+        )

@@ -420,9 +420,9 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
 
         def _invoices_sum(invoices, refunds, quarter):
             return (
-                sum(x.amount for x in invoices
+                sum(x.invoice_id.amount_total_wo_irpf for x in invoices
                     if x.invoice_id.period_id.quarter == quarter) -
-                sum(x.amount for x in refunds
+                sum(x.invoice_id.amount_total_wo_irpf for x in refunds
                     if x.invoice_id.period_id.quarter == quarter))
 
         for record in self:
@@ -815,7 +815,7 @@ class L10nEsAeatMod347InvoiceRecord(models.Model):
         related='invoice_id.date_invoice', store=True, readonly=True,
         string='Date')
     amount = fields.Float(
-        related="invoice_id.amount_total_wo_irpf", store=True, readonly=True,
+        related="invoice_id.amount_total_wo_irpf", readonly=True,
         digits=dp.get_precision('Account'), string='Amount')
 
 
