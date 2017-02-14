@@ -49,6 +49,9 @@ De acuerdo con la normativa, no están obligados a presentar el modelo 347:
 
 (http://www.boe.es/boe/dias/2008/10/23/pdfs/A42154-42190.pdf)
 
+* Nuevo botón en la pestaña de "Registros", para realizar envío masivo de email
+  con los datos del 347.
+
 Instalación
 ===========
 

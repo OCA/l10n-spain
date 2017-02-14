@@ -6,11 +6,12 @@
 # © 2014-2015 Serv. Tecnol. Avanzados - Pedro M. Baeza
 #             (http://www.serviciosbaeza.com)
 # © 2016 Antiun Ingenieria S.L. - Antonio Espinosa
+# © 2017 Alfredo de la Fuente - AvanzOSC
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     'name': "Modelo 347 AEAT",
-    'version': "8.0.1.4.0",
+    'version': "8.0.1.5.0",
     'author': "Pexego,"
               "ASR-OSS,"
               "NaN·tic,"
@@ -28,6 +29,7 @@
         'Joaquín Gutierrez (http://gutierrezweb.es)',
         'Comunitea (http://www.comunitea.com)',
         'Antonio Espinosa <antonioea@antiun.com>',
+        'Ana Juaristi <anajuaristi@avanzosc.es>',
     ],
     'category': "Localisation/Accounting",
     'license': "AGPL-3",
@@ -35,6 +37,7 @@
         "base_vat",
         "l10n_es_aeat",
         "account_invoice_currency",
+        "mail"
     ],
     'data': [
         "security/ir.model.access.csv",
@@ -45,6 +48,8 @@
         "views/res_partner_view.xml",
         "views/mod347_view.xml",
         "report/mod347_report.xml",
+        "report/res_partner_mod347_report.xml",
+        "data/l10n_es_aeat_mod347_data.xml",
     ],
     'installable': True,
     "post_init_hook": "post_init_hook",

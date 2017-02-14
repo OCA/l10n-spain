@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <report id="report_partner347_print"
+                model="l10n.es.aeat.mod347.partner_record"
+                string="AEAT 347 model partner communication"
+                report_type="qweb-pdf"
+                name="l10n_es_aeat_mod347.report_partner347"
+                file="l10n_es_aeat_mod347.report_partner347"/>
+        <template id="report_partner347_document">
+            <t t-call="report.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div class="row">
+                        <div class="col-xs-5 col-xs-offset-7">
+                            <span t-field="o.partner_id.name"/><br/>
+                            <span t-field="o.partner_id.street"/><br/>
+                            <span t-field="o.partner_id.city"/><br/>
+                            <span t-field="o.partner_id.country_id.name"/><br/>
+                            <span t-field="o.partner_id.vat"/>
+                        </div>
+                    </div>
+                    <p>
+                        <b>Document:</b> Declarations AEAT model 347<br/>
+                        <b>Date:</b> <span t-esc="datetime.datetime.now().strftime('%Y/%m/%d')"/><br/>
+                        <t t-if="o.partner_id.ref">
+                            <b>Customer ref:</b> <span t-field="o.partner_id.ref"/>
+                        </t>
+                    </p>
+                    <p>
+                        Dear Sir / Madam. Our records indicate that our "Annual Declaration of Operations with Third Parties", with you, is as follows:
+                    </p>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Declaration identifier</th>
+                                <th>Fiscal year</th>
+                                <th>Operation Key</th>
+                                <th class="text-right">1T</th>
+                                <th class="text-right">2T</th>
+                                <th class="text-right">3T</th>
+                                <th class="text-right">4T</th>
+                                <th class="text-right">Anual operations amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span t-esc="o.report_id.name"/></td>
+                                <td><span t-esc="o.report_id.fiscalyear_id.name"/></td>
+                                <td><span t-esc="dict(o.fields_get(allfields=['operation_key'])['operation_key']['selection'])[o.operation_key]"/></td>
+                                <td class="text-right"><span t-esc="o.first_quarter" t-esc-options='{"widget": "monetary", "display_currency": "o.report_id.company_id.currency_id"}'/></td>
+                                <td class="text-right"><span t-esc="o.second_quarter" t-esc-options='{"widget": "monetary", "display_currency": "o.report_id.company_id.currency_id"}'/></td>
+                                <td class="text-right"><span t-esc="o.third_quarter" t-esc-options='{"widget": "monetary", "display_currency": "o.report_id.company_id.currency_id"}'/></td>
+                                <td class="text-right"><span t-esc="o.fourth_quarter" t-esc-options='{"widget": "monetary", "display_currency": "o.report_id.company_id.currency_id"}'/></td>
+                                <td class="text-right"><span t-esc="o.amount" t-esc-options='{"widget": "monetary", "display_currency": "o.report_id.company_id.currency_id"}'/></td>
+                            </tr>
+                        </tbody>
+                     </table>
+                </div>
+            </t>
+        </template>
+                <template id="report_partner347">
+            <t t-call="report.html_container">
+                <t t-foreach="doc_ids" t-as="doc_id">
+                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'l10n_es_aeat_mod347.report_partner347_document')"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

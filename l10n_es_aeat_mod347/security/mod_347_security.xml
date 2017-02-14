@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-
         <record id="l10n_es_aeat_mod347_report_rule" model="ir.rule">
             <field name="name">AEAT Mod 347 multi-company</field>
             <field ref="model_l10n_es_aeat_mod347_report" name="model_id"/>
             <field eval="True" name="global"/>
             <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
         </record>
-
+        <record id="l10n_es_aeat_mod347_partner_record_rule" model="ir.rule">
+            <field name="name">AEAT Mod 347 partner record multi-company</field>
+            <field ref="model_l10n_es_aeat_mod347_partner_record" name="model_id"/>
+            <field eval="True" name="global"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
+        </record>
     </data>
 </openerp>

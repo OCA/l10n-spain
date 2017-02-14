@@ -10,6 +10,13 @@
                 <field name="last_reconciliation_date" position="after">
                     <field name="not_in_mod347"/>
                 </field>
+                <div name="buttons" position="inside">
+                    <button name="show_partner_347_records" type="object"
+                            class="oe_stat_button oe_inline" icon="fa-sign-in">
+                        <field name="num_347_records" widget="statinfo"
+                               string="AEAT 347 records"/>
+                    </button>
+                </div>
             </field>
         </record>
     </data>

@@ -122,7 +122,7 @@ msgstr "Tipo de dirección"
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,allow_posting:0
 msgid "Allow posting"
-msgstr ""
+msgstr "Permitir publicación"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,amount:0
@@ -144,12 +144,13 @@ msgstr "Ant"
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,cash_amount:0
 msgid "Anual cash movements amount"
-msgstr ""
+msgstr "Importe anual movimientos efectivo"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,amount:0
+#: view:website:l10n_es_aeat_mod347.report_partner347_document
 msgid "Anual operations amount"
-msgstr ""
+msgstr "Importe anual operaciones"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.partner_record,operation_key:0
@@ -214,7 +215,7 @@ msgstr "Importe en efectivo"
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,total_cash_amount:0
 msgid "Cash movements amount"
-msgstr ""
+msgstr "Importe movimientos efectivo"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
@@ -240,7 +241,7 @@ msgstr "Cargos por cuenta de terceros superiores al límite (3)"
 #: help:l10n.es.aeat.mod347.partner_record,check_ok:0
 #: help:l10n.es.aeat.mod347.real_estate_record,check_ok:0
 msgid "Checked if this record is OK"
-msgstr ""
+msgstr "Comprobado si este registro está bien"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_estate_record,city:0
@@ -260,7 +261,7 @@ msgstr "Compañía"
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,partner_bank_id:0
 msgid "Company bank account used for the presentation"
-msgstr ""
+msgstr "Cuenta bancaria de la empresa utilizada para la presentación"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_estate_record,complement:0
@@ -348,7 +349,7 @@ msgstr "Detalles"
 #: field:l10n.es.aeat.mod347.real_estate_record,display_name:0
 #: field:l10n.es.aeat.mod347.report,display_name:0
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "Mostrar descripción"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,state:0
@@ -415,17 +416,17 @@ msgstr "Primero"
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,first_quarter_cash_amount:0
 msgid "First quarter cash movements"
-msgstr ""
+msgstr "Movimientos efectivo primer trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,first_quarter:0
 msgid "First quarter operations"
-msgstr ""
+msgstr "Operaciones primer trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,first_quarter_real_estate_transmission_amount:0
 msgid "First quarter real estate"
-msgstr ""
+msgstr "Inmueble primer trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_account_fiscalyear
@@ -455,17 +456,17 @@ msgstr "Cuarto"
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,fourth_quarter_cash_amount:0
 msgid "Fourth quarter cash movements"
-msgstr ""
+msgstr "Movimientos efectivo cuarto trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,fourth_quarter:0
 msgid "Fourth quarter operations"
-msgstr ""
+msgstr "Operaciones cuarto trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,fourth_quarter_real_estate_transmission_amount:0
 msgid "Fourth quarter real estate"
-msgstr ""
+msgstr "Inmueble cuarto trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,contact_name:0
@@ -529,7 +530,7 @@ msgstr "Operación seguro"
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.partner_record_search_view
 msgid "Invalid records"
-msgstr ""
+msgstr "Registros inválidos"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_account_invoice
@@ -603,7 +604,7 @@ msgstr "NIF R.L."
 #: field:l10n.es.aeat.mod347.real_estate_record,__last_update:0
 #: field:l10n.es.aeat.mod347.report,__last_update:0
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "Última modificación el"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.cash_record,write_uid:0
@@ -639,7 +640,7 @@ msgstr "NIF del representante legal."
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
 msgid "Leyend:"
-msgstr ""
+msgstr "Leyenda:"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_estate_record,number_calification:0
@@ -786,21 +787,18 @@ msgstr "Registro de empresa"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:376
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:377
 #, python-format
 msgid "Partner record errors:\n"
-msgstr ""
+msgstr "Errores reguistro empresa:\n"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:333
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:334
 #: view:l10n.es.aeat.mod347.report:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
 #, python-format
 msgid "Partner records"
 msgstr "Registros de empresas"
-
-#. module: l10n_es_aeat_mod347
-#: field:l10n.es.aeat.mod347.report,total_partner_records:0
-msgid "Partners records"
-msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,cash_record_ids:0
@@ -824,11 +822,16 @@ msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:373
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:374
 #, python-format
 msgid ""
-"Please review partner and real estate records, some of them are in red color:\n"
+"Please review partner and real estate records, some of them are in red "
+"color:\n"
 "\n"
 msgstr ""
+"Por favor, revise empresa y registros inmuebles, algunos de ellos en color "
+"rojo:\n"
+"\n"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_estate_record,portal:0
@@ -901,7 +904,7 @@ msgstr "Dirección del inmueble"
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.report,total_real_estate_amount:0
 msgid "Real estate amount"
-msgstr ""
+msgstr "Importe real inmueble"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.real_estate_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_real_estate_record_form
@@ -916,10 +919,11 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:345
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:346
 #: field:l10n.es.aeat.mod347.report,total_real_estate_records:0
 #, python-format
 msgid "Real estate records"
-msgstr ""
+msgstr "Registros inmueble"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,real_estate_transmissions_amount:0
@@ -945,7 +949,7 @@ msgstr "Registro"
 #: field:l10n.es.aeat.mod347.partner_record,check_ok:0
 #: field:l10n.es.aeat.mod347.real_estate_record,check_ok:0
 msgid "Record is OK"
-msgstr ""
+msgstr "Registro es OK"
 
 #. module: l10n_es_aeat_mod347
 #: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
@@ -958,9 +962,12 @@ msgid "Related Goods Operation"
 msgstr "Operación de mercaderías relacionadas"
 
 #. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.l10n_es_aeat_mod347_partner_record_tree_view
+#: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.partner_record_search_view
+#: field:l10n.es.aeat.mod347.partner_record,report_identifier:0
 #: field:l10n.es.aeat.mod347.report,name:0
 msgid "Report identifier"
-msgstr ""
+msgstr "Identificador declaración"
 
 #. module: l10n_es_aeat_mod347
 #: selection:account.period,quarter:0
@@ -970,17 +977,17 @@ msgstr "Segundo"
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,second_quarter_cash_amount:0
 msgid "Second quarter cash movements"
-msgstr ""
+msgstr "Movimientos efectivo segundo trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,second_quarter:0
 msgid "Second quarter operations"
-msgstr ""
+msgstr "Operaciones segundo trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,second_quarter_real_estate_transmission_amount:0
 msgid "Second quarter real estate"
-msgstr ""
+msgstr "Inmueble segundo trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,bussiness_real_estate_rent:0
@@ -1087,17 +1094,17 @@ msgstr "Tercero"
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,third_quarter_cash_amount:0
 msgid "Third quarter cash movements"
-msgstr ""
+msgstr "Movimientos efectivo tercer trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,third_quarter:0
 msgid "Third quarter operations"
-msgstr ""
+msgstr "Operaciones tercer trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,third_quarter_real_estate_transmission_amount:0
 msgid "Third quarter real estate"
-msgstr ""
+msgstr "Inmueble tercer trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,counterpart_account:0
@@ -1243,3 +1250,246 @@ msgstr "obtener"
 #: selection:l10n.es.aeat.mod347.export_to_boe,state:0
 msgid "open"
 msgstr "abierto"
+
+#. module: l10n_es_aeat_mod347
+#: model:email.template,body_html:l10n_es_aeat_mod347.email_template_mod347_partner_record
+msgid ""
+"\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-"
+"serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"    <p>Hello ${object.partner_id.name}</p>\n"
+"    <p>I attach you the document with information of the amount of the "
+"declaration AEAT model 347</p>\n"
+"    <br/>\n"
+"    <p>If you have any question, do not hesitate to contact us.</p>\n"
+"    <p>Thank you for choosing ${object.company_id.name or 'us'}!</p>\n"
+"    <br/>\n"
+"    <br/>\n"
+"    <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: "
+"#8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; "
+"background-repeat: repeat no-repeat;\">\n"
+"        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: "
+"#DDD;\">\n"
+"            <strong style=\"text-transform:uppercase;\">${object.company_id."
+"name}</strong></h3>\n"
+"    </div>\n"
+"    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: "
+"16px; background-color: #F2F2F2;\">\n"
+"        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"        % if object.company_id.street:\n"
+"            ${object.company_id.street}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.street2:\n"
+"            ${object.company_id.street2}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.city or object.company_id.zip:\n"
+"            ${object.company_id.zip} ${object.company_id.city}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.country_id:\n"
+"            ${object.company_id.state_id and ('%s, ' % object.company_id."
+"state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>\n"
+"        % endif\n"
+"        </span>\n"
+"        % if object.company_id.phone:\n"
+"            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: "
+"0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: "
+"0px; padding-left: 0px; \">\n"
+"                Phone:&nbsp; ${object.company_id.phone}\n"
+"            </div>\n"
+"        % endif\n"
+"        % if object.company_id.website:\n"
+"            <div>\n"
+"                Web :&nbsp;<a href=\"${object.company_id.website}\">${object."
+"company_id.website}</a>\n"
+"            </div>\n"
+"        %endif\n"
+"        <p></p>\n"
+"    </div>\n"
+"</div>\n"
+"            "
+msgstr ""
+"\n"
+"<div style=\"font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-"
+"serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"    <p>Hola ${object.partner_id.name}</p>\n"
+"    <p>Le adjunto el documento con información del importe de la declaración "
+"del módelo AEAT 347</p>\n"
+"    <br/>\n"
+"    <p>Si usted tiene cualquier pregunta, no dude en ponerse en contacto con "
+"nosotros.</p>\n"
+"    <p>Gracias por confiar en ${object.company_id.name or 'nosotros'}!</p>\n"
+"    <br/>\n"
+"    <br/>\n"
+"    <div style=\"width: 375px; margin: 0px; padding: 0px; background-color: "
+"#8E0000; border-top-left-radius: 5px 5px; border-top-right-radius: 5px 5px; "
+"background-repeat: repeat no-repeat;\">\n"
+"        <h3 style=\"margin: 0px; padding: 2px 14px; font-size: 12px; color: "
+"#DDD;\">\n"
+"            <strong style=\"text-transform:uppercase;\">${object.company_id."
+"name}</strong></h3>\n"
+"    </div>\n"
+"    <div style=\"width: 347px; margin: 0px; padding: 5px 14px; line-height: "
+"16px; background-color: #F2F2F2;\">\n"
+"        <span style=\"color: #222; margin-bottom: 5px; display: block; \">\n"
+"        % if object.company_id.street:\n"
+"            ${object.company_id.street}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.street2:\n"
+"            ${object.company_id.street2}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.city or object.company_id.zip:\n"
+"            ${object.company_id.zip} ${object.company_id.city}<br/>\n"
+"        % endif\n"
+"        % if object.company_id.country_id:\n"
+"            ${object.company_id.state_id and ('%s, ' % object.company_id."
+"state_id.name) or ''} ${object.company_id.country_id.name or ''}<br/>\n"
+"        % endif\n"
+"        </span>\n"
+"        % if object.company_id.phone:\n"
+"            <div style=\"margin-top: 0px; margin-right: 0px; margin-bottom: "
+"0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: "
+"0px; padding-left: 0px; \">\n"
+"                Phone:&nbsp; ${object.company_id.phone}\n"
+"            </div>\n"
+"        % endif\n"
+"        % if object.company_id.website:\n"
+"            <div>\n"
+"                Web :&nbsp;<a href=\"${object.company_id.website}\">${object."
+"company_id.website}</a>\n"
+"            </div>\n"
+"        %endif\n"
+"        <p></p>\n"
+"    </div>\n"
+"</div>\n"
+"            "
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.actions.report.xml,name:l10n_es_aeat_mod347.report_partner347_print
+msgid "AEAT 347 model partner communication"
+msgstr "Comunicación de empresa modelo AEAT 347"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod347.action_l10n_es_aeat_mod347_partner_record
+#: model:ir.ui.menu,name:l10n_es_aeat_mod347.l10n_es_aeat_mod347_partner_record_option_view
+msgid "AEAT 347 model partner record"
+msgstr "Registro de empresa modelo AEAT 347"
+
+#. module: l10n_es_aeat_mod347
+#: field:res.partner,num_347_records:0
+msgid "AEAT 347 partner records"
+msgstr "Registros de empresa AEAT 347"
+
+#. module: l10n_es_aeat_mod347
+#: view:res.partner:l10n_es_aeat_mod347.view_partner_form_mod347
+msgid "AEAT 347 records"
+msgstr "Registros AEAT 347"
+
+#. module: l10n_es_aeat_mod347
+#: selection:l10n.es.aeat.mod347.partner_record,estate:0
+msgid "Contested"
+msgstr "Contestado"
+
+#. module: l10n_es_aeat_mod347
+#: view:website:l10n_es_aeat_mod347.report_partner347_document
+msgid ""
+"Dear Sir / Madam. Our records indicate that our \"Annual Declaration of "
+"Operations with Third Parties\", with you, is as follows:"
+msgstr ""
+"Estimado Señor / Señoras. Nuestros registros indican que nuestra "
+"\"Declaración anual de operaciones con terceros\", con ustedes, es la "
+"siguiente:"
+
+#. module: l10n_es_aeat_mod347
+#: model:email.template,subject:l10n_es_aeat_mod347.email_template_mod347_partner_record
+#: view:website:l10n_es_aeat_mod347.report_partner347_document
+msgid "Declarations AEAT model 347"
+msgstr "Declaraciones AEAT modelo 347"
+
+#. module: l10n_es_aeat_mod347
+#: view:website:l10n_es_aeat_mod347.report_partner347_document
+msgid "Document:"
+msgstr "Documento:"
+
+#. module: l10n_es_aeat_mod347
+#: selection:l10n.es.aeat.mod347.partner_record,estate:0
+msgid "Email sent"
+msgstr "Email enviado"
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,message_follower_ids:0
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "Si está marcado, nuevos mensajes requieren su atención."
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Es un seguidor"
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,message_last_post:0
+msgid "Last Message Date"
+msgstr "Fecha último mensaje"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod347.action_mod347_partner_record_mass_mail
+msgid "Mass Mailing"
+msgstr "Envío masivo"
+
+#. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
+msgid "Mass mailing"
+msgstr "Envío masivo"
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,message_ids:0
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: l10n_es_aeat_mod347
+#: help:l10n.es.aeat.mod347.partner_record,message_ids:0
+msgid "Messages and communication history"
+msgstr "Mensajes e historial de comunicación"
+
+#. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.partner_record_search_view
+msgid "Partner VAT"
+msgstr "CIF Empresa"
+
+#. module: l10n_es_aeat_mod347
+#: selection:l10n.es.aeat.mod347.partner_record,estate:0
+msgid "Pending shipment email"
+msgstr "Pendiente envío email"
+
+#. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.l10n_es_aeat_mod347_partner_record_tree_view
+#: view:l10n.es.aeat.mod347.partner_record:l10n_es_aeat_mod347.partner_record_search_view
+msgid "Report VAT number"
+msgstr "CIF Declaración"
+
+#. module: l10n_es_aeat_mod347
+#: view:l10n.es.aeat.mod347.report:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
+msgid "Resubmit to unanswered"
+msgstr "Reenviar a no contestados"
+
+#. module: l10n_es_aeat_mod347
+#: field:l10n.es.aeat.mod347.partner_record,message_unread:0
+msgid "Unread Messages"
+msgstr "Mensaje no leidos"
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:425
+#, python-format
+msgid "Email send error!"
+msgstr "Error envío email!"
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:426
+#, python-format
+msgid "Partner %s without email."
+msgstr "Empresa %s sin email."
+

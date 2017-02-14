@@ -20,6 +20,7 @@
                     <field name="bussiness_real_estate_rent" select="2"/>
                     <field name="cash_amount" select="2"/>
                     <field name="real_estate_transmissions_amount" select="2"/>
+                    <field name="estate" string="State"/>
                 </tree>
             </field>
         </record>
@@ -30,6 +31,7 @@
             <field name="model">l10n.es.aeat.mod347.partner_record</field>
             <field name="arch" type="xml">
                 <form string="Partner Record">
+                    <sheet>
                     <field name="report_id" invisible="1"/>
                     <notebook>
                         <page string="Partner info">
@@ -131,6 +133,11 @@
                             </field>
                         </page>
                     </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -141,7 +148,12 @@
             <field name="model">l10n.es.aeat.mod347.partner_record</field>
             <field name="arch" type="xml">
                 <search string="Partner Record">
+                    <field name="company_id" string="Company" groups="base.group_multi_company" />
                     <field name="partner_id" string="Partner" filter_domain="[('partner_id','ilike',self)]"/>
+                    <field name="report_identifier" string="Report identifier"/>
+                    <field name="company_vat" string="Report VAT number"/>
+                    <field name="fiscalyear_id" string="Fiscal year"/>
+                    <field name="period_type" string="Period type"/>
                     <field name="operation_key" string="Operation key" filter_domain="[('operation_key','ilike',self)]"/>
                     <field name="partner_vat" string="Record" filter_domain="['|',('partner_vat','ilike',self),('partner_id','ilike',self)]"/>
                     <separator/>
@@ -149,11 +161,52 @@
                             domain="[('check_ok', '=', False)]"/>
                     <separator/>
                     <group  expand='0' string='Group by...'>
+                       <filter string="Company" domain="[]" context="{'group_by' : 'company_id'}" groups="base.group_multi_company"/>
+                       <filter string="Report identifier" domain="[]" context="{'group_by' : 'report_identifier'}"/>
+                       <filter string="Report VAT number" domain="[]" context="{'group_by' : 'company_vat'}"/>
+                       <filter string="Fiscal year" domain="[]" context="{'group_by' : 'fiscalyear_id'}"/>
+                       <filter string="Period type" domain="[]" context="{'group_by' : 'period_type'}"/>
+                       <filter string="Partner" domain="[]" context="{'group_by' : 'partner_id'}"/>
                        <filter string='Operation key' domain="[]" context="{'group_by' : 'operation_key'}"/>
+                       <filter string="Partner VAT" domain="[]" context="{'group_by' : 'partner_vat'}"/>
                     </group>
                 </search>
             </field>
         </record>
+        <record id="l10n_es_aeat_mod347_partner_record_tree_view" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.mod347.partner_record.tree.view</field>
+            <field name="model">l10n.es.aeat.mod347.partner_record</field>
+            <field name="arch" type="xml">
+                <tree string="Partner Records" colors="red:check_ok==False;" >
+                    <field name="company_id" groups="base.group_multi_company" />
+                    <field name="report_identifier" string="Report identifier"/>
+                    <field name="company_vat" string="Report VAT number"/>
+                    <field name="fiscalyear_id" string="Fiscal year"/>
+                    <field name="period_type" string="Period type"/>
+                    <field name="check_ok" invisible="1"/>
+                    <field name="operation_key" />
+                    <field name="partner_vat" />
+                    <field name="partner_id" />
+                    <field name="estate" />
+                    <field name="amount" />
+                    <field name="insurance_operation" />
+                    <field name="bussiness_real_estate_rent" />
+                    <field name="cash_amount" />
+                    <field name="real_estate_transmissions_amount" />
+                </tree>
+            </field>
+        </record>
+        <record id="action_l10n_es_aeat_mod347_partner_record" model="ir.actions.act_window">
+            <field name="name">AEAT 347 model partner record</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">l10n.es.aeat.mod347.partner_record</field>
+            <field name="view_id" ref="l10n_es_aeat_mod347.l10n_es_aeat_mod347_partner_record_tree_view"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="l10n_es_aeat_mod347_partner_record_option_view" name="AEAT 347 model partner record"
+                  action="l10n_es_aeat_mod347.action_l10n_es_aeat_mod347_partner_record" 
+                  parent="l10n_es_aeat.menu_root_aeat" sequence="348"/>
 
         <!-- #############################################
         ### AEAT MODEL 347 PARTNER REAL ESTATE RECORDS ###
@@ -292,9 +345,13 @@
                             </group>
                         </page>
                         <page string="Partner records">
+                            <button name="button_mass_mailing"
+                                    string="Mass mailing" type="object" />
+                            <button name="button_mass_mailing_unanswered"
+                                    string="Resubmit to unanswered" type="object" />
                             <field name="partner_record_ids" nolabel="1"
                                    context="{'report_id': active_id}"
-                                   readonly="True"/>
+                                   readonly="True" />
                         </page>
                         <!-- Disable Real State records, because you can not
                              add manually a partner record related with it -->
