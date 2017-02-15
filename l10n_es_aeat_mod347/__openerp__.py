@@ -3,19 +3,19 @@
 # Copyright 2012 - NaN·Tic  (http://www.nan-tic.com)
 # Copyright 2013 - Acysos (http://www.acysos.com)
 # Copyright 2013 - Joaquín Pedrosa Gutierrez (http://gutierrezweb.es)
-# Copyright 2014-2015 - Serv. Tecnol. Avanzados
-#                     - Pedro M. Baeza (http://www.serviciosbaeza.com)
+# Copyright 2016 - Tecnativa - Antonio Espinosa
 # Copyright 2016 - Tecnativa - Angel Moya <odoo@tecnativa.com>
+# Copyright 2014-2017 - Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 {
-    'name': "Modelo 347 AEAT",
-    'version': "9.0.1.3.0",
+    'name': "AEAT modelo 347",
+    'version': "9.0.1.0.0",
     'author': "Pexego,"
               "ASR-OSS,"
               "NaN·tic,"
               "Acysos,"
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
-              "Antiun Ingeniería S.L.,"
+              "Tecnativa,"
               "Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-spain",
     'category': "Localisation/Accounting",
