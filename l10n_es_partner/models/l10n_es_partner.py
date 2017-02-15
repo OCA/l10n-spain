@@ -138,7 +138,7 @@ class ResPartner(models.Model):
         implicitly for name_search()"""
         if args and args[0][0] == 'name':
             args = expression.normalize_domain(args)
-            exp = args[0]
+            exp = args[1]
             args = ['|', ('comercial', exp[1], exp[2])] + args
         return super(ResPartner, self).search(
             args, offset=offset, limit=limit, order=order, count=count,
