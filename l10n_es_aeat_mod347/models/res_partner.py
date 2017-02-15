@@ -10,7 +10,8 @@ class ResPartner(models.Model):
         "Not included in 347 report",
         help="If you mark this field, this partner will not be included in "
              "any AEAT 347 model report, independently from the total "
-             "amount of its operations.", default=False)
+             "amount of its operations.", default=False,
+    )
 
     @api.model
     def _commercial_fields(self):
