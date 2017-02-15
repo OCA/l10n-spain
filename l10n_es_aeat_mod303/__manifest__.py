@@ -23,6 +23,7 @@
         "data/tax_code_map_mod303_data.xml",
         "data/aeat_export_mod303_data.xml",
         "views/mod303_view.xml",
+        "security/l10n_es_aeat_mod303_security.xml",
         "security/ir.model.access.csv",
     ],
     'installable': True,
