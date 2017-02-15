@@ -11,6 +11,9 @@
 import re
 from openerp import fields, models, api, exceptions, _
 from openerp.addons import decimal_precision as dp
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class L10nEsAeatMod347Report(models.Model):
@@ -24,7 +27,7 @@ class L10nEsAeatMod347Report(models.Model):
     def _get_default_address(self, partner):
         """Get the default invoice address of the partner"""
         partner_obj = self.env['res.partner']
-        address_ids = partner.address_get(['invoice', 'default'])
+        address_ids = partner.address_get_347(['invoice', 'default'])
         if address_ids.get('invoice'):
             return partner_obj.browse(address_ids['invoice'])
         elif address_ids.get('default'):
@@ -33,15 +36,16 @@ class L10nEsAeatMod347Report(models.Model):
             return None
 
     def _invoice_amount_get(self, invoices, refunds):
-        invoice_amount = sum(x.amount_total_wo_irpf for x in invoices)
-        refund_amount = sum(x.amount_total_wo_irpf for x in refunds)
+        invoice_pool = self.env['account.invoice']
+        invoice_amount = sum(x.amount_total_wo_irpf for x in invoice_pool.browse(invoices))
+        refund_amount = sum(x.amount_total_wo_irpf for x in invoice_pool.browse(refunds))
         amount = invoice_amount - refund_amount
         if abs(amount) > self.operations_limit:
             return amount
         return 0
 
     def _cash_amount_get(self, moves):
-        amount = sum([line.credit for line in moves])
+        amount = sum([line.credit for line in self.env['account.move.line'].browse(moves)])
         if abs(amount) > self.received_cash_limit:
             return amount
         return 0
@@ -49,7 +53,7 @@ class L10nEsAeatMod347Report(models.Model):
     def _cash_moves_group(self, moves):
         cash_moves = {}
         # Group cash move lines by origin operation fiscalyear
-        for move_line in moves:
+        for move_line in self.env['account.move.line'].browse(moves):
             # FIXME: ugly group by reconciliation invoices, because there
             # isn't any direct relationship between payments and invoice
             invoices = []
@@ -67,9 +71,9 @@ class L10nEsAeatMod347Report(models.Model):
                 invoice = invoices[0]
                 fy_id = invoice.period_id.fiscalyear_id.id
                 if fy_id not in cash_moves:
-                    cash_moves[fy_id] = [move_line]
+                    cash_moves[fy_id] = [move_line.id]
                 else:
-                    cash_moves[fy_id].append(move_line)
+                    cash_moves[fy_id].append(move_line.id)
         return cash_moves
 
     def _partner_record_a_create(self, data, vals):
@@ -80,14 +84,14 @@ class L10nEsAeatMod347Report(models.Model):
         partner_record_obj = self.env['l10n.es.aeat.mod347.partner_record']
         record = False
         vals['operation_key'] = 'A'
-        invoices = data.get('in_invoices', self.env['account.invoice'])
-        refunds = data.get('in_refunds', self.env['account.invoice'])
+        invoices = data.get('in_invoices', [])
+        refunds = data.get('in_refunds', [])
         amount = self._invoice_amount_get(invoices, refunds)
         if amount:
             vals['amount'] = amount
             vals['invoice_record_ids'] = [
                 (0, 0, {'invoice_id': x})
-                for x in (invoices.ids + refunds.ids)]
+                for x in (invoices + refunds)]
             record = partner_record_obj.create(vals)
         return record
 
@@ -101,15 +105,15 @@ class L10nEsAeatMod347Report(models.Model):
         records = []
         invoice_record = False
         vals['operation_key'] = 'B'
-        invoices = data.get('out_invoices', self.env['account.invoice'])
-        refunds = data.get('out_refunds', self.env['account.invoice'])
-        moves = data.get('cash_moves', self.env['account.move.line'])
+        invoices = data.get('out_invoices', [])
+        refunds = data.get('out_refunds', [])
+        moves = data.get('cash_moves', [])
         amount = self._invoice_amount_get(invoices, refunds)
         if amount:
             vals['amount'] = amount
             vals['invoice_record_ids'] = [
                 (0, 0, {'invoice_id': x})
-                for x in (invoices.ids + refunds.ids)]
+                for x in (invoices + refunds)]
             invoice_record = partner_record_obj.create(vals)
             if invoice_record:
                 records.append(invoice_record)
@@ -131,7 +135,7 @@ class L10nEsAeatMod347Report(models.Model):
                             'origin_fiscalyear_id': fy_id,
                         })
                         partner_record = invoice_record
-                    for line in cash_moves[fy_id]:
+                    for line in self.env['account.move.line'].browse(cash_moves[fy_id]):
                         cash_record_obj.create({
                             'partner_record_id': partner_record.id,
                             'move_line_id': line.id,
@@ -143,8 +147,10 @@ class L10nEsAeatMod347Report(models.Model):
     def _partner_records_create(self, data):
         partner = data.get('partner')
         address = self._get_default_address(partner)
-        partner_country_code, partner_vat = (
-            re.match(r"([A-Z]{0,2})(.*)", partner.vat or '').groups())
+        partner_country_code = False
+        partner_vat = False
+        if partner_vat:
+            partner_country_code, partner_vat = partner.vat[:2].upper(), partner.vat[2:].replace(' ', '')
         community_vat = ''
         if not partner_country_code:
             partner_country_code = address.country_id.code
@@ -170,7 +176,6 @@ class L10nEsAeatMod347Report(models.Model):
 
     def _invoices_search(self, partners):
         invoice_obj = self.env['account.invoice']
-        partner_obj = self.env['res.partner']
         domain = [
             ('state', 'in', ['open', 'paid']),
             ('period_id', 'in', self.periods.ids),
@@ -182,40 +187,34 @@ class L10nEsAeatMod347Report(models.Model):
         key_field = 'id'
         if self.group_by_vat:
             key_field = 'vat'
-        groups = invoice_obj.read_group(
-            domain, ['commercial_partner_id'], ['commercial_partner_id'])
-        for group in groups:
-            partner = partner_obj.browse(group['commercial_partner_id'][0])
+        invoices = invoice_obj.search(
+            domain)
+        j = 0
+        for invoice in invoices:
+            j = j + 1
+            partner = invoice.commercial_partner_id
             key_value = partner[key_field]
-            invoices = invoice_obj.search(group['__domain'])
-            in_invoices = invoices.filtered(
-                lambda x: x.type in 'in_invoice')
-            in_refunds = invoices.filtered(
-                lambda x: x.type in 'in_refund')
-            out_invoices = invoices.filtered(
-                lambda x: x.type in 'out_invoice')
-            out_refunds = invoices.filtered(
-                lambda x: x.type in 'out_refund')
             if key_value not in partners:
                 partners[key_value] = {
-                    # Get first partner found when grouping by vat
                     'partner': partner,
-                    'in_invoices': in_invoices,
-                    'in_refunds': in_refunds,
-                    'out_invoices': out_invoices,
-                    'out_refunds': out_refunds,
+                    'in_invoices': [],
+                    'in_refunds': [],
+                    'out_invoices': [],
+                    'out_refunds': [],
                 }
-            else:
-                # No need to check here if *_invoices exists,
-                # because this entry has been created in this method
-                partners[key_value]['in_invoices'] += in_invoices
-                partners[key_value]['in_refunds'] += in_refunds
-                partners[key_value]['out_invoices'] += out_invoices
-                partners[key_value]['out_refunds'] += out_refunds
+
+            if invoice.type == 'in_invoice':
+                partners[key_value]['in_invoices'].append(invoice.id)
+            elif invoice.type == 'in_refund':
+                partners[key_value]['in_refunds'].append(invoice.id)
+            elif invoice.type == 'out_invoice':
+                partners[key_value]['out_invoices'].append(invoice.id)
+            elif invoice.type == 'out_refund':
+                partners[key_value]['out_refunds'].append(invoice.id)
+
         return partners
 
     def _cash_moves_search(self, partners):
-        partner_obj = self.env['res.partner']
         move_line_obj = self.env['account.move.line']
         cash_journals = self.env['account.journal'].search(
             [('type', '=', 'cash')])
@@ -227,28 +226,24 @@ class L10nEsAeatMod347Report(models.Model):
             ('period_id', 'in', self.periods.ids),
             ('partner_id.not_in_mod347', '=', False),
         ]
-        groups = move_line_obj.read_group(
-            domain, ['partner_id'], ['partner_id'])
+        move_lines = move_line_obj.search(domain)
+        # groups = move_line_obj.read_group(
+        #     domain, ['partner_id'], ['partner_id'])
         key_field = 'id'
         if self.group_by_vat:
             key_field = 'vat'
-        for group in groups:
-            partner = partner_obj.browse(group['partner_id'][0])
-            key_value = partner[key_field]
-            moves = move_line_obj.search(group['__domain'])
+
+        for move_line in move_lines:
+            key_value = move_line.partner_id[key_field]
             if key_value not in partners:
                 partners[key_value] = {
                     # Get first partner found when grouping by vat
-                    'partner': partner,
-                    'cash_moves': moves,
+                    'partner': move_line.partner_id,
+                    'cash_moves': [],
                 }
-            else:
-                # Check here if cash_moves exists, maybe this entry
-                # has been created by _invoices_search
-                if partners[key_value].get('cash_moves'):
-                    partners[key_value]['cash_moves'] += moves
-                else:
-                    partners[key_value]['cash_moves'] = moves
+            elif not partners[key_value].get('cash_moves', False):
+                partners[key_value]['cash_moves'] = []
+            partners[key_value]['cash_moves'].append(move_line.id)
         return partners
 
     @api.depends('partner_record_ids',
@@ -258,14 +253,20 @@ class L10nEsAeatMod347Report(models.Model):
     def _get_partner_totals(self):
         """Calculate the total_* fields from the line values."""
         for record in self:
+            vals = {}
+            vals['total_amount'] = 0
+            vals['total_cash_amount'] = 0
+            vals['total_real_estate_transmissions_amount'] = 0
+            for x in record.partner_record_ids:
+                vals['total_amount'] += x.amount
+                vals['total_cash_amount'] += x.cash_amount
+                vals['total_real_estate_transmissions_amount'] += \
+                    x.real_estate_transmissions_amount
             record.total_partner_records = len(record.partner_record_ids)
-            record.total_amount = (
-                sum([x.amount for x in record.partner_record_ids]))
-            record.total_cash_amount = (
-                sum([x.cash_amount for x in record.partner_record_ids]))
-            record.total_real_estate_transmissions_amount = (
-                sum([x.real_estate_transmissions_amount for x in
-                     record.partner_record_ids]))
+            record.total_amount = vals['total_amount']
+            record.total_cash_amount = vals['total_cash_amount']
+            record.total_real_estate_transmissions_amount = \
+                vals['total_real_estate_transmissions_amount']
 
     @api.depends('real_estate_record_ids',
                  'real_estate_record_ids.amount')
@@ -394,7 +395,11 @@ class L10nEsAeatMod347Report(models.Model):
             partners = report._invoices_search(partners)
             # Read cash movements
             partners = report._cash_moves_search(partners)
+            lenpartners = len(partners)
+            j = 0
             for k, v in partners.iteritems():
+                j = j + 1
+                _logger.info("[%s de %s] Vamos a crear %s" % (j, lenpartners, v))
                 report._partner_records_create(v)
         return True
 
