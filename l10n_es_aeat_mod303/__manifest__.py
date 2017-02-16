@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2013 Alberto Martín Cortada (Guadaltech)
 # Copyright 2015 AvanzOSC - Ainara Galdona
-# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
-# Copyright 2014-2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2016 Tecnativa - Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2014-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 {
