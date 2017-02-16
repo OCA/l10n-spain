@@ -5,12 +5,12 @@
 
     <template id="account_balance_reporting.report_generic">
         <t t-call="report.html_container">
-            <div class="page">
-                <div class="row">
-                    <t t-foreach="docs" t-as="o">
-                        <div class="header" style="font-size:120%;width:100%;text-align:center;background-color:#ccc;border:1px solid black;">
-                            <strong><span t-esc="o.name"/></strong>
-                        </div>
+            <t t-foreach="docs" t-as="o">
+                <div class="header" style="font-size:120%;width:100%;text-align:center;background-color:#ccc;border:1px solid black;">
+                    <strong><span t-esc="o.name"/></strong>
+                </div>
+                <div class="page">
+                    <div class="row">
                         <table class="table table-bordered" style="width:100%;border:1px solid black;border-collapse:collapse;padding:3px;">
                             <thead>
                                 <tr style="font-size:120%;background-color:#ccc;border-bottom:1px solid black;">
@@ -38,9 +38,9 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </t>
+                    </div>
                 </div>
-            </div>
+            </t>
         </t>
     </template>
     <template id="report_generic_non_zero" inherit_id="account_balance_reporting.report_generic" primary="True">
