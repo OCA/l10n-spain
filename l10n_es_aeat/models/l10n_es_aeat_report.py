@@ -164,7 +164,7 @@ class L10nEsAeatReport(models.AbstractModel):
         domain="[('acc_type', '=', 'iban'), "
                " ('partner_id', '=', partner_id)]")
     _sql_constraints = [
-        ('name_uniq', 'unique(name)',
+        ('name_uniq', 'unique(name, company_id)',
          'AEAT report identifier must be unique'),
     ]
 
