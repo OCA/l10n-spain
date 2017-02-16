@@ -62,13 +62,18 @@ class L10nEsAeatReport(models.AbstractModel):
     def _default_number(self):
         return self._aeat_number
 
-    def _default_export_config_id(self):
-        configs = self.env['aeat.model.export.config'].search([
-            ('model_number', '=', self._aeat_number),
-            ('date_start', '!=', False),
+    def _get_export_config(self, date):
+        model = self.env['ir.model'].search([('model', '=', self._name)])
+        return self.env['aeat.model.export.config'].search([
+            ('model_id', '=', model.id),
+            ('date_start', '<=', date),
+            '|',
             ('date_end', '=', False),
-        ])
-        return configs[:1].id
+            ('date_end', '>=', date),
+        ], limit=1)
+
+    def _default_export_config_id(self):
+        return self._get_export_config(fields.Date.today())
 
     company_id = fields.Many2one(
         comodel_name='res.company', string="Company", required=True,
@@ -124,10 +129,10 @@ class L10nEsAeatReport(models.AbstractModel):
         compute='_compute_report_model', oldname='model')
     export_config_id = fields.Many2one(
         comodel_name='aeat.model.export.config', string="Export config",
-        domain="[('model_number', '=', number), "
-               " ('date_start', '<=', date_start), "
-               " '|', ('date_end', '=', False), "
-               "      ('date_end', '>=', date_end)]",
+        domain=lambda self: [
+            ('model_id', '=',
+             self.env['ir.model'].search([('model', '=', self._name)]).id)
+        ],
         default=_default_export_config_id, oldname='export_config')
     currency_id = fields.Many2one(
         comodel_name='res.currency', string="Currency", readonly=True,
@@ -225,6 +230,7 @@ class L10nEsAeatReport(models.AbstractModel):
                     '%s-%s-01' % (self.year, month))
                 self.date_end = fields.Date.from_string('%s-%s-%s' % (
                     self.year, month, monthrange(self.year, month)[1]))
+            self.export_config_id = self._get_export_config(self.date_start).id
 
     @api.model
     def _report_identifier_get(self, vals):

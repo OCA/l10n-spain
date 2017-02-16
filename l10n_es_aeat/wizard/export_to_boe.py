@@ -7,7 +7,7 @@
 import base64
 import re
 from odoo.tools.safe_eval import safe_eval as eval
-from odoo import tools, models, fields, api, _
+from odoo import _, api, fields, exceptions, models, tools
 
 EXPRESSION_PATTERN = re.compile(r'(\$\{.+?\})')
 
@@ -24,7 +24,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             ('get', 'get'),
         ], string="State", default='open')
 
-    def _formatString(self, text, length, fill=' ', align='<'):
+    def _format_string(self, text, length, fill=' ', align='<'):
         u"""Format the string into a fixed length ASCII (iso-8859-1) record.
 
         Note:
@@ -62,9 +62,9 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         # Return string
         return ascii_string
 
-    def _formatNumber(self, number, int_length, dec_length=0,
-                      include_sign=False, positive_sign=' ',
-                      negative_sign='N'):
+    def _format_number(self, number, int_length, dec_length=0,
+                       include_sign=False, positive_sign=' ',
+                       negative_sign='N'):
         u"""Format the number into a fixed length ASCII (iso-8859-1) record.
 
         Note:
@@ -95,65 +95,15 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         # Sanity-check
         assert len(ascii_string) == (include_sign and 1 or 0) + int_length + \
             dec_length, _("The formated string must match the given length")
-        # Return the string
-        return ascii_string
+        # Return the string assuring that is not unicode
+        return str(ascii_string)
 
-    def _formatBoolean(self, value, yes='X', no=' '):
+    def _format_boolean(self, value, yes='X', no=' '):
         u"""Format a boolean value into a fixed length ASCII (iso-8859-1) record.
         """
-        return value and yes or no
-
-    @api.multi
-    def _get_formatted_declaration_record(self, report):
-        u"""Return a type 1, declaration/company, formated record.
-
-        Format of the record:
-            Tipo registro 1 – Registro de declarante:
-            Posiciones   Descripción
-            1            Tipo de Registro
-            2-4          Modelo Declaración
-            5-8          Ejercicio
-            9-17         NIF del declarante
-            18-57        Apellidos y nombre o razón social del declarante
-            58           Tipo de soporte
-            59-67        Teléfono contacto
-            68-107       Apellidos y nombre contacto
-            108-120      Número identificativo de la declaración
-            121-122      Declaración complementaria o substitutiva
-            123-135      Número identificativo de la declaración anterior
-        """
-        text = ''
-        # Tipo de Registro
-        text += '1'
-        # Modelo Declaración
-        text += getattr(report._model, '_aeat_number')
-        # Ejercicio
-        text += self._formatString(str(report.year), 4)
-        # NIF del declarante
-        text += self._formatString(report.company_vat, 9)
-        # Apellidos y nombre o razón social del declarante
-        text += self._formatString(report.company_id.name, 40)
-        # Tipo de soporte
-        text += self._formatString(report.support_type, 1)
-        # Persona de contacto (Teléfono)
-        text += self._formatString(report.contact_phone, 9)
-        # Persona de contacto (Apellidos y nombre)
-        text += self._formatString(report.contact_name, 40)
-        # Número identificativo de la declaración
-        text += self._formatString(report.name, 13)
-        # Declaración complementaria
-        text += self._formatString(report.type, 2).replace('N', ' ')
-        # Número identificativo de la declaración anterior
-        text += self._formatNumber(report.previous_number, 13)
-        return text
-
-    @api.multi
-    def _get_formatted_main_record(self, record):
-        return ''
-
-    @api.multi
-    def _get_formatted_other_records(self, record):
-        return ''
+        res = value and yes or no
+        # Return the string assuring that is not unicode
+        return str(res)
 
     @api.multi
     def _do_global_checks(self, record, contents):
@@ -174,13 +124,8 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         if report.export_config_id:
             contents += self.action_get_file_from_config(report)
         else:
-            # Add header record
-            contents += self._get_formatted_declaration_record(report)
-            # Add main record
-            contents += self._get_formatted_main_record(report)
-            # Adds other fields
-            contents += self._get_formatted_other_records(report)
-            # Generate the file and save as attachment
+            raise exceptions.UserError(_('No export configuration selected.'))
+        # Generate the file and save as attachment
         file = base64.encodestring(contents)
         file_name = _("%s_report_%s.txt") % (report.number,
                                              fields.Date.today())
@@ -262,13 +207,13 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
     def _export_simple_record(self, line, val):
         if line.export_type == 'string':
             align = '>' if line.alignment == 'right' else '<'
-            return self._formatString(val or '', line.size, align=align)
+            return self._format_string(val or '', line.size, align=align)
         elif line.export_type == 'boolean':
-            return self._formatBoolean(val, line.bool_yes, line.bool_no)
+            return self._format_boolean(val, line.bool_yes, line.bool_no)
         else:  # float or integer
             decimal_size = (0 if line.export_type == 'integer' else
                             line.decimal_size)
-            return self._formatNumber(
+            return self._format_number(
                 float(val or 0),
                 line.size - decimal_size - (line.apply_sign and 1 or 0),
                 decimal_size, line.apply_sign,

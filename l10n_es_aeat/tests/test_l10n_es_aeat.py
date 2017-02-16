@@ -13,5 +13,5 @@ class TestL10nEsAeat(common.TransactionCase):
     def test_format_string(self):
         text = u" &'(),-./01:;abAB_ÇÑ\"áéíóúÁÉÍÓÚ+!"
         self.assertEqual(
-            self.export_model._formatString(text, len(text)),
+            self.export_model._format_string(text, len(text)),
             u" &'(),-./01:;ABAB_ÇÑ\"AEIOUAEIOU  ".encode('iso-8859-1'))
