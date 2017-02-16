@@ -30,8 +30,8 @@ addon | version | summary
 [l10n_es_account_balance_report](l10n_es_account_balance_report/) | 9.0.1.0.0 | Informes de cuentas anuales españoles
 [l10n_es_account_bank_statement_import_n43](l10n_es_account_bank_statement_import_n43/) | 9.0.1.0.0 | Importación de extractos bancarios españoles (Norma 43)
 [l10n_es_account_invoice_sequence](l10n_es_account_invoice_sequence/) | 9.0.1.0.0 | Secuencia para facturas separada de la secuencia de asientos
-[l10n_es_aeat](l10n_es_aeat/) | 9.0.1.0.0 | Modulo base para declaraciones de la AEAT
-[l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 9.0.1.0.0 | AEAT modelo 303
+[l10n_es_aeat](l10n_es_aeat/) | 9.0.1.0.1 | Modulo base para declaraciones de la AEAT
+[l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 9.0.1.1.0 | AEAT modelo 303
 [l10n_es_cnae](l10n_es_cnae/) | 9.0.1.0.0 | Extiende los códigos NACE europeos con los CNAE españoles
 [l10n_es_partner](l10n_es_partner/) | 9.0.1.0.1 | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_toponyms](l10n_es_toponyms/) | 9.0.1.0.0 | Topónimos españoles
