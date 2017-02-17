@@ -147,7 +147,7 @@ class ResPartner(models.Model):
                     break
         return super(ResPartner, self).search(
             args, offset=offset, limit=limit, order=order, count=count,
-        )        
+        )
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
