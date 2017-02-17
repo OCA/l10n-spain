@@ -138,7 +138,7 @@ class ResPartner(models.Model):
         args = expression.normalize_domain(args)
         for arg in args:
             if isinstance(arg, (list, tuple)):
-                if arg[0] == 'name' or arg[0] == 'display_name':
+                if arg[0] in ['name', 'display_name']:
                     index = args.index(arg)
                     args = (
                         args[:index] + ['|', ('comercial', arg[1], arg[2])] +
