@@ -134,16 +134,20 @@ class ResPartner(models.Model):
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
-        """Include commercial name in direct name search. It serves also
-        implicitly for name_search()"""
-        if args and args[0][0] == 'name':
-            args = expression.normalize_domain(args)
-            exp = args[
-                [i for i in range(0, len(args)) if args[i][0] == 'name'][0]]
-            args = ['|', ('comercial', exp[1], exp[2])] + args
+        """Include commercial name in direct name search."""
+        args = expression.normalize_domain(args)
+        for arg in args:
+            if isinstance(arg, (list, tuple)):
+                if arg[0] == 'name' or arg[0] == 'display_name':
+                    index = args.index(arg)
+                    args = (
+                        args[:index] + ['|', ('comercial', arg[1], arg[2])] +
+                        args[index:]
+                    )
+                    break
         return super(ResPartner, self).search(
             args, offset=offset, limit=limit, order=order, count=count,
-        )
+        )        
 
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
