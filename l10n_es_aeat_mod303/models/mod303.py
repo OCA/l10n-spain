@@ -15,7 +15,7 @@ class L10nEsAeatMod303Report(models.Model):
     def _get_export_conf(self):
         try:
             return self.env.ref(
-                'l10n_es_aeat_mod303.aeat_mod303_main_export_config').id
+                'l10n_es_aeat_mod303.aeat_mod303_2017_main_export_config').id
         except ValueError:
             return self.env['aeat.model.export.config']
 
@@ -176,6 +176,15 @@ class L10nEsAeatMod303Report(models.Model):
         super(L10nEsAeatMod303Report, self).onchange_period_type()
         if self.period_type not in ('4T', '12'):
             self.regularizacion_anual = 0
+        if not self.fiscalyear_id:
+            self.export_config = self.env.ref(
+                'l10n_es_aeat_mod303.aeat_mod303_2017_main_export_config')
+        elif self.fiscalyear_id.date_start < '2017-01-01':
+            self.export_config = self.env.ref(
+                'l10n_es_aeat_mod303.aeat_mod303_main_export_config')
+        else:
+            self.export_config = self.env.ref(
+                'l10n_es_aeat_mod303.aeat_mod303_2017_main_export_config')
 
     @api.onchange('type')
     def onchange_type(self):
