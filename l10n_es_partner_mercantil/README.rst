@@ -36,7 +36,7 @@ Créditos
 
 Contribuidores
 --------------
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
 
 Maintainer
