@@ -1,24 +1,22 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
 
-    <data>
+    <menuitem id="menu_spanish_financial_reports"
+              name="Spanish Financial Reports"
+              parent="account.menu_finance_reports"
+    />
 
-        <menuitem id="menu_account_balance_reporting_templates"
-            name="Financial Reports"
-            parent="account.menu_account_reports"
-            action="action_view_account_balance_reporting_template"/>
+    <menuitem id="menu_account_balance_reporting_templates"
+              name="Financial Reports"
+              parent="account.menu_account_reports"
+              action="action_view_account_balance_reporting_template"
+    />
 
-        <menuitem id="menu_account_balance_reporting_reports"
-            name="Financial Reports"
-            parent="account.final_accounting_reports"
-            action="action_view_account_balance_reporting"/>
+    <menuitem id="menu_account_balance_reporting_reports"
+              name="Financial Reports"
+              parent="menu_spanish_financial_reports"
+              action="action_view_account_balance_reporting"
+    />
 
-        <delete model="ir.ui.menu" id="account.menu_account_report_bs"/>
-        <delete model="ir.ui.menu" id="account.menu_account_report_pl"/>
-        <delete model="ir.ui.menu" id="account.menu_account_report"/>
-        <delete model="ir.ui.menu" id="account.menu_account_report_tree_hierarchy"/>
-        <delete model="ir.ui.menu" id="account.menu_account_financial_reports_tree"/>
-
-    </data>
-</openerp>
+</odoo>
 

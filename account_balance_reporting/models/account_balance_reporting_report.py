@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 # © 2009 Pexego/Comunitea
 # © 2016 Pedro M. Baeza
+# © 2016 Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
 
-from openerp import api, fields, models, _
+from odoo import api, fields, models, _
 from .account_balance_reporting_template import CSS_CLASSES
 import re
 import logging
@@ -20,20 +21,17 @@ class AccountBalanceReporting(models.Model):
     READONLY_STATES = {'calc_done': [('readonly', True)],
                        'done': [('readonly', True)]}
 
-    @api.model
-    def _get_levels(self):
-        # This can't be filtered by company because we can change the company
-        # on the fly
-        self.env.cr.execute(
-            "SELECT DISTINCT(level) FROM account_account ORDER BY level")
-        reg = self.env.cr.fetchall()
-        return [(str(x[0]), str(x[0])) for x in reg if x[0]]
-
     name = fields.Char(string='Name', required=True, index=True)
     template_id = fields.Many2one(
         comodel_name='account.balance.reporting.template',
         string='Template', ondelete='set null', required=True, index=True,
         states=READONLY_STATES)
+    current_date_range = fields.Many2one(
+        comodel_name='date.range', string='Date range', states=READONLY_STATES,
+    )
+    previous_date_range = fields.Many2one(
+        comodel_name='date.range', string='Date range', states=READONLY_STATES,
+    )
     calc_date = fields.Datetime(string="Calculation date", readonly=True)
     state = fields.Selection(
         selection=[('draft', 'Draft'),
@@ -44,22 +42,7 @@ class AccountBalanceReporting(models.Model):
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company', ondelete='cascade',
         required=True, readonly=False, states=READONLY_STATES,
-        default=lambda self: self.env.user.company_id.id)
-    check_filter = fields.Selection(
-        selection=[('periods', 'Periods'),
-                   ('dates', 'Dates')],
-        default='periods', string='Compute by', required=True,
-        states=READONLY_STATES)
-    level = fields.Selection(
-        selection=_get_levels, string='Level', states=READONLY_STATES)
-    current_fiscalyear_id = fields.Many2one(
-        comodel_name='account.fiscalyear', string='Fiscal year 1', index=True,
-        required=True, states=READONLY_STATES)
-    current_period_ids = fields.Many2many(
-        comodel_name='account.period',
-        relation='account_balance_reporting_account_period_current_rel',
-        column1='account_balance_reporting_id', column2='period_id',
-        string='Fiscal year 1 periods', states=READONLY_STATES)
+        default=lambda self: self.env.user.company_id)
     current_date_from = fields.Date(
         string='Date From',
         states=READONLY_STATES,
@@ -70,14 +53,6 @@ class AccountBalanceReporting(models.Model):
         states=READONLY_STATES,
         required=True,
     )
-    previous_fiscalyear_id = fields.Many2one(
-        comodel_name='account.fiscalyear', string='Fiscal year 2', index=True,
-        states=READONLY_STATES)
-    previous_period_ids = fields.Many2many(
-        comodel_name='account.period',
-        relation='account_balance_reporting_account_period_previous_rel',
-        column1='account_balance_reporting_id', column2='period_id',
-        string='Fiscal year 2 periods', states=READONLY_STATES)
     previous_date_from = fields.Date(
         string='Date From', states=READONLY_STATES)
     previous_date_to = fields.Date(
@@ -145,6 +120,20 @@ class AccountBalanceReporting(models.Model):
         self.write({'state': 'draft', 'calc_date': None})
         return True
 
+    @api.multi
+    @api.onchange('current_date_range')
+    def onchange_current_date_range(self):
+        if self.current_date_range:
+            self.current_date_from = self.current_date_range.date_start
+            self.current_date_to = self.current_date_range.date_end
+
+    @api.multi
+    @api.onchange('previous_date_range')
+    def onchange_previous_date_range(self):
+        if self.previous_date_range:
+            self.previous_date_from = self.previous_date_range.date_start
+            self.previous_date_to = self.previous_date_range.date_end
+
 
 class AccountBalanceReportingLine(models.Model):
     _name = "account.balance.reporting.line"
@@ -182,13 +171,13 @@ class AccountBalanceReportingLine(models.Model):
     current_move_line_ids = fields.Many2many(
         comodel_name="account.move.line", string="Journal items (current)")
     current_move_line_count = fields.Integer(
-        compute="_current_move_line_count")
+        compute="_compute_current_move_line_count")
     previous_move_line_ids = fields.Many2many(
         comodel_name="account.move.line", string="Journal items (previous)",
         relation="account_balance_reporting_line_previous_move_line_rel",
         column1="line_id", column2="report_id")
     previous_move_line_count = fields.Integer(
-        compute="_previous_move_line_count")
+        compute="_compute_previous_move_line_count")
 
     _sql_constraints = [
         ('report_code_uniq', 'unique(report_id, code)',
@@ -205,13 +194,13 @@ class AccountBalanceReportingLine(models.Model):
 
     @api.multi
     @api.depends('current_move_line_ids')
-    def _current_move_line_count(self):
+    def _compute_current_move_line_count(self):
         for line in self:
             line.current_move_line_count = len(line.current_move_line_ids)
 
     @api.multi
     @api.depends('previous_move_line_ids')
-    def _previous_move_line_count(self):
+    def _compute_previous_move_line_count(self):
         for line in self:
             line.previous_move_line_count = len(line.previous_move_line_ids)
 
@@ -223,92 +212,15 @@ class AccountBalanceReportingLine(models.Model):
             res.append((item.id, "[%s] %s" % (item.code, item.name)))
         return res
 
-    def name_search(self, cr, uid, name, args=None, operator='ilike',
-                    context=None, limit=80):
-        """Redefine the method to allow searching by code."""
-        ids = []
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        """Allow to search by code."""
         if args is None:
             args = []
-        if name:
-            ids = self.search(cr, uid, [('code', 'ilike', name)] + args,
-                              limit=limit, context=context)
-        if not ids:
-            ids = self.search(cr, uid, [('name', operator, name)] + args,
-                              limit=limit, context=context)
-        return self.name_get(cr, uid, ids, context=context)
-
-    @api.multi
-    def _create_child_lines(self, domain, expr, balance_mode, fyear):
-        self.ensure_one()
-        move_line_obj = self.env['account.move.line']
-        account_obj = self.env['account.account']
-        cont = 1000
-        for code in re.findall(r'(-?\w*\(?[0-9a-zA-Z_]*\)?)', expr):
-            # Check if the code is valid (findall might return empty
-            # strings)
-            code = code.strip()
-            if not code:
-                continue
-            sign, acc_code, mode, sign_mode = self._get_code_sign_mode(
-                code, balance_mode)
-            # Search for the account (perfect match)
-            accounts = account_obj.search(
-                [('code', '=', acc_code),
-                 ('company_id', '=', self.report_id.company_id.id)])
-            for account in accounts:
-                child_accounts = account_obj.search(
-                    [('id', 'child_of', account.id),
-                     ('level', '<=', self.report_id.level),
-                     ('not_level_expand', '=', False)],
-                    order="code asc")
-                for child_account in child_accounts:
-                    value = 0.0
-                    domain_account = list(domain)
-                    domain_account.append(
-                        ('account_id', 'child_of', child_account.ids))
-                    group = move_line_obj.read_group(
-                        domain_account, ['debit', 'credit'], [])[0]
-                    if mode == 'debit':
-                        value -= (group['debit'] or 0.0) * sign
-                    elif mode == 'credit':
-                        value += (group['credit'] or 0.0) * sign
-                    else:
-                        value += (
-                            sign * sign_mode * ((group['debit'] or 0.0) -
-                                                (group['credit'] or 0.0)))
-                    report_line = self.search(
-                        [('template_line_id', '=', self.template_line_id.id),
-                         ('name', '=', child_account.code + u": " +
-                          child_account.name),
-                         ('report_id', '=', self.report_id.id)], limit=1)
-                    if not report_line:
-                        report_line = self.create({
-                            'code': self.code + u"/" + str(cont),
-                            'name': (child_account.code + u": " +
-                                     child_account.name),
-                            'report_id': self.report_id.id,
-                            'template_line_id': self.template_line_id.id,
-                            'parent_id': self.id,
-                            'current_value': None,
-                            'previous_value': None,
-                            'sequence': self.sequence,
-                            'css_class':
-                            (child_account.level and
-                             child_account.level < 5) and
-                            u'l' + str(child_account.level) or'default'
-                        })
-                        cont += 1
-                    if self.template_line_id.negate:
-                        value = -value
-                    vals = {}
-                    if fyear == 'current':
-                        vals = {'current_value': value,
-                                'calc_date': self.report_id.calc_date}
-                    elif fyear == 'previous':
-                        vals = {'previous_value': value,
-                                'calc_date': self.report_id.calc_date}
-                    report_line.write(vals)
-                    report_line.refresh()
+        args += ['|', ('code', operator, name)]
+        return super(AccountBalanceReportingLine, self).name_search(
+            name=name, args=args, operator=operator, limit=limit,
+        )
 
     @api.multi
     def _get_account_balance(self, expr, domain, balance_mode=0):
@@ -334,7 +246,7 @@ class AccountBalanceReportingLine(models.Model):
         # a string like "430+431+432-438"; accounts split by "+" will be added,
         # accounts split by "-" will be substracted.
         move_lines = self.env['account.move.line']
-        for code in re.findall(r'(-?\w*\(?[0-9a-zA-Z_]*\)?)', expr):
+        for code in re.findall(r'(-?\w*\(?[0-9a-zA-Z\*_]*\)?)', expr):
             # Check if the code is valid (findall might return empty strings)
             code = code.strip()
             if not code:
@@ -345,16 +257,18 @@ class AccountBalanceReportingLine(models.Model):
             accounts = account_obj.search(
                 [('code', '=', acc_code), ('company_id', '=', company_id)])
             if not accounts:
+                if acc_code[-1:] == '*':
+                    acc_code = acc_code[:-1]
                 # Search for a subaccount ending with '0'
                 accounts = account_obj.search(
                     [('code', '=like', '%s%%0' % acc_code),
                      ('company_id', '=', company_id)])
-            if not accounts:
+            if not accounts:  # pragma: no cover
                 logger.warning("Account with code '%s' not found!", acc_code)
                 continue
-            account_ids = accounts._get_children_and_consol()
             domain_account = list(domain)
-            domain_account.append(('account_id', 'in', account_ids))
+            domain_account.append(
+                ('account_id', 'in', [x.id for x in accounts]))
             group = move_line_obj.read_group(
                 domain_account, ['debit', 'credit'], [])[0]
             move_lines += move_line_obj.search(domain_account)
@@ -372,7 +286,6 @@ class AccountBalanceReportingLine(models.Model):
         self.ensure_one()
         tmpl_line = self.template_line_id
         balance_mode = int(tmpl_line.template_id.balance_mode)
-        report = self.report_id
         move_lines = self.env['account.move.line']
         value = 0
         if fyear == 'current':
@@ -382,10 +295,6 @@ class AccountBalanceReportingLine(models.Model):
                           tmpl_line.current_value)
         # Remove characters after a ";" (we use ; for comments)
         tmpl_value = (tmpl_value or '').split(';')[0]
-        if (fyear == 'current' and not report.current_fiscalyear_id) \
-                or (fyear == 'previous' and
-                    not report.previous_fiscalyear_id):
-            return value, move_lines
         if not tmpl_value:
             # Empy template value => sum of the children values
             for child_line in self.child_ids:
@@ -406,9 +315,6 @@ class AccountBalanceReportingLine(models.Model):
             # the accounts by fiscalyear and periods.
             value, move_lines = self._get_account_balance(
                 tmpl_value, domain, balance_mode=balance_mode)
-            if self.report_id.level:
-                self._create_child_lines(
-                    domain, tmpl_value, balance_mode, fyear)
         elif re.match(r'^[\+\-0-9a-zA-Z_\*\ ]*$', tmpl_value):
             # Account concept codes separated by "+" => sum of the
             # concepts (template lines) values.
@@ -444,7 +350,7 @@ class AccountBalanceReportingLine(models.Model):
         linked line report values formulas:
 
         Depending on this formula the final value is calculated as follows:
-        - Empy report value: sum of (this concept) children values.
+        - Empty report value: sum of (this concept) children values.
         - Number with decimal point ("10.2"): that value (constant).
         - Account numbers separated by commas ("430,431,(437)"): Sum of the
             account balances.
@@ -454,27 +360,13 @@ class AccountBalanceReportingLine(models.Model):
         """
         for report in self.mapped('report_id'):
             domain_current = []
-            # Compute current fiscal year
-            if report.check_filter == 'dates':
-                domain_current += [('date', '>=', report.current_date_from),
-                                   ('date', '<=', report.current_date_to)]
-            elif report.check_filter == 'periods':
-                if report.current_period_ids:
-                    periods = report.current_period_ids
-                else:
-                    periods = report.current_fiscalyear_id.period_ids
-                domain_current += [('period_id', 'in', periods.ids)]
-            # Compute previous fiscal year
+            # Compute current date range
+            domain_current += [('date', '>=', report.current_date_from),
+                               ('date', '<=', report.current_date_to)]
+            # Compute previous date range
             domain_previous = []
-            if report.check_filter == 'dates':
-                domain_previous += [('date', '>=', report.previous_date_from),
-                                    ('date', '<=', report.previous_date_to)]
-            elif report.check_filter == 'periods':
-                if report.previous_period_ids:
-                    periods = report.previous_period_ids
-                else:
-                    periods = report.previous_fiscalyear_id.period_ids
-                domain_previous += [('period_id', 'in', periods.ids)]
+            domain_previous += [('date', '>=', report.previous_date_from),
+                                ('date', '<=', report.previous_date_to)]
             for line in self.filtered(lambda l: l.report_id == report):
                 if (line.calc_date and
                         line.calc_date == line.report_id.calc_date):

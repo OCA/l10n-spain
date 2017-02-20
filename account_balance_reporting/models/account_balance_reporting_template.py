@@ -3,7 +3,7 @@
 # © 2016 Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
 
-from openerp import api, fields, models, _
+from odoo import _, api, fields, models
 
 
 _VALUE_FORMULA_HELP = (
@@ -34,10 +34,10 @@ class AccountBalanceReportingTemplate(models.Model):
         "the formulas to calculate the accounting concepts of the report.")
 
     name = fields.Char(string='Name', size=64, required=True, index=True)
-    type = fields.Selection(
+    tmpl_type = fields.Selection(
         selection=[('system', 'System'),
                    ('user', 'User')],
-        string='Type', default='user')
+        string='Type', default='user', old_name='type')
     report_xml_id = fields.Many2one(
         comodel_name='ir.actions.report.xml', string='Report design',
         ondelete='set null')
@@ -58,25 +58,23 @@ class AccountBalanceReportingTemplate(models.Model):
         comodel_name='account.balance.reporting.template.line',
         inverse_name='template_id', string='Lines')
 
-    @api.model
-    def copy(self, id, default=None):
+    @api.multi
+    def copy(self, default=None):
         """Redefine the copy method to perform it correctly as the line
         structure is a graph.
         """
         line_obj = self.env['account.balance.reporting.template.line']
-        # Read the current item data:
-        template = self.browse(id)
         # Create the template
         new = self.create({
-            'name': '%s*' % template.name,
-            'type': 'user',  # Copies are always user templates
-            'report_xml_id': template.report_xml_id.id,
-            'description': template.description,
-            'balance_mode': template.balance_mode,
+            'name': '%s*' % self.name,
+            'tmpl_type': 'user',  # Copies are always user templates
+            'report_xml_id': self.report_xml_id.id,
+            'description': self.description,
+            'balance_mode': self.balance_mode,
             'line_ids': None,
         })
         # Now create the lines (without parents)
-        for line in template.line_ids:
+        for line in self.line_ids:
             line_obj.create({
                 'template_id': new.id,
                 'sequence': line.sequence,
@@ -90,7 +88,7 @@ class AccountBalanceReportingTemplate(models.Model):
                 'child_ids': False,
             })
         # Now set the (lines) parents
-        for line in template.line_ids:
+        for line in self.line_ids:
             if line.parent_id:
                 # Search for the copied line
                 new_line = line_obj.search([
@@ -112,8 +110,7 @@ class AccountBalanceReportingTemplateLine(models.Model):
     _description = (
         "Account balance report template line / Accounting concept template "
         "One line of detail of the balance report representing an accounting "
-        "concept with the formulas to calculate its values. "
-        "The accounting concepts follow a parent-children hierarchy.")
+        "concept with the formulas to calculate its values. ")
     _order = "sequence, code"
 
     template_id = fields.Many2one(
@@ -126,10 +123,10 @@ class AccountBalanceReportingTemplateLine(models.Model):
         selection=CSS_CLASSES, string='CSS Class', required=False,
         help="Style-sheet class", default='default')
     code = fields.Char(
-        string='Code', size=64, required=True, select=True,
+        string='Code', size=64, required=True, index=True,
         help="Concept code, may be used on formulas to reference this line")
     name = fields.Char(
-        string='Name', size=256, required=True, select=True,
+        string='Name', size=256, required=True, index=True,
         help="Concept name/description")
     current_value = fields.Text(
         string='Fiscal year 1 formula', help=_VALUE_FORMULA_HELP)
@@ -160,18 +157,12 @@ class AccountBalanceReportingTemplateLine(models.Model):
             res.append((item.id, "[%s] %s" % (item.code, item.name)))
         return res
 
-    def name_search(self, cr, uid, name, args=None, operator='ilike',
-                    context=None, limit=80):
-        """Redefine the name_search method to allow searching by code."""
-        if context is None:
-            context = {}
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        """Allow to search by code."""
         if args is None:
             args = []
-        ids = []
-        if name:
-            ids = self.search(cr, uid, [('code', 'ilike', name)] + args,
-                              limit=limit, context=context)
-            if not ids:
-                ids = self.search(cr, uid, [('name', operator, name)] + args,
-                                  limit=limit, context=context)
-        return self.name_get(cr, uid, ids, context=context)
+        args += ['|', ('code', operator, name)]
+        return super(AccountBalanceReportingTemplateLine, self).name_search(
+            name=name, args=args, operator=operator, limit=limit,
+        )

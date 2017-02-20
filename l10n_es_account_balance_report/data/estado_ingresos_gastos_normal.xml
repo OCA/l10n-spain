@@ -1,24 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-#
-#    OpenERP - Account balance reports
-#    Copyright (C) 2012 Zikzakmedia SL. All Rights Reserved
-#    $Id$
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
--->
+<!-- Copyright 2012 Zikzakmedia S. L.
+     Copyright 2013-2016 Tecnativa
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
 <!--
 DEPÓSITO DE CUENTAS ANUALES - MODELOS NORMALIZADOS (según PGCE 2008)
 
@@ -30,12 +14,11 @@ TODO: Los desgloses sugeridos por las NECA están comentados (no se calculan).
 
 Author: Jordi Esteve (Zikzakmedia) - jesteve@zikzakmedia.com
 -->
-<openerp>
-    <data>
+<odoo>
 
         <record model="account.balance.reporting.template" id="es_eiyg_normal">
             <field name="name">Estado de ingresos y gastos reconocidos (PGCE 2008)</field>
-            <field name="type">system</field>
+            <field name="tmpl_type">system</field>
             <field name="balance_mode">2</field>
             <field name="report_xml_id" ref="account_balance_reporting.report_account_balance_reporting_generic"/>
             <field name="description">
@@ -84,7 +67,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_eiyg_normal"/>
             <field name="code">50011</field>
             <field name="name">1. Activos financieros disponibles para la venta</field>
-            <field name="current_value">800, 89, 900, 991, 992</field>
+            <field name="current_value">800*, 89*, 900*, 991*, 992*</field>
             <field name="parent_id" ref="es_eiyg_normal_50010"/>
             <field name="sequence">4</field>
             <field name="css_class">l5</field>
@@ -105,7 +88,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_eiyg_normal"/>
             <field name="code">50020</field>
             <field name="name">II. Por coberturas de flujos de efectivo</field>
-            <field name="current_value">810, 910</field>
+            <field name="current_value">810*, 910*</field>
             <field name="parent_id" ref="es_eiyg_normal_59200"/>
             <field name="sequence">6</field>
             <field name="css_class">l4</field>
@@ -116,7 +99,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_eiyg_normal"/>
             <field name="code">50030</field>
             <field name="name">III. Subvenciones, donaciones y legados recibidos</field>
-            <field name="current_value">94</field>
+            <field name="current_value">94*</field>
             <field name="parent_id" ref="es_eiyg_normal_59200"/>
             <field name="sequence">7</field>
             <field name="css_class">l4</field>
@@ -126,7 +109,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_eiyg_normal"/>
             <field name="code">50040</field>
             <field name="name">IV. Por ganancias y pérdidas actuariales y otros ajustes</field>
-            <field name="current_value">85, 95</field>
+            <field name="current_value">85*, 95*</field>
             <field name="parent_id" ref="es_eiyg_normal_59200"/>
             <field name="sequence">8</field>
             <field name="css_class">l4</field>
@@ -136,7 +119,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_eiyg_normal"/>
             <field name="code">50050</field>
             <field name="name">V. Por activos no corrientes y pasivos vinculados, mantenidos para la venta</field>
-            <field name="current_value">860, 960; NECA 8.ª 1.2</field>
+            <field name="current_value">860*, 960*; NECA 8.ª 1.2</field>
             <field name="parent_id" ref="es_eiyg_normal_59200"/>
             <field name="sequence">9</field>
             <field name="css_class">l4</field>
@@ -146,7 +129,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_eiyg_normal"/>
             <field name="code">50060</field>
             <field name="name">VI. Diferencias de conversión</field>
-            <field name="current_value">811, 820, 911, 920; NECA 8.ª 1.3</field>
+            <field name="current_value">811*, 820*, 911*, 920*; NECA 8.ª 1.3</field>
             <field name="parent_id" ref="es_eiyg_normal_59200"/>
             <field name="sequence">10</field>
             <field name="css_class">l4</field>
@@ -156,7 +139,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_eiyg_normal"/>
             <field name="code">50070</field>
             <field name="name">VII. Efecto impositivo</field>
-            <field name="current_value">8300, 8301, 833, 834, 835, 838</field>
+            <field name="current_value">8300*, 8301*, 833*, 834*, 835*, 838*</field>
             <field name="parent_id" ref="es_eiyg_normal_59200"/>
             <field name="sequence">11</field>
             <field name="css_class">l4</field>
@@ -184,7 +167,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_eiyg_normal"/>
             <field name="code">50081</field>
             <field name="name">1. Activos financieros disponibles para la venta</field>
-            <field name="current_value">802, 902, 993, 994</field>
+            <field name="current_value">802*, 902*, 993*, 994*</field>
             <field name="parent_id" ref="es_eiyg_normal_50080"/>
             <field name="sequence">14</field>
             <field name="css_class">l5</field>
@@ -203,7 +186,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_eiyg_normal"/>
             <field name="code">50090</field>
             <field name="name">IX. Por coberturas de flujos de efectivo</field>
-            <field name="current_value">812, 912</field>
+            <field name="current_value">812*, 912*</field>
             <field name="parent_id" ref="es_eiyg_normal_59300"/>
             <field name="sequence">16</field>
             <field name="css_class">l4</field>
@@ -213,7 +196,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_eiyg_normal"/>
             <field name="code">50100</field>
             <field name="name">X. Subvenciones, donaciones y legados recibidos</field>
-            <field name="current_value">84</field>
+            <field name="current_value">84*</field>
             <field name="parent_id" ref="es_eiyg_normal_59300"/>
             <field name="sequence">17</field>
             <field name="css_class">l4</field>
@@ -223,7 +206,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_eiyg_normal"/>
             <field name="code">50110</field>
             <field name="name">XI. Por activos no corrientes y pasivos vinculados, mantenidos para la venta</field>
-            <field name="current_value">862, 962; NECA 8.ª 1.2</field>
+            <field name="current_value">862*, 962*; NECA 8.ª 1.2</field>
             <field name="parent_id" ref="es_eiyg_normal_59300"/>
             <field name="sequence">18</field>
             <field name="css_class">l4</field>
@@ -233,7 +216,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_eiyg_normal"/>
             <field name="code">50120</field>
             <field name="name">XII. Diferencias de conversión</field>
-            <field name="current_value">813, 821, 913, 921; NECA 8.ª 1.3</field>
+            <field name="current_value">813*, 821*, 913*, 921*; NECA 8.ª 1.3</field>
             <field name="parent_id" ref="es_eiyg_normal_59300"/>
             <field name="sequence">19</field>
             <field name="css_class">l4</field>
@@ -243,7 +226,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="template_id" ref="es_eiyg_normal"/>
             <field name="code">50130</field>
             <field name="name">XIII. Efecto impositivo</field>
-            <field name="current_value">8301, 836, 837</field>
+            <field name="current_value">8301*, 836*, 837*</field>
             <field name="parent_id" ref="es_eiyg_normal_59300"/>
             <field name="sequence">20</field>
             <field name="css_class">l4</field>
@@ -259,5 +242,4 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="css_class">l1</field>
         </record>
 
-    </data>
-</openerp>
+</odoo>
