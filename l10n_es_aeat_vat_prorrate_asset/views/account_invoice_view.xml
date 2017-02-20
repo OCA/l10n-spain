@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="view_invoice_asset_category">
+            <field name="name">Invoice supplier form (VAT prorrate asset)</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account_asset.view_invoice_asset_category"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_line']/tree/field[@name='asset_category_id']" position="after">
+                    <field name="vat_prorrate_percent"
+                           attrs="{'readonly': [('asset_category_id', '=', False)], 'required': [('asset_category_id', '!=', False)]}"
+                    />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
