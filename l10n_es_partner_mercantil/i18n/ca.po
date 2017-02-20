@@ -3,14 +3,15 @@
 # * l10n_es_partner_mercantil
 # 
 # Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-spain (8.0)\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-05-23 09:01+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
+"POT-Creation-Date: 2017-05-01 19:20+0000\n"
+"PO-Revision-Date: 2017-05-01 19:20+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -18,27 +19,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_partner_mercantil
-#: field:res.partner,es_libro:0
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_libro
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users_es_libro
 msgid "Book"
 msgstr "Llibre"
 
 #. module: l10n_es_partner_mercantil
-#: view:res.partner:l10n_es_partner_mercantil.view_partner_form_mercantil
+#: model:ir.ui.view,arch_db:l10n_es_partner_mercantil.view_partner_form
 msgid "Commercial Info"
 msgstr "Informació Mercantil"
 
 #. module: l10n_es_partner_mercantil
-#: field:res.partner,es_registro_mercantil:0
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_registro_mercantil
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users_es_registro_mercantil
 msgid "Commercial Registry"
 msgstr "Registre Mercantil"
 
 #. module: l10n_es_partner_mercantil
-#: view:res.partner:l10n_es_partner_mercantil.view_partner_form_mercantil
-msgid "Internal Notes"
-msgstr "Internal Notes"
-
-#. module: l10n_es_partner_mercantil
-#: field:res.partner,es_folio:0
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_folio
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users_es_folio
 msgid "Page"
 msgstr "Foli"
 
@@ -48,16 +47,19 @@ msgid "Partner"
 msgstr "Empresa"
 
 #. module: l10n_es_partner_mercantil
-#: field:res.partner,es_seccion:0
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_seccion
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users_es_seccion
 msgid "Section"
 msgstr "Secció"
 
 #. module: l10n_es_partner_mercantil
-#: field:res.partner,es_hoja:0
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_hoja
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users_es_hoja
 msgid "Sheet"
 msgstr "Full"
 
 #. module: l10n_es_partner_mercantil
-#: field:res.partner,es_tomo:0
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_tomo
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users_es_tomo
 msgid "Volume"
 msgstr "Volum"
