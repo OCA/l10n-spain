@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# (c) 2015 Ainara Galdona - AvanzOSC
-# (c) 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2015 Ainara Galdona - AvanzOSC
+# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 import openerp.tests.common as common
@@ -8,15 +9,41 @@ from openerp import fields
 import calendar
 
 
-class TestL10nEsAccountAsset(common.TransactionCase):
-
-    def setUp(self):
-        super(TestL10nEsAccountAsset, self).setUp()
-        self.asset_model = self.env['account.asset.asset']
+class TestL10nEsAccountAsset(common.SavepointCase):
+    @classmethod
+    def setUpClass(cls):
+        super(TestL10nEsAccountAsset, cls).setUpClass()
+        cls.asset_model = cls.env['account.asset.asset']
+        cls.journal = cls.env['account.journal'].create({
+            'name': 'Test asset journal',
+            'code': 'AST',
+            'type': 'general',
+        })
+        cls.account_type = cls.env['account.account.type'].create({
+            'name': 'Test account type',
+            'type': 'other',
+        })
+        cls.expense_account = cls.env['account.account'].create({
+            'name': 'Expense test account',
+            'code': 'EXP_TEST',
+            'user_type_id': cls.account_type.id,
+        })
+        cls.depreciation_account = cls.env['account.account'].create({
+            'name': 'Depreciation test account',
+            'code': 'DEP_TEST',
+            'user_type_id': cls.account_type.id,
+        })
+        cls.category = cls.env['account.asset.category'].create({
+            'name': 'Test asset category',
+            'account_expense_depreciation_id': cls.expense_account.id,
+            'account_asset_id': cls.depreciation_account.id,
+            'account_depreciation_id': cls.depreciation_account.id,
+            'journal_id': cls.journal.id,
+            'method_number': 3,
+        })
         asset_number_vals = {
             'name': 'Test Asset',
-            'category_id': self.ref('account_asset.account_asset_category_'
-                                    'fixedassets0'),
+            'category_id': cls.category.id,
             'code': 'REF01',
             'date': '2015-01-01',
             'method': 'linear',
@@ -29,8 +56,8 @@ class TestL10nEsAccountAsset(common.TransactionCase):
         asset_percentage_vals = asset_number_vals.copy()
         asset_percentage_vals['method_time'] = 'percentage'
         asset_percentage_vals['method_percentage'] = 20
-        self.asset_linear = self.asset_model.create(asset_number_vals)
-        self.asset_percentage = self.asset_model.create(asset_percentage_vals)
+        cls.asset_linear = cls.asset_model.create(asset_number_vals)
+        cls.asset_percentage = cls.asset_model.create(asset_percentage_vals)
 
     def test_not_prorated_linear_asset(self):
         self.asset_linear.compute_depreciation_board()
