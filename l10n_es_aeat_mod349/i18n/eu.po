@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:36+0000\n"
-"PO-Revision-Date: 2015-05-23 16:52+0000\n"
+"POT-Creation-Date: 2017-02-04 03:20+0000\n"
+"PO-Revision-Date: 2017-02-23 15:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Basque (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -237,7 +237,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_refund,partner_id:0
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Partner"
-msgstr ""
+msgstr "Kidea"
 
 #. module: l10n_es_aeat_mod349
 #: selection:account.invoice,operation_key:0
@@ -411,7 +411,7 @@ msgstr "Arrunta"
 #: field:l10n.es.aeat.mod349.partner_refund,month_selection:0
 #: field:l10n.es.aeat.mod349.report,month_selection:0
 msgid "Month"
-msgstr ""
+msgstr "Hilabete"
 
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
@@ -508,7 +508,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.export_to_boe,state:0
 msgid "unknown"
-msgstr ""
+msgstr "ezezaguna"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
@@ -610,7 +610,7 @@ msgstr ""
 #: code:addons/l10n_es_aeat_mod349/account_invoice.py:138
 #, python-format
 msgid "Error"
-msgstr ""
+msgstr "Errorea"
 
 #. module: l10n_es_aeat_mod349
 #: field:account.fiscal.position,intracommunity_operations:0
@@ -788,7 +788,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod349.partner_refund,country_id:0
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Country"
-msgstr ""
+msgstr "Herrialdea"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.partner_refund,month_selection:0
@@ -847,7 +847,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Year"
-msgstr ""
+msgstr "Urtea"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.partner_refund:0
