@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-25 03:40+0000\n"
-"PO-Revision-Date: 2017-01-25 03:40+0000\n"
+"POT-Creation-Date: 2017-02-23 16:39+0000\n"
+"PO-Revision-Date: 2017-02-23 16:39+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:185
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:131
 #, python-format
 msgid "%s_report_%s.txt"
 msgstr ""
@@ -57,7 +57,7 @@ msgid "AEAT manager"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:238
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:244
 #, python-format
 msgid ""
 "AEAT model sequence not found. You can try to restart your Odoo service for "
@@ -637,7 +637,7 @@ msgid "Model number"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:376
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:382
 #, python-format
 msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 msgstr ""
@@ -659,6 +659,12 @@ msgstr "Nom"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line_negative_sign
 msgid "Negative sign character"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:128
+#, python-format
+msgid "No export configuration selected."
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -688,7 +694,7 @@ msgid "Odoo model"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:345
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:351
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
@@ -707,7 +713,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_partner_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Partenaire"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_period_type
@@ -781,7 +787,7 @@ msgid "Regular"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:149
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:151
 #, python-format
 msgid "Regularization"
 msgstr ""
@@ -926,8 +932,8 @@ msgid "Telematics"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:61
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:97
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:62
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:98
 #, python-format
 msgid "The formated string must match the given length"
 msgstr ""
@@ -989,7 +995,7 @@ msgid "Value for yes"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:58
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:59
 #, python-format
 msgid "Wrong aling option. It should be < or >"
 msgstr ""
@@ -1001,7 +1007,7 @@ msgid "Year"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:183
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:185
 #, python-format
 msgid "You must fill both journal and counterpart account."
 msgstr ""

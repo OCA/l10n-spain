@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2016
+# Fernando Lara <gennesis45@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-19 18:57+0000\n"
-"PO-Revision-Date: 2017-01-19 18:57+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-02-23 16:39+0000\n"
+"PO-Revision-Date: 2017-02-23 16:39+0000\n"
+"Last-Translator: Fernando Lara <gennesis45@gmail.com>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,6 +51,9 @@ msgid ""
 "of detail of the balance report representing an accounting concept with the "
 "formulas to calculate its values. "
 msgstr ""
+"Línea de plantilla de informe de saldo de cuenta / Plantilla de concepto de "
+"contabilidad Una línea de detalle del informe de saldo que representa un "
+"concepto contable con las fórmulas para calcular sus valores."
 
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template
@@ -102,7 +106,7 @@ msgstr "Clase CSS"
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.report_generic
 msgid "CURRENT"
-msgstr ""
+msgstr "ACTUAL"
 
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
@@ -213,7 +217,7 @@ msgstr "Fecha hasta"
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_current_date_range
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_previous_date_range
 msgid "Date range"
-msgstr ""
+msgstr "Rango de fechas"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,balance_mode:0
@@ -466,7 +470,7 @@ msgstr "Notas"
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.report_generic
 msgid "PREVIOUS"
-msgstr ""
+msgstr "ANTERIOR"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_parent_id
@@ -548,7 +552,7 @@ msgid "System"
 msgstr "Sistema"
 
 #. module: account_balance_reporting
-#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_3567
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_3579
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_template_id
 msgid "Template"
 msgstr "Plantilla"
@@ -600,4 +604,4 @@ msgstr ""
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_print_wizard
 msgid "account.balance.reporting.print.wizard"
-msgstr ""
+msgstr "cuenta.balance.reporte.imprimir.asistente"
