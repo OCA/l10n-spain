@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-13 10:45+0000\n"
-"PO-Revision-Date: 2016-11-25 14:55+0000\n"
+"POT-Creation-Date: 2017-02-23 16:40+0000\n"
+"PO-Revision-Date: 2017-02-23 12:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -141,7 +141,7 @@ msgstr "Todos los campos de las rectificaciones (país, número CIF/NIF) deben e
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,allow_posting:0
 msgid "Allow posting"
-msgstr ""
+msgstr "Permitir publicación"
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.partner_record_detail,amount_untaxed:0
@@ -187,7 +187,7 @@ msgstr "Compañía"
 #. module: l10n_es_aeat_mod349
 #: help:l10n.es.aeat.mod349.report,partner_bank_id:0
 msgid "Company bank account used for the presentation"
-msgstr ""
+msgstr "Cuenta bancaria de la empresa utilizada para la presentación"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,type:0
@@ -656,7 +656,7 @@ msgstr "Rectificaciones"
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,name:0
 msgid "Report identifier"
-msgstr ""
+msgstr "Identificador del Informe"
 
 #. module: l10n_es_aeat_mod349
 #: view:l10n.es.aeat.mod349.report:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form

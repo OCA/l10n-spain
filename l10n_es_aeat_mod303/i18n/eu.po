@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-13 10:45+0000\n"
-"PO-Revision-Date: 2016-10-18 18:26+0000\n"
+"POT-Creation-Date: 2017-02-23 16:40+0000\n"
+"PO-Revision-Date: 2017-02-23 15:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Basque (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -250,7 +250,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,model:0
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,contact_name:0
@@ -265,7 +265,7 @@ msgstr "Arrunta"
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,company_partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Kidea"
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,period_type:0
@@ -330,13 +330,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:196
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:205
 #, python-format
 msgid "Select an account for making the charge"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:198
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:207
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr ""
