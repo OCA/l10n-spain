@@ -149,7 +149,7 @@ class L10nEsAeatMod347Report(models.Model):
         address = self._get_default_address(partner)
         partner_country_code = False
         partner_vat = False
-        if partner_vat:
+        if partner.vat:
             partner_country_code, partner_vat = partner.vat[:2].upper(), partner.vat[2:].replace(' ', '')
         community_vat = ''
         if not partner_country_code:

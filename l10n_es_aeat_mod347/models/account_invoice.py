@@ -22,7 +22,11 @@ class AccountInvoice(models.Model):
             invoice.amount_total_wo_irpf = invoice.cc_amount_untaxed
             for tax_line in invoice.tax_line:
                 if 'IRPF' not in tax_line.name:
-                    invoice.amount_total_wo_irpf += tax_line.tax_amount
+                    sign = 1
+                    if (tax_line.amount < 0 and tax_line.tax_amount > 0) or (tax_line.amount > 0 and tax_line.tax_amount < 0):
+                        sign = -1
+                    invoice.amount_total_wo_irpf += \
+                        (sign) * tax_line.tax_amount
 
     amount_total_wo_irpf = fields.Float(
         compute="_compute_amount_total_wo_irpf", store=True, readonly=True,
