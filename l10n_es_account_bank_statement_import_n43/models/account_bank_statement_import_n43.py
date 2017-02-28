@@ -33,7 +33,8 @@ class AccountBankStatementImport(models.TransientModel):
     _inherit = 'account.bank.statement.import'
 
     date_type = fields.Selection(string='Select date type',
-                                 selection=[('fecha_valor', 'Value Date'), ('fecha_oper', 'Operation Date')],
+                                 selection=[('fecha_valor', 'Value Date'),
+                                            ('fecha_oper', 'Operation Date')],
                                  required=True, default='fecha_valor')
 
     def _process_record_11(self, line):
@@ -324,8 +325,7 @@ class AccountBankStatementImport(models.TransientModel):
         vals_bank_statement = {
             'transactions': transactions,
             'balance_start': n43 and n43[0]['saldo_ini'] or 0.0,
-            'balance_end_real': n43 and n43[-1]['saldo_fin'] or 0.0,
-        }
+            'balance_end_real': n43 and n43[-1]['saldo_fin'] or 0.0,}
         str_currency = self.journal_id.currency and \
                        self.journal_id.currency.name or \
                        self.journal_id.company_id.currency_id.name
