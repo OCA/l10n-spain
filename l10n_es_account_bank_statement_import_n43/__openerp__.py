@@ -17,7 +17,7 @@
         'account_bank_statement_import',
     ],
     'data': [
-       'views/account_bank_statement_import.xml',
+        'views/account_bank_statement_import.xml',
     ],
     'installable': True,
 }
