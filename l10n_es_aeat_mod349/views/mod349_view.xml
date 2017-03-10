@@ -48,6 +48,8 @@
                     <field name="partner_vat"/>
                     <field name="partner_id"/>
                     <field name="total_operation_amount"/>
+                    <field name="total_service_amount"/>
+                    <field name="total_consumable_storable_amount"/>
                 </tree>
             </field>
         </record>

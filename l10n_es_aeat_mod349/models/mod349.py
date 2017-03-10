@@ -52,10 +52,30 @@ class Mod349(models.Model):
         self.ensure_one()
         rec_obj = self.env['l10n.es.aeat.mod349.partner_record']
         partner = invoices[0].commercial_partner_id
-        sum_credit = sum([invoice.cc_amount_untaxed for invoice in invoices
-                          if invoice.type not in ('in_refund', 'out_refund')])
-        sum_debit = sum([invoice.cc_amount_untaxed for invoice in invoices
-                         if invoice.type in ('in_refund', 'out_refund')])
+        sum_credit = 0
+        sum_debit = 0
+        sum_credit_service_amount = 0
+        sum_debit_service_amount = 0
+        sum_credit_consumable_storable_amount = 0
+        sum_debit_consumable_storable_amount = 0
+        for invoice in invoices:
+            if invoice.type not in ('in_refund', 'out_refund'):
+                sum_credit += invoice.cc_amount_untaxed
+            elif invoice.type in ('in_refund', 'out_refund'):
+                sum_debit += invoice.cc_amount_untaxed
+            for line in invoice.invoice_line:
+                if line.product_id.type == 'service':
+                    if invoice.type not in ('in_refund', 'out_refund'):
+                        sum_credit_service_amount += line.price_subtotal
+                    elif invoice.type in ('in_refund', 'out_refund'):
+                        sum_debit_service_amount += line.price_subtotal
+                elif line.product_id.type in ['consu', 'product']:
+                    if invoice.type not in ('in_refund', 'out_refund'):
+                        sum_credit_consumable_storable_amount +=\
+                            line.price_subtotal
+                    elif invoice.type in ('in_refund', 'out_refund'):
+                        sum_debit_consumable_storable_amount +=\
+                            line.price_subtotal
         invoice_created = rec_obj.create(
             {'report_id': self.id,
              'partner_id': partner.id,
@@ -63,7 +83,12 @@ class Mod349(models.Model):
                                                 country=partner.country_id),
              'operation_key': invoices[0].operation_key,
              'country_id': partner.country_id.id,
-             'total_operation_amount': sum_credit - sum_debit
+             'total_operation_amount': sum_credit - sum_debit,
+             'total_service_amount':
+                sum_credit_service_amount - sum_debit_service_amount,
+             'total_consumable_storable_amount':
+                sum_credit_consumable_storable_amount - \
+                    sum_debit_consumable_storable_amount,
              })
         # Creation of partner detail lines
         detail_obj = self.env['l10n.es.aeat.mod349.partner_record_detail']
@@ -290,6 +315,10 @@ class Mod349PartnerRecord(models.Model):
     operation_key = fields.Selection(
         selection=OPERATION_KEYS, string='Operation key', required=True)
     total_operation_amount = fields.Float(string='Total operation amount')
+    total_service_amount = fields.Float(
+        string='Total operation service products')
+    total_consumable_storable_amount = fields.Float(
+        string='Total operation Consumable and Storable products')
     partner_record_ok = fields.Boolean(
         compute="_check_partner_record_line", string='Partner Record OK',
         help='Checked if partner record is OK')
