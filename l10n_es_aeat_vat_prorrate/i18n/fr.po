@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-22 09:41+0000\n"
-"PO-Revision-Date: 2016-12-23 08:32+0000\n"
+"POT-Creation-Date: 2017-03-04 03:35+0000\n"
+"PO-Revision-Date: 2017-03-08 08:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "Annuler"
 #. module: l10n_es_aeat_vat_prorrate
 #: view:l10n.es.aeat.compute.vat.prorrate:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "Compute"
-msgstr ""
+msgstr "Calculer"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.actions.act_window,name:l10n_es_aeat_vat_prorrate.action_compute_vat_prorrate
@@ -100,22 +100,46 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: help:l10n.es.aeat.mod303.report,casilla_44:0
-msgid "Regularizacion por aplicación del porcentaje definitivo de prorrata."
+#: field:l10n.es.aeat.mod303.report,prorrate_regularization_account_id:0
+msgid "Prorrate regularization account"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:177
+#: field:l10n.es.aeat.mod303.report,prorrate_regularization_analytic_account_id:0
+msgid "Prorrate regularization analytic account"
+msgstr ""
+
+#. module: l10n_es_aeat_vat_prorrate
+#: help:l10n.es.aeat.mod303.report,casilla_44:0
+msgid "Regularización por aplicación del porcentaje definitivo de prorrata."
+msgstr ""
+
+#. module: l10n_es_aeat_vat_prorrate
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:203
 #, python-format
 msgid "Regularización prorrata IVA"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:62
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:73
 #, python-format
 msgid ""
 "There's at least one previous report in draft state. Please confirm it "
 "before making this one."
+msgstr ""
+
+#. module: l10n_es_aeat_vat_prorrate
+#: help:l10n.es.aeat.mod303.report,prorrate_regularization_account_id:0
+msgid ""
+"This account will be the one where charging the regularization of VAT "
+"prorrate."
+msgstr ""
+
+#. module: l10n_es_aeat_vat_prorrate
+#: help:l10n.es.aeat.mod303.report,prorrate_regularization_analytic_account_id:0
+msgid ""
+"This analytic account will be the one where charging the regularization of "
+"the VAT prorrate."
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
@@ -128,9 +152,9 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:47
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:59
 #, python-format
-msgid "VAT prorrate percent must be between 0 and 100"
+msgid "VAT prorrate percent must be between 0.01 and 100"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
