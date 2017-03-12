@@ -25,7 +25,7 @@
     "name": "Certificado de subcontratista",
     "version": "8.0.1.0.0",
     "author": "Domatix,Odoo Community Association (OCA)",
-    "website": "www.domatix.com",
+    "website": "http://www.domatix.com/",
     "category": "Accounting",
     "depends": ["purchase"],
     "data": ["views/subcontractor_certificate_view.xml"],
