@@ -56,8 +56,8 @@ class Mod349(models.Model):
         sum_debit = 0
         sum_credit_service_amount = 0
         sum_debit_service_amount = 0
-        sum_credit_consumable_storable_amount = 0
-        sum_debit_consumable_storable_amount = 0
+        sum_credit_consumable_amount = 0
+        sum_debit_consumable_amount = 0
         for invoice in invoices:
             if invoice.type not in ('in_refund', 'out_refund'):
                 sum_credit += invoice.cc_amount_untaxed
@@ -71,10 +71,10 @@ class Mod349(models.Model):
                         sum_debit_service_amount += line.price_subtotal
                 elif line.product_id.type in ['consu', 'product']:
                     if invoice.type not in ('in_refund', 'out_refund'):
-                        sum_credit_consumable_storable_amount +=\
+                        sum_credit_consumable_amount +=\
                             line.price_subtotal
                     elif invoice.type in ('in_refund', 'out_refund'):
-                        sum_debit_consumable_storable_amount +=\
+                        sum_debit_consumable_amount +=\
                             line.price_subtotal
         invoice_created = rec_obj.create(
             {'report_id': self.id,
@@ -87,8 +87,7 @@ class Mod349(models.Model):
              'total_service_amount':
                 sum_credit_service_amount - sum_debit_service_amount,
              'total_consumable_storable_amount':
-                sum_credit_consumable_storable_amount - \
-                    sum_debit_consumable_storable_amount,
+                sum_credit_consumable_amount - sum_debit_consumable_amount,
              })
         # Creation of partner detail lines
         detail_obj = self.env['l10n.es.aeat.mod349.partner_record_detail']
