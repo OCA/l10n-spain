@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat_mod349
-# 
+#
 # Translators:
 # Alejandro Santana <alejandrosantana@anubia.es>, 2015
 msgid ""
@@ -695,6 +695,26 @@ msgstr "Tipo de soporte"
 #: report:report_l10n_es_aeat_mod349.report:0
 msgid "Support type:"
 msgstr "Tipo de soporte:"
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.partner_record,total_consumable_storable_amount:0
+msgid "Total operation Consumable and Storable products"
+msgstr "Total operacion productos consumibles y almacenables"
+
+#. module: l10n_es_aeat_mod349
+#: field:l10n.es.aeat.mod349.partner_record,total_service_amount:0
+msgid "Total operation service products"
+msgstr "Total operacion productos servicio"
+
+#. module: l10n_es_aeat_mod349
+#: report:report_l10n_es_aeat_mod349.report:0
+msgid "Consu. Sto. amount"
+msgstr "Consu. Alma. total"
+
+#. module: l10n_es_aeat_mod349
+#: report:report_l10n_es_aeat_mod349.report:0
+msgid "Service Amount"
+msgstr "Servicio Total"
 
 #. module: l10n_es_aeat_mod349
 #: selection:account.invoice,operation_key:0

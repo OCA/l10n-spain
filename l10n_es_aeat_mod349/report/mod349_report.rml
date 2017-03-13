@@ -111,7 +111,7 @@
     <story>
         [[repeatIn(objects,'report')]]
         [[setLang(user.context_lang)]]
-        <blockTable colWidths="19cm" style="SeparatorTable">
+        <blockTable colWidths="20cm" style="SeparatorTable">
             <tr><td><para style="Separator"></para></td></tr>
             <tr><td><para style="SeparatorHeader">AEAT 349 MODEL</para></td></tr>
             <tr><td><para style="Separator"></para></td></tr>
@@ -121,7 +121,7 @@
         <!--
         ### REPORT INFO ###
         -->
-        <blockTable colWidths="4cm,15cm" style="ReportInfo" id="ReportInfo">
+        <blockTable colWidths="4cm,16cm" style="ReportInfo" id="ReportInfo">
             <tr>
                 <td><para style="ReportInfoDetail">Partner </para></td>
                 <td><para style="ReportInfo">[[report.company_id.name]]</para></td>
@@ -143,28 +143,32 @@
         <!--
         ### PARTER RECORD LINES ###
         -->
-        <blockTable colWidths="19cm" style="SeparatorTable">
+        <blockTable colWidths="20cm" style="SeparatorTable">
             <tr><td><para style="Separator">PARTNER RECORD LINES</para></td></tr>
         </blockTable>
 
-        <blockTable colWidths="8cm,2.5cm,3cm,3cm,2.5cm" style="DetailLineTable">
+        <blockTable colWidths="7cm,2cm,2cm,3cm,2cm,2cm,2cm" style="DetailLineTable">
             <tr>
                 <td><para style="DetailLine">Partner</para></td>
                 <td><para style="DetailLine">Op.Key</para></td>
                 <td><para style="DetailLine">Country</para></td>
                 <td><para style="DetailLine">VAT</para></td>
+                <td><para style="DetailLine">Service Amount</para></td>
+                <td><para style="DetailLine">Consu. Sto. amount</para></td>
                 <td><para style="DetailLine">Op.Amount</para></td>
             </tr>
         </blockTable>
 
         <section>
             [[repeatIn(report.partner_record_ids, 'partner_record')]]
-            <blockTable colWidths="8cm,2.5cm,3cm,3cm,2.5cm" style="DataLineTable">
+            <blockTable colWidths="7cm,2cm,2cm,3cm,2cm,2cm,2cm" style="DataLineTable">
                 <tr>
                     <td><para style="DataLine">[[partner_record.partner_id.name or '-----']]</para></td>
                     <td><para style="DataLineCenter">[[partner_record.operation_key or '-']]</para></td>
                     <td><para style="DataLine">[[partner_record.country_id.name or '-----']]</para></td>
                     <td><para style="DataLine">[[partner_record.partner_vat or '-----']]</para></td>
+                    <td><para style="DataLineRight">[[partner_record.total_service_amount and formatLang(partner_record.total_service_amount) or 0.0]] [[report.company_id.currency_id.code]]</para></td>
+                    <td><para style="DataLineRight">[[partner_record.total_consumable_storable_amount and formatLang(partner_record.total_consumable_storable_amount) or 0.0]] [[report.company_id.currency_id.code]]</para></td>
                     <td><para style="DataLineRight">[[partner_record.total_operation_amount and formatLang(partner_record.total_operation_amount) or 0.0]] [[report.company_id.currency_id.code]]</para></td>
                 </tr>
             </blockTable>
