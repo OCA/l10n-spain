@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<openerp>
+    <data noupdate="1">
+        <record id="config_parameter_sii_crt" model="ir.config_parameter" forcecreate="True">
+            <field name="key">l10n_es_aeat_sii.publicCrt</field>
+            <field name="value">/opt/certificates/publicCert.crt</field>
+            <field name="group_ids" eval="[(6, False, [ref('account.group_account_invoice')])]" />
+        </record>
+        <record id="config_parameter_sii_key" model="ir.config_parameter" forcecreate="True">
+            <field name="key">l10n_es_aeat_sii.privateKey</field>
+            <field name="value">/opt/certificates/privateKey.pem</field>
+            <field name="group_ids" eval="[(6, False, [ref('account.group_account_invoice')])]" />
+        </record>
+    </data>
+</openerp>
