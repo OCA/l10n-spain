@@ -75,6 +75,7 @@ Contributors
 * Ignacio Martínez (Top Consultant)
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Antonio Espinosa <antonioea@antiun.com>
+* Daniel Rodriguez <drl.9319@gmail.com>
 
 Maintainer
 ----------
