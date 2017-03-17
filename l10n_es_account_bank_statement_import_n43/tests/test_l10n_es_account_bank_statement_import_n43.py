@@ -2,8 +2,8 @@
 # © 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.tests import common
-from openerp.modules.module import get_module_resource
+from odoo.tests import common
+from odoo.modules.module import get_module_resource
 
 
 class L10nEsAccountBankStatementImportN43(common.TransactionCase):
@@ -22,9 +22,10 @@ class L10nEsAccountBankStatementImportN43(common.TransactionCase):
         n43_file = open(n43_file_path, 'rb').read().encode('base64')
         import_wizard = self.env['account.bank.statement.import'].create({
             'data_file': n43_file,
-            'journal_id': self.journal.id,
         })
-        action = import_wizard.import_file()
+        action = import_wizard.with_context(
+            journal_id=self.journal.id,
+        ).import_file()
         self.assertTrue(action)
         self.assertTrue(action.get('context').get('statement_ids'))
         statement = self.env['account.bank.statement'].browse(
