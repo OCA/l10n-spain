@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015 Ainara Galdona - AvanzOSC
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
-# Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2012-2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 import openerp.tests.common as common
-from openerp import fields
+from odoo import fields
 import calendar
 
 
@@ -35,7 +35,7 @@ class TestL10nEsAccountAsset(common.SavepointCase):
         })
         cls.category = cls.env['account.asset.category'].create({
             'name': 'Test asset category',
-            'account_expense_depreciation_id': cls.expense_account.id,
+            'account_depreciation_expense_id': cls.expense_account.id,
             'account_asset_id': cls.depreciation_account.id,
             'account_depreciation_id': cls.depreciation_account.id,
             'journal_id': cls.journal.id,
@@ -51,7 +51,7 @@ class TestL10nEsAccountAsset(common.SavepointCase):
             'method_time': 'number',
             'move_end_period': True,
             'method_number': 10,
-            'method_period': 1
+            'method_period': 1,
         }
         asset_percentage_vals = asset_number_vals.copy()
         asset_percentage_vals['method_time'] = 'percentage'
