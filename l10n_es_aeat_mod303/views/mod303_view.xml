@@ -90,14 +90,12 @@
                        options="{'currency_field': 'currency_id'}"
                         />
                 <field name="result_type"/>
-                <field name="compensate"
-                       attrs="{'invisible': [('result_type', '!=', 'B')]}"
-                        />
+                <field name="compensate" attrs="{'invisible': [('result_type', '!=', 'D')]}"/>
                 <field name="company_partner_id" invisible="1"/>
                 <field name="bank_account_id"
                        domain="[('partner_id', '=', company_partner_id)]"
-                       attrs="{'invisible': [('result_type', 'not in', ('B', 'I')), ('compensate', '=', False)]}"
-                        />
+                       attrs="{'invisible': ['|', ('result_type', 'not in', ('D', 'B', 'I')), ('compensate', '=', True)]}"
+                />
             </group>
             <group string="Tax lines"
                    name="group_tax_lines"
