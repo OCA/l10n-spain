@@ -562,7 +562,7 @@ http://www.mjusticia.gob.es/cs/Satellite/1292342988403
             <field name="css_class">l3</field>
         </record>
 
-        <record model="account.balance.reporting.template.line" id="es_pyg_normal_49400 ">
+        <record model="account.balance.reporting.template.line" id="es_pyg_normal_49400">
             <field name="template_id" ref="es_pyg_normal"/>
             <field name="code">49400</field>
             <field name="name">A.4) RESULTADO DEL EJERCICIO PROCEDENTE DE OPERACIONES CONTINUADAS (A.3 + 19)</field>
