@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# © 2012-2015 Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-# © 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2012-2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import calendar
-from openerp import api, fields, models
-from openerp.tools import float_is_zero
+from odoo import api, fields, models
+from odoo.tools import float_is_zero
 from dateutil.relativedelta import relativedelta
 
 
@@ -61,17 +61,15 @@ class AccountAssetAsset(models.Model):
         states={'draft': [('readonly', False)]},
         help="Only needed if not the same than purchase date")
 
-    def _check_prorata(self, cr, uid, ids, context=None):
-        for asset in self.browse(cr, uid, ids, context=context):
-            if asset.prorata and asset.method_time not in ('number',
-                                                           'percentage'):
-                return False
-        return True
-
-    _constraints = [
-        (_check_prorata, 'Prorata temporis can be applied only for time method'
-         ' "number of depreciations".', ['prorata']),
-    ]
+    @api.multi
+    @api.constrains('prorata', 'method_time')
+    def _check_prorata(self):
+        incorrect_assets = self.filtered(lambda x: (
+            x.prorata and x.method_time not in ('number', 'percentage')
+        ))
+        if incorrect_assets:
+            # Call super for raising the exception
+            super(AccountAssetAsset, self)._check_prorata()
 
     _sql_constraints = [
         ('method_percentage',
