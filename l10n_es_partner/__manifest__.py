@@ -7,7 +7,7 @@
 
 {
     "name": "Adaptación de los clientes, proveedores y bancos para España",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "author": "ZikZak,"
               "Acysos,"
               "Tecnativa,"
