@@ -6,10 +6,10 @@
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 03:39+0000\n"
-"PO-Revision-Date: 2017-01-04 03:39+0000\n"
+"POT-Creation-Date: 2017-06-29 22:48+0000\n"
+"PO-Revision-Date: 2017-06-29 22:48+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr "Creado o"
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Display Name"
 
 #. module: l10n_es_partner
 #: code:addons/l10n_es_partner/models/res_partner_bank.py:79
@@ -122,7 +122,7 @@ msgstr "Conta bancaria non válida."
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_account_journal
 msgid "Journal"
-msgstr ""
+msgstr "Diario"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard___last_update
@@ -141,7 +141,7 @@ msgstr "Actualizado por derradeira vez o"
 
 #. module: l10n_es_partner
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
-msgid "Local file mirror. This copy was updated last time on 04/04/2016."
+msgid "Local file mirror. This copy was updated last time on 20/01/2017."
 msgstr ""
 
 #. module: l10n_es_partner
@@ -177,6 +177,7 @@ msgstr ""
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner_comercial
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_users_comercial
 #: model:ir.ui.view,arch_db:l10n_es_partner.view_partner_form
 #: model:ir.ui.view,arch_db:l10n_es_partner.view_partner_simple_form
 msgid "Trade name"
