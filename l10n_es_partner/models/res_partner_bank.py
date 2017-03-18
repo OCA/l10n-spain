@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # © 2009 Jordi Esteve <jesteve@zikzakmedia.com>
 # © 2012-2014 Ignacio Ibeas <ignacio@acysos.com>
-# © 2016 Pedro M. Baeza
+# © 2016-2017 Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3).
 
-from openerp import api, exceptions, fields, models, _
-from openerp.addons.base_iban.base_iban import \
+from odoo import _, api, exceptions, fields, models
+from odoo.addons.base_iban.models.res_partner_bank import \
     normalize_iban, validate_iban, pretty_iban
 
 

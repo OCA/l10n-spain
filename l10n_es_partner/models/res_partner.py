@@ -5,8 +5,8 @@
 # © 2016 Carlos Dauden <carlos.dauden@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3).
 
-from openerp import api, fields, models
-from openerp.models import expression
+from odoo import api, fields, models
+from odoo.osv import expression
 
 
 class ResPartner(models.Model):
