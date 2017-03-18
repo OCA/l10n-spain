@@ -2,8 +2,8 @@
 # © 2013-2016 Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3).
 
-from openerp import models, fields, api, _
-from openerp import tools
+from odoo import models, fields, api, _
+from odoo import tools
 from ..gen_src.gen_data_banks import gen_bank_data_xml
 import tempfile
 import os
@@ -32,7 +32,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         try:
             response = requests.get(
                 'http://www.bde.es/f/webbde/IFI/servicio/regis/ficheros/es/'
-                'REGBANESP_CONESTAB_A.XLS')
+                'REGBANESP_CONESTAB_A.xls')
             if not response.ok:
                 raise Exception()
             src_file.write(response.content)
