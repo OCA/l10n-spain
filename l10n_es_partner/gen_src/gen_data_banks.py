@@ -12,7 +12,63 @@ try:
 except ImportError:
     xlrd = None
 
+STATES_REPLACE_LIST = {
+    '01': 'vi',
+    '02': 'ab',
+    '03': 'a',
+    '04': 'al',
+    '05': 'av',
+    '06': 'ba',
+    '07': 'pm',
+    '08': 'b',
+    '09': 'bu',
+    '10': 'cc',
+    '11': 'ca',
+    '12': 'cs',
+    '13': 'cr',
+    '14': 'co',
+    '15': 'c',
+    '16': 'cu',
+    '17': 'gi',
+    '18': 'gr',
+    '19': 'gu',
+    '20': 'ss',
+    '21': 'h',
+    '22': 'hu',
+    '23': 'j',
+    '24': 'le',
+    '25': 'l',
+    '26': 'lo',
+    '27': 'lu',
+    '28': 'm',
+    '29': 'ma',
+    '30': 'mu',
+    '31': 'na',
+    '32': 'or',
+    '33': 'o',
+    '34': 'p',
+    '35': 'gc',
+    '36': 'po',
+    '37': 'sa',
+    '38': 'tf',
+    '39': 's',
+    '40': 'sg',
+    '41': 'se',
+    '42': 'so',
+    '43': 't',
+    '44': 'te',
+    '45': 'to',
+    '46': 'v',
+    '47': 'va',
+    '48': 'bi',
+    '49': 'za',
+    '50': 'z',
+    '51': 'ce',
+    # FIXME: Switch to 'me' on v11 if the code is finally changed
+    '52': 'ml',
+}
 
+logging.basicConfig()
 _logger = logging.getLogger(__name__)
 
 
@@ -84,12 +140,17 @@ def gen_bank_data_xml(src_path, dest_path):
         name = "res_bank_es_%s" % row['COD_BE']
         numero = (int(row['NUMEROVIA']) if
                   isinstance(row['NUMEROVIA'], float) else row['NUMEROVIA'])
-        street = '%s. %s, %s' % (row['SIGLAVIA'], row['NOMBREVIA'], numero)
+        street = '%s. %s, %s' % (
+            row['SIGLAVIA'].title(), row['NOMBREVIA'].title(), numero
+        )
         output.write(indent + '<record id="%s" model="res.bank">\n' % name)
-        output.write(indent * 2 + '<field name="name">%s</field>\n' %
-                     escape(row['NOMCOMERCIAL'] or row['ANAGRAMA']))
+        output.write(
+            indent * 2 + u'<field name="name">{}</field>\n'.format(
+                escape(row['NOMCOMERCIAL'].title() or row['ANAGRAMA'].title())
+            )
+        )
         output.write(indent * 2 + '<field name="lname">%s</field>\n' %
-                     escape(row['NOMBRE105']))
+                     escape(row['NOMBRE105'].title()))
         output.write(indent * 2 + '<field name="code">%s</field>\n' %
                      escape(row['COD_BE']))
         # Han quitado el BIC del listado - Lo busco en una tabla estática
@@ -100,7 +161,7 @@ def gen_bank_data_xml(src_path, dest_path):
                      escape(street))
         if row['RESTODOM']:
             output.write(indent * 2 + '<field name="street2">%s</field>\n' %
-                         escape(row['RESTODOM']))
+                         escape(row['RESTODOM'].title()))
         if row['DIRINTERNET']:
             output.write(indent * 2 + '<field name="website">%s</field>\n' %
                          escape(row['DIRINTERNET'].lower()))
@@ -108,7 +169,7 @@ def gen_bank_data_xml(src_path, dest_path):
             output.write(indent * 2 + '<field name="vat">%s</field>\n' %
                          escape(row['CODIGOCIF']))
         output.write(indent * 2 + '<field name="city">%s</field>\n' %
-                     escape(row['POBLACION']))
+                     escape(row['POBLACION'].title()))
         output.write('        <field name="zip">%s</field>\n' %
                      escape(row['CODPOSTAL']))
         if row['TELEFONO']:
@@ -118,11 +179,15 @@ def gen_bank_data_xml(src_path, dest_path):
             output.write(indent * 2 + '<field name="fax">%s</field>\n' %
                          escape(row['NUMFAX']))
         output.write('        <field eval="1" name="active"/>\n')
-        output.write(
-            indent * 2 +
-            '<field name="state" ref="l10n_es_toponyms.ES%s"/>\n' %
-            (row['CODPOSTAL'] and
-             escape(unicode(int(row['CODPOSTAL']))[:-3].zfill(2)) or False))
+        if row['CODPOSTAL']:
+            output.write(
+                indent * 2 +
+                u'<field name="state" ref="base.state_es_{}"/>\n'.format(
+                    STATES_REPLACE_LIST[
+                        str(int(row['CODPOSTAL']))[:-3].zfill(2)
+                    ]
+                )
+            )
         output.write(indent * 2 + '<field name="country" ref="base.es"/>\n')
         output.write(indent + '</record>\n')
     output.write("</odoo>\n")
