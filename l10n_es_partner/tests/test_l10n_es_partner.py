@@ -2,7 +2,7 @@
 # © 2016 Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3).
 
-from openerp.tests import common
+from odoo.tests import common
 
 
 class TestL10nEsPartner(common.SavepointCase):
@@ -34,8 +34,6 @@ class TestL10nEsPartner(common.SavepointCase):
         cls.wizard = cls.env['l10n.es.partner.import.wizard'].create({})
         cls.wizard_toponyms = cls.env['config.es.toponyms'].create({
             'name': '',
-            'state': 'both',
-            'city_info': 'no'
         })
         cls.env.user.company_id.country_id = cls.country_spain.id
 
@@ -124,8 +122,6 @@ class TestL10nEsPartner(common.SavepointCase):
         self.assertEqual(journal.name, 'BDE ES12 9999 9999 5099 9999 9999')
 
     def test_import_banks(self):
-        # First import the provinces
-        self.wizard_toponyms.execute()
         # Then import banks
         self.wizard.import_local()
         bank = self.env['res.bank'].search([('code', '=', '0182')])
