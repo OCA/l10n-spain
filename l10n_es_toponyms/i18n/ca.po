@@ -3,13 +3,14 @@
 # * l10n_es_toponyms
 # 
 # Translators:
+# Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2016
 # OCA Transbot <transbot@odoo-community.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-25 03:40+0000\n"
-"PO-Revision-Date: 2017-01-25 03:40+0000\n"
+"POT-Creation-Date: 2017-03-17 17:32+0000\n"
+"PO-Revision-Date: 2017-03-17 17:32+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -25,11 +26,15 @@ msgid ""
 "partner, contact and company screens when you enter a zip code or the city "
 "name if this information is associated. Do you want to associate this data?"
 msgstr ""
+"Els camps 'Província', 'Població', 'Codi Postal' i 'País' poden ser omplerta"
+" automàticament a les pantalles de socis, contactes i empresa quan "
+"s'introdueixi el codi postal o el nom de la població, si aquesta informació "
+"està disponible. Voleu associar aquestes dades?"
 
 #. module: l10n_es_toponyms
 #: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Associate city and state information to zip codes"
-msgstr ""
+msgstr "Associar la informació de població i país als codis postals"
 
 #. module: l10n_es_toponyms
 #: selection:config.es.toponyms,state:0
@@ -44,12 +49,12 @@ msgstr "Informació de ciutat"
 #. module: l10n_es_toponyms
 #: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Configure from GeoNames"
-msgstr ""
+msgstr "Configurar des de GeoNames"
 
 #. module: l10n_es_toponyms
 #: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Configure from local"
-msgstr ""
+msgstr "Configurar des de local"
 
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_create_uid
@@ -64,7 +69,7 @@ msgstr "Creat el"
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_display_name
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr "Nom a mostrar"
 
 #. module: l10n_es_toponyms
 #: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
@@ -81,12 +86,12 @@ msgstr "ID"
 #. module: l10n_es_toponyms
 #: model:ir.model,name:l10n_es_toponyms.model_better_zip_geonames_import
 msgid "Import Better Zip from Geonames"
-msgstr ""
+msgstr "Importeu els millors codis des de Geonames"
 
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms___last_update
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "Darrera modificació el"
 
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_write_uid
@@ -116,7 +121,7 @@ msgstr "Oficial"
 #. module: l10n_es_toponyms
 #: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Select the toponym version of the spanish states"
-msgstr ""
+msgstr "Seleccioneu la versió dels topònims de les províncies espanyoles"
 
 #. module: l10n_es_toponyms
 #: selection:config.es.toponyms,state:0
@@ -126,24 +131,26 @@ msgstr "Castellà"
 #. module: l10n_es_toponyms
 #: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Spanish states and cities configuration"
-msgstr ""
+msgstr "Configuració de les províncies i poblacions espanyoles"
 
 #. module: l10n_es_toponyms
 #: model:ir.actions.act_window,name:l10n_es_toponyms.action_config_toponyms_es_form
 msgid "Spanish toponyms configuration"
-msgstr "Configuració dels topònims de l'Estat Espanyol"
+msgstr "Configuració dels topònims espanyols"
 
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_state
 msgid "State names"
-msgstr "Noms de província"
+msgstr "Noms de províncies"
 
 #. module: l10n_es_toponyms
 #: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid ""
 "Warning! Adding this bunch of records can take a lot of time. If you are "
 "behind a SSL proxy, check your timeout."
-msgstr "Avís! Afegir més de 54000 codis postals pot tardar varis minuts."
+msgstr ""
+"Avís! Afegir més de 54000 codis postals pot tardar varis minuts. Si sou "
+"darrera un proxy SSL, reviseu el temps d'espera."
 
 #. module: l10n_es_toponyms
 #: selection:config.es.toponyms,city_info:0
@@ -156,8 +163,10 @@ msgid ""
 "You can select the toponym version of the spanish states and add the spanish"
 " cities associated to the zip codes."
 msgstr ""
+"Podeu seleccionar la versió dels topònims de les províncies espanyoles i "
+"afegir les poblacions associades als codis postals."
 
 #. module: l10n_es_toponyms
 #: model:ir.model,name:l10n_es_toponyms.model_config_es_toponyms
 msgid "config.es.toponyms"
-msgstr ""
+msgstr "config.es.toponyms"

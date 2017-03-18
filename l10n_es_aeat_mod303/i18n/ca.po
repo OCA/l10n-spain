@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-25 03:40+0000\n"
-"PO-Revision-Date: 2017-01-25 03:40+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-03-17 17:32+0000\n"
+"PO-Revision-Date: 2017-03-17 17:32+0000\n"
+"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,43 +22,43 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_46
 msgid "(VAT payable - VAT receivable)"
-msgstr "(IVA devengado - IVA deducible)"
+msgstr "(IVA meritable - IVA deduïble)"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report
 msgid "AEAT 303 Report"
-msgstr "Declaración AEAT 303"
+msgstr "Declaració AEAT 303"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.ui.menu,name:l10n_es_aeat_mod303.menu_aeat_mod303_report
 msgid "AEAT 303 model"
-msgstr "Modelo 303"
+msgstr "Model 303"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_tree
 msgid "AEAT 303 reports"
-msgstr "Declaraciones AEAT 303"
+msgstr "Declaracions AEAT 303"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod303.action_l10n_es_aeat_mod303_report
 msgid "AEAT model 303"
-msgstr "Modelo AEAT 303"
+msgstr "Model AEAT 303"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_move_id
 msgid "Account entry"
-msgstr "Entrada cuenta"
+msgstr "Entrada a compte"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_allow_posting
 msgid "Allow posting"
-msgstr ""
+msgstr "Permetre la publicació"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_bank_account_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_partner_bank_id
 msgid "Bank account"
-msgstr "Cuenta bancaria"
+msgstr "Compte bancari"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_calculation_date
@@ -72,12 +73,12 @@ msgstr "Cancel·lada"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_company_id
 msgid "Company"
-msgstr "Companyia"
+msgstr "Empresa"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_partner_bank_id
 msgid "Company bank account used for the presentation"
-msgstr ""
+msgstr "Compte bancari de l'empresa utilitzat per a la presentació"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_compensate
@@ -97,21 +98,21 @@ msgid ""
 "only complete this box when the requirements of Article 74.1 of the Tax "
 "Regulations Value Added are met."
 msgstr ""
-"Se hará constar el importe de las cuotas del Impuesto a la importación "
-"incluidas en los documentos en los que conste la liquidación practicada por "
-"la Administración recibidos en el periodo de liquidación. Solamente podrá "
-"cumplimentarse esta casilla cuando se cumplan los requisitos establecidos en"
-" el artículo 74.1 del Reglamento del Impuesto sobre el Valor Añadido."
+"Es farà constar l'import de les quotes de l'impost a la importació incloses "
+"als documents en que consti la liquidació practicada per l'administració, "
+"rebuts en el període de liquidació. Només podrà emplenar aquesta casella "
+"quan es compleixin els requisits establerts en l'article 74.1 del reglament "
+"sobre l'impost del valor afegit."
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_counterpart_account_id
 msgid "Counterpart account"
-msgstr "Cuenta contrapartida"
+msgstr "Compte de la contrapartida"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod303.action_l10n_es_aeat_mod303_report
 msgid "Create and query AEAT Model 303 reports"
-msgstr "Crea y consulta declaración AEAT del modelo 303"
+msgstr "Crear i consultar declaració AEAT del model 303"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_create_uid
@@ -136,12 +137,12 @@ msgstr "DVD"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_display_name
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "Nom a mostrar"
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
 msgid "Done"
-msgstr "Realitzat"
+msgstr "Fet"
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
@@ -151,12 +152,12 @@ msgstr "Esborrany"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_date_end
 msgid "Ending date"
-msgstr "Fecha final"
+msgstr "Data final"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_export_config_id
 msgid "Export config"
-msgstr "Configuración de exportación"
+msgstr "Configuració de l'exportació"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_cuota_compensar
@@ -164,13 +165,13 @@ msgid ""
 "Fee to compensate for prior periods, in which his statement was to return "
 "and compensation back option was chosen"
 msgstr ""
-"Cuota a compensar de periodos anteriores, en los que su declaración fue a "
-"devolver y se escogió la opción de compensación posterior"
+"Quota a compensar dels períodes anteriors, en els que la declaració va ser a"
+" tornar i s'escollí l'opció de compensació posterior."
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_contact_name
 msgid "Full Name"
-msgstr "Cognoms i nom"
+msgstr "Nom sencer"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_id
@@ -181,8 +182,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_compensate
 msgid "If checked, the return amount will be compensate in future statements"
 msgstr ""
-"Si se marca, indicará que el importe a devolver se compensará en posteriores"
-" declaraciones"
+"Si es marca,  l'import a tornar es compensarà en posteriors declaracions"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_regularizacion_anual
@@ -193,11 +193,11 @@ msgid ""
 "State and the Autonomous Community the Basque Country and the Economic "
 "Agreement between the State and Navarre."
 msgstr ""
-"En la última autoliquidación del año (la del período 4T o mes 12) se hará "
-"constar, con el signo que corresponda, el resultado de la regularización "
-"anual conforme disponen las Leyes por las que se aprueban el Concierto "
-"Económico entre el Estado y la Comunidad Autónoma del País Vasco y el "
-"Convenio Económico entre el Estado y la Comunidad Foral de Navarra."
+"En la última auto-liquidació anual (el període 4T o el mes 12) es farà "
+"constar, amb el signe pertinent, el resultat de la regularització anual "
+"d'acord disposen les lleis per les que s'aproven el concert  econòmic entre "
+"l'estat i la comunitat autònoma del País Basc i el conveni econòmic entre "
+"l'estat i la comunitat foral de Navarra."
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_journal_id
@@ -207,7 +207,7 @@ msgstr "Diari"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_journal_id
 msgid "Journal in which post the move."
-msgstr "Diario en el que publicar el movimiento."
+msgstr "Diari on es publicarà el moviment"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_representative_vat
@@ -217,17 +217,17 @@ msgstr "NIF R.L."
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report___last_update
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "Darrera modificació a"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Última actualització per "
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualització a"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_representative_vat
@@ -237,27 +237,27 @@ msgstr "NIF del representant legal."
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_model_id
 msgid "Model"
-msgstr "Modelo"
+msgstr "Model"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_number
 msgid "Model number"
-msgstr "Nº modelo"
+msgstr "Número de model"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_devolucion_mensual
 msgid "Montly Return"
-msgstr "Devolución mensual"
+msgstr "Devolució mensual"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_contact_name
 msgid "Must have name and surname."
-msgstr "Ha de contenir nom i cognoms"
+msgstr "Ha d'haber-hi nom i cognoms"
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,result_type:0
 msgid "No activity/Zero result"
-msgstr "Sin actividad/Resultado cero"
+msgstr "Sense activitat/Resultat zero"
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,type:0
@@ -273,7 +273,7 @@ msgstr "Empresa"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_period_type
 msgid "Period type"
-msgstr "Tipo de periodo"
+msgstr "Tipus de període"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_contact_phone
@@ -298,12 +298,12 @@ msgstr "Processat"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_devolucion_mensual
 msgid "Registered in the Register of Monthly Return"
-msgstr "Inscrito en el Registro de Devolución Mensual"
+msgstr "Inscrita al Registre de Devolució Mensual"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_name
 msgid "Report identifier"
-msgstr "Identificador del informe"
+msgstr "Identificador de l'informe"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_previous_result
@@ -311,35 +311,35 @@ msgid ""
 "Result of the previous or prior statements of the same concept, exercise and"
 " period"
 msgstr ""
-"Resultado de la anterior o anteriores declaraciones del mismo concepto, "
-"ejercicio y periodo"
+"Resultat de l'anterior o anteriors declaracions del mateix concepte, "
+"exercici i període"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_result_type
 msgid "Result type"
-msgstr "Tipo de resultado"
+msgstr "Tipus de resultat"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Resultado"
-msgstr "Resultado"
+msgstr "Resultat"
 
 #. module: l10n_es_aeat_mod303
 #: code:addons/l10n_es_aeat_mod303/models/mod303.py:186
 #, python-format
 msgid "Select an account for making the charge"
-msgstr "Seleccione una cuenta bancaria para realizar el cargo"
+msgstr "Seleccioneu un compte per a realitzar el càrrec"
 
 #. module: l10n_es_aeat_mod303
 #: code:addons/l10n_es_aeat_mod303/models/mod303.py:188
 #, python-format
 msgid "Select an account for receiving the money"
-msgstr "Seleccione una cuenta bancaria para recibir el dinero"
+msgstr "Seleccioneu un compte per rebre els diners"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_date_start
 msgid "Starting date"
-msgstr "Fecha inicial"
+msgstr "Data inicial"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_state
@@ -365,7 +365,7 @@ msgstr "Tipus de suport"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_tax_line_ids
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Tax lines"
-msgstr "Líneas de impuestos"
+msgstr "Línies d'impostos"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_porcentaje_atribuible_estado
@@ -375,11 +375,11 @@ msgid ""
 "enter in this box the percentage of volume operations in the common "
 "territory. Other taxpayers will enter in this box 100%"
 msgstr ""
-"Los sujetos pasivos que tributen conjuntamente a la Administración del "
-"Estado y a las Diputaciones Forales del País Vasco o a la Comunidad Foral de"
-" Navarra, consignarán en esta casilla el porcentaje del volumen de "
-"operaciones en territorio común. Los demás sujetos pasivos consignarán en "
-"esta casilla el 100%"
+"Els subjectes passius que tributen conjuntament a l'Administració de l'Estat"
+" i a les Diputacions Forals del País Basc o a la comunitat Foral de Navarra,"
+"  posaran en aquesta casella el percentatge del volum d'operacions en "
+"territori comú. Els altres subjectes passius posaran el 100% en aquesta "
+"casella"
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,support_type:0
@@ -392,18 +392,18 @@ msgid ""
 "This account will be the counterpart for all the journal items that are "
 "regularized when posting the report."
 msgstr ""
-"Esta cuenta será la contrapartida para todos los elementos del diario que "
-"están regularizados al contabilizar el informe."
+"Aquest compte serà la contrapartida per a tots els elements del diari que "
+"estiguin regularitzats al comptabilitat l'informe."
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,result_type:0
 msgid "To enter"
-msgstr "A ingresar"
+msgstr "A ingressar"
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,result_type:0
 msgid "To return"
-msgstr "A devolver"
+msgstr "A retornar"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_company_vat
@@ -413,32 +413,32 @@ msgstr "NIF / CIF"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_year
 msgid "Year"
-msgstr "Año"
+msgstr "Any"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_total_devengado
 msgid "[27] VAT payable"
-msgstr "[27] IVA devengado"
+msgstr "[27] IVA meritable"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_total_deducir
 msgid "[45] VAT receivable"
-msgstr "[45] IVA a deducir"
+msgstr "[45] IVA deduïble "
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_46
 msgid "[46] General scheme result"
-msgstr "[46] Resultado régimen general"
+msgstr "[46] Resultat del règim general"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_porcentaje_atribuible_estado
 msgid "[65] % attributable to State"
-msgstr "[65] % atribuible al Estado"
+msgstr "[65] % atribuïble a l'Estat"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_atribuible_estado
 msgid "[66] Attributable to the Administration"
-msgstr "[66] Atribuible a la Administración"
+msgstr "[66] Atribuïble a l'administració"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_69
@@ -446,35 +446,35 @@ msgid ""
 "[66] Attributable to the Administration - [67] Fees to compensate + [68] "
 "Annual regularization"
 msgstr ""
-"Atribuible a la Administración [66] - Cuotas a compensar [67] + "
-"Regularización anual [68]"
+"Atribuïble a l'administració [66] - Quotes a compensar [67] + Regularització"
+" anual [68]"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_cuota_compensar
 msgid "[67] Fees to compensate"
-msgstr "[67] Cuotas a compensar"
+msgstr "[67] Quotes a compensar"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_regularizacion_anual
 msgid "[68] Annual regularization"
-msgstr "[68] Regularización anual"
+msgstr "[68] Regularització anual"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_69
 msgid "[69] Result"
-msgstr "[69] Resultado"
+msgstr "[69] Resultat"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_previous_result
 msgid "[70] To be deducted"
-msgstr "[70] A deducir"
+msgstr "[70] A deduir "
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_resultado_liquidacion
 msgid "[71] Settlement result"
-msgstr "[71] Result. liquidación"
+msgstr "[71] Resultat liquidació"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_77
 msgid "[77] VAT deferred (Settle by customs)"
-msgstr "[77] Iva Diferido (Liquidado por aduana)"
+msgstr "[77] IVA diferit (Liquidat per duana)"

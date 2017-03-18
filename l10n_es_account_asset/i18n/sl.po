@@ -3,15 +3,15 @@
 # * l10n_es_account_asset
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-spain (8.0)\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-01 00:54+0000\n"
-"PO-Revision-Date: 2016-06-30 15:01+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
+"POT-Creation-Date: 2017-03-17 17:32+0000\n"
+"PO-Revision-Date: 2017-03-17 17:32+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,14 +19,9 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: l10n_es_account_asset
-#: field:account.asset.asset,annual_percentage:0
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_annual_percentage
 msgid "Annual depreciation percentage"
 msgstr "Letni amortizacijski odstotek"
-
-#. module: l10n_es_account_asset
-#: model:ir.model,name:l10n_es_account_asset.model_account_asset_asset
-msgid "Asset"
-msgstr "Sredstvo"
 
 #. module: l10n_es_account_asset
 #: model:ir.model,name:l10n_es_account_asset.model_account_asset_category
@@ -34,26 +29,33 @@ msgid "Asset category"
 msgstr "Kategorija sredstva"
 
 #. module: l10n_es_account_asset
-#: field:account.asset.asset,move_end_period:0
+#: model:ir.model,name:l10n_es_account_asset.model_account_asset_asset
+msgid "Asset/Revenue Recognition"
+msgstr ""
+
+#. module: l10n_es_account_asset
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_move_end_period
 msgid "At the end of the period"
 msgstr "Ob koncu obdobja"
 
 #. module: l10n_es_account_asset
-#: field:account.asset.asset,method_percentage:0
-#: field:account.asset.category,method_percentage:0
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_method_percentage
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_category_method_percentage
 msgid "Depreciation percentage"
 msgstr "Amortizacijski odstotek"
 
 #. module: l10n_es_account_asset
-#: help:account.asset.asset,move_end_period:0
+#: model:ir.model.fields,help:l10n_es_account_asset.field_account_asset_asset_move_end_period
 msgid ""
 "Move the depreciation entry at the end of the period. If the period are 12 "
 "months, it is put on 31st of December, and in the end of the month in other "
 "case."
-msgstr "Premik amortizacijskega vnosa ob koncu obdobja. Če so obdobja 12 mesecev, se postavi na 31. december, v nasprotnem primeru pa ob koncu meseca."
+msgstr ""
+"Premik amortizacijskega vnosa ob koncu obdobja. Če so obdobja 12 mesecev, se"
+" postavi na 31. december, v nasprotnem primeru pa ob koncu meseca."
 
 #. module: l10n_es_account_asset
-#: help:account.asset.asset,start_depreciation_date:0
+#: model:ir.model.fields,help:l10n_es_account_asset.field_account_asset_asset_start_depreciation_date
 msgid "Only needed if not the same than purchase date"
 msgstr "Potrebno le, če je različno od datuma nabave"
 
@@ -65,7 +67,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_account_asset
-#: field:account.asset.asset,start_depreciation_date:0
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_start_depreciation_date
 msgid "Start Depreciation Date"
 msgstr "Začetni datum amortizacije"
 
@@ -74,19 +76,3 @@ msgstr "Začetni datum amortizacije"
 #: sql_constraint:account.asset.category:0
 msgid "Wrong percentage!"
 msgstr "Napačen odstotek!"
-
-#. module: l10n_es_account_asset
-#: view:account.asset.asset:l10n_es_account_asset.view_account_asset_asset_form_l10n_es
-#: view:account.asset.category:l10n_es_account_asset.view_account_asset_category_form_l10n_es
-msgid ""
-"{'invisible':[('method_time','!=','end')], "
-"'required':[('method_time','=','end')]}"
-msgstr ""
-
-#. module: l10n_es_account_asset
-#: view:account.asset.asset:l10n_es_account_asset.view_account_asset_asset_form_l10n_es
-#: view:account.asset.category:l10n_es_account_asset.view_account_asset_category_form_l10n_es
-msgid ""
-"{'invisible':[('method_time','!=','number')], "
-"'required':[('method_time','=','number')]}"
-msgstr ""
