@@ -7,7 +7,7 @@
 
 {
     "name": "Adaptación de los clientes, proveedores y bancos para España",
-    "version": "8.0.1.5.1",
+    "version": "10.0.1.0.0",
     "author": "ZikZak,"
               "Acysos,"
               "Tecnativa,"
@@ -21,14 +21,18 @@
         ],
     },
     "depends": [
-        "base",
+        "account",
         "base_iban",
         "base_vat",
         "l10n_es_toponyms",
     ],
     "data": [
-        "views/l10n_es_partner_view.xml",
+        "data/l10n_es_partner_data.xml",
+        "views/account_journal_view.xml",
+        "views/res_bank_view.xml",
+        "views/res_partner_view.xml",
+        "views/res_partner_bank_view.xml",
         "wizard/l10n_es_partner_wizard.xml",
     ],
-    'installable': False,
+    'installable': True,
 }
