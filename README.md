@@ -30,6 +30,8 @@ addon | version | summary
 [l10n_es_account_balance_report](l10n_es_account_balance_report/) | 10.0.1.0.0 | Informes de cuentas anuales españoles
 [l10n_es_account_bank_statement_import_n43](l10n_es_account_bank_statement_import_n43/) | 10.0.1.0.0 | Importación de extractos bancarios españoles (Norma 43)
 [l10n_es_account_invoice_sequence](l10n_es_account_invoice_sequence/) | 10.0.1.0.0 | Secuencia para facturas separada de la secuencia de asientos
+[l10n_es_partner](l10n_es_partner/) | 10.0.1.0.0 | Adaptación de los clientes, proveedores y bancos para España
+[l10n_es_toponyms](l10n_es_toponyms/) | 10.0.1.0.0 | Topónimos españoles
 
 Unported addons
 ---------------
@@ -57,13 +59,11 @@ addon | version | summary
 [l10n_es_fiscal_year_closing](l10n_es_fiscal_year_closing/) | 8.0.1.0.0 (unported) | Cierre de ejercicio fiscal para España
 [l10n_es_irnr](l10n_es_irnr/) | 8.0.1.0.0 (unported) | Retenciones IRNR (No residentes)
 [l10n_es_location_nuts](l10n_es_location_nuts/) | 8.0.1.0.0 (unported) | NUTS specific options for Spain
-[l10n_es_partner](l10n_es_partner/) | 8.0.1.5.1 (unported) | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 8.0.1.0.0 (unported) | Partner Mercantil
 [l10n_es_payment_order](l10n_es_payment_order/) | 8.0.1.7.0 (unported) | Exportación de ficheros bancarios CSB 19, 32, 34 y 58
 [l10n_es_payment_order_confirminet](l10n_es_payment_order_confirminet/) | 8.0.1.0.0 (unported) | Exportación de fichero bancario Confirminet
 [l10n_es_pos](l10n_es_pos/) | 8.0.1.0.0 (unported) | Punto de venta adaptado a la legislación española
 [l10n_es_subcontractor_certificate](l10n_es_subcontractor_certificate/) | 8.0.1.0.0 (unported) | Certificado de subcontratista
-[l10n_es_toponyms](l10n_es_toponyms/) | 8.0.2.0.1 (unported) | Topónimos españoles
 [payment_redsys](payment_redsys/) | 8.0.1.0.2 (unported) | Payment Acquirer: Redsys Implementation
 
 [//]: # (end addons)
