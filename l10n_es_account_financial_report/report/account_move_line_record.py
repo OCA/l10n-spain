@@ -1,7 +1,9 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
+# -*- coding: utf-8 -*-
+# Copyright 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
+#                Jordi Esteve <jesteve@zikzakmedia.com>
+# Copyright 2013 Joaquin Gutierrez (http://www.gutierrezweb.es)
+# Copyright 2015 Tecnativa S.L. (http://www.tecnativa.com)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from openerp.report import report_sxw
 import time
 

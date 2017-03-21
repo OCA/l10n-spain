@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-14 00:36+0000\n"
-"PO-Revision-Date: 2015-05-23 16:52+0000\n"
+"PO-Revision-Date: 2015-05-23 16:32+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/bg/)\n"
+"Language-Team: English (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: bg\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_account_financial_report
 #: model:ir.ui.menu,name:l10n_es_account_financial_report.menu_journal_entries_report
 msgid "Journal by entries"
-msgstr ""
+msgstr "Journal by entries"
 
 #. module: l10n_es_account_financial_report
 #: view:account.journal.entries.report:0
@@ -29,152 +29,152 @@ msgstr ""
 #: model:ir.actions.report.xml,name:l10n_es_account_financial_report.report_account_journal_entries_report1
 #: model:ir.model,name:l10n_es_account_financial_report.model_account_journal_entries_report
 msgid "Print journal by entries"
-msgstr ""
+msgstr "Print journal by entries"
 
 #. module: l10n_es_account_financial_report
 #: field:account.journal.entries.report,landscape:0
 msgid "Landscape mode"
-msgstr ""
+msgstr "Landscape mode"
 
 #. module: l10n_es_account_financial_report
 #: report:account.journal.entries.report.wzd:0
 #: report:account.journal.entries.report.wzd1:0
 msgid "Debit"
-msgstr ""
+msgstr "Debit"
 
 #. module: l10n_es_account_financial_report
 #: view:account.journal.entries.report:0
 msgid "Print"
-msgstr ""
+msgstr "Print"
 
 #. module: l10n_es_account_financial_report
 #: code:addons/l10n_es_account_financial_report/wizard/wizard_print_journal_entries.py:75
 #, python-format
 msgid "No data available"
-msgstr ""
+msgstr "No data available"
 
 #. module: l10n_es_account_financial_report
 #: report:account.journal.entries.report.wzd:0
 #: report:account.journal.entries.report.wzd1:0
 msgid "Description"
-msgstr "Описание"
+msgstr "Description"
 
 #. module: l10n_es_account_financial_report
 #: selection:account.journal.entries.report,sort_selection:0
 msgid "By entry number"
-msgstr ""
+msgstr "By entry number"
 
 #. module: l10n_es_account_financial_report
 #: field:account.journal.entries.report,journal_ids:0
 #: report:account.journal.entries.report.wzd:0
 #: report:account.journal.entries.report.wzd1:0
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. module: l10n_es_account_financial_report
 #: report:account.journal.entries.report.wzd:0
 #: report:account.journal.entries.report.wzd1:0
 msgid "Account name"
-msgstr ""
+msgstr "Account name"
 
 #. module: l10n_es_account_financial_report
 #: report:account.journal.entries.report.wzd:0
 #: report:account.journal.entries.report.wzd1:0
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 #. module: l10n_es_account_financial_report
 #: view:account.journal.entries.report:0
 msgid "Journals"
-msgstr ""
+msgstr "Journals"
 
 #. module: l10n_es_account_financial_report
 #: report:account.journal.entries.report.wzd:0
 #: report:account.journal.entries.report.wzd1:0
 msgid "Journal Ledger  -"
-msgstr ""
+msgstr "Journal Ledger  -"
 
 #. module: l10n_es_account_financial_report
 #: report:account.journal.entries.report.wzd:0
 #: report:account.journal.entries.report.wzd1:0
 msgid "Account"
-msgstr ""
+msgstr "Account"
 
 #. module: l10n_es_account_financial_report
 #: field:account.journal.entries.report,sort_selection:0
 msgid "Entries Sorted By"
-msgstr ""
+msgstr "Entries Sorted By"
 
 #. module: l10n_es_account_financial_report
 #: report:account.journal.entries.report.wzd:0
 #: report:account.journal.entries.report.wzd1:0
 msgid "Credit"
-msgstr ""
+msgstr "Credit"
 
 #. module: l10n_es_account_financial_report
 #: report:account.journal.entries.report.wzd:0
 #: report:account.journal.entries.report.wzd1:0
 msgid "Entry"
-msgstr ""
+msgstr "Entry"
 
 #. module: l10n_es_account_financial_report
 #: report:account.journal.entries.report.wzd:0
 #: report:account.journal.entries.report.wzd1:0
 msgid "Page"
-msgstr ""
+msgstr "Page"
 
 #. module: l10n_es_account_financial_report
 #: report:account.journal.entries.report.wzd:0
 #: report:account.journal.entries.report.wzd1:0
 msgid "End of report"
-msgstr ""
+msgstr "End of report"
 
 #. module: l10n_es_account_financial_report
 #: report:account.journal.entries.report.wzd:0
 #: report:account.journal.entries.report.wzd1:0
 msgid "Reference"
-msgstr ""
+msgstr "Reference"
 
 #. module: l10n_es_account_financial_report
 #: code:addons/l10n_es_account_financial_report/wizard/wizard_print_journal_entries.py:76
 #, python-format
 msgid "No records found for your selection!"
-msgstr ""
+msgstr "No records found for your selection!"
 
 #. module: l10n_es_account_financial_report
 #: field:account.journal.entries.report,period_ids:0
 #: report:account.journal.entries.report.wzd:0
 #: report:account.journal.entries.report.wzd1:0
 msgid "Period"
-msgstr ""
+msgstr "Period"
 
 #. module: l10n_es_account_financial_report
 #: view:account.journal.entries.report:0
 msgid "Periods"
-msgstr ""
+msgstr "Periods"
 
 #. module: l10n_es_account_financial_report
 #: selection:account.journal.entries.report,sort_selection:0
 msgid "By date"
-msgstr ""
+msgstr "By date"
 
 #. module: l10n_es_account_financial_report
 #: view:account.journal.entries.report:0
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #. module: l10n_es_account_financial_report
 #: report:account.journal.entries.report.wzd:0
 #: report:account.journal.entries.report.wzd1:0
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: l10n_es_account_financial_report
 #: selection:account.journal.entries.report,sort_selection:0
 msgid "By reference number"
-msgstr ""
+msgstr "By reference number"
 
 #. module: l10n_es_account_financial_report
 #: view:account.journal.entries.report:0
 msgid "or"
-msgstr ""
+msgstr "or"
