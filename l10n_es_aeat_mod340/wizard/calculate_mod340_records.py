@@ -90,12 +90,13 @@ class L10nEsAeatMod340CalculateRecords(orm.TransientModel):
             if invoice.type in ('out_refund', 'in_refund'):
                 sign = -1
             include = False
-            if invoice.currency_id.id != invoice.company_id.currency_id.id:
+            if invoice.currency_id.id != invoice.company_id.currency_id.id \
+                    and invoice.amount_untaxed:
                 cur_rate = invoice.cc_amount_untaxed / invoice.amount_untaxed
             else:
                 cur_rate = 1
             for tax_line in invoice.tax_line:
-                if tax_line.base_code_id and tax_line.base:
+                if tax_line.base_code_id:
                     if tax_line.base_code_id.mod340:
                         include = True
                         break
