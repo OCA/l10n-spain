@@ -69,7 +69,8 @@ class L10nEsAeatMod340CalculateRecords(models.TransientModel):
                 invoice.tax_line.filtered('base').mapped('base_code_id.mod340')
             ):
                 continue
-            if invoice.currency_id.id != invoice.company_id.currency_id.id:
+            if invoice.currency_id.id != invoice.company_id.currency_id.id \
+                    and invoice.amount_untaxed:
                 cur_rate = invoice.cc_amount_untaxed / invoice.amount_untaxed
             else:
                 cur_rate = 1
