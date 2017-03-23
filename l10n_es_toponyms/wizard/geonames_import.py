@@ -91,10 +91,10 @@ class BetterZipGeonamesImport(models.TransientModel):
     @api.model
     def select_or_create_state(
             self, row, country, code_row_index=4, name_row_index=3):
+        code_row_index = 6
+        name_row_index = 5
         if country.code == 'ES':
             # Replace state code
-            code_row_index = 6
-            name_row_index = 5
             row[code_row_index] = STATES_REPLACE_LIST[row[code_row_index]]
         return super(BetterZipGeonamesImport, self).select_or_create_state(
             row, country, code_row_index=code_row_index,
