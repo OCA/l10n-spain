@@ -21,6 +21,7 @@ Para dudas funcionales o soporte de la comunidad, dirigirse a:
 https://odoospain.odoo.com/forum/ayuda-1
 
 [//]: # (addons)
+
 Available addons
 ----------------
 addon | version | summary
