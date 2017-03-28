@@ -1,29 +1,11 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2011 Ting (http://www.ting.es)
-#    Copyright (c) 2011-2013 Acysos S.L.(http://acysos.com)
-#                       Ignacio Ibeas Izquierdo <ignacio@acysos.com>
-#    Copyright (c) 2011 NaN Projectes de Programari Lliure, S.L.
-#                       http://www.NaN-tic.com
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2011 Ting
+# Copyright 2011 2011 NaN Projectes de Programari Lliure, S.L.
+# Copyright 2011-2013 Acysos S.L. - Ignacio Ibeas <ignacio@acysos.com>
+# Copyright 2017 Tecnativa - Pedro M. Baeza
 
-from openerp import api
+from openerp import _, api, models
+from openerp import fields as new_fields
 from openerp.osv import fields, orm
 
 
@@ -36,13 +18,15 @@ class L10nEsAeatMod340Report(orm.Model):
     _description = 'Model 340'
 
     def button_calculate(self, cr, uid, ids, args, context=None):
-        calculate_obj = self.pool.get('l10n.es.aeat.mod340.calculate_records')
-        calculate_obj._calculate_records(cr, uid, ids, context)
+        self.pool['l10n.es.aeat.mod340.calculate_records']._calculate_records(
+            cr, uid, ids[0], context,
+        )
         return True
 
     def button_recalculate(self, cr, uid, ids, context=None):
-        calculate_obj = self. pool.get('l10n.es.aeat.mod340.calculate_records')
-        calculate_obj._calculate_records(cr, uid, ids, context)
+        self.pool['l10n.es.aeat.mod340.calculate_records']._calculate_records(
+            cr, uid, ids[0], context,
+        )
         return True
 
     # def _name_get(self, cr, uid, ids, field_name, arg, context=None):
@@ -85,7 +69,7 @@ class L10nEsAeatMod340Report(orm.Model):
         'summary_issued': fields.one2many(
             'l10n.es.aeat.mod340.tax_summary',
             'mod340_id', 'Summary Invoices Issued',
-            domain=[('type', '=', 'issued')],
+            domain=[('summary_type', '=', 'issued')],
             states={'done': [('readonly', True)]}),
         'received': fields.one2many('l10n.es.aeat.mod340.received',
                                     'mod340_id', 'Invoices Received',
@@ -94,7 +78,7 @@ class L10nEsAeatMod340Report(orm.Model):
             'l10n.es.aeat.mod340.tax_summary',
             'mod340_id',
             'Summary Invoices Received',
-            domain=[('type', '=', 'received')],
+            domain=[('summary_type', '=', 'received')],
             states={'done': [('readonly', True)]}),
         'investment': fields.one2many('l10n.es.aeat.mod340.investment',
                                       'mod340_id', 'Property Investment'),
@@ -253,20 +237,55 @@ class L10nEsAeatMod340TaxLineReceived(orm.Model):
     }
 
 
-class L10nEsAeatMod340TaxSummary(orm.Model):
+class L10nEsAeatMod340TaxSummary(models.Model):
     _name = 'l10n.es.aeat.mod340.tax_summary'
     _description = 'Mod340 vat tax summary'
 
-    _columns = {
-        'tax_code_id': fields.many2one(
-            'account.tax.code',
-            'Account Tax Code', required=True,
-            ondelete="cascade", select=1),
-        'sum_tax_amount': fields.float('Summary tax amount', digits=(13, 2)),
-        'sum_base_amount': fields.float('Summary base amount', digits=(13, 2)),
-        'tax_percent': fields.float('Tax percent', digits=(13, 2)),
-        'mod340_id': fields.many2one('l10n.es.aeat.mod340.report', 'Model 340',
-                                     ondelete="cascade"),
-        'type': fields.selection([('issued', 'issued'), ('received',
-                                                         'Received')])
-    }
+    tax_code_id = new_fields.Many2one(
+        comodel_name='account.tax.code', string='Account Tax Code',
+        required=True, ondelete="cascade", index=1,
+    )
+    sum_tax_amount = new_fields.Float(
+        string='Summary tax amount', digits=(13, 2),
+    )
+    sum_base_amount = new_fields.Float(
+        string='Summary base amount', digits=(13, 2),
+    )
+    tax_percent = new_fields.Float('Tax percent', digits=(13, 2))
+    mod340_id = new_fields.Many2one(
+        comodel_name='l10n.es.aeat.mod340.report', string='Model 340',
+        ondelete="cascade",
+    )
+    issue_ids = new_fields.Many2many(
+        comodel_name='l10n.es.aeat.mod340.issued', id1='mod340_id',
+        id2='issue_id', rel='l10n_es_aeat_mod340_summary_issue_rel',
+    )
+    received_ids = new_fields.Many2many(
+        comodel_name='l10n.es.aeat.mod340.received', id1='mod340_id',
+        id2='received_id', rel='l10n_es_aeat_mod340_summary_received_rel',
+    )
+    summary_type = new_fields.Selection(
+        selection=[
+            ('issued', 'Issued'),
+            ('received', 'Received')
+        ], oldname='type',
+    )
+
+    @api.multi
+    def show_records(self):
+        self.ensure_one()
+        res = {
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'tree,form',
+            'target': 'current',
+        }
+        if self.summary_type == 'issued':
+            res['name'] = _('Issued invoices')
+            res['res_model'] = 'l10n.es.aeat.mod340.issued'
+            res['domain'] = [('id', 'in', self.issue_ids.ids)]
+        elif self.summary_type == 'received':
+            res['name'] = _('Received invoices')
+            res['res_model'] = 'l10n.es.aeat.mod340.received'
+            res['domain'] = [('id', 'in', self.received_ids.ids)]
+        return res

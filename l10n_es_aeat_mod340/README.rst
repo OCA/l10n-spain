@@ -77,7 +77,7 @@ Contribuidores
 * Ting
 * NaN Projectes de Programari Lliure, S.L.
 * OpenMind Systems
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 
 Maintainer
 ----------

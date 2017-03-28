@@ -62,6 +62,18 @@
 
         <!--Invoice Issued-->
 
+        <record id="view_l10n_es_aeat_mod340_invoice_issued_search" model="ir.ui.view">
+            <field name="model">l10n.es.aeat.mod340.issued</field>
+            <field name="arch" type="xml">
+                <search>
+                    <group string="Group by">
+                        <filter string="Date" domain="[]" context="{'group_by': 'date_invoice'}"/>
+                        <filter string="Partner" domain="[]" context="{'group_by': 'partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
         <record id="view_l10n_es_aeat_mod340_invoice_issued_tree" model="ir.ui.view">
             <field name="name">l10n.es.aeat.mod340.issued.tree</field>
             <field name="model">l10n.es.aeat.mod340.issued</field>
@@ -89,28 +101,38 @@
             <field name="model">l10n.es.aeat.mod340.issued</field>
             <field name="arch" type="xml">
                 <form string="Issued invoices">
-                    <field name="invoice_id"/>
-                    <newline/>
-                    <field name="partner_id"/>
-                    <field name="partner_vat"/>
-                    <field name="vat_type"/>                    
-                    <field name="representative_vat"/>
-                    <field name="partner_country_code"/>
-                    <newline/>
-                    <field name="key_operation"/>
-                    <field name="base_tax" />
-                    <field name="amount_tax" />
-                    <field name="rec_amount_tax" />
-                    <newline/>
-                    <field name="total"/>
-                    <field name="txt_exception" />
-                    <newline />
-                    <field name="tax_line_ids" />
+                    <group>
+                        <field name="invoice_id"/>
+                        <field name="partner_id"/>
+                        <field name="partner_vat"/>
+                        <field name="vat_type"/>
+                        <field name="representative_vat"/>
+                        <field name="partner_country_code"/>
+                        <field name="key_operation"/>
+                        <field name="base_tax" />
+                        <field name="amount_tax" />
+                        <field name="rec_amount_tax" />
+                        <field name="total"/>
+                        <field name="txt_exception" />
+                        <field name="tax_line_ids" />
+                    </group>
                 </form>
             </field>
         </record>
 
         <!--Invoice Received-->
+
+        <record id="view_l10n_es_aeat_mod340_invoice_received_search" model="ir.ui.view">
+            <field name="model">l10n.es.aeat.mod340.received</field>
+            <field name="arch" type="xml">
+                <search>
+                    <group string="Group by">
+                        <filter string="Date" domain="[]" context="{'group_by': 'date_invoice'}"/>
+                        <filter string="Partner" domain="[]" context="{'group_by': 'partner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
 
         <record id="view_l10n_es_aeat_mod340_invoice_received_tree" model="ir.ui.view">
             <field name="name">l10n.es.aeat.mod340.received.tree</field>
@@ -142,26 +164,23 @@
             <field name="model">l10n.es.aeat.mod340.received</field>
             <field name="arch" type="xml">
                 <form string="Received invoices">
-                    <field name="invoice_id"/>
-                    <newline/>
-                    <field name="partner_id"/>
-                    <field name="partner_vat"/>
-                    <field name="vat_type"/>                                        
-                    <field name="representative_vat"/>
-                    <field name="partner_country_code"/>
-                    <newline/>
-                    <field name="key_operation"/>                    
-                    <field name="base_tax"/>
-                    <field name="amount_tax"/>
-                    <newline/>
-                    <field name="date_payment"/>
-                    <field name="payment_amount"/>
-                    <field name="name_payment_method"/>
-                    <newline/>
-                    <field name="total"/>
-                    <field name="exception" />
-                    <newline />
-                    <field name="tax_line_ids" />
+                    <group>
+                        <field name="invoice_id"/>
+                        <field name="partner_id"/>
+                        <field name="partner_vat"/>
+                        <field name="vat_type"/>
+                        <field name="representative_vat"/>
+                        <field name="partner_country_code"/>
+                        <field name="key_operation"/>
+                        <field name="base_tax"/>
+                        <field name="amount_tax"/>
+                        <field name="date_payment"/>
+                        <field name="payment_amount"/>
+                        <field name="name_payment_method"/>
+                        <field name="total"/>
+                        <field name="exception" />
+                        <field name="tax_line_ids" />
+                    </group>
                 </form>
             </field>
         </record>
@@ -208,6 +227,10 @@
                     <field name="sum_base_amount"/>
                     <field name="sum_tax_amount"/>
                     <field name="tax_percent"/>
+                    <button name="show_records"
+                            type="object"
+                            icon="gtk-find"
+                    />
                 </tree>
             </field>
         </record>
