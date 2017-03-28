@@ -96,6 +96,13 @@ class BetterZipGeonamesImport(models.TransientModel):
         if country.code == 'ES':
             # Replace state code
             row[code_row_index] = STATES_REPLACE_LIST[row[code_row_index]]
+
+        # Some country codes have more than 3 characters and the first three
+        # are the same. So, would only be loaded the first. Here we use the
+        # two last characters to differentiate them.
+        if country.code == 'GB' and row[code_row_index][:2] == 'E1':
+            row[code_row_index] = 'E{}'.format(row[code_row_index][-2:])
+
         return super(BetterZipGeonamesImport, self).select_or_create_state(
             row, country, code_row_index=code_row_index,
             name_row_index=name_row_index)
