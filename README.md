@@ -34,6 +34,7 @@ addon | version | summary
 [l10n_es_partner](l10n_es_partner/) | 10.0.1.0.0 | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_toponyms](l10n_es_toponyms/) | 10.0.1.0.0 | Topónimos españoles
 
+
 Unported addons
 ---------------
 addon | version | summary
