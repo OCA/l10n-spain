@@ -305,7 +305,8 @@ class AccountBankStatementImport(models.TransientModel):
                                      for x in line['conceptos'][concept_line]
                                      if x.strip())
                 vals_line = {
-                    'date': fields.Date.to_string(line[self.journal_id.date_type]),
+                    'date': fields.Date.to_string(
+                        line[self.journal_id.date_type]),
                     'name': ' '.join(conceptos),
                     'ref': self._get_ref(line),
                     'amount': line['importe'],
@@ -320,10 +321,10 @@ class AccountBankStatementImport(models.TransientModel):
         vals_bank_statement = {
             'transactions': transactions,
             'balance_start': n43 and n43[0]['saldo_ini'] or 0.0,
-            'balance_end_real': n43 and n43[-1]['saldo_fin'] or 0.0,}
+            'balance_end_real': n43 and n43[-1]['saldo_fin'] or 0.0, }
         str_currency = self.journal_id.currency and \
-                       self.journal_id.currency.name or \
-                       self.journal_id.company_id.currency_id.name
+            self.journal_id.currency.name or \
+            self.journal_id.company_id.currency_id.name
         return str_currency, False, [vals_bank_statement]
 
     @api.model
