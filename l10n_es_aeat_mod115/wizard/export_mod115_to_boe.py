@@ -33,6 +33,38 @@ class L10nEsAeatMod115ExportToBoe(models.TransientModel):
         res += self._formatString('<T', 2)
         # Modelo: Constante "115"
         res += self._formatString('115', 3)
+        # Página: Constante "0"
+        res += self._formatString('0', 1)
+        # Num Identificación. Ejercicio
+        res += self._formatString(
+            fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
+        # Identificación. Periodo: "01" ... "12" o "1T" … "4T"
+        res += self._formatString(report.period_type, 2)
+        # Fin de identificador de modelo: Constante ">"
+        res += self._formatString('0000>', 5)
+        # Constante "<AUX>"
+        res += self._formatString('<AUX>', 5)
+        # Reservado para la Administracion. Rellenar con blancos
+        res += self._formatString('', 70)
+        # Versi0n del Programa (Nota 1)
+        res += self._formatString('8.0', 4)
+        # Reservado para la Administracion. Rellenar con blancos
+        res += self._formatString('', 4)
+        # NIF Empresa Desarrollo (Nota 1)
+        res += self._formatString('ODOO', 9)
+        # Reservado para la Administracion. Rellenar con blancos
+        res += self._formatString('', 213)
+        # Constante "</AUX>"
+        res += self._formatString('</AUX>', 6)
+        return res
+
+    @api.multi
+    def _get_formatted_main_record(self, report):
+        res = ''
+        #  Inicio del identificador de modelo y página: Constante "<T"
+        res += self._formatString('<T', 2)
+        # Modelo: Constante "115"
+        res += self._formatString('115', 3)
         # Página: Constante "01"
         res += self._formatString('01', 2)
         # Fin de identificador de modelo: Constante ">"
@@ -53,11 +85,6 @@ class L10nEsAeatMod115ExportToBoe(models.TransientModel):
             fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
         # Identificación. Periodo: "01" ... "12" o "1T" … "4T"
         res += self._formatString(report.period_type, 2)
-        return res
-
-    @api.multi
-    def _get_formatted_main_record(self, report):
-        res = ''
         # Retenciones e ingresos a cuenta
         # N.º perceptores (15).
         res += self._formatNumber(report.casilla_01, 15)
@@ -73,11 +100,6 @@ class L10nEsAeatMod115ExportToBoe(models.TransientModel):
         # Retenciones e ingresos a cuenta
         # Resultado a ingresar (17).
         res += self._formatNumber(report.casilla_05, 15, dec_length=2)
-        return res
-
-    @api.multi
-    def _get_formatted_other_records(self, report):
-        res = ''
         # Declaración complementaria (1).
         res += self._formatString('X' if report.type == 'C' else ' ', 1)
         # Número de justificante de la declaración anterior (13).
@@ -91,4 +113,24 @@ class L10nEsAeatMod115ExportToBoe(models.TransientModel):
         res += self._formatString('', 13)
         # Indicador de fin de registro (12).
         res += self._formatString('</T11501000>', 12)
+
+        return res
+
+    @api.multi
+    def _get_formatted_other_records(self, report):
+        res = ''
+        #  Inicio del identificador de modelo y página: Constante "</T"
+        res += self._formatString('</T', 3)
+        # Modelo: Constante "115"
+        res += self._formatString('115', 3)
+        # Página: Constante "0"
+        res += self._formatString('0', 1)
+        # Num Identificación. Ejercicio
+        res += self._formatString(
+            fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
+        # Identificación. Periodo: "01" ... "12" o "1T" … "4T"
+        res += self._formatString(report.period_type, 2)
+        # Fin de identificador de modelo: Constante "0000>"
+        res += self._formatString('0000>', 5)
+        res += '\r\n'
         return res
