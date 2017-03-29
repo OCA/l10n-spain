@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-05-23 09:00+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-10-11 09:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Basque (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,12 +54,17 @@ msgstr ""
 #. module: l10n_es_toponyms
 #: field:config.es.toponyms,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Nork sortua"
 
 #. module: l10n_es_toponyms
 #: field:config.es.toponyms,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Created on"
+
+#. module: l10n_es_toponyms
+#: field:config.es.toponyms,display_name:0
+msgid "Display Name"
+msgstr "Izena erakutsi"
 
 #. module: l10n_es_toponyms
 #: view:config.es.toponyms:l10n_es_toponyms.view_confirm_toponyms_es_form
@@ -70,7 +75,7 @@ msgstr "Adibidez: Ofiziala (Girona), Gaztelaniaz (Gerona), Bietan (Gerona / Giro
 #. module: l10n_es_toponyms
 #: field:config.es.toponyms,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_toponyms
 #: model:ir.model,name:l10n_es_toponyms.model_better_zip_geonames_import
@@ -83,14 +88,19 @@ msgid "Install Modules"
 msgstr ""
 
 #. module: l10n_es_toponyms
+#: field:config.es.toponyms,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_es_toponyms
 #: field:config.es.toponyms,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Last Updated by"
 
 #. module: l10n_es_toponyms
 #: field:config.es.toponyms,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Last Updated on"
 
 #. module: l10n_es_toponyms
 #: field:config.es.toponyms,name:0

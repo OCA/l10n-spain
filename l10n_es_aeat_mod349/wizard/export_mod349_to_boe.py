@@ -26,7 +26,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, api, exceptions, _
+from openerp import api, fields, models, _
 
 
 class Mod349ExportToBoe(models.TransientModel):
@@ -97,11 +97,9 @@ class Mod349ExportToBoe(models.TransientModel):
             488-500     Sello electrónico
         """
         assert report, 'No Report defined'
-        period = (report.period_selection == 'MO' and report.month_selection or
-                  report.period_selection)
         text = super(Mod349ExportToBoe,
                      self)._get_formatted_declaration_record(report)
-        text += self._formatString(period, 2)  # Período
+        text += self._formatString(report.period_type, 2)  # Período
         # Número total de operadores intracomunitarios
         text += self._formatNumber(report.total_partner_records, 9)
         # Importe total de las operaciones intracomunitarias (parte entera)
@@ -160,13 +158,6 @@ class Mod349ExportToBoe(models.TransientModel):
         assert report, 'No AEAT 349 Report defined'
         assert partner_record, 'No Partner record defined'
         text = ''
-        try:
-            fiscal_year = int((report.fiscalyear_id.code or '')[:4])
-        except:
-            raise exceptions.Warning(
-                _('First four characters of fiscal year code must be numeric '
-                  'and contain the fiscal year number. Please, fix it and try '
-                  'again.'))
         # Formateo de algunos campos (debido a que pueden no ser correctos)
         # NIF : Se comprueba que no se incluya el código de pais
         company_vat = report.company_vat
@@ -174,7 +165,8 @@ class Mod349ExportToBoe(models.TransientModel):
             company_vat = report.company_vat[2:]
         text += '2'  # Tipo de registro
         text += '349'  # Modelo de declaración
-        text += self._formatNumber(fiscal_year, 4)  # Ejercicio
+        date_start = fields.Date.from_string(report.periods[:1].date_start)
+        text += self._formatNumber(date_start.year, 4)  # Ejercicio
         text += self._formatString(company_vat, 9)  # NIF del declarante
         text += 58 * ' '  # Blancos
         # NIF del operador intracomunitario
@@ -227,13 +219,10 @@ class Mod349ExportToBoe(models.TransientModel):
         assert report, 'No AEAT 349 Report defined'
         assert refund_record, 'No Refund record defined'
         text = ''
-        period = (refund_record.period_selection == 'MO' and
-                  refund_record.month_selection or
-                  refund_record.period_selection)
         text += '2'  # Tipo de registro
         text += '349'  # Modelo de declaración
-        # Ejercicio
-        text += self._formatNumber(report.fiscalyear_id.code[:4], 4)
+        date_start = fields.Date.from_string(report.periods[:1].date_start)
+        text += self._formatNumber(date_start.year, 4)  # Ejercicio
         text += self._formatString(report.company_vat, 9)  # NIF del declarante
         text += 58 * ' '   # Blancos
         # NIF del operador intracomunitario
@@ -244,9 +233,11 @@ class Mod349ExportToBoe(models.TransientModel):
         text += self._formatString(refund_record.operation_key, 1)
         text += 13 * ' '  # Blancos
         # Ejercicio (de la rectificación)
-        text += self._formatNumber(refund_record.fiscalyear_id.code[:4], 4)
+        date_start = fields.Date.from_string(
+            refund_record.fiscalyear_id.date_start)
+        text += self._formatNumber(date_start.year, 4)
         # Periodo (de la rectificación)
-        text += self._formatString(period, 2)
+        text += self._formatString(refund_record.period_type, 2)
         # Base imponible de la rectificación
         text += self._formatNumber(refund_record.total_operation_amount, 11, 2)
         # Base imponible declarada anteriormente

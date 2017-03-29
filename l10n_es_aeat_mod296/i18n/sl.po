@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 19:24+0000\n"
-"PO-Revision-Date: 2015-11-05 13:07+0000\n"
+"POT-Creation-Date: 2017-01-19 10:40+0000\n"
+"PO-Revision-Date: 2017-01-19 20:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -264,6 +264,16 @@ msgid "Account entry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,allow_posting:0
+msgid "Allow posting"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,partner_bank_id:0
+msgid "Bank account"
+msgstr "Bančni račun"
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,base_retenciones_ingresos:0
 msgid "Base retenciones e ingresos a cuenta"
 msgstr ""
@@ -330,6 +340,11 @@ msgstr ""
 #: field:l10n.es.aeat.mod296.report,company_id:0
 msgid "Company"
 msgstr "Družba"
+
+#. module: l10n_es_aeat_mod296
+#: help:l10n.es.aeat.mod296.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
 
 #. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.report,type:0
@@ -443,6 +458,13 @@ msgid "Direccion en el pais de residencia"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.export_to_boe,display_name:0
+#: field:l10n.es.aeat.mod296.report,display_name:0
+#: field:l10n.es.aeat.mod296.report.line,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,domicilio:0
 msgid "Domicilio"
 msgstr ""
@@ -527,7 +549,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report,journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Dnevnik"
 
 #. module: l10n_es_aeat_mod296
 #: help:l10n.es.aeat.mod296.report,journal_id:0
@@ -538,6 +560,13 @@ msgstr ""
 #: field:l10n.es.aeat.mod296.report,representative_vat:0
 msgid "L.R. VAT number"
 msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.mod296.report,__last_update:0
+#: field:l10n.es.aeat.mod296.report.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.export_to_boe,write_uid:0
@@ -579,6 +608,11 @@ msgid "Mod 296"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
+#: field:l10n.es.aeat.mod296.report,model:0
+msgid "Model"
+msgstr "Model"
+
+#. module: l10n_es_aeat_mod296
 #: model:ir.ui.menu,name:l10n_es_aeat_mod296.menu_aeat_mod296_report
 msgid "Modelo 296"
 msgstr ""
@@ -611,7 +645,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.report,type:0
 msgid "Normal"
-msgstr ""
+msgstr "Običajno"
 
 #. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.report.line,tipo_codigo:0
@@ -641,7 +675,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,partner_id:0
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,pendiente:0
@@ -671,7 +705,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report,contact_phone:0
 msgid "Phone"
-msgstr ""
+msgstr "Telefon"
 
 #. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.report,state:0
@@ -709,14 +743,14 @@ msgid "Renta en especie"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: field:l10n.es.aeat.mod296.report.line,retenciones_ingresos:0
-msgid "Retenciones e ingresos a cuenta"
+#: field:l10n.es.aeat.mod296.report,name:0
+msgid "Report identifier"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: field:l10n.es.aeat.mod296.report,sequence:0
-msgid "Sequence"
-msgstr "Zaporedje"
+#: field:l10n.es.aeat.mod296.report.line,retenciones_ingresos:0
+msgid "Retenciones e ingresos a cuenta"
+msgstr ""
 
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.export_to_boe,state:0
@@ -799,9 +833,4 @@ msgstr ""
 #. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.export_to_boe,state:0
 msgid "open"
-msgstr ""
-
-#. module: l10n_es_aeat_mod296
-#: view:l10n.es.aeat.mod296.report:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_form
-msgid "{'invisible': 1}"
-msgstr ""
+msgstr "odprtje"

@@ -1,0 +1,603 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_payment_order
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-24 02:59+0000\n"
+"PO-Revision-Date: 2016-12-27 08:26+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Basque (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/eu/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: eu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb34_add_date:0
+msgid "Add Date"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: help:payment.mode,csb58_include_address:0
+msgid "Add partner domicile records to the exported file (CSB 58)"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: view:payment.mode:l10n_es_payment_order.view_payment_mode_form_inherit
+msgid "Additional data for CSB 34 type of payment file."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: view:payment.mode:l10n_es_payment_order.view_payment_mode_form_inherit
+msgid "Additional data for promissory notes, checks, and certified payments."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb58_alt_address_format:0
+msgid "Alt. address format"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: help:payment.mode,csb58_alt_address_format:0
+msgid "Alternative domicile record format"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb32_assignor:0
+msgid "Assignor"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb34_barred:0
+msgid "Barred"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: help:payment.mode,csb34_direct_pay_order:0
+msgid "By default \"Not\""
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: view:payment.mode:l10n_es_payment_order.view_payment_mode_form_inherit
+msgid "CSB 19 Options"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: view:payment.mode:l10n_es_payment_order.view_payment_mode_form_inherit
+msgid "CSB 32 Options"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: view:payment.mode:l10n_es_payment_order.view_payment_mode_form_inherit
+msgid "CSB 34 Options"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: view:payment.mode:l10n_es_payment_order.view_payment_mode_form_inherit
+msgid "CSB 58 Options"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: view:banking.export.csb.wizard:l10n_es_payment_order.view_banking_export_csb_wizard_form
+msgid "CSB file generation"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: view:banking.export.csb.wizard:l10n_es_payment_order.view_banking_export_csb_wizard_form
+msgid "Cancel"
+msgstr "Ezeztatu"
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,csb34_send_type:0
+msgid "Certified Mail"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,csb34_type:0
+msgid "Certified Payments"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: help:payment.mode,csb34_payroll_check:0
+msgid ""
+"Check it if you want to add the 018 data type in the file (the vat of the "
+"recipient is added in the 018 data type)."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: help:payment.mode,csb34_add_date:0
+msgid ""
+"Check it if you want to add the 910 data type in the file to include the "
+"payment date."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: help:payment.mode,csb19_extra_concepts:0
+msgid ""
+"Check it if you want to add the invoice lines to the extra concepts (Max. 15"
+" lines)"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,csb34_type:0
+msgid "Cheques"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb34_cost_key:0
+msgid "Concept of the Order"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb34_concept:0
+msgid "Concepto of the order"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/csb34.py:154
+#: code:addons/l10n_es_payment_order/wizard/csb34.py:356
+#, python-format
+msgid ""
+"Configuration error:\n"
+"\n"
+"A line in \"%s\" is not 72 characters long:\n"
+"%s"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/csb32.py:68
+#: code:addons/l10n_es_payment_order/wizard/csb32.py:97
+#: code:addons/l10n_es_payment_order/wizard/csb32.py:132
+#: code:addons/l10n_es_payment_order/wizard/csb32.py:166
+#: code:addons/l10n_es_payment_order/wizard/csb32.py:197
+#: code:addons/l10n_es_payment_order/wizard/csb32.py:228
+#: code:addons/l10n_es_payment_order/wizard/csb32.py:257
+#, python-format
+msgid ""
+"Configuration error:\n"
+"\n"
+"The line \"%s\" is not 150 characters long:\n"
+"%s"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/csb19.py:75
+#: code:addons/l10n_es_payment_order/wizard/csb19.py:115
+#: code:addons/l10n_es_payment_order/wizard/csb19.py:145
+#: code:addons/l10n_es_payment_order/wizard/csb19.py:163
+#: code:addons/l10n_es_payment_order/wizard/csb19.py:204
+#: code:addons/l10n_es_payment_order/wizard/csb19.py:216
+#: code:addons/l10n_es_payment_order/wizard/csb19.py:238
+#: code:addons/l10n_es_payment_order/wizard/csb19.py:270
+#: code:addons/l10n_es_payment_order/wizard/csb58.py:72
+#: code:addons/l10n_es_payment_order/wizard/csb58.py:96
+#: code:addons/l10n_es_payment_order/wizard/csb58.py:135
+#: code:addons/l10n_es_payment_order/wizard/csb58.py:150
+#: code:addons/l10n_es_payment_order/wizard/csb58.py:280
+#: code:addons/l10n_es_payment_order/wizard/csb58.py:298
+#: code:addons/l10n_es_payment_order/wizard/csb58.py:318
+#, python-format
+msgid ""
+"Configuration error:\n"
+"\n"
+"The line \"%s\" is not 162 characters long:\n"
+"%s"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/csb34.py:167
+#: code:addons/l10n_es_payment_order/wizard/csb34.py:374
+#: code:addons/l10n_es_payment_order/wizard/csb34.py:392
+#, python-format
+msgid ""
+"Configuration error:\n"
+"\n"
+"The line \"%s\" is not 72 characters long:\n"
+"%s"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: selection:banking.export.csb.wizard,state:0
+msgid "Create"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,create_uid:0
+msgid "Created by"
+msgstr "Nork sortua"
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb34_direct_pay_order:0
+msgid "Direct Pay Order"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,display_name:0
+msgid "Display Name"
+msgstr "Izena erakutsi"
+
+#. module: l10n_es_payment_order
+#: help:payment.mode,csb34_text1:0 help:payment.mode,csb34_text2:0
+#: help:payment.mode,csb34_text3:0
+msgid ""
+"Enter text and/or select a field of the invoice to include as a description "
+"in the letter. The possible values ​​are: ${amount}, ${communication}, "
+"{communication2}, {date}, {ml_maturity_date}, {create_date}, "
+"{ml_date_created}"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/converter.py:76
+#, python-format
+msgid ""
+"Error:\n"
+"\n"
+"Can not convert float number %(number).2f to fit in %(size)d characters."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/converter.py:86
+#, python-format
+msgid ""
+"Error:\n"
+"\n"
+"Can not convert integer number %(number)d to fit in %(size)d characters."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,csb34_cost_key:0
+msgid "Expense of the Payer"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,csb34_cost_key:0
+msgid "Expense of the Recipient"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: model:ir.model,name:l10n_es_payment_order.model_banking_export_csb_wizard
+msgid "Export CSB File"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb19_extra_concepts:0
+msgid "Extra Concepts"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,file:0
+msgid "File"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,filename:0
+msgid "Filename"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: selection:banking.export.csb.wizard,state:0
+msgid "Finish"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: view:banking.export.csb.wizard:l10n_es_payment_order.view_banking_export_csb_wizard_form
+msgid "Generate"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb58_ine:0
+msgid "INE code"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: help:payment.mode,csb_require_bank_account:0
+msgid ""
+"If your bank allows you to send orders without the bank account info, you "
+"may disable this option"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb58_include_address:0
+msgid "Include address"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,is_csb19:0
+msgid "Is csb19"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,is_csb32:0
+msgid "Is csb32"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,is_csb34:0
+msgid "Is csb34"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,is_csb3401:0
+msgid "Is csb3401"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,is_csb58:0
+msgid "Is csb58"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,join:0
+msgid "Join payment lines of the same partner and bank account"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb34_text1:0
+msgid "Line 1"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb34_text2:0
+msgid "Line 2"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb34_text3:0
+msgid "Line 3"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,note:0
+msgid "Log"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb34_not_to_the_order:0
+msgid "Not to the Order"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: view:payment.mode:l10n_es_payment_order.view_payment_mode_form_inherit
+msgid ""
+"Optional Text for the Letter (adds 101, 102, 103, data types in the file)"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,csb34_send_type:0
+msgid "Ordinary Mail"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,csb34_concept:0
+#: selection:payment.mode,csb34_send_type:0
+msgid "Other"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: model:ir.model,name:l10n_es_payment_order.model_payment_mode
+msgid "Payment Mode"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,payment_order_ids:0
+msgid "Payment order ids"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,csb34_concept:0
+msgid "Payroll"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb34_payroll_check:0
+msgid "Payroll Check"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,csb34_concept:0
+msgid "Pension"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,csb34_type:0
+msgid "Promissory Note"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb_require_bank_account:0
+msgid "Require bank account"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb34_send_type:0
+msgid "Send type"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:banking.export.csb.wizard,state:0
+msgid "State"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb_suffix:0
+msgid "Suffix"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: help:payment.mode,csb34_send_type:0
+msgid "The sending type of the payment file"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: selection:payment.mode,csb34_type:0
+msgid "Transfer"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: field:payment.mode,csb34_type:0
+msgid "Type of CSB 34 payment"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/csb3401.py:117
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"Company %s has no invoicing address."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/csb34.py:138
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"Company %s has no invoicing or default address."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/csb3401.py:143
+#: code:addons/l10n_es_payment_order/wizard/csb3401.py:165
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"Company %s has no vat."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/csb19.py:100
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"Fixed date of charge has not been defined."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/csb34.py:188
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"Partner %s has no invoicing or default address."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/converter.py:109
+#: code:addons/l10n_es_payment_order/wizard/converter.py:119
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"The bank account number of %s does not have 20 digits."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/converter.py:105
+#: code:addons/l10n_es_payment_order/wizard/converter.py:115
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"The bank account number of %s is not defined."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:112
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"The bank account number of the company %s has not 20 digits."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:131
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"The bank account number of the customer %s has not 20 digits."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:124
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"The bank account number of the customer %s is not defined and current payment mode enforces all lines to have a bank account."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:107
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"The bank account of the company %s is not defined."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:149
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"The company VAT number related to the bank account of the payment mode is not defined."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:98
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"The payment mode is not CSB 19, CSB 32, CSB 34 or CSB 58"
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: code:addons/l10n_es_payment_order/wizard/export_csb.py:143
+#, python-format
+msgid ""
+"User error:\n"
+"\n"
+"Wizard can not generate export file, there are not payment lines."
+msgstr ""
+
+#. module: l10n_es_payment_order
+#: view:banking.export.csb.wizard:l10n_es_payment_order.view_banking_export_csb_wizard_form
+msgid "Validate"
+msgstr ""

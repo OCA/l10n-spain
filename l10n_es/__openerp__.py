@@ -1,37 +1,15 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2008-2010 Zikzakmedia S.L. (http://zikzakmedia.com)
-#                            Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2012-2013, Grupo OPENTIA (<http://opentia.com>)
-#                            Dpto. Consultoría <consultoria@opentia.es>
-#    Copyright (c) 2013-2015 Serv. Tecnol. Av. (http://www.serviciosbaeza.com)
-#                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-#    Copyright (c) 2015 FactorLibre (www.factorlibre.com)
-#                       Carlos Liébana <carlos.liebana@factorlibre.com>
-#                       Hugo Santos <hugo.santos@factorlibre.com>
-#    Copyright (c) 2015 GAFIC consultores (www.gafic.com)
-#                       Albert Cabedo <albert@gafic.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2008-2010 Jordi Esteve <jesteve@zikzakmedia.com>
+# Copyright 2012-2013, Dpto. Consultoría <consultoria@opentia.es>
+# Copyright 2013-2015 Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+# Copyright 2015 Carlos Liébana <carlos.liebana@factorlibre.com>
+# Copyright 2015 Hugo Santos <hugo.santos@factorlibre.com>
+# Copyright 2015 Albert Cabedo <albert@gafic.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Spanish Charts of Accounts (PGCE 2008)",
-    "version": "8.0.5.3.0",
+    "version": "8.0.5.4.0",
     "author": "Spanish Localization Team,"
               # "Zikzakmedia S.L.,"
               # "Grupo Opentia,"

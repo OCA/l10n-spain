@@ -123,7 +123,7 @@
                     <field name="partner_id"/>
                     <field name="total_operation_amount"/>
                     <field name="total_origin_amount"/>
-                    <field name="period_selection"/>
+                    <field name="period_type"/>
                     <field name="fiscalyear_id"/>
                 </tree>
             </field>
@@ -147,9 +147,7 @@
                             </group>
                             <group string="Refund data" colspan="4">
                                 <field name="fiscalyear_id"/>
-                                <field name="period_selection"/>
-                                <field name="month_selection"
-                                       attrs="{'required': [('period_selection', '==', 'MO')], 'invisible': [('period_selection', '!=', 'MO')]}"/>
+                                <field name="period_type"/>
                             </group>
                         </page>
                         <page string="Details">
@@ -173,8 +171,6 @@
                     <attribute name="string">AEAT 349 reports</attribute>=
                 </tree>
                 <field name="fiscalyear_id" position="after">
-                    <field name="period_selection"/>
-                    <field name="month_selection"/>
                     <field name="total_partner_records"/>
                     <field name="total_partner_records_amount"/>
                     <field name="total_partner_refunds"/>
@@ -192,13 +188,11 @@
                 <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
                     <attribute name="name">%(action_wizard_aeat_mod349_export)d</attribute>
                 </button>
-                <field name="fiscalyear_id" position="after">
-                    <field name="period_selection" on_change="onchange_period_selection(period_selection, fiscalyear_id)"/>
-                    <field name="period_ids"
-                            attrs="{'required': [('period_selection', 'in', ['1T','2T','3T','4T'])], 'invisible':[('period_selection', 'not in', ['1T','2T','3T','4T'])]}"
-                            domain="[('fiscalyear_id','=',fiscalyear_id)]"/>
-                    <field name="month_selection"
-                            attrs="{'required': [('period_selection','==','MO')], 'invisible': [('period_selection','!=','MO')]}"/>
+                <field name="period_type" position="replace">
+                    <group colspan="2" col="4">
+                        <field name="period_type"/>
+                        <field name="calculate_date"/>
+                    </group>
                 </field>
                 <group string="Declaración" position="after">
                     <notebook colspan="4">

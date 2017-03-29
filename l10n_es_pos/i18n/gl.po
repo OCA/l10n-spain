@@ -3,13 +3,14 @@
 # * l10n_es_pos
 # 
 # Translators:
+# César Castro Cruz <ulmroan@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-25 13:20+0000\n"
-"PO-Revision-Date: 2015-09-25 13:23+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2016-08-27 18:55+0000\n"
+"PO-Revision-Date: 2016-09-05 12:41+0000\n"
+"Last-Translator: César Castro Cruz <ulmroan@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,14 +24,14 @@ msgstr ""
 #: view:website:point_of_sale.report_receipt
 #, python-format
 msgid "Address:"
-msgstr ""
+msgstr "Enderezo:"
 
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/js/main.js:99
 #, python-format
 msgid "An anonymous order cannot be invoiced"
-msgstr ""
+msgstr "Unha orde anónima non pode ser facturada"
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -38,7 +39,7 @@ msgstr ""
 #: view:website:point_of_sale.report_receipt
 #, python-format
 msgid "Customer data"
-msgstr ""
+msgstr "Datos do cliente"
 
 #. module: l10n_es_pos
 #: view:website:point_of_sale.report_receipt
@@ -48,7 +49,7 @@ msgstr "Factura"
 #. module: l10n_es_pos
 #: view:pos.order:l10n_es_pos.view_pos_order_filter
 msgid "Invoices"
-msgstr ""
+msgstr "Facturas"
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -56,7 +57,7 @@ msgstr ""
 #: view:website:point_of_sale.report_receipt
 #, python-format
 msgid "Name:"
-msgstr ""
+msgstr "Nome:"
 
 #. module: l10n_es_pos
 #: help:pos.config,simplified_invoice_limit:0
@@ -75,7 +76,7 @@ msgstr ""
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_pos_order
 msgid "Point of Sale"
-msgstr ""
+msgstr "Punto de venda"
 
 #. module: l10n_es_pos
 #: view:pos.order:l10n_es_pos.view_pos_order_filter
@@ -90,7 +91,7 @@ msgstr ""
 #. module: l10n_es_pos
 #: field:pos.order,simplified:0 view:website:point_of_sale.report_receipt
 msgid "Simplified invoice"
-msgstr ""
+msgstr "Factura simplifiada"
 
 #. module: l10n_es_pos
 #: field:pos.config,simplified_invoice_limit:0
@@ -100,7 +101,7 @@ msgstr ""
 #. module: l10n_es_pos
 #: view:pos.order:l10n_es_pos.view_pos_order_filter
 msgid "Simplified invoices"
-msgstr ""
+msgstr "Facturas simplificadas"
 
 #. module: l10n_es_pos
 #. openerp-web

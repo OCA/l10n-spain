@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 # (c) 2015 Antiun Ingeniería S.L. - Pedro M. Baeza
 # (c) 2015 AvanzOSC - Ainara Galdona
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 {
     "name": "AEAT - Prorrata de IVA",
     "version": "8.0.2.0.0",
     "license": "AGPL-3",
     "author": "AvanzOSC, "
-              "Antiun Ingeniería S.L., "
-              "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Tecnativa, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting",

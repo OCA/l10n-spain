@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 19:24+0000\n"
-"PO-Revision-Date: 2015-11-04 16:44+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -50,6 +50,16 @@ msgid "Account move lines for bases"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,allow_posting:0
+msgid "Allow posting"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,partner_bank_id:0
+msgid "Bank account"
+msgstr "Conta bancaria"
+
+#. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,calculation_date:0
 msgid "Calculation date"
 msgstr "Data de cálculo"
@@ -63,6 +73,11 @@ msgstr "Cancelada"
 #: field:l10n.es.aeat.mod216.report,company_id:0
 msgid "Company"
 msgstr "Compañía"
+
+#. module: l10n_es_aeat_mod216
+#: help:l10n.es.aeat.mod216.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,type:0
@@ -115,6 +130,12 @@ msgstr "Declaración AEAT 216"
 #: field:l10n.es.aeat.mod216.report,number:0
 msgid "Declaration number"
 msgstr "Nº declaración"
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.export_to_boe,display_name:0
+#: field:l10n.es.aeat.mod216.report,display_name:0
+msgid "Display Name"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
@@ -203,6 +224,12 @@ msgid "L.R. VAT number"
 msgstr "NIF repr. legal"
 
 #. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.mod216.report,__last_update:0
+msgid "Last Modified on"
+msgstr "Modificado por última vez o"
+
+#. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod216.report,write_uid:0
 msgid "Last Updated by"
@@ -230,6 +257,11 @@ msgid ""
 "Liquidación - Casilla [06] A deducir (exclusivamente en caso de "
 "complementaria): Resultados a ingresar de anteriores declaraciones por el "
 "mismo concepto, ejercicio y período"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: help:l10n.es.aeat.mod216.report,casilla_07:0
+msgid "Liquidación - Casilla [07] Resultado a ingresar ([03] - [06])"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
@@ -265,6 +297,11 @@ msgstr ""
 msgid ""
 "Liquidación - Rentas sometidas a retención/ingreso a cuenta - Casilla [03] "
 "Retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,model:0
+msgid "Model"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
@@ -338,14 +375,14 @@ msgid "Rentas sometidas a retención"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
 #: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
 msgid "Resultado"
 msgstr "Resultado"
-
-#. module: l10n_es_aeat_mod216
-#: field:l10n.es.aeat.mod216.report,sequence:0
-msgid "Sequence"
-msgstr "Secuencia"
 
 #. module: l10n_es_aeat_mod216
 #: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
@@ -436,6 +473,11 @@ msgid "[06] Resultados a ingresar anteriores"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,casilla_07:0
+msgid "[07] Resultado a ingresar"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.export_to_boe,state:0
 msgid "get"
 msgstr "obter"
@@ -444,8 +486,3 @@ msgstr "obter"
 #: selection:l10n.es.aeat.mod216.export_to_boe,state:0
 msgid "open"
 msgstr "aberto"
-
-#. module: l10n_es_aeat_mod216
-#: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
-msgid "{'invisible': 1}"
-msgstr ""

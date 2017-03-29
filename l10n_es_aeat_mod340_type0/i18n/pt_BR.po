@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_aeat_mod340_type0
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-22 09:41+0000\n"
+"PO-Revision-Date: 2016-12-21 18:35+0000\n"
+"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/pt_BR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: l10n_es_aeat_mod340_type0
+#: help:l10n.es.aeat.mod340.report,presenter_address_acronym:0
+msgid "Acronyms of the type of public roadway, example St."
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340_type0.view_account_mod340_form_type0
+msgid "Address"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: field:l10n.es.aeat.mod340.report,presenter_address_acronym:0
+msgid "Address Acronym"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: field:l10n.es.aeat.mod340.report,presenter_address_door:0
+msgid "Door"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: model:ir.model,name:l10n_es_aeat_mod340_type0.model_l10n_es_aeat_mod340_export_to_boe
+msgid "Export Report to BOE Format"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: field:l10n.es.aeat.mod340.report,presenter_address_floor:0
+msgid "Floor"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: field:l10n.es.aeat.mod340.report,presenter_city_id:0
+msgid "Location"
+msgstr "Location"
+
+#. module: l10n_es_aeat_mod340_type0
+#: model:ir.model,name:l10n_es_aeat_mod340_type0.model_l10n_es_aeat_mod340_report
+msgid "Model 340"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: field:l10n.es.aeat.mod340.report,presenter_name:0
+msgid "Name And Surname"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: field:l10n.es.aeat.mod340.report,presenter_name_contact:0
+msgid "Name And Surname Contact"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: field:l10n.es.aeat.mod340.report,presenter_address_number:0
+msgid "Number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: field:l10n.es.aeat.mod340.report,presenter_phone_contact:0
+msgid "Phone Contact"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340_type0.view_account_mod340_form_type0
+msgid "Presenter"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: field:l10n.es.aeat.mod340.report,presenter_address_stair:0
+msgid "Stair"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: field:l10n.es.aeat.mod340.report,presenter_address_name:0
+msgid "Street Name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: code:addons/l10n_es_aeat_mod340_type0/wizard/export_mod340_to_boe.py:111
+#, python-format
+msgid "The type 0 record must be 500 characters long"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340_type0.view_account_mod340_form_type0
+msgid ""
+"This information is only for the company that have to present registry type "
+"0. For the moment, only in Comunidad Foral de Navarra"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: help:l10n.es.aeat.mod340.report,presenter_city_id:0
+msgid "Use the name or the zip to search the location"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340_type0
+#: field:l10n.es.aeat.mod340.report,presenter_vat:0
+msgid "VAT number"
+msgstr ""

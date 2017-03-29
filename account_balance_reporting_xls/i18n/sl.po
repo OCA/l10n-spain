@@ -3,13 +3,13 @@
 # * account_balance_reporting_xls
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 19:24+0000\n"
-"PO-Revision-Date: 2015-11-05 13:12+0000\n"
+"POT-Creation-Date: 2016-04-30 22:58+0000\n"
+"PO-Revision-Date: 2016-05-02 04:19+0000\n"
 "Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -46,6 +46,14 @@ msgstr "Trenutna vrednost"
 #: view:account.balance.reporting.print.wizard:account_balance_reporting_xls.wizard_account_balance_reporting_xls_print
 msgid "Export"
 msgstr "Izvoz"
+
+#. module: account_balance_reporting_xls
+#: model:ir.model,name:account_balance_reporting_xls.model_account_balance_reporting
+msgid ""
+"It stores the configuration/header fields of an account balance report, and "
+"the linked lines of detail with the values of the accounting concepts "
+"(values generated from the selected template lines of detail formulas)"
+msgstr "Hrani polja nastavitev/glave za poročilo knjigovodske bilance in povezanih postavk podrobnosti z vrednostmi knjigovodskih konceptov (vrednosti ustvarjene iz postavk formul podrobnosti iz izbrane predloge)"
 
 #. module: account_balance_reporting_xls
 #: code:addons/account_balance_reporting_xls/report/reporting_xls.py:109

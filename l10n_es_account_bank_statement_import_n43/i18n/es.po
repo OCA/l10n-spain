@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
+"POT-Creation-Date: 2016-07-01 00:54+0000\n"
 "PO-Revision-Date: 2015-06-25 02:26+0000\n"
 "Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
@@ -20,28 +20,28 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:130
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:131
 #, python-format
 msgid ""
 "Credit amount doesn't match with the defined in the last record of account."
 msgstr "El importe del haber no cuadra con el definido en el último registro de la cuenta."
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:126
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:127
 #, python-format
 msgid ""
 "Debit amount doesn't match with the defined in the last record of account."
 msgstr "La cantidad del debe no cuadra con la definida en el último registro de la cuenta."
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:120
-#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:125
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:121
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:126
 #, python-format
 msgid "Error in C43 file"
 msgstr "Error en el archivo C43"
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:139
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:140
 #, python-format
 msgid ""
 "Final balance amount = (initial balance + credit - debit) doesn't match with"
@@ -54,7 +54,7 @@ msgid "Import Bank Statement"
 msgstr "Importar extracto bancario"
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:121
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:122
 #, python-format
 msgid ""
 "Number of credit records doesn't match with the defined in the last record "
@@ -62,7 +62,7 @@ msgid ""
 msgstr "El número de registros del haber no cuadra con lo definido en el último registro de la cuenta."
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:116
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:117
 #, python-format
 msgid ""
 "Number of debit records doesn't match with the defined in the last record of"
@@ -70,13 +70,13 @@ msgid ""
 msgstr "El número de registros del debe no cuadra con lo definido en el último registro de la cuenta."
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:150
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:154
 #, python-format
 msgid "Number of records doesn't match with the defined in the last record."
 msgstr "El número de registros no cuadra con lo definido en el último registro."
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:183
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:187
 #, python-format
 msgid "Record type %s is not valid."
 msgstr "El tipo de registro %s no es válido."

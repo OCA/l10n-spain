@@ -1,29 +1,12 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2008 Spanish Localization Team
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
-#                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2012-2014 Acysos S.L. (http://acysos.com)
-#                       Ignacio Ibeas <ignacio@acysos.com>
-#    $Id$
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-from openerp import models, fields, _
+# Copyright 2009 Jordi Esteve <jesteve@zikzakmedia.com>
+# Copyright 2012-2014 Ignacio Ibeas <ignacio@acysos.com>
+# Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2016 Carlos Dauden <carlos.dauden@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3).
+
+from openerp import _, api, fields, models
+from openerp.models import expression
 
 
 class ResPartnerBank(models.Model):
@@ -149,18 +132,60 @@ class ResPartner(models.Model):
 
     comercial = fields.Char('Trade name', size=128, select=True)
 
-    def name_search(self, cr, uid, name, args=None, operator='ilike',
-                    context=None, limit=100):
+    @api.model
+    def search(self, args, offset=0, limit=None, order=None, count=False):
+        """Include commercial name in direct name search."""
+        args = expression.normalize_domain(args)
+        for arg in args:
+            if isinstance(arg, (list, tuple)):
+                if arg[0] in ['name', 'display_name']:
+                    index = args.index(arg)
+                    args = (
+                        args[:index] + ['|', ('comercial', arg[1], arg[2])] +
+                        args[index:]
+                    )
+                    break
+        return super(ResPartner, self).search(
+            args, offset=offset, limit=limit, order=order, count=count,
+        )
+
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        """Give preference to commercial names on name search, appending
+        the rest of the results after. This has to be done this way, as
+        Odoo overwrites name_search on res.partner in a non inheritable way."""
         if not args:
             args = []
-        partners = super(ResPartner, self).name_search(cr, uid, name, args,
-                                                       operator, context,
-                                                       limit)
-        ids = [x[0] for x in partners]
-        if name and len(ids) == 0:
-            ids = self.search(cr, uid, [('comercial', operator, name)] + args,
-                              limit=limit, context=context)
-        return self.name_get(cr, uid, ids, context=context)
+        partners = self.search(
+            [('comercial', operator, name)] + args, limit=limit,
+        )
+        res = partners.name_get()
+        if limit:
+            limit_rest = limit - len(partners)
+        else:
+            # limit can be 0 or None representing infinite
+            limit_rest = limit
+        if limit_rest or not limit:
+            args += [('id', 'not in', partners.ids)]
+            res += super(ResPartner, self).name_search(
+                name, args=args, operator=operator, limit=limit_rest,
+            )
+        return res
+
+    @api.multi
+    def name_get(self):
+        result = []
+        name_pattern = self.env['ir.config_parameter'].get_param(
+            'l10n_es_partner.name_pattern', default='')
+        orig_name = dict(super(ResPartner, self).name_get())
+        for partner in self:
+            name = orig_name[partner.id]
+            comercial = partner.comercial
+            if comercial and name_pattern:
+                name = name_pattern % {'name': name,
+                                       'comercial_name': comercial}
+            result.append((partner.id, name))
+        return result
 
     def vat_change(self, cr, uid, ids, value, context=None):
         result = super(ResPartner, self).vat_change(cr, uid, ids, value,

@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #  OpenERP, Open Source Management Solution.
@@ -24,10 +24,18 @@ from openerp import fields, models, api, exceptions, _
 class L10nEsAeatMod111Report(models.Model):
 
     _description = 'AEAT 111 report'
-    _inherit = 'l10n.es.aeat.report'
+    _inherit = 'l10n.es.aeat.report.tax.mapping'
     _name = 'l10n.es.aeat.mod111.report'
 
+    def _get_export_conf(self):
+        try:
+            return self.env.ref(
+                'l10n_es_aeat_mod111.aeat_mod111_main_export_config').id
+        except ValueError:
+            return self.env['aeat.model.export.config']
+
     number = fields.Char(default='111')
+    export_config = fields.Many2one(default=_get_export_conf)
     casilla_01 = fields.Integer(
         string='[01] Nº de perceptores', readonly=True,
         states={'calculated': [('readonly', False)]},
@@ -204,7 +212,7 @@ class L10nEsAeatMod111Report(models.Model):
         'telemáticamente). A cumplimentar sólo en el caso de declaración '
         'complementaria.')
     currency_id = fields.Many2one(
-        comodel_name='res.currency', string='Moneda',
+        comodel_name='res.currency', string='Moneda', readonly=True,
         related='company_id.currency_id', store=True)
     tipo_declaracion = fields.Selection(
         [('I', 'Ingreso'), ('U', 'Domiciliación'),
@@ -218,6 +226,22 @@ class L10nEsAeatMod111Report(models.Model):
     colegio_concertado = fields.Boolean(
         string='Colegio concertado', readonly=True,
         states={'draft': [('readonly', False)]}, default=False)
+    move_lines_02 = fields.Many2many(
+        comodel_name='account.move.line',
+        relation='mod111_account_move_line02_rel',
+        column1='mod111', column2='account_move_line')
+    move_lines_03 = fields.Many2many(
+        comodel_name='account.move.line',
+        relation='mod111_account_move_line03_rel',
+        column1='mod111', column2='account_move_line')
+    move_lines_05 = fields.Many2many(
+        comodel_name='account.move.line',
+        relation='mod111_account_move_line05_rel',
+        column1='mod111', column2='account_move_line')
+    move_lines_06 = fields.Many2many(
+        comodel_name='account.move.line',
+        relation='mod111_account_move_line06_rel',
+        column1='mod111', column2='account_move_line')
     move_lines_08 = fields.Many2many(
         comodel_name='account.move.line',
         relation='mod111_account_move_line08_rel',
@@ -243,21 +267,49 @@ class L10nEsAeatMod111Report(models.Model):
         super(L10nEsAeatMod111Report, self).__init__(pool, cr)
 
     @api.multi
+    def _get_move_line_domain(self, codes, periods=None,
+                              include_children=True):
+        domain = super(L10nEsAeatMod111Report, self)._get_move_line_domain(
+            codes, periods=periods, include_children=include_children)
+        if self.env.context.get('no_partner'):
+            return filter(lambda line: line[0] != 'partner_id', domain)
+        return domain
+
+    @api.multi
     def calculate(self):
         self.ensure_one()
         # I. Rendimientos del trabajo
-        #    El usuario lo introduce a mano después de calcular
+        move_lines02 = self._get_tax_code_lines(
+            ['IRPATBI'], periods=self.periods)
+        move_lines03 = self._get_tax_code_lines(
+            ['IRPATC'], periods=self.periods)
+        move_lines05 = self._get_tax_code_lines(
+            ['IRPTBIE'], periods=self.periods)
+        move_lines06 = self._get_tax_code_lines(
+            ['IRPATCE'], periods=self.periods)
+        self.move_lines_02 = move_lines02.ids
+        self.move_lines_03 = move_lines03.ids
+        self.move_lines_05 = move_lines05.ids
+        self.move_lines_06 = move_lines06.ids
+        self.casilla_01 = len(
+            (move_lines02 + move_lines03).mapped('partner_id'))
+        self.casilla_02 = sum(move_lines02.mapped('tax_amount'))
+        self.casilla_03 = sum(move_lines03.mapped('tax_amount'))
+        self.casilla_04 = len(
+            (move_lines05 + move_lines06).mapped('partner_id'))
+        self.casilla_05 = sum(move_lines05.mapped('tax_amount'))
+        self.casilla_06 = sum(move_lines06.mapped('tax_amount'))
         # II. Rendimientos de actividades económicas
         move_lines08 = self._get_tax_code_lines(
-            ['IRPBI'], periods=self.periods)
+            ['IRPBIAE'], periods=self.periods)
         move_lines09 = self._get_tax_code_lines(
-            ['ITRPC'], periods=self.periods)
+            ['ITRPCAE'], periods=self.periods)
         self.move_lines_08 = move_lines08.ids
         self.move_lines_09 = move_lines09.ids
-        self.casilla_08 = sum([x.tax_amount for x in move_lines08])
-        self.casilla_09 = sum([x.tax_amount for x in move_lines09])
-        self.casilla_07 = len(set([x.partner_id for x in (move_lines08 +
-                                                          move_lines09)]))
+        self.casilla_08 = sum(move_lines08.mapped('tax_amount'))
+        self.casilla_09 = sum(move_lines09.mapped('tax_amount'))
+        self.casilla_07 = len(
+            (move_lines08 + move_lines09).mapped('partner_id'))
         # III. Premios por la participación en juegos, concursos,
         #      rifas o combinaciones aleatorias
         #      El usuario lo introduce a mano después de calcular
@@ -292,10 +344,21 @@ class L10nEsAeatMod111Report(models.Model):
             move_lines = self.move_lines_08.ids
         elif self.env.context.get('move_lines_09', False):
             move_lines = self.move_lines_09.ids
+        elif self.env.context.get('move_lines_02', False):
+            move_lines = self.move_lines_02.ids
+        elif self.env.context.get('move_lines_03', False):
+            move_lines = self.move_lines_03.ids
+        elif self.env.context.get('move_lines_05', False):
+            move_lines = self.move_lines_05.ids
+        elif self.env.context.get('move_lines_06', False):
+            move_lines = self.move_lines_06.ids
+        view_id = self.env.ref('l10n_es_aeat.view_move_line_tree')
         return {'type': 'ir.actions.act_window',
                 'name': _('Account Move Lines'),
                 'view_mode': 'tree,form',
                 'view_type': 'form',
+                'views': [(view_id.id, 'tree')],
+                'view_id': False,
                 'res_model': 'account.move.line',
                 'domain': [('id', 'in', move_lines)]
                 }

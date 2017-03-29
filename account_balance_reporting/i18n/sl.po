@@ -3,14 +3,14 @@
 # * account_balance_reporting
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 19:24+0000\n"
-"PO-Revision-Date: 2015-11-05 13:11+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"POT-Creation-Date: 2016-11-13 10:44+0000\n"
+"PO-Revision-Date: 2016-11-22 16:25+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,14 +19,46 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: account_balance_reporting
+#: model:ir.model,name:account_balance_reporting.model_account_account
+msgid "Account"
+msgstr ""
+
+#. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
 msgid "Account balance report"
 msgstr "Bilančno poročilo"
 
 #. module: account_balance_reporting
+#: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_line
+msgid ""
+"Account balance report line / Accounting concept. One line of detail of the "
+"balance report representing an accounting concept with its values. The "
+"accounting concepts follow a parent-children hierarchy. Its values (current "
+"and previous) are calculated based on the 'value' formula of the linked "
+"template line."
+msgstr "Postavka poročila knjigovodske bilance / knjigovodski koncept. Posamična vrstice bilančnega poročila, ki predstavlja knjigovodski koncept s pripadajočimi vrednostmi. Knjigovodski koncepti upoštevajo hierarhijo nadrejeni-podrejeni. Vrednosti (tekoče in prejšnje) se računajo na osnovi formule 'vrednosti' povezane postavke predloge."
+
+#. module: account_balance_reporting
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
 msgid "Account balance report template"
 msgstr "Predloga bilančnega poročila"
+
+#. module: account_balance_reporting
+#: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template_line
+msgid ""
+"Account balance report template line / Accounting concept template One line "
+"of detail of the balance report representing an accounting concept with the "
+"formulas to calculate its values. The accounting concepts follow a parent-"
+"children hierarchy."
+msgstr "Postavka poročila knjigovodske bilance / knjigovodski koncept. Posamična vrstice bilančnega poročila, ki predstavlja knjigovodski koncept s pripadajočimi vrednostmi. Knjigovodski koncepti upoštevajo hierarhijo nadrejeni-podrejeni."
+
+#. module: account_balance_reporting
+#: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template
+msgid ""
+"Account balance report template. It stores the header fields of an account "
+"balance report template, and the linked lines of detail with the formulas to"
+" calculate the accounting concepts of the report."
+msgstr "Predloga poročila knjigovodske bilance. Vsebuje polja glave predloge bilančnega poročila in povezane postavke podrobnosti s formulami za izračun knjigovodskih konceptov v poročilu."
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_tree
@@ -50,14 +82,12 @@ msgid "Balance mode"
 msgstr "Bilančni način"
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: view:website:account_balance_reporting.report_generic
 msgid "CODE"
 msgstr "KODA"
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: view:website:account_balance_reporting.report_generic
 msgid "CONCEPT"
 msgstr "KONCEPT"
 
@@ -66,6 +96,11 @@ msgstr "KONCEPT"
 #: field:account.balance.reporting.template.line,css_class:0
 msgid "CSS Class"
 msgstr "CSS razred"
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic
+msgid "CURRENT"
+msgstr ""
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
@@ -105,6 +140,11 @@ msgstr "Koda"
 #: field:account.balance.reporting,company_id:0
 msgid "Company"
 msgstr "Družba"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,check_filter:0
+msgid "Compute by"
+msgstr "Izračunaj po"
 
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template.line,code:0
@@ -155,6 +195,28 @@ msgid "Credit-Debit, reversed with brackets"
 msgstr "Dobro-Breme, obrnjeno z oklepaji"
 
 #. module: account_balance_reporting
+#: field:account.balance.reporting.line,current_move_line_count:0
+msgid "Current move line count"
+msgstr "Števec postavk trenutnih premikov"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,current_date_from:0
+#: field:account.balance.reporting,previous_date_from:0
+msgid "Date From"
+msgstr "Od datuma"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,current_date_to:0
+#: field:account.balance.reporting,previous_date_to:0
+msgid "Date To"
+msgstr "Do datuma"
+
+#. module: account_balance_reporting
+#: selection:account.balance.reporting,check_filter:0
+msgid "Dates"
+msgstr "Datumi"
+
+#. module: account_balance_reporting
 #: selection:account.balance.reporting.template,balance_mode:0
 msgid "Debit-Credit"
 msgstr "Breme-Dobro"
@@ -180,6 +242,19 @@ msgstr "Opis"
 #: field:account.balance.reporting.print.wizard,report_xml_id:0
 msgid "Design"
 msgstr "Oblikovanje"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,display_name:0
+#: field:account.balance.reporting.print.wizard,display_name:0
+#: field:account.balance.reporting.template,display_name:0
+#: field:account.balance.reporting.template.line,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: account_balance_reporting
+#: field:account.account,not_level_expand:0
+msgid "Don't show this account on financial reports level detail"
+msgstr ""
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
@@ -240,13 +315,12 @@ msgstr "Obdobja za fiskalno leto 2"
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template,balance_mode:0
 msgid ""
-"Formula calculation mode: Depending on it, the balance is calculated as\n"
-"    follows:\n"
-"      Mode 0: debit-credit (default);\n"
-"      Mode 1: debit-credit, credit-debit for accounts in brackets;\n"
-"      Mode 2: credit-debit;\n"
-"      Mode 3: credit-debit, debit-credit for accounts in brackets."
-msgstr "Način izračuna formule: osnova, po kateri se izračuna bilanca, kot\n    sledi:\n      Način 0: breme-dobro (privzeto);\n      Način 1:  breme-dobro, dobro-breme za konte v oklepajih;\n      Način 2: dobro-breme;\n      Način 3: dobro-breme, breme-dobro za konte v oklepajih."
+"Formula calculation mode: Depending on it, the balance is calculated as follows:\n"
+"Mode 0: debit-credit (default);\n"
+"Mode 1: debit-credit, credit-debit for accounts in brackets;\n"
+"Mode 2: credit-debit;\n"
+"Mode 3: credit-debit, debit-credit for accounts in brackets."
+msgstr "Način izračuna formule: osnova, po kateri se izračuna bilanca, kot sledi:\nNačin 0: breme-dobro (privzeto);\nNačin 1:  breme-dobro, dobro-breme za konte v oklepajih;\nNačin 2: dobro-breme;\nNačin 3: dobro-breme, breme-dobro za konte v oklepajih."
 
 #. module: account_balance_reporting
 #: model:ir.actions.report.xml,name:account_balance_reporting.report_account_balance_reporting_generic
@@ -268,9 +342,51 @@ msgid "ID"
 msgstr "ID"
 
 #. module: account_balance_reporting
+#: help:account.account,not_level_expand:0
+msgid ""
+"If you mark this field, when expanding account balances by levels on "
+"financial reports, this account won't be shown. This only serves when "
+"displaying the account itself, but not when showing parent accounts, which "
+"will include this account balance as part of the result."
+msgstr ""
+
+#. module: account_balance_reporting
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
 msgid "Information"
 msgstr "Informacije"
+
+#. module: account_balance_reporting
+#: model:ir.model,name:account_balance_reporting.model_account_balance_reporting
+msgid ""
+"It stores the configuration/header fields of an account balance report, and "
+"the linked lines of detail with the values of the accounting concepts "
+"(values generated from the selected template lines of detail formulas)"
+msgstr "Hrani polja nastavitev/glave za poročilo knjigovodske bilance in povezanih postavk podrobnosti z vrednostmi knjigovodskih konceptov (vrednosti ustvarjene iz postavk formul podrobnosti iz izbrane predloge)"
+
+#. module: account_balance_reporting
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:528
+#, python-format
+msgid "Journal Items"
+msgstr "Dnevniške postavke"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting.line,current_move_line_ids:0
+msgid "Journal items (current)"
+msgstr "Dnevniške postavke (trenutne)"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting.line,previous_move_line_ids:0
+msgid "Journal items (previous)"
+msgstr "Dnevniške postavke (prejšnje)"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,__last_update:0
+#: field:account.balance.reporting.line,__last_update:0
+#: field:account.balance.reporting.print.wizard,__last_update:0
+#: field:account.balance.reporting.template,__last_update:0
+#: field:account.balance.reporting.template.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,write_uid:0
@@ -289,6 +405,11 @@ msgstr "Zadnji posodobil"
 #: field:account.balance.reporting.template.line,write_date:0
 msgid "Last Updated on"
 msgstr "Zadnjič posodobljeno"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting,level:0
+msgid "Level"
+msgstr "Nivo"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.line,css_class:0
@@ -338,13 +459,13 @@ msgid "Lines will be sorted/grouped by this field"
 msgstr "Postavke bodo urejene/združene po tem polju"
 
 #. module: account_balance_reporting
-#: report:report_account_balance_reporting.generic:0
-#: report:report_account_balance_reporting.generic_non_zero:0
+#: view:website:account_balance_reporting.report_generic
 msgid "NOTES"
 msgstr "OPOMBE"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,name:0
+#: field:account.balance.reporting.line,display_name:0
 #: field:account.balance.reporting.line,name:0
 #: field:account.balance.reporting.template,name:0
 #: field:account.balance.reporting.template.line,name:0
@@ -367,10 +488,25 @@ msgid "Notes"
 msgstr "Opombe"
 
 #. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic
+msgid "PREVIOUS"
+msgstr ""
+
+#. module: account_balance_reporting
 #: field:account.balance.reporting.line,parent_id:0
 #: field:account.balance.reporting.template.line,parent_id:0
 msgid "Parent"
 msgstr "Nadrejeni"
+
+#. module: account_balance_reporting
+#: selection:account.balance.reporting,check_filter:0
+msgid "Periods"
+msgstr "Obdobja"
+
+#. module: account_balance_reporting
+#: field:account.balance.reporting.line,previous_move_line_count:0
+msgid "Previous move line count"
+msgstr "Števec postavk prejšnjih premikov"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
@@ -386,11 +522,6 @@ msgstr "Natisni poročilo"
 #: selection:account.balance.reporting,state:0
 msgid "Processed"
 msgstr "Obdelano"
-
-#. module: account_balance_reporting
-#: selection:account.balance.reporting,state:0
-msgid "Processing"
-msgstr "Obdelava"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
@@ -421,6 +552,11 @@ msgid "Sequence"
 msgstr "Zaporedje"
 
 #. module: account_balance_reporting
+#: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
+msgid "Show journal items"
+msgstr "Prikaz dnevniških postavk"
+
+#. module: account_balance_reporting
 #: field:account.balance.reporting,state:0
 msgid "State"
 msgstr "Stanje"
@@ -449,8 +585,8 @@ msgstr "Postavke predloge"
 #. module: account_balance_reporting
 #: sql_constraint:account.balance.reporting.line:0
 #: sql_constraint:account.balance.reporting.template.line:0
-#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:236
-#: code:addons/account_balance_reporting/models/account_balance_reporting_template.py:191
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:189
+#: code:addons/account_balance_reporting/models/account_balance_reporting_template.py:150
 #, python-format
 msgid "The code must be unique for this report!"
 msgstr "Koda mora biti v sklopu poročila unikatna!"
@@ -479,3 +615,15 @@ msgid ""
 "      values.\n"
 "    "
 msgstr "Formula za izračun vrednosti: na tej osnovi se izračuna končna\n    vrednost, kot sledi:\n      Vrednost prazne predloge: vsota podrejenih vrednosti (temu konceptu).\n      Številka z decimalnim ločilom (\"10.2\"): tista vrednost (konstanta).\n      Številke kontov ločene z vejicami (\"430,431,(437)\"): vsota kontnih\n          bilanc (predznak bilance je odvisen od bilančnega načina).\n      Kode koncepta ločene z \"+\" (\"11000+12000\"): vsota vrednosti teh\n      konceptov.\n    "
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic_non_zero
+msgid "account_balance_reporting.report_generic_non_zero"
+msgstr ""
+
+#. module: account_balance_reporting
+#: view:website:account_balance_reporting.report_generic_non_zero
+msgid ""
+"o.line_ids.filtered(lambda x: x.current_value != 0.0 or x.previous_value != "
+"0.0)"
+msgstr ""

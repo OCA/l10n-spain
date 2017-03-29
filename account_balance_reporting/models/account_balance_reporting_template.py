@@ -1,41 +1,10 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP - Account balance reporting engine
-#    Copyright (C) 2009 Pexego Sistemas Informáticos.
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-"""
-Account balance report templates
+# © 2009 Pexego/Comunitea
+# © 2016 Pedro M. Baeza
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
 
-Generic account balance report template that will be used to define
-accounting concepts with formulas to calculate its values/balance.
-Designed following the needs of the Spanish/Spain localization.
-"""
+from openerp import api, fields, models, _
 
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
-
-_BALANCE_MODE_HELP = (
-    """Formula calculation mode: Depending on it, the balance is calculated as
-    follows:
-      Mode 0: debit-credit (default);
-      Mode 1: debit-credit, credit-debit for accounts in brackets;
-      Mode 2: credit-debit;
-      Mode 3: credit-debit, debit-credit for accounts in brackets.""")
 
 _VALUE_FORMULA_HELP = (
     """Value calculation formula: Depending on this formula the final value is
@@ -57,60 +26,59 @@ CSS_CLASSES = [('default', 'Default'),
                ('l5', 'Level 5')]
 
 
-class AccountBalanceReportingTemplate(orm.Model):
-    """
-    Account balance report template.
-    It stores the header fields of an account balance report template,
-    and the linked lines of detail with the formulas to calculate
-    the accounting concepts of the report.
-    """
+class AccountBalanceReportingTemplate(models.Model):
     _name = "account.balance.reporting.template"
+    _description = (
+        "Account balance report template. It stores the header fields of an "
+        "account balance report template, and the linked lines of detail with "
+        "the formulas to calculate the accounting concepts of the report.")
 
-    _columns = {
-        'name': fields.char('Name', size=64, required=True, select=True),
-        'type': fields.selection([('system', 'System'),
-                                  ('user', 'User')], 'Type'),
-        'report_xml_id': fields.many2one('ir.actions.report.xml',
-                                         'Report design', ondelete='set null'),
-        'description': fields.text('Description'),
-        'balance_mode': fields.selection(
-            [('0', 'Debit-Credit'),
-             ('1', 'Debit-Credit, reversed with brackets'),
-             ('2', 'Credit-Debit'),
-             ('3', 'Credit-Debit, reversed with brackets')],
-            'Balance mode', help=_BALANCE_MODE_HELP),
-        'line_ids': fields.one2many('account.balance.reporting.template.line',
-                                    'template_id', 'Lines'),
-    }
+    name = fields.Char(string='Name', size=64, required=True, index=True)
+    type = fields.Selection(
+        selection=[('system', 'System'),
+                   ('user', 'User')],
+        string='Type', default='user')
+    report_xml_id = fields.Many2one(
+        comodel_name='ir.actions.report.xml', string='Report design',
+        ondelete='set null')
+    description = fields.Text('Description')
+    balance_mode = fields.Selection(
+        [('0', 'Debit-Credit'),
+         ('1', 'Debit-Credit, reversed with brackets'),
+         ('2', 'Credit-Debit'),
+         ('3', 'Credit-Debit, reversed with brackets')],
+        string='Balance mode', default="0",
+        help="Formula calculation mode: Depending on it, the balance is "
+             "calculated as follows:\n"
+             "Mode 0: debit-credit (default);\n"
+             "Mode 1: debit-credit, credit-debit for accounts in brackets;\n"
+             "Mode 2: credit-debit;\n"
+             "Mode 3: credit-debit, debit-credit for accounts in brackets.")
+    line_ids = fields.One2many(
+        comodel_name='account.balance.reporting.template.line',
+        inverse_name='template_id', string='Lines')
 
-    _defaults = {
-        'type': 'user',
-        'balance_mode': '0',
-    }
-
-    def copy(self, cr, uid, id, default=None, context=None):
-        """
-        Redefine the copy method to perform it correctly as the line
+    @api.model
+    def copy(self, id, default=None):
+        """Redefine the copy method to perform it correctly as the line
         structure is a graph.
         """
-        if context is None:
-            context = {}
-        line_obj = self.pool['account.balance.reporting.template.line']
+        line_obj = self.env['account.balance.reporting.template.line']
         # Read the current item data:
-        template = self.browse(cr, uid, id, context=context)
+        template = self.browse(id)
         # Create the template
-        new_id = self.create(cr, uid, {
+        new = self.create({
             'name': '%s*' % template.name,
             'type': 'user',  # Copies are always user templates
             'report_xml_id': template.report_xml_id.id,
             'description': template.description,
             'balance_mode': template.balance_mode,
             'line_ids': None,
-        }, context=context)
+        })
         # Now create the lines (without parents)
         for line in template.line_ids:
-            line_obj.create(cr, uid, {
-                'template_id': new_id,
+            line_obj.create({
+                'template_id': new.id,
                 'sequence': line.sequence,
                 'css_class': line.css_class,
                 'code': line.code,
@@ -118,88 +86,77 @@ class AccountBalanceReportingTemplate(orm.Model):
                 'current_value': line.current_value,
                 'previous_value': line.previous_value,
                 'negate': line.negate,
-                'parent_id': None,
-                'child_ids': None,
-            }, context=context)
+                'parent_id': False,
+                'child_ids': False,
+            })
         # Now set the (lines) parents
         for line in template.line_ids:
             if line.parent_id:
                 # Search for the copied line
-                new_line_id = line_obj.search(cr, uid, [
-                    ('template_id', '=', new_id),
+                new_line = line_obj.search([
+                    ('template_id', '=', new.id),
                     ('code', '=', line.code),
-                ], context=context)[0]
+                ])[:1]
                 # Search for the copied parent line
-                new_parent_id = line_obj.search(cr, uid, [
-                    ('template_id', '=', new_id),
+                new_parent_id = line_obj.search([
+                    ('template_id', '=', new.id),
                     ('code', '=', line.parent_id.code),
-                ], context=context)[0]
+                ])[0]
                 # Set the parent
-                line_obj.write(cr, uid, new_line_id, {
-                    'parent_id': new_parent_id,
-                }, context=context)
-        return new_id
+                new_line.parent_id = new_parent_id
+        return new
 
 
-class AccountBalanceReportingTemplateLine(orm.Model):
-    """
-    Account balance report template line / Accounting concept template
-    One line of detail of the balance report representing an accounting
-    concept with the formulas to calculate its values.
-    The accounting concepts follow a parent-children hierarchy.
-    """
+class AccountBalanceReportingTemplateLine(models.Model):
     _name = "account.balance.reporting.template.line"
-
-    _columns = {
-        'template_id': fields.many2one('account.balance.reporting.template',
-                                       'Template', ondelete='cascade'),
-        'sequence': fields.integer(
-            'Sequence', required=True,
-            help="Lines will be sorted/grouped by this field"),
-        'css_class': fields.selection(CSS_CLASSES, 'CSS Class', required=False,
-                                      help="Style-sheet class"),
-        'code': fields.char('Code', size=64, required=True, select=True,
-                            help="Concept code, may be used on formulas to "
-                                 "reference this line"),
-        'name': fields.char('Name', size=256, required=True, select=True,
-                            help="Concept name/description"),
-        'current_value': fields.text('Fiscal year 1 formula',
-                                     help=_VALUE_FORMULA_HELP),
-        'previous_value': fields.text('Fiscal year 2 formula',
-                                      help=_VALUE_FORMULA_HELP),
-        'negate': fields.boolean(
-            'Negate',
-            help="Negate the value (change the sign of the balance)"),
-        'parent_id': fields.many2one('account.balance.reporting.template.line',
-                                     'Parent', ondelete='cascade'),
-        'child_ids': fields.one2many('account.balance.reporting.template.line',
-                                     'parent_id', 'Children'),
-    }
-
-    _defaults = {
-        'template_id': lambda self, cr, uid, context: context.get(
-            'template_id', None),
-        'negate': False,
-        'css_class': 'default',
-        'sequence': 10,
-    }
-
+    _description = (
+        "Account balance report template line / Accounting concept template "
+        "One line of detail of the balance report representing an accounting "
+        "concept with the formulas to calculate its values. "
+        "The accounting concepts follow a parent-children hierarchy.")
     _order = "sequence, code"
+
+    template_id = fields.Many2one(
+        comodel_name='account.balance.reporting.template', string='Template',
+        ondelete='cascade')
+    sequence = fields.Integer(
+        string='Sequence', required=True, default=10,
+        help="Lines will be sorted/grouped by this field")
+    css_class = fields.Selection(
+        selection=CSS_CLASSES, string='CSS Class', required=False,
+        help="Style-sheet class", default='default')
+    code = fields.Char(
+        string='Code', size=64, required=True, select=True,
+        help="Concept code, may be used on formulas to reference this line")
+    name = fields.Char(
+        string='Name', size=256, required=True, select=True,
+        help="Concept name/description")
+    current_value = fields.Text(
+        string='Fiscal year 1 formula', help=_VALUE_FORMULA_HELP)
+    previous_value = fields.Text(
+        string='Fiscal year 2 formula', help=_VALUE_FORMULA_HELP)
+    negate = fields.Boolean(
+        string='Negate',
+        help="Negate the value (change the sign of the balance)")
+    parent_id = fields.Many2one(
+        comodel_name='account.balance.reporting.template.line',
+        string='Parent', ondelete='cascade')
+    child_ids = fields.One2many(
+        comodel_name='account.balance.reporting.template.line',
+        inverse_name='parent_id', string='Children')
 
     _sql_constraints = [
         ('report_code_uniq', 'unique(template_id, code)',
          _("The code must be unique for this report!"))
     ]
 
-    def name_get(self, cr, uid, ids, context=None):
-        """
-        Redefine the name_get method to show the code in the name
+    @api.multi
+    def name_get(self):
+        """Redefine the name_get method to show the code in the name
         ("[code] name").
         """
-        if context is None:
-            context = {}
         res = []
-        for item in self.browse(cr, uid, ids, context=context):
+        for item in self:
             res.append((item.id, "[%s] %s" % (item.code, item.name)))
         return res
 

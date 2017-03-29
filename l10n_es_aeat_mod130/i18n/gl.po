@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-01 08:00+0000\n"
-"PO-Revision-Date: 2015-10-01 08:02+0000\n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-25 14:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -64,6 +64,16 @@ msgstr "Actividade agrícola, gandeira, forestal ou pesqueira"
 #: selection:l10n.es.aeat.mod130.report,activity_type:0
 msgid "Actividad distinta a las anteriores"
 msgstr "Actividade distinta ás anteriores"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,allow_posting:0
+msgid "Allow posting"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,partner_bank_id:0
+msgid "Bank account"
+msgstr "Conta bancaria"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,calculation_date:0
@@ -171,6 +181,11 @@ msgid "Company"
 msgstr "Compañía"
 
 #. module: l10n_es_aeat_mod130
+#: help:l10n.es.aeat.mod130.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,type:0
 msgid "Complementary"
 msgstr "Complementaria"
@@ -234,6 +249,12 @@ msgstr "Declaración"
 #: field:l10n.es.aeat.mod130.report,number:0
 msgid "Declaration number"
 msgstr "Nº declaración"
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.export_to_boe,display_name:0
+#: field:l10n.es.aeat.mod130.report,display_name:0
+msgid "Display Name"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,state:0
@@ -312,6 +333,12 @@ msgid "L.R. VAT number"
 msgstr "NIF repr. legal"
 
 #. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.mod130.report,__last_update:0
+msgid "Last Modified on"
+msgstr "Modificado por última vez o"
+
+#. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod130.report,write_uid:0
 msgid "Last Updated by"
@@ -327,6 +354,11 @@ msgstr "Actualizado por derradeira vez o"
 #: help:l10n.es.aeat.mod130.report,representative_vat:0
 msgid "Legal Representative VAT number."
 msgstr "NIF do representante legal."
+
+#. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,model:0
+msgid "Model"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,contact_name:0
@@ -414,6 +446,11 @@ msgid "Processed"
 msgstr "Procesada"
 
 #. module: l10n_es_aeat_mod130
+#: field:l10n.es.aeat.mod130.report,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: view:l10n.es.aeat.mod130.report:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
 #: field:l10n.es.aeat.mod130.report,result:0
 msgid "Resultado"
@@ -431,11 +468,6 @@ msgstr "Marcarase se esta declaración é complementaria de outra ou outras decl
 #: selection:l10n.es.aeat.mod130.report,period:0
 msgid "Second quarter"
 msgstr "Segundo trimestre"
-
-#. module: l10n_es_aeat_mod130
-#: field:l10n.es.aeat.mod130.report,sequence:0
-msgid "Sequence"
-msgstr "Secuencia"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.export_to_boe,state:0
@@ -457,11 +489,6 @@ msgstr "Substitutiva"
 #: field:l10n.es.aeat.mod130.report,support_type:0
 msgid "Support Type"
 msgstr "Tipo de soporte"
-
-#. module: l10n_es_aeat_mod130
-#: field:l10n.es.aeat.mod130.report,tax_lines:0
-msgid "Tax lines"
-msgstr "Liñas de impostos"
 
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,support_type:0

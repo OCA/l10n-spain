@@ -1,0 +1,56 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_aeat_vat_prorrate_asset
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-23 16:40+0000\n"
+"PO-Revision-Date: 2017-02-23 16:40+0000\n"
+"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>, 2017\n"
+"Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: l10n_es_aeat_vat_prorrate_asset
+#: model:ir.model,name:l10n_es_aeat_vat_prorrate_asset.model_l10n_es_aeat_mod303_report
+msgid "AEAT 303 Report"
+msgstr ""
+
+#. module: l10n_es_aeat_vat_prorrate_asset
+#: model:ir.model,name:l10n_es_aeat_vat_prorrate_asset.model_account_asset_asset
+msgid "Asset"
+msgstr "Sredstvo"
+
+#. module: l10n_es_aeat_vat_prorrate_asset
+#: model:ir.model,name:l10n_es_aeat_vat_prorrate_asset.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Postavka računa"
+
+#. module: l10n_es_aeat_vat_prorrate_asset
+#: field:account.invoice.line,vat_prorrate_percent:0
+msgid "Prorrate perc."
+msgstr ""
+
+#. module: l10n_es_aeat_vat_prorrate_asset
+#: code:addons/l10n_es_aeat_vat_prorrate_asset/models/account_invoice.py:19
+#, python-format
+msgid "VAT prorrate percent must be between 0.01 and 100"
+msgstr ""
+
+#. module: l10n_es_aeat_vat_prorrate_asset
+#: field:account.asset.asset,vat_prorrate_increment:0
+msgid "Vat prorrate increment"
+msgstr ""
+
+#. module: l10n_es_aeat_vat_prorrate_asset
+#: field:account.asset.asset,vat_prorrate_percent:0
+msgid "Vat prorrate percent"
+msgstr ""

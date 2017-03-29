@@ -66,6 +66,10 @@
                                    options="{'currency_field': 'currency_id'}"
                                    attrs="{'readonly': [('period_type', 'not in', ('4T', '12'))]}"
                                     />
+                            <field name="casilla_77"
+                                   widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"
+                                    />
                             <field name="casilla_69"
                                    widget="monetary"
                                    options="{'currency_field': 'currency_id'}"
@@ -78,7 +82,7 @@
                         </group>
                     </group>
                     <group class="oe_subtotal_footer oe_right"
-                           attrs="{'invisible': ['|', ('tax_lines', '=', []), ('state', '=', 'draft')]}"
+                           attrs="{'invisible': [('state', '=', 'draft')]}"
                            colspan="2">
                         <field name="resultado_liquidacion"
                                class="oe_subtotal_footer_separator"
@@ -94,6 +98,12 @@
                                domain="[('partner_id', '=', company_partner_id)]"
                                attrs="{'invisible': [('result_type', 'not in', ('B', 'I')), ('compensate', '=', False)]}"
                                 />
+                    </group>
+                    <group string="Tax lines"
+                           name="group_tax_lines"
+                           colspan="4"
+                           attrs="{'invisible': [('state', '=', 'draft')]}">
+                        <field name="tax_lines" nolabel="1"/>
                     </group>
                 </group>
             </field>

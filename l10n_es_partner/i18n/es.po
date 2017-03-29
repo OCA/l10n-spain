@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-08 08:49+0000\n"
-"PO-Revision-Date: 2015-11-25 18:37+0000\n"
+"POT-Creation-Date: 2017-01-19 10:40+0000\n"
+"PO-Revision-Date: 2017-01-13 09:20+0000\n"
 "Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgid "Bank Accounts"
 msgstr "Cuentas bancarias"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:100
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:83
 #, python-format
 msgid "Bank account should have 20 digits."
 msgstr "La cuenta bancaria debe tener 20 dígitos."
@@ -55,7 +55,12 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:134
+#: field:l10n.es.partner.import.wizard,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:117
 #, python-format
 msgid "IBAN account is not valid"
 msgstr "Cuenta IBAN no válida"
@@ -88,7 +93,7 @@ msgid "Import from local file"
 msgstr "Importar del archivo local"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:63
+#: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:48
 #: model:ir.actions.act_window,name:l10n_es_partner.action_l10n_es_partner_import
 #: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
 #, python-format
@@ -108,10 +113,15 @@ msgid ""
 msgstr "Internet (del Banco de España). Puede que esta fuente no esté disponible a partir de un momento dado. Necesitará la librería de Python xlrd."
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:108
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:91
 #, python-format
 msgid "Invalid bank account."
 msgstr "Cuenta bancaria no válida."
+
+#. module: l10n_es_partner
+#: field:l10n.es.partner.import.wizard,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
 
 #. module: l10n_es_partner
 #: field:l10n.es.partner.import.wizard,write_uid:0
@@ -174,9 +184,9 @@ msgid "Value Added Tax number"
 msgstr "Nº de identificación fiscal"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:99
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:107
-#: code:addons/l10n_es_partner/models/l10n_es_partner.py:133
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:82
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:90
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:116
 #, python-format
 msgid "Warning"
 msgstr "Aviso"

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 19:24+0000\n"
-"PO-Revision-Date: 2015-11-05 13:05+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"POT-Creation-Date: 2016-12-24 02:59+0000\n"
+"PO-Revision-Date: 2016-12-27 08:26+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -172,7 +172,7 @@ msgstr "Potrdi"
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:l10n_es_fiscal_year_closing.view_fyc_form
 msgid "Continue"
-msgstr ""
+msgstr "Nadaljuj"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,create_loss_and_profit:0
@@ -232,7 +232,7 @@ msgstr "Ustvarjeno"
 #: field:account.fiscalyear.closing,nlp_date:0
 #: field:account.fiscalyear.closing,o_date:0
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing.cancel_wizard,delete_pyg:0
@@ -276,6 +276,17 @@ msgid "Dest account"
 msgstr ""
 
 #. module: l10n_es_fiscal_year_closing
+#: field:account.fiscalyear.closing,display_name:0
+#: field:account.fiscalyear.closing.account_map,display_name:0
+#: field:account.fiscalyear.closing.c_account_map,display_name:0
+#: field:account.fiscalyear.closing.cancel_wizard,display_name:0
+#: field:account.fiscalyear.closing.execute_wizard,display_name:0
+#: field:account.fiscalyear.closing.lp_account_map,display_name:0
+#: field:account.fiscalyear.closing.nlp_account_map,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
+
+#. module: l10n_es_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0
 msgid "Done"
 msgstr "Opravljeno"
@@ -292,13 +303,13 @@ msgstr "Osnutek"
 #: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:285
 #, python-format
 msgid "Error"
-msgstr ""
+msgstr "Napaka"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/models/fiscalyear_closing.py:209
 #, python-format
 msgid "Error!"
-msgstr ""
+msgstr "Napaka!"
 
 #. module: l10n_es_fiscal_year_closing
 #: model:ir.actions.act_window,name:l10n_es_fiscal_year_closing.action_execute_fyc_view
@@ -313,7 +324,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: model:ir.model,name:l10n_es_fiscal_year_closing.model_account_fiscalyear
 msgid "Fiscal Year"
-msgstr ""
+msgstr "Fiskalno leto"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing.account_map,fyc_id:0
@@ -364,7 +375,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:l10n_es_fiscal_year_closing.view_fyc_form
 msgid "General"
-msgstr ""
+msgstr "Splošno"
 
 #. module: l10n_es_fiscal_year_closing
 #: model:ir.model,name:l10n_es_fiscal_year_closing.model_account_fiscalyear_closing_account_map
@@ -393,12 +404,23 @@ msgstr ""
 #: field:account.fiscalyear.closing,nlp_journal_id:0
 #: field:account.fiscalyear.closing,o_journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Dnevnik"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,loss_and_profit_move_id:0
 msgid "L&P Move"
 msgstr ""
+
+#. module: l10n_es_fiscal_year_closing
+#: field:account.fiscalyear.closing,__last_update:0
+#: field:account.fiscalyear.closing.account_map,__last_update:0
+#: field:account.fiscalyear.closing.c_account_map,__last_update:0
+#: field:account.fiscalyear.closing.cancel_wizard,__last_update:0
+#: field:account.fiscalyear.closing.execute_wizard,__last_update:0
+#: field:account.fiscalyear.closing.lp_account_map,__last_update:0
+#: field:account.fiscalyear.closing.nlp_account_map,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,write_uid:0
@@ -455,7 +477,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0
 msgid "New"
-msgstr ""
+msgstr "Novo"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/models/l10n_es_fiscalyear_closing.py:121
@@ -579,7 +601,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,state:0
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/models/fiscalyear_closing.py:374
@@ -695,4 +717,4 @@ msgstr ""
 #: view:account.fiscalyear.closing.cancel_wizard:l10n_es_fiscal_year_closing.cancel_fyc_form_view
 #: view:account.fiscalyear.closing.execute_wizard:l10n_es_fiscal_year_closing.execute_fyc_form_view
 msgid "or"
-msgstr ""
+msgstr "ali"

@@ -1,0 +1,211 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_partner
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-24 02:59+0000\n"
+"PO-Revision-Date: 2016-12-27 08:22+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Russian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_bank
+msgid "Bank"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr ""
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:100
+#, python-format
+msgid "Bank account should have 20 digits."
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:res.partner.bank,acc_country_id:0
+msgid "Bank country"
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:res.bank,code:0
+msgid "Code"
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:l10n.es.partner.import.wizard,create_uid:0
+msgid "Created by"
+msgstr "Создано"
+
+#. module: l10n_es_partner
+#: field:l10n.es.partner.import.wizard,create_date:0
+msgid "Created on"
+msgstr "Создан"
+
+#. module: l10n_es_partner
+#: field:l10n.es.partner.import.wizard,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:134
+#, python-format
+msgid "IBAN account is not valid"
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:l10n.es.partner.import.wizard,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_partner
+#: help:res.partner.bank,acc_country_id:0
+msgid ""
+"If the country of the bank is Spain, it validates the bank code or IBAN, "
+"formatting it accordingly."
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:l10n.es.partner.import.wizard,import_fail:0
+msgid "Import fail"
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Import from Internet"
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Import from local file"
+msgstr ""
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:48
+#: model:ir.actions.act_window,name:l10n_es_partner.action_l10n_es_partner_import
+#: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
+#, python-format
+msgid "Import spanish bank data"
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Install Modules"
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
+msgid ""
+"Internet (from Bank of Spain). Maybe this source will be not available from "
+"certain moment in time. You will need xlrd Python library."
+msgstr ""
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:108
+#, python-format
+msgid "Invalid bank account."
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:l10n.es.partner.import.wizard,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:l10n.es.partner.import.wizard,write_uid:0
+msgid "Last Updated by"
+msgstr "Последний раз обновлено"
+
+#. module: l10n_es_partner
+#: field:l10n.es.partner.import.wizard,write_date:0
+msgid "Last Updated on"
+msgstr "Последний раз обновлено"
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Local file mirror. This copy was updated last time on 16/02/2015."
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:res.bank,lname:0
+msgid "Long name"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_partner
+msgid "Partner"
+msgstr "Контрагент"
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
+msgid ""
+"Something has failed importing data from Internet. You will need to import "
+"local data instead."
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.actions.todo,note:l10n_es_partner.config_wizard_l10n_es_partner
+msgid "This wizard will import spanish bank data."
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
+msgid ""
+"This wizard will import spanish bank data. You can choose to import it from:"
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:res.partner:l10n_es_partner.view_partner_form_comercial
+#: view:res.partner:l10n_es_partner.view_partner_simple_form_comercial
+#: field:res.partner,comercial:0
+msgid "Trade name"
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:res.bank,vat:0
+msgid "VAT code"
+msgstr ""
+
+#. module: l10n_es_partner
+#: help:res.bank,vat:0
+msgid "Value Added Tax number"
+msgstr ""
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:99
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:107
+#: code:addons/l10n_es_partner/models/l10n_es_partner.py:133
+#, python-format
+msgid "Warning"
+msgstr ""
+
+#. module: l10n_es_partner
+#: field:res.bank,website:0
+msgid "Website"
+msgstr "Сайт"
+
+#. module: l10n_es_partner
+#: view:res.partner.bank:l10n_es_partner.view_partner_bank_form_banco
+msgid "onchange_banco(acc_number, acc_country_id, state)"
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "title"
+msgstr ""
+
+#. module: l10n_es_partner
+#: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "{'invisible': [('import_fail', '=', True)]}"
+msgstr ""

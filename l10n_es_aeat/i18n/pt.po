@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:52+0000\n"
-"PO-Revision-Date: 2015-07-10 10:58+0000\n"
+"POT-Creation-Date: 2016-12-10 03:52+0000\n"
+"PO-Revision-Date: 2016-12-12 11:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -18,13 +18,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:199
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:211
 #, python-format
 msgid "%s_report_%s.txt"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:110
+#: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:112
 #, python-format
 msgid "<blank>"
 msgstr ""
@@ -68,12 +68,19 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: sql_constraint:l10n.es.aeat.report:0
-msgid "AEAT report sequence must be unique"
+#: sql_constraint:l10n.es.aeat.report.tax.mapping:0
+msgid "AEAT report identifier must be unique"
 msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
 msgid "AEAT reports"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,move_id:0
+#: field:l10n.es.aeat.report.tax.mapping,move_id:0
+msgid "Account entry"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -84,6 +91,12 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,alignment:0
 msgid "Alignment"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,allow_posting:0
+#: field:l10n.es.aeat.report.tax.mapping,allow_posting:0
+msgid "Allow posting"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -118,6 +131,12 @@ msgid "BOE export configurations"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,partner_bank_id:0
+#: field:l10n.es.aeat.report.tax.mapping,partner_bank_id:0
+msgid "Bank account"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: view:aeat.model.export.config.line:l10n_es_aeat.aeat_model_export_config_line_form
 msgid "Basic configuration"
 msgstr ""
@@ -134,6 +153,7 @@ msgstr "Calculado"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,calculation_date:0
+#: field:l10n.es.aeat.report.tax.mapping,calculation_date:0
 msgid "Calculation date"
 msgstr "Data processada"
 
@@ -146,6 +166,7 @@ msgstr "Cancelar"
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: selection:l10n.es.aeat.report,state:0
+#: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Cancelled"
 msgstr ""
 
@@ -162,11 +183,19 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: field:l10n.es.aeat.report,company_id:0
+#: field:l10n.es.aeat.report.tax.mapping,company_id:0
 msgid "Company"
 msgstr "Empresa"
 
 #. module: l10n_es_aeat
+#: help:l10n.es.aeat.report,partner_bank_id:0
+#: help:l10n.es.aeat.report.tax.mapping,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
+#: selection:l10n.es.aeat.report.tax.mapping,type:0
 msgid "Complementary"
 msgstr ""
 
@@ -206,6 +235,17 @@ msgid "Contact data"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,counterpart_account:0
+#: field:l10n.es.aeat.report.tax.mapping,counterpart_account:0
+msgid "Counterpart account"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Create move"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,create_uid:0
 #: field:aeat.mod.map.tax.code.line,create_uid:0
 #: field:aeat.model.export.config,create_uid:0
@@ -213,7 +253,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.tax.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Criado por"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,create_date:0
@@ -223,10 +263,11 @@ msgstr ""
 #: field:l10n.es.aeat.report.export_to_boe,create_date:0
 #: field:l10n.es.aeat.tax.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Criado em"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,support_type:0
+#: selection:l10n.es.aeat.report.tax.mapping,support_type:0
 msgid "DVD"
 msgstr ""
 
@@ -237,12 +278,26 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,number:0
+#: field:l10n.es.aeat.report.tax.mapping,number:0
 msgid "Declaration number"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: field:aeat.mod.map.tax.code,display_name:0
+#: field:aeat.mod.map.tax.code.line,display_name:0
+#: field:aeat.model.export.config,display_name:0
+#: field:aeat.model.export.config.line,display_name:0
+#: field:l10n.es.aeat.report,display_name:0
+#: field:l10n.es.aeat.report.export_to_boe,display_name:0
+#: field:l10n.es.aeat.report.tax.mapping,display_name:0
+#: field:l10n.es.aeat.tax.line,display_name:0
+msgid "Display Name"
+msgstr "Nome"
+
+#. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: selection:l10n.es.aeat.report,state:0
+#: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Done"
 msgstr "Concluído"
 
@@ -250,6 +305,7 @@ msgstr "Concluído"
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: selection:l10n.es.aeat.report,state:0
+#: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Draft"
 msgstr "Rascunho"
 
@@ -261,7 +317,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,date_end:0
 msgid "End date"
-msgstr ""
+msgstr "Data de fim"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_tax_code_mapping.py:56
@@ -288,6 +344,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model:ir.actions.act_window,name:l10n_es_aeat.action_aeat_export_config
 #: field:l10n.es.aeat.report,export_config:0
+#: field:l10n.es.aeat.report.tax.mapping,export_config:0
 msgid "Export config"
 msgstr ""
 
@@ -317,7 +374,7 @@ msgid "Expression"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:104
+#: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:106
 #, python-format
 msgid "Expression: "
 msgstr ""
@@ -351,6 +408,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: field:l10n.es.aeat.report,fiscalyear_id:0
+#: field:l10n.es.aeat.report.tax.mapping,fiscalyear_id:0
 msgid "Fiscal year"
 msgstr ""
 
@@ -360,7 +418,7 @@ msgid "Fixed value"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:110
+#: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:112
 #, python-format
 msgid "Fixed: %s"
 msgstr ""
@@ -372,6 +430,7 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,contact_name:0
+#: field:l10n.es.aeat.report.tax.mapping,contact_name:0
 msgid "Full Name"
 msgstr ""
 
@@ -380,9 +439,9 @@ msgstr ""
 #: field:aeat.model.export.config,id:0
 #: field:aeat.model.export.config.line,id:0 field:l10n.es.aeat.report,id:0
 #: field:l10n.es.aeat.report.export_to_boe,id:0
-#: field:l10n.es.aeat.tax.line,id:0
+#: field:l10n.es.aeat.report.tax.mapping,id:0 field:l10n.es.aeat.tax.line,id:0
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_aeat
 #: help:aeat.model.export.config.line,repeat_expression:0
@@ -414,12 +473,30 @@ msgid "Informativas"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:203
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_tax_mapping
+msgid ""
+"Inheritable abstract model to add taxes by code mapping in any AEAT report"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_report.py:208
 #, python-format
 msgid ""
 "It seems that you have defined quarterly periods or periods in the middle of"
 " the month. This cannot be automatically handled. You should select manually"
 " the periods."
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,journal_id:0
+#: field:l10n.es.aeat.report.tax.mapping,journal_id:0
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: help:l10n.es.aeat.report,journal_id:0
+#: help:l10n.es.aeat.report.tax.mapping,journal_id:0
+msgid "Journal in which post the move."
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -429,8 +506,21 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,representative_vat:0
+#: field:l10n.es.aeat.report.tax.mapping,representative_vat:0
 msgid "L.R. VAT number"
 msgstr ""
+
+#. module: l10n_es_aeat
+#: field:aeat.mod.map.tax.code,__last_update:0
+#: field:aeat.mod.map.tax.code.line,__last_update:0
+#: field:aeat.model.export.config,__last_update:0
+#: field:aeat.model.export.config.line,__last_update:0
+#: field:l10n.es.aeat.report,__last_update:0
+#: field:l10n.es.aeat.report.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.report.tax.mapping,__last_update:0
+#: field:l10n.es.aeat.tax.line,__last_update:0
+msgid "Last Modified on"
+msgstr "Modificado a última vez por"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,write_uid:0
@@ -440,7 +530,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.tax.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Atualizado pela última vez por"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,write_date:0
@@ -450,7 +540,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.export_to_boe,write_date:0
 #: field:l10n.es.aeat.tax.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Atualizado pela última vez em"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,alignment:0
@@ -459,6 +549,7 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,representative_vat:0
+#: help:l10n.es.aeat.report.tax.mapping,representative_vat:0
 msgid "Legal Representative VAT number."
 msgstr ""
 
@@ -488,12 +579,20 @@ msgid "Mapping Lines"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,model:0
+#: field:l10n.es.aeat.report.tax.mapping,model:0
+#: field:l10n.es.aeat.tax.line,model:0 field:l10n.es.aeat.tax.line,model_id:0
+msgid "Model"
+msgstr "Modelo"
+
+#. module: l10n_es_aeat
 #: field:aeat.model.export.config,model_number:0
 msgid "Model number"
 msgstr ""
 
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,contact_name:0
+#: help:l10n.es.aeat.report.tax.mapping,contact_name:0
 msgid "Must have name and surname."
 msgstr ""
 
@@ -506,7 +605,13 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: l10n_es_aeat
+#: field:aeat.model.export.config.line,negative_sign:0
+msgid "Negative sign character"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
+#: selection:l10n.es.aeat.report.tax.mapping,type:0
 msgid "Normal"
 msgstr ""
 
@@ -531,7 +636,7 @@ msgid "Odoo model"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:297
+#: code:addons/l10n_es_aeat/models/aeat_report.py:341
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
@@ -548,16 +653,19 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,period_type:0
+#: field:l10n.es.aeat.report.tax.mapping,period_type:0
 msgid "Period type"
 msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,periods:0
+#: field:l10n.es.aeat.report.tax.mapping,periods:0
 msgid "Period(s)"
 msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,contact_phone:0
+#: field:l10n.es.aeat.report.tax.mapping,contact_phone:0
 msgid "Phone"
 msgstr ""
 
@@ -569,12 +677,30 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat
+#: field:aeat.model.export.config.line,position:0
+msgid "Position"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:aeat.model.export.config.line,positive_sign:0
+msgid "Positive sign character"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.report,state:0
+#: selection:l10n.es.aeat.report.tax.mapping,state:0
+msgid "Posted"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,previous_number:0
+#: field:l10n.es.aeat.report.tax.mapping,previous_number:0
 msgid "Previous declaration number"
 msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,state:0
+#: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Processed"
 msgstr "Processado"
 
@@ -589,6 +715,12 @@ msgid "Recalculate"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:132
+#, python-format
+msgid "Regularization"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,repeat:0
 msgid "Repeat"
 msgstr ""
@@ -600,9 +732,19 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
-#: field:l10n.es.aeat.tax.line,report:0
 msgid "Report"
 msgstr "Relatório"
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.report,name:0
+#: field:l10n.es.aeat.report.tax.mapping,name:0
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.tax.line,res_id:0
+msgid "Resource ID"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,alignment:0
@@ -611,22 +753,21 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,sequence:0
-#: field:l10n.es.aeat.report,sequence:0
 msgid "Sequence"
 msgstr "Sequência"
 
 #. module: l10n_es_aeat
-#: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
+#: view:l10n.es.aeat.tax.line:l10n_es_aeat.view_l10n_es_aeat_tax_line_tree
 msgid "Show journal items"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: field:aeat.model.export.config.line,sign:0
-msgid "Sign character"
+#: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Show move"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report.py:163
+#: code:addons/l10n_es_aeat/models/aeat_report.py:167
 #, python-format
 msgid ""
 "Split fiscal years cannot be automatically handled. You should select "
@@ -636,16 +777,18 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,date_start:0
 msgid "Start date"
-msgstr ""
+msgstr "Data de início"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,state:0
 #: field:l10n.es.aeat.report.export_to_boe,state:0
+#: field:l10n.es.aeat.report.tax.mapping,state:0
 msgid "State"
 msgstr "Estado"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,type:0
+#: field:l10n.es.aeat.report.tax.mapping,type:0
 msgid "Statement Type"
 msgstr ""
 
@@ -657,11 +800,13 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
+#: selection:l10n.es.aeat.report.tax.mapping,type:0
 msgid "Substitutive"
 msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,support_type:0
+#: field:l10n.es.aeat.report.tax.mapping,support_type:0
 msgid "Support Type"
 msgstr ""
 
@@ -689,21 +834,49 @@ msgid "Tax codes"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
-#: field:l10n.es.aeat.report,tax_lines:0
+#: field:l10n.es.aeat.report.tax.mapping,tax_lines:0
+#: view:l10n.es.aeat.tax.line:l10n_es_aeat.view_l10n_es_aeat_tax_line_tree
 msgid "Tax lines"
 msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,support_type:0
+#: selection:l10n.es.aeat.report.tax.mapping,support_type:0
 msgid "Telematics"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:74
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:109
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:77
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:121
 #, python-format
 msgid "The formated string must match the given length"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_report.py:272
+#, python-format
+msgid ""
+"There is no period defined for the report. Please set at least one period "
+"and try again."
+msgstr ""
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_report.py:259
+#, python-format
+msgid "There's a missing previous declaration for the period %s."
+msgstr ""
+
+#. module: l10n_es_aeat
+#: help:l10n.es.aeat.report,counterpart_account:0
+#: help:l10n.es.aeat.report.tax.mapping,counterpart_account:0
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "This button creates the regularization move for the selected report"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -712,7 +885,19 @@ msgid "To Date"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: field:aeat.mod.map.tax.code.line,to_regularize:0
+#: field:l10n.es.aeat.tax.line,to_regularize:0
+msgid "To regularize"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:account.move.line:l10n_es_aeat.view_move_line_tree
+msgid "Total"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,company_vat:0
+#: field:l10n.es.aeat.report.tax.mapping,company_vat:0
 msgid "VAT number"
 msgstr ""
 
@@ -733,9 +918,22 @@ msgid "Value for yes"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:71
+#: code:addons/l10n_es_aeat/models/aeat_report.py:167
+#: code:addons/l10n_es_aeat/models/aeat_report.py:208
+#, python-format
+msgid "Warning"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:74
 #, python-format
 msgid "Wrong aling option. It should be < or >"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:165
+#, python-format
+msgid "You must fill both journal and counterpart account."
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -761,7 +959,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "or"
-msgstr ""
+msgstr "ou"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export

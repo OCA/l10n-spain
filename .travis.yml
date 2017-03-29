@@ -21,16 +21,13 @@ env:
   matrix:
   - LINT_CHECK="1"
   - TRANSIFEX="1"
-  - TESTS="1" ODOO_REPO="odoo/odoo" OPTIONS="--test-commit" EXCLUDE="l10n_es_toponyms,l10n_es_partner"
-  - TESTS="1" ODOO_REPO="OCA/OCB" OPTIONS="--test-commit" EXCLUDE="l10n_es_toponyms,l10n_es_partner"
+  - TESTS="1" ODOO_REPO="odoo/odoo"
+  - TESTS="1" ODOO_REPO="OCA/OCB"
 
 virtualenv:
   system_site_packages: true
 
 install:
-  - pip install unidecode
-  - pip install unicodecsv
-  - pip install requests
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly

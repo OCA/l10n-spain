@@ -3,20 +3,25 @@
 # * l10n_es_account_asset
 # 
 # Translators:
-# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015
+# Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-26 01:42+0000\n"
-"PO-Revision-Date: 2015-11-12 12:47+0000\n"
-"Last-Translator: Matjaž Mozetič <m.mozetic@matmoz.si>\n"
+"POT-Creation-Date: 2016-07-01 00:54+0000\n"
+"PO-Revision-Date: 2016-06-30 15:01+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: sl\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,annual_percentage:0
+msgid "Annual depreciation percentage"
+msgstr "Letni amortizacijski odstotek"
 
 #. module: l10n_es_account_asset
 #: model:ir.model,name:l10n_es_account_asset.model_account_asset_asset
@@ -34,32 +39,10 @@ msgid "At the end of the period"
 msgstr "Ob koncu obdobja"
 
 #. module: l10n_es_account_asset
-#: help:account.asset.asset,ext_method_time:0
-#: help:account.asset.category,ext_method_time:0
-msgid ""
-"Choose the method to use to compute the dates and number of depreciation lines.\n"
-"  * Number of Depreciations: Fix the number of depreciation lines and the time between 2 depreciations.\n"
-"  * Ending Date: Choose the time between 2 depreciations and the date the depreciations won't go beyond.\n"
-"  * Fixed percentage: Choose the time between 2 depreciations and the percentage to depreciate."
-msgstr "Izberite metodo za izračun datumov in števila amortizacijskih postavk.\n  * Število amortizacij: fiksiranje števila amortizacijskih postavk in časa med 2 amortizacijama.\n  * Končni datum: izbira časa med 2 amortizacijama in datuma, preko katerega amortizacije ne gredo.\n  * Fiksni odstotek: izbira časa med 2 amortizacijama in amortizacijskega odstotka."
-
-#. module: l10n_es_account_asset
 #: field:account.asset.asset,method_percentage:0
 #: field:account.asset.category,method_percentage:0
 msgid "Depreciation percentage"
 msgstr "Amortizacijski odstotek"
-
-#. module: l10n_es_account_asset
-#: selection:account.asset.asset,ext_method_time:0
-#: selection:account.asset.category,ext_method_time:0
-msgid "Ending Date"
-msgstr "Končni datum"
-
-#. module: l10n_es_account_asset
-#: selection:account.asset.asset,ext_method_time:0
-#: selection:account.asset.category,ext_method_time:0
-msgid "Fixed percentage"
-msgstr "Fiksni odstotek"
 
 #. module: l10n_es_account_asset
 #: help:account.asset.asset,move_end_period:0
@@ -70,16 +53,21 @@ msgid ""
 msgstr "Premik amortizacijskega vnosa ob koncu obdobja. Če so obdobja 12 mesecev, se postavi na 31. december, v nasprotnem primeru pa ob koncu meseca."
 
 #. module: l10n_es_account_asset
-#: selection:account.asset.asset,ext_method_time:0
-#: selection:account.asset.category,ext_method_time:0
-msgid "Number of Depreciations"
-msgstr "Število amortizacij"
+#: help:account.asset.asset,start_depreciation_date:0
+msgid "Only needed if not the same than purchase date"
+msgstr "Potrebno le, če je različno od datuma nabave"
 
 #. module: l10n_es_account_asset
-#: field:account.asset.asset,ext_method_time:0
-#: field:account.asset.category,ext_method_time:0
-msgid "Time Method"
-msgstr "Časovna metoda"
+#: constraint:account.asset.asset:0
+msgid ""
+"Prorata temporis can be applied only for time method \"number of "
+"depreciations\"."
+msgstr ""
+
+#. module: l10n_es_account_asset
+#: field:account.asset.asset,start_depreciation_date:0
+msgid "Start Depreciation Date"
+msgstr "Začetni datum amortizacije"
 
 #. module: l10n_es_account_asset
 #: sql_constraint:account.asset.asset:0
@@ -90,21 +78,15 @@ msgstr "Napačen odstotek!"
 #. module: l10n_es_account_asset
 #: view:account.asset.asset:l10n_es_account_asset.view_account_asset_asset_form_l10n_es
 #: view:account.asset.category:l10n_es_account_asset.view_account_asset_category_form_l10n_es
-msgid "{'invisible': True}"
-msgstr "{'invisible': True}"
+msgid ""
+"{'invisible':[('method_time','!=','end')], "
+"'required':[('method_time','=','end')]}"
+msgstr ""
 
 #. module: l10n_es_account_asset
 #: view:account.asset.asset:l10n_es_account_asset.view_account_asset_asset_form_l10n_es
 #: view:account.asset.category:l10n_es_account_asset.view_account_asset_category_form_l10n_es
 msgid ""
-"{'invisible':[('ext_method_time','!=','end')], "
-"'required':[('ext_method_time','=','end')]}"
-msgstr "{'invisible':[('ext_method_time','!=','end')], 'required':[('ext_method_time','=','end')]}"
-
-#. module: l10n_es_account_asset
-#: view:account.asset.asset:l10n_es_account_asset.view_account_asset_asset_form_l10n_es
-#: view:account.asset.category:l10n_es_account_asset.view_account_asset_category_form_l10n_es
-msgid ""
-"{'invisible':[('ext_method_time','!=','number')], "
-"'required':[('ext_method_time','=','number')]}"
-msgstr "{'invisible':[('ext_method_time','!=','number')], 'required':[('ext_method_time','=','number')]}"
+"{'invisible':[('method_time','!=','number')], "
+"'required':[('method_time','=','number')]}"
+msgstr ""

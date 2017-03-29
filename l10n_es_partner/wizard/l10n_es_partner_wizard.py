@@ -1,24 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                       Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2013-2016 Pedro M. Baeza
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3).
+
 from openerp import models, fields, api, _
 from openerp import tools
 from ..gen_src.gen_data_banks import gen_bank_data_xml
@@ -38,25 +21,27 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         path = os.path.join('l10n_es_partner', 'wizard', 'data_banks.xml')
         with tools.file_open(path) as fp:
             tools.convert_xml_import(
-                self._cr, 'l10n_es_partner', fp, {}, 'init', noupdate=False)
+                self._cr, 'l10n_es_partner', fp, {}, 'init', noupdate=True)
         return res
 
     @api.multi
     def execute(self):
-        import urllib2
+        import requests
         src_file = tempfile.NamedTemporaryFile(delete=False)
         dest_file = tempfile.NamedTemporaryFile('w', delete=False)
         try:
-            xlsfile = urllib2.urlopen(
+            response = requests.get(
                 'http://www.bde.es/f/webbde/IFI/servicio/regis/ficheros/es/'
                 'REGBANESP_CONESTAB_A.XLS')
-            # Read XLS
-            src_file.write(xlsfile.read())
+            if not response.ok:
+                raise Exception()
+            src_file.write(response.content)
+            src_file.close()
             # Generate XML and reopen it
             gen_bank_data_xml(src_file.name, dest_file.name)
             tools.convert_xml_import(
                 self._cr, 'l10n_es_partner', dest_file.name, {}, 'init',
-                noupdate=False)
+                noupdate=True)
         except:
             self.import_fail = True
             return {
@@ -71,7 +56,5 @@ class L10nEsPartnerImportWizard(models.TransientModel):
                 'target': 'new',
             }
         finally:
-            src_file.close()
-            dest_file.close()
             os.remove(src_file.name)
             os.remove(dest_file.name)

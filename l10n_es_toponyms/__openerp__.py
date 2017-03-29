@@ -1,30 +1,11 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    OpenERP, Open Source Management Solution
-#    Copyright (c) 2009 Zikzakmedia S.L. (http://zikzakmedia.com)
-#                       Jordi Esteve <jesteve@zikzakmedia.com>
-#    Copyright (c) 2013 Serv. Tecnol. Avanzados (http://www.serviciosbaeza.com)
-#                       Pedro Manuel Baeza <pedro.baeza@serviciosbaeza.com>
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published
-#    by the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# © 2009 Jordi Esteve <jesteve@zikzakmedia.com>
+# © 2013-2016 Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Topónimos españoles",
-    "version": "8.0.2.0.0",
+    "version": "8.0.2.0.1",
     "author": "Spanish Localization Team, "
               "ZikZakMedia, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
@@ -32,8 +13,6 @@
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Localisation/Europe",
     "depends": [
-        "base",
-        "base_location",
         "base_location_geonames_import",
     ],
     'contributors': [
@@ -46,8 +25,5 @@
     ],
     'images': ['images/l10n_es_toponyms_config.png'],
     "demo": [],
-    'test': [
-        'test/wizard.yml'
-    ],
     "installable": True
 }

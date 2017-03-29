@@ -1,32 +1,21 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see http://www.gnu.org/licenses/.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# © 2013 - Guadaltech - Alberto Martín Cortada
+# © 2015 - AvanzOSC - Ainara Galdona
+# © 2014-2016 - Serv. Tecnol. Avanzados - Pedro M. Baeza
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 from openerp import models, fields, api, _
 
 
 class L10nEsAeatMod303Report(models.Model):
-    _inherit = "l10n.es.aeat.report"
+    _inherit = "l10n.es.aeat.report.tax.mapping"
     _name = "l10n.es.aeat.mod303.report"
     _description = "AEAT 303 Report"
 
     def _get_export_conf(self):
         try:
             return self.env.ref(
-                'l10n_es_aeat_mod303.aeat_mod303_main_export_config').id
+                'l10n_es_aeat_mod303.aeat_mod303_2017_main_export_config').id
         except ValueError:
             return self.env['aeat.model.export.config']
 
@@ -67,12 +56,12 @@ class L10nEsAeatMod303Report(models.Model):
 
     @api.multi
     @api.depends('atribuible_estado', 'cuota_compensar',
-                 'regularizacion_anual')
+                 'regularizacion_anual', 'casilla_77')
     def _compute_casilla_69(self):
         for report in self:
             report.casilla_69 = (
-                report.atribuible_estado + report.cuota_compensar +
-                report.regularizacion_anual)
+                report.atribuible_estado + report.casilla_77 +
+                report.cuota_compensar + report.regularizacion_anual)
 
     @api.multi
     @api.depends('casilla_69', 'previous_result')
@@ -83,7 +72,7 @@ class L10nEsAeatMod303Report(models.Model):
 
     currency_id = fields.Many2one(
         comodel_name='res.currency', string='Currency',
-        related='company_id.currency_id', store=True)
+        related='company_id.currency_id', store=True, readonly=True)
     number = fields.Char(default='303')
     export_config = fields.Many2one(default=_get_export_conf)
     company_partner_id = fields.Many2one('res.partner', string='Partner',
@@ -132,6 +121,15 @@ class L10nEsAeatMod303Report(models.Model):
         string="[69] Resultado", readonly=True, compute="_compute_casilla_69",
         help="Atribuible a la Administración [66] - Cuotas a compensar [67] + "
              "Regularización anual [68]""", store=True)
+    casilla_77 = fields.Float(
+        string="[77] Iva Diferido (Liquidado por aduana)",
+        help="Se hará constar el importe de las cuotas del Impuesto a la "
+             "importación incluidas en los documentos en los que conste la "
+             "liquidación practicada por la Administración recibidos en el "
+             "periodo de liquidación. Solamente podrá cumplimentarse esta "
+             "casilla cuando se cumplan los requisitos establecidos en el "
+             "artículo 74.1 del Reglamento del Impuesto sobre el Valor "
+             "Añadido. ")
     previous_result = fields.Float(
         string="[70] A deducir",
         help="Resultado de la anterior o anteriores declaraciones del mismo "
@@ -178,6 +176,15 @@ class L10nEsAeatMod303Report(models.Model):
         super(L10nEsAeatMod303Report, self).onchange_period_type()
         if self.period_type not in ('4T', '12'):
             self.regularizacion_anual = 0
+        if not self.fiscalyear_id:
+            self.export_config = self.env.ref(
+                'l10n_es_aeat_mod303.aeat_mod303_2017_main_export_config')
+        elif self.fiscalyear_id.date_start < '2017-01-01':
+            self.export_config = self.env.ref(
+                'l10n_es_aeat_mod303.aeat_mod303_main_export_config')
+        else:
+            self.export_config = self.env.ref(
+                'l10n_es_aeat_mod303.aeat_mod303_2017_main_export_config')
 
     @api.onchange('type')
     def onchange_type(self):

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 19:24+0000\n"
-"PO-Revision-Date: 2015-11-05 13:07+0000\n"
+"POT-Creation-Date: 2017-01-19 10:40+0000\n"
+"PO-Revision-Date: 2017-01-19 20:17+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -49,6 +49,16 @@ msgid "Account move lines for bases"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,allow_posting:0
+msgid "Allow posting"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,partner_bank_id:0
+msgid "Bank account"
+msgstr "Bančni račun"
+
+#. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,calculation_date:0
 msgid "Calculation date"
 msgstr "Datum izračuna"
@@ -62,6 +72,11 @@ msgstr ""
 #: field:l10n.es.aeat.mod216.report,company_id:0
 msgid "Company"
 msgstr "Družba"
+
+#. module: l10n_es_aeat_mod216
+#: help:l10n.es.aeat.mod216.report,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,type:0
@@ -114,6 +129,12 @@ msgstr ""
 #: field:l10n.es.aeat.mod216.report,number:0
 msgid "Declaration number"
 msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.export_to_boe,display_name:0
+#: field:l10n.es.aeat.mod216.report,display_name:0
+msgid "Display Name"
+msgstr "Prikazni naziv"
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
@@ -189,7 +210,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Dnevnik"
 
 #. module: l10n_es_aeat_mod216
 #: help:l10n.es.aeat.mod216.report,journal_id:0
@@ -200,6 +221,12 @@ msgstr ""
 #: field:l10n.es.aeat.mod216.report,representative_vat:0
 msgid "L.R. VAT number"
 msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.export_to_boe,__last_update:0
+#: field:l10n.es.aeat.mod216.report,__last_update:0
+msgid "Last Modified on"
+msgstr "Zadnjič spremenjeno"
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.export_to_boe,write_uid:0
@@ -229,6 +256,11 @@ msgid ""
 "Liquidación - Casilla [06] A deducir (exclusivamente en caso de "
 "complementaria): Resultados a ingresar de anteriores declaraciones por el "
 "mismo concepto, ejercicio y período"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: help:l10n.es.aeat.mod216.report,casilla_07:0
+msgid "Liquidación - Casilla [07] Resultado a ingresar ([03] - [06])"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
@@ -267,6 +299,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,model:0
+msgid "Model"
+msgstr "Model"
+
+#. module: l10n_es_aeat_mod216
 #: model:ir.ui.menu,name:l10n_es_aeat_mod216.menu_aeat_mod216_report
 msgid "Modelo 216"
 msgstr ""
@@ -289,12 +326,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,type:0
 msgid "Normal"
-msgstr ""
+msgstr "Običajno"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model,name:l10n_es_aeat_mod216.model_res_partner
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,period_type:0
@@ -309,7 +346,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: field:l10n.es.aeat.mod216.report,contact_phone:0
 msgid "Phone"
-msgstr ""
+msgstr "Telefon"
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,state:0
@@ -337,14 +374,14 @@ msgid "Rentas sometidas a retención"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
-msgid "Resultado"
+#: field:l10n.es.aeat.mod216.report,name:0
+msgid "Report identifier"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: field:l10n.es.aeat.mod216.report,sequence:0
-msgid "Sequence"
-msgstr "Zaporedje"
+#: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "Resultado"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
@@ -435,6 +472,11 @@ msgid "[06] Resultados a ingresar anteriores"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
+#: field:l10n.es.aeat.mod216.report,casilla_07:0
+msgid "[07] Resultado a ingresar"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.export_to_boe,state:0
 msgid "get"
 msgstr ""
@@ -442,9 +484,4 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.export_to_boe,state:0
 msgid "open"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
-#: view:l10n.es.aeat.mod216.report:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
-msgid "{'invisible': 1}"
-msgstr ""
+msgstr "odprtje"

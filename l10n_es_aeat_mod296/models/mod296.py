@@ -22,7 +22,7 @@ from openerp import fields, models, api
 class L10nEsAeatMod296Report(models.Model):
 
     _description = 'AEAT 296 report'
-    _inherit = 'l10n.es.aeat.report'
+    _inherit = 'l10n.es.aeat.report.tax.mapping'
     _name = 'l10n.es.aeat.mod296.report'
 
     number = fields.Char(default='296')
@@ -47,7 +47,7 @@ class L10nEsAeatMod296Report(models.Model):
         help='Casilla [04] Resumen de los datos incluidos en la declaración - '
              'Retenciones e ingresos a cuenta ingresados')
     currency_id = fields.Many2one(
-        comodel_name='res.currency', string='Moneda',
+        comodel_name='res.currency', string='Moneda', readonly=True,
         related='company_id.currency_id', store=True)
     lines296 = fields.One2many('l10n.es.aeat.mod296.report.line', 'mod296_id',
                                string="Lines")
