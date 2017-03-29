@@ -4,7 +4,8 @@ Módulo para la presentación del modelo 303 (IVA - Autodeclaración) de la
 Agencia Española de Administración Tributaria.
 
 Instrucciones del modelo: http://goo.gl/pgVbXH
-Diseño de registros BOE en Excel: http://goo.gl/z4grco
+
+Diseño de registros BOE en Excel: https://goo.gl/HKOGec
 
 Incluye la exportación al formato BOE para su uso telemático.
 
