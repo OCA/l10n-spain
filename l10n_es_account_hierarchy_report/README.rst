@@ -1,5 +1,5 @@
 Account Hierarchy Report
-=========
+========================
 
 Módulo para la explotacion de la informacion contable de forma jerarquizada,
 dicho modulo incluye:
