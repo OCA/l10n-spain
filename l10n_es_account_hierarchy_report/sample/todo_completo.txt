@@ -1,0 +1,491 @@
+codigo, decripcion
+1, Financiación Básica
+10, Capital
+100, Capital social
+101, Fondo social
+102, Capital
+103, Socios por desembolsos no exigidos...
+104, Socios por aportaciones no dinerarias pendientes...
+108, Acciones o participaciones propias en situaciones especiales
+109, Acciones o participaciones propias para reducción de capital
+11, Reservas
+110, Prima de emisión o asunción
+111, Patrimonio neto por emisión de instrumentos financieros compuestos
+112, Reserva legal
+113, Reservas voluntarias
+114, Reservas especiales
+115, Reservas por pérdidas y ganancias actuariales y otros ajustes
+118, Aportaciones de socios o propietarios
+119, Diferencias por ajuste del capital a euros
+12, Resultados pendientes de aplicación
+120, Remanente
+121, Resultados negativos de ejercicios anteriores
+129, Resultados del ejercicio
+13, Subvenciones, donaciones y ajustes por cambios de valor
+130, Subvenciones oficiales de capital
+131, Donaciones y legados de capital
+132, Otras subvenciones, donaciones y legados
+133, Ajustes por valoración en instrumentos financieros
+134, Operaciones de cobertura
+135, Diferencias de conversión
+136, Ajustes por valoración en activos no corrientes y grupos enajenables de elementos mantenidos para la venta
+137, Ingresos fiscales a distribuir en varios ejercicios
+14, Provisiones
+140, Provisión para retribuciones y otras prestaciones al personal,
+141, Provisión para impuestos
+142, Provisión para otras responsabilidades
+143, Provisión por desmantelamiento, retiro o rehabilitación del inmovilizado,
+145, Provisión para actuaciones medioambientales
+146, Provisión para reestructuraciones
+147, Provisiones por transacciones con pagos basados en instrumentos de patrimonio
+15, Deudas a largo plazo con características especiales
+150, Acciones o participaciones a largo plazo contabilizadas como pasivo
+153, Desembolsos no exigidos por acciones o participaciones contabilizadas como pasivo,
+154, Aportaciones no dinerarias pendientes por acciones o participaciones contabilizadas como pasivo
+16, Deudas a largo plazo con partes vinculadas
+160, Deudas a largo plazo con entidades de crédito vinculadas
+161, Proveedores de inmovilizado a largo plazo, partes vinculadas
+162, Acreedores por arrendamiento financiero a largo plazo, partes vinculadas
+163, Otras deudas a largo plazo con partes vinculadas
+17, Deudas a largo plazo por préstamos recibidos y otros conceptos
+170, Deudas a largo plazo con entidades de crédito
+171, Deudas a largo plazo
+172, Deudas a largo plazo transformables en subvenciones, donaciones y legados
+173, Proveedores de inmovilizado a largo plazo
+174, Acreedores de arrendamiento financiero a largo plazo
+175, Efectos a pagar a largo plazo
+176, Pasivos por derivados financieros a largo plazo
+177, Obligaciones y bonos
+178, Obligaciones y bonos convertibles
+179, Deudas representadas en otros valores negociables
+18, Pasivos por fianzas y garantías y otros conceptos a largo plazo
+180, Fianzas recibidas a largo plazo
+181, Anticipos recibidos por ventas o prestaciones de servicios a largo plazo
+185, Depósitos recibidos a largo plazo
+189, Garantías financieras a largo plazo
+19, Situaciones transitorias de financiación
+190, Acciones o participaciones emitidas
+192, Suscriptores de acciones
+194, Capital emitido pendiente de inscripción
+195, Acciones o participaciones emitidas consideradas como pasivos financieros
+197, Suscriptores de acciones consideradas como pasivos financieros
+199, Acciones o participaciones emitidas consideradas como pasivos financieros pendientes de inscripción
+2, Activo no corriente
+20, Inmovilizaciones intangibles
+200, Gastos de investigación
+201, Desarrollo
+202, Concesiones administrativas
+203, Propiedad industrial
+204, Fondo de comercio
+205, Derechos de traspaso
+206, Aplicaciones informáticas
+209, Anticipos para inmovilizaciones intangibles
+21, Inmovilizaciones materiales
+210, Terrenos y bienes naturales
+211, Construcciones
+212, Instalaciones técnicas
+213, Maquinaria
+214, Utillaje
+215, Otras instalaciones
+216, Mobiliario
+217, Equipos para procesos de información
+218, Elementos de transporte
+219, Otro inmovilizado material
+22, Inversiones Inmobiliarias
+220, Inversiones en terrenos y bienes naturales
+221, Inversiones en construcciones
+23, Inmovilzaciones materiales en curso
+230, Inmovilizaciones materiales en curso
+237, Inmovilizaciones materiales en curso
+239, Anticipos para inmovilizaciones materiales
+24, Inversiones financieras a largo plazo en partes vinculadas
+240, Participaciones a largo plazo en partes vinculadas
+2403, Participación a largo plazo en empresas del grupo
+2404, Participación a largo plazo en empresas asociadas
+2405, Participaciones a largo plazo en otras partes vinculadas
+241, Valores representativos de deuda a largo plazo de partes vinculadas
+242, Créditos a largo plazo a partes vinculadas
+249, Desembolsos pendientes sobre participaciones a largo plazo en partes vinculadas
+25, Otras inversiones financieras a largo plazo
+250, Inversiones financieras a largo plazo en instrumentos de patrimonio
+251, Valores representativos de deuda a largo plazo
+252, Créditos a largo plazo
+253, Créditos a largo plazo por enajenación de inmovilizado
+254, Créditos a largo plazo al personal
+255, Activos por derivados financieros a largo plazo
+2550, Activos por derivados financieros a largo plazo, cartera de negociación
+2553, Activos por derivados financieros a largo plazo, instrumentos de cobertura
+257, Activos por retribuciones a largo plazo de prestación definida
+258, Imposiciones a largo plazo
+259, Desembolsos pendientes sobre participaciones en el patrimonio neto a largo plazo
+26, Fianzas y depósitos constituidos a largo plazo
+260, Fianzas constituidas a largo plazo
+265, Depósitos constituidos a largo plazo
+28, Amortización acumulada del inmovilizado
+280, Amortización acumulada del inmovilizado intangible
+281, Amortización acumulada del inmovilizado material
+282, Amortización acumulada de las inversiones inmobiliarias
+29, Deterioro de valor de activos no corrientes
+290, Deterioro de valor del inmovilizado intangible
+291, Deterioro de valor del inmovilizado material
+292, Deterioro de valor de las inversiones inmobiliarias
+293, Deterioro de valor de participaciones a largo plazo en partes vinculadas
+294, Deterioro de valor de valores representativos de deuda a largo plazo de partes vinculadas
+295, Deterioro de valor de créditos a largo plazo a partes vinculadas
+296, Deterioro de valor de participaciones en el patrimonio neto a largo plazo,
+297, Deterioro de valor de valores representativos de deuda a largo plazo
+298, Deterioro de valor de créditos a largo plazo
+3, Existencias
+30, Comerciales
+300, Comerciales
+301, Comerciales
+31, Materias primas
+310, Materias Primas
+311, Materias Primas
+32, Otros aprovisionamientos
+320, Elementos y conjuntos incorporables
+321, Combustibles
+322, Repuestos
+325, Materiales diversos
+326, Embalajes
+327, Envases
+328, Material de oficina
+33, Productos en curso
+330, Productos en curso
+331, Productos en curso
+34, Productos semiterminados
+340, Productos semiterminados
+341, Productos semiterminados
+35, Productos terminados
+350, Productos terminados
+351, Productos terminados
+36, Subproductos, residuos y materiales recuperados
+360, Subproductos, residuos y materiales recuperados
+369, Subproductos, residuos y materiales recuperados
+39, Deterioro de valor de las existencias
+390, Deterioro del valor de las existencias
+396, Deterioro del valor de las existencias
+4, Acreedores y deudores por operaciones comerciales
+40, Proveedores
+400, Proveedores
+401, Proveedores, efectos comerciales a pagar
+403, Proveedores, empresas del grupo
+404, Proveedores, empresas asociadas
+405, Proveedores, otras partes vinculadas
+406, Envases y embalajes a devolver a proveedores
+407, Anticipos a proveedores
+41, Acreedores varios
+410, Acreedores por prestaciones de servicios
+411, Acreedores, efectos comerciales a pagar
+419, Acreedores por operaciones en común
+43, Clientes
+430, Clientes
+431, Clientes, efectos comerciales a cobrar
+432, Clientes operaciones de factoring
+433, Clientes, empresas del grupo
+434, Clientes, empresas asociadas
+435, Clientes, otras partes vinculadas
+436, Clientes de dudoso cobro
+437, Envases y embalajes a devolver por clientes
+438, Anticipos de clientes
+44, Deudores varios
+440, Deudores
+441, Deudores, efectos comerciales a cobrar
+446, Deudores de dudoso cobro
+449, Deudores por operaciones en común
+46, Personal
+460, Anticipos de remuneraciones
+465, Remuneraciones pendientes de pago
+466, Remuneraciones mediante sistemas de aportación definida pendientes de pago
+47, Administraciones públicas
+470, Hacienda pública deudora por diversos conceptos
+471, Organismos de la Seguridad Social, deudores
+472, Hacienda Pública, IVA soportado
+473, Hacienda Pública, retenciones y pagos a cuenta
+474, Activos por impuesto diferido
+475, Hacienda pública acreedora por conceptos fiscales
+476, Organismos de la Seguridad Social, acreedores
+477, Hacienda Pública, IVA repercutido
+479, Pasivos por diferencias temporarias imponibles
+48, Ajustes por periodificación
+480, Gastos anticipados
+485, Ingresos anticipados
+49, Deterioro de valor de créditos comerciales y provisiones a corto plazo
+490, Deterioro de valor de créditos por operaciones comerciales
+493, Deterioro de valor de créditos por operaciones comerciales con partes vinculadas
+499, Provisiones por operaciones comerciales
+5, Cuentas financieras
+50, Empréstitos, deudas con características especiales y otras emisiones análogas a corto plazo
+500, Obligaciones y bonos a corto plazo
+501, Obligaciones y bonos convertibles a corto plazo
+502, Acciones o participaciones a corto plazo contabilizadas como pasivo
+505, Deudas representadas en otros valores negociables a corto plazo
+506, Intereses de empréstitos y otras emisiones análogas
+507, Dividendos de emisiones contabilizadas como pasivo
+509, Valores negociables amortizados
+51, Deudas a corto plazo con partes vinculadas
+510, Deudas a corto plazo con entidades de crédito vinculadas
+511, Proveedores de inmovilizado a corto plazo, partes vinculadas
+512, Acreedores por arrendamiento financiero a corto plazo, partes vinculadas
+513, Otras deudas a corto plazo con partes vinculadas
+514, Intereses a corto plazo de deudas con partes vinculadas
+52, Deudas a corto plazo por préstamos recibidos y otros conceptos
+520, Deudas a corto plazo con entidades de crédito
+521, Deudas a corto plazo
+522, Deudas a corto plazo transformables en subvenciones, donaciones y legados
+523, Proveedores de inmovilizado a corto plazo
+524, Acreedores por arrendamiento financiero a corto plazo
+525, Efectos a pagar a corto plazo
+526, Dividendo activo a pagar
+527, Intereses a corto plazo de deudas con entidades de crédito
+528, Intereses a corto plazo de deudas
+529, Provisiones a corto plazo
+53, Inversiones financieras a corto plazo en partes vinculadas
+530, Participaciones a corto plazo en partes vinculadas
+531, Valores representativos de deuda a corto plazo de partes vinculadas
+532, Créditos a corto plazo a partes vinculadas
+533, Intereses a corto plazo de inversiones financieras en partes vinculadas
+534, Intereses a corto plazo de créditos a partes vinculadas
+535, Dividendo a cobrar de inversiones financieras en partes vinculadas
+539, Desembolsos pendientes sobre participaciones a corto plazo de partes vinculadas
+54, Otras inversiones financieras a corto plazo
+540, Inversiones financieras temporales en instrumentos de patrimonio
+541, Valores representativos de deuda a corto plazo
+542, Créditos a corto plazo
+543, Créditos a corto plazo por enajenación de inmovilizado
+544, Créditos a corto plazo al personal
+545, Dividendo a cobrar
+546, Intereses a corto plazo de valores representativos de deuda
+547, Intereses a corto plazo de créditos
+548, Imposiciones a corto plazo
+549, Desembolsos pendientes sobre instrumentos de patrimonio a corto plazo
+55, Otras cuentas no bancarias
+550, Titular de la explotación
+551, Cuenta corriente con socios administradores
+552, Cuenta corriente con otras personas y entidades vinculadas
+553, Cuentas corrientes en fusiones y escisiones,
+554, Cuenta corriente con uniones temporales de empresas y comunidades de bienes
+555, Partidas pendientes de aplicación
+556, Desembolsos exigidos sobre participaciones en el patrimonio neto
+557, Dividendo activo a cuenta
+558, Socios por desembolsos exigidos
+559, Derivados financieros a corto plazo
+56, Fianzas y depósitos recibidos y constituidos a corto plazo y ajustes por periodificación
+560, Fianzas recibidas a corto plazo
+561, Depósitos recibidos a corto plazo
+565, Fianzas constituidas a corto plazo
+566, Depósitos constituidos a corto plazo
+567, Intereses pagados por anticipado
+568, Intereses cobrados por anticipado
+569, Garantías financieras a corto plazo
+57, Tesorería
+570, Caja, , , ,
+571, Caja, , , ,
+572, Bancos e instituciones de crédito , , ,
+573, Bancos e instituciones de crédito , , ,
+574, Bancos e instituciones de crédito , , ,
+575, Bancos e instituciones de crédito , , ,
+576, Inversiones a corto plazo de gran liquidez
+58, Activos no corrientes mantenidos para la venta y activos y pasivos asociados
+580, Inmovilizado, ...
+584, Inmovilizado, ...
+585, Provisiones, ...
+589, Provisiones, ...
+59, Deterioro del valor de inversiones financieras a corto plazo y de activos no corrientes mantenidos para la venta
+593, Deterioro de valor de participaciones a corto plazo en partes vinculadas
+594, Deterioro del valor de valores representativos de deuda a corto plazo de partes vinculadas
+595, Deterioro del valor de créditos a corto plazo a partes vinculadas
+597, Deterioro de valor de valores representativos de deuda a corto plazo
+598, Deterioro de valor de créditos a corto plazo
+599, Deterioro de valor de activos no corrientes mantenidos para la venta
+6, Compras y gastos
+60, Compras
+600, Compras de , , ,
+601, Compras de , , ,
+602, Compras de , , ,
+607, Compras de , , ,
+606, Descuentos sobre compras por pronto pago
+608, Devoluciones de compras y operaciones similares
+609, Rappels por compras
+61, Variación de existencias
+610, Variación de existencias de , , ,
+611, Variación de existencias de , , ,
+612, Variación de existencias de , , ,
+62, Servicios exteriores
+620, Gastos en investigación y desarrollo del ejercicio
+621, Arrendamientos y cánones
+622, Reparaciones y conservación
+623, Servicios de profesionales independientes
+624, Transportes
+625, Primas de seguros
+626, Servicios bancarios y similares
+627, Publicidad, propaganda y relaciones públicas
+628, Suministros
+629, Otros servicios
+63, Tributos
+630, Impuesto sobre beneficios
+631, Otros tributos
+633, Ajustes negativos en la imposición sobre beneficios
+634, Ajustes negativos en la imposición indirecta
+636, Devolución de impuestos
+638, Ajustes positivos en la imposición sobre beneficios
+639, Ajustes positivos en la imposición indirecta
+64, Gastos de personal
+640, Sueldos y salarios
+641, Indemnizaciones
+642, Seguridad Social a cargo de la empresa
+643, Retribuciones a largo plazo mediante sistemas de aportación definida
+644, Retribuciones a largo plazo mediante sistemas de prestación definida
+645, Retribuciones al personal mediante instrumentos de patrimonio
+649, Otros gastos sociales
+65, Otros gastos de gestión
+650, Pérdidas de créditos comerciales incobrables
+651, Resultados de operaciones en común
+659, Otras pérdidas en gestión corriente
+66, Gastos financieros
+660, Gastos financieros por actualización de provisiones
+661, Intereses de obligaciones y bonos
+662, Intereses de deudas
+663, Pérdidas por valoración de instrumentos financieros por su valor razonable
+664, Dividendos de acciones o participaciones contabilizadas como pasivo
+665, Intereses por descuento de efectos y operaciones de factoring
+666, Pérdidas en participaciones y valores representativos de deuda
+667, Pérdidas de créditos no comerciales
+668, Diferencias negativas de cambio
+669, Otros gastos financieros
+67, Pérdidas procedentes de activos no corrientes ygastos excepcionales
+670, Pérdidas procedentes del inmovilizado , , ,
+671, Pérdidas procedentes del inmovilizado , , ,
+672, Pérdidas procedentes del inmovilizado , , ,
+673, Pérdidas procedentes de participaciones a largo plazo en partes vinculadas
+675, Pérdidas por operaciones con obligaciones propias
+678, Gastos excepcionales
+68, Dotaciones para amortizaciones
+680, Amortización de, , ,
+681, Amortización de, , ,
+682, Amortización de, , ,
+69, Pérdidas por deterioro y otras dotaciones
+690, Pérdidas por deterioro, , ,
+691, Pérdidas por deterioro, , ,
+692, Pérdidas por deterioro, , ,
+693, Pérdidas por deterioro de existencias
+694, Pérdidas por deterioro de créditos comerciales
+695, Dotación a la provisión por operaciones comerciales
+696, Pérdidas por deterioro de participaciones y valores representativos de deuda a largo plazo
+697, Pérdidas por deterioro de créditos a largo plazo
+698, Pérdidas por deterioro de participaciones y valores representativos de deuda a corto plazo
+699, Pérdidas por deterioro de créditos a corto plazo
+7, Ventas e ingresos
+70, Ventas de mercaderías, de producción propia, de servicios, etc
+700, Ventas de , , ,
+705, Ventas de , , ,
+706, Descuentos sobre ventas por pronto pago
+708, Devoluciones de ventas y operaciones similares
+709, Rappels sobre ventas
+71, Variación de existencias
+710, Variación de existencias de , , ,
+713, Variación de existencias de , , ,
+73, Trabajos realizados para la empresa
+730, Trabajos realizados para el inmovilizado intangible
+731, Trabajos realizados para el inmovilizado material
+732, Trabajos realizados en inversiones inmobiliarias
+733, Trabajos realizados para el inmovilizado en curso
+74, Subvenciones, donaciones y legados
+740, Subvenciones, donaciones y legados a la explotación
+746, Subvenciones, donaciones y legados de capital transferidos al resultado del ejercicio
+747, Otras subvenciones, donaciones y legados transferidos al resultado del ejercicio,
+75, Otros ingresos de gestión
+751, Resultados de operaciones en común
+752, Ingresos por arrendamientos
+753, Ingresos de propiedad industrial cedida en explotación
+754, Ingresos por comisiones
+755, Ingresos por servicios al personal
+759, Ingresos por servicios diversos
+76, Ingresos financieros
+760, Ingresos de participaciones en instrumentos de patrimonio
+761, Ingresos de valores representativos de deuda
+762, Ingresos de créditos
+763, Beneficios por valoración de instrumentos financieros por su valor razonable
+766, Beneficios en participaciones y valores representativos de deuda
+767, Ingresos de activos afectos y de derechos de reembolso relativos a retribuciones a largo plazo,
+768, Diferencias positivas de cambio
+769, Otros ingresos financieros
+77, Beneficios procedentes de activos no corrientes e ingresos excepcionales
+770, Beneficios procedentes del...
+771, Beneficios procedentes del...
+772, Beneficios procedentes del...
+773, Beneficios procedentes de participaciones...
+774, Diferencia negativa en combinaciones de negocios
+775, Beneficios por operaciones con obligaciones propias
+778, Ingresos excepcionales
+79, Excesos y aplicaciones de provisiones y de pérdidas por deterioro
+790, Reversión del deterioro del inmovilizado...
+791, Reversión del deterioro del inmovilizado...
+792, Reversión del deterioro del inmovilizado...
+793, Reversión del deterioro de existencias
+794, Reversión del deterioro de créditos por operaciones comerciales,
+795, Exceso de provisiones
+796, Reversión del deterioro de participaciones y valores representativos de deuda a largo plazo
+797, Reversión del deterioro de créditos a largo plazo
+798, Reversión del deterioro de participaciones y valores representativos de deuda a corto plazo
+799, Reversión del deterioro de créditos a corto plazo
+8, Gastos imputados al patrimonio neto
+80, Gastos financieros por valoración de activos financieros
+800, Pérdidas en activos financieros disponibles para la venta
+802, Transferencia de beneficios en activos financieros disponibles para la venta
+81, Gastos en operaciones de cobertura
+810, Pérdidas por coberturas de flujos de efectivo
+811, Pérdidas por coberturas de inversiones netas en un negocio en el extranjero
+812, Transferencia de beneficios por coberturas de flujos de efectivo
+813, Transferencia de beneficios por coberturas de inversiones netas en un negocio en el extranjero
+82, Gastos por diferencias en conversión
+820, Diferencias de conversión negativas
+821, Transferencia de diferencias de conversión positivas
+83, Impuestos sobre beneficios
+830, Impuestos sobre beneficios
+833, Ajustes negativos en la imposición sobre beneficios
+834, Ingresos fiscales por diferencias permanentes
+835, Ingresos fiscales por deducciones y bonificaciones
+836, Transferencia de diferencias permanentes
+837, Transferencia de deducciones y bonificaciones
+838, Ajustes positivos en la imposición sobre beneficios
+84, Transferencias de subvenciones, donaciones y legados
+840, Transferencia de subvenciones oficiales de capital
+841, Transferencia de donaciones y legados de capital
+842, Transferencia de otras subvenciones, donaciones y legados
+85, Gastos por pérdidas actuariales y ajustes en los activos por retribuciones a largo plazo de prestación definida
+850, Pérdidas actuariales
+851, Ajustes negativos en activos por retribuciones a largo plazo de prestación definida
+86, Gastos por activos no corrientes en venta
+860, Pérdidas en activos no corrientes y grupos enajenables de elementos mantenidos para la venta,
+862, Transferencia de beneficios en activos no corrientes y grupos enajenables de elementos mantenidos para la venta
+89, Gastos de participaciones en empresas del grupo o asociadas con ajustes valorativos positivos previos
+891, Deterioro de participaciones en el patrimonio, empresas del grupo
+892, Deterioro de participaciones en el patrimonio, empresas asociadas
+9, Ingresos imputados al patrimonio neto
+90, Ingresos financieros por valoración de activos financieros
+900, Beneficios en activos financieros disponibles para la venta
+902, Transferencia de pérdidas de activos financieros disponibles para la venta
+91, Ingresos en operaciones de cobertura
+910, Beneficios por coberturas de flujos de efectivo
+911, Beneficios por coberturas de una inversión neta en un negocio en el extranjero
+912, Transferencia de pérdidas por coberturas de flujos de efectivo
+913, Transferencia de pérdidas por coberturas de una inversión neta en un negocio en el extranjero
+92, Ingresos por diferencias de conversión
+920, Diferencias de conversión positivas
+921, Transferencia de diferencias de conversión negativas
+94, Ingresos por subvenciones, donaciones y legados
+940, Ingresos de...
+941, Ingresos de...
+942, Ingresos de...
+95, Ingresos por ganancias actuariales y ajustes en los activos por retribuciones a largo plazo de prestación definida
+950, Ganancias actuariales
+951, Ajustes positivos en activos por retribuciones a largo plazo de prestación definida
+96, Ingresos por activos no corrientes en venta
+960, Beneficios en activos no corrientes y grupos enajenables de elementos mantenidos para la venta,
+962, Transferencia de pérdidas en activos no corrientes y grupos enajenables de elementos mantenidos para la venta,
+99, Ingresos de participaciones en el patrimonio de empresas del grupo o asociadas con ajustes valorativos negativos previos
+991, Recuperación de ajustes valorativos negativos previos, empresas del grupo
+992, Recuperación de ajustes valorativos negativos previos, empresas asociadas
+993, Transferencia por deterioro de ajustes valorativos negativos previos, empresas del grupo
+994, Transferencia por deterioro de ajustes valorativos negativos previos, empresas asociadas

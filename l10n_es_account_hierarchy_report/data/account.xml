@@ -1,0 +1,2571 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data>
+    <record model="account.hierarchy.label" id="level_1_code_1">
+        <field name="name">Financiación Básica</field>
+        <field name="code">1</field>
+        <field name="level">1</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_10">
+        <field name="name">Capital</field>
+        <field name="code">10</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_100">
+        <field name="name">Capital social</field>
+        <field name="code">100</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_101">
+        <field name="name">Fondo social</field>
+        <field name="code">101</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_102">
+        <field name="name">Capital</field>
+        <field name="code">102</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_103">
+        <field name="name">Socios por desembolsos no exigidos...</field>
+        <field name="code">103</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_104">
+        <field name="name">Socios por aportaciones no dinerarias pendientes...</field>
+        <field name="code">104</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_108">
+        <field name="name">Acciones o participaciones propias en situaciones especiales</field>
+        <field name="code">108</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_109">
+        <field name="name">Acciones o participaciones propias para reducción de capital</field>
+        <field name="code">109</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_11">
+        <field name="name">Reservas</field>
+        <field name="code">11</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_110">
+        <field name="name">Prima de emisión o asunción</field>
+        <field name="code">110</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_111">
+        <field name="name">Patrimonio neto por emisión de instrumentos financieros compuestos</field>
+        <field name="code">111</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_112">
+        <field name="name">Reserva legal</field>
+        <field name="code">112</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_113">
+        <field name="name">Reservas voluntarias</field>
+        <field name="code">113</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_114">
+        <field name="name">Reservas especiales</field>
+        <field name="code">114</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_115">
+        <field name="name">Reservas por pérdidas y ganancias actuariales y otros ajustes</field>
+        <field name="code">115</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_118">
+        <field name="name">Aportaciones de socios o propietarios</field>
+        <field name="code">118</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_119">
+        <field name="name">Diferencias por ajuste del capital a euros</field>
+        <field name="code">119</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_12">
+        <field name="name">Resultados pendientes de aplicación</field>
+        <field name="code">12</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_120">
+        <field name="name">Remanente</field>
+        <field name="code">120</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_121">
+        <field name="name">Resultados negativos de ejercicios anteriores</field>
+        <field name="code">121</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_129">
+        <field name="name">Resultados del ejercicio</field>
+        <field name="code">129</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_13">
+        <field name="name">Subvenciones</field>
+        <field name="code">13</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_130">
+        <field name="name">Subvenciones oficiales de capital</field>
+        <field name="code">130</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_131">
+        <field name="name">Donaciones y legados de capital</field>
+        <field name="code">131</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_132">
+        <field name="name">Otras subvenciones</field>
+        <field name="code">132</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_133">
+        <field name="name">Ajustes por valoración en instrumentos financieros</field>
+        <field name="code">133</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_134">
+        <field name="name">Operaciones de cobertura</field>
+        <field name="code">134</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_135">
+        <field name="name">Diferencias de conversión</field>
+        <field name="code">135</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_136">
+        <field name="name">Ajustes por valoración en activos no corrientes y grupos enajenables de elementos mantenidos para la venta
+        </field>
+        <field name="code">136</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_137">
+        <field name="name">Ingresos fiscales a distribuir en varios ejercicios</field>
+        <field name="code">137</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_14">
+        <field name="name">Provisiones</field>
+        <field name="code">14</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_140">
+        <field name="name">Provisión para retribuciones y otras prestaciones al personal</field>
+        <field name="code">140</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_141">
+        <field name="name">Provisión para impuestos</field>
+        <field name="code">141</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_142">
+        <field name="name">Provisión para otras responsabilidades</field>
+        <field name="code">142</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_143">
+        <field name="name">Provisión por desmantelamiento</field>
+        <field name="code">143</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_145">
+        <field name="name">Provisión para actuaciones medioambientales</field>
+        <field name="code">145</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_146">
+        <field name="name">Provisión para reestructuraciones</field>
+        <field name="code">146</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_147">
+        <field name="name">Provisiones por transacciones con pagos basados en instrumentos de patrimonio</field>
+        <field name="code">147</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_15">
+        <field name="name">Deudas a largo plazo con características especiales</field>
+        <field name="code">15</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_150">
+        <field name="name">Acciones o participaciones a largo plazo contabilizadas como pasivo</field>
+        <field name="code">150</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_153">
+        <field name="name">Desembolsos no exigidos por acciones o participaciones contabilizadas como pasivo</field>
+        <field name="code">153</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_154">
+        <field name="name">Aportaciones no dinerarias pendientes por acciones o participaciones contabilizadas como pasivo</field>
+        <field name="code">154</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_16">
+        <field name="name">Deudas a largo plazo con partes vinculadas</field>
+        <field name="code">16</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_160">
+        <field name="name">Deudas a largo plazo con entidades de crédito vinculadas</field>
+        <field name="code">160</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_161">
+        <field name="name">Proveedores de inmovilizado a largo plazo</field>
+        <field name="code">161</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_162">
+        <field name="name">Acreedores por arrendamiento financiero a largo plazo</field>
+        <field name="code">162</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_163">
+        <field name="name">Otras deudas a largo plazo con partes vinculadas</field>
+        <field name="code">163</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_17">
+        <field name="name">Deudas a largo plazo por préstamos recibidos y otros conceptos</field>
+        <field name="code">17</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_170">
+        <field name="name">Deudas a largo plazo con entidades de crédito</field>
+        <field name="code">170</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_171">
+        <field name="name">Deudas a largo plazo</field>
+        <field name="code">171</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_172">
+        <field name="name">Deudas a largo plazo transformables en subvenciones</field>
+        <field name="code">172</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_173">
+        <field name="name">Proveedores de inmovilizado a largo plazo</field>
+        <field name="code">173</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_174">
+        <field name="name">Acreedores de arrendamiento financiero a largo plazo</field>
+        <field name="code">174</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_175">
+        <field name="name">Efectos a pagar a largo plazo</field>
+        <field name="code">175</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_176">
+        <field name="name">Pasivos por derivados financieros a largo plazo</field>
+        <field name="code">176</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_177">
+        <field name="name">Obligaciones y bonos</field>
+        <field name="code">177</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_178">
+        <field name="name">Obligaciones y bonos convertibles</field>
+        <field name="code">178</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_179">
+        <field name="name">Deudas representadas en otros valores negociables</field>
+        <field name="code">179</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_18">
+        <field name="name">Pasivos por fianzas y garantías y otros conceptos a largo plazo</field>
+        <field name="code">18</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_180">
+        <field name="name">Fianzas recibidas a largo plazo</field>
+        <field name="code">180</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_181">
+        <field name="name">Anticipos recibidos por ventas o prestaciones de servicios a largo plazo</field>
+        <field name="code">181</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_185">
+        <field name="name">Depósitos recibidos a largo plazo</field>
+        <field name="code">185</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_189">
+        <field name="name">Garantías financieras a largo plazo</field>
+        <field name="code">189</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_19">
+        <field name="name">Situaciones transitorias de financiación</field>
+        <field name="code">19</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_190">
+        <field name="name">Acciones o participaciones emitidas</field>
+        <field name="code">190</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_192">
+        <field name="name">Suscriptores de acciones</field>
+        <field name="code">192</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_194">
+        <field name="name">Capital emitido pendiente de inscripción</field>
+        <field name="code">194</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_195">
+        <field name="name">Acciones o participaciones emitidas consideradas como pasivos financieros</field>
+        <field name="code">195</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_197">
+        <field name="name">Suscriptores de acciones consideradas como pasivos financieros</field>
+        <field name="code">197</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_199">
+        <field name="name">Acciones o participaciones emitidas consideradas como pasivos financieros pendientes de inscripción</field>
+        <field name="code">199</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_1_code_2">
+        <field name="name">Activo no corriente</field>
+        <field name="code">2</field>
+        <field name="level">1</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_20">
+        <field name="name">Inmovilizaciones intangibles</field>
+        <field name="code">20</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_200">
+        <field name="name">Gastos de investigación</field>
+        <field name="code">200</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_201">
+        <field name="name">Desarrollo</field>
+        <field name="code">201</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_202">
+        <field name="name">Concesiones administrativas</field>
+        <field name="code">202</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_203">
+        <field name="name">Propiedad industrial</field>
+        <field name="code">203</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_204">
+        <field name="name">Fondo de comercio</field>
+        <field name="code">204</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_205">
+        <field name="name">Derechos de traspaso</field>
+        <field name="code">205</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_206">
+        <field name="name">Aplicaciones informáticas</field>
+        <field name="code">206</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_209">
+        <field name="name">Anticipos para inmovilizaciones intangibles</field>
+        <field name="code">209</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_21">
+        <field name="name">Inmovilizaciones materiales</field>
+        <field name="code">21</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_210">
+        <field name="name">Terrenos y bienes naturales</field>
+        <field name="code">210</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_211">
+        <field name="name">Construcciones</field>
+        <field name="code">211</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_212">
+        <field name="name">Instalaciones técnicas</field>
+        <field name="code">212</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_213">
+        <field name="name">Maquinaria</field>
+        <field name="code">213</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_214">
+        <field name="name">Utillaje</field>
+        <field name="code">214</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_215">
+        <field name="name">Otras instalaciones</field>
+        <field name="code">215</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_216">
+        <field name="name">Mobiliario</field>
+        <field name="code">216</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_217">
+        <field name="name">Equipos para procesos de información</field>
+        <field name="code">217</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_218">
+        <field name="name">Elementos de transporte</field>
+        <field name="code">218</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_219">
+        <field name="name">Otro inmovilizado material</field>
+        <field name="code">219</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_22">
+        <field name="name">Inversiones Inmobiliarias</field>
+        <field name="code">22</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_220">
+        <field name="name">Inversiones en terrenos y bienes naturales</field>
+        <field name="code">220</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_221">
+        <field name="name">Inversiones en construcciones</field>
+        <field name="code">221</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_23">
+        <field name="name">Inmovilzaciones materiales en curso</field>
+        <field name="code">23</field>
+        <field name="level">2</field>
+    </record>
+
+    <record model="account.hierarchy.label" id="level_3_code_230">
+        <field name="name">Adaptación de terrenos y bienes naturales</field>
+        <field name="code">230</field>
+        <field name="level">3</field>
+    </record>
+
+    <record model="account.hierarchy.label" id="level_3_code_231">
+        <field name="name">Construcciones en curso</field>
+        <field name="code">231</field>
+        <field name="level">3</field>
+    </record>
+
+    <record model="account.hierarchy.label" id="level_3_code_232">
+        <field name="name">Instalaciones técnicas en montaje</field>
+        <field name="code">232</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_233">
+        <field name="name">Maquinaria en montaje</field>
+        <field name="code">233</field>
+        <field name="level">3</field>
+    </record>
+
+    <record model="account.hierarchy.label" id="level_3_code_237">
+        <field name="name">Equipos para procesos de información en montaje</field>
+        <field name="code">237</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_239">
+        <field name="name">Anticipos para inmovilizaciones materiales</field>
+        <field name="code">239</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_24">
+        <field name="name">Inversiones financieras a largo plazo en partes vinculadas</field>
+        <field name="code">24</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_240">
+        <field name="name">Participaciones a largo plazo en partes vinculadas</field>
+        <field name="code">240</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_4_code_2403">
+        <field name="name">Participación a largo plazo en empresas del grupo</field>
+        <field name="code">2403</field>
+        <field name="level">4</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_4_code_2404">
+        <field name="name">Participación a largo plazo en empresas asociadas</field>
+        <field name="code">2404</field>
+        <field name="level">4</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_4_code_2405">
+        <field name="name">Participaciones a largo plazo en otras partes vinculadas</field>
+        <field name="code">2405</field>
+        <field name="level">4</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_241">
+        <field name="name">Valores representativos de deuda a largo plazo de partes vinculadas</field>
+        <field name="code">241</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_242">
+        <field name="name">Créditos a largo plazo a partes vinculadas</field>
+        <field name="code">242</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_249">
+        <field name="name">Desembolsos pendientes sobre participaciones a largo plazo en partes vinculadas</field>
+        <field name="code">249</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_25">
+        <field name="name">Otras inversiones financieras a largo plazo</field>
+        <field name="code">25</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_250">
+        <field name="name">Inversiones financieras a largo plazo en instrumentos de patrimonio</field>
+        <field name="code">250</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_251">
+        <field name="name">Valores representativos de deuda a largo plazo</field>
+        <field name="code">251</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_252">
+        <field name="name">Créditos a largo plazo</field>
+        <field name="code">252</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_253">
+        <field name="name">Créditos a largo plazo por enajenación de inmovilizado</field>
+        <field name="code">253</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_254">
+        <field name="name">Créditos a largo plazo al personal</field>
+        <field name="code">254</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_255">
+        <field name="name">Activos por derivados financieros a largo plazo</field>
+        <field name="code">255</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_4_code_2550">
+        <field name="name">Activos por derivados financieros a largo plazo</field>
+        <field name="code">2550</field>
+        <field name="level">4</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_4_code_2553">
+        <field name="name">Activos por derivados financieros a largo plazo</field>
+        <field name="code">2553</field>
+        <field name="level">4</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_257">
+        <field name="name">Activos por retribuciones a largo plazo de prestación definida</field>
+        <field name="code">257</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_258">
+        <field name="name">Imposiciones a largo plazo</field>
+        <field name="code">258</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_259">
+        <field name="name">Desembolsos pendientes sobre participaciones en el patrimonio neto a largo plazo</field>
+        <field name="code">259</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_26">
+        <field name="name">Fianzas y depósitos constituidos a largo plazo</field>
+        <field name="code">26</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_260">
+        <field name="name">Fianzas constituidas a largo plazo</field>
+        <field name="code">260</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_265">
+        <field name="name">Depósitos constituidos a largo plazo</field>
+        <field name="code">265</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_28">
+        <field name="name">Amortización acumulada del inmovilizado</field>
+        <field name="code">28</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_280">
+        <field name="name">Amortización acumulada del inmovilizado intangible</field>
+        <field name="code">280</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_281">
+        <field name="name">Amortización acumulada del inmovilizado material</field>
+        <field name="code">281</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_282">
+        <field name="name">Amortización acumulada de las inversiones inmobiliarias</field>
+        <field name="code">282</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_29">
+        <field name="name">Deterioro de valor de activos no corrientes</field>
+        <field name="code">29</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_290">
+        <field name="name">Deterioro de valor del inmovilizado intangible</field>
+        <field name="code">290</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_291">
+        <field name="name">Deterioro de valor del inmovilizado material</field>
+        <field name="code">291</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_292">
+        <field name="name">Deterioro de valor de las inversiones inmobiliarias</field>
+        <field name="code">292</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_293">
+        <field name="name">Deterioro de valor de participaciones a largo plazo en partes vinculadas</field>
+        <field name="code">293</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_294">
+        <field name="name">Deterioro de valor de valores representativos de deuda a largo plazo de partes vinculadas</field>
+        <field name="code">294</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_295">
+        <field name="name">Deterioro de valor de créditos a largo plazo a partes vinculadas</field>
+        <field name="code">295</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_296">
+        <field name="name">Deterioro de valor de participaciones en el patrimonio neto a largo plazo</field>
+        <field name="code">296</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_297">
+        <field name="name">Deterioro de valor de valores representativos de deuda a largo plazo</field>
+        <field name="code">297</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_298">
+        <field name="name">Deterioro de valor de créditos a largo plazo</field>
+        <field name="code">298</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_1_code_3">
+        <field name="name">Existencias</field>
+        <field name="code">3</field>
+        <field name="level">1</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_30">
+        <field name="name">Comerciales</field>
+        <field name="code">30</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_300">
+        <field name="name">Mercaderias Comerciales A</field>
+        <field name="code">300</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_301">
+        <field name="name">Mercaderias Comerciales B</field>
+        <field name="code">301</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_31">
+        <field name="name">Materias primas</field>
+        <field name="code">31</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_310">
+        <field name="name">Materias Primas</field>
+        <field name="code">310</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_311">
+        <field name="name">Materias Primas</field>
+        <field name="code">311</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_32">
+        <field name="name">Otros aprovisionamientos</field>
+        <field name="code">32</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_320">
+        <field name="name">Elementos y conjuntos incorporables</field>
+        <field name="code">320</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_321">
+        <field name="name">Combustibles</field>
+        <field name="code">321</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_322">
+        <field name="name">Repuestos</field>
+        <field name="code">322</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_325">
+        <field name="name">Materiales diversos</field>
+        <field name="code">325</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_326">
+        <field name="name">Embalajes</field>
+        <field name="code">326</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_327">
+        <field name="name">Envases</field>
+        <field name="code">327</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_328">
+        <field name="name">Material de oficina</field>
+        <field name="code">328</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_33">
+        <field name="name">Productos en curso</field>
+        <field name="code">33</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_330">
+        <field name="name">Productos en curso</field>
+        <field name="code">330</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_331">
+        <field name="name">Productos en curso</field>
+        <field name="code">331</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_34">
+        <field name="name">Productos semiterminados</field>
+        <field name="code">34</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_340">
+        <field name="name">Productos semiterminados</field>
+        <field name="code">340</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_341">
+        <field name="name">Productos semiterminados</field>
+        <field name="code">341</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_35">
+        <field name="name">Productos terminados</field>
+        <field name="code">35</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_350">
+        <field name="name">Productos terminados</field>
+        <field name="code">350</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_351">
+        <field name="name">Productos terminados</field>
+        <field name="code">351</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_36">
+        <field name="name">Subproductos</field>
+        <field name="code">36</field>
+        <field name="level">2</field>
+    </record>
+
+    <record model="account.hierarchy.label" id="level_3_code_360">
+        <field name="name">Subproductos A</field>
+        <field name="code">360</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_361">
+        <field name="name">Subproductos B</field>
+        <field name="code">361</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_365">
+        <field name="name">Residuos A</field>
+        <field name="code">365</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_366">
+        <field name="name">Residuos B</field>
+        <field name="code">366</field>
+        <field name="level">3</field>
+    </record>
+
+    <record model="account.hierarchy.label" id="level_3_code_368">
+        <field name="name">Materiales recuperados A</field>
+        <field name="code">368</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_369">
+        <field name="name">Materiales recuperados B</field>
+        <field name="code">369</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_39">
+        <field name="name">Deterioro de valor de las existencias</field>
+        <field name="code">39</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_390">
+        <field name="name">Deterioro del valor de las existencias</field>
+        <field name="code">390</field>
+        <field name="level">3</field>
+    </record>
+
+
+    <record model="account.hierarchy.label" id="level_3_code_391">
+        <field name="name">Deterioro del valor de las materias primas</field>
+        <field name="code">391</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_392">
+        <field name="name">Deterioro del valor de otros aprovisionamientos</field>
+        <field name="code">392</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_393">
+        <field name="name">Deterioro del valor de productos en curso</field>
+        <field name="code">393</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_394">
+        <field name="name">Deterioro del valor de productos semiterminados</field>
+        <field name="code">394</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_395">
+        <field name="name">Deterioro del valor de productos terminados</field>
+        <field name="code">395</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_396">
+        <field name="name">Deterioro del valor de subproductos, residuos y materiales recuperados</field>
+        <field name="code">396</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_1_code_4">
+        <field name="name">Acreedores y deudores por operaciones comerciales</field>
+        <field name="code">4</field>
+        <field name="level">1</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_40">
+        <field name="name">Proveedores</field>
+        <field name="code">40</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_400">
+        <field name="name">Proveedores</field>
+        <field name="code">400</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_401">
+        <field name="name">Proveedores</field>
+        <field name="code">401</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_403">
+        <field name="name">Proveedores</field>
+        <field name="code">403</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_404">
+        <field name="name">Proveedores</field>
+        <field name="code">404</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_405">
+        <field name="name">Proveedores</field>
+        <field name="code">405</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_406">
+        <field name="name">Envases y embalajes a devolver a proveedores</field>
+        <field name="code">406</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_407">
+        <field name="name">Anticipos a proveedores</field>
+        <field name="code">407</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_41">
+        <field name="name">Acreedores varios</field>
+        <field name="code">41</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_410">
+        <field name="name">Acreedores por prestaciones de servicios</field>
+        <field name="code">410</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_411">
+        <field name="name">Acreedores</field>
+        <field name="code">411</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_419">
+        <field name="name">Acreedores por operaciones en común</field>
+        <field name="code">419</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_43">
+        <field name="name">Clientes</field>
+        <field name="code">43</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_430">
+        <field name="name">Clientes</field>
+        <field name="code">430</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_431">
+        <field name="name">Clientes, efectos comerciales a cobrar</field>
+        <field name="code">431</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_432">
+        <field name="name">Clientes operaciones de factoring</field>
+        <field name="code">432</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_433">
+        <field name="name">Clientes, empresas del grupo</field>
+        <field name="code">433</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_434">
+        <field name="name">Clientes, empresas asociadas</field>
+        <field name="code">434</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_435">
+        <field name="name">Clientes, otras partes vinculadas</field>
+        <field name="code">435</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_436">
+        <field name="name">Clientes de dudoso cobro</field>
+        <field name="code">436</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_437">
+        <field name="name">Envases y embalajes a devolver por clientes</field>
+        <field name="code">437</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_438">
+        <field name="name">Anticipos de clientes</field>
+        <field name="code">438</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_44">
+        <field name="name">Deudores varios</field>
+        <field name="code">44</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_440">
+        <field name="name">Deudores</field>
+        <field name="code">440</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_441">
+        <field name="name">Deudores, efectos comerciales a cobrar</field>
+        <field name="code">441</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_446">
+        <field name="name">Deudores de dudoso cobro</field>
+        <field name="code">446</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_449">
+        <field name="name">Deudores por operaciones en común</field>
+        <field name="code">449</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_46">
+        <field name="name">Personal</field>
+        <field name="code">46</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_460">
+        <field name="name">Anticipos de remuneraciones</field>
+        <field name="code">460</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_465">
+        <field name="name">Remuneraciones pendientes de pago</field>
+        <field name="code">465</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_466">
+        <field name="name">Remuneraciones mediante sistemas de aportación definida pendientes de pago</field>
+        <field name="code">466</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_47">
+        <field name="name">Administraciones públicas</field>
+        <field name="code">47</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_470">
+        <field name="name">Hacienda pública deudora por diversos conceptos</field>
+        <field name="code">470</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_471">
+        <field name="name">Organismos de la Seguridad Social</field>
+        <field name="code">471</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_472">
+        <field name="name">Hacienda Pública, IVA soportado</field>
+        <field name="code">472</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_473">
+        <field name="name">Hacienda Pública, retenciones y pagos a cuenta</field>
+        <field name="code">473</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_474">
+        <field name="name">Activos por impuesto diferido</field>
+        <field name="code">474</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_475">
+        <field name="name">Hacienda pública acreedora por conceptos fiscales</field>
+        <field name="code">475</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_476">
+        <field name="name">Organismos de la Seguridad Social</field>
+        <field name="code">476</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_477">
+        <field name="name">Hacienda Pública, IVA repercutido</field>
+        <field name="code">477</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_479">
+        <field name="name">Pasivos por diferencias temporarias imponibles</field>
+        <field name="code">479</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_48">
+        <field name="name">Ajustes por periodificación</field>
+        <field name="code">48</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_480">
+        <field name="name">Gastos anticipados</field>
+        <field name="code">480</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_485">
+        <field name="name">Ingresos anticipados</field>
+        <field name="code">485</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_49">
+        <field name="name">Deterioro de valor de créditos comerciales y provisiones a corto plazo</field>
+        <field name="code">49</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_490">
+        <field name="name">Deterioro de valor de créditos por operaciones comerciales</field>
+        <field name="code">490</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_493">
+        <field name="name">Deterioro de valor de créditos por operaciones comerciales con partes vinculadas</field>
+        <field name="code">493</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_499">
+        <field name="name">Provisiones por operaciones comerciales</field>
+        <field name="code">499</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_1_code_5">
+        <field name="name">Cuentas financieras</field>
+        <field name="code">5</field>
+        <field name="level">1</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_50">
+        <field name="name">Empréstitos</field>
+        <field name="code">50</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_500">
+        <field name="name">Obligaciones y bonos a corto plazo</field>
+        <field name="code">500</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_501">
+        <field name="name">Obligaciones y bonos convertibles a corto plazo</field>
+        <field name="code">501</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_502">
+        <field name="name">Acciones o participaciones a corto plazo contabilizadas como pasivo</field>
+        <field name="code">502</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_505">
+        <field name="name">Deudas representadas en otros valores negociables a corto plazo</field>
+        <field name="code">505</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_506">
+        <field name="name">Intereses de empréstitos y otras emisiones análogas</field>
+        <field name="code">506</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_507">
+        <field name="name">Dividendos de emisiones contabilizadas como pasivo</field>
+        <field name="code">507</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_509">
+        <field name="name">Valores negociables amortizados</field>
+        <field name="code">509</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_51">
+        <field name="name">Deudas a corto plazo con partes vinculadas</field>
+        <field name="code">51</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_510">
+        <field name="name">Deudas a corto plazo con entidades de crédito vinculadas</field>
+        <field name="code">510</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_511">
+        <field name="name">Proveedores de inmovilizado a corto plazo</field>
+        <field name="code">511</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_512">
+        <field name="name">Acreedores por arrendamiento financiero a corto plazo</field>
+        <field name="code">512</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_513">
+        <field name="name">Otras deudas a corto plazo con partes vinculadas</field>
+        <field name="code">513</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_514">
+        <field name="name">Intereses a corto plazo de deudas con partes vinculadas</field>
+        <field name="code">514</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_52">
+        <field name="name">Deudas a corto plazo por préstamos recibidos y otros conceptos</field>
+        <field name="code">52</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_520">
+        <field name="name">Deudas a corto plazo con entidades de crédito</field>
+        <field name="code">520</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_521">
+        <field name="name">Deudas a corto plazo</field>
+        <field name="code">521</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_522">
+        <field name="name">Deudas a corto plazo transformables en subvenciones</field>
+        <field name="code">522</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_523">
+        <field name="name">Proveedores de inmovilizado a corto plazo</field>
+        <field name="code">523</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_524">
+        <field name="name">Acreedores por arrendamiento financiero a corto plazo</field>
+        <field name="code">524</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_525">
+        <field name="name">Efectos a pagar a corto plazo</field>
+        <field name="code">525</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_526">
+        <field name="name">Dividendo activo a pagar</field>
+        <field name="code">526</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_527">
+        <field name="name">Intereses a corto plazo de deudas con entidades de crédito</field>
+        <field name="code">527</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_528">
+        <field name="name">Intereses a corto plazo de deudas</field>
+        <field name="code">528</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_529">
+        <field name="name">Provisiones a corto plazo</field>
+        <field name="code">529</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_53">
+        <field name="name">Inversiones financieras a corto plazo en partes vinculadas</field>
+        <field name="code">53</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_530">
+        <field name="name">Participaciones a corto plazo en partes vinculadas</field>
+        <field name="code">530</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_531">
+        <field name="name">Valores representativos de deuda a corto plazo de partes vinculadas</field>
+        <field name="code">531</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_532">
+        <field name="name">Créditos a corto plazo a partes vinculadas</field>
+        <field name="code">532</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_533">
+        <field name="name">Intereses a corto plazo de inversiones financieras en partes vinculadas</field>
+        <field name="code">533</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_534">
+        <field name="name">Intereses a corto plazo de créditos a partes vinculadas</field>
+        <field name="code">534</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_535">
+        <field name="name">Dividendo a cobrar de inversiones financieras en partes vinculadas</field>
+        <field name="code">535</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_539">
+        <field name="name">Desembolsos pendientes sobre participaciones a corto plazo de partes vinculadas</field>
+        <field name="code">539</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_54">
+        <field name="name">Otras inversiones financieras a corto plazo</field>
+        <field name="code">54</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_540">
+        <field name="name">Inversiones financieras temporales en instrumentos de patrimonio</field>
+        <field name="code">540</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_541">
+        <field name="name">Valores representativos de deuda a corto plazo</field>
+        <field name="code">541</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_542">
+        <field name="name">Créditos a corto plazo</field>
+        <field name="code">542</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_543">
+        <field name="name">Créditos a corto plazo por enajenación de inmovilizado</field>
+        <field name="code">543</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_544">
+        <field name="name">Créditos a corto plazo al personal</field>
+        <field name="code">544</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_545">
+        <field name="name">Dividendo a cobrar</field>
+        <field name="code">545</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_546">
+        <field name="name">Intereses a corto plazo de valores representativos de deuda</field>
+        <field name="code">546</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_547">
+        <field name="name">Intereses a corto plazo de créditos</field>
+        <field name="code">547</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_548">
+        <field name="name">Imposiciones a corto plazo</field>
+        <field name="code">548</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_549">
+        <field name="name">Desembolsos pendientes sobre instrumentos de patrimonio a corto plazo</field>
+        <field name="code">549</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_55">
+        <field name="name">Otras cuentas no bancarias</field>
+        <field name="code">55</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_550">
+        <field name="name">Titular de la explotación</field>
+        <field name="code">550</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_551">
+        <field name="name">Cuenta corriente con socios administradores</field>
+        <field name="code">551</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_552">
+        <field name="name">Cuenta corriente con otras personas y entidades vinculadas</field>
+        <field name="code">552</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_553">
+        <field name="name">Cuentas corrientes en fusiones y escisiones</field>
+        <field name="code">553</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_554">
+        <field name="name">Cuenta corriente con uniones temporales de empresas y comunidades de bienes</field>
+        <field name="code">554</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_555">
+        <field name="name">Partidas pendientes de aplicación</field>
+        <field name="code">555</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_556">
+        <field name="name">Desembolsos exigidos sobre participaciones en el patrimonio neto</field>
+        <field name="code">556</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_557">
+        <field name="name">Dividendo activo a cuenta</field>
+        <field name="code">557</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_558">
+        <field name="name">Socios por desembolsos exigidos</field>
+        <field name="code">558</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_559">
+        <field name="name">Derivados financieros a corto plazo</field>
+        <field name="code">559</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_56">
+        <field name="name">Fianzas y depósitos recibidos y constituidos a corto plazo y ajustes por periodificación</field>
+        <field name="code">56</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_560">
+        <field name="name">Fianzas recibidas a corto plazo</field>
+        <field name="code">560</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_561">
+        <field name="name">Depósitos recibidos a corto plazo</field>
+        <field name="code">561</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_565">
+        <field name="name">Fianzas constituidas a corto plazo</field>
+        <field name="code">565</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_566">
+        <field name="name">Depósitos constituidos a corto plazo</field>
+        <field name="code">566</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_567">
+        <field name="name">Intereses pagados por anticipado</field>
+        <field name="code">567</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_568">
+        <field name="name">Intereses cobrados por anticipado</field>
+        <field name="code">568</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_569">
+        <field name="name">Garantías financieras a corto plazo</field>
+        <field name="code">569</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_57">
+        <field name="name">Tesorería</field>
+        <field name="code">57</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_570">
+        <field name="name">Caja</field>
+        <field name="code">570</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_571">
+        <field name="name">Caja, moneda extranjera</field>
+        <field name="code">571</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_572">
+        <field name="name">Bancos e instituciones de crédito</field>
+        <field name="code">572</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_573">
+        <field name="name">Bancos e instituciones de crédito, moneda extranjera</field>
+        <field name="code">573</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_574">
+        <field name="name">Bancos e instituciones de crédito, cuentas de ahorro</field>
+        <field name="code">574</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_575">
+        <field name="name">Bancos e instituciones de crédito, cuentas de ahorro, moneda extranjera</field>
+        <field name="code">575</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_576">
+        <field name="name">Inversiones a corto plazo de gran liquidez</field>
+        <field name="code">576</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_58">
+        <field name="name">Activos no corrientes mantenidos para la venta y activos y pasivos asociados</field>
+        <field name="code">58</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_580">
+        <field name="name">Inmovilizado</field>
+        <field name="code">580</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_584">
+        <field name="name">Inmovilizado</field>
+        <field name="code">584</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_585">
+        <field name="name">Provisiones</field>
+        <field name="code">585</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_589">
+        <field name="name">Provisiones</field>
+        <field name="code">589</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_59">
+        <field name="name">Deterioro del valor de inversiones financieras a corto plazo y de activos no corrientes mantenidos para la
+            venta
+        </field>
+        <field name="code">59</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_593">
+        <field name="name">Deterioro de valor de participaciones a corto plazo en partes vinculadas</field>
+        <field name="code">593</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_594">
+        <field name="name">Deterioro del valor de valores representativos de deuda a corto plazo de partes vinculadas</field>
+        <field name="code">594</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_595">
+        <field name="name">Deterioro del valor de créditos a corto plazo a partes vinculadas</field>
+        <field name="code">595</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_596">
+        <field name="name">Deterioro de valor de valores de participaciones a corto plazo</field>
+        <field name="code">596</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_597">
+        <field name="name">Deterioro de valor de valores representativos de deuda a corto plazo</field>
+        <field name="code">597</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_598">
+        <field name="name">Deterioro de valor de créditos a corto plazo</field>
+        <field name="code">598</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_599">
+        <field name="name">Deterioro de valor de activos no corrientes mantenidos para la venta</field>
+        <field name="code">599</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_1_code_6">
+        <field name="name">Compras y gastos</field>
+        <field name="code">6</field>
+        <field name="level">1</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_60">
+        <field name="name">Compras</field>
+        <field name="code">60</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_600">
+        <field name="name">Compras de mercaderias</field>
+        <field name="code">600</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_601">
+        <field name="name">Compras de materias primas</field>
+        <field name="code">601</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_602">
+        <field name="name">Compras de otros aprovisionamientos</field>
+        <field name="code">602</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_607">
+        <field name="name">Compras de trabajos realizados por otras empresas</field>
+        <field name="code">607</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_606">
+        <field name="name">Descuentos sobre compras por pronto pago</field>
+        <field name="code">606</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_608">
+        <field name="name">Devoluciones de compras y operaciones similares</field>
+        <field name="code">608</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_609">
+        <field name="name">Rappels por compras</field>
+        <field name="code">609</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_61">
+        <field name="name">Variación de existencias</field>
+        <field name="code">61</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_610">
+        <field name="name">Variación de existencias de mercaderias</field>
+        <field name="code">610</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_611">
+        <field name="name">Variación de existencias de materias primas</field>
+        <field name="code">611</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_612">
+        <field name="name">Variación de existencias de otros aprovisionamientos</field>
+        <field name="code">612</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_62">
+        <field name="name">Servicios exteriores</field>
+        <field name="code">62</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_620">
+        <field name="name">Gastos en investigación y desarrollo del ejercicio</field>
+        <field name="code">620</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_621">
+        <field name="name">Arrendamientos y cánones</field>
+        <field name="code">621</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_622">
+        <field name="name">Reparaciones y conservación</field>
+        <field name="code">622</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_623">
+        <field name="name">Servicios de profesionales independientes</field>
+        <field name="code">623</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_624">
+        <field name="name">Transportes</field>
+        <field name="code">624</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_625">
+        <field name="name">Primas de seguros</field>
+        <field name="code">625</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_626">
+        <field name="name">Servicios bancarios y similares</field>
+        <field name="code">626</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_627">
+        <field name="name">Publicidad</field>
+        <field name="code">627</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_628">
+        <field name="name">Suministros</field>
+        <field name="code">628</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_629">
+        <field name="name">Otros servicios</field>
+        <field name="code">629</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_63">
+        <field name="name">Tributos</field>
+        <field name="code">63</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_630">
+        <field name="name">Impuesto sobre beneficios</field>
+        <field name="code">630</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_631">
+        <field name="name">Otros tributos</field>
+        <field name="code">631</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_633">
+        <field name="name">Ajustes negativos en la imposición sobre beneficios</field>
+        <field name="code">633</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_634">
+        <field name="name">Ajustes negativos en la imposición indirecta</field>
+        <field name="code">634</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_636">
+        <field name="name">Devolución de impuestos</field>
+        <field name="code">636</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_638">
+        <field name="name">Ajustes positivos en la imposición sobre beneficios</field>
+        <field name="code">638</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_639">
+        <field name="name">Ajustes positivos en la imposición indirecta</field>
+        <field name="code">639</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_64">
+        <field name="name">Gastos de personal</field>
+        <field name="code">64</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_640">
+        <field name="name">Sueldos y salarios</field>
+        <field name="code">640</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_641">
+        <field name="name">Indemnizaciones</field>
+        <field name="code">641</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_642">
+        <field name="name">Seguridad Social a cargo de la empresa</field>
+        <field name="code">642</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_643">
+        <field name="name">Retribuciones a largo plazo mediante sistemas de aportación definida</field>
+        <field name="code">643</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_644">
+        <field name="name">Retribuciones a largo plazo mediante sistemas de prestación definida</field>
+        <field name="code">644</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_645">
+        <field name="name">Retribuciones al personal mediante instrumentos de patrimonio</field>
+        <field name="code">645</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_649">
+        <field name="name">Otros gastos sociales</field>
+        <field name="code">649</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_65">
+        <field name="name">Otros gastos de gestión</field>
+        <field name="code">65</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_650">
+        <field name="name">Pérdidas de créditos comerciales incobrables</field>
+        <field name="code">650</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_651">
+        <field name="name">Resultados de operaciones en común</field>
+        <field name="code">651</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_659">
+        <field name="name">Otras pérdidas en gestión corriente</field>
+        <field name="code">659</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_66">
+        <field name="name">Gastos financieros</field>
+        <field name="code">66</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_660">
+        <field name="name">Gastos financieros por actualización de provisiones</field>
+        <field name="code">660</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_661">
+        <field name="name">Intereses de obligaciones y bonos</field>
+        <field name="code">661</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_662">
+        <field name="name">Intereses de deudas</field>
+        <field name="code">662</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_663">
+        <field name="name">Pérdidas por valoración de instrumentos financieros por su valor razonable</field>
+        <field name="code">663</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_664">
+        <field name="name">Dividendos de acciones o participaciones contabilizadas como pasivo</field>
+        <field name="code">664</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_665">
+        <field name="name">Intereses por descuento de efectos y operaciones de factoring</field>
+        <field name="code">665</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_666">
+        <field name="name">Pérdidas en participaciones y valores representativos de deuda</field>
+        <field name="code">666</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_667">
+        <field name="name">Pérdidas de créditos no comerciales</field>
+        <field name="code">667</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_668">
+        <field name="name">Diferencias negativas de cambio</field>
+        <field name="code">668</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_669">
+        <field name="name">Otros gastos financieros</field>
+        <field name="code">669</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_67">
+        <field name="name">Pérdidas procedentes de activos no corrientes ygastos excepcionales</field>
+        <field name="code">67</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_670">
+        <field name="name">Pérdidas procedentes del inmovilizado</field>
+        <field name="code">670</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_671">
+        <field name="name">Pérdidas procedentes del inmovilizado</field>
+        <field name="code">671</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_672">
+        <field name="name">Pérdidas procedentes del inmovilizado</field>
+        <field name="code">672</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_673">
+        <field name="name">Pérdidas procedentes de participaciones a largo plazo en partes vinculadas</field>
+        <field name="code">673</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_675">
+        <field name="name">Pérdidas por operaciones con obligaciones propias</field>
+        <field name="code">675</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_678">
+        <field name="name">Gastos excepcionales</field>
+        <field name="code">678</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_68">
+        <field name="name">Dotaciones para amortizaciones</field>
+        <field name="code">68</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_680">
+        <field name="name">Amortización de inmovilizado intangible</field>
+        <field name="code">680</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_681">
+        <field name="name">Amortización de inmovilizado material</field>
+        <field name="code">681</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_682">
+        <field name="name">Amortización de inversiones inmobiliarias</field>
+        <field name="code">682</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_69">
+        <field name="name">Pérdidas por deterioro y otras dotaciones</field>
+        <field name="code">69</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_690">
+        <field name="name">Pérdidas por deterioro del inmovilizado intangible</field>
+        <field name="code">690</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_691">
+        <field name="name">Pérdidas por deterioro del inmovilizado material</field>
+        <field name="code">691</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_692">
+        <field name="name">Pérdidas por deterioro de las ionversiones inmobiliarias</field>
+        <field name="code">692</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_693">
+        <field name="name">Pérdidas por deterioro de existencias</field>
+        <field name="code">693</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_694">
+        <field name="name">Pérdidas por deterioro de créditos comerciales</field>
+        <field name="code">694</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_695">
+        <field name="name">Dotación a la provisión por operaciones comerciales</field>
+        <field name="code">695</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_696">
+        <field name="name">Pérdidas por deterioro de participaciones y valores representativos de deuda a largo plazo</field>
+        <field name="code">696</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_697">
+        <field name="name">Pérdidas por deterioro de créditos a largo plazo</field>
+        <field name="code">697</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_698">
+        <field name="name">Pérdidas por deterioro de participaciones y valores representativos de deuda a corto plazo</field>
+        <field name="code">698</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_699">
+        <field name="name">Pérdidas por deterioro de créditos a corto plazo</field>
+        <field name="code">699</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_1_code_7">
+        <field name="name">Ventas e ingresos</field>
+        <field name="code">7</field>
+        <field name="level">1</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_70">
+        <field name="name">Ventas de mercaderías</field>
+        <field name="code">70</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_700">
+        <field name="name">Ventas de mercaderias</field>
+        <field name="code">700</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_701">
+        <field name="name">Ventas de productos terminados</field>
+        <field name="code">701</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_702">
+        <field name="name">Ventas de productos semiterminados</field>
+        <field name="code">702</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_703">
+        <field name="name">Ventas de residuos</field>
+        <field name="code">703</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_704">
+        <field name="name">Ventas de embases y embalajes</field>
+        <field name="code">704</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_705">
+        <field name="name">Ventas de prestaciones de servicios</field>
+        <field name="code">705</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_705">
+        <field name="name">Ventas de</field>
+        <field name="code">705</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_706">
+        <field name="name">Descuentos sobre ventas por pronto pago</field>
+        <field name="code">706</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_708">
+        <field name="name">Devoluciones de ventas y operaciones similares</field>
+        <field name="code">708</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_709">
+        <field name="name">Rappels sobre ventas</field>
+        <field name="code">709</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_71">
+        <field name="name">Variación de existencias</field>
+        <field name="code">71</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_710">
+        <field name="name">Variación de existencias de productos en curso</field>
+        <field name="code">710</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_711">
+        <field name="name">Variación de existencias de productos semiterminados</field>
+        <field name="code">711</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_712">
+        <field name="name">Variación de existencias de productos terminados</field>
+        <field name="code">712</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_713">
+        <field name="name">Variación de existencias de subproductos, residuos y materiales recuperados</field>
+        <field name="code">713</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_73">
+        <field name="name">Trabajos realizados para la empresa</field>
+        <field name="code">73</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_730">
+        <field name="name">Trabajos realizados para el inmovilizado intangible</field>
+        <field name="code">730</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_731">
+        <field name="name">Trabajos realizados para el inmovilizado material</field>
+        <field name="code">731</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_732">
+        <field name="name">Trabajos realizados en inversiones inmobiliarias</field>
+        <field name="code">732</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_733">
+        <field name="name">Trabajos realizados para el inmovilizado en curso</field>
+        <field name="code">733</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_74">
+        <field name="name">Subvenciones</field>
+        <field name="code">74</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_740">
+        <field name="name">Subvenciones</field>
+        <field name="code">740</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_746">
+        <field name="name">Subvenciones transferidas al resultado del ejercicio</field>
+        <field name="code">746</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_747">
+        <field name="name">Otras subvenciones</field>
+        <field name="code">747</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_75">
+        <field name="name">Otros ingresos de gestión</field>
+        <field name="code">75</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_751">
+        <field name="name">Resultados de operaciones en común</field>
+        <field name="code">751</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_752">
+        <field name="name">Ingresos por arrendamientos</field>
+        <field name="code">752</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_753">
+        <field name="name">Ingresos de propiedad industrial cedida en explotación</field>
+        <field name="code">753</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_754">
+        <field name="name">Ingresos por comisiones</field>
+        <field name="code">754</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_755">
+        <field name="name">Ingresos por servicios al personal</field>
+        <field name="code">755</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_759">
+        <field name="name">Ingresos por servicios diversos</field>
+        <field name="code">759</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_76">
+        <field name="name">Ingresos financieros</field>
+        <field name="code">76</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_760">
+        <field name="name">Ingresos de participaciones en instrumentos de patrimonio</field>
+        <field name="code">760</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_761">
+        <field name="name">Ingresos de valores representativos de deuda</field>
+        <field name="code">761</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_762">
+        <field name="name">Ingresos de créditos</field>
+        <field name="code">762</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_763">
+        <field name="name">Beneficios por valoración de instrumentos financieros por su valor razonable</field>
+        <field name="code">763</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_766">
+        <field name="name">Beneficios en participaciones y valores representativos de deuda</field>
+        <field name="code">766</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_767">
+        <field name="name">Ingresos de activos afectos y de derechos de reembolso relativos a retribuciones a largo plazo</field>
+        <field name="code">767</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_768">
+        <field name="name">Diferencias positivas de cambio</field>
+        <field name="code">768</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_769">
+        <field name="name">Otros ingresos financieros</field>
+        <field name="code">769</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_77">
+        <field name="name">Beneficios procedentes de activos no corrientes e ingresos excepcionales</field>
+        <field name="code">77</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_770">
+        <field name="name">Beneficios procedentes del inmovilizado intangible</field>
+        <field name="code">770</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_771">
+        <field name="name">Beneficios procedentes del inmovilizado material</field>
+        <field name="code">771</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_772">
+        <field name="name">Beneficios procedentes de inversiones inmobiliarias</field>
+        <field name="code">772</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_773">
+        <field name="name">Beneficios procedentes de participaciones...</field>
+        <field name="code">773</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_774">
+        <field name="name">Diferencia negativa en combinaciones de negocios</field>
+        <field name="code">774</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_775">
+        <field name="name">Beneficios por operaciones con obligaciones propias</field>
+        <field name="code">775</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_778">
+        <field name="name">Ingresos excepcionales</field>
+        <field name="code">778</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_79">
+        <field name="name">Excesos y aplicaciones de provisiones y de pérdidas por deterioro</field>
+        <field name="code">79</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_790">
+        <field name="name">Reversión del deterioro del inmovilizado intangible</field>
+        <field name="code">790</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_791">
+        <field name="name">Reversión del deterioro del inmovilizado material</field>
+        <field name="code">791</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_792">
+        <field name="name">Reversión del deterioro del inmovilizado de las inversiones inmobiliarias</field>
+        <field name="code">792</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_793">
+        <field name="name">Reversión del deterioro de existencias</field>
+        <field name="code">793</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_794">
+        <field name="name">Reversión del deterioro de créditos por operaciones comerciales</field>
+        <field name="code">794</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_795">
+        <field name="name">Exceso de provisiones</field>
+        <field name="code">795</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_796">
+        <field name="name">Reversión del deterioro de participaciones y valores representativos de deuda a largo plazo</field>
+        <field name="code">796</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_797">
+        <field name="name">Reversión del deterioro de créditos a largo plazo</field>
+        <field name="code">797</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_798">
+        <field name="name">Reversión del deterioro de participaciones y valores representativos de deuda a corto plazo</field>
+        <field name="code">798</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_799">
+        <field name="name">Reversión del deterioro de créditos a corto plazo</field>
+        <field name="code">799</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_1_code_8">
+        <field name="name">Gastos imputados al patrimonio neto</field>
+        <field name="code">8</field>
+        <field name="level">1</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_80">
+        <field name="name">Gastos financieros por valoración de activos financieros</field>
+        <field name="code">80</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_800">
+        <field name="name">Pérdidas en activos financieros disponibles para la venta</field>
+        <field name="code">800</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_802">
+        <field name="name">Transferencia de beneficios en activos financieros disponibles para la venta</field>
+        <field name="code">802</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_81">
+        <field name="name">Gastos en operaciones de cobertura</field>
+        <field name="code">81</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_810">
+        <field name="name">Pérdidas por coberturas de flujos de efectivo</field>
+        <field name="code">810</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_811">
+        <field name="name">Pérdidas por coberturas de inversiones netas en un negocio en el extranjero</field>
+        <field name="code">811</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_812">
+        <field name="name">Transferencia de beneficios por coberturas de flujos de efectivo</field>
+        <field name="code">812</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_813">
+        <field name="name">Transferencia de beneficios por coberturas de inversiones netas en un negocio en el extranjero</field>
+        <field name="code">813</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_82">
+        <field name="name">Gastos por diferencias en conversión</field>
+        <field name="code">82</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_820">
+        <field name="name">Diferencias de conversión negativas</field>
+        <field name="code">820</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_821">
+        <field name="name">Transferencia de diferencias de conversión positivas</field>
+        <field name="code">821</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_83">
+        <field name="name">Impuestos sobre beneficios</field>
+        <field name="code">83</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_830">
+        <field name="name">Impuestos sobre beneficios</field>
+        <field name="code">830</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_833">
+        <field name="name">Ajustes negativos en la imposición sobre beneficios</field>
+        <field name="code">833</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_834">
+        <field name="name">Ingresos fiscales por diferencias permanentes</field>
+        <field name="code">834</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_835">
+        <field name="name">Ingresos fiscales por deducciones y bonificaciones</field>
+        <field name="code">835</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_836">
+        <field name="name">Transferencia de diferencias permanentes</field>
+        <field name="code">836</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_837">
+        <field name="name">Transferencia de deducciones y bonificaciones</field>
+        <field name="code">837</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_838">
+        <field name="name">Ajustes positivos en la imposición sobre beneficios</field>
+        <field name="code">838</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_84">
+        <field name="name">Transferencias de subvenciones</field>
+        <field name="code">84</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_840">
+        <field name="name">Transferencia de subvenciones oficiales de capital</field>
+        <field name="code">840</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_841">
+        <field name="name">Transferencia de donaciones y legados de capital</field>
+        <field name="code">841</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_842">
+        <field name="name">Transferencia de otras subvenciones</field>
+        <field name="code">842</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_85">
+        <field name="name">Gastos por pérdidas actuariales y ajustes en los activos por retribuciones a largo plazo de prestación definida
+        </field>
+        <field name="code">85</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_850">
+        <field name="name">Pérdidas actuariales</field>
+        <field name="code">850</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_851">
+        <field name="name">Ajustes negativos en activos por retribuciones a largo plazo de prestación definida</field>
+        <field name="code">851</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_86">
+        <field name="name">Gastos por activos no corrientes en venta</field>
+        <field name="code">86</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_860">
+        <field name="name">Pérdidas en activos no corrientes y grupos enajenables de elementos mantenidos para la venta</field>
+        <field name="code">860</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_862">
+        <field name="name">Transferencia de beneficios en activos no corrientes y grupos enajenables de elementos mantenidos para la venta
+        </field>
+        <field name="code">862</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_89">
+        <field name="name">Gastos de participaciones en empresas del grupo o asociadas con ajustes valorativos positivos previos</field>
+        <field name="code">89</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_891">
+        <field name="name">Deterioro de participaciones en el patrimonio</field>
+        <field name="code">891</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_892">
+        <field name="name">Deterioro de participaciones en el patrimonio</field>
+        <field name="code">892</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_1_code_9">
+        <field name="name">Ingresos imputados al patrimonio neto</field>
+        <field name="code">9</field>
+        <field name="level">1</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_90">
+        <field name="name">Ingresos financieros por valoración de activos financieros</field>
+        <field name="code">90</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_900">
+        <field name="name">Beneficios en activos financieros disponibles para la venta</field>
+        <field name="code">900</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_902">
+        <field name="name">Transferencia de pérdidas de activos financieros disponibles para la venta</field>
+        <field name="code">902</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_91">
+        <field name="name">Ingresos en operaciones de cobertura</field>
+        <field name="code">91</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_910">
+        <field name="name">Beneficios por coberturas de flujos de efectivo</field>
+        <field name="code">910</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_911">
+        <field name="name">Beneficios por coberturas de una inversión neta en un negocio en el extranjero</field>
+        <field name="code">911</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_912">
+        <field name="name">Transferencia de pérdidas por coberturas de flujos de efectivo</field>
+        <field name="code">912</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_913">
+        <field name="name">Transferencia de pérdidas por coberturas de una inversión neta en un negocio en el extranjero</field>
+        <field name="code">913</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_92">
+        <field name="name">Ingresos por diferencias de conversión</field>
+        <field name="code">92</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_920">
+        <field name="name">Diferencias de conversión positivas</field>
+        <field name="code">920</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_921">
+        <field name="name">Transferencia de diferencias de conversión negativas</field>
+        <field name="code">921</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_94">
+        <field name="name">Ingresos por subvenciones</field>
+        <field name="code">94</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_940">
+        <field name="name">Ingresos de...</field>
+        <field name="code">940</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_941">
+        <field name="name">Ingresos de...</field>
+        <field name="code">941</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_942">
+        <field name="name">Ingresos de...</field>
+        <field name="code">942</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_95">
+        <field name="name">Ingresos por ganancias actuariales y ajustes en los activos por retribuciones a largo plazo de prestación
+            definida
+        </field>
+        <field name="code">95</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_950">
+        <field name="name">Ganancias actuariales</field>
+        <field name="code">950</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_951">
+        <field name="name">Ajustes positivos en activos por retribuciones a largo plazo de prestación definida</field>
+        <field name="code">951</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_96">
+        <field name="name">Ingresos por activos no corrientes en venta</field>
+        <field name="code">96</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_960">
+        <field name="name">Beneficios en activos no corrientes y grupos enajenables de elementos mantenidos para la venta</field>
+        <field name="code">960</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_962">
+        <field name="name">Transferencia de pérdidas en activos no corrientes y grupos enajenables de elementos mantenidos para la venta
+        </field>
+        <field name="code">962</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_2_code_99">
+        <field name="name">Ingresos de participaciones en el patrimonio de empresas del grupo o asociadas con ajustes valorativos negativos
+            previos
+        </field>
+        <field name="code">99</field>
+        <field name="level">2</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_991">
+        <field name="name">Recuperación de ajustes valorativos negativos previos</field>
+        <field name="code">991</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_992">
+        <field name="name">Recuperación de ajustes valorativos negativos previos</field>
+        <field name="code">992</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_993">
+        <field name="name">Transferencia por deterioro de ajustes valorativos negativos previos</field>
+        <field name="code">993</field>
+        <field name="level">3</field>
+    </record>
+    <record model="account.hierarchy.label" id="level_3_code_994">
+        <field name="name">Transferencia por deterioro de ajustes valorativos negativos previos</field>
+        <field name="code">994</field>
+        <field name="level">3</field>
+    </record>
+</data>

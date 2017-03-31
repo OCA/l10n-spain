@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_hierarchy_view_pivot" model="ir.ui.view">
+         <field name="name">account.hierarchy.pivot</field>
+         <field name="model">account.hierarchy</field>
+         <field name="arch" type="xml">
+             <pivot string="Account Analysis" disable_linking="True">
+                 <field name="move_date" interval="month" type="col"/>
+                 <field name="one_digit" type="row"/>
+                 <field name="two_digit" type="row"/>
+                 <field name="three_digit" type="row"/>
+                 <field name="name" type="row"/>
+                 <field name="credit" type="measure"/>
+                 <field name="debit" type="measure"/>
+                 <field name="balance" type="measure"/>
+             </pivot>
+         </field>
+    </record>
+    <record id="account_hierarchy_view_graph" model="ir.ui.view">
+         <field name="name">account.hierarchy.pivot</field>
+         <field name="model">account.hierarchy</field>
+         <field name="arch" type="xml">
+             <graph string="Account Analysis">
+                 <field name="one_digit" type="row"/>
+                 <field name="debit" type="measure"/>
+                 <field name="credit" type="measure"/>
+             </graph>
+         </field>
+    </record>
+    <record id="account_hierarchy_view_filter" model="ir.ui.view">
+        <field name="name">account.hierarchy.filter</field>
+        <field name="model">account.hierarchy</field>
+        <field name="arch" type="xml">
+            <search string="Account Account Analysis">
+                <field name="move_date"/>
+                <field name="name"/>
+                <field name="one_digit"/>
+                <field name="two_digit"/>
+                <field name="three_digit"/>
+                <separator/>
+                <filter string="This Year" name="year" invisible="1"
+                        domain="[('date','&lt;=', time.strftime('%%Y-12-31')),('date','&gt;=',time.strftime('%%Y-01-01'))]"/>
+                <separator/>
+                <filter string="Balance &lt;&gt; 0" name="balance" domain="[('balance','&lt;&gt;', 0)]"/>
+                <separator/>
+                    <filter name="draft" string="Unposted" domain="[('state','=','draft')]" help="Unposted Journal Items"/>
+                    <filter name="posted" string="Posted" domain="[('state','=','posted')]" help="Posted Journal Items"/>
+                <group expand="0" string="Extended Filters">
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </group>
+                <group expand="1" string="Group By">
+                    <filter string="One Digit" context="{'group_by':'one_digit'}" help="One account code digit"/>
+                    <filter string="Two Digit" context="{'group_by':'two_digit'}" help="Two account code digit"/>
+                    <filter string="Three Digit" context="{'group_by':'three_digit'}" help="Three account code digit"/>
+                    <filter string="Account" context="{'group_by':'name'}" help="move date of the account move line"/>
+                    <separator/>
+                    <filter string="Month" context="{'group_by':'move_date:month'}"
+                            help="move date of the account move line"/>
+                    <separator/>
+                    <filter string="Journal" context="{'group_by':'journal_id'}"
+                            help="move journal of the account move line"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="account_hierarchy_action" model="ir.actions.act_window">
+        <field name="name">Account Analysis</field>
+        <field name="res_model">account.hierarchy</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="view_id"></field>
+        <field name="search_view_id" ref="account_hierarchy_view_filter"/>
+        <field name="context">{'group_by':[]}</field>
+        <field name="help">Analysis check your account move and sort it by different group criteria (digit, dates, account, etc.) Use this report to perform analysis on account.</field>
+    </record>
+    <menuitem id="account_hierarchy_menu" name="Account Hierarchy"
+              action="account_hierarchy_action" sequence="12"
+              parent="account.account_reports_business_intelligence_menu"/>
+</odoo>

@@ -1,0 +1,298 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_hierarchy_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-31 09:49+0200\n"
+"PO-Revision-Date: 2017-03-31 09:49+0200\n"
+"Last-Translator: Joaquin Gutierrez <joaquin.gutierrez@grupoancana.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_account_one_digit
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_one_digit
+msgid "1 Digit"
+msgstr "1 Dígito"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_account_two_digit
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_two_digit
+msgid "2 Digit"
+msgstr "2 Dígitos"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_account_three_digit
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_three_digit
+msgid "3 Digit"
+msgstr "3 Dígitos"
+
+#. module: account_hierarchy_report
+#: model:ir.model,name:account_hierarchy_report.model_account_account
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_account_id
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "Account"
+msgstr "Cuenta"
+
+#. module: account_hierarchy_report
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "Account Account Analysis"
+msgstr "Analisis Contable"
+
+#. module: account_hierarchy_report
+#: model:ir.actions.act_window,name:account_hierarchy_report.account_hierarchy_action
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_graph
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_pivot
+msgid "Account Analysis"
+msgstr "Analisis Contable"
+
+#. module: account_hierarchy_report
+#: model:ir.model,name:account_hierarchy_report.model_account_hierarchy
+#: model:ir.ui.menu,name:account_hierarchy_report.account_hierarchy_menu
+msgid "Account Hierarchy"
+msgstr "Jerarquía de Cuentas"
+
+#. module: account_hierarchy_report
+#: model:ir.actions.act_window,name:account_hierarchy_report.account_hierarchy_label_action
+#: model:ir.model,name:account_hierarchy_report.model_account_hierarchy_label
+#: model:ir.ui.menu,name:account_hierarchy_report.account_hierarchy_label_menu
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_label_view_form
+msgid "Account Hierarchy Label"
+msgstr "Etiquetas Jerarquía de la cuenta"
+
+#. module: account_hierarchy_report
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_label_view_tree
+msgid "Account Hierarchy Labels"
+msgstr "Etiquetas Jerarquía de cuentas"
+
+#. module: account_hierarchy_report
+#: model:ir.model,name:account_hierarchy_report.model_account_hierarchy_report
+msgid "Account Hierarchy Report"
+msgstr "Informe Jerarquía de cuentas"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,help:account_hierarchy_report.field_account_hierarchy_label_code
+msgid "Account code"
+msgstr "Código contable"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,help:account_hierarchy_report.field_account_hierarchy_label_level
+msgid "Account level"
+msgstr "Nivel de cuenta"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,help:account_hierarchy_report.field_account_hierarchy_label_name
+msgid "Account name"
+msgstr "Nombre de la cuenta"
+
+#. module: account_hierarchy_report
+#: model:ir.actions.act_window,help:account_hierarchy_report.account_hierarchy_action
+msgid ""
+"Analysis check your account move and sort it by different group criteria "
+"(digit, dates, account, etc.) Use this report to perform analysis on account."
+msgstr ""
+"Anilisis de plan contable  basado en los movimientos en el que se puede "
+"agrupar por diferentes criterios (digitos, fecha, cuenta, etc.) Use este "
+"informe para un analisis contable."
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_balance
+msgid "Balance"
+msgstr "Balance"
+
+#. module: account_hierarchy_report
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "Balance <> 0"
+msgstr "Balance distinto 0"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_code
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_label_code
+msgid "Code"
+msgstr "Código"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_company_id
+msgid "Company"
+msgstr "Empresa"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_company_currency_id
+msgid "Company Currency"
+msgstr "Moneda la compañía"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_label_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_label_create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_credit
+msgid "Credit"
+msgstr "Haber"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_move_date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_debit
+msgid "Debit"
+msgstr "Debe"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_display_name
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_label_display_name
+msgid "Display Name"
+msgstr "Nombre"
+
+#. module: account_hierarchy_report
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "Extended Filters"
+msgstr "Filtros Avanzados"
+
+#. module: account_hierarchy_report
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_id
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_label_id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_journal_id
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "Journal"
+msgstr "Diário"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy___last_update
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_label___last_update
+msgid "Last Modified on"
+msgstr "Ultima Modificación en"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_label_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_label_write_date
+msgid "Last Updated on"
+msgstr "Última actualización de"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_label_level
+msgid "Level"
+msgstr "Nivel"
+
+#. module: account_hierarchy_report
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "Month"
+msgstr "Mes"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_label_name
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,help:account_hierarchy_report.field_account_account_one_digit
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "One Digit"
+msgstr "Un digito"
+
+#. module: account_hierarchy_report
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "One account code digit"
+msgstr "Un digito extraido del codigo de la cuenta"
+
+#. module: account_hierarchy_report
+#: selection:account.hierarchy,state:0
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "Posted"
+msgstr "Contabilizado"
+
+#. module: account_hierarchy_report
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "Posted Journal Items"
+msgstr "Movimientos Asentados"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_state
+msgid "Status"
+msgstr "Estado"
+
+#. module: account_hierarchy_report
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "This Year"
+msgstr "Este Año"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,help:account_hierarchy_report.field_account_account_three_digit
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "Three Digit"
+msgstr "Tres digitos"
+
+#. module: account_hierarchy_report
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "Three account code digit"
+msgstr "tres digitos extraidos del codigo de la cuenta"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,help:account_hierarchy_report.field_account_account_two_digit
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "Two Digit"
+msgstr "Dos digitos"
+
+#. module: account_hierarchy_report
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "Two account code digit"
+msgstr "Dos digitos extraidos del codigo de la cuenta"
+
+#. module: account_hierarchy_report
+#: selection:account.hierarchy,state:0
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "Unposted"
+msgstr "No asentado"
+
+#. module: account_hierarchy_report
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "Unposted Journal Items"
+msgstr "Apuntes contables no asentados"
+
+#. module: account_hierarchy_report
+#: model:ir.model.fields,field_description:account_hierarchy_report.field_account_hierarchy_user_type_id
+msgid "User type"
+msgstr "Tipo de cuenta"
+
+#. module: account_hierarchy_report
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "move date of the account move line"
+msgstr "Fecha del movimiento contable"
+
+#. module: account_hierarchy_report
+#: model:ir.ui.view,arch_db:account_hierarchy_report.account_hierarchy_view_filter
+msgid "move journal of the account move line"
+msgstr "Fecha del movimiento contable"
+
+#~ msgid "Three digit"
+#~ msgstr "Tres digitos"
