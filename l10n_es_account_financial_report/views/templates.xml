@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <!-- Account Journal Entries Template -->
+    <template id="journal_entries">
+        <t t-call="report.html_container">
+            <div class="page">
+                <h2 class="text-center">Journal Ledger -
+                    <t t-esc="res_company.name"/>
+                </h2>
+                <table class="table table-condensed">
+                    <thead>
+                        <th>Entry</th>
+                        <th>Date</th>
+                        <th>Period</th>
+                        <th>
+                            <div>Journal</div>
+                            <em>Account</em>
+                        </th>
+                        <th>
+                            <div>Partner</div>
+                            <em>Account name</em>
+                        </th>
+                        <th>
+                            <div>Reference</div>
+                            <em>Description</em>
+                        </th>
+                        <th class="text-right">Debit</th>
+                        <th class="text-right">Credit</th>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="o">
+                            <tr style="border-top: 2px solid black;">
+                                <td>
+                                    <span t-field="o.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.date"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.period_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.journal_id.code"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.partner_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.ref"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.amount"
+                                          t-field-options='{"widget": "monetary", "display_currency": "res_company.currency_id"}'/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.amount"
+                                          t-field-options='{"widget": "monetary", "display_currency": "res_company.currency_id"}'/>
+                                </td>
+                            </tr>
+                            <tr t-foreach="o.line_id" t-as="l"
+                                style="border: 0;">
+                                <td/>
+                                <td/>
+                                <td/>
+                                <td>
+                                    <span t-field="l.account_id.code"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.account_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.name"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="l.debit"
+                                          t-field-options='{"widget": "monetary", "display_currency": "res_company.currency_id"}'/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="l.credit"
+                                          t-field-options='{"widget": "monetary", "display_currency": "res_company.currency_id"}'/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</data>
+</openerp>

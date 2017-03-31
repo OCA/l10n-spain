@@ -1,86 +1,65 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
-##############################################################################
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
+# -*- coding: utf-8 -*-
+# Copyright 2009 Zikzakmedia S.L. - Jordi Esteve
+# Copyright 2013 Joaquin Gutierrez (http://www.gutierrezweb.es)
+# Copyright 2015 Tecnativa - Pedro M. Baeza
+# Copyright 2017 RGB Consulting
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from openerp import api, fields, models, exceptions, _
 
 
-class AccountJournalEntriesReport(orm.TransientModel):
+class AccountJournalEntriesReport(models.TransientModel):
     _name = "account.journal.entries.report"
     _description = "Print journal by entries"
 
-    _columns = {
-        'journal_ids': fields.many2many(
-            'account.journal', 'account_journal_entries_journal_rel',
-            'acc_journal_entries_id', 'journal_id', 'Journal', required=True),
-        'period_ids': fields.many2many(
-            'account.period', 'account_journal_entries_account_period_rel',
-            'acc_journal_entries_id', 'account_period_id', 'Period'),
-        'sort_selection': fields.selection(
-            [('date', 'By date'),
-             ('name', 'By entry number'),
-             ('ref', 'By reference number')], 'Entries Sorted By',
-            required=True),
-        'landscape': fields.boolean('Landscape mode')
-    }
+    @api.model
+    def _default_journal_ids(self):
+        return self.env['account.journal'].search([])
 
-    def default_get(self, cr, uid, fields, context=None):
-        return {
-            'sort_selection': 'name',
-            'landscape': True,
-            'journal_ids': self.pool['account.journal'].search(
-                cr, uid, [], context=context),
-            'period_ids': self.pool['account.period'].search(
-                cr, uid,
-                [('fiscalyear_id', '=',
-                  self.pool['account.fiscalyear'].find(cr, uid))],
-                context=context),
-        }
+    journal_ids = fields.Many2many(
+        comodel_name='account.journal',
+        string='Journal', required=True, default=_default_journal_ids,
+    )
+    period_ids = fields.Many2many(
+        comodel_name='account.period',
+        string='Period'
+    )
+    sort_selection = fields.Selection(
+        [('date', 'By date'),
+         ('name', 'By entry number'),
+         ('ref', 'By reference number')],
+        string='Entries Sorted By', required=True, default='name',
+    )
+    landscape = fields.Boolean(string='Landscape mode', default=True)
 
-    def _check_data(self, cr, uid, ids, context=None):
-        if not ids:
+    @api.multi
+    def _check_data(self):
+        if not self.period_ids and not self.journal_ids:
             return False
-        data = self.browse(cr, uid, ids[0], context=context)
-        if not data.period_ids and not data.journal_ids:
-            return False
-        period_obj = self.pool['account.journal.period']
-        for journal in data.journal_ids:
-            for period in data.period_ids:
+        period_obj = self.env['account.journal.period']
+        for journal in self.journal_ids:
+            for period in self.period_ids:
                 ids_journal_period = period_obj.search(
-                    cr, uid, [('journal_id', '=', journal.id),
-                              ('period_id', '=', period.id)], context=context)
+                    [('journal_id', '=', journal.id),
+                     ('period_id', '=', period.id)])
                 if ids_journal_period:
                     return True
         return False
 
-    def _check(self, cr, uid, ids, context=None):
-        if not ids:
-            return False
-        current_obj = self.browse(cr, uid, ids[0], context=context)
-        return 'report_landscape' if current_obj.landscape else 'report'
-
-    def print_report(self, cr, uid, ids, context=None):
+    @api.multi
+    def print_report(self):
         """Print report."""
-        if context is None:
-            context = {}
-        data = self.read(cr, uid, ids[0], context=context)
-        datas = {
-            'ids': context.get('active_ids', []),
-            'model': 'ir.ui.menu',
-            'form': data,
-        }
-        if not self._check_data(cr, uid, ids, context=context):
-            raise orm.except_orm(
+
+        # Check data
+        if not self._check_data():
+            raise exceptions.Warning(
                 _('No data available'),
                 _('No records found for your selection!'))
-        if self._check(cr, uid, ids, context=context) == 'report_landscape':
-            report_name = 'account.journal.entries.report.wzd1'
-        else:
-            report_name = 'account.journal.entries.report.wzd'
-        return {
-            'type': 'ir.actions.report.xml',
-            'report_name': report_name,
-            'datas': datas,
-            'context': context,
-        }
+
+        report_name = 'l10n_es_account_financial_report.journal_entries'
+
+        # Call report
+        data = self.read()[0]
+        return self.env['report'].with_context(
+            {'landscape': self.landscape}).get_action(self, report_name,
+                                                      data=data)
