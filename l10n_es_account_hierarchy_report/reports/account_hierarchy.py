@@ -73,62 +73,45 @@ class AccountHierarchy(models.Model):
         default='draft',
         readonly=True)
 
-    def _select(self):
-        select_str = """
-        SELECT move_line.id as id,
-               account.code as code,
-               concat_ws(' ',account.code::text, account.name::text) as name,
-               sum(move_line.credit) as credit,
-               sum(move_line.debit) as debit,
-               sum(move_line.balance) as balance,
-               move_line.date as move_date,
-               move_line.account_id as account_id,
-               move_line.company_id as company_id,
-               move_line.company_currency_id as company_currency_id,
-               move_line.journal_id as journal_id,
-               move_line.user_type_id as user_type_id,
-               move.state as state, 
-               account.one_digit as one_digit,
-               account.two_digit as two_digit,
-               account.three_digit as three_digit
-        """
-        return select_str
-
-    def _from(self):
-        from_str = """
-            account_account AS account
-                LEFT JOIN account_move_line AS move_line
-                ON (move_line.account_id=account.id)
-                LEFT JOIN account_move as move
-                ON (move_line.move_id=move.id)
-        """
-        return from_str
-
-    def _group_by(self):
-        group_by_str = """
-        GROUP BY move_line.id, 
-                 account.code,
-                 account.name,
-                 move_line.date,
-                 move_line.account_id,
-                 move_line.company_id,
-                 move_line.journal_id,
-                 move_line.user_type_id,
-                 move_line.company_currency_id,
-                 account.one_digit,
-                 account.two_digit,
-                 account.three_digit,
-                 move.state
-        """
-        return group_by_str
-
     @api.model_cr
     def init(self):
-        # self._table = sale_report
-        tools.drop_view_if_exists(self.env.cr, self._table)
-        self.env.cr.execute("""CREATE or REPLACE VIEW %s as (
-            %s
-            FROM ( %s )
-            %s
-            )""" % (
-            self._table, self._select(), self._from(), self._group_by()))
+        tools.drop_view_if_exists(self.env.cr, 'account_hierarchy')
+        self.env.cr.execute("""
+        CREATE or REPLACE VIEW account_hierarchy as (
+            SELECT move_line.id as id,
+                 account.code as code,
+                 concat_ws(' ',account.code::text, account.name::text) as name,
+                 sum(move_line.credit) as credit,
+                 sum(move_line.debit) as debit,
+                 sum(move_line.balance) as balance,
+                 move_line.date as move_date,
+                 move_line.account_id as account_id,
+                 move_line.company_id as company_id,
+                 move_line.company_currency_id as company_currency_id,
+                 move_line.journal_id as journal_id,
+                 move_line.user_type_id as user_type_id,
+                 move.state as state,
+                 account.one_digit as one_digit,
+                 account.two_digit as two_digit,
+                 account.three_digit as three_digit
+
+            FROM account_account AS account
+                 LEFT JOIN account_move_line AS move_line
+                    ON (move_line.account_id=account.id)
+                 LEFT JOIN account_move as move
+                    ON (move_line.move_id=move.id)
+
+            GROUP BY move_line.id,
+                     account.code,
+                     account.name,
+                     move_line.date,
+                     move_line.account_id,
+                     move_line.company_id,
+                     move_line.journal_id,
+                     move_line.user_type_id,
+                     move_line.company_currency_id,
+                     account.one_digit,
+                     account.two_digit,
+                     account.three_digit,
+                     move.state
+            )""")

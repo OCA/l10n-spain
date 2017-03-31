@@ -8,7 +8,7 @@
     'summary': 'Account Hierarchy Report',
     'sequence': 51,
     'description': """
-    Extrae de los codigos de cuenta los distintos niveles usados en los 
+    Extrae de los codigos de cuenta los distintos niveles usados en los
     informes contables (1,2,3).
     Mediante etiquetas para los distintos niveles crea un informe utilizando
     la funcionalidad BI para explotar la informacion contable jerarquizada.
