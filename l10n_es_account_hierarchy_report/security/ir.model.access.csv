@@ -2,3 +2,6 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_account_hierarchy_user,account.hierarchy.user,model_account_hierarchy,account.group_account_user,1,1,1,1
 access_account_hierarchy_manager,account.hierarchy.manager,model_account_hierarchy,account.group_account_manager,1,1,1,1
 access_account_hierarchy_billing,account.hierarchy.billing,model_account_hierarchy,account.group_account_invoice,1,1,1,1
+access_account_hierarchy_label_user,account.hierarchy.label.user,model_account_hierarchy_label,account.group_account_user,1,1,1,1
+access_account_hierarchy_label_billing,account.hierarchy.label.billing,model_account_hierarchy_label,account.group_account_invoice,1,0,0,0
+access_account_hierarchy_label_manager,account.hierarchy.label.manager,model_account_hierarchy_label,account.group_account_manager,1,1,1,1
