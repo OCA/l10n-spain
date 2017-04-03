@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+    <!-- Account Journal Entries Report -->
+    <report id="account_journal_entries_report"
+            string="Print journal by entries"
+            model="account.journal.period"
+            report_type="qweb-pdf"
+            name="l10n_es_account_financial_report.journal_entries"
+            file="l10n_es_account_financial_report.journal_entries"/>
+
+    <record id="account_journal_entries_paperformat"
+            model="report.paperformat">
+        <field name="name">Account Journal Entries</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation"/>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="account_journal_entries_report"
+            model="ir.actions.report.xml">
+        <field name="paperformat_id"
+               ref="account_journal_entries_paperformat"/>
+    </record>
+</data>
+</openerp>
