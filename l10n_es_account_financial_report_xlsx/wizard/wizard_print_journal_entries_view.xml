@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+    <!-- Add XLSX export button -->
+    <record id="account_journal_entries_xlsx_view" model="ir.ui.view">
+        <field name="name">Export journal by entries XLSX</field>
+        <field name="model">account.journal.entries.report</field>
+        <field name="inherit_id"
+               ref="l10n_es_account_financial_report.account_journal_entries_report_view"/>
+        <field name="arch" type="xml">
+            <button name="print_report" position="after">
+                <button name="print_report_xlsx" string="Export"
+                        type="object"/>
+            </button>
+        </field>
+    </record>
+</data>
+</openerp>
