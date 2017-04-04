@@ -34,6 +34,7 @@ addon | version | summary
 [l10n_es_account_balance_report](l10n_es_account_balance_report/) | 8.0.0.1.0 | Informes de cuentas anuales españoles
 [l10n_es_account_bank_statement_import_n43](l10n_es_account_bank_statement_import_n43/) | 8.0.4.0.2 | Importación de extractos bancarios españoles (Norma 43)
 [l10n_es_account_banking_sepa_fsdd](l10n_es_account_banking_sepa_fsdd/) | 8.0.1.0.0 | Account Banking Sepa - FSDD (Anticipos de crédito)
+[l10n_es_account_financial_report](l10n_es_account_financial_report/) | 8.0.1.0.0 | Informes financieros para España
 [l10n_es_account_invoice_sequence](l10n_es_account_invoice_sequence/) | 8.0.1.3.0 | Secuencia para facturas separada de la secuencia de asientos
 [l10n_es_aeat](l10n_es_aeat/) | 8.0.1.9.0 | AEAT Base
 [l10n_es_aeat_mod111](l10n_es_aeat_mod111/) | 8.0.2.0.0 | AEAT modelo 111
