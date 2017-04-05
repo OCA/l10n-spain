@@ -18,4 +18,5 @@
 
 from . import account_fiscal_position
 from . import account_invoice
+from . import account_account
 from . import mod349

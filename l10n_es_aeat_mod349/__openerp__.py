@@ -25,7 +25,7 @@
 
 {
     "name": "Modelo 349 AEAT",
-    "version": "8.0.2.2.0",
+    "version": "8.0.2.2.1",
     "author": "Pexego, "
               "Top Consultant, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
@@ -46,6 +46,7 @@
         "views/account_fiscal_position_view.xml",
         "views/account_invoice_view.xml",
         "views/mod349_view.xml",
+        "views/account_account_view.xml",
         "report/mod349_report.xml",
         "security/ir.model.access.csv",
         "security/mod_349_security.xml",

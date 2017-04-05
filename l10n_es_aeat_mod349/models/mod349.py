@@ -52,26 +52,50 @@ class Mod349(models.Model):
         self.ensure_one()
         rec_obj = self.env['l10n.es.aeat.mod349.partner_record']
         partner = invoices[0].commercial_partner_id
-        sum_credit = sum([invoice.cc_amount_untaxed for invoice in invoices
-                          if invoice.type not in ('in_refund', 'out_refund')])
-        sum_debit = sum([invoice.cc_amount_untaxed for invoice in invoices
-                         if invoice.type in ('in_refund', 'out_refund')])
-        invoice_created = rec_obj.create(
-            {'report_id': self.id,
-             'partner_id': partner.id,
-             'partner_vat': _format_partner_vat(partner_vat=partner.vat,
-                                                country=partner.country_id),
-             'operation_key': invoices[0].operation_key,
-             'country_id': partner.country_id.id,
-             'total_operation_amount': sum_credit - sum_debit
-             })
-        # Creation of partner detail lines
-        detail_obj = self.env['l10n.es.aeat.mod349.partner_record_detail']
+        sum_credit, sum_debit = 0.0, 0.0
+        record_created = False
         for invoice in invoices:
-            detail_obj.create({'partner_record_id': invoice_created.id,
-                               'invoice_id': invoice.id,
-                               'amount_untaxed': invoice.cc_amount_untaxed})
-        return invoice_created
+            if invoice.type not in ('in_refund', 'out_refund'):
+                sum_credit += \
+                    sum([invoice_tax_line.base for invoice_tax_line in
+                         invoice.tax_line if not
+                         invoice_tax_line.amount >= 0])
+            if invoice.type in ('in_refund', 'out_refund'):
+                sum_debit += sum([invoice_tax_line.base for
+                                  invoice_tax_line in invoice.tax_line if not
+                                  invoice_tax_line.account_id.not_in_mod349 and
+                                  invoice_tax_line.amount >= 0])
+
+        total_amount = sum_credit - sum_debit
+        if total_amount or sum_credit:
+            invoice_created = rec_obj.create(
+                {'report_id': self.id,
+                 'partner_id': partner.id,
+                 'partner_vat': _format_partner_vat(
+                     partner_vat=partner.vat, country=partner.country_id),
+                 'operation_key': invoice[0].operation_key,
+                 'country_id': partner.country_id.id,
+                 'total_operation_amount': total_amount
+                 })
+            record_created = True
+            # Creation of partner detail lines
+            for invoice in invoices:
+                detail_obj = self.env[
+                    'l10n.es.aeat.mod349.partner_record_detail']
+                detail_obj.create(
+                    {'partner_record_id': invoice_created.id,
+                     'invoice_id': invoice.id,
+                     'amount_untaxed': sum(
+                         [invoice_tax_line.base for
+                          invoice_tax_line in invoice.tax_line if not
+                          invoice_tax_line.account_id.not_in_mod349 and
+                          invoice_tax_line.amount >= 0])})
+
+        if record_created:
+            returned_value = record_created
+        else:
+            returned_value = False
+        return returned_value
 
     def _create_349_refund_records(self, refunds):
         """Creates restitution records in 349. All refunds must be for the
@@ -90,7 +114,7 @@ class Mod349(models.Model):
             if origin_inv.state in ('open', 'paid'):
                 # searches for details of another 349s to restore
                 refund_details = partner_detail_obj.search(
-                    [('invoice_id', '=', origin_inv.id)], limit=1)
+                    [('invoice_id', '=', origin_inv.id)])
                 if refund_details:
                     # creates a dictionary key with partner_record id to
                     # after recover it
@@ -98,6 +122,14 @@ class Mod349(models.Model):
                     record[key] = record.get(key, []) + [refund]
         # recorremos nuestro diccionario y vamos creando registros
         for partner_rec in record:
+            refund_subtotal = 0.0
+            for x in record[partner_rec]:
+                for invoice_tax_line in x.tax_line:
+                    if not invoice_tax_line.account_id.not_in_mod349:
+                        refund_subtotal += invoice_tax_line.base
+            total_operation_amount = \
+                partner_rec.total_operation_amount - refund_subtotal
+
             record_created = obj.create(
                 {'report_id': self.id,
                  'partner_id': partner.id,
@@ -105,17 +137,20 @@ class Mod349(models.Model):
                      partner_vat=partner.vat, country=partner.country_id),
                  'operation_key': refunds[0].operation_key,
                  'country_id': partner.country_id.id,
-                 'total_operation_amount': partner_rec.total_operation_amount -
-                    sum([x.cc_amount_untaxed for x in record[partner_rec]]),
+                 'total_operation_amount': total_operation_amount,
                  'total_origin_amount': partner_rec.total_operation_amount,
                  'period_type': partner_rec.report_id.period_type,
                  'fiscalyear_id': partner_rec.report_id.fiscalyear_id.id})
             # Creation of partner detail lines
             for refund in record[partner_rec]:
+                amount = 0.0
+                for invoice_tax_line in refund.tax_line:
+                    if not invoice_tax_line.account_id.not_in_mod349:
+                        amount += invoice_tax_line.base
                 obj_detail.create(
                     {'refund_id': record_created.id,
                      'invoice_id': refund.id,
-                     'amount_untaxed': refund.cc_amount_untaxed})
+                     'amount_untaxed': amount})
         return True
 
     def _get_domain(self):

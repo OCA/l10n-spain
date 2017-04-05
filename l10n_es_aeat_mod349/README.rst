@@ -7,6 +7,24 @@ Operaciones Intracomunitarias)
 Basado en la Orden EHA/769/2010 por el que se aprueban los diseños físicos y
 lógicos del 349.
 
+Según el Artículo 76 de la Ley del IVA,
+En las adquisiciones intracomunitarias de bienes, el impuesto se devengará en
+el momento en que se consideren efectuadas las entregas de bienes similares de
+conformidad con lo dispuesto en el artículo 75 de esta Ley.
+
+No se deben de tener en cuenta las facturas de anticipo en el modelo 349.
+
+Para ello se ha creado un checkbox en las cuentas, para marcar aquellas que no
+se deben de incluir en el modelo 349 y en los cálculos de los importes y el
+detalle de registros a incluir en el modelo, se tiene en cuenta que no
+pertenezcan a las cuentas marcadas y se calcula el total a partir del
+sumatorio de las bases de tax_line, para poder efectuar el filtrado de las
+cuentas.
+
+Por defecto se marcan como no incluibles las cuentas hijas de la 438 (Anticipos
+de Clientes) y las cuentas hijas de la 407 (Anticipos de proveedores).
+
+
 De acuerdo con la normativa de la Hacienda Española, están obligados a
 presentar el modelo 349:
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_account_account_form__add_mod349" model="ir.ui.view">
+            <field name="name">account.account.form.add.mod349</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+                <field name="reconcile" position="after">
+                    <field name="not_in_mod349"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
