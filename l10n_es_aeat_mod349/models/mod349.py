@@ -8,7 +8,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import re
-from openerp import models, fields, api, exceptions, _
+from odoo import models, fields, api, exceptions, _
 from .account_invoice import OPERATION_KEYS
 
 
@@ -116,7 +116,7 @@ class Mod349(models.Model):
                                                 country=partner_country),
              'operation_key': operation_key,
              'country_id': partner_country.id or False,
-             'total_operation_amount': sum_credit - sum_debit
+             'total_operation_amount': sum_credit + sum_debit
              })
         # Creation of partner detail lines
         for invoice in invoices:
@@ -302,7 +302,7 @@ class Mod349PartnerRecord(models.Model):
     partner_id = fields.Many2one(
         comodel_name='res.partner', string='Partner', required=True,
     )
-    partner_vat = fields.Char(string='VAT', size=15, select=1)
+    partner_vat = fields.Char(string='VAT', size=15, index=True)
     country_id = fields.Many2one(comodel_name='res.country', string='Country')
     operation_key = fields.Selection(
         selection=OPERATION_KEYS, string='Operation key', required=True,
@@ -337,7 +337,7 @@ class Mod349PartnerRecordDetail(models.Model):
     partner_record_id = fields.Many2one(
         comodel_name='l10n.es.aeat.mod349.partner_record',
         default=lambda self: self.env.context.get('partner_record_id'),
-        string='Partner record', required=True, ondelete='cascade', select=1)
+        string='Partner record', required=True, ondelete='cascade', index=True)
     invoice_id = fields.Many2one(
         comodel_name='account.invoice', string='Invoice', required=True)
     amount_untaxed = fields.Float(string='Amount untaxed')
@@ -358,7 +358,7 @@ class Mod349PartnerRefund(models.Model):
         comodel_name='l10n.es.aeat.mod349.report', string='AEAT 349 Report ID',
         ondelete="cascade")
     partner_id = fields.Many2one(
-        comodel_name='res.partner', string='Partner', required=1, select=1)
+        comodel_name='res.partner', string='Partner', required=1, index=True)
     partner_vat = fields.Char(string='VAT', size=15)
     operation_key = fields.Selection(
         selection=OPERATION_KEYS, string='Operation key', required=True)
