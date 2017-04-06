@@ -8,8 +8,8 @@
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
-from openerp import fields, models, api, _
-from openerp.exceptions import Warning as UserError
+from odoo import fields, models, api, _
+from odoo.exceptions import Warning as UserError
 
 
 class L10nEsAeatMod111Report(models.Model):
