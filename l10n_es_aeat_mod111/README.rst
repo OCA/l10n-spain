@@ -42,7 +42,7 @@ las retenciones realizadas a éste proveedor se incluyan en el modelo 111
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Pruébalo en Runbot
-   :target: https://runbot.odoo-community.org/runbot/189/9.0
+   :target: https://runbot.odoo-community.org/runbot/189/10.0
 
 
 Créditos
