@@ -185,6 +185,16 @@ class L10nEsAeatReport(models.AbstractModel):
         for report in self:
             report.allow_posting = False
 
+    @api.multi
+    @api.constrains('type', 'previous_number')
+    def _check_previous_number(self):
+        for report in self:
+            if report.type in ('C', 'S') and not report.previous_number:
+                raise exceptions.UserError(
+                    _("If this declaration is complementary or substitutive, "
+                      "a previous declaration number should be provided.")
+                )
+
     @api.onchange('company_id')
     def onchange_company_id(self):
         """Load some company data (the VAT number) when company changes.
