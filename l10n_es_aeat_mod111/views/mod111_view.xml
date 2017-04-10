@@ -26,8 +26,6 @@
         <field name="arch" type="xml">
             <field name="previous_number" position="after">
                 <field name="tipo_declaracion"/>
-                <field name="codigo_electronico_anterior"
-                       attrs="{'invisible': [('type','==','N')]}"/>
                 <field name="colegio_concertado"/>
             </field>
             <group name="group_declaration" position="after">
