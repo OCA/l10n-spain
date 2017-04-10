@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# © 2016 - Serv. Tecnol. Avanzados - Pedro M. Baeza
-# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2016 Tecnativa - Antonio Espinosa
+# Copyright 2016-2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -15,9 +15,11 @@ class L10nEsAeatTaxLine(models.Model):
         string="Resource ID", index=True, required=True, ondelete='cascade')
     field_number = fields.Integer(
         string="Field number", related="map_line_id.field_number",
-        store=True)
+        store=True, readonly=True,
+    )
     name = fields.Char(
-        string="Name", related="map_line_id.name", store=True)
+        string="Name", related="map_line_id.name", store=True, readonly=True,
+    )
     amount = fields.Float(digits=dp.get_precision('Account'))
     map_line_id = fields.Many2one(
         comodel_name='l10n.es.aeat.map.tax.line', string="Map line",
@@ -25,7 +27,9 @@ class L10nEsAeatTaxLine(models.Model):
     move_line_ids = fields.Many2many(
         comodel_name='account.move.line', string='Journal items',
         oldname='move_lines')
-    to_regularize = fields.Boolean(related='map_line_id.to_regularize')
+    to_regularize = fields.Boolean(
+        related='map_line_id.to_regularize', readonly=True,
+    )
     model = fields.Char(index=True, readonly=True, required=True)
     model_id = fields.Many2one(
         comodel_name='ir.model', string='Model',
