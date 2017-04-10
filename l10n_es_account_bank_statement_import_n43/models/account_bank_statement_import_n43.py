@@ -324,8 +324,8 @@ class AccountBankStatementImport(models.TransientModel):
             'balance_end_real': n43 and n43[-1]['saldo_fin'] or 0.0,
         }
         str_currency = self.journal_id.currency and \
-                       self.journal_id.currency.name or \
-                       self.journal_id.company_id.currency_id.name
+            self.journal_id.currency.name or \
+            self.journal_id.company_id.currency_id.name
         return str_currency, False, [vals_bank_statement]
 
     @api.model
