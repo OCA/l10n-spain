@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 # © 2013 - Guadaltech - Alberto Martín Cortada
 # © 2015 - AvanzOSC - Ainara Galdona
-# © 2014-2016 - Serv. Tecnol. Avanzados - Pedro M. Baeza
-# © 2014-2016 - Antonio Espinosa <antonio.espinosa@tecnativa.com>
-# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2016 Tecnativa - Antonio Espinosa
+# Copyright 2014-2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields, api, _
@@ -27,10 +26,10 @@ class L10nEsAeatMod303Report(models.Model):
         string="Montly Return", states={'done': [('readonly', True)]},
         help="Registered in the Register of Monthly Return")
     total_devengado = fields.Float(
-        string="[27] VAT payable", readonly=True,
+        string="[27] VAT payable", readonly=True, compute_sudo=True,
         compute='_compute_total_devengado', store=True)
     total_deducir = fields.Float(
-        string="[45] VAT receivable", readonly=True,
+        string="[45] VAT receivable", readonly=True, compute_sudo=True,
         compute='_compute_total_deducir', store=True)
     casilla_46 = fields.Float(
         string="[46] General scheme result", readonly=True, store=True,
