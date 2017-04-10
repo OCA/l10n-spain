@@ -260,6 +260,25 @@ class L10nEsAeatMod340CalculateRecords(models.TransientModel):
                         surcharge.base_code_id.surcharge_tax_id.id)
                 ]
                 issued_obj.search(domain).write(values)
+                # Se añade al resumen de facturas emitidas
+                # el detalle de los recargos de equivalencia
+                dic = tax_code_isu_totals
+                key = 'issued'
+                base_code = surcharge.base_code_id
+                if not dic.get(base_code):
+                    dic[base_code] = {
+                        'base': surcharge.base_amount,
+                        'tax': surcharge.amount * sign * cur_rate,
+                        'perc': rec_tax_percentage,
+                        key: invoice_created,
+                    }
+                else:
+                    dic[base_code]['base'] += surcharge.base_amount
+                    dic[base_code]['tax'] += (
+                        surcharge.amount * sign * cur_rate
+                    )
+                    dic[base_code][key] += invoice_created
+
             if invoice.type in ['out_invoice', 'out_refund']:
                 vals2 = {
                     'rec_amount_tax': rec_tax_invoice}

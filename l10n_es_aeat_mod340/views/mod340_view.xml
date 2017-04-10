@@ -103,17 +103,27 @@
                 <form string="Issued invoices">
                     <group>
                         <field name="invoice_id"/>
-                        <field name="partner_id"/>
-                        <field name="partner_vat"/>
-                        <field name="vat_type"/>
-                        <field name="representative_vat"/>
-                        <field name="partner_country_code"/>
-                        <field name="key_operation"/>
-                        <field name="base_tax" />
-                        <field name="amount_tax" />
-                        <field name="rec_amount_tax" />
-                        <field name="total"/>
-                        <field name="txt_exception" />
+                        <newline/>
+                        <group col="4" colspan="4" string="Identification">
+                            <field name="partner_id"/>
+                            <field name="partner_vat"/>
+                            <field name="vat_type"/>                    
+                            <field name="representative_vat"/>
+                            <field name="partner_country_code"/>
+                        <newline/>
+                        </group>
+                        <group col="4" colspan="4" string="Taxes">
+                            <field name="key_operation"/>
+                            <field name="base_tax" />
+                            <field name="amount_tax" />
+                            <field name="rec_amount_tax" />
+                            <newline/>
+                        </group>
+                        <group col="8" colspan="4" string="Summary">
+                            <field name="total"/>
+                            <field name="txt_exception" />
+                            <newline />
+                        </group>
                         <field name="tax_line_ids" />
                     </group>
                 </form>
@@ -166,19 +176,32 @@
                 <form string="Received invoices">
                     <group>
                         <field name="invoice_id"/>
-                        <field name="partner_id"/>
-                        <field name="partner_vat"/>
-                        <field name="vat_type"/>
-                        <field name="representative_vat"/>
-                        <field name="partner_country_code"/>
-                        <field name="key_operation"/>
-                        <field name="base_tax"/>
-                        <field name="amount_tax"/>
-                        <field name="date_payment"/>
-                        <field name="payment_amount"/>
-                        <field name="name_payment_method"/>
-                        <field name="total"/>
-                        <field name="exception" />
+                        <newline/>
+                        <group col="4" colspan="4" string="Identification">
+                            <field name="partner_id"/>
+                            <field name="partner_vat"/>
+                            <field name="vat_type"/>                                        
+                            <field name="representative_vat"/>
+                            <field name="partner_country_code"/>
+                            <newline/>
+                        </group>
+                         <group col="4" colspan="4" string="Taxes">
+                            <field name="key_operation"/>                    
+                            <field name="base_tax"/>
+                            <field name="amount_tax"/>
+                            <newline/>
+                        </group>
+                        <group col="8" colspan="4" string="Payment">
+                            <field name="date_payment"/>
+                            <field name="payment_amount"/>
+                            <field name="name_payment_method"/>
+                            <newline/>
+                        </group>
+                        <group col="8" colspan="4" string="Summary">
+                            <field name="total"/>
+                            <field name="exception" />
+                            <newline />
+                        </group>
                         <field name="tax_line_ids" />
                     </group>
                 </form>
@@ -192,12 +215,16 @@
             <field name="model">l10n.es.aeat.mod340.tax_line_issued</field>
             <field name="arch" type="xml">
                 <form string="Tax line issued">
-                    <field name="name"/>
-                    <field name="tax_percentage"/>
-                    <field name="tax_amount"/>
-                    <field name="base_amount"/>
-                    <field name="rec_tax_percentage"/>
-                    <field name="rec_tax_amount"/>
+                    <group string="Taxes">
+                        <field name="name"/>
+                        <field name="tax_percentage"/>
+                        <field name="tax_amount"/>
+                        <field name="base_amount"/>
+                    </group>
+                    <group string="Surcharge">
+                        <field name="rec_tax_percentage"/>
+                        <field name="rec_tax_amount"/>
+                    </group>
                 </form>
             </field>
         </record>
@@ -207,10 +234,12 @@
             <field name="model">l10n.es.aeat.mod340.tax_line_received</field>
             <field name="arch" type="xml">
                 <form string="Tax line received">
-                    <field name="name"/>
-                    <field name="tax_percentage"/>
-                    <field name="tax_amount"/>
-                    <field name="base_amount"/>
+                    <group string="Taxes">
+                        <field name="name"/>
+                        <field name="tax_percentage"/>
+                        <field name="tax_amount"/>
+                        <field name="base_amount"/>
+                    </group>
                 </form>
             </field>
         </record>

@@ -50,7 +50,7 @@ class L10nEsAeatMod340Report(orm.Model):
                 result[model.id]['total_taxable'] += issue.base_tax
                 result[model.id]['total_sharetax'] += issue.amount_tax
                 result[model.id]['total'] += issue.base_tax + \
-                    issue.amount_tax + issue.rec_amount_tax
+                    issue.amount_tax
             for issue in model.received:
                 result[model.id]['number_records'] += len(issue.tax_line_ids)
                 result[model.id]['total_taxable_rec'] += issue.base_tax
@@ -88,39 +88,25 @@ class L10nEsAeatMod340Report(orm.Model):
         'ean13': fields.char('Electronic Code VAT reverse charge', size=16),
         'total_taxable': fields.function(
             _get_number_records, method=True,
-            type='float', string='Total Taxable', multi='recalc',
-            help="The declaration will include partners with the total "
-            "of operations over this limit"),
+            type='float', string='Total Taxable', multi='recalc'),
         'total_sharetax': fields.function(
             _get_number_records, method=True,
-            type='float', string='Total Share Tax', multi='recalc',
-            help="The declaration will include partners with the total "
-            "of operations over this limit"),
+            type='float', string='Total Share Tax', multi='recalc'),
         'number_records': fields.function(
             _get_number_records, method=True,
-            type='integer', string='Records', multi='recalc',
-            help="The declaration will include partners with the total "
-            "of operations over this limit"),
+            type='integer', string='Records', multi='recalc'),
         'total': fields.function(
             _get_number_records, method=True,
-            type='float', string="Total", multi='recalc',
-            help="The declaration will include partners with the total "
-            "of operations over this limit"),
+            type='float', string="Total", multi='recalc'),
         'total_taxable_rec': fields.function(
             _get_number_records, method=True,
-            type='float', string='Total Taxable', multi='recalc',
-            help="The declaration will include partners with the total "
-            "of operations over this limit"),
+            type='float', string='Total Taxable', multi='recalc'),
         'total_sharetax_rec': fields.function(
             _get_number_records, method=True,
-            type='float', string='Total Share Tax', multi='recalc',
-            help="The declaration will include partners with the total "
-            "of operations over this limit"),
+            type='float', string='Total Share Tax', multi='recalc'),
         'total_rec': fields.function(
             _get_number_records, method=True,
-            type='float', string="Total", multi='recalc',
-            help="The declaration will include partners with the total "
-            "of operations over this limit"),
+            type='float', string="Total", multi='recalc'),
         'calculation_date': fields.date('Calculation date', readonly=True),
     }
 
@@ -210,7 +196,7 @@ class L10nEsAeatMod340TaxLineIssued(orm.Model):
     _description = 'Mod340 vat lines issued'
     _columns = {
         'name': fields.char('Name', size=128, required=True, select=True),
-        'tax_percentage': fields.float('Tax percentage', digits=(0, 2)),
+        'tax_percentage': fields.float('Tax percentage', digits=(0, 4)),
         'tax_amount': fields.float('Tax amount', digits=(13, 2)),
         'base_amount': fields.float('Base tax bill', digits=(13, 2)),
         'invoice_record_id': fields.many2one('l10n.es.aeat.mod340.issued',
@@ -251,7 +237,7 @@ class L10nEsAeatMod340TaxSummary(models.Model):
     sum_base_amount = new_fields.Float(
         string='Summary base amount', digits=(13, 2),
     )
-    tax_percent = new_fields.Float('Tax percent', digits=(13, 2))
+    tax_percent = new_fields.Float('Tax percent', digits=(13, 4))
     mod340_id = new_fields.Many2one(
         comodel_name='l10n.es.aeat.mod340.report', string='Model 340',
         ondelete="cascade",
