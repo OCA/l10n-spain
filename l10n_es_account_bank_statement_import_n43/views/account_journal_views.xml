@@ -6,9 +6,11 @@
             <field name="model">account.journal</field>
             <field name="inherit_id" ref="account.view_account_journal_form"/>
             <field name="arch" type="xml">
-                <field name="sequence_id" position="after">
-                    <field name="date_type"/>
-                </field>
+                <xpath expr="//page[@string='Advanced Settings']/group" position="after">
+                    <group string="Norm 43 options" attrs="{'invisible': [('type','!=','bank')]}">
+                            <field name="n43_date_type"/>
+                    </group>
+                </xpath>
             </field>
         </record>
     </data>

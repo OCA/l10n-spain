@@ -2,12 +2,14 @@
 # This file contains the translation of the following modules:
 #	* l10n_es_account_bank_statement_import_n43
 #
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-28 10:12+0000\n"
-"PO-Revision-Date: 2017-03-28 10:12+0000\n"
+"POT-Creation-Date: 2017-04-10 10:06+0000\n"
+"PO-Revision-Date: 2017-04-10 10:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,7 +24,7 @@ msgid "Credit amount doesn't match with the defined in the last record of accoun
 msgstr "El importe del haber no cuadra con el definido en el último registro de la cuenta."
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: field:account.journal,date_type:0
+#: field:account.journal,n43_date_type:0
 msgid "Date type for N43 Import"
 msgstr "Tipo de fecha para importación N43"
 
@@ -56,6 +58,11 @@ msgid "Journal"
 msgstr "Diario"
 
 #. module: l10n_es_account_bank_statement_import_n43
+#: view:account.journal:l10n_es_account_bank_statement_import_n43.view_account_journal_form_n43
+msgid "Norm 43 options"
+msgstr "Opciones norma 43"
+
+#. module: l10n_es_account_bank_statement_import_n43
 #: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:122
 #, python-format
 msgid "Number of credit records doesn't match with the defined in the last record of account."
@@ -74,7 +81,7 @@ msgid "Number of records doesn't match with the defined in the last record."
 msgstr "El número de registros no cuadra con lo definido en el último registro."
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: selection:account.journal,date_type:0
+#: selection:account.journal,n43_date_type:0
 msgid "Operation Date"
 msgstr "Fecha operación"
 
@@ -85,7 +92,7 @@ msgid "Record type %s is not valid."
 msgstr "El tipo de registro %s no es válido."
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: selection:account.journal,date_type:0
+#: selection:account.journal,n43_date_type:0
 msgid "Value Date"
 msgstr "Fecha valor"
 
