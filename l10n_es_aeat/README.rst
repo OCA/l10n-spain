@@ -40,6 +40,15 @@ en la configuración de impuestos los conceptos que se regularizarán con el
 flag "to_regularize". Esto sólo es posible sobre los modelos que utilicen
 el cálculo de casillas por códigos de impuestos.
 
+ADVERTENCIA: Debido a que se utiliza una sola tabla para almacenar las líneas
+de los impuestos de todos los modelos, hay una limitación en el ORM de Odoo
+cuando se coloca el campo one2many de dichas líneas (tax_line_ids) como
+dependencia en la definición del cálculo de un campo (entrada con
+@api.depends), que recalcula los campos calculados de todos los modelos con el
+mismo ID que el del registro en curso, lo que puede ser un problema en entornos
+multi-compañía. Una solución a ello (aunque no evita el recálculo), es poner en
+esos campos calculados `compute_sudo=True`.
+
 Uso
 ===
 
