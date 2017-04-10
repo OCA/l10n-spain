@@ -20,15 +20,15 @@ class L10nEsAeatMod111Report(models.Model):
     _aeat_number = '111'
 
     casilla_01 = fields.Integer(
-        string="[01] # Recipients", readonly=True,
+        string="[01] # Recipients", readonly=True, compute_sudo=True,
         compute='_compute_casilla_01', store=True,
         help="Work income - Monetary - Number of recipients")
     casilla_04 = fields.Integer(
-        string="[04] # Recipients", readonly=True,
+        string="[04] # Recipients", readonly=True, compute_sudo=True,
         compute='_compute_casilla_04', store=True,
         help="Work income - In kind - Number of recipients")
     casilla_07 = fields.Integer(
-        string="[07] # Recipients", readonly=True,
+        string="[07] # Recipients", readonly=True, compute_sudo=True,
         compute='_compute_casilla_07', store=True,
         help="Business income - Monetary - Number of recipients")
     casilla_10 = fields.Integer(
@@ -122,7 +122,7 @@ class L10nEsAeatMod111Report(models.Model):
              "account provided in Article 92.8 of the Tax Law - "
              "Monetary or in kind - Amount retained")
     casilla_28 = fields.Float(
-        string="[28] Amount of retentions",
+        string="[28] Amount of retentions", compute_sudo=True,
         readonly=True, compute='_compute_casilla_28',
         help="Amount of retentions: "
              "([03] + [06] + [09] + [12] + [15] + [18] + [21] + [24] + [27])")
