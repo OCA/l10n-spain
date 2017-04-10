@@ -8,8 +8,7 @@
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
-from openerp import fields, models, api, _
-from openerp.exceptions import Warning as UserError
+from openerp import api, fields, models
 
 
 class L10nEsAeatMod111Report(models.Model):
@@ -136,11 +135,6 @@ class L10nEsAeatMod111Report(models.Model):
         string="[30] Result",
         readonly=True, compute='_compute_casilla_30',
         help="Result: ([28] - [29])")
-    codigo_electronico_anterior = fields.Char(
-        string='Last electronic code', size=16, readonly=True,
-        states={'draft': [('readonly', False)]},
-        help="Electronic code of prior statement (if online). To be completed "
-             "only in the case of supplementary statement.")
     tipo_declaracion = fields.Selection(
         selection=[
             ('I', "To enter"),
@@ -152,18 +146,6 @@ class L10nEsAeatMod111Report(models.Model):
     colegio_concertado = fields.Boolean(
         string="College concerted", readonly=True,
         states={'draft': [('readonly', False)]}, default=False)
-
-    @api.multi
-    @api.constrains('codigo_electronico_anterior', 'previous_number')
-    def _check_complementary(self):
-        for report in self:
-            if (report.type == 'C' and
-                    not report.codigo_electronico_anterior and
-                    not report.previous_number):
-                raise UserError(
-                    _("If supplementary statement box is marked, you must "
-                      "complete the electronic code or number of receipt of "
-                      "the prior statement."))
 
     @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.move_line_ids.partner_id')
@@ -215,16 +197,3 @@ class L10nEsAeatMod111Report(models.Model):
     def _compute_casilla_30(self):
         for report in self:
             report.casilla_30 = report.casilla_28 - report.casilla_29
-
-    @api.multi
-    def button_confirm(self):
-        """Check records"""
-        msg = ""
-        for report in self:
-            if report.tipo_declaracion == 'D' and not report.bank_account_id:
-                msg = _('Select an account for making the charge')
-            if report.tipo_declaracion == 'N' and not report.bank_account_id:
-                msg = _('Select an account for receiving the money')
-        if msg:
-            raise UserError(msg)
-        return super(L10nEsAeatMod111Report, self).button_confirm()
