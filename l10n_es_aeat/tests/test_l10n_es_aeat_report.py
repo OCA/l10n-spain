@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
+from odoo import exceptions
 
 
 class TestL10nEsAeatReport(common.TransactionCase):
@@ -46,3 +47,11 @@ class TestL10nEsAeatReport(common.TransactionCase):
                     report.date_end, date_end,
                     "Incorrect end date for period %s: %s." % (
                         period_type, report.date_end))
+
+    def test_check_complementary(self):
+        report = self.AeatReport.new({
+            'year': 2016,
+            'type': 'S',
+        })
+        with self.assertRaises(exceptions.UserError):
+            report._check_previous_number()
