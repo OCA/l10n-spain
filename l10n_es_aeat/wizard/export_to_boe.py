@@ -188,12 +188,12 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         attachment_obj = self.env['ir.attachment']
         attachment_ids = attachment_obj.search(
             [('name', '=', file_name),
-             ('res_model', '=', report._model._name)])
+             ('res_model', '=', report._name)])
         attachment_ids.unlink()
         attachment_obj.create({"name": file_name,
                                "datas": file,
                                "datas_fname": file_name,
-                               "res_model": report._model._name,
+                               "res_model": report._name,
                                "res_id": report.id,
                                })
         self.write({'state': 'get', 'data': file, 'name': file_name})
