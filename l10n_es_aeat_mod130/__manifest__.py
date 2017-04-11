@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -23,7 +22,7 @@
 
 {
     "name": "AEAT modelo 130",
-    "version": "8.0.0.8.0",
+    "version": "12.0.1.0.0",
     "author": "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
@@ -65,6 +64,7 @@ responsabilidad derivada de su uso. Carencias conocidas:
         "wizard/export_mod130_to_boe.xml",
         "views/mod130_view.xml",
         "security/ir.model.access.csv",
+        "security/ir_rule.xml"
     ],
     "installable": True,
 }
