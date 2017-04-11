@@ -23,7 +23,7 @@
 
 {
     'name': 'Generación de fichero modelo 340 y libro de IVA',
-    'version': '8.0.2.3.0',
+    'version': '8.0.2.4.0',
     "author": "Spanish Localization Team,"
               # "Acysos S.L., "
               # "Ting, "
@@ -56,6 +56,7 @@
         'views/account_invoice_view.xml',
         'views/account_view.xml',
         'data/taxes_data.xml',
+        'security/ir_rule.xml'
     ],
     'installable': True,
 }

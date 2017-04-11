@@ -20,7 +20,7 @@
 
 {
     'name': 'AEAT modelo 296',
-    'version': '8.0.1.2.0',
+    'version': '8.0.1.3.0',
     'category': "Localisation/Accounting",
     'author': "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "AvanzOSC,"
@@ -35,6 +35,7 @@
     'data': [
         'wizard/export_mod296_to_boe.xml',
         'views/mod296_view.xml',
-        'security/ir.model.access.csv'],
+        'security/ir.model.access.csv',
+        'security/ir_rule.xml'],
     'installable': True,
 }
