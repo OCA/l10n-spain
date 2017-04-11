@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
         <!-- Tree view -->
         <record id="view_l10n_es_aeat_mod130_report_tree" model="ir.ui.view">
             <field name="name">l10n_es.aeat.mod130.report.tree</field>
@@ -10,7 +9,7 @@
                 <tree position="attributes">
                     <attribute name="string">AEAT 130 reports</attribute>=
                 </tree>
-                <field name="fiscalyear_id" position="after">
+                <field name="year" position="after">
                     <field name="period"/>
                     <field name="result"/>
                 </field>
@@ -18,7 +17,7 @@
         </record>
 
         <!-- Form view -->
-        <record id="view_l10n_es_aeat_mod130_report_form" model="ir.ui.view">
+<!--         <record id="view_l10n_es_aeat_mod130_report_form" model="ir.ui.view">
             <field name="name">l10n_es.aeat.mod130.report.form</field>
             <field name="model">l10n.es.aeat.mod130.report</field>
             <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
@@ -26,7 +25,7 @@
                 <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
                     <attribute name="name">%(action_wizard_aeat_mod130_export)d</attribute>
                 </button>
-                <field name="fiscalyear_id" position="after">
+                <field name="year" position="after">
                     <field name="period"/>
                     <field name="currency_id" invisible="1"/>
                 </field>
@@ -135,7 +134,7 @@
                 </group>
             </field>
         </record>
-
+ -->
         <!-- Window action -->
         <record id="action_l10n_es_aeat_mod130_report" model="ir.actions.act_window">
             <field name="name">AEAT model 130</field>
@@ -150,18 +149,17 @@
             <field name="view_id" ref="view_l10n_es_aeat_mod130_report_tree"/>
             <field name="act_window_id" ref="action_l10n_es_aeat_mod130_report"/>
         </record>
-        <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod130_report_form">
+<!--         <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod130_report_form">
             <field name="sequence" eval="3"/>
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_l10n_es_aeat_mod130_report_form"/>
             <field name="act_window_id" ref="action_l10n_es_aeat_mod130_report"/>
         </record>
-
+ -->
         <!-- ### MENU ACCESS ### -->
-        <menuitem id="menu_aeat_mod130_report"
+<!--         <menuitem id="menu_aeat_mod130_report"
             parent="l10n_es_aeat.menu_root_aeat"
             action="action_l10n_es_aeat_mod130_report"
             sequence="130"
             name="AEAT 130 model"/>
-    </data>
-</openerp>
+ --></odoo>

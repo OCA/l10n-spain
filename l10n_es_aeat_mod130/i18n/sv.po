@@ -1,20 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat_mod130
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-19 10:40+0000\n"
-"PO-Revision-Date: 2017-01-19 20:16+0000\n"
+"POT-Creation-Date: 2017-08-19 00:55+0000\n"
+"PO-Revision-Date: 2017-08-11 11:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Swedish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sv/)\n"
+"Language-Team: Swedish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/sv/)\n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod130
@@ -261,7 +262,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Preliminär"
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod130.action_wizard_aeat_mod130_export
@@ -317,7 +318,7 @@ msgstr "ID"
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,journal_id:0
@@ -406,15 +407,27 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,has_prestamo:0
 msgid ""
-"Permite indicar si destina cantidades al pago de préstamos para la adquisición o rehabilitación de la vivienda habitual. Si marca la casilla, se podrá realiza un 2% de deducción sobre el importe de la casilla [03], con un máximo de 660,14 € por trimestre, o del 2% de la casilla [08], con un máximo de 660,14 euros anuales. \n"
-"Debe consultar las excepciones para las que no se computaría la deducción a pesar del préstamo."
+"Permite indicar si destina cantidades al pago de préstamos para la "
+"adquisición o rehabilitación de la vivienda habitual. Si marca la casilla, "
+"se podrá realiza un 2% de deducción sobre el importe de la casilla [03], con "
+"un máximo de 660,14 € por trimestre, o del 2% de la casilla [08], con un "
+"máximo de 660,14 euros anuales. \n"
+"Debe consultar las excepciones para las que no se computaría la deducción a "
+"pesar del préstamo."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,has_deduccion_80:0
 msgid ""
-"Permite indicar si puede beneficiarse de la deducción por obtención de rendimientos de actividades económicas a efectos del pago fraccionado por cumplir el siguiente requisito:\n"
-" Que, en el primer trimestre del ejercicio o en el primer trimestre de inicio de actividades, la suma del resultado de elevar al año el importe de la casilla 03 y/o, en su caso, el resultado de elevar al año el 25 por 100 de la casilla 08, sea igual o inferior a 12.000 euros. En los supuestos de inicio de la actividad a lo largo del ejercicio en la elevación al año se tendrán en consideración los días que resten hasta el final del año."
+"Permite indicar si puede beneficiarse de la deducción por obtención de "
+"rendimientos de actividades económicas a efectos del pago fraccionado por "
+"cumplir el siguiente requisito:\n"
+" Que, en el primer trimestre del ejercicio o en el primer trimestre de "
+"inicio de actividades, la suma del resultado de elevar al año el importe de "
+"la casilla 03 y/o, en su caso, el resultado de elevar al año el 25 por 100 "
+"de la casilla 08, sea igual o inferior a 12.000 euros. En los supuestos de "
+"inicio de la actividad a lo largo del ejercicio en la elevación al año se "
+"tendrán en consideración los días que resten hasta el final del año."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -425,7 +438,7 @@ msgstr "Telefon"
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,state:0
 msgid "Posted"
-msgstr ""
+msgstr "Sparad"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,complementary:0
@@ -470,7 +483,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.export_to_boe,state:0
 #: field:l10n.es.aeat.mod130.report,state:0
 msgid "State"
-msgstr ""
+msgstr "Status"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,type:0

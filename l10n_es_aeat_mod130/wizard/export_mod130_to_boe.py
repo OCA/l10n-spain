@@ -16,8 +16,8 @@
 #
 ##############################################################################
 from datetime import datetime
-from openerp import models, api, _
-from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo import models, api, _
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 
 class L10nEsAeatMod130ExportToBoe(models.TransientModel):

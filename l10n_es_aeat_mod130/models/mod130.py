@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -17,7 +16,7 @@
 ##############################################################################
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from openerp import models, fields, api, exceptions
+from odoo import models, fields, api, exceptions
 
 
 def trunc(f, n):
@@ -26,9 +25,10 @@ def trunc(f, n):
 
 
 class L10nEsAeatMod130Report(models.Model):
+    _description = "AEAT 130 report"
     _inherit = "l10n.es.aeat.report"
     _name = "l10n.es.aeat.mod130.report"
-    _description = "AEAT 130 report"
+    _aeat_number = '130'
 
     company_partner_id = fields.Many2one('res.partner', string='Partner',
                                          relation='company_id.partner_id',
@@ -291,7 +291,3 @@ class L10nEsAeatMod130Report(models.Model):
         if msg:
             raise exceptions.Warning(msg)
         return super(L10nEsAeatMod130Report, self).button_confirm()
-
-    def __init__(self, pool, cr):
-        self._aeat_number = '130'
-        super(L10nEsAeatMod130Report, self).__init__(pool, cr)
