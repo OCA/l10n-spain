@@ -16,12 +16,12 @@ class L10nEsAeatMod115Report(models.Model):
     _aeat_number = '115'
 
     casilla_01 = fields.Integer(
-        string="[01] # Recipients", readonly=True,
+        string="[01] # Recipients", readonly=True, compute_sudo=True,
         compute='_compute_casilla_01',
         help="Number of recipients")
     casilla_03 = fields.Float(
         string="[03] Amount of retentions",
-        readonly=True, compute='_compute_casilla_03',
+        readonly=True, compute='_compute_casilla_03', compute_sudo=True,
         help="Amount of retentions")
     casilla_04 = fields.Float(
         string="[04] Fees to compensate", readonly=True,
