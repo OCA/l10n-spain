@@ -22,6 +22,7 @@
         'data/aeat_export_mod115_data.xml',
         'data/tax_code_map_mod115_data.xml',
         'views/mod115_view.xml',
+        'security/l10n_es_aeat_mod115_security.xml',
     ],
     'installable': True,
 }
