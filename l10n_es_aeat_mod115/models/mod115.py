@@ -15,6 +15,14 @@ class L10nEsAeatMod115Report(models.Model):
     _name = 'l10n.es.aeat.mod115.report'
     _aeat_number = '115'
 
+    def _get_export_conf(self):
+        try:
+            return self.env.ref(
+                'l10n_es_aeat_mod115.aeat_mod115_2017_main_export_config').id
+        except ValueError:
+            return self.env['aeat.model.export.config']
+
+    export_config = fields.Many2one(default=_get_export_conf)
     casilla_01 = fields.Integer(
         string="[01] # Recipients", readonly=True, compute_sudo=True,
         compute='_compute_casilla_01',
