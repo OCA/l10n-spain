@@ -294,6 +294,9 @@ class AccountBankStatementImport(models.TransientModel):
         if not n43:
             return super(AccountBankStatementImport, self)._parse_file(
                 data_file)
+        journal = self.env['account.journal'].browse(
+            self.env.context.get('journal_id', [])
+        )
         transactions = []
         for group in n43:
             for line in group['lines']:
@@ -303,7 +306,7 @@ class AccountBankStatementImport(models.TransientModel):
                         x.strip() for x in line['conceptos'][concept_line]
                         if x.strip())
                 vals_line = {
-                    'date': fields.Date.to_string(line['fecha_valor']),
+                    'date': fields.Date.to_string(line[journal.n43_date_type]),
                     'name': ' '.join(conceptos),
                     'ref': self._get_ref(line),
                     'amount': line['importe'],
