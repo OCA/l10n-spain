@@ -6,7 +6,7 @@
 {
     'name': 'Importación de extractos bancarios españoles (Norma 43)',
     'category': 'Accounting & Finance',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.1.0',
     'license': 'AGPL-3',
     'author': 'Spanish Localization Team,'
               'Tecnativa,'
@@ -16,6 +16,7 @@
         'account_bank_statement_import',
     ],
     'data': [
+        'views/account_journal_views.xml',
         'wizards/account_bank_statement_import_view.xml',
     ],
     'installable': True,
