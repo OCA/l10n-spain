@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+        <record id="view_account_journal_form_n43" model="ir.ui.view">
+            <field name="name">account.journal.form.n43</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Advanced Settings']/group" position="after">
+                    <group string="Norm 43 options" attrs="{'invisible': [('type','!=','bank')]}">
+                            <field name="n43_date_type"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

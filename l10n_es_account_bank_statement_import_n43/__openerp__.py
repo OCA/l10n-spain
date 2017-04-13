@@ -16,6 +16,8 @@
     'depends': [
         'account_bank_statement_import',
     ],
-    'data': [],
+    'data': [
+        'views/account_journal_views.xml',
+    ],
     'installable': True,
 }

@@ -1,15 +1,15 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_account_bank_statement_import_n43
+# * l10n_es_account_bank_statement_import_n43
 #
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# Albert Domingo <albert.domingo@rgbconsulting.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-10 10:06+0000\n"
-"PO-Revision-Date: 2017-04-10 10:06+0000\n"
+"POT-Creation-Date: 2017-04-10 10:07+0000\n"
+"PO-Revision-Date: 2017-04-10 10:07+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,78 +21,78 @@ msgstr ""
 #: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:131
 #, python-format
 msgid "Credit amount doesn't match with the defined in the last record of account."
-msgstr "El importe del haber no cuadra con el definido en el último registro de la cuenta."
+msgstr "L'import de l'haver no quadra amb el definit en l'últim registre del compte."
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: field:account.journal,n43_date_type:0
 msgid "Date type for N43 Import"
-msgstr "Tipo de fecha para importación N43"
+msgstr "Tipus de data per a la importació N43"
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:127
 #, python-format
 msgid "Debit amount doesn't match with the defined in the last record of account."
-msgstr "La cantidad del debe no cuadra con la definida en el último registro de la cuenta."
+msgstr "La quantitat del deure no quadra amb el definit en l'últim registre del compte."
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:121
 #: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:126
 #, python-format
 msgid "Error in C43 file"
-msgstr "Error en el archivo C43"
+msgstr "Error en l'arxiu C43"
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:140
 #, python-format
 msgid "Final balance amount = (initial balance + credit - debit) doesn't match with the defined in the last record of account."
-msgstr "El importe final del saldo = (saldo inicial + haber - debe) no cuadra con el definido en el último registro de la cuenta."
+msgstr "L'import final del saldo = (saldo inicial + crèdit - dèbit) no coincideix amb el definit al últim registre del compte."
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: model:ir.model,name:l10n_es_account_bank_statement_import_n43.model_account_bank_statement_import
 msgid "Import Bank Statement"
-msgstr "Importar extracto bancario"
+msgstr "Importar extracte bancari"
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: model:ir.model,name:l10n_es_account_bank_statement_import_n43.model_account_journal
 msgid "Journal"
-msgstr "Diario"
+msgstr "Diari"
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: view:account.journal:l10n_es_account_bank_statement_import_n43.view_account_journal_form_n43
 msgid "Norm 43 options"
-msgstr "Opciones norma 43"
+msgstr "Opcions de Norma 43"
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:122
 #, python-format
 msgid "Number of credit records doesn't match with the defined in the last record of account."
-msgstr "El número de registros del haber no cuadra con lo definido en el último registro de la cuenta."
+msgstr "El nombre de registres de crèdit no coincideix amb el definit al últim registre del compte."
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:117
 #, python-format
 msgid "Number of debit records doesn't match with the defined in the last record of account."
-msgstr "El número de registros del debe no cuadra con lo definido en el último registro de la cuenta."
+msgstr "El nombre de registres de dèbit no coincideix amb el definit al últim registre del compte."
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:154
 #, python-format
 msgid "Number of records doesn't match with the defined in the last record."
-msgstr "El número de registros no cuadra con lo definido en el último registro."
+msgstr "El nombre de registres no coincideix amb el definit al últim registre."
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: selection:account.journal,n43_date_type:0
 msgid "Operation Date"
-msgstr "Fecha operación"
+msgstr "Data operació"
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:187
 #, python-format
 msgid "Record type %s is not valid."
-msgstr "El tipo de registro %s no es válido."
+msgstr "El tipus de registre %s no és vàlid."
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: selection:account.journal,n43_date_type:0
 msgid "Value Date"
-msgstr "Fecha valor"
+msgstr "Data valor"
 
