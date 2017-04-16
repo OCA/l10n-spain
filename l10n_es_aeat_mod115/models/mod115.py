@@ -39,7 +39,7 @@ class L10nEsAeatMod115Report(models.Model):
              "and compensation back option was chosen).")
     casilla_05 = fields.Float(
         string="[05] Result", readonly=True, compute='_compute_casilla_05',
-        help="Result: ([03] - [04])")
+        compute_sudo=True, help="Result: ([03] - [04])")
     tipo_declaracion = fields.Selection(
         selection=[
             ('I', "To enter"),
