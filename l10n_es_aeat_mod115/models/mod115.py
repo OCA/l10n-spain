@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from openerp import fields, models, api, _
+from openerp import fields, models, api, _, exceptions
 
 
 class L10nEsAeatMod115Report(models.Model):
@@ -27,7 +27,15 @@ class L10nEsAeatMod115Report(models.Model):
     _inherit = 'l10n.es.aeat.report.tax.mapping'
     _name = 'l10n.es.aeat.mod115.report'
 
+    def _get_export_conf(self):
+        try:
+            return self.env.ref(
+                'l10n_es_aeat_mod115.aeat_mod115_2017_main_export_config').id
+        except ValueError:
+            return self.env['aeat.model.export.config']
+
     number = fields.Char(default='115')
+    export_config = fields.Many2one(default=_get_export_conf)
     casilla_01 = fields.Integer(
         string='[01] Número de perceptores', readonly=True,
         states={'calculated': [('readonly', False)]},
@@ -114,3 +122,15 @@ class L10nEsAeatMod115Report(models.Model):
                 'res_model': 'account.move.line',
                 'domain': [('id', 'in', move_lines)]
                 }
+
+    @api.multi
+    def button_confirm(self):
+        """Check records"""
+        msg = ""
+        for mod115 in self:
+            if mod115.tipo_declaracion == 'U' and\
+                    not mod115.partner_bank_id.acc_number:
+                msg = _('Select an account for making the charge')
+        if msg:
+            raise exceptions.Warning(msg)
+        return super(L10nEsAeatMod115Report, self).button_confirm()
