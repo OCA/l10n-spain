@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=================================================================
+================================================
 Exportación de fichero de confirming para Bankia
-=================================================================
+================================================
 
 Módulo para la exportación de ficheros bancarios según el formato Confirming para Bankia.
 
@@ -19,7 +19,7 @@ Configuración
 =============
 
 Antes de generar un fichero bancario de Confirming, hay que definir un modo de
-pago que use el tipo de exportación de pago "Confirming Bankia". Para ello, vaya a Contabilidad >
+pago que use el tipo de exportación de pago "Confirming Popular". Para ello, vaya a Contabilidad >
 Configuración > Varios > Modos de pago, y escoja el tipo de pago a realizar
 (Transferencia, Pago domiciliado o Cheque bancario).
 

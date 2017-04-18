@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=================================================================
+========================================================
 Exportación de fichero de confirming para Banco Sabadell
-=================================================================
+========================================================
 
 Módulo para la exportación de ficheros bancarios según el formato Confirming,
 para Banco Sabadell.

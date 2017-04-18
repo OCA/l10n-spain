@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-# (c) 2016 Soluntec Soluciones Tecnológicas. - Rubén Francés, Nacho Torró
+# (c) 2016 Soluntec Proyectos y Soluciones TIC. - Rubén Francés , Nacho Torró
 # (c) 2015 Serv. Tecnol. Avanzados - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 import re
-from datetime import datetime
+import datetime
 from openerp import fields, _
 from openerp.addons.l10n_es_payment_order.wizard.log import Log
 from openerp.addons.l10n_es_payment_order.wizard.converter import \
@@ -16,7 +16,6 @@ class ConfirmingPopular(object):
         self.env = env
         self.converter = PaymentConverterSpain()
 
-
     def create_file(self, order, lines):
         self.order = order
         self.num_records = 0
@@ -27,25 +26,36 @@ class ConfirmingPopular(object):
                 txt_file += self._pop_beneficiarios(line)
                 txt_file += self._pop_detalle(line)
             txt_file += self._pop_totales(line, self.num_records)
-               
         return txt_file
 
     def _pop_cabecera(self):
-        if self.order.date_prefered == 'now' or self.order.date_prefered == 'due':
-            fecha_planificada = datetime.today().strftime('%d%m%Y')
+        if self.order.date_prefered == 'due':
+            fecha_planificada = self.order.line_ids \
+                and self.order.line_ids[0].ml_maturity_date \
+                or datetime.date.today().strftime('%Y-%d-%m')
+            fecha_planificada = fecha_planificada.replace('-', '')
+            dia = fecha_planificada[6:]
+            mes = fecha_planificada[4:6]
+            ano = fecha_planificada[:4]
+            fecha_planificada = dia + mes + ano
+        elif self.order.date_prefered == 'now':
+            fecha_planificada = datetime.date.today().strftime('%d%m%Y')
         else:
             fecha_planificada = self.order.date_scheduled
             if not fecha_planificada:
                 raise Log(
-                    _("Error: Fecha planificada no establecida en la Orden de pago."))
+                    _("Error: Fecha planificada no \
+                        establecida en la Orden de pago."))
             else:
-                fecha_planificada = fecha_planificada.replace('-','')
+                fecha_planificada = fecha_planificada.replace('-', '')
                 dia = fecha_planificada[6:]
                 mes = fecha_planificada[4:6]
                 ano = fecha_planificada[:4]
                 fecha_planificada = dia + mes + ano
-        text = ''
+
+        all_text = ''
         for i in range(4):
+            text = ''
             # 1 y 2
             text += '13'
             # 3 -4 Codigo operacion
@@ -65,10 +75,10 @@ class ConfirmingPopular(object):
             dato = '00'+str(i+1)
             text += dato
             if (i+1) == 1:
-                text += fecha_planificada
+                text += datetime.date.today().strftime('%d%m%Y')
                 text += fecha_planificada
                 cuenta = self.order.mode.bank_id.acc_number
-                cuenta = cuenta.replace(' ','')
+                cuenta = cuenta.replace(' ', '')
                 tipo_cuenta = self.order.mode.bank_id.state
                 if tipo_cuenta == 'iban':
                     cuenta = cuenta[4:]
@@ -86,7 +96,8 @@ class ConfirmingPopular(object):
                 ordenante = self.order.mode.bank_id.partner_id.name
                 if not ordenante:
                     raise Log(
-                        _("Error: Propietario de la cuenta no establecido para la cuenta %s.") % self.order.mode.bank_id.acc_number)
+                        _("Error: Propietario de la cuenta no establecido para\
+                        la cuenta %s.") % self.order.mode.bank_id.acc_number)
                 if len(ordenante) <= 36:
                     relleno = 36 - len(ordenante)
                     ordenante += relleno * ' '
@@ -97,7 +108,9 @@ class ConfirmingPopular(object):
                 domicilio_pro = self.order.mode.bank_id.partner_id.street
                 if not domicilio_pro:
                     raise Log(
-                        _("Error: El Ordenante %s no tiene establecido el Domicilio.") % self.order.mode.bank_id.partner_id.name)
+                        _("Error: El Ordenante %s no tiene \
+                        establecido el Domicilio.\
+                         ") % self.order.mode.bank_id.partner_id.name)
                 else:
                     if len(domicilio_pro) < 36:
                         relleno = 36 - len(domicilio_pro)
@@ -107,19 +120,22 @@ class ConfirmingPopular(object):
                 ciudad_pro = self.order.mode.bank_id.partner_id.city
                 if not ciudad_pro:
                     raise Log(
-                        _("Error: El Ordenante %s no tiene establecida la Ciudad.") % self.order.mode.bank_id.partner_id.name)
+                        _("Error: El Ordenante %s no tiene establecida la \
+                        Ciudad.") % self.order.mode.bank_id.partner_id.name)
                 else:
                     if len(ciudad_pro) < 36:
                         relleno = 36 - len(ciudad_pro)
                         ciudad_pro += relleno * ' '
                     text += ciudad_pro
 
-            text += '\r\n'
-        return text
+            text = text.ljust(100)+'\r\n'
+            all_text += text
+        return all_text
 
-    def _pop_beneficiarios(self,line):
-        text = ''
+    def _pop_beneficiarios(self, line):
+        all_text = ''
         for i in range(4):
+            text = ''
             # 1 y 2
             text += '16'
             # 3 -4 Codigo operacion
@@ -137,7 +153,8 @@ class ConfirmingPopular(object):
             nif = line['partner_id']['vat']
             if not nif:
                 raise Log(
-                    _("Error: El Proveedor %s no tiene establecido el NIF.") % line['partner_id']['name'])
+                    _("Error: El Proveedor %s no tiene \
+                        establecido el NIF.") % line['partner_id']['name'])
             nif = nif[2:]
             if len(nif) < 12:
                 relleno = 12 - len(nif)
@@ -151,7 +168,7 @@ class ConfirmingPopular(object):
                 # 42 - 59 Num banco, Num sucursal, Num cuenta
                 if self.order.mode.conf_popular_type != '61':
                     cuenta = line['bank_id']['acc_number']
-                    cuenta = cuenta.replace(' ','')
+                    cuenta = cuenta.replace(' ', '')
                     tipo_cuenta = self.order.mode.bank_id.state
                     if tipo_cuenta == 'iban':
                         cuenta = cuenta[4:]
@@ -163,7 +180,7 @@ class ConfirmingPopular(object):
                     cuenta = 18 * ' '
                     text += cuenta
                 # 60 - 61 - 62  Gastos, Forma de pago, Libre
-                if self.order.mode.conf_popular_type in ['60','61']:
+                if self.order.mode.conf_popular_type in ['60', '61']:
                     if self.order.mode.gastos == 'ordenante':
                         text += '1  '
                     elif self.order.mode.gastos == 'beneficiario':
@@ -207,13 +224,15 @@ class ConfirmingPopular(object):
                 domicilio_pro = line['partner_id']['street']
                 if not domicilio_pro:
                     raise Log(
-                        _("Error: El Proveedor %s no tiene establecido el Domicilio.") % line['partner_id']['name'])
+                        _("Error: El Proveedor %s no tiene\
+                         establecido el Domicilio.\
+                         ") % line['partner_id']['name'])
                 else:
                     if len(domicilio_pro) < 36:
                         relleno = 36 - len(domicilio_pro)
                         domicilio_pro += relleno * ' '
                     text += domicilio_pro
-                ## 66 - 72 Libre
+                # 66 - 72 Libre
                 text += 7 * ' '
             if (i+1) == 4:
                 # 27 - 29 Numero de dato
@@ -222,7 +241,8 @@ class ConfirmingPopular(object):
                 cp_pro = line['partner_id']['zip']
                 if not cp_pro:
                     raise Log(
-                        _("Error: El Proveedor %s no tiene establecido el C.P.") % line['partner_id']['name'])
+                        _("Error: El Proveedor %s no tiene establecido\
+                         el C.P.") % line['partner_id']['name'])
                 else:
                     if len(cp_pro) < 5:
                         relleno = 5 - len(cp_pro)
@@ -231,19 +251,21 @@ class ConfirmingPopular(object):
                 ciudad_pro = line['partner_id']['city']
                 if not ciudad_pro:
                     raise Log(
-                        _("Error: El Proveedor %s no tiene establecida la Ciudad.") % line['partner_id']['name'])
+                        _("Error: El Proveedor %s no tiene establecida\
+                         la Ciudad.") % line['partner_id']['name'])
                 else:
                     if len(ciudad_pro) < 31:
                         relleno = 31 - len(ciudad_pro)
                         ciudad_pro += relleno * ' '
                     text += ciudad_pro
-                ## 66 - 72 Libre
+                # 66 - 72 Libre
                 text += 7 * ' '
-            text += '\r\n'
+            text = text.ljust(100)+'\r\n'
+            all_text += text
         self.num_records += 1
-        return text
+        return all_text
 
-    def _pop_detalle(self,line):
+    def _pop_detalle(self, line):
         text = ''
         # 1 y 2
         text += '17'
@@ -262,7 +284,8 @@ class ConfirmingPopular(object):
         nif = line['partner_id']['vat']
         if not nif:
             raise Log(
-                _("Error: El Proveedor %s no tiene establecido el NIF.") % line['partner_id']['name'])
+                _("Error: El Proveedor %s no tiene establecido\
+                 el NIF.") % line['partner_id']['name'])
         nif = nif[2:]
         if len(nif) < 12:
             relleno = 12 - len(nif)
@@ -272,8 +295,9 @@ class ConfirmingPopular(object):
         text += '100'
         # 30 - 37 Fecha emisión Factura
         fecha_factura = 8 * ' '
-        if line['ml_inv_ref'] > 0:
-            fecha_factura = line['ml_inv_ref'][0]['date_invoice'].replace('-','')
+        if line['ml_inv_ref'][0]['reference']:
+            fecha_factura = line['ml_inv_ref'][0]['date_invoice']\
+                .replace('-', '')
             dia = fecha_factura[6:]
             mes = fecha_factura[4:6]
             ano = fecha_factura[:4]
@@ -282,17 +306,19 @@ class ConfirmingPopular(object):
         # 38 - 45 Fecha vencimiento / Referencia factura
         if self.order.mode.conf_popular_type == '70':
             fecha_vencimiento = 8 * ' '
-            if line['ml_inv_ref'] > 0:
-                fecha_vencimiento = line['ml_inv_ref'][0]['date_due'].replace('-','')
+            if line['ml_inv_ref'][0]['reference']:
+                fecha_vencimiento = line['date']\
+                    .replace('-', '')
                 dia = fecha_vencimiento[6:]
                 mes = fecha_vencimiento[4:6]
                 ano = fecha_vencimiento[:4]
                 fecha_vencimiento = dia + mes + ano
             text += fecha_vencimiento
-        elif self.order.mode.conf_popular_type in ['60','61']:
+        elif self.order.mode.conf_popular_type in ['60', '61']:
             referencia_factura = 8 * ' '
-            if line['ml_inv_ref'] > 0:
-                referencia_factura = line['ml_inv_ref'][0]['reference'].replace('-','')
+            if line['ml_inv_ref'][0]['reference']:
+                referencia_factura = line['ml_inv_ref'][0]['reference']\
+                    .replace('-', '')
                 if len(referencia_factura) < 8:
                     relleno = 8 - len(referencia_factura)
                     referencia_factura += relleno * ' '
@@ -301,13 +327,14 @@ class ConfirmingPopular(object):
             text += referencia_factura
         # 46 - 59 Numero de factura
         num_factura = 14 * ' '
-        if line['ml_inv_ref'] > 0:
-            num_factura = line['ml_inv_ref'][0]['number'].replace('-','')
-            if len(num_factura) < 8:
-                relleno = 8 - len(num_factura)
+        if line['ml_inv_ref'][0]['reference']:
+            num_factura = line['ml_inv_ref'][0]['number']\
+                .replace('-', '')
+            if len(num_factura) < 14:
+                relleno = 14 - len(num_factura)
                 num_factura += relleno * ' '
             if len(num_factura) > 14:
-                num_factura = num_factura[:14]
+                num_factura = num_factura[-14:]
         text += num_factura
         # 60 - 71 Importe
         text += self.converter.convert(abs(line['amount']), 12)
@@ -315,11 +342,11 @@ class ConfirmingPopular(object):
             text += ' '
         else:
             text += '-'
-        text += '\r\n'
+        text = text.ljust(100)+'\r\n'
 
         return text
 
-    def _pop_totales(self,line,num_records):
+    def _pop_totales(self, line, num_records):
         text = ''
         # 1 y 2
         text += '18'
@@ -349,4 +376,6 @@ class ConfirmingPopular(object):
 
         # 60 - 73 Libre
         text += 13 * ' '
+        text = text.ljust(100)+'\r\n'
+
         return text

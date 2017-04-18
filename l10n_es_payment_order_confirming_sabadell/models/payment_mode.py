@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# (c) 2016 Soluntec Proyectos y Soluciones TIC S.L. - Rubén Frances, Nacho Torró
+# (c) 2016 Soluntec Proyectos y Soluciones TIC. - Rubén Francés , Nacho Torró
 # (c) 2015 Serv. Tecnol. Avanzados - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
@@ -23,9 +23,11 @@ class PaymentMode(models.Model):
                    ('2', 'Fax'),
                    ('3', 'Email')])
 
-    contrato_bsconfirming = fields.Char(string="Contrato BSConfirming (12 dígitos)")
+    contrato_bsconfirming = fields.Char(string="Contrato BSConfirming \
+        (12 dígitos)")
 
-    codigo_estadistico = fields.Char(string="Codigo Estadistico para Transferencia Internacional (6 carácteres)", default="000000")
+    codigo_estadistico = fields.Char(string="Codigo Estadistico para \
+        Transferencia Internacional (6 carácteres)", default="000000")
 
     @api.multi
     @api.depends('type')
@@ -34,4 +36,3 @@ class PaymentMode(models.Model):
             'l10n_es_payment_order_confirming_sabadell.export_sabadell')
         for record in self:
             record.is_conf_sabadell = record.type == conf_sabadell_type
-

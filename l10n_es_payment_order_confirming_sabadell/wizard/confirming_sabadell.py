@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-# (c) 2016 Soluntec Soluciones Tecnológicas. - Rubén Francés, Nacho Torró
+# (c) 2016 Soluntec Proyectos y Soluciones TIC. - Rubén Francés , Nacho Torró
 # (c) 2015 Serv. Tecnol. Avanzados - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 import re
-from datetime import datetime
+import datetime
 from openerp import fields, _
 from openerp.addons.l10n_es_payment_order.wizard.log import Log
 from openerp.addons.l10n_es_payment_order.wizard.converter import \
@@ -15,7 +15,6 @@ class ConfirmingSabadell(object):
     def __init__(self, env):
         self.env = env
         self.converter = PaymentConverterSpain()
-
 
     def create_file(self, order, lines):
         self.order = order
@@ -29,19 +28,23 @@ class ConfirmingSabadell(object):
                     txt_file += self._sab_registro_04(line)
                 total_amount += abs(line['amount'])
             txt_file += self._sab_registro_05(total_amount, len(lines))
-               
+
         return txt_file
 
     def _sab_registro_01(self):
-        if self.order.date_prefered == 'now' or self.order.date_prefered == 'due':
-            fecha_planificada = datetime.today().strftime('%Y%m%d')
+        if self.order.date_prefered == 'due':
+            fecha_planificada = datetime.date.today().strftime('%Y-%m-%d')
+            fecha_planificada = fecha_planificada.replace('-', '')
+        elif self.order.date_prefered == 'now':
+            fecha_planificada = datetime.date.today().strftime('%Y%m%d')
         else:
             fecha_planificada = self.order.date_scheduled
             if not fecha_planificada:
                 raise Log(
-                    _("Error: Fecha planificada no establecida en la Orden de pago."))
+                    _("Error: Fecha planificada no establecida en \
+                        la Orden de pago."))
             else:
-                fecha_planificada = fecha_planificada.replace('-','')
+                fecha_planificada = fecha_planificada.replace('-', '')
 
         # Caracteres 1 y 2-3
         text = '1  '
@@ -50,7 +53,9 @@ class ConfirmingSabadell(object):
         ordenante = self.order.mode.bank_id.partner_id.name
         if not ordenante:
             raise Log(
-                    _("Error: Propietario de la cuenta no establecido para la cuenta %s.") % self.order.mode.bank_id.acc_number)
+                _("Error: Propietario de la cuenta no \
+                    establecido para la cuenta\
+                    %s.") % self.order.mode.bank_id.acc_number)
         if len(ordenante) <= 40:
             relleno = 40 - len(ordenante)
             ordenante += relleno * ' '
@@ -74,7 +79,7 @@ class ConfirmingSabadell(object):
         # 64 - 83 Cuenta de cargo
         tipo_cuenta = self.order.mode.bank_id.state
         cuenta = self.order.mode.bank_id.acc_number
-        cuenta = cuenta.replace(' ','')
+        cuenta = cuenta.replace(' ', '')
         if tipo_cuenta == 'bank':
             text += cuenta
         else:
@@ -82,7 +87,7 @@ class ConfirmingSabadell(object):
             text += cuenta
 
         # 84 - 95 Contrato BSConfirming
-        text += self.order.mode.contrato_bsconfirming 
+        text += self.order.mode.contrato_bsconfirming
 
         # 96 - 99 Codigo fichero
         text += 'KF01'
@@ -121,7 +126,8 @@ class ConfirmingSabadell(object):
         nif = line['partner_id']['vat']
         if not nif:
             raise Log(
-                _("Error: El Proveedor %s no tiene establecido el NIF.") % line['partner_id']['name'])
+                _("Error: El Proveedor %s no tiene \
+                    establecido el NIF.") % line['partner_id']['name'])
         if len(nif) < 12:
             relleno = 12 - len(nif)
             nif += relleno * ' '
@@ -140,7 +146,7 @@ class ConfirmingSabadell(object):
             tipo_cuenta = line['bank_id']['state']
             if tipo_cuenta == 'bank':
                 cuenta = line['bank_id']['acc_number']
-                cuenta = cuenta.replace(' ','')
+                cuenta = cuenta.replace(' ', '')
                 text += cuenta
             else:
                 text += 20 * ' '
@@ -148,7 +154,7 @@ class ConfirmingSabadell(object):
             text += 20 * ' '
         # 52 - 66 Num Factura
         num_factura = 15 * ' '
-        if line['ml_inv_ref'] > 0:
+        if line['ml_inv_ref'][0]['reference']:
             num_factura = line['ml_inv_ref'][0]['reference']
             if num_factura:
                 if len(num_factura) < 15:
@@ -166,18 +172,19 @@ class ConfirmingSabadell(object):
 
         # 82 - 89 Fecha factura
         fecha_factura = 8 * ' '
-        if line['ml_inv_ref'] > 0:
-            fecha_factura = line['ml_inv_ref'][0]['date_invoice'].replace('-','')
+        if line['ml_inv_ref'][0]['reference']:
+            fecha_factura = line['ml_inv_ref'][0]['date_invoice']\
+                .replace('-', '')
         text += fecha_factura
         # 90 - 97 Fecha vencimiento
-        fecha_vencimiento = 8 * ' '
-        if line['ml_inv_ref'] > 0:
-            fecha_vencimiento = line['ml_inv_ref'][0]['date_due'].replace('-','')
+        # fecha_vencimiento = 8 * ' '
+        fecha_vencimiento = line['date'].replace('-', '')
         text += fecha_vencimiento
         # 98 - 127 Referencia factura ordenante
         referencia_factura = 30 * ' '
-        if line['ml_inv_ref'] > 0:
-            referencia_factura = line['ml_inv_ref'][0]['number'].replace('-','')
+        if line['ml_inv_ref'][0]['reference']:
+            referencia_factura = line['ml_inv_ref'][0]['number']\
+                .replace('-', '')
             if len(referencia_factura) < 30:
                 relleno = 30 - len(referencia_factura)
                 referencia_factura += relleno * ' '
@@ -198,7 +205,7 @@ class ConfirmingSabadell(object):
             tipo_cuenta = line['bank_id']['state']
             if tipo_cuenta == 'iban':
                 cuenta = line['bank_id']['acc_number']
-                cuenta = cuenta.replace(' ','')
+                cuenta = cuenta.replace(' ', '')
                 if len(cuenta) < 30:
                     relleno = 30 - len(cuenta)
                     cuenta += relleno * ' '
@@ -238,7 +245,8 @@ class ConfirmingSabadell(object):
         domicilio_pro = line['partner_id']['street']
         if not domicilio_pro:
             raise Log(
-                _("Error: El Proveedor %s no tiene establecido el Domicilio.") % line['partner_id']['name'])
+                _("Error: El Proveedor %s no tiene establecido el \
+                    Domicilio.") % line['partner_id']['name'])
         else:
             if len(domicilio_pro) < 67:
                 relleno = 67 - len(domicilio_pro)
@@ -249,7 +257,8 @@ class ConfirmingSabadell(object):
         ciudad_pro = line['partner_id']['city']
         if not ciudad_pro:
             raise Log(
-                _("Error: El Proveedor %s no tiene establecida la Ciudad.") % line['partner_id']['name'])
+                _("Error: El Proveedor %s no tiene establecida la \
+                    Ciudad.") % line['partner_id']['name'])
         else:
             if len(ciudad_pro) < 40:
                 relleno = 40 - len(ciudad_pro)
@@ -259,7 +268,8 @@ class ConfirmingSabadell(object):
         cp_pro = line['partner_id']['zip']
         if not cp_pro:
             raise Log(
-                _("Error: El Proveedor %s no tiene establecido el C.P.") % line['partner_id']['name'])
+                _("Error: El Proveedor %s no tiene establecido el \
+                    C.P.") % line['partner_id']['name'])
         else:
             if len(cp_pro) < 5:
                 relleno = 5 - len(cp_pro)
@@ -270,8 +280,8 @@ class ConfirmingSabadell(object):
         # 162 - 176 Telefono
         telefono_pro = line['partner_id']['phone']
         if telefono_pro:
-            telefono_pro = telefono_pro.replace(' ','')
-            telefono_pro = telefono_pro.replace('+','')
+            telefono_pro = telefono_pro.replace(' ', '')
+            telefono_pro = telefono_pro.replace('+', '')
             if len(telefono_pro) < 15:
                 relleno = 15 - len(telefono_pro)
                 telefono_pro += relleno * ' '
@@ -281,8 +291,8 @@ class ConfirmingSabadell(object):
         # 177 - 191 fax
         fax_pro = line['partner_id']['fax']
         if fax_pro:
-            fax_pro = fax_pro.replace(' ','')
-            fax_pro = fax_pro.replace('+','')
+            fax_pro = fax_pro.replace(' ', '')
+            fax_pro = fax_pro.replace('+', '')
             if len(fax_pro) < 15:
                 relleno = 15 - len(fax_pro)
                 fax_pro += relleno * ' '
@@ -292,7 +302,8 @@ class ConfirmingSabadell(object):
         # 192 - 251 Correo
         email_pro = line['partner_id']['email']
         if email_pro:
-            if re.match('^[(a-z0-9\_\-\.)]+@[(a-z0-9\_\-\.)]+\.[(a-z)]{2,15}$',email_pro.lower()):
+            if re.match('^[(a-z0-9\_\-\.)]+@[(a-z0-9\_\-\.)]+\.[(a-z)]{2,15}\
+                    $', email_pro.lower()):
                 if len(email_pro) < 60:
                     relleno = 60 - len(email_pro)
                     email_pro += relleno * ' '
@@ -302,12 +313,14 @@ class ConfirmingSabadell(object):
         else:
             text += 60 * ' '
         # 252 Tipo envio informacion
-        text += self.order.mode.tipo_envio_info # Por correo 1, por fax 2, por email 3
+        # Por correo 1, por fax 2, por email 3
+        text += self.order.mode.tipo_envio_info
         # 253 - 254 Codigo pais
         pais_pro = line['partner_id']['country_id']['code']
         if not pais_pro:
             raise Log(
-                _("Error: El Proveedor %s no tiene establecido el País.") % line['partner_id']['name'])
+                _("Error: El Proveedor %s no tiene establecido el \
+                    País.") % line['partner_id']['name'])
         else:
             text += pais_pro
 
@@ -332,14 +345,16 @@ class ConfirmingSabadell(object):
         pais_pro = line['partner_id']['country_id']['code']
         if not pais_pro:
             raise Log(
-                _("Error: El Proveedor %s no tiene establecido el País.") % line['partner_id']['name'])
+                _("Error: El Proveedor %s no tiene establecido el \
+                    País.") % line['partner_id']['name'])
         else:
             text += pais_pro
         # 19 - 29 SWIFT
         swift_pro = line['bank_id']['bank_bic']
         if not swift_pro:
             raise Log(
-                _("Error: La cuenta bancaria del Proveedor %s no tiene establecido el SWIFT.") % line['partner_id']['name'])
+                _("Error: La cuenta bancaria del Proveedor %s no tiene \
+                    establecido el SWIFT.") % line['partner_id']['name'])
         else:
             if len(swift_pro) < 11:
                 relleno = 11 - len(swift_pro)
@@ -350,13 +365,14 @@ class ConfirmingSabadell(object):
             tipo_cuenta = line['bank_id']['state']
             if tipo_cuenta == 'iban':
                 cuenta = line['bank_id']['acc_number']
-                cuenta = cuenta.replace(' ','')
+                cuenta = cuenta.replace(' ', '')
                 if len(cuenta) < 34:
                     relleno = 34 - len(cuenta)
                     cuenta += relleno * ' '
             else:
                 raise Log(
-                    _("Error: La Cuenta del Proveedor: %s tiene que estar en formato IBAN.") % line['partner_id']['name'])
+                    _("Error: La Cuenta del Proveedor: %s tiene que \
+                        estar en formato IBAN.") % line['partner_id']['name'])
         text += cuenta
 
         # 64 - 69 Codigo estadistico
@@ -382,4 +398,6 @@ class ConfirmingSabadell(object):
             text += '-'
         # 60-72 - Libre
         text += 268 * " "
+        text += '\r\n'
+
         return text
