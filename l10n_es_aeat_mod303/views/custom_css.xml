@@ -1,9 +1,0 @@
-<openerp>
-    <data>
-        <template id="custom_css_mod303" name="custom.css.mod303"  inherit_id="web.assets_backend">
-            <xpath expr="." position="inside">
-                <link rel="stylesheet" href="/l10n_es_aeat_mod303/static/src/css/custom_css.css"/>
-            </xpath>
-        </template>
-    </data>
-</openerp>

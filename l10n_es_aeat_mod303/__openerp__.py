@@ -8,8 +8,7 @@
     "name": "AEAT modelo 303",
     "version": "8.0.1.9.0",
     'category': "Accounting & Finance",
-    'author': "Praxya,"
-              "Guadaltech,"
+    'author': "Guadaltech,"
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "Antiun Ingeniería S.L.,"
@@ -25,7 +24,6 @@
         "data/tax_code_map_mod303_data.xml",
         "data/aeat_export_mod303_data.xml",
         "data/aeat_export_mod303_2017_data.xml",
-        "views/custom_css.xml",
         "views/mod303_view.xml",
         "security/ir.model.access.csv",
     ],
