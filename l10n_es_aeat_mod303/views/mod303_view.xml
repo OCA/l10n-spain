@@ -81,7 +81,7 @@
                                     />
                         </group>
                     </group>
-                    <group class="oe_subtotal_footer oe_right"
+                    <group class="oe_subtotal_footer oe_right custom_footer_303"
                            attrs="{'invisible': [('state', '=', 'draft')]}"
                            colspan="2">
                         <field name="resultado_liquidacion"
