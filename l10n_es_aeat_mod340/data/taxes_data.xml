@@ -101,6 +101,19 @@
         <record id="l10n_es.account_tax_code_template_AIBIBI21" model="account.tax.code.template">
             <field name="mod340" eval="True"/>
         </record>
+        <!-- INVERSION DEL SUJETO PASIVO -->
+        <record id="l10n_es.account_tax_code_template_OCIDSPEAIBI" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_code_template_ONSOCIDSPQOEDAD" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_code_template_VISP" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_code_template_RDDSBI" model="account.tax.code.template">
+            <field name="mod340" eval="True"/>
+        </record>
         <!--Otros Códigos de Impuestos-->
         <record id="l10n_es.account_tax_code_template_EIDBYS" model="account.tax.code.template">
             <field name="mod340" eval="True"/>
@@ -108,6 +121,21 @@
         
         <record id="l10n_es.account_tax_code_template_EIDBYS" model="account.tax.code.template">
             <field name="mod340" eval="True"/>
+        </record>
+        
+        <!-- Impuestos incluidos en el Modelo 340 como inversion del sujeto pasivo
+        -->
+        <record id="l10n_es.account_tax_template_p_iva21_isp" model="account.tax.template">
+            <field name="is_340_reserve_charge" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_template_s_iva0_isp" model="account.tax.template">
+            <field name="is_340_reserve_charge" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_template_p_iva4_isp" model="account.tax.template">
+            <field name="is_340_reserve_charge" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_template_p_iva10_isp" model="account.tax.template">
+            <field name="is_340_reserve_charge" eval="True"/>
         </record>
     </data>
 </openerp>
