@@ -31,6 +31,7 @@ Contribuidores
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * AvanzOSC (http://www.avanzosc.es)
 * Comunitea (http://www.comunitea.com)
+* Daniel Rodriguez <drl.9319@gmail.com>
 
 Maintainer
 ----------
